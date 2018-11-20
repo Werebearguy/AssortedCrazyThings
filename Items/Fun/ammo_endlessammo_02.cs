@@ -20,6 +20,7 @@ namespace Harblesnargits_Mod_01.Items.Fun
 			item.value = 0;
 			item.rare = -11;
 			item.shoot = mod.ProjectileType("proj_star_01");   //The projectile shoot when your weapon using this ammo
+									   //Without this line, it won't actually fire stars.
 		}
 
 		public override void AddRecipes()
