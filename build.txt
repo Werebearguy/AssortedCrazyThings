@@ -1,0 +1,6 @@
+author = Harblesnargits
+version = 1.0.1.3
+displayName = Assorted Crazy Things
+hideCode = true
+hideResources = true
+homepage = https://forums.terraria.org/index.php?threads/assorted-crazy-things-a-mod-full-of-crazy-things.74330/

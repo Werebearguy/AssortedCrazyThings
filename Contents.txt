@@ -1,0 +1,253 @@
+============
+Contents
+============
+ENEMIES
+Total Added: 86
+
+	Animated Tome
+			Spawns in the Dungeon. Always drops a Book upon dying. Comes in twelve colors.
+	Animated Tome (Special)
+			Spawns in the Dungeon. Always drops a Spell Tome upon dying.
+	Walking Chest
+			Spawns in the Underground. Always drops a Chest upon dying.
+	Walking Tombstone
+			Spawns at night on the surface. Always drops a Tombstone upon dying. Comes in eleven fashionable graves.
+	Cute Slime
+			Spawns during daytime on the surface. Comes in eight colors.
+	Fractured Eye
+			Spawns at night after Eye of Cthulhu is defeated. Comes in red, green, and blue.
+	Mechanical Eye
+			Spawns at night after The Twins are defeated. Comes in red, green, and blue.
+	Demon Eye
+			Spawns at night. Comes in green and purple.
+	Demon Eye (Sleepy)
+			Spawns at night. Comes in green and purple. 
+	Demon Eye (Dilated)
+			Spawns at night. Comes in green and purple.
+	Demon Eye (Halloween)
+			Spawns at night on Halloween. Comes in green and purple, both owl and UFO varieties.
+	Wandering Eye
+			Spawns at night in Hard Mode. Comes in green and purple.
+	Bloated Bait Thief
+			Spawns in water near Town NPCs when critters spawn. Drops Worms and rarely Golden Worms.
+	Cloudfish
+			Spawns in the sky. Drops Cloud blocks and sometimes Rain Cloud blocks. Can be captured with a bug net for the quest item of the same name.
+	Mini Sharkron
+			Spawns in the Ocean after Duke Fishron is defeated. Comes in two colors.
+	Flying Spider
+			Spawns in Spider Caves in Hard Mode. I am so sorry.
+	Juggerllusc
+			Spawns in the Ocean. Comes in black, white, and blue. Early miniboss, no special loot.
+	Spawn of Ocram
+			Spawns at night after Golem is defeated. Miniboss with a lot of health.
+	Deep Salamander
+			Spawns in the Cavern in Hard Mode. 
+	Megashark
+			Spawns in the Ocean.
+	Reaver Shark
+			Spawns in the Ocean. Low chance to drop the Reaver Shark tool.
+	Whale Shark
+			Spawns in the Ocean. Low chance to drop a Wooden Crate.
+	Sawtooth Shark
+			Spawns in the Ocean. Low chance to drop the Sawtooth Shark tool.
+	Blood Shark
+			Spawns in the Ocean during a Blood Moon. Low chance to drop the Sharktooth Necklace.
+	Giant Anomalocaris
+			Spawns in the Ocean. Always drops Shrimp. Low chance to drop Anomalous Wings (See Accessories below).
+	Anomalocaris
+			Spawns in the Ocean. Always drops Shrimp.
+	Ocean Slime
+			Spawns in the Ocean.
+	Turtle Slime
+			Spawns in the Jungle. Does NOT drop Turtle Shell.
+	Fairy Slime
+			Spawns in the Hallow.
+	Slimefish
+			Spawns in water near Town NPCs when critters spawn. Can be captured with a bug net for the quest item of the same name.
+	Horned Slime
+			Spawns in Hell. Not immune to lava.
+	Joyous Slime
+			Spawns during daytime on the surface. Does not cause damage to the player.
+	Chunky
+			Spawns in the Corruption. Drops Chunky's Eye.
+	Meatball
+			Spawns in the Crimson. Drops Meatball's Eye.
+	Sting Slime
+			Spawns in the Desert. Always drops a Stinger. Comes in orange and black.
+	Strange Slime
+			Spawns during daytime on the surface. Drops a Strange Plant. Comes in four varieties.
+	Unfortunate Delver
+			Spawns near Marble Blocks. Harmless, but can be killed for Stone Blocks.
+	Stone Soldier
+			Spawns in the Cavern.
+	Shark Head
+			Spawns in the Ocean. Drops Shark Fins.
+	Zombie Florist
+			Spawns in the Jungle. Rarely drops Flower Boots.
+	
+PETS
+Total: 30
+
+	- Alien Hornet
+			Crafted at a Demon Altar with Nectar x1 + Vortex Fragment x10
+    - Brain of Confusion
+			Crafted at a Demon Altar with Brain of Confusion x1
+	- Baby Crimera
+			Crafted at a Demon Altar with Vertebrae x30
+	- Cute Slime (Eight variants)
+			Use a Net on a Cute Slime to receive that slime as a pet.
+	- Demon Heart
+			Crafted at a Demon Altar with Demon Heart x1
+	- Docile Demon Eye (Three variants)
+			Crafted at a Demon Altar with Black Lens x1 + Lens x2
+	- Docile Fractured Eye (Three variants)
+			Crafted at a Demon Altar with Black Lens x1 + Lens x2
+	- Docile Mechanical Eye (Three variants)
+			Crafted at a Demon Altar with Black Lens x1 + Lens x2
+	- Chunky and Meatball
+			Crafted at a Demon Altar with Chunky's Eye x1 + Meatball's Eye x1
+	- Lifelike Mechanical Frog
+			Crafted at any Anvil with Frog x1
+    - Hungry
+			Crafted at a Demon Altar with Hellstone Ore x10 + Rotten Chunk x10
+    - Baby Ocram
+			- Uncommon drop from Spawn of Ocram (see above).
+	- Lil' Ichy
+			- Crafted at a Demon Altar with Ichor x30
+	- Cursed Skull
+			Crafted at a Demon Altar with Bone x10
+	- Tortured Soul
+			Crafted at a Demon Altar with Classy Cane x1
+	- Enchanted Sword
+			Crafted at a Demon Altar with Enchanted Sword x1
+	- Vampire Bat
+			Crafted at a Demon Altar with Bat wing x2 + Soul of Night x10
+
+ACCESSORIES
+Total: 27
+
+	- Massive Bundle of Balloons
+			Crafted at a Tinkerer's Workbench with Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
+			Gives you six extra jumps, negates fall damage, and increases jump height.
+	- Eye-lloon (Fourteen Different Looks)
+			Crafted at a Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 (+ Soul of Sight x1 for two of them)
+			Vanity item, no effects.
+	- Star in a Balloon
+			Crafted at a Tinkerer's Workbench with Shiny Red Balloon x1 + Star in a Bottle x1
+			Increases mana regeneration and jump height. Stacks with other mana regeneration buffs.
+	- Wisp in a Balloon
+			Crafted at a Tinkerer's Workbench with Shiny Red Balloon x1 + Wisp in a Bottle x1
+			Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle.
+	- Star Wisp Balloon
+			Crafted at a Tinkerer's Workbench with Star in a Balloon + Wisp in a Balloon
+			Increases Mana Regeneration, Jump Height, and glows in the dark.
+	- Water Candle in a Balloon
+			Crafted at a Tinkerer's Workbench with Water Candle x1 + Shiny Red Balloon x1
+			Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark.
+	- Peace Candle in a Balloon
+			Crafted at a Tinkerer's Workbench with Peace Candle x1 + Shiny Red Balloon x1
+			Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark.
+	- Bipolar Candle in a Balloon
+			Crafted at a Tinkerer's Workbench with Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
+			It does exactly what you'd expect it to, except it doesn't.
+	- Soles of Fire and Ice
+			Crafted at a Tinkerer's Workbench with Lava Waders x1, Ice Skates x1
+			Allows you to walk on water, lava, and thin ice.
+	- Slippery Soles
+			Crafted at a Tinkerer's Workbench with Frozen Slime Block x2 + Leather x2
+			You move on any block as if it was a Frozen Slime Block. Watch your speed!
+	- Bottled Dreams
+			Crafted at a Tinkerer's Workbench with Bottle x1 + Pixie Dust x10
+			Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump.
+	- Loot Magnet
+			Crafted at a Tinkerer's Workbench with Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
+			Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies.
+	- Festive Mirror
+			Crafted at a Tinkerer's Workbench with Hand Warmers x1 + Pocket Mirror x1
+			Provides immunity to the Chilled, Frozen, and Stoned debuffs.
+	- Anomalous Wings
+			Drops from Giant Anomalocaris.
+			Allows slowfall, and allows quick travel in water.
+
+WEAPONS
+Total: 3
+	- Breath of Spazmatism
+		NYI || READ BELOW
+		Upgraded Flamethrower that causes the Cursed Inferno debuff.
+	- Sight of Retinazer
+		NYI || READ BELOW
+		Upgraded Laser Rifle that deals more damage.
+	- Tome of Shadowflame Skulls
+		Crafted at a Crystal Ball with Book of Skulls x1 + Soul of Fright x10
+		Deals Shadowflame damage, post-Skeletron Prime upgrade to Book of Skulls.
+		
+MATERIALS:
+Total: 2
+
+	- Chunky's Eye
+		Drops from Chunky.
+	- Meatball's Eye
+		Drops from Meatball.
+		
+OTHER
+Total: 2
+
+	- Infinity Rocket
+		Crafted at a Crystal Ball with Rocket I x3996 (four full stacks)
+		Infinite rocket ammunition. WARNING: This destroys tiles!
+	- Star Forge
+		Crafted at a Crystal Ball with Fallen Star x3996 (That is not a typo.)
+		Infinte Fallen Star ammunition. You're insane if you actually grind this out.
+
+============
+Bugs and Issues
+============
+	None so far.
+	- Please report any balance issues, bugs, or mod incompatabilities you find. Contact information is below.
+
+============
+Planned Content...hopefully
+============
+Enemies;
+	- All Demon Eye variants added in this mod being affected by and counting towards the Demon Eye Banner.
+		- Need help making this a reality.
+	- Mechanical Eye having a glowing red eye.
+		- Need help making this a reality.
+	- Deep Salamander projectile firing speed change.
+		- Need help making this a reality.
+	- Spawn of Ocram projectile change.
+		- Need help making this a reality.
+	- More enemies, preferably custom sprites.
+
+Pets;
+	- Mechanical Eye pets will have glowing eyes.
+		- Need help making this a reality.
+	- Tortured Soul will have glowing flames.
+		- Need help making this a reality.
+	- More pets.
+
+Accessories:
+	- Wisp in a Balloon and Star Wisp in a Balloon having a glow mask.
+		- Need help making this a reality.
+	- Shoes that provide bounciness, as if bouncing off of Pink Slime Blocks.
+		- Need help making this a reality.
+	
+Weapons
+	- Breath of Spazmatism is intended to use the same projectile style as Spazmatism's cursed flame breath.
+		- Need help making this a reality.
+	- Sight of Retinazer is unbalanced as I don't know how to balance it. 
+		- If you use cheating mods, spawn one in and send feedback on balancing it.
+	
+Other;
+	- Infinity Rocket not destroying blocks.
+		- Need help making this a reality.
+	- More things.
+	
+============
+Contact, Bug Report, Help Offers
+============
+You can contact me one of these ways; 
+	- In the Terraria General threads, asking for Slime Waifu Mod Anon (or some variation)
+	- On the Terraria Community Forums under the username Harblesnargits
+	
+I am very bad at coding, and have need of someone who is willing to do some dirty work. Please give me a head's up on Terraria's forums via private message if you're willing to help.
