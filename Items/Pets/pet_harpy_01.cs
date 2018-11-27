@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace Harblesnargits_Mod_01.Items.Pets
 {
-	public class pet_cuteslime_07 : ModItem
+	public class pet_harpy_01 : ModItem
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Bottled Slime");
-					Tooltip.SetDefault("Summons a friendly Cute Slime to follow you.");
+					DisplayName.SetDefault("PET HARPY ITEM 01");
+					Tooltip.SetDefault("Summons a friendly Harpy to follow you.");
 				}
 			public override void SetDefaults()
 				{
-					item.CloneDefaults(ItemID.LizardEgg);
-					item.shoot = mod.ProjectileType("pet_cuteslime_07");
-					item.buffType = mod.BuffType("pet_cuteslime_07");
+					item.CloneDefaults(ItemID.ZephyrFish);
+					item.shoot = mod.ProjectileType("pet_harpy_01");
+					item.buffType = mod.BuffType("pet_harpy_01");
 					item.rare = -11;
 				}
 			public override void UseStyle(Player player)
