@@ -106,7 +106,7 @@ Total: 34
 
 	- Alien Hornet
 			Crafted at a Demon Altar with Nectar x1 + Vortex Fragment x10
-    - Brain of Confusion
+    	- Brain of Confusion
 			Crafted at a Demon Altar with Brain of Confusion x1
 	- Baby Crimera
 			Crafted at a Demon Altar with Vertebrae x30
@@ -126,12 +126,12 @@ Total: 34
 			Crafted at a Demon Altar with Chunky's Eye x1 + Meatball's Eye x1
 	- Lifelike Mechanical Frog
 			Crafted at any Anvil with Frog x1
-    - Hungry
+   	- Hungry
 			Crafted at a Demon Altar with Hellstone Ore x10 + Rotten Chunk x10
-    - Baby Ocram
-			- Uncommon drop from Spawn of Ocram (see above).
+    	- Baby Ocram
+			Uncommon drop from Spawn of Ocram (see above).
 	- Lil' Ichy
-			- Crafted at a Demon Altar with Ichor x30
+			Crafted at a Demon Altar with Ichor x30
 	- Cursed Skull
 			Crafted at a Demon Altar with Bone x10
 	- Tortured Soul
@@ -204,32 +204,32 @@ Total: 27
 WEAPONS
 Total: 3
 	- Breath of Spazmatism
-		NYI || READ BELOW
-		Upgraded Flamethrower that causes the Cursed Inferno debuff.
+			NYI || READ BELOW
+			Upgraded Flamethrower that causes the Cursed Inferno debuff.
 	- Sight of Retinazer
-		NYI || READ BELOW
-		Upgraded Laser Rifle that deals more damage.
+			NYI || READ BELOW
+			Upgraded Laser Rifle that deals more damage.
 	- Tome of Shadowflame Skulls
-		Crafted at a Crystal Ball with Book of Skulls x1 + Soul of Fright x10
-		Deals Shadowflame damage, post-Skeletron Prime upgrade to Book of Skulls.
+			Crafted at a Crystal Ball with Book of Skulls x1 + Soul of Fright x10
+			Deals Shadowflame damage, post-Skeletron Prime upgrade to Book of Skulls.
 		
 MATERIALS:
 Total: 2
 
 	- Chunky's Eye
-		Drops from Chunky.
+			Drops from Chunky.
 	- Meatball's Eye
-		Drops from Meatball.
+			Drops from Meatball.
 		
 OTHER
 Total: 2
 
 	- Infinity Rocket
-		Crafted at a Crystal Ball with Rocket I x3996 (four full stacks)
-		Infinite rocket ammunition. WARNING: This destroys tiles!
+			Crafted at a Crystal Ball with Rocket I x3996 (four full stacks)
+			Infinite rocket ammunition. WARNING: This destroys tiles!
 	- Star Forge
-		Crafted at a Crystal Ball with Fallen Star x3996 (That is not a typo.)
-		Infinte Fallen Star ammunition. You're insane if you actually grind this out.
+			Crafted at a Crystal Ball with Fallen Star x3996 (That is not a typo.)
+			Infinte Fallen Star ammunition. You're insane if you actually grind this out.
 
 ============
 Bugs and Issues
@@ -242,48 +242,48 @@ Planned Content...hopefully
 ============
 Enemies;
 	- All Demon Eye variants added in this mod being affected by and counting towards the Demon Eye Banner.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Mechanical Eye having a glowing red eye.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Deep Salamander projectile firing speed change.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Spawn of Ocram projectile change.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- More enemies, preferably custom sprites.
 
 Pets;
 	- Mechanical Eye pets will have glowing eyes.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Tortured Soul will have glowing flames.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- More pets.
 
 Accessories:
 	- Wisp in a Balloon and Star Wisp in a Balloon having a glow mask.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Shoes that provide bounciness, as if bouncing off of Pink Slime Blocks.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Everburning accessories apply dust to player attacks that match the damage they deal.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	
 Weapons
 	- Breath of Spazmatism is intended to use the same projectile style as Spazmatism's cursed flame breath.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- Sight of Retinazer is unbalanced as I don't know how to balance it. 
-		- If you use cheating mods, spawn one in and send feedback on balancing it.
+			- If you use cheating mods, spawn one in and send feedback on balancing it.
 	
 Other;
 	- Infinity Rocket not destroying blocks.
-		- Need help making this a reality.
+			- Need help making this a reality.
 	- More things.
 	
 ============
 Contact, Bug Report, Help Offers
 ============
 You can contact me one of these ways; 
-	- In the Terraria General threads, asking for Slime Waifu Mod Anon (or some variation)
-	- On the Terraria Community Forums under the username Harblesnargits
-	
+			- In the Terraria General threads, asking for Slime Waifu Mod Anon (or some variation)
+			- On the Terraria Community Forums under the username Harblesnargits
+		
 I am very bad at coding, and have need of someone who is willing to do some dirty work. Please give me a head's up on Terraria's forums via private message if you're willing to help.
 
 ============
@@ -297,26 +297,26 @@ November 26, 2018
 		Enemy		- Lil' Whale, weak ocean enemy.
 		Enemy		- Little Megalodon, a much bigger shark. Hits much harder than a shark. Very rare spawn.
 		Enemy		- Megalodon, a much bigger Little Megalodon. WILL kill you if it catches you. EXTREMELY rare spawn.
-		Pet			- Young Wyvern, crafted from a Wyverntail at any Workbench.
+		Pet		- Young Wyvern, crafted from a Wyverntail at any Workbench.
 		Accessory	- Everburning Candle, causes all player damage to also inflict fire damage.
 		Accessory	- Everburning Cursed Candle, causes all player damage to also inflict cursed fire damage.
 		Accessory	- Everfrozen Candle, causes all player damage to also inflict frostburn damage.
 		Accessory	- Everburning Shadow Candle, causes all player damage to also inflict shadowflame damage.
 
 	CHANGES:
-		- Whale Shark damage reduced to 0. They're gentle in real life, after all.
-		- Whale Shark now has gore that matches its appearance.
-		- Enemy spawn rates reduced, as they were too common.
+				- Whale Shark damage reduced to 0. They're gentle in real life, after all.
+				- Whale Shark now has gore that matches its appearance.
+				- Enemy spawn rates reduced, as they were too common.
 
 	IN DEVELOPMENT:
-		Pet			- Cute Gastropod. 
-		Pet			- Cute Harpy.
+		Pet		- Cute Gastropod. 
+		Pet		- Cute Harpy.
 		Weapon		- Breath of Spazmatism. Flamethrower coding still baffles me.
 		Weapon		- Sight of Retinazer. It's basically done, but I want it to release with Breath of Spasmatism.
 		
 December 1, 2018
 	ADDITIONS:
 		Enemy		- Cute Christmas Slime, a seasonal Cute Slime with a ribbon!
-		Pet			- Cute Christmas Slime, obtained by using a net on the Cute Christmas Slime NPC!
-		Pet			- Cute Gastropod, obtained by using a net on the new Cute Gastropod NPC!
-		Pet			- Baby Harpy, obtained by using a net on the new Cute Harpy NPC!
+		Pet		- Cute Christmas Slime, obtained by using a net on the Cute Christmas Slime NPC!
+		Pet		- Cute Gastropod, obtained by using a net on the new Cute Gastropod NPC!
+		Pet		- Baby Harpy, obtained by using a net on the new Cute Harpy NPC!
