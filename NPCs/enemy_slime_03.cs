@@ -13,11 +13,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Fairy Slime");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 34;
@@ -37,7 +32,7 @@ namespace Harblesnargits_Mod_01.NPCs
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					return SpawnCondition.OverworldHallow.Chance * 0.1f;
+					return SpawnCondition.OverworldHallow.Chance * 0.015f;
 				}
 			public override void NPCLoot()
 				{
@@ -49,9 +44,8 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					{
 						if (npc.life <= 0)
-						{
-							
-						}
+							{
+							}
 					}
 				}
 		}

@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Reaver Shark");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Shark];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 120;
@@ -34,7 +29,7 @@ namespace Harblesnargits_Mod_01.NPCs
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					return SpawnCondition.Ocean.Chance * 0.025f;
+					return SpawnCondition.Ocean.Chance * 0.005f;
 				}
 			public override void NPCLoot()
 				{
@@ -51,12 +46,12 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					{
 						if (npc.life <= 0)
-						{
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_01"), 1f);
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_02"), 1f);
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_03"), 1f);
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_04"), 1f);
-						}
+							{
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_01"), 1f);
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_02"), 1f);
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_03"), 1f);
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_02_04"), 1f);
+							}
 					}
 				}
 		}

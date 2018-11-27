@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Juggerllusc");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.SeaSnail];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-
 			public override void SetDefaults()
 				{
 					npc.width = 112;
@@ -36,26 +31,23 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 						player.AddBuff(BuffID.Slow, 240, true);
 				}
-				
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					return SpawnCondition.Ocean.Chance * 0.025f;
+					return SpawnCondition.Ocean.Chance * 0.005f;
 				}
-			
 			public override void NPCLoot()
 				{
 					{
 						Item.NewItem(npc.getRect(), ItemID.PurpleMucos);
 					}
 				}
-
 			public override void HitEffect(int hitDirection, double damage)
 				{
 					{
 						if (npc.life <= 0)
-						{
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_megasnail_01"), 1f);
-						}
+							{
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_megasnail_01"), 1f);
+							}
 					}
 				}
 		}

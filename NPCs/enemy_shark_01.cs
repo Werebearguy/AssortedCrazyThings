@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Megashark");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Shark];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 120;
@@ -34,7 +29,7 @@ namespace Harblesnargits_Mod_01.NPCs
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					return SpawnCondition.Ocean.Chance * 0.025f;
+					return SpawnCondition.Ocean.Chance * 0.005f;
 				}
 			public override void NPCLoot()
 				{

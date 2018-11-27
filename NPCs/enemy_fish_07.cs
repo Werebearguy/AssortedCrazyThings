@@ -1,34 +1,31 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Harblesnargits_Mod_01.NPCs
 {
-	public class enemy_slime_01 : ModNPC
+	public class enemy_fish_07 : ModNPC
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Ocean Slime");
-					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+					DisplayName.SetDefault("Lil' Sawtooth");
+					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Piranha];
 				}
 			public override void SetDefaults()
 				{
-					npc.width = 36;
+					npc.width = 68;
 					npc.height = 26;
-					npc.damage = 7;
-					npc.defense = 2;
+					npc.damage = 5;
+					npc.defense = 0;
 					npc.lifeMax = 25;
 					npc.HitSound = SoundID.NPCHit1;
 					npc.DeathSound = SoundID.NPCDeath1;
-					npc.value = 25f;
+					npc.value = 0f;
 					npc.knockBackResist = 0.25f;
-					npc.aiStyle = 1;
-					aiType = NPCID.ToxicSludge;
-					animationType = NPCID.ToxicSludge;
-					npc.alpha = 175;
-					npc.color = new Color(65, 193, 247, 100);
+					npc.aiStyle = 16;
+					aiType = NPCID.Piranha;
+					animationType = NPCID.Piranha;
+					npc.noGravity = true;
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
@@ -37,7 +34,12 @@ namespace Harblesnargits_Mod_01.NPCs
 			public override void NPCLoot()
 				{
 					{
-						Item.NewItem(npc.getRect(), ItemID.Gel);
+						if (Main.rand.NextBool(2))
+								Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
+						if (Main.rand.NextBool(97))
+								Item.NewItem(npc.getRect(), ItemID.DivingHelmet, 1);
+						if (Main.rand.NextBool(98))
+								Item.NewItem(npc.getRect(), ItemID.SawtoothShark, 1);
 					}
 				}
 			public override void HitEffect(int hitDirection, double damage)

@@ -6,20 +6,21 @@ using Terraria.ModLoader;
 
 namespace Harblesnargits_Mod_01.NPCs
 {
-	public class enemy_slime_01 : ModNPC
+	public class enemy_cuteslime_09 : ModNPC
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Ocean Slime");
+					DisplayName.SetDefault("Cute Holiday Slime");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 				}
 			public override void SetDefaults()
 				{
-					npc.width = 36;
-					npc.height = 26;
+					npc.width = 42;
+					npc.height = 52;
+					npc.friendly = true;
 					npc.damage = 7;
 					npc.defense = 2;
-					npc.lifeMax = 25;
+					npc.lifeMax = 5;
 					npc.HitSound = SoundID.NPCHit1;
 					npc.DeathSound = SoundID.NPCDeath1;
 					npc.value = 25f;
@@ -27,17 +28,26 @@ namespace Harblesnargits_Mod_01.NPCs
 					npc.aiStyle = 1;
 					aiType = NPCID.ToxicSludge;
 					animationType = NPCID.ToxicSludge;
-					npc.alpha = 175;
-					npc.color = new Color(65, 193, 247, 100);
+					Main.npcCatchable[mod.NPCType("enemy_cuteslime_09")] = true;
+					npc.catchItem = (short)mod.ItemType("pet_cuteslime_09");
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
+			{
+				if(Main.xMas == true)
 				{
-					return SpawnCondition.Ocean.Chance * 0.015f;
+					return SpawnCondition.OverworldDaySlime.Chance * 0.025f;
 				}
+				else
+				{
+					return SpawnCondition.OverworldDaySlime.Chance * 0f;
+				}
+			}
 			public override void NPCLoot()
 				{
 					{
 						Item.NewItem(npc.getRect(), ItemID.Gel);
+						if(Main.rand.Next(5) < 1) // a 2 in 7 chance
+							Item.NewItem(npc.getRect(), ItemID.GiantBow);
 					}
 				}
 			public override void HitEffect(int hitDirection, double damage)

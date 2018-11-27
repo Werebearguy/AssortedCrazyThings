@@ -1,22 +1,20 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Harblesnargits_Mod_01.NPCs
 {
-	public class enemy_slime_04 : ModNPC
+	public class enemy_fish_05 : ModNPC
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Slimefish");
+					DisplayName.SetDefault("Bass");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Goldfish];
 				}
 			public override void SetDefaults()
 				{
-					npc.width = 38;
-					npc.height = 36;
+					npc.width = 42;
+					npc.height = 32;
 					npc.damage = 0;
 					npc.defense = 0;
 					npc.lifeMax = 5;
@@ -28,26 +26,24 @@ namespace Harblesnargits_Mod_01.NPCs
 					aiType = NPCID.Goldfish;
 					animationType = NPCID.Goldfish;
 					npc.noGravity = true;
-					Main.npcCatchable[mod.NPCType("enemy_slime_04")] = true;
-					npc.catchItem = ItemID.Slimefish;
 				}
-			public override float SpawnChance(NPCSpawnInfo spawnInfo)
-				{
-					if(Main.raining == true)
+				public override float SpawnChance(NPCSpawnInfo spawnInfo)
 					{
-						return SpawnCondition.TownWaterCritter.Chance * 0.8f;
+						if(Main.raining == true)
+						{
+							return SpawnCondition.TownWaterCritter.Chance * 0.8f;
+						}
+						else
+						{
+							return SpawnCondition.TownWaterCritter.Chance * 0.05f;
+						}
 					}
-					else
-					{
-						return SpawnCondition.TownWaterCritter.Chance * 0.05f;
-					}
-				}
 			public override void NPCLoot()
-				{
 					{
-						Item.NewItem(npc.getRect(), ItemID.Gel);
+						{
+							Item.NewItem(npc.getRect(), ItemID.Bass);
+						}
 					}
-				}
 			public override void HitEffect(int hitDirection, double damage)
 				{
 					{

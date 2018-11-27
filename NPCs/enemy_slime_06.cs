@@ -13,11 +13,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Joyous Slime");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 36;
@@ -38,17 +33,16 @@ namespace Harblesnargits_Mod_01.NPCs
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					return SpawnCondition.OverworldDay.Chance * 0.1f;
+					return SpawnCondition.OverworldDay.Chance * 0.015f;
 				}
 			public override bool? CanBeHitByItem(Player player, Item item)
-			{
-				return true;
-			}
-
-		public override bool? CanBeHitByProjectile(Projectile projectile)
-			{
-				return true;
-			}
+				{
+					return true;
+				}
+			public override bool? CanBeHitByProjectile(Projectile projectile)
+				{
+					return true;
+				}
 			public override void NPCLoot()
 				{
 					{
@@ -59,9 +53,8 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					{
 						if (npc.life <= 0)
-						{
-							
-						}
+							{
+							}
 					}
 				}
 		}

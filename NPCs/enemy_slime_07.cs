@@ -13,11 +13,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Chunky");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 36;
@@ -49,9 +44,8 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					{
 						if (npc.life <= 0)
-						{
-							
-						}
+							{
+							}
 					}
 				}
 		}

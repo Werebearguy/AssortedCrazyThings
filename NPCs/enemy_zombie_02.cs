@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Zombie Florist");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-
 			public override void SetDefaults()
 				{
 					npc.width = 34;
@@ -31,12 +26,10 @@ namespace Harblesnargits_Mod_01.NPCs
 					aiType = NPCID.Zombie;
 					animationType = NPCID.Zombie;
 				}
-
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
 					return SpawnCondition.UndergroundJungle.Chance * 0.05f;
 				}
-			
 			public override void NPCLoot()
 				{
 					{
@@ -46,16 +39,15 @@ namespace Harblesnargits_Mod_01.NPCs
 								Item.NewItem(npc.getRect(), ItemID.FlowerBoots, 1);
 					}
 				}
-
 			public override void HitEffect(int hitDirection, double damage)
 				{
 					{
 						if (npc.life <= 0)
-						{
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_01"), 1f);
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
-							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
-						}
+							{
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_01"), 1f);
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
+								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
+							}
 					}
 				}
 		}

@@ -5,64 +5,55 @@ using Terraria.ModLoader;
 namespace Harblesnargits_Mod_01.NPCs
 {
 	public class enemy_statue_01 : ModNPC
-	{
-		public override void SetStaticDefaults()
-			{
-				DisplayName.SetDefault("Unfortunate Delver");
-				Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BartenderUnconscious];
-			}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
+		{
+			public override void SetStaticDefaults()
 				{
+					DisplayName.SetDefault("Unfortunate Delver");
+					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BartenderUnconscious];
 				}
-				
-		public override void SetDefaults()
-			{
-				npc.width = 28;
-				npc.height = 46;
-				npc.damage = 0;
-				npc.defense = 0;
-				npc.lifeMax = 50;
-				npc.HitSound = SoundID.NPCHit41;
-				npc.DeathSound = SoundID.NPCDeath52;
-				npc.value = 0f;
-				npc.knockBackResist = 0f;
-				npc.aiStyle = 0;
-				aiType = NPCID.BartenderUnconscious;
-				animationType = NPCID.BartenderUnconscious;
-				npc.friendly = true;
-			}
-
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-			{
-				if (spawnInfo.marble)
-					return 0.2f;
-					return 0f;
-			}
-		public override bool? CanBeHitByItem(Player player, Item item)
-			{
-				return true;
-			}
-
-		public override bool? CanBeHitByProjectile(Projectile projectile)
-			{
-				return true;
-			}
-		
-        public override void NPCLoot()
-			{
+			public override void SetDefaults()
 				{
-					Item.NewItem(npc.getRect(), ItemID.StoneBlock, 4 + Main.rand.Next(5));
+					npc.width = 28;
+					npc.height = 46;
+					npc.damage = 0;
+					npc.defense = 0;
+					npc.lifeMax = 50;
+					npc.HitSound = SoundID.NPCHit41;
+					npc.DeathSound = SoundID.NPCDeath52;
+					npc.value = 0f;
+					npc.knockBackResist = 0f;
+					npc.aiStyle = 0;
+					aiType = NPCID.BartenderUnconscious;
+					animationType = NPCID.BartenderUnconscious;
+					npc.friendly = true;
 				}
-			}
-		public override void HitEffect(int hitDirection, double damage)
-			{
+			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					if (npc.life <= 0)
+					if (spawnInfo.marble)
+						return 0.005f;
+						return 0f;
+				}
+			public override bool? CanBeHitByItem(Player player, Item item)
+				{
+					return true;
+				}
+			public override bool? CanBeHitByProjectile(Projectile projectile)
+				{
+					return true;
+				}
+			public override void NPCLoot()
+				{
 					{
-						
+						Item.NewItem(npc.getRect(), ItemID.StoneBlock, 4 + Main.rand.Next(5));
 					}
 				}
-			}
-	}
+			public override void HitEffect(int hitDirection, double damage)
+				{
+					{
+						if (npc.life <= 0)
+							{
+							}
+					}
+				}
+		}
 }

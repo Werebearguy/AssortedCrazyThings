@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 				DisplayName.SetDefault("Spawn of Ocram");
 				Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Corruptor];
 			}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 		public override void SetDefaults()
 			{
 				npc.width = 92;
@@ -36,13 +31,12 @@ namespace Harblesnargits_Mod_01.NPCs
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 			{
 				return !NPC.downedGolemBoss ? 0f :
-				SpawnCondition.OverworldNightMonster.Chance * 0.025f;
+				SpawnCondition.OverworldNightMonster.Chance * 0.005f;
 			}
         public override void NPCLoot()
 			{
 				{
 					Item.NewItem(npc.getRect(), ItemID.Emerald);
-					
 					if(Main.rand.Next(5) < 1) // a 2 in 7 chance
 						Item.NewItem(npc.getRect(), mod.ItemType("pet_Ocram_01"));
 				}
@@ -51,11 +45,11 @@ namespace Harblesnargits_Mod_01.NPCs
 			{
 				{
 					if (npc.life <= 0)
-					{
-						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_miniocram_03"), 1f);
-						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_miniocram_02"), 1f);
-						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_miniocram_01"), 1f);
-					}
+						{
+							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_miniocram_03"), 1f);
+							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_miniocram_02"), 1f);
+							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_miniocram_01"), 1f);
+						}
 				}
 			}
 	}

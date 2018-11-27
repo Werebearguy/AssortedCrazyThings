@@ -13,11 +13,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Flying Spider");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.FlyingSnake];
 				}
-				
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 98;
@@ -37,7 +32,7 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					if(Main.hardMode == true)
 						{
-							return SpawnCondition.SpiderCave.Chance * 0.025f;
+							return SpawnCondition.SpiderCave.Chance * 0.005f;
 						}
 					else
 						{
@@ -59,9 +54,8 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					{
 						if (npc.life <= 0)
-						{
-							
-						}
+							{
+							}
 					}
 				}
 		}

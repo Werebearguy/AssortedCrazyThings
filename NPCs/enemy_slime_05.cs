@@ -13,11 +13,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Horned Slime");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 			public override void SetDefaults()
 				{
 					npc.width = 36;
@@ -37,7 +32,7 @@ namespace Harblesnargits_Mod_01.NPCs
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
-					return SpawnCondition.Underworld.Chance * 0.1f;
+					return SpawnCondition.Underworld.Chance * 0.015f;
 				}
 			public override void NPCLoot()
 				{
@@ -49,9 +44,8 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
 					{
 						if (npc.life <= 0)
-						{
-							
-						}
+							{
+							}
 					}
 				}
 		}

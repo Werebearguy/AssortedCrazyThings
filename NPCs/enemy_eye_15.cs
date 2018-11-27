@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 				DisplayName.SetDefault("Demon Eye");
 				Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.DemonEye];
 			}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-				
 		public override void SetDefaults()
 			{
 				npc.width = 38;
@@ -55,10 +50,10 @@ namespace Harblesnargits_Mod_01.NPCs
 			{
 				{
 					if (npc.life <= 0)
-					{
-						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_greenpupil"), 1f);
-						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
-					}
+						{
+							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_greenpupil"), 1f);
+							Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
+						}
 				}
 			}
 	}

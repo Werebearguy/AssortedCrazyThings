@@ -11,11 +11,6 @@ namespace Harblesnargits_Mod_01.NPCs
 					DisplayName.SetDefault("Animated Tome");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.GiantBat];
 				}
-
-			public virtual void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
-				{
-				}
-
 			public override void SetDefaults()
 				{
 					npc.width = 44;
@@ -32,25 +27,22 @@ namespace Harblesnargits_Mod_01.NPCs
 					aiType = NPCID.GiantBat;
 					animationType = NPCID.GiantBat;
 				}
-
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
 					return SpawnCondition.Dungeon.Chance * 0.005f;
 				}
-			
 			public override void NPCLoot()
 				{
 					{
 					Item.NewItem(npc.getRect(), ItemID.SpellTome);
 					}
 				}
-
 			public override void HitEffect(int hitDirection, double damage)
 				{
 					{
 						if (npc.life <= 0)
-						{
-						}
+							{
+							}
 					}
 				}
 		}
