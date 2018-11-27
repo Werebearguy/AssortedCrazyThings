@@ -8,7 +8,7 @@ namespace Harblesnargits_Mod_01.Items.Pets
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("PET HARPY ITEM 01");
+					DisplayName.SetDefault("Clump of Down Feathers");
 					Tooltip.SetDefault("Summons a friendly Harpy to follow you.");
 				}
 			public override void SetDefaults()
