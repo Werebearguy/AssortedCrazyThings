@@ -1,6 +1,5 @@
 This mod adds a large amount of enemies, a hefty amount of pets, and a few other things. For a list of all content in this mod, please visit the homepage.
 
-
-
-*- 11/20/2018
-This is the initial release on the mod browser! Woo!
+*- 11/26/2018
+Updated! Spawns reduced, new enemies, and a bit more. See Mod Homepage for Contents Pastebin and changelog.
+Emergency Update after upload; fixed a...rather nasty bug. Just update and don't worry, updating will fix it!

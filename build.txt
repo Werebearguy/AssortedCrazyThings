@@ -1,5 +1,5 @@
 author = Harblesnargits
-version = 1.0.1.4
+version = 1.0.1.6
 displayName = Assorted Crazy Things
 hideCode = true
 hideResources = true

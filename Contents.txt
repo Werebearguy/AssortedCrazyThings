@@ -1,11 +1,13 @@
+As always, view the changelog at the bottom. Lowest = most recent.
+
 ============
 Contents
 ============
 ENEMIES
-Total Added: 86
+Total Added: 93
 
 	Animated Tome
-			Spawns in the Dungeon. Always drops a Book upon dying. Comes in twelve colors.
+			Spawns in the Dungeon. Always drops a Book upon dying. Comes in eleven colors.
 	Animated Tome (Special)
 			Spawns in the Dungeon. Always drops a Spell Tome upon dying.
 	Walking Chest
@@ -14,26 +16,36 @@ Total Added: 86
 			Spawns at night on the surface. Always drops a Tombstone upon dying. Comes in eleven fashionable graves.
 	Cute Slime
 			Spawns during daytime on the surface. Comes in eight colors.
+	Cute Slime (Christmas)
+			Spawns during daytime on the surface when Terraria celebrates Christmas.
 	Fractured Eye
-			Spawns at night after Eye of Cthulhu is defeated. Comes in red, green, and blue.
+			Spawns at night after Eye of Cthulhu is defeated. Comes in red, green, and purple.
 	Mechanical Eye
-			Spawns at night after The Twins are defeated. Comes in red, green, and blue.
+			Spawns at night after The Twins are defeated. Comes in red, green, and purple.
 	Demon Eye
-			Spawns at night. Comes in green and purple.
+			Spawns at night. Comes in green and purple, along with the vanilla red.
 	Demon Eye (Sleepy)
-			Spawns at night. Comes in green and purple. 
+			Spawns at night. Comes in green and purple, along with the vanilla red. 
 	Demon Eye (Dilated)
-			Spawns at night. Comes in green and purple.
+			Spawns at night. Comes in green and purple, along with the vanilla red.
 	Demon Eye (Halloween)
-			Spawns at night on Halloween. Comes in green and purple, both owl and UFO varieties.
+			Spawns at night on Halloween. Comes in green and purple, along with the vanilla red, in both owl and UFO varieties.
 	Wandering Eye
-			Spawns at night in Hard Mode. Comes in green and purple.
+			Spawns at night in Hard Mode. Comes in green and purple, along with the vanilla red.
 	Bloated Bait Thief
 			Spawns in water near Town NPCs when critters spawn. Drops Worms and rarely Golden Worms.
 	Cloudfish
 			Spawns in the sky. Drops Cloud blocks and sometimes Rain Cloud blocks. Can be captured with a bug net for the quest item of the same name.
 	Mini Sharkron
 			Spawns in the Ocean after Duke Fishron is defeated. Comes in two colors.
+	Bass
+			Spawns in water near Town NPCs when critters spawn. Drops Bass.
+	Lil' Reaver
+			Spawns in the Ocean. Low chance to drop the Reaver Shark tool.
+	Lil' Sawtooth
+			Spawns in the Ocean. Low chance to drop the Sawtooth Shark tool.
+	Lil' Whale
+			Spawns in the Ocean. Low chance to drop a Wooden Crate.
 	Flying Spider
 			Spawns in Spider Caves in Hard Mode. I am so sorry.
 	Juggerllusc
@@ -52,6 +64,10 @@ Total Added: 86
 			Spawns in the Ocean. Low chance to drop the Sawtooth Shark tool.
 	Blood Shark
 			Spawns in the Ocean during a Blood Moon. Low chance to drop the Sharktooth Necklace.
+	Little Megalodon
+			Spawns in the Ocean. Very strong, get out of the water asap.
+	Megalodon
+			Spawns in the Ocean. AVOID.
 	Giant Anomalocaris
 			Spawns in the Ocean. Always drops Shrimp. Low chance to drop Anomalous Wings (See Accessories below).
 	Anomalocaris
@@ -86,7 +102,7 @@ Total Added: 86
 			Spawns in the Jungle. Rarely drops Flower Boots.
 	
 PETS
-Total: 30
+Total: 34
 
 	- Alien Hornet
 			Crafted at a Demon Altar with Nectar x1 + Vortex Fragment x10
@@ -96,6 +112,8 @@ Total: 30
 			Crafted at a Demon Altar with Vertebrae x30
 	- Cute Slime (Eight variants)
 			Use a Net on a Cute Slime to receive that slime as a pet.
+	- Cute Christmas Slime
+			Use a Net on the seasonal Cute Chrismas Slime to receive it as a pet. Christmas time only!
 	- Demon Heart
 			Crafted at a Demon Altar with Demon Heart x1
 	- Docile Demon Eye (Three variants)
@@ -122,6 +140,8 @@ Total: 30
 			Crafted at a Demon Altar with Enchanted Sword x1
 	- Vampire Bat
 			Crafted at a Demon Altar with Bat wing x2 + Soul of Night x10
+	- Wyverntail
+			Crafted at any Workbench with Wyverntail x1 (Fishing quest item)
 
 ACCESSORIES
 Total: 27
@@ -159,6 +179,18 @@ Total: 27
 	- Bottled Dreams
 			Crafted at a Tinkerer's Workbench with Bottle x1 + Pixie Dust x10
 			Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump.
+	- Everburning Candle
+			Crafted at a Tinkerer's Workbench with Magma Stone x1 + Soul of Light x50
+			Like the Magma Stone, but from every source of player damage, including summons.
+	- Everburning Cursed Candle
+			Crafted at a Tinkerer's Workbench with Magma Stone x1 + Cursed Flame x50
+			Like the Everburning Candle, but causes the Cursed Flames debuff.
+	- Everfrozen Candle
+			Crafted at a Tinkerer's Workbench with Magma Stone x1 + Ice Block x50
+			Like the Everburning Candle, but causes the Frostburn debuff.
+	- Everburning Shadow Candle
+			Crafted at a Tinkerer's Workbench with Magma Stone x1 + Soul of Night x50
+			Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles.
 	- Loot Magnet
 			Crafted at a Tinkerer's Workbench with Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
 			Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies.
@@ -231,6 +263,8 @@ Accessories:
 		- Need help making this a reality.
 	- Shoes that provide bounciness, as if bouncing off of Pink Slime Blocks.
 		- Need help making this a reality.
+	- Everburning accessories apply dust to player attacks that match the damage they deal.
+		- Need help making this a reality.
 	
 Weapons
 	- Breath of Spazmatism is intended to use the same projectile style as Spazmatism's cursed flame breath.
@@ -251,3 +285,38 @@ You can contact me one of these ways;
 	- On the Terraria Community Forums under the username Harblesnargits
 	
 I am very bad at coding, and have need of someone who is willing to do some dirty work. Please give me a head's up on Terraria's forums via private message if you're willing to help.
+
+============
+Changelog
+============
+November 26, 2018
+	ADDITIONS:
+		Enemy		- Bass, harmless critter, town water. Drops Bass.
+		Enemy		- Lil' Reaver, weak ocean enemy. Very rarely drops Reaver Shark.
+		Enemy		- Lil' Sawtooth, weak ocean enemy. Very rarely drops Sawtooth Shark.
+		Enemy		- Lil' Whale, weak ocean enemy.
+		Enemy		- Little Megalodon, a much bigger shark. Hits much harder than a shark. Very rare spawn.
+		Enemy		- Megalodon, a much bigger Little Megalodon. WILL kill you if it catches you. EXTREMELY rare spawn.
+		Pet			- Young Wyvern, crafted from a Wyverntail at any Workbench.
+		Accessory	- Everburning Candle, causes all player damage to also inflict fire damage.
+		Accessory	- Everburning Cursed Candle, causes all player damage to also inflict cursed fire damage.
+		Accessory	- Everfrozen Candle, causes all player damage to also inflict frostburn damage.
+		Accessory	- Everburning Shadow Candle, causes all player damage to also inflict shadowflame damage.
+
+	CHANGES:
+		- Whale Shark damage reduced to 0. They're gentle in real life, after all.
+		- Whale Shark now has gore that matches its appearance.
+		- Enemy spawn rates reduced, as they were too common.
+
+	IN DEVELOPMENT:
+		Pet			- Cute Gastropod. 
+		Pet			- Cute Harpy.
+		Weapon		- Breath of Spazmatism. Flamethrower coding still baffles me.
+		Weapon		- Sight of Retinazer. It's basically done, but I want it to release with Breath of Spasmatism.
+		
+December 1, 2018
+	ADDITIONS:
+		Enemy		- Cute Christmas Slime, a seasonal Cute Slime with a ribbon!
+		Pet			- Cute Christmas Slime, obtained by using a net on the Cute Christmas Slime NPC!
+		Pet			- Cute Gastropod, obtained by using a net on the new Cute Gastropod NPC!
+		Pet			- Baby Harpy, obtained by using a net on the new Cute Harpy NPC!
