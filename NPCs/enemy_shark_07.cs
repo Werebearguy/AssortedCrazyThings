@@ -49,7 +49,7 @@ namespace Harblesnargits_Mod_01.NPCs
 
         public override bool PreAI()
         {
-            //while printing out Main.NewText(npc.velocity); I noticed that the speed caps at 5x and 3y
+            //while printing out Main.NewText(npc.velocity) I noticed that the speed caps at 5x and 3y
             //then I looked into the AI code and found this piece here
 
             //reduces max speed from 5 to 4 in X direction
