@@ -3,16 +3,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Graphics.Shaders;
 using System;
 
 namespace Harblesnargits_Mod_01.NPCs
 {
 	public class enemy_miniocram_01 : ModNPC
 	{
-		public override void SetStaticDefaults()
+        public static string name = "Spawn of Ocram";
+        public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Spawn of Ocram");
+			DisplayName.SetDefault(name);
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Corruptor];
         }
 
