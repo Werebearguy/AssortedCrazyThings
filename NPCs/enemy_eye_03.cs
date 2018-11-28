@@ -25,7 +25,9 @@ namespace Harblesnargits_Mod_01.NPCs
 				npc.aiStyle = 2;
 				aiType = NPCID.DemonEye;
 				animationType = NPCID.DemonEye;
-			}
+                banner = Item.NPCtoBanner(NPCID.DemonEye);
+                bannerItem = Item.BannerToItem(banner);
+        }
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 			{
 				return !NPC.downedBoss1 ? 0f :

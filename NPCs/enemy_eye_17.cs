@@ -25,7 +25,9 @@ namespace Harblesnargits_Mod_01.NPCs
 				npc.aiStyle = 2;
 				aiType = NPCID.WanderingEye;
 				animationType = NPCID.WanderingEye;
-			}
+            banner = Item.NPCtoBanner(NPCID.DemonEye);
+            bannerItem = Item.BannerToItem(banner);
+        }
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 			{
 				if(Main.hardMode == true)
