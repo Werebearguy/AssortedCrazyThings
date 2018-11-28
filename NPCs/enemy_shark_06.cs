@@ -13,11 +13,11 @@ namespace Harblesnargits_Mod_01.NPCs
 				}
 			public override void SetDefaults()
 				{
-					npc.width = 190;
-					npc.height = 82;
+					npc.width = 150;
+					npc.height = 52;
 					npc.damage = 250;
-					npc.defense = 90;
-					npc.lifeMax = 7500;
+					npc.defense = 75;
+					npc.lifeMax = 5000;
 					npc.HitSound = SoundID.NPCHit1;
 					npc.DeathSound = SoundID.NPCDeath1;
 					npc.value = 10000f;
@@ -34,10 +34,7 @@ namespace Harblesnargits_Mod_01.NPCs
 			public override void NPCLoot()
 				{
 					{
-						if (Main.rand.NextBool(2))
-								Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
-						if (Main.rand.NextBool(97))
-								Item.NewItem(npc.getRect(), ItemID.DivingHelmet, 1);
+						Item.NewItem(npc.getRect(), mod.ItemType("pet_megalodon_02"));
 					}
 				}
 			public override void HitEffect(int hitDirection, double damage)
