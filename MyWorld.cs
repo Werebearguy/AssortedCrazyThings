@@ -11,38 +11,39 @@ namespace Harblesnargits_Mod_01
 	public class MyWorld : ModWorld
 	{
         //basically "if they were alive last update"
-        public bool megasnailAlive = false;
-        public bool miniocramAlive = false;
+        public bool lilmegalodonAlive = false;
         public bool megalodonAlive = false;
+        public bool miniocramAlive = false;
         //"are they alive this update"
-        bool isMegasnailSpawned;
-        bool isMiniocramSpawned;
+        bool lilmegalodonSpawned;
         bool isMegalodonSpawned;
+        bool isMiniocramSpawned;
         //static names, in case you want to change them later
-        public static string megasnailName = enemy_megasnail_01.name;
-        public static string miniocramName = enemy_miniocram_01.name;
+        public static string lilmegalodonName = enemy_shark_06.name;
         public static string megalodonName = enemy_shark_07.name;
-        public static string megasnailMessage = enemy_megasnail_01.message;
-        public static string miniocramMessage = enemy_miniocram_01.message;
+        public static string miniocramName = enemy_miniocram_01.name;
+        public static string lilmegalodonMessage = enemy_shark_07.message;
         public static string megalodonMessage = enemy_shark_07.message;
+        public static string miniocramMessage = enemy_miniocram_01.message;
+        //the megalodon messages are modified down below in the Disappear message
 
         public override void Initialize()
         {
-            megasnailAlive = false;
-            miniocramAlive = false;
+            lilmegalodonAlive = false;
             megalodonAlive = false;
+            miniocramAlive = false;
         }
 
         //small methods I made for myself to not make the code cluttered since I have to use these six times
-        private void AwakeningMessage(NPC npc, string message)
+        private void AwakeningMessage(string message)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(npc.TypeName + " " + message, 175, 75, 255);
+                Main.NewText(message, 175, 75, 255);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromKey(npc.GetTypeNetName() + " " + message), new Color(175, 75, 255));
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 75, 255));
             }
         }
 
@@ -50,11 +51,11 @@ namespace Harblesnargits_Mod_01
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(name + " disappeared... for now", 175, 255, 175);
+                Main.NewText(name + " disappeared... for now.", 175, 255, 175);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(name + " disappeared... for now"), new Color(175, 255, 175));
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(name + " disappeared... for now."), new Color(175, 255, 175));
             }
         }
 
@@ -71,30 +72,21 @@ namespace Harblesnargits_Mod_01
         public override void PostUpdate()
 		{
             //those flags are checked for trueness each update
-            isMegasnailSpawned = false;
+            lilmegalodonSpawned = false;
             isMiniocramSpawned = false;
             isMegalodonSpawned = false;
             for (short j = 0; j < 200; j++)
             {
                 if (Main.npc[j].active)
                 {
-                    if(Main.npc[j].TypeName == megasnailName && !isMegasnailSpawned)
+                    if(Main.npc[j].TypeName == lilmegalodonName && !lilmegalodonSpawned)
                     {
-                        isMegasnailSpawned = true;
+                        lilmegalodonSpawned = true;
                         //check if it wasnt alive in previous update
-                        if(!megasnailAlive)
+                        if(!lilmegalodonAlive)
                         {
-                            AwakeningMessage(Main.npc[j], megasnailMessage);
-                            megasnailAlive = true;
-                        }
-                    }
-                    if (Main.npc[j].TypeName == miniocramName && !isMiniocramSpawned)
-                    {
-                        isMiniocramSpawned = true;
-                        if (!miniocramAlive)
-                        {
-                            AwakeningMessage(Main.npc[j], miniocramMessage);
-                            miniocramAlive = true;
+                            AwakeningMessage(lilmegalodonMessage);
+                            lilmegalodonAlive = true;
                         }
                     }
                     if (Main.npc[j].TypeName == megalodonName && !isMegalodonSpawned)
@@ -102,28 +94,37 @@ namespace Harblesnargits_Mod_01
                         isMegalodonSpawned = true;
                         if (!megalodonAlive)
                         {
-                            AwakeningMessage(Main.npc[j], megalodonMessage);
+                            AwakeningMessage(megalodonMessage);
                             megalodonAlive = true;
+                        }
+                    }
+                    if (Main.npc[j].TypeName == miniocramName && !isMiniocramSpawned)
+                    {
+                        isMiniocramSpawned = true;
+                        if (!miniocramAlive)
+                        {
+                            AwakeningMessage(miniocramMessage);
+                            miniocramAlive = true;
                         }
                     }
                 }
             }
             //after this we know that either atleast one miniboss is active or not
             //if alive, but not active, print disappear message
-            if (!isMegasnailSpawned && megasnailAlive)
+            if (!lilmegalodonSpawned && lilmegalodonAlive)
             {
-                megasnailAlive = false;
-                DisappearMessage(megasnailName);
+                lilmegalodonAlive = false;
+                DisappearMessage("The " + megalodonName);
+            }
+            if (!isMegalodonSpawned && megalodonAlive)
+            {
+                megalodonAlive = false;
+                DisappearMessage("The " + megalodonName);
             }
             if (!isMiniocramSpawned && miniocramAlive)
             {
                 miniocramAlive = false;
                 DisappearMessage(miniocramName);
-            }
-            if (!isMegalodonSpawned && megalodonAlive)
-            {
-                megalodonAlive = false;
-                DisappearMessage(megalodonName);
             }
         }
 

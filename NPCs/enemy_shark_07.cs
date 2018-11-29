@@ -7,7 +7,7 @@ namespace Harblesnargits_Mod_01.NPCs
     public class enemy_shark_07 : ModNPC
     {
         public static string name = "Megalodon";
-        public static string message = "A large Megalodon is approaching! Get out of the ocean!";
+        public static string message = "A Megalodon is approaching! Get out of the ocean!";
 
         public override void SetStaticDefaults()
         {
@@ -19,8 +19,8 @@ namespace Harblesnargits_Mod_01.NPCs
         {
             npc.width = 300;
             npc.height = 98;
-            npc.damage = 999;
-            npc.defense = 200;
+            npc.damage = 500;
+            npc.defense = 75;
             npc.lifeMax = 9999;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -34,7 +34,14 @@ namespace Harblesnargits_Mod_01.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Ocean.Chance * 0.00001f;
+            if (Main.hardMode)
+            {
+                return SpawnCondition.Ocean.Chance * 0.00001f;
+            }
+            else
+            {
+                return 0f;
+            }
         }
 
         public override void NPCLoot()
