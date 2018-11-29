@@ -81,6 +81,7 @@ namespace Harblesnargits_Mod_01.NPCs
             //Main.NewText(npc.ai[1]);
             //Main.NewText(npc.ai[2]);
             //Main.NewText(npc.ai[3]);
+            npc.netUpdate = true;
             return true;
         }
 

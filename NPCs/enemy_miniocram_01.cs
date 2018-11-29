@@ -298,7 +298,6 @@ namespace Harblesnargits_Mod_01.NPCs
 			{
                 npc.netUpdate = true;
 			}
-            Main.NewText("" + npc.rotation + " " + npc.direction);
-        }
+		}
     }
 }
