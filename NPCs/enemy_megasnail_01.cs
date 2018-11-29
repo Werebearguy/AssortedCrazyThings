@@ -40,6 +40,14 @@ namespace Harblesnargits_Mod_01.NPCs
             return SpawnCondition.Ocean.Chance * 0.005f;
         }
 
+        // Whether or not to run the code for checking whether this NPC will remain active.
+        //Return false to stop this NPC from being despawned and to stop this NPC from
+        //counting towards the limit for how many NPCs can exist near a player. Returns true by default.
+        //public override bool CheckActive()
+        //{
+        //    return false;
+        //}
+
         public override void NPCLoot()
         {
             {
