@@ -7,6 +7,7 @@ namespace Harblesnargits_Mod_01.NPCs
     public class enemy_megasnail_03 : ModNPC
     {
         public static string name = "Juggerllusc";
+        public static string message = "A large snail is approaching!";
 
         public override void SetStaticDefaults()
         {

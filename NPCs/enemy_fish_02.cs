@@ -33,7 +33,6 @@ namespace Harblesnargits_Mod_01.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            Main.NewText(spawnInfo.player.ZoneSkyHeight);
             if (spawnInfo.player.ZoneSkyHeight)
             {
                 return SpawnCondition.Sky.Chance * 100f; //0.05f before, 100f now because water check

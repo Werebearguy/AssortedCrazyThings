@@ -10,6 +10,8 @@ namespace Harblesnargits_Mod_01.NPCs
 	public class enemy_miniocram_01 : ModNPC
 	{
         public static string name = "Spawn of Ocram";
+        public static string message = "Spawn of Ocram has appeared!";
+
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault(name);

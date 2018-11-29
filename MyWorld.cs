@@ -22,6 +22,9 @@ namespace Harblesnargits_Mod_01
         public static string megasnailName = enemy_megasnail_01.name;
         public static string miniocramName = enemy_miniocram_01.name;
         public static string megalodonName = enemy_shark_07.name;
+        public static string megasnailMessage = enemy_megasnail_01.message;
+        public static string miniocramMessage = enemy_miniocram_01.message;
+        public static string megalodonMessage = enemy_shark_07.message;
 
         public override void Initialize()
         {
@@ -31,15 +34,15 @@ namespace Harblesnargits_Mod_01
         }
 
         //small methods I made for myself to not make the code cluttered since I have to use these six times
-        private void AwakeningMessage(NPC npc)
+        private void AwakeningMessage(NPC npc, string message)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(Language.GetTextValue("Announcement.HasAwoken", npc.TypeName), 175, 75, 255);
+                Main.NewText(npc.TypeName + " " + message, 175, 75, 255);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", npc.GetTypeNetName()), new Color(175, 75, 255));
+                NetMessage.BroadcastChatMessage(NetworkText.FromKey(npc.GetTypeNetName() + " " + message), new Color(175, 75, 255));
             }
         }
 
@@ -81,7 +84,7 @@ namespace Harblesnargits_Mod_01
                         //check if it wasnt alive in previous update
                         if(!megasnailAlive)
                         {
-                            AwakeningMessage(Main.npc[j]);
+                            AwakeningMessage(Main.npc[j], megasnailMessage);
                             megasnailAlive = true;
                         }
                     }
@@ -90,7 +93,7 @@ namespace Harblesnargits_Mod_01
                         isMiniocramSpawned = true;
                         if (!miniocramAlive)
                         {
-                            AwakeningMessage(Main.npc[j]);
+                            AwakeningMessage(Main.npc[j], miniocramMessage);
                             miniocramAlive = true;
                         }
                     }
@@ -99,7 +102,7 @@ namespace Harblesnargits_Mod_01
                         isMegalodonSpawned = true;
                         if (!megalodonAlive)
                         {
-                            AwakeningMessage(Main.npc[j]);
+                            AwakeningMessage(Main.npc[j], megalodonMessage);
                             megalodonAlive = true;
                         }
                     }

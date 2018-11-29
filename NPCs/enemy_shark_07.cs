@@ -7,6 +7,7 @@ namespace Harblesnargits_Mod_01.NPCs
     public class enemy_shark_07 : ModNPC
     {
         public static string name = "Megalodon";
+        public static string message = "A large Megalodon is approaching! Get out of the ocean!";
 
         public override void SetStaticDefaults()
         {
