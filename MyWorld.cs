@@ -55,6 +55,16 @@ namespace Harblesnargits_Mod_01
             }
         }
 
+        //not used anywhere, but might be helpful
+        private void KillInstantly(NPC npc)
+        {
+            // These 3 lines instantly kill the npc without showing damage numbers, dropping loot, or playing DeathSound. Use this for instant deaths
+            npc.life = 0;
+            npc.HitEffect();
+            npc.active = false;
+            Main.PlaySound(SoundID.NPCDeath16, npc.position); // plays a fizzle sound
+        }
+
         public override void PostUpdate()
 		{
             //those flags are checked for trueness each update
@@ -114,21 +124,21 @@ namespace Harblesnargits_Mod_01
             }
         }
 
-        public override void NetSend(BinaryWriter writer)
-        {
-            BitsByte flags = new BitsByte();
-            flags[0] = megasnailAlive;
-            flags[1] = miniocramAlive;
-            flags[2] = megalodonAlive;
-            writer.Write(flags);
-        }
+        //public override void NetSend(BinaryWriter writer)
+        //{
+        //    BitsByte flags = new BitsByte();
+        //    flags[0] = megasnailAlive;
+        //    flags[1] = miniocramAlive;
+        //    flags[2] = megalodonAlive;
+        //    writer.Write(flags);
+        //}
 
-        public override void NetReceive(BinaryReader reader)
-        {
-            BitsByte flags = reader.ReadByte();
-            megasnailAlive = flags[0];
-            miniocramAlive = flags[1];
-            megalodonAlive = flags[2];
-        }
+        //public override void NetReceive(BinaryReader reader)
+        //{
+        //    BitsByte flags = reader.ReadByte();
+        //    megasnailAlive = flags[0];
+        //    miniocramAlive = flags[1];
+        //    megalodonAlive = flags[2];
+        //}
     }
 }
