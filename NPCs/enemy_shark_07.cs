@@ -79,7 +79,6 @@ namespace Harblesnargits_Mod_01.NPCs
             {
                 npc.velocity.Y = -1.85f;
             }
-            npc.netUpdate = true;
             return true;
         }
     }
