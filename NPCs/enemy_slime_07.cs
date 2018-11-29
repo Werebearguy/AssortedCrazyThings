@@ -44,9 +44,12 @@ namespace Harblesnargits_Mod_01.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0 /*&& Main.rand.NextBool(50)*/)
+            if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC.NewNPC((int)npc.position.X, (int)npc.position.Y + 16, mod.NPCType("enemy_eye_ex02"));
+                if (npc.life <= 0 && Main.rand.NextBool(20))
+                {
+                    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y - 16, mod.NPCType("enemy_eye_ex01"));
+                }
             }
         }
     }

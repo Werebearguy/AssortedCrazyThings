@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,13 +27,9 @@ namespace Harblesnargits_Mod_01.NPCs
             npc.knockBackResist = 0.5f;
             npc.aiStyle = -1;
             npc.noGravity = true;
+            npc.noTileCollide = true;
             //aiType = NPCID.DemonEye;
             animationType = NPCID.DemonEye;
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SpawnCondition.OverworldNightMonster.Chance * 0.025f;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -46,20 +43,18 @@ namespace Harblesnargits_Mod_01.NPCs
 
         public override void AI()
         {
-            Main.NewText("test");
             if (npc.ai[0] == 0)
             {
-                Main.NewText("test2");
-                npc.rotation = 90f;
-                npc.direction = 0;
+                npc.rotation = (float)Math.PI / 2;
+                npc.direction = 1;
                 npc.velocity.X = 0;
-                npc.velocity.Y = -0.022f;
+                npc.velocity.Y = -0.022f * 6f;
             }
             npc.ai[0]++;
-            npc.velocity.Y -= 0.022f * 2f;
-            if (npc.timeLeft > 10)
+            npc.velocity.Y -= 0.022f * 1.7f; //0.022f * 2f;
+            if (npc.timeLeft > 60)
             {
-                npc.timeLeft = 10;
+                npc.timeLeft = 60;
             }
         }
     }
