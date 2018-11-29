@@ -14,6 +14,9 @@ namespace Harblesnargits_Mod_01.NPCs
 		{
 			DisplayName.SetDefault(name);
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Corruptor];
+            //same as chaos elemental, tho for npcs you still have to manually draw it (PostDraw())
+            NPCID.Sets.TrailingMode[npc.type] = 3;
+            NPCID.Sets.TrailCacheLength[npc.type] = 10;
         }
 
 		public override void SetDefaults()
@@ -63,22 +66,37 @@ namespace Harblesnargits_Mod_01.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            //Main.NewText("pos :" + npc.position);
-            Vector2 position4 = npc.position;
-            position4.X = position4.X + Main.npcTexture[npc.type].Width * 0.5f; //shadowdodgecount plus
-            position4.Y = position4.Y + npc.gfxOffY; //gfxoff
-            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-            //Main.NewText("drawcolor :" + drawColor);
+            /*Replica of titanium armor effect (Shadow dodge)
             Color color = npc.GetAlpha(drawColor) * (0.5f);
-            //Main.NewText("color :" + color);
+            Vector2 position4 = npc.position;
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            position4.Y = position4.Y + npc.gfxOffY; //gfxoff
+
+            position4.X = position4.X + Main.npcTexture[npc.type].Width * 0.5f; //shadowdodgecount plus
+
             Vector2 drawPos = position4 - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
-            //Main.NewText("drawpos :" + drawPos);
             spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
-            position4.X = position4.X - Main.npcTexture[npc.type].Width; //shadowdodgecount plus
+
+            position4.X = position4.X - Main.npcTexture[npc.type].Width; //shadowdodgecount minus
+
             drawPos = position4 - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
             spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
-            //}
+            */
             return true;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            //the higher the k, the older the position
+            //Length is implicitely set in TrailCacheLength up there
+            //start from half the length so the origninal sprite isnt super blurred
+            for (int k = (npc.oldPos.Length / 2); k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(drawColor) * ((float)(npc.oldPos.Length - k) / (1.5f * npc.oldPos.Length));
+                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
         }
 
         //Adapted from Vanilla, NPC type 94 Corruptor, AI type 5
@@ -164,7 +182,7 @@ namespace Harblesnargits_Mod_01.NPCs
             }
             npc.rotation = (float)Math.Atan2((double)num5, (double)num4) - 1.57f;
 
-            //doesn't seem to do anything
+            //doesn't seem to do anything because npc.notilecollide is set to false
 			//float num12 = 0.7f;
 			//if (npc.collideX)
 			//{
