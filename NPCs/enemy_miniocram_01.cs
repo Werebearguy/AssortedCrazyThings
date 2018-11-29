@@ -16,9 +16,9 @@ namespace Harblesnargits_Mod_01.NPCs
 		{
 			DisplayName.SetDefault(name);
 			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Corruptor];
-            //same as chaos elemental, tho for npcs you still have to manually draw it (PostDraw())
+            //same as chaos elemental, tho for npcs you still have to manually draw it (PreDraw())
             NPCID.Sets.TrailingMode[npc.type] = 3;
-            NPCID.Sets.TrailCacheLength[npc.type] = 10;
+            NPCID.Sets.TrailCacheLength[npc.type] = 8;
         }
 
 		public override void SetDefaults()
@@ -84,21 +84,32 @@ namespace Harblesnargits_Mod_01.NPCs
             drawPos = position4 - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
             spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
             */
+
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            //the higher the k, the older the position
+            //Length is implicitely set in TrailCacheLength up there
+            //start from half the length so the origninal sprite isnt super blurred
+            for (int k = (npc.oldPos.Length / 3); k < npc.oldPos.Length; k++)
+            {
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                Color color = npc.GetAlpha(drawColor) * ((float)(npc.oldPos.Length - k) / (2f * npc.oldPos.Length));
+                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
             return true;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-            //the higher the k, the older the position
-            //Length is implicitely set in TrailCacheLength up there
-            //start from half the length so the origninal sprite isnt super blurred
-            for (int k = (npc.oldPos.Length / 2); k < npc.oldPos.Length; k++)
-            {
-                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
-                Color color = npc.GetAlpha(drawColor) * ((float)(npc.oldPos.Length - k) / (1.5f * npc.oldPos.Length));
-                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
-            }
+            //Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            ////the higher the k, the older the position
+            ////Length is implicitely set in TrailCacheLength up there
+            ////start from half the length so the origninal sprite isnt super blurred
+            //for (int k = (npc.oldPos.Length / 2); k < npc.oldPos.Length; k++)
+            //{
+            //    Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+            //    Color color = npc.GetAlpha(drawColor) * ((float)(npc.oldPos.Length - k) / (1.5f * npc.oldPos.Length));
+            //    spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            //}
         }
 
         //Adapted from Vanilla, NPC type 94 Corruptor, AI type 5
@@ -238,7 +249,7 @@ namespace Harblesnargits_Mod_01.NPCs
 				{
                     int projectileDamage = 21;
                     int projectileType = 44; //Demon Scythe
-                    int projectileTravelTime = 180;
+                    int projectileTravelTime = 70;
                     float num224 = 0.2f;
                     Vector2 vector27 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
                     float num225 = Main.player[npc.target].position.X + (float)Main.player[npc.target].width * 0.5f - vector27.X + (float)Main.rand.Next(-50, 51);
@@ -247,6 +258,8 @@ namespace Harblesnargits_Mod_01.NPCs
                     num227 = num224 / num227;
                     num225 *= num227;
                     num226 *= num227;
+                    num225 *= 20;
+                    num226 *= 20;
                     int leftScythe = Projectile.NewProjectile(vector27.X - npc.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, npc.target);
                     Main.projectile[leftScythe].tileCollide = false;
                     Main.projectile[leftScythe].timeLeft = projectileTravelTime;
@@ -257,6 +270,8 @@ namespace Harblesnargits_Mod_01.NPCs
                     num227 = num224 / num227;
                     num225 *= num227;
                     num226 *= num227;
+                    num225 *= 20;
+                    num226 *= 20;
                     int rightScythe = Projectile.NewProjectile(vector27.X + npc.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, npc.target);
                     Main.projectile[rightScythe].tileCollide = false;
                     Main.projectile[rightScythe].timeLeft = projectileTravelTime;
