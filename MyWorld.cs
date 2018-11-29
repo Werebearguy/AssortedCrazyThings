@@ -10,6 +10,7 @@ namespace Harblesnargits_Mod_01
 {
 	public class MyWorld : ModWorld
 	{
+        //Test
         //basically "if they were alive last update"
         public bool megasnailAlive = false;
         public bool miniocramAlive = false;
