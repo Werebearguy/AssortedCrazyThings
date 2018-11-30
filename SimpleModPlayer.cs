@@ -73,7 +73,7 @@ namespace Harblesnargits_Mod_01
         private void SpawnMeleeDust(int type, Color color, Rectangle hitbox)
         {
             //6 is the default fire particle type
-            int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (float)(player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2.5f);
+            int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (float)(player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
             Main.dust[dustid].noGravity = true;
             Dust dust2 = Main.dust[dustid];
             dust2.velocity.X = dust2.velocity.X * 2f;
@@ -81,7 +81,7 @@ namespace Harblesnargits_Mod_01
             dust3.velocity.Y = dust3.velocity.Y * 2f;
         }
 
-        private void SpawnRangedDust(int type, Color color)
+        private void SpawnRangedDust(int type, Color color, float speed)
         {
             Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
             for (int k = 0; k < 10; k++)
@@ -90,8 +90,12 @@ namespace Harblesnargits_Mod_01
                 {
                     Vector2 pos = new Vector2(player.Center.X, player.Center.Y);
                     float randx = Main.rand.NextFloat(0.7f, 1.3f);
+                    float randx2 = Main.rand.NextFloat(-1.5f, 1.5f);
                     float randy = Main.rand.NextFloat(0.7f, 1.3f);
-                    Vector2 velo = new Vector2((cm.X * 16f * randx) / cm.Length(), (cm.Y * 16f * randy) / cm.Length());
+                    float randy2 = Main.rand.NextFloat(-1.5f, 1.5f);
+                    float velox = ((cm.X * speed * randx) / cm.Length()) + randx2; //first rand makes it so it has different velocity factor (how far it flies)
+                    float veloy = ((cm.Y * speed * randy) / cm.Length()) + randy2; //second rand is a kinda offset used mainly for when shooting vertically or horizontally
+                    Vector2 velo = new Vector2(velox, veloy);
                     Dust dust = Dust.NewDustPerfect(pos, type, velo, 0, color, 2.368421f);
                     dust.noGravity = true;
                     dust.noLight = true;
@@ -101,25 +105,31 @@ namespace Harblesnargits_Mod_01
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            float speed = (float)Math.Sqrt((double)(speedX * speedX + speedY * speedY));
+            if(speed < 10f)
+            {
+                speed = 10f;
+            }
+
             if (everburningCandleBuff)
             {
                 Color color = new Color(255, 255, 255);
-                SpawnRangedDust(6, color);
+                SpawnRangedDust(6, color, speed);
             }
             if (everburningCursedCandleBuff)
             {
-                Color color = new Color(196, 255, 00);
-                SpawnRangedDust(61, color);
+                Color color = new Color(196, 255, 0); //so it's light green and not dark green
+                SpawnRangedDust(61, color, speed);
             }
             if (everfrozenCandleBuff)
             {
                 Color color = new Color(255, 255, 255);
-                SpawnRangedDust(59, color);
+                SpawnRangedDust(59, color, speed);
             }
             if (everburningShadowflameCandleBuff)
             {
-                Color color = new Color(255, 255, 255);
-                SpawnRangedDust(65, color);
+                Color color = new Color(196, 0, 255);
+                SpawnRangedDust(62, color, speed);
             }
             return true;
         }
@@ -133,7 +143,7 @@ namespace Harblesnargits_Mod_01
             }
             if (everburningCursedCandleBuff)
             {
-                Color color = new Color(196, 255, 00);
+                Color color = new Color(196, 255, 0);
                 SpawnMeleeDust(61, color, hitbox);
             }
             if (everfrozenCandleBuff)
@@ -143,8 +153,8 @@ namespace Harblesnargits_Mod_01
             }
             if (everburningShadowflameCandleBuff)
             {
-                Color color = new Color(255, 255, 255);
-                SpawnMeleeDust(65, color, hitbox);
+                Color color = new Color(196, 0, 255);
+                SpawnMeleeDust(62, color, hitbox);
             }
             //type 64 is ichor
         }
