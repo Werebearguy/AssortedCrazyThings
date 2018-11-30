@@ -19,12 +19,12 @@ namespace Harblesnargits_Mod_01
         bool isMegalodonSpawned;
         bool isMiniocramSpawned;
         //static names, in case you want to change them later
-        public static string lilmegalodonName = enemy_shark_06.name;
-        public static string megalodonName = enemy_shark_07.name;
-        public static string miniocramName = enemy_miniocram_01.name;
-        public static string lilmegalodonMessage = enemy_shark_07.message;
-        public static string megalodonMessage = enemy_shark_07.message;
-        public static string miniocramMessage = enemy_miniocram_01.message;
+        public static string lilmegalodonName = LittleMegalodon.name;
+        public static string megalodonName = Megalodon.name;
+        public static string miniocramName = SpawnOfOcram.name;
+        public static string lilmegalodonMessage = Megalodon.message;
+        public static string megalodonMessage = Megalodon.message;
+        public static string miniocramMessage = SpawnOfOcram.message;
         //the megalodon messages are modified down below in the Disappear message
 
         public override void Initialize()
