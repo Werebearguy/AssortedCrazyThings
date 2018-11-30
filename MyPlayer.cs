@@ -12,6 +12,8 @@ namespace Harblesnargits_Mod_01
 {
     public class MyPlayer : ModPlayer
     {
+		public bool pet_megalodon_01 = false;
+		public bool pet_megalodon_02 = false;
 		public bool pet_cuteslime_09 = false;
 		public bool pet_harpy_01 = false;
 		public bool pet_gastropod_01 = false;
@@ -50,6 +52,8 @@ namespace Harblesnargits_Mod_01
 		
 		public override void ResetEffects()
 		{
+			pet_megalodon_01 = false;
+			pet_megalodon_02 = false;
 			pet_cuteslime_09 = false;
 			pet_harpy_01 = false;
 			pet_gastropod_01 = false;
