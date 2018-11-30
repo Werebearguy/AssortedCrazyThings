@@ -21,7 +21,7 @@ namespace Harblesnargits_Mod_01.Items.Accessories.Useful
 				}
 			public override void UpdateAccessory(Player player, bool hideVisual)
 				{
-					player.GetModPlayer<SimpleModPlayer>().variable_debuff_03 = true;
+					player.GetModPlayer<SimpleModPlayer>().everfrozenCandleBuff = true;
 				}
 			public override void AddRecipes()
 				{
