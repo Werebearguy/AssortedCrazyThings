@@ -88,14 +88,14 @@ namespace Harblesnargits_Mod_01
             {
                 if (Main.rand.NextFloat() < 0.8f)
                 {
-                    Vector2 pos = new Vector2(player.Center.X, player.Center.Y);
                     float randx = Main.rand.NextFloat(0.7f, 1.3f);
                     float randx2 = Main.rand.NextFloat(-1.5f, 1.5f);
                     float randy = Main.rand.NextFloat(0.7f, 1.3f);
-                    float randy2 = Main.rand.NextFloat(-1.5f, 1.5f);
+                    float bobandy = Main.rand.NextFloat(-1.5f, 1.5f);
                     float velox = ((cm.X * speed * randx) / cm.Length()) + randx2; //first rand makes it so it has different velocity factor (how far it flies)
-                    float veloy = ((cm.Y * speed * randy) / cm.Length()) + randy2; //second rand is a kinda offset used mainly for when shooting vertically or horizontally
+                    float veloy = ((cm.Y * speed * randy) / cm.Length()) + bobandy; //second rand is a kinda offset used mainly for when shooting vertically or horizontally
                     Vector2 velo = new Vector2(velox, veloy);
+                    Vector2 pos = new Vector2(player.Center.X + velox * 1.2f, player.Center.Y + veloy * 1.2f);
                     Dust dust = Dust.NewDustPerfect(pos, type, velo, 0, color, 2.368421f);
                     dust.noGravity = true;
                     dust.noLight = true;
