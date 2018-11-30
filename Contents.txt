@@ -1,259 +1,387 @@
 ============
 ENEMIES
+Total: 86
 ============
 Animated Tome
-- Dungeon. Drops Book.
-- 11 variants.
-Animated Tome (Special)
-- Dungeon. Drops Spell Tome.
-Walking Chest
-- Underground. Drops Chest.
-Walking Tombstone
-- Surface Night. Drops Tombstone.
-- 11 variants.
-Cute Slime
-- Surface Day. Harmless. Can be caught with a net.
-- 8 variants.
-Cute Slime (Christmas)
-- Surface Day during Christmas. Harmless. Can be caught with a net.
-Fractured Eye
-- Surface Night, after Eye of Cthulhu.
-- 3 variants.
-Mechanical Eye
-- Surface Night, after The Twins.
-- 3 variants.
-Demon Eye
-- Surface Night.
-- 2 variants.
-Demon Eye (Sleepy)
-- Surface Night.
-- 2 variants.
-Demon Eye (Dilated)
-- Surface Night.
-- 2 variants.
-Demon Eye (Halloween)
-- Surface Night during Halloween.
-- 4 variants.
-Wandering Eye
-- Surface Night after Wall of Flesh.
-- 2 variants.
-Meatball's Eye
-- Randomly spawns when Meatball is killed. Can be caught with a net.
-Chunky's Eye
-- Randomly spawns when Chunky is killed. Can be caught with a net.
-Bloated Bait Thief
-- Water near Town NPCs. Drops Worms.
-Cloudfish
-- Sky, rarely Surface. Drops Cloud Blocks, can be caught with a net.
-Mini Sharkron
-- Ocean after Duke Fishron.
-- 2 variants.
-Bass
-- Water near Town NPCs. Drops Bass.
-Lil' Reaver
-- Ocean. May drop Reaver Shark.
-Lil' Sawtooth
-- Ocean. May drop Sawtooth Shark.
-Lil' Whale
-- Ocean. May drop Wooden Crate.
-Young Harpy
-- Sky. Can be caught with a net.
-Flying Spider
-- Spider Caves after Wall of Flesh.
-Juggerllusc
-- Ocean. Drops Purple Mucos. Miniboss.
-Spawn of Ocram
-- Surface Night after Golem. Miniboss.
-Deep Salamander
-- Cavern  after Wall of Flesh. 
-Megashark
-- Ocean.
-Reaver Shark
-- Ocean. May drop Reaver Shark.
-Whale Shark
-- Ocean. May drop Wooden Crate.
-Sawtooth Shark
-- Ocean. May drop Sawtooth Shark.
-Blood Shark
-- Ocean during a Blood Moon. May drop Sharktooth Necklace.
-Little Megalodon
-- Ocean. Miniboss, suggested to flee.
-Megalodon
-- Ocean. Miniboss, greatly suggested to flee.
-Giant Anomalocaris
-- Ocean. Drops Shrimp, may drop Anomalous Wings (See Accessories Below).
+	- Dungeon. Drops Book.
+Animated Spell Tome
+	- Dungeon. Drops Spell Tome.
 Anomalocaris
-- Ocean. Drops Shrimp.
-Ocean Slime
-- Ocean.
-Turtle Slime
-- Surface Jungle Day.
-Fairy Slime
-- Surface Hallow Day.
-Slimefish
-- Water near Town NPCs. Can be caught with a net.
-Horned Slime
-- Hell.
-Joyous Slime
-- Surface Day. Harmless.
+	- Ocean. Drops Shrimp.
+Bass
+	- Water near Town NPCs. Drops Bass.
+Bloated Bait Thief
+	- Water near Town NPCs. Drops Worms.
+Blood Shark
+	- Ocean during a Blood Moon. May drop Sharktooth Necklace.
 Chunky
-- Corruption. 
-Meatball
-- Crimson.
-Sting Slime
-- Desert. Drops Stinger.
-- 2 variants.
-Strange Slime
-- Surface Day. Drops Strange Plant. 
-- 4 variants.
-Unfortunate Delver
-- Marble. Harmless, drops Stone Blocks.
-Stone Soldier
-- Cavern.
-Shark Head
-- Ocean. Drops Shark Fin.
-Zombie Florist
-- Underground Jungle. May drop Flower Boots.
-	
-PETS
-
-Alien Hornet
-- Demon Altar, Nectar x1 + Vortex Fragment x10
-Brain of Confusion
-- Demon Altar, Brain of Confusion x1
-Baby Crimera
-- Demon Altar, Vertebrae x30
-Cute Slime
-- Use a Net on a Cute Slime to receive that slime as a pet.
-- 8 variants.
-Cute Christmas Slime
-- Use a Net on the seasonal Cute Chrismas Slime to receive it as a pet. Christmas time only!
-Demon Heart
-- Demon Altar, Demon Heart x1
-Docile Demon Eye
-- Demon Altar, Black Lens x1 + Lens x2
-- 3 variants.
-Docile Fractured Eye
-- Demon Altar, Black Lens x1 + Lens x2
-- 3 variants.
-Docile Mechanical Eye
-- Demon Altar, Black Lens x1 + Lens x2
-- 3 variants.
-Chunky and Meatball
-- Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
-Lifelike Mechanical Frog
-- Anvil, Frog x1
-Hungry
-- Demon Altar, Hellstone Ore x10 + Rotten Chunk x10
-Baby Ocram
-- Drop, Spawn of Ocram
-Lil' Ichy
-- Demon Altar, Ichor x30
-Cursed Skull
-- Demon Altar, Bone x10
-Tortured Soul
-- Demon Altar, Classy Cane x1
-Enchanted Sword
-- Demon Altar, Enchanted Sword x1
-Vampire Bat
-- Demon Altar, Bat wing x2 + Soul of Night x10
-Wyverntail
-- Workbench, Wyverntail x1
-
-ACCESSORIES
-
-Massive Bundle of Balloons
-- Tinkerer's Workbench with Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
-- Gives you six extra jumps, negates fall damage, and increases jump height.
-Eye-lloon (Fourteen Different Looks)
-- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 (+ Soul of Sight x1 for two of them)
-- Vanity item, no effects.
-Star in a Balloon
-- Tinkerer's Workbench with Shiny Red Balloon x1 + Star in a Bottle x1
-- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs.
-Wisp in a Balloon
-- Tinkerer's Workbench with Shiny Red Balloon x1 + Wisp in a Bottle x1
-- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle.
-Star Wisp Balloon
-- Tinkerer's Workbench with Star in a Balloon + Wisp in a Balloon
-- Increases Mana Regeneration, Jump Height, and glows in the dark.
-Water Candle in a Balloon
-- Tinkerer's Workbench with Water Candle x1 + Shiny Red Balloon x1
-- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark.
-Peace Candle in a Balloon
-- Tinkerer's Workbench with Peace Candle x1 + Shiny Red Balloon x1
-- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark.
-Bipolar Candle in a Balloon
-- Tinkerer's Workbench with Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
-- It does exactly what you'd expect it to, except it doesn't.
-Soles of Fire and Ice
-- Tinkerer's Workbench with Lava Waders x1, Ice Skates x1
-- Allows you to walk on water, lava, and thin ice.
-Slippery Soles
-- Tinkerer's Workbench with Frozen Slime Block x2 + Leather x2
-- You move on any block as if it was a Frozen Slime Block. Watch your speed!
-Bottled Dreams
-- Tinkerer's Workbench with Bottle x1 + Pixie Dust x10
-- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump.
-Everburning Candle
-- Tinkerer's Workbench with Magma Stone x1 + Soul of Light x50
-- Like the Magma Stone, but from every source of player damage, including summons.
-Everburning Cursed Candle
-- Tinkerer's Workbench with Magma Stone x1 + Cursed Flame x50
-- Like the Everburning Candle, but causes the Cursed Flames debuff.
-Everfrozen Candle
-- Tinkerer's Workbench with Magma Stone x1 + Ice Block x50
-- Like the Everburning Candle, but causes the Frostburn debuff.
-Everburning Shadow Candle
-- Tinkerer's Workbench with Magma Stone x1 + Soul of Night x50
-- Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles.
-Loot Magnet
-- Tinkerer's Workbench with Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
-- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies.
-Festive Mirror
-- Tinkerer's Workbench with Hand Warmers x1 + Pocket Mirror x1
-- Provides immunity to the Chilled, Frozen, and Stoned debuffs.
-Anomalous Wings
-- Drops from Giant Anomalocaris.
-- Allows slowfall, and allows quick travel in water.
-
-WEAPONS
-
-Breath of Spazmatism
-- NYI || READ BELOW
-- Cursed Flames ranged weapon.
-Sight of Retinazer
-- NYI || READ BELOW
-- Magic weapon.
-Tome of Shadowflame Skulls
-- Crystal Ball, Book of Skulls x1 + Soul of Fright x10
-- Shadowflame magic weapon.
-		
-MATERIALS:
-
+	- Corruption. 
 Chunky's Eye
-- Drops from Chunky.
+	- Randomly spawns when Chunky is killed. Can be caught with a net.
+Cloudfish
+	- Sky, rarely Surface. Drops Cloud Blocks, can be caught with a net.
+Cute Gastropod
+	- Hallow. Can be caught with a net.
+Cute Slime (Black)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Blue)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Green)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Pink)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Purple)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Rainbow)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Red)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Yellow)
+	- Surface Day. Harmless. Can be caught with a net.
+Cute Slime (Christmas)
+	- Surface Day during Christmas. Harmless. Can be caught with a net.
+Deep Salamander
+	- Cavern after Wall of Flesh is defeated. 
+Demon Eye (Cataracts, Green)
+	- Surface Night.
+Demon Eye (Cataracts, Purple)
+	- Surface Night.
+Demon Eye (Dilated, Green)
+	- Surface Night.
+Demon Eye (Dilated, Purple)
+	- Surface Night.
+Demon Eye (Owl, Green)
+	- Surface Night during Halloween.
+Demon Eye (Owl, Purple)
+	- Surface Night during Halloween.
+Demon Eye (Sleepy, Green)
+	- Surface Night.
+Demon Eye (Sleepy, Purple)
+	- Surface Night.
+Demon Eye (UFO, Green)
+	- Surface Night during Halloween.
+Demon Eye (UFO, Purple)
+	- Surface Night during Halloween.
+Fairy Slime
+	- Surface Hallow Day.
+Flying Spider
+	- Spider Caves after Wall of Flesh.
+Fractured Eye (Green)
+	- Surface Night after Eye of Cthulhu is defeated.
+Fractured Eye (Purple)
+	- Surface Night after Eye of Cthulhu is defeated.
+Fractured Eye (Red)
+	- Surface Night after Eye of Cthulhu is defeated.
+Giant Anomalocaris
+	- Ocean. Drops Shrimp, may drop Anomalous Wings (See Accessories Below).
+Horned Slime
+	- Hell.
+Joyous Slime
+	- Surface Day. Harmless.
+Juggerllusc (Black)
+	- Ocean. Drops Purple Mucos.
+Juggerllusc (Blue)
+	- Ocean. Drops Purple Mucos.
+Juggerllusc (White)
+	- Ocean. Drops Purple Mucos.
+Little Megalodon
+	- Ocean. Announces its spawn.
+Meatball
+	- Crimson.
 Meatball's Eye
-- Drops from Meatball.
-		
-OTHER
+	- Randomly spawns when Meatball is killed. Can be caught with a net.
+Mechanical Eye (Green)
+	- Surface Night, after The Twins are defeated.
+Mechanical Eye (Purple)
+	- Surface Night, after The Twins are defeated.
+Mechanical Eye (Red)
+	- Surface Night, after The Twins are defeated.
+Megalodon
+	- Ocean. Announces its spawn.
+Megashark
+	- Ocean.
+Ocean Slime
+	- Ocean.
+Reaver Shark
+	- Ocean. May drop Reaver Shark.
+Reaver Shark Pup
+	- Ocean. May drop Reaver Shark.
+Sawtooth Shark
+	- Ocean. May drop Sawtooth Shark.
+Sawtooth Shark Pup
+	- Ocean. May drop Sawtooth Shark.
+Shark Head
+	- Ocean. Drops Shark Fin.
+Sharkron Pup (Blue)
+	- Ocean after Duke Fishron is defeated.
+Sharkron Pup (Pink)
+	- Ocean after Duke Fishron is defeated.
+Slimefish
+	- Water near Town NPCs. Can be caught with a net.
+Spawn of Ocram
+	- Surface Night after Golem is defeated. Miniboss.
+Sting Slime (Black)
+	- Desert. Drops Stinger.
+Sting Slime (Orange)
+	- Desert. Drops Stinger.
+Stone Soldier
+	- Cavern.
+Strange Slime (Purple Plant)
+	- Surface Day. Drops Strange Plant. 
+Strange Slime (Orange Plant)
+	- Surface Day. Drops Strange Plant. 
+Strange Slime (Green Plant)
+	- Surface Day. Drops Strange Plant. 
+Strange Slime (Green and Red Plant)
+	- Surface Day. Drops Strange Plant. 
+Turtle Slime
+	- Surface Jungle Day.
+Unfortunate Delver
+	- Marble. Harmless, drops Stone Blocks.
+Walking Chest
+	- Underground. Drops Chest.
+Walking Tombstone (Cross Grave Marker)
+	- Surface Night. Drops Cross Grave Marker.
+Walking Tombstone (Golden Cross Grave Marker)
+	- Surface Night. Drops Golden Cross Grave Marker.
+Walking Tombstone (Golden Grave Marker)
+	- Surface Night. Drops Golden Grave Marker.
+Walking Tombstone (Golden Gravestone)
+	- Surface Night. Drops Golden Gravestone.
+Walking Tombstone (Golden Headstone)
+	- Surface Night. Drops Golden Headstone.
+Walking Tombstone (Golden Tombstone)
+	- Surface Night. Drops Golden Tombstone.
+Walking Tombstone (Grave Marker)
+	- Surface Night. Drops Grave Marker.
+Walking Tombstone (Gravestone)
+	- Surface Night. Drops Gravestone.
+Walking Tombstone (Headstone)
+	- Surface Night. Drops Headstone.
+Walking Tombstone (Obelisk)
+	- Surface Night. Drops Obelisk.
+Walking Tombstone (Tombstone)
+	- Surface Night. Drops Tombstone.
+Wandering Eye (Green)
+	- Surface Night after Wall of Flesh is defeated.
+Wandering Eye (Purple)
+	- Surface Night after Wall of Flesh is defeated.
+Whale Shark
+	- Ocean. May drop Wooden Crate.
+Whale Shark Pup
+	- Ocean. May drop Wooden Crate.
+Young Harpy
+	- Sky. Can be caught with a net.
+Zombie Florist
+	- Underground Jungle. May drop Flower Boots.
 
+============
+PETS
+Total: 37
+============
+Alien Hornet
+	- Demon Altar, Nectar x1 + Vortex Fragment x10
+Baby Crimera
+	- Demon Altar, Vertebrae x30
+Baby Ichor Sticker
+	- Demon Altar, Ichor x30
+Baby Ocram
+	- Drop from Spawn of Ocram.
+Brain of Confusion
+	- Demon Altar, Brain of Confusion x1
+Chunky and Meatball
+	- Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
+Cursed Skull
+	- Demon Altar, Bone x10
+Cute Gastropod
+	- Caught with a net.
+Cute Slime (Black)
+	- Caught with a net.
+Cute Slime (Blue)
+	- Caught with a net.
+Cute Slime (Green)
+	- Caught with a net.
+Cute Slime (Pink)
+	- Caught with a net.
+Cute Slime (Purple)
+	- Caught with a net.
+Cute Slime (Rainbow)
+	- Caught with a net.
+Cute Slime (Red)
+	- Caught with a net.
+Cute Slime (Yellow)
+	- Caught with a net.
+Cute Slime (Christmas)
+	- Caught with a net.
+Demon Heart
+	- Demon Altar, Demon Heart x1
+Detached Hungry
+	- Demon Altar, Hellstone Ore x10 + Rotten Chunk x10
+Docile Demon Eye (Green)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Demon Eye (Purple)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Demon Eye (Red)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Fractured Eye (Green)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Fractured Eye (Purple)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Fractured Eye (Red)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Mechanical Eye (Green)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Mechanical Eye (Purple)
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Mechanical Eye (Red)
+	- Demon Altar, Black Lens x1 + Lens x2
+Enchanted Sword
+	- Demon Altar, Enchanted Sword x1
+Lifelike Mechanical Frog
+	- Anvil, Frog x1
+Mini Megalodon
+	- Drop from Little Megalodon.
+Origami Crane
+	- Drops from....?
+Small Megalodon
+	- Drop from Megalodon.
+Tortured Soul
+	- Demon Altar, Classy Cane x1
+Vampire Bat
+	- Demon Altar, Bat wing x2 + Soul of Night x10
+Young Harpy
+	- Caught with a net.
+Wyverntail
+	- Workbench, Wyverntail x1
+
+============
+ACCESSORIES
+Total: 17
+============
+Anomalous Wings
+	- Drops from Giant Anomalocaris.
+	- Allows slowfall, and allows quick travel in water.
+Bipolar Candle in a Balloon
+	- Tinkerer's Workbench with Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
+	- It does exactly what you'd expect it to, except it doesn't.
+Bottled Dreams
+	- Tinkerer's Workbench with Bottle x1 + Pixie Dust x10
+	- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump.
+Everburning Candle
+	- Tinkerer's Workbench with Magma Stone x1 + Soul of Light x50
+	- Like the Magma Stone, but from every source of player damage, including summons.
+Everburning Cursed Candle
+	- Tinkerer's Workbench with Magma Stone x1 + Cursed Flame x50
+	- Like the Everburning Candle, but causes the Cursed Flames debuff.
+Everburning Shadow Candle
+	- Tinkerer's Workbench with Magma Stone x1 + Soul of Night x50
+	- Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles.
+Everfrozen Candle
+	- Tinkerer's Workbench with Magma Stone x1 + Ice Block x50
+	- Like the Everburning Candle, but causes the Frostburn debuff.
+Festive Mirror
+	- Tinkerer's Workbench with Hand Warmers x1 + Pocket Mirror x1
+	- Provides immunity to the Chilled, Frozen, and Stoned debuffs.
+Loot Magnet
+	- Tinkerer's Workbench with Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
+	- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies.
+Massive Bundle of Balloons
+	- Tinkerer's Workbench with Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
+	- Gives you six extra jumps, negates fall damage, and increases jump height.
+Peace Candle in a Balloon
+	- Tinkerer's Workbench with Peace Candle x1 + Shiny Red Balloon x1
+	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark.
+Slippery Soles
+	- Tinkerer's Workbench with Frozen Slime Block x2 + Leather x2
+	- You move on any block as if it was a Frozen Slime Block. Watch your speed!
+Soles of Fire and Ice
+	- Tinkerer's Workbench with Lava Waders x1, Ice Skates x1
+	- Allows you to walk on water, lava, and thin ice.
+Star in a Balloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Star in a Bottle x1
+	- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs.
+Star Wisp Balloon
+	- Tinkerer's Workbench with Star in a Balloon + Wisp in a Balloon
+	- Increases Mana Regeneration, Jump Height, and glows in the dark.
+Water Candle in a Balloon
+	- Tinkerer's Workbench with Water Candle x1 + Shiny Red Balloon x1
+	- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark.
+Wisp in a Balloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Wisp in a Bottle x1
+	- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle.	
+
+============
+VANITY ACCESSORIES
+Total: 14
+============
+Retinazer Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+Green Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Green Toothy Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Green Metal Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Green Metal Toothy Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Purple Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Purple Toothy Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Purple Metal Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Purple Metal Toothy Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Red Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Red Toothy Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Red Metal Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Red Metal Toothy Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Spazmatism Eye-lloon
+	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+
+============
+WEAPONS
+============
+Breath of Spazmatism
+	- Cursed Flames ranged weapon.
+Sight of Retinazer
+	- Magic weapon.
+Tome of Shadowflame Skulls
+	- Crystal Ball, Book of Skulls x1 + Soul of Fright x10
+	- Shadowflame magic weapon.
+		
+============
+MATERIALS:
+============
+Chunky's Eye
+	- Capture Chunky's Eye.
+Meatball's Eye
+	- Capture Meatball's Eye.
+
+============	
+OTHER
+============
 Infinity Rocket
-- Crystal Ball, Rocket I x3996 (four full stacks)
-- Infinite rocket ammunition. WARNING: This destroys tiles!
+	- Crystal Ball, Rocket I x3996
+	- Infinite rocket ammunition.
 Star Forge
-- Crystal Ball, Fallen Star x3996 (That is not a typo.)
-- Infinte Fallen Star ammunition. You're insane if you actually grind this out.
+	- Crystal Ball, Fallen Star x3996
+	- Infinte Fallen Star ammunition.
 
 ============
 Bugs and Issues
 ============
-- Nothing...yet?
+	- Nothing...yet?
 
 ============
 Planned Content...hopefully
 ============
 Enemies;
+Animated Tome spawning in different colors.
 Mechanical Eye having a glowing red eye.
 More enemies.
 
@@ -274,71 +402,81 @@ Changelog
 ============
 November 26, 2018
 ADDITIONS:
-- Bass, harmless critter, town water. Drops Bass.
-- Lil' Reaver, weak ocean enemy. Very rarely drops Reaver Shark.
-- Lil' Sawtooth, weak ocean enemy. Very rarely drops Sawtooth Shark.
-- Lil' Whale, weak ocean enemy.
-- Little Megalodon, a much bigger shark. Hits much harder than a shark. Very rare spawn.
-- Megalodon, a much bigger Little Megalodon. WILL kill you if it catches you. EXTREMELY rare spawn.
-- Young Wyvern, crafted from a Wyverntail at any Workbench.
-- Candle, causes all player damage to also inflict fire damage.
-- Everburning Cursed Candle, causes all player damage to also inflict cursed fire damage.
-- Everfrozen Candle, causes all player damage to also inflict frostburn damage.
-- Everburning Shadow Candle, causes all player damage to also inflict shadowflame damage.
+	- Bass, harmless critter, town water. Drops Bass.
+	- Lil' Reaver, weak ocean enemy. Very rarely drops Reaver Shark.
+	- Lil' Sawtooth, weak ocean enemy. Very rarely drops Sawtooth Shark.
+	- Lil' Whale, weak ocean enemy.
+	- Little Megalodon, a much bigger shark. Hits much harder than a shark. Very rare spawn.
+	- Megalodon, a much bigger Little Megalodon. WILL kill you if it catches you. EXTREMELY rare spawn.
+	- Young Wyvern, crafted from a Wyverntail at any Workbench.
+	- Candle, causes all player damage to also inflict fire damage.
+	- Everburning Cursed Candle, causes all player damage to also inflict cursed fire damage.
+	- Everfrozen Candle, causes all player damage to also inflict frostburn damage.
+	- Everburning Shadow Candle, causes all player damage to also inflict shadowflame damage.
 
 CHANGES:
-- Whale Shark damage reduced to 0. They're gentle in real life, after all.
-- Whale Shark now has gore that matches its appearance.
-- Enemy spawn rates reduced, as they were too common.
+	- Whale Shark damage reduced to 0. They're gentle in real life, after all.
+	- Whale Shark now has gore that matches its appearance.
+	- Enemy spawn rates reduced, as they were too common.
 
 IN DEVELOPMENT:
-- Pet, Cute Gastropod. 
-- Pet, Cute Harpy.
-- Weapon, Breath of Spazmatism. Flamethrower coding still baffles me.
-- Weapon, Sight of Retinazer. It's basically done, but I want it to release with Breath of Spasmatism.
+	- Pet, Cute Gastropod. 
+	- Pet, Cute Harpy.
+	- Weapon, Breath of Spazmatism. Flamethrower coding still baffles me.
+	- Weapon, Sight of Retinazer. It's basically done, but I want it to release with Breath of Spasmatism.
 
 
 December ??, 2018
 NEWS:
-- Teamed up with the dev of ItemMagnetPlus!
-	- All the new coding is thanks to him!
+	- Teamed up with the dev of ItemMagnetPlus!
+		- All the new coding is thanks to him!
+	- Due to changes in code, all previously obtained items are now obsolete.
+		- You'll need to reobtain all the stuff you previously found. 
+		- I'm sorry.
+	- Major changes to various things!
+		- I probably missed something, but know that there's a lot of changes for the better!
 
 ADDITIONS:
-- Breath of Spazmatism implemented!
-- Sight of Retinazer implemented!
-- Chunky's Eye, an NPC that spawns from Chunky when it is defeated! Catch it with a net!
-- Meatball's Eye, an NPC that spawns from Meatball when it is defeated! Catch it with a net!
-- Cute Christmas Slime, a seasonal Cute Slime with a ribbon with a matching pet! Catch it with a net!
-- Cute Gastropod, a harmless new addition to the Hallow with a matching pet! Catch it with a net!
-- Young Harpy, a harmless new addition to the Sky with a matching pet! Catch it with a net!
-- Megalodon pets! Defeat each Megalodon for a pet!
+	- Breath of Spazmatism implemented!
+	- Sight of Retinazer implemented!
+	- Chunky's Eye, an NPC that spawns from Chunky when it is defeated! Catch it with a net!
+	- Meatball's Eye, an NPC that spawns from Meatball when it is defeated! Catch it with a net!
+	- Cute Christmas Slime, a seasonal Cute Slime with a ribbon with a matching pet! Catch it with a net!
+	- Cute Gastropod, a harmless new addition to the Hallow with a matching pet! Catch it with a net!
+	- Young Harpy, a harmless new addition to the Sky with a matching pet! Catch it with a net!
+	- Megalodon pets! Defeat each Megalodon for a pet!
 
 CHANGES:
-- Walking Chest and Walking Tombstones actually walk at night now.
-- All variants of Demon Eye are now affected by the Demon Eye Banner.
-- The three variants of Juggerlusc now give a message when they spawn.
-	- They still don't have fancy loot yet.
-- Mini Ocram overhauled.
-	- Announces when it spawns.
-	- Now fires Demon Scythes, and attacks through walls.
-	- Has an after image effect.
-- Deep Salamander now attacks faster.
-- Little Megalodon overhauled.
-	- Announces when it spawns.
-	- Stats are similar to half of the Dungeon Guardian, and 1/4 as much defense.
-	- Hitbox reduced as to not telepathically kill you.
-	- Now drops a Megalodon Tooth Fragment, which summons a cute little shark that follows you.
-- Megalodon  overhauled.
-	- Announces when it spawns.
-	- Same damage and health as Dungeon Guardian, but half as much defense.
-	- Moves Slower than other sharks.
-	- Hitbox reduced as to not telepathically kill you.
-	- Now drops a Megalodon Tooth Shard, which summons a cute "tiny" Megalodon that follows you.
-- Breath of Spazmatism finally working!
-	- Fires MUCH faster than a regular flamethrower
-	- 33% chance to not consume ammo. You'll run out very fast otherwise!
-	- Uses Gel as ammo.
-- Infinity Rocket doesn't always destroy tiles when used.
-	- Snowman Cannon WILL destroy tiles though, so be careful. That's the vanilla item's doing.
-- Minor code cleanup.
-- Fixed some typos.
+	- Animated Tome count reduced to one.
+		- This fixed the awful spawn rate.
+	- Bass and Cloudfish now attempt to flee when you enter the water.
+	- Walking Chest and Walking Tombstones actually walk at night now.
+	- All variants of Demon Eye are now affected by the Demon Eye Banner.
+	- Mini Ocram overhauled.
+		- Announces when it spawns.
+		- Now fires Demon Scythes, and attacks through walls.
+		- Has an after image effect.
+	- Deep Salamander now attacks faster.
+	- Little Megalodon overhauled.
+		- Announces when it spawns.
+		- Stats redone to not be so unreasonable.
+		- Hitbox reduced as to not telepathically kill you.
+		- Now drops a Small Megalodon Tooth, which summons a cute little shark that follows you.
+	- Megalodon overhauled.
+		- Announces when it spawns.
+		- Stats redone to not be so unreasonable.
+		- Moves Slower than other sharks.
+		- Hitbox reduced as to not telepathically kill you.
+		- Now drops a Large Megalodon Tooth, which summons a cute "tiny" Megalodon that follows you.
+	- Everburning Candle accessories now show dust when using melee, ranged, magic, and throwing weapons.
+		- Summoning excluded since the weapons for summons don't do anything.
+		- Summoned minions still apply the candles' debuffs, however.
+	- Breath of Spazmatism finally working!
+		- Fires MUCH faster than a regular flamethrower
+		- 33% chance to not consume ammo. You'll run out very fast otherwise!
+		- Uses Gel as ammo.
+	- Infinity Rocket doesn't always destroy tiles when used.
+		- Snowman Cannon WILL destroy tiles though, so be careful. That's the vanilla item's doing.
+	- Major code cleanup.
+		- I got slapped on the wrist for my poor naming convention.
+	- Fixed some typos.

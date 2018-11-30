@@ -12,6 +12,7 @@ namespace Harblesnargits_Mod_01
 {
     public class MyPlayer : ModPlayer
     {
+		public bool OrigamiCrane = false;
 		public bool Machan = false;
 		public bool MiniMegalodon = false;
 		public bool SmallMegalodon = false;
@@ -53,6 +54,7 @@ namespace Harblesnargits_Mod_01
 		
 		public override void ResetEffects()
 		{
+			OrigamiCrane = false;
 			Machan = false;
 			MiniMegalodon = false;
 			SmallMegalodon = false;

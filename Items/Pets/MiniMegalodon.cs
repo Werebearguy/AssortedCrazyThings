@@ -8,8 +8,8 @@ namespace Harblesnargits_Mod_01.Items.Pets
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Megalodon Tooth");
-					Tooltip.SetDefault("Summons a friendly Mini Megalodon that flies with you.");
+					DisplayName.SetDefault("Small Megalodon Tooth");
+					Tooltip.SetDefault("Summons a friendly Mini Megalodon that follows you.");
 				}
 			public override void SetDefaults()
 				{

@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace Harblesnargits_Mod_01.Items.Pets
 {
-	public class SmallMegalodon : ModItem
+	public class OrigamiCrane : ModItem
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Large Megalodon Tooth");
-					Tooltip.SetDefault("Summons a friendly Small Megalodon that follows you.");
+					DisplayName.SetDefault("Origami Crane");
+					Tooltip.SetDefault("Summons an Origami Crane that follows you");
 				}
 			public override void SetDefaults()
 				{
 					item.CloneDefaults(ItemID.ZephyrFish);
-					item.shoot = mod.ProjectileType("SmallMegalodon");
-					item.buffType = mod.BuffType("SmallMegalodon");
+					item.shoot = mod.ProjectileType("OrigamiCrane");
+					item.buffType = mod.BuffType("OrigamiCrane");
 					item.rare = -11;
 				}
 			public override void UseStyle(Player player)
