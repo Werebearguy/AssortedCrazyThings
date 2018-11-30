@@ -124,7 +124,7 @@ namespace Harblesnargits_Mod_01
             if (!isMiniocramSpawned && miniocramAlive)
             {
                 miniocramAlive = false;
-                DisappearMessage(miniocramName);
+                DisappearMessage("The " + miniocramName);
             }
         }
 
