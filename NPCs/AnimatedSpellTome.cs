@@ -67,8 +67,10 @@ namespace Harblesnargits_Mod_01.NPCs
             }
         }
 
-        public override bool PreAI()
+        public override void PostAI()
         {
+            //using Microsoft.Xna.Framework;
+            //change the npc. to projectile. if you port this to pets
             Color color = Lighting.GetColor((int)npc.Center.X / 16, (int)npc.Center.Y / 16);
             if (color.R > 20 || color.B > 20 || color.G > 20)
             {
@@ -88,7 +90,6 @@ namespace Harblesnargits_Mod_01.NPCs
                     Main.dust[num2].velocity *= 0f;
                 }
             }
-            return true;
         }
     }
 }
