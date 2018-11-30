@@ -10,7 +10,7 @@ namespace Harblesnargits_Mod_01.NPCs
 		{
 			public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("JoyousSlime");
+					DisplayName.SetDefault("Joyous Slime");
 					Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 				}
 			public override void SetDefaults()

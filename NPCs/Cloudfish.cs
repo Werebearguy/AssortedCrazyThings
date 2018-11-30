@@ -108,10 +108,6 @@ namespace Harblesnargits_Mod_01.NPCs
                 }
                 if (!flag12)
 				{
-                    Main.NewText("posx " + npc.position.X);
-                    Main.NewText("posy " + npc.position.Y);
-                    Main.NewText("direction " + npc.direction);
-                    Main.NewText("directionY " + npc.directionY);
                     if (npc.collideX)
                     {
                         npc.velocity.X = npc.velocity.X * -1f;
