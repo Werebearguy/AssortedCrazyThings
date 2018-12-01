@@ -1,6 +1,6 @@
 ============
 ENEMIES
-Total: 86
+Total: 88
 ============
 Animated Tome
 	- Dungeon. Drops Book.
@@ -74,6 +74,10 @@ Fractured Eye (Red)
 	- Surface Night after Eye of Cthulhu is defeated.
 Giant Anomalocaris
 	- Ocean. Drops Shrimp, may drop Anomalous Wings (See Accessories Below).
+Giant Grasshopper
+	- Surface Day. Drops a Grasshopper.
+Giant Golden Grasshopper
+	- Surface Day. Drops a Golden Grasshopper.
 Horned Slime
 	- Hell.
 Joyous Slime
@@ -400,32 +404,6 @@ More things.
 ============
 Changelog
 ============
-November 26, 2018
-ADDITIONS:
-	- Bass, harmless critter, town water. Drops Bass.
-	- Lil' Reaver, weak ocean enemy. Very rarely drops Reaver Shark.
-	- Lil' Sawtooth, weak ocean enemy. Very rarely drops Sawtooth Shark.
-	- Lil' Whale, weak ocean enemy.
-	- Little Megalodon, a much bigger shark. Hits much harder than a shark. Very rare spawn.
-	- Megalodon, a much bigger Little Megalodon. WILL kill you if it catches you. EXTREMELY rare spawn.
-	- Young Wyvern, crafted from a Wyverntail at any Workbench.
-	- Candle, causes all player damage to also inflict fire damage.
-	- Everburning Cursed Candle, causes all player damage to also inflict cursed fire damage.
-	- Everfrozen Candle, causes all player damage to also inflict frostburn damage.
-	- Everburning Shadow Candle, causes all player damage to also inflict shadowflame damage.
-
-CHANGES:
-	- Whale Shark damage reduced to 0. They're gentle in real life, after all.
-	- Whale Shark now has gore that matches its appearance.
-	- Enemy spawn rates reduced, as they were too common.
-
-IN DEVELOPMENT:
-	- Pet, Cute Gastropod. 
-	- Pet, Cute Harpy.
-	- Weapon, Breath of Spazmatism. Flamethrower coding still baffles me.
-	- Weapon, Sight of Retinazer. It's basically done, but I want it to release with Breath of Spasmatism.
-
-
 December ??, 2018
 NEWS:
 	- Teamed up with the dev of ItemMagnetPlus!
@@ -468,9 +446,9 @@ CHANGES:
 		- Moves Slower than other sharks.
 		- Hitbox reduced as to not telepathically kill you.
 		- Now drops a Large Megalodon Tooth, which summons a cute "tiny" Megalodon that follows you.
-	- Everburning Candle accessories now show dust when using melee, ranged, magic, and throwing weapons.
-		- Summoning excluded since the weapons for summons don't do anything.
-		- Summoned minions still apply the candles' debuffs, however.
+	- Everburning Candle accessories now show dust when used with many weapons.
+		- There are some weapons that don't show dust, but the debuffs will still be applied normally.
+		- Vanilla examples include Minishark, Chlorophyte Shotbow, and Vampire Knives.
 	- Breath of Spazmatism finally working!
 		- Fires MUCH faster than a regular flamethrower
 		- 33% chance to not consume ammo. You'll run out very fast otherwise!
