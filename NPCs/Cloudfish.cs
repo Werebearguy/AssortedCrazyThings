@@ -39,30 +39,37 @@ namespace Harblesnargits_Mod_01.NPCs
         {
             if (spawnInfo.player.ZoneSkyHeight)
             {
-                return SpawnCondition.Sky.Chance * 100f; //0.05f before, 100f now because water check
+                if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid == 0)
+                {
+                    return 0f;
+                }
+                else if (
+                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY) &&
+                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1) &&
+                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2))
+                {
+                    return SpawnCondition.Sky.Chance * 4f; //0.05f before, 100f now because water check
+                }
             }
-            else
-            {
-                return SpawnCondition.TownWaterCritter.Chance * 0.001f;
-            }
+            return 0f;
         }
 
-        public override int SpawnNPC(int tileX, int tileY)
-        {
-            if (Main.tile[tileX, tileY].liquid == 0)
-            {
-                return 0;
-            }
-            else if (
-               !WorldGen.SolidTile(tileX, tileY) &&
-               !WorldGen.SolidTile(tileX, tileY + 1) &&
-               !WorldGen.SolidTile(tileX, tileY + 2))
-            {
-                //actually spawn
-                return base.SpawnNPC(tileX, tileY);
-            }
-            return 0;
-        }
+        //public override int SpawnNPC(int tileX, int tileY)
+        //{
+        //    if (Main.tile[tileX, tileY].liquid == 0)
+        //    {
+        //        return 0;
+        //    }
+        //    else if (
+        //       !WorldGen.SolidTile(tileX, tileY) &&
+        //       !WorldGen.SolidTile(tileX, tileY + 1) &&
+        //       !WorldGen.SolidTile(tileX, tileY + 2))
+        //    {
+        //        //actually spawn
+        //        return base.SpawnNPC(tileX, tileY);
+        //    }
+        //    return 0;
+        //}
 
         public override void NPCLoot()
         {
