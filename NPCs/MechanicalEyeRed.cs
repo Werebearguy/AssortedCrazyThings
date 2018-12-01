@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,6 +44,28 @@ namespace Harblesnargits_Mod_01.NPCs
                 Item.NewItem(npc.getRect(), ItemID.Lens, 1);
             if (Main.rand.NextBool(100))
                 Item.NewItem(npc.getRect(), ItemID.BlackLens, 1);
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Texture2D texture = mod.GetTexture("Glowmasks/MechanicalEye_Glowmask");
+            //Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height / 2);
+            //frame.Y = (int)npc.frameCounter % 60;
+            //if (frame.Y > 24)
+            //{
+            //    frame.Y = 24;
+            //}
+            //frame.Y *= npc.height;
+
+            //Main.NewText(" " + Main.npcTexture[npc.type].Width + " " + Main.npcTexture[npc.type].Height);
+            //Main.NewText(npc.frame);
+            Vector2 stupidOffset = new Vector2(0f, npc.height / 3f);
+            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset; //new Vector2(0f, npc.gfxOffY);
+            //Main.NewText("Drawpos " + drawPos);
+            //Main.NewText("NPCpos  " + (npc.position - Main.screenPosition + drawOrigin));
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
 
         public override void HitEffect(int hitDirection, double damage)
