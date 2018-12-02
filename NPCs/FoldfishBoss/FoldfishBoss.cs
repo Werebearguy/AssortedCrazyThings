@@ -11,30 +11,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
 	[AutoloadBossHead]
 	public class FoldfishBoss : ModNPC
 	{
-
-        //public override string Texture
-        //{
-        //    get
-        //    {
-        //        return "Harblesnargits_Mod_01/NPCs/Bosses/FoldfishBoss";
-        //    }
-        //}
-
-        //public override string HeadTexture
-        //{
-        //    get
-        //    {
-        //        return "Harblesnargits_Mod_01/NPCs/Bosses/FoldfishBoss_Head_Boss";
-        //    }
-        //}
-
-
-        private int moveTime = 300;
-		private int moveTimer = 60;
-		internal int laserTimer = 0;
-		internal int laser1 = -1;
-		internal int laser2 = -1;
-
+        public static float scaleFactor = 3f;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Foldfish");
@@ -51,6 +28,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
 			npc.knockBackResist = 0f;
 			npc.width = 76;
 			npc.height = 38;
+            npc.scale = scaleFactor;
 			npc.value = Item.buyPrice(0, 20, 0, 0);
 			npc.npcSlots = 15f;
             npc.alpha = 0;
@@ -75,7 +53,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
 		{
             //type == 50
             //aiStyle == 15
-            float num238 = 1f;
+            float num238 = scaleFactor; //1f
             bool flag8 = false;
             bool flag9 = false;
             npc.aiAction = 0;
@@ -369,7 +347,8 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
             //dust3.velocity *= 0.5f;
             if (npc.life > 0)
             {
-                float num253 = (float)npc.life / (float)npc.lifeMax;
+                Main.NewText("prev " + npc.scale);
+                float num253 = ((float)npc.life / (float)npc.lifeMax); //without npc.scale
                 num253 = num253 * 0.5f + 0.75f;
                 num253 *= num238;
                 if (num253 != npc.scale)
@@ -382,6 +361,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
                     npc.position.X = npc.position.X - (float)(npc.width / 2);
                     npc.position.Y = npc.position.Y - (float)npc.height;
                 }
+                Main.NewText("after " + npc.scale);
                 if (Main.netMode != 1)
                 {
                     int num254 = (int)((double)npc.lifeMax * 0.05);

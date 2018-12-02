@@ -1,8 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +21,7 @@ namespace Harblesnargits_Mod_01.Items.Weapons
             item.damage = 20;
             item.UseSound = SoundID.Item34;
             item.shoot = mod.ProjectileType("proj_fire_01");
-            item.shootSpeed = 7f;
+            item.shootSpeed = 8f;
             item.noMelee = true;
             item.ranged = true;
             item.useAmmo = AmmoID.Gel;
@@ -39,7 +35,7 @@ namespace Harblesnargits_Mod_01.Items.Weapons
 
         public override bool ConsumeAmmo(Player player)
         {
-            return Main.rand.NextFloat() >= .66f; //66% chance not to consume ammo (since its so fast)
+            return Main.rand.NextFloat() >= .75f; //75% chance not to consume ammo (since its so fast)
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

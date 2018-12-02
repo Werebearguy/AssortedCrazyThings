@@ -1,4 +1,4 @@
-author = Harblesnargits
+author = Harblesnargits, direwolf420
 version = 1.0.1.6
 displayName = Assorted Crazy Things
 hideCode = true
