@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Harblesnargits_Mod_01.NPCs
 {
-    public class enemy_eye_01 : ModNPC
+    public class FracturedEyeRed : ModNPC
     {
         public override void SetStaticDefaults()
         {
