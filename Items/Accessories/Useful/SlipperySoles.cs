@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Items.Accessories.Useful
+namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	[AutoloadEquip(EquipType.Shoes)]
 	public class SlipperySoles : ModItem

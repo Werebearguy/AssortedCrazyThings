@@ -1,10 +1,10 @@
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01
+namespace AssortedCrazyThings
 {
-	class Harblesnargits_Mod_01 : Mod
+	class AssortedCrazyThings : Mod
 	{
-		public Harblesnargits_Mod_01()
+		public AssortedCrazyThings()
 		{
 			Properties = new ModProperties()
 			{

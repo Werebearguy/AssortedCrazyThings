@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Items.Accessories.Vanity
+namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
 	[AutoloadEquip(EquipType.Balloon)]
 	public class EyelloonRetinazer : ModItem

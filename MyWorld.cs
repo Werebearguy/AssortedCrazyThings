@@ -4,9 +4,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Harblesnargits_Mod_01.NPCs;
+using AssortedCrazyThings.NPCs;
 
-namespace Harblesnargits_Mod_01
+namespace AssortedCrazyThings
 {
 	public class MyWorld : ModWorld
 	{

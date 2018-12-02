@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 
-namespace Harblesnargits_Mod_01.NPCs
+namespace AssortedCrazyThings.NPCs
 {
 	public class SpawnOfOcram : ModNPC
 	{

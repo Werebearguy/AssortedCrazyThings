@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
+namespace AssortedCrazyThings.NPCs.FoldfishBoss
 {
     public class FoldfishBaby : ModNPC
     {

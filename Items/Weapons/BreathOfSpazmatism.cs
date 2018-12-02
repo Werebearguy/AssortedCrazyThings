@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Items.Weapons
+namespace AssortedCrazyThings.Items.Weapons
 {
     public class BreathOfSpazmatism : ModItem
     {
@@ -32,7 +32,7 @@ namespace Harblesnargits_Mod_01.Items.Weapons
             item.rare = -11;
             item.autoReuse = true;
         }
-		
+
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
