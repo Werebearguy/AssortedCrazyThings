@@ -108,6 +108,8 @@
     <Compile Include="Items\Fun\InfinityRocket.cs" />
     <Compile Include="Items\Fun\StarForge.cs" />
     <Compile Include="Items\MeatballsEye.cs" />
+    <Compile Include="Items\OrigamiHat.cs" />
+    <Compile Include="Items\OrigamiManual.cs" />
     <Compile Include="Items\Pets\AlienHornet.cs" />
     <Compile Include="Items\Pets\BabyCrimera.cs" />
     <Compile Include="Items\Pets\BabyIchorSticker.cs" />
@@ -157,8 +159,6 @@
     <Compile Include="NPCs\Bass.cs" />
     <Compile Include="NPCs\BloatedBaitThief.cs" />
     <Compile Include="NPCs\BloodShark.cs" />
-    <Compile Include="NPCs\FoldfishBoss\FoldfishBaby.cs" />
-    <Compile Include="NPCs\FoldfishBoss\FoldfishBoss.cs" />
     <Compile Include="NPCs\Chunky.cs" />
     <Compile Include="NPCs\ChunkysEye.cs" />
     <Compile Include="NPCs\Cloudfish.cs" />
@@ -185,6 +185,8 @@
     <Compile Include="NPCs\DemonEyeUFOPurple.cs" />
     <Compile Include="NPCs\FairySlime.cs" />
     <Compile Include="NPCs\FlyingSpider.cs" />
+    <Compile Include="NPCs\FoldfishBoss\FoldfishBaby.cs" />
+    <Compile Include="NPCs\FoldfishBoss\FoldfishBoss.cs" />
     <Compile Include="NPCs\FracturedEyeGreen.cs" />
     <Compile Include="NPCs\FracturedEyePurple.cs" />
     <Compile Include="NPCs\FracturedEyeRed.cs" />
