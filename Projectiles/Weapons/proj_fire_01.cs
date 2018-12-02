@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Projectiles.Weapons
+namespace AssortedCrazyThings.Projectiles.Weapons
 {
     public class proj_fire_01 : ModProjectile
     {

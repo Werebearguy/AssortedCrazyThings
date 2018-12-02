@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Items
+namespace AssortedCrazyThings.Items
 {
 	public class ChunkysEye : ModItem
 	{

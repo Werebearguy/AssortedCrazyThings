@@ -10,7 +10,7 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 using Terraria.Utilities;
 
-namespace Harblesnargits_Mod_01.Items.Fun
+namespace AssortedCrazyThings.Items.Fun
 {
 	public class InfinityRocket : ModItem
 	{

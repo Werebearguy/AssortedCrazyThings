@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01
+namespace AssortedCrazyThings
 {
     public class MyPlayer : ModPlayer
     {

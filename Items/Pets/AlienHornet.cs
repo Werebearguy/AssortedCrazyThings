@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Items.Pets
+namespace AssortedCrazyThings.Items.Pets
 {
 	public class AlienHornet : ModItem
 		{

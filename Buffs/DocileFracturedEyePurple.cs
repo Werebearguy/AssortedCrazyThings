@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Buffs
+namespace AssortedCrazyThings.Buffs
 {
 	public class DocileFracturedEyePurple : ModBuff
 		{

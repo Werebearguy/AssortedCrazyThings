@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Projectiles.Pets
+namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class DocileMechanicalEyeGreen : ModProjectile
     {

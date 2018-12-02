@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
+namespace AssortedCrazyThings.NPCs.FoldfishBoss
 {
 	[AutoloadBossHead]
 	public class FoldfishBoss : ModNPC
@@ -188,7 +188,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
                 }
                 if (npc.ai[0] == 60f)
                 {
-                    Gore.NewGore(npc.Center + new Vector2(-40f, (0f - (float)npc.height) / 2f), npc.velocity, 734);
+                    //Gore.NewGore(npc.Center + new Vector2(-40f, (0f - (float)npc.height) / 2f), npc.velocity, 734);
                 }
                 if (npc.ai[0] >= 40f && Main.netMode != 1) //60f to 40f
                 {
@@ -347,7 +347,6 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
             //dust3.velocity *= 0.5f;
             if (npc.life > 0)
             {
-                Main.NewText("prev " + npc.scale);
                 float num253 = ((float)npc.life / (float)npc.lifeMax); //without npc.scale
                 num253 = num253 * 0.5f + 0.75f;
                 num253 *= num238;
@@ -361,7 +360,6 @@ namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
                     npc.position.X = npc.position.X - (float)(npc.width / 2);
                     npc.position.Y = npc.position.Y - (float)npc.height;
                 }
-                Main.NewText("after " + npc.scale);
                 if (Main.netMode != 1)
                 {
                     int num254 = (int)((double)npc.lifeMax * 0.05);
