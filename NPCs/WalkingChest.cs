@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Underground.Chance * 0.025f;
+			return SpawnCondition.Underground.Chance * 0.025f * 0.083f;
 		}
 
         public override void NPCLoot()
@@ -41,8 +41,8 @@ namespace AssortedCrazyThings.NPCs
 		public override void HitEffect(int hitDirection, double damage)
 		{
 			if (npc.life <= 0)
-				{
-				}
+			{
+			}
         }
 
         public override void PostAI()

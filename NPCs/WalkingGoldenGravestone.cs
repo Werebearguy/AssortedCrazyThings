@@ -30,22 +30,18 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNight.Chance * 0.005f;
+            return SpawnCondition.OverworldNight.Chance * 0.005f * 0.083f;
         }
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), ItemID.RichGravestone4);
-            }
+            Item.NewItem(npc.getRect(), ItemID.RichGravestone4);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                }
             }
         }
 
