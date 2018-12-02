@@ -1,6 +1,16 @@
 ============
+BOSSES (Yes, really)
+Total: 1
+============
+Foldfish
+	- Summoned by using an Origami Manual
+	- Basically just King Slime, but super weak
+	- Not 100% complete, preliminary release.
+	- FULLY intended as a joke boss.
+
+============
 ENEMIES
-Total: 88
+Total: 89
 ============
 Animated Tome
 	- Dungeon. Drops Book.
@@ -64,6 +74,8 @@ Demon Eye (UFO, Purple)
 	- Surface Night during Halloween.
 Fairy Slime
 	- Surface Hallow Day.
+Foldfish Baby
+	- Spawned when Foldfish is harmed, as well as when using an Origami Manual.
 Flying Spider
 	- Spider Caves after Wall of Flesh.
 Fractured Eye (Green)
@@ -181,7 +193,7 @@ Zombie Florist
 
 ============
 PETS
-Total: 36
+Total: 37
 ============
 Alien Hornet
 	- Demon Altar, Nectar x1 + Vortex Fragment x10
@@ -245,6 +257,8 @@ Lifelike Mechanical Frog
 	- Anvil, Frog x1
 Mini Megalodon
 	- Drop from Little Megalodon.
+Origami Crane
+	- Drop from Foldfish.
 Small Megalodon
 	- Drop from Megalodon.
 Tortured Soul
@@ -255,6 +269,13 @@ Young Harpy
 	- Caught with a net.
 Wyverntail
 	- Workbench, Wyverntail x1
+
+============
+VANITY ARMOR
+Total: 1
+============
+Origami Hat
+	- Drop from Foldfish.
 
 ============
 ACCESSORIES
@@ -375,6 +396,8 @@ OTHER
 Infinity Rocket
 	- Crystal Ball, Rocket I x3996
 	- Infinite rocket ammunition.
+Origami Manual
+	- 
 Star Forge
 	- Crystal Ball, Fallen Star x3996
 	- Infinte Fallen Star ammunition.
@@ -402,7 +425,7 @@ More things.
 ============
 Changelog
 ============
-December ??, 2018
+December 02, 2018
 NEWS:
 	- Teamed up with the dev of ItemMagnetPlus!
 		- All the new coding is thanks to him!
@@ -417,6 +440,10 @@ NEWS:
 		- I probably missed something, but know that there's a lot of changes for the better!
 
 ADDITIONS:
+	- Foldfish boss implemented!
+		- Spawned by using an Origami Manual, dropped uncommonly by Animated Tome.
+		- Drops two vanity items; Origami Hat and Origami Crane.
+		- It's a joke boss based on a typo during discussions while working on coding.
 	- Breath of Spazmatism implemented!
 	- Sight of Retinazer implemented!
 	- Chunky's Eye, an NPC that spawns from Chunky when it is defeated! Catch it with a net!

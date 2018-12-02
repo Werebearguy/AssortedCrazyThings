@@ -2,9 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.Items
+namespace AssortedCrazyThings.Items
 {
-    //imported from my tAPI mod because I'm lazy
     public class OrigamiManual : ModItem
     {
         public override void SetStaticDefaults()

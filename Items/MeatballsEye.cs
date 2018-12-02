@@ -2,11 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-<<<<<<< HEAD:Items/MeatballsEye.cs
 namespace AssortedCrazyThings.Items
-=======
-namespace Harblesnargits_Mod_01.Items
->>>>>>> 2b1e982462604937bebde9cef41c390f73703722:Items/MeatballsEye.cs
 {
 	public class MeatballsEye : ModItem
 	{
