@@ -35,7 +35,10 @@ namespace Harblesnargits_Mod_01
 
         public override void OnEnterWorld(Player player)
         {
-            Main.NewText("This Mod has been renamed/updated! Disable this one and download the newest 'Assorted Crazy Things' Mod!", Color.OrangeRed);
+            Main.NewText("WARNING: 'Assorted Crazy Things' has been renamed/updated! Disable this one and download the newest 'Assorted Crazy Things' Mod!", Color.OrangeRed);
+            Main.NewText("If you do update, keep in mind that all your items will get unloaded.", Color.OrangeRed);
+            Main.NewText("The current one is called 'Harblesnargits_Mod_01.tmod', make sure to delete it.", Color.OrangeRed);
+            Main.NewText("You can still play with this version, but you will miss out on lots of new stuff and improvements!", Color.OrangeRed);
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)
