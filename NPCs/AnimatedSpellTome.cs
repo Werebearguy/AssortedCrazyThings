@@ -37,9 +37,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), ItemID.SpellTome);
-            }
+            Item.NewItem(npc.getRect(), ItemID.SpellTome);
         }
 
 

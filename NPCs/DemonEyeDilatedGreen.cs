@@ -37,22 +37,18 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                if (Main.rand.NextBool(33))
-                    Item.NewItem(npc.getRect(), ItemID.Lens, 1);
-                if (Main.rand.NextBool(100))
-                    Item.NewItem(npc.getRect(), ItemID.BlackLens, 1);
-            }
+            if (Main.rand.NextBool(33))
+                Item.NewItem(npc.getRect(), ItemID.Lens, 1);
+            if (Main.rand.NextBool(100))
+                Item.NewItem(npc.getRect(), ItemID.BlackLens, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_dilated"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
-                }
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_dilated"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
             }
         }
     }
