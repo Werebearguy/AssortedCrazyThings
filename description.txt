@@ -1,5 +1,5 @@
 This mod adds a large amount of enemies, a hefty amount of pets, and a few other things. For a list of all content in this mod, please visit the homepage.
 
-*- 11/26/2018
-Updated! Spawns reduced, new enemies, and a bit more. See Mod Homepage for Contents Pastebin and changelog.
-Emergency Update after upload; fixed a...rather nasty bug. Just update and don't worry, updating will fix it!
+*- Dec ??, 2018
+Big update, see mod homepage for more details.
+This mod will undergo an internal name change in the next update. You can still play version 1.1, but you will need to download the mod a second time and disable this version in future updates if you wish to see any new content beyone version 1.1.

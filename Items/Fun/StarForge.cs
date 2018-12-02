@@ -2,7 +2,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+<<<<<<< HEAD:Items/Fun/StarForge.cs
 namespace AssortedCrazyThings.Items.Fun
+=======
+namespace Harblesnargits_Mod_01.Items.Fun
+>>>>>>> 2b1e982462604937bebde9cef41c390f73703722:Items/Fun/StarForge.cs
 {
 	public class StarForge : ModItem
 		{

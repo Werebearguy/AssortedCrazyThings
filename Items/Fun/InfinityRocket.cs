@@ -10,7 +10,11 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 using Terraria.Utilities;
 
+<<<<<<< HEAD:Items/Fun/InfinityRocket.cs
 namespace AssortedCrazyThings.Items.Fun
+=======
+namespace Harblesnargits_Mod_01.Items.Fun
+>>>>>>> 2b1e982462604937bebde9cef41c390f73703722:Items/Fun/InfinityRocket.cs
 {
 	public class InfinityRocket : ModItem
 	{
