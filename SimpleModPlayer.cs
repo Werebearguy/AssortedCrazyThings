@@ -33,6 +33,11 @@ namespace Harblesnargits_Mod_01
             variable_debuff_07 = false;
         }
 
+        public override void OnEnterWorld(Player player)
+        {
+            Main.NewText("This Mod has been renamed/updated! Disable this one and download the newest 'Assorted Crazy Things' Mod!", Color.OrangeRed);
+        }
+
         public override void OnHitAnything(float x, float y, Entity victim)
         {
             NPC npc = new NPC();
