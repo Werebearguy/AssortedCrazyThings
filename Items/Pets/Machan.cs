@@ -9,7 +9,7 @@ namespace Harblesnargits_Mod_01.Items.Pets
 			public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Cute Stuffed Dragon");
-					Tooltip.SetDefault("Summons a cute dragon to follow you..");
+					Tooltip.SetDefault("Summons a cute dragon to follow you.");
 				}
 			public override void SetDefaults()
 				{
