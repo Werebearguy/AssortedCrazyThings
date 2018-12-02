@@ -181,7 +181,7 @@ Zombie Florist
 
 ============
 PETS
-Total: 37
+Total: 36
 ============
 Alien Hornet
 	- Demon Altar, Nectar x1 + Vortex Fragment x10
@@ -245,8 +245,6 @@ Lifelike Mechanical Frog
 	- Anvil, Frog x1
 Mini Megalodon
 	- Drop from Little Megalodon.
-Origami Crane
-	- Drops from....?
 Small Megalodon
 	- Drop from Megalodon.
 Tortured Soul
@@ -351,12 +349,17 @@ Spazmatism Eye-lloon
 WEAPONS
 ============
 Breath of Spazmatism
+	- Hardmode Anvil, Flamethrower x1 + Hallowed Bar x5 + Soul of Sight x5
 	- Cursed Flames ranged weapon.
+	- Balanced for post-mech content.
 Sight of Retinazer
-	- Magic weapon.
+	- Hardmode Anvil, Laser Rifle x1 + Hallowed Bar x5 + Soul of Sight x5
+	- Magic weapon with no mana cost.
+	- Balanced for post-mech content.
 Tome of Shadowflame Skulls
 	- Crystal Ball, Book of Skulls x1 + Soul of Fright x10
 	- Shadowflame magic weapon.
+	- Balanced for post-mech content.
 		
 ============
 MATERIALS:
@@ -385,18 +388,14 @@ Bugs and Issues
 Planned Content...hopefully
 ============
 Enemies;
-Animated Tome spawning in different colors.
-Mechanical Eye having a glowing red eye.
+A boss...made of paper? Tune in next time to find out more!
 More enemies.
 
 Pets;
-Mechanical Eye pets will have glowing eyes.
 More pets.
 
 Accessories:
-Wisp in a Balloon and Star Wisp in a Balloon having a glow mask.
-Shoes that provide bounciness, as if bouncing off of Pink Slime Blocks.
-Everburning accessories apply dust to player attacks that match the damage they deal.
+More accessories.
 	
 Other;
 More things.
@@ -410,7 +409,11 @@ NEWS:
 		- All the new coding is thanks to him!
 	- Due to changes in code, all previously obtained items are now obsolete.
 		- You'll need to reobtain all the stuff you previously found. 
-		- I'm sorry.
+		- This is for a better future.
+	- Due to changes in code, the current version 1.1 will be the last update.
+		- You will need to download a newer mod with the same name in the future.
+		- You can stay on version 1.1, but I greatly suggest downloading the future update as well.
+		- This change is to help my coder do things easier on his end. My coding was...atrocious.
 	- Major changes to various things!
 		- I probably missed something, but know that there's a lot of changes for the better!
 
@@ -425,36 +428,40 @@ ADDITIONS:
 	- Megalodon pets! Defeat each Megalodon for a pet!
 
 CHANGES:
-	- Animated Tome count reduced to one.
-		- This fixed the awful spawn rate.
-	- Bass and Cloudfish now attempt to flee when you enter the water.
+	- Animated Tome overhauled
+		- Spawn rate fixed, only two Tome NPCs now
+		- One tome changes color every time it spawns, rather than a bunch of recolored NPCs
+		- Both tomes give off sparkles as they fly
+			- Animated Tome has cloudy blue sparkles
+			- Animated Spell Tome has more subdued golden sparkles
+	- Bass and Cloudfish now attempt to flee when you enter the water
 	- Walking Chest and Walking Tombstones actually walk at night now.
-	- All variants of Demon Eye are now affected by the Demon Eye Banner.
+	- All variants of Demon Eye are now affected by the Demon Eye Banner
 	- Mini Ocram overhauled.
-		- Announces when it spawns.
-		- Now fires Demon Scythes, and attacks through walls.
-		- Has an after image effect.
-	- Deep Salamander now attacks faster.
-	- Little Megalodon overhauled.
-		- Announces when it spawns.
-		- Stats redone to not be so unreasonable.
-		- Hitbox reduced as to not telepathically kill you.
-		- Now drops a Small Megalodon Tooth, which summons a cute little shark that follows you.
-	- Megalodon overhauled.
-		- Announces when it spawns.
-		- Stats redone to not be so unreasonable.
-		- Moves Slower than other sharks.
-		- Hitbox reduced as to not telepathically kill you.
-		- Now drops a Large Megalodon Tooth, which summons a cute "tiny" Megalodon that follows you.
-	- Everburning Candle accessories now show dust when used with many weapons.
-		- There are some weapons that don't show dust, but the debuffs will still be applied normally.
-		- Vanilla examples include Minishark, Chlorophyte Shotbow, and Vampire Knives.
-	- Breath of Spazmatism finally working!
+		- Announces when it spawns
+		- Now fires Demon Scythes, and attacks through walls
+		- Has an after image effect
+	- Deep Salamander now attacks faster
+	- Little Megalodon overhauled
+		- Announces when it spawns
+		- Stats redone to not be so unreasonable
+		- Hitbox reduced as to not telepathically kill you
+		- Now drops a Small Megalodon Tooth, which summons a cute little shark that follows you
+	- Megalodon overhauled
+		- Announces when it spawns
+		- Stats redone to not be so unreasonable
+		- Moves Slower than other sharks
+		- Hitbox reduced as to not telepathically kill you
+		- Now drops a Large Megalodon Tooth, which summons a cute "tiny" Megalodon that follows you
+	- Everburning Candle accessories now show dust when used with many weapons
+		- There are some weapons that don't show dust, but the debuffs will still be applied normally
+		- Vanilla examples include Minishark, Chlorophyte Shotbow, and Vampire Knives
+	- Breath of Spazmatism finally working
 		- Fires MUCH faster than a regular flamethrower
-		- 33% chance to not consume ammo. You'll run out very fast otherwise!
-		- Uses Gel as ammo.
-	- Infinity Rocket doesn't always destroy tiles when used.
-		- Snowman Cannon WILL destroy tiles though, so be careful. That's the vanilla item's doing.
-	- Major code cleanup.
-		- I got slapped on the wrist for my poor naming convention.
-	- Fixed some typos.
+		- 33% chance to not consume ammo. You'll run out very fast otherwise
+		- Uses Gel as ammo
+	- Infinity Rocket doesn't always destroy tiles when used
+		- Snowman Cannon is an exception, as it destroys blocks by default
+	- Major code cleanup
+		- I got slapped on the wrist for my poor naming convention
+	- Fixed some typos

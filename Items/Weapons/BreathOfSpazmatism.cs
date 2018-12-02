@@ -32,6 +32,17 @@ namespace Harblesnargits_Mod_01.Items.Weapons
             item.rare = -11;
             item.autoReuse = true;
         }
+		
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.HallowedBar, 5);
+			recipe.AddIngredient(ItemID.SoulofSight, 5);
+			recipe.AddIngredient(ItemID.Flamethrower, 1);
+            recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 
         public override bool ConsumeAmmo(Player player)
         {
