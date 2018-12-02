@@ -6,27 +6,27 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
+namespace Harblesnargits_Mod_01.NPCs.FoldfishBoss
 {
 	[AutoloadBossHead]
-	public class FoldFishBoss : ModNPC
+	public class FoldfishBoss : ModNPC
 	{
 
-        public override string Texture
-        {
-            get
-            {
-                return "Harblesnargits_Mod_01/NPCs/Bosses/FoldfishBoss";
-            }
-        }
+        //public override string Texture
+        //{
+        //    get
+        //    {
+        //        return "Harblesnargits_Mod_01/NPCs/Bosses/FoldfishBoss";
+        //    }
+        //}
 
-        public override string HeadTexture
-        {
-            get
-            {
-                return "Harblesnargits_Mod_01/NPCs/Bosses/FoldfishBoss_Head_Boss";
-            }
-        }
+        //public override string HeadTexture
+        //{
+        //    get
+        //    {
+        //        return "Harblesnargits_Mod_01/NPCs/Bosses/FoldfishBoss_Head_Boss";
+        //    }
+        //}
 
 
         private int moveTime = 300;
@@ -43,16 +43,17 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
 
 		public override void SetDefaults()
 		{
-            npc.CloneDefaults(NPCID.KingSlime);
-			npc.aiStyle = 15; //set to -1 later
-			//npc.lifeMax = 40000;
-			//npc.damage = 20;
-			//npc.defense = 55;
-			//npc.knockBackResist = 0f;
+            //npc.CloneDefaults(NPCID.KingSlime);
+			npc.aiStyle = -1; //set to -1 later
+			npc.lifeMax = 4000;
+			npc.damage = 20;
+			npc.defense = 5;
+			npc.knockBackResist = 0f;
 			npc.width = 76;
 			npc.height = 38;
 			npc.value = Item.buyPrice(0, 20, 0, 0);
 			npc.npcSlots = 15f;
+            npc.alpha = 0;
 			npc.boss = true;
 			npc.lavaImmune = true;
 			//npc.noGravity = true;
@@ -61,6 +62,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.buffImmune[24] = true;
 			music = MusicID.Boss1;
+            animationType = NPCID.KingSlime;
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -72,7 +74,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
 		public override void AI()
 		{
             //type == 50
-            //if (aiStyle == 15)
+            //aiStyle == 15
             float num238 = 1f;
             bool flag8 = false;
             bool flag9 = false;
@@ -83,7 +85,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
             }
             if (npc.localAI[3] == 0f && Main.netMode != 1)
             {
-                npc.ai[0] = -100f;
+                npc.ai[0] = -60; //-100f
                 npc.localAI[3] = 1f;
                 npc.TargetClosest();
                 npc.netUpdate = true;
@@ -200,7 +202,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                 //ref float reference = ref npc.ai[0];
                 //reference += 1f;
                 npc.ai[0] += 1f;
-                num238 = MathHelper.Clamp((60f - npc.ai[0]) / 60f, 0f, 1f);
+                num238 = MathHelper.Clamp((40f - npc.ai[0]) / 40f, 0f, 1f); //60f to 40f
                 num238 = 0.5f + num238 * 0.5f;
                 if (npc.ai[0] >= 60f)
                 {
@@ -210,14 +212,14 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                 {
                     Gore.NewGore(npc.Center + new Vector2(-40f, (0f - (float)npc.height) / 2f), npc.velocity, 734);
                 }
-                if (npc.ai[0] >= 60f && Main.netMode != 1)
+                if (npc.ai[0] >= 40f && Main.netMode != 1) //60f to 40f
                 {
-                    npc.Bottom = new Vector2(npc.localAI[1], npc.localAI[2]);
+                    npc.Bottom = new Vector2(npc.localAI[1], npc.localAI[2]); //teleport to position of player
                     npc.ai[1] = 6f;
                     npc.ai[0] = 0f;
                     npc.netUpdate = true;
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 120f)
+                if (Main.netMode == 1 && npc.ai[0] >= 80f) //120f to 80f
                 {
                     npc.ai[1] = 6f;
                     npc.ai[0] = 0f;
@@ -227,7 +229,9 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                     int num2;
                     for (int num248 = 0; num248 < 10; num248 = num2 + 1)
                     {
-                        int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 4, npc.velocity.X, npc.velocity.Y, 150, new Color(78, 136, 255, 80), 2f);
+                        //dust for when before it teleports
+                        //int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 4, npc.velocity.X, npc.velocity.Y, 150, new Color(78, 136, 255, 80), 2f);
+                        int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
                         Main.dust[num249].noGravity = true;
                         dust3 = Main.dust[num249];
                         dust3.velocity *= 0.5f;
@@ -251,7 +255,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                     npc.netUpdate = true;
                     npc.TargetClosest();
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 60f)
+                if (Main.netMode == 1 && npc.ai[0] >= 40f) //60f to 40f
                 {
                     npc.ai[1] = 0f;
                     npc.ai[0] = 0f;
@@ -260,7 +264,8 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                 int num2;
                 for (int num250 = 0; num250 < 10; num250 = num2 + 1)
                 {
-                    int num251 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 4, npc.velocity.X, npc.velocity.Y, 150, new Color(78, 136, 255, 80), 2f);
+                    //dust for when after it teleported
+                    int num251 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
                     Main.dust[num251].noGravity = true;
                     dust3 = Main.dust[num251];
                     dust3.velocity *= 2f;
@@ -279,6 +284,7 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                 {
                     //ref float reference = ref npc.ai[0];
                     //reference += 2f;
+                    npc.ai[0] += 2f;
                     if ((double)npc.life < (double)npc.lifeMax * 0.8)
                     {
                         //reference = ref npc.ai[0];
@@ -315,25 +321,25 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                         npc.TargetClosest();
                         if (npc.ai[1] == 3f)
                         {
-                            npc.velocity.Y = -13f;
+                            npc.velocity.Y = -10f; //-13f
                             npc.velocity.X = npc.velocity.X + 3.5f * (float)npc.direction;
-                            npc.ai[0] = -200f;
+                            npc.ai[0] = -110f; //-200f
                             npc.ai[1] = 0f;
                         }
                         else if (npc.ai[1] == 2f)
                         {
-                            npc.velocity.Y = -6f;
+                            npc.velocity.Y = -6f; //-8f
                             npc.velocity.X = npc.velocity.X + 4.5f * (float)npc.direction;
-                            npc.ai[0] = -120f;
+                            npc.ai[0] = -80f; //-120f
                             //reference = ref npc.ai[1];
                             //reference += 1f;
                             npc.ai[1] += 1f;
                         }
                         else
                         {
-                            npc.velocity.Y = -8f;
+                            npc.velocity.Y = -6f; //-8f
                             npc.velocity.X = npc.velocity.X + 4f * (float)npc.direction;
-                            npc.ai[0] = -120f;
+                            npc.ai[0] = -80f; //-120f
                             //reference = ref npc.ai[1];
                             //reference += 1f;
                             npc.ai[1] += 1f;
@@ -356,10 +362,11 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                     npc.velocity.X = npc.velocity.X * 0.93f;
                 }
             }
-            int num252 = Dust.NewDust(npc.position, npc.width, npc.height, 4, npc.velocity.X, npc.velocity.Y, 255, new Color(0, 80, 255, 80), npc.scale * 1.2f);
-            Main.dust[num252].noGravity = true;
-            dust3 = Main.dust[num252];
-            dust3.velocity *= 0.5f;
+            //int num252 = Dust.NewDust(npc.position, npc.width, npc.height, 4, npc.velocity.X, npc.velocity.Y, 255, new Color(0, 80, 255, 80), npc.scale * 1.2f);
+            ////Main.NewText("dust 3");
+            //Main.dust[num252].noGravity = true;
+            //dust3 = Main.dust[num252];
+            //dust3.velocity *= 0.5f;
             if (npc.life > 0)
             {
                 float num253 = (float)npc.life / (float)npc.lifeMax;
@@ -370,8 +377,8 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                     npc.position.X = npc.position.X + (float)(npc.width / 2);
                     npc.position.Y = npc.position.Y + (float)npc.height;
                     npc.scale = num253;
-                    npc.width = (int)(98f * npc.scale);
-                    npc.height = (int)(92f * npc.scale);
+                    npc.width = (int)(76f * npc.scale); //96f those are the hitbox adjusted scales for when the boss takes dammage (it gets smaller)
+                    npc.height = (int)(38f * npc.scale); //92f
                     npc.position.X = npc.position.X - (float)(npc.width / 2);
                     npc.position.Y = npc.position.Y - (float)npc.height;
                 }
@@ -383,15 +390,11 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                         npc.ai[3] = (float)npc.life;
                         int num255 = Main.rand.Next(1, 4);
                         int num2;
-                        for (int num256 = 0; num256 < num255; num256 = num2 + 1)
+                        for (int num256 = 0; num256 < num255; num256 = num2 + 1) //spawn slimes when hit
                         {
-                            int x = (int)(npc.position.X + (float)Main.rand.Next(npc.width - 32));
-                            int y = (int)(npc.position.Y + (float)Main.rand.Next(npc.height - 32));
-                            int num257 = 1;
-                            if (Main.expertMode && Main.rand.Next(4) == 0)
-                            {
-                                num257 = 535;
-                            }
+                            int x = (int)(npc.position.X + (float)Main.rand.Next(npc.width - 16)); //from 32 down to 16
+                            int y = (int)(npc.position.Y + (float)Main.rand.Next(npc.height - 16)); //from 32 down to 16
+                            int num257 = mod.NPCType("FoldfishBaby");
                             int num258 = NPC.NewNPC(x, y, num257);
                             Main.npc[num258].SetDefaults(num257);
                             Main.npc[num258].velocity.X = (float)Main.rand.Next(-15, 16) * 0.1f;
@@ -407,34 +410,15 @@ namespace Harblesnargits_Mod_01.NPCs.FoldFishBoss
                     }
                 }
             }
+            npc.spriteDirection = npc.direction;
         }
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-		{
-			moveTime = reader.ReadInt16();
-			moveTimer = reader.ReadInt16();
-			if (Main.expertMode)
-			{
-				laserTimer = reader.ReadInt16();
-				laser1 = reader.ReadByte() - 1;
-				laser2 = reader.ReadByte() - 1;
-			}
-		}
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            //nothing
+        }
 
-		public override void FindFrame(int frameHeight)
-		{
-			//if (attackCool < 50f)
-			//{
-			//	npc.frame.Y = frameHeight;
-			//}
-			//else
-			//{
-				npc.frame.Y = 0;
-			//}
-		}
-
-
-		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
 		{
 			scale = 1.5f;
 			return null;
