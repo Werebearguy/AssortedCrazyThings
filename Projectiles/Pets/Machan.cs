@@ -21,6 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				{
 					projectile.CloneDefaults(ProjectileID.DD2PetDragon);
 					aiType = ProjectileID.DD2PetDragon;
+					projectile.scale = 0.5f;
 				}
 			public override bool PreAI()
 				{
