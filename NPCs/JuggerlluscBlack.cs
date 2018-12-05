@@ -7,6 +7,7 @@ namespace AssortedCrazyThings.NPCs
     public class JuggerlluscBlack : ModNPC
     {
         public static string name = "Juggerllusc";
+
         public static string message = "A large snail is approaching!";
 
         public override void SetStaticDefaults()
@@ -19,8 +20,8 @@ namespace AssortedCrazyThings.NPCs
         {
             npc.width = 112;
             npc.height = 67;
-            npc.damage = 80;
-            npc.defense = 100;
+            npc.damage = 40;
+            npc.defense = 20;
             npc.lifeMax = 900;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -38,7 +39,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Ocean.Chance * 0.005f;
+            return NPC.downedBoss1 ? SpawnCondition.Ocean.Chance * 0.005f : 0f;
         }
 
         // Whether or not to run the code for checking whether this NPC will remain active.
@@ -48,21 +49,24 @@ namespace AssortedCrazyThings.NPCs
         //{
         //    return false;
         //}
-
         public override void NPCLoot()
         {
+            Item.NewItem(npc.getRect(), ItemID.PurpleMucos);
+            if (Main.rand.NextBool(20))
             {
-                Item.NewItem(npc.getRect(), ItemID.PurpleMucos);
+                Item.NewItem(npc.getRect(), ItemID.Flipper);
+            }
+            if (Main.rand.NextBool(50))
+            {
+                Item.NewItem(npc.getRect(), ItemID.DivingHelmet);
             }
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_megasnail_01"), 1f);
-                }
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_megasnail_01"), 1f);
             }
         }
     }
