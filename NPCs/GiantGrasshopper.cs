@@ -19,8 +19,8 @@ namespace AssortedCrazyThings.NPCs
             npc.damage = 1;
             npc.defense = 0;
             npc.lifeMax = 5;
-            npc.HitSound = SoundID.NPCHit41;
-            npc.DeathSound = SoundID.NPCDeath25;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath4;
             npc.value = 60f;
             npc.knockBackResist = 0.5f;
             npc.aiStyle = 41;
