@@ -37,11 +37,11 @@ namespace AssortedCrazyThings.NPCs
         {
             if (Main.raining == true)
             {
-                return SpawnCondition.CorruptWaterCritter.Chance * 0.8f;
+                return SpawnCondition.CorruptWaterCritter.Chance * 0.2f;
             }
             else
             {
-                return SpawnCondition.CorruptWaterCritter.Chance * 0.05f;
+                return SpawnCondition.CorruptWaterCritter.Chance * 0.02f;
             }
         }
 
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void AI()
         {
-            //modified foldfish AI
+            //modified goldfish AI
             if (npc.direction == 0)
             {
                 npc.TargetClosest();

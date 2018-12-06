@@ -37,11 +37,11 @@ namespace AssortedCrazyThings.NPCs
         {
             if (Main.raining == true)
             {
-                return SpawnCondition.Crimson.Chance * 0.5f;
+                return SpawnCondition.HardmodeCrimsonWater.Chance * 0.2f;
             }
             else
             {
-                return SpawnCondition.Crimson.Chance * 0.01f;
+                return SpawnCondition.HardmodeCrimsonWater.Chance * 0.02f;
             }
         }
 
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void AI()
         {
-            //modified foldfish AI
+            //modified goldfish AI
             if (npc.direction == 0)
             {
                 npc.TargetClosest();

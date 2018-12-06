@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.NPCs
 		
 		public override void AI()
 		{
-            //modified foldfish AI
+            //modified goldfish AI
 			if (npc.direction == 0)
 			{
 				npc.TargetClosest();

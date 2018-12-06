@@ -35,36 +35,29 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (spawnInfo.player.ZoneHoly)
+            {
                 if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid == 0)
                 {
                     return 0f;
                 }
-                else if (
-                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY) &&
-                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1) &&
-                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2))
+                else if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid != 0)
                 {
-                    return SpawnCondition.OverworldHallow.Chance * 4f; //0.05f before, 100f now because water check
+                    //screw this shit
+                    return 1f;
                 }
+                //for some reason never gets there even tho the code is 1:1 the same as cloudfish
+                //else if (
+                //   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY)&&
+                //   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1) &&
+                //   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2))
+                //{
+                //    Main.NewText("chance " + SpawnCondition.DefaultWaterCritter.Chance * 10f);
+                //    return SpawnCondition.DefaultWaterCritter.Chance * 10f; //0.05f before, 100f now because water check
+                //}
+            }
             return 0f;
         }
-
-        //public override int SpawnNPC(int tileX, int tileY)
-        //{
-        //    if (Main.tile[tileX, tileY].liquid == 0)
-        //    {
-        //        return 0;
-        //    }
-        //    else if (
-        //       !WorldGen.SolidTile(tileX, tileY) &&
-        //       !WorldGen.SolidTile(tileX, tileY + 1) &&
-        //       !WorldGen.SolidTile(tileX, tileY + 2))
-        //    {
-        //        //actually spawn
-        //        return base.SpawnNPC(tileX, tileY);
-        //    }
-        //    return 0;
-        //}
 
         public override void NPCLoot()
         {
@@ -80,7 +73,7 @@ namespace AssortedCrazyThings.NPCs
 		
 		public override void AI()
 		{
-            //modified foldfish AI
+            //modified goldfish AI
 			if (npc.direction == 0)
 			{
 				npc.TargetClosest();
