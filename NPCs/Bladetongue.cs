@@ -35,14 +35,32 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.raining == true)
-            {
-                return SpawnCondition.Crimson.Chance * 0.5f;
-            }
-            else
-            {
-                return SpawnCondition.Crimson.Chance * 0.01f;
-            }
+            //Main.NewText(spawnInfo.player.ZoneSkyHeight);
+            //if (spawnInfo.player.ZoneSkyHeight)
+            //{
+                //Main.NewText("player in crimson");
+                //Main.NewText("liquid " + Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid);
+                //if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid == 0)
+                //{
+                //    return 0f;
+                //}
+                //else if (
+                //    !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY) &&
+                //    !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1))
+                //{
+                    //Main.NewText("spawnable location");
+                    if (Main.raining)
+                    {
+                        return SpawnCondition.HardmodeCrimsonWater.Chance * 0.1f; //0.5f before
+                    }
+                    else
+                    {
+                        //Main.NewText("chance " + SpawnCondition.HardmodeCrimsonWater.Chance);
+                        return SpawnCondition.HardmodeCrimsonWater.Chance * 0.02f; //0.01f before
+                    }
+                //}
+            //}
+            return 0f;
         }
 
         public override void NPCLoot()

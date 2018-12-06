@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.NPCs
         {
             if (Main.xMas == true)
             {
-                return SpawnCondition.OverworldDaySlime.Chance * 0.025f;
+                return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
             }
             else
             {
