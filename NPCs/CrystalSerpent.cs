@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.NPCs
                 }
                 else if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid != 0)
                 {
-                    //screw this shit
+                    //screw this shit lmao im settin this to 1f whenever there is water
                     return 1f;
                 }
                 //for some reason never gets there even tho the code is 1:1 the same as cloudfish
