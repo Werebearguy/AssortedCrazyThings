@@ -12,6 +12,9 @@ namespace AssortedCrazyThings
 {
     public class MyPlayer : ModPlayer
     {
+		public bool DocileMechanicalLaserEyeGreen = false;
+		public bool DocileMechanicalLaserEyePurple = false;
+		public bool DocileMechanicalLaserEyeRed = false;
 		public bool OrigamiCrane = false;
 		public bool Machan = false;
 		public bool MiniMegalodon = false;
@@ -54,6 +57,9 @@ namespace AssortedCrazyThings
 		
 		public override void ResetEffects()
 		{
+			DocileMechanicalLaserEyeGreen = false;
+			DocileMechanicalLaserEyePurple = false;
+			DocileMechanicalLaserEyeRed = false;
 			OrigamiCrane = false;
 			Machan = false;
 			MiniMegalodon = false;
