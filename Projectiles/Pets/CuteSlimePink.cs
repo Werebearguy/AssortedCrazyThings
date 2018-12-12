@@ -1,46 +1,63 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-	public class CuteSlimePink : ModProjectile
-		{
-			public override void SetStaticDefaults()
-				{
-					DisplayName.SetDefault("Cute Pink Slime");
-					Main.projFrames[projectile.type] = 10;
-					Main.projPet[projectile.type] = true;
-					drawOffsetX = -20;
-					drawOriginOffsetX = 0;
-					drawOriginOffsetY = -28;
-				}
-			public override void SetDefaults()
-				{
-					projectile.CloneDefaults(ProjectileID.PetLizard);
-					aiType = ProjectileID.PetLizard;
-					projectile.scale = 0.6f;
-					projectile.alpha = 75;
-				}
-			public override bool PreAI()
-				{
-					Player player = Main.player[projectile.owner];
-					return true;
-				}
-			public override void AI()
-				{
-					Player player = Main.player[projectile.owner];
-					MyPlayer modPlayer = player.GetModPlayer<MyPlayer>(mod);
-					if (player.dead)
-						{
-							modPlayer.CuteSlimePink = false;
-						}
-					if (modPlayer.CuteSlimePink)
-						{
-							projectile.timeLeft = 2;
-						}
-				}
-		}
+    public class CuteSlimePink : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pink Slime");
+            Main.projFrames[projectile.type] = 10;
+            Main.projPet[projectile.type] = true;
+            drawOffsetX = -20;
+            drawOriginOffsetX = 0;
+            drawOriginOffsetY = -28;
+        }
+
+        public override void SetDefaults()
+        {
+            projectile.CloneDefaults(ProjectileID.PetLizard);
+            aiType = ProjectileID.PetLizard;
+            projectile.scale = 0.6f;
+            projectile.alpha = 75;
+        }
+
+        public override bool PreAI()
+        {
+            Player player = Main.player[projectile.owner];
+            return true;
+        }
+
+        public override void AI()
+        {
+            Player player = Main.player[projectile.owner];
+            MyPlayer modPlayer = player.GetModPlayer<MyPlayer>(mod);
+            if (player.dead)
+            {
+                modPlayer.CuteSlimePink = false;
+            }
+            if (modPlayer.CuteSlimePink)
+            {
+                projectile.timeLeft = 2;
+            }
+        }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            //drawColor.R = 255;
+            //// both these do the same in this situation, using these methods is useful.
+            //drawColor.G = Utils.Clamp<byte>(drawColor.G, 175, 255);
+            //drawColor.B = Math.Min(drawColor.B, (byte)75);
+            //drawColor.A = 255;
+            drawColor.R = Math.Min((byte)(drawColor.R * 0.9f), (byte)175);
+            drawColor.G = Math.Min((byte)(drawColor.G * 0.75f), (byte)175);
+            drawColor.B = Math.Min((byte)(drawColor.B * 0.75f), (byte)175);
+            drawColor.A = 175;
+            return drawColor;
+        }
+    }
 }
