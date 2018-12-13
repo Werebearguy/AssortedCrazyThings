@@ -260,7 +260,7 @@ namespace AssortedCrazyThings.NPCs
                     num226 *= num227;
                     num225 *= 20;
                     num226 *= 20;
-                    int leftScythe = Projectile.NewProjectile(vector27.X - npc.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, npc.target);
+                    int leftScythe = Projectile.NewProjectile(vector27.X - npc.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, Main.myPlayer);
                     Main.projectile[leftScythe].tileCollide = false;
                     Main.projectile[leftScythe].timeLeft = projectileTravelTime;
 
@@ -272,7 +272,7 @@ namespace AssortedCrazyThings.NPCs
                     num226 *= num227;
                     num225 *= 20;
                     num226 *= 20;
-                    int rightScythe = Projectile.NewProjectile(vector27.X + npc.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, npc.target);
+                    int rightScythe = Projectile.NewProjectile(vector27.X + npc.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, Main.myPlayer);
                     Main.projectile[rightScythe].tileCollide = false;
                     Main.projectile[rightScythe].timeLeft = projectileTravelTime;
 
