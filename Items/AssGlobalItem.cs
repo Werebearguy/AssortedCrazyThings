@@ -9,9 +9,9 @@ using Terraria.Utilities;
 
 namespace AssortedCrazyThings.Items
 {
-	public class SimpleGlobalItem : GlobalItem
+	public class AssGlobalItem : GlobalItem
 	{
-		public SimpleGlobalItem()
+		public AssGlobalItem()
 		{
 
 		}
@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items
 
 		public override GlobalItem Clone(Item item, Item itemClone)
 		{
-			SimpleGlobalItem myClone = (SimpleGlobalItem)base.Clone(item, itemClone);
+			AssGlobalItem myClone = (AssGlobalItem)base.Clone(item, itemClone);
 			return myClone;
 		}
 
