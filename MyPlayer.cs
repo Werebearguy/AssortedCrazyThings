@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
-    public class MyPlayer : ModPlayer
+    public class PetPlayer : ModPlayer
     {
 		public bool DocileMechanicalLaserEyeGreen = false;
 		public bool DocileMechanicalLaserEyePurple = false;
@@ -53,7 +45,6 @@ namespace AssortedCrazyThings
 		public bool VampireBat = false;
 		public bool TorturedSoul = false;
 		public bool EnchantedSword = false;
-		public bool summ_test_01 = false;
 		
 		public override void ResetEffects()
 		{
@@ -98,8 +89,6 @@ namespace AssortedCrazyThings
 			VampireBat = false;
 			TorturedSoul = false;
 			EnchantedSword = false;
-			summ_test_01 = false;
-			
 		}	
 	}
 }

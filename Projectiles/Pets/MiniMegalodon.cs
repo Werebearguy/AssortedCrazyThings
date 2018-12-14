@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         private void MegalodonAI()
         {
             Player player = Main.player[projectile.owner];
-            MyPlayer modPlayer = player.GetModPlayer<MyPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (!player.active)
             {
                 projectile.active = false;

@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Buffs
 			public override void Update(Player player, ref int buffIndex)
 				{
 					player.buffTime[buffIndex] = 18000;
-					player.GetModPlayer<MyPlayer>(mod).DocileFracturedEyeGreen = true;
+					player.GetModPlayer<PetPlayer>(mod).DocileFracturedEyeGreen = true;
 					bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("DocileFracturedEyeGreen")] <= 0;
 					if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
 						{
