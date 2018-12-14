@@ -48,11 +48,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override Color? GetAlpha(Color drawColor)
         {
-            //drawColor.R = 255;
-            //// both these do the same in this situation, using these methods is useful.
-            //drawColor.G = Utils.Clamp<byte>(drawColor.G, 175, 255);
-            //drawColor.B = Math.Min(drawColor.B, (byte)75);
-            //drawColor.A = 255;
             drawColor.R = Math.Min((byte)(drawColor.R * 0.9f), (byte)175);
             drawColor.G = Math.Min((byte)(drawColor.G * 0.75f), (byte)175);
             drawColor.B = Math.Min((byte)(drawColor.B * 0.75f), (byte)175);

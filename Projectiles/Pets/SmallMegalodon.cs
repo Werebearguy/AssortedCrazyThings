@@ -36,16 +36,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            //Player player = Main.player[projectile.owner];
-            //MyPlayer modPlayer = player.GetModPlayer<MyPlayer>(mod);
-            //if (player.dead)
-            //{
-            //    modPlayer.SmallMegalodon = false;
-            //}
-            //if (modPlayer.SmallMegalodon)
-            //{
-            //    projectile.timeLeft = 2;
-            //}
             MegalodonAI();
         }
 

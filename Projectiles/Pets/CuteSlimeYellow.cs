@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,11 +47,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override Color? GetAlpha(Color drawColor)
         {
-            //drawColor.R = 255;
-            //// both these do the same in this situation, using these methods is useful.
-            //drawColor.G = Utils.Clamp<byte>(drawColor.G, 175, 255);
-            //drawColor.B = Math.Min(drawColor.B, (byte)75);
-            //drawColor.A = 255;
             drawColor.R = drawColor.R;
             drawColor.G = drawColor.G;
             drawColor.B = drawColor.B;
