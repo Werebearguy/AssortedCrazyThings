@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Items
 
         public override bool CanUseItem(Item item, Player player)
         {
-            SimpleModPlayer mPlayer = player.GetModPlayer<SimpleModPlayer>(mod);
+            AssModPlayer mPlayer = player.GetModPlayer<AssModPlayer>(mod);
             if(mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff )
             {
                 if (base.CanUseItem(item, player) && player.HeldItem.active && player.HeldItem.damage >= 0)
@@ -102,7 +102,7 @@ namespace AssortedCrazyThings.Items
             }
         }
 
-        private void ShootCandleDust(Item item, SimpleModPlayer mPlayer)
+        private void ShootCandleDust(Item item, AssModPlayer mPlayer)
         {
             if (mPlayer.everburningCandleBuff)
             {
@@ -128,7 +128,7 @@ namespace AssortedCrazyThings.Items
 
         public  override void MeleeEffects(Item item, Player player, Rectangle hitbox)
         {
-            SimpleModPlayer mPlayer = player.GetModPlayer<SimpleModPlayer>(mod);
+            AssModPlayer mPlayer = player.GetModPlayer<AssModPlayer>(mod);
             if (mPlayer.everburningCandleBuff)
             {
                 Color color = new Color(255, 255, 255);

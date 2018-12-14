@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
-    class SimpleModPlayer : ModPlayer
+    class AssModPlayer : ModPlayer
     {
         public bool everburningCandleBuff;
 
