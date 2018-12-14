@@ -9,16 +9,16 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public override void SetDefaults()
         {
-			item.CloneDefaults(ItemID.ThrowingKnife);
+            item.CloneDefaults(ItemID.ThrowingKnife);
             item.damage = 1;
             item.useTime = 35;
             item.shootSpeed = 4.5f;
             item.shoot = mod.ProjectileType("PocketSand");
             item.useAnimation = 35;
             item.autoReuse = true;
-			item.value = 0;
+            item.value = 0;
             item.rare = -11;
-			item.noUseGraphic = true;
+            item.noUseGraphic = true;
         }
 
         public override void SetStaticDefaults()
@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SandBlock, 1);
-            recipe.SetResult(this, 10);
+            recipe.SetResult(this, 10); //makes 10 instead of one per crafting operation
             recipe.AddRecipe();
         }
 
@@ -55,5 +55,5 @@ namespace AssortedCrazyThings.Items.Weapons
             }
             return false;
         }
-	}
+    }
 }
