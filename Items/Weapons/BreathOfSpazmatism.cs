@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.height = 30;
             item.damage = 20;
             item.UseSound = SoundID.Item34;
-            item.shoot = mod.ProjectileType("proj_fire_01");
+            item.shoot = mod.ProjectileType("SpazmatismFire");
             item.shootSpeed = 8f;
             item.noMelee = true;
             item.ranged = true;
