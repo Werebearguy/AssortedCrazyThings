@@ -72,6 +72,7 @@
     <Compile Include="Buffs\MiniMegalodon.cs" />
     <Compile Include="Buffs\OrigamiCrane.cs" />
     <Compile Include="Buffs\SmallMegalodon.cs" />
+    <Compile Include="Buffs\SoulBuff.cs" />
     <Compile Include="Buffs\TorturedSoul.cs" />
     <Compile Include="Buffs\VampireBat.cs" />
     <Compile Include="Buffs\YoungHarpy.cs" />
@@ -159,8 +160,10 @@
     <Compile Include="Items\Weapons\PocketSand.cs" />
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
-    <Compile Include="MyPlayer.cs" />
-    <Compile Include="MyWorld.cs" />
+    <Compile Include="NPCs\AssGlobalNPC.cs" />
+    <Compile Include="PetPlayer.cs" />
+    <Compile Include="AssWorld.cs" />
+    <Compile Include="NPCs\aaaHarvester.cs" />
     <Compile Include="NPCs\AnimatedSpellTome.cs" />
     <Compile Include="NPCs\AnimatedTome.cs" />
     <Compile Include="NPCs\Anomalocaris.cs" />
@@ -170,6 +173,7 @@
     <Compile Include="NPCs\BloodShark.cs" />
     <Compile Include="NPCs\Chunky.cs" />
     <Compile Include="NPCs\ChunkysEye.cs" />
+    <Compile Include="NPCs\aaaSoul.cs" />
     <Compile Include="NPCs\Cloudfish.cs" />
     <Compile Include="NPCs\CrystalSerpent.cs" />
     <Compile Include="NPCs\CuteGastropod.cs" />
@@ -300,7 +304,7 @@
     <Compile Include="Projectiles\Pets\YoungWyvern.cs" />
     <Compile Include="Projectiles\Weapons\PocketSand.cs" />
     <Compile Include="Projectiles\Weapons\SpazmatismFire.cs" />
-    <Compile Include="SimpleModPlayer.cs" />
+    <Compile Include="AssPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
