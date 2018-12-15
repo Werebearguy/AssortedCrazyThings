@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 				}
 			public override void UpdateAccessory(Player player, bool hideVisual)
 				{
-					player.GetModPlayer<AssModPlayer>().everburningCandleBuff = true;
+					player.GetModPlayer<AssPlayer>().everburningCandleBuff = true;
 				}
 			public override void AddRecipes()
 				{
