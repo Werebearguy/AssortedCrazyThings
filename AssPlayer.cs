@@ -70,7 +70,7 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if(player.ZoneOverworldHeight) //change to dungeon
+            if(player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
             {
                 bool shouldDropSouls = true; //change to false
                 if (NPC.AnyNPCs(mod.NPCType(AssWorld.harvesterName))/* && Main.npc[j].active*/)

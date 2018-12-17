@@ -160,6 +160,7 @@
     <Compile Include="Items\Weapons\PocketSand.cs" />
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
+    <Compile Include="NPCs\Akhult.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
     <Compile Include="PetPlayer.cs" />
     <Compile Include="AssWorld.cs" />
