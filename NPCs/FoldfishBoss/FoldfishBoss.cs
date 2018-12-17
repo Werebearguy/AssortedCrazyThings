@@ -206,7 +206,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     npc.ai[0] = 0f;
                     npc.netUpdate = true;
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 80f) //120f to 80f
+                if (Main.netMode == 1 && npc.ai[0] >= 80f) //120f to 80f, jump frequency, but 80 is the minimum, below and shit fucks up
                 {
                     npc.ai[1] = 6f;
                     npc.ai[0] = 0f;
@@ -216,7 +216,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     int num2;
                     for (int num248 = 0; num248 < 10; num248 = num2 + 1)
                     {
-                        //dust for when before it teleports
+                        //dust for when before it teleports, change 79 to whatever type
                         //int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 4, npc.velocity.X, npc.velocity.Y, 150, new Color(78, 136, 255, 80), 2f);
                         int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
                         Main.dust[num249].noGravity = true;
@@ -242,7 +242,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     npc.netUpdate = true;
                     npc.TargetClosest();
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 40f) //60f to 40f
+                if (Main.netMode == 1 && npc.ai[0] >= 40f) //60f to 40f, cant remember what that does, maybe the jumping
                 {
                     npc.ai[1] = 0f;
                     npc.ai[0] = 0f;
@@ -306,7 +306,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     {
                         npc.netUpdate = true;
                         npc.TargetClosest();
-                        if (npc.ai[1] == 3f)
+                        if (npc.ai[1] == 3f) //jump heights here in velo.Y
                         {
                             npc.velocity.Y = -10f; //-13f
                             npc.velocity.X = npc.velocity.X + 3.5f * (float)npc.direction;
@@ -349,6 +349,8 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     npc.velocity.X = npc.velocity.X * 0.93f;
                 }
             }
+            //some dust idk
+
             //int num252 = Dust.NewDust(npc.position, npc.width, npc.height, 4, npc.velocity.X, npc.velocity.Y, 255, new Color(0, 80, 255, 80), npc.scale * 1.2f);
             ////Main.NewText("dust 3");
             //Main.dust[num252].noGravity = true;

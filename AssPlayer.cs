@@ -73,20 +73,16 @@ namespace AssortedCrazyThings
             if(player.ZoneOverworldHeight) //change to dungeon
             {
                 bool shouldDropSouls = true; //change to false
-                for (short j = 0; j < 200; j++)
+                if (NPC.AnyNPCs(mod.NPCType(AssWorld.harvesterName))/* && Main.npc[j].active*/)
                 {
-                    if (Main.npc[j].type == mod.NPCType(AssWorld.harvesterName) && Main.npc[j].active)
-                    {
-                        shouldDropSouls = true;
-                        break;
-                    }
+                    shouldDropSouls = true;
                 }
 
                 if (shouldDropSouls)
                 {
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(AssWorld.soulName) && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(AssWorld.soulName) && Main.npc[j].type != mod.NPCType(AssWorld.harvesterName) && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
                         {
                             Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
                         }
