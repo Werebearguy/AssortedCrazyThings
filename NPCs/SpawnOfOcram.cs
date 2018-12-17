@@ -37,7 +37,8 @@ namespace AssortedCrazyThings.NPCs
 			animationType = NPCID.Corruptor;
 			npc.noGravity = true;
 			npc.noTileCollide = true;
-		}
+            npc.buffImmune[BuffID.Confused] = false;
+        }
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{

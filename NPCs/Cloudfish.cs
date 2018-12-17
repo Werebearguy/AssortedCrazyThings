@@ -33,6 +33,7 @@ namespace AssortedCrazyThings.NPCs
             npc.noGravity = true;
             Main.npcCatchable[mod.NPCType("Cloudfish")] = true;
             npc.catchItem = ItemID.Cloudfish;
+            npc.buffImmune[BuffID.Confused] = false;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -39,7 +39,8 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.buffImmune[24] = true;
-			music = MusicID.Boss1;
+            npc.buffImmune[BuffID.Confused] = false;
+            music = MusicID.Boss1;
             animationType = NPCID.KingSlime;
 		}
 

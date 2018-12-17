@@ -31,6 +31,7 @@ namespace AssortedCrazyThings.NPCs
             aiType = NPCID.Goldfish;
             animationType = NPCID.Goldfish;
             npc.noGravity = true;
+            npc.buffImmune[BuffID.Confused] = false;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
