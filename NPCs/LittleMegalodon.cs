@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.NPCs
 {
     public class LittleMegalodon : ModNPC
     {
-        public static string name = "LittleMegalodon";
+        public static string name = "Little Megalodon";
         public static string message = "A Megalodon is approaching! Get out of the ocean!";
 
         public override void SetStaticDefaults()
