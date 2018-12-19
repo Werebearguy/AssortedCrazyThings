@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -72,17 +73,21 @@ namespace AssortedCrazyThings
         {
             if(player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
             {
-                bool shouldDropSouls = true; //change to false
-                if (NPC.AnyNPCs(mod.NPCType(AssWorld.harvesterName))/* && Main.npc[j].active*/)
+                bool shouldDropSouls = false; //change to false
+                for (short j = 0; j < 200; j++)
                 {
-                    shouldDropSouls = true;
+                    if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
+                    {
+                        shouldDropSouls = true;
+                        break;
+                    }
                 }
 
                 if (shouldDropSouls)
                 {
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(AssWorld.soulName) && Main.npc[j].type != mod.NPCType(AssWorld.harvesterName) && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(AssWorld.soulName) && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
                         {
                             Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
                         }

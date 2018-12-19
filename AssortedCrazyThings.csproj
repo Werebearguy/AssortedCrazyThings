@@ -162,9 +162,13 @@
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="NPCs\Akhult.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
+    <Compile Include="NPCs\DungeonBird\aaaHarvester1.cs" />
+    <Compile Include="NPCs\DungeonBird\aaaHarvester2.cs" />
+    <Compile Include="NPCs\DungeonBird\aaaHarvester3.cs" />
+    <Compile Include="NPCs\DungeonBird\aaaSoul.cs" />
+    <Compile Include="NPCs\DungeonBird\BaseHarvester.cs" />
     <Compile Include="PetPlayer.cs" />
     <Compile Include="AssWorld.cs" />
-    <Compile Include="NPCs\aaaHarvester.cs" />
     <Compile Include="NPCs\AnimatedSpellTome.cs" />
     <Compile Include="NPCs\AnimatedTome.cs" />
     <Compile Include="NPCs\Anomalocaris.cs" />
@@ -174,7 +178,6 @@
     <Compile Include="NPCs\BloodShark.cs" />
     <Compile Include="NPCs\Chunky.cs" />
     <Compile Include="NPCs\ChunkysEye.cs" />
-    <Compile Include="NPCs\aaaSoul.cs" />
     <Compile Include="NPCs\Cloudfish.cs" />
     <Compile Include="NPCs\CrystalSerpent.cs" />
     <Compile Include="NPCs\CuteGastropod.cs" />

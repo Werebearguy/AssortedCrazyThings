@@ -4,6 +4,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using AssortedCrazyThings.NPCs;
+using AssortedCrazyThings.NPCs.DungeonBird;
 using System;
 
 namespace AssortedCrazyThings
@@ -27,16 +28,9 @@ namespace AssortedCrazyThings
         public static string miniocramMessage = SpawnOfOcram.message;
         //the megalodon messages are modified down below in the Disappear message
 
-        //Soul stuff, tracks all the npc indexes of each soul
+        //Soul stuff
         public static string soulName = aaaSoul.name;
-        public static string harvesterName = aaaHarvester.name;
-        private static readonly short maxCounter = 4;
-        private short counter = 0;
-        private static readonly short maxSouls = 50;
-        public int[] soulList = new int[maxSouls];
-        private short soulIndex = -1;
-
-        private short counter2 = 0;
+        public static int[] harvesterTypes = new int[3];
 
         public override void Initialize()
         {
@@ -44,7 +38,9 @@ namespace AssortedCrazyThings
             megalodonAlive = false;
             miniocramAlive = false;
 
-            Array.Clear(soulList, 0, soulList.Length);
+            harvesterTypes[0] = mod.NPCType(aaaHarvester1.typeName);
+            harvesterTypes[1] = mod.NPCType(aaaHarvester2.typeName);
+            harvesterTypes[2] = mod.NPCType(aaaHarvester3.typeName);
         }
 
         //small methods I made for myself to not make the code cluttered since I have to use these six times
@@ -141,22 +137,6 @@ namespace AssortedCrazyThings
             }
 
             //
-            
-            counter2++;
-            if (counter2 > 60)
-            {
-                counter2 = 0;
-                short number = 0;
-                for (short j = 0; j < 200; j++)
-                {
-                    if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(soulName))
-                    {
-                        //Main.NewText(Main.npc[j].TypeName + " " + j);
-                        number++;
-                    }
-                }
-                //Main.NewText("number : " + number);
-            }
         }
 
         //public override void NetSend(BinaryWriter writer)

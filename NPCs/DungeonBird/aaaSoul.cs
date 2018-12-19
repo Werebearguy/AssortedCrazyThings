@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.NPCs
+namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public class aaaSoul : ModNPC
     {
@@ -41,31 +42,18 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = -1;
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
-            npc.alpha = 125;
             npc.color = new Color(0, 0, 0, 50);
             Main.npcCatchable[mod.NPCType(name)] = true;
             npc.catchItem = (short)ItemID.SandBlock;
             npc.timeLeft = NPC.activeTime * 5;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override Color? GetAlpha(Color lightColor)
         {
-            return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
+            return Main.DiscoColor;
         }
 
-        public override void NPCLoot()
-        {
-            
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
-        }
-
-        private void KillInstantly(NPC npc)
+        private void KillInstantly()
         {
             // These 3 lines instantly kill the npc without showing damage numbers, dropping loot, or playing DeathSound. Use this for instant deaths
             npc.life = 0;
@@ -80,23 +68,23 @@ namespace AssortedCrazyThings.NPCs
             return false;
         }
 
-        protected int HarvesterTargetClosest()
+        protected int HarvesterTarget()
         {
-            int closest = 200;
+            int tar = 200;
             for (short j = 0; j < 200; j++)
             {
-                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(AssWorld.harvesterName))
+                if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
                 {
-                    closest = j;
+                    tar = j;
                     break;
                 }
             }
-            return closest;
+            return tar;
         }
 
         protected Entity GetTarget()
         {
-            int res = HarvesterTargetClosest();
+            int res = HarvesterTarget();
             if (res != 200) return Main.npc[res];
             else return npc;
         }
@@ -108,16 +96,19 @@ namespace AssortedCrazyThings.NPCs
 
         public override void AI()
         {
+            npc.noTileCollide = false;
             if (npc.ai[0] == 0)
             {
                 npc.noGravity = true;
-                if (Collision.SolidCollision(npc.position, npc.width, npc.height))
+                //npc.position - new Vector2(10f, 4f), npc.width + 20, npc.height + 4
+
+                //concider only the bottom half of the hitbox, a bit wider (minus a small bit below)
+                if (Collision.SolidCollision(npc.position + new Vector2(-10f, npc.height / 2), npc.width + 20, npc.height / 2 -2))
                 {
                     if (!GetTarget().Equals(npc))
                     {
                         npc.noTileCollide = true;
                         Vector2 between = GetTarget().Center - npc.Center;
-                        float distance = between.Length();
                         float factor = 2f; //2f
                         int acc = 100; //4
                         between.Normalize();
@@ -141,26 +132,52 @@ namespace AssortedCrazyThings.NPCs
 
             if (!tarnpc.Equals(npc))
             {
-                if (npc.getRect().Intersects(tarnpc.getRect()) && npc.ai[0] == 0)
+                if ((npc.getRect().Intersects(tarnpc.getRect()) && npc.ai[0] == 0)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
                 {
                     npc.ai[0] = 1;
-                    npc.noGravity = false;
-                    npc.velocity.Y = 0.3f;
+                    npc.velocity.Y = 1f;
+                }
+                else if(!npc.getRect().Intersects(tarnpc.getRect()) && npc.ai[0] == 1)
+                {
+                    npc.velocity.X *= 0.1f;
                 }
             }
 
             if(npc.ai[0] == 1 && npc.velocity.Y != 0)
             {
-                npc.velocity.Y += 0.04f;
+                if (Math.Abs(tarnpc.Center.X - npc.Center.X) > 3f)
+                {
+                    Vector2 between = new Vector2(tarnpc.Center.X - npc.Center.X, 0);
+                    float factor = 0.6f; //2f
+                    int acc = 6; //4
+                    between.Normalize();
+                    between *= factor;
+                    npc.velocity.X = (npc.velocity.X * (acc - 1) + between.X) / acc;
+                    //npc.noGravity = false;
+                    npc.noTileCollide = false;
+                }
+                else
+                {
+                    npc.velocity.X = 0;
+                }
+                npc.velocity.Y += 0.06f;
             }
 
-            Main.NewText(npc.velocity.Y);
+            if (npc.ai[0] == 1 && !npc.getRect().Intersects(tarnpc.getRect()) && (npc.velocity.Y == 0 || (npc.velocity.Y < 2f && npc.velocity.Y > 0f)))
+            {
+                //slowdown when outside of collision, but after being knocked
+                npc.velocity.X *= 0.1f;
+            }
 
-            npc.timeLeft--;
+            if (npc.timeLeft <= aaaHarvester2.EatTimeConst)
+            {
+                npc.velocity.X = 0;
+            }
+
+            if(npc.ai[0] == 1)--npc.timeLeft;
             if (npc.timeLeft < 0)
             {
-                npc.life = 0;
-                npc.active = false;
+                KillInstantly();
             }
         }
     }
