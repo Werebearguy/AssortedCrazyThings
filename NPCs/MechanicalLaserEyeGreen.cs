@@ -68,7 +68,7 @@ namespace AssortedCrazyThings.NPCs
 
         public Vector2 RotToNormal(float rotation)
         {
-            return new Vector2((float)Math.Sin(rotation), (float)-Math.Cos(rotation));
+            return new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
         }
 
         public float AngleBetween(Vector2 v1, Vector2 v2)
@@ -115,13 +115,9 @@ namespace AssortedCrazyThings.NPCs
             }
             
             //Vector fuckery
-            bool canShoot = Math.Abs(AngleBetween(RotToNormal(rot - MathHelper.TwoPi / 4), distance / distance.Length())) < 0.3f;
+            bool canShoot = Math.Abs(AngleBetween(RotToNormal(rot), distance / distance.Length())) < 0.3f;
             float shootDelay = 180f;
 
-            //Main.NewText("rotation: " + (rot - MathHelper.TwoPi/4)); //(npc.rotation + MathHelper.TwoPi/4)
-            //Main.NewText("distance: " + AngleBetween(RotToNormal(rot - MathHelper.TwoPi/4), distance / distance.Length()));
-            //Main.NewText("rotation vector: " + RotToNormal(rot - MathHelper.TwoPi / 4));
-            //Main.NewText("distance vector: " + distance/distance.Length());
             if(canShoot)
             {
                 AiShootTimer++;
