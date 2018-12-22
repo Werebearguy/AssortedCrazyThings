@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using System;
 
 namespace AssortedCrazyThings
 {
@@ -29,8 +28,10 @@ namespace AssortedCrazyThings
         //the megalodon messages are modified down below in the Disappear message
 
         //Soul stuff
-        public static string soulName = aaaSoul.name;
         public static int[] harvesterTypes = new int[3];
+
+        //Mods loaded
+        public static bool isPlayerHealthManaBarLoaded = false;
 
         public override void Initialize()
         {
@@ -41,11 +42,14 @@ namespace AssortedCrazyThings
             harvesterTypes[0] = mod.NPCType(aaaHarvester1.typeName);
             harvesterTypes[1] = mod.NPCType(aaaHarvester2.typeName);
             harvesterTypes[2] = mod.NPCType(aaaHarvester3.typeName);
+
+            isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
         }
 
         //small methods I made for myself to not make the code cluttered since I have to use these six times
-        public static void AwakeningMessage(string message)
+        public static void AwakeningMessage(string message, Vector2 pos)
         {
+            Main.PlaySound(SoundID.Roar, pos, 0);
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(message, 175, 75, 255);
@@ -94,7 +98,7 @@ namespace AssortedCrazyThings
                         //check if it wasnt alive in previous update
                         if(!lilmegalodonAlive)
                         {
-                            AwakeningMessage(lilmegalodonMessage);
+                            AwakeningMessage(lilmegalodonMessage, Main.npc[j].position);
                             lilmegalodonAlive = true;
                         }
                     }
@@ -103,7 +107,7 @@ namespace AssortedCrazyThings
                         isMegalodonSpawned = true;
                         if (!megalodonAlive)
                         {
-                            AwakeningMessage(megalodonMessage);
+                            AwakeningMessage(megalodonMessage, Main.npc[j].position);
                             megalodonAlive = true;
                         }
                     }
@@ -112,7 +116,7 @@ namespace AssortedCrazyThings
                         isMiniocramSpawned = true;
                         if (!miniocramAlive)
                         {
-                            AwakeningMessage(miniocramMessage);
+                            AwakeningMessage(miniocramMessage, Main.npc[j].position);
                             miniocramAlive = true;
                         }
                     }
@@ -162,6 +166,28 @@ namespace AssortedCrazyThings
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
+                if(Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType(aaaSoul.name)) > 10) //limit soul count in the world to 20
+                {
+                    short oldest = 200;
+                    int timeleftmin = int.MaxValue;
+                    for (short j = 0; j < 200; j++)
+                    {
+                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(aaaSoul.name))
+                        {
+                            if(Main.npc[j].timeLeft < timeleftmin)
+                            {
+                                timeleftmin = Main.npc[j].timeLeft;
+                                oldest = j;
+                            }
+                        }
+                    }
+                    if (oldest != 200)
+                    {
+                        Main.npc[oldest].life = 0;
+                        Main.npc[oldest].active = false;
+                        Main.NewText("deleted");
+                    }
+                }
                 ////do things every maxCounter ticks
                 ////check if atleast one soul harvester is active, then do that stuff 
                 //bool shouldDropSouls = true;
@@ -178,7 +204,7 @@ namespace AssortedCrazyThings
                 //{
                 //    for (short j = 0; j < 200; j++)
                 //    {
-                //        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(soulName) && Main.npc[j].lifeMax > 5)
+                //        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(aaaSoul.name) && Main.npc[j].lifeMax > 5)
                 //        {
                 //            //Main.NewText("set shouldSoulDrop " + Main.npc[j].TypeName);
                 //            //Main.npc[j].GetGlobalNPC<AssGlobalNPC>(mod).shouldSoulDrop = true;
@@ -195,10 +221,10 @@ namespace AssortedCrazyThings
                 //    {
                 //        if (!Main.npc[j].active && Main.npc[j].type != 0)
                 //        {
-                //            if (Main.npc[j].TypeName != soulName)
+                //            if (Main.npc[j].TypeName != aaaSoul.name)
                 //            {
                 //                DisappearMessage(Main.npc[j].TypeName);
-                //                int soulType = mod.NPCType(soulName);
+                //                int soulType = mod.NPCType(aaaSoul.name);
 
                 //                //NewNPC starts looking for the first !active from 0 to 200
                 //                int soulID = NPC.NewNPC((int)Main.npc[j].Center.X, (int)Main.npc[j].Center.Y, soulType);

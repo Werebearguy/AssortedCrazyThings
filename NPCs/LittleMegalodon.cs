@@ -34,7 +34,11 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Ocean.Chance * 0.0005f;
+            if (!NPC.AnyNPCs(mod.NPCType(name)))
+            {
+                return SpawnCondition.Ocean.Chance * 0.0005f;
+            }
+            return 0f;
         }
 
         public override void NPCLoot()
