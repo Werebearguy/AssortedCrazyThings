@@ -29,6 +29,8 @@ namespace AssortedCrazyThings
 
         //Soul stuff
         public static int[] harvesterTypes = new int[3];
+        public static bool downedHarvester;
+        public static bool spawnHarvester;
 
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
@@ -42,14 +44,71 @@ namespace AssortedCrazyThings
             harvesterTypes[0] = mod.NPCType(aaaHarvester1.typeName);
             harvesterTypes[1] = mod.NPCType(aaaHarvester2.typeName);
             harvesterTypes[2] = mod.NPCType(aaaHarvester3.typeName);
+            downedHarvester = false; //cant spawn more than once in each start of a world
+            spawnHarvester = false;
 
-            isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
+        isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
+        }
+
+        private void UpdateHarvesterSpawn()
+        {
+            if (!Main.dayTime) //if night
+            {
+                if (!Main.fastForwardTime)
+                {
+                    if (spawnHarvester && Main.netMode != 1 && Main.time > 4860.0) //after 4860.0 ticks, 81 seconds, spawn
+                    {
+                        for (int k = 0; k < 255; k++)
+                        {
+                            if (Main.player[k].active && !Main.player[k].dead/* && (double)Main.player[k].position.Y < Main.worldSurface * 16.0*/)
+                            {
+                                NPC.SpawnOnPlayer(k, harvesterTypes[0]);
+                                AwakeningMessage(BaseHarvester.message);
+                                spawnHarvester = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (Main.time >= 32400.0) //32400 is the last tick of the night
+                    {
+                        spawnHarvester = true;
+                    }
+                }
+            }
+            else //if day
+            {
+                //32400
+                if (Main.time >= 54000.0) //54000 is the last tick of the day
+                {
+                    if (!Main.fastForwardTime)
+                    {
+                        //skeletron defeated
+                        if (!downedHarvester && NPC.downedBoss3 && Main.netMode != 1)
+                        {
+                            bool flag3 = false;
+                            for (int n = 0; n < 255; n++)
+                            {
+                                if (Main.player[n].active && Main.player[n].statLifeMax >= 300)
+                                {
+                                    flag3 = true;
+                                    break;
+                                }
+                            }
+                            if (flag3/* && Main.rand.Next(3) == 0*/)
+                            {
+                                spawnHarvester = true;
+                                AwakeningMessage("Bring a bug net to the dungeon, don't ask why...");
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         //small methods I made for myself to not make the code cluttered since I have to use these six times
-        public static void AwakeningMessage(string message, Vector2 pos)
+        public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
         {
-            Main.PlaySound(SoundID.Roar, pos, 0);
+            if(soundStyle != -1) Main.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(message, 175, 75, 255);
@@ -60,15 +119,15 @@ namespace AssortedCrazyThings
             }
         }
 
-        public static void DisappearMessage(string name)
+        public static void DisappearMessage(string message)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(name + " disappeared... for now.", 175, 255, 175);
+                Main.NewText(message, 175, 255, 175);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(name + " disappeared... for now."), new Color(175, 255, 175));
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
             }
         }
 
@@ -84,6 +143,7 @@ namespace AssortedCrazyThings
 
         public override void PostUpdate()
 		{
+            UpdateHarvesterSpawn();
             //those flags are checked for trueness each update
             lilmegalodonSpawned = false;
             isMiniocramSpawned = false;
@@ -98,7 +158,7 @@ namespace AssortedCrazyThings
                         //check if it wasnt alive in previous update
                         if(!lilmegalodonAlive)
                         {
-                            AwakeningMessage(lilmegalodonMessage, Main.npc[j].position);
+                            AwakeningMessage(lilmegalodonMessage, Main.npc[j].position, 0);
                             lilmegalodonAlive = true;
                         }
                     }
@@ -107,7 +167,7 @@ namespace AssortedCrazyThings
                         isMegalodonSpawned = true;
                         if (!megalodonAlive)
                         {
-                            AwakeningMessage(megalodonMessage, Main.npc[j].position);
+                            AwakeningMessage(megalodonMessage, Main.npc[j].position, 0);
                             megalodonAlive = true;
                         }
                     }
@@ -116,7 +176,7 @@ namespace AssortedCrazyThings
                         isMiniocramSpawned = true;
                         if (!miniocramAlive)
                         {
-                            AwakeningMessage(miniocramMessage, Main.npc[j].position);
+                            AwakeningMessage(miniocramMessage, Main.npc[j].position, 0);
                             miniocramAlive = true;
                         }
                     }
@@ -127,17 +187,17 @@ namespace AssortedCrazyThings
             if (!lilmegalodonSpawned && lilmegalodonAlive)
             {
                 lilmegalodonAlive = false;
-                DisappearMessage("The " + megalodonName);
+                DisappearMessage("The " + megalodonName + " disappeared... for now.");
             }
             if (!isMegalodonSpawned && megalodonAlive)
             {
                 megalodonAlive = false;
-                DisappearMessage("The " + megalodonName);
+                DisappearMessage("The " + megalodonName + " disappeared... for now.");
             }
             if (!isMiniocramSpawned && miniocramAlive)
             {
                 miniocramAlive = false;
-                DisappearMessage("The " + miniocramName);
+                DisappearMessage("The " + miniocramName + " disappeared... for now.");
             }
 
             //
@@ -166,7 +226,7 @@ namespace AssortedCrazyThings
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if(Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType(aaaSoul.name)) > 10) //limit soul count in the world to 20
+                if(Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType(aaaSoul.name)) > 10) //limit soul count in the world to 10
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
@@ -185,69 +245,8 @@ namespace AssortedCrazyThings
                     {
                         Main.npc[oldest].life = 0;
                         Main.npc[oldest].active = false;
-                        Main.NewText("deleted");
                     }
                 }
-                ////do things every maxCounter ticks
-                ////check if atleast one soul harvester is active, then do that stuff 
-                //bool shouldDropSouls = true;
-                //for (short j = 0; j < 200; j++)
-                //{
-                //    if (Main.npc[j].type == mod.NPCType(harvesterName) && Main.npc[j].active)
-                //    {
-                //        shouldDropSouls = true;
-                //        break;
-                //    }
-                //}
-
-                //if (shouldDropSouls)
-                //{
-                //    for (short j = 0; j < 200; j++)
-                //    {
-                //        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(aaaSoul.name) && Main.npc[j].lifeMax > 5)
-                //        {
-                //            //Main.NewText("set shouldSoulDrop " + Main.npc[j].TypeName);
-                //            //Main.npc[j].GetGlobalNPC<AssGlobalNPC>(mod).shouldSoulDrop = true;
-                //        }
-                //    }
-                //}
-
-                //do things every maxCounter ticks
-                //check if atleast one soul harvester is active, then do that stuff 
-                //if (shouldDropSouls)
-                //{
-                //    //
-                //    for (short j = 0; j < 200; j++)
-                //    {
-                //        if (!Main.npc[j].active && Main.npc[j].type != 0)
-                //        {
-                //            if (Main.npc[j].TypeName != aaaSoul.name)
-                //            {
-                //                DisappearMessage(Main.npc[j].TypeName);
-                //                int soulType = mod.NPCType(aaaSoul.name);
-
-                //                //NewNPC starts looking for the first !active from 0 to 200
-                //                int soulID = NPC.NewNPC((int)Main.npc[j].Center.X, (int)Main.npc[j].Center.Y, soulType);
-                //                Main.npc[soulID].timeLeft = 2500;
-                //                //++soulIndex;
-                //                Main.NewText("spawned soul");
-                //                //if (soulIndex >= maxSouls) soulIndex = 0;
-                //                if (Main.netMode == NetmodeID.Server && soulID < 200)
-                //                {
-                //                    NetMessage.SendData(23, -1, -1, null, soulID);
-                //                }
-
-                //                //soulList[soulIndex] = soulID;
-
-
-
-
-                //                //Main.NewText(" " + j + " " + soulID);
-                //            }
-                //        }
-
-                //    } //end for loop
-                //} //end shouldDropSouls
             } //end Main.NetMode
         } //end PreUpdate 
     }
