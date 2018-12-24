@@ -5,25 +5,27 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-
-
-
-
-
-
-//TODO use that akhult jump over ledge thing for the movement
-
-
-
-
-
-
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public abstract class BaseHarvester : ModNPC
     {
-        public const short EatTimeConst = 120; //shouldnt be equal to idleTime - 5
-        public const short IdleTimeConst = 180; //shouldnt be equal to idleTime
+        public const short EatTimeConst = 90; //shouldnt be equal to IdleTimeConst + 60
+        public const short IdleTimeConst = 180;
+        public static readonly string message = "You hear a faint cawing come from nearby";
+        protected const bool Target_Player = false;
+        protected const bool Target_Soul = true;
+        protected const int AI_State_Slot = 0;
+        protected const int AI_X_Timer_Slot = 1;
+        protected const int AI_Y_Slot = 2;
+        protected const int AI_Timer_Slot = 3;
+
+        protected const float State_Distribute = 0f;
+        protected const float State_Approach = 1f;
+        protected const float State_Noclip = 2f;
+        //protected const float State_IdleMove = 3f;
+        //protected const float State_Recalculate = 4f;
+        protected const float State_Stop = 5f;
+        protected const float State_Transform = 6f;
 
         protected void Print(string msg)
         {
@@ -40,7 +42,30 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override Color? GetAlpha(Color lightColor)
         {
+            if (AI_State == State_Transform)
+            {
+                //Main.NewText(lightColor * ((60 - AI_X_Timer) / 60));
+                return Color.White * ((transformTime - AI_X_Timer) / transformTime);
+            }
             return Color.White;
+        }
+
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            if (!AssWorld.isPlayerHealthManaBarLoaded)
+            {
+                if (damage == npc.lifeMax && knockback == 0 && crit) //cheatsheet clear
+                {
+                    return true;
+                }
+                if (noDamage)
+                {
+                    damage = 0;
+                    return false;
+                }
+                return true;
+            }
+            return base.StrikeNPC(ref damage, defense, ref knockback, hitDirection, ref crit);
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -59,20 +84,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         }
 
         public static string name = "aaaHarvester";
-        protected static int AI_State_Slot = 0;
-        protected static int AI_X_Timer_Slot = 1;
-        protected static int AI_Y_Slot = 2;
-        protected static int AI_Timer_Slot = 3;
-        protected static bool Target_Player = false;
-        protected static bool Target_Soul = true;
-
-        protected static float State_Distribute = 0f;
-        protected static float State_Approach = 1f;
-        protected static float State_Noclip = 2f;
-        //protected static float State_IdleMove = 3f;
-        //protected static float State_Recalculate = 4f;
-        protected static float State_Stop = 5f;
-        protected static float State_Transform = 6f;
 
         protected float maxVeloScale; //2f default //
         protected float maxAccScale; //0.07f default
@@ -80,10 +91,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected byte afterEatTime;
         protected short eatTime;
         protected short idleTime;
-        protected short hungerTime; //AI_Timer
+        protected short hungerTime; //AI_Timer, the "global failsafe", increments when a target exists
         protected byte maxSoulsEaten;
         protected short jumpRange; //also noclip detect range //100 for restricted v
         public bool restrictedSoulSearch;
+        public short transformTime;
+        public bool noDamage;
         //those above are all "static", cant make em static in 
 
         public byte soulsEaten;
@@ -194,11 +207,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //return index of closest soul
             for (short j = 0; j < 200; j++)
             {
-                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(AssWorld.soulName))
+                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(aaaSoul.name))
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();
-                    if (newDistance < oldDistance && ((restrictedvar? (soulPos.Y > -jumpRange) : true) || Collision.CanHit(npc.Center, 1, 1, Main.npc[j].Center, 1, 1)))
+                    if (newDistance < oldDistance && ((restrictedvar? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center, 1, 1, Main.npc[j].Center, 1, 1)))
                     {
                         oldDistance = newDistance;
                         closest = j;
@@ -206,7 +219,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
             //NEED TO CATCH "==200" WHEN CALLING THIS 
-            if(closest != 200) Main.NewText("res " + restrictedvar + " soulpos " + soulPos.Y + " rang " + (-jumpRange) + " " + Main.npc[closest].TypeName);
             return closest; //to self
         }
 
@@ -227,20 +239,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return GetTarget().active;
         }
 
-        protected void SetTimeLeft()
-        {
-            //only for Soul
-            if (aiTargetType == Target_Soul)
-            {
-                NPC tar = (NPC)GetTarget();
-                if (tar.active && tar.type == mod.NPCType(AssWorld.soulName) && Math.Abs(tar.Center.X - npc.Center.X) < 5f) //type check since souls might despawn and index changes
-                {
-                    tar.timeLeft = (int)EatTimeConst;
-                    tar.netUpdate = true;
-                }
-            }
-        }
-
         protected void PassCoordinates(Entity ent)
         {
             AI_X_Timer = ent.Center.X;
@@ -251,52 +249,82 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             npc.life = 0;
             npc.active = false;
+            npc.netUpdate = true;
         }
 
         protected void UpdateStuck(bool closeToSoulvar, bool allowNoclipvar)
         {
             Vector2 between = new Vector2(0f, GetTarget().Center.Y - npc.Center.Y);
             //collideY isnt proper when its on ledges/halfbricks
-            if (Main.time % 30 == 0 &&
-                (npc.collideX || (npc.collideY || (npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f))) &&
-                !closeToSoulvar &&
-                (!Collision.CanHit(npc.Center, 1, 1, GetTarget().Center, 1, 1) || between.Y > 0f || between.Y <= -jumpRange))
+            if (Main.time % 30 == 0)
             {
+                if ((npc.collideX || (npc.collideY || (npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f))) &&
+                !closeToSoulvar)
+                {
+                    Vector2 tl1 = new Vector2(npc.position.X, npc.position.Y);
+                    Vector2 tr1 = new Vector2(npc.position.X + npc.width - 1, npc.position.Y);
+                    Vector2 bl1 = new Vector2(npc.position.X, npc.position.Y + npc.height - 1);
+                    Vector2 br1 = new Vector2(npc.position.X + npc.width - 1, npc.position.Y + npc.height - 1);
 
-                //Main.NewText("TICK TOCK " + npc.collideX + " " + npc.collideY);
-                between = new Vector2(Math.Abs(npc.Center.X - AI_X_Timer), Math.Abs(npc.Center.Y - AI_Y));
-                //twice a second, diff is max 39f
-                if (between.Y > 100f || between.X > 35f)
-                {
-                    npc.netUpdate = true;
-                    Print("NOT stuck actually");
-                    stuckTimer = 0;
-                }
-                else if (between.Y <= 100f)
-                {
-                    if (between.X <= 35f)
+                    Vector2 tl2 = new Vector2(GetTarget().position.X, GetTarget().position.Y);
+                    Vector2 tr2 = new Vector2(GetTarget().position.X + GetTarget().width - 1, GetTarget().position.Y);
+                    Vector2 bl2 = new Vector2(GetTarget().position.X, GetTarget().position.Y + GetTarget().height - 1);
+                    Vector2 br2 = new Vector2(GetTarget().position.X + GetTarget().width - 1, GetTarget().position.Y + GetTarget().height - 1);
+                    /* * * * * * * * from each corner to each corner. If between all four there are no tiles inbetween,
+                     *             * then you arent stuck
+                     *             *
+                     *             *
+                     *             *
+                     *             *
+                     *             *
+                     *             *
+                     * * * * * * * *
+                     */
+                    //Print("test " + Collision.CanHitLine(tl1, 1, 1, tl2, 1, 1) + " " + Collision.CanHitLine(tr1, 1, 1, tr2, 1, 1) + " " + Collision.CanHitLine(bl1, 1, 1, bl2, 1, 1) + " " + Collision.CanHitLine(br1, 1, 1, br2, 1, 1));
+                    if (
+                        !Collision.CanHitLine(tl1, 1, 1, tl2, 1, 1) ||
+                        !Collision.CanHitLine(tr1, 1, 1, tr2, 1, 1) ||
+                        !Collision.CanHitLine(bl1, 1, 1, bl2, 1, 1) ||
+                        !Collision.CanHitLine(br1, 1, 1, br2, 1, 1) ||
+                        between.Y > 0f ||
+                        between.Y <= -jumpRange)
                     {
-                        Print("stucktimer++");
-                        stuckTimer++;
-                        npc.netUpdate = true;
+                        //Main.NewText("TICK TOCK " + npc.collideX + " " + npc.collideY);
+                        between = new Vector2(Math.Abs(npc.Center.X - AI_X_Timer), Math.Abs(npc.Center.Y - AI_Y));
+                        //twice a second, diff is max 39f
+                        if (between.Y > 100f || between.X > 35f)
+                        {
+                            npc.netUpdate = true;
+                            Print("NOT stuck actually");
+                            stuckTimer = 0;
+                        }
+                        else if (between.Y <= 100f)
+                        {
+                            if (between.X <= 35f)
+                            {
+                                stuckTimer++;
+                                Print("stucktimer++ " + stuckTimer);
+                                npc.netUpdate = true;
+                            }
+                        }
+                        if (stuckTimer >= stuckTime)
+                        {
+                            if (allowNoclipvar)
+                            {
+                                npc.netUpdate = true;
+                                Print("noclipping");
+                                //Main.NewText("DOOR STUCK");
+                                PassCoordinates(GetTarget());
+                                AI_State = State_Noclip; //pass targets X/Y to noclip
+                            }
+                            else
+                            {
+                                KillInstantly((NPC)GetTarget());
+                            }
+                            stuckTimer = 0;
+                            return;
+                        }
                     }
-                }
-                if (stuckTimer >= stuckTime)
-                {
-                    if (allowNoclipvar)
-                    {
-                        npc.netUpdate = true;
-                        Print("noclipping");
-                        //Main.NewText("DOOR STUCK");
-                        PassCoordinates(GetTarget());
-                        AI_State = State_Noclip; //pass targets X/Y to noclip
-                    }
-                    else
-                    {
-                        KillInstantly((NPC)GetTarget());
-                    }
-                    stuckTimer = 0;
-                    return;
                 }
             }
             if (Main.time % 30 == 0) //do these always
@@ -310,10 +338,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Vector2 between = new Vector2(Math.Abs(GetTarget().Center.X - npc.Center.X), GetTarget().Center.Y - npc.Center.Y);
             bool lockedX = false;
-            if (between.X < 2f && Collision.CanHit(npc.Center - new Vector2(4f, 4f), 8, 8, GetTarget().Center - new Vector2(4f, 4f), 8, 8) && between.Y <= 0f && between.Y > -jumpRange)
+            if (between.X < GetTarget().width/2/*2f*/ && Collision.CanHitLine(npc.Center - new Vector2(4f, 4f), 8, 8, GetTarget().Center - new Vector2(4f, 4f), 8, 8) && between.Y <= 0f && between.Y > -jumpRange)
             {
                 //actually only locked when direct LOS and not too high
-                //npc.position.X = GetTarget().Center.X - GetTarget().width; //centered on the center of the soul
                 Print("set lockedX");
                 lockedX = true;
             }
@@ -324,10 +351,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //VELOCITY CALCULATIONS HERE
             if (!lockedX)
             {
-
-                if (between.X < 50f && Math.Abs(between.Y) < 24f)
+                if (between.X < GetTarget().width / 2 && Math.Abs(between.Y) < 24f)
                 {
                     veloScale = maxVeloScale * 0.4f; //when literally near the soul
+                }
+                if (GetTarget().velocity.X != 0) //if it tries to fly away because of borked code in soul AI()
+                {
+                    veloScale *= 1.75f;
                 }
 
                 if (npc.velocity.X < -veloScale || npc.velocity.X > veloScale)
@@ -366,7 +396,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
                 npc.direction = -1;
                 //go to eat mode
-                stopTime = eatTime;
+                Entity tar = GetTarget();
+                NPC tarnpc = new NPC();
+                if (tar is NPC)
+                {
+                    tarnpc = (NPC)tar;
+                }
+                if (npc.getRect().Intersects(tarnpc.getRect()))
+                {
+                    stopTime = eatTime;
+                }
                 AI_State = State_Distribute;
             }
             return lockedX;
@@ -374,6 +413,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void UpdateOtherMovement(bool flag3var)
         {
+            bool flag3 = false;
+            if (npc.velocity.X == 0f)
+            {
+                flag3 = true;
+            }
             bool flag22 = false;
             //might scrap it idk
             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -621,46 +665,46 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         if (1 == 2)
                         {
-                            //if (npc.height >= 32 && Main.tile[num200, num201 - 2].nactive() && Main.tileSolid[Main.tile[num200, num201 - 2].type])
-                            //{
-                            //    if (Main.tile[num200, num201 - 3].nactive() && Main.tileSolid[Main.tile[num200, num201 - 3].type])
-                            //    {
-                            //        Main.NewText("1111");
-                            //        npc.velocity.Y = -8f;
-                            //        npc.netUpdate = true;
-                            //    }
-                            //    else
-                            //    {
-                            //        Main.NewText("2222");
-                            //        npc.velocity.Y = -7f;
-                            //        npc.netUpdate = true;
-                            //    }
-                            //}
-                            //else if (Main.tile[num200, num201 - 1].nactive() && Main.tileSolid[Main.tile[num200, num201 - 1].type])
-                            //{
-                            //    Main.NewText("3333");
-                            //    npc.velocity.Y = -6f;
-                            //    npc.netUpdate = true;
-                            //}
-                            //else if (npc.position.Y + (float)npc.height - (float)(num201 * 16) > 20f && Main.tile[num200, num201].nactive() && !Main.tile[num200, num201].topSlope() && Main.tileSolid[Main.tile[num200, num201].type])
-                            //{
-                            //    Main.NewText("4444");
-                            //    npc.velocity.Y = -5f;
-                            //    npc.netUpdate = true;
-                            //}
-                            //else if (npc.directionY < 0 && (!Main.tile[num200, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200, num201 + 1].type]) && (!Main.tile[num200 + npc.direction, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200 + npc.direction, num201 + 1].type]))
-                            //{
-                            //    //this is for when player stands on an elevation and it just jumped aswell
-                            //    Main.NewText("5555");
-                            //    npc.velocity.Y = -8f;
-                            //    npc.velocity.X *= 1.5f;
-                            //    npc.netUpdate = true;
-                            //}
-                            //if (npc.velocity.Y == 0f && flag3 && false/* && aiFighter == 1f*/)
-                            //{
-                            //    Main.NewText("6666");
-                            //    npc.velocity.Y = -5f;
-                            //}
+                            if (npc.height >= 32 && Main.tile[num200, num201 - 2].nactive() && Main.tileSolid[Main.tile[num200, num201 - 2].type])
+                            {
+                                if (Main.tile[num200, num201 - 3].nactive() && Main.tileSolid[Main.tile[num200, num201 - 3].type])
+                                {
+                                    Main.NewText("1111");
+                                    npc.velocity.Y = -8f;
+                                    npc.netUpdate = true;
+                                }
+                                else
+                                {
+                                    Main.NewText("2222");
+                                    npc.velocity.Y = -7f;
+                                    npc.netUpdate = true;
+                                }
+                            }
+                            else if (Main.tile[num200, num201 - 1].nactive() && Main.tileSolid[Main.tile[num200, num201 - 1].type])
+                            {
+                                Main.NewText("3333");
+                                npc.velocity.Y = -6f;
+                                npc.netUpdate = true;
+                            }
+                            else if (npc.position.Y + (float)npc.height - (float)(num201 * 16) > 20f && Main.tile[num200, num201].nactive() && !Main.tile[num200, num201].topSlope() && Main.tileSolid[Main.tile[num200, num201].type])
+                            {
+                                Main.NewText("4444");
+                                npc.velocity.Y = -5f;
+                                npc.netUpdate = true;
+                            }
+                            else if (npc.directionY < 0 && (!Main.tile[num200, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200, num201 + 1].type]) && (!Main.tile[num200 + npc.direction, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200 + npc.direction, num201 + 1].type]))
+                            {
+                                //this is for when player stands on an elevation and it just jumped aswell
+                                Main.NewText("5555");
+                                npc.velocity.Y = -8f;
+                                npc.velocity.X *= 1.5f;
+                                npc.netUpdate = true;
+                            }
+                            if (npc.velocity.Y == 0f && flag3 && false/* && aiFighter == 1f*/)
+                            {
+                                Main.NewText("6666");
+                                npc.velocity.Y = -5f;
+                            }
                         }
 
 
@@ -712,37 +756,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 flag3 = false;
             }
 
-            //if (AI_Init > 0) //1
-            //{
-            //    stuckTimer = 0;
-            //    AI_X_Timer = npc.position.X;
-            //    AI_Y = npc.position.Y;
-
-            //    if (npc.direction == 0)
-            //    {
-            //        npc.direction = 1;
-            //    }
-            //    AI_Init++; //0
-            //}
-            //
             if (true/*&& AI_Timer < (float)aiFighterLimit*/)
             {
                 if (Main.time % 60 == 0)
                 {
-                    Main.NewText("test " + restrictedSoulSearch);
                     SelectTarget(restrictedSoulSearch);
-                    Print("soulseaten:" + soulsEaten);
                 }
-                //npc.TargetClosest();
-                //Main.NewText("" + SelectTarget(restrictedSoulSearch) + " " + npc.target); //if p, automatically in npc.target
-                //GetTarget();
             }
 
             if (!IsTargetActive())
             {
                 stopTime = idleTime;
                 AI_State = State_Stop;
-                //npc.velocity = Vector2.Zero;
                 return;
             }
             else
@@ -775,16 +800,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //}
 
             //hungerTimer
-            AI_Timer++;
-            if (npc.justHit)
-            {
-                AI_Timer = 0f;
-            }
-            if (AI_Timer >= hungerTime)
+            //AI_Timer++ in HarvesterAI when target available;
+            if (AI_Timer >= hungerTime && IsTargetActive())
             {
                 AI_Timer = 0f;
                 //goto noclip 
                 PassCoordinates(GetTarget());
+                Print("passed to noclip bbbbbbbbbbbbb");
                 AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                 npc.netUpdate = true;
             }
@@ -798,18 +820,36 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void HarvesterAI(bool allowNoclip = true)
         {
-            //Collision.CanHit == is there direct line of sight from a to b
+            if(Main.time % 120 == 2)
+            {
+                Print("soulseaten:" + soulsEaten);
+            }
+
             npc.noGravity = false;
             npc.noTileCollide = false;
-            npc.dontTakeDamage = false;
+            if (AssWorld.isPlayerHealthManaBarLoaded)
+            {
+                npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
+
+
+            }
+            else
+            {
+                for (int k = 0; k < 256; k++)
+                {
+                    npc.immune[k] = 30;
+                }
+            }
 
             if (AI_Init == 0)
             {
+                npc.life = soulsEaten + 1;
                 //initialize it to go for souls first
                 aiTargetType = Target_Soul;
                 stopTime = idleTime;
                 SelectTarget(restrictedSoulSearch);
                 AI_Init = 1;
+                AI_Timer = 0f;
                 AI_Local_Timer = 0f;
             }
 
@@ -819,13 +859,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return;
             }
 
-            if (transformServer)
-            {
-                Print("allowed to transform");
-                //go to transform state and return
-                transformServer = false;
-            }
-
             if (!(AI_State == State_Noclip))
             {
                 if(!IsTargetActive())
@@ -833,33 +866,46 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (aiTargetType == Target_Soul)
                     {
                         stopTime = idleTime;
+                        AI_State = State_Stop;
                     }
                     else //if target is player, its eating anyways (to prevent it from resetting because of target switch)
                     {
                         stopTime = eatTime;
                     }
                     //AI_X_Timer = 0f;
-                    AI_State = State_Stop;
                 }
-                
-                AI_Timer++;
-                if (npc.justHit)
+
+                if (AI_Timer >= hungerTime && IsTargetActive())
                 {
-                    AI_Timer = 0f;
-                }
-                if (AI_Timer >= hungerTime)
-                {
-                    AI_Timer = 0f;
+                    AI_Timer = 0;
                     //goto noclip 
                     PassCoordinates(GetTarget());
+                    Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
                     AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                     npc.netUpdate = true;
                 }
             }
 
+            if (IsTargetActive())
+            {
+                if(Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    AI_Timer++; //count hungerTime up
+                }
+            }
+
             if (AI_State == State_Distribute/*0*/)
             {
-                SelectTarget(restrictedSoulSearch);
+                if(Main.time % 20 == 0)
+                {
+                    SelectTarget(restrictedSoulSearch);
+                }
+                else if(target == 200)
+                {
+                    //SelectTarget(restrictedSoulSearch);
+                }
+
+                //check if atleast one of four tiles underneath exists properly , aka "on the ground"
 
                 if (stopTime == eatTime &&
                     (npc.velocity.Y == 0 || (npc.velocity.Y < 2f && npc.velocity.Y > 0f)) && //still (or on slope)
@@ -893,7 +939,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.netUpdate = true;
 
                     Print("distribute to stop");
-                    SetTimeLeft();
                     aiTargetType = Target_Player;
                     SelectTarget(restrictedSoulSearch); //now player
 
@@ -924,17 +969,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (AI_State == State_Noclip/*2*/)
             {
+                AI_Timer = 0f;
                 npc.noGravity = true;
                 npc.noTileCollide = true;
                 Vector2 between = new Vector2(AI_X_Timer - npc.Center.X, AI_Y - npc.Center.Y); //use latest known position from UpdateStuck of target
-                float distance = between.Length();
-                float factor = 3f; //2f
-                int acc = 40; //4
-                between.Normalize();
-                between *= factor;
-                npc.velocity = (npc.velocity * (acc - 1) + between) / acc;
+                Vector2 normBetween = new Vector2(between.X, between.Y);
+                float distance = normBetween.Length();
+                float factor = 2.5f; //2f
+                int acc = 30; //4
+                normBetween.Normalize();
+                normBetween *= factor;
+                npc.velocity = (npc.velocity * (acc - 1) + normBetween) / acc;
                 //concider only the bottom half of the hitbox (plus a small bit below)
-                if (distance < 16f /*600f*/ && !Collision.SolidCollision(npc.position + new Vector2(0f, npc.height / 2), npc.width, npc.height / 2 + 4))
+                if (distance < 96f /*600f*/ && between.Y < 20f && !Collision.SolidCollision(npc.position + new Vector2(-2f, npc.height / 2), npc.width + 4, npc.height / 2 + 4))
                 {
                     npc.netUpdate = true;
                     AI_State = State_Distribute;
@@ -942,112 +989,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (3 == 4 /*idlemove, recalculate*/)
             {
-                //else if (AI_State == State_IdleMove/*3*/)
-                //{
-                //    npc.noGravity = false;
-                //    //player unreachable now but distance less than 800f, gets parameters AI_X_Timer, AI_Y passed by State_Distribute and State_Recalculate
-                //    //Main.NewText("unreachable");
-                //    Vector2 value42 = new Vector2(AI_X_Timer, AI_Y);
-                //    Vector2 between = value42 - npc.Center;
-                //    float distance = between.Length();
-                //    //distance == distance from the X axis of the player
-                //    float factor = 1f;
-                //    float acc = 3f;
-                //    between.Normalize();
-                //    between *= factor;
-                //    npc.velocity = (npc.velocity * (acc - 1f) + between) / acc;
-                //    if (npc.collideX || npc.collideY)
-                //    {
-                //        //just collided
-                //        AI_State = State_Recalculate;
-                //        AI_X_Timer = 0f;
-                //    }
-                //    if (distance < factor || distance > 800f || Collision.CanHit(npc.Center, 1, 1, GetTarget().Center, 1, 1))
-                //    {
-                //        AI_State = State_Distribute;
-                //    }
-                //}
-                //else if (AI_State == State_Recalculate/*4*/)
-                //{
-                //    npc.noGravity = false;
-                //    //just collided
-                //    //Main.NewText("just collided");
-                //    Vector2 between = GetTarget().Center - npc.Center;
-                //    npc.direction = (between.X < 0f) ? -1 : 1;
-                //    if (npc.collideX)
-                //    {
-                //        if (npc.velocity.X < 0.3f && npc.direction == -1)
-                //        {
-                //            npc.velocity.X = -0.3f;
-                //        }
-                //        else if (npc.velocity.X > -0.3f && npc.direction == 1)
-                //        {
-                //            npc.velocity.X = 0.3f;
-                //        }
-                //        npc.velocity.X = npc.velocity.X * -0.8f;
-                //    }
-                //    if (npc.collideY)
-                //    {
-                //        npc.velocity.Y = npc.velocity.Y * -0.8f;
-                //    }
-                //    Vector2 vel;
-                //    if (npc.velocity.X == 0f && npc.velocity.Y == 0f)
-                //    {
-                //        vel = GetTarget().Center - npc.Center;
-                //        vel.Y -= (float)(GetTarget().height / 4);
-                //        vel.Normalize();
-                //        npc.velocity = vel * 0.1f;
-                //    }
-                //    float scaleFactor21 = 1.5f; //1.5f
-                //    float acc = 20f; //20f
-                //    vel = npc.velocity;
-                //    vel.Normalize();
-                //    vel *= scaleFactor21;
-                //    npc.velocity = (npc.velocity * (acc - 1f) + vel) / acc;
-                //    AI_X_Timer += 1f;
-                //    if (AI_X_Timer > 180f)
-                //    {
-                //        AI_State = State_Distribute;
-                //        AI_X_Timer = 0f;
-                //    }
-                //    if (Collision.CanHit(npc.Center, 1, 1, GetTarget().Center, 1, 1))
-                //    {
-                //        AI_State = State_Distribute;
-                //    }
-                //    AI_Local_Timer += 1f;
-                //    //Adjust these values in the if() depending on your NPCs dimensions (Granite elemental is 20x30)
-                //    if (AI_Local_Timer >= 5f && !Collision.SolidCollision(npc.position, npc.width, npc.height))
-                //    {
-                //        AI_Local_Timer = 0f;
-                //        Vector2 centerAlignedX = npc.Center;
-                //        centerAlignedX.X = GetTarget().Center.X;
-                //        if (Collision.CanHit(npc.Center, 1, 1, centerAlignedX, 1, 1) && Collision.CanHit(GetTarget().Center, 1, 1, centerAlignedX, 1, 1))
-                //        {
-                //            //player unreachable now
-                //            AI_State = State_IdleMove;
-                //            AI_X_Timer = centerAlignedX.X;
-                //            AI_Y = centerAlignedX.Y;
-                //        }
-                //        else
-                //        {
-                //            Vector2 centerAlignedY = npc.Center;
-                //            centerAlignedY.Y = GetTarget().Center.Y;
-                //            if (Collision.CanHit(npc.Center, 1, 1, centerAlignedY, 1, 1) && Collision.CanHit(GetTarget().Center, 1, 1, centerAlignedY, 1, 1))
-                //            {
-                //                //player unreachable now
-                //                AI_State = State_IdleMove;
-                //                AI_X_Timer = centerAlignedY.X;
-                //                AI_Y = centerAlignedY.Y;
-                //            }
-                //        }
-                //    }
-                //}
+                
             }
             else if (AI_State == State_Stop/*5*/)
             {
 
                 if (AI_X_Timer == 0f && stopTime == eatTime)
                 {
+                    AI_Timer = 0;
                     Main.NewText("started eating");
                     npc.netUpdate = true;
                 }
@@ -1061,87 +1010,98 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     AI_State = State_Distribute;
                     AI_X_Timer = 0f;
 
+
+
                     if (stopTime == idleTime)
                     {
                         SelectTarget(restrictedSoulSearch); //to retarget for the IsActive check (otherwise it gets stuck in this state)
                     }
                     else if (stopTime == eatTime)
                     {
-                        //soul eaten and soul still there: initialize transformation
                         Print("finished eating");
                         AI_Init = 0; //reinitialize
-                        soulsEaten++;
+                        npc.HealEffect(++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
 
                         if (soulsEaten >= maxSoulsEaten)
                         {
                             Print("souls eaten max reached");
-                            soulsEaten = 0;
-                            //AI_State = State_Transform;
+                            npc.life = npc.lifeMax;
+                            //soulsEaten = 0;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
+                                AI_Init = 1; //skip the reinit
                                 transformServer = true;
+                                Main.NewText("set transform var to tru");
                             }
+                            AI_State = State_Transform;
                         }
-                        //else{AI_State = State_Stop;}
-                        AI_State = State_Stop;
+                        else
+                        {
+                            AI_State = State_Stop;
+                        }
                     }
                 }
 
-                if (Main.netMode != NetmodeID.MultiplayerClient && AI_X_Timer % 60 == 0 && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
+                if (Main.netMode != NetmodeID.MultiplayerClient && AI_X_Timer % 20 == 0 && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
                 {
+                    SelectTarget();
                     Rectangle rect = new Rectangle((int)npc.Center.X - 200, (int)npc.Center.Y - 200, npc.width + 200 * 2, npc.height + 200 * 2);
                     if (rect.Intersects(new Rectangle((int)GetTarget().position.X, (int)GetTarget().position.Y, GetTarget().width, GetTarget().height)) &&
-                        (Collision.CanHit(npc.Center, 1, 1, GetTarget().Center, 1, 1) || (GetTarget().Center.Y - npc.Center.Y) <= 0f))
+                        (Collision.CanHitLine(npc.Center, 1, 1, GetTarget().Center, 1, 1) || (GetTarget().Center.Y - npc.Center.Y) <= 0f)) 
+                        //if either direct LOS or player above (so it can around small obstacles)
                     {
                         Vector2 between = GetTarget().Center - npc.Center;
-                        float factor = 7f;
                         between.Normalize();
-                        between *= factor;
-                        Projectile.NewProjectile(npc.Center + new Vector2(0f, -npc.height / 4), between, ProjectileID.SkeletonBone, 5, 0f, Main.myPlayer);
+                        if (between.Y > 0.2f) between *= 1.1f; //small arc
+                        if (between.Y > 0.8f) between *= 1.1f; //big arc
+                        between *= 7f;
+                        SpawnBone(npc.Center + new Vector2(0f, -npc.height / 4), between, 6, 3f);
                     }
                 }
             }
             else if (AI_State == State_Transform/*6*/)
             {
-                //if (AI_X_Timer == 0f && stopTime == eatTime)
-                //{
-                //    resting = true;
-                //}
-                //else if (stopTime == idleTime) resting = false;
-                //if (resting) npc.noGravity = false;
+                npc.velocity.X = 0;
+                if (transformServer)
+                {
+                    AI_X_Timer++;
 
-                //npc.velocity = Vector2.Zero;
-                //AI_X_Timer += 1f;
-                //if (AI_X_Timer > stopTime)
-                //{
-                //    AI_State = State_Distribute;
-                //    AI_X_Timer = 0f;
+                    int randfactor = Main.rand.Next(2, 6);
+                    //aitimer: from 0 to transformtime:
+                    //rate: from 0 to 0.8 //((AI_X_Timer * 0.8f) / transformTime)
+                    if (Main.time % 8 == 0 && Main.rand.NextFloat() < ((AI_X_Timer * 0.8f) / transformTime))
+                    {
+                        SpawnBone(npc.Center + new Vector2(0f, -npc.height / 4), new Vector2(Main.rand.NextFloat(-1f, 1f) * randfactor, -Main.rand.NextFloat() * randfactor), 0, 1.5f);
+                    }
 
-                //    if (stopTime == idleTime)
-                //    {
-                //        SelectTarget(restrictedSoulSearch);
-                //    }
-                //    else if (stopTime == eatTime)
-                //    {
-                //        //soul eaten and soul still there: initialize transformation
-                //        Main.NewText("finished eating");
-                //        //if the "catch souls to deny" idea works out then add a check during timer increment if souls is alive, and increment a saturation counter
-                //        stopTime = idleTime;
-                //        resting = false;
-                //    }
-                //}
+                    if (AI_X_Timer > transformTime)
+                    {
+                        Transform(transformTo);
+                    }
+                    //handle fade out in GetAlpha scaled on AI_X_Timer,
+                    //and fade in scaled on Local_Timer (when soulseaten == 0)
+                }
             }
         }
 
-        public virtual void Transform(int to)
+        protected void SpawnBone(Vector2 pos, Vector2 vel, int dmg, float knock)
         {
-            KillInstantly(npc);
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            Projectile.NewProjectile(pos, vel, ProjectileID.SkeletonBone, dmg, knock, Main.myPlayer);
+        }
+
+        public void Transform(int to)
+        {
+            //set to zero to not transform
+            if(to != -1)
             {
-                int type = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to);
-                if (Main.netMode == NetmodeID.Server && type < 200)
+                KillInstantly(npc);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    NetMessage.SendData(23, -1, -1, null, type);
+                    int type = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to);
+                    if (Main.netMode == NetmodeID.Server && type < 200)
+                    {
+                        NetMessage.SendData(23, -1, -1, null, type);
+                    }
                 }
             }
         }

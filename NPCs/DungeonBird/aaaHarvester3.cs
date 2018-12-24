@@ -3,7 +3,6 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -27,6 +26,29 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void SetDefaults()
         {
+
+            maxVeloScale = 1.3f; //2f default
+            maxAccScale = 0.04f; //0.07f default
+            stuckTime = 6; //*30 for ticks, *0.5 for seconds
+            afterEatTime = 60;
+            eatTime = EatTimeConst + 60;
+            idleTime = IdleTimeConst;
+            hungerTime = 3600; //AI_Timer
+            maxSoulsEaten = 3;
+            jumpRange = 300; //also noclip detect range
+            restrictedSoulSearch = false;
+            noDamage = false;
+
+
+            soulsEaten = 0;
+            stopTime = idleTime;
+            aiTargetType = Target_Soul;
+            target = 0;
+            stuckTimer = 0;
+            rndJump = 0;
+            transformServer = false;
+            transformTo = -1;
+
             npc.npcSlots = 5f; //takes 5 npc slots out of 200 when alive
             npc.width = 38;
             npc.height = 46;
@@ -35,32 +57,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.lifeMax = 1111;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
+            npc.value = 90000f;
             npc.knockBackResist = 0.5f;
             npc.aiStyle = -1; //91;
             aiType = NPCID.Zombie; //91
             animationType = NPCID.Corruptor;
             npc.lavaImmune = true;
             npc.buffImmune[BuffID.Confused] = false;
-
-            maxVeloScale = 1.3f; //2f default
-            maxAccScale = 0.04f; //0.07f default
-            stuckTime = 6; //*30 for ticks, *0.5 for seconds
-            afterEatTime = 60;
-            eatTime = EatTimeConst - 5;
-            idleTime = IdleTimeConst;
-            hungerTime = 3600; //AI_Timer
-            maxSoulsEaten = 3;
-            jumpRange = 300; //also noclip detect range
-            restrictedSoulSearch = false;
-            soulsEaten = 0;
-            stopTime = idleTime;
-            aiTargetType = Target_Soul;
-            target = 0;
-            stuckTimer = 0;
-            rndJump = 0;
-            transformServer = false;
-            transformTo = 0;
         }
     
         public override Color? GetAlpha(Color lightColor)
@@ -95,7 +98,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Item.NewItem(npc.getRect(), ItemID.WaterCandle);
             Item.NewItem(npc.getRect(), ItemID.Bone, 250);
-        }
+            AssWorld.downedHarvester = true;
+    }
 
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -103,7 +107,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 for (short j = 0; j < 200; j++)
                 {
-                    if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(AssWorld.soulName))
+                    if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(aaaSoul.name))
                     {
                         KillInstantly(Main.npc[j]);
                     }
@@ -195,36 +199,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     npc.velocity.Y -= num2;
                 }
-                npc.rotation = (float)Math.Atan2((double)num5, (double)num4) - 1.57f;
+                npc.rotation = (float)Math.Atan2((double)num5, (double)num4) - 1.57f; //always face player
 
-                //doesn't seem to do anything because npc.notilecollide is set to false
-                //float num12 = 0.7f;
-                //if (npc.collideX)
-                //{
-                //	npc.netUpdate = true;
-                //	npc.velocity.X = npc.oldVelocity.X * (0f - num12);
-                //	if (npc.direction == -1 && npc.velocity.X > 0f && npc.velocity.X < 2f)
-                //	{
-                //		npc.velocity.X = 2f;
-                //	}
-                //	if (npc.direction == 1 && npc.velocity.X < 0f && npc.velocity.X > -2f)
-                //	{
-                //		npc.velocity.X = -2f;
-                //	}
-                //}
-                //if (npc.collideY)
-                //{
-                //  npc.netUpdate = true;
-                //	npc.velocity.Y = npc.oldVelocity.Y * (0f - num12);
-                //	if (npc.velocity.Y > 0f && (double)npc.velocity.Y < 1.5)
-                //	{
-                //		npc.velocity.Y = 2f;
-                //	}
-                //	if (npc.velocity.Y < 0f && (double)npc.velocity.Y > -1.5)
-                //	{
-                //		npc.velocity.Y = -2f;
-                //	}
-                //}
                 if (npc.wet)
                 {
                     if (npc.velocity.Y > 0f)
@@ -301,7 +277,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.netUpdate = true;
                 }
             }
-            //HarvesterAI(allowNoclip: false);
+        }
+        
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            scale = 1.5f;
+            return null;
         }
     }
 }
