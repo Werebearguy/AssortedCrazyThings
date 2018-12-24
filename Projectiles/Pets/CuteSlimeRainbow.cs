@@ -8,6 +8,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class CuteSlimeRainbow : ModProjectile
     {
+        public const int Projwidth = 28;
+        public const int Projheight = 52;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Rainbow Slime");
@@ -15,13 +18,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projPet[projectile.type] = true;
             //moved offset to here just like the other slime girls
             drawOffsetX = -20;
-            drawOriginOffsetX = -0;
-            drawOriginOffsetY = -18;
+            //drawOriginOffsetX = -0;
+            drawOriginOffsetY = 28; //-18
         }
 
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.PetLizard);
+            projectile.width = Projwidth; //64 because of wings
+            projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
             projectile.scale = 1.2f;
             projectile.alpha = 0;
@@ -50,7 +55,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             double cX = projectile.position.X + projectile.width * 2;
-            double cY = projectile.position.Y + projectile.height * 2;
+            double cY = projectile.position.Y + (projectile.height - drawOriginOffsetY) * 2;
             Color baseColor = new Color()
             {
                 R = (byte)Main.DiscoR,
@@ -69,9 +74,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Width = image.Bounds.Width;
             bounds.Height = (int)(image.Bounds.Height / Main.projFrames[projectile.type]);
             bounds.Y = projectile.frame * bounds.Height;
-            Vector2 stupidOffset = new Vector2(12f, 6f);
+            Vector2 stupidOffset = new Vector2(12f, 6f + drawOriginOffsetY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
             return false;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Texture2D texture = mod.GetTexture("Projectiles/Pets/CuteSlimeAccessoryBow");
+            Rectangle frameLocal = new Rectangle(0, 0, texture.Width, texture.Height / 10);
+            frameLocal.Y = projectile.frame * Projheight;
+            Vector2 stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY - 19f); // new Vector2(-0.5f, -7.7f); //rainbow special snowflake
+            SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, Projheight * 0.5f);
+            Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
         }
     }
 }
