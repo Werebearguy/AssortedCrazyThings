@@ -12,14 +12,12 @@ namespace AssortedCrazyThings
         public bool everburningCandleBuff;
         public bool everburningCursedCandleBuff;
         public bool everfrozenCandleBuff;
-        public bool variable_debuff_04;
-        public bool variable_debuff_05;
+        //public bool variable_debuff_04;
+        //public bool variable_debuff_05;
         public bool everburningShadowflameCandleBuff;
-        public bool variable_debuff_07;
+        //public bool variable_debuff_07;
 
-        private bool apply = false;
         public uint slotsPlayer = 0;
-        private int applyDelay = 5;
 
         public override void ResetEffects()
         {
@@ -94,33 +92,6 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-
-            //if (applyDelay > 0)
-            //{
-            //    applyDelay--;
-            //}
-            //else if (apply)
-            //{
-            //    apply = false;
-            //    for (int i = 0; i < 1000; i++)
-            //    {
-            //        if (Main.projectile[i].active)
-            //        {
-            //            if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
-            //            {
-            //                Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).slots = slotsPlayer; //gets automatically applied since PostDraw is per tick
-            //                break;
-            //            }
-            //            //find first occurence of a player owned cute slime
-            //        }
-            //    }
-            //}
-        }
-
-        public override void OnRespawn(Player player)
-        {
-            apply = true;
-            applyDelay = 5;
         }
     }
 }

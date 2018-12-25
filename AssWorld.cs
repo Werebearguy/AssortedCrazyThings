@@ -102,7 +102,6 @@ namespace AssortedCrazyThings
 
             //add more here, for example like this:
             //slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryStrapOn>();
-            //slimeAccessoryTextures[textureIndex++] = mod.GetTexture("Items/PetAccessories/PetAccessoryStrapOn_Draw");
 
 
             //------------------------------------------------------------------------------------------------------
@@ -117,7 +116,6 @@ namespace AssortedCrazyThings
                     //(make sure that a comma is at the end of every line except the last one)
                 );
             //-> slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()] returns 2
-            //anything not listed in that Set returns 0
 
             //------------------------------------------------------------------------------------------------------
             //------------------------------------------------------------------------------------------------------
@@ -127,7 +125,6 @@ namespace AssortedCrazyThings
             //I think you get it by now
 
             //finishing up, ignore
-            //ErrorLogger.Log(slimeAccessoryItems.Length + " " + itemIndex);
             Array.Resize(ref slimeAccessoryItems, itemIndex);
             Array.Resize(ref slimeAccessoryTextures, itemIndex + 1); //both have same size
         }
