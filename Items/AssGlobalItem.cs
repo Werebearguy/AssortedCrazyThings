@@ -1,15 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Projectiles;
+using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.Utilities;
 
 namespace AssortedCrazyThings.Items
 {
-	public class AssGlobalItem : GlobalItem
+    public class AssGlobalItem : GlobalItem
 	{
 		public AssGlobalItem()
 		{
@@ -33,6 +30,30 @@ namespace AssortedCrazyThings.Items
         public override bool CanUseItem(Item item, Player player)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+
+            if(true || item.type == mod.ItemType("PocketSand"))
+            {
+                Main.NewText(Main.MouseWorld);
+                for (int i = 0; i < 1000; i++)
+                {
+                    if(Main.projectile[i].active)
+                    {
+                        if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
+                        {
+                            Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).ToggleAccessory(1, (byte)(item.type % 255));
+                        }
+                        //find first occurence of a player owned cute slime
+
+                        //NPC npc = new NPC();
+                        //if (victim is NPC)
+                        //{
+                        //    npc = (NPC)victim;
+                        //}
+                    }
+                }
+            }
+
+
             if(mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff )
             {
                 if (base.CanUseItem(item, player) && player.HeldItem.active && player.HeldItem.damage >= 0)

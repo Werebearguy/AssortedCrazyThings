@@ -1,10 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	public class CuteSlimePurple : ModItem
+	public class CuteSlimePinkItem : ModItem
 		{
 			public override void SetStaticDefaults()
 				{
@@ -14,9 +16,11 @@ namespace AssortedCrazyThings.Items.Pets
 			public override void SetDefaults()
 				{
 					item.CloneDefaults(ItemID.LizardEgg);
-					item.shoot = mod.ProjectileType("CuteSlimePurple");
-					item.buffType = mod.BuffType("CuteSlimePurple");
-					item.rare = -11;
+					item.shoot = mod.ProjectileType<CuteSlimePinkPet>();
+
+                    item.buffType = mod.BuffType<CuteSlimePinkBuff>();
+
+                    item.rare = -11;
 				}
 			public override void UseStyle(Player player)
 				{

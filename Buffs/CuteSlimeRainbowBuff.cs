@@ -1,9 +1,10 @@
 using Terraria;
 using Terraria.ModLoader;
+using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Buffs
 {
-	public class CuteSlimeRainbow : ModBuff
+	public class CuteSlimeRainbowBuff : ModBuff
 		{
 			public override void SetDefaults()
 				{
@@ -16,10 +17,10 @@ namespace AssortedCrazyThings.Buffs
 				{
 					player.buffTime[buffIndex] = 18000;
 					player.GetModPlayer<PetPlayer>(mod).CuteSlimeRainbow = true;
-					bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("CuteSlimeRainbow")] <= 0;
+					bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CuteSlimeRainbowPet>()] <= 0;
 					if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
 						{
-							Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), 0f, 0f, mod.ProjectileType("CuteSlimeRainbow"), 0, 0f, player.whoAmI, 0f, 0f);
+							Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), 0f, 0f, mod.ProjectileType<CuteSlimeRainbowPet>(), 0, 0f, player.whoAmI, 0f, 0f);
 						}
 				}
 		}
