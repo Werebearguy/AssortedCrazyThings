@@ -6,7 +6,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	public class CuteSlimeGreenItem : ModItem
+	public class CuteSlimePink : ModItem
 		{
 			public override void SetStaticDefaults()
 				{
@@ -16,9 +16,9 @@ namespace AssortedCrazyThings.Items.Pets
 			public override void SetDefaults()
 				{
 					item.CloneDefaults(ItemID.LizardEgg);
-					item.shoot = mod.ProjectileType<CuteSlimeGreenPet>();
+					item.shoot = mod.ProjectileType<CuteSlimePinkPet>();
 
-                    item.buffType = mod.BuffType<CuteSlimeGreenBuff>();
+                    item.buffType = mod.BuffType<CuteSlimePinkBuff>();
 
                     item.rare = -11;
 				}

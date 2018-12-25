@@ -6,7 +6,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	public class CuteSlimeYellowItem : ModItem
+	public class CuteSlimeYellow : ModItem
 		{
 			public override void SetStaticDefaults()
 				{
