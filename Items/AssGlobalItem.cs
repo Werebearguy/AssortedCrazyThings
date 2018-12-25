@@ -1,4 +1,6 @@
-﻿using AssortedCrazyThings.Projectiles;
+﻿using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Projectiles;
+using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -31,26 +33,23 @@ namespace AssortedCrazyThings.Items
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
 
-            if(true || item.type == mod.ItemType("PocketSand"))
+            if(Array.IndexOf(AssWorld.slimeAccessoryItems, item.type) != -1) //if used item 
             {
-                Main.NewText(Main.MouseWorld);
                 for (int i = 0; i < 1000; i++)
                 {
                     if(Main.projectile[i].active)
                     {
                         if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
                         {
-                            Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).ToggleAccessory(1, (byte)(item.type % 255));
+                            Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).ToggleAccessory((byte)item.value, (uint)AssWorld.slimeAccessoryItemsIndexed[item.type]);
+                            //sync with player, for when he respawns, it gets reapplied
+                            mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).slots;
+                            break;
                         }
                         //find first occurence of a player owned cute slime
-
-                        //NPC npc = new NPC();
-                        //if (victim is NPC)
-                        //{
-                        //    npc = (NPC)victim;
-                        //}
                     }
                 }
+                return true;
             }
 
 

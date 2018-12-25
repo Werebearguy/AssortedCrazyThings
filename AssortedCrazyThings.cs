@@ -13,5 +13,10 @@ namespace AssortedCrazyThings
 				AutoloadSounds = true
 			};
 		}
-	}
+
+        public override void Unload()
+        {
+            AssWorld.slimeAccessoryTextures = null;
+        }
+    }
 }

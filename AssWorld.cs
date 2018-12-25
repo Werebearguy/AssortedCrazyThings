@@ -1,15 +1,18 @@
+using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.NPCs;
+using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Projectiles.Pets;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using AssortedCrazyThings.NPCs;
-using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings
 {
-	public class AssWorld : ModWorld
+    public class AssWorld : ModWorld
 	{
         //basically "if they were alive last update"
         public bool lilmegalodonAlive = false;
@@ -35,35 +38,124 @@ namespace AssortedCrazyThings
 
         //Slime stuff
         public static int[] slimeTypes = new int[9];
+        public static int[] slimeAccessoryItems = new int[100];
+        public static Texture2D[] slimeAccessoryTextures = new Texture2D[100];
+        public static int[] slimeAccessoryItemsIndexed;
 
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
 
-        public override void Initialize()
+        private void InitMinibosses()
         {
             lilmegalodonAlive = false;
             megalodonAlive = false;
             miniocramAlive = false;
+        }
 
+        private void InitHarvesterSouls()
+        {
             harvesterTypes[0] = mod.NPCType<aaaHarvester1>();
             harvesterTypes[1] = mod.NPCType<aaaHarvester2>();
             harvesterTypes[2] = mod.NPCType<aaaHarvester3>();
 
-            slimeTypes[0] = mod.ProjectileType<CuteSlimeBlackPet>();
-            slimeTypes[1] = mod.ProjectileType<CuteSlimeBluePet>();
-            slimeTypes[2] = mod.ProjectileType<CuteSlimeGreenPet>();
-            slimeTypes[3] = mod.ProjectileType<CuteSlimePinkPet>();
-            slimeTypes[4] = mod.ProjectileType<CuteSlimePurplePet>();
-            slimeTypes[5] = mod.ProjectileType<CuteSlimeRainbowPet>();
-            slimeTypes[6] = mod.ProjectileType<CuteSlimeRedPet>();
-            slimeTypes[7] = mod.ProjectileType<CuteSlimeXmasPet>();
-            slimeTypes[8] = mod.ProjectileType<CuteSlimeYellowPet>();
-
-
-            downedHarvester = false; //cant spawn more than once in each start of a world
+            downedHarvester = false; //not really used anywhere properly
             spawnHarvester = false;
 
-        isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
+            isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
+        }
+
+        private void InitSlimes()
+        {
+            int i = 0;
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBlackPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBluePet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeGreenPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimePinkPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimePurplePet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRainbowPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRedPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeXmasPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeYellowPet>();
+        }
+
+        private void InitPetAccessories()
+        {
+            /* Here you add the items from PetAccessories in three arrays,
+             * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
+             * the other is slimeAccessoryItemsIndexed (so the accessories are indexed dynamically (independent
+             * or adding/removing mods))
+             * that also means that the maximum amount of accessories is 255 (Which is a fuckin impressive number,
+             * doubt that will ever get that high)
+             * the last one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
+             * 
+             */
+
+
+            //------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------
+            //ive set the limit to 100 different accessories for now, we can expand that later
+            //(check definition of slimeAccessoryItems)
+            int itemIndex = 0;
+            slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryBow>();
+            slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryXmasHat>();
+
+            //add more here, for example like this:
+            //slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryStrapOn>();
+            //slimeAccessoryTextures[textureIndex++] = mod.GetTexture("Items/PetAccessories/PetAccessoryStrapOn_Draw");
+
+
+            //------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------
+            slimeAccessoryItemsIndexed = IntSet
+                (
+                    mod.ItemType<PetAccessoryBow>(), 1,
+                    mod.ItemType<PetAccessoryXmasHat>(), 2
+                    //add more here, similar pattern: after a comma, new line, then 
+                    //itemType, nextIndex,
+                    //(make sure that a comma is at the end of every line except the last one)
+                );
+            //-> slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()] returns 2
+            //anything not listed in that Set returns 0
+
+            //------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------------
+            slimeAccessoryTextures[slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryBow>()]] = mod.GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
+            slimeAccessoryTextures[slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()]] = mod.GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
+            //I think you get it by now
+
+            //finishing up, ignore
+            //ErrorLogger.Log(slimeAccessoryItems.Length + " " + itemIndex);
+            Array.Resize(ref slimeAccessoryItems, itemIndex);
+            Array.Resize(ref slimeAccessoryTextures, itemIndex + 1); //both have same size
+        }
+
+        public int[] IntSet(params int[] inputs)
+        {
+            //inputs.Length % 2 == 0
+            int[] temp = new int[inputs.Length];
+            Array.Copy(inputs, temp, inputs.Length);
+            Array.Sort(temp); //highest index should hold the max value of inputs
+            int[] ret = new int[temp[temp.Length - 1] + 1];//length == max value of inputs
+            for (int i = 0; i < ret.Length; i++)
+            {
+                ret[i] = 0; //fill array with 0
+            }
+            for (int j = 0; j < inputs.Length; j += 2)
+            {
+                ret[inputs[j]] = inputs[j + 1]; //fill array with pair of key:value
+            }
+            return ret;
+        }
+
+        public override void Initialize()
+        {
+            InitMinibosses();
+            InitHarvesterSouls();
+            InitSlimes();
+            InitPetAccessories();
         }
 
         private void UpdateHarvesterSpawn()
@@ -80,14 +172,14 @@ namespace AssortedCrazyThings
                             {
                                 NPC.SpawnOnPlayer(k, harvesterTypes[0]);
                                 AwakeningMessage(BaseHarvester.message);
-                                spawnHarvester = false;
+                                spawnHarvester = false; //disallow it to spawn this night anymore
                                 break;
                             }
                         }
                     }
                     if (Main.time >= 32400.0) //32400 is the last tick of the night
                     {
-                        spawnHarvester = true;
+                        spawnHarvester = true; //allow it to spawn the next night (after world reload)
                     }
                 }
             }
@@ -215,26 +307,7 @@ namespace AssortedCrazyThings
                 miniocramAlive = false;
                 DisappearMessage("The " + miniocramName + " disappeared... for now.");
             }
-
-            //
         }
-
-        //public override void NetSend(BinaryWriter writer)
-        //{
-        //    BitsByte flags = new BitsByte();
-        //    flags[0] = megasnailAlive;
-        //    flags[1] = miniocramAlive;
-        //    flags[2] = megalodonAlive;
-        //    writer.Write(flags);
-        //}
-
-        //public override void NetReceive(BinaryReader reader)
-        //{
-        //    BitsByte flags = reader.ReadByte();
-        //    megasnailAlive = flags[0];
-        //    miniocramAlive = flags[1];
-        //    megalodonAlive = flags[2];
-        //}
 
         public override void PreUpdate()
         {

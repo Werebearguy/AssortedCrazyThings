@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles
@@ -24,8 +22,10 @@ namespace AssortedCrazyThings.Projectiles
         public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000 
                                       //slt3     |slt2     |slt1     |slt0     
 
-        public bool AddAccessory(byte slotNumber, uint type)
+        private bool AddAccessory(byte slotNumber, uint type)
         {
+            //type is between 0 and 255
+
             //returns false if accessory was already equipped   //for slotNumber = 1:
             uint setmask = mask << (slotNumber * 8);            //0000 0000|0000 0000|1111 1111|0000 0000
             uint clearmask = ~setmask; //setmask but inverted   //1111 1111|1111 1111|0000 0000|1111 1111
@@ -37,6 +37,8 @@ namespace AssortedCrazyThings.Projectiles
             //if accessory not the same as the applied one: override/set
             slots &= clearmask; //delete only current slot
             slots |= type; //set current slot
+
+            Main.NewText("added " + type%256 + " to slot " + slotNumber);
             return true;
         }
 
@@ -45,26 +47,23 @@ namespace AssortedCrazyThings.Projectiles
             uint setmask = mask << (slotNumber * 8);
             uint clearmask = ~setmask; //setmask but inverted
             slots &= clearmask; //delete only current slot
+
+            Main.NewText("deleted from slot " + slotNumber);
         }
 
         public void ToggleAccessory(byte slotNumber, uint type)
         {
+            if (slotNumber == 0) return;
+            slotNumber -= 1;
             Main.NewText("before: " + slots);
             if (!AddAccessory(slotNumber, type)) DelAccessory(slotNumber);
             Main.NewText("after : " + slots);
         }
 
-        public uint GetSlot(byte slotNumber)
+        public uint GetAccessory(byte slotNumber)
         {
+            slotNumber -= 1;
             return (slots >> (slotNumber * 8)) & mask; //shift the selected 8 bits of the slot into the rightmost position
-        }
-
-        public enum SlotType : byte //255 possible accessory types, but only max of 4 used
-        {
-            Hat,
-            Body,
-            Hands,
-            Tail
         }
     }
 }
