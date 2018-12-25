@@ -1,0 +1,7 @@
+how to test out the accessories on the slimes:
+search for "aaa" in items, it gives you two temporarily textured accessories (items)
+
+left click with one anywhere and see your slime get that accessory
+
+if you want to add more, go into Items/PetAccessories, read the .cs file for a guide
+(note: only support for "body" slot accessories for now, and only the santa hat works only on the black slime properly)
