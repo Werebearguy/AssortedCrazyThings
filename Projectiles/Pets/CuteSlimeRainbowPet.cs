@@ -68,17 +68,5 @@ namespace AssortedCrazyThings.Projectiles.Pets
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
             return false;
         }
-
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            //Texture2D texture = mod.GetTexture("Projectiles/Pets/CuteSlimeAccessoryBow");
-            //Rectangle frameLocal = new Rectangle(0, 0, texture.Width, texture.Height / 10);
-            //frameLocal.Y = projectile.frame * Projheight;
-            //Vector2 stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY - 19f); // new Vector2(-0.5f, -7.7f); //rainbow special snowflake
-            //SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            //Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, Projheight * 0.5f);
-            //Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-            //spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
-        }
     }
 }
