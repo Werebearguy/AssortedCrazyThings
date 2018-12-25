@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings
 {
@@ -32,6 +33,9 @@ namespace AssortedCrazyThings
         public static bool downedHarvester;
         public static bool spawnHarvester;
 
+        //Slime stuff
+        public static int[] slimeTypes = new int[9];
+
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
 
@@ -41,9 +45,21 @@ namespace AssortedCrazyThings
             megalodonAlive = false;
             miniocramAlive = false;
 
-            harvesterTypes[0] = mod.NPCType(aaaHarvester1.typeName);
-            harvesterTypes[1] = mod.NPCType(aaaHarvester2.typeName);
-            harvesterTypes[2] = mod.NPCType(aaaHarvester3.typeName);
+            harvesterTypes[0] = mod.NPCType<aaaHarvester1>();
+            harvesterTypes[1] = mod.NPCType<aaaHarvester2>();
+            harvesterTypes[2] = mod.NPCType<aaaHarvester3>();
+
+            slimeTypes[0] = mod.ProjectileType<CuteSlimeBlackPet>();
+            slimeTypes[1] = mod.ProjectileType<CuteSlimeBluePet>();
+            slimeTypes[2] = mod.ProjectileType<CuteSlimeGreenPet>();
+            slimeTypes[3] = mod.ProjectileType<CuteSlimePinkPet>();
+            slimeTypes[4] = mod.ProjectileType<CuteSlimePurplePet>();
+            slimeTypes[5] = mod.ProjectileType<CuteSlimeRainbowPet>();
+            slimeTypes[6] = mod.ProjectileType<CuteSlimeRedPet>();
+            slimeTypes[7] = mod.ProjectileType<CuteSlimeXmasPet>();
+            slimeTypes[8] = mod.ProjectileType<CuteSlimeYellowPet>();
+
+
             downedHarvester = false; //cant spawn more than once in each start of a world
             spawnHarvester = false;
 
