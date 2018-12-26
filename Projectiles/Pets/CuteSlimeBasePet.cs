@@ -21,32 +21,32 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             AssGlobalProjectile gProjectile = projectile.GetGlobalProjectile<AssGlobalProjectile>(mod);
-            uint slots = gProjectile.slots;
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
                 if(slimeAccessory != 0)
                 {
-                    if(slotNumber == (byte)SlotType.Body)
+                    Texture2D texture = AssWorld.slimeAccessoryTextures[slimeAccessory]; //placeholder with same size as all the textures
+                    Rectangle frameLocal = new Rectangle(0, 0, texture.Width, texture.Height / 10);
+                    SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                    Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, Projheight * 0.5f);
+                    Vector2 stupidOffset = Vector2.Zero;
+                    Vector2 drawPos = Vector2.Zero;
+
+                    if (slotNumber == (byte)SlotType.Body)
                     {
-                        Texture2D texture = AssWorld.slimeAccessoryTextures[slimeAccessory];
-                        Rectangle frameLocal = new Rectangle(0, 0, texture.Width, texture.Height / 10);
+                        texture = AssWorld.slimeAccessoryTextures[slimeAccessory];
                         frameLocal.Y = projectile.frame * Projheight;
-                        Vector2 stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY); // new Vector2(-0.5f, -7.7f);
-                        SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                        Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, Projheight * 0.5f);
-                        Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+                        stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY); // new Vector2(-0.5f, -7.7f);
+                        drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                         spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                     }
                     if (slotNumber == (byte)SlotType.Hat)
                     {
-                        Texture2D texture = AssWorld.slimeAccessoryTextures[slimeAccessory];
-                        Rectangle frameLocal = new Rectangle(0, 0, texture.Width, texture.Height / 10);
+                        texture = AssWorld.slimeAccessoryTextures[slimeAccessory];
                         frameLocal.Y = projectile.frame * Projheight;
-                        Vector2 stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY - 7f); // new Vector2(-0.5f, -7.7f);
-                        SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                        Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, Projheight * 0.5f);
-                        Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+                        stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY - 7f); // new Vector2(-0.5f, -7.7f);
+                        drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                         spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                     }
                 }

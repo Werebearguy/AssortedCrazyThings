@@ -80,13 +80,9 @@ namespace AssortedCrazyThings
 
         private void InitPetAccessories()
         {
-            /* Here you add the items from PetAccessories in three arrays,
+            /* Here you add the items from PetAccessories in two arrays,
              * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
-             * the other is slimeAccessoryItemsIndexed (so the accessories are indexed dynamically (independent
-             * or adding/removing mods))
-             * that also means that the maximum amount of accessories is 255 (Which is a fuckin impressive number,
-             * doubt that will ever get that high)
-             * the last one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
+             * the other one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
              * 
              */
 
@@ -99,22 +95,18 @@ namespace AssortedCrazyThings
             int itemIndex = 0;
             slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryBow>();
             slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryXmasHat>();
-
             //add more here, for example like this:
             //slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryStrapOn>();
 
+            Array.Resize(ref slimeAccessoryItems, itemIndex);
 
-            //------------------------------------------------------------------------------------------------------
-            //------------------------------------------------------------------------------------------------------
-            //------------------------------------------------------------------------------------------------------
-            slimeAccessoryItemsIndexed = IntSet
-                (
-                    mod.ItemType<PetAccessoryBow>(), 1,
-                    mod.ItemType<PetAccessoryXmasHat>(), 2
-                    //add more here, similar pattern: after a comma, new line, then 
-                    //itemType, nextIndex,
-                    //(make sure that a comma is at the end of every line except the last one)
-                );
+            int[] parameters = new int[slimeAccessoryItems.Length * 2];
+            for (int i = 0; i < slimeAccessoryItems.Length; i++)
+            {
+                parameters[2 * i] = slimeAccessoryItems[i];
+                parameters[2 * i + 1] = i + 1;
+            }
+            slimeAccessoryItemsIndexed = IntSet(parameters);
             //-> slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()] returns 2
 
             //------------------------------------------------------------------------------------------------------
@@ -122,14 +114,13 @@ namespace AssortedCrazyThings
             //------------------------------------------------------------------------------------------------------
             slimeAccessoryTextures[slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryBow>()]] = mod.GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
             slimeAccessoryTextures[slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()]] = mod.GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
-            //I think you get it by now
+            //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
 
             //finishing up, ignore
-            Array.Resize(ref slimeAccessoryItems, itemIndex);
-            Array.Resize(ref slimeAccessoryTextures, itemIndex + 1); //both have same size
+            Array.Resize(ref slimeAccessoryTextures, itemIndex + 1); //since index starts at 1
         }
 
-        public int[] IntSet(params int[] inputs)
+        public int[] IntSet(int[] inputs)
         {
             //inputs.Length % 2 == 0
             int[] temp = new int[inputs.Length];
