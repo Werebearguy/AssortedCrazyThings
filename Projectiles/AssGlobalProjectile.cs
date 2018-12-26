@@ -18,8 +18,8 @@ namespace AssortedCrazyThings.Projectiles
             }
         }
 
-        public static uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
-        public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000 
+        private static uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
+        private uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000 
                                       //slt3     |slt2     |slt1     |slt0     
 
         private bool AddAccessory(byte slotNumber, uint type)
@@ -58,6 +58,16 @@ namespace AssortedCrazyThings.Projectiles
             //Main.NewText("before: " + slots);
             if (!AddAccessory(slotNumber, type)) DelAccessory(slotNumber);
             //Main.NewText("after : " + slots);
+        }
+
+        public void SetAccessoryAll(uint slotsvar)
+        {
+            slots = slotsvar;
+        }
+
+        public uint GetAccessoryAll()
+        {
+            return slots;
         }
 
         public uint GetAccessory(byte slotNumber)

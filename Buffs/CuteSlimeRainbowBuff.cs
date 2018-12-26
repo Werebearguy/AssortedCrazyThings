@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Buffs
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
                 int i = Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y, 0f, 0f, mod.ProjectileType<CuteSlimeRainbowPet>(), 0, 0f, player.whoAmI, 0f, 0f);
-                Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).slots = mPlayer.slotsPlayer;
+                Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).SetAccessoryAll(mPlayer.slotsPlayer);
             }
         }
     }
