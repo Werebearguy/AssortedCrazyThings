@@ -30,6 +30,7 @@ namespace AssortedCrazyThings.Projectiles
             uint setmask = mask << (slotNumber * 8);            //0000 0000|0000 0000|1111 1111|0000 0000
             uint clearmask = ~setmask; //setmask but inverted   //1111 1111|1111 1111|0000 0000|1111 1111
 
+            //Main.NewText("added " + type%256 + " to slot " + slotNumber);
             type = type << (slotNumber * 8);
             uint tempslots = slots & setmask;
             if (type == tempslots) return false;
@@ -38,7 +39,6 @@ namespace AssortedCrazyThings.Projectiles
             slots &= clearmask; //delete only current slot
             slots |= type; //set current slot
 
-            Main.NewText("added " + type%256 + " to slot " + slotNumber);
             return true;
         }
 
@@ -48,16 +48,16 @@ namespace AssortedCrazyThings.Projectiles
             uint clearmask = ~setmask; //setmask but inverted
             slots &= clearmask; //delete only current slot
 
-            Main.NewText("deleted from slot " + slotNumber);
+            //Main.NewText("deleted from slot " + slotNumber);
         }
 
         public void ToggleAccessory(byte slotNumber, uint type)
         {
             if (slotNumber == 0) return;
             slotNumber -= 1;
-            Main.NewText("before: " + slots);
+            //Main.NewText("before: " + slots);
             if (!AddAccessory(slotNumber, type)) DelAccessory(slotNumber);
-            Main.NewText("after : " + slots);
+            //Main.NewText("after : " + slots);
         }
 
         public uint GetAccessory(byte slotNumber)

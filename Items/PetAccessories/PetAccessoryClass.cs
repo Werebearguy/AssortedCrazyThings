@@ -33,8 +33,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.height = 30;
             item.maxStack = 1;
             item.rare = -11;
-            item.useAnimation = 45;
-            item.useTime = 45;
+            item.useAnimation = 16;
+            item.useTime = 16;
             item.useStyle = 4;
             item.UseSound = SoundID.Item1;
             item.consumable = false;
@@ -56,8 +56,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.height = 30;
             item.maxStack = 1;
             item.rare = -11;
-            item.useAnimation = 45;
-            item.useTime = 45;
+            item.useAnimation = 16;
+            item.useTime = 16;
             item.useStyle = 4;
             item.UseSound = SoundID.Item1;
             item.consumable = false;
@@ -72,6 +72,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
         Body,
         Hands,
         Tail
-        //please settle on (max) four groups for now (ignoring None), those I listed are suggestions
+        //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
+        //Also, concider that there cant be more than one accessory active in each slot, so decide on proper
+        //categories that make sense.
+        //what I plan to do next is a fixed offset for each accessory (so not all hats have the same one, but different,
+        //if you for example decide to add a hat that is very tall, and then one that goes down to the feet, you can adjust that
+        //based on the sprite)
+
+        //also, keep the sprite dimensions the same as the slime girls
     }
 }
