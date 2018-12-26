@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //moved offset to here just like the other slime girls
             drawOffsetX = -20;
             //drawOriginOffsetX = -0;
-            drawOriginOffsetY = 8; //-18 //28
+            drawOriginOffsetY = -16; //-18 //28 //8
         }
 
         public override void SetDefaults()
@@ -44,8 +44,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            double cX = projectile.position.X + projectile.width * 2;
-            double cY = projectile.position.Y + (projectile.height - (drawOriginOffsetY + 20f)) * 2;  //20f for offset pre-draw, idk how and why
+            double cX = projectile.position.X + Projwidth * 2 + drawOffsetX;
+            double cY = projectile.position.Y + (Projheight - (drawOriginOffsetY + 20f)) * 2;  //20f for offset pre-draw, idk how and why
             Color baseColor = new Color()
             {
                 R = (byte)Main.DiscoR,

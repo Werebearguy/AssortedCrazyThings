@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projPet[projectile.type] = true;
             drawOffsetX = -20;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = 0; //-22
+            drawOriginOffsetY = -18; //-22
         }
 
         public override void SetDefaults()
