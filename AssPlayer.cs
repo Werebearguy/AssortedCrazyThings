@@ -3,7 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles;
+using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace AssortedCrazyThings
 {
@@ -28,6 +29,37 @@ namespace AssortedCrazyThings
             //variable_debuff_05 = false;
             everburningShadowflameCandleBuff = false;
             //variable_debuff_07 = false;
+        }
+
+        public void SendSlotData()
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                ModPacket packet = mod.GetPacket();
+                packet.Write((byte)AssMessageType.PetAccessorySlots);
+                packet.Write((byte)player.whoAmI);
+                packet.Write(slotsPlayer);
+                packet.Send();
+            }
+        }
+
+        public override TagCompound Save()
+        {
+            return new TagCompound {
+                {"slotsPlayer", (int)slotsPlayer},
+            };
+        }
+
+        //idk why but I just left it in
+        public override void LoadLegacy(BinaryReader reader)
+        {
+            int loadVersion = reader.ReadInt32();
+            slotsPlayer = (uint)reader.ReadInt32();
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            slotsPlayer = (uint)tag.GetInt("slotsPlayer");
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)

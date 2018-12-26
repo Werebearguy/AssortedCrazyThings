@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
      * example:
      * item.value = (int)SlotType.Body;
      * 
-     * finally, go into AssWorld.cs, then into InitPetAccessories(), and add the item's class name to the array lists
+     * finally, go into AssortedCrazyThings.cs, then into InitPetAccessories(), and add the item's class name to the array lists
      * 
      * 
      * 

@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
 
-            if(Array.IndexOf(AssWorld.slimeAccessoryItems, item.type) != -1) //if used item 
+            if(Array.IndexOf(AssortedCrazyThings.slimeAccessoryItems, item.type) != -1) //if used item 
             {
                 for (int i = 0; i < 1000; i++)
                 {
@@ -41,9 +41,10 @@ namespace AssortedCrazyThings.Items
                     {
                         if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
                         {
-                            Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).ToggleAccessory((byte)item.value, (uint)AssWorld.slimeAccessoryItemsIndexed[item.type]);
+                            Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
                             //sync with player, for when he respawns, it gets reapplied
                             mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).slots;
+                            mPlayer.SendSlotData();
                             break;
                         }
                         //find first occurence of a player owned cute slime
