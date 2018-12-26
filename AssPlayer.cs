@@ -19,6 +19,8 @@ namespace AssortedCrazyThings
         //public bool variable_debuff_07;
 
         public uint slotsPlayer = 0;
+        private bool resetSlots = false;
+        private double lastTime = 0.0;
 
         public override void ResetEffects()
         {
@@ -62,41 +64,74 @@ namespace AssortedCrazyThings
             slotsPlayer = (uint)tag.GetInt("slotsPlayer");
         }
 
+        public bool CanResetSlots(double currentTime)
+        {
+            if (Math.Abs(lastTime - currentTime) > 35.0) //(usetime + 1) x 3 + 1
+            {
+                resetSlots = false;
+                lastTime = currentTime;
+                return false; //step one
+            }
+
+            //step two and three have to be done in 60 ticks
+            if (Math.Abs(lastTime - currentTime) <= 35.0)
+            {
+                if (!resetSlots)
+                {
+                    resetSlots = true;
+                    return false; //step two
+                }
+
+                //if program gets to here, it is about to return true
+
+                if (resetSlots)
+                {
+                    resetSlots = false;
+                    return true; //step three
+                }
+            }
+            //should never get here anyway
+            return false;
+        }
+
         public override void OnHitAnything(float x, float y, Entity victim)
         {
-            NPC npc = new NPC();
-            if (victim is NPC)
-            {
-                npc = (NPC)victim;
-            }
-            if (everburningCandleBuff)
-            {
-                npc.AddBuff(BuffID.OnFire, 120, true);
-            }
-            if (everburningCursedCandleBuff)
-            {
-                npc.AddBuff(BuffID.CursedInferno, 120, true);
-            }
-            if (everfrozenCandleBuff)
-            {
-                npc.AddBuff(BuffID.Frostburn, 120, true);
-            }
-            //if (variable_debuff_04)
+            NPC npc = victim as NPC;
+            //if (victim is NPC)
             //{
-            //    npc.AddBuff(BuffID.Ichor, 120, true);
+            //    npc = (NPC)victim;
             //}
-            //if (variable_debuff_05)
-            //{
-            //    npc.AddBuff(BuffID.Venom, 120, true);
-            //}
-            if (everburningShadowflameCandleBuff)
+            if(npc != null)
             {
-                npc.AddBuff(BuffID.ShadowFlame, 60, true);
+                if (everburningCandleBuff)
+                {
+                    npc.AddBuff(BuffID.OnFire, 120, true);
+                }
+                if (everburningCursedCandleBuff)
+                {
+                    npc.AddBuff(BuffID.CursedInferno, 120, true);
+                }
+                if (everfrozenCandleBuff)
+                {
+                    npc.AddBuff(BuffID.Frostburn, 120, true);
+                }
+                //if (variable_debuff_04)
+                //{
+                //    npc.AddBuff(BuffID.Ichor, 120, true);
+                //}
+                //if (variable_debuff_05)
+                //{
+                //    npc.AddBuff(BuffID.Venom, 120, true);
+                //}
+                if (everburningShadowflameCandleBuff)
+                {
+                    npc.AddBuff(BuffID.ShadowFlame, 60, true);
+                }
+                //if (variable_debuff_07)
+                //{
+                //    npc.AddBuff(BuffID.Bleeding, 120, true);
+                //}
             }
-            //if (variable_debuff_07)
-            //{
-            //    npc.AddBuff(BuffID.Bleeding, 120, true);
-            //}
         }
 
         public override void PreUpdate()

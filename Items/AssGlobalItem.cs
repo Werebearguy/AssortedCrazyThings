@@ -4,6 +4,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
@@ -35,15 +36,49 @@ namespace AssortedCrazyThings.Items
 
             if(Array.IndexOf(AssortedCrazyThings.slimeAccessoryItems, item.type) != -1) //if used item 
             {
+                bool shouldReset = false;
+                if (player.altFunctionUse == 2) //right click use
+                {
+                    if (mPlayer.CanResetSlots(Main.time)) //true after three right clicks in 60 ticks
+                    {
+                        shouldReset = true;
+                    }
+                }
+                //else normal left click use
+
                 for (int i = 0; i < 1000; i++)
                 {
-                    if(Main.projectile[i].active)
+                    if (Main.projectile[i].active)
                     {
                         if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
                         {
-                            Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
+                            AssGlobalProjectile gProjectile = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod);
+
+                            if (Main.netMode != NetmodeID.Server)
+                            {
+                                if (shouldReset && player.altFunctionUse == 2)
+                                {
+                                    gProjectile.SetAccessoryAll(0);
+
+                                    //create visuals: text
+                                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.DamagedFriendly, "removed accessories");
+
+                                    //: "dust" originating from the center, forming a circle and going outwards
+                                    Dust dust;
+                                    for (double angle = 0; angle < Math.PI * 2; angle+= Math.PI/6)
+                                    {
+                                        Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
+                                        dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, 10f)/*, 30, 30*/, 16,new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                    }
+                                }
+                                else if(player.altFunctionUse != 2)
+                                {
+                                    gProjectile.ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
+                                }
+                            }
+
                             //sync with player, for when he respawns, it gets reapplied
-                            mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).slots;
+                            mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).GetAccessoryAll();
                             mPlayer.SendSlotData();
                             break;
                         }

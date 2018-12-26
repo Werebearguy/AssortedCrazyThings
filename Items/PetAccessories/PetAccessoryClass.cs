@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
@@ -35,6 +36,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.consumable = false;
             item.value = (int)SlotType.Body;
             MoreSetDefaults();
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
         }
 
         protected virtual void MoreSetDefaults()
