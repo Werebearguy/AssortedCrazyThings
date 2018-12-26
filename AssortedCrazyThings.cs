@@ -42,6 +42,9 @@ namespace AssortedCrazyThings
             int itemIndex = 0;
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBow>();
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryXmasHat>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowGreen>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowYellow>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowBlue>();
             //add more here, for example like this:
             //slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryStrapOn>();
 
@@ -61,6 +64,10 @@ namespace AssortedCrazyThings
             //------------------------------------------------------------------------------------------------------
             slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
             slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
+            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowGreen_Draw");
+            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowYellow_Draw");
+            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
+
             //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
 
             //finishing up, ignore
@@ -97,10 +104,6 @@ namespace AssortedCrazyThings
         {
             if (!Main.dedServ)
             {
-                for (int i = 0; i < slimeAccessoryTextures.Length; i++)
-                {
-                    slimeAccessoryTextures[i] = null;
-                }
                 slimeAccessoryTextures = null;
             }
         }

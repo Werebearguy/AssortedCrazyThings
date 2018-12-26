@@ -19,13 +19,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
      */
 
 
-    public class PetAccessoryBow : ModItem
+    public abstract class PetAccessory: ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("aaaRed Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.Silk);
@@ -39,28 +34,81 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.UseSound = SoundID.Item1;
             item.consumable = false;
             item.value = (int)SlotType.Body;
+            MoreSetDefaults();
+        }
+
+        protected virtual void MoreSetDefaults()
+        {
+
         }
     }
 
-    public class PetAccessoryXmasHat : ModItem
+    public class PetAccessoryBow : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaRed Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowBlue : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaBlue Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowGreen : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaGreen Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowYellow : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaYellow Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryXmasHat : PetAccessory
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("aaaSanta Hat");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
-        public override void SetDefaults()
+
+        protected override void MoreSetDefaults()
         {
-            item.CloneDefaults(ItemID.Silk);
-            item.width = 28;
-            item.height = 30;
-            item.maxStack = 1;
-            item.rare = -11;
-            item.useAnimation = 16;
-            item.useTime = 16;
-            item.useStyle = 4;
-            item.UseSound = SoundID.Item1;
-            item.consumable = false;
             item.value = (int)SlotType.Hat;
         }
     }
