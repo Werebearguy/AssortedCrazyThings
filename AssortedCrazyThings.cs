@@ -123,6 +123,7 @@ namespace AssortedCrazyThings
                     playernumber = reader.ReadByte();
                     Player tempPlayer = Main.player[playernumber];
                     uint slotsPlayer = (uint)reader.ReadInt32();
+                    uint slotsPlayerLast = (uint)reader.ReadInt32();
                     AssPlayer mPlayer = tempPlayer.GetModPlayer<AssPlayer>();
                     if (Main.netMode == NetmodeID.Server)
                     {

@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Items
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
                 {
-                    if (mPlayer.CanResetSlots(Main.time)) //true after three right clicks in 60 ticks
+                    if (/*mPlayer.slotsPlayer != 0 &&*/ mPlayer.CanResetSlots(Main.time)) //true after three right clicks in 60 ticks
                     {
                         shouldReset = true;
                     }
@@ -54,22 +54,36 @@ namespace AssortedCrazyThings.Items
                         {
                             AssGlobalProjectile gProjectile = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod);
 
+                            //only client side
                             if (Main.netMode != NetmodeID.Server)
                             {
                                 if (shouldReset && player.altFunctionUse == 2)
                                 {
-                                    gProjectile.SetAccessoryAll(0);
+                                    //if (mPlayer.slotsPlayer != 0) //if there are accessories: delete
+                                    //{
+                                    //    gProjectile.SetAccessoryAll(0);
+                                    //    //create visuals: text
+                                    //    //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.DamagedFriendly, "removed all accessories");
+                                    //}
+                                    //else //no accessories: reapply old accessories
+                                    //{
+                                    //    gProjectile.SetAccessoryAll(mPlayer.slotsPlayerLast);
+                                    //    //create visuals: text
+                                    //    //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
+                                    //}
 
-                                    //create visuals: text
-                                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.DamagedFriendly, "removed accessories");
+                                    gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0? 0: mPlayer.slotsPlayerLast);
 
                                     //: "dust" originating from the center, forming a circle and going outwards
                                     Dust dust;
                                     for (double angle = 0; angle < Math.PI * 2; angle+= Math.PI/6)
                                     {
-                                        Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
-                                        dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, 10f)/*, 30, 30*/, 16,new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                        //Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
+                                        dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, Main.projectile[i].height/4)/*, 30, 30*/, 16,new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                                     }
+
+                                    //save it for next time shouldReset is true
+                                    mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
                                 }
                                 else if(player.altFunctionUse != 2)
                                 {

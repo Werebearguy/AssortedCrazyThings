@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Terraria.ModLoader.IO;
 using System.IO;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings
 {
@@ -19,6 +20,7 @@ namespace AssortedCrazyThings
         //public bool variable_debuff_07;
 
         public uint slotsPlayer = 0;
+        public uint slotsPlayerLast = 0;
         private bool resetSlots = false;
         private double lastTime = 0.0;
 
@@ -41,6 +43,7 @@ namespace AssortedCrazyThings
                 packet.Write((byte)AssMessageType.PetAccessorySlots);
                 packet.Write((byte)player.whoAmI);
                 packet.Write(slotsPlayer);
+                packet.Write(slotsPlayerLast);
                 packet.Send();
             }
         }
@@ -73,7 +76,7 @@ namespace AssortedCrazyThings
                 return false; //step one
             }
 
-            //step two and three have to be done in 60 ticks
+            //step two and three have to be done in 35 ticks
             if (Math.Abs(lastTime - currentTime) <= 35.0)
             {
                 if (!resetSlots)
