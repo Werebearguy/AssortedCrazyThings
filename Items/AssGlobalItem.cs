@@ -50,6 +50,7 @@ namespace AssortedCrazyThings.Items
                 {
                     if (Main.projectile[i].active)
                     {
+                        //find first occurence of a player owned cute slime
                         if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
                         {
                             AssGlobalProjectile gProjectile = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod);
@@ -59,18 +60,7 @@ namespace AssortedCrazyThings.Items
                             {
                                 if (shouldReset && player.altFunctionUse == 2)
                                 {
-                                    //if (mPlayer.slotsPlayer != 0) //if there are accessories: delete
-                                    //{
-                                    //    gProjectile.SetAccessoryAll(0);
-                                    //    //create visuals: text
-                                    //    //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.DamagedFriendly, "removed all accessories");
-                                    //}
-                                    //else //no accessories: reapply old accessories
-                                    //{
-                                    //    gProjectile.SetAccessoryAll(mPlayer.slotsPlayerLast);
-                                    //    //create visuals: text
-                                    //    //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
-                                    //}
+                                    //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
 
                                     gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0? 0: mPlayer.slotsPlayerLast);
 
@@ -96,7 +86,6 @@ namespace AssortedCrazyThings.Items
                             mPlayer.SendSlotData();
                             break;
                         }
-                        //find first occurence of a player owned cute slime
                     }
                 }
                 return true;

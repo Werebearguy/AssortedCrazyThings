@@ -100,10 +100,6 @@ namespace AssortedCrazyThings
         public override void OnHitAnything(float x, float y, Entity victim)
         {
             NPC npc = victim as NPC;
-            //if (victim is NPC)
-            //{
-            //    npc = (NPC)victim;
-            //}
             if(npc != null)
             {
                 if (everburningCandleBuff)
@@ -137,9 +133,9 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void PreUpdate()
+        private void SpawnSoulsWhenHarvesterIsAlive()
         {
-            if(player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
+            if (player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
             {
                 bool shouldDropSouls = false; //change to false
                 for (short j = 0; j < 200; j++)
@@ -162,6 +158,11 @@ namespace AssortedCrazyThings
                     }
                 }
             }
+        }
+
+        public override void PreUpdate()
+        {
+            SpawnSoulsWhenHarvesterIsAlive();
         }
     }
 }

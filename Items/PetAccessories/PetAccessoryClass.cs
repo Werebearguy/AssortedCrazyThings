@@ -43,6 +43,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
             return true;
         }
 
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Silk, 15);
+            recipe.AddTile(TileID.Loom);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+
         protected virtual void MoreSetDefaults()
         {
 

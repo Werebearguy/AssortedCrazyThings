@@ -21,23 +21,25 @@ namespace AssortedCrazyThings
 		}
 
         //Slime textures n shiet
-        public static int[] slimeAccessoryItems = new int[100];
-        public static Texture2D[] slimeAccessoryTextures = new Texture2D[100];
+        public static int[] slimeAccessoryItems = new int[30];
+        //these two are only accessed locally (not on a server)
+        public static Texture2D[] slimeAccessoryTextures;
         public static int[] slimeAccessoryItemsIndexed;
 
         private void InitPetAccessories()
         {
+            slimeAccessoryTextures = new Texture2D[30];
             /* Here you add the items from PetAccessories in two arrays,
-             * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
-             * the other one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
-             * 
-             */
+            * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
+            * the other one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
+            * 
+            */
 
 
             //------------------------------------------------------------------------------------------------------
             //------------------------------------------------------------------------------------------------------
             //------------------------------------------------------------------------------------------------------
-            //ive set the limit to 100 different accessories for now, we can expand that later
+            //ive set the limit to 30 different accessories for now, we can expand that later
             //(check definition of slimeAccessoryItems)
             int itemIndex = 0;
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBow>();
@@ -50,31 +52,38 @@ namespace AssortedCrazyThings
 
             Array.Resize(ref slimeAccessoryItems, itemIndex);
 
-            int[] parameters = new int[slimeAccessoryItems.Length * 2];
-            for (int i = 0; i < slimeAccessoryItems.Length; i++)
+            if (!Main.dedServ)
             {
-                parameters[2 * i] = slimeAccessoryItems[i];
-                parameters[2 * i + 1] = i + 1;
+                int[] parameters = new int[slimeAccessoryItems.Length * 2];
+                for (int i = 0; i < slimeAccessoryItems.Length; i++)
+                {
+                    parameters[2 * i] = slimeAccessoryItems[i];
+                    parameters[2 * i + 1] = i + 1;
+                }
+                slimeAccessoryItemsIndexed = IntSet(parameters);
+                //-> slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()] returns 2
+
+                //------------------------------------------------------------------------------------------------------
+                //------------------------------------------------------------------------------------------------------
+                //------------------------------------------------------------------------------------------------------
+                //ErrorLogger.Log(slimeAccessoryItemsIndexed.Length + " " + ItemType<PetAccessoryXmasHat>() + " " + slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]);
+                //ErrorLogger.Log(slimeAccessoryTextures.Length);
+                //ErrorLogger.Log(GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw"));
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowGreen_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowYellow_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
+                //ErrorLogger.Log(slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]]);
+
+                //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
+
+                //finishing up, ignore
+                Array.Resize(ref slimeAccessoryTextures, slimeAccessoryItems.Length + 1); //since index starts at 1
             }
-            slimeAccessoryItemsIndexed = IntSet(parameters);
-            //-> slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()] returns 2
-
-            //------------------------------------------------------------------------------------------------------
-            //------------------------------------------------------------------------------------------------------
-            //------------------------------------------------------------------------------------------------------
-            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
-            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
-            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowGreen_Draw");
-            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowYellow_Draw");
-            slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
-
-            //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
-
-            //finishing up, ignore
-            Array.Resize(ref slimeAccessoryTextures, itemIndex + 1); //since index starts at 1
         }
 
-        public int[] IntSet(int[] inputs)
+        private int[] IntSet(int[] inputs)
         {
             //inputs.Length % 2 == 0
             int[] temp = new int[inputs.Length];
@@ -94,10 +103,7 @@ namespace AssortedCrazyThings
 
         public override void Load()
         {
-            if (!Main.dedServ)
-            {
-                InitPetAccessories();
-            }
+            InitPetAccessories();
         }
 
         public override void Unload()
