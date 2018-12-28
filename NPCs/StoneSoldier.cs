@@ -38,8 +38,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            //Item.NewItem(npc.getRect(), ItemID.StoneBlock, 10 + Main.rand.Next(20));
-            if (npc.ai[1] <= 1) Item.NewItem(npc.getRect(), ItemID.Amethyst, 1);
+            Item.NewItem(npc.getRect(), ItemID.StoneBlock, 10 + Main.rand.Next(20));
+            if (npc.ai[1] <= 1) Item.NewItem(npc.getRect(), ItemID.Amethyst, 1); //sorted by rarity
             else if (npc.ai[1] <= 2) Item.NewItem(npc.getRect(), ItemID.Topaz, 1);
             else if (npc.ai[1] <= 3) Item.NewItem(npc.getRect(), ItemID.Sapphire, 1);
             else if (npc.ai[1] <= 4) Item.NewItem(npc.getRect(), ItemID.Emerald, 1);

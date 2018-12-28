@@ -1,6 +1,4 @@
-﻿using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Projectiles;
-using AssortedCrazyThings.Projectiles.Pets;
+﻿using AssortedCrazyThings.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -146,12 +144,10 @@ namespace AssortedCrazyThings.Items
             {
                 if (Main.rand.NextFloat() < 0.8f)
                 {
-                    float randx = Main.rand.NextFloat(0.7f, 1.3f);
-                    float randx2 = Main.rand.NextFloat(-1.5f, 1.5f);
-                    float randy = Main.rand.NextFloat(0.7f, 1.3f);
-                    float bobandy = Main.rand.NextFloat(-1.5f, 1.5f);
-                    float velox = ((cm.X * speed * randx) / cm.Length()) + randx2; //first rand makes it so it has different velocity factor (how far it flies)
-                    float veloy = ((cm.Y * speed * randy) / cm.Length()) + bobandy; //second rand is a kinda offset used mainly for when shooting vertically or horizontally
+                    float rand = Main.rand.NextFloat(0.7f, 1.3f);
+                    cm = cm.RotatedByRandom(MathHelper.ToRadians(5));
+                    float velox = ((cm.X * speed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
+                    float veloy = ((cm.Y * speed * rand) / cm.Length());
                     Vector2 velo = new Vector2(velox, veloy);
                     Vector2 pos = new Vector2(player.Center.X + velox * 1.2f, player.Center.Y + veloy * 1.2f);
                     Dust dust = Dust.NewDustPerfect(pos, type, velo, 0, color, 2.368421f);
