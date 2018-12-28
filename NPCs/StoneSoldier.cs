@@ -1,3 +1,6 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,8 +17,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 40;
-            npc.height = 50;
+            npc.width = 60; //40
+            npc.height = 48; //50
             npc.damage = 45;
             npc.defense = 20;
             npc.lifeMax = 100;
@@ -35,16 +38,87 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), ItemID.StoneBlock, 10 + Main.rand.Next(20));
-            }
+            //Item.NewItem(npc.getRect(), ItemID.StoneBlock, 10 + Main.rand.Next(20));
+            if (npc.ai[1] <= 1) Item.NewItem(npc.getRect(), ItemID.Amethyst, 1);
+            else if (npc.ai[1] <= 2) Item.NewItem(npc.getRect(), ItemID.Topaz, 1);
+            else if (npc.ai[1] <= 3) Item.NewItem(npc.getRect(), ItemID.Sapphire, 1);
+            else if (npc.ai[1] <= 4) Item.NewItem(npc.getRect(), ItemID.Emerald, 1);
+            else if (npc.ai[1] <= 5) Item.NewItem(npc.getRect(), ItemID.Ruby, 1);
+            else if (npc.ai[1] <= 6) Item.NewItem(npc.getRect(), ItemID.Diamond, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            for (int i = 0; i < 10; i++)
+
+        }
+
+        private float Gaussian(float x, float mean, float var = 1f)
+        {
+            return (float)((1/Math.Sqrt(Math.PI * 2 * var)) * Math.Exp(-(x - mean) * (x - mean) / (2 * var)));
+        }
+
+        public override bool PreAI()
+        {
+            if(npc.ai[1] == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
+                float heightFactor = (float)(npc.position.Y - (16f * Main.rockLayer)) / (float)((Main.maxTilesY - 200 - Main.rockLayer) * 16f) * 6;
+                //0f == above rock layer
+                //3f == falfway down a hellavator
+                //6f == hell start
+                heightFactor = heightFactor > 6f ? 6f : heightFactor;
+                heightFactor = heightFactor < 0f ? 0f : heightFactor;
+
+                float[] arr = new float[6]; // 0 to 5
+                for (int j = 1; j < 7; j++) //1 to 6
+                {
+                    arr[j - 1] = Gaussian(j, heightFactor, 2f);
+                    if (j > 1) arr[j - 1] += arr[j - 2]; //cumulative sum
+                }
+
+                float sum = arr[arr.Length - 1];
+                //Main.NewText("sum: " + sum);
+
+                for (int j = 1; j < 7; j++)
+                {
+                    arr[j - 1] /= sum;
+                }
+
+                float rand = Main.rand.NextFloat();
+                for (int j = 1; j < 7; j++)
+                {
+                    if (rand <= arr[j - 1]) //arr[6] is 1 
+                    {
+                        npc.ai[1] = j;
+                        break;
+                    }
+                }
+
+                npc.localAI[0] = 1;
+                npc.netUpdate = true;
             }
+
+            if (npc.ai[1] != 0)
+            {
+                if(npc.direction == 1) npc.velocity.X += 0.02f;
+                else npc.velocity.X -= 0.02f;
+            }
+
+            return true;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            //base sprite is 80x66
+            //hitbox is 60x48
+            Texture2D texture = mod.GetTexture("Glowmasks/StoneSoldier_" + npc.ai[1]);
+            Vector2 stupidOffset = new Vector2(0f, -4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
+            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            drawColor = new Color((int)(drawColor.R * 1.2f + 20), (int)(drawColor.G * 1.2f + 20), (int)(drawColor.B * 1.2f + 20));
+            //drawColor * 2f makes it so its twice as bright as the model itself (capped at Color.White), +20f makes it so its always a bit visible
+            //since we only draw one frame, use texture.Bounds instead of npc.frame
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
     }
 }
