@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public bool restrictedSoulSearch;
         public short transformTime;
         public bool noDamage;
-        //those above are all "static", cant make em static in 
+        //those above are all "defaults", aka they get defined in setdefaults
 
         public byte soulsEaten;
         public short stopTime;
@@ -355,7 +355,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             else
                             {
                                 aaaSoul.SetTimeLeft((NPC)GetTarget(), npc);
-                                KillInstantly((NPC)GetTarget());
                             }
                             stuckTimer = 0;
                             return;
