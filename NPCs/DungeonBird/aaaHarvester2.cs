@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     npc.frameCounter += (double)Math.Abs(npc.velocity.X / 1.5);
                     if (AI_State == State_Approach && (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f) ||
-                        AI_State == State_Distribute && npc.velocity.Y == 0) //fuck
+                        AI_State == State_Distribute && SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)) //fuck
                     {
                         if (npc.frameCounter <= 8.0)
                         {
@@ -130,10 +130,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                     }
                 }
-                else
+                else //if velo.x == 0
                 {
                     npc.frameCounter += 1;
-                    if (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f)
+                    if (/*npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f*/ SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
                     {
                         npc.frame.Y = frameHeight * 5;
                     }
@@ -218,9 +218,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             npc.frameCounter = 0;
                         }
                     }
-                    else
+                    else if(!SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
                     {
-
                         if (npc.frameCounter <= 8.0)
                         {
                             npc.frame.Y = frameHeight * 13;
@@ -241,7 +240,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             npc.frameCounter = 0;
                         }
-
                     }
                 }
                 else //idleTime

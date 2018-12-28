@@ -252,6 +252,41 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.netUpdate = true;
         }
 
+        public static bool SolidCollisionNew(Vector2 Position, int Width, int Height)
+        {
+            int value = (int)(Position.X / 16f) - 1;
+            int value2 = (int)((Position.X + (float)Width) / 16f) + 2;
+            int value3 = (int)(Position.Y / 16f) - 1;
+            int value4 = (int)((Position.Y + (float)Height) / 16f) + 2;
+            value = Utils.Clamp(value, 0, Main.maxTilesX - 1);
+            value2 = Utils.Clamp(value2, 0, Main.maxTilesX - 1);
+            value3 = Utils.Clamp(value3, 0, Main.maxTilesY - 1);
+            value4 = Utils.Clamp(value4, 0, Main.maxTilesY - 1);
+            for (int i = value; i < value2; i++)
+            {
+                for (int j = value3; j < value4; j++)
+                {
+                    if (Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].active() && Main.tileSolid[Main.tile[i, j].type] && !Main.tileSolidTop[Main.tile[i, j].type])
+                    {
+                        Vector2 vector = default(Vector2);
+                        vector.X = (float)(i * 16);
+                        vector.Y = (float)(j * 16);
+                        int num = 16;
+                        if (Main.tile[i, j].halfBrick() || Main.tile[i, j].slope() != 0)
+                        {
+                            vector.Y += 8f;
+                            num -= 8;
+                        }
+                        if (Position.X + (float)Width > vector.X && Position.X < vector.X + 16f && Position.Y + (float)Height > vector.Y && Position.Y < vector.Y + (float)num)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         protected void UpdateStuck(bool closeToSoulvar, bool allowNoclipvar)
         {
             Vector2 between = new Vector2(0f, GetTarget().Center.Y - npc.Center.Y);
@@ -319,6 +354,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             }
                             else
                             {
+                                aaaSoul.SetTimeLeft((NPC)GetTarget(), npc);
                                 KillInstantly((NPC)GetTarget());
                             }
                             stuckTimer = 0;
@@ -338,7 +374,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Vector2 between = new Vector2(Math.Abs(GetTarget().Center.X - npc.Center.X), GetTarget().Center.Y - npc.Center.Y);
             bool lockedX = false;
-            if (between.X < GetTarget().width/2/*2f*/ && Collision.CanHitLine(npc.Center - new Vector2(4f, 4f), 8, 8, GetTarget().Center - new Vector2(4f, 4f), 8, 8) && between.Y <= 0f && between.Y > -jumpRange)
+            if (between.X < GetTarget().width/3/*2f*/ && Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4) && between.Y <= 32f && between.Y > -jumpRange)
             {
                 //actually only locked when direct LOS and not too high
                 Print("set lockedX");
@@ -388,9 +424,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 npc.velocity.X = Vector2.Zero.X;
                 //  if on ground || if on downward slope
-                if ((npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f) && between.Y < -32f) //jump when below two tiles
+                if ((npc.velocity.Y == 0 || npc.velocity.Y < 1.5f && npc.velocity.Y > 0f) /*SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)*/ && between.Y < -32f) //jump when below two tiles
                 {
-                    //Main.NewText("jump to get to soul");
+                    Main.NewText("jump to get to soul");
                     npc.velocity.Y = (float)(Math.Sqrt((double)-between.Y) * -0.84f);
                     npc.netUpdate = true;
                 }
@@ -820,7 +856,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void HarvesterAI(bool allowNoclip = true)
         {
-            if(Main.time % 120 == 2)
+
+            if(npc.velocity.Y != 0) Main.NewText(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10) + " " + AI_State);
+            //if(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
+
+            if (Main.time % 120 == 2)
             {
                 Print("soulseaten:" + soulsEaten);
             }
@@ -939,6 +979,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.netUpdate = true;
 
                     Print("distribute to stop");
+                    aaaSoul.SetTimeLeft((NPC)GetTarget(), npc);
                     aiTargetType = Target_Player;
                     SelectTarget(restrictedSoulSearch); //now player
 

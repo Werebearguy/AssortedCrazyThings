@@ -116,16 +116,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return !GetTarget().Equals(npc);
         }
 
-        protected void SetTimeLeft()
+        public static void SetTimeLeft(NPC npcto, NPC npcfrom)
         {
-            NPC tar = (NPC)GetTarget();
-            if (!tar.Equals(npc))
+            if (!npcfrom.Equals(npcto))
             {
-                if (tar.active && Array.IndexOf(AssWorld.harvesterTypes, tar.type) != -1) //type check since souls might despawn and index changes
+                if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1)) //type check since souls might despawn and index changes
                 {
-                    npc.timeLeft = BaseHarvester.EatTimeConst;
+                    npcto.timeLeft = BaseHarvester.EatTimeConst;
                     Main.NewText("set time left to " + BaseHarvester.EatTimeConst);
-                    npc.netUpdate = true;
+                    npcto.netUpdate = true;
                 }
             }
         }
@@ -239,6 +238,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
+            if(npc.timeLeft <= BaseHarvester.EatTimeConst && AI_State == 0)
+            {
+                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)BaseHarvester.EatTimeConst);
+            }
+
             Vector2 stupidOffset = new Vector2(wid/2, (hei - 10f)+ sinY);
             spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
         }
@@ -288,7 +292,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height -2)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
                 {
                     AI_State = 1;
-                    SetTimeLeft();
+                    //SetTimeLeft(npc, (NPC)GetTarget());
                     npc.velocity.Y = 1f;
                 }
                 //else if(!npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 1 &&
