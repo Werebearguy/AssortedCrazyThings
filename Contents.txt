@@ -14,6 +14,7 @@ Animated Spell Tome
 	- Dungeon drops Spell Tome
 Animated Tome
 	- Dungeon, drops Book
+	- Spawns in various colors
 Anomalocaris
 	- Ocean, drops Shrimp
 Bass
@@ -96,6 +97,7 @@ Joyous Slime
 	- Surface Day, no special drops
 Juggerllusc
 	- Ocean, rarely drops Flippers or Diving Helmet
+	- Spawns in various colors
 Little Megalodon
 	- Ocean, drops Small Megalodon Tooth
 Meatball
@@ -197,7 +199,7 @@ Zombie Florist
 
 ============
 PETS
-Total: 40 (50*)
+Total: 41 (51*)
 ============
 Alien Hornet
 	- Resembles a smaller Alien Hornet that flies behind you
@@ -304,6 +306,9 @@ Docile Mechanical Eye (Red)
 Enchanted Sword
 	- The sword in the stone now floats above your head
 	- Demon Altar, Enchanted Sword x1
+Goblet
+	- It's not a cup, it's a tiny goblin
+	- Drop from Goblin Invasion event
 Lifelike Mechanical Frog
 	- A cute little frog...or is it?
 	- Anvil, Frog x1
