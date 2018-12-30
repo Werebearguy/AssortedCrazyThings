@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 G = (byte)Main.DiscoG,
                 B = (byte)Main.DiscoB
             };
-            lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), baseColor);
+            lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), baseColor * 1.2f);
             SpriteEffects effects = SpriteEffects.None;
             if (projectile.direction != -1)
             {
