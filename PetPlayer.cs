@@ -54,8 +54,9 @@ namespace AssortedCrazyThings
 		public bool VampireBat = false;
 		public bool TorturedSoul = false;
 		public bool EnchantedSword = false;
-		
-		public override void ResetEffects()
+        public bool GobletPet = false;
+
+        public override void ResetEffects()
 		{
 			CuteSlimeYellowNew = false;
 			CuteSlimeXmasNew = false;
@@ -107,6 +108,7 @@ namespace AssortedCrazyThings
 			VampireBat = false;
 			TorturedSoul = false;
 			EnchantedSword = false;
-		}	
+            GobletPet = false;
+        }	
 	}
 }

@@ -37,7 +37,7 @@ namespace AssortedCrazyThings
         public static bool spawnHarvester;
 
         //Slime stuff
-        public static int[] slimeTypes = new int[9];
+        public static int[] slimeTypes = new int[18];
 
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
@@ -73,6 +73,17 @@ namespace AssortedCrazyThings
             slimeTypes[i++] = mod.ProjectileType<CuteSlimeRedPet>();
             slimeTypes[i++] = mod.ProjectileType<CuteSlimeXmasPet>();
             slimeTypes[i++] = mod.ProjectileType<CuteSlimeYellowPet>();
+
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBlackNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBlueNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeGreenNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimePinkNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimePurpleNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRainbowNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRedNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeXmasNewPet>();
+            slimeTypes[i++] = mod.ProjectileType<CuteSlimeYellowNewPet>();
+            //if you plan to add more, increase the array size of slimeTypes in the definition
         }
 
         
