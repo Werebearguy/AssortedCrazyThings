@@ -1,0 +1,42 @@
+Below are a few ideas that came to me for some hopefully simple things to do coding-wise. 
+
+
+Happy New Year as well
+
+1. Anomalous Wings working like wings underwater with great efficiency, but being useless out of water
+	- They're anomalocaris lobes, not actual wings. I just couldn't make that before.
+	- Provides absolutely no benefit when not submerged in water
+	- Provides infinite wing time when submerged in water
+	- Ignores water so the player moves at normal speed, like the Fishron Wings (I think I got that part done, I forgot)
+	
+2. Accessory of some kind that makes you bounce when falling, much like when landing on pink slime blocks
+	- Original goal I dropped prior to getting help
+	- Boot equip slot
+	- Probably crafted with two Leather and Pink Gel or Pink Slime Blocks
+	- I'll do the sprites later
+	
+3. Accessory that uses a recall potion when your health is dangerously low
+	- Effect has an internal cooldown or a debuff of some kind so it doesn't happen constantly
+	- I'll do the sprites later
+
+4. Accessory that grants you extremely high defense for a very short time with a high internal cooldown when your health is dangerously low
+	- Cooldown similar to the Sun Dial in that it won't work for a few ingame days
+	- If you could make it percent based, that would be neat
+		- Otherwise, a low amount of health like 20 or so would probably suffice
+	- Combines with #3
+	
+5. Accessory that combines the effects of #3 and #4
+	- I can do this myself if you make the above two, but if you made it after doing those, I wouldn't complain
+	
+5. Juggerllusc picking random colors to spawn with instead of being three separate NPCs
+	- Really, I'm not sure why neither of us brought this up by now considering the Animated Tome did the exact same thing
+	
+6. Proper animation for the pet "GobletPet" in Projectiles
+	- Frame 1 is idle, frames 2-7 are walking, frame 8 is jumping, remaining four are flying
+	- Minimal rotation while flying, rotor should almost always be at the top
+	- All the other files necessary for it to be a pet are saves as .txt files;
+		- GobletPet.png - /Projectiles/Pets/
+		- GobletItem.png - /Items/Pets/
+		- GobletItem.txt - /Items/Pets/
+		- GobletBuff.png - /Buffs/
+		- GobletBuff.txt - /Buffs/

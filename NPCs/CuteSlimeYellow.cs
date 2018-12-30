@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 42;
+            npc.width = 46;
             npc.height = 52;
             npc.scale = 1.2f;
             npc.friendly = true;
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.NPCs
             npc.alpha = 125;
             npc.color = new Color(255, 255, 0, 100);
             Main.npcCatchable[mod.NPCType("CuteSlimeYellow")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeYellow");
+            npc.catchItem = (short)mod.ItemType("CuteSlimeYellowNew");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

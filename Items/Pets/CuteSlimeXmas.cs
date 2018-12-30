@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Christmas Slime");
-            Tooltip.SetDefault("Summons a friendly Cute Christmas Slime to follow you.");
+            Tooltip.SetDefault("Summons a friendly Cute Christmas Slime to follow you."
+						+ "\nLegacy Appearance");
         }
 
         public override void SetDefaults()
@@ -21,6 +22,15 @@ namespace AssortedCrazyThings.Items.Pets
             item.buffType = mod.BuffType<CuteSlimeXmasBuff>();
             item.rare = -11;
         }
+		
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(mod, "CuteSlimeXmasNew");
+			recipe.AddTile(TileID.Solidifier);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 
         public override void UseStyle(Player player)
         {

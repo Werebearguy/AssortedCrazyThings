@@ -4,6 +4,15 @@ namespace AssortedCrazyThings
 {
     public class PetPlayer : ModPlayer
     {
+		public bool CuteSlimeYellowNew = false;
+		public bool CuteSlimeXmasNew = false;
+		public bool CuteSlimeRedNew = false;
+		public bool CuteSlimeRainbowNew = false;
+		public bool CuteSlimePurpleNew = false;
+		public bool CuteSlimePinkNew = false;
+		public bool CuteSlimeGreenNew = false;
+		public bool CuteSlimeBlueNew = false;
+		public bool CuteSlimeBlackNew = false;
 		public bool DocileMechanicalLaserEyeGreen = false;
 		public bool DocileMechanicalLaserEyePurple = false;
 		public bool DocileMechanicalLaserEyeRed = false;
@@ -48,6 +57,15 @@ namespace AssortedCrazyThings
 		
 		public override void ResetEffects()
 		{
+			CuteSlimeYellowNew = false;
+			CuteSlimeXmasNew = false;
+			CuteSlimeRedNew = false;
+			CuteSlimeRainbowNew = false;
+			CuteSlimePurpleNew = false;
+			CuteSlimePinkNew = false;
+			CuteSlimeGreenNew = false;
+			CuteSlimeBlueNew = false;
+			CuteSlimeBlackNew = false;
 			DocileMechanicalLaserEyeGreen = false;
 			DocileMechanicalLaserEyePurple = false;
 			DocileMechanicalLaserEyeRed = false;

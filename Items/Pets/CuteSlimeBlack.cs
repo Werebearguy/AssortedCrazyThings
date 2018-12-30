@@ -10,8 +10,9 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bottled Slime");
-            Tooltip.SetDefault("Summons a friendly Cute Slime to follow you.");
+            DisplayName.SetDefault("Bottled Black Slime");
+            Tooltip.SetDefault("Summons a friendly Cute Black Slime to follow you."
+						+ "\nLegacy Appearance");
         }
 
         public override void SetDefaults()
@@ -21,6 +22,15 @@ namespace AssortedCrazyThings.Items.Pets
             item.buffType = mod.BuffType<CuteSlimeBlackBuff>();
             item.rare = -11;
         }
+		
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(mod, "CuteSlimeBlackNew");
+			recipe.AddTile(TileID.Solidifier);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 
         public override void UseStyle(Player player)
         {
