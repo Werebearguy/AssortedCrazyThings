@@ -45,9 +45,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AI_State == State_Transform)
             {
                 //Main.NewText(lightColor * ((60 - AI_X_Timer) / 60));
-                return Color.White * ((transformTime - AI_X_Timer) / transformTime);
+                return lightColor * ((transformTime - AI_X_Timer) / transformTime);
             }
-            return Color.White;
+            return new Color((int)(lightColor.R * 1.2f + 20), (int)(lightColor.G * 1.2f + 20), (int)(lightColor.B * 1.2f + 20));
+            //return Color.White;
         }
 
         public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
@@ -381,7 +382,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Vector2 between = new Vector2(Math.Abs(GetTarget().Center.X - npc.Center.X), GetTarget().Center.Y - npc.Center.Y);
             float bottomY = GetTarget().BottomLeft.Y - npc.BottomLeft.Y;
             bool lockedX = false;
-            if (between.X < GetTarget().width/3/*2f*/ && CanHitLineCombined(npc, GetTarget())/*Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4)*/ && bottomY <= 16f && between.Y > -jumpRange)
+            if (between.X < GetTarget().width/2/*2f*/ && CanHitLineCombined(npc, GetTarget())/*Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4)*/ && bottomY <= 16f && between.Y > -jumpRange)
             {
                 //actually only locked when direct LOS and not too high
                 Print("set lockedX");
@@ -1029,7 +1030,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 normBetween *= factor;
                 npc.velocity = (npc.velocity * (acc - 1) + normBetween) / acc;
                 //concider only the bottom half of the hitbox (plus a small bit below)
-                if (distance < 96f /*600f*/ && between.Y < 20f && !Collision.SolidCollision(npc.position + new Vector2(-2f, npc.height / 2), npc.width + 4, npc.height / 2 + 4))
+                if (distance < npc.height /*600f*/ && between.Y < 20f && !Collision.SolidCollision(npc.position + new Vector2(-2f, npc.height / 2), npc.width + 4, npc.height / 2 + 4))
                 {
                     npc.netUpdate = true;
                     AI_State = State_Distribute;

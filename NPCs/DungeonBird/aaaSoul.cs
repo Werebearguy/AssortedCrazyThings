@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     public class aaaSoul : ModNPC
     {
         public static string name = "aaaSoul";
-        public static int wid = 24;
+        public static int wid = 34; //24
         public static int hei = 38;
 
         public override void SetStaticDefaults()
@@ -193,10 +193,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            lightColor.R = Math.Max(lightColor.R, (byte)100);
-            lightColor.G = Math.Max(lightColor.G, (byte)100);
-            lightColor.B = Math.Max(lightColor.B, (byte)100);
-            lightColor.A = 255;
+            lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
+            lightColor.G = Math.Max(lightColor.G, (byte)200);
+            lightColor.B = Math.Max(lightColor.B, (byte)200);
+            lightColor.A = 255; //255 is opaque
 
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = Main.npcTexture[npc.type];
@@ -259,7 +259,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //npc.position - new Vector2(10f, 4f), npc.width + 20, npc.height + 4
 
                 //concider only the bottom half of the hitbox, a bit wider (minus a small bit below)
-                if (Collision.SolidCollision(npc.position + new Vector2(-10f, npc.height / 2), npc.width + 20, npc.height / 2 -2))
+                //if (Collision.SolidCollision(npc.position + new Vector2(-10f, npc.height / 2), npc.width + 20, npc.height / 2 -2))
+                if (Collision.SolidCollision(npc.position + new Vector2(-10f, 0f), npc.width + 20, npc.height + 2))
                 {
                     if (IsTargetActive())
                     {
@@ -270,6 +271,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         between.Normalize();
                         between *= factor;
                         npc.velocity = (npc.velocity * (acc - 1) + between) / acc;
+                        return;
                     }
                 }
                 else
@@ -281,7 +283,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (!tarnpc.Equals(npc))
             {
-                if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height -2)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
+                if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height + 2)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
                 {
                     AI_State = 1;
                     //SetTimeLeft(npc, (NPC)GetTarget());

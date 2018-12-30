@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -248,6 +249,63 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frame.Y = 0;
                 }
             }
+
+            //npc.frame.Y = frameHeight * 14;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Texture2D texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester2_" + "wings");
+            Vector2 stupidOffset = new Vector2(0f, -26f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
+            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            //drawColor = new Color((int)(drawColor.R * 1.2f + 20), (int)(drawColor.G * 1.2f + 20), (int)(drawColor.B * 1.2f + 20));
+            //drawColor * 2f makes it so its twice as bright as the model itself (capped at Color.White), +20f makes it so its always a bit visible
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+
+            if (soulsEaten > 0)
+            {
+                if(soulsEaten < maxSoulsEaten / 2)
+                {
+                    texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester2_" + "soulsmall");
+                }
+                else if (soulsEaten != maxSoulsEaten - 1)
+                {
+                    texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester2_" + "soulpulse");
+                }
+                else
+                {
+                    texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester2_" + "soulbig");
+                }
+            }
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+
+            //Spawn light, add dust
+            Lighting.AddLight(npc.Center, new Vector3(0.15f, 0.15f, 0.35f) * (soulsEaten / (float)maxSoulsEaten));
+            if (AI_State != State_Stop && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / (float)maxSoulsEaten))
+            {
+                // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
+                Vector2 position = npc.position;
+
+                if (AI_State != State_Noclip)
+                {
+                    if (npc.spriteDirection == -1)
+                    {
+                        position += new Vector2(npc.width - 2f, 0f);
+                    }
+
+                }
+                else
+                {
+                    position += new Vector2(npc.width / 2, -npc.height / 4);
+                }
+    
+                Dust dust = Dust.NewDustPerfect(position, 59, new Vector2(Main.rand.NextFloat(-0.5f, 0.5f) + npc.velocity.X, Main.rand.NextFloat(-0.8f, -0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(0.8f, 1.2f));
+                dust.noLight = true;
+                dust.fadeIn = Main.rand.NextFloat(0f, 1f);
+            }
+
         }
 
         public override void SendExtraAI(BinaryWriter writer)
