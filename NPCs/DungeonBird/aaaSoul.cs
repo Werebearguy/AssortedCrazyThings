@@ -13,14 +13,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public static int wid = 24;
         public static int hei = 38;
 
-        //public override string Texture
-        //{
-        //    get
-        //    {
-        //        return "AssortedCrazyThings/NPCs/CuteSlimeBlack"; //temp
-        //    }
-        //}
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
@@ -32,16 +24,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //adjust stats here to match harvester hitbox 1:1, then do findframes in postdraw
             npc.width = wid; //42 //16
             npc.height = hei; //52 //24
+            npc.npcSlots = 0.25f; //takes 1/4 npc slots out of 200 when alive
             npc.dontTakeDamageFromHostiles = true;
             npc.friendly = true;
             npc.noGravity = true;
-            npc.damage = 7;
-            npc.defense = 2;
+            npc.damage = 0;
+            npc.defense = 0;
             npc.lifeMax = 5;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = 25f;
-            npc.knockBackResist = 0.9f;
             npc.aiStyle = -1;
             aiType = -1;// NPCID.ToxicSludge;
             animationType = -1;// NPCID.ToxicSludge;
@@ -51,7 +43,20 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.timeLeft = NPC.activeTime * 5;
         }
 
-        private short offsetYPeriod = 120;
+        private static readonly short offsetYPeriod = 120;
+
+        public static void SetTimeLeft(NPC npcto, NPC npcfrom)
+        {
+            if (!npcfrom.Equals(npcto))
+            {
+                if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1)) //type check since souls might despawn and index changes
+                {
+                    npcto.timeLeft = BaseHarvester.EatTimeConst;
+                    Main.NewText("set time left to " + BaseHarvester.EatTimeConst);
+                    npcto.netUpdate = true;
+                }
+            }
+        }
 
         public float AI_State
         {
@@ -114,19 +119,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected bool IsTargetActive()
         {
             return !GetTarget().Equals(npc);
-        }
-
-        public static void SetTimeLeft(NPC npcto, NPC npcfrom)
-        {
-            if (!npcfrom.Equals(npcto))
-            {
-                if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1)) //type check since souls might despawn and index changes
-                {
-                    npcto.timeLeft = BaseHarvester.EatTimeConst;
-                    Main.NewText("set time left to " + BaseHarvester.EatTimeConst);
-                    npcto.netUpdate = true;
-                }
-            }
         }
 
         public override void FindFrame(int frameHeight)
@@ -326,7 +318,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 npc.velocity.X = 0;
             }
             //remove this in actual release, only --npc.timeLeft
-            /*if (AI_State == 1)*/--npc.timeLeft;
+            if (AI_State == 1)--npc.timeLeft;
             if (npc.timeLeft < 0)
             {
                 KillInstantly();

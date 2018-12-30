@@ -50,8 +50,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
 
             npc.npcSlots = 5f; //takes 5 npc slots out of 200 when alive
-            npc.width = 24;
-            npc.height = 38;
+            npc.width = aaaSoul.wid;
+            npc.height = aaaSoul.hei;
             npc.damage = 0;
             npc.defense = 1;
             npc.lifeMax = maxSoulsEaten + 1;
@@ -66,7 +66,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = npc.velocity.X < 0f? 1: -1; //flipped in the sprite
+            //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
+            npc.spriteDirection = -npc.direction;
+            npc.gfxOffY = 0f;
             if (AI_State == State_Approach)
             {
                 npc.frameCounter++;
@@ -111,6 +113,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (AI_State == State_Stop)
             {
+                npc.gfxOffY = 1f;
                 if(stopTime == eatTime)
                 {
                     npc.frameCounter++;

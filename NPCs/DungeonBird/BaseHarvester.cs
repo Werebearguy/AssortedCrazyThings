@@ -287,6 +287,37 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return false;
         }
 
+        private bool CanHitLineCombined(Entity npcto, Entity npcfrom)
+        {
+            //returns true if npcto can reach npcfrom from all to all four corners of the hitbox
+            //returns false if atleast one corner isnt reachable
+            Vector2 tl1 = new Vector2(npcto.position.X, npcto.position.Y);
+            Vector2 tr1 = new Vector2(npcto.position.X + npcto.width - 1, npcto.position.Y);
+            Vector2 bl1 = new Vector2(npcto.position.X, npcto.position.Y + npcto.height - 1);
+            Vector2 br1 = new Vector2(npcto.position.X + npcto.width - 1, npcto.position.Y + npcto.height - 1);
+
+            Vector2 tl2 = new Vector2(npcfrom.position.X, npcfrom.position.Y);
+            Vector2 tr2 = new Vector2(npcfrom.position.X + npcfrom.width - 1, npcfrom.position.Y);
+            Vector2 bl2 = new Vector2(npcfrom.position.X, npcfrom.position.Y + npcfrom.height - 1);
+            Vector2 br2 = new Vector2(npcfrom.position.X + npcfrom.width - 1, npcfrom.position.Y + npcfrom.height - 1);
+            /* * * * * * * * from each corner to each corner. If between all four there are no tiles inbetween,
+             *             * then you arent stuck
+             *             *
+             *             *
+             *             *
+             *             *
+             *             *
+             *             *
+             * * * * * * * *
+             */
+            //Print("test " + Collision.CanHitLine(tl1, 1, 1, tl2, 1, 1) + " " + Collision.CanHitLine(tr1, 1, 1, tr2, 1, 1) + " " + Collision.CanHitLine(bl1, 1, 1, bl2, 1, 1) + " " + Collision.CanHitLine(br1, 1, 1, br2, 1, 1));
+            return (
+                Collision.CanHitLine(tl1, 1, 1, tl2, 1, 1) &&
+                Collision.CanHitLine(tr1, 1, 1, tr2, 1, 1) &&
+                Collision.CanHitLine(bl1, 1, 1, bl2, 1, 1) &&
+                Collision.CanHitLine(br1, 1, 1, br2, 1, 1));
+        }
+
         protected void UpdateStuck(bool closeToSoulvar, bool allowNoclipvar)
         {
             Vector2 between = new Vector2(0f, GetTarget().Center.Y - npc.Center.Y);
@@ -296,31 +327,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if ((npc.collideX || (npc.collideY || (npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f))) &&
                 !closeToSoulvar)
                 {
-                    Vector2 tl1 = new Vector2(npc.position.X, npc.position.Y);
-                    Vector2 tr1 = new Vector2(npc.position.X + npc.width - 1, npc.position.Y);
-                    Vector2 bl1 = new Vector2(npc.position.X, npc.position.Y + npc.height - 1);
-                    Vector2 br1 = new Vector2(npc.position.X + npc.width - 1, npc.position.Y + npc.height - 1);
-
-                    Vector2 tl2 = new Vector2(GetTarget().position.X, GetTarget().position.Y);
-                    Vector2 tr2 = new Vector2(GetTarget().position.X + GetTarget().width - 1, GetTarget().position.Y);
-                    Vector2 bl2 = new Vector2(GetTarget().position.X, GetTarget().position.Y + GetTarget().height - 1);
-                    Vector2 br2 = new Vector2(GetTarget().position.X + GetTarget().width - 1, GetTarget().position.Y + GetTarget().height - 1);
-                    /* * * * * * * * from each corner to each corner. If between all four there are no tiles inbetween,
-                     *             * then you arent stuck
-                     *             *
-                     *             *
-                     *             *
-                     *             *
-                     *             *
-                     *             *
-                     * * * * * * * *
-                     */
-                    //Print("test " + Collision.CanHitLine(tl1, 1, 1, tl2, 1, 1) + " " + Collision.CanHitLine(tr1, 1, 1, tr2, 1, 1) + " " + Collision.CanHitLine(bl1, 1, 1, bl2, 1, 1) + " " + Collision.CanHitLine(br1, 1, 1, br2, 1, 1));
-                    if (
-                        !Collision.CanHitLine(tl1, 1, 1, tl2, 1, 1) ||
-                        !Collision.CanHitLine(tr1, 1, 1, tr2, 1, 1) ||
-                        !Collision.CanHitLine(bl1, 1, 1, bl2, 1, 1) ||
-                        !Collision.CanHitLine(br1, 1, 1, br2, 1, 1) ||
+                    if (!CanHitLineCombined(npc, GetTarget()) ||
                         between.Y > 0f ||
                         between.Y <= -jumpRange)
                     {
@@ -372,8 +379,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected bool UpdateVelocity()
         {
             Vector2 between = new Vector2(Math.Abs(GetTarget().Center.X - npc.Center.X), GetTarget().Center.Y - npc.Center.Y);
+            float bottomY = GetTarget().BottomLeft.Y - npc.BottomLeft.Y;
             bool lockedX = false;
-            if (between.X < GetTarget().width/3/*2f*/ && Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4) && between.Y <= 32f && between.Y > -jumpRange)
+            if (between.X < GetTarget().width/3/*2f*/ && CanHitLineCombined(npc, GetTarget())/*Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4)*/ && bottomY <= 16f && between.Y > -jumpRange)
             {
                 //actually only locked when direct LOS and not too high
                 Print("set lockedX");
@@ -425,7 +433,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //  if on ground || if on downward slope
                 if ((npc.velocity.Y == 0 || npc.velocity.Y < 1.5f && npc.velocity.Y > 0f) /*SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)*/ && between.Y < -32f) //jump when below two tiles
                 {
-                    Main.NewText("jump to get to soul");
+                    Print("jump to get to soul");
                     npc.velocity.Y = (float)(Math.Sqrt((double)-between.Y) * -0.84f);
                     npc.netUpdate = true;
                 }
@@ -696,7 +704,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (!(Main.tile[num200, num201 - 1].nactive() && (TileLoader.IsClosedDoor(Main.tile[num200, num201 - 1]) || Main.tile[num200, num201 - 1].type == 388)))
                 {
                     //Main.NewText("" + num200 + " " + num201);
-                    if ((npc.velocity.X < 0f && npc.spriteDirection == -1) || (npc.velocity.X > 0f && npc.spriteDirection == 1))
+                    if ((npc.velocity.X < 0f && npc.direction == -1) || (npc.velocity.X > 0f && npc.direction == 1)) //spritedir instead of dir before
                     {
                         if (1 == 2)
                         {
@@ -856,7 +864,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected void HarvesterAI(bool allowNoclip = true)
         {
 
-            if(npc.velocity.Y != 0) Main.NewText(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10) + " " + AI_State);
+            if(npc.velocity.Y != 0) Print(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10) + " " + AI_State);
             //if(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
 
             if (Main.time % 120 == 2)
@@ -1037,7 +1045,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (AI_X_Timer == 0f && stopTime == eatTime)
                 {
                     AI_Timer = 0;
-                    Main.NewText("started eating");
+                    Print("started eating");
                     npc.netUpdate = true;
                 }
                 npc.noGravity = false;
@@ -1071,7 +1079,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             {
                                 AI_Init = 1; //skip the reinit
                                 transformServer = true;
-                                Main.NewText("set transform var to tru");
+                                Print("set transform var to tru");
                             }
                             AI_State = State_Transform;
                         }

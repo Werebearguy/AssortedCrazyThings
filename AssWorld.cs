@@ -177,7 +177,7 @@ namespace AssortedCrazyThings
 
         public override void PostUpdate()
 		{
-            UpdateHarvesterSpawn();
+            //UpdateHarvesterSpawn();
             //those flags are checked for trueness each update
             lilmegalodonSpawned = false;
             isMiniocramSpawned = false;
