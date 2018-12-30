@@ -145,7 +145,7 @@ Sting Slime (Black)
 Sting Slime (Orange)
 	- Desert, drops Stinger
 Stone Soldier
-	- Cavern, drops Stone Block
+	- Cavern, drops gems based on its eye color with increasing rarity as it is found further in the depths
 Strange Slime (Purple Plant)
 	- Surface Day, drops Strange Plant
 Strange Slime (Orange Plant)
