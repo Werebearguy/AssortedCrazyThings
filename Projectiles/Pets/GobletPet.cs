@@ -49,12 +49,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                        frame2Counter += (int)Math.Abs(projectile.velocity.X);
                        frame2Counter++;
-                        if (projectile.frameCounter > 6)
+                        if (frame2Counter > 20) //6
                         {
                            frame2++;
                            frame2Counter = 0;
                         }
-                        if (projectile.frame > 6) //frame 1 to 6 is running
+                        if (frame2 > 6) //frame 1 to 6 is running
                         {
                            frame2 = 1;
                         }
@@ -79,26 +79,27 @@ namespace AssortedCrazyThings.Projectiles.Pets
             else //flying
             {
                frame2Counter++;
-                if (projectile.frameCounter > 6)
+                if (frame2Counter > 4)
                 {
                    frame2++;
                    frame2Counter = 0;
                 }
-                if (projectile.frame < 8 ||frame2 > 11)
+                if (frame2 < 8 ||frame2 > 11)
                 {
                    frame2 = 10;
                 }
-                projectile.rotation = projectile.velocity.X * 0.05f;
+                projectile.rotation = projectile.velocity.X * 0.01f;
             }
+            Main.NewText(frame2);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             GetFrame();
 
-            double cX = projectile.position.X + projectile.width * 2 + drawOffsetX;
-            double cY = projectile.position.Y + projectile.height * 2;
-            lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), lightColor);
+            double cX = projectile.Center.X;
+            double cY = projectile.Center.Y;
+            lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), Color.White);
             SpriteEffects effects = SpriteEffects.None;
             if (projectile.direction != -1)
             {
@@ -110,7 +111,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Width = image.Bounds.Width;
             bounds.Height = (int)(image.Bounds.Height / Main.projFrames[projectile.type]);
             bounds.Y = frame2 * bounds.Height;
-            Vector2 stupidOffset = new Vector2(12f, 6f);
+            Vector2 stupidOffset = new Vector2(10f, 22f);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             return false;
