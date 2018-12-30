@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Christmas Slime");
+            DisplayName.SetDefault("Cute Christmas Slime");
             Description.SetDefault("A cute Christmas slime girl is following you.");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;

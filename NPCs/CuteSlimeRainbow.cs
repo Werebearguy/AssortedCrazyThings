@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 42;
+            npc.width = 46;
             npc.height = 52;
             npc.scale = 1.2f;
             npc.friendly = true;
@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.NPCs
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
             Main.npcCatchable[mod.NPCType("CuteSlimeRainbow")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeRainbow");
+            npc.catchItem = (short)mod.ItemType("CuteSlimeRainbowNew");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -1,273 +1,332 @@
 ============
-BOSSES (Yes, really)
+BOSSES
 Total: 1
 ============
 Foldfish
-	- Summoned by using an Origami Manual
-	- Basically just King Slime, but super weak
-	- Not 100% complete, preliminary release.
-	- FULLY intended as a joke boss.
+	- A giant origami fish that spawns when you use the Origami Manual, rarely dropped by Animated Tome. The boss fight is similar to the King Slime fight, but the boss will spawn harmless Foldfish Babies when harmed, rather than actually helpful minions. 
+	- Drops: Origami Hat, Origami Crane
 
 ============
 ENEMIES
-Total: 89
+Total: 92
 ============
-Animated Tome
-	- Dungeon. Drops Book.
 Animated Spell Tome
-	- Dungeon. Drops Spell Tome.
+	- Dungeon drops Spell Tome
+Animated Tome
+	- Dungeon, drops Book
 Anomalocaris
-	- Ocean. Drops Shrimp.
+	- Ocean, drops Shrimp
 Bass
-	- Water near Town NPCs. Drops Bass.
+	- Town, drops Bass
+Bladetongue
+	- Crimson Water, drops Bladetongue
 Bloated Bait Thief
-	- Water near Town NPCs. Drops Worms.
+	- Town, drops Worm, rarely drops Gold Worm
 Blood Shark
-	- Ocean during a Blood Moon. May drop Sharktooth Necklace.
+	- Ocean (Blood Moon), drops Shark Fin, rarely drops Sharktooth Necklace
 Chunky
-	- Corruption. 
+	- Corruption, drops Rotten Chunk
 Chunky's Eye
-	- Randomly spawns when Chunky is killed. Can be caught with a net.
+	- Chunky (rarely), capture with a net
 Cloudfish
-	- Sky, rarely Surface. Drops Cloud Blocks, can be caught with a net.
+	- Sky (water), drops Cloud Block, Rain Cloud Block, or Snow Cloud Block, can be caught with a net
+Crystal Serpent
+	- Hallow Water (Hardmode), drops Crystal Serpent
 Cute Gastropod
-	- Hallow. Can be caught with a net.
+	- Hallow, capture with a net to obtain it as a pet
 Cute Slime (Black)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Blue)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Green)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Pink)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Purple)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Rainbow)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Red)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Yellow)
-	- Surface Day. Harmless. Can be caught with a net.
+	- Surface Day, capture with a net to obtain it as a pet
 Cute Slime (Christmas)
-	- Surface Day during Christmas. Harmless. Can be caught with a net.
+	- Surface Day (Christmas), capture with a net to obtain it as a pet
 Deep Salamander
-	- Cavern after Wall of Flesh is defeated. 
+	- Underground (Hardmode), no special drops
 Demon Eye (Cataracts, Green)
-	- Surface Night.
+	- Surface Night, no special drops
 Demon Eye (Cataracts, Purple)
-	- Surface Night.
+	- Surface Night, no special drops
 Demon Eye (Dilated, Green)
-	- Surface Night.
+	- Surface Night, no special drops
 Demon Eye (Dilated, Purple)
-	- Surface Night.
+	- Surface Night, no special drops
 Demon Eye (Owl, Green)
-	- Surface Night during Halloween.
+	- Surface Night (Halloween), no special drops
 Demon Eye (Owl, Purple)
-	- Surface Night during Halloween.
+	- Surface Night (Halloween), no special drops
 Demon Eye (Sleepy, Green)
-	- Surface Night.
+	- Surface Night, no special drops
 Demon Eye (Sleepy, Purple)
-	- Surface Night.
+	- Surface Night, no special drops
 Demon Eye (UFO, Green)
-	- Surface Night during Halloween.
+	- Surface Night (Halloween), no special drops
 Demon Eye (UFO, Purple)
-	- Surface Night during Halloween.
+	- Surface Night (Halloween), no special drops
 Fairy Slime
-	- Surface Hallow Day.
-Foldfish Baby
-	- Spawned when Foldfish is harmed, as well as when using an Origami Manual.
+	- Hallow Daytime, no special drops
 Flying Spider
-	- Spider Caves after Wall of Flesh.
+	- Spider Caves (Hardmode), no special drops
 Fractured Eye (Green)
-	- Surface Night after Eye of Cthulhu is defeated.
+	- Surface Night (after Eye of Cthulhu), no special drops
 Fractured Eye (Purple)
-	- Surface Night after Eye of Cthulhu is defeated.
+	- Surface Night (after Eye of Cthulhu), no special drops
 Fractured Eye (Red)
-	- Surface Night after Eye of Cthulhu is defeated.
+	- Surface Night (after Eye of Cthulhu), no special drops
 Giant Anomalocaris
-	- Ocean. Drops Shrimp, may drop Anomalous Wings (See Accessories Below).
-Giant Grasshopper
-	- Surface Day. Drops a Grasshopper.
+	- Ocean, drops Shrimp, rarely drops Anomalous Wings
 Giant Golden Grasshopper
-	- Surface Day. Drops a Golden Grasshopper.
+	- Surface Day, drops a Golden Grasshopper
+Giant Grasshopper
+	- Surface Day, drops a Grasshopper
 Horned Slime
-	- Hell.
+	- Underworld, no special drops
 Joyous Slime
-	- Surface Day. Harmless.
-Juggerllusc (Black)
-	- Ocean. Drops Purple Mucos.
-Juggerllusc (Blue)
-	- Ocean. Drops Purple Mucos.
-Juggerllusc (White)
-	- Ocean. Drops Purple Mucos.
+	- Surface Day, no special drops
+Juggerllusc
+	- Ocean, rarely drops Flippers or Diving Helmet
 Little Megalodon
-	- Ocean. Announces its spawn.
+	- Ocean, drops Small Megalodon Tooth
 Meatball
-	- Crimson.
+	- Crimson, drops Vertebrae
 Meatball's Eye
-	- Randomly spawns when Meatball is killed. Can be caught with a net.
+	- Meatball (rarely), capture with a net
 Mechanical Eye (Green)
-	- Surface Night, after The Twins are defeated.
+	- Surface Night (after The Twins), no special drops
 Mechanical Eye (Purple)
-	- Surface Night, after The Twins are defeated.
+	- Surface Night (after The Twins), no special drops
 Mechanical Eye (Red)
-	- Surface Night, after The Twins are defeated.
+	- Surface Night (after The Twins), no special drops
+Mechanical Eye (Laser, Green)
+	- Surface Night (after The Twins), no special drops
+Mechanical Eye (Laser, Purple)
+	- Surface Night (after The Twins), no special drops
+Mechanical Eye (Laser, Red)
+	- Surface Night (after The Twins), no special drops
 Megalodon
-	- Ocean. Announces its spawn.
+	- Ocean, drops Large Megalodon Tooth
 Megashark
-	- Ocean.
+	- Ocean, no special drops
 Ocean Slime
-	- Ocean.
+	- Ocean, no special drops
 Reaver Shark
-	- Ocean. May drop Reaver Shark.
+	- Ocean, rarely drops Reaver Shark
 Reaver Shark Pup
-	- Ocean. May drop Reaver Shark.
+	- Ocean, rarely drops Reaver Shark
 Sawtooth Shark
-	- Ocean. May drop Sawtooth Shark.
+	- Ocean, rarely drops Sawtooth Shark
 Sawtooth Shark Pup
-	- Ocean. May drop Sawtooth Shark.
+	- Ocean, rarely drops Sawtooth Shark
 Shark Head
-	- Ocean. Drops Shark Fin.
+	- Ocean, drops Shark Fin
 Sharkron Pup (Blue)
-	- Ocean after Duke Fishron is defeated.
+	- Ocean (after Duke Fishron), no special drops
 Sharkron Pup (Pink)
-	- Ocean after Duke Fishron is defeated.
+	- Ocean (after Duke Fishron), no special drops
 Slimefish
-	- Water near Town NPCs. Can be caught with a net.
+	- Town, can be caught with a net
 Spawn of Ocram
-	- Surface Night after Golem is defeated. Miniboss.
+	- Surface Night (after Golem), drops Emerald, Baby Ocram
 Sting Slime (Black)
-	- Desert. Drops Stinger.
+	- Desert, drops Stinger
 Sting Slime (Orange)
-	- Desert. Drops Stinger.
+	- Desert, drops Stinger
 Stone Soldier
-	- Cavern.
+	- Cavern, drops Stone Block
 Strange Slime (Purple Plant)
-	- Surface Day. Drops Strange Plant. 
+	- Surface Day, drops Strange Plant
 Strange Slime (Orange Plant)
-	- Surface Day. Drops Strange Plant. 
+	- Surface Day, drops Strange Plant
 Strange Slime (Green Plant)
-	- Surface Day. Drops Strange Plant. 
+	- Surface Day, drops Strange Plant
 Strange Slime (Green and Red Plant)
-	- Surface Day. Drops Strange Plant. 
+	- Surface Day, drops Strange Plant
+Toxikarp
+	- Corruption Water (Hardmode), drops Toxikarp
 Turtle Slime
-	- Surface Jungle Day.
+	- Jungle Day, no special drops
 Unfortunate Delver
-	- Marble. Harmless, drops Stone Blocks.
+	- Marble, drops Stone Blocks
 Walking Chest
-	- Underground. Drops Chest.
+	- Underground, drops Chest
 Walking Tombstone (Cross Grave Marker)
-	- Surface Night. Drops Cross Grave Marker.
+	- Surface Night, drops Cross Grave Marker
 Walking Tombstone (Golden Cross Grave Marker)
-	- Surface Night. Drops Golden Cross Grave Marker.
+	- Surface Night, drops Golden Cross Grave Marker
 Walking Tombstone (Golden Grave Marker)
-	- Surface Night. Drops Golden Grave Marker.
+	- Surface Night, drops Golden Grave Marker
 Walking Tombstone (Golden Gravestone)
-	- Surface Night. Drops Golden Gravestone.
+	- Surface Night, drops Golden Gravestone
 Walking Tombstone (Golden Headstone)
-	- Surface Night. Drops Golden Headstone.
+	- Surface Night, drops Golden Headstone
 Walking Tombstone (Golden Tombstone)
-	- Surface Night. Drops Golden Tombstone.
+	- Surface Night, drops Golden Tombstone
 Walking Tombstone (Grave Marker)
-	- Surface Night. Drops Grave Marker.
+	- Surface Night, drops Grave Marker
 Walking Tombstone (Gravestone)
-	- Surface Night. Drops Gravestone.
+	- Surface Night, drops Gravestone
 Walking Tombstone (Headstone)
-	- Surface Night. Drops Headstone.
+	- Surface Night, drops Headstone
 Walking Tombstone (Obelisk)
-	- Surface Night. Drops Obelisk.
+	- Surface Night, drops Obelisk
 Walking Tombstone (Tombstone)
-	- Surface Night. Drops Tombstone.
+	- Surface Night, drops Tombstone
 Wandering Eye (Green)
-	- Surface Night after Wall of Flesh is defeated.
+	- Surface Night (Hardmode), no special drops
 Wandering Eye (Purple)
-	- Surface Night after Wall of Flesh is defeated.
+	- Surface Night (Hardmode), no special drops
 Whale Shark
-	- Ocean. May drop Wooden Crate.
+	- Ocean, drops Wooden Crate
 Whale Shark Pup
-	- Ocean. May drop Wooden Crate.
+	- Ocean, drops Wooden Crate
 Young Harpy
-	- Sky. Can be caught with a net.
+	- Sky, catch with a net to obtain it as a pet
 Zombie Florist
-	- Underground Jungle. May drop Flower Boots.
+	- Underground Jungle, rarely drop Flower Boots
 
 ============
 PETS
-Total: 37
+Total: 40 (50*)
 ============
 Alien Hornet
+	- Resembles a smaller Alien Hornet that flies behind you
 	- Demon Altar, Nectar x1 + Vortex Fragment x10
 Baby Crimera
+	- Resembles a much cuter Crimera that wanders around
 	- Demon Altar, Vertebrae x30
 Baby Ichor Sticker
+	- Resembles a much cuter Ichor Sticker that floats around you
 	- Demon Altar, Ichor x30
 Baby Ocram
-	- Drop from Spawn of Ocram.
+	- Resembles a much cuter Ocram that flies around you
+	- Drop from Spawn of Ocram
 Brain of Confusion
+	- The same effect that appears when the accessory is activated, but as a pet
 	- Demon Altar, Brain of Confusion x1
 Chunky and Meatball
+	- Two brothers, reunited
 	- Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
 Cursed Skull
+	- The same enemy from the Dungeon, now following you indefinitely
 	- Demon Altar, Bone x10
 Cute Gastropod
-	- Caught with a net.
-Cute Slime (Black)
-	- Caught with a net.
-Cute Slime (Blue)
-	- Caught with a net.
-Cute Slime (Green)
-	- Caught with a net.
-Cute Slime (Pink)
-	- Caught with a net.
-Cute Slime (Purple)
-	- Caught with a net.
-Cute Slime (Rainbow)
-	- Caught with a net.
-Cute Slime (Red)
-	- Caught with a net.
-Cute Slime (Yellow)
-	- Caught with a net.
-Cute Slime (Christmas)
-	- Caught with a net.
+	- A cute slime girl riding in a Gastropod's shell
+	- Caught with a net
+Cute Slime (Black)*
+	- A tough black slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Blue)*
+	- An inquisitive blue slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Green)*
+	- A calm green slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Pink)*
+	- A diminutive pink slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Purple)*
+	- A tall and giddy purple slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Rainbow)*
+	- A huge colorful slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Red)*
+	- A sporty red slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Yellow)*
+	- A bright yellow slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
+Cute Slime (Christmas)*
+	- A naughty (or nice?) seasonal slime girl
+	- Caught with a net
+	- Appearance can be altered at a Solidifier
 Demon Heart
+	- A spooky demon heart that floats beside you
 	- Demon Altar, Demon Heart x1
 Detached Hungry
-	- Demon Altar, Hellstone Ore x10 + Rotten Chunk x10
+	- This Hungry is your friend, and will not try to eat you
+	- Demon Altar, Underworldstone Ore x10 + Rotten Chunk x10
 Docile Demon Eye (Green)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Demon Eye (Purple)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Demon Eye (Red)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Fractured Eye (Green)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Fractured Eye (Purple)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Fractured Eye (Red)
+	- A docile demon eye with a more domesticated look
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Laser Eye (Green)
+	- A docile demon eye with a more domesticated look
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Laser Eye (Purple)
+	- A docile demon eye with a more domesticated look
+	- Demon Altar, Black Lens x1 + Lens x2
+Docile Laser Eye (Red)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Mechanical Eye (Green)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Mechanical Eye (Purple)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Docile Mechanical Eye (Red)
+	- A docile demon eye with a more domesticated look
 	- Demon Altar, Black Lens x1 + Lens x2
 Enchanted Sword
+	- The sword in the stone now floats above your head
 	- Demon Altar, Enchanted Sword x1
 Lifelike Mechanical Frog
+	- A cute little frog...or is it?
 	- Anvil, Frog x1
 Mini Megalodon
-	- Drop from Little Megalodon.
+	- A spunky purple shark that likes to assert itself at your side
+	- Drop from Little Megalodon
 Origami Crane
-	- Drop from Foldfish.
+	- A living origami crane that flies with you
+	- Drop from Foldfish
 Small Megalodon
-	- Drop from Megalodon.
+	- A purple shark that follows you, waiting for you to drop your guard...
+	- Drop from Megalodon
 Tortured Soul
+	- The soul of the Tax Collector
 	- Demon Altar, Classy Cane x1
 Vampire Bat
+	- A vampire that likes to follow you around
 	- Demon Altar, Bat wing x2 + Soul of Night x10
 Young Harpy
-	- Caught with a net.
+	- A playful little bird that wants to go on an adventure
+	- Caught with a net
 Wyverntail
+	- A young Wyvern that has taken flight at your side for the first time
 	- Workbench, Wyverntail x1
 
 ============
@@ -275,63 +334,63 @@ VANITY ARMOR
 Total: 1
 ============
 Origami Hat
-	- Drop from Foldfish.
+	- Drop from Foldfish
 
 ============
 ACCESSORIES
 Total: 17
 ============
 Anomalous Wings
-	- Drops from Giant Anomalocaris.
-	- Allows slowfall, and allows quick travel in water.
+	- drops from Giant Anomalocaris.
+	- Allows slowfall, and allows quick travel in water
 Bipolar Candle in a Balloon
 	- Tinkerer's Workbench with Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
-	- It does exactly what you'd expect it to, except it doesn't.
+	- It does exactly what you'd expect it to, except it doesn't
 Bottled Dreams
 	- Tinkerer's Workbench with Bottle x1 + Pixie Dust x10
-	- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump.
+	- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump
 Everburning Candle
 	- Tinkerer's Workbench with Magma Stone x1 + Soul of Light x50
-	- Like the Magma Stone, but from every source of player damage, including summons.
+	- Like the Magma Stone, but from every source of player damage, including summons
 Everburning Cursed Candle
 	- Tinkerer's Workbench with Magma Stone x1 + Cursed Flame x50
-	- Like the Everburning Candle, but causes the Cursed Flames debuff.
+	- Like the Everburning Candle, but causes the Cursed Flames debuff
 Everburning Shadow Candle
 	- Tinkerer's Workbench with Magma Stone x1 + Soul of Night x50
-	- Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles.
+	- Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles
 Everfrozen Candle
 	- Tinkerer's Workbench with Magma Stone x1 + Ice Block x50
-	- Like the Everburning Candle, but causes the Frostburn debuff.
+	- Like the Everburning Candle, but causes the Frostburn debuff
 Festive Mirror
 	- Tinkerer's Workbench with Hand Warmers x1 + Pocket Mirror x1
-	- Provides immunity to the Chilled, Frozen, and Stoned debuffs.
+	- Provides immunity to the Chilled, Frozen, and Stoned debuffs
 Loot Magnet
 	- Tinkerer's Workbench with Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
-	- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies.
+	- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies
 Massive Bundle of Balloons
 	- Tinkerer's Workbench with Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
-	- Gives you six extra jumps, negates fall damage, and increases jump height.
+	- Gives you six extra jumps, negates fall damage, and increases jump height
 Peace Candle in a Balloon
 	- Tinkerer's Workbench with Peace Candle x1 + Shiny Red Balloon x1
-	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark.
+	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark
 Slippery Soles
 	- Tinkerer's Workbench with Frozen Slime Block x2 + Leather x2
-	- You move on any block as if it was a Frozen Slime Block. Watch your speed!
+	- You move on any block as if it was a Frozen Slime Block
 Soles of Fire and Ice
 	- Tinkerer's Workbench with Lava Waders x1, Ice Skates x1
-	- Allows you to walk on water, lava, and thin ice.
+	- Allows you to walk on water, lava, and thin ice
 Star in a Balloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Star in a Bottle x1
-	- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs.
+	- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs
 Star Wisp Balloon
 	- Tinkerer's Workbench with Star in a Balloon + Wisp in a Balloon
-	- Increases Mana Regeneration, Jump Height, and glows in the dark.
+	- Increases Mana Regeneration, Jump Height, and glows in the dark
 Water Candle in a Balloon
 	- Tinkerer's Workbench with Water Candle x1 + Shiny Red Balloon x1
-	- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark.
+	- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark
 Wisp in a Balloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Wisp in a Bottle x1
-	- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle.	
+	- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle
 
 ============
 VANITY ACCESSORIES
@@ -371,36 +430,37 @@ WEAPONS
 ============
 Breath of Spazmatism
 	- Hardmode Anvil, Flamethrower x1 + Hallowed Bar x5 + Soul of Sight x5
-	- Cursed Flames ranged weapon.
-	- Balanced for post-mech content.
+	- Cursed Flames ranged weapon
+	- Balanced for post-mech content
 Sight of Retinazer
 	- Hardmode Anvil, Laser Rifle x1 + Hallowed Bar x5 + Soul of Sight x5
-	- Magic weapon with no mana cost.
-	- Balanced for post-mech content.
+	- Magic weapon with no mana cost
+	- Balanced for post-mech content
 Tome of Shadowflame Skulls
 	- Crystal Ball, Book of Skulls x1 + Soul of Fright x10
-	- Shadowflame magic weapon.
-	- Balanced for post-mech content.
+	- Shadowflame magic weapon
+	- Balanced for post-mech content
 		
 ============
 MATERIALS:
 ============
 Chunky's Eye
-	- Capture Chunky's Eye.
+	- Capture Chunky's Eye with a net
 Meatball's Eye
-	- Capture Meatball's Eye.
+	- Capture Meatball's Eye with a net
 
 ============	
 OTHER
 ============
 Infinity Rocket
 	- Crystal Ball, Rocket I x3996
-	- Infinite rocket ammunition.
+	- Infinite rocket ammunition
 Origami Manual
-	- 
+	- Drops from Animated Tome
+	- Summons the Foldfish boss
 Star Forge
 	- Crystal Ball, Fallen Star x3996
-	- Infinte Fallen Star ammunition.
+	- Infinte Fallen Star ammunition
 
 ============
 Bugs and Issues
@@ -408,86 +468,57 @@ Bugs and Issues
 	- Nothing...yet?
 
 ============
-Planned Content...hopefully
+Planned Content
 ============
 Enemies;
-More enemies.
+	- More enemies
 
 Pets;
-More pets.
+	- More pets
 
 Accessories:
-More accessories.
+	- More accessories
 	
 Other;
-More things.
+	- More things
 
 ============
 Changelog
 ============
-December 02, 2018
-NEWS:
-	- Teamed up with the dev of ItemMagnetPlus!
-		- All the new coding is thanks to him!
-	- Due to changes in code, all previously obtained items are now obsolete.
-		- You'll need to reobtain all the stuff you previously found. 
-		- This is for a better future.
-	- Due to changes in code, the current version 1.1 will be the last update.
-		- You will need to download a newer mod with the same name in the future.
-		- You can stay on version 1.1, but I greatly suggest downloading the future update as well.
-		- This change is to help my coder do things easier on his end. My coding was...atrocious.
-	- Major changes to various things!
-		- I probably missed something, but know that there's a lot of changes for the better!
+??? ??, 201?
+FIXES
+	- Fixed Stone Soldier's hitbox.
+	- Lots of code cleanup.
+		- This won't affect you. It's just making the files better.
+	
+CHANGES
+	- Juggerllusc stats adjusted
+	- Juggerlusc now drops Flippers or Diving Helmet, and no longer drops Purple Mucos
+	- Stone Soldier spawns with colored eyes, and now drops a gem that matches their eye color
+		- Does not include Amber
 
-ADDITIONS:
-	- Foldfish boss implemented!
-		- Spawned by using an Origami Manual, dropped uncommonly by Animated Tome.
-		- Drops two vanity items; Origami Hat and Origami Crane.
-		- It's a joke boss based on a typo during discussions while working on coding.
-	- Breath of Spazmatism implemented!
-	- Sight of Retinazer implemented!
-	- Chunky's Eye, an NPC that spawns from Chunky when it is defeated! Catch it with a net!
-	- Meatball's Eye, an NPC that spawns from Meatball when it is defeated! Catch it with a net!
-	- Cute Christmas Slime, a seasonal Cute Slime with a ribbon with a matching pet! Catch it with a net!
-	- Cute Gastropod, a harmless new addition to the Hallow with a matching pet! Catch it with a net!
-	- Young Harpy, a harmless new addition to the Sky with a matching pet! Catch it with a net!
-	- Megalodon pets! Defeat each Megalodon for a pet!
-
-CHANGES:
-	- Animated Tome overhauled
-		- Spawn rate fixed, only two Tome NPCs now
-		- One tome changes color every time it spawns, rather than a bunch of recolored NPCs
-		- Both tomes give off sparkles as they fly
-			- Animated Tome has cloudy blue sparkles
-			- Animated Spell Tome has more subdued golden sparkles
-	- Bass and Cloudfish now attempt to flee when you enter the water
-	- Walking Chest and Walking Tombstones actually walk at night now.
-	- All variants of Demon Eye are now affected by the Demon Eye Banner
-	- Mini Ocram overhauled.
-		- Announces when it spawns
-		- Now fires Demon Scythes, and attacks through walls
-		- Has an after image effect
-	- Deep Salamander now attacks faster
-	- Little Megalodon overhauled
-		- Announces when it spawns
-		- Stats redone to not be so unreasonable
-		- Hitbox reduced as to not telepathically kill you
-		- Now drops a Small Megalodon Tooth, which summons a cute little shark that follows you
-	- Megalodon overhauled
-		- Announces when it spawns
-		- Stats redone to not be so unreasonable
-		- Moves Slower than other sharks
-		- Hitbox reduced as to not telepathically kill you
-		- Now drops a Large Megalodon Tooth, which summons a cute "tiny" Megalodon that follows you
-	- Everburning Candle accessories now show dust when used with many weapons
-		- There are some weapons that don't show dust, but the debuffs will still be applied normally
-		- Vanilla examples include Minishark, Chlorophyte Shotbow, and Vampire Knives
-	- Breath of Spazmatism finally working
-		- Fires MUCH faster than a regular flamethrower
-		- 33% chance to not consume ammo. You'll run out very fast otherwise
-		- Uses Gel as ammo
-	- Infinity Rocket doesn't always destroy tiles when used
-		- Snowman Cannon is an exception, as it destroys blocks by default
-	- Major code cleanup
-		- I got slapped on the wrist for my poor naming convention
-	- Fixed some typos
+ADDITONS
+	- Bladetongue, a new fish(?) that drops the Bladetongue weapon
+	- Crystal Serpent, a new fish that drops Crystal the Serpent weapon
+	- Mechanical Laser Eye, a new Demon Eye that starts spawning after the Twins are defeated
+		- They shoot lasers
+	- Toxikarp, a new fish that drops the Toxikarp weapon
+	- Pocket Sand, a new self-defense tool!
+		- Throw a clump of sand at an enemy to confuse them temporarily
+		- Crafted anywhere with a single sand block
+		- Reminder; not every enemy is affected by the Confuse debuff
+	- Docile Laser Eye, pet versions of the Mechanical Laser Eye enemies
+	
+CUTE SLIMES
+	- Yes, they got enough changes to warrant their own changelog section
+	- Cute Slime spawn rate halved
+	- Cute Slime sprites updated
+		- Old sprites will not be seen in the wild anymore
+		- Capturing the new appearance gives you a new version of the pet
+		- You can swap their appearances between old and new sprites at a Solidifier if you prefer the old looks
+		- Bottled Slime items now reflect the color of the Cute Slime, and mention if they are the old appearance
+	- Fixed a texture issue with Cute Rainbow Slime.
+	- Cute Slimes can be "equipped" with visible accessories! 
+		- Right click your Cute Slime while holding an accessory for it to show up on them
+		- Hold Right click to make them take off their accessories
+		- This is not a complete feature just yet, but it is included anyway for players to try out
