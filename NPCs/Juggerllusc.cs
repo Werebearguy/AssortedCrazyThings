@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.NPCs
 {
     public class Juggerllusc : ModNPC
     {
-        int index = 0;
+        private int index = 0;
 
         public override void SetStaticDefaults()
         {

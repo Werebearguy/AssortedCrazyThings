@@ -78,7 +78,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else //flying
             {
-               frame2Counter++;
+                if (projectile.velocity.X <= 0) projectile.direction = -1;
+                else projectile.direction = 1;
+                frame2Counter++;
                 if (frame2Counter > 4)
                 {
                    frame2++;
@@ -86,7 +88,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 if (frame2 < 8 ||frame2 > 11)
                 {
-                   frame2 = 10;
+                   frame2 = 8;
                 }
                 projectile.rotation = projectile.velocity.X * 0.01f;
             }
@@ -94,7 +96,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            GetFrame();
+            if(Main.hasFocus) GetFrame();
             
             lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
             SpriteEffects effects = SpriteEffects.None;
