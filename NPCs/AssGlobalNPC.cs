@@ -22,6 +22,17 @@ namespace AssortedCrazyThings.NPCs
             shouldSoulDrop = false;
         }
 
+        public override void NPCLoot(NPC npc)
+        {
+            if(npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
+            {
+                if (Main.rand.NextBool(99))
+                {
+                    Item.NewItem(npc.getRect(), mod.ItemType("GobletItem"));
+                }
+            }
+        }
+
         public override void HitEffect(NPC npc, int hitDirection, double damage)
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
