@@ -90,7 +90,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 projectile.rotation = projectile.velocity.X * 0.01f;
             }
-            Main.NewText(frame2);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
