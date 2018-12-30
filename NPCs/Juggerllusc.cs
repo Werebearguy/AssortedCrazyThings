@@ -1,18 +1,18 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class JuggerlluscBlack : ModNPC
+    public class Juggerllusc : ModNPC
     {
-        public static string name = "Juggerllusc";
-
-        public static string message = "A large snail is approaching!";
+        int index = 0;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(name);
+            DisplayName.SetDefault("Juggerllusc");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.SeaSnail];
         }
 
@@ -42,13 +42,6 @@ namespace AssortedCrazyThings.NPCs
             return NPC.downedBoss1 ? SpawnCondition.Ocean.Chance * 0.005f : 0f;
         }
 
-        // Whether or not to run the code for checking whether this NPC will remain active.
-        //Return false to stop this NPC from being despawned and to stop this NPC from
-        //counting towards the limit for how many NPCs can exist near a player. Returns true by default.
-        //public override bool CheckActive()
-        //{
-        //    return false;
-        //}
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.PurpleMucos);
@@ -62,11 +55,23 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            index = npc.whoAmI % 3; //needs to be fixed per NPC instance
+            Texture2D texture = mod.GetTexture("NPCs/Juggerllusc_" + index);
+            Vector2 stupidOffset = new Vector2(0f, 6f);
+            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            return false;
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_megasnail_01"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_megasnail_" + index), 1f);
             }
         }
     }
