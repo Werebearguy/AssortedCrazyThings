@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             animationType = -1;// NPCID.ToxicSludge;
             npc.color = new Color(0, 0, 0, 50);
             Main.npcCatchable[mod.NPCType(name)] = true;
-            npc.catchItem = (short)ItemID.SandBlock;
+            npc.catchItem = (short)mod.ItemType("CaughtSoul");
             npc.timeLeft = NPC.activeTime * 5;
         }
 
