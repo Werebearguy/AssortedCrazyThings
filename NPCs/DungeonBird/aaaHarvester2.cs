@@ -281,9 +281,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
 
+            if (AI_State == State_Stop && stopTime == eatTime)
+            {
+                texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester2_" + "souleat");
+                //drawColor = npc.GetAlpha(Color.White) * ((stopTime - AI_X_Timer) / (float)stopTime);
+                drawColor = Color.White;
+                spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            }
+
             //Spawn light, add dust
-            Lighting.AddLight(npc.Center, new Vector3(0.15f, 0.15f, 0.35f) * (soulsEaten / (float)maxSoulsEaten));
-            if (AI_State != State_Stop && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / (float)maxSoulsEaten))
+            Lighting.AddLight(npc.Center, new Vector3(0.25f, 0.25f, 0.5f) * (soulsEaten / (float)maxSoulsEaten));
+            if (AI_State != State_Stop && AI_State != State_Transform && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / (float)maxSoulsEaten))
             {
                 // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
                 Vector2 position = npc.position;
@@ -301,8 +309,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     position += new Vector2(npc.width / 2, -npc.height / 4);
                 }
     
-                Dust dust = Dust.NewDustPerfect(position, 59, new Vector2(Main.rand.NextFloat(-0.5f, 0.5f) + npc.velocity.X, Main.rand.NextFloat(-0.8f, -0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(0.8f, 1.2f));
+                Dust dust = Dust.NewDustPerfect(position, 59, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(0.9f, 1.5f));
                 dust.noLight = true;
+                dust.noGravity = true;
                 dust.fadeIn = Main.rand.NextFloat(0f, 1f);
             }
 

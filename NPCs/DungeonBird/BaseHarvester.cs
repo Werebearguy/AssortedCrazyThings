@@ -1071,6 +1071,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         AI_Init = 0; //reinitialize
                         npc.HealEffect(++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
 
+                        //poof visual
+                        for (int i = 0; i < 20; i++)
+                        {
+                            Dust dust = Dust.NewDustPerfect(npc.BottomLeft + new Vector2(npc.width / 2, -npc.height / 4), 59, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.5f, 1f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1.5f, 2.4f));
+                            dust.noLight = true;
+                            dust.noGravity = true;
+                            dust.fadeIn = Main.rand.NextFloat(0f, 0.5f);
+                        }
+
                         if (soulsEaten >= maxSoulsEaten)
                         {
                             Print("souls eaten max reached");

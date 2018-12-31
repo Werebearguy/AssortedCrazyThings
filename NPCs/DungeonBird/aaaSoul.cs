@@ -236,6 +236,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
 
             Vector2 stupidOffset = new Vector2(wid/2, (hei - 10f)+ sinY);
+
+            if (AI_State == 1)
+            {
+                if ((npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f) && npc.velocity.X == 0)
+                {
+                    return; //dont draw
+                }
+            }
             spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
         }
 
