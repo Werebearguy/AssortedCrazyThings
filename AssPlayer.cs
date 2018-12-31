@@ -20,10 +20,18 @@ namespace AssortedCrazyThings
         public bool everburningShadowflameCandleBuff;
         //public bool variable_debuff_07;
 
-        public bool teleportHomeWhenLow = false;
-        public bool canTeleportHomeWhenLow = false;
-        private const short TeleportHomeWhenLowTimerMax = 140; //1200 //20 ingame minutes
-        public short teleportHomeWhenLowTimer = 0; //gets saved when you relog so you cant cheese it
+        public bool teleportHome = false;
+        public bool canTeleportHome = false;
+        private const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
+        public short teleportHomeTimer = 0; //gets saved when you relog so you cant cheese it
+
+        //TECHNICALLY NOT DEFENCE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
+        public bool getDefense = false;
+        public bool canGetDefense = false;
+        private const short GetDefenseTimerMax = 1200; //in seconds //20 ingame minutes
+        private const short GetDefenseDurationMax = 360; //in ticks //5 ingame seconds
+        public short getDefenseDuration = 0;
+        public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it
 
         public uint slotsPlayer = 0;
         public uint slotsPlayerLast = 0;
@@ -39,7 +47,8 @@ namespace AssortedCrazyThings
             //variable_debuff_05 = false;
             everburningShadowflameCandleBuff = false;
             //variable_debuff_07 = false;
-            teleportHomeWhenLow = false;
+            teleportHome = false;
+            getDefense = false;
         }
 
         public void SendSlotData()
@@ -59,7 +68,8 @@ namespace AssortedCrazyThings
         {
             return new TagCompound {
                 {"slotsPlayer", (int)slotsPlayer},
-                {"teleportHomeWhenLowTimer", (int)teleportHomeWhenLowTimer},
+                {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
+                {"getDefenseTimer", (int)getDefenseTimer},
             };
         }
 
@@ -68,12 +78,15 @@ namespace AssortedCrazyThings
         {
             int loadVersion = reader.ReadInt32();
             slotsPlayer = (uint)reader.ReadInt32();
+            teleportHomeTimer = (short)reader.ReadInt32();
+            getDefenseTimer = (short)reader.ReadInt32();
         }
 
         public override void Load(TagCompound tag)
         {
             slotsPlayer = (uint)tag.GetInt("slotsPlayer");
-            teleportHomeWhenLowTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
+            teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
+            getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
         }
 
         public bool ThreeTimesUseTime(double currentTime)
@@ -171,20 +184,14 @@ namespace AssortedCrazyThings
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (teleportHomeWhenLow)
+            if (teleportHome)
             {
-                if (canTeleportHomeWhenLow)
+                if (canTeleportHome)
                 {
-                    //player.immuneTime = 120; //2 seconds immune time
-
-                    //actually do something
-                    //player.Teleport(new Vector2(player.SpawnX, player.SpawnY), Style: 0);
-
                     //this part here is from vanilla magic mirror code
                     int num3;
                     for (int num326 = 0; num326 < 70; num326 = num3 + 1)
                     {
-                        //Dust.NewDust(base.position, width, height, 15, base.velocity.X * 0.5f, base.velocity.Y * 0.5f, 150, default(Color), 1.5f);
                         num3 = num326;
                     }
                     player.grappling[0] = -1;
@@ -205,24 +212,65 @@ namespace AssortedCrazyThings
                     }
                     //end
 
-                    player.statLife += 50;
-                    player.HealEffect(50, broadcast: true);
+                    player.statLife += (int)damage;
+                    player.HealEffect(50, broadcast: false);
 
-                    teleportHomeWhenLowTimer = TeleportHomeWhenLowTimerMax;
+                    teleportHomeTimer = TeleportHomeTimerMax;
                     return false;
                 }
             }
+
+            if (getDefense)
+            {
+                if (canGetDefense)
+                {
+                    player.statLife += (int)damage;
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
+
+                    getDefenseTimer = GetDefenseTimerMax;
+                    getDefenseDuration = GetDefenseDurationMax;
+                    return false;
+                }
+            }
+
+
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+        }
+
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (getDefenseDuration != 0)
+            {
+                damage = 1;
+            }
+
+            return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
         private void UpdateTeleportHomeWhenLow()
         {
             //this code runs even when the accessory is not equipped
-            canTeleportHomeWhenLow = teleportHomeWhenLowTimer <= 0;
+            canTeleportHome = teleportHomeTimer <= 0;
 
-            if (!canTeleportHomeWhenLow && Main.time % 60 == 59)
+            if (!canTeleportHome && Main.time % 60 == 59)
             {
-                teleportHomeWhenLowTimer--;
+                teleportHomeTimer--;
+            }
+        }
+
+        private void UpdateGetDefenseWhenLow()
+        {
+            //this code runs even when the accessory is not equipped
+            canGetDefense = getDefenseTimer <= 0;
+
+            if (!canGetDefense && Main.time % 60 == 59)
+            {
+                getDefenseTimer--;
+            }
+
+            if (getDefenseDuration != 0)
+            {
+                getDefenseDuration--;
             }
         }
 
@@ -231,6 +279,8 @@ namespace AssortedCrazyThings
             SpawnSoulsWhenHarvesterIsAlive();
 
             UpdateTeleportHomeWhenLow();
+
+            UpdateGetDefenseWhenLow();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("aaaGetDefense"); //todo proper name
-            Tooltip.SetDefault("You get very high defense when health is dangerously low");
+            Tooltip.SetDefault("Grants very high defense when health is dangerously low");
         }
 
         public override void SetDefaults()
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
-            if (mPlayer.canTeleportHomeWhenLow)
+            if (mPlayer.canGetDefense)
             {
                 //the first string is irrelevant, its never used anywhere, basically just a name for that line
                 tooltips.Add(new TooltipLine(mod, "CanUse", "Ready to use"));
@@ -55,7 +55,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
                 else
                 {
-                    if (mPlayer.teleportHomeWhenLowTimer > 1) //more than 1 second
+                    if (mPlayer.getDefenseTimer > 1) //more than 1 second
                     {
                         timeName = " seconds";
                     }
@@ -70,11 +70,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AssPlayer>().getDefenseWhenLow = true;
+            player.GetModPlayer<AssPlayer>().getDefense = true;
         }
 
         //TODO recipe
         //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here:
-        // private const short TeleportHomeWhenLowTimerMax = 1200; == 20 minutes
+        // private const short GetDefenseTimerTimerMax = 1200; == 20 minutes
     }
 }
