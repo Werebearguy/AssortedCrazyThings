@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
                 {
-                    if (/*mPlayer.slotsPlayer != 0 &&*/ mPlayer.CanResetSlots(Main.time)) //true after three right clicks in 60 ticks
+                    if (/*mPlayer.slotsPlayer != 0 &&*/ mPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
                     {
                         shouldReset = true;
                     }
