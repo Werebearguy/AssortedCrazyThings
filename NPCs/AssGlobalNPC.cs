@@ -44,9 +44,9 @@ namespace AssortedCrazyThings.NPCs
                         int soulType = mod.NPCType(aaaSoul.name);
 
                         //NewNPC starts looking for the first !active from 0 to 200
-                        int soulID = NPC.NewNPC((int)npc.Center.X - aaaSoul.wid, (int)npc.Center.Y - aaaSoul.hei, soulType);
+                        int soulID = NPC.NewNPC((int)npc.Center.X + aaaSoul.wid, (int)npc.Center.Y + aaaSoul.hei, soulType); //Spawn coords are actually the tile where its supposed to spawn on
                         Main.npc[soulID].timeLeft = 5000; //change later
-                        if (Main.netMode == NetmodeID.Server && soulID < 200)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(23, -1, -1, null, soulID);
                         }

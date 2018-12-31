@@ -391,7 +391,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                             Main.npc[num258].velocity.Y = (float)Main.rand.Next(-30, 1) * 0.1f;
                             Main.npc[num258].ai[0] = (float)(-1000 * Main.rand.Next(3));
                             Main.npc[num258].ai[1] = 0f;
-                            if (Main.netMode == 2 && num258 < 200)
+                            if (Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendData(23, -1, -1, null, num258);
                             }

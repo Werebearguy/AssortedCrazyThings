@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.width = wid; //42 //16
             npc.height = hei; //52 //24
             npc.npcSlots = 0.25f; //takes 1/4 npc slots out of 200 when alive
-            npc.dontTakeDamageFromHostiles = true;
+            npc.dontTakeDamage = true;
             npc.friendly = true;
             npc.noGravity = true;
             npc.damage = 0;
