@@ -6,6 +6,7 @@ using AssortedCrazyThings.NPCs.DungeonBird;
 using Terraria.ModLoader.IO;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace AssortedCrazyThings
 {
@@ -18,6 +19,11 @@ namespace AssortedCrazyThings
         //public bool variable_debuff_05;
         public bool everburningShadowflameCandleBuff;
         //public bool variable_debuff_07;
+
+        public bool teleportHomeWhenLow = false;
+        public bool canTeleportHomeWhenLow = false;
+        private const short TeleportHomeWhenLowTimerMax = 140; //1200 //20 ingame minutes
+        public short teleportHomeWhenLowTimer = 0; //gets saved when you relog so you cant cheese it
 
         public uint slotsPlayer = 0;
         public uint slotsPlayerLast = 0;
@@ -33,6 +39,7 @@ namespace AssortedCrazyThings
             //variable_debuff_05 = false;
             everburningShadowflameCandleBuff = false;
             //variable_debuff_07 = false;
+            teleportHomeWhenLow = false;
         }
 
         public void SendSlotData()
@@ -52,6 +59,7 @@ namespace AssortedCrazyThings
         {
             return new TagCompound {
                 {"slotsPlayer", (int)slotsPlayer},
+                {"teleportHomeWhenLowTimer", (int)teleportHomeWhenLowTimer},
             };
         }
 
@@ -65,9 +73,10 @@ namespace AssortedCrazyThings
         public override void Load(TagCompound tag)
         {
             slotsPlayer = (uint)tag.GetInt("slotsPlayer");
+            teleportHomeWhenLowTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
         }
 
-        public bool CanResetSlots(double currentTime)
+        public bool ThreeTimesUseTime(double currentTime)
         {
             if (Math.Abs(lastTime - currentTime) > 35.0) //(usetime + 1) x 3 + 1
             {
@@ -160,9 +169,68 @@ namespace AssortedCrazyThings
             }
         }
 
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (teleportHomeWhenLow)
+            {
+                if (canTeleportHomeWhenLow)
+                {
+                    //player.immuneTime = 120; //2 seconds immune time
+
+                    //actually do something
+                    //player.Teleport(new Vector2(player.SpawnX, player.SpawnY), Style: 0);
+
+                    //this part here is from vanilla magic mirror code
+                    int num3;
+                    for (int num326 = 0; num326 < 70; num326 = num3 + 1)
+                    {
+                        //Dust.NewDust(base.position, width, height, 15, base.velocity.X * 0.5f, base.velocity.Y * 0.5f, 150, default(Color), 1.5f);
+                        num3 = num326;
+                    }
+                    player.grappling[0] = -1;
+                    player.grapCount = 0;
+                    for (int num327 = 0; num327 < 1000; num327 = num3 + 1)
+                    {
+                        if (Main.projectile[num327].active && Main.projectile[num327].owner == player.whoAmI && Main.projectile[num327].aiStyle == 7)
+                        {
+                            Main.projectile[num327].Kill();
+                        }
+                        num3 = num327;
+                    }
+                    player.Spawn();
+                    for (int num328 = 0; num328 < 70; num328 = num3 + 1)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
+                        num3 = (int)(num328 * 1.5f);
+                    }
+                    //end
+
+                    player.statLife += 50;
+                    player.HealEffect(50, broadcast: true);
+
+                    teleportHomeWhenLowTimer = TeleportHomeWhenLowTimerMax;
+                    return false;
+                }
+            }
+            return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+        }
+
+        private void UpdateTeleportHomeWhenLow()
+        {
+            //this code runs even when the accessory is not equipped
+            canTeleportHomeWhenLow = teleportHomeWhenLowTimer <= 0;
+
+            if (!canTeleportHomeWhenLow && Main.time % 60 == 59)
+            {
+                teleportHomeWhenLowTimer--;
+            }
+        }
+
         public override void PreUpdate()
         {
             SpawnSoulsWhenHarvesterIsAlive();
+
+            UpdateTeleportHomeWhenLow();
         }
     }
 }
