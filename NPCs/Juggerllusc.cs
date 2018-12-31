@@ -9,6 +9,13 @@ namespace AssortedCrazyThings.NPCs
     public class Juggerllusc : ModNPC
     {
         private int index = 0;
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/NPCs/Juggerllusc_0"; //use fixed texture
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -57,14 +64,19 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            index = npc.whoAmI % 3; //needs to be fixed per NPC instance
-            Texture2D texture = mod.GetTexture("NPCs/Juggerllusc_" + index);
-            Vector2 stupidOffset = new Vector2(0f, 6f);
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
-            return false;
+            //slightly different approach than in AnimatedTome
+            index = npc.whoAmI % 3;
+            if (index != 0)
+            {
+                Texture2D texture = mod.GetTexture("NPCs/Juggerllusc_" + index);
+                Vector2 stupidOffset = new Vector2(0f, 6f);
+                SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+                Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+                spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                return false;
+            }
+            return true;
         }
 
         public override void HitEffect(int hitDirection, double damage)

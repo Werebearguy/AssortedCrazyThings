@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void GetFrame()
         {
-            if (projectile.ai[0] == 0)
+            if (projectile.ai[0] == 0) //not flying
             {
                 if (projectile.velocity.Y == 0f)
                 {
@@ -81,6 +81,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 if (projectile.velocity.X <= 0) projectile.direction = -1;
                 else projectile.direction = 1;
                 frame2Counter++;
+                if (projectile.velocity.Length() > 3.6f) projectile.velocity *= 0.97f;
                 if (frame2Counter > 4)
                 {
                    frame2++;
