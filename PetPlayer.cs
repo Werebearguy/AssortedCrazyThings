@@ -55,6 +55,7 @@ namespace AssortedCrazyThings
 		public bool TorturedSoul = false;
 		public bool EnchantedSword = false;
         public bool GobletPet = false;
+        public bool SoulLightPet = false;
 
         public override void ResetEffects()
 		{
@@ -109,6 +110,7 @@ namespace AssortedCrazyThings
 			TorturedSoul = false;
 			EnchantedSword = false;
             GobletPet = false;
+            SoulLightPet = false;
         }	
 	}
 }
