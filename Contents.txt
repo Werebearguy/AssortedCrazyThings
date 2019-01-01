@@ -1,14 +1,17 @@
 ============
 BOSSES
-Total: 1
 ============
 Foldfish
 	- A giant origami fish that spawns when you use the Origami Manual, rarely dropped by Animated Tome. The boss fight is similar to the King Slime fight, but the boss will spawn harmless Foldfish Babies when harmed, rather than actually helpful minions. 
 	- Drops: Origami Hat, Origami Crane
+Harvester (Need new name)
+	- A skeletal bird that roams the Dungeon after Skeletron has been defeated. In its presence, the denizens of the Dungeon will spawn fragments of their souls upon death, and the Harvester will walk around and eat these fragments. As it consumes more souls, it grows into a more ferocious beast. Should it eat too many souls in your presence, it will seek your soul as its next appetizer.
+	- You can capture the souls before the Harvester can consume them by swinging a net at them. The Harvester will not like this, and will attempt to deter you when nearby by throwing bones at you.
+	- Upon eating enough souls, it will transform into a large beast coated in a moss-like skin. In this stage, it will be hostile to the player and attempt to ram the player with extending talons.
+	- Drops: ???
 
 ============
 ENEMIES
-Total: 92
 ============
 Animated Spell Tome
 	- Dungeon drops Spell Tome
@@ -199,7 +202,6 @@ Zombie Florist
 
 ============
 PETS
-Total: 41 (51*)
 ============
 Alien Hornet
 	- Resembles a smaller Alien Hornet that flies behind you
@@ -336,14 +338,12 @@ Wyverntail
 
 ============
 VANITY ARMOR
-Total: 1
 ============
 Origami Hat
 	- Drop from Foldfish
 
 ============
 ACCESSORIES
-Total: 17
 ============
 Anomalous Wings
 	- drops from Giant Anomalocaris.
@@ -399,7 +399,6 @@ Wisp in a Balloon
 
 ============
 VANITY ACCESSORIES
-Total: 14
 ============
 Retinazer Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
@@ -427,6 +426,8 @@ Red Metal Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
 Red Metal Toothy Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+Soul Compnion
+	- Anywhere with Captured Soul x1
 Spazmatism Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
 
@@ -437,6 +438,10 @@ Breath of Spazmatism
 	- Hardmode Anvil, Flamethrower x1 + Hallowed Bar x5 + Soul of Sight x5
 	- Cursed Flames ranged weapon
 	- Balanced for post-mech content
+Pocket Sand
+	- Anywhere, Sand Block x1
+	- Creates ten per craft
+	- Throwing weapon that deals minimal damage, but confuses most enemies for a moment
 Sight of Retinazer
 	- Hardmode Anvil, Laser Rifle x1 + Hallowed Bar x5 + Soul of Sight x5
 	- Magic weapon with no mana cost
@@ -447,8 +452,25 @@ Tome of Shadowflame Skulls
 	- Balanced for post-mech content
 		
 ============
+ARMOR:
+============
+Soul Savior Garment
+	- Set of armor that grants the player three wisp allies that deal summon damage
+	- Soul Savior Coronet
+		- Head-slot armor that increases summon damage
+		- Crafted from 15 Captured Souls
+	- Soul Savior Chest (Need new name)
+		- Body-slot armor that increases the amount of minions you can summon by 1
+		- Crafted from 20 Captured Souls and 15 Bones
+	- Soul Savior's Garb
+		- Leg-slot armor that ???
+		- Crafted from 15 Captured Souls
+
+============
 MATERIALS:
 ============
+Captured Soul
+	- Capture with a net during the Harvester event
 Chunky's Eye
 	- Capture Chunky's Eye with a net
 Meatball's Eye
@@ -513,6 +535,9 @@ ADDITONS
 		- Crafted anywhere with a single sand block
 		- Reminder; not every enemy is affected by the Confuse debuff
 	- Docile Laser Eye, pet versions of the Mechanical Laser Eye enemies
+	- Everburning Candelabra, a combination of all four candle accessories
+	- Soul Savior Garment, a set of early Summoner armor that provides you with a trio of cute souls that bump into enemies
+		- The souls aren't very strong, but they don't take up a summon's slot
 	
 CUTE SLIMES
 	- Yes, they got enough changes to warrant their own changelog section

@@ -5,25 +5,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    class aaaGetDefense : ModItem //todo proper name
+    class SigilOfLastStand : ModItem
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Items/Accessories/Useful/EverburningCursedCandle"; //temp, delete this when proper texture exists
-            }
-        }
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaGetDefense"); //todo proper name
-            Tooltip.SetDefault("Grants very high defense when health is dangerously low");
+            DisplayName.SetDefault("Sigil of Last Stand");
+            Tooltip.SetDefault("Combines the effect of Sigil of Retreat and Sigil of Sigil of Pain Suppression");
         }
 
         public override void SetDefaults()
         {
-            item.width = 24;
+            item.width = 22;
             item.height = 22;
             item.value = Item.buyPrice(0, 20, 0, 0);
             item.rare = -11;
@@ -33,7 +25,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
-            if (mPlayer.canGetDefense)
+            if (mPlayer.canTeleportHomeWhenLow)
             {
                 //the first string is irrelevant, its never used anywhere, basically just a name for that line
                 tooltips.Add(new TooltipLine(mod, "CanUse", "Ready to use"));
@@ -41,9 +33,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             else
             {
                 string timeName;
-                if(mPlayer.getDefenseTimer > 60) //more than 1 minute
+                if(mPlayer.teleportHomeWhenLowTimer > 60) //more than 1 minute
                 {
-                    if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
+                    if (mPlayer.teleportHomeWhenLowTimer > 90) //more than 1:30 minutes because of round
                     {
                         timeName = " minutes";
                     }
@@ -51,11 +43,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " minute";
                     }
-                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName));
+                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + Math.Round(mPlayer.teleportHomeWhenLowTimer/60f) + timeName));
                 }
                 else
                 {
-                    if (mPlayer.getDefenseTimer > 1) //more than 1 second
+                    if (mPlayer.teleportHomeWhenLowTimer > 1) //more than 1 second
                     {
                         timeName = " seconds";
                     }
@@ -63,18 +55,18 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " second";
                     }
-                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + mPlayer.getDefenseTimer + timeName));
+                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + mPlayer.teleportHomeWhenLowTimer + timeName));
                 }
             }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AssPlayer>().getDefense = true;
+            player.GetModPlayer<AssPlayer>().teleportHomeWhenLow = true;
         }
 
         //TODO recipe
         //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here:
-        // private const short GetDefenseTimerTimerMax = 1200; == 20 minutes
+        // private const short TeleportHomeWhenLowTimerMax = 1200; == 20 minutes
     }
 }
