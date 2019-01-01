@@ -1,7 +1,5 @@
-Below are a few ideas that came to me for some hopefully simple things to do coding-wise. 
 
-
-Happy New Year as well
+direwolf420 to-do list
 
 1. Anomalous Wings working like wings underwater with great efficiency, but being useless out of water
 	- They're anomalocaris lobes, not actual wings. I just couldn't make that before.
@@ -15,10 +13,12 @@ Happy New Year as well
 	- Probably crafted with two Leather and Pink Gel or Pink Slime Blocks
 	- I'll do the sprites later
 	
+//DONE
 3. Accessory that uses a recall potion when your health is dangerously low
 	- Effect has an internal cooldown or a debuff of some kind so it doesn't happen constantly
 	- I'll do the sprites later
 
+//DONE
 4. Accessory that grants you extremely high defense for a very short time with a high internal cooldown when your health is dangerously low
 	- Cooldown similar to the Sun Dial in that it won't work for a few ingame days
 	- If you could make it percent based, that would be neat
@@ -28,9 +28,11 @@ Happy New Year as well
 5. Accessory that combines the effects of #3 and #4
 	- I can do this myself if you make the above two, but if you made it after doing those, I wouldn't complain
 	
+//DONE
 5. Juggerllusc picking random colors to spawn with instead of being three separate NPCs
 	- Really, I'm not sure why neither of us brought this up by now considering the Animated Tome did the exact same thing
 	
+//DONE
 6. Proper animation for the pet "GobletPet" in Projectiles
 	- Frame 1 is idle, frames 2-7 are walking, frame 8 is jumping, remaining four are flying
 	- Minimal rotation while flying, rotor should almost always be at the top
@@ -40,3 +42,42 @@ Happy New Year as well
 		- GobletItem.txt - /Items/Pets/
 		- GobletBuff.png - /Buffs/
 		- GobletBuff.txt - /Buffs/
+
+7. Apply Slow to player when he collides with the Harvester
+	- (without enabling it to attack you)
+	- maybe change it to auto targeting with a variable range depending on what stage it is in
+	- clone the bones projectile and apply slow debuff
+
+8. Make that empowering potion
+	- uses dungeon souls for crafting
+	- makes your stats better the more kills you get during its buff duration
+
+9. Proper fadein/fadeout when harvester is transforming
+
+10. Make third stage Harvester AI
+	- Should move like queen bee "fly above player" mode
+	- uses his claws like golem fists
+	- drops bones, souls
+	- souls can be crafted into various gear, water candle, potion
+
+#####################################################################################
+Werebearguy to-do list
+
+1. Before release, go through every file and set its DisplayName accordingly
+	- so things like "aaaDungeonSoul" are just "Dungeon Soul"
+	- also check if tooltips actually describe what that item does properly
+
+2. Have a few more slime accessories on the next release
+
+3. Prepare a "slime accessory template pack" kinda thing
+	- with guidelines on how to draw them properly, what dimensions, what to do if accessory is out of bounds, etc etc
+	- also let the person making it decide on an accessory slot (we still havent decided which ones make sense)
+	- [Hat, Body, Hands, Tail] are those that I thought would make the most sense (maybe replace tail with sth else idk)
+	- (I'll do the coding work, tho it should really be just copy paste)
+
+4. Remove the Companion Balloon Soul Accessory Thing (if you want)
+	- Since we got a light pet I think this'll be useless as it doesn't animate properly
+
+5. Textures for the requests in 3 and 4 (direwolf420s)
+
+6. Texture for the aaaSoulLightPetBuff

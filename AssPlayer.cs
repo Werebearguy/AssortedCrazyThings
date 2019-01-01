@@ -184,6 +184,21 @@ namespace AssortedCrazyThings
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
+            //getDefense before teleportHome (so you dont teleport BEFORE you gain the defense)
+            if (getDefense)
+            {
+                if (canGetDefense)
+                {
+                    player.statLife += (int)damage;
+                    player.AddBuff(BuffID.RapidHealing, 300);
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
+
+                    getDefenseTimer = GetDefenseTimerMax;
+                    getDefenseDuration = GetDefenseDurationMax;
+                    return false;
+                }
+            }
+
             if (teleportHome)
             {
                 if (canTeleportHome)
@@ -213,26 +228,12 @@ namespace AssortedCrazyThings
                     //end
 
                     player.statLife += (int)damage;
-                    player.HealEffect(50, broadcast: false);
+                    player.AddBuff(BuffID.RapidHealing, 300);
 
                     teleportHomeTimer = TeleportHomeTimerMax;
                     return false;
                 }
             }
-
-            if (getDefense)
-            {
-                if (canGetDefense)
-                {
-                    player.statLife += (int)damage;
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
-
-                    getDefenseTimer = GetDefenseTimerMax;
-                    getDefenseDuration = GetDefenseDurationMax;
-                    return false;
-                }
-            }
-
 
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
