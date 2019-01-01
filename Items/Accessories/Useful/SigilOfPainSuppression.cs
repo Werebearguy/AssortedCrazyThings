@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    class SigilOfPainSuppression : ModItem //todo proper name
+    class SigilOfPainSuppression : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sigil of Pain Suppression"); //todo proper name
+            DisplayName.SetDefault("Sigil of Pain Suppression");
             Tooltip.SetDefault("Drastically increases your defense when you are at critically low health");
         }
 

@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dungeon Soul");
+            DisplayName.SetDefault("Caught Dungeon Soul");
             Tooltip.SetDefault("A soul caught by a net.");
             // ticksperframe, frameCount
             //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
@@ -28,8 +28,8 @@ namespace AssortedCrazyThings.Items
         {
             Item refItem = new Item();
             refItem.SetDefaults(ItemID.SoulofSight);
-            item.width = 14;// refItem.width;
-            item.height = 24;//refItem.height; //24
+            item.width = 14;
+            item.height = 24;
             item.maxStack = 999;
             item.value = 100;
             item.rare = -11;
