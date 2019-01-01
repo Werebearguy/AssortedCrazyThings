@@ -208,7 +208,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //return index of closest soul
             for (short j = 0; j < 200; j++)
             {
-                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(aaaSoul.name))
+                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();
@@ -354,15 +354,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             if (allowNoclipvar)
                             {
-                                npc.netUpdate = true;
-                                Print("noclipping");
-                                //Main.NewText("DOOR STUCK");
-                                PassCoordinates(GetTarget());
-                                AI_State = State_Noclip; //pass targets X/Y to noclip
+                                if (!SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
+                                {
+                                    npc.netUpdate = true;
+                                    Print("noclipping");
+                                    //Main.NewText("DOOR STUCK");
+                                    PassCoordinates(GetTarget());
+                                    AI_State = State_Noclip; //pass targets X/Y to noclip
+                                }
                             }
                             else
                             {
-                                aaaSoul.SetTimeLeft((NPC)GetTarget(), npc);
+                                aaaDungeonSoul.SetTimeLeft((NPC)GetTarget(), npc);
                             }
                             stuckTimer = 0;
                             return;
@@ -845,7 +848,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //hungerTimer
             //AI_Timer++ in HarvesterAI when target available;
-            if (AI_Timer >= hungerTime && IsTargetActive())
+            if (AI_Timer >= hungerTime && IsTargetActive() && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
             {
                 AI_Timer = 0f;
                 //goto noclip 
@@ -921,7 +924,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //AI_X_Timer = 0f;
                 }
 
-                if (AI_Timer >= hungerTime && IsTargetActive())
+                if (AI_Timer >= hungerTime && IsTargetActive() && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
                 {
                     AI_Timer = 0;
                     //goto noclip 
@@ -985,7 +988,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.netUpdate = true;
 
                     Print("distribute to stop");
-                    aaaSoul.SetTimeLeft((NPC)GetTarget(), npc);
+                    aaaDungeonSoul.SetTimeLeft((NPC)GetTarget(), npc);
                     aiTargetType = Target_Player;
                     SelectTarget(restrictedSoulSearch); //now player
 

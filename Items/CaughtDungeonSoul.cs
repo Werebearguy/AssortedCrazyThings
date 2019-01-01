@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-	public class CaughtSoul : ModItem
+	public class CaughtDungeonSoul : ModItem
 	{
         private int sincounter;
         private int frame2Counter;
@@ -15,12 +15,12 @@ namespace AssortedCrazyThings.Items
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Soul");
+            DisplayName.SetDefault("Dungeon Soul");
             Tooltip.SetDefault("A soul caught by a net.");
             // ticksperframe, frameCount
             //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
             //ItemID.Sets.AnimatesAsSoul[item.type] = true;
-            ItemID.Sets.ItemIconPulse[item.type] = false;
+            ItemID.Sets.ItemIconPulse[item.type] = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
@@ -87,11 +87,9 @@ namespace AssortedCrazyThings.Items
             };
 
             float sinY = 0;
-            if (Main.netMode != NetmodeID.Server)
-            {
-                    sincounter = sincounter > 120 ? 0 : sincounter + 1;
-                    sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
-            }
+            sincounter = sincounter > 120 ? 0 : sincounter + 1;
+            sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
+
             Vector2 stupidOffset = new Vector2(item.width / 2, (item.height - 10f) + sinY);
 
             spriteBatch.Draw(image, item.position - Main.screenPosition + stupidOffset, bounds, lightColor, rotation, bounds.Size() / 2, scale, effects, 0f);

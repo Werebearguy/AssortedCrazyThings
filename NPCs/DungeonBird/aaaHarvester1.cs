@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
-            Main.npcFrameCount[npc.type] = 7;
+            Main.npcFrameCount[npc.type] = 9;
         }
 
         public override void SetDefaults()
@@ -52,8 +52,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
 
             npc.npcSlots = 5f; //takes 5 npc slots out of 200 when alive
-            npc.width = aaaSoul.wid;
-            npc.height = aaaSoul.hei;
+            npc.width = aaaDungeonSoul.wid;
+            npc.height = aaaDungeonSoul.hei;
             npc.damage = 0;
             npc.defense = 1;
             npc.lifeMax = maxSoulsEaten + 1;
@@ -111,7 +111,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if(AI_State == State_Noclip)
             {
-                npc.frame.Y = frameHeight * 3;
+                npc.frameCounter++;
+                if (npc.frameCounter <= 3.0)
+                {
+                    npc.frame.Y = frameHeight * 7; //"fly"
+                }
+                else if (npc.frameCounter <= 6.0)
+                {
+                    npc.frame.Y = frameHeight * 8;
+                }
+                else
+                {
+                    npc.frameCounter = 0;
+                }
             }
             else if(AI_State == State_Transform)
             {

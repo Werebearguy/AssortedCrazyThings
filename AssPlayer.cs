@@ -173,7 +173,7 @@ namespace AssortedCrazyThings
                 {
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType(aaaSoul.name) && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<aaaDungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
                         {
                             Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
                         }

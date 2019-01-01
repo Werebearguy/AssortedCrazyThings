@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -7,15 +8,14 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public class aaaSoul : ModNPC
+    public class aaaDungeonSoul : ModNPC
     {
-        public static string name = "aaaSoul";
         public static int wid = 34; //24
         public static int hei = 38;
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(name);
+            DisplayName.SetDefault("Dungeon Soul");
             Main.npcFrameCount[npc.type] = 8;
         }
 
@@ -39,8 +39,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             aiType = -1;// NPCID.ToxicSludge;
             animationType = -1;// NPCID.ToxicSludge;
             npc.color = new Color(0, 0, 0, 50);
-            Main.npcCatchable[mod.NPCType(name)] = true;
-            npc.catchItem = (short)mod.ItemType("CaughtSoul");
+            Main.npcCatchable[mod.NPCType<aaaDungeonSoul>()] = true;
+            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoul>();
             npc.timeLeft = NPC.activeTime * 5;
         }
 
@@ -269,12 +269,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 //concider only the bottom half of the hitbox, a bit wider (minus a small bit below)
                 //if (Collision.SolidCollision(npc.position + new Vector2(-10f, npc.height / 2), npc.width + 20, npc.height / 2 -2))
-                if (Collision.SolidCollision(npc.position + new Vector2(-10f, 0f), npc.width + 20, npc.height + 2))
+                if (Collision.SolidCollision(npc.position/* + new Vector2(-10f, 0f)*/, npc.width/* + 20*/, npc.height + 2))
                 {
                     if (IsTargetActive())
                     {
                         npc.noTileCollide = true;
-                        Vector2 between = tarnpc.Center - npc.Center;
+                        Vector2 between = tarnpc.Center + new Vector2(0f, -4f) - npc.Center;
                         float factor = 2f; //2f
                         int acc = 100; //4
                         between.Normalize();
@@ -311,8 +311,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float betweenX = tarnpc.Center.X - npc.Center.X;
                 if (betweenX > 2f || betweenX < -2f)
                 {
-                    float factor = 5f; //2f
-                    int acc = 2; //4
+                    float factor = 4f; //2f
+                    int acc = 4; //4
                     betweenX = betweenX / Math.Abs(betweenX);
                     betweenX *= factor;
                     npc.velocity.X = (npc.velocity.X * (acc - 1) + betweenX) / acc;
@@ -329,7 +329,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 npc.velocity.X = 0;
             }
             //remove this in actual release, only --npc.timeLeft
-            if (AI_State == 1)--npc.timeLeft;
+            /*if (AI_State == 1)*/--npc.timeLeft;
             if (npc.timeLeft < 0)
             {
                 KillInstantly();

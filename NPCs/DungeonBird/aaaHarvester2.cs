@@ -45,8 +45,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
 
             npc.npcSlots = 5f; //takes 5 npc slots out of 200 when alive
-            npc.width = aaaSoul.wid;
-            npc.height = aaaSoul.hei; //100 or 98 when flying
+            npc.width = aaaDungeonSoul.wid;
+            npc.height = aaaDungeonSoul.hei; //100 or 98 when flying
             npc.damage = 0;
             npc.defense = 11;
             npc.lifeMax = maxSoulsEaten + 1;

@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 for (short j = 0; j < 200; j++)
                 {
-                    if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(aaaSoul.name))
+                    if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
                     {
                         KillInstantly(Main.npc[j]);
                     }

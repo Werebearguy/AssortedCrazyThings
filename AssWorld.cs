@@ -252,13 +252,13 @@ namespace AssortedCrazyThings
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if(Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType(aaaSoul.name)) > 10) //limit soul count in the world to 10
+                if(Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 10
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType(aaaSoul.name))
+                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
                         {
                             if(Main.npc[j].timeLeft < timeleftmin)
                             {
