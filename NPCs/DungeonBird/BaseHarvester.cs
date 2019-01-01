@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -943,6 +944,21 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
+            //Attack player
+            if (AI_Timer % 20 == 0)
+            {
+                if(AI_State == State_Stop && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
+                {
+                    AttackPlayer(5, 3f, 200, aiTargetType);
+                }
+                else if(AI_State != State_Stop && aiTargetType == Target_Soul)
+                {
+                    Main.NewText(npc.width);
+                    AttackPlayer(5, 3f, npc.width, aiTargetType);
+                }
+            }
+
+
             if (AI_State == State_Distribute/*0*/)
             {
                 if(Main.time % 20 == 0)
@@ -1060,8 +1076,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     AI_State = State_Distribute;
                     AI_X_Timer = 0f;
 
-
-
                     if (stopTime == idleTime)
                     {
                         SelectTarget(restrictedSoulSearch); //to retarget for the IsActive check (otherwise it gets stuck in this state)
@@ -1100,23 +1114,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                     }
                 }
-
-                if (Main.netMode != NetmodeID.MultiplayerClient && AI_X_Timer % 20 == 0 && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
-                {
-                    SelectTarget();
-                    Rectangle rect = new Rectangle((int)npc.Center.X - 200, (int)npc.Center.Y - 200, npc.width + 200 * 2, npc.height + 200 * 2);
-                    if (rect.Intersects(new Rectangle((int)GetTarget().position.X, (int)GetTarget().position.Y, GetTarget().width, GetTarget().height)) &&
-                        (Collision.CanHitLine(npc.Center, 1, 1, GetTarget().Center, 1, 1) || (GetTarget().Center.Y - npc.Center.Y) <= 0f)) 
-                        //if either direct LOS or player above (so it can around small obstacles)
-                    {
-                        Vector2 between = GetTarget().Center - npc.Center;
-                        between.Normalize();
-                        if (between.Y > 0.2f) between *= 1.1f; //small arc
-                        if (between.Y > 0.8f) between *= 1.1f; //big arc
-                        between *= 7f;
-                        SpawnBone(npc.Center + new Vector2(0f, -npc.height / 4), between, 6, 3f);
-                    }
-                }
             }
             else if (AI_State == State_Transform/*6*/)
             {
@@ -1130,7 +1127,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //rate: from 0 to 0.8 //((AI_X_Timer * 0.8f) / transformTime)
                     if (Main.time % 8 == 0 && Main.rand.NextFloat() < ((AI_X_Timer * 0.8f) / transformTime))
                     {
-                        SpawnBone(npc.Center + new Vector2(0f, -npc.height / 4), new Vector2(Main.rand.NextFloat(-1f, 1f) * randfactor, -Main.rand.NextFloat() * randfactor), 0, 1.5f);
+                        SpawnBoneShort(npc.Center + new Vector2(0f, -npc.height / 4), new Vector2(Main.rand.NextFloat(-1f, 1f) * randfactor, -Main.rand.NextFloat() * randfactor), 0, 1.5f);
                     }
 
                     if (AI_X_Timer > transformTime)
@@ -1143,9 +1140,34 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        protected void SpawnBone(Vector2 pos, Vector2 vel, int dmg, float knock)
+        private void AttackPlayer(int dmg, float knock, int distance, bool prevTargetType)
         {
-            Projectile.NewProjectile(pos, vel, ProjectileID.SkeletonBone, dmg, knock, Main.myPlayer);
+            if(Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                aiTargetType = Target_Player;
+                SelectTarget();
+                Rectangle rect = new Rectangle((int)npc.Center.X - distance, (int)npc.Center.Y - distance, npc.width + distance * 2, npc.height + distance * 2);
+                if (rect.Intersects(new Rectangle((int)GetTarget().position.X, (int)GetTarget().position.Y, GetTarget().width, GetTarget().height)) &&
+                    (Collision.CanHitLine(npc.Center, 1, 1, GetTarget().Center, 1, 1) || (GetTarget().Center.Y - npc.Center.Y) <= 0f))
+                //if either direct LOS or player above (so it can go around small obstacles)
+                {
+                    Vector2 between = GetTarget().Center - npc.Center;
+                    between.Normalize();
+                    if (between.Y > 0.2f) between *= 1.1f; //small arc
+                    if (between.Y > 0.8f) between *= 1.1f; //big arc
+                    between *= 7f;
+                    SpawnBoneShort(npc.Center + new Vector2(0f, -npc.height / 4), between, dmg, knock);
+                }
+
+                aiTargetType = prevTargetType;
+                SelectTarget();
+            }
+        }
+
+
+        private void SpawnBoneShort(Vector2 pos, Vector2 vel, int dmg, float knock)
+        {
+            Projectile.NewProjectile(pos, vel, mod.ProjectileType<HarvesterBone>(), dmg, knock, Main.myPlayer);
         }
 
         public void Transform(int to)

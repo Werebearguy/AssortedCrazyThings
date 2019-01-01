@@ -43,6 +43,7 @@ direwolf420 to-do list
 		- GobletBuff.png - /Buffs/
 		- GobletBuff.txt - /Buffs/
 
+//DONE
 7. Apply Slow to player when he collides with the Harvester
 	- (without enabling it to attack you)
 	- maybe change it to auto targeting with a variable range depending on what stage it is in
