@@ -38,6 +38,8 @@ namespace AssortedCrazyThings
         private bool resetSlots = false;
         private double lastTime = 0.0;
 
+        public bool soulArmorMinions = false;
+
         public override void ResetEffects()
         {
             everburningCandleBuff = false;
@@ -49,6 +51,7 @@ namespace AssortedCrazyThings
             //variable_debuff_07 = false;
             teleportHome = false;
             getDefense = false;
+            soulArmorMinions = false;
         }
 
         public void SendSlotData()

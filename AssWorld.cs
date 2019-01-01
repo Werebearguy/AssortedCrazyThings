@@ -1,10 +1,7 @@
-using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

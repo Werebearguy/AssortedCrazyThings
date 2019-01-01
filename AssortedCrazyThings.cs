@@ -52,7 +52,7 @@ namespace AssortedCrazyThings
 
             Array.Resize(ref slimeAccessoryItems, itemIndex);
 
-            if (!Main.dedServ)
+            if (!Main.dedServ && Main.netMode != 2)
             {
                 int[] parameters = new int[slimeAccessoryItems.Length * 2];
                 for (int i = 0; i < slimeAccessoryItems.Length; i++)
@@ -108,7 +108,7 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
-            if (!Main.dedServ)
+            if (!Main.dedServ && Main.netMode != 2)
             {
                 slimeAccessoryTextures = null;
             }
