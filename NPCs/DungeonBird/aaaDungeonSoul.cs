@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dungeon Soul");
+            DisplayName.SetDefault("aaaDungeon Soul");
             Main.npcFrameCount[npc.type] = 8;
         }
 

@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, "CaughtSoul");
+            recipe.AddIngredient(mod, "CaughtDungeonSoul");
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

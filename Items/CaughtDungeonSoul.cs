@@ -66,6 +66,7 @@ namespace AssortedCrazyThings.Items
             return false;
         }
 
+        //draw only in world, not in inventory
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             FindFrame(item.height);
@@ -77,7 +78,7 @@ namespace AssortedCrazyThings.Items
             lightColor.A = 255; //255 is opaque
 
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Items/CaughtSoulAnimated");
+            Texture2D image = mod.GetTexture("Items/CaughtDungeonSoulAnimated");
             Rectangle bounds = new Rectangle
             {
                 X = 0,
