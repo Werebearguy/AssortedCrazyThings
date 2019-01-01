@@ -63,7 +63,9 @@ direwolf420 to-do list
 #####################################################################################
 Werebearguy to-do list
 
-1. Before release, go through every file and set its DisplayName accordingly
+1. Before release, go through every file
+	- set DisplayName accordingly
+	- set appropriate recipes for every item (if needed)
 	- so things like "aaaDungeonSoul" are just "Dungeon Soul"
 	- also check if tooltips actually describe what that item does properly
 
@@ -79,6 +81,12 @@ Werebearguy to-do list
 4. Remove the Companion Balloon Soul Accessory Thing (if you want)
 	- Since we got a light pet I think this'll be useless as it doesn't animate properly
 
-5. Textures for the requests in 3 and 4 (direwolf420s)
+5. Dungeon Soul armor
+	- Make the Dungeon Soul armor craftable with standard skeletron tier resources, has similar stats to Necro armor (same tier)
+	- Make a hardmode version of it where you upgrade each armor with ectoplasm, gets crazier texture and slightly better stats than
+	the chlorophyte version of the Chlorophyte Headgear set
+	- set bonus is more minion slots and only TWO small souls that attack similar to the spaz-twin minion (I'll do the code)
 
-6. Texture for the aaaSoulLightPetBuff
+6. Textures for the requests in 3 and 4 (direwolf420s)
+
+7. Texture for the aaaSoulLightPetBuff
