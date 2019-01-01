@@ -68,6 +68,7 @@ Werebearguy to-do list
 	- also check if tooltips actually describe what that item does properly
 
 2. Have a few more slime accessories on the next release
+	- make atleast one for every slot so I can test it properly soon-ish tho
 
 3. Prepare a "slime accessory template pack" kinda thing
 	- with guidelines on how to draw them properly, what dimensions, what to do if accessory is out of bounds, etc etc
