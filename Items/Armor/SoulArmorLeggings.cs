@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Armor
 {
-    [AutoloadEquip(EquipType.Body)]
+    [AutoloadEquip(EquipType.Legs)]
     public class SoulArmorLeggings : ModItem
     {
         public override void SetStaticDefaults()
@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.Items.Armor
         public override void UpdateEquip(Player player)
         {
             //TODO
+            //
         }
 
         public override void AddRecipes()
