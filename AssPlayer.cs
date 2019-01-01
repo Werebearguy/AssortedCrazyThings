@@ -29,7 +29,7 @@ namespace AssortedCrazyThings
         public bool getDefense = false;
         public bool canGetDefense = false;
         private const short GetDefenseTimerMax = 1200; //in seconds //20 ingame minutes
-        private const short GetDefenseDurationMax = 360; //in ticks //5 ingame seconds
+        private const short GetDefenseDurationMax = 600; //in ticks //10 ingame seconds
         public short getDefenseDuration = 0;
         public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it
 

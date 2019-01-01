@@ -309,10 +309,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     position += new Vector2(npc.width / 2, -npc.height / 4);
                 }
     
-                Dust dust = Dust.NewDustPerfect(position, 59, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(0.9f, 1.5f));
+                Dust dust = Dust.NewDustPerfect(position, 59, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
                 dust.noLight = true;
                 dust.noGravity = true;
-                dust.fadeIn = Main.rand.NextFloat(0f, 1f);
+                dust.fadeIn = Main.rand.NextFloat(0f + soulsEaten / (float)maxSoulsEaten, 1f + soulsEaten / (float)maxSoulsEaten);
             }
 
         }

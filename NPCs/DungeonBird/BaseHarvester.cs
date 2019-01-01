@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     {
         public const short EatTimeConst = 90; //shouldnt be equal to IdleTimeConst + 60
         public const short IdleTimeConst = 180;
-        public static readonly string message = "You hear a faint cawing come from nearby";
+        public static readonly string message = "You hear a faint cawing come from nearby...";
         protected const bool Target_Player = false;
         protected const bool Target_Soul = true;
         protected const int AI_State_Slot = 0;
@@ -335,7 +335,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //Main.NewText("TICK TOCK " + npc.collideX + " " + npc.collideY);
                         between = new Vector2(Math.Abs(npc.Center.X - AI_X_Timer), Math.Abs(npc.Center.Y - AI_Y));
                         //twice a second, diff is max 39f
-                        if (between.Y > 100f || between.X > 35f)
+                        if ((between.Y > 100f || between.X > 35f) || (npc.wet && (between.Y > 50f || between.X > 17.5f)))
                         {
                             npc.netUpdate = true;
                             Print("NOT stuck actually");
@@ -864,8 +864,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void HarvesterAI(bool allowNoclip = true)
         {
-
-            if(npc.velocity.Y != 0) Print(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10) + " " + AI_State);
             //if(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
 
             if (Main.time % 120 == 2)
