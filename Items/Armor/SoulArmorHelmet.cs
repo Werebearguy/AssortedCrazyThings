@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == mod.ItemType("SoulArmorBreastplate") && legs.type == mod.ItemType("SoulArmorLeggings");
+            return body.type == mod.ItemType<SoulArmorBreastplate>() && legs.type == mod.ItemType<SoulArmorLeggings>();
         }
 
         public override void UpdateArmorSet(Player player)
@@ -47,10 +47,10 @@ namespace AssortedCrazyThings.Items.Armor
             if (Main.rand.NextBool(10))
             {
                 Vector2 randomVector = new Vector2(Main.rand.Next(16) - 7, Main.rand.Next(16) - 7); //random vector between -7 and 8
-                Vector2 directionalVector = new Vector2(player.width/2 * (1 - player.direction)/* + 8f * player.direction*/, 0f);
+                Vector2 directionalVector = new Vector2(player.width/2 * (1 - player.direction), 0f);
 
                 Vector2 position = player.position + directionalVector + randomVector;
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f) + player.direction / -2f, Main.rand.NextFloat(-1.0f, -0.5f)), 26, new Color(255, 255, 255), 1f);
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f) + player.direction / -2f, Main.rand.NextFloat(-1.0f, -0.5f)), 26, new Color(255, 255, 255), 0.9f);
                 dust.noGravity = false;
                 dust.noLight = true;
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.2f);

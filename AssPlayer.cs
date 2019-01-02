@@ -224,8 +224,7 @@ namespace AssortedCrazyThings
                     }
                     
                     //inserted before player.Spawn()
-                    player.statLife += 10;
-                    if (Main.netMode != NetmodeID.MultiplayerClient) player.statLife += (int)damage;
+                    player.statLife += (int)damage;
 
                     player.Spawn();
                     for (int num328 = 0; num328 < 70; num328 = num3 + 1)
