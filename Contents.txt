@@ -337,6 +337,13 @@ Wyverntail
 	- Workbench, Wyverntail x1
 
 ============
+LIGHT PETS
+============
+Soul Companion
+	- A dungeon soul that floats at your side and provides a modest amount of light
+	- ???
+	
+============
 VANITY ARMOR
 ============
 Origami Hat
@@ -378,6 +385,18 @@ Massive Bundle of Balloons
 Peace Candle in a Balloon
 	- Tinkerer's Workbench with Peace Candle x1 + Shiny Red Balloon x1
 	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark
+Sigil of Last Stand
+	- ???
+	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
+		- Has a cooldown of XXX, denoted in the accessory's tooltip
+Sigil of Pain Suppression
+	- ???
+	- Drastically increases your defense for a brief moment upon reaching critical health
+		- Has a cooldown of XXX, denoted in the accessory's tooltip
+Sigil of Retreat
+	- ???
+	- Teleports you to your spawn point upon reaching critical health
+		- Has a cooldown of XXX, denoted in the accessory's tooltip
 Slippery Soles
 	- Tinkerer's Workbench with Frozen Slime Block x2 + Leather x2
 	- You move on any block as if it was a Frozen Slime Block
