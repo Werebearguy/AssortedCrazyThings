@@ -25,6 +25,7 @@ direwolf420 to-do list
 		- Otherwise, a low amount of health like 20 or so would probably suffice
 	- Combines with #3
 	
+//DONE
 5. Accessory that combines the effects of #3 and #4
 	- I can do this myself if you make the above two, but if you made it after doing those, I wouldn't complain
 	
@@ -79,6 +80,7 @@ Werebearguy to-do list
 	- [Hat, Body, Hands, Tail] are those that I thought would make the most sense (maybe replace tail with sth else idk)
 	- (I'll do the coding work, tho it should really be just copy paste)
 
+//DONE
 4. Remove the Companion Balloon Soul Accessory Thing (if you want)
 	- Since we got a light pet I think this'll be useless as it doesn't animate properly
 
@@ -88,6 +90,7 @@ Werebearguy to-do list
 	the chlorophyte version of the Chlorophyte Headgear set
 	- set bonus is more minion slots and only TWO small souls that attack similar to the spaz-twin minion (I'll do the code)
 
+//DONE
 6. Textures for the requests in 3 and 4 (direwolf420s)
 
 7. Texture for the aaaSoulLightPetBuff

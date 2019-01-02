@@ -10,6 +10,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public abstract class BaseHarvester : ModNPC
     {
+        //Main.NewText(npc.modNPC.GetType().BaseType);//Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+        //Main.NewText(npc.modNPC.GetType().BaseType);
+
         public const short EatTimeConst = 90; //shouldnt be equal to IdleTimeConst + 60
         public const short IdleTimeConst = 180;
         public static readonly string message = "You hear a faint cawing come from nearby...";

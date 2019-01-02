@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Armor
             base.SetStaticDefaults();
             DisplayName.SetDefault("Soul Savior Chest");
             Tooltip.SetDefault("Soul Savior Garment"
-                + "\n+1 max minions");
+                + "\nincreases your max number of minions");
         }
 
         public override void SetDefaults()

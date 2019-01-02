@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using AssortedCrazyThings.Projectiles.Minions;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Armor
@@ -11,7 +13,7 @@ namespace AssortedCrazyThings.Items.Armor
             base.SetStaticDefaults();
             DisplayName.SetDefault("Soul Savior Coronet");
             Tooltip.SetDefault("Soul Savior Garment"
-                + "\n+10% summon damage");
+                + "\n10% increased summon damage");
         }
 
         public override void SetDefaults()
@@ -25,7 +27,7 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == mod.ItemType("SoulArmorBreastplate") && legs.type == mod.ItemType("SoulArmorLeggings");
+            return body.type == mod.ItemType<SoulArmorBreastplate>() && legs.type == mod.ItemType<SoulArmorLeggings>();
         }
 
         public override void UpdateArmorSet(Player player)
@@ -34,6 +36,25 @@ namespace AssortedCrazyThings.Items.Armor
             player.minionDamage *= 1.1f; //here instead of updateequip 
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             mPlayer.soulArmorMinions = true;
+
+            bool miniontProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoul>()] < 3; //3
+            if (miniontProjectileNotSpawned && player.whoAmI == Main.myPlayer)
+            {
+                Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), player.direction * 0.5f, -0.5f, mod.ProjectileType<CompanionDungeonSoul>(), CompanionDungeonSoul.Damage, 0f, player.whoAmI, 0f, 0f);
+            }
+
+            //visual
+            if (Main.rand.NextBool(10))
+            {
+                Vector2 randomVector = new Vector2(Main.rand.Next(16) - 7, Main.rand.Next(16) - 7); //random vector between -7 and 8
+                Vector2 directionalVector = new Vector2(player.width/2 * (1 - player.direction), 0f);
+
+                Vector2 position = player.position + directionalVector + randomVector;
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f) + player.direction / -2f, Main.rand.NextFloat(-1.0f, -0.5f)), 26, new Color(255, 255, 255), 0.9f);
+                dust.noGravity = false;
+                dust.noLight = true;
+                dust.fadeIn = Main.rand.NextFloat(0.8f, 1.2f);
+            }
         }
 
         public override void AddRecipes()
