@@ -50,6 +50,7 @@ direwolf420 to-do list
 	- maybe change it to auto targeting with a variable range depending on what stage it is in
 	- clone the bones projectile and apply slow debuff
 
+//DONE
 8. Make that empowering potion
 	- uses dungeon souls for crafting
 	- makes your stats better the more kills you get during its buff duration
@@ -93,4 +94,5 @@ Werebearguy to-do list
 //DONE
 6. Textures for the requests in 3 and 4 (direwolf420s)
 
+//DONE
 7. Texture for the aaaSoulLightPetBuff

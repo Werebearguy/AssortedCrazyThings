@@ -863,6 +863,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //AI_Timer++ in HarvesterAI when target available;
             if (AI_Timer >= hungerTime && IsTargetActive() && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
             {
+                if (target == 200)
+                {
+                    AI_Timer = hungerTime / 2;
+                    return;
+                }
                 AI_Timer = 0f;
                 //goto noclip 
                 PassCoordinates(GetTarget());
@@ -939,6 +944,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 if (AI_Timer >= hungerTime && IsTargetActive() && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
                 {
+                    if (target == 200)
+                    {
+                        AI_Timer = hungerTime / 2;
+                        return;
+                    }
                     AI_Timer = 0;
                     //goto noclip 
                     PassCoordinates(GetTarget());
