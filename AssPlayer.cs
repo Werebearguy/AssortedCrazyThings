@@ -7,7 +7,6 @@ using Terraria.ModLoader.IO;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
-using AssortedCrazyThings.Buffs;
 
 namespace AssortedCrazyThings
 {
@@ -46,6 +45,7 @@ namespace AssortedCrazyThings
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
         public static float empoweringTotal = 1.5f; //this gets modified in AssWorld load and is updated there aswell
+        public float step;
 
         public override void ResetEffects()
         {
@@ -323,17 +323,17 @@ namespace AssortedCrazyThings
                     if (empoweringTimer < empoweringTimerMax)
                     {
                         empoweringTimer++;
+                        step = (empoweringTimer * (empoweringTotal - 1f)) / empoweringTimerMax;
                     }
                 }
-
-                float step = (empoweringTimer * (empoweringTotal - 1f)) / empoweringTimerMax;
+                
                 player.meleeDamage *= 1f + step;
                 player.thrownDamage *= 1f + step;
                 player.rangedDamage *= 1f + step;
                 player.magicDamage *= 1f + step;
                 player.minionDamage *= 1f + 0.25f * step;
 
-                //crit scales from base to base + 10*(0.5 , 0.75 , 1.0)
+                //adds crit from 0 to 5/7/10 (depends)
                 player.meleeCrit += (int)(10 * step);
                 player.thrownCrit += (int)(10 * step);
                 player.rangedCrit += (int)(10 * step);

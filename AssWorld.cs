@@ -36,13 +36,6 @@ namespace AssortedCrazyThings
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
 
-        private void InitMinibosses()
-        {
-            lilmegalodonAlive = false;
-            megalodonAlive = false;
-            miniocramAlive = false;
-        }
-
         private void InitHarvesterSouls()
         {
             harvesterTypes[0] = mod.NPCType<aaaHarvester1>();
@@ -57,7 +50,6 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
-            InitMinibosses();
             InitHarvesterSouls();
         }
 

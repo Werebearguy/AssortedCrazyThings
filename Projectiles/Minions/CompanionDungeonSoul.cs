@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.height = 24;
             projectile.aiStyle = -1;
             projectile.friendly = true;
-            projectile.minion = true;
+            projectile.minion = true; //only determines the damage type
             projectile.minionSlots = 0f;
             projectile.penetrate = -1;
         }
@@ -37,7 +37,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override bool PreAI()
         {
             Player player = Main.player[projectile.owner];
-            player.twinsMinion = false; // Relic from aiType
             return true;
         }
 
