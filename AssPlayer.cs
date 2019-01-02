@@ -222,6 +222,11 @@ namespace AssortedCrazyThings
                         }
                         num3 = num327;
                     }
+                    
+                    //inserted before player.Spawn()
+                    player.statLife += 10;
+                    if (Main.netMode != NetmodeID.MultiplayerClient) player.statLife += (int)damage;
+
                     player.Spawn();
                     for (int num328 = 0; num328 < 70; num328 = num3 + 1)
                     {
@@ -229,8 +234,7 @@ namespace AssortedCrazyThings
                         num3 = (int)(num328 * 1.5f);
                     }
                     //end
-
-                    player.statLife += (int)damage;
+                    
                     player.AddBuff(BuffID.RapidHealing, 300);
 
                     teleportHomeTimer = TeleportHomeTimerMax;

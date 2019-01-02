@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Items
             item.color = Color.White;
         }
 
-        public void FindFrame(int frameHeight)
+        public void Draw()
         {
             frame2Counter++;
             if (frame2Counter <= 8.0)
@@ -45,15 +45,15 @@ namespace AssortedCrazyThings.Items
             }
             else if (frame2Counter <= 16.0)
             {
-                frame2 = frameHeight * 1;
+                frame2 = 1;
             }
             else if (frame2Counter <= 24.0)
             {
-                frame2 = frameHeight * 2;
+                frame2 = 2;
             }
             else if (frame2Counter <= 32.0)
             {
-                frame2 = frameHeight * 3;
+                frame2 = 3;
             }
             else
             {
@@ -69,13 +69,14 @@ namespace AssortedCrazyThings.Items
         //draw only in world, not in inventory
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            FindFrame(item.height);
-            Lighting.AddLight(item.Center, new Vector3(0.15f, 0.15f, 0.35f));
+            Draw();
 
+            lightColor = item.GetAlpha(lightColor) * 0.78f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
-            lightColor.A = 255; //255 is opaque
+
+            Lighting.AddLight(item.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = mod.GetTexture("Items/CaughtDungeonSoulAnimated");
@@ -86,6 +87,7 @@ namespace AssortedCrazyThings.Items
                 Width = image.Bounds.Width,
                 Height = (int)(image.Bounds.Height / 4)
             };
+            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
             float sinY = 0;
             sincounter = sincounter > 120 ? 0 : sincounter + 1;
