@@ -49,7 +49,7 @@ namespace AssortedCrazyThings
             harvesterTypes[1] = mod.NPCType<aaaHarvester2>();
             harvesterTypes[2] = mod.NPCType<aaaHarvester3>();
 
-            downedHarvester = false; //not really used anywhere properly
+            downedHarvester = false; //not really used anywhere properly, needs to be tagcompound
             spawnHarvester = false;
 
             isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
@@ -154,7 +154,6 @@ namespace AssortedCrazyThings
 
         public override void PostUpdate()
 		{
-            //UpdateHarvesterSpawn();
             //those flags are checked for trueness each update
             lilmegalodonSpawned = false;
             isMiniocramSpawned = false;
@@ -212,13 +211,11 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void PreUpdate()
+        private void LimitSoulCount()
         {
-            //track fallen NPCs every 6 ticks and replace them with souls
-
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if(Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 10
+                if (Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 10
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
@@ -226,7 +223,7 @@ namespace AssortedCrazyThings
                     {
                         if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
                         {
-                            if(Main.npc[j].timeLeft < timeleftmin)
+                            if (Main.npc[j].timeLeft < timeleftmin)
                             {
                                 timeleftmin = Main.npc[j].timeLeft;
                                 oldest = j;
@@ -240,6 +237,21 @@ namespace AssortedCrazyThings
                     }
                 }
             } //end Main.NetMode
-        } //end PreUpdate 
+        }
+
+        private void UpdateEmpoweringFactor()
+        {
+            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 2f)
+            {
+                AssPlayer.empoweringTotal = 2f;
+            }
+            else if (Main.hardMode && AssPlayer.empoweringTotal < 1.75f) AssPlayer.empoweringTotal = 1.75f;
+        }
+
+        public override void PreUpdate()
+        {
+            LimitSoulCount();
+            UpdateEmpoweringFactor();
+        } 
     }
 }

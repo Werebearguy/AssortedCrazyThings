@@ -7,6 +7,7 @@ using Terraria.ModLoader.IO;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using AssortedCrazyThings.Buffs;
 
 namespace AssortedCrazyThings
 {
@@ -40,6 +41,12 @@ namespace AssortedCrazyThings
 
         public bool soulArmorMinions = false;
 
+        //empowering buff stuff
+        public bool empoweringBuff;
+        private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
+        private short empoweringTimer = 0;
+        public static float empoweringTotal = 1.5f; //this gets modified in AssWorld load and is updated there aswell
+
         public override void ResetEffects()
         {
             everburningCandleBuff = false;
@@ -52,6 +59,7 @@ namespace AssortedCrazyThings
             teleportHome = false;
             getDefense = false;
             soulArmorMinions = false;
+            empoweringBuff = false;
         }
 
         public void SendSlotData()
@@ -77,13 +85,13 @@ namespace AssortedCrazyThings
         }
 
         //idk why but I just left it in
-        public override void LoadLegacy(BinaryReader reader)
-        {
-            int loadVersion = reader.ReadInt32();
-            slotsPlayer = (uint)reader.ReadInt32();
-            teleportHomeTimer = (short)reader.ReadInt32();
-            getDefenseTimer = (short)reader.ReadInt32();
-        }
+        //public override void LoadLegacy(BinaryReader reader)
+        //{
+        //    int loadVersion = reader.ReadInt32();
+        //    slotsPlayer = (uint)reader.ReadInt32();
+        //    teleportHomeTimer = (short)reader.ReadInt32();
+        //    getDefenseTimer = (short)reader.ReadInt32();
+        //}
 
         public override void Load(TagCompound tag)
         {
@@ -122,6 +130,31 @@ namespace AssortedCrazyThings
             return false;
         }
 
+        private void ResetEmpoweringTimer()
+        {
+            if (empoweringBuff)
+            {
+                for (int i = 0; i < empoweringTimer; i++)
+                {
+                    Dust dust = Dust.NewDustPerfect(player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1.5f, 2.4f));
+                    dust.noLight = true;
+                    dust.noGravity = true;
+                    dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
+                }
+                empoweringTimer = 0;
+            }
+        }
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            ResetEmpoweringTimer();
+        }
+
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        {
+            ResetEmpoweringTimer();
+        }
+
         public override void OnHitAnything(float x, float y, Entity victim)
         {
             NPC npc = victim as NPC;
@@ -155,33 +188,6 @@ namespace AssortedCrazyThings
                 //{
                 //    npc.AddBuff(BuffID.Bleeding, 120, true);
                 //}
-            }
-        }
-
-        private void SpawnSoulsWhenHarvesterIsAlive()
-        {
-            if (player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
-            {
-                bool shouldDropSouls = false; //change to false
-                for (short j = 0; j < 200; j++)
-                {
-                    if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
-                    {
-                        shouldDropSouls = true;
-                        break;
-                    }
-                }
-
-                if (shouldDropSouls)
-                {
-                    for (short j = 0; j < 200; j++)
-                    {
-                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<aaaDungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
-                        {
-                            Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
-                        }
-                    }
-                }
             }
         }
 
@@ -254,6 +260,33 @@ namespace AssortedCrazyThings
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
+        private void SpawnSoulsWhenHarvesterIsAlive()
+        {
+            if (player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
+            {
+                bool shouldDropSouls = false; //change to false
+                for (short j = 0; j < 200; j++)
+                {
+                    if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
+                    {
+                        shouldDropSouls = true;
+                        break;
+                    }
+                }
+
+                if (shouldDropSouls)
+                {
+                    for (short j = 0; j < 200; j++)
+                    {
+                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<aaaDungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                        {
+                            Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
+                        }
+                    }
+                }
+            }
+        }
+
         private void UpdateTeleportHomeWhenLow()
         {
             //this code runs even when the accessory is not equipped
@@ -281,13 +314,46 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void PreUpdate()
+        private void Empower()
         {
-            SpawnSoulsWhenHarvesterIsAlive();
+            if (empoweringBuff)
+            {
+                if (Main.time % 60 == 0)
+                {
+                    if (empoweringTimer < empoweringTimerMax)
+                    {
+                        empoweringTimer++;
+                    }
+                }
 
+                float step = (empoweringTimer * (empoweringTotal - 1f)) / empoweringTimerMax;
+                player.meleeDamage *= 1f + step;
+                player.thrownDamage *= 1f + step;
+                player.rangedDamage *= 1f + step;
+                player.magicDamage *= 1f + step;
+                player.minionDamage *= 1f + 0.25f * step;
+
+                //crit scales from base to base + 10*(0.5 , 0.75 , 1.0)
+                player.meleeCrit += (int)(10 * step);
+                player.thrownCrit += (int)(10 * step);
+                player.rangedCrit += (int)(10 * step);
+                player.magicCrit += (int)(10 * step);
+            }
+            else empoweringTimer = 0;
+        }
+
+        public override void PostUpdateBuffs()
+        {
             UpdateTeleportHomeWhenLow();
 
             UpdateGetDefenseWhenLow();
+
+            Empower();
+        }
+
+        public override void PreUpdate()
+        {
+            SpawnSoulsWhenHarvesterIsAlive();
         }
     }
 }

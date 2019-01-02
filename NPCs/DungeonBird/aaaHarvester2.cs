@@ -294,7 +294,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Lighting.AddLight(npc.Center, new Vector3(0.25f, 0.25f, 0.5f) * (soulsEaten / (float)maxSoulsEaten));
             if (AI_State != State_Stop && AI_State != State_Transform && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / (float)maxSoulsEaten))
             {
-                // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
                 Vector2 position = npc.position;
 
                 if (AI_State != State_Noclip)
@@ -310,7 +309,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     position += new Vector2(npc.width / 2, -npc.height / 4);
                 }
     
-                Dust dust = Dust.NewDustPerfect(position, 59, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
                 dust.noLight = true;
                 dust.noGravity = true;
                 dust.fadeIn = Main.rand.NextFloat(0f + soulsEaten / (float)maxSoulsEaten, 1f + soulsEaten / (float)maxSoulsEaten);
