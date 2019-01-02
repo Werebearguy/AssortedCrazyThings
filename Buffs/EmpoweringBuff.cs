@@ -8,8 +8,14 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Empowering");
-            Description.SetDefault("You get stronger the longer you don't recieve damage.");
-            Main.buffNoTimeDisplay[Type] = false;
+            Description.SetDefault("You get stronger the longer you don't receive damage.");
+        }
+
+        public override void ModifyBuffTip(ref string tip, ref int rare)
+        {
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+            string add = "\nIncreased Damage: " + (int)(mPlayer.step * 100) + "%";
+            tip = tip + add;
         }
 
         public override void Update(Player player, ref int buffIndex)
