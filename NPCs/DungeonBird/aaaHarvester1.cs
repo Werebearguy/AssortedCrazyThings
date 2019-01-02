@@ -51,6 +51,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             transformTo = AssWorld.harvesterTypes[1];
 
 
+            npc.chaseable = false;
             npc.npcSlots = 5f; //takes 5 npc slots out of 200 when alive
             npc.width = aaaDungeonSoul.wid;
             npc.height = aaaDungeonSoul.hei;
