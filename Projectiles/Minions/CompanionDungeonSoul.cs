@@ -89,7 +89,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Draw(); //here since we override the AI, we can use the projectiles own frame and frameCounter in Draw()
+            float sinY = -10f;
+            if (Main.hasFocus)  //here since we override the AI, we can use the projectiles own frame and frameCounter in Draw()
+            {
+                Draw();
+                sincounter = sincounter > 120 ? 0 : sincounter + 1;
+                sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
+            }
 
             Lighting.AddLight(projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
@@ -113,15 +119,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (Main.rand.NextFloat() < 0.03f)
             {
                 Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y);
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 26, new Color(255, 255, 255), 1f);
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, new Color(255, 255, 255), 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.2f);
             }
-
-            float sinY = 0;
-            sincounter = sincounter > 120 ? 0 : sincounter + 1;
-            sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
 

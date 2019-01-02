@@ -1,4 +1,5 @@
 ﻿using AssortedCrazyThings.Projectiles;
+using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -49,40 +50,43 @@ namespace AssortedCrazyThings.Items
                     if (Main.projectile[i].active)
                     {
                         //find first occurence of a player owned cute slime
-                        if (Main.projectile[i].owner == player.whoAmI && Array.IndexOf(AssWorld.slimeTypes, Main.projectile[i].type) != -1)
+                        if(Main.projectile[i].modProjectile != null)
                         {
-                            AssGlobalProjectile gProjectile = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod);
-
-                            //only client side
-                            if (Main.netMode != NetmodeID.Server)
+                            if (Main.projectile[i].owner == player.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
                             {
-                                if (shouldReset && player.altFunctionUse == 2)
+                                AssGlobalProjectile gProjectile = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod);
+
+                                //only client side
+                                if (Main.netMode != NetmodeID.Server)
                                 {
-                                    //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
-
-                                    gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0? 0: mPlayer.slotsPlayerLast);
-
-                                    //: "dust" originating from the center, forming a circle and going outwards
-                                    Dust dust;
-                                    for (double angle = 0; angle < Math.PI * 2; angle+= Math.PI/6)
+                                    if (shouldReset && player.altFunctionUse == 2)
                                     {
-                                        //Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
-                                        dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, Main.projectile[i].height/4)/*, 30, 30*/, 16,new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                        //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
+
+                                        gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0 ? 0 : mPlayer.slotsPlayerLast);
+
+                                        //: "dust" originating from the center, forming a circle and going outwards
+                                        Dust dust;
+                                        for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
+                                        {
+                                            //Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
+                                            dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, Main.projectile[i].height / 4)/*, 30, 30*/, 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                        }
+
+                                        //save it for next time shouldReset is true
+                                        mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
                                     }
+                                    else if (player.altFunctionUse != 2)
+                                    {
+                                        gProjectile.ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
+                                    }
+                                }
 
-                                    //save it for next time shouldReset is true
-                                    mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
-                                }
-                                else if(player.altFunctionUse != 2)
-                                {
-                                    gProjectile.ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
-                                }
+                                //sync with player, for when he respawns, it gets reapplied
+                                mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).GetAccessoryAll();
+                                mPlayer.SendSlotData();
+                                break;
                             }
-
-                            //sync with player, for when he respawns, it gets reapplied
-                            mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).GetAccessoryAll();
-                            mPlayer.SendSlotData();
-                            break;
                         }
                     }
                 }

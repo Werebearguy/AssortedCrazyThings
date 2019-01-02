@@ -33,9 +33,6 @@ namespace AssortedCrazyThings
         public static bool downedHarvester;
         public static bool spawnHarvester;
 
-        //Slime stuff
-        public static int[] slimeTypes = new int[18];
-
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
 
@@ -58,38 +55,10 @@ namespace AssortedCrazyThings
             isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
         }
 
-        private void InitSlimes()
-        {
-            int i = 0;
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBlackPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBluePet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeGreenPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimePinkPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimePurplePet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRainbowPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRedPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeXmasPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeYellowPet>();
-
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBlackNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeBlueNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeGreenNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimePinkNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimePurpleNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRainbowNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeRedNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeXmasNewPet>();
-            slimeTypes[i++] = mod.ProjectileType<CuteSlimeYellowNewPet>();
-            //if you plan to add more, increase the array size of slimeTypes in the definition
-        }
-
-        
-
         public override void Initialize()
         {
             InitMinibosses();
             InitHarvesterSouls();
-            InitSlimes();
         }
 
         private void UpdateHarvesterSpawn()

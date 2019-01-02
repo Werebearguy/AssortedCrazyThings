@@ -69,7 +69,13 @@ namespace AssortedCrazyThings.Items
         //draw only in world, not in inventory
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Draw();
+            float sinY = -10f;
+            if (Main.hasFocus)
+            {
+                Draw();
+                sincounter = sincounter > 120 ? 0 : sincounter + 1;
+                sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
+            }
 
             lightColor = item.GetAlpha(lightColor) * 0.78f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
@@ -88,10 +94,6 @@ namespace AssortedCrazyThings.Items
                 Height = (int)(image.Bounds.Height / 4)
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
-
-            float sinY = 0;
-            sincounter = sincounter > 120 ? 0 : sincounter + 1;
-            sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
 
             Vector2 stupidOffset = new Vector2(item.width / 2, (item.height - 10f) + sinY);
 
