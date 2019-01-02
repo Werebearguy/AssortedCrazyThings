@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Items.Armor
                 Vector2 directionalVector = new Vector2(player.width/2 * (1 - player.direction), 0f);
 
                 Vector2 position = player.position + directionalVector + randomVector;
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f) + player.direction / -2f, Main.rand.NextFloat(-1.0f, -0.5f)), 26, new Color(255, 255, 255), 0.9f);
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f) + player.direction / -2f, Main.rand.NextFloat(-1.0f, -0.5f)), 0, new Color(255, 255, 255), 0.9f);
                 dust.noGravity = false;
                 dust.noLight = true;
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.2f);
