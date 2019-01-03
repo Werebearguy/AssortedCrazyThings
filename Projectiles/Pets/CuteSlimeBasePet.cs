@@ -20,6 +20,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return true;
         }
 
+        public override void PostAI()
+        {
+            projectile.rotation = projectile.velocity.X * 0.01f;
+        }
+
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             AssGlobalProjectile gProjectile = projectile.GetGlobalProjectile<AssGlobalProjectile>(mod);
@@ -33,18 +38,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     frameLocal.Y = projectile.frame * Texheight;
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
-                    Vector2 stupidOffset = Vector2.Zero;
+                    Vector2 stupidOffset = AssortedCrazyThings.slimeAccessoryOffsets[slimeAccessory];
                     Vector2 drawPos = Vector2.Zero;
 
                     if (slotNumber == (byte)SlotType.Body)
                     {
-                        stupidOffset = new Vector2(-2f, -0.0f + drawOriginOffsetY); // new Vector2(-0.5f, -7.7f);
+                        stupidOffset += new Vector2(-2f, +0.7f + projectile.gfxOffY + drawOriginOffsetY); // new Vector2(-0.5f, -7.7f);
                         drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                         spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                     }
                     if (slotNumber == (byte)SlotType.Hat)
                     {
-                        stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY - 7f); // new Vector2(-0.5f, -7.7f);
+                        stupidOffset += new Vector2(-2f, +0.7f + projectile.gfxOffY + drawOriginOffsetY); // new Vector2(-0.5f, -7.7f);
                         drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                         spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                     }

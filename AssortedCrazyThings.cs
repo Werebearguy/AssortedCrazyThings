@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Items.PetAccessories;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -23,12 +24,14 @@ namespace AssortedCrazyThings
         //Slime textures n shiet
         public static int[] slimeAccessoryItems = new int[30];
         //these two are only accessed locally (not on a server)
-        public static Texture2D[] slimeAccessoryTextures;
         public static int[] slimeAccessoryItemsIndexed;
+        public static Texture2D[] slimeAccessoryTextures;
+        public static Vector2[] slimeAccessoryOffsets;
 
         private void InitPetAccessories()
         {
             slimeAccessoryTextures = new Texture2D[30];
+            slimeAccessoryOffsets = new Vector2[30];
             /* Here you add the items from PetAccessories in two arrays,
             * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
             * the other one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
@@ -76,10 +79,17 @@ namespace AssortedCrazyThings
                 slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
                 //ErrorLogger.Log(slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]]);
 
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = new Vector2(0f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = new Vector2(0f, -11f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = new Vector2(0f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = new Vector2(0f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = new Vector2(0f, 0f);
+
                 //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
 
                 //finishing up, ignore
                 Array.Resize(ref slimeAccessoryTextures, slimeAccessoryItems.Length + 1); //since index starts at 1
+                Array.Resize(ref slimeAccessoryOffsets, slimeAccessoryItems.Length + 1); //since index starts at 1
             }
         }
 
@@ -111,6 +121,7 @@ namespace AssortedCrazyThings
             if (!Main.dedServ && Main.netMode != 2)
             {
                 slimeAccessoryTextures = null;
+                slimeAccessoryOffsets = null;
             }
         }
 
