@@ -342,12 +342,6 @@ LIGHT PETS
 Soul Companion
 	- A dungeon soul that floats at your side and provides a modest amount of light
 	- ???
-	
-============
-VANITY ARMOR
-============
-Origami Hat
-	- Drop from Foldfish
 
 ============
 ACCESSORIES
@@ -445,8 +439,6 @@ Red Metal Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
 Red Metal Toothy Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
-Soul Compnion
-	- Anywhere with Captured Soul x1
 Spazmatism Eye-lloon
 	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
 
@@ -484,6 +476,20 @@ Soul Savior Garment
 	- Soul Savior's Garb
 		- Leg-slot armor that ???
 		- Crafted from 15 Captured Souls
+
+============
+VANITY ARMOR
+============
+Origami Hat
+	- Drop from Foldfish
+	
+============	
+CONSUMABLES
+============
+Soul Flask
+	- ???
+	- Incrementally increases damage dealt over time, but the bonus is reset upon taking damage
+		- Note; The effect will reset if you take damage while invulnerable, so keep dodging if you want the full effect
 
 ============
 MATERIALS:
@@ -542,6 +548,10 @@ CHANGES
 	- Juggerlusc now drops Flippers or Diving Helmet, and no longer drops Purple Mucos
 	- Stone Soldier spawns with colored eyes, and now drops a gem that matches their eye color
 		- Does not include Amber
+	- Bipolar Candle in a Balloon now has a buff icon to let you know it's working
+		- It still doesn't actually do anything
+			- This is a feature
+				- Seriously.
 
 ADDITONS
 	- Bladetongue, a new fish(?) that drops the Bladetongue weapon
@@ -557,6 +567,11 @@ ADDITONS
 	- Everburning Candelabra, a combination of all four candle accessories
 	- Soul Savior Garment, a set of early Summoner armor that provides you with a trio of cute souls that bump into enemies
 		- The souls aren't very strong, but they don't take up a summon's slot
+	- Three Sigil items, obtained from ???
+		- Sigil of Retreat sends you home and gives you a quick heal at critical health
+		- Sigil of Pain Suppression gives you a very short burst of life regeneration and high defense at critical health
+		- Sigil of Last Stand does what both of the previous sigils do, starting with Pain Suppression
+		- The effects of these accessories do not stack, and share cooldowns
 	
 CUTE SLIMES
 	- Yes, they got enough changes to warrant their own changelog section

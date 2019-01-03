@@ -10,7 +10,8 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul Flask");
-            Tooltip.SetDefault("You get stronger the longer you don't receive damage.");
+            Tooltip.SetDefault("Incrementally increases damage dealt over time"
+                + "\nBonus resets upon taking damage");
         }
 
         public override void SetDefaults()
