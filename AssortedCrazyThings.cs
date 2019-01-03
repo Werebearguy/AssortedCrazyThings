@@ -35,12 +35,12 @@ namespace AssortedCrazyThings
             /* Here you add the items from PetAccessories in two arrays,
             * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
             * the other one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
-            * 
+            * the last one is the offset array, you can leave it as 0,0 if there is none
             */
 
 
             //------------------------------------------------------------------------------------------------------
-            //------------------------------------------------------------------------------------------------------
+            //------------------slimeAccessoryItems-----------------------------------------------------------------
             //------------------------------------------------------------------------------------------------------
             //ive set the limit to 30 different accessories for now, we can expand that later
             //(check definition of slimeAccessoryItems)
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings
                 //-> slimeAccessoryItemsIndexed[mod.ItemType<PetAccessoryXmasHat>()] returns 2
 
                 //------------------------------------------------------------------------------------------------------
-                //------------------------------------------------------------------------------------------------------
+                //------------slimeAccessoryTextures--------------------------------------------------------------------
                 //------------------------------------------------------------------------------------------------------
                 //ErrorLogger.Log(slimeAccessoryItemsIndexed.Length + " " + ItemType<PetAccessoryXmasHat>() + " " + slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]);
                 //ErrorLogger.Log(slimeAccessoryTextures.Length);
@@ -79,8 +79,12 @@ namespace AssortedCrazyThings
                 slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
                 //ErrorLogger.Log(slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]]);
 
+
+                //------------------------------------------------------------------------------------------------------
+                //-----------slimeAccessoryOffsets----------------------------------------------------------------------
+                //------------------------------------------------------------------------------------------------------
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = new Vector2(0f, 0f);
-                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = new Vector2(0f, -11f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = new Vector2(0f, -13f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = new Vector2(0f, 0f);

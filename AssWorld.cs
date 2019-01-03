@@ -1,6 +1,5 @@
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

@@ -142,6 +142,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.timeLeft = 2;
             }
 
+            //if(projectile.localAI[0] == 0)
+            //{
+            //    sincounter = (projectile.whoAmI * 37) % 180;
+            //    projectile.localAI[0]++;
+            //}
+
             float distance1 = 700f;
             float distance2playerfaraway = 800f;
             float distance2playerfarawayWhenHasTarget = 1200f;

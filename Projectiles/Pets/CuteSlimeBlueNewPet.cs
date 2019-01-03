@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -13,9 +12,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Cute Blue Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = -20;
+            drawOffsetX = -18;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = -17; //-20
+            drawOriginOffsetY = -16; //-20
         }
 
         public override void SetDefaults()
