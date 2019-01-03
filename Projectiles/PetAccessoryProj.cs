@@ -1,11 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles
 {
-    class AssGlobalProjectile: GlobalProjectile
+    class PetAccessoryProj: GlobalProjectile
     {
-        public AssGlobalProjectile()
+        public PetAccessoryProj()
         {
 
         }
@@ -18,8 +17,8 @@ namespace AssortedCrazyThings.Projectiles
             }
         }
 
-        private static uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
-        private uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000 
+        private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
+        private uint slots = 0;       //0000 0000|0000 0000|0000 0000|0000 0000 
                                       //slt3     |slt2     |slt1     |slt0     
 
         private bool AddAccessory(byte slotNumber, uint type)
