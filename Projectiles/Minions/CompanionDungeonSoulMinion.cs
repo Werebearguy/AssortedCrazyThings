@@ -7,8 +7,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-    public class CompanionDungeonSoul : ModProjectile
+    public class CompanionDungeonSoulMinion : ModProjectile
     {
+        //change damage here, reminder that there are three minions so you are effectively tripling the damage
         public static int Damage = 6;
         private int sincounter;
 
@@ -98,13 +99,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             Lighting.AddLight(projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
-            lightColor = projectile.GetAlpha(lightColor) * 0.78f; //1f is opaque
-            lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
-            lightColor.G = Math.Max(lightColor.G, (byte)200);
-            lightColor.B = Math.Max(lightColor.B, (byte)200);
-
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Minions/CompanionDungeonSoul");
+            Texture2D image = Main.projectileTexture[projectile.type];
             Rectangle bounds = new Rectangle
             {
                 X = 0,
@@ -126,7 +122,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
 
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, Color.White * 0.78f, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
         }
 
         public override void AI()

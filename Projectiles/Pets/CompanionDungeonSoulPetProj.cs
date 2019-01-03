@@ -7,14 +7,14 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class aaaSoulLightPetProj : ModProjectile
+    public class CompanionDungeonSoulPetProj : ModProjectile
     {
         private int sincounter;
 
         public override void SetStaticDefaults()
         {
             //I didnt change anything regarding ai, so this is a straight up clone of this https://terraria.gamepedia.com/Creeper_Egg
-            DisplayName.SetDefault("aaaSoulLightPetProj");
+            DisplayName.SetDefault("Companion Soul");
             Main.projFrames[projectile.type] = 4;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
