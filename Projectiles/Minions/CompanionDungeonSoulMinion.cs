@@ -111,13 +111,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
             //Generate visual dust
-            if (Main.rand.NextFloat() < 0.03f)
+            if (Main.rand.NextFloat() < 0.015f)
             {
                 Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y);
                 Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, new Color(255, 255, 255), 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
-                dust.fadeIn = Main.rand.NextFloat(0.8f, 1.2f);
+                dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
             }
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
