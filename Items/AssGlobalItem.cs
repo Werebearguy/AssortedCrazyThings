@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Items
                         {
                             if (Main.projectile[i].owner == player.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
                             {
-                                AssGlobalProjectile gProjectile = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod);
+                                PetAccessoryProj gProjectile = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod);
 
                                 //only client side
                                 if (Main.netMode != NetmodeID.Server)
@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.Items
                                 }
 
                                 //sync with player, for when he respawns, it gets reapplied
-                                mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<AssGlobalProjectile>(mod).GetAccessoryAll();
+                                mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).GetAccessoryAll();
                                 mPlayer.SendSlotData();
                                 break;
                             }

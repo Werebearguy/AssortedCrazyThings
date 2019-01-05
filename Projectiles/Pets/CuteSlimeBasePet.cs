@@ -1,5 +1,4 @@
-﻿using AssortedCrazyThings.Items.PetAccessories;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -20,34 +19,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return true;
         }
 
+        public override void PostAI()
+        {
+            if(projectile.velocity.Y != 0.1f) projectile.rotation = projectile.velocity.X * 0.01f;
+        }
+
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            AssGlobalProjectile gProjectile = projectile.GetGlobalProjectile<AssGlobalProjectile>(mod);
+            PetAccessoryProj gProjectile = projectile.GetGlobalProjectile<PetAccessoryProj>(mod);
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
                 if(slimeAccessory != 0)
                 {
                     Texture2D texture = AssortedCrazyThings.slimeAccessoryTextures[slimeAccessory];
-                    Rectangle frameLocal = new Rectangle(0, 0, texture.Width, texture.Height / 10);
-                    frameLocal.Y = projectile.frame * Texheight;
+                    Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
-                    Vector2 stupidOffset = Vector2.Zero;
-                    Vector2 drawPos = Vector2.Zero;
+                    Vector2 stupidOffset = AssortedCrazyThings.slimeAccessoryOffsets[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
 
-                    if (slotNumber == (byte)SlotType.Body)
-                    {
-                        stupidOffset = new Vector2(-2f, -0.0f + drawOriginOffsetY); // new Vector2(-0.5f, -7.7f);
-                        drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                        spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
-                    }
-                    if (slotNumber == (byte)SlotType.Hat)
-                    {
-                        stupidOffset = new Vector2(-2f, -0.7f + drawOriginOffsetY - 7f); // new Vector2(-0.5f, -7.7f);
-                        drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                        spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), Color.White, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
-                    }
+                    stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f)); // new Vector2(-0.5f, -7.7f);
+                    Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+                    spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), drawColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                 }
             }
         }

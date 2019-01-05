@@ -37,10 +37,10 @@ namespace AssortedCrazyThings.Items.Armor
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             mPlayer.soulArmorMinions = true;
 
-            bool miniontProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoul>()] < 3; //3
+            bool miniontProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulMinion>()] < 3; //3
             if (miniontProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), player.direction * 0.5f, -0.5f, mod.ProjectileType<CompanionDungeonSoul>(), CompanionDungeonSoul.Damage, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), player.direction * 0.5f, -0.5f, mod.ProjectileType<CompanionDungeonSoulMinion>(), CompanionDungeonSoulMinion.Damage, 0f, player.whoAmI, 0f, 0f);
             }
 
             //visual

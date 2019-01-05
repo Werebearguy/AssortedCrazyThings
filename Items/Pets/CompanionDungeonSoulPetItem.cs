@@ -1,15 +1,17 @@
-﻿using Terraria;
+﻿using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Projectiles.Pets;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class aaaSoulLightPetItem : ModItem
+    public class CompanionDungeonSoulPetItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaSoulLightPet");
-            Tooltip.SetDefault("Summons a friendly aaaSoulLightPet to follow you.");
+            DisplayName.SetDefault("Companion Soul");
+            Tooltip.SetDefault("Summons a friendly Soul to follow you.");
         }
 
         public override void SetDefaults()
@@ -17,8 +19,8 @@ namespace AssortedCrazyThings.Items.Pets
             item.CloneDefaults(ItemID.ZephyrFish);
             item.width = 14;
             item.height = 24;
-            item.shoot = mod.ProjectileType("aaaSoulLightPetProj");
-            item.buffType = mod.BuffType("aaaSoulLightPetBuff");
+            item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj>();
+            item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff>();
             item.rare = -11;
         }
 

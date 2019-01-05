@@ -1,11 +1,13 @@
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
@@ -42,7 +44,7 @@ namespace AssortedCrazyThings
             harvesterTypes[1] = mod.NPCType<aaaHarvester2>();
             harvesterTypes[2] = mod.NPCType<aaaHarvester3>();
 
-            downedHarvester = false; //not really used anywhere properly, needs to be tagcompound
+            downedHarvester = false;
             spawnHarvester = false;
 
             isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
@@ -52,6 +54,75 @@ namespace AssortedCrazyThings
         {
             InitHarvesterSouls();
         }
+
+        public override TagCompound Save()
+        {
+            var downed = new List<string>();
+            if (downedHarvester)
+            {
+                downed.Add("harvester");
+            }
+
+            return new TagCompound {
+                {"downed", downed}
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            var downed = tag.GetList<string>("downed");
+            downedHarvester = downed.Contains("harvester");
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = downedHarvester;
+            writer.Write(flags);
+
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            downedHarvester = flags[0];
+        }
+
+        //small methods I made for myself to not make the code cluttered since I have to use these six times
+        public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
+        {
+            if(soundStyle != -1) Main.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(message, 175, 75, 255);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 75, 255));
+            }
+        }
+
+        public static void DisappearMessage(string message)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(message, 175, 255, 175);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
+            }
+        }
+
+        //not used anywhere, but might be helpful
+        //private void KillInstantly(NPC npc)
+        //{
+        //    // These 3 lines instantly kill the npc without showing damage numbers, dropping loot, or playing DeathSound. Use this for instant deaths
+        //    npc.life = 0;
+        //    npc.HitEffect();
+        //    npc.active = false;
+        //    Main.PlaySound(SoundID.NPCDeath16, npc.position); // plays a fizzle sound
+        //}
 
         private void UpdateHarvesterSpawn()
         {
@@ -108,40 +179,41 @@ namespace AssortedCrazyThings
             }
         }
 
-        //small methods I made for myself to not make the code cluttered since I have to use these six times
-        public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
+        private void LimitSoulCount()
         {
-            if(soundStyle != -1) Main.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
-            if (Main.netMode == NetmodeID.SinglePlayer)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Main.NewText(message, 175, 75, 255);
-            }
-            else if (Main.netMode == NetmodeID.Server)
-            {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 75, 255));
-            }
+                if (Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 10
+                {
+                    short oldest = 200;
+                    int timeleftmin = int.MaxValue;
+                    for (short j = 0; j < 200; j++)
+                    {
+                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
+                        {
+                            if (Main.npc[j].timeLeft < timeleftmin)
+                            {
+                                timeleftmin = Main.npc[j].timeLeft;
+                                oldest = j;
+                            }
+                        }
+                    }
+                    if (oldest != 200)
+                    {
+                        Main.npc[oldest].life = 0;
+                        Main.npc[oldest].active = false;
+                    }
+                }
+            } //end Main.NetMode
         }
 
-        public static void DisappearMessage(string message)
+        private void UpdateEmpoweringFactor()
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
+            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 2f)
             {
-                Main.NewText(message, 175, 255, 175);
+                AssPlayer.empoweringTotal = 2f;
             }
-            else if (Main.netMode == NetmodeID.Server)
-            {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
-            }
-        }
-
-        //not used anywhere, but might be helpful
-        private void KillInstantly(NPC npc)
-        {
-            // These 3 lines instantly kill the npc without showing damage numbers, dropping loot, or playing DeathSound. Use this for instant deaths
-            npc.life = 0;
-            npc.HitEffect();
-            npc.active = false;
-            Main.PlaySound(SoundID.NPCDeath16, npc.position); // plays a fizzle sound
+            else if (Main.hardMode && AssPlayer.empoweringTotal < 1.75f) AssPlayer.empoweringTotal = 1.75f;
         }
 
         public override void PostUpdate()
@@ -202,44 +274,7 @@ namespace AssortedCrazyThings
                 DisappearMessage("The " + miniocramName + " disappeared... for now.");
             }
         }
-
-        private void LimitSoulCount()
-        {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                if (Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 10
-                {
-                    short oldest = 200;
-                    int timeleftmin = int.MaxValue;
-                    for (short j = 0; j < 200; j++)
-                    {
-                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
-                        {
-                            if (Main.npc[j].timeLeft < timeleftmin)
-                            {
-                                timeleftmin = Main.npc[j].timeLeft;
-                                oldest = j;
-                            }
-                        }
-                    }
-                    if (oldest != 200)
-                    {
-                        Main.npc[oldest].life = 0;
-                        Main.npc[oldest].active = false;
-                    }
-                }
-            } //end Main.NetMode
-        }
-
-        private void UpdateEmpoweringFactor()
-        {
-            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 2f)
-            {
-                AssPlayer.empoweringTotal = 2f;
-            }
-            else if (Main.hardMode && AssPlayer.empoweringTotal < 1.75f) AssPlayer.empoweringTotal = 1.75f;
-        }
-
+        
         public override void PreUpdate()
         {
             LimitSoulCount();
