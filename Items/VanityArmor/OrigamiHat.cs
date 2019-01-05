@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Items
+namespace AssortedCrazyThings.Items.VanityArmor
 {
     [AutoloadEquip(EquipType.Head)]
     public class OrigamiHat : ModItem
