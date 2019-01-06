@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Items.PetAccessories;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -32,11 +34,54 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
                 if(slimeAccessory != 0)
                 {
+
+
                     Texture2D texture = AssortedCrazyThings.slimeAccessoryTextures[slimeAccessory];
                     Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
                     Vector2 stupidOffset = AssortedCrazyThings.slimeAccessoryOffsets[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
+
+
+                    //fix for legacy slimes
+                    if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
+                    {
+                        if (slotNumber != (byte)SlotType.Hat) //everything besides head
+                        {
+                            if (projectile.frame > 2 && projectile.frame < 6)
+                            {
+                                stupidOffset += new Vector2(-2f * projectile.spriteDirection, 0f);
+                            }
+                            else
+                            {
+                                if (projectile.spriteDirection == 1)
+                                {
+                                    stupidOffset += new Vector2(-4f, 0f);
+                                }
+                            }
+                        }
+                        else //hat
+                        {
+                            if (projectile.frame < 6)
+                            {
+                                Main.NewText("dir " + projectile.spriteDirection);
+                                stupidOffset += new Vector2(-2f * (projectile.spriteDirection), 0f);
+                                if (projectile.spriteDirection == -1)
+                                {
+                                    stupidOffset += new Vector2(-4f, 0f);
+                                }
+
+                                //if (projectile.frame > 2)
+                                //{
+                                //    Main.NewText("offset down");
+                                //}
+                            }
+                            else
+                            {
+                                stupidOffset += new Vector2(-2f * (projectile.spriteDirection), 0f);
+                            }
+                        }
+                    }
 
                     stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f)); // new Vector2(-0.5f, -7.7f);
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;

@@ -100,11 +100,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBowYellow : PetAccessory
+    public class PetAccessoryBowBlack : PetAccessory
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaYellow Bow");
+            DisplayName.SetDefault("aaaBlack Bow");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 

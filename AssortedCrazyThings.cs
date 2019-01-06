@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,6 +24,7 @@ namespace AssortedCrazyThings
 
         //Slime textures n shiet
         public static int[] slimeAccessoryItems = new int[30];
+        public static int[] slimePetLegacy = new int[9];
         //these two are only accessed locally (not on a server)
         public static int[] slimeAccessoryItemsIndexed;
         public static Texture2D[] slimeAccessoryTextures;
@@ -30,6 +32,20 @@ namespace AssortedCrazyThings
 
         private void InitPetAccessories()
         {
+            //ignore this
+            slimePetLegacy[0] = ProjectileType<CuteSlimeBlackPet>();
+            slimePetLegacy[1] = ProjectileType<CuteSlimeBluePet>();
+            slimePetLegacy[2] = ProjectileType<CuteSlimeGreenPet>();
+            slimePetLegacy[3] = ProjectileType<CuteSlimePinkPet>();
+            slimePetLegacy[4] = ProjectileType<CuteSlimePurplePet>();
+            slimePetLegacy[5] = ProjectileType<CuteSlimeRainbowPet>();
+            slimePetLegacy[6] = ProjectileType<CuteSlimeRedPet>();
+            slimePetLegacy[7] = ProjectileType<CuteSlimeXmasPet>();
+            slimePetLegacy[8] = ProjectileType<CuteSlimeYellowPet>();
+            //
+
+
+
             slimeAccessoryTextures = new Texture2D[30];
             slimeAccessoryOffsets = new Vector2[30];
             /* Here you add the items from PetAccessories in two arrays,
@@ -48,7 +64,7 @@ namespace AssortedCrazyThings
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBow>();
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryXmasHat>();
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowGreen>();
-            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowYellow>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowBlack>();
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowBlue>();
             //add more here, for example like this:
             //slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryStrapOn>();
@@ -69,13 +85,15 @@ namespace AssortedCrazyThings
                 //------------------------------------------------------------------------------------------------------
                 //------------slimeAccessoryTextures--------------------------------------------------------------------
                 //------------------------------------------------------------------------------------------------------
+                //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
+
                 //ErrorLogger.Log(slimeAccessoryItemsIndexed.Length + " " + ItemType<PetAccessoryXmasHat>() + " " + slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]);
                 //ErrorLogger.Log(slimeAccessoryTextures.Length);
                 //ErrorLogger.Log(GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw"));
                 slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
                 slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
                 slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowGreen_Draw");
-                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowYellow_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlack_Draw");
                 slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
                 //ErrorLogger.Log(slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]]);
 
@@ -86,10 +104,9 @@ namespace AssortedCrazyThings
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = new Vector2(0f, -13f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = new Vector2(0f, 0f);
-                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowYellow>()]] = new Vector2(0f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = new Vector2(0f, 0f);
 
-                //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
 
                 //finishing up, ignore
                 Array.Resize(ref slimeAccessoryTextures, slimeAccessoryItems.Length + 1); //since index starts at 1
