@@ -31,7 +31,10 @@ namespace AssortedCrazyThings
         //the megalodon messages are modified down below in the Disappear message
 
         //Soul stuff
-        public static int[] harvesterTypes = new int[3];
+        public static int[] harvesterTypes = new int[5];
+        public static int harvesterTalonLeft;
+        public static int harvesterTalonRight;
+        public static int harvesterIndex = -1;
         public static bool downedHarvester;
         public static bool spawnHarvester;
 
@@ -43,7 +46,8 @@ namespace AssortedCrazyThings
             harvesterTypes[0] = mod.NPCType<aaaHarvester1>();
             harvesterTypes[1] = mod.NPCType<aaaHarvester2>();
             harvesterTypes[2] = mod.NPCType<aaaHarvester3>();
-
+            harvesterTypes[3] = harvesterTalonLeft = mod.NPCType<aaaHarvester3Left>();
+            harvesterTypes[4] = harvesterTalonRight = mod.NPCType<aaaHarvester3Right>();
             downedHarvester = false;
             spawnHarvester = false;
 
@@ -279,6 +283,11 @@ namespace AssortedCrazyThings
         {
             LimitSoulCount();
             UpdateEmpoweringFactor();
+
+            if (harvesterIndex >= 0 && !Main.npc[harvesterIndex].active)
+            {
+                harvesterIndex = -1;
+            }
         } 
     }
 }

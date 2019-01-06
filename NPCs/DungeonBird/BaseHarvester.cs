@@ -10,18 +10,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public abstract class BaseHarvester : ModNPC
     {
-        //Main.NewText(npc.modNPC.GetType().BaseType);//Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-        //Main.NewText(npc.modNPC.GetType().BaseType);
-
         public const short EatTimeConst = 90; //shouldnt be equal to IdleTimeConst + 60
         public const short IdleTimeConst = 180;
         public static readonly string message = "You hear a faint cawing come from nearby...";
@@ -57,7 +45,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AI_State == State_Transform)
             {
-                //Main.NewText(lightColor * ((60 - AI_X_Timer) / 60));
                 return lightColor * ((transformTime - AI_X_Timer) / transformTime);
             }
             return new Color((int)(lightColor.R * 1.2f + 20), (int)(lightColor.G * 1.2f + 20), (int)(lightColor.B * 1.2f + 20));
@@ -897,8 +884,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AssWorld.isPlayerHealthManaBarLoaded)
             {
                 npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
-
-
             }
             else
             {
@@ -908,7 +893,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if (AI_Init == 0)
+            if (AI_Init == 0 && Main.netMode != 1)
             {
                 npc.life = soulsEaten + 1;
                 //initialize it to go for souls first
@@ -918,6 +903,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 AI_Init = 1;
                 AI_Timer = 0f;
                 AI_Local_Timer = 0f;
+                npc.netUpdate = true;
+            }
+
+            if (npc.alpha > 0)
+            {
+                npc.alpha -= 5;
+                if (npc.alpha < 0)
+                {
+                    npc.alpha = 0;
+                }
+                return;
             }
 
             if (AI_Local_Timer < afterEatTime)
@@ -1152,9 +1148,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         SpawnBoneShort(npc.Center + new Vector2(0f, -npc.height / 4), new Vector2(Main.rand.NextFloat(-1f, 1f) * randfactor, -Main.rand.NextFloat() * randfactor), 0, 1.5f);
                     }
 
-                    if (AI_X_Timer > transformTime)
+                    //51 is because 255 is decremented by 5 in the transformTo alpha
+                    if (AI_X_Timer == (transformTime - 51))
                     {
                         Transform(transformTo);
+                    }
+
+                    if (AI_X_Timer > transformTime)
+                    {
+                        KillInstantly(npc);
                     }
                     //handle fade out in GetAlpha scaled on AI_X_Timer,
                     //and fade in scaled on Local_Timer (when soulseaten == 0)
@@ -1197,7 +1199,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //set to zero to not transform
             if(to != -1)
             {
-                KillInstantly(npc);
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     int type = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to);

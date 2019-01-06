@@ -10,8 +10,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public class aaaHarvester1 : BaseHarvester
     {
-        public const string typeName = "aaaHarvester1";
-
         //public override string Texture
         //{
         //    get
@@ -52,7 +50,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
 
             npc.chaseable = false;
-            npc.npcSlots = 5f; //takes 5 npc slots out of 200 when alive
+            npc.npcSlots = 1f;
             npc.width = aaaDungeonSoul.wid;
             npc.height = aaaDungeonSoul.hei;
             npc.damage = 0;
@@ -62,6 +60,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.DeathSound = SoundID.NPCDeath1;
             npc.aiStyle = -1; //91;
             aiType = -1; //91
+            npc.alpha = 255;
             animationType = -1;
             npc.lavaImmune = true;
             npc.buffImmune[BuffID.Confused] = false;

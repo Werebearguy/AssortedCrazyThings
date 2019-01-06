@@ -55,13 +55,17 @@ direwolf420 to-do list
 	- uses dungeon souls for crafting
 	- makes your stats better the more kills you get during its buff duration
 
+//DONE
 9. Proper fadein/fadeout when harvester is transforming
 
+//DONE (besides the recipe stuff)
 10. Make third stage Harvester AI
 	- Should move like queen bee "fly above player" mode
 	- uses his claws like golem fists
 	- drops bones, souls
 	- souls can be crafted into various gear, water candle, potion
+
+11. Stat tweaking for Harvester stages (all stages)
 
 #####################################################################################
 Werebearguy to-do list
@@ -75,6 +79,7 @@ Werebearguy to-do list
 2. Have a few more slime accessories on the next release
 	- make atleast one for every slot so I can test it properly soon-ish tho
 
+//DONE
 3. Prepare a "slime accessory template pack" kinda thing
 	- with guidelines on how to draw them properly, what dimensions, what to do if accessory is out of bounds, etc etc
 	- also let the person making it decide on an accessory slot (we still havent decided which ones make sense)
@@ -85,6 +90,7 @@ Werebearguy to-do list
 4. Remove the Companion Balloon Soul Accessory Thing (if you want)
 	- Since we got a light pet I think this'll be useless as it doesn't animate properly
 
+//DONE
 5. Dungeon Soul armor
 	- Make the Dungeon Soul armor craftable with standard skeletron tier resources, has similar stats to Necro armor (same tier)
 	- Make a hardmode version of it where you upgrade each armor with ectoplasm, gets crazier texture and slightly better stats than
@@ -96,3 +102,5 @@ Werebearguy to-do list
 
 //DONE
 7. Texture for the aaaSoulLightPetBuff
+
+8. Give feedback on stats for Harvester (all stages)
