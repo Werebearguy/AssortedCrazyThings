@@ -19,6 +19,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public static int TalonOffsetRightX = Wid / 4/* + 8*/; // 78
         public static int TalonOffsetY = Hei/2 - 9;              //-9 //normally its negative
 
+        public static int TalonDirectionalOffset = 10;
+
 
         public override void SetStaticDefaults()
         {
@@ -747,11 +749,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 float num630 = 4f;
                 float num631 = 0.05f;
-                if (Main.expertMode)
-                {
-                    num631 = 0.075f;
-                    num630 = 6f;
-                }
+                //if (Main.expertMode)
+                //{
+                //    num631 = 0.075f;
+                //    num630 = 6f;
+                //}
                 Vector2 vector77 = new Vector2(npc.position.X + (float)(npc.width / 2) + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + (float)npc.height * 0.8f);
                 Vector2 vector78 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
                 float num632 = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector78.X;
@@ -917,13 +919,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (npc.direction == 1)
             {
-                TalonOffsetLeftX = -Wid / 4 + 10;
-                TalonOffsetRightX = Wid / 4 + 10;
+                TalonOffsetLeftX = -Wid / 4 + TalonDirectionalOffset;
+                TalonOffsetRightX = Wid / 4 + TalonDirectionalOffset;
             }
             else
             {
-                TalonOffsetLeftX = -Wid / 4 - 10;
-                TalonOffsetRightX = Wid / 4 - 10;
+                TalonOffsetLeftX = -Wid / 4 - TalonDirectionalOffset;
+                TalonOffsetRightX = Wid / 4 - TalonDirectionalOffset;
             }
         }
 

@@ -81,8 +81,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 //num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
 
-                num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX + 0f) : (num22 + aaaHarvester3.TalonOffsetLeftX - 0f)); //66f, -70f
-                num22 = (npc.spriteDirection == 1) ? num22 + 16 : num22 - 16;
+                num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX) : (num22 + aaaHarvester3.TalonOffsetLeftX)); //66f, -70f
+                num22 = (npc.spriteDirection == 1) ? num22 + (aaaHarvester3.TalonDirectionalOffset + 6) : num22 - (aaaHarvester3.TalonDirectionalOffset + 6);
 
                 bool flag6 = true;
                 while (flag6)
@@ -102,8 +102,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         num22 = Main.npc[AssWorld.harvesterIndex].Center.X - center.X;
                         num23 = Main.npc[AssWorld.harvesterIndex].Center.Y - center.Y;
                         num23 -= -aaaHarvester3.TalonOffsetY + 20f; //7f
-                        num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX + 0f) : (num22 + aaaHarvester3.TalonOffsetLeftX - 0f)); //66f, -70f
-                        num22 = (npc.spriteDirection == 1) ? num22 + 16: num22 - 16;
+                        num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX) : (num22 + aaaHarvester3.TalonOffsetLeftX)); //66f, -70f
+                        num22 = (npc.spriteDirection == 1) ? num22 + (aaaHarvester3.TalonDirectionalOffset + 6) : num22 - (aaaHarvester3.TalonDirectionalOffset + 6);
 
                         if (Main.rand.NextBool(8))
                         {

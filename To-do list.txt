@@ -60,8 +60,11 @@ direwolf420 to-do list
 
 //DONE (besides the recipe stuff)
 10. Make third stage Harvester AI
-	- Should move like queen bee "fly above player" mode
+	- moves like queen bee "fly above player" mode
 	- uses his claws like golem fists
+	- when hit by claws, slow debuff for 5 seconds (50% chance)
+	- shoots claws faster and more frequently when below half health
+	- no expert more bag (and no expert mode "buffs" in general)
 	- drops bones, souls
 	- souls can be crafted into various gear, water candle, potion
 
