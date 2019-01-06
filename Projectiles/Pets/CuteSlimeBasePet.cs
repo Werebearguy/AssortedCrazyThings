@@ -64,7 +64,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         {
                             if (projectile.frame < 6)
                             {
-                                Main.NewText("dir " + projectile.spriteDirection);
                                 stupidOffset += new Vector2(-2f * (projectile.spriteDirection), 0f);
                                 if (projectile.spriteDirection == -1)
                                 {
