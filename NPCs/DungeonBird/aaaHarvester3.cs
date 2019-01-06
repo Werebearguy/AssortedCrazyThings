@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public static int TalonOffsetLeftX = -Wid / 4/* - 14*/; //-84
         public static int TalonOffsetRightX = Wid / 4/* + 8*/; // 78
-        public static int TalonOffsetY = Hei/2 - 9;              //-9 //normally its negative
+        public static int TalonOffsetY = Hei/2 - 7;              //-9 //normally its negative
 
         public static int TalonDirectionalOffset = 10;
 
@@ -757,7 +757,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 Vector2 vector77 = new Vector2(npc.position.X + (float)(npc.width / 2) + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + (float)npc.height * 0.8f);
                 Vector2 vector78 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
                 float num632 = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector78.X;
-                float num633 = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - 300f - vector78.Y;
+                float num633 = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - 200f - vector78.Y; //300f
                 float num634 = (float)Math.Sqrt((double)(num632 * num632 + num633 * num633));
                 AI_Timer += 1f;
                 if (false)

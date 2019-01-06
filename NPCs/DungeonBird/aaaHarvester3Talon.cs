@@ -63,6 +63,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.dontTakeDamage = true;
         }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            return false;
+        }
+
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             if (AssWorld.harvesterIndex != -1)
@@ -84,17 +89,20 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX) : (num22 + aaaHarvester3.TalonOffsetLeftX)); //66f, -70f
                 num22 = (npc.spriteDirection == 1) ? num22 + (aaaHarvester3.TalonDirectionalOffset + 6) : num22 - (aaaHarvester3.TalonDirectionalOffset + 6);
 
+
+                SpriteEffects effect = (npc.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
                 bool flag6 = true;
                 while (flag6)
                 {
                     float num24 = (float)Math.Sqrt((double)(num22 * num22 + num23 * num23));
-                    if (num24 < 48f) //16
+                    if (num24 < 40f) //16
                     {
                         flag6 = false;
                     }
                     else
                     {
-                        num24 = 48f / num24; //16
+                        num24 = 40f / num24; //16
                         num22 *= num24;
                         num23 *= num24;
                         center.X += num22;
@@ -113,12 +121,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             dust.noGravity = true;
                             dust.fadeIn = Main.rand.NextFloat(0.5f, 1.5f);
                         }
-
-                        SpriteEffects effect = (npc.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                         Color color6 = Lighting.GetColor((int)center.X / 16, (int)(center.Y / 16f));
                         spriteBatch.Draw(texture, center - Main.screenPosition + new Vector2(0f, npc.gfxOffY + npc.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, new Vector2((float)texture.Width * 0.5f, (float)texture.Height * 0.5f), 1f, effect, 0f);
                     }
                 }
+
+                texture = mod.GetTexture("NPCs/DungeonBird/aaaHarvester3_" + "talon");
+                spriteBatch.Draw(texture, npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, new Vector2((float)texture.Width * 0.5f, (float)texture.Height * 0.5f), 1f, effect, 0f);
             }
         }
 
