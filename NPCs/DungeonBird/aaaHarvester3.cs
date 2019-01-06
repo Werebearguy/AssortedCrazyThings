@@ -286,8 +286,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AI_Local2 == 0 && Main.netMode != 1)
             {
                 AssWorld.harvesterIndex = npc.whoAmI;
-                NPC.NewNPC((int)npc.Center.X + TalonOffsetLeftX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
-                NPC.NewNPC((int)npc.Center.X + TalonOffsetRightX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
+                int index1 = NPC.NewNPC((int)npc.Center.X + TalonOffsetLeftX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
+                int index2 = NPC.NewNPC((int)npc.Center.X + TalonOffsetRightX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
+                if (index1 < 200)
+                {
+                    NetMessage.SendData(23, -1, -1, null, index1);
+                }
+                if (index2 < 200)
+                {
+                    NetMessage.SendData(23, -1, -1, null, index2);
+                }
                 AI_Local2 = 1;
                 AI_State = State_Main;
             }

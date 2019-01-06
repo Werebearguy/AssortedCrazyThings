@@ -136,25 +136,32 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if(stopTime == eatTime)
                 {
                     npc.frameCounter++;
-                    if (npc.frameCounter <= 8.0)
+                    if (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f)
                     {
-                        npc.frame.Y = 0;
+                        if (npc.frameCounter <= 8.0)
+                        {
+                            npc.frame.Y = 0;
+                        }
+                        else if (npc.frameCounter <= 16.0)
+                        {
+                            npc.frame.Y = frameHeight * 1;
+                        }
+                        else if (npc.frameCounter <= 24.0)
+                        {
+                            npc.frame.Y = frameHeight * 2;
+                        }
+                        else if (npc.frameCounter <= 32.0)
+                        {
+                            npc.frame.Y = frameHeight * 1;
+                        }
+                        else
+                        {
+                            npc.frameCounter = 0;
+                        }
                     }
-                    else if (npc.frameCounter <= 16.0)
+                    else if (!SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
                     {
-                        npc.frame.Y = frameHeight * 1;
-                    }
-                    else if (npc.frameCounter <= 24.0)
-                    {
-                        npc.frame.Y = frameHeight * 2;
-                    }
-                    else if (npc.frameCounter <= 32.0)
-                    {
-                        npc.frame.Y = frameHeight * 1;
-                    }
-                    else
-                    {
-                        npc.frameCounter = 0;
+                        npc.frame.Y = frameHeight * 6;
                     }
                 }
                 else

@@ -476,7 +476,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //{
                     //    rndJump = 0;
                     //}
-                    npc.netUpdate = true;
+                    //npc.netUpdate = true;
                 }
             }
             //
@@ -848,18 +848,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //hungerTimer
             //AI_Timer++ in HarvesterAI when target available;
-            if (AI_Timer >= hungerTime && IsTargetActive() && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
+            if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
             {
+                SelectTarget(restricted: false);
+                if (IsTargetActive() && target != 200)
+                {
+                    AI_Timer = 0;
+                    //goto noclip 
+                    if (IsTargetActive())
+                        PassCoordinates(GetTarget());
+                    Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
+                    AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
+                }
                 if (target == 200)
                 {
                     AI_Timer = hungerTime / 2;
-                    return;
                 }
-                AI_Timer = 0f;
-                //goto noclip 
-                PassCoordinates(GetTarget());
-                Print("passed to noclip bbbbbbbbbbbbb");
-                AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                 npc.netUpdate = true;
             }
 
@@ -938,29 +942,33 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //AI_X_Timer = 0f;
                 }
 
-                if (AI_Timer >= hungerTime && IsTargetActive() && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
+                if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
                 {
+                    SelectTarget(restricted: false);
+                    if(IsTargetActive() && target != 200)
+                    {
+                        AI_Timer = 0;
+                        //goto noclip 
+                        if (IsTargetActive())
+                            PassCoordinates(GetTarget());
+                        Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
+                        AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
+                    }
                     if (target == 200)
                     {
                         AI_Timer = hungerTime / 2;
-                        return;
                     }
-                    AI_Timer = 0;
-                    //goto noclip 
-                    PassCoordinates(GetTarget());
-                    Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
-                    AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                     npc.netUpdate = true;
                 }
             }
 
-            if (IsTargetActive())
-            {
+            //if (IsTargetActive())
+            //{
                 if(Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     AI_Timer++; //count hungerTime up
                 }
-            }
+            //}
 
             //Attack player
             if (AI_Timer % 20 == 0)
@@ -1040,6 +1048,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         npc.direction = 1;
                     }
+                    AI_Timer = 0f; //reset humger timer
                     AI_State = State_Approach;
                 }
                 else//keep state
@@ -1201,10 +1210,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int type = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to);
-                    if (Main.netMode == NetmodeID.Server && type < 200)
+                    int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to);
+                    if (Main.netMode == NetmodeID.Server && index < 200)
                     {
-                        NetMessage.SendData(23, -1, -1, null, type);
+                        NetMessage.SendData(23, -1, -1, null, index);
                     }
                 }
             }

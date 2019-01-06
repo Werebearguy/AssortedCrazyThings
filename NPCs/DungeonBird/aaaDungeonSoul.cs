@@ -322,7 +322,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     npc.velocity.X = 0;
                 }
-                npc.velocity.Y += 0.06f;
+                npc.velocity.Y += 0.08f; //0.06
             }
             else if (AI_State == 1 && (npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f))
             {
