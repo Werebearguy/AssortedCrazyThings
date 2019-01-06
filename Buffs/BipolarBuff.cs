@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Bipolar");
-            Description.SetDefault("Increases and decreases spawn rate.");
+            Description.SetDefault("Increased and decreased spawn rate.");
             Main.buffNoTimeDisplay[Type] = true;
         }
 

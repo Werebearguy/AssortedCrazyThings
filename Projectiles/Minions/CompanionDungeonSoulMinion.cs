@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     public class CompanionDungeonSoulMinion : ModProjectile
     {
         //change damage here, reminder that there are three minions so you are effectively tripling the damage
-        public static int Damage = 6;
+        public static int Damage = 7;
         private int sincounter;
 
         public override void SetStaticDefaults()
