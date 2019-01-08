@@ -25,8 +25,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.DD2PetGhost);
             aiType = ProjectileID.DD2PetGhost;
-            projectile.width = 14;
-            projectile.height = 24;
+            projectile.width = 16;
+            projectile.height = 28;
             projectile.alpha = 0;
         }
 

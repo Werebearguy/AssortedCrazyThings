@@ -26,8 +26,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.Spazmamini);
-            projectile.width = 14;
-            projectile.height = 24;
+            projectile.width = 16;
+            projectile.height = 28;
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.minion = true; //only determines the damage type
@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.rotation = projectile.velocity.X * 0.05f;
 
                 projectile.frameCounter++;
-                if (projectile.frameCounter >= 5)
+                if (projectile.frameCounter >= 4)
                 {
                     projectile.frame++;
                     projectile.frameCounter = 0;
@@ -70,7 +70,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.rotation = projectile.velocity.X * -0.05f;
 
                 projectile.frameCounter++;
-                if (projectile.frameCounter >= 8)
+                if (projectile.frameCounter >= 4)
                 {
                     projectile.frame++;
                     projectile.frameCounter = 0;
