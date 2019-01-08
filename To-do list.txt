@@ -72,6 +72,10 @@ direwolf420 to-do list
 
 11. Stat tweaking for Harvester stages (all stages)
 
+12. add boss head to 10.
+
+13. fix multiplayer for pet accessories
+
 #####################################################################################
 Werebearguy to-do list
 
