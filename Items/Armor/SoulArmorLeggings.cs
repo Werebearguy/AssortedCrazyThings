@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Armor
             base.SetStaticDefaults();
             DisplayName.SetDefault("Soul Savior's Garb");
             Tooltip.SetDefault("Soul Savior Garment"
-                + "\nwhatever the fuck");
+                + "\n5% increased movement speed");
         }
 
         public override void SetDefaults()
@@ -25,13 +25,15 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            //TODO
-            //
+            player.moveSpeed += 0.05f;
         }
 
         public override void AddRecipes()
         {
-            //TODO ADJUST HERE
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoul>(), 10);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

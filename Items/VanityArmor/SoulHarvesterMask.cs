@@ -1,5 +1,3 @@
-using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.VanityArmor
@@ -9,6 +7,7 @@ namespace AssortedCrazyThings.Items.VanityArmor
 	{
 		public override void SetStaticDefaults()
 		{
+            DisplayName.SetDefault("Soul Harvester Mask");
 			//Tooltip.SetDefault("If you're reading this, the sprite is not final.");
 		}
 		public override void SetDefaults()
@@ -18,6 +17,7 @@ namespace AssortedCrazyThings.Items.VanityArmor
             item.height = 20;
             item.rare = -11;
             item.vanity = true;
+            item.maxStack = 1;
 		}
 	}
 }

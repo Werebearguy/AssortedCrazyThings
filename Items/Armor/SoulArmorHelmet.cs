@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.Projectiles.Minions;
+﻿using AssortedCrazyThings.Items.VanityArmor;
+using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -59,7 +60,11 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void AddRecipes()
         {
-            //TODO ADJUST HERE
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoul>(), 10);
+            recipe.AddIngredient(mod.ItemType<SoulHarvesterMask>(), 1);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

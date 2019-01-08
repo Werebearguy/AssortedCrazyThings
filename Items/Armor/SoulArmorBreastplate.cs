@@ -30,7 +30,10 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void AddRecipes()
         {
-            //TODO ADJUST HERE
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoul>(), 10);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
