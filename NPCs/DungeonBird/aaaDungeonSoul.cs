@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.timeLeft = NPC.activeTime * 5;
         }
 
-        private static readonly short offsetYPeriod = 120;
+        public static readonly short offsetYPeriod = 120;
 
         public static void SetTimeLeft(NPC npcto, NPC npcfrom)
         {
@@ -124,7 +124,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void FindFrame(int frameHeight)
         {
-            if (AI_State == 0)
+            if (AI_State == 0 || AI_State == 2)
             {
                 npc.frameCounter++;
                 if (npc.frameCounter <= 8.0)
@@ -212,7 +212,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             float sinY = 0;
             if (Main.netMode != NetmodeID.Server)
             {
-                if (AI_State == 0)
+                if (AI_State == 0 || AI_State == 2)
                 {
                     AI_Local_Timer = AI_Local_Timer > offsetYPeriod ? 0 : AI_Local_Timer + 1;
                     sinY = (float)((Math.Sin((AI_Local_Timer / offsetYPeriod) * 2 * Math.PI) - 1) * 10);
@@ -231,7 +231,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if(npc.timeLeft <= BaseHarvester.EatTimeConst && AI_State == 0)
+            if(npc.timeLeft <= BaseHarvester.EatTimeConst && (AI_State == 0 || AI_State == 2))
             {
                 lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)BaseHarvester.EatTimeConst);
             }
@@ -288,6 +288,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.noTileCollide = false;
                     npc.velocity *= 0.1f;
                 }
+            }
+
+            if(AI_State == 2)
+            {
+                if (npc.ai[2] != 0)
+                {
+                    AI_Local_Timer = npc.ai[2];
+                    npc.ai[2] = 0;
+                }
+                npc.noTileCollide = false;
+                npc.velocity *= 0.95f;
             }
 
             if (!tarnpc.Equals(npc))

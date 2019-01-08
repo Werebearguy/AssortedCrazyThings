@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
+    //[AutoloadBossHead]
     public class aaaHarvester3 : ModNPC
     {
         public static float sinY = 0;
@@ -162,8 +163,25 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void NPCLoot()
         {
-            Item.NewItem(npc.getRect(), ItemID.WaterCandle);
-            Item.NewItem(npc.getRect(), ItemID.Bone, 250);
+            Item.NewItem(npc.getRect(), ItemID.Bone, 40);
+            Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(20));
+            Vector2 randVector = new Vector2(1, 1);
+            float randFactor = 0f;
+
+            for (int i = 0; i < 15; i++) //spawn souls when dies, 15 total
+            {
+                randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
+                randFactor = Main.rand.NextFloat(2f, 8f);
+                int x = (int)(npc.Center.X + (float)Main.rand.Next(npc.width));
+                int y = (int)(npc.Center.Y + (float)Main.rand.Next(npc.height));
+                int type = mod.NPCType<aaaDungeonSoul>();
+                int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type);
+                Main.npc[index].SetDefaults(type);
+                Main.npc[index].velocity = randVector * randFactor;
+                Main.npc[index].ai[0] = 2;
+                Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoul.offsetYPeriod); //doesnt get synced properly to clients idk
+            }
+
             AssWorld.downedHarvester = true;
         }
 
@@ -280,22 +298,28 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void AI()
         {
 
-            int num603 = 0;
+            //int num603 = 0;
             //int someIndex;
 
-            if (AI_Local2 == 0 && Main.netMode != 1)
+            if (AI_Local2 == 0)
             {
                 AssWorld.harvesterIndex = npc.whoAmI;
-                int index1 = NPC.NewNPC((int)npc.Center.X + TalonOffsetLeftX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
-                int index2 = NPC.NewNPC((int)npc.Center.X + TalonOffsetRightX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
-                if (index1 < 200)
+                if(Main.netMode != 1)
                 {
-                    NetMessage.SendData(23, -1, -1, null, index1);
+                    Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                    int index1 = NPC.NewNPC((int)npc.Center.X + TalonOffsetLeftX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
+                    int index2 = NPC.NewNPC((int)npc.Center.X + TalonOffsetRightX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
+
+                    if (index1 < 200)
+                    {
+                        NetMessage.SendData(23, -1, -1, null, index1);
+                    }
+                    if (index2 < 200)
+                    {
+                        NetMessage.SendData(23, -1, -1, null, index2);
+                    }
                 }
-                if (index2 < 200)
-                {
-                    NetMessage.SendData(23, -1, -1, null, index2);
-                }
+                npc.netUpdate = true;
                 AI_Local2 = 1;
                 AI_State = State_Main;
             }
@@ -308,7 +332,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.alpha = 0;
                     if(Main.netMode != 1)
                     {
-                        Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                        npc.netUpdate = true;
                     }
                 }
                 return;
@@ -920,6 +944,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //    AI_Timer = State_Main;
                 //    npc.netUpdate = true;
                 //}
+                if (AI_Timer > 120f)
+                {
+                    AI_Timer = 0;
+                    npc.netUpdate = true;
+                }
             }
         }
 

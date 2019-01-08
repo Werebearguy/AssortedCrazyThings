@@ -144,6 +144,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AssWorld.harvesterIndex < 0)
             {
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);
+                npc.netUpdate = true;
             }
             else
             {
@@ -153,9 +154,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (npc.alpha > 0)
                 {
                     npc.alpha -= 5;
-                    if (npc.alpha < 0)
+                    if (npc.alpha < 4)
                     {
                         npc.alpha = 0;
+                        npc.netUpdate = true;
                     }
                     npc.ai[1] = 0f;
                 }
@@ -234,6 +236,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                                 {
                                     npc.ai[1] = 0f;
                                     npc.ai[0] = 1f;
+                                    npc.netUpdate = true;
                                 }
                                 else
                                 {
@@ -354,6 +357,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         if (num701 > 700f || npc.collideX || npc.collideY || Collision.SolidCollision(npc.position, npc.width, npc.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
                         {
                             npc.noTileCollide = true;
+                            npc.netUpdate = true;
                             npc.ai[0] = 0f;
                         }
                     }
@@ -385,6 +389,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             npc.noTileCollide = true;
                             npc.ai[0] = 0f;
+                            npc.netUpdate = true;
                         }
                     }
                 }

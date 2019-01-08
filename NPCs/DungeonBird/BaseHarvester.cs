@@ -23,12 +23,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected const float State_Distribute = 0f;
         protected const float State_Approach = 1f;
         protected const float State_Noclip = 2f;
-        //protected const float State_IdleMove = 3f;
-        //protected const float State_Recalculate = 4f;
-        protected const float State_Stop = 5f;
-        protected const float State_Transform = 6f;
+        protected const float State_Stop = 3f;
+        protected const float State_Transform = 4f;
 
-        protected void Print(string msg)
+        public static void Print(string msg)
         {
             if (Main.netMode == NetmodeID.Server)
             {
@@ -1205,12 +1203,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public void Transform(int to)
         {
-            //set to zero to not transform
+            //set to -1 to not transform
             if(to != -1)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to);
+                    int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to, 150); //150 for index 150 atleast
+                                                                                           //(so the claws will likely spawn with lower index and rendered infront)
                     if (Main.netMode == NetmodeID.Server && index < 200)
                     {
                         NetMessage.SendData(23, -1, -1, null, index);
