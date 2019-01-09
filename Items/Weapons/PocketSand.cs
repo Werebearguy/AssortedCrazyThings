@@ -20,6 +20,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = 0;
             item.rare = -11;
             item.noUseGraphic = true;
+            item.value = 0;
         }
 
         public override void SetStaticDefaults()

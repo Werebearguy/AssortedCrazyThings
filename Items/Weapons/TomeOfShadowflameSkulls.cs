@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shootSpeed = 10f;
 			item.shoot = ProjectileID.ClothiersCurse;
             item.useAnimation = 35;
-			item.value = 0;
+            item.value = Item.sellPrice(silver: 10);
             item.rare = -11;
 			item.noUseGraphic = true;
         }

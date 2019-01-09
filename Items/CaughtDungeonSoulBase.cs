@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Items
             item.width = 14;
             item.height = 24;
             item.maxStack = 999;
-            item.value = 100;
+            item.value = 0;
             item.rare = -11;
             item.color = Color.White;
 

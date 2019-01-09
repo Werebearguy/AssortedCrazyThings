@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 				{
 					player.jumpBoost = true;
 					player.enemySpawns = true;
-					Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.1f, 0.4f, 0.7f);
+					Lighting.AddLight(player.Center, 0.1f, 0.4f, 0.7f);
 				}
 			public override void AddRecipes()
 				{

@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.noMelee = true;
             item.ranged = true;
             item.useTime = 10;
-            item.value = 10000;
+            item.value = Item.sellPrice(gold: 1);
             item.rare = -11;
             item.autoReuse = true;
         }

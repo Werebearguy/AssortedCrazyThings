@@ -18,8 +18,8 @@ namespace AssortedCrazyThings.Items.Fun
 			item.CloneDefaults(ItemID.ShroomiteDiggingClaw);
             item.useAnimation = 3;
             item.useTime = 3;
-			item.value = 0;
-			item.rare = -11;
+            item.value = Item.sellPrice(gold: 5);
+            item.rare = -11;
 			item.noUseGraphic = true;
 		}
 

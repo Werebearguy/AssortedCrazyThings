@@ -23,13 +23,13 @@ namespace AssortedCrazyThings
 
         public bool teleportHome = false;
         public bool canTeleportHome = false;
-        private const short TeleportHomeTimerMax = 30; //in seconds //10 ingame minutes
+        private const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
         public short teleportHomeTimer = 0; //gets saved when you relog so you cant cheese it
 
         //TECHNICALLY NOT DEFENCE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
         public bool getDefense = false;
         public bool canGetDefense = false;
-        private const short GetDefenseTimerMax = 30; //in seconds //10ingame minutes
+        private const short GetDefenseTimerMax = 600; //in seconds //10 ingame minutes
         private const short GetDefenseDurationMax = 600; //in ticks //10 ingame seconds
         public short getDefenseDuration = 0;
         public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it

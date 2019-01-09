@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items
             item.buffTime = 5400; //one and a half minutes
             item.buffType = mod.BuffType<EmpoweringBuff>();
             item.rare = -11;
-            item.value = Item.buyPrice(gold: 1);
+            item.value = Item.sellPrice(silver: 2);
         }
 
         public override void AddRecipes()

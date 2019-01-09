@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.useTime = 3; //adjusted from 10 to 3 to match spazmatism speed
             item.useAnimation = 3; //^
             item.useStyle = 5;
-            item.value = 10000;
+            item.value = item.value = Item.sellPrice(gold: 1);
             item.rare = -11;
             item.autoReuse = true;
         }

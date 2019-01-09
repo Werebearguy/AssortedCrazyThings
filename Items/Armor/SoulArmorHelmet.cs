@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Armor
         {
             item.width = 18;
             item.height = 18;
-            item.value = Item.buyPrice(gold:1);
+            item.value = Item.sellPrice(silver: 90);
             item.rare = -11;
             item.defense = 6; //1 more than necro helmet
         }

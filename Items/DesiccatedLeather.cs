@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +15,7 @@ namespace AssortedCrazyThings.Items
 		{
 			item.CloneDefaults(ItemID.Silk);
 			item.rare = -11;
-		}
+            item.value = Item.sellPrice(copper: 10);
+        }
 	}
 }

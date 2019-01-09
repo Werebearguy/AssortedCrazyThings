@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     class SigilOfRetreat : ModItem
     {
+
+        //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here: TeleportHomeTimerMax
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Retreat");
@@ -65,8 +68,15 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             player.GetModPlayer<AssPlayer>().teleportHome = true;
         }
 
-        //TODO recipe
-        //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here:
-        // private const short TeleportHomeWhenLowTimerMax = 1200; == 20 minutes
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.RecallPotion, 5);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 10);
+            recipe.AddIngredient(ItemID.Bone, 50);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

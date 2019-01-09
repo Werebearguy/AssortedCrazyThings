@@ -1,14 +1,6 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Linq;
-using Terraria.Audio;
-using Terraria.GameContent.Events;
-using Terraria.Graphics.Shaders;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.UI;
-using Terraria.Utilities;
 
 namespace AssortedCrazyThings.Items.Fun
 {
@@ -29,6 +21,7 @@ namespace AssortedCrazyThings.Items.Fun
             item.damage = 40;
             item.UseSound = SoundID.Item11;
             //item.shoot = ProjectileID.RocketII;
+            item.value = Item.sellPrice(gold:4);
 
         }
 
