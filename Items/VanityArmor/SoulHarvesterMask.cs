@@ -16,6 +16,7 @@ namespace AssortedCrazyThings.Items.VanityArmor
             item.width = 28;
             item.height = 20;
             item.rare = -11;
+            item.value = 0;
             item.vanity = true;
             item.maxStack = 1;
 		}

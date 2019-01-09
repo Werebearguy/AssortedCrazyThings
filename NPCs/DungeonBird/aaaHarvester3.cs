@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.VanityArmor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -164,6 +165,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
+            Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
             Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>(), Main.rand.Next(15, 26));
             //you need to kill it two times to craft the whole armor set
             // (15+15 == 10 + 10 + 10)

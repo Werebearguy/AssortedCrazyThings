@@ -44,8 +44,8 @@ namespace AssortedCrazyThings.Items.Armor
                 Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), player.direction * 0.5f, -0.5f, mod.ProjectileType<CompanionDungeonSoulMinion>(), CompanionDungeonSoulMinion.Damage, 0f, player.whoAmI, 0f, 0f);
             }
 
-            //visual
-            if (Main.rand.NextBool(10))
+            //visual //this technically should be realized with UpdateVanitySet here and in AssPlayer, but cba
+            if (Main.rand.NextBool(10)/* && some check if there is a head vanity equipped to not show the visual*/)
             {
                 Vector2 randomVector = new Vector2(Main.rand.Next(16) - 7, Main.rand.Next(16) - 7); //random vector between -7 and 8
                 Vector2 directionalVector = new Vector2(player.width/2 * (1 - player.direction), 0f);
