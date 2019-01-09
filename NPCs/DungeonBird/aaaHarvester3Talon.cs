@@ -75,11 +75,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 Texture2D texture = mod.GetTexture("NPCs/DungeonBird/aaaHarvester3_" + "chain");
                 //Main.chain21Texture
                 Vector2 center = new Vector2(npc.Center.X, npc.Center.Y);
-                /*
-                 *         aaaHarvester3.TalonOffsetLeftX = -84;
-                           aaaHarvester3.TalonOffsetRightX = 78;
-                           aaaHarvester3.TalonOffsetY = -9;
-                 */
                 float num22 = Main.npc[AssWorld.harvesterIndex].Center.X - center.X;
                 float num23 = Main.npc[AssWorld.harvesterIndex].Center.Y - center.Y;
                 num23 -= -aaaHarvester3.TalonOffsetY + 20f; //has to result to 7f
@@ -96,13 +91,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 while (flag6)
                 {
                     float num24 = (float)Math.Sqrt((double)(num22 * num22 + num23 * num23));
-                    if (num24 < 40f) //16
+                    if (num24 < 36f) //16
                     {
                         flag6 = false;
                     }
                     else
                     {
-                        num24 = 40f / num24; //16
+                        num24 = 36f / num24; //16
                         num22 *= num24;
                         num23 *= num24;
                         center.X += num22;
@@ -133,7 +128,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.rand.NextFloat() >= 0.5f)
+            if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextFloat() >= 0.5f)
             {
                 target.AddBuff(BuffID.Slow, 300); //5 seconds, 50% chance
             }

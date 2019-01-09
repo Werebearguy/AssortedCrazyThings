@@ -44,8 +44,8 @@ namespace AssortedCrazyThings.NPCs
                         int soulType = mod.NPCType<aaaDungeonSoul>();
 
                         //NewNPC starts looking for the first !active from 0 to 200
-                        int soulID = NPC.NewNPC((int)npc.position.X + aaaDungeonSoul.wid / 2, (int)npc.position.Y + aaaDungeonSoul.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
-                        Main.npc[soulID].timeLeft = 5000; //change later
+                        int soulID = NPC.NewNPC((int)npc.position.X + aaaDungeonSoulBase.wid / 2, (int)npc.position.Y + aaaDungeonSoulBase.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
+                        Main.npc[soulID].timeLeft = NPC.activeTime * 5; //change later
                         if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(23, -1, -1, null, soulID);

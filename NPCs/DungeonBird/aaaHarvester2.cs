@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public class aaaHarvester2 : BaseHarvester
+    public class aaaHarvester2 : HarvesterBase
     {
         public override void SetStaticDefaults()
         {
@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             eatTime = EatTimeConst + 60;
             idleTime = IdleTimeConst;
             hungerTime = 3600; //AI_Timer
-            maxSoulsEaten = 6;
+            maxSoulsEaten = 10; //10
             jumpRange = 300; //also noclip detect range
             restrictedSoulSearch = false;
             noDamage = true;
@@ -44,8 +44,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             npc.chaseable = false;
             npc.npcSlots = 1f;
-            npc.width = aaaDungeonSoul.wid;
-            npc.height = aaaDungeonSoul.hei; //100 or 98 when flying
+            npc.width = aaaDungeonSoulBase.wid;
+            npc.height = aaaDungeonSoulBase.hei; //100 or 98 when flying
             npc.damage = 0;
             npc.defense = 11;
             npc.lifeMax = maxSoulsEaten + 1;

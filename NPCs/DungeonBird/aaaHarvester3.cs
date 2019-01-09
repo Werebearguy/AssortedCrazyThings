@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using AssortedCrazyThings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -11,6 +12,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     //[AutoloadBossHead]
     public class aaaHarvester3 : ModNPC
     {
+        public static string name = "aaaHarvester3";
+
         public static float sinY = 0;
         public static int talonDamage = 30;
         public static int Wid = 110;
@@ -25,7 +28,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaHarvester3");
+            DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
             Main.npcFrameCount[npc.type] = 5;
         }
 
@@ -150,9 +153,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Vector2 stupidOffset = new Vector2(0, -29f + npc.gfxOffY);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-            //drawColor = new Color((int)(drawColor.R * 1.2f + 20), (int)(drawColor.G * 1.2f + 20), (int)(drawColor.B * 1.2f + 20));
-            //drawColor * 2f makes it so its twice as bright as the model itself (capped at Color.White), +20f makes it so its always a bit visible
-
             spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White * ((255 - npc.alpha) / 255f), npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
 
@@ -163,40 +163,67 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void NPCLoot()
         {
-            Item.NewItem(npc.getRect(), ItemID.Bone, 40);
-            Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(20));
+            Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
+            Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>(), Main.rand.Next(15, 26));
+            //you need to kill it two times to craft the whole armor set
+            // (15+15 == 10 + 10 + 10)
+
             Vector2 randVector = new Vector2(1, 1);
             float randFactor = 0f;
+
+            int npcTypeOld = mod.NPCType<aaaDungeonSoul>();  //version that doesnt get eaten by harvesters
+            int itemTypeOld = mod.ItemType<CaughtDungeonSoul>(); //version that is used in crafting
+
+            int npcTypeNew = mod.NPCType<aaaDungeonSoulAwakened>();  //version that doesnt get eaten by harvesters
+            int itemTypeNew = mod.ItemType<CaughtDungeonSoulAwakened>(); //version that is used in crafting
 
             for (int i = 0; i < 15; i++) //spawn souls when dies, 15 total
             {
                 randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
                 randFactor = Main.rand.NextFloat(2f, 8f);
-                int x = (int)(npc.Center.X + (float)Main.rand.Next(npc.width));
-                int y = (int)(npc.Center.Y + (float)Main.rand.Next(npc.height));
-                int type = mod.NPCType<aaaDungeonSoul>();
-                int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, type);
-                Main.npc[index].SetDefaults(type);
+                int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, npcTypeNew);
+                Main.npc[index].SetDefaults(npcTypeNew);
                 Main.npc[index].velocity = randVector * randFactor;
-                Main.npc[index].ai[0] = 2;
-                Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoul.offsetYPeriod); //doesnt get synced properly to clients idk
+                //Main.npc[index].ai[0] = 2; //2 is a new state where they ignore any harvesters, dont go into eat mode, and also "drift away"
+                Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
             }
 
-            AssWorld.downedHarvester = true;
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
+            //"convert" NPC souls
+            for (short j = 0; j < 200; j++)
             {
-                for (short j = 0; j < 200; j++)
+                if (Main.npc[j].active && Main.npc[j].type == npcTypeOld)
                 {
-                    if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
+                    Main.npc[j].active = false;
+                    int index = NPC.NewNPC((int)Main.npc[j].position.X, (int)Main.npc[j].position.Y, npcTypeNew);
+                    Main.npc[index].SetDefaults(npcTypeNew);
+                    Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                }
+            }
+
+            //"convert" Item souls
+            for (int j = 0; j < Main.player.Length; j++)
+            {
+                if(Main.player[j].active/* && !Main.player[j].dead*/)
+                {
+                    int tempStackCount = 0;
+
+                    Item[][] inventoryArray = {Main.player[j].inventory, Main.player[j].bank.item, Main.player[j].bank2.item, Main.player[j].bank3.item }; //go though player inv
+                    for (int y = 0; y < inventoryArray.Length; y++)
                     {
-                        aaaDungeonSoul.SetTimeLeft(Main.npc[j], npc);
+                        for (int e = 0; e < inventoryArray[y].Length; e++)
+                        {
+                            if (inventoryArray[y][e].type == itemTypeOld) //find inert soul
+                            {
+                                tempStackCount = inventoryArray[y][e].stack;
+                                inventoryArray[y][e].SetDefaults(itemTypeNew); //override with awakened
+                                inventoryArray[y][e].stack = tempStackCount;
+                            }
+                        }
                     }
                 }
             }
+
+            AssWorld.downedHarvester = true;
         }
 
         private const int AI_State_Slot = 0;

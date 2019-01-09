@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public abstract class BaseHarvester : ModNPC
+    public abstract class HarvesterBase : ModNPC
     {
         public const short EatTimeConst = 90; //shouldnt be equal to IdleTimeConst + 60
         public const short IdleTimeConst = 180;

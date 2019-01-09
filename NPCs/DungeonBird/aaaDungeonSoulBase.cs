@@ -8,23 +8,21 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public class aaaDungeonSoul : ModNPC
+    //this class also contains the NPC classes at the very bottom
+
+    public abstract class aaaDungeonSoulBase : ModNPC
     {
+        protected double frameCount;
+
         public static int wid = 34; //24
         public static int hei = 38;
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("aaaDungeon Soul");
-            Main.npcFrameCount[npc.type] = 8;
-        }
 
         public override void SetDefaults()
         {
             //adjust stats here to match harvester hitbox 1:1, then do findframes in postdraw
             npc.width = wid; //42 //16
             npc.height = hei; //52 //24
-            npc.npcSlots = 0.25f; //takes 1/4 npc slots out of 200 when alive
+            npc.npcSlots = 0.1f; //takes 1/10 npc slots out of 200 when alive
             npc.dontTakeDamageFromHostiles = true;
             npc.dontTakeDamage = true;
             npc.friendly = true;
@@ -34,14 +32,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.lifeMax = 5;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
+            npc.value = 0f;
             npc.aiStyle = -1;
             aiType = -1;// NPCID.ToxicSludge;
             animationType = -1;// NPCID.ToxicSludge;
             npc.color = new Color(0, 0, 0, 50);
-            Main.npcCatchable[mod.NPCType<aaaDungeonSoul>()] = true;
-            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoul>();
             npc.timeLeft = NPC.activeTime * 5;
+            MoreSetDefaults();
+        }
+
+        public virtual void MoreSetDefaults()
+        {
+
         }
 
         public static readonly short offsetYPeriod = 120;
@@ -52,8 +54,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1)) //type check since souls might despawn and index changes
                 {
-                    npcto.timeLeft = BaseHarvester.EatTimeConst;
-                    Main.NewText("set time left to " + BaseHarvester.EatTimeConst);
+                    npcto.timeLeft = HarvesterBase.EatTimeConst;
+                    Main.NewText("set time left to " + HarvesterBase.EatTimeConst);
                     npcto.netUpdate = true;
                 }
             }
@@ -82,8 +84,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 npc.localAI[0] = value;
             }
         }
-        
-        private void KillInstantly()
+
+        public void KillInstantly()
         {
             npc.life = 0;
             npc.active = false;
@@ -124,35 +126,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void FindFrame(int frameHeight)
         {
-            if (AI_State == 0 || AI_State == 2)
+            if (AI_State == 0)
             {
                 npc.frameCounter++;
-                if (npc.frameCounter <= 8.0)
+                if (npc.frameCounter >= frameCount)
                 {
-                    npc.frame.Y = 0;
-                }
-                else if (npc.frameCounter <= 16.0)
-                {
-                    npc.frame.Y = frameHeight * 1;
-                }
-                else if (npc.frameCounter <= 24.0)
-                {
-                    npc.frame.Y = frameHeight * 2;
-                }
-                else if (npc.frameCounter <= 32.0)
-                {
-                    npc.frame.Y = frameHeight * 3;
-                }
-                else
-                {
+                    npc.frame.Y += frameHeight;
                     npc.frameCounter = 0;
+                    if (npc.frame.Y > 3 * frameHeight)
+                    {
+                        npc.frame.Y = 0;
+                    }
                 }
             }
             else if (AI_State == 1)
             {
-
-                //Main.NewText(npc.velocity.X);
-                if (npc.velocity.Y > 0/* && Math.Abs(npc.velocity.X) < 1f*/) //dropping down
+                if (npc.velocity.Y > 0) //dropping down
                 {
                     npc.frame.Y = frameHeight * 4;
                 }
@@ -197,9 +186,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
-            lightColor.A = 255; //255 is opaque
 
-            SpriteEffects effects = SpriteEffects.None;
             Texture2D image = Main.npcTexture[npc.type];
             Rectangle bounds = new Rectangle
             {
@@ -212,7 +199,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             float sinY = 0;
             if (Main.netMode != NetmodeID.Server)
             {
-                if (AI_State == 0 || AI_State == 2)
+                if (AI_State == 0)
                 {
                     AI_Local_Timer = AI_Local_Timer > offsetYPeriod ? 0 : AI_Local_Timer + 1;
                     sinY = (float)((Math.Sin((AI_Local_Timer / offsetYPeriod) * 2 * Math.PI) - 1) * 10);
@@ -231,20 +218,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if(npc.timeLeft <= BaseHarvester.EatTimeConst && (AI_State == 0 || AI_State == 2))
+            if (npc.timeLeft <= HarvesterBase.EatTimeConst && (AI_State == 0))
             {
-                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)BaseHarvester.EatTimeConst);
+                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)HarvesterBase.EatTimeConst) * 0.78f;
             }
 
-            Vector2 stupidOffset = new Vector2(wid/2, (hei - 10f)+ sinY);
+            Vector2 stupidOffset = new Vector2(wid / 2, (hei - 10f) + sinY);
 
             if (AI_State == 1)
             {
                 if ((npc.velocity.Y == 0 || npc.velocity.Y < 2f && npc.velocity.Y > 0f) && npc.velocity.X == 0)
                 {
-                    return; //dont draw
+                    lightColor = Color.White * 0.05f; //draw really weak
                 }
             }
+            SpriteEffects effects = SpriteEffects.None;
+
             spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
         }
 
@@ -257,8 +246,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 tarnpc = (NPC)tar;
             }
 
-            npc.direction = 1;
-            //Main.NewText("" + AI_State + "" + npc.velocity);
             npc.noTileCollide = false;
             Lighting.AddLight(npc.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
@@ -290,17 +277,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if(AI_State == 2)
-            {
-                if (npc.ai[2] != 0)
-                {
-                    AI_Local_Timer = npc.ai[2];
-                    npc.ai[2] = 0;
-                }
-                npc.noTileCollide = false;
-                npc.velocity *= 0.95f;
-            }
-
             if (!tarnpc.Equals(npc))
             {
                 if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height + 2)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
@@ -317,7 +293,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //}
             }
 
-            if(AI_State == 1 && npc.velocity.Y != 0)
+            if (AI_State == 1 && npc.velocity.Y != 0)
             {
                 float betweenX = tarnpc.Center.X - npc.Center.X;
                 if (betweenX > 2f || betweenX < -2f)
@@ -340,11 +316,67 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 npc.velocity.X = 0;
             }
             //remove this in actual release, only --npc.timeLeft
-            /*if (AI_State == 1)*/--npc.timeLeft;
+            /*if (AI_State == 1)*/
+            --npc.timeLeft;
             if (npc.timeLeft < 0)
             {
                 KillInstantly();
             }
+        }
+    }
+
+    //the one the harvester hunts for
+    public class aaaDungeonSoul : aaaDungeonSoulBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaDungeon Soul");
+            Main.npcFrameCount[npc.type] = 8;
+        }
+
+        public override void MoreSetDefaults()
+        {
+            frameCount = 8.0;
+            Main.npcCatchable[mod.NPCType<aaaDungeonSoul>()] = true;
+            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoul>();
+        }
+    }
+
+    //the one that gets converted into
+    public class aaaDungeonSoulAwakened : aaaDungeonSoulBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaDungeon Soul");
+            Main.npcFrameCount[npc.type] = 8;
+        }
+
+        public override void MoreSetDefaults()
+        {
+            frameCount = 4.0;
+            Main.npcCatchable[mod.NPCType<aaaDungeonSoulAwakened>()] = true;
+            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoulAwakened>();
+
+            npc.timeLeft = NPC.activeTime;
+        }
+
+        public override bool PreAI()
+        {
+            //only if awakened
+            if (npc.ai[2] != 0)
+            {
+                AI_Local_Timer = npc.ai[2];
+                npc.ai[2] = 0;
+            }
+            npc.noTileCollide = false;
+            npc.velocity *= 0.95f;
+
+            --npc.timeLeft;
+            if (npc.timeLeft < 0)
+            {
+                KillInstantly();
+            }
+            return false;
         }
     }
 }
