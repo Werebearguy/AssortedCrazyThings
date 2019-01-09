@@ -31,7 +31,8 @@ namespace AssortedCrazyThings.Items.Armor
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoul>(), 10);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 10);
+            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 10);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
