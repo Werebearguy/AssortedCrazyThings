@@ -221,7 +221,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (npc.timeLeft <= HarvesterBase.EatTimeConst && (AI_State == 0))
             {
-                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)HarvesterBase.EatTimeConst) * 0.78f;
+                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)HarvesterBase.EatTimeConst);
             }
 
             Vector2 stupidOffset = new Vector2(wid / 2, (hei - 10f) + sinY);
@@ -235,7 +235,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             SpriteEffects effects = SpriteEffects.None;
 
-            spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
+            spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor * 0.78f, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
         }
 
         public override void AI()

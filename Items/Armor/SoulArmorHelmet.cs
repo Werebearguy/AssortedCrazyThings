@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.Armor
             item.height = 18;
             item.value = Item.buyPrice(gold:1);
             item.rare = -11;
-            item.defense = 5; //same as necro armor
+            item.defense = 6; //1 more than necro helmet
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)

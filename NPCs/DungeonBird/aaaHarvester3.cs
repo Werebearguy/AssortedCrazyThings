@@ -198,6 +198,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     int index = NPC.NewNPC((int)Main.npc[j].position.X, (int)Main.npc[j].position.Y, npcTypeNew);
                     Main.npc[index].SetDefaults(npcTypeNew);
                     Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+
+                    //poof visual
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Dust dust = Dust.NewDustPerfect(Main.npc[index].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                        dust.noLight = true;
+                        dust.noGravity = true;
+                        dust.fadeIn = Main.rand.NextFloat(0f, 0.5f);
+                    }
                 }
             }
 
