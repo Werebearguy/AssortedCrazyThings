@@ -141,7 +141,7 @@ namespace AssortedCrazyThings
                             if (Main.player[k].active && !Main.player[k].dead/* && (double)Main.player[k].position.Y < Main.worldSurface * 16.0*/)
                             {
                                 NPC.SpawnOnPlayer(k, harvesterTypes[0]);
-                                AwakeningMessage(BaseHarvester.message);
+                                AwakeningMessage(HarvesterBase.message);
                                 spawnHarvester = false; //disallow it to spawn this night anymore
                                 break;
                             }
@@ -187,7 +187,7 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 10
+                if (Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 15) //limit soul count in the world to 15
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;

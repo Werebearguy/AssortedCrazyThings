@@ -1,3 +1,4 @@
+using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -41,7 +42,8 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 for (int i = 0; i < 2; i++) //spawn two more with random velocity if first one is actually spawned
                 {
-                    Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
+                    //Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
+                    Vector2 cm = new Vector2(speedX, speedY);
                     float randx = Main.rand.NextFloat(0.8f, 1.2f);
                     float randx2 = Main.rand.NextFloat(-1.1f, 1.1f);
                     float randy = Main.rand.NextFloat(0.8f, 1.2f);
