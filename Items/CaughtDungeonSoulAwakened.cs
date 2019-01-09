@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.Items
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BorealWoodCandle, 1);
             recipe.AddIngredient(this, 15);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(ItemID.WaterCandle);

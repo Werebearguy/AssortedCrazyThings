@@ -210,13 +210,23 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            //"convert" Item souls
+            //"convert" Item souls that got dropped for some reason
+            int tempStackCount = 0;
+            for (int j = 0; j < Main.item.Length; j++)
+            {
+                if (Main.item[j].active && Main.item[j].type == itemTypeOld)
+                {
+                    tempStackCount = Main.item[j].stack;
+                    Main.item[j].SetDefaults(itemTypeNew);
+                    Main.item[j].stack = tempStackCount;
+                }
+            }
+
+            //"convert" Item souls in inventory
             for (int j = 0; j < Main.player.Length; j++)
             {
                 if(Main.player[j].active/* && !Main.player[j].dead*/)
                 {
-                    int tempStackCount = 0;
-
                     Item[][] inventoryArray = {Main.player[j].inventory, Main.player[j].bank.item, Main.player[j].bank2.item, Main.player[j].bank3.item }; //go though player inv
                     for (int y = 0; y < inventoryArray.Length; y++)
                     {
