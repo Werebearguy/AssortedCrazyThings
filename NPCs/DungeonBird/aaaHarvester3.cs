@@ -167,6 +167,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
             Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
             Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>(), Main.rand.Next(15, 26));
+
+            if(Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<RuneOfSummoning>());
             //you need to kill it two times to craft the whole armor set
             // (15+15 == 10 + 10 + 10)
 
@@ -200,12 +202,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
 
                     //poof visual
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 15; i++)
                     {
                         Dust dust = Dust.NewDustPerfect(Main.npc[index].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
                         dust.noLight = true;
                         dust.noGravity = true;
-                        dust.fadeIn = Main.rand.NextFloat(0f, 0.5f);
+                        dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
                     }
                 }
             }
@@ -219,6 +221,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     tempStackCount = Main.item[j].stack;
                     Main.item[j].SetDefaults(itemTypeNew);
                     Main.item[j].stack = tempStackCount;
+                }
+
+                //poof visual
+                for (int i = 0; i < 15; i++)
+                {
+                    Dust dust = Dust.NewDustPerfect(Main.item[j].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                    dust.noLight = true;
+                    dust.noGravity = true;
+                    dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
                 }
             }
 
