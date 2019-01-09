@@ -173,10 +173,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Vector2 randVector = new Vector2(1, 1);
             float randFactor = 0f;
 
-            int npcTypeOld = mod.NPCType<aaaDungeonSoul>();  //version that doesnt get eaten by harvesters
-            int itemTypeOld = mod.ItemType<CaughtDungeonSoul>(); //version that is used in crafting
-
+            int npcTypeOld = mod.NPCType<aaaDungeonSoul>();
             int npcTypeNew = mod.NPCType<aaaDungeonSoulAwakened>();  //version that doesnt get eaten by harvesters
+
+            int itemTypeOld = mod.ItemType<CaughtDungeonSoul>();
             int itemTypeNew = mod.ItemType<CaughtDungeonSoulAwakened>(); //version that is used in crafting
 
             for (int i = 0; i < 15; i++) //spawn souls when dies, 15 total
@@ -186,7 +186,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, npcTypeNew);
                 Main.npc[index].SetDefaults(npcTypeNew);
                 Main.npc[index].velocity = randVector * randFactor;
-                //Main.npc[index].ai[0] = 2; //2 is a new state where they ignore any harvesters, dont go into eat mode, and also "drift away"
                 Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
             }
 

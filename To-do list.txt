@@ -17,6 +17,7 @@ To-Do List: Both of Us
 #####################################################################################
 To-Do List: direwolf420
 #####################################################################################
+//DONE
 - Inert Soul and Awakened Soul variants
 	- Use old sprites, currently prefixed by aaaa, as Inert Souls
 		- Inert Soul spawns during the early phases of the Harvester boss, and are eaten by the Harvester's first and second forms
@@ -29,6 +30,7 @@ To-Do List: direwolf420
 #####################################################################################
 To-Do List: Werebearguy
 #####################################################################################
+//DONE
 - Create item sprite for Harvester-specific drop
 	- Used in the creation of the Soul Savior Garment armor pieces
 
@@ -93,5 +95,5 @@ Scrapped Until Further Notice
 		- Similar to Fishron Wings
 
 - New Accessory; Bouncy Shoes
-	- Scrapped Reason : ???
+	- Scrapped Reason : Collision fuckery
 	- Accessory that causes the player to bounce when landing, similar to the effect of the Pink Slime Block

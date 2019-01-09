@@ -91,13 +91,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 while (flag6)
                 {
                     float num24 = (float)Math.Sqrt((double)(num22 * num22 + num23 * num23));
-                    if (num24 < 36f) //16
+                    if (num24 < 38f) //16
                     {
                         flag6 = false;
                     }
                     else
                     {
-                        num24 = 36f / num24; //16
+                        num24 = 38f / num24; //16
                         num22 *= num24;
                         num23 *= num24;
                         center.X += num22;

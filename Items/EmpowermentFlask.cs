@@ -34,6 +34,7 @@ namespace AssortedCrazyThings.Items
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater, 1);
             recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 1);
             recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Bottles);

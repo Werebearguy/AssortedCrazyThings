@@ -38,6 +38,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             animationType = -1;// NPCID.ToxicSludge;
             npc.color = new Color(0, 0, 0, 50);
             npc.timeLeft = NPC.activeTime * 5;
+            npc.direction = 1;
             MoreSetDefaults();
         }
 

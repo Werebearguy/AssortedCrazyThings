@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Armor
             item.height = 18;
             item.value = Item.buyPrice(gold:1);
             item.rare = -11;
-            item.defense = 6; //TODO ADJUST HERE
+            item.defense = 6; //same as necro armor
         }
 
         public override void UpdateEquip(Player player)
