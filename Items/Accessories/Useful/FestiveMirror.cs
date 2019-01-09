@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         {
             item.width = 26;
             item.height = 32;
-            item.value = 0;
+            item.value = Item.sellPrice(gold: 3);
             item.rare = -11;
             item.accessory = true;
         }

@@ -20,7 +20,8 @@ namespace AssortedCrazyThings.Items.Pets
 			item.shoot = mod.ProjectileType<CuteSlimeRainbowNewPet>();
 			item.buffType = mod.BuffType<CuteSlimeRainbowNewBuff>();
 			item.rare = -11;
-		}
+            item.value = Item.sellPrice(copper: 10);
+        }
 		
 		public override void AddRecipes()
 		{

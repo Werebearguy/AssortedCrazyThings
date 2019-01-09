@@ -21,6 +21,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType<CuteSlimeRedPet>();
             item.buffType = mod.BuffType<CuteSlimeRedBuff>();
             item.rare = -11;
+            item.value = Item.sellPrice(copper: 10);
         }
 		
 		public override void AddRecipes()

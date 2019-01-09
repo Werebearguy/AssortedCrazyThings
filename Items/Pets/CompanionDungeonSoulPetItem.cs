@@ -26,6 +26,8 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj>();
             item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff>();
             item.rare = -11;
+
+            item.value = Item.sellPrice(copper: 10);
         }
 
         public override void UseStyle(Player player)
