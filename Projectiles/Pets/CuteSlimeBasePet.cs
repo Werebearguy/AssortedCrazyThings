@@ -34,8 +34,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
                 if(slimeAccessory != 0)
                 {
-
-
                     Texture2D texture = AssortedCrazyThings.slimeAccessoryTextures[slimeAccessory];
                     Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -64,20 +62,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         {
                             if (projectile.frame < 6)
                             {
-                                stupidOffset += new Vector2(-2f * (projectile.spriteDirection), 0f);
+                                stupidOffset += new Vector2(-2f * projectile.spriteDirection, 2f);
+
+                                if (projectile.frame > 2)
+                                {
+                                    stupidOffset += new Vector2(-1f * projectile.spriteDirection, 0f);
+                                }
+
                                 if (projectile.spriteDirection == -1)
                                 {
                                     stupidOffset += new Vector2(-4f, 0f);
                                 }
-
-                                //if (projectile.frame > 2)
-                                //{
-                                //    Main.NewText("offset down");
-                                //}
                             }
                             else
                             {
-                                stupidOffset += new Vector2(-2f * (projectile.spriteDirection), 0f);
+                                stupidOffset += new Vector2(-2f * projectile.spriteDirection, 0f);
+                                if (projectile.spriteDirection == -1)
+                                {
+                                    stupidOffset += new Vector2(-4f, 0f);
+                                }
                             }
                         }
                     }

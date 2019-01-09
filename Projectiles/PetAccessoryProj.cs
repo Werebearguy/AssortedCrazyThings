@@ -50,18 +50,20 @@ namespace AssortedCrazyThings.Projectiles
             //Main.NewText("deleted from slot " + slotNumber);
         }
 
-        public void ToggleAccessory(byte slotNumber, uint type)
+        public uint ToggleAccessory(byte slotNumber, uint type)
         {
-            if (slotNumber == 0) return;
+            if (slotNumber == 0) return slots;
             slotNumber -= 1;
             //Main.NewText("before: " + slots);
             if (!AddAccessory(slotNumber, type)) DelAccessory(slotNumber);
             //Main.NewText("after : " + slots);
+            return slots;
         }
 
-        public void SetAccessoryAll(uint slotsvar)
+        public uint SetAccessoryAll(uint slotsvar)
         {
             slots = slotsvar;
+            return slots;
         }
 
         public uint GetAccessoryAll()
