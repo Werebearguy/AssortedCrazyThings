@@ -6,17 +6,21 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class CompanionDungeonSoulPetItem : ModItem
+    public class CompanionDungeonSoulPetItem : CaughtDungeonSoulBase
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Tooltip.SetDefault("Summons a friendly Soul to follow you.");
+            Tooltip.SetDefault("Summons a friendly Soul to give you light.");
+            ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
+            frame2CounterCount = 8.0;
+            animatedTextureSelect = 0;
+
             item.width = 14;
             item.height = 24;
             item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj>();
@@ -32,7 +36,14 @@ namespace AssortedCrazyThings.Items.Pets
             }
         }
 
-
-        //TODO add a recipe at the crystal ball (because its based on the DD2 ogre drop and thats kinda at that hardmode stage)
+        //hardmode recipe
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 1);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

@@ -51,34 +51,23 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if(projectile.ai[0] == 2f)
             {
                 projectile.rotation = projectile.velocity.X * 0.05f;
-
-                projectile.frameCounter++;
-                if (projectile.frameCounter >= 4)
-                {
-                    projectile.frame++;
-                    projectile.frameCounter = 0;
-                }
-                if (projectile.frame > 3)
-                {
-                    projectile.frame = 0;
-                }
             }
             else
             {
                 //projectile.rotation = projectile.velocity.ToRotation() + 3.14159274f;
                 //+= projectile.velocity.X * 0.05f; makes it rotate around itself faster depending on its velo.x
                 projectile.rotation = projectile.velocity.X * -0.05f;
+            }
 
-                projectile.frameCounter++;
-                if (projectile.frameCounter >= 4)
-                {
-                    projectile.frame++;
-                    projectile.frameCounter = 0;
-                }
-                if (projectile.frame > 3)
-                {
-                    projectile.frame = 0;
-                }
+            projectile.frameCounter++;
+            if (projectile.frameCounter >= 4)
+            {
+                projectile.frame++;
+                projectile.frameCounter = 0;
+            }
+            if (projectile.frame > 3)
+            {
+                projectile.frame = 0;
             }
         }
 
