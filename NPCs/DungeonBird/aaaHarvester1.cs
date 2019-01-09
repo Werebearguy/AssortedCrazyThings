@@ -195,7 +195,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             writer.Write((byte)rndJump);
             writer.Write((short)target);
             writer.Write((bool)transformServer);
-            Print("send: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
+            //Print("send: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -207,7 +207,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             rndJump = reader.ReadByte();
             target = reader.ReadInt16();
             transformServer = reader.ReadBoolean();
-            Print("recv: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
+            //Print("recv: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -237,7 +237,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (Main.time % 60 == 29)
             {
-                Print("" + restrictedSoulSearch);
+                //Print("" + restrictedSoulSearch);
             }
             HarvesterAI(allowNoclip: !restrictedSoulSearch);
         }

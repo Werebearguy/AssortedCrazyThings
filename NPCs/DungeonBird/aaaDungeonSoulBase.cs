@@ -55,7 +55,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1)) //type check since souls might despawn and index changes
                 {
                     npcto.timeLeft = HarvesterBase.EatTimeConst;
-                    Main.NewText("set time left to " + HarvesterBase.EatTimeConst);
+                    //Main.NewText("set time left to " + HarvesterBase.EatTimeConst);
                     npcto.netUpdate = true;
                 }
             }

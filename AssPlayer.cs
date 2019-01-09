@@ -83,7 +83,7 @@ namespace AssortedCrazyThings
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             //like OnEnterWorld but serverside
-            HarvesterBase.Print("send SyncPlayer " + toWho + " " + fromWho + " " + newPlayer);
+            //HarvesterBase.Print("send SyncPlayer " + toWho + " " + fromWho + " " + newPlayer);
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncPlayer);
             packet.Write((byte)player.whoAmI);
@@ -97,10 +97,10 @@ namespace AssortedCrazyThings
             AssPlayer clone = clientPlayer as AssPlayer;
             if (clone.slotsPlayer != slotsPlayer || clone.petIndex != petIndex || (petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type))
             {
-                if(clone.slotsPlayer != slotsPlayer) HarvesterBase.Print("clone.slotsPlayer != slotsPlayer ");
-                if (clone.petIndex != petIndex) HarvesterBase.Print("clone.petIndex != petIndex");
-                if ((petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type)) HarvesterBase.Print("other thing");
-                HarvesterBase.Print("send SendClientChanges " + Main.netMode);
+                //if (clone.slotsPlayer != slotsPlayer) HarvesterBase.Print("clone.slotsPlayer != slotsPlayer ");
+                //if (clone.petIndex != petIndex) HarvesterBase.Print("clone.petIndex != petIndex");
+                //if ((petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type)) HarvesterBase.Print("other thing");
+                //HarvesterBase.Print("send SendClientChanges " + Main.netMode);
                 // Send a Mod Packet with the changes.
                 var packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.SendClientChanges);
@@ -114,7 +114,7 @@ namespace AssortedCrazyThings
 
         public void SendRedrawPetAccessories(int toClient = -1, int ignoreClient = -1)
         {
-            HarvesterBase.Print("send SendRedrawPetAccessories " + Main.netMode);
+            //HarvesterBase.Print("send SendRedrawPetAccessories " + Main.netMode);
             var packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.RedrawPetAccessories);
             packet.Write((byte)player.whoAmI);
@@ -127,7 +127,7 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                Main.NewText("send from " + player.whoAmI);
+                //Main.NewText("send from " + player.whoAmI);
                 ModPacket packet = mod.GetPacket();
                 //packet.Write((byte)AssMessageType.PetAccessorySlots);
                 packet.Write((byte)player.whoAmI);
@@ -458,11 +458,11 @@ namespace AssortedCrazyThings
                         {
                             if (Main.LocalPlayer.whoAmI == player.whoAmI)
                             {
-                                Main.NewText("SELF:" + " slots " + slotsPlayer);
+                                //Main.NewText("SELF:" + " slots " + slotsPlayer);
                             }
                             else
                             {
-                                Main.NewText("OTHE:" +" slots " + slotsPlayer);
+                                //Main.NewText("OTHE:" +" slots " + slotsPlayer);
                             }
                         }
                     }

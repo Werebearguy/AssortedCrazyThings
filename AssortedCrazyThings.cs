@@ -214,7 +214,7 @@ namespace AssortedCrazyThings
                 //    break;
 
                 case AssMessageType.RedrawPetAccessories:
-                    HarvesterBase.Print("try recv RedrawPetAccessories");
+                    //HarvesterBase.Print("try recv RedrawPetAccessories");
                     try
                     {
                         playernumber = reader.ReadByte();
@@ -230,7 +230,7 @@ namespace AssortedCrazyThings
                         {
                             mPlayer.SendRedrawPetAccessories(-1, playernumber);
                         }
-                        HarvesterBase.Print("recv RedrawPetAccessories from " + playernumber);
+                        //HarvesterBase.Print("recv RedrawPetAccessories from " + playernumber);
                     }
                     catch (Exception e)
                     {
@@ -249,7 +249,7 @@ namespace AssortedCrazyThings
                         slotsPlayer = (uint)reader.ReadInt32();
 
                         mPlayer.slotsPlayer = slotsPlayer;
-                        HarvesterBase.Print("recv SyncPlayer from " + playernumber);
+                        //HarvesterBase.Print("recv SyncPlayer from " + playernumber);
                         // SyncPlayer will be called automatically, so there is no need to forward this data to other clients.
                     }
                     catch (Exception e)
@@ -299,7 +299,7 @@ namespace AssortedCrazyThings
                                 ErrorLogger.Log(e);
                             }
                         }
-                        HarvesterBase.Print("recv SendClientChanges from " + playernumber);
+                        //HarvesterBase.Print("recv SendClientChanges from " + playernumber);
                     }
                     catch (Exception e)
                     {

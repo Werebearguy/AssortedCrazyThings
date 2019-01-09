@@ -336,7 +336,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         if ((between.Y > 100f || between.X > 35f) || (npc.wet && (between.Y > 50f || between.X > 17.5f)))
                         {
                             npc.netUpdate = true;
-                            Print("NOT stuck actually");
+                            //Print("NOT stuck actually");
                             stuckTimer = 0;
                         }
                         else if (between.Y <= 100f)
@@ -344,7 +344,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             if (between.X <= 35f)
                             {
                                 stuckTimer++;
-                                Print("stucktimer++ " + stuckTimer);
+                                //Print("stucktimer++ " + stuckTimer);
                                 npc.netUpdate = true;
                             }
                         }
@@ -355,7 +355,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                                 if (!SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
                                 {
                                     npc.netUpdate = true;
-                                    Print("noclipping");
+                                    //Print("noclipping");
                                     //Main.NewText("DOOR STUCK");
                                     PassCoordinates(GetTarget());
                                     AI_State = State_Noclip; //pass targets X/Y to noclip
@@ -363,7 +363,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             }
                             else
                             {
-                                aaaDungeonSoul.SetTimeLeft((NPC)GetTarget(), npc);
+                                aaaDungeonSoulBase.SetTimeLeft((NPC)GetTarget(), npc);
                             }
                             stuckTimer = 0;
                             return;
@@ -386,7 +386,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (between.X < GetTarget().width/2/*2f*/ && CanHitLineCombined(npc, GetTarget())/*Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4)*/ && bottomY <= 16f && between.Y > -jumpRange)
             {
                 //actually only locked when direct LOS and not too high
-                Print("set lockedX");
+                //Print("set lockedX");
                 lockedX = true;
             }
 
@@ -435,7 +435,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //  if on ground || if on downward slope
                 if ((npc.velocity.Y == 0 || npc.velocity.Y < 1.5f && npc.velocity.Y > 0f) /*SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)*/ && between.Y < -32f) //jump when below two tiles
                 {
-                    Print("jump to get to soul");
+                    //Print("jump to get to soul");
                     npc.velocity.Y = (float)(Math.Sqrt((double)-between.Y) * -0.84f);
                     npc.netUpdate = true;
                 }
@@ -855,7 +855,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //goto noclip 
                     if (IsTargetActive())
                         PassCoordinates(GetTarget());
-                    Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
+                    //Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
                     AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                 }
                 if (target == 200)
@@ -878,7 +878,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (Main.time % 120 == 2)
             {
-                Print("soulseaten:" + soulsEaten);
+                //Print("soulseaten:" + soulsEaten);
             }
 
             npc.noGravity = false;
@@ -949,7 +949,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //goto noclip 
                         if (IsTargetActive())
                             PassCoordinates(GetTarget());
-                        Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
+                        //Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
                         AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                     }
                     if (target == 200)
@@ -977,7 +977,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
                 else if(AI_State != State_Stop && aiTargetType == Target_Soul)
                 {
-                    Main.NewText(npc.width);
                     AttackPlayer(5, 3f, npc.width, aiTargetType);
                 }
             }
@@ -1027,8 +1026,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                     npc.netUpdate = true;
 
-                    Print("distribute to stop");
-                    aaaDungeonSoul.SetTimeLeft((NPC)GetTarget(), npc);
+                    //Print("distribute to stop");
+                    aaaDungeonSoulBase.SetTimeLeft((NPC)GetTarget(), npc);
                     aiTargetType = Target_Player;
                     SelectTarget(restrictedSoulSearch); //now player
 
@@ -1088,7 +1087,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (AI_X_Timer == 0f && stopTime == eatTime)
                 {
                     AI_Timer = 0;
-                    Print("started eating");
+                    //Print("started eating");
                     npc.netUpdate = true;
                 }
                 npc.noGravity = false;
@@ -1107,7 +1106,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                     else if (stopTime == eatTime)
                     {
-                        Print("finished eating");
+                        //Print("finished eating");
                         AI_Init = 0; //reinitialize
                         npc.HealEffect(++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
 
@@ -1122,14 +1121,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                         if (soulsEaten >= maxSoulsEaten)
                         {
-                            Print("souls eaten max reached");
+                            //Print("souls eaten max reached");
                             npc.life = npc.lifeMax;
                             //soulsEaten = 0;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 AI_Init = 1; //skip the reinit
                                 transformServer = true;
-                                Print("set transform var to tru");
+                                //Print("set transform var to tru");
                             }
                             AI_State = State_Transform;
                         }
