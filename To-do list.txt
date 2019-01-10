@@ -83,6 +83,12 @@ To-Do List: Side Projects of Absolute Lowest Priority
 		- Phase 1 = Floats above player, spawns swords around the player that fire in straight lines
 		- Phase 2 = Cowering, drops money for a short time, despawns after short time if not killed
 		- Loot includes a weapon that fires swords from behind the player and a slow cloud mount
+		
+- Create NPC based on Other 1 from https://pastebin.com/L7qmytv1
+	- Summary:
+		- Koi NPC that can be caught and swapped between pet and releasable NPC
+		- Feed Koi for self-satisfaction
+		- Feed Koi special item to get a pet dragon
 	
 #####################################################################################
 Scrapped Until Further Notice
