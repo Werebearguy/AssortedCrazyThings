@@ -128,6 +128,48 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryAmethystStaff : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaAmethyst Staff");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hands;
+        }
+    }
+
+    public class PetAccessoryTopazStaff : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaTopaz Staff");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hands;
+        }
+    }
+
+    public class PetAccessorySlimeHead : PetAccessory
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("aaaGreen Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
     public enum SlotType : byte
     {
         None, //reserved

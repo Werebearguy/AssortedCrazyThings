@@ -50,8 +50,6 @@ namespace AssortedCrazyThings
 
 
 
-            slimeAccessoryTextures = new Texture2D[30];
-            slimeAccessoryOffsets = new Vector2[30];
             /* Here you add the items from PetAccessories in two arrays,
             * one is the slimeAccessoryItems one (mainly for searching when applying the accessories)
             * the other one is the texture array, follow the same pattern (this is for taking the texture in each draw call)
@@ -70,8 +68,15 @@ namespace AssortedCrazyThings
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowGreen>();
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowBlack>();
             slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryBowBlue>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryAmethystStaff>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessoryTopazStaff>();
+            slimeAccessoryItems[itemIndex++] = ItemType<PetAccessorySlimeHead>();
+
             //add more here, for example like this:
             //slimeAccessoryItems[itemIndex++] = mod.ItemType<PetAccessoryStrapOn>();
+
+            slimeAccessoryTextures = new Texture2D[itemIndex + 1];
+            slimeAccessoryOffsets = new Vector2[itemIndex + 1];
 
             Array.Resize(ref slimeAccessoryItems, itemIndex);
 
@@ -89,27 +94,30 @@ namespace AssortedCrazyThings
                 //------------------------------------------------------------------------------------------------------
                 //------------slimeAccessoryTextures--------------------------------------------------------------------
                 //------------------------------------------------------------------------------------------------------
-                //for every new line, just add the new items class name in the <> and then the texture with _Draw in the ""
+                //for every new line, just add the new items class name in the <> and then the class name into the middle string
 
-                //ErrorLogger.Log(slimeAccessoryItemsIndexed.Length + " " + ItemType<PetAccessoryXmasHat>() + " " + slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]);
-                //ErrorLogger.Log(slimeAccessoryTextures.Length);
-                //ErrorLogger.Log(GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw"));
-                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = GetTexture("Items/PetAccessories/PetAccessoryBow_Draw");
-                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = GetTexture("Items/PetAccessories/PetAccessoryXmasHat_Draw");
-                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowGreen_Draw");
-                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlack_Draw");
-                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/PetAccessoryBowBlue_Draw");
-                //ErrorLogger.Log(slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]]);
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryBow" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryXmasHat" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryBowGreen" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryBowBlack" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryBowBlue" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryAmethystStaff>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryAmethystStaff" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessoryTopazStaff>()]] = GetTexture("Items/PetAccessories/" + "PetAccessoryTopazStaff" + "_Draw");
+                slimeAccessoryTextures[slimeAccessoryItemsIndexed[ItemType<PetAccessorySlimeHead>()]] = GetTexture("Items/PetAccessories/" + "PetAccessorySlimeHead" + "_Draw");
 
 
                 //------------------------------------------------------------------------------------------------------
                 //-----------slimeAccessoryOffsets----------------------------------------------------------------------
                 //------------------------------------------------------------------------------------------------------
+                //the offset is mainly only for the first frame of the spritesheet, everything else is adjusted automatically
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = new Vector2(0f, -13f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = new Vector2(0f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryAmethystStaff>()]] = new Vector2(-24f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryTopazStaff>()]] = new Vector2(-24f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessorySlimeHead>()]] = new Vector2(0f, -24f);
 
 
                 //finishing up, ignore

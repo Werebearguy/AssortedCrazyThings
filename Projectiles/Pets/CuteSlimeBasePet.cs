@@ -40,11 +40,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
                     Vector2 stupidOffset = AssortedCrazyThings.slimeAccessoryOffsets[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
 
-
                     //fix for legacy slimes
                     if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
                     {
-                        if (slotNumber != (byte)SlotType.Hat) //everything besides head
+                        if (slotNumber == (byte)SlotType.Hands)
+                        {
+                            stupidOffset.X += -2f;
+                            stupidOffset.Y += -2f;
+                            if (projectile.frame > 2 && projectile.frame < 6)
+                            {
+                                stupidOffset += new Vector2(2f, -2f);
+                            }
+                        }
+
+                        if (slotNumber == (byte)SlotType.Body)
                         {
                             if (projectile.frame > 2 && projectile.frame < 6)
                             {
@@ -58,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 }
                             }
                         }
-                        else //hat
+                        if(slotNumber == (byte)SlotType.Hat)
                         {
                             if (projectile.frame < 6)
                             {
@@ -82,6 +91,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                     stupidOffset += new Vector2(-4f, 0f);
                                 }
                             }
+                        }
+                    }
+
+                    if (slotNumber == (byte)SlotType.Hands)
+                    {
+                        float handsOffsetX = -22f * projectile.scale + 22f;
+                        float handsOffsetY = (projectile.scale < 1) ? 2.5f * projectile.scale - 2.5f : 10f * projectile.scale - 10f;
+                        stupidOffset.X += handsOffsetX;
+                        stupidOffset.Y += handsOffsetY;
+                        if (projectile.frame > 2 && projectile.frame < 6) //hands "bounce"
+                        {
+                            // += -4f
+                            stupidOffset.X += -4f + handsOffsetX / 4f;
+                        }
+
+                        if (projectile.spriteDirection == -1)
+                        {
+                            stupidOffset.X -= 2 * stupidOffset.X;
                         }
                     }
 
