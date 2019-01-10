@@ -5,18 +5,18 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class RuneOfSummoning : ModItem
+    public class IdolOfDecay : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Rune of summoning");
+            DisplayName.SetDefault("Idol Of Decay");
             Tooltip.SetDefault("Summons " + aaaHarvester3.name + "'s first form in the dungeon.");
         }
 
         public override void SetDefaults()
         {
-            item.width = 22;
-            item.height = 22;
+            item.width = 38;
+            item.height = 30;
             item.maxStack = 30;
             item.rare = -11;
             item.useAnimation = 45;

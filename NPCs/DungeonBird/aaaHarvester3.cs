@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.VanityArmor;
 using Microsoft.Xna.Framework;
@@ -10,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    //[AutoloadBossHead]
+    [AutoloadBossHead]
     public class aaaHarvester3 : ModNPC
     {
         public static string name = "aaaHarvester3";
@@ -168,7 +167,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
             Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>(), Main.rand.Next(15, 26));
 
-            if(Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<RuneOfSummoning>());
+            if(Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
             //you need to kill it two times to craft the whole armor set
             // (15+15 == 10 + 10 + 10)
 

@@ -30,6 +30,8 @@ namespace AssortedCrazyThings
         public static int[] slimeAccessoryItemsIndexed;
         public static Texture2D[] slimeAccessoryTextures;
         public static Vector2[] slimeAccessoryOffsets;
+        public static bool[] slimeAccessoryPreDraw;
+        public static byte[] slimeAccessoryAlpha;
 
         //Soul item animated textures
         public static Texture2D[] animatedTextureArray;
@@ -77,6 +79,8 @@ namespace AssortedCrazyThings
 
             slimeAccessoryTextures = new Texture2D[itemIndex + 1];
             slimeAccessoryOffsets = new Vector2[itemIndex + 1];
+            slimeAccessoryPreDraw = new bool[itemIndex + 1];
+            slimeAccessoryAlpha = new byte[itemIndex + 1];
 
             //Array.Resize(ref slimeAccessoryItems, itemIndex);
 
@@ -115,9 +119,27 @@ namespace AssortedCrazyThings
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = new Vector2(0f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = new Vector2(0f, 0f);
-                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryAmethystStaff>()]] = new Vector2(-24f, 0f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryAmethystStaff>()]] = new Vector2(-14f, 0f);
                 slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessoryTopazStaff>()]] = new Vector2(-24f, 0f);
-                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessorySlimeHead>()]] = new Vector2(0f, -24f);
+                slimeAccessoryOffsets[slimeAccessoryItemsIndexed[ItemType<PetAccessorySlimeHead>()]] = new Vector2(0f, -18f);
+
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = false;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = false;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = false;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = false;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = false;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryAmethystStaff>()]] = true;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessoryTopazStaff>()]] = true;
+                slimeAccessoryPreDraw[slimeAccessoryItemsIndexed[ItemType<PetAccessorySlimeHead>()]] = false;
+
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBow>()]] = 0; //255 fully opaque, 0 fully transparent
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryXmasHat>()]] = 0;
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowGreen>()]] = 0;
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlack>()]] = 0;
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryBowBlue>()]] = 0;
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryAmethystStaff>()]] = 0;
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessoryTopazStaff>()]] = 0;
+                slimeAccessoryAlpha[slimeAccessoryItemsIndexed[ItemType<PetAccessorySlimeHead>()]] = 56;
 
 
                 //finishing up, ignore

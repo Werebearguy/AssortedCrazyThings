@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AssortedCrazyThings</RootNamespace>
     <AssemblyName>AssortedCrazyThings</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7</LangVersion>
+    <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssortedCrazyThings.cs" />
+    <Compile Include="Buffs\BipolarBuff.cs" />
+    <Compile Include="Buffs\CompanionDungeonSoulPetBuff.cs" />
     <Compile Include="Buffs\AlienHornet.cs" />
     <Compile Include="Buffs\BabyCrimera.cs" />
     <Compile Include="Buffs\BabyIchorSticker.cs" />
@@ -43,15 +46,24 @@
     <Compile Include="Buffs\ChunkyandMeatball.cs" />
     <Compile Include="Buffs\CursedSkull.cs" />
     <Compile Include="Buffs\CuteGastropod.cs" />
-    <Compile Include="Buffs\CuteSlimeBlack.cs" />
-    <Compile Include="Buffs\CuteSlimeBlue.cs" />
-    <Compile Include="Buffs\CuteSlimeGreen.cs" />
-    <Compile Include="Buffs\CuteSlimePink.cs" />
-    <Compile Include="Buffs\CuteSlimePurple.cs" />
-    <Compile Include="Buffs\CuteSlimeRainbow.cs" />
-    <Compile Include="Buffs\CuteSlimeRed.cs" />
-    <Compile Include="Buffs\CuteSlimeXmas.cs" />
-    <Compile Include="Buffs\CuteSlimeYellow.cs" />
+    <Compile Include="Buffs\CuteSlimeBlackBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeBlackNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeBlueBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeBlueNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeGreenBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeGreenNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimePinkBuff.cs" />
+    <Compile Include="Buffs\CuteSlimePinkNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimePurpleBuff.cs" />
+    <Compile Include="Buffs\CuteSlimePurpleNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeRainbowBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeRainbowNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeRedBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeRedNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeXmasBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeXmasNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeYellowBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeYellowNewBuff.cs" />
     <Compile Include="Buffs\DemonHeart.cs" />
     <Compile Include="Buffs\DetachedHungry.cs" />
     <Compile Include="Buffs\DocileDemonEyeGreen.cs" />
@@ -72,6 +84,7 @@
     <Compile Include="Buffs\MiniMegalodon.cs" />
     <Compile Include="Buffs\OrigamiCrane.cs" />
     <Compile Include="Buffs\SmallMegalodon.cs" />
+    <Compile Include="Buffs\EmpoweringBuff.cs" />
     <Compile Include="Buffs\SoulBuff.cs" />
     <Compile Include="Buffs\TorturedSoul.cs" />
     <Compile Include="Buffs\VampireBat.cs" />
@@ -80,6 +93,7 @@
     <Compile Include="Items\Accessories\Useful\AnomalousWings.cs" />
     <Compile Include="Items\Accessories\Useful\BipolarCandleInABalloon.cs" />
     <Compile Include="Items\Accessories\Useful\BottledDreams.cs" />
+    <Compile Include="Items\Accessories\Useful\EverburningCandelabra.cs" />
     <Compile Include="Items\Accessories\Useful\EverburningCandle.cs" />
     <Compile Include="Items\Accessories\Useful\EverburningCursedCandle.cs" />
     <Compile Include="Items\Accessories\Useful\EverburningShadowflameCandle.cs" />
@@ -88,6 +102,9 @@
     <Compile Include="Items\Accessories\Useful\LootMagnet.cs" />
     <Compile Include="Items\Accessories\Useful\MassiveBundleOfBalloons.cs" />
     <Compile Include="Items\Accessories\Useful\PeaceCandleInABalloon.cs" />
+    <Compile Include="Items\Accessories\Useful\SigilOfLastStand.cs" />
+    <Compile Include="Items\Accessories\Useful\SigilOfPainSuppression.cs" />
+    <Compile Include="Items\Accessories\Useful\SigilOfRetreat.cs" />
     <Compile Include="Items\Accessories\Useful\SlipperySoles.cs" />
     <Compile Include="Items\Accessories\Useful\SolesOfFireAndIce.cs" />
     <Compile Include="Items\Accessories\Useful\StarInABalloon.cs" />
@@ -108,13 +125,22 @@
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetal.cs" />
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetalFractured.cs" />
     <Compile Include="Items\Accessories\Vanity\SpazmatismEyelloon.cs" />
+    <Compile Include="Items\Armor\SoulArmorLeggings.cs" />
+    <Compile Include="Items\Armor\SoulArmorHelmet.cs" />
+    <Compile Include="Items\Armor\SoulArmorBreastplate.cs" />
+    <Compile Include="Items\CaughtDungeonSoul.cs" />
+    <Compile Include="Items\CaughtDungeonSoulAwakened.cs" />
+    <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\DesiccatedLeather.cs" />
+    <Compile Include="Items\Fun\CraftOfMiners.cs" />
     <Compile Include="Items\Fun\InfinityRocket.cs" />
     <Compile Include="Items\Fun\StarForge.cs" />
     <Compile Include="Items\AssGlobalItem.cs" />
     <Compile Include="Items\MeatballsEye.cs" />
-    <Compile Include="Items\OrigamiHat.cs" />
     <Compile Include="Items\OrigamiManual.cs" />
+    <Compile Include="Items\PetAccessories\PetAccessoryClass.cs" />
+    <Compile Include="Items\Pets\CompanionDungeonSoulPetItem.cs" />
     <Compile Include="Items\Pets\AlienHornet.cs" />
     <Compile Include="Items\Pets\BabyCrimera.cs" />
     <Compile Include="Items\Pets\BabyIchorSticker.cs" />
@@ -124,14 +150,23 @@
     <Compile Include="Items\Pets\CursedSkull.cs" />
     <Compile Include="Items\Pets\CuteGastropod.cs" />
     <Compile Include="Items\Pets\CuteSlimeBlack.cs" />
+    <Compile Include="Items\Pets\CuteSlimeBlackNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeBlue.cs" />
+    <Compile Include="Items\Pets\CuteSlimeBlueNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeGreen.cs" />
+    <Compile Include="Items\Pets\CuteSlimeGreenNew.cs" />
     <Compile Include="Items\Pets\CuteSlimePink.cs" />
+    <Compile Include="Items\Pets\CuteSlimePinkNew.cs" />
     <Compile Include="Items\Pets\CuteSlimePurple.cs" />
+    <Compile Include="Items\Pets\CuteSlimePurpleNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeRainbow.cs" />
+    <Compile Include="Items\Pets\CuteSlimeRainbowNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeRed.cs" />
+    <Compile Include="Items\Pets\CuteSlimeRedNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeXmas.cs" />
+    <Compile Include="Items\Pets\CuteSlimeXmasNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeYellow.cs" />
+    <Compile Include="Items\Pets\CuteSlimeYellowNew.cs" />
     <Compile Include="Items\Pets\DemonHeart.cs" />
     <Compile Include="Items\Pets\DetachedHungry.cs" />
     <Compile Include="Items\Pets\DocileDemonEyeGreen.cs" />
@@ -156,17 +191,21 @@
     <Compile Include="Items\Pets\VampireBat.cs" />
     <Compile Include="Items\Pets\YoungHarpy.cs" />
     <Compile Include="Items\Pets\YoungWyvern.cs" />
+    <Compile Include="Items\EmpowermentFlask.cs" />
+    <Compile Include="Items\IdolOfDecay.cs" />
+    <Compile Include="Items\VanityArmor\OrigamiHat.cs" />
+    <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
     <Compile Include="Items\Weapons\PocketSand.cs" />
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
-    <Compile Include="NPCs\Akhult.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
     <Compile Include="NPCs\DungeonBird\aaaHarvester1.cs" />
     <Compile Include="NPCs\DungeonBird\aaaHarvester2.cs" />
     <Compile Include="NPCs\DungeonBird\aaaHarvester3.cs" />
-    <Compile Include="NPCs\DungeonBird\aaaSoul.cs" />
-    <Compile Include="NPCs\DungeonBird\BaseHarvester.cs" />
+    <Compile Include="NPCs\DungeonBird\aaaDungeonSoulBase.cs" />
+    <Compile Include="NPCs\DungeonBird\aaaHarvester3Talon.cs" />
+    <Compile Include="NPCs\DungeonBird\HarvesterBase.cs" />
     <Compile Include="PetPlayer.cs" />
     <Compile Include="AssWorld.cs" />
     <Compile Include="NPCs\AnimatedSpellTome.cs" />
@@ -213,9 +252,7 @@
     <Compile Include="NPCs\GiantGrasshopperGold.cs" />
     <Compile Include="NPCs\HornedSlime.cs" />
     <Compile Include="NPCs\JoyousSlime.cs" />
-    <Compile Include="NPCs\JuggerlluscBlack.cs" />
-    <Compile Include="NPCs\JuggerlluscLapras.cs" />
-    <Compile Include="NPCs\JuggerlluscWhite.cs" />
+    <Compile Include="NPCs\Juggerllusc.cs" />
     <Compile Include="NPCs\LittleMegalodon.cs" />
     <Compile Include="NPCs\Meatball.cs" />
     <Compile Include="NPCs\MeatballsEye.cs" />
@@ -265,23 +302,36 @@
     <Compile Include="NPCs\WhaleSharkPup.cs" />
     <Compile Include="NPCs\YoungHarpy.cs" />
     <Compile Include="NPCs\ZombieFlorist.cs" />
+    <Compile Include="Projectiles\PetAccessoryProj.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
+    <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj.cs" />
     <Compile Include="Projectiles\Pets\AlienHornet.cs" />
     <Compile Include="Projectiles\Pets\BabyCrimera.cs" />
     <Compile Include="Projectiles\Pets\BabyIchorSticker.cs" />
     <Compile Include="Projectiles\Pets\BabyOcram.cs" />
     <Compile Include="Projectiles\Pets\BrainofConfusion.cs" />
     <Compile Include="Projectiles\Pets\ChunkyandMeatball.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeBasePet.cs" />
     <Compile Include="Projectiles\Pets\CursedSkull.cs" />
     <Compile Include="Projectiles\Pets\CuteGastropod.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeBlack.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeBlue.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeGreen.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimePink.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimePurple.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeRainbow.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeRed.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeXmas.cs" />
-    <Compile Include="Projectiles\Pets\CuteSlimeYellow.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeBlackNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeBlackPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeBlueNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeBluePet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeGreenNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeGreenPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimePinkNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimePinkPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimePurpleNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimePurplePet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeRainbowNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeRainbowPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeRedNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeRedPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeXmasNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeXmasPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeYellowNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeYellowPet.cs" />
     <Compile Include="Projectiles\Pets\DemonHeart.cs" />
     <Compile Include="Projectiles\Pets\DetachedHungry.cs" />
     <Compile Include="Projectiles\Pets\DocileDemonEyeGreen.cs" />
@@ -297,6 +347,7 @@
     <Compile Include="Projectiles\Pets\DocileMechanicalLaserEyePurple.cs" />
     <Compile Include="Projectiles\Pets\DocileMechanicalLaserEyeRed.cs" />
     <Compile Include="Projectiles\Pets\EnchantedSword.cs" />
+    <Compile Include="Projectiles\Pets\GobletPet.cs" />
     <Compile Include="Projectiles\Pets\LifelikeMechanicalFrog.cs" />
     <Compile Include="Projectiles\Pets\Machan.cs" />
     <Compile Include="Projectiles\Pets\MiniMegalodon.cs" />
@@ -306,9 +357,12 @@
     <Compile Include="Projectiles\Pets\VampireBat.cs" />
     <Compile Include="Projectiles\Pets\YoungHarpy.cs" />
     <Compile Include="Projectiles\Pets\YoungWyvern.cs" />
+    <Compile Include="Projectiles\Weapons\HarvesterBone.cs" />
     <Compile Include="Projectiles\Weapons\PocketSand.cs" />
     <Compile Include="Projectiles\Weapons\SpazmatismFire.cs" />
     <Compile Include="AssPlayer.cs" />
+    <Compile Include="Buffs\GobletBuff.cs" />
+    <Compile Include="Items\Pets\GobletItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
