@@ -32,7 +32,7 @@ namespace AssortedCrazyThings
         public static Vector2[] slimeAccessoryOffsets;
 
         //Soul item animated textures
-        public static Texture2D[] animatedTextureArray = new Texture2D[2];
+        public static Texture2D[] animatedTextureArray;
 
         private void InitPetAccessories()
         {
@@ -78,7 +78,7 @@ namespace AssortedCrazyThings
             slimeAccessoryTextures = new Texture2D[itemIndex + 1];
             slimeAccessoryOffsets = new Vector2[itemIndex + 1];
 
-            Array.Resize(ref slimeAccessoryItems, itemIndex);
+            //Array.Resize(ref slimeAccessoryItems, itemIndex);
 
             if (!Main.dedServ && Main.netMode != 2)
             {
@@ -121,8 +121,8 @@ namespace AssortedCrazyThings
 
 
                 //finishing up, ignore
-                Array.Resize(ref slimeAccessoryTextures, slimeAccessoryItems.Length + 1); //since index starts at 1
-                Array.Resize(ref slimeAccessoryOffsets, slimeAccessoryItems.Length + 1); //since index starts at 1
+                //Array.Resize(ref slimeAccessoryTextures, slimeAccessoryItems.Length + 1); //since index starts at 1
+                //Array.Resize(ref slimeAccessoryOffsets, slimeAccessoryItems.Length + 1); //since index starts at 1
             }
         }
 
@@ -148,8 +148,11 @@ namespace AssortedCrazyThings
         {
             InitPetAccessories();
 
+
             if (!Main.dedServ && Main.netMode != 2)
             {
+                animatedTextureArray = new Texture2D[2];
+
                 animatedTextureArray[0] = GetTexture("Items/CaughtDungeonSoulAnimated");
                 animatedTextureArray[1] = GetTexture("Items/CaughtDungeonSoulAwakenedAnimated");
             }
