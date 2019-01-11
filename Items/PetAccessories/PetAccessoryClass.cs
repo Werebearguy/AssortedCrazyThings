@@ -349,7 +349,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
              * - if you want to remove certain accessories from being useable for the system, comment the line out in namesOfAccessories
              * (for example <slash star> "PetAccessoryAmethystStaff", <star slash>), and comment the corresponding Add line (with //)
              * 
-             * 
+             * - if you want to disable the whole system, comment the PetAccessories.Load() and PetAccessories.Unload() in AssortedCrazyThings.cs
              */
 
             //this is needed before you call Add() (it needs to know the total number of accessories)
@@ -393,6 +393,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Texture = null;
             Offset = null;
             InternalMod = null;
+            addCounter = 0;
         }
 
 
@@ -403,7 +404,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 throw new Exception("Assigned number of Pet Accessories (" + namesOfAccessories.Length + ") is less than number of added Pet Accessories (" + addCounter + ").");
             }
 
-            if (!duringAdd && namesOfAccessories.Length != addCounter)
+            if (!duringAdd && namesOfAccessories.Length > addCounter)
             {
                 throw new Exception("Assigned number of Pet Accessories (" + namesOfAccessories.Length + ") is bigger than number of added Pet Accessories (" + addCounter + ").");
             }
