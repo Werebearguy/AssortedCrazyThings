@@ -48,9 +48,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //fix for legacy slimes
                     if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
                     {
-                        if (slotNumber == (byte)SlotType.Hands)
+                        if (slotNumber == (byte)SlotType.Hand)
                         {
                             stupidOffset.X += -2f;
+                            if(projectile.spriteDirection == 1)
+                            {
+                                stupidOffset.X += -2f;
+                            }
+
                             stupidOffset.Y += -2f;
                             if (projectile.frame > 2 && projectile.frame < 6)
                             {
@@ -95,7 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    if (slotNumber == (byte)SlotType.Hands)
+                    if (slotNumber == (byte)SlotType.Hand)
                     {
                         float handsOffsetX = -22f * projectile.scale + 22f;
                         float handsOffsetY = (projectile.scale < 1) ? 5f * projectile.scale - 5f : 10f * projectile.scale - 10f;
@@ -142,10 +147,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
                     Vector2 stupidOffset = PetAccessories.Offset[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
 
-                    //fix for legacy slimes
+                    //legacy slimes fixes and checks
                     if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
                     {
-                        if (slotNumber == (byte)SlotType.Hands)
+                        if (!PetAccessories.AllowLegacy[slimeAccessory]) continue;
+
+                        if (slotNumber == (byte)SlotType.Hand)
                         {
                             stupidOffset.X += -2f;
                             stupidOffset.Y += -2f;
@@ -196,7 +203,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    if (slotNumber == (byte)SlotType.Hands)
+                    if (slotNumber == (byte)SlotType.Hand)
                     {
                         float handsOffsetX = -22f * projectile.scale + 22f;
                         float handsOffsetY = (projectile.scale < 1) ? 2.5f * projectile.scale - 2.5f : 10f * projectile.scale - 10f;

@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Hands;
+            item.value = (int)SlotType.Hand;
         }
     }
 
@@ -120,7 +120,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Hands;
+            item.value = (int)SlotType.Hand;
         }
     }
 
@@ -138,16 +138,32 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryBlueMittens : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Blue Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
     public enum SlotType : byte
     {
         None, //reserved
         Hat,
         Body,
-        Hands,
+        Hand,
         Tail
         //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
         //Also, concider that there cant be more than one accessory active in each slot, so decide on proper
         //categories that make sense.
+
+        //for Hand, its actually only the front facing hand. For something like gloves or dual wielding, use Body instead
 
         //also, keep the sprite dimensions the same as the slime girls
     }
@@ -250,11 +266,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         //sync with player, for when he respawns, it gets reapplied
                         mPlayer.slotsPlayer = gProjectile.GetAccessoryAll(); //triggers SyncPlayer
 
-                        mPlayer.SendRedrawPetAccessories();
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            mPlayer.SendRedrawPetAccessories();
+                        }
                         //mPlayer.SendSlotData();
                     }
                     else if (player.altFunctionUse != 2)
                     {
+                        //check if selected item is valid on the pet if it is a legacy version
+                        if(!PetAccessories.AllowLegacy[PetAccessories.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.petIndex].type) != -1)
+                        {
+                            return false;
+                        }
+
                         gProjectile.ToggleAccessory((byte)item.value, (uint)PetAccessories.ItemsIndexed[item.type]);
 
                         //sync with player, for when he respawns, it gets reapplied
@@ -333,6 +358,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public static Vector2[] Offset;
         public static bool[] PreDraw;
         public static byte[] Alpha;
+        public static bool[] AllowLegacy;
 
         public static void Load(Mod mod)
         {
@@ -363,7 +389,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryXmasHat",
                 "PetAccessoryAmethystStaff",
                 "PetAccessoryTopazStaff",
-                "PetAccessorySlimeHead"
+                "PetAccessorySlimeHead",
+                "PetAccessoryBlueMittens"
             };
 
             Init(mod, namesOfAccessories);
@@ -376,6 +403,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //preDraw decides if that accessory should be drawn "behind" the actual slime (false means it will draw infront)
             //alpha says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
             //order of the Add() doesn't matter
+
             Add(name: "PetAccessoryBow");
             Add(name: "PetAccessoryBowGreen");
             Add(name: "PetAccessoryBowBlack");
@@ -384,6 +412,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryAmethystStaff", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryTopazStaff", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessorySlimeHead", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessoryBlueMittens", allowLegacy: false);
 
             Check();
         }
@@ -397,7 +426,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
 
-        public static void Check(bool duringAdd = false)
+        private static void Check(bool duringAdd = false)
         {
             if (duringAdd && namesOfAccessories.Length < addCounter)
             {
@@ -410,7 +439,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
-        public static void Init(Mod mod, string[] typeList)
+        private static void Init(Mod mod, string[] typeList)
         {
             InternalMod = mod;
             Items = new int[typeList.Length];
@@ -428,6 +457,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Offset = new Vector2[itemIndex + 1];
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
+            AllowLegacy = new bool[itemIndex + 1];
 
             int[] parameters = new int[Items.Length * 2];
             for (int i = 0; i < Items.Length; i++)
@@ -438,12 +468,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
             ItemsIndexed = IntSet(parameters);
         }
 
-        public static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0)
+        private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool allowLegacy = true)
         {
-            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha);
+            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, allowLegacy);
         }
 
-        public static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha)
+        private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool allowLegacy)
         {
             addCounter++;
 
@@ -456,6 +486,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw[ItemsIndexed[type]] = preDraw;
 
             Alpha[ItemsIndexed[type]] = alpha;
+
+            AllowLegacy[ItemsIndexed[type]] = allowLegacy;
         }
 
         private static int[] IntSet(int[] inputs)
