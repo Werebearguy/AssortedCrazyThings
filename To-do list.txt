@@ -1,6 +1,9 @@
 #####################################################################################
 To-Do List: Both of Us
 #####################################################################################
+- Finish what's on this list
+	- No more additions; let's finalize what we have so the thread is sated
+
 - Review all files prior to release
 	- Verify that display names are correct
 	- Verify that recipes for newly implemented items are working
@@ -9,15 +12,36 @@ To-Do List: Both of Us
 	- Remove unnecessary files, including "To-do list.txt", "pet accessory stuff.txt", and so on
 	
 - (BOSS NAME HERE) Boss
+	- Finalize for release
+		- We've definitely put a lot of time into this thing, but it's looking pretty good at this point
+		- Let's get all the final touches done on this bad boy
 	- Decide on a name
+		- My suggestions; 
 	- Adjust stats for balancing purposes
 	- Fully test ingame under normal playthroughs
 	
-- Remove completed material from To-Do List
+- Clear list for next time
 
 #####################################################################################
 To-Do List: direwolf420
 #####################################################################################
+- Review file sizes of images
+
+- Combine Demon Eye NPCs into a single entity that picks texture randomly
+	- Cataract, Dilated, and Sleepy variants picked any time
+	- Owl and UFO picked only during Halloween
+	- Fractured eye variants picked only after Eye of Cthulhu is defeated
+	- Mechanical eye variants picked only after The Twins are defeated
+		- If you have to, delete the glow masks; I won't be upset
+	- Mechanical eye variants that shoot lasers picked only after the Twins are defeated
+		- Separate NPC file for them due to custom AI
+		
+- Combine Walking Tombstone NPCs
+	- Drops based on the sprite picked
+	- For Cheat Sheet and other spawning purposes, feel free to pick the "default" look
+
+- Put Cute Slime Mitten accessories in a new slot of their own
+	
 //DONE
 - Inert Soul and Awakened Soul variants
 	- Use old sprites, currently prefixed by aaaa, as Inert Souls
@@ -31,6 +55,8 @@ To-Do List: direwolf420
 #####################################################################################
 To-Do List: Werebearguy
 #####################################################################################
+- Reduce file sizes of sprites
+
 //DONE
 - Create item sprite for (BOSS NAME HERE)-specific drop
 	- Used in the creation of the Soul Savior Garment armor pieces
