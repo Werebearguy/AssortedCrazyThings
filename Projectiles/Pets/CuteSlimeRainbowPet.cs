@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool MorePreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             double cX = projectile.position.X + Projwidth * 2 + drawOffsetX;
             double cY = projectile.position.Y + (Projheight - (drawOriginOffsetY + 20f)) * 2;  //20f for offset pre-draw, idk how and why
@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             };
             lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), baseColor * 1.2f);
             SpriteEffects effects = SpriteEffects.None;
-            if (projectile.direction != -1)
+            if (projectile.spriteDirection == -1)
             {
                 effects = SpriteEffects.FlipHorizontally;
             }

@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             };
             lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), baseColor * 1.2f);
             SpriteEffects effects = SpriteEffects.None;
-            if (projectile.direction != -1)
+            if (projectile.spriteDirection == -1)
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
