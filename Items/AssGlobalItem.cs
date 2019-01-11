@@ -1,10 +1,5 @@
-﻿using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles;
-using AssortedCrazyThings.Projectiles.Pets;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
@@ -35,137 +30,7 @@ namespace AssortedCrazyThings.Items
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
 
-            if(Array.IndexOf(AssortedCrazyThings.slimeAccessoryItems, item.type) != -1) //if used item 
-            {
-                if (mPlayer.petIndex == -1)
-                {
-                    ErrorLogger.Log("had to change index of slime pet because it was -1");
-                    //find first occurence of a player owned cute slime
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (Main.projectile[i].active)
-                        {
-                            if (Main.projectile[i].modProjectile != null)
-                            {
-                                if (Main.projectile[i].owner == player.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
-                                {
-                                    mPlayer.petIndex = i;
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-
-
-                bool shouldReset = false;
-                if (player.altFunctionUse == 2) //right click use
-                {
-                    if (/*mPlayer.slotsPlayer != 0 &&*/ mPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
-                    {
-                        shouldReset = true;
-                    }
-                }
-                //else normal left click use
-
-                if (Main.projectile[mPlayer.petIndex].active && Main.projectile[mPlayer.petIndex].owner == player.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.petIndex].modProjectile))
-                {
-                    PetAccessoryProj gProjectile = Main.projectile[mPlayer.petIndex].GetGlobalProjectile<PetAccessoryProj>(mod);
-
-                    //only client side
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        if (shouldReset && player.altFunctionUse == 2)
-                        {
-                            //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
-
-                            gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0 ? 0 : mPlayer.slotsPlayerLast);
-
-                            //"dust" originating from the center, forming a circle and going outwards
-                            Dust dust;
-                            for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
-                            {
-                                dust = Dust.NewDustPerfect(Main.projectile[mPlayer.petIndex].Center - new Vector2(0f, Main.projectile[mPlayer.petIndex].height / 4)/*, 30, 30*/, 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
-                            }
-
-                            //save it for next time shouldReset is true
-                            mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
-
-                            //sync with player, for when he respawns, it gets reapplied
-                            mPlayer.slotsPlayer = gProjectile.GetAccessoryAll(); //triggers SyncPlayer
-
-                            mPlayer.SendRedrawPetAccessories();
-                            //mPlayer.SendSlotData();
-                        }
-                        else if (player.altFunctionUse != 2)
-                        {
-                            gProjectile.ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
-
-                            //sync with player, for when he respawns, it gets reapplied
-                            mPlayer.slotsPlayer = gProjectile.GetAccessoryAll();
-                            //mPlayer.SendSlotData();
-                        }
-                    }
-                }
-                return true;
-
-
-                //for (int i = 0; i < 1000; i++)
-                //{
-                //    if (Main.projectile[i].active)
-                //    {
-                //        //find first occurence of a player owned cute slime
-                //        if(Main.projectile[i].modProjectile != null)
-                //        {
-                //            if (Main.projectile[i].owner == player.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
-                //            {
-                //                PetAccessoryProj gProjectile = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod);
-
-                //                //only client side
-                //                if (Main.netMode != NetmodeID.Server)
-                //                {
-                //                    if (shouldReset && player.altFunctionUse == 2)
-                //                    {
-                //                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
-
-                //                        gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0 ? 0 : mPlayer.slotsPlayerLast);
-
-                //                        //"dust" originating from the center, forming a circle and going outwards
-                //                        Dust dust;
-                //                        for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
-                //                        {
-                //                            //Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
-                //                            dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, Main.projectile[i].height / 4)/*, 30, 30*/, 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
-                //                        }
-
-                //                        //save it for next time shouldReset is true
-                //                        mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
-
-                //                        //sync with player, for when he respawns, it gets reapplied
-                //                        mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).GetAccessoryAll();
-                //                        mPlayer.SendSlotData();
-                //                    }
-                //                    else if (player.altFunctionUse != 2)
-                //                    {
-                //                        gProjectile.ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
-
-                //                        //sync with player, for when he respawns, it gets reapplied
-                //                        mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).GetAccessoryAll();
-                //                        mPlayer.SendSlotData();
-                //                    }
-                //                }
-                //                break;
-                //            }
-                //        }
-                //    }
-                //}
-            }
-
-
-            if(mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff )
+            if (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff )
             {
                 if (base.CanUseItem(item, player) && player.HeldItem.active && player.HeldItem.damage >= 0)
                 {
@@ -204,12 +69,15 @@ namespace AssortedCrazyThings.Items
         private void SpawnMeleeDust(int type, Color color, Rectangle hitbox, Player player)
         {
             //6 is the default fire particle type
-            int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (float)(player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
-            Main.dust[dustid].noGravity = true;
-            Dust dust2 = Main.dust[dustid];
-            dust2.velocity.X = dust2.velocity.X * 2f;
-            Dust dust3 = Main.dust[dustid];
-            dust3.velocity.Y = dust3.velocity.Y * 2f;
+            if (player.HeldItem.damage >= 0)
+            {
+                int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (float)(player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
+                Main.dust[dustid].noGravity = true;
+                Dust dust2 = Main.dust[dustid];
+                dust2.velocity.X = dust2.velocity.X * 2f;
+                Dust dust3 = Main.dust[dustid];
+                dust3.velocity.Y = dust3.velocity.Y * 2f;
+            }
         }
 
         private void SpawnRangedDust(int type, Color color, float speed, Player player)

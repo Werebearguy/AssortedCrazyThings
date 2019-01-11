@@ -37,13 +37,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
-                if (AssortedCrazyThings.slimeAccessoryPreDraw[slimeAccessory] && slimeAccessory != 0)
+                if (PetAccessories.PreDraw[slimeAccessory] && slimeAccessory != 0)
                 {
-                    Texture2D texture = AssortedCrazyThings.slimeAccessoryTextures[slimeAccessory];
+                    Texture2D texture = PetAccessories.Texture[slimeAccessory];
                     Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
-                    Vector2 stupidOffset = AssortedCrazyThings.slimeAccessoryOffsets[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
+                    Vector2 stupidOffset = PetAccessories.Offset[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
 
                     //fix for legacy slimes
                     if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
@@ -74,6 +74,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                         if (slotNumber == (byte)SlotType.Hat)
                         {
+                            if (projectile.spriteDirection == -1)
+                            {
+                                stupidOffset += new Vector2(-4f, 0f);
+                            }
+
                             if (projectile.frame < 6)
                             {
                                 stupidOffset += new Vector2(-2f * projectile.spriteDirection, 2f);
@@ -82,19 +87,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 {
                                     stupidOffset += new Vector2(-1f * projectile.spriteDirection, 0f);
                                 }
-
-                                if (projectile.spriteDirection == -1)
-                                {
-                                    stupidOffset += new Vector2(-4f, 0f);
-                                }
                             }
                             else
                             {
                                 stupidOffset += new Vector2(-2f * projectile.spriteDirection, 0f);
-                                if (projectile.spriteDirection == -1)
-                                {
-                                    stupidOffset += new Vector2(-4f, 0f);
-                                }
                             }
                         }
                     }
@@ -120,14 +116,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     if (slotNumber == (byte)SlotType.Hat)
                     {
                         stupidOffset.Y += (1f - projectile.scale) * 16f;
-                        //drawColor = projectile.GetAlpha(drawColor) * 0.78f;
-                        //drawColor.A = 150;
                     }
 
                     //(-7.5f * projectile.scale + 7.5f))
-                    stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f)); // new Vector2(-0.5f, -7.7f);
+                    stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f));
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    drawColor.A = (byte)(255 - AssortedCrazyThings.slimeAccessoryAlpha[slimeAccessory]);
+                    drawColor.A = (byte)(255 - PetAccessories.Alpha[slimeAccessory]);
                     spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), drawColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                 }
             }
@@ -140,13 +134,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
-                if(!AssortedCrazyThings.slimeAccessoryPreDraw[slimeAccessory] && slimeAccessory != 0)
+                if(!PetAccessories.PreDraw[slimeAccessory] && slimeAccessory != 0)
                 {
-                    Texture2D texture = AssortedCrazyThings.slimeAccessoryTextures[slimeAccessory];
+                    Texture2D texture = PetAccessories.Texture[slimeAccessory];
                     Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
-                    Vector2 stupidOffset = AssortedCrazyThings.slimeAccessoryOffsets[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
+                    Vector2 stupidOffset = PetAccessories.Offset[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
 
                     //fix for legacy slimes
                     if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
@@ -228,7 +222,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //(-7.5f * projectile.scale + 7.5f))
                     stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f)); // new Vector2(-0.5f, -7.7f);
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    drawColor.A = (byte)(255 - AssortedCrazyThings.slimeAccessoryAlpha[slimeAccessory]);
+                    drawColor.A = (byte)(255 - PetAccessories.Alpha[slimeAccessory]);
                     spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), drawColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                 }
             }
