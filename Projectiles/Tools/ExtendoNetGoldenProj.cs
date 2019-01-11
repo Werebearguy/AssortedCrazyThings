@@ -14,8 +14,8 @@ namespace AssortedCrazyThings.Projectiles.Tools
 
         public override void SetDefaults()
         {
-            projectile.width = 26;
-            projectile.height = 26;
+            projectile.width = 28;
+            projectile.height = 28;
             projectile.aiStyle = 19;
             projectile.penetrate = -1;
             projectile.scale = 1.3f;
@@ -86,12 +86,19 @@ namespace AssortedCrazyThings.Projectiles.Tools
 
             if (Main.myPlayer == projectile.owner)
             {
+                Vector2 between = projOwner.Center - projectile.Center;
+                between.Normalize();
+                Rectangle hitboxMod = new Rectangle(projectile.Hitbox.X + (int)(between.X * projectile.width * 1.3f),
+                    projectile.Hitbox.Y + (int)(between.Y * projectile.height * 1.3f),
+                    projectile.width,
+                    projectile.height);
+
                 for (int i = 0; i < 200; i++)
                 {
                     if (Main.npc[i].active && Main.npc[i].catchItem > 0)
                     {
                         Rectangle value15 = new Rectangle((int)Main.npc[i].position.X, (int)Main.npc[i].position.Y, Main.npc[i].width, Main.npc[i].height);
-                        if (projectile.Hitbox.Intersects(value15) && (Main.npc[i].noTileCollide || projOwner.CanHit(Main.npc[i])))
+                        if (hitboxMod.Intersects(value15)/* && (Main.npc[i].noTileCollide || projOwner.CanHit(Main.npc[i]))*/)
                         {
                             NPC.CatchNPC(i, projectile.owner);
                         }
