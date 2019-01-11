@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (int)(image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
             bounds.Y = projectile.frame * bounds.Height;
 
             float sinY = 0;
@@ -47,7 +47,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
 
-            spriteBatch.Draw(image, drawPos, bounds, Color.White * 0.78f, 0f, bounds.Size() / 2, 1f, projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            lightColor = projectile.GetAlpha(lightColor) * 0.78f; //1f is opaque
+            lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
+            lightColor.G = Math.Max(lightColor.G, (byte)200);
+            lightColor.B = Math.Max(lightColor.B, (byte)200);
+
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, 0f, bounds.Size() / 2, 1f, projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
             return false;
         }
 

@@ -85,13 +85,13 @@ namespace AssortedCrazyThings.Items
                 X = 0,
                 Y = frame2,
                 Width = image.Bounds.Width,
-                Height = (int)(image.Bounds.Height / 4)
+                Height = (image.Bounds.Height / 4)
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
             Vector2 stupidOffset = new Vector2(item.width / 2, (item.height - 10f) + sinY);
 
-            spriteBatch.Draw(image, item.position - Main.screenPosition + stupidOffset, bounds, lightColor * 0.78f, rotation, bounds.Size() / 2, scale, effects, 0f);
+            spriteBatch.Draw(image, item.position - Main.screenPosition + stupidOffset, bounds, lightColor, rotation, bounds.Size() / 2, scale, effects, 0f);
         }
     }
 }

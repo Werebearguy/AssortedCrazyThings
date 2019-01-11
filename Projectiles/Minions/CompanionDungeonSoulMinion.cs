@@ -86,6 +86,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
             }
 
+            lightColor = projectile.GetAlpha(lightColor) * 0.78f; //1f is opaque
+            lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
+            lightColor.G = Math.Max(lightColor.G, (byte)200);
+            lightColor.B = Math.Max(lightColor.B, (byte)200);
+
             Lighting.AddLight(projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
@@ -95,7 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 X = 0,
                 Y = projectile.frame,
                 Width = image.Bounds.Width,
-                Height = (int)(image.Bounds.Height / 4)
+                Height = (image.Bounds.Height / 4)
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
@@ -111,7 +116,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
 
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, Color.White * 0.78f, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
         }
 
         public override void AI()

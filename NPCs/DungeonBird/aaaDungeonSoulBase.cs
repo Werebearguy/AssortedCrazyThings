@@ -184,6 +184,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
+            lightColor = npc.GetAlpha(lightColor) * 0.78f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
@@ -194,7 +195,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 X = 0,
                 Y = npc.frame.Y,
                 Width = image.Bounds.Width,
-                Height = (int)(image.Bounds.Height / Main.npcFrameCount[npc.type])
+                Height = (image.Bounds.Height / Main.npcFrameCount[npc.type])
             };
 
             float sinY = 0;
@@ -235,7 +236,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             SpriteEffects effects = SpriteEffects.None;
 
-            spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor * 0.78f, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
+            spriteBatch.Draw(image, npc.position - Main.screenPosition + stupidOffset, bounds, lightColor, npc.rotation, bounds.Size() / 2, npc.scale, effects, 0f);
         }
 
         public override void AI()
