@@ -8,9 +8,10 @@ To-Do List: Both of Us
 	- Adjust filenames so that the final release does not have prefixes such as "aaa", "aaaa", or "0000"
 	- Remove unnecessary files, including "To-do list.txt", "pet accessory stuff.txt", and so on
 	
-- Harvester Boss
+- (BOSS NAME HERE) Boss
 	- Decide on a name
 	- Adjust stats for balancing purposes
+	- Fully test ingame under normal playthroughs
 	
 - Remove completed material from To-Do List
 
@@ -20,8 +21,8 @@ To-Do List: direwolf420
 //DONE
 - Inert Soul and Awakened Soul variants
 	- Use old sprites, currently prefixed by aaaa, as Inert Souls
-		- Inert Soul spawns during the early phases of the Harvester boss, and are eaten by the Harvester's first and second forms
-		- Awakened Soul spawns in a cluster after defeating the Harvester
+		- Inert Soul spawns during the early phases of the (BOSS NAME HERE) boss, and are eaten by the (BOSS NAME HERE)'s first and second forms
+		- Awakened Soul spawns in a cluster after defeating the (BOSS NAME HERE)
 	- Figure out what items will use Inert Souls and what items will use Awakened Souls
 	- Naming Suggestions: 
 		- Inert Soul ; Loose Soul, Fragile Soul, Weak Soul
@@ -31,7 +32,7 @@ To-Do List: direwolf420
 To-Do List: Werebearguy
 #####################################################################################
 //DONE
-- Create item sprite for Harvester-specific drop
+- Create item sprite for (BOSS NAME HERE)-specific drop
 	- Used in the creation of the Soul Savior Garment armor pieces
 
 - Create item sprite for Slime Accessories
@@ -45,6 +46,9 @@ To-Do List: Werebearguy
 #####################################################################################
 To-Do List: Side Projects of Absolute Lowest Priority
 #####################################################################################
+- Soul Savior Garment glowmasks
+	- Head and Shoulders glowing like the souls do
+	
 - Adjust Anomalocaris
 	- New sprites for swimming sideways
 	- Changes to sideways sprite when close to player

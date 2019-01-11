@@ -2,13 +2,23 @@
 BOSSES
 ============
 Foldfish
-	- A giant origami fish that spawns when you use the Origami Manual, rarely dropped by Animated Tome. The boss fight is similar to the King Slime fight, but the boss will spawn harmless Foldfish Babies when harmed, rather than actually helpful minions. 
+	- A silly boss made when both devs joked over a typo
+	- Animated Tome enemies can drop an Origami Manual, which will summon the Foldfish
+		- Using the tome also spawns a bunch of harmless Foldfish Babies
+	- The boss fights similarly to the King Slime, though its summoned minions are useless and harmless
+	- Purely intended as a joke boss, not a proper one
 	- Drops: Origami Hat, Origami Crane
-Harvester (Need new name)
-	- A skeletal bird that roams the Dungeon after Skeletron has been defeated. In its presence, the denizens of the Dungeon will spawn fragments of their souls upon death, and the Harvester will walk around and eat these fragments. As it consumes more souls, it grows into a more ferocious beast. Should it eat too many souls in your presence, it will seek your soul as its next appetizer.
-	- You can capture the souls before the Harvester can consume them by swinging a net at them. The Harvester will not like this, and will attempt to deter you when nearby by throwing bones at you.
-	- Upon eating enough souls, it will transform into a large beast coated in a moss-like skin. In this stage, it will be hostile to the player and attempt to ram the player with extending talons.
-	- Drops: ???
+(BOSS NAME HERE)
+	- Unassuming and invincible bird that walks around the Dungeon after Skeletron is defeated
+	- In its presence, souls will burst out of defeated enemies
+	- (BOSS NAME HERE) will seek out and eat these souls, growing bigger as it consumes them
+	- Use a net to slow down (BOSS NAME HERE)'s feast, though it will throw bones at you if you try this when it's eating
+	- After eating a few souls, it grows larger and more menacing
+	- If it gorges itself even more, it will become a mass of flying bone and moss
+	- It will attack by extending its talons while flying above the player
+	- Once killed, it will not naturally spawn anymore
+	- Craft or find an Idol of Decay to summon it again at any time in the Dungeon
+	- Drops: Dessicated Leather, Freed Dungeon Soul, (BOSS NAME HERE) Mask
 
 ============
 ENEMIES
@@ -227,39 +237,39 @@ Cursed Skull
 Cute Gastropod
 	- A cute slime girl riding in a Gastropod's shell
 	- Caught with a net
-Cute Slime (Black)*
+Cute Slime (Black)
 	- A tough black slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Blue)*
+Cute Slime (Blue)
 	- An inquisitive blue slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Green)*
+Cute Slime (Green)
 	- A calm green slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Pink)*
+Cute Slime (Pink)
 	- A diminutive pink slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Purple)*
+Cute Slime (Purple)
 	- A tall and giddy purple slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Rainbow)*
+Cute Slime (Rainbow)
 	- A huge colorful slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Red)*
+Cute Slime (Red)
 	- A sporty red slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Yellow)*
+Cute Slime (Yellow)
 	- A bright yellow slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
-Cute Slime (Christmas)*
+Cute Slime (Christmas)
 	- A naughty (or nice?) seasonal slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
@@ -339,9 +349,9 @@ Wyverntail
 ============
 LIGHT PETS
 ============
-Soul Companion
-	- A dungeon soul that floats at your side and provides a modest amount of light
-	- ???
+Companion Soul
+	- A Dungeon Soul that lights the area around you
+	- Crystal Ball, Freed Dungeon Soul x 1
 
 ============
 ACCESSORIES
@@ -350,97 +360,100 @@ Anomalous Wings
 	- drops from Giant Anomalocaris.
 	- Allows slowfall, and allows quick travel in water
 Bipolar Candle in a Balloon
-	- Tinkerer's Workbench with Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
+	- Tinkerer's Workbench, Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
 	- It does exactly what you'd expect it to, except it doesn't
 Bottled Dreams
-	- Tinkerer's Workbench with Bottle x1 + Pixie Dust x10
+	- Tinkerer's Workbench, Bottle x1 + Pixie Dust x10
 	- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump
+Everburning Candelabra
+	- Tinkerer's Workbench, Everburning Candle + Everburning Cursed Candle + Everburning Shadow Candle + Everfrozen Candle
+	- Combines the effect of the items used to craft it
 Everburning Candle
-	- Tinkerer's Workbench with Magma Stone x1 + Soul of Light x50
+	- Tinkerer's Workbench, Magma Stone x1 + Soul of Light x50
 	- Like the Magma Stone, but from every source of player damage, including summons
 Everburning Cursed Candle
-	- Tinkerer's Workbench with Magma Stone x1 + Cursed Flame x50
+	- Tinkerer's Workbench, Magma Stone x1 + Cursed Flame x50
 	- Like the Everburning Candle, but causes the Cursed Flames debuff
 Everburning Shadow Candle
-	- Tinkerer's Workbench with Magma Stone x1 + Soul of Night x50
+	- Tinkerer's Workbench, Magma Stone x1 + Soul of Night x50
 	- Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles
 Everfrozen Candle
-	- Tinkerer's Workbench with Magma Stone x1 + Ice Block x50
+	- Tinkerer's Workbench, Magma Stone x1 + Ice Block x50
 	- Like the Everburning Candle, but causes the Frostburn debuff
 Festive Mirror
-	- Tinkerer's Workbench with Hand Warmers x1 + Pocket Mirror x1
+	- Tinkerer's Workbench, Hand Warmers x1 + Pocket Mirror x1
 	- Provides immunity to the Chilled, Frozen, and Stoned debuffs
 Loot Magnet
-	- Tinkerer's Workbench with Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
+	- Tinkerer's Workbench, Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
 	- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies
 Massive Bundle of Balloons
-	- Tinkerer's Workbench with Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
+	- Tinkerer's Workbench, Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
 	- Gives you six extra jumps, negates fall damage, and increases jump height
 Peace Candle in a Balloon
-	- Tinkerer's Workbench with Peace Candle x1 + Shiny Red Balloon x1
+	- Tinkerer's Workbench, Peace Candle x1 + Shiny Red Balloon x1
 	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark
 Sigil of Last Stand
-	- ???
+	- Tinkerer's Workbench, 
 	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
 		- Has a cooldown of XXX, denoted in the accessory's tooltip
 Sigil of Pain Suppression
-	- ???
+	- Hardmode Anvil, Freed Dungeon Soul x 15 + Ironskin Potion x 5
 	- Drastically increases your defense for a brief moment upon reaching critical health
 		- Has a cooldown of XXX, denoted in the accessory's tooltip
 Sigil of Retreat
-	- ???
+	- Hardmode Anvil, Freed Dungeon Soul x 15 + Recall Potion x 5
 	- Teleports you to your spawn point upon reaching critical health
 		- Has a cooldown of XXX, denoted in the accessory's tooltip
 Slippery Soles
-	- Tinkerer's Workbench with Frozen Slime Block x2 + Leather x2
+	- Tinkerer's Workbench, Frozen Slime Block x2 + Leather x2
 	- You move on any block as if it was a Frozen Slime Block
 Soles of Fire and Ice
-	- Tinkerer's Workbench with Lava Waders x1, Ice Skates x1
+	- Tinkerer's Workbench, Lava Waders x1, Ice Skates x1
 	- Allows you to walk on water, lava, and thin ice
 Star in a Balloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Star in a Bottle x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Star in a Bottle x1
 	- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs
 Star Wisp Balloon
-	- Tinkerer's Workbench with Star in a Balloon + Wisp in a Balloon
+	- Tinkerer's Workbench, Star in a Balloon + Wisp in a Balloon
 	- Increases Mana Regeneration, Jump Height, and glows in the dark
 Water Candle in a Balloon
-	- Tinkerer's Workbench with Water Candle x1 + Shiny Red Balloon x1
+	- Tinkerer's Workbench, Water Candle x1 + Shiny Red Balloon x1
 	- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark
 Wisp in a Balloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Wisp in a Bottle x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Wisp in a Bottle x1
 	- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle
 
 ============
 VANITY ACCESSORIES
 ============
 Retinazer Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
 Green Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Green Toothy Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Green Metal Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Green Metal Toothy Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Purple Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Purple Toothy Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Purple Metal Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Purple Metal Toothy Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Red Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Red Toothy Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Red Metal Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Red Metal Toothy Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 Spazmatism Eye-lloon
-	- Tinkerer's Workbench with Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
 
 ============
 WEAPONS
@@ -466,38 +479,70 @@ Tome of Shadowflame Skulls
 ARMOR:
 ============
 Soul Savior Garment
-	- Set of armor that grants the player three wisp allies that deal summon damage
+	- Set Bonus: Three Companion Souls will fight at your side
+		- Companion Souls are affected by buffs and boosts that affect summoned minions
 	- Soul Savior Coronet
+		- Anvil, Freed Dungeon Soul x10 + (BOSS NAME HERE) Mask x1 + Dessicated Leather x10
 		- Head-slot armor that increases summon damage
-		- Crafted from 15 Captured Souls
 	- Soul Savior Chest (Need new name)
+		- Anvil, Freed Dungeon Soul x10 + Dessicated Leather x10
 		- Body-slot armor that increases the amount of minions you can summon by 1
-		- Crafted from 20 Captured Souls and 15 Bones
 	- Soul Savior's Garb
-		- Leg-slot armor that ???
-		- Crafted from 15 Captured Souls
+		- Anvil, Freed Dungeon Soul x10 + Dessicated Leather x10
+		- Leg-slot armor that slightly increases movement speed
+	- Set balanced for post-Skeletron content
 
 ============
 VANITY ARMOR
 ============
 Origami Hat
 	- Drop from Foldfish
+(BOSS NAME HERE) Mask
+	- Drops from (BOSS NAME HERE)
 	
+============
+TOOLS
+============
+Extendo-Net
+	- ???
+	- Upgrade of the Bug Net that has the reach of a spear, but fires somewhat slower
+Golden Extendo-Net
+	- ???
+	- Upgrade of the Golden Bug Net that has the reach of a spear, but fires somewhat slower
+
+============
+CUTE SLIME VANITY
+============
+Cute Bow
+	- Loom, Silk x15
+	- A bow for your Cute Slime's chest, comes in Black, Blue, Green, and Red
+Cute Mittens
+	- Loom, Silk x15
+	- Soft mittens to keep your Cute Slime's hands warm, comes in Gray and Red
+Cute Santa Hat
+	- Loom, Silk x15
+	- A merry hat for your merry Cute Slime's head
+Cute Staff
+	- Loom, Silk x15
+	- A toy staff for your Cute Slime, comes in Amethyst and Topaz
+
 ============	
 CONSUMABLES
 ============
-Soul Flask
-	- ???
+Empowerment Flask
+	- Alchemy, Bottled Water x 1 + Freed Dungeon Soul x 1 + Bone x 10
 	- Incrementally increases damage dealt over time, but the bonus is reset upon taking damage
 		- Note; The effect will reset if you take damage while invulnerable, so keep dodging if you want the full effect
 
 ============
 MATERIALS:
 ============
-Captured Soul
-	- Capture with a net during the Harvester event
+Freed Dungeon Soul
+	- Capture with a net after defeating (BOSS NAME HERE)
 Chunky's Eye
 	- Capture Chunky's Eye with a net
+Dessicated Leather
+	- Drops from (BOSS NAME HERE)
 Meatball's Eye
 	- Capture Meatball's Eye with a net
 
@@ -507,9 +552,15 @@ OTHER
 Infinity Rocket
 	- Crystal Ball, Rocket I x3996
 	- Infinite rocket ammunition
+Idol of Decay
+	- Demon Altar, Water Candle x1 + Bone x50
+	- Summons (BOSS NAME HERE)
+Loose Dungeon Soul
+	- Capture with a net while (BOSS NAME HERE) is alive
+		- All currently owned Loose Dungeon Souls upgrade into Freed Dungeon Souls when (BOSS NAME HERE) is killed
 Origami Manual
 	- Drops from Animated Tome
-	- Summons the Foldfish boss
+	- Summons Foldfish
 Star Forge
 	- Crystal Ball, Fallen Star x3996
 	- Infinte Fallen Star ammunition
@@ -517,7 +568,15 @@ Star Forge
 ============
 Bugs and Issues
 ============
-	- Nothing...yet?
+	Bugs:
+		- No known bugs so far
+	Compatibility:
+		- No known compatibility issues so far
+	Issues:
+		- Due to the way Cute Rainbow Slime is colored, accessories applied to it will cause graphical issues
+			- No pretty items for her, sadly
+		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
+		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to (BOSS NAME HERE) being defeated
 
 ============
 Planned Content
@@ -539,50 +598,80 @@ Changelog
 ============
 ??? ??, 201?
 FIXES
-	- Fixed Stone Soldier's hitbox.
-	- Lots of code cleanup.
-		- This won't affect you. It's just making the files better.
+	- Fixed Stone Soldier's hitbox
+	- Cute Rainbow Slime texture issues fixed
+	- Lots of code cleanup
 	
 CHANGES
-	- Juggerllusc stats adjusted
-	- Juggerlusc now drops Flippers or Diving Helmet, and no longer drops Purple Mucos
-	- Stone Soldier spawns with colored eyes, and now drops a gem that matches their eye color
-		- Does not include Amber
+	- All items' sell values updated
+		- Sell values reflect an additive value based on the prices of the combined items
+	- Cute Slime sprites updated
+	- Cute Slime spawn rate halved
+	- Juggerllusc has received a minor overhaul
+		- Stats redistributed, now much less annoying
+		- Can drop Flippers and Diving Helmet instead of Purple Mucos
+	- Stone Soldier slightly upgraded
+		- Drops a gem based on the color of its eyes
+			- Does not include Amber
+		- The deeper you go, the rarer the gems
+			- Amethyst is most common, Diamond is rarest
 	- Bipolar Candle in a Balloon now has a buff icon to let you know it's working
 		- It still doesn't actually do anything
 			- This is a feature
-				- Seriously.
+				- Seriously
 
 ADDITONS
-	- Bladetongue, a new fish(?) that drops the Bladetongue weapon
-	- Crystal Serpent, a new fish that drops Crystal the Serpent weapon
-	- Mechanical Laser Eye, a new Demon Eye that starts spawning after the Twins are defeated
-		- They shoot lasers
-	- Toxikarp, a new fish that drops the Toxikarp weapon
-	- Pocket Sand, a new self-defense tool!
-		- Throw a clump of sand at an enemy to confuse them temporarily
-		- Crafted anywhere with a single sand block
-		- Reminder; not every enemy is affected by the Confuse debuff
-	- Docile Laser Eye, pet versions of the Mechanical Laser Eye enemies
-	- Everburning Candelabra, a combination of all four candle accessories
-	- Soul Savior Garment, a set of early Summoner armor that provides you with a trio of cute souls that bump into enemies
-		- The souls aren't very strong, but they don't take up a summon's slot
-	- Three Sigil items, obtained from ???
-		- Sigil of Retreat sends you home and gives you a quick heal at critical health
-		- Sigil of Pain Suppression gives you a very short burst of life regeneration and high defense at critical health
-		- Sigil of Last Stand does what both of the previous sigils do, starting with Pain Suppression
-		- The effects of these accessories do not stack, and share cooldowns
+	Accessories:
+		- Everburning Candelabra, a combination of all four Everburning Candle accessories
+		- Sigil of Pain Suppression, an accessory that gives you increased defense and rapid health regeneration when at critically low health
+			- Has a cooldown of ??? minutes, reflected in its tooltip after activated
+		- Sigil of Retreat, an accessory that sends you home with 100 health when you would have died
+			- Has a cooldown of ??? minutes, reflected in its tooltip after activated
+		- Sigil of Last Stand, a combination of the above two Sigil items
+			- Shares the same cooldowns as both material items
+			
+	Armor:
+		- Soul Savior Garment, a set made from the remains of the new boss (BOSS NAME HERE)
+			- When the full set is worn, three Companion Souls will spawn and fight by your side
+				- They are summons, so any effects that would increase summoned minion effectiveness also affect them
+		- (BOSS NAME HERE) Mask, a boss mask that drops from (BOSS NAME HERE)
 	
-CUTE SLIMES
-	- Yes, they got enough changes to warrant their own changelog section
-	- Cute Slime spawn rate halved
-	- Cute Slime sprites updated
-		- Old sprites will not be seen in the wild anymore
-		- Capturing the new appearance gives you a new version of the pet
-		- You can swap their appearances between old and new sprites at a Solidifier if you prefer the old looks
-		- Bottled Slime items now reflect the color of the Cute Slime, and mention if they are the old appearance
-	- Fixed a texture issue with Cute Rainbow Slime.
-	- Cute Slimes can be "equipped" with visible accessories! 
-		- Right click your Cute Slime while holding an accessory for it to show up on them
-		- Hold Right click to make them take off their accessories
-		- This is not a complete feature just yet, but it is included anyway for players to try out
+	Tools:
+		- Extendo-Net, a bug net capable of reaching much farther at the cost of slower speed
+		- Golden Extendo-Net, a golden bug net capable of reaching much farther at the cost of slower speed
+		
+	Pet Accessories:
+		- Vanity items can be crafted for your Cute Slime pets
+			- All items are crafted at a Loom with 15 Silk (**New recipes needed for Staff)
+			
+	Pets:
+		- Companion Soul, a calm soul that lights the area around you
+		- Bottled Slime, newly sprited versions of the Cute Slime pets
+			- You can swap between their old and new appearances at a Solidifier
+		- Goblet Battle Standard, summoning a tiny goblin that eagerly follows you
+		- Unconscious Laser Eye, a new set of pet Demon Eyes based on Retinamini
+			- Comes in Red, Green, and Purple variants
+		
+	Potions:
+		- Empowerment Flask, a flask that increases your damage dealt over time as you avoid taking damage
+			- Taking damage resets the effect, but not its timer
+	
+	Weapons:
+		- Pocket Sand, a thrown clump of sand that often confuses would-be attackers
+		
+	Misc:
+		- Loose Dungeon Soul, Dungeon Souls captured with a net during the (BOSS NAME HERE) encounter
+		- Freed Dungeon Soul, Dungeon Souls captured with a net that are expelled from (BOSS NAME HERE) upon defeating it
+		- Desiccated Leather, chunks of disgusting green leather dropped by (BOSS NAME HERE)
+		- Idol Of Decay, used to manually summon (BOSS NAME HERE)
+		
+	NPCs:
+		- (BOSS NAME HERE), a new mini boss in the Dungeon
+			- Starts off invincible, and throws bones at you to deter you from bothering it
+			- Killing nearby enemies releases Loose Dungeon Soul that (BOSS NAME HERE) will seek out and devour
+			- After eating a total of 15 souls, it becomes a Mini Boss
+			- Defeat it to earn Dessicated Leather and Freed Dungeon Soul
+		- Bladetongue, a fish that spawns in Hardmode Crimson water that drops the weapon of the same name
+		- Crystal Serpent, a fish that spawns in Hardmode Hallow water that drops the weapon of the same name
+		- Laser Eye, a new set of Demon Eyes that begin spawning after The Twins have been defeated
+		- Toxikarp, a fish that spawns in Hardmode Corruption water that drops the weapon of the same name
