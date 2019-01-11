@@ -186,6 +186,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 randFactor = Main.rand.NextFloat(2f, 8f);
                 int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, npcTypeNew);
                 Main.npc[index].SetDefaults(npcTypeNew);
+                //Main.npc[index].timeLeft = 3600;
                 Main.npc[index].velocity = randVector * randFactor;
                 Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
             }
@@ -198,6 +199,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Main.npc[j].active = false;
                     int index = NPC.NewNPC((int)Main.npc[j].position.X, (int)Main.npc[j].position.Y, npcTypeNew);
                     Main.npc[index].SetDefaults(npcTypeNew);
+                    //Main.npc[index].timeLeft = 3600;
                     Main.npc[index].ai[2] = Main.rand.Next(1, aaaDungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
 
                     //poof visual

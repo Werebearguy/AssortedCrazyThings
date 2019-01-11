@@ -13,6 +13,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     public abstract class aaaDungeonSoulBase : ModNPC
     {
         protected double frameCount;
+        protected float fadeAwayMax;
 
         public static int wid = 34; //24
         public static int hei = 38;
@@ -220,9 +221,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if (npc.timeLeft <= HarvesterBase.EatTimeConst && (AI_State == 0))
+            if (npc.timeLeft <= fadeAwayMax && (AI_State == 0))
             {
-                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)HarvesterBase.EatTimeConst);
+                lightColor = npc.GetAlpha(lightColor) * (npc.timeLeft / (float)fadeAwayMax);
             }
 
             Vector2 stupidOffset = new Vector2(wid / 2, (hei - 10f) + sinY);
@@ -341,6 +342,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             frameCount = 8.0;
             Main.npcCatchable[mod.NPCType<aaaDungeonSoul>()] = true;
             npc.catchItem = (short)mod.ItemType<CaughtDungeonSoul>();
+
+            fadeAwayMax = HarvesterBase.EatTimeConst;
         }
     }
 
@@ -359,7 +362,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Main.npcCatchable[mod.NPCType<aaaDungeonSoulAwakened>()] = true;
             npc.catchItem = (short)mod.ItemType<CaughtDungeonSoulAwakened>();
 
-            npc.timeLeft = NPC.activeTime;
+            npc.timeLeft = 3600;
+            fadeAwayMax = 3600;
         }
 
         public override bool PreAI()
