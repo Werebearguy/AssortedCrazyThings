@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //fix for legacy slimes
                     if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
                     {
-                        if (slotNumber == (byte)SlotType.Hand)
+                        if (slotNumber == (byte)SlotType.Carried)
                         {
                             stupidOffset.X += -2f;
                             if(projectile.spriteDirection == 1)
@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    if (slotNumber == (byte)SlotType.Hand)
+                    if (slotNumber == (byte)SlotType.Carried)
                     {
                         float handsOffsetX = -22f * projectile.scale + 22f;
                         float handsOffsetY = (projectile.scale < 1) ? 5f * projectile.scale - 5f : 10f * projectile.scale - 10f;
@@ -152,9 +152,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         if (!PetAccessories.AllowLegacy[slimeAccessory]) continue;
 
-                        if (slotNumber == (byte)SlotType.Hand)
+                        if (slotNumber == (byte)SlotType.Carried)
                         {
                             stupidOffset.X += -2f;
+                            if (projectile.spriteDirection == 1)
+                            {
+                                stupidOffset.X += -2f;
+                            }
+
                             stupidOffset.Y += -2f;
                             if (projectile.frame > 2 && projectile.frame < 6)
                             {
@@ -203,7 +208,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    if (slotNumber == (byte)SlotType.Hand)
+                    if (slotNumber == (byte)SlotType.Carried)
                     {
                         float handsOffsetX = -22f * projectile.scale + 22f;
                         float handsOffsetY = (projectile.scale < 1) ? 2.5f * projectile.scale - 2.5f : 10f * projectile.scale - 10f;

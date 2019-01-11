@@ -3,6 +3,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -276,7 +277,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Hand;
+            item.value = (int)SlotType.Carried;
         }
     }
 
@@ -290,7 +291,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Hand;
+            item.value = (int)SlotType.Carried;
         }
     }
 
@@ -355,8 +356,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         None, //reserved
         Hat,
         Body,
-        Hand,
-        Tail
+        Carried,
+        Hands
         //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
         //Also, concider that there cant be more than one accessory active in each slot, so decide on proper
         //categories that make sense.
@@ -396,6 +397,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
             recipe.AddTile(TileID.Loom);
             recipe.SetResult(this);
             recipe.AddRecipe();
+        }
+
+        private string Enum2string(int e)
+        {
+            if(e == 1)
+            {
+                return "Worn on the head";
+            }
+            if (e == 2)
+            {
+                return "Worn on the Body";
+            }
+            if (e == 3)
+            {
+                return "Carried";
+            }
+            if (e == 4)
+            {
+                return "Worn on the Hands/Misc";
+            }
+            return "REDACTED";
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+
+            tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
         }
 
         protected virtual void MoreSetDefaults()
