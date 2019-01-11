@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             //moved offset to here just like the other slime girls
-            drawOffsetX = -18; //-18
+            drawOffsetX = -12; //-18
             //drawOriginOffsetX = -0;
             drawOriginOffsetY = -14; //-18 //28 //8
         }

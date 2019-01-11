@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
-            projectile.scale = 1.025f;
+            //projectile.scale = 1.025f;
             projectile.alpha = 75;
         }
 
