@@ -63,7 +63,8 @@ namespace AssortedCrazyThings.Items
                 }
             }
             //Main.NewText("" + player.selectedItem + " " + player.HeldItem.active + " " + player.HeldItem.damage + " " + player.HeldItem.melee + " " + player.HeldItem.ranged + " " + player.HeldItem.magic + " " + player.HeldItem.thrown);
-            return base.CanUseItem(item, player);
+            //return base.CanUseItem(item, player);
+            return true;
         }
 
         private void SpawnMeleeDust(int type, Color color, Rectangle hitbox, Player player)
