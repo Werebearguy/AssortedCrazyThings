@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Tools
@@ -100,7 +99,6 @@ namespace AssortedCrazyThings.Projectiles.Tools
                         Rectangle value15 = new Rectangle((int)Main.npc[i].position.X, (int)Main.npc[i].position.Y, Main.npc[i].width, Main.npc[i].height);
                         if (hitboxMod.Intersects(value15)/* && (Main.npc[i].noTileCollide || projOwner.CanHit(Main.npc[i]))*/)
                         {
-                            Main.NewText("old " + projectile.Hitbox);
                             NPC.CatchNPC(i, projectile.owner);
                         }
                     }
