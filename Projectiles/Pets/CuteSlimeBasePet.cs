@@ -118,7 +118,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             }
                             else
                             {
-                                stupidOffset += new Vector2(-4f * projectile.spriteDirection, 2f);
+                                //-4f
+                                stupidOffset += new Vector2(-3f * projectile.spriteDirection, 2f);
                             }
                         }
                     }
@@ -126,6 +127,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     if (slotNumber == (byte)SlotType.Carried)
                     {
                         float handsOffsetX = -22f * projectile.scale + 22f;
+                        if (PetAccessories.Offset[slimeAccessory].X <= -6f)
+                        {
+                            handsOffsetX = -(2.5f * projectile.scale) + 3.5f;
+                        }
                         float handsOffsetY = (projectile.scale < 1) ? 2.5f * projectile.scale - 2.5f : 10f * projectile.scale - 10f;
                         stupidOffset.X += handsOffsetX;
                         stupidOffset.Y += handsOffsetY;
@@ -141,9 +146,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    if (slotNumber == (byte)SlotType.Hat)
+                    if (slotNumber == (byte)SlotType.Hat && PetAccessories.Offset[slimeAccessory].Y != 0f)
                     {
                         stupidOffset.Y += (1f - projectile.scale) * 16f;
+                    }
+                    if (projectile.scale == 0.6f) //hack
+                    {
+                        stupidOffset.Y += -7.5f * 2 * projectile.scale + 7.5f;
                     }
 
                     //(-7.5f * projectile.scale + 7.5f))

@@ -40,6 +40,7 @@ To-Do List: direwolf420
 	- Drops based on the sprite picked
 	- For Cheat Sheet and other spawning purposes, feel free to pick the "default" look
 
+//DONE
 - Put Cute Slime Mitten accessories in a new slot of their own
 	
 //DONE

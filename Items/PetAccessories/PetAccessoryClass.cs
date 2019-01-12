@@ -67,15 +67,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 "PetAccessoryBow",
                 "PetAccessoryBowGreen",
-                "PetAccessoryBowBlack",
+                "PetAccessoryBowGray",
                 "PetAccessoryBowBlue",
                 "PetAccessoryXmasHat",
                 "PetAccessoryAmethystStaff",
                 "PetAccessoryTopazStaff",
                 "PetAccessorySlimeHead",
-                "PetAccessoryBlueMittens",
-                "PetAccessoryRedMittens",
-                "PetAccessoryGrayMittens",
+                "PetAccessoryMittensBlue",
+                "PetAccessoryMittensRed",
+                "PetAccessoryMittensGray",
+                "PetAccessoryKitchenKnife",
+                "PetAccessoryHairBowRed",
+                "PetAccessoryHairBowPink",
+                "PetAccessoryHairBowGray",
+                "PetAccessoryHairBowWhite",
             };
 
             Init(mod, namesOfAccessories);
@@ -91,15 +96,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryBow");
             Add(name: "PetAccessoryBowGreen");
-            Add(name: "PetAccessoryBowBlack");
+            Add(name: "PetAccessoryBowGray");
             Add(name: "PetAccessoryBowBlue");
             Add(name: "PetAccessoryXmasHat", offsetY: -13f);
             Add(name: "PetAccessoryAmethystStaff", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryTopazStaff", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessorySlimeHead", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessoryBlueMittens", allowLegacy: false);
-            Add(name: "PetAccessoryRedMittens", allowLegacy: false);
-            Add(name: "PetAccessoryGrayMittens", allowLegacy: false);
+            Add(name: "PetAccessoryMittensBlue", allowLegacy: false);
+            Add(name: "PetAccessoryMittensRed", allowLegacy: false);
+            Add(name: "PetAccessoryMittensGray", allowLegacy: false);
+            Add(name: "PetAccessoryKitchenKnife", offsetX: -6f, preDraw: true);
+            Add(name: "PetAccessoryHairBowRed");
+            Add(name: "PetAccessoryHairBowPink");
+            Add(name: "PetAccessoryHairBowGray");
+            Add(name: "PetAccessoryHairBowWhite");
 
             Check();
         }
@@ -113,11 +123,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
 
-        private static void Check(bool duringAdd = false)
+        private static void Check(bool duringAdd = false, string addedClassName = "fv4zuuuuuuuuuuo728fzehoxg")
         {
             if (duringAdd && namesOfAccessories.Length < addCounter)
             {
                 throw new Exception("Assigned number of Pet Accessories (" + namesOfAccessories.Length + ") is less than number of added Pet Accessories (" + addCounter + ").");
+            }
+            else if(duringAdd && addedClassName != "fv4zuuuuuuuuuuo728fzehoxg" && Array.IndexOf(namesOfAccessories, addedClassName) == -1)
+            {
+                throw new Exception("Tried to add '" + addedClassName + "', but it wasn't registed in 'namesOfAccessories'");
             }
 
             if (!duringAdd && namesOfAccessories.Length > addCounter)
@@ -134,6 +148,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             do
             {
+                if(mod.ItemType(typeList[itemIndex]) == 0)
+                {
+                    throw new Exception("Pet Accessory named '" + typeList[itemIndex] + "' is not found. Is it spelt correctly?");
+                }
                 Items[itemIndex] = mod.ItemType(typeList[itemIndex]);
                 itemIndex++;
             }
@@ -157,15 +175,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool allowLegacy = true)
         {
+            addCounter++;
+
+            Check(true, name);
+
             TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, allowLegacy);
         }
 
         private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool allowLegacy)
         {
-            addCounter++;
-
-            Check(true);
-
             Texture[ItemsIndexed[type]] = texture;
 
             Offset[ItemsIndexed[type]] = offset;
@@ -239,11 +257,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBowBlack : PetAccessoryBase
+    public class PetAccessoryBowGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Black Bow");
+            DisplayName.SetDefault("Cute Gray Bow");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -309,7 +327,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBlueMittens : PetAccessoryBase
+    public class PetAccessoryMittensBlue : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -323,7 +341,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryRedMittens : PetAccessoryBase
+    public class PetAccessoryMittensRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -337,7 +355,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryGrayMittens : PetAccessoryBase
+    public class PetAccessoryMittensGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -351,11 +369,81 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryKitchenKnife : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Kitchen Knife");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryHairBowRed : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Red Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowPink : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pink Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowGray : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Gray Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowWhite : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute White Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
     public enum SlotType : byte
     {
         None, //reserved
-        Hat,
         Body,
+        Hat,
         Carried,
         Misc
         //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
@@ -365,6 +453,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         //for Carried, its actually only the front facing hand. For something like gloves or dual wielding, use Misc instead
 
         //also, keep the sprite dimensions the same as the slime girls
+
+        //also they will be rendered in this order aswell (means that Carried can overlap with Body)
     }
 
     public abstract class PetAccessoryBase : ModItem
@@ -509,7 +599,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         else if (player.altFunctionUse != 2)
                         {
                             //check if selected item is valid on the pet, if it is a legacy version
-                            Main.NewText(!PetAccessories.AllowLegacy[PetAccessories.ItemsIndexed[item.type]] + " " + (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.petIndex].type) != -1));
                             if (!PetAccessories.AllowLegacy[PetAccessories.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.petIndex].type) != -1)
                             {
                                 return true;
