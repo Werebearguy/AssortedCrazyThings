@@ -517,9 +517,15 @@ CUTE SLIME VANITY
 Cute Bow
 	- Loom, Silk x15
 	- A bow for your Cute Slime's chest, comes in Black, Blue, Green, and Red
+Cute Hair Bow
+	- Loom, Silk x15
+	- A bow for your Cute Slime's head, comes in Gray, Pink, Red, and White
 Cute Head Slime
 	- Loom, Silk x15
 	- A slime for your Cute Slime's head, comes in Green
+Cute Kitchen Knife
+	- Loom, Silk x15
+	- A knife for your Cute Slime to hold, totally safe
 Cute Mittens
 	- Loom, Silk x15
 	- Soft mittens to keep your Cute Slime's hands warm, comes in Blue, Gray, and Red
@@ -600,7 +606,10 @@ Other;
 ============
 Changelog
 ============
-??? ??, 201?
+??? ??, 2019
+Major Content Update #2
+
+
 FIXES
 	- Fixed Stone Soldier's hitbox
 	- Cute Rainbow Slime texture issues fixed
@@ -610,6 +619,7 @@ FIXES
 CHANGES
 	- All items' sell values updated
 		- Sell values reflect an additive value based on the prices of the combined items
+	- Chunky and Meatball no longer connected by a red string, and fly around separately
 	- Cute Slime sprites updated
 	- Cute Slime spawn rate halved
 	- Juggerllusc has received a minor overhaul
