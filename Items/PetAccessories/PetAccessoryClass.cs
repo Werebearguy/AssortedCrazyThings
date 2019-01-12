@@ -65,10 +65,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //order doesn't matter
             namesOfAccessories = new string[]
             {
-                "PetAccessoryBow",
-                "PetAccessoryBowGreen",
-                "PetAccessoryBowGray",
-                "PetAccessoryBowBlue",
+                "PetAccessoryBowtieRed",
+                "PetAccessoryBowtieGreen",
+                "PetAccessoryBowtieGray",
+                "PetAccessoryBowtieBlue",
                 "PetAccessoryXmasHat",
                 "PetAccessoryAmethystStaff",
                 "PetAccessoryTopazStaff",
@@ -94,10 +94,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //alpha says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
             //order of the Add() doesn't matter
 
-            Add(name: "PetAccessoryBow");
-            Add(name: "PetAccessoryBowGreen");
-            Add(name: "PetAccessoryBowGray");
-            Add(name: "PetAccessoryBowBlue");
+            Add(name: "PetAccessoryBowtieRed");
+            Add(name: "PetAccessoryBowtieGreen");
+            Add(name: "PetAccessoryBowtieGray");
+            Add(name: "PetAccessoryBowtieBlue");
             Add(name: "PetAccessoryXmasHat", offsetY: -13f);
             Add(name: "PetAccessoryAmethystStaff", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryTopazStaff", offsetX: -14f, preDraw: true);
@@ -215,11 +215,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
     }
 
-    public class PetAccessoryBow : PetAccessoryBase
+    public class PetAccessoryBowtieRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Red Bow");
+            DisplayName.SetDefault("Cute Red Bowtie");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -229,11 +229,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBowBlue : PetAccessoryBase
+    public class PetAccessoryBowtieBlue : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Blue Bow");
+            DisplayName.SetDefault("Cute Blue Bowtie");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -243,11 +243,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBowGreen : PetAccessoryBase
+    public class PetAccessoryBowtieGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Green Bow");
+            DisplayName.SetDefault("Cute Green Bowtie");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -257,11 +257,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBowGray : PetAccessoryBase
+    public class PetAccessoryBowtieGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Gray Bow");
+            DisplayName.SetDefault("Cute Gray Bowtie");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
