@@ -37,6 +37,7 @@ To-Do List: direwolf420
 	- Mechanical eye variants that shoot lasers picked only after the Twins are defeated
 		- Separate NPC file for them due to custom AI
 
+//DONE
 - Chunky and Meatball separated
 		
 - Combine Walking Tombstone NPCs

@@ -15,10 +15,10 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("ChunkyandMeatball");
+            item.shoot = mod.ProjectileType("ChunkyProj");
             item.buffType = mod.BuffType("ChunkyandMeatball");
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(silver: 4);
         }
 
         public override void AddRecipes()
