@@ -215,6 +215,8 @@
     <Compile Include="NPCs\DungeonBird\aaaHarvester3Talon.cs" />
     <Compile Include="NPCs\DungeonBird\HarvesterBase.cs" />
     <Compile Include="NPCs\StrangeSlime.cs" />
+    <Compile Include="NPCs\WalkingTombstoneGolden.cs" />
+    <Compile Include="NPCs\WalkingTombstoneRegular.cs" />
     <Compile Include="PetPlayer.cs" />
     <Compile Include="AssWorld.cs" />
     <Compile Include="NPCs\AnimatedSpellTome.cs" />
@@ -271,17 +273,6 @@
     <Compile Include="NPCs\TurtleSlime.cs" />
     <Compile Include="NPCs\UnfortunateDelver.cs" />
     <Compile Include="NPCs\WalkingChest.cs" />
-    <Compile Include="NPCs\WalkingCrossGraveMarker.cs" />
-    <Compile Include="NPCs\WalkingGoldenCrossGraveMarker.cs" />
-    <Compile Include="NPCs\WalkingGoldenGraveMarker.cs" />
-    <Compile Include="NPCs\WalkingGoldenGravestone.cs" />
-    <Compile Include="NPCs\WalkingGoldenHeadstone.cs" />
-    <Compile Include="NPCs\WalkingGoldenTombstone.cs" />
-    <Compile Include="NPCs\WalkingGraveMarker.cs" />
-    <Compile Include="NPCs\WalkingGravestone.cs" />
-    <Compile Include="NPCs\WalkingHeadstone.cs" />
-    <Compile Include="NPCs\WalkingObelisk.cs" />
-    <Compile Include="NPCs\WalkingTombstone.cs" />
     <Compile Include="NPCs\WhaleShark.cs" />
     <Compile Include="NPCs\WhaleSharkPup.cs" />
     <Compile Include="NPCs\YoungHarpy.cs" />

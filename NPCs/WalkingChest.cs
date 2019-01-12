@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.NPCs
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.value = 75f;
 			npc.knockBackResist = 0.5f;
-			npc.aiStyle = 7;
+			npc.aiStyle = 3;
 			aiType = NPCID.Crab;
 			animationType = NPCID.Crab;
 		}
