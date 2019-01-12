@@ -18,7 +18,7 @@ Foldfish
 	- It will attack by extending its talons while flying above the player
 	- Once killed, it will not naturally spawn anymore
 	- Craft or find an Idol of Decay to summon it again at any time in the Dungeon
-	- Drops: Dessicated Leather, Freed Dungeon Soul, (BOSS NAME HERE) Mask
+	- Drops: Bones, Dessicated Leather, Freed Dungeon Soul, (BOSS NAME HERE) Mask
 
 ============
 ENEMIES
@@ -484,13 +484,13 @@ Soul Savior Garment
 		- Be sure to resummon them should a new buff be applied to you so they can receive the full benefits
 	- Soul Savior Coronet
 		- Anvil, Freed Dungeon Soul x10 + (BOSS NAME HERE) Mask x1 + Dessicated Leather x10
-		- Head-slot armor that increases summon damage
+		- Head-slot armor that increases summon damage by 10%
 	- Soul Savior Chest (Need new name)
 		- Anvil, Freed Dungeon Soul x10 + Dessicated Leather x10
 		- Body-slot armor that increases the amount of minions you can summon by 1
 	- Soul Savior's Garb
 		- Anvil, Freed Dungeon Soul x10 + Dessicated Leather x10
-		- Leg-slot armor that slightly increases movement speed
+		- Leg-slot armor that slightly increases movement speed by 5%
 	- Set balanced for post-Skeletron content
 
 ============
@@ -509,31 +509,26 @@ Extendo-Net
 	- Upgrade of the Bug Net that has the reach of a spear, but fires somewhat slower
 Golden Extendo-Net
 	- ???
-	- Upgrade of the Golden Bug Net that has the reach of a spear, but fires somewhat slower
+	- Upgrade of the Extendo-Net that has more reach, fires faster, and breaks grass
 
 ============
 CUTE SLIME VANITY
 ============
-Cute Bow
-	- Loom, Silk x15
-	- A bow for your Cute Slime's chest, comes in Black, Blue, Green, and Red
+All crafted with Loom, Silk x15
+
+Cute Bowtie
+	- A bowtie for your Cute Slime's chest, comes in Gray, Blue, Red, and Green
 Cute Hair Bow
-	- Loom, Silk x15
 	- A bow for your Cute Slime's head, comes in Gray, Pink, Red, and White
 Cute Head Slime
-	- Loom, Silk x15
 	- A slime for your Cute Slime's head, comes in Green
 Cute Kitchen Knife
-	- Loom, Silk x15
 	- A knife for your Cute Slime to hold, totally safe
 Cute Mittens
-	- Loom, Silk x15
 	- Soft mittens to keep your Cute Slime's hands warm, comes in Blue, Gray, and Red
 Cute Santa Hat
-	- Loom, Silk x15
 	- A merry hat for your merry Cute Slime's head
 Cute Staff
-	- Loom, Silk x15
 	- A toy staff for your Cute Slime, comes in Amethyst and Topaz
 
 ============	
@@ -568,6 +563,7 @@ Idol of Decay
 Loose Dungeon Soul
 	- Capture with a net while (BOSS NAME HERE) is alive
 		- All currently owned Loose Dungeon Souls upgrade into Freed Dungeon Souls when (BOSS NAME HERE) is killed
+		- Includes those floating in the world, in your inventory, and in all your extended inventories (e.g. Piggy Bank)
 Origami Manual
 	- Drops from Animated Tome
 	- Summons Foldfish
@@ -579,12 +575,13 @@ Star Forge
 Bugs and Issues
 ============
 	Bugs:
-		- No known bugs so far
+		- (BOSS NAME HERE)'s first stages might behave weirdly or get stuck in extreme circumstances
 	Compatibility:
 		- No known compatibility issues so far
 	Issues:
 		- Due to the way Cute Rainbow Slime is colored, accessories applied to it will cause graphical issues
 			- No pretty items for her, sadly
+			- Some will still work fine though
 		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
 		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to (BOSS NAME HERE) being defeated
 
@@ -619,7 +616,7 @@ FIXES
 CHANGES
 	- All items' sell values updated
 		- Sell values reflect an additive value based on the prices of the combined items
-	- Chunky and Meatball no longer connected by a red string, and fly around separately
+	- Chunky and Meatball NPCs spawn more often, its pet versions are no longer connected by a red string, and fly around separately
 	- Cute Slime sprites updated
 	- Cute Slime spawn rate halved
 	- Juggerllusc has received a minor overhaul
@@ -639,9 +636,9 @@ ADDITONS
 	Accessories:
 		- Everburning Candelabra, a combination of all four Everburning Candle accessories
 		- Sigil of Pain Suppression, an accessory that gives you increased defense and rapid health regeneration when at critically low health
-			- Has a cooldown of ??? minutes, reflected in its tooltip after activated
+			- Has a cooldown of 10 minutes, reflected in its tooltip after activated
 		- Sigil of Retreat, an accessory that sends you home with 100 health when you would have died
-			- Has a cooldown of ??? minutes, reflected in its tooltip after activated
+			- Has a cooldown of 10 minutes, reflected in its tooltip after activated
 		- Sigil of Last Stand, a combination of the above two Sigil items
 			- Shares the same cooldowns as both material items
 			
@@ -657,7 +654,7 @@ ADDITONS
 		
 	Pet Accessories:
 		- Vanity items can be crafted for your Cute Slime pets
-			- All items are crafted at a Loom with 15 Silk (**New recipes needed for Staff)
+			- All items are crafted at a Loom with 15 Silk
 			
 	Pets:
 		- Companion Soul, a calm soul that lights the area around you

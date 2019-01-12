@@ -57,6 +57,8 @@ To-Do List: direwolf420
 		- Inert Soul ; Loose Soul, Fragile Soul, Weak Soul
 		- Awakened Soul ; Freed Soul, Harvested Soul
 
+- Tooltip on slime bottle that says what accessories its currently wearing
+
 #####################################################################################
 To-Do List: Werebearguy
 #####################################################################################
