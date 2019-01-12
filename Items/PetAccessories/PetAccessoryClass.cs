@@ -31,12 +31,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
     public class PetAccessories
     {
         //internal fields
+        private static Mod InternalMod;
         internal static int[] Items;
         internal static byte addCounter = 0; //if you ever add more than 255 accessories, make that a short
         internal static string[] namesOfAccessories;
 
         //public fields
-        public static Mod InternalMod; //public because needs to be null in Unload
         public static int[] ItemsIndexed; //used in ToggleAccessory
         public static Texture2D[] Texture;
         public static Vector2[] Offset;
@@ -357,12 +357,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
         Hat,
         Body,
         Carried,
-        Hands
+        Misc
         //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
         //Also, concider that there cant be more than one accessory active in each slot, so decide on proper
         //categories that make sense.
 
-        //for Hand, its actually only the front facing hand. For something like gloves or dual wielding, use Body instead
+        //for Carried, its actually only the front facing hand. For something like gloves or dual wielding, use Misc instead
 
         //also, keep the sprite dimensions the same as the slime girls
     }
@@ -403,19 +403,19 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             if(e == 1)
             {
-                return "Worn on the head";
+                return "Worn on the head.";
             }
             if (e == 2)
             {
-                return "Worn on the Body";
+                return "Worn on the body.";
             }
             if (e == 3)
             {
-                return "Carried";
+                return "Carried.";
             }
             if (e == 4)
             {
-                return "Worn on the Hands/Misc";
+                return "Worn on the hands/misc.";
             }
             return "REDACTED";
         }
@@ -425,6 +425,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
 
             tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
+
+            if (!PetAccessories.AllowLegacy[PetAccessories.ItemsIndexed[item.type]])
+            {
+                tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets."));
+            }
         }
 
         protected virtual void MoreSetDefaults()
@@ -467,7 +472,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
             //else normal left click use
 
-            if (Main.projectile[mPlayer.petIndex].active && Main.projectile[mPlayer.petIndex].owner == Main.LocalPlayer.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.petIndex].modProjectile))
+            if (Main.projectile[mPlayer.petIndex].active && Main.projectile[mPlayer.petIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.petIndex].modProjectile))
             {
                 PetAccessoryProj gProjectile = Main.projectile[mPlayer.petIndex].GetGlobalProjectile<PetAccessoryProj>(mod);
 
@@ -516,57 +521,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
             }
             return true;
-
-
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    if (Main.projectile[i].active)
-            //    {
-            //        //find first occurence of a player owned cute slime
-            //        if(Main.projectile[i].modProjectile != null)
-            //        {
-            //            if (Main.projectile[i].owner == player.whoAmI && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
-            //            {
-            //                PetAccessoryProj gProjectile = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod);
-
-            //                //only client side
-            //                if (Main.netMode != NetmodeID.Server)
-            //                {
-            //                    if (shouldReset && player.altFunctionUse == 2)
-            //                    {
-            //                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
-
-            //                        gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0 ? 0 : mPlayer.slotsPlayerLast);
-
-            //                        //"dust" originating from the center, forming a circle and going outwards
-            //                        Dust dust;
-            //                        for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
-            //                        {
-            //                            //Main.NewText("" + (float)-Math.Cos(angle) + " " + (float)Math.Sin(angle));
-            //                            dust = Dust.NewDustPerfect(Main.projectile[i].Center - new Vector2(0f, Main.projectile[i].height / 4)/*, 30, 30*/, 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
-            //                        }
-
-            //                        //save it for next time shouldReset is true
-            //                        mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
-
-            //                        //sync with player, for when he respawns, it gets reapplied
-            //                        mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).GetAccessoryAll();
-            //                        mPlayer.SendSlotData();
-            //                    }
-            //                    else if (player.altFunctionUse != 2)
-            //                    {
-            //                        gProjectile.ToggleAccessory((byte)item.value, (uint)AssortedCrazyThings.slimeAccessoryItemsIndexed[item.type]);
-
-            //                        //sync with player, for when he respawns, it gets reapplied
-            //                        mPlayer.slotsPlayer = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).GetAccessoryAll();
-            //                        mPlayer.SendSlotData();
-            //                    }
-            //                }
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
         }
     }
 }
