@@ -73,6 +73,11 @@ To-Do List: Werebearguy
 #####################################################################################
 To-Do List: Side Projects of Absolute Lowest Priority
 #####################################################################################
+- Placeable object that turns bait into fish
+	- Place bait into container
+	- After some time, it turns into fishing loot
+		- Based on biome placed
+
 - Soul Savior Garment glowmasks
 	- Head and Shoulders glowing like the souls do
 	
