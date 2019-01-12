@@ -27,6 +27,7 @@ To-Do List: direwolf420
 #####################################################################################
 - Review file sizes of images
 
+//DONE
 - Combine Demon Eye NPCs into a single entity that picks texture randomly
 	- Cataract, Dilated, and Sleepy variants picked any time
 	- Owl and UFO picked only during Halloween
@@ -35,6 +36,8 @@ To-Do List: direwolf420
 		- If you have to, delete the glow masks; I won't be upset
 	- Mechanical eye variants that shoot lasers picked only after the Twins are defeated
 		- Separate NPC file for them due to custom AI
+
+- Chunky and Meatball separated
 		
 - Combine Walking Tombstone NPCs
 	- Drops based on the sprite picked
