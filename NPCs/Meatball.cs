@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Crimson.Chance * 0.1f;
+            return SpawnCondition.Crimson.Chance * 0.25f;
         }
 
         public override void NPCLoot()
@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.NPCs
         {
             if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (npc.life <= 0 && Main.rand.NextBool(20))
+                if (npc.life <= 0 && Main.rand.NextBool(10))
                 {
                     NPC.NewNPC((int)npc.position.X, (int)npc.position.Y - 16, mod.NPCType("MeatballsEye"));
                 }

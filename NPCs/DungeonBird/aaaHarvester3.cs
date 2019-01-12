@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //actual body hitbox
             npc.width = Wid; //302 texture //104
             npc.height = Hei; //176 texture //110
-            npc.damage = 20; //contact damage
+            npc.damage = 5; //contact damage
             npc.defense = 8;
             npc.lifeMax = 1111;
             npc.HitSound = SoundID.NPCHit1;
