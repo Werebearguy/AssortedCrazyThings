@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             }
                         }
 
-                        if (slotNumber == (byte)SlotType.Body)
+                        if (slotNumber == (byte)SlotType.Body || slotNumber == (byte)SlotType.Misc)
                         {
                             if (projectile.frame > 2 && projectile.frame < 6)
                             {
@@ -90,16 +90,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 }
                             }
                         }
+
                         if (slotNumber == (byte)SlotType.Hat)
                         {
-                            if (projectile.spriteDirection == 1)
+                            if (projectile.spriteDirection == -1)
                             {
                                 stupidOffset += new Vector2(-4f, 0f);
                             }
 
                             if (projectile.type == AssortedCrazyThings.slimePetLegacy[5]) //rainbow slime fix
                             {
-                                if (projectile.spriteDirection == 1)
+                                if (projectile.spriteDirection == -1)
                                 {
                                     stupidOffset += new Vector2(4f, 0f);
                                 }

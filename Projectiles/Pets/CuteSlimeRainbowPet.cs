@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //bounds.Y = projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(14f, 4f + drawOriginOffsetY + 20f); //20f for offset pre-draw, idk how and why
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, new Rectangle?(frameLocal), lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
-            return true;
+            return false;
         }
     }
 }
