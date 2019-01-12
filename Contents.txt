@@ -393,17 +393,17 @@ Peace Candle in a Balloon
 	- Tinkerer's Workbench, Peace Candle x1 + Shiny Red Balloon x1
 	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark
 Sigil of Last Stand
-	- Tinkerer's Workbench, 
+	- Tinkerer's Workbench, Sigil of Pain Suppression x1 + Sigil of Retreat x1
 	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
-		- Has a cooldown of XXX, denoted in the accessory's tooltip
+		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
 Sigil of Pain Suppression
 	- Hardmode Anvil, Freed Dungeon Soul x 15 + Ironskin Potion x 5
 	- Drastically increases your defense for a brief moment upon reaching critical health
-		- Has a cooldown of XXX, denoted in the accessory's tooltip
+		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
 Sigil of Retreat
 	- Hardmode Anvil, Freed Dungeon Soul x 15 + Recall Potion x 5
 	- Teleports you to your spawn point upon reaching critical health
-		- Has a cooldown of XXX, denoted in the accessory's tooltip
+		- Has a cooldown of 10 minutes, denoted in the accessory's tooltip
 Slippery Soles
 	- Tinkerer's Workbench, Frozen Slime Block x2 + Leather x2
 	- You move on any block as if it was a Frozen Slime Block
@@ -480,7 +480,8 @@ ARMOR:
 ============
 Soul Savior Garment
 	- Set Bonus: Three Companion Souls will fight at your side
-		- Companion Souls are affected by buffs and boosts that affect summoned minions
+		- Companion Souls benefit from effects that increase summon effectiveness
+		- Be sure to resummon them should a new buff be applied to you so they can receive the full benefits
 	- Soul Savior Coronet
 		- Anvil, Freed Dungeon Soul x10 + (BOSS NAME HERE) Mask x1 + Dessicated Leather x10
 		- Head-slot armor that increases summon damage
@@ -516,9 +517,12 @@ CUTE SLIME VANITY
 Cute Bow
 	- Loom, Silk x15
 	- A bow for your Cute Slime's chest, comes in Black, Blue, Green, and Red
+Cute Head Slime
+	- Loom, Silk x15
+	- A slime for your Cute Slime's head, comes in Green
 Cute Mittens
 	- Loom, Silk x15
-	- Soft mittens to keep your Cute Slime's hands warm, comes in Gray and Red
+	- Soft mittens to keep your Cute Slime's hands warm, comes in Blue, Gray, and Red
 Cute Santa Hat
 	- Loom, Silk x15
 	- A merry hat for your merry Cute Slime's head
