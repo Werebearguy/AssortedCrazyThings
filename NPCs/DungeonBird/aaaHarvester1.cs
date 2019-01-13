@@ -49,6 +49,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             transformTo = AssWorld.harvesterTypes[1];
 
 
+            npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
             npc.chaseable = false;
             npc.npcSlots = 1f;
             npc.width = aaaDungeonSoulBase.wid;

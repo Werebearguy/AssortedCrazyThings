@@ -49,23 +49,23 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //return Color.White;
         }
 
-        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
-        {
-            if (!AssWorld.isPlayerHealthManaBarLoaded)
-            {
-                if (damage == npc.lifeMax && knockback == 0 && crit) //cheatsheet clear
-                {
-                    return true;
-                }
-                if (noDamage)
-                {
-                    damage = 0;
-                    return false;
-                }
-                return true;
-            }
-            return base.StrikeNPC(ref damage, defense, ref knockback, hitDirection, ref crit);
-        }
+        //public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        //{
+        //    if (!AssWorld.isPlayerHealthManaBarLoaded)
+        //    {
+        //        if (damage == npc.lifeMax && knockback == 0 && crit) //cheatsheet clear
+        //        {
+        //            return true;
+        //        }
+        //        if (noDamage)
+        //        {
+        //            damage = 0;
+        //            return false;
+        //        }
+        //        return true;
+        //    }
+        //    return base.StrikeNPC(ref damage, defense, ref knockback, hitDirection, ref crit);
+        //}
 
         public override void SendExtraAI(BinaryWriter writer)
         {
@@ -883,15 +883,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             npc.noGravity = false;
             npc.noTileCollide = false;
-            if (AssWorld.isPlayerHealthManaBarLoaded)
-            {
-                npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
-            }
-            else
+
+            if (Main.time % 30 == 0)
             {
                 for (int k = 0; k < 256; k++)
                 {
-                    npc.immune[k] = 30;
+                    npc.immune[k] = 40;
                 }
             }
 
