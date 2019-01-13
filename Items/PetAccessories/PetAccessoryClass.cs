@@ -28,16 +28,17 @@ namespace AssortedCrazyThings.Items.PetAccessories
      */
 
     //this is the class that holds all the properties about the accessories, like texture, offset etc
-    public class PetAccessories
+    public class PetAccessory
     {
         //internal fields
-        private static Mod InternalMod;
-        internal static int[] Items;
+        internal static Mod InternalMod;
         internal static byte addCounter = 0; //if you ever add more than 255 accessories, make that a short
         internal static string[] namesOfAccessories;
 
         //public fields
+        public static int[] Items;
         public static int[] ItemsIndexed; //used in ToggleAccessory
+        public static int[] ReverseIndexed; //CuteSlimeGlobalTooltip
         public static Texture2D[] Texture;
         public static Vector2[] Offset;
         public static bool[] PreDraw;
@@ -53,10 +54,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
              * How to:
              * - put the name of the class you added in ^ to namesOfAccessories
              * - call Add() with the appropriate parameters
-             * - Game will throw you an error if the namesOfAccessories length and the added number of accessories is different
+             * - Game will throw you an error if the namesOfAccessories length and the added number of accessories is different,
+             * or if one of the class names is misspelt
              * 
-             * - if you want to remove certain accessories from being useable for the system, comment the line out in namesOfAccessories
-             * (for example <slash star> "PetAccessoryAmethystStaff", <star slash>), and comment the corresponding Add line (with //)
+             * - if you want to remove certain accessories from being usable for the system, comment the line out in namesOfAccessories
+             * and comment the corresponding Add line (with //)
              * 
              * - if you want to disable the whole system, comment the PetAccessories.Load() and PetAccessories.Unload() in AssortedCrazyThings.cs
              */
@@ -70,8 +72,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryBowtieGray",
                 "PetAccessoryBowtieBlue",
                 "PetAccessoryXmasHat",
-                "PetAccessoryAmethystStaff",
-                "PetAccessoryTopazStaff",
+                "PetAccessoryStaffAmethyst",
+                "PetAccessoryStaffTopaz",
+                "PetAccessoryStaffRuby",
+                "PetAccessoryStaffSapphire",
                 "PetAccessorySlimeHead",
                 "PetAccessoryMittensBlue",
                 "PetAccessoryMittensRed",
@@ -99,8 +103,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryBowtieGray");
             Add(name: "PetAccessoryBowtieBlue");
             Add(name: "PetAccessoryXmasHat", offsetY: -13f);
-            Add(name: "PetAccessoryAmethystStaff", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryTopazStaff", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffAmethyst", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffRuby", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessorySlimeHead", offsetY: -18f, alpha: 56);
             Add(name: "PetAccessoryMittensBlue", allowLegacy: false);
             Add(name: "PetAccessoryMittensRed", allowLegacy: false);
@@ -112,6 +118,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryHairBowWhite");
 
             Check();
+
         }
 
         public static void Unload()
@@ -285,7 +292,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryAmethystStaff : PetAccessoryBase
+    public class PetAccessoryStaffAmethyst : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -299,11 +306,39 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryTopazStaff : PetAccessoryBase
+    public class PetAccessoryStaffTopaz : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Topaz Staff");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryStaffRuby : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Ruby Staff");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryStaffSapphire : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Sapphire Staff");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -491,23 +526,23 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         private string Enum2string(int e)
         {
-            if(e == 1)
+            if(e == (byte)SlotType.Hat)
             {
                 return "Worn on the head.";
             }
-            if (e == 2)
+            if (e == (byte)SlotType.Body)
             {
                 return "Worn on the body.";
             }
-            if (e == 3)
+            if (e == (byte)SlotType.Carried)
             {
                 return "Carried.";
             }
-            if (e == 4)
+            if (e == (byte)SlotType.Misc)
             {
                 return "Worn somewhere else (misc).";
             }
-            return "REDACTED";
+            return "UNINTENDED BEHAVIOR, REPORT TO DEV";
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -516,7 +551,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
 
-            if (!PetAccessories.AllowLegacy[PetAccessories.ItemsIndexed[item.type]])
+            if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]])
             {
                 tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets."));
             }
@@ -536,7 +571,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 if (mPlayer.petIndex == -1)
                 {
-                    ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
                     //find first occurence of a player owned cute slime
                     for (int i = 0; i < 1000; i++)
                     {
@@ -546,6 +580,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             {
                                 if (Main.projectile[i].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
                                 {
+                                    ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
                                     mPlayer.petIndex = i;
                                     return true;
                                 }
@@ -599,12 +634,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         else if (player.altFunctionUse != 2)
                         {
                             //check if selected item is valid on the pet, if it is a legacy version
-                            if (!PetAccessories.AllowLegacy[PetAccessories.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.petIndex].type) != -1)
+                            if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.petIndex].type) != -1)
                             {
                                 return true;
                             }
 
-                            gProjectile.ToggleAccessory((byte)item.value, (uint)PetAccessories.ItemsIndexed[item.type]);
+                            gProjectile.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
 
                             //sync with player, for when he respawns, it gets reapplied
                             mPlayer.slotsPlayer = gProjectile.GetAccessoryAll();
