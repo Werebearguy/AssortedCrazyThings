@@ -24,7 +24,7 @@ Foldfish
 ENEMIES
 ============
 Animated Spell Tome
-	- Dungeon drops Spell Tome
+	- Dungeon, drops Spell Tome
 Animated Tome
 	- Dungeon, drops Book
 	- Spawns in various colors
@@ -37,67 +37,36 @@ Bladetongue
 Bloated Bait Thief
 	- Town, drops Worm, rarely drops Gold Worm
 Blood Shark
-	- Ocean (Blood Moon), drops Shark Fin, rarely drops Sharktooth Necklace
+	- Ocean during Blood Moon, drops Shark Fin, rarely drops Sharktooth Necklace
 Chunky
 	- Corruption, drops Rotten Chunk
 Chunky's Eye
-	- Chunky (rarely), capture with a net
+	- Rarely after killing Chunky, capture with a net
 Cloudfish
-	- Sky (water), drops Cloud Block, Rain Cloud Block, or Snow Cloud Block, can be caught with a net
+	- Sky water, drops Cloud Block, Rain Cloud Block, or Snow Cloud Block, can be caught with a net
 Crystal Serpent
-	- Hallow Water (Hardmode), drops Crystal Serpent
+	- Hallow Water during Hardmode, drops Crystal Serpent
 Cute Gastropod
 	- Hallow, capture with a net to obtain it as a pet
-Cute Slime (Black)
+Cute Slime
 	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Blue)
-	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Green)
-	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Pink)
-	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Purple)
-	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Rainbow)
-	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Red)
-	- Surface Day, capture with a net to obtain it as a pet
-Cute Slime (Yellow)
-	- Surface Day, capture with a net to obtain it as a pet
+	- Colors: Black, Blue, Green, Pink, Purple, Rainbow, Red, Yellow
 Cute Slime (Christmas)
-	- Surface Day (Christmas), capture with a net to obtain it as a pet
+	- Surface Day during Christmas, capture with a net to obtain it as a pet
 Deep Salamander
-	- Underground (Hardmode), no special drops
-Demon Eye (Cataracts, Green)
-	- Surface Night, no special drops
-Demon Eye (Cataracts, Purple)
-	- Surface Night, no special drops
-Demon Eye (Dilated, Green)
-	- Surface Night, no special drops
-Demon Eye (Dilated, Purple)
-	- Surface Night, no special drops
-Demon Eye (Owl, Green)
-	- Surface Night (Halloween), no special drops
-Demon Eye (Owl, Purple)
-	- Surface Night (Halloween), no special drops
-Demon Eye (Sleepy, Green)
-	- Surface Night, no special drops
-Demon Eye (Sleepy, Purple)
-	- Surface Night, no special drops
-Demon Eye (UFO, Green)
-	- Surface Night (Halloween), no special drops
-Demon Eye (UFO, Purple)
-	- Surface Night (Halloween), no special drops
+	- Underground during Hardmode
+Demon Eye
+	- Surface Night
+	- Green and Purple variations of the various Demon Eye appearances
+Demon Eye (Halloween)
+	- Surface Night during Halloween
+	- Green and Purple variations of the various seasonal Demon Eye appearances
 Fairy Slime
-	- Hallow Daytime, no special drops
+	- Hallow Daytime
 Flying Spider
-	- Spider Caves (Hardmode), no special drops
-Fractured Eye (Green)
-	- Surface Night (after Eye of Cthulhu), no special drops
-Fractured Eye (Purple)
-	- Surface Night (after Eye of Cthulhu), no special drops
-Fractured Eye (Red)
-	- Surface Night (after Eye of Cthulhu), no special drops
+	- Spider Caves during Hardmode
+Fractured Eye
+	- Surface Night after defeating Eye of Cthulhu
 Giant Anomalocaris
 	- Ocean, drops Shrimp, rarely drops Anomalous Wings
 Giant Golden Grasshopper
@@ -105,9 +74,9 @@ Giant Golden Grasshopper
 Giant Grasshopper
 	- Surface Day, drops a Grasshopper
 Horned Slime
-	- Underworld, no special drops
+	- Underworld
 Joyous Slime
-	- Surface Day, no special drops
+	- Surface Day
 Juggerllusc
 	- Ocean, rarely drops Flippers or Diving Helmet
 	- Spawns in various colors
@@ -116,25 +85,19 @@ Little Megalodon
 Meatball
 	- Crimson, drops Vertebrae
 Meatball's Eye
-	- Meatball (rarely), capture with a net
-Mechanical Eye (Green)
-	- Surface Night (after The Twins), no special drops
-Mechanical Eye (Purple)
-	- Surface Night (after The Twins), no special drops
-Mechanical Eye (Red)
-	- Surface Night (after The Twins), no special drops
-Mechanical Eye (Laser, Green)
-	- Surface Night (after The Twins), no special drops
-Mechanical Eye (Laser, Purple)
-	- Surface Night (after The Twins), no special drops
-Mechanical Eye (Laser, Red)
-	- Surface Night (after The Twins), no special drops
+	- Rarely after killing Meatball, capture with a net
+Mechanical Eye
+	- Surface Night after defeating The Twins
+	- Spawns in various colors
+Mechanical Eye (Laser)
+	- Surface Night after defeating The Twins
+	- Spawns in various colors
 Megalodon
 	- Ocean, drops Large Megalodon Tooth
 Megashark
-	- Ocean, no special drops
+	- Ocean
 Ocean Slime
-	- Ocean, no special drops
+	- Ocean
 Reaver Shark
 	- Ocean, rarely drops Reaver Shark
 Reaver Shark Pup
@@ -146,61 +109,33 @@ Sawtooth Shark Pup
 Shark Head
 	- Ocean, drops Shark Fin
 Sharkron Pup (Blue)
-	- Ocean (after Duke Fishron), no special drops
+	- Ocean after defeating Duke Fishron
 Sharkron Pup (Pink)
-	- Ocean (after Duke Fishron), no special drops
+	- Ocean after defeating Duke Fishron
 Slimefish
 	- Town, can be caught with a net
 Spawn of Ocram
-	- Surface Night (after Golem), drops Emerald, Baby Ocram
+	- Surface Night after defeating Golem, drops Emerald, Baby Ocram
 Sting Slime (Black)
 	- Desert, drops Stinger
 Sting Slime (Orange)
 	- Desert, drops Stinger
 Stone Soldier
 	- Cavern, drops gems based on its eye color with increasing rarity as it is found further in the depths
-Strange Slime (Purple Plant)
-	- Surface Day, drops Strange Plant
-Strange Slime (Orange Plant)
-	- Surface Day, drops Strange Plant
-Strange Slime (Green Plant)
-	- Surface Day, drops Strange Plant
-Strange Slime (Green and Red Plant)
-	- Surface Day, drops Strange Plant
+Strange Slime
+	- Surface Day, drops Strange Plant based on what it is wearing
 Toxikarp
-	- Corruption Water (Hardmode), drops Toxikarp
+	- Corruption Water during Hardmode, drops Toxikarp
 Turtle Slime
-	- Jungle Day, no special drops
+	- Jungle Day
 Unfortunate Delver
 	- Marble, drops Stone Blocks
 Walking Chest
 	- Underground, drops Chest
-Walking Tombstone (Cross Grave Marker)
-	- Surface Night, drops Cross Grave Marker
-Walking Tombstone (Golden Cross Grave Marker)
-	- Surface Night, drops Golden Cross Grave Marker
-Walking Tombstone (Golden Grave Marker)
-	- Surface Night, drops Golden Grave Marker
-Walking Tombstone (Golden Gravestone)
-	- Surface Night, drops Golden Gravestone
-Walking Tombstone (Golden Headstone)
-	- Surface Night, drops Golden Headstone
-Walking Tombstone (Golden Tombstone)
-	- Surface Night, drops Golden Tombstone
-Walking Tombstone (Grave Marker)
-	- Surface Night, drops Grave Marker
-Walking Tombstone (Gravestone)
-	- Surface Night, drops Gravestone
-Walking Tombstone (Headstone)
-	- Surface Night, drops Headstone
-Walking Tombstone (Obelisk)
-	- Surface Night, drops Obelisk
-Walking Tombstone (Tombstone)
-	- Surface Night, drops Tombstone
-Wandering Eye (Green)
-	- Surface Night (Hardmode), no special drops
-Wandering Eye (Purple)
-	- Surface Night (Hardmode), no special drops
+Walking Tombstone
+	- Surface Night, drops gravestone based on what it is wearing
+Wandering Eye
+	- Surface Night during Hardmode, spawns in new Green or Purple colors
 Whale Shark
 	- Ocean, drops Wooden Crate
 Whale Shark Pup
@@ -215,28 +150,28 @@ PETS
 ============
 Alien Hornet
 	- Resembles a smaller Alien Hornet that flies behind you
-	- Demon Altar, Nectar x1 + Vortex Fragment x10
+	- Recipe: Demon Altar, Nectar x1 + Vortex Fragment x10
 Baby Crimera
 	- Resembles a much cuter Crimera that wanders around
-	- Demon Altar, Vertebrae x30
+	- Recipe: Demon Altar, Vertebrae x30
 Baby Ichor Sticker
 	- Resembles a much cuter Ichor Sticker that floats around you
-	- Demon Altar, Ichor x30
+	- Recipe: Demon Altar, Ichor x30
 Baby Ocram
 	- Resembles a much cuter Ocram that flies around you
-	- Drop from Spawn of Ocram
+	- Recipe: Drop from Spawn of Ocram
 Brain of Confusion
 	- The same effect that appears when the accessory is activated, but as a pet
-	- Demon Altar, Brain of Confusion x1
+	- Recipe: Demon Altar, Brain of Confusion x1
 Chunky and Meatball
 	- Two brothers, reunited
-	- Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
+	- Recipe: Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
 Cursed Skull
 	- The same enemy from the Dungeon, now following you indefinitely
-	- Demon Altar, Bone x10
+	- Recipe: Demon Altar, Bone x10
 Cute Gastropod
 	- A cute slime girl riding in a Gastropod's shell
-	- Caught with a net
+	- Recipe: Caught with a net
 Cute Slime (Black)
 	- A tough black slime girl
 	- Caught with a net
@@ -275,55 +210,35 @@ Cute Slime (Christmas)
 	- Appearance can be altered at a Solidifier
 Demon Heart
 	- A spooky demon heart that floats beside you
-	- Demon Altar, Demon Heart x1
+	- Recipe: Demon Altar, Demon Heart x1
 Detached Hungry
 	- This Hungry is your friend, and will not try to eat you
-	- Demon Altar, Underworldstone Ore x10 + Rotten Chunk x10
-Docile Demon Eye (Green)
+	- Recipe: Demon Altar, Underworldstone Ore x10 + Rotten Chunk x10
+Docile Demon Eye
 	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Demon Eye (Purple)
+	- Comes in Red, Green, and Purple
+	- Recipe: Demon Altar, Black Lens x1 + Lens x2
+Docile Fractured Eye
 	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Demon Eye (Red)
+	- Comes in Red, Green, and Purple
+	- Recipe: Demon Altar, Black Lens x1 + Lens x2
+Docile Laser Eye
 	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Fractured Eye (Green)
+	- Comes in Red, Green, and Purple
+	- Recipe: Demon Altar, Black Lens x1 + Lens x2
+Docile Mechanical Eye
 	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Fractured Eye (Purple)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Fractured Eye (Red)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Laser Eye (Green)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Laser Eye (Purple)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Laser Eye (Red)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Mechanical Eye (Green)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Mechanical Eye (Purple)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
-Docile Mechanical Eye (Red)
-	- A docile demon eye with a more domesticated look
-	- Demon Altar, Black Lens x1 + Lens x2
+	- Comes in Red, Green, and Purple
+	- Recipe: Demon Altar, Black Lens x1 + Lens x2
 Enchanted Sword
 	- The sword in the stone now floats above your head
-	- Demon Altar, Enchanted Sword x1
+	- Recipe: Demon Altar, Enchanted Sword x1
 Goblet
 	- It's not a cup, it's a tiny goblin
-	- Drop from Goblin Invasion event
+	- Recipe: Drop from Goblin Invasion event
 Lifelike Mechanical Frog
 	- A cute little frog...or is it?
-	- Anvil, Frog x1
+	- Recipe: Anvil, Frog x1
 Mini Megalodon
 	- A spunky purple shark that likes to assert itself at your side
 	- Drop from Little Megalodon
@@ -335,16 +250,16 @@ Small Megalodon
 	- Drop from Megalodon
 Tortured Soul
 	- The soul of the Tax Collector
-	- Demon Altar, Classy Cane x1
+	- Recipe: Demon Altar, Classy Cane x1
 Vampire Bat
 	- A vampire that likes to follow you around
-	- Demon Altar, Bat wing x2 + Soul of Night x10
+	- Recipe: Demon Altar, Bat wing x2 + Soul of Night x10
 Young Harpy
 	- A playful little bird that wants to go on an adventure
-	- Caught with a net
+	- Recipe: Caught with a net
 Wyverntail
 	- A young Wyvern that has taken flight at your side for the first time
-	- Workbench, Wyverntail x1
+	- Recipe: Workbench, Wyverntail x1
 
 ============
 LIGHT PETS
@@ -360,138 +275,103 @@ Anomalous Wings
 	- drops from Giant Anomalocaris.
 	- Allows slowfall, and allows quick travel in water
 Bipolar Candle in a Balloon
-	- Tinkerer's Workbench, Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
 	- It does exactly what you'd expect it to, except it doesn't
+	- Recipe: Tinkerer's Workbench, Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
 Bottled Dreams
-	- Tinkerer's Workbench, Bottle x1 + Pixie Dust x10
 	- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump
+	- Recipe: Tinkerer's Workbench, Bottle x1 + Pixie Dust x10
 Everburning Candelabra
-	- Tinkerer's Workbench, Everburning Candle + Everburning Cursed Candle + Everburning Shadow Candle + Everfrozen Candle
-	- Combines the effect of the items used to craft it
+	- All of your attacks inflict On Fire, Cursed Inferno, Shadowflame, and Frostburn
+	- Recipe: Tinkerer's Workbench, Everburning Candle + Everburning Cursed Candle + Everburning Shadow Candle + Everfrozen Candle
 Everburning Candle
-	- Tinkerer's Workbench, Magma Stone x1 + Soul of Light x50
-	- Like the Magma Stone, but from every source of player damage, including summons
+	- All of your attacks inflict On Fire
+	- Recipe: Tinkerer's Workbench, Magma Stone x1 + Soul of Light x50
 Everburning Cursed Candle
-	- Tinkerer's Workbench, Magma Stone x1 + Cursed Flame x50
-	- Like the Everburning Candle, but causes the Cursed Flames debuff
+	- All of your attacks inflict Cursed Inferno
+	- Recipe: Tinkerer's Workbench, Magma Stone x1 + Cursed Flame x50
 Everburning Shadow Candle
-	- Tinkerer's Workbench, Magma Stone x1 + Soul of Night x50
-	- Like the Everburning Candle, but causes the Shadowflame debuff. Shorter duration than the other candles
+	- All of your attacks inflict Shadowflame
+	- Recipe: Tinkerer's Workbench, Magma Stone x1 + Soul of Night x50
 Everfrozen Candle
-	- Tinkerer's Workbench, Magma Stone x1 + Ice Block x50
-	- Like the Everburning Candle, but causes the Frostburn debuff
+	- All of your attacks inflict Frostburn
+	- Recipe: Tinkerer's Workbench, Magma Stone x1 + Ice Block x50
 Festive Mirror
-	- Tinkerer's Workbench, Hand Warmers x1 + Pocket Mirror x1
 	- Provides immunity to the Chilled, Frozen, and Stoned debuffs
+	- Recipe: Tinkerer's Workbench, Hand Warmers x1 + Pocket Mirror x1
 Loot Magnet
-	- Tinkerer's Workbench, Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
 	- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies
+	- Recipe: Tinkerer's Workbench, Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
 Massive Bundle of Balloons
-	- Tinkerer's Workbench, Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
 	- Gives you six extra jumps, negates fall damage, and increases jump height
+	- Recipe: Tinkerer's Workbench, Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
 Peace Candle in a Balloon
-	- Tinkerer's Workbench, Peace Candle x1 + Shiny Red Balloon x1
 	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark
+	- Recipe: Tinkerer's Workbench, Peace Candle x1 + Shiny Red Balloon x1
 Sigil of Last Stand
-	- Tinkerer's Workbench, Sigil of Pain Suppression x1 + Sigil of Retreat x1
 	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
 		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
+	- Recipe: Tinkerer's Workbench, Sigil of Pain Suppression x1 + Sigil of Retreat x1
 Sigil of Pain Suppression
-	- Hardmode Anvil, Freed Dungeon Soul x 15 + Ironskin Potion x 5
 	- Drastically increases your defense for a brief moment upon reaching critical health
 		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
+	- Recipe: Hardmode Anvil, Freed Dungeon Soul x 15 + Ironskin Potion x 5
 Sigil of Retreat
-	- Hardmode Anvil, Freed Dungeon Soul x 15 + Recall Potion x 5
 	- Teleports you to your spawn point upon reaching critical health
 		- Has a cooldown of 10 minutes, denoted in the accessory's tooltip
+	- Recipe: Hardmode Anvil, Freed Dungeon Soul x 15 + Recall Potion x 5
 Slippery Soles
-	- Tinkerer's Workbench, Frozen Slime Block x2 + Leather x2
 	- You move on any block as if it was a Frozen Slime Block
+	- Recipe: Tinkerer's Workbench, Frozen Slime Block x2 + Leather x2
 Soles of Fire and Ice
-	- Tinkerer's Workbench, Lava Waders x1, Ice Skates x1
 	- Allows you to walk on water, lava, and thin ice
+	- Recipe: Tinkerer's Workbench, Lava Waders x1, Ice Skates x1
 Star in a Balloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Star in a Bottle x1
 	- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs
+	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Star in a Bottle x1
 Star Wisp Balloon
-	- Tinkerer's Workbench, Star in a Balloon + Wisp in a Balloon
 	- Increases Mana Regeneration, Jump Height, and glows in the dark
+	- Recipe: Tinkerer's Workbench, Star in a Balloon + Wisp in a Balloon
 Water Candle in a Balloon
-	- Tinkerer's Workbench, Water Candle x1 + Shiny Red Balloon x1
 	- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark
+	- Recipe: Tinkerer's Workbench, Water Candle x1 + Shiny Red Balloon x1
 Wisp in a Balloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Wisp in a Bottle x1
 	- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle
+	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Wisp in a Bottle x1
 
 ============
 VANITY ACCESSORIES
 ============
-Retinazer Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
-Green Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Green Toothy Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Green Metal Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Green Metal Toothy Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Purple Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Purple Toothy Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Purple Metal Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Purple Metal Toothy Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Red Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Red Toothy Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Red Metal Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Red Metal Toothy Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
-Spazmatism Eye-lloon
-	- Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+Twins Eye-lloon
+	- Balloons resembling Retinazer and Spazmatism
+	- Comes in two variations: Retinazer and Spazmatism
+	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+Twins Eye-lloon (Combined)
+	- Both Eye-lloons resembling Retinazer and Spazmatism, worn at the same time
+	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1 + Soul of Sight x1
+Eye-lloon
+	- Balloons resembling Demon Eyes
+	- Comes in twelve variations
+	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Lens x1
 
 ============
 WEAPONS
 ============
 Breath of Spazmatism
-	- Hardmode Anvil, Flamethrower x1 + Hallowed Bar x5 + Soul of Sight x5
 	- Cursed Flames ranged weapon
 	- Balanced for post-mech content
+	- Recipe: Hardmode Anvil, Flamethrower x1 + Hallowed Bar x5 + Soul of Sight x5
 Pocket Sand
-	- Anywhere, Sand Block x1
-	- Creates ten per craft
 	- Throwing weapon that deals minimal damage, but confuses most enemies for a moment
+	- Creates ten per craft
+	- Recipe: Anywhere, Sand Block x1
 Sight of Retinazer
-	- Hardmode Anvil, Laser Rifle x1 + Hallowed Bar x5 + Soul of Sight x5
 	- Magic weapon with no mana cost
 	- Balanced for post-mech content
+	- Recipe: Hardmode Anvil, Laser Rifle x1 + Hallowed Bar x5 + Soul of Sight x5
 Tome of Shadowflame Skulls
-	- Crystal Ball, Book of Skulls x1 + Soul of Fright x10
 	- Shadowflame magic weapon
 	- Balanced for post-mech content
-		
-============
-ARMOR:
-============
-Soul Savior Garment
-	- Set Bonus: Three Companion Souls will fight at your side
-		- Companion Souls benefit from effects that increase summon effectiveness
-		- Be sure to resummon them should a new buff be applied to you so they can receive the full benefits
-	- Soul Savior Coronet
-		- Anvil, Freed Dungeon Soul x10 + (BOSS NAME HERE) Mask x1 + Dessicated Leather x10
-		- Head-slot armor that increases summon damage by 10%
-	- Soul Savior Chest (Need new name)
-		- Anvil, Freed Dungeon Soul x10 + Dessicated Leather x10
-		- Body-slot armor that increases the amount of minions you can summon by 1
-	- Soul Savior's Garb
-		- Anvil, Freed Dungeon Soul x10 + Dessicated Leather x10
-		- Leg-slot armor that slightly increases movement speed by 5%
-	- Set balanced for post-Skeletron content
+	- Recipe: Crystal Ball, Book of Skulls x1 + Soul of Fright x10
 
 ============
 VANITY ARMOR
@@ -505,11 +385,11 @@ Origami Hat
 TOOLS
 ============
 Extendo-Net
-	- ???
-	- Upgrade of the Bug Net that has the reach of a spear, but fires somewhat slower
+	- Polearm that can catch critters from a greater distance than the Bug Net
+	- Recipe: ???
 Golden Extendo-Net
-	- ???
-	- Upgrade of the Extendo-Net that has more reach, fires faster, and breaks grass
+	- Polearm that breaks grass, and can catch critters from a greater distance than the Golden Bug Net
+	- Recipe: ???
 
 ============
 CUTE SLIME VANITY
@@ -535,9 +415,9 @@ Cute Staff
 CONSUMABLES
 ============
 Empowerment Flask
-	- Alchemy, Bottled Water x 1 + Freed Dungeon Soul x 1 + Bone x 10
 	- Incrementally increases damage dealt over time, but the bonus is reset upon taking damage
 		- Note; The effect will reset if you take damage while invulnerable, so keep dodging if you want the full effect
+	- Recipe: Alchemy, Bottled Water x 1 + Freed Dungeon Soul x 1 + Bone x 10
 
 ============
 MATERIALS:
@@ -555,21 +435,21 @@ Meatball's Eye
 OTHER
 ============
 Infinity Rocket
-	- Crystal Ball, Rocket I x3996
 	- Infinite rocket ammunition
+	- Recipe: Crystal Ball, Rocket I x3996
 Idol of Decay
-	- Demon Altar, Water Candle x1 + Bone x50
 	- Summons (BOSS NAME HERE)
+	- Recipe: Demon Altar, Water Candle x1 + Bone x50
 Loose Dungeon Soul
 	- Capture with a net while (BOSS NAME HERE) is alive
 		- All currently owned Loose Dungeon Souls upgrade into Freed Dungeon Souls when (BOSS NAME HERE) is killed
 		- Includes those floating in the world, in your inventory, and in all your extended inventories (e.g. Piggy Bank)
 Origami Manual
-	- Drops from Animated Tome
 	- Summons Foldfish
+	- Drops from Animated Tome
 Star Forge
-	- Crystal Ball, Fallen Star x3996
 	- Infinte Fallen Star ammunition
+	- Recipe: Crystal Ball, Fallen Star x3996
 
 ============
 Bugs and Issues
@@ -579,9 +459,7 @@ Bugs and Issues
 	Compatibility:
 		- No known compatibility issues so far
 	Issues:
-		- Due to the way Cute Rainbow Slime is colored, accessories applied to it will cause graphical issues
-			- No pretty items for her, sadly
-			- Some will still work fine though
+		- Due to the way Cute Rainbow Slime is colored, most accessories applied to it will cause graphical issues
 		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
 		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to (BOSS NAME HERE) being defeated
 
@@ -608,15 +486,21 @@ Major Content Update #2
 
 
 FIXES
+	- Simplified Contents for ease of reading
+		- Expanded slightly upon certain criteria
+		- Consolidated enemies and pets with multiple similar appearances
 	- Fixed Stone Soldier's hitbox
 	- Cute Rainbow Slime texture issues fixed
 	- Lots of code cleanup
-	- File size reduction
+	- Massive File size reduction
+		- Smaller filesize, same great quality
 	
 CHANGES
 	- All items' sell values updated
 		- Sell values reflect an additive value based on the prices of the combined items
 	- Chunky and Meatball NPCs spawn more often, its pet versions are no longer connected by a red string, and fly around separately
+	- Chunky and Meatball (Pet) now spawns both named eyes as separate entities
+		- No more red string of fate
 	- Cute Slime sprites updated
 	- Cute Slime spawn rate halved
 	- Juggerllusc has received a minor overhaul
@@ -643,9 +527,6 @@ ADDITONS
 			- Shares the same cooldowns as both material items
 			
 	Armor:
-		- Soul Savior Garment, a set made from the remains of the new boss (BOSS NAME HERE)
-			- When the full set is worn, three Companion Souls will spawn and fight by your side
-				- They are summons, so any effects that would increase summoned minion effectiveness also affect them
 		- (BOSS NAME HERE) Mask, a boss mask that drops from (BOSS NAME HERE)
 	
 	Tools:
