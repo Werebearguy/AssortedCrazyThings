@@ -172,7 +172,7 @@ namespace AssortedCrazyThings
                                     break;
                                 }
                             }
-                            if (flag3/* && Main.rand.Next(3) == 0*/)
+                            if (flag3 && Main.rand.NextBool(3))
                             {
                                 spawnHarvester = true;
                                 AwakeningMessage("Bring a bug net to the dungeon, don't ask why...");

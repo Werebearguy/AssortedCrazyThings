@@ -125,9 +125,6 @@
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetal.cs" />
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetalFractured.cs" />
     <Compile Include="Items\Accessories\Vanity\SpazmatismEyelloon.cs" />
-    <Compile Include="Items\Armor\SoulArmorLeggings.cs" />
-    <Compile Include="Items\Armor\SoulArmorHelmet.cs" />
-    <Compile Include="Items\Armor\SoulArmorBreastplate.cs" />
     <Compile Include="Items\CaughtDungeonSoul.cs" />
     <Compile Include="Items\CaughtDungeonSoulAwakened.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
