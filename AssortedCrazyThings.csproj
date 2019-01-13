@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="AssortedCrazyThings.cs" />
     <Compile Include="Buffs\BipolarBuff.cs" />
+    <Compile Include="Buffs\CompanionDungeonSoulMinionBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulPetBuff.cs" />
     <Compile Include="Buffs\AlienHornet.cs" />
     <Compile Include="Buffs\BabyCrimera.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Items\VanityArmor\OrigamiHat.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
+    <Compile Include="Items\Weapons\EverglowLantern.cs" />
     <Compile Include="Items\Weapons\PocketSand.cs" />
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />

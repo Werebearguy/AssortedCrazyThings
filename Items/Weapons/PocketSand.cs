@@ -8,6 +8,12 @@ namespace AssortedCrazyThings.Items.Weapons
 {
     public class PocketSand : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Pocket Sand");
+            Tooltip.SetDefault("Throw a clump of sand at an enemy to confuse it.");
+        }
+
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ThrowingKnife);
@@ -21,12 +27,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.rare = -11;
             item.noUseGraphic = true;
             item.value = 0;
-        }
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Pocket Sand");
-            Tooltip.SetDefault("Throw a clump of sand at an enemy to confuse it.");
         }
 
         public override void AddRecipes()

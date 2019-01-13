@@ -846,6 +846,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //---------------------------------------------------------------------
             //NEW: DROP THROUGH PLATFORMS WHEN SOUL BELOW
+            //maybe use
+            //Framing.GetTileSafely((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16))
             int num = (int)(npc.position.X / 16f);
             int num2 = (int)((npc.position.Y + npc.height + 15f) / 16f);
 
