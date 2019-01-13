@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everglow Lantern");
-            Tooltip.SetDefault("Summons three freed Dungeon Souls at a time to fight for you.");
+            Tooltip.SetDefault("Summons two freed Dungeon Souls at a time to fight for you.\nEach Dungeon Soul occupies only half a minion slot.");
         }
 
         public override void SetDefaults()
@@ -33,6 +33,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType<CompanionDungeonSoulMinion>();
             item.shootSpeed = 10f;
+            item.knockBack = 0.5f;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
             item.buffTime = 3600;
         }
@@ -46,7 +47,6 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction * 1.5f, -1f, item.shoot, item.damage, 0f, player.whoAmI, 0f, 0f);
             Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), player.direction * 1, -1/2f, item.shoot, item.damage, 0f, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 4), player.direction * 0.5f, -1/3f, item.shoot, item.damage, 0f, player.whoAmI, 0f, 0f);
             //return player.altFunctionUse != 2;
             return false;
         }

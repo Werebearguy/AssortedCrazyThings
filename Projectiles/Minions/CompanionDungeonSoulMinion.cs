@@ -9,14 +9,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
 {
     public class CompanionDungeonSoulMinion : ModProjectile
     {
-        //change damage here, reminder that there are three minions so you are effectively tripling the damage
+        //change damage here, reminder that there are two minions so you are effectively doubling the damage
         public static int Damage = 13;
         private int sincounter;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Main.projFrames[projectile.type] = 4; //4
+            Main.projFrames[projectile.type] = 4;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.minion = true; //only determines the damage type
-            projectile.minionSlots = 0.3333f;
+            projectile.minionSlots = 0.5f;
             projectile.penetrate = -1;
         }
 
@@ -41,9 +41,25 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return true;
         }
 
+
+        public override bool? CanCutTiles()
+        {
+            return false;
+        }
+
         public override bool MinionContactDamage()
         {
             return true;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (target.immune[projectile.owner] == 10)
+            {
+                projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCImmunity[target.whoAmI] = 10;
+                target.immune[projectile.owner] = 8; //0
+            }
         }
 
         public void Draw()
@@ -334,7 +350,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                             projectile.ai[0] = 2f;
                             Vector2 value20 = vector40 - projectile.Center;
                             value20.Normalize();
-                            projectile.velocity = value20 * 3f; //8f
+                            projectile.velocity = value20 * 4f; //8f
                             projectile.netUpdate = true;
                         }
                     }
