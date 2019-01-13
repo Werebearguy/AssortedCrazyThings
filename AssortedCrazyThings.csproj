@@ -149,6 +149,7 @@
     <Compile Include="Items\Pets\ChunkyandMeatball.cs" />
     <Compile Include="Items\Pets\CursedSkull.cs" />
     <Compile Include="Items\Pets\CuteGastropod.cs" />
+    <Compile Include="Items\Pets\CuteSlimeGlobalTooltip.cs" />
     <Compile Include="Items\Pets\CuteSlimeBlack.cs" />
     <Compile Include="Items\Pets\CuteSlimeBlackNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeBlue.cs" />
