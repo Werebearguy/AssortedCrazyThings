@@ -46,7 +46,7 @@ namespace AssortedCrazyThings
         public int counter = 30;
         public int clientcounter = 30;
 
-        public bool soulArmorMinions = false;
+        public bool soulMinion = false;
 
         //empowering buff stuff
         public bool empoweringBuff;
@@ -66,7 +66,7 @@ namespace AssortedCrazyThings
             //variable_debuff_07 = false;
             teleportHome = false;
             getDefense = false;
-            soulArmorMinions = false;
+            soulMinion = false;
             empoweringBuff = false;
         }
 
