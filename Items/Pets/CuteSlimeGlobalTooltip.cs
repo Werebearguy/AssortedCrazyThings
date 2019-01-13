@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items.Pets
                                 type = PetAccessory.Items[accessory - 1];
                                 itemTemp = new Item();
                                 itemTemp.SetDefaults(type);
-                                tooltips.Add(new TooltipLine(mod, ((SlotType)slotNumber).ToString(), Enum2String(slotNumber) + itemTemp.Name.TrimStart("Cute ".ToCharArray())));
+                                tooltips.Add(new TooltipLine(mod, ((SlotType)slotNumber).ToString(), Enum2String(slotNumber) + (itemTemp.Name.StartsWith("Cute ")? itemTemp.Name.Substring(5) : itemTemp.Name)));
                             }
                             else
                             {
