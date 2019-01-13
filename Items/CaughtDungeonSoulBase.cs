@@ -1,9 +1,7 @@
-using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
@@ -71,7 +69,7 @@ namespace AssortedCrazyThings.Items
                 sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
             }
 
-            lightColor = item.GetAlpha(lightColor) * 0.78f; //1f is opaque
+            lightColor = item.GetAlpha(lightColor) * 0.99f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);

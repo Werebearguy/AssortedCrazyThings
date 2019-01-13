@@ -25,8 +25,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.DD2PetGhost);
             aiType = ProjectileID.DD2PetGhost;
-            projectile.width = 16;
-            projectile.height = 28;
+            projectile.width = 14;
+            projectile.height = 24;
             projectile.alpha = 0;
         }
 
@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
 
-            lightColor = projectile.GetAlpha(lightColor) * 0.78f; //1f is opaque
+            lightColor = projectile.GetAlpha(lightColor) * 0.99f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);

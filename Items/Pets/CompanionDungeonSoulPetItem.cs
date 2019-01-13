@@ -21,8 +21,8 @@ namespace AssortedCrazyThings.Items.Pets
             frame2CounterCount = 8.0;
             animatedTextureSelect = 0;
 
-            item.width = 14;
-            item.height = 24;
+            item.width = 26;
+            item.height = 28;
             item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj>();
             item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff>();
             item.rare = -11;
@@ -43,6 +43,8 @@ namespace AssortedCrazyThings.Items.Pets
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 1);
+            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 1);
+            recipe.AddIngredient(ItemID.Bone, 2);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

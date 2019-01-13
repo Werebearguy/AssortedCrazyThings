@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     public class CompanionDungeonSoulMinion : ModProjectile
     {
         //change damage here, reminder that there are three minions so you are effectively tripling the damage
-        public static int Damage = 7;
+        public static int Damage = 13;
         private int sincounter;
 
         public override void SetStaticDefaults()
@@ -18,20 +18,20 @@ namespace AssortedCrazyThings.Projectiles.Minions
             DisplayName.SetDefault("Companion Soul");
             Main.projFrames[projectile.type] = 4; //4
             Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable[projectile.type] = false;
+            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
-            //ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true; //This is necessary for right-click targeting
+            ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true; //This is necessary for right-click targeting
         }
 
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.Spazmamini);
-            projectile.width = 16;
-            projectile.height = 28;
+            projectile.width = 14;
+            projectile.height = 24;
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.minion = true; //only determines the damage type
-            projectile.minionSlots = 0f;
+            projectile.minionSlots = 0.3333f;
             projectile.penetrate = -1;
         }
 
@@ -86,7 +86,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
             }
 
-            lightColor = projectile.GetAlpha(lightColor) * 0.78f; //1f is opaque
+            lightColor = projectile.GetAlpha(lightColor) * 0.99f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
@@ -129,9 +129,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.soulArmorMinions = false;
+                modPlayer.soulMinion = false;
             }
-            if (modPlayer.soulArmorMinions)
+            if (modPlayer.soulMinion)
             {
                 projectile.timeLeft = 2;
             }
@@ -199,7 +199,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 bool foundTarget = false;
                 if (projectile.ai[0] != 1f)
                 {
-                    projectile.tileCollide = true;
+                    projectile.tileCollide = false; //true
                 }
                 if (projectile.tileCollide && WorldGen.SolidTile(Framing.GetTileSafely((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16)))
                 {
@@ -242,7 +242,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 if (Vector2.Distance(player.Center, projectile.Center) > distanceNoclip)
                 {
                     projectile.ai[0] = 1f;
-                    projectile.tileCollide = false;
+                    projectile.tileCollide = false; //true
                     projectile.netUpdate = true;
                 }
                 if (foundTarget && projectile.ai[0] == 0f)//idek
@@ -345,7 +345,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
         {
             fallThrough = true;
-            return true;
+            return false; //true
         }
     }
 }
