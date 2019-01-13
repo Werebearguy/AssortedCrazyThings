@@ -6,6 +6,30 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    /* This class holds three retextures of DemonEye, that only differ by their texture and their gode
+     * First off, you need to declare the total number of retextures that you intend to use for this particular class
+     * (private const int TotalNumberOfThese)
+     * Then for organizations sake you "name" them by their number so you can see in the code what texture is what number
+     * (FG is Fractured Green etc)
+     * Then you need a "default" texture so cheatsheet shows a proper one, here just use the 0 one
+     * 
+     * Whereever you have something that isn't just easily adressed by the "number" of the NPC, use a switch case (like in HitEffects()).
+     * Check WalkingTombstoneRegular or StrangeSlime for usage in NPCLoot()
+     * 
+     * Depending on what NPC you try to retexture, you might need to change the number that is in npc.ai[_] in "public float AiTexture"
+     * (check via first spawning the vanilla NPC, enable misc -> show NPC info in ModdersToolkit, then looking at the four numbers in the
+     * first row (npc.ai[0] to npc.ai[3]), and trying out different scenarios for the NPC depending on its behavior pattern (demon eyes
+     * actually don't use any of those values, while for example Granite Elementals use all four (which makes this method of retexturing
+     * not work)), trying out different environments (day/night, water/no water, player being unreachable, while attacking the player, etc)
+     * and see if any of those four numbers never changes (stays 0). This one you can then use by index (from 0 to 3) as a variable to store
+     * our texture "number"
+     * 
+     * for some obscure cases you might need to change the number in npc.LocalAI[_] inside PreAI() (also from 0 to 3)
+     * 
+     * Finally, name the textures appropriately with whatever you have in PreDraw()
+     * (Texture2D texture = mod.GetTexture("NPCs/DemonEyeFractured_" + AiTexture);)
+     */
+
     public class DemonEyeFractured : ModNPC
     {
         private const int TotalNumberOfThese = 3;

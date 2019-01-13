@@ -6,6 +6,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    //this version of "retexture" is old and not recommended, refer to DemonEyeFractured or similar
+
     public class AnimatedTome : ModNPC
     {
         public override void SetStaticDefaults()
