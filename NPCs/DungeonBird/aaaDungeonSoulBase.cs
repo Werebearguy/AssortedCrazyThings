@@ -259,43 +259,45 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 //concider only the bottom half of the hitbox, a bit wider (minus a small bit below)
                 //if (Collision.SolidCollision(npc.position + new Vector2(-10f, npc.height / 2), npc.width + 20, npc.height / 2 -2))
-                if (Collision.SolidCollision(npc.position/* + new Vector2(-10f, 0f)*/, npc.width/* + 20*/, npc.height + 2))
+
+                if (Collision.SolidCollision(npc.position/* + new Vector2(-10f, 0f)*/, npc.width/* + 20*/, npc.height/* + 2*/))
                 {
-                    if (IsTargetActive())
+                    Vector2 between = tarnpc.Center + new Vector2(0f, -4f) - npc.Center;
+                    if (IsTargetActive() && between.Length() > 100f)
                     {
                         npc.noTileCollide = true;
-                        Vector2 between = tarnpc.Center + new Vector2(0f, -4f) - npc.Center;
                         float factor = 2f; //2f
                         int acc = 100; //4
-                        between.Normalize();
-                        between *= factor;
-                        npc.velocity = (npc.velocity * (acc - 1) + between) / acc;
+                        Vector2 between2 = between;
+                        between2.Normalize();
+                        between2 *= factor;
+                        if(npc.velocity.Length() < 1.5f)npc.velocity = (npc.velocity * (acc - 1) + between2) / acc;
+
+                        if(between.Length() < 105f)
+                        {
+                            npc.netUpdate = true;
+                        }
                         return;
                     }
                 }
                 else
                 {
                     npc.noTileCollide = false;
-                    npc.velocity *= 0.1f;
+                    npc.velocity *= 0.075f;
                 }
             }
 
+            //go into "eaten" mode
             if (!tarnpc.Equals(npc))
             {
                 if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height + 2)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
                 {
                     AI_State = 1;
-                    //SetTimeLeft(npc, (NPC)GetTarget());
                     npc.velocity.Y = 1f;
                 }
-                //else if(!npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 1 &&
-                //(npc.velocity.Y == 0 || (npc.velocity.Y < 2f && npc.velocity.Y > 0f)))
-                //{
-                //    Main.NewText("test22222");
-                //    npc.velocity.X = 0f;
-                //}
             }
 
+            //lock into place when harvester and soul hitbox collide
             if (AI_State == 1 && npc.velocity.Y != 0)
             {
                 float betweenX = tarnpc.Center.X - npc.Center.X;
