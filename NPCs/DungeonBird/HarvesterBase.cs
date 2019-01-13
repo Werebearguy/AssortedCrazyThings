@@ -206,7 +206,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //return index of closest soul
             for (short j = 0; j < 200; j++)
             {
-                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
+                //ignore souls if they are noclipping
+                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>() && !Collision.SolidCollision(Main.npc[j].position, Main.npc[j].width, Main.npc[j].height))
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();

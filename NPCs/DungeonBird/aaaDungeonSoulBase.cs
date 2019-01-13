@@ -318,8 +318,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 npc.velocity.X = 0;
             }
-            //remove this in actual release, only --npc.timeLeft
-            /*if (AI_State == 1)*/
+
             --npc.timeLeft;
             if (npc.timeLeft < 0)
             {
