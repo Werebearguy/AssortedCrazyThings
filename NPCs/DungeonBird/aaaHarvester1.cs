@@ -1,22 +1,13 @@
-using System;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public class aaaHarvester1 : HarvesterBase
     {
-        //public override string Texture
-        //{
-        //    get
-        //    {
-        //        return "AssortedCrazyThings/NPCs/StoneSoldier"; //temp
-        //    }
-        //}
 
         public override void SetStaticDefaults()
         {
@@ -211,35 +202,31 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //Print("recv: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            bool shouldSpawn = true;
-            for (short j = 0; j < 200; j++)
-            {
-                if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
-                {
-                    shouldSpawn = false;
-                    break;
-                }
-            }
+        //public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        //{
+        //    bool shouldSpawn = true;
+        //    for (short j = 0; j < 200; j++)
+        //    {
+        //        if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
+        //        {
+        //            shouldSpawn = false;
+        //            break;
+        //        }
+        //    }
 
-            if (spawnInfo.player.ZoneDungeon && shouldSpawn)
-            {
-                //only spawns when in dungeon and when no other is alive atm
-                return 0.04f;
-            }
-            else
-            {
-                return 0f;
-            }
-        }
+        //    if (spawnInfo.player.ZoneDungeon && shouldSpawn)
+        //    {
+        //        //only spawns when in dungeon and when no other is alive atm
+        //        return 0.04f;
+        //    }
+        //    else
+        //    {
+        //        return 0f;
+        //    }
+        //}
 
         public override void AI()
         {
-            if (Main.time % 60 == 29)
-            {
-                //Print("" + restrictedSoulSearch);
-            }
             HarvesterAI(allowNoclip: !restrictedSoulSearch);
         }
     }

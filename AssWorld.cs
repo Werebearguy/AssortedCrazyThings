@@ -147,10 +147,10 @@ namespace AssortedCrazyThings
                             }
                         }
                     }
-                    if (Main.time >= 32400.0) //32400 is the last tick of the night
-                    {
-                        spawnHarvester = true; //allow it to spawn the next night (after world reload)
-                    }
+                    //if (Main.time >= 32400.0) //32400 is the last tick of the night
+                    //{
+                    //    spawnHarvester = true; //allow it to spawn the next night (after world reload)
+                    //}
                 }
             }
             else //if day
