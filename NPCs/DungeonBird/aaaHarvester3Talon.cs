@@ -128,9 +128,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextFloat() >= 0.5f)
+            if (target.whoAmI == Main.myPlayer && Main.rand.NextFloat() >= 0.5f)
             {
-                target.AddBuff(BuffID.Slow, 300); //5 seconds, 50% chance
+                target.AddBuff(BuffID.Slow, 300, false); //5 seconds, 50% chance
             }
         }
 
