@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
@@ -25,11 +26,12 @@ namespace AssortedCrazyThings
 
         //Slime pet legacy
         public static int[] slimePetLegacy = new int[9];
+        public static int[] slimePetItems = new int[18];
 
         //Soul item animated textures
         public static Texture2D[] animatedTextureArray;
 
-        private void InitPetAccessories()
+        private void InitPets()
         {
             slimePetLegacy[0] = ProjectileType<CuteSlimeBlackPet>();
             slimePetLegacy[1] = ProjectileType<CuteSlimeBluePet>();
@@ -41,15 +43,35 @@ namespace AssortedCrazyThings
             slimePetLegacy[7] = ProjectileType<CuteSlimeXmasPet>();
             slimePetLegacy[8] = ProjectileType<CuteSlimeYellowPet>();
 
+            slimePetItems[0] = ItemType<CuteSlimeBlack>();
+            slimePetItems[1] = ItemType<CuteSlimeBlue>();
+            slimePetItems[2] = ItemType<CuteSlimeGreen>();
+            slimePetItems[3] = ItemType<CuteSlimePink>();
+            slimePetItems[4] = ItemType<CuteSlimePurple>();
+            slimePetItems[5] = ItemType<CuteSlimeRainbow>();
+            slimePetItems[6] = ItemType<CuteSlimeRed>();
+            slimePetItems[7] = ItemType<CuteSlimeXmas>();
+            slimePetItems[8] = ItemType<CuteSlimeYellow>();
+
+            slimePetItems[9] = ItemType<CuteSlimeBlackNew>();
+            slimePetItems[10] = ItemType<CuteSlimeBlueNew>();
+            slimePetItems[11] = ItemType<CuteSlimeGreenNew>();
+            slimePetItems[12] = ItemType<CuteSlimePinkNew>();
+            slimePetItems[13] = ItemType<CuteSlimePurpleNew>();
+            slimePetItems[14] = ItemType<CuteSlimeRainbowNew>();
+            slimePetItems[15] = ItemType<CuteSlimeRedNew>();
+            slimePetItems[16] = ItemType<CuteSlimeXmasNew>();
+            slimePetItems[17] = ItemType<CuteSlimeYellowNew>();
+
             if (!Main.dedServ && Main.netMode != 2)
             {
-                PetAccessories.Load(this);
+                PetAccessory.Load(this);
             }
         }
 
         public override void Load()
         {
-            InitPetAccessories();
+            InitPets();
 
             if (!Main.dedServ && Main.netMode != 2)
             {
@@ -64,7 +86,7 @@ namespace AssortedCrazyThings
         {
             if (!Main.dedServ && Main.netMode != 2)
             {
-                PetAccessories.Unload();
+                PetAccessory.Unload();
                 animatedTextureArray = null;
             }
         }

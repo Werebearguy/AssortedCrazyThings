@@ -138,6 +138,12 @@ namespace AssortedCrazyThings
             }
         }
 
+        public uint GetAccessoryPlayer(byte slotNumber)
+        {
+            slotNumber -= 1;
+            return (slotsPlayer >> (slotNumber * 8)) & 255; //shift the selected 8 bits of the slot into the rightmost position
+        }
+
         public void ApplyPetAccessories(int i, uint j)
         {
             if (i != -1 && Main.projectile[i].active)
