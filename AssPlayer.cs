@@ -448,7 +448,7 @@ namespace AssortedCrazyThings
             {
                 if (counter == 0)
                 {
-                    Console.WriteLine(player.name + " slots " + slotsPlayer);
+                    //Console.WriteLine(player.name + " slots " + slotsPlayer);
                     counter = 240;
                 }
                 counter--;

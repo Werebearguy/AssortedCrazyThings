@@ -211,7 +211,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();
-                    if (newDistance < oldDistance && ((restrictedvar? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center, 1, 1, Main.npc[j].Center, 1, 1)))
+                    if (newDistance < oldDistance && ((restrictedvar? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center - new Vector2(0f, npc.height), 1, npc.height, Main.npc[j].Center, 1, 1)))
                     {
                         oldDistance = newDistance;
                         closest = j;
@@ -254,6 +254,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public static bool SolidCollisionNew(Vector2 Position, int Width, int Height)
         {
+
             int value = (int)(Position.X / 16f) - 1;
             int value2 = (int)((Position.X + (float)Width) / 16f) + 2;
             int value3 = (int)(Position.Y / 16f) - 1;
@@ -517,53 +518,42 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 position2.X += npc.velocity.X;
                 int num183 = (int)((position2.X + (float)(npc.width / 2) + (float)((npc.width / 2 + 1) * num182)) / 16f);
                 int num184 = (int)((position2.Y + (float)npc.height - 1f) / 16f);
+
                 if (Main.tile[num183, num184] == null)
                 {
                     Tile[,] tile3 = Main.tile;
-                    int num185 = num183;
-                    int num186 = num184;
                     Tile tile4 = new Tile();
-                    tile3[num185, num186] = tile4;
+                    tile3[num183, num184] = tile4;
                 }
                 if (Main.tile[num183, num184 - 1] == null)
                 {
                     Tile[,] tile5 = Main.tile;
-                    int num187 = num183;
-                    int num188 = num184 - 1;
                     Tile tile6 = new Tile();
-                    tile5[num187, num188] = tile6;
+                    tile5[num183, num184 - 1] = tile6;
                 }
                 if (Main.tile[num183, num184 - 2] == null)
                 {
                     Tile[,] tile7 = Main.tile;
-                    int num189 = num183;
-                    int num190 = num184 - 2;
                     Tile tile8 = new Tile();
-                    tile7[num189, num190] = tile8;
+                    tile7[num183, num184 - 2] = tile8;
                 }
                 if (Main.tile[num183, num184 - 3] == null)
                 {
                     Tile[,] tile9 = Main.tile;
-                    int num191 = num183;
-                    int num192 = num184 - 3;
                     Tile tile10 = new Tile();
-                    tile9[num191, num192] = tile10;
+                    tile9[num183, num184 - 3] = tile10;
                 }
                 if (Main.tile[num183, num184 + 1] == null)
                 {
                     Tile[,] tile11 = Main.tile;
-                    int num193 = num183;
-                    int num194 = num184 + 1;
                     Tile tile12 = new Tile();
-                    tile11[num193, num194] = tile12;
+                    tile11[num183, num184 + 1] = tile12;
                 }
                 if (Main.tile[num183 - num182, num184 - 3] == null)
                 {
                     Tile[,] tile13 = Main.tile;
-                    int num195 = num183 - num182;
-                    int num196 = num184 - 3;
                     Tile tile14 = new Tile();
-                    tile13[num195, num196] = tile14;
+                    tile13[num183 - num182, num184 - 3] = tile14;
                 }
                 if ((float)(num183 * 16) < position2.X + (float)npc.width &&
                     (float)(num183 * 16 + 16) > position2.X &&
@@ -636,66 +626,50 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (Main.tile[num200, num201] == null)
                     {
                         Tile[,] tile15 = Main.tile;
-                        int num202 = num200;
-                        int num203 = num201;
                         Tile tile16 = new Tile();
-                        tile15[num202, num203] = tile16;
+                        tile15[num200, num201] = tile16;
                     }
                     if (Main.tile[num200, num201 - 1] == null)
                     {
                         Tile[,] tile17 = Main.tile;
-                        int num204 = num200;
-                        int num205 = num201 - 1;
                         Tile tile18 = new Tile();
-                        tile17[num204, num205] = tile18;
+                        tile17[num200, num201 - 1] = tile18;
                     }
                     if (Main.tile[num200, num201 - 2] == null)
                     {
                         Tile[,] tile19 = Main.tile;
-                        int num206 = num200;
-                        int num207 = num201 - 2;
                         Tile tile20 = new Tile();
-                        tile19[num206, num207] = tile20;
+                        tile19[num200, num201 - 2] = tile20;
                     }
                     if (Main.tile[num200, num201 - 3] == null)
                     {
                         Tile[,] tile21 = Main.tile;
-                        int num208 = num200;
-                        int num209 = num201 - 3;
                         Tile tile22 = new Tile();
-                        tile21[num208, num209] = tile22;
+                        tile21[num200, num201 - 3] = tile22;
                     }
                     if (Main.tile[num200, num201 + 1] == null)
                     {
                         Tile[,] tile23 = Main.tile;
-                        int num210 = num200;
-                        int num211 = num201 + 1;
                         Tile tile24 = new Tile();
-                        tile23[num210, num211] = tile24;
+                        tile23[num200, num201 + 1] = tile24;
                     }
                     if (Main.tile[num200 + npc.direction, num201 - 1] == null)
                     {
                         Tile[,] tile25 = Main.tile;
-                        int num212 = num200 + npc.direction;
-                        int num213 = num201 - 1;
                         Tile tile26 = new Tile();
-                        tile25[num212, num213] = tile26;
+                        tile25[num200 + npc.direction, num201 - 1] = tile26;
                     }
                     if (Main.tile[num200 + npc.direction, num201 + 1] == null)
                     {
                         Tile[,] tile27 = Main.tile;
-                        int num214 = num200 + npc.direction;
-                        int num215 = num201 + 1;
                         Tile tile28 = new Tile();
-                        tile27[num214, num215] = tile28;
+                        tile27[num200 + npc.direction, num201 + 1] = tile28;
                     }
                     if (Main.tile[num200 - npc.direction, num201 + 1] == null)
                     {
                         Tile[,] tile29 = Main.tile;
-                        int num216 = num200 - npc.direction;
-                        int num217 = num201 + 1;
                         Tile tile30 = new Tile();
-                        tile29[num216, num217] = tile30;
+                        tile29[num200 - npc.direction, num201 + 1] = tile30;
                     }
                     Main.tile[num200, num201 + 1].halfBrick();
                 }
@@ -786,9 +760,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void HarvesterAIGround(bool allowNoclip = true)
         {
-            //if(npc.velocity.Y != 0f) Main.NewText("veloy " + npc.velocity.Y); //use that in findframe to animate the wings
-
-
             bool flag3 = false;
             bool closeToSoul = false;
             //bool flag4 = false;
@@ -871,12 +842,46 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //if not locked, do othermovement
             if (!UpdateVelocity()) UpdateOtherMovement(flag3);
 
+
+
+            //---------------------------------------------------------------------
+            //NEW: DROP THROUGH PLATFORMS WHEN SOUL BELOW
+            int num = (int)(npc.position.X / 16f);
+            int num2 = (int)((npc.position.Y + npc.height + 15f) / 16f);
+
+            //tile under the left corner of the NPC
+            if (Main.tile[num, num2] == null)
+            {
+                Tile[,] tile3 = Main.tile;
+                Tile tile4 = new Tile();
+                tile3[num, num2] = tile4;
+            }
+            //tile on the right of that
+            if (Main.tile[num + 1, num2] == null)
+            {
+                Tile[,] tile5 = Main.tile;
+                Tile tile6 = new Tile();
+                tile5[num + 1, num2] = tile6;
+            }
+            //tile on the right right of that
+            if (npc.direction == -1 && Main.tile[num + 2, num2] == null)
+            {
+                Tile[,] tile7 = Main.tile;
+                Tile tile8 = new Tile();
+                tile7[num + 2, num2] = tile8;
+            }
+
+            if (TileID.Sets.Platforms[Main.tile[num, num2].type] && TileID.Sets.Platforms[Main.tile[num + 1, num2].type] && ((npc.direction == -1)? TileID.Sets.Platforms[Main.tile[num + 2, num2].type]:true) && (GetTarget().Center.Y - npc.Center.Y) > 0f)
+            {
+                npc.netUpdate = true;
+                npc.position.Y += 1f;
+            }
+
+
         }
 
         protected void HarvesterAI(bool allowNoclip = true)
         {
-            //if(SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
-
             if (Main.time % 120 == 2)
             {
                 //Print("soulseaten:" + soulsEaten);
