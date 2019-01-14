@@ -23,10 +23,13 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (1.1f * player.statLife < player.statLifeMax)
+            //4
+            if (4 * player.statLife < player.statLifeMax)
             {
                 player.GetModPlayer<AssPlayer>().tempSoulMinion = true;
             }
+            player.minionDamage *= 1.1f;
+            player.slotsMinions++;
         }
 
         public override void AddRecipes()

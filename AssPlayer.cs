@@ -73,72 +73,71 @@ namespace AssortedCrazyThings
             empoweringBuff = false;
         }
 
-
         public override void clientClone(ModPlayer clientClone)
         {
-            AssPlayer clone = clientClone as AssPlayer;
-            // Here we would make a backup clone of values that are only correct on the local players Player instance.
-            // Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
-            clone.petIndex = petIndex;
-            clone.slotsPlayer = slotsPlayer;
+            //AssPlayer clone = clientClone as AssPlayer;
+            //// Here we would make a backup clone of values that are only correct on the local players Player instance.
+            //// Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
+            //clone.petIndex = petIndex;
+            //clone.slotsPlayer = slotsPlayer;
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            //like OnEnterWorld but serverside
-            //HarvesterBase.Print("send SyncPlayer " + toWho + " " + fromWho + " " + newPlayer);
-            ModPacket packet = mod.GetPacket();
-            packet.Write((byte)AssMessageType.SyncPlayer);
-            packet.Write((byte)player.whoAmI);
-            packet.Write(slotsPlayer);
-            packet.Send(toWho, fromWho);
+            ////like OnEnterWorld but serverside
+            ////HarvesterBase.Print("send SyncPlayer " + toWho + " " + fromWho + " " + newPlayer);
+            //ModPacket packet = mod.GetPacket();
+            //packet.Write((byte)AssMessageType.SyncPlayer);
+            //packet.Write((byte)player.whoAmI);
+            //packet.Write(slotsPlayer);
+            //packet.Send(toWho, fromWho);
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            // Here we would sync something like an RPG stat whenever the player changes it.
-            AssPlayer clone = clientPlayer as AssPlayer;
-            if (clone.slotsPlayer != slotsPlayer || clone.petIndex != petIndex || (petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type))
-            {
-                //if (clone.slotsPlayer != slotsPlayer) HarvesterBase.Print("clone.slotsPlayer != slotsPlayer ");
-                //if (clone.petIndex != petIndex) HarvesterBase.Print("clone.petIndex != petIndex");
-                //if ((petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type)) HarvesterBase.Print("other thing");
-                //HarvesterBase.Print("send SendClientChanges " + Main.netMode);
-                // Send a Mod Packet with the changes.
-                var packet = mod.GetPacket();
-                packet.Write((byte)AssMessageType.SendClientChanges);
-                packet.Write((byte)player.whoAmI);
-                //packet.Write(petType);
-                packet.Write(petIndex);
-                packet.Write(slotsPlayer);
-                packet.Send();
-            }
+            //// Here we would sync something like an RPG stat whenever the player changes it.
+            //AssPlayer clone = clientPlayer as AssPlayer;
+            //if (clone.slotsPlayer != slotsPlayer || clone.petIndex != petIndex || (petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type))
+            //{
+            //    //if (clone.slotsPlayer != slotsPlayer) HarvesterBase.Print("clone.slotsPlayer != slotsPlayer ");
+            //    //if (clone.petIndex != petIndex) HarvesterBase.Print("clone.petIndex != petIndex");
+            //    //if ((petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type)) HarvesterBase.Print("other thing");
+            //    //HarvesterBase.Print("send SendClientChanges " + Main.netMode);
+            //    // Send a Mod Packet with the changes.
+            //    var packet = mod.GetPacket();
+            //    packet.Write((byte)AssMessageType.SendClientChanges);
+            //    packet.Write((byte)player.whoAmI);
+            //    //packet.Write(petType);
+            //    packet.Write(petIndex);
+            //    packet.Write(slotsPlayer);
+            //    packet.Send();
+            //}
         }
 
         public void SendRedrawPetAccessories(int toClient = -1, int ignoreClient = -1)
         {
-            //HarvesterBase.Print("send SendRedrawPetAccessories " + Main.netMode);
-            var packet = mod.GetPacket();
-            packet.Write((byte)AssMessageType.RedrawPetAccessories);
-            packet.Write((byte)player.whoAmI);
-            packet.Write(petIndex);
-            packet.Write(slotsPlayer);
-            packet.Send(toClient, ignoreClient);
+            ////HarvesterBase.Print("send SendRedrawPetAccessories " + Main.netMode);
+            //var packet = mod.GetPacket();
+            //packet.Write((byte)AssMessageType.RedrawPetAccessories);
+            //packet.Write((byte)player.whoAmI);
+            //packet.Write(petIndex);
+            //packet.Write(slotsPlayer);
+            //packet.Send(toClient, ignoreClient);
         }
 
         public void SendSlotData()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                //Main.NewText("send from " + player.whoAmI);
-                ModPacket packet = mod.GetPacket();
-                //packet.Write((byte)AssMessageType.PetAccessorySlots);
-                packet.Write((byte)player.whoAmI);
-                packet.Write(petIndex);
-                packet.Write(slotsPlayer);
-                packet.Write(slotsPlayerLast);
-                packet.Send();
-            }
+            //if (Main.netMode == NetmodeID.MultiplayerClient)
+            //{
+            //    //Main.NewText("send from " + player.whoAmI);
+            //    ModPacket packet = mod.GetPacket();
+            //    //packet.Write((byte)AssMessageType.PetAccessorySlots);
+            //    packet.Write((byte)player.whoAmI);
+            //    packet.Write(petIndex);
+            //    packet.Write(slotsPlayer);
+            //    packet.Write(slotsPlayerLast);
+            //    packet.Send();
+            //}
         }
 
         public uint GetAccessoryPlayer(byte slotNumber)

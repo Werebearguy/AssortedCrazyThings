@@ -72,7 +72,7 @@ namespace AssortedCrazyThings
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-
+            /*
             AssMessageType msgType = (AssMessageType)reader.ReadByte();
             byte playernumber;
             //Player tempPlayer;
@@ -223,6 +223,7 @@ namespace AssortedCrazyThings
                     ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
                     break;
             }
+            */
         }
     }
 
