@@ -59,6 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCImmunity[target.whoAmI] = 10;
                 target.immune[projectile.owner] = 8; //0
+                //immunity frame now 8 instead of 10 ticks long
             }
         }
 
@@ -152,19 +153,29 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.timeLeft = 2;
             }
 
-            //if(projectile.localAI[0] == 0)
-            //{
-            //    sincounter = (projectile.whoAmI * 37) % 180;
-            //    projectile.localAI[0]++;
-            //}
+            if (projectile.localAI[0] < 60)
+            {
+                Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2);
+                for (int i = 0; i < 1; i++)
+                {
+                    if (Main.rand.NextFloat() < (60 - projectile.localAI[0])/360f)
+                    {
+                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, new Color(255, 255, 255), (60 - projectile.localAI[0]) / 60f + 1f);
+                        dust.noGravity = false;
+                        dust.noLight = true;
+                        dust.fadeIn = Main.rand.NextFloat(0.0f, 0.2f);
+                    }
+                }
+                projectile.localAI[0]++;
+            }
 
             float distance1 = 700f;
             float distance2playerfaraway = 800f;
             float distance2playerfarawayWhenHasTarget = 1200f;
             float num633 = 150f;
+            float dashDelay = 40f; //time it stays in the "dashing" state after a dash, he dashes when he is in state 0 aswell
 
             float overlapVelo = 0.04f; //0.05
-            int someIndex;
             for (int i = 0; i < 1000; i++)
             {
                 //fix overlap with other minions
@@ -187,7 +198,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         projectile.velocity.Y = projectile.velocity.Y + overlapVelo;
                     }
                 }
-                someIndex = i;
             }
             bool flag23 = false;
             if (projectile.ai[0] == 2f) //attack mode
@@ -196,7 +206,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.ai[1] += 1f;
                 projectile.extraUpdates = 1;
 
-                if (projectile.ai[1] > 40f)
+                if (projectile.ai[1] > dashDelay) //40f
                 {
                     projectile.ai[1] = 1f;
                     projectile.ai[0] = 0f;
@@ -209,6 +219,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     flag23 = true;
                 }
             }
+
             if (!flag23)
             {
                 Vector2 vector40 = projectile.position;
@@ -221,11 +232,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     projectile.tileCollide = false;
                 }
+
+                //only target closest NPC if that NPC is some range (200f) maybe
+
                 NPC ownerMinionAttackTargetNPC3 = projectile.OwnerMinionAttackTargetNPC;
                 if (ownerMinionAttackTargetNPC3 != null && ownerMinionAttackTargetNPC3.CanBeChasedBy(this))
                 {
                     float between = Vector2.Distance(ownerMinionAttackTargetNPC3.Center, projectile.Center);
-                    if (((Vector2.Distance(projectile.Center, vector40) > between && between < distance1) || !foundTarget) && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, ownerMinionAttackTargetNPC3.position, ownerMinionAttackTargetNPC3.width, ownerMinionAttackTargetNPC3.height))
+                    if (((Vector2.Distance(projectile.Center, vector40) > between && between < distance1) || !foundTarget) && 
+                        Collision.CanHitLine(projectile.position, projectile.width, projectile.height, ownerMinionAttackTargetNPC3.position, ownerMinionAttackTargetNPC3.width, ownerMinionAttackTargetNPC3.height))
                     {
                         distance1 = between;
                         vector40 = ownerMinionAttackTargetNPC3.Center;
@@ -234,20 +249,23 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 }
                 if (!foundTarget)
                 {
-                    for (int j = 0; j < 200; j = someIndex + 1)
+                    for (int j = 0; j < 200; j++)
                     {
                         NPC nPC2 = Main.npc[j];
                         if (nPC2.CanBeChasedBy(this))
                         {
-                            float num644 = Vector2.Distance(nPC2.Center, projectile.Center);
-                            if (((Vector2.Distance(projectile.Center, vector40) > num644 && num644 < distance1) || !foundTarget) && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPC2.position, nPC2.width, nPC2.height))
+                            float between = Vector2.Distance(nPC2.Center, projectile.Center);
+                            if (((Vector2.Distance(projectile.Center, vector40) > between && between < distance1) || !foundTarget) &&
+                                //EITHER HE CAN SEE IT, OR THE TARGET IS (default case: 14) TILES AWAY BUT THE MINION IS INSIDE A TILE
+                                //makes it so the soul can still attack if it dashed "through tiles"
+                                (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPC2.position, nPC2.width, nPC2.height) ||
+                                (between < dashDelay * 5 && Collision.SolidCollision(projectile.position, projectile.width, projectile.height))))
                             {
-                                distance1 = num644;
+                                distance1 = between;
                                 vector40 = nPC2.Center;
                                 foundTarget = true;
                             }
                         }
-                        someIndex = j;
                     }
                 }
                 float distanceNoclip = distance2playerfaraway;
@@ -312,8 +330,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     }
                     if (num649 > 2000f)
                     {
-                        projectile.position.X = player.Center.X - (float)(projectile.width / 2);
-                        projectile.position.Y = player.Center.Y - (float)(projectile.height / 2);
+                        projectile.position.X = player.Center.X - (projectile.width / 2);
+                        projectile.position.Y = player.Center.Y - (projectile.height / 2);
                         projectile.netUpdate = true;
                     }
                     if (num649 > 70f) //the immediate range around the player (when it passively floats about)
@@ -332,16 +350,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 if (projectile.ai[1] > 0f)
                 {
-                    projectile.ai[1] += (float)Main.rand.Next(1, 4);
+                    projectile.ai[1] += Main.rand.Next(1, 4);
                 }
-                if (projectile.ai[1] > 40f)
+                if (projectile.ai[1] > dashDelay)
                 {
                     projectile.ai[1] = 0f;
                     projectile.netUpdate = true;
                 }
                 if (projectile.ai[0] == 0f)
                 {
-                    if ((projectile.ai[1] == 0f & foundTarget) && distance1 < 30f) //500f
+                    if ((projectile.ai[1] == 0f & foundTarget) && distance1 < 30f) //500f //DASH HERE YEEEEEEE
                     {
                         projectile.ai[1] += 1f;
                         if (Main.myPlayer == projectile.owner)
