@@ -399,7 +399,14 @@ Golden Extendo-Net
 ============
 CUTE SLIME VANITY
 ============
-All crafted with Loom, Silk x15
+To equip Cute Slime pets with vanity items;
+	- Hold the Cute Slime accessory, either with the mouse or with it selected on your hotbar
+	- Left Click while near your Cute Slime to equip the item you are currently holding
+		- The item will remain in your inventory
+	- Left Click your Cute Slime again to remove the item you just applied
+	- Hold Right Click while holding a Cute Slime accessory to remove all equipped accessories
+	- Hold Right Click to re-equip all items removed on the previous Right Click
+	- All items in this category are crafted at a Loom, and require 15 Silk each
 
 Cute Bowtie
 	- A bowtie for your Cute Slime's chest
@@ -513,7 +520,7 @@ FIXES
 CHANGES
 	- All items' sell values updated
 		- Sell values reflect an additive value based on the prices of the combined items
-	- Chunky and Meatball NPCs spawn more often, its pet versions are no longer connected by a red string, and fly around separately
+	- Chunky and Meatball NPCs spawn more often
 	- Chunky and Meatball (Pet) now spawns both named eyes as separate entities
 		- No more red string of fate
 	- Cute Slime sprites updated
@@ -551,6 +558,8 @@ ADDITONS
 	Pet Accessories:
 		- Vanity items can be crafted for your Cute Slime pets
 			- All items are crafted at a Loom with 15 Silk
+		- To use, left click the accessory on your Cute Slime for it to be equipped
+		- 
 			
 	Pets:
 		- Companion Soul, a calm soul that lights the area around you

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chunky");
-            Main.projFrames[projectile.type] = 3;
+            Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
         }
 
@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
-            projectile.width = 20;
-            projectile.height = 32;
+            projectile.width = 22;
+            projectile.height = 34;
         }
 
         public override bool PreAI()
@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Meatball");
-            Main.projFrames[projectile.type] = 3;
+            Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
         }
 
@@ -56,8 +56,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
-            projectile.width = 20;
-            projectile.height = 32;
+            projectile.width = 22;
+            projectile.height = 34;
         }
 
         public override bool PreAI()
