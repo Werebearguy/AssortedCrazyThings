@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Tooltip.SetDefault("Summons a friendly Soul to give you light.");
+            Tooltip.SetDefault("Summons a friendly Soul to light your way.");
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 

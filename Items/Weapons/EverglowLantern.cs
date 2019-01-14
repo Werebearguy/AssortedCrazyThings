@@ -21,8 +21,8 @@ namespace AssortedCrazyThings.Items.Weapons
             item.damage = CompanionDungeonSoulMinion.Damage;
             item.summon = true;
             item.mana = 10;
-            item.width = 38;
-            item.height = 18;
+            item.width = 18;
+            item.height = 46;
             item.useTime = 36;
             item.useAnimation = 36;
             item.useStyle = 4; //4 for life crystal
@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MeteoriteBar, 5);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 1);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 2);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

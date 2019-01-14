@@ -17,6 +17,8 @@ To-Do List: Both of Us
 		- Let's get all the final touches done on this bad boy
 	- Decide on a name
 		- My suggestions; 
+			- Ossoulfrage 
+				- Mix of "soul" and "ossifrage" (https://en.wiktionary.org/wiki/ossifrage)
 	- Adjust stats for balancing purposes
 	- Fully test ingame under normal playthroughs
 	
@@ -37,17 +39,14 @@ To-Do List: direwolf420
 	- Mechanical eye variants that shoot lasers picked only after the Twins are defeated
 		- Separate NPC file for them due to custom AI
 
-//DONE
 - Chunky and Meatball separated
 		
 - Combine Walking Tombstone NPCs
 	- Drops based on the sprite picked
 	- For Cheat Sheet and other spawning purposes, feel free to pick the "default" look
 
-//DONE
 - Put Cute Slime Mitten accessories in a new slot of their own
 	
-//DONE
 - Inert Soul and Awakened Soul variants
 	- Use old sprites, currently prefixed by aaaa, as Inert Souls
 		- Inert Soul spawns during the early phases of the (BOSS NAME HERE) boss, and are eaten by the (BOSS NAME HERE)'s first and second forms
@@ -62,18 +61,16 @@ To-Do List: direwolf420
 #####################################################################################
 To-Do List: Werebearguy
 #####################################################################################
+//(MOSTLY)DONE
+- Adjust sprites for Pet Accessories
+	- While I most likely won't make any, I'll still fix and finish any that you make
+	
+//DONE
 - Reduce file sizes of sprites
 
-//DONE
 - Create item sprite for (BOSS NAME HERE)-specific drop
 	- Used in the creation of the Soul Savior Garment armor pieces
 
-- Create item sprite for Slime Accessories
-	- Low priority
-		- Note from Werebearguy: 
-			- I have low interest in this concept as I was intending for the Cute Slimes to basically be done by this point
-			- Any changes would have only been fixing minor issues, such as the recently fixed Rainbow Cute Slime lighting issue
-	- Vanity items that fit on any Cute Slime
 
 
 #####################################################################################
@@ -83,9 +80,6 @@ To-Do List: Side Projects of Absolute Lowest Priority
 	- Place bait into container
 	- After some time, it turns into fishing loot
 		- Based on biome placed
-
-- Soul Savior Garment glowmasks
-	- Head and Shoulders glowing like the souls do
 	
 - Adjust Anomalocaris
 	- New sprites for swimming sideways
@@ -145,3 +139,7 @@ Scrapped Until Further Notice
 - New Accessory; Bouncy Shoes
 	- Scrapped Reason : Collision fuckery
 	- Accessory that causes the player to bounce when landing, similar to the effect of the Pink Slime Block
+	
+- Soul Savior Garment glowmasks
+	- Scrapped Reason : Way too similar to an armor set from Thorium 
+	- Head and Shoulders glowing like the souls do

@@ -360,6 +360,11 @@ Breath of Spazmatism
 	- Cursed Flames ranged weapon
 	- Balanced for post-mech content
 	- Recipe: Hardmode Anvil, Flamethrower x1 + Hallowed Bar x5 + Soul of Sight x5
+Everglow Lantern
+	- A lantern that calls out two souls who fight for you
+		- They cause shorter i-frames on bosses, so you can properly help them fight
+	- Balanced for Post-Skeletron content
+	- Recipe: Anvil, Meteorite Bar x5, Freed Dungeon Soul x2
 Pocket Sand
 	- Throwing weapon that deals minimal damage, but confuses most enemies for a moment
 	- Creates ten per craft
@@ -397,19 +402,29 @@ CUTE SLIME VANITY
 All crafted with Loom, Silk x15
 
 Cute Bowtie
-	- A bowtie for your Cute Slime's chest, comes in Gray, Blue, Red, and Green
+	- A bowtie for your Cute Slime's chest
+	- Available Colors: Red, Orange, Yellow, Green, Blue, Purple, Pink, White, Gray, Black
+Cute Crown
+	- A regal crown for your Cute Slime's head
+	- Available Colors: Gold, Platinum
 Cute Hair Bow
-	- A bow for your Cute Slime's head, comes in Gray, Pink, Red, and White
+	- A bow for your Cute Slime's head
+	- Available Colors: Red, Orange, Yellow, Green, Blue, Purple, Pink, White, Gray, Black
 Cute Head Slime
-	- A slime for your Cute Slime's head, comes in Green
+	- A slime for your Cute Slime's head
+	- Comes in Red, Yellow, Green, Blue, Purple, Pink, Pinky, Black
 Cute Kitchen Knife
-	- A knife for your Cute Slime to hold, totally safe
+	- A knife for your Cute Slime to hold
+	- No Slime was harmed in making this
 Cute Mittens
-	- Soft mittens to keep your Cute Slime's hands warm, comes in Blue, Gray, and Red
+	- Soft mittens to keep your Cute Slime's hands warm
+	- Available Colors: Red, Orange, Yellow, Green, Blue, Purple, Pink, White, Gray, Black
 Cute Santa Hat
 	- A merry hat for your merry Cute Slime's head
+	- Available Colors: Red, Green
 Cute Staff
-	- A toy staff for your Cute Slime, comes in Amethyst and Topaz
+	- A toy staff for your Cute Slime
+	- Available Colors: Amber, Amethyst, Diamond, Emerald, Ruby, Sapphire, Topaz
 
 ============	
 CONSUMABLES
