@@ -55,6 +55,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
                     Vector2 stupidOffset = PetAccessory.Offset[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
+                    Color color = drawColor * ((255 - PetAccessory.Alpha[slimeAccessory]) / 255f);
 
                     //fix for legacy slimes
                     if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
@@ -158,8 +159,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //(-7.5f * projectile.scale + 7.5f))
                     stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f));
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    drawColor.A = (byte)(255 - PetAccessory.Alpha[slimeAccessory]);
-                    spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), drawColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
+                    spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
                 }
             }
         }

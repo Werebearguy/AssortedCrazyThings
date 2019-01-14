@@ -893,14 +893,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryMittensWhite", allowLegacy: false);
             Add(name: "PetAccessoryMittensYellow", allowLegacy: false);
 
-            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadPink", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadPinky", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadRed", offsetY: -18f, alpha: 100);
-            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPink", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPinky", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadRed", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -18f, alpha: 56);
 
             Add(name: "PetAccessoryStaffAmber", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffAmethyst", offsetX: -14f, preDraw: true);
