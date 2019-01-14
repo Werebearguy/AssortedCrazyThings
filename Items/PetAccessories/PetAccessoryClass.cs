@@ -27,11 +27,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
      * 
      */
 
-    public class PetAccessoryBowtieRed : PetAccessoryBase
+    public class PetAccessoryBowtieBlack : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Red Bowtie");
+            DisplayName.SetDefault("Cute Black Bowtie");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -55,20 +55,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryBowtieGreen : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Green Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
-        }
-    }
-
     public class PetAccessoryBowtieGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -83,17 +69,549 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryXmasHat : PetAccessoryBase
+    public class PetAccessoryBowtieGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Santa Hat");
+            DisplayName.SetDefault("Cute Green Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowtieOrange : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Orange Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowtiePink : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pink Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowtiePurple : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Purple Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowtieRed : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Red Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowtieWhite : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute White Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryBowtieYellow : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Yellow Bowtie");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
+    public class PetAccessoryCrownGold : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Gold Crown");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
         protected override void MoreSetDefaults()
         {
             item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryCrownPlatinum : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Platinum Crown");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowBlack : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Black Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowBlue : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Blue Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowGray : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Gray Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowGreen : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Green Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowOrange : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Orange Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowPink : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pink Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowPurple : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Purple Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowRed : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Red Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowWhite : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute White Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryHairBowYellow : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Yellow Hair Bow");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryKitchenKnife : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Kitchen Knife");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryMittensBlack : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Blue Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensBlue : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Blue Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensGray : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Gray Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensGreen : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Green Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensOrange : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Orange Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensPink : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pink Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensPurple : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Purple Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensRed : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Red Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensWhite : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute White Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessoryMittensYellow : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Yellow Mittens");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Misc;
+        }
+    }
+
+    public class PetAccessorySlimeHeadBlack : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Black Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadBlue : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Blue Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadGreen : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Green Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadPink : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pink Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadPinky : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Pinky Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadPurple : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Purple Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadRed : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Red Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessorySlimeHeadYellow : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Yellow Head Slime");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryStaffAmber : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Amber Staff");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
         }
     }
 
@@ -111,11 +629,25 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryStaffTopaz : PetAccessoryBase
+    public class PetAccessoryStaffDiamond : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Topaz Staff");
+            DisplayName.SetDefault("Cute Diamond Staff");
+            Tooltip.SetDefault("Something to decorate your cute slime with.");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryStaffEmerald : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Emerald Staff");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -153,67 +685,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessorySlimeHead : PetAccessoryBase
+    public class PetAccessoryStaffTopaz : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Green Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    public class PetAccessoryMittensBlue : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Blue Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Misc;
-        }
-    }
-
-    public class PetAccessoryMittensRed : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Red Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Misc;
-        }
-    }
-
-    public class PetAccessoryMittensGray : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Gray Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Misc;
-        }
-    }
-
-    public class PetAccessoryKitchenKnife : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Kitchen Knife");
+            DisplayName.SetDefault("Cute Topaz Staff");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -223,11 +699,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryHairBowRed : PetAccessoryBase
+    public class PetAccessoryXmasHatGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Red Hair Bow");
+            DisplayName.SetDefault("Cute Green Santa Hat");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -237,39 +713,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryHairBowPink : PetAccessoryBase
+    public class PetAccessoryXmasHatRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Pink Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    public class PetAccessoryHairBowGray : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Gray Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with.");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    public class PetAccessoryHairBowWhite : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute White Hair Bow");
+            DisplayName.SetDefault("Cute Santa Hat");
             Tooltip.SetDefault("Something to decorate your cute slime with.");
         }
 
@@ -337,24 +785,63 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //order doesn't matter
             namesOfAccessories = new string[]
             {
-                "PetAccessoryBowtieRed",
-                "PetAccessoryBowtieGreen",
-                "PetAccessoryBowtieGray",
+                "PetAccessoryBowtieBlack",
                 "PetAccessoryBowtieBlue",
-                "PetAccessoryXmasHat",
+                "PetAccessoryBowtieGray",
+                "PetAccessoryBowtieGreen",
+                "PetAccessoryBowtieOrange",
+                "PetAccessoryBowtiePink",
+                "PetAccessoryBowtiePurple",
+                "PetAccessoryBowtieRed",
+                "PetAccessoryBowtieWhite",
+                "PetAccessoryBowtieYellow",
+
+                "PetAccessoryCrownGold",
+                "PetAccessoryCrownPlatinum",
+
+                "PetAccessoryHairBowBlack",
+                "PetAccessoryHairBowBlue",
+                "PetAccessoryHairBowGray",
+                "PetAccessoryHairBowGreen",
+                "PetAccessoryHairBowOrange",
+                "PetAccessoryHairBowPink",
+                "PetAccessoryHairBowPurple",
+                "PetAccessoryHairBowRed",
+                "PetAccessoryHairBowWhite",
+                "PetAccessoryHairBowYellow",
+
+                "PetAccessoryKitchenKnife",
+
+                "PetAccessoryMittensBlack",
+                "PetAccessoryMittensBlue",
+                "PetAccessoryMittensGray",
+                "PetAccessoryMittensGreen",
+                "PetAccessoryMittensOrange",
+                "PetAccessoryMittensPink",
+                "PetAccessoryMittensPurple",
+                "PetAccessoryMittensRed",
+                "PetAccessoryMittensWhite",
+                "PetAccessoryMittensYellow",
+
+                "PetAccessorySlimeHeadBlack",
+                "PetAccessorySlimeHeadBlue",
+                "PetAccessorySlimeHeadGreen",
+                "PetAccessorySlimeHeadPink",
+                "PetAccessorySlimeHeadPinky",
+                "PetAccessorySlimeHeadPurple",
+                "PetAccessorySlimeHeadRed",
+                "PetAccessorySlimeHeadYellow",
+
+                "PetAccessoryStaffAmber",
                 "PetAccessoryStaffAmethyst",
-                "PetAccessoryStaffTopaz",
+                "PetAccessoryStaffDiamond",
+                "PetAccessoryStaffEmerald",
                 "PetAccessoryStaffRuby",
                 "PetAccessoryStaffSapphire",
-                "PetAccessorySlimeHead",
-                "PetAccessoryMittensBlue",
-                "PetAccessoryMittensRed",
-                "PetAccessoryMittensGray",
-                "PetAccessoryKitchenKnife",
-                "PetAccessoryHairBowRed",
-                "PetAccessoryHairBowPink",
-                "PetAccessoryHairBowGray",
-                "PetAccessoryHairBowWhite",
+                "PetAccessoryStaffTopaz",
+
+                "PetAccessoryXmasHatRed",
+                "PetAccessoryXmasHatGreen",
             };
 
             Init(mod, namesOfAccessories);
@@ -368,24 +855,63 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //alpha says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
             //order of the Add() doesn't matter
 
-            Add(name: "PetAccessoryBowtieRed");
-            Add(name: "PetAccessoryBowtieGreen");
-            Add(name: "PetAccessoryBowtieGray");
+            Add(name: "PetAccessoryBowtieBlack");
             Add(name: "PetAccessoryBowtieBlue");
-            Add(name: "PetAccessoryXmasHat", offsetY: -13f);
+            Add(name: "PetAccessoryBowtieGray");
+            Add(name: "PetAccessoryBowtieGreen");
+            Add(name: "PetAccessoryBowtieOrange");
+            Add(name: "PetAccessoryBowtiePink");
+            Add(name: "PetAccessoryBowtiePurple");
+            Add(name: "PetAccessoryBowtieRed");
+            Add(name: "PetAccessoryBowtieWhite");
+            Add(name: "PetAccessoryBowtieYellow");
+
+            Add(name: "PetAccessoryCrownGold");
+            Add(name: "PetAccessoryCrownPlatinum");
+
+            Add(name: "PetAccessoryHairBowBlack");
+            Add(name: "PetAccessoryHairBowBlue");
+            Add(name: "PetAccessoryHairBowGray");
+            Add(name: "PetAccessoryHairBowGreen");
+            Add(name: "PetAccessoryHairBowOrange");
+            Add(name: "PetAccessoryHairBowPink");
+            Add(name: "PetAccessoryHairBowPurple");
+            Add(name: "PetAccessoryHairBowRed");
+            Add(name: "PetAccessoryHairBowWhite");
+            Add(name: "PetAccessoryHairBowYellow");
+
+            Add(name: "PetAccessoryKitchenKnife", offsetX: -6f, preDraw: true);
+
+            Add(name: "PetAccessoryMittensBlack", allowLegacy: false);
+            Add(name: "PetAccessoryMittensBlue", allowLegacy: false);
+            Add(name: "PetAccessoryMittensGray", allowLegacy: false);
+            Add(name: "PetAccessoryMittensGreen", allowLegacy: false);
+            Add(name: "PetAccessoryMittensOrange", allowLegacy: false);
+            Add(name: "PetAccessoryMittensPink", allowLegacy: false);
+            Add(name: "PetAccessoryMittensPurple", allowLegacy: false);
+            Add(name: "PetAccessoryMittensRed", allowLegacy: false);
+            Add(name: "PetAccessoryMittensWhite", allowLegacy: false);
+            Add(name: "PetAccessoryMittensYellow", allowLegacy: false);
+
+            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadPink", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadPinky", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadRed", offsetY: -18f, alpha: 100);
+            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -18f, alpha: 100);
+
+            Add(name: "PetAccessoryStaffAmber", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffAmethyst", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffDiamond", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffEmerald", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffRuby", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessorySlimeHead", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessoryMittensBlue", allowLegacy: false);
-            Add(name: "PetAccessoryMittensRed", allowLegacy: false);
-            Add(name: "PetAccessoryMittensGray", allowLegacy: false);
-            Add(name: "PetAccessoryKitchenKnife", offsetX: -6f, preDraw: true);
-            Add(name: "PetAccessoryHairBowRed");
-            Add(name: "PetAccessoryHairBowPink");
-            Add(name: "PetAccessoryHairBowGray");
-            Add(name: "PetAccessoryHairBowWhite");
+            Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
+
+            Add(name: "PetAccessoryXmasHatGreen", offsetY: -13f);
+            Add(name: "PetAccessoryXmasHatRed", offsetY: -13f);
 
             Check();
 

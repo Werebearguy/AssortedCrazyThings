@@ -1,0 +1,5 @@
+﻿//-(only for you, read this: https://terraria.gamepedia.com/Spider_Staff)
+//add to the item description of the everglow lantern that you cant summon more if the current number of minion slots is greater than the max available slots - 1
+//(example: 2.5 equals to 5 of the soul minions, but if you have only 3 slots available, you cant summon a 6th one, even tho technically it CAN fit (2.5 + 0.5 = 3))
+
+- either im blind or you didnt add how to use the slime accessories (aka describe what left click does, and what holding right click does)
