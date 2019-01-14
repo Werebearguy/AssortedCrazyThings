@@ -11,6 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     {
         //change damage here, reminder that there are two minions so you are effectively doubling the damage
         public static int Damage = 13;
+        public static float Knockback = 0.5f;
         private int sincounter;
 
         public override void SetStaticDefaults()
@@ -107,6 +108,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
+            
+            //the one that spawns on hit via SigilOfEmergency (might have different name)
+            if (projectile.minionSlots == 0f && projectile.timeLeft < 120)
+            {
+                lightColor = projectile.GetAlpha(lightColor) * (projectile.timeLeft / 120f);
+            }
 
             Lighting.AddLight(projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
@@ -148,7 +155,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 modPlayer.soulMinion = false;
             }
-            if (modPlayer.soulMinion)
+            if (modPlayer.soulMinion && projectile.minionSlots == 0.5f) //if spawned naturally they will have 0.5f
             {
                 projectile.timeLeft = 2;
             }

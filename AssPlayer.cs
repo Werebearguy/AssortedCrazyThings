@@ -8,6 +8,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using AssortedCrazyThings.Projectiles;
+using AssortedCrazyThings.Projectiles.Minions;
 
 namespace AssortedCrazyThings
 {
@@ -47,6 +48,7 @@ namespace AssortedCrazyThings
         public int clientcounter = 30;
 
         public bool soulMinion = false;
+        public bool tempSoulMinion = false;
 
         //empowering buff stuff
         public bool empoweringBuff;
@@ -67,6 +69,7 @@ namespace AssortedCrazyThings
             teleportHome = false;
             getDefense = false;
             soulMinion = false;
+            tempSoulMinion = false;
             empoweringBuff = false;
         }
 
@@ -228,9 +231,38 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void SpawnSoul()
+        {
+            if (tempSoulMinion && player.whoAmI == Main.myPlayer)
+            {
+                bool checkIfAlive = false;
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == mod.ProjectileType<CompanionDungeonSoulMinion>())
+                    {
+                        if (Main.projectile[i].minionSlots == 0f)
+                        {
+                            checkIfAlive = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!checkIfAlive)
+                {
+                    //twice the damage
+                    int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction * 0.5f, -0.5f, mod.ProjectileType<CompanionDungeonSoulMinion>(), CompanionDungeonSoulMinion.Damage * 2, CompanionDungeonSoulMinion.Knockback, player.whoAmI, 0f, 0f);
+                    Main.projectile[i].minionSlots = 0f;
+                    Main.projectile[i].timeLeft = 600; //10 seconds
+                }
+            }
+        }
+
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
             ResetEmpoweringTimer();
+
+            SpawnSoul();
         }
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)

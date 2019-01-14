@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType<CompanionDungeonSoulMinion>();
             item.shootSpeed = 10f;
-            item.knockBack = 0.5f;
+            item.knockBack = CompanionDungeonSoulMinion.Knockback;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
             item.buffTime = 3600;
         }
