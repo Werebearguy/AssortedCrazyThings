@@ -1,6 +1,7 @@
 ﻿using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -50,11 +51,6 @@ namespace AssortedCrazyThings.Items.Weapons
             return false;
         }
 
-        public override Vector2? HoldoutOffset()
-        {
-            return null;// new Vector2(0, 20);
-        }
-
         public override bool UseItem(Player player)
         {
             if (player.altFunctionUse == 2)
@@ -62,6 +58,24 @@ namespace AssortedCrazyThings.Items.Weapons
                 player.MinionNPCTargetAim();
             }
             return base.UseItem(player);
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
+            foreach (TooltipLine line2 in tooltips)
+            {
+                //if (line2.mod == "Terraria" && line2.Name == "ItemName")
+                //{
+                //    line2.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                //}
+                if (line2.mod == "Terraria" && line2.Name == "BuffTime")
+                {
+                    line = line2;
+                    break;
+                }
+            }
+            tooltips.Remove(line);
         }
 
         public override void AddRecipes()

@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             maxVeloScale = 1.3f; //1.3f default
             maxAccScale = 0.04f; //0.04f default
             stuckTime = 6; //*30 for ticks, *0.5 for seconds
-            afterEatTime = 60;
+            afterEatTime = 180;
             eatTime = EatTimeConst + 60;
             idleTime = IdleTimeConst;
             hungerTime = 3600; //AI_Timer
