@@ -148,27 +148,11 @@ Zombie Florist
 ============
 PETS
 ============
-Alien Hornet
-	- Resembles a smaller Alien Hornet that flies behind you
-	- Recipe: Demon Altar, Nectar x1 + Vortex Fragment x10
-Baby Crimera
-	- Resembles a much cuter Crimera that wanders around
-	- Recipe: Demon Altar, Vertebrae x30
-Baby Ichor Sticker
-	- Resembles a much cuter Ichor Sticker that floats around you
-	- Recipe: Demon Altar, Ichor x30
+Dropped By Enemies:
+------------
 Baby Ocram
 	- Resembles a much cuter Ocram that flies around you
 	- Recipe: Drop from Spawn of Ocram
-Brain of Confusion
-	- The same effect that appears when the accessory is activated, but as a pet
-	- Recipe: Demon Altar, Brain of Confusion x1
-Chunky and Meatball
-	- Two brothers, reunited
-	- Recipe: Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
-Cursed Skull
-	- The same enemy from the Dungeon, now following you indefinitely
-	- Recipe: Demon Altar, Bone x10
 Cute Gastropod
 	- A cute slime girl riding in a Gastropod's shell
 	- Recipe: Caught with a net
@@ -208,6 +192,40 @@ Cute Slime (Christmas)
 	- A naughty (or nice?) seasonal slime girl
 	- Caught with a net
 	- Appearance can be altered at a Solidifier
+Mini Megalodon
+	- A spunky purple shark that likes to assert itself at your side
+	- Drop from Little Megalodon
+Origami Crane
+	- A living origami crane that flies with you
+	- Drop from Foldfish
+Small Megalodon
+	- A purple shark that follows you, waiting for you to drop your guard...
+	- Drop from Megalodon
+Young Harpy
+	- A playful little bird that wants to go on an adventure
+	- Caught with a net
+
+------------
+Crafted by Player:
+------------
+Alien Hornet
+	- Resembles a smaller Alien Hornet that flies behind you
+	- Recipe: Demon Altar, Nectar x1 + Vortex Fragment x10
+Baby Crimera
+	- Resembles a much cuter Crimera that wanders around
+	- Recipe: Demon Altar, Vertebrae x30
+Baby Ichor Sticker
+	- Resembles a much cuter Ichor Sticker that floats around you
+	- Recipe: Demon Altar, Ichor x30
+Brain of Confusion
+	- The same effect that appears when the accessory is activated, but as a pet
+	- Recipe: Demon Altar, Brain of Confusion x1
+Chunky and Meatball
+	- Two brothers, reunited
+	- Recipe: Demon Altar, Chunky's Eye x1 + Meatball's Eye x1
+Cursed Skull
+	- The same enemy from the Dungeon, now following you indefinitely
+	- Recipe: Demon Altar, Bone x10
 Demon Heart
 	- A spooky demon heart that floats beside you
 	- Recipe: Demon Altar, Demon Heart x1
@@ -239,24 +257,12 @@ Goblet
 Lifelike Mechanical Frog
 	- A cute little frog...or is it?
 	- Recipe: Anvil, Frog x1
-Mini Megalodon
-	- A spunky purple shark that likes to assert itself at your side
-	- Drop from Little Megalodon
-Origami Crane
-	- A living origami crane that flies with you
-	- Drop from Foldfish
-Small Megalodon
-	- A purple shark that follows you, waiting for you to drop your guard...
-	- Drop from Megalodon
 Tortured Soul
 	- The soul of the Tax Collector
 	- Recipe: Demon Altar, Classy Cane x1
 Vampire Bat
 	- A vampire that likes to follow you around
 	- Recipe: Demon Altar, Bat wing x2 + Soul of Night x10
-Young Harpy
-	- A playful little bird that wants to go on an adventure
-	- Recipe: Caught with a net
 Wyverntail
 	- A young Wyvern that has taken flight at your side for the first time
 	- Recipe: Workbench, Wyverntail x1
@@ -264,6 +270,9 @@ Wyverntail
 ============
 LIGHT PETS
 ============
+------------
+Crafted by Player:
+------------
 Companion Soul
 	- A Dungeon Soul that lights the area around you
 	- Crystal Ball, Freed Dungeon Soul x 1
@@ -271,18 +280,30 @@ Companion Soul
 ============
 ACCESSORIES
 ============
+Dropped By Enemies:
+------------
 Anomalous Wings
 	- drops from Giant Anomalocaris.
 	- Allows slowfall, and allows quick travel in water
-Bipolar Candle in a Balloon
-	- It does exactly what you'd expect it to, except it doesn't
-	- Recipe: Tinkerer's Workbench, Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
+Sigil of Emergency
+	- Increases minion count by 1, and summons a temporary minion to help you upon reaching critical health
+		- Has a cooldown of ?? minutes
+	- Rarely drops from (BOSS NAME HERE)
+Sigil of Pain Suppression
+	- Drastically increases your defense for a brief moment upon reaching critical health
+		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
+	- Rarely drops from (BOSS NAME HERE)
+Sigil of Retreat
+	- Teleports you to your spawn point upon reaching critical health
+		- Has a cooldown of 10 minutes, denoted in the accessory's tooltip
+	- Rarely drops from (BOSS NAME HERE)
+
+------------
+Crafted by Player:
+------------
 Bottled Dreams
 	- Allows you to double jump. Can not be used in tandem with Blessed Apple's double jump
 	- Recipe: Tinkerer's Workbench, Bottle x1 + Pixie Dust x10
-Everburning Candelabra
-	- All of your attacks inflict On Fire, Cursed Inferno, Shadowflame, and Frostburn
-	- Recipe: Tinkerer's Workbench, Everburning Candle + Everburning Cursed Candle + Everburning Shadow Candle + Everfrozen Candle
 Everburning Candle
 	- All of your attacks inflict On Fire
 	- Recipe: Tinkerer's Workbench, Magma Stone x1 + Soul of Light x50
@@ -301,24 +322,9 @@ Festive Mirror
 Loot Magnet
 	- Increases pickup range on coins, hearts, and mana, lowers shop prices, and causes coins to sometimes drop from enemies
 	- Recipe: Tinkerer's Workbench, Greedy Ring x1 + Celestial Magnet x1 + Heartreach Potion x1
-Massive Bundle of Balloons
-	- Gives you six extra jumps, negates fall damage, and increases jump height
-	- Recipe: Tinkerer's Workbench, Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
 Peace Candle in a Balloon
 	- Reduced Enemy Spawn Rate, Increased Jump Height, and very faintly glows in the dark
 	- Recipe: Tinkerer's Workbench, Peace Candle x1 + Shiny Red Balloon x1
-Sigil of Last Stand
-	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
-		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
-	- Recipe: Tinkerer's Workbench, Sigil of Pain Suppression x1 + Sigil of Retreat x1
-Sigil of Pain Suppression
-	- Drastically increases your defense for a brief moment upon reaching critical health
-		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
-	- Recipe: Hardmode Anvil, Freed Dungeon Soul x 15 + Ironskin Potion x 5
-Sigil of Retreat
-	- Teleports you to your spawn point upon reaching critical health
-		- Has a cooldown of 10 minutes, denoted in the accessory's tooltip
-	- Recipe: Hardmode Anvil, Freed Dungeon Soul x 15 + Recall Potion x 5
 Slippery Soles
 	- You move on any block as if it was a Frozen Slime Block
 	- Recipe: Tinkerer's Workbench, Frozen Slime Block x2 + Leather x2
@@ -328,15 +334,32 @@ Soles of Fire and Ice
 Star in a Balloon
 	- Increases mana regeneration and jump height. Stacks with other mana regeneration buffs
 	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Star in a Bottle x1
-Star Wisp Balloon
-	- Increases Mana Regeneration, Jump Height, and glows in the dark
-	- Recipe: Tinkerer's Workbench, Star in a Balloon + Wisp in a Balloon
 Water Candle in a Balloon
 	- Increases Enemy Spawn Rate, Jump Height, and very faintly glows in the dark
 	- Recipe: Tinkerer's Workbench, Water Candle x1 + Shiny Red Balloon x1
 Wisp in a Balloon
 	- Glows in the dark and increases jump height. Nearly the same light as Wisp in a Bottle
 	- Recipe: Tinkerer's Workbench, Shiny Red Balloon x1 + Wisp in a Bottle x1
+
+------------
+Combined with Modded Items:
+------------
+Bipolar Candle in a Balloon
+	- It does exactly what you'd expect it to, except it doesn't
+	- Recipe: Tinkerer's Workbench, Water Candle in a Balloon x1 + Peace Candle in a Balloon x1
+Everburning Candelabra
+	- All of your attacks inflict On Fire, Cursed Inferno, Shadowflame, and Frostburn
+	- Recipe: Tinkerer's Workbench, Everburning Candle + Everburning Cursed Candle + Everburning Shadow Candle + Everfrozen Candle
+Massive Bundle of Balloons
+	- Gives you six extra jumps, negates fall damage, and increases jump height
+	- Recipe: Tinkerer's Workbench, Bundle of Balloons x1 + Honey Balloon x1 + Fart in a Balloon x1 + Sharkron Balloon x1 + Lucky Horseshoe x1 + Bottled Dreams x1
+Sigil of Last Stand
+	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
+		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
+	- Recipe: Tinkerer's Workbench, Sigil of Pain Suppression x1 + Sigil of Retreat x1
+Star Wisp Balloon
+	- Increases Mana Regeneration, Jump Height, and glows in the dark
+	- Recipe: Tinkerer's Workbench, Star in a Balloon + Wisp in a Balloon
 
 ============
 VANITY ACCESSORIES
@@ -478,34 +501,23 @@ Bugs and Issues
 ============
 	Bugs:
 		- (BOSS NAME HERE)'s first stages might behave weirdly or get stuck in extreme circumstances
+		- (BOSS NAME HERE)'s eating animation doesn't sync well in multiplayer
+			- It functions just fine though
+		- Everburning Candles' particles do not show up for other players in multiplayer
+			- The effects still work just fine
 	Compatibility:
-		- No known compatibility issues so far
+		- No known compatibility issues yet
 	Issues:
 		- Due to the way Cute Rainbow Slime is colored, most accessories applied to it will cause graphical issues
 		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
 		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to (BOSS NAME HERE) being defeated
 
 ============
-Planned Content
-============
-Enemies;
-	- More enemies
-
-Pets;
-	- More pets
-
-Accessories:
-	- More accessories
-	
-Other;
-	- More things
-
-============
 Changelog
 ============
 ??? ??, 2019
 Major Content Update #2
-
+Hours upon hours have gone into making this update between the two devs, and the results are in; this is a big update!
 
 FIXES
 	- Simplified Contents for ease of reading
@@ -541,11 +553,12 @@ CHANGES
 ADDITONS
 	Accessories:
 		- Everburning Candelabra, a combination of all four Everburning Candle accessories
+		- Sigil of Emergency, an accessory that gives you an extra minion slot and spawns a temporary minion when at critically low health
 		- Sigil of Pain Suppression, an accessory that gives you increased defense and rapid health regeneration when at critically low health
 			- Has a cooldown of 10 minutes, reflected in its tooltip after activated
 		- Sigil of Retreat, an accessory that sends you home with 100 health when you would have died
 			- Has a cooldown of 10 minutes, reflected in its tooltip after activated
-		- Sigil of Last Stand, a combination of the above two Sigil items
+		- Sigil of Last Stand, a combination of Sigil of Pain Suppression and Sigil of Retreat
 			- Shares the same cooldowns as both material items
 			
 	Armor:
@@ -558,8 +571,7 @@ ADDITONS
 	Pet Accessories:
 		- Vanity items can be crafted for your Cute Slime pets
 			- All items are crafted at a Loom with 15 Silk
-		- To use, left click the accessory on your Cute Slime for it to be equipped
-		- 
+		- A whole bunch of them; read the Contents to see all of the available vanity items
 			
 	Pets:
 		- Companion Soul, a calm soul that lights the area around you

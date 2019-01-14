@@ -6,6 +6,7 @@ To-Do List: Both of Us
 
 - Review all files prior to release
 	- Verify that display names are correct
+	- Review file sizes of images
 	- Verify that recipes for newly implemented items are working
 	- Verify that Contents.txt is up to date, including changelog
 	- Adjust filenames so that the final release does not have prefixes such as "aaa", "aaaa", or "0000"
@@ -27,7 +28,8 @@ To-Do List: Both of Us
 #####################################################################################
 To-Do List: direwolf420
 #####################################################################################
-- Review file sizes of images
+- Sync Harvester boss' animations in multiplayer
+- Fix player rendering after using Sigil of Retreat's teleport function
 
 //DONE
 - Combine Demon Eye NPCs into a single entity that picks texture randomly
