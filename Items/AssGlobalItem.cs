@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Items
 
             if (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff )
             {
-                if (base.CanUseItem(item, player) && player.HeldItem.active && player.HeldItem.damage >= 0)
+                if (player.HeldItem.active && player.HeldItem.damage >= 0)
                 {
                     if (player.HeldItem.melee)
                     {

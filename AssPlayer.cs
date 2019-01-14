@@ -467,47 +467,47 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if (joinDelaySend > 0)
-            {
-                joinDelaySend--;
-                if (joinDelaySend == 0 && petIndex != -1 && Main.netMode == NetmodeID.MultiplayerClient) SendRedrawPetAccessories();
-            }
+            //if (joinDelaySend > 0)
+            //{
+            //    joinDelaySend--;
+            //    if (joinDelaySend == 0 && petIndex != -1 && Main.netMode == NetmodeID.MultiplayerClient) SendRedrawPetAccessories();
+            //}
 
             SpawnSoulsWhenHarvesterIsAlive();
 
-            if (Main.netMode == NetmodeID.Server)
-            {
-                if (counter == 0)
-                {
-                    //Console.WriteLine(player.name + " slots " + slotsPlayer);
-                    counter = 240;
-                }
-                counter--;
-            }
+            //if (Main.netMode == NetmodeID.Server)
+            //{
+            //    if (counter == 0)
+            //    {
+            //        //Console.WriteLine(player.name + " slots " + slotsPlayer);
+            //        counter = 240;
+            //    }
+            //    counter--;
+            //}
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                if (clientcounter == 0)
-                {
-                    for (int players = 0; players < Main.player.Length; players++)
-                    {
-                        if (Main.player[players].active)
-                        {
-                            if (Main.LocalPlayer.whoAmI == player.whoAmI)
-                            {
-                                //Main.NewText("SELF:" + " slots " + slotsPlayer);
-                            }
-                            else
-                            {
-                                //Main.NewText("OTHE:" +" slots " + slotsPlayer);
-                            }
-                        }
-                    }
+            //if (Main.netMode == NetmodeID.MultiplayerClient)
+            //{
+            //    if (clientcounter == 0)
+            //    {
+            //        for (int players = 0; players < Main.player.Length; players++)
+            //        {
+            //            if (Main.player[players].active)
+            //            {
+            //                if (Main.LocalPlayer.whoAmI == player.whoAmI)
+            //                {
+            //                    //Main.NewText("SELF:" + " slots " + slotsPlayer);
+            //                }
+            //                else
+            //                {
+            //                    //Main.NewText("OTHE:" +" slots " + slotsPlayer);
+            //                }
+            //            }
+            //        }
 
-                    clientcounter = 240;
-                }
-                clientcounter--;
-            }
+            //        clientcounter = 240;
+            //    }
+            //    clientcounter--;
+            //}
         }
     }
 }

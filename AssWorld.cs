@@ -187,7 +187,7 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 60 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 15) //limit soul count in the world to 15
+                if (Main.time % 30 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 15) //limit soul count in the world to 15
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
@@ -206,6 +206,19 @@ namespace AssortedCrazyThings
                     {
                         Main.npc[oldest].life = 0;
                         Main.npc[oldest].active = false;
+                        Main.npc[oldest].netUpdate = true;
+                        if (Main.netMode == 2 && oldest < 200)
+                        {
+                            NetMessage.SendData(23, -1, -1, null, oldest);
+                        }
+                        //poof visual
+                        for (int i = 0; i < 15; i++)
+                        {
+                            Dust dust = Dust.NewDustPerfect(Main.npc[oldest].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                            dust.noLight = true;
+                            dust.noGravity = true;
+                            dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
+                        }
                     }
                 }
             } //end Main.NetMode
