@@ -896,7 +896,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessorySlimeHeadBlack", offsetY: -18f, alpha: 56);
             Add(name: "PetAccessorySlimeHeadBlue", offsetY: -18f, alpha: 56);
             Add(name: "PetAccessorySlimeHeadGreen", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPink", offsetY: -18f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPink", offsetY: -20f, alpha: 39);
             Add(name: "PetAccessorySlimeHeadPinky", offsetY: -18f, alpha: 56);
             Add(name: "PetAccessorySlimeHeadPurple", offsetY: -18f, alpha: 56);
             Add(name: "PetAccessorySlimeHeadRed", offsetY: -18f, alpha: 56);

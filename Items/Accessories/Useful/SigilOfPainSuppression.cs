@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 22;
+            item.width = 18;
             item.height = 22;
             item.value = Item.sellPrice(0, 1, 0, 0);
             item.rare = -11;

@@ -105,6 +105,7 @@
     <Compile Include="Items\Accessories\Useful\PeaceCandleInABalloon.cs" />
     <Compile Include="Items\Accessories\Useful\SigilOfLastStand.cs" />
     <Compile Include="Items\Accessories\Useful\SigilOfPainSuppression.cs" />
+    <Compile Include="Items\Accessories\Useful\SigilOfEmergency.cs" />
     <Compile Include="Items\Accessories\Useful\SigilOfRetreat.cs" />
     <Compile Include="Items\Accessories\Useful\SlipperySoles.cs" />
     <Compile Include="Items\Accessories\Useful\SolesOfFireAndIce.cs" />

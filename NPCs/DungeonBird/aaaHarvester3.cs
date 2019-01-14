@@ -165,11 +165,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
             Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
-            Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>(), Main.rand.Next(15, 26));
+            Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>());
 
             if(Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
-            //you need to kill it two times to craft the whole armor set
-            // (15+15 == 10 + 10 + 10)
 
             Vector2 randVector = new Vector2(1, 1);
             float randFactor = 0f;
