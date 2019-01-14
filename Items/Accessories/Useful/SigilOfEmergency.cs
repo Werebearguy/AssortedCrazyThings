@@ -29,18 +29,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 player.GetModPlayer<AssPlayer>().tempSoulMinion = true;
             }
             player.minionDamage *= 1.1f;
-            player.slotsMinions++;
-        }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.RecallPotion, 5);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 10);
-            recipe.AddIngredient(ItemID.Bone, 50);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            player.maxMinions++;
         }
     }
 }

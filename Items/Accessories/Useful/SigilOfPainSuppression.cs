@@ -67,16 +67,5 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         {
             player.GetModPlayer<AssPlayer>().getDefense = true;
         }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IronskinPotion, 5);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 10);
-            recipe.AddIngredient(ItemID.Bone, 50);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

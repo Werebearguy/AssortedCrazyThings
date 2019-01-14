@@ -1,5 +1,6 @@
 using System;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.VanityArmor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,7 +43,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.height = Hei; //176 texture //110
             npc.damage = 5; //contact damage
             npc.defense = 8;
-            npc.lifeMax = 1111;
+            npc.lifeMax = 1500;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = Item.buyPrice(0, 15);
@@ -164,10 +165,27 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
-            Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
-            Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>());
+            if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
+            if (Main.rand.NextBool()) Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>());
 
-            if(Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+            if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+
+            if (Main.rand.NextBool(3)) //33% chance
+            {
+                int rand = Main.rand.Next(3);
+                switch (rand)
+                {
+                    case 0:
+                        Item.NewItem(npc.getRect(), mod.ItemType<SigilOfRetreat>());
+                        break;
+                    case 1:
+                        Item.NewItem(npc.getRect(), mod.ItemType<SigilOfEmergency>());
+                        break;
+                    case 2:
+                        Item.NewItem(npc.getRect(), mod.ItemType<SigilOfPainSuppression>());
+                        break;
+                }
+            }
 
             Vector2 randVector = new Vector2(1, 1);
             float randFactor = 0f;
