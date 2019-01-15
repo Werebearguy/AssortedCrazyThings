@@ -12,14 +12,13 @@ To-Do List: Both of Us
 	- Adjust filenames so that the final release does not have prefixes such as "aaa", "aaaa", or "0000"
 	- Remove unnecessary files, including "To-do list.txt", "pet accessory stuff.txt", and so on
 	
-- (BOSS NAME HERE) Boss
+- Soul Harvester
 	- Finalize for release
 		- We've definitely put a lot of time into this thing, but it's looking pretty good at this point
 		- Let's get all the final touches done on this bad boy
+	//DONE
 	- Decide on a name
-		- My suggestions; 
-			- Ossoulfrage 
-				- Mix of "soul" and "ossifrage" (https://en.wiktionary.org/wiki/ossifrage)
+		- Chosen: Soul Harvester
 	- Adjust stats for balancing purposes
 	- Fully test ingame under normal playthroughs
 	
@@ -28,10 +27,11 @@ To-Do List: Both of Us
 #####################################################################################
 To-Do List: direwolf420
 #####################################################################################
-- Sync Harvester boss' animations in multiplayer
 - Fix player rendering after using Sigil of Retreat's teleport function
 
 //DONE
+- Sync Harvester boss' animations in multiplayer
+
 - Combine Demon Eye NPCs into a single entity that picks texture randomly
 	- Cataract, Dilated, and Sleepy variants picked any time
 	- Owl and UFO picked only during Halloween
