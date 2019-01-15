@@ -29,12 +29,19 @@ namespace AssortedCrazyThings.Items
         
         public override bool CanUseItem(Player player)
         {
-            return (!NPC.AnyNPCs(AssWorld.harvesterTypes[2]) && player.ZoneDungeon);
+            return !NPC.AnyNPCs(AssWorld.harvesterTypes[0]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[1]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[2]) && player.ZoneDungeon;
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, AssWorld.harvesterTypes[0]);
+            if(Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int i = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, AssWorld.harvesterTypes[0]);
+                if (Main.netMode == NetmodeID.Server && i < 200)
+                {
+                    NetMessage.SendData(23, -1, -1, null, i);
+                }
+            }
             return true;
         }
 

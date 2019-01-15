@@ -274,7 +274,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(deathMessage, 35, 200, 254);

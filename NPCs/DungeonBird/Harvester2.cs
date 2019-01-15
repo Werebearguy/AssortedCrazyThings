@@ -58,7 +58,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             animationType = -1;
             npc.lavaImmune = true;
             npc.buffImmune[BuffID.Confused] = false;
-            npc.timeLeft = NPC.activeTime * 30;
+            npc.timeLeft = NPC.activeTime * 30; //doesnt do jackshit
         }
 
         public override void FindFrame(int frameHeight)

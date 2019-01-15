@@ -4,6 +4,7 @@ using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
@@ -46,6 +47,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return lightColor * ((transformTime - AI_X_Timer) / transformTime);
             }
             return new Color((int)(lightColor.R * 1.2f + 20), (int)(lightColor.G * 1.2f + 20), (int)(lightColor.B * 1.2f + 20));
+        }
+
+        public override bool CheckActive()
+        {
+            //manually decrease timeleft
+            return false;
         }
 
         //public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
@@ -866,8 +873,55 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (Main.time % 120 == 2)
             {
-                //Print("soulseaten:" + soulsEaten);
-                //Main.NewText(npc.timeLeft);
+                if (npc.timeLeft > 750) npc.timeLeft = 750;
+
+                bool shouldDecreaseTime = false;
+                int closest = 255;
+                Vector2 playerPos = Vector2.Zero;
+                float oldDistance = 1000000000f;
+                float newDistance = oldDistance;
+
+                //return index of closest player
+                for (short j = 0; j < 255; j++)
+                {
+                    if (Main.player[j].active)
+                    {
+                        playerPos = Main.player[j].Center - npc.Center;
+                        newDistance = playerPos.Length();
+                        if (newDistance < oldDistance)
+                        {
+                            oldDistance = newDistance;
+                            closest = j;
+                            shouldDecreaseTime = true; //atleast one player is found
+                        }
+                    }
+                }
+
+                if (shouldDecreaseTime)
+                {
+                    //decrease time only when distance is bigger than one and a half screens and player not in dungeon,
+                    //otherwise dont decrease time (2880)
+                    if (oldDistance > 2880 && !Main.player[closest].ZoneDungeon)
+                    {
+                        npc.timeLeft -= 4; //check every two seconds, decrease 2 every second from 750 until 0: 6.25 minutes
+                    }
+                    else
+                    {
+                        npc.timeLeft = 750;
+                    }
+
+                    if(npc.timeLeft < 0)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            npc.life = 0;
+                            npc.active = false;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendData(23, -1, -1, null, npc.whoAmI);
+                        }
+                    }
+                }
+
+                npc.netUpdate = true;
             }
 
             npc.noGravity = false;
