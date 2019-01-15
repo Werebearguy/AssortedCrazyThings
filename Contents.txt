@@ -8,17 +8,22 @@ Foldfish
 	- The boss fights similarly to the King Slime, though its summoned minions are useless and harmless
 	- Purely intended as a joke boss, not a proper one
 	- Drops: Origami Hat, Origami Crane
-(BOSS NAME HERE)
-	- Unassuming and invincible bird that walks around the Dungeon after Skeletron is defeated
+Soul Harvester
+	- Unassuming and invincible bird that walks around the Dungeon after Skeletron is defeated and the player has at least 300 max health
 	- In its presence, souls will burst out of defeated enemies
-	- (BOSS NAME HERE) will seek out and eat these souls, growing bigger as it consumes them
-	- Use a net to slow down (BOSS NAME HERE)'s feast, though it will throw bones at you if you try this when it's eating
+		- There is a limit of ten souls active at any time in this manner
+		- If you're absolutely murdering the dungeon, Soul Harvester will have no idea where to start eating
+	- Soul Harvester will seek out and eat these souls, growing bigger as it consumes them
+	- Compatibility with the mod "Player Resource Bars" allows you to see the current progress of its feast
+	- Use a net to slow down Soul Harvester's feast, though it will throw bones at you if you try this when it's eating
 	- After eating a few souls, it grows larger and more menacing
+		- You can tell how many souls it has left before transforming after it eats a soul
+		- The remaining amount required for its transformation is denoted with a green number that counts down
 	- If it gorges itself even more, it will become a mass of flying bone and moss
 	- It will attack by extending its talons while flying above the player
 	- Once killed, it will not naturally spawn anymore
 	- Craft or find an Idol of Decay to summon it again at any time in the Dungeon
-	- Drops: Bones, Dessicated Leather, Freed Dungeon Soul, (BOSS NAME HERE) Mask
+	- Drops: Bones, Dessicated Leather, Freed Dungeon Soul, Soul Harvester Mask
 
 ============
 ENEMIES
@@ -287,16 +292,22 @@ Anomalous Wings
 	- Allows slowfall, and allows quick travel in water
 Sigil of Emergency
 	- Increases minion count by 1, and summons a temporary minion to help you upon reaching critical health
-		- Has a cooldown of ?? minutes
-	- Rarely drops from (BOSS NAME HERE)
+		- Minion summoned by this accessory is twice as strong as those summoned by the Everglow Lantern
+		- Minion summoned by this accessory despawns after ten seconds of taking no damage
+		- Only one minion summoned by this accessory can be active at any time
+	- Rarely drops from Soul Harvester
 Sigil of Pain Suppression
 	- Drastically increases your defense for a brief moment upon reaching critical health
 		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
-	- Rarely drops from (BOSS NAME HERE)
+		- The cooldown timer will still go down if the accessory is unequipped
+			- No need to have it equipped at all times as a result
+	- Rarely drops from Soul Harvester
 Sigil of Retreat
 	- Teleports you to your spawn point upon reaching critical health
 		- Has a cooldown of 10 minutes, denoted in the accessory's tooltip
-	- Rarely drops from (BOSS NAME HERE)
+		- The cooldown timer will still go down if the accessory is unequipped
+			- No need to have it equipped at all times as a result
+	- Rarely drops from Soul Harvester
 
 ------------
 Crafted by Player:
@@ -356,6 +367,8 @@ Massive Bundle of Balloons
 Sigil of Last Stand
 	- Teleports you to your spawn point and drastically increases your defense for a brief moment upon reaching critical health
 		- Has a cooldown of  10 minutes, denoted in the accessory's tooltip
+		- The cooldown timer will still go down if the accessory is unequipped
+			- No need to have it equipped at all times as a result
 	- Recipe: Tinkerer's Workbench, Sigil of Pain Suppression x1 + Sigil of Retreat x1
 Star Wisp Balloon
 	- Increases Mana Regeneration, Jump Height, and glows in the dark
@@ -386,6 +399,7 @@ Breath of Spazmatism
 Everglow Lantern
 	- A lantern that calls out two souls who fight for you
 		- They cause shorter i-frames on bosses, so you can properly help them fight
+		- The buff icon is red, but is not a debuff
 	- Balanced for Post-Skeletron content
 	- Recipe: Anvil, Meteorite Bar x5, Freed Dungeon Soul x2
 Pocket Sand
@@ -406,30 +420,32 @@ VANITY ARMOR
 ============
 Origami Hat
 	- Drop from Foldfish
-(BOSS NAME HERE) Mask
-	- Drops from (BOSS NAME HERE)
+Soul Harvester Mask
+	- Drops from Soul Harvester
 	
 ============
 TOOLS
 ============
 Extendo-Net
 	- Polearm that can catch critters from a greater distance than the Bug Net
-	- Recipe: ???
+	- Recipe: Anvil, Bug Net x1, Wire x10, Iron Bar x10
 Golden Extendo-Net
 	- Polearm that breaks grass, and can catch critters from a greater distance than the Golden Bug Net
-	- Recipe: ???
+	- Recipe: Anvil, Golden Bug Net x1, Wire x10, Gold Bar x10
+		- If Gold is not readily available, you can use Platinum instead
 
 ============
 CUTE SLIME VANITY
 ============
 To equip Cute Slime pets with vanity items;
 	- Hold the Cute Slime accessory, either with the mouse or with it selected on your hotbar
-	- Left Click while near your Cute Slime to equip the item you are currently holding
+	- Left Click while holding the desired accessory
 		- The item will remain in your inventory
-	- Left Click your Cute Slime again to remove the item you just applied
+	- Left Click with the item you'd like to remove, or equip a new item in the same slot
 	- Hold Right Click while holding a Cute Slime accessory to remove all equipped accessories
 	- Hold Right Click to re-equip all items removed on the previous Right Click
 	- All items in this category are crafted at a Loom, and require 15 Silk each
+	- Cute Slime must be out and about to be equipped
 
 Cute Bowtie
 	- A bowtie for your Cute Slime's chest
@@ -468,11 +484,11 @@ Empowerment Flask
 MATERIALS:
 ============
 Freed Dungeon Soul
-	- Capture with a net after defeating (BOSS NAME HERE)
+	- Capture with a net after defeating Soul Harvester
 Chunky's Eye
 	- Capture Chunky's Eye with a net
 Dessicated Leather
-	- Drops from (BOSS NAME HERE)
+	- Drops from Soul Harvester
 Meatball's Eye
 	- Capture Meatball's Eye with a net
 
@@ -483,11 +499,12 @@ Infinity Rocket
 	- Infinite rocket ammunition
 	- Recipe: Crystal Ball, Rocket I x3996
 Idol of Decay
-	- Summons (BOSS NAME HERE)
+	- Summons Soul Harvester
+			- Must be used in the Dungeon
 	- Recipe: Demon Altar, Water Candle x1 + Bone x50
 Loose Dungeon Soul
-	- Capture with a net while (BOSS NAME HERE) is alive
-		- All currently owned Loose Dungeon Souls upgrade into Freed Dungeon Souls when (BOSS NAME HERE) is killed
+	- Capture with a net while Soul Harvester is alive
+		- All currently owned Loose Dungeon Souls upgrade into Freed Dungeon Souls when Soul Harvester is killed
 		- Includes those floating in the world, in your inventory, and in all your extended inventories (e.g. Piggy Bank)
 Origami Manual
 	- Summons Foldfish
@@ -500,17 +517,16 @@ Star Forge
 Bugs and Issues
 ============
 	Bugs:
-		- (BOSS NAME HERE)'s first stages might behave weirdly or get stuck in extreme circumstances
-		- (BOSS NAME HERE)'s eating animation doesn't sync well in multiplayer
-			- It functions just fine though
-		- Everburning Candles' particles do not show up for other players in multiplayer
+		- Soul Harvester's first stages might behave weirdly or get stuck in extreme circumstances
+		- Everburning Candles' particles do not show up for other players in multiplayer when using ranged weapons
 			- The effects still work just fine
 	Compatibility:
 		- No known compatibility issues yet
 	Issues:
 		- Due to the way Cute Rainbow Slime is colored, most accessories applied to it will cause graphical issues
 		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
-		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to (BOSS NAME HERE) being defeated
+		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to Soul Harvester being defeated
+			- This is similar to how Etherian Mana does not despawn when stored in chests
 
 ============
 Changelog
@@ -530,8 +546,9 @@ FIXES
 		- Smaller filesize, same great quality
 	
 CHANGES
-	- All items' sell values updated
+	- Many items' sell values updated
 		- Sell values reflect an additive value based on the prices of the combined items
+		- Items that are not the result of combinations tend to be cheap, as to avoid giving the player an unfair amount early on
 	- Chunky and Meatball NPCs spawn more often
 	- Chunky and Meatball (Pet) now spawns both named eyes as separate entities
 		- No more red string of fate
@@ -562,7 +579,7 @@ ADDITONS
 			- Shares the same cooldowns as both material items
 			
 	Armor:
-		- (BOSS NAME HERE) Mask, a boss mask that drops from (BOSS NAME HERE)
+		- Soul Harvester Mask, a boss mask that drops from Soul Harvester
 	
 	Tools:
 		- Extendo-Net, a bug net capable of reaching much farther at the cost of slower speed
@@ -589,15 +606,16 @@ ADDITONS
 		- Pocket Sand, a thrown clump of sand that often confuses would-be attackers
 		
 	Misc:
-		- Loose Dungeon Soul, Dungeon Souls captured with a net during the (BOSS NAME HERE) encounter
-		- Freed Dungeon Soul, Dungeon Souls captured with a net that are expelled from (BOSS NAME HERE) upon defeating it
-		- Desiccated Leather, chunks of disgusting green leather dropped by (BOSS NAME HERE)
-		- Idol Of Decay, used to manually summon (BOSS NAME HERE)
+		- Loose Dungeon Soul, Dungeon Souls captured with a net during the Soul Harvester encounter
+		- Freed Dungeon Soul, Dungeon Souls captured with a net that are expelled from Soul Harvester upon defeating it
+		- Desiccated Leather, chunks of disgusting green leather dropped by Soul Harvester
+		- Idol Of Decay, used to manually summon Soul Harvester in its first stage
+			- Must be used in the Dungeon
 		
 	NPCs:
-		- (BOSS NAME HERE), a new mini boss in the Dungeon
+		- Soul Harvester, a new mini boss in the Dungeon
 			- Starts off invincible, and throws bones at you to deter you from bothering it
-			- Killing nearby enemies releases Loose Dungeon Soul that (BOSS NAME HERE) will seek out and devour
+			- Killing nearby enemies releases Loose Dungeon Soul that Soul Harvester will seek out and devour
 			- After eating a total of 15 souls, it becomes a Mini Boss
 			- Defeat it to earn Dessicated Leather and Freed Dungeon Soul
 		- Bladetongue, a fish that spawns in Hardmode Crimson water that drops the weapon of the same name
