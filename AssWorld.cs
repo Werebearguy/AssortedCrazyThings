@@ -187,7 +187,7 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 30 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 15) //limit soul count in the world to 15
+                if (Main.time % 30 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 15
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
@@ -204,10 +204,9 @@ namespace AssortedCrazyThings
                     }
                     if (oldest != 200)
                     {
-                        Main.npc[oldest].life = 0;
                         Main.npc[oldest].active = false;
                         Main.npc[oldest].netUpdate = true;
-                        if (Main.netMode == 2 && oldest < 200)
+                        if (Main.netMode == NetmodeID.Server && oldest < 200)
                         {
                             NetMessage.SendData(23, -1, -1, null, oldest);
                         }

@@ -164,15 +164,6 @@ namespace AssortedCrazyThings
             };
         }
 
-        //idk why but I just left it in
-        //public override void LoadLegacy(BinaryReader reader)
-        //{
-        //    int loadVersion = reader.ReadInt32();
-        //    slotsPlayer = (uint)reader.ReadInt32();
-        //    teleportHomeTimer = (short)reader.ReadInt32();
-        //    getDefenseTimer = (short)reader.ReadInt32();
-        //}
-
         public override void Load(TagCompound tag)
         {
             slotsPlayer = (uint)tag.GetInt("slotsPlayer");
@@ -250,134 +241,22 @@ namespace AssortedCrazyThings
                 if (!checkIfAlive)
                 {
                     //twice the damage
-                    int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction * 0.5f, -0.5f, mod.ProjectileType<CompanionDungeonSoulMinion>(), CompanionDungeonSoulMinion.Damage * 2, CompanionDungeonSoulMinion.Knockback, player.whoAmI, 0f, 0f);
+                    int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction * 0.5f, -0.5f,
+                        mod.ProjectileType<CompanionDungeonSoulMinion>(),
+                        CompanionDungeonSoulMinion.Damage * 2,
+                        CompanionDungeonSoulMinion.Knockback,
+                        player.whoAmI, 0f, 0f);
                     Main.projectile[i].minionSlots = 0f;
                     Main.projectile[i].timeLeft = 600; //10 seconds
                 }
             }
         }
 
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-            ResetEmpoweringTimer();
-
-            SpawnSoul();
-        }
-
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-            ResetEmpoweringTimer();
-        }
-
-        public override void OnHitAnything(float x, float y, Entity victim)
-        {
-            NPC npc = victim as NPC;
-            if(npc != null)
-            {
-                if (everburningCandleBuff)
-                {
-                    npc.AddBuff(BuffID.OnFire, 120, true);
-                }
-                if (everburningCursedCandleBuff)
-                {
-                    npc.AddBuff(BuffID.CursedInferno, 120, true);
-                }
-                if (everfrozenCandleBuff)
-                {
-                    npc.AddBuff(BuffID.Frostburn, 120, true);
-                }
-                //if (variable_debuff_04)
-                //{
-                //    npc.AddBuff(BuffID.Ichor, 120, true);
-                //}
-                //if (variable_debuff_05)
-                //{
-                //    npc.AddBuff(BuffID.Venom, 120, true);
-                //}
-                if (everburningShadowflameCandleBuff)
-                {
-                    npc.AddBuff(BuffID.ShadowFlame, 60, true);
-                }
-                //if (variable_debuff_07)
-                //{
-                //    npc.AddBuff(BuffID.Bleeding, 120, true);
-                //}
-            }
-        }
-
-        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
-        {
-            //getDefense before teleportHome (so you dont teleport BEFORE you gain the defense)
-            if (getDefense)
-            {
-                if (canGetDefense)
-                {
-                    player.statLife += (int)damage;
-                    player.AddBuff(BuffID.RapidHealing, 300);
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
-
-                    getDefenseTimer = GetDefenseTimerMax;
-                    getDefenseDuration = GetDefenseDurationMax;
-                    return false;
-                }
-            }
-
-            if (teleportHome)
-            {
-                if (canTeleportHome)
-                {
-                    //this part here is from vanilla magic mirror code
-                    int num3;
-                    for (int num326 = 0; num326 < 70; num326 = num3 + 1)
-                    {
-                        num3 = num326;
-                    }
-                    player.grappling[0] = -1;
-                    player.grapCount = 0;
-                    for (int num327 = 0; num327 < 1000; num327 = num3 + 1)
-                    {
-                        if (Main.projectile[num327].active && Main.projectile[num327].owner == player.whoAmI && Main.projectile[num327].aiStyle == 7)
-                        {
-                            Main.projectile[num327].Kill();
-                        }
-                        num3 = num327;
-                    }
-                    
-                    //inserted before player.Spawn()
-                    player.statLife += (int)damage;
-
-                    player.Spawn();
-                    for (int num328 = 0; num328 < 70; num328 = num3 + 1)
-                    {
-                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
-                        num3 = (int)(num328 * 1.5f);
-                    }
-                    //end
-                    
-                    player.AddBuff(BuffID.RapidHealing, 300);
-
-                    teleportHomeTimer = TeleportHomeTimerMax;
-                    return false;
-                }
-            }
-
-            return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
-        }
-
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
-        {
-            if (getDefenseDuration != 0)
-            {
-                damage = 1;
-            }
-
-            return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
-        }
-
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
-            if (player.ZoneOverworldHeight || player.ZoneDungeon) //change to dungeon
-            {
+            //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls
+            //if (player.ZoneDungeon)
+            //{
                 bool shouldDropSouls = false; //change to false
                 for (short j = 0; j < 200; j++)
                 {
@@ -398,7 +277,7 @@ namespace AssortedCrazyThings
                         }
                     }
                 }
-            }
+            //}
         }
 
         private void UpdateTeleportHomeWhenLow()
@@ -456,6 +335,132 @@ namespace AssortedCrazyThings
             else empoweringTimer = 0;
         }
 
+        private void ApplyCandleDebuffs(NPC npc)
+        {
+            if (npc != null)
+            {
+                if (everburningCandleBuff)
+                {
+                    npc.AddBuff(BuffID.OnFire, 120);
+                }
+                if (everburningCursedCandleBuff)
+                {
+                    npc.AddBuff(BuffID.CursedInferno, 120);
+                }
+                if (everfrozenCandleBuff)
+                {
+                    npc.AddBuff(BuffID.Frostburn, 120);
+                }
+                //if (variable_debuff_04)
+                //{
+                //    npc.AddBuff(BuffID.Ichor, 120);
+                //}
+                //if (variable_debuff_05)
+                //{
+                //    npc.AddBuff(BuffID.Venom, 120);
+                //}
+                if (everburningShadowflameCandleBuff)
+                {
+                    npc.AddBuff(BuffID.ShadowFlame, 60);
+                }
+                //if (variable_debuff_07)
+                //{
+                //    npc.AddBuff(BuffID.Bleeding, 120);
+                //}
+            }
+        }
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            ResetEmpoweringTimer();
+
+            SpawnSoul();
+        }
+
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        {
+            ResetEmpoweringTimer();
+        }
+
+        public override void OnHitAnything(float x, float y, Entity victim)
+        {
+            ApplyCandleDebuffs((NPC)victim);
+        }
+
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            //getDefense before teleportHome (so you dont teleport BEFORE you gain the defense)
+            if (getDefense)
+            {
+                if (canGetDefense)
+                {
+                    player.statLife += (int)damage;
+                    player.AddBuff(BuffID.RapidHealing, 600);
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
+
+                    getDefenseTimer = GetDefenseTimerMax;
+                    getDefenseDuration = GetDefenseDurationMax;
+                    return false;
+                }
+            }
+
+            if (teleportHome)
+            {
+                if (canTeleportHome && player.whoAmI == Main.myPlayer)
+                {
+                    //this part here is from vanilla magic mirror code
+                    int num3;
+                    for (int num326 = 0; num326 < 70; num326 = num3 + 1)
+                    {
+                        num3 = num326;
+                    }
+                    player.grappling[0] = -1;
+                    player.grapCount = 0;
+                    for (int num327 = 0; num327 < 1000; num327 = num3 + 1)
+                    {
+                        if (Main.projectile[num327].active && Main.projectile[num327].owner == player.whoAmI && Main.projectile[num327].aiStyle == 7)
+                        {
+                            Main.projectile[num327].Kill();
+                        }
+                        num3 = num327;
+                    }
+
+                    //inserted before player.Spawn()
+                    player.statLife += (int)damage;
+
+                    player.Spawn();
+                    for (int num328 = 0; num328 < 70; num328 = num3 + 1)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
+                        num3 = (int)(num328 * 1.5f);
+                    }
+                    //end
+
+                    player.AddBuff(BuffID.RapidHealing, 300, false);
+
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+                    }
+
+                    teleportHomeTimer = TeleportHomeTimerMax;
+                    return false;
+                }
+            }
+
+            return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
+        }
+
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (getDefenseDuration != 0)
+            {
+                damage = 1;
+            }
+
+            return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
+        }
+
         public override void PostUpdateBuffs()
         {
             UpdateTeleportHomeWhenLow();
@@ -467,13 +472,13 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
+            SpawnSoulsWhenHarvesterIsAlive();
+
             //if (joinDelaySend > 0)
             //{
             //    joinDelaySend--;
             //    if (joinDelaySend == 0 && petIndex != -1 && Main.netMode == NetmodeID.MultiplayerClient) SendRedrawPetAccessories();
             //}
-
-            SpawnSoulsWhenHarvesterIsAlive();
 
             //if (Main.netMode == NetmodeID.Server)
             //{

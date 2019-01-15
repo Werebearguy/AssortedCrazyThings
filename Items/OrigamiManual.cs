@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items
         {
             NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("FoldfishBoss"));
             Main.PlaySound(SoundID.Roar, player.position, 0);
-            if(Main.netMode != 1)
+            if(Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int k = 0; k < 6; k++)
                 {
@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Items
                     Main.npc[num258].SetDefaults(num257);
                     Main.npc[num258].velocity.X = (float)Main.rand.Next(-15, 16) * 0.1f;
                     Main.npc[num258].velocity.Y = (float)Main.rand.Next(-30, 1) * 0.1f;
-                    if (Main.netMode == 2 && num258 < 200)
+                    if (Main.netMode == NetmodeID.Server && num258 < 200)
                     {
                         NetMessage.SendData(23, -1, -1, null, num258);
                     }

@@ -72,7 +72,7 @@ namespace AssortedCrazyThings.Items
             //6 is the default fire particle type
             if (player.HeldItem.damage >= 0)
             {
-                int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (float)(player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
+                int dustid = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
                 Main.dust[dustid].noGravity = true;
                 Dust dust2 = Main.dust[dustid];
                 dust2.velocity.X = dust2.velocity.X * 2f;
@@ -83,18 +83,19 @@ namespace AssortedCrazyThings.Items
 
         private void SpawnRangedDust(int type, Color color, float speed, Player player)
         {
+            //TODO somehow try to figure out what direction the user is shooting without using any projectile code
             Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
             for (int k = 0; k < 10; k++)
             {
                 if (Main.rand.NextFloat() < 0.8f)
                 {
                     float rand = Main.rand.NextFloat(0.7f, 1.3f);
-                    cm = cm.RotatedByRandom(MathHelper.ToRadians(5));
+                    cm = cm.RotatedByRandom(MathHelper.ToRadians(6));
                     float velox = ((cm.X * speed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
                     float veloy = ((cm.Y * speed * rand) / cm.Length());
                     Vector2 velo = new Vector2(velox, veloy);
                     Vector2 pos = new Vector2(player.Center.X + velox * 1.2f, player.Center.Y + veloy * 1.2f);
-                    Dust dust = Dust.NewDustPerfect(pos, type, velo, 0, color, 2.368421f);
+                    Dust dust = Dust.NewDustPerfect(pos, type, velo, 100, color, 2.368421f);
                     dust.noGravity = true;
                     dust.noLight = true;
                 }
