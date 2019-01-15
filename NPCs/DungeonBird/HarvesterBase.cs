@@ -867,7 +867,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (Main.time % 120 == 2)
             {
                 //Print("soulseaten:" + soulsEaten);
-                Main.NewText(npc.timeLeft);
+                //Main.NewText(npc.timeLeft);
             }
 
             npc.noGravity = false;
