@@ -1,147 +1,17 @@
 #####################################################################################
 To-Do List: Both of Us
 #####################################################################################
-- Finish what's on this list
-	- No more additions; let's finalize what we have so the thread is sated
-
-- Review all files prior to release
-	- Verify that display names are correct
-	- Review file sizes of images
-	- Verify that recipes for newly implemented items are working
-	- Verify that Contents.txt is up to date, including changelog
-	- Adjust filenames so that the final release does not have prefixes such as "aaa", "aaaa", or "0000"
-	- Remove unnecessary files, including "To-do list.txt", "pet accessory stuff.txt", and so on
-	
-- Soul Harvester
-	- Finalize for release
-		- We've definitely put a lot of time into this thing, but it's looking pretty good at this point
-		- Let's get all the final touches done on this bad boy
-	//DONE
-	- Decide on a name
-		- Chosen: Soul Harvester
-	- Adjust stats for balancing purposes
-	- Fully test ingame under normal playthroughs
-	
-- Clear list for next time
+Release the mod's current version
+Currently Nothing!
 
 #####################################################################################
 To-Do List: direwolf420
 #####################################################################################
-- Fix player rendering after using Sigil of Retreat's teleport function
-
-//DONE
-- Sync Harvester boss' animations in multiplayer
-
-- Combine Demon Eye NPCs into a single entity that picks texture randomly
-	- Cataract, Dilated, and Sleepy variants picked any time
-	- Owl and UFO picked only during Halloween
-	- Fractured eye variants picked only after Eye of Cthulhu is defeated
-	- Mechanical eye variants picked only after The Twins are defeated
-		- If you have to, delete the glow masks; I won't be upset
-	- Mechanical eye variants that shoot lasers picked only after the Twins are defeated
-		- Separate NPC file for them due to custom AI
-
-- Chunky and Meatball separated
-		
-- Combine Walking Tombstone NPCs
-	- Drops based on the sprite picked
-	- For Cheat Sheet and other spawning purposes, feel free to pick the "default" look
-
-- Put Cute Slime Mitten accessories in a new slot of their own
-	
-- Inert Soul and Awakened Soul variants
-	- Use old sprites, currently prefixed by aaaa, as Inert Souls
-		- Inert Soul spawns during the early phases of the (BOSS NAME HERE) boss, and are eaten by the (BOSS NAME HERE)'s first and second forms
-		- Awakened Soul spawns in a cluster after defeating the (BOSS NAME HERE)
-	- Figure out what items will use Inert Souls and what items will use Awakened Souls
-	- Naming Suggestions: 
-		- Inert Soul ; Loose Soul, Fragile Soul, Weak Soul
-		- Awakened Soul ; Freed Soul, Harvested Soul
-
-- Tooltip on slime bottle that says what accessories its currently wearing
+- Bug Fixes where necessary
+	- Keep watch on both the /vg/ thread and on mod homepage thread for any reports
 
 #####################################################################################
 To-Do List: Werebearguy
 #####################################################################################
-//(MOSTLY)DONE
-- Adjust sprites for Pet Accessories
-	- While I most likely won't make any, I'll still fix and finish any that you make
-	
-//DONE
-- Reduce file sizes of sprites
-
-- Create item sprite for (BOSS NAME HERE)-specific drop
-	- Used in the creation of the Soul Savior Garment armor pieces
-
-
-
-#####################################################################################
-To-Do List: Side Projects of Absolute Lowest Priority
-#####################################################################################
-- Placeable object that turns bait into fish
-	- Place bait into container
-	- After some time, it turns into fishing loot
-		- Based on biome placed
-	
-- Adjust Anomalocaris
-	- New sprites for swimming sideways
-	- Changes to sideways sprite when close to player
-	- Latches on to player to deal damage over time
-	- Falls off after taking x% damage, or when killed
-	
-- Adjust Giant Anomalocaris
-	- New sprites for swimming sideways
-	- Changes to sideways sprite when close to player
-	- Latches on to player to deal damage over time
-	- Falls off after taking x% damage, or when killed
-
-- Create NPC using "Monopod.png"
-	- Stats, Loot, and Behavior TBD
-
-- Create NPC using "Brainbot.png"
-	- Stats, Loot, and Behavior TBD
-	
-- Create NPC based on Boss 1 from https://pastebin.com/L7qmytv1
-	- Summary: 
-		- Boss that spawns various enemies using AI similar to Golem, Man Eater, and Clinger
-		- Randomly pick which enemy spawns, pick random location around player(s) for spawn
-		- Criteria for defeat = Kill enough enemies, similar to an invasion
-		-  Drops pets and summon items that resemble the enemies found during the fight
-		
-- Create NPC based on Boss 2 from https://pastebin.com/L7qmytv1
-	- Summary:
-		- Phase 1 = Immobile clam
-		- Phase 2 = Eye of Cthulhu second phase
-		- Phase 3 = Float above player, fire death beam that follows the player (faster as health lowers)
-		- Phase 4 = Similar to Phase 3 but faster, also firing projectiles similar to Queen Bee
-		- Pearl-themed item drops
-		
-- Create NPC based on Boss 3 from https://pastebin.com/L7qmytv1
-	- Summary:
-		- Phase 1 = Floats above player, spawns swords around the player that fire in straight lines
-		- Phase 2 = Cowering, drops money for a short time, despawns after short time if not killed
-		- Loot includes a weapon that fires swords from behind the player and a slow cloud mount
-		
-- Create NPC based on Other 1 from https://pastebin.com/L7qmytv1
-	- Summary:
-		- Koi NPC that can be caught and swapped between pet and releasable NPC
-		- Feed Koi for self-satisfaction
-		- Feed Koi special item to get a pet dragon
-	
-#####################################################################################
-Scrapped Until Further Notice
-#####################################################################################
-- Anomalous Wings accessory useless outside of water, acts as wings when submerged
-	- Scrapped Reason : Modloader Issue
-	- Provides no bonus when not submerged in liquid
-	- Provides infinite flight time when submerged in liquid
-	- Move at normal speed when submerged in liquid
-		- Similar to Fishron Wings
-
-- New Accessory; Bouncy Shoes
-	- Scrapped Reason : Collision fuckery
-	- Accessory that causes the player to bounce when landing, similar to the effect of the Pink Slime Block
-	
-- Soul Savior Garment glowmasks
-	- Scrapped Reason : Way too similar to an armor set from Thorium 
-	- Head and Shoulders glowing like the souls do
+- Sprite adjustments where necessary
+	- Keep watch on both the /vg/ thread and on mod homepage thread for any reports

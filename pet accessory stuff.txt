@@ -1,8 +1,0 @@
-how to test out the accessories on the slimes:
-search for "aaa" in items, it gives you the accessories
-
-left click with one anywhere and see your slime get that accessory, left click again to remove
-hold right click to remove all accessories
-hold right click again to revert
-
-if you want to add more, go into Items/PetAccessories, read the .cs file for a guide

@@ -23,7 +23,7 @@ Soul Harvester
 	- It will attack by extending its talons while flying above the player
 	- Once killed, it will not naturally spawn anymore
 	- Craft or find an Idol of Decay to summon it again at any time in the Dungeon
-	- Drops: Bones, Dessicated Leather, Freed Dungeon Soul, Soul Harvester Mask
+	- Drops: Bones, Desiccated Leather, Freed Dungeon Soul, Soul Harvester Mask
 
 ============
 ENEMIES
@@ -280,7 +280,7 @@ Crafted by Player:
 ------------
 Companion Soul
 	- A Dungeon Soul that lights the area around you
-	- Crystal Ball, Freed Dungeon Soul x 1
+	- Crystal Ball, Freed Dungeon Soul x 1, Desiccated Leather x1, Bone x2
 
 ============
 ACCESSORIES
@@ -289,7 +289,7 @@ Dropped By Enemies:
 ------------
 Anomalous Wings
 	- drops from Giant Anomalocaris.
-	- Allows slowfall, and allows quick travel in water
+	- Allows slowfall, uninhibited movement in water, and allows swimming
 Sigil of Emergency
 	- Increases minion count by 1, and summons a temporary minion to help you upon reaching critical health
 		- Minion summoned by this accessory is twice as strong as those summoned by the Everglow Lantern
@@ -438,6 +438,7 @@ Golden Extendo-Net
 CUTE SLIME VANITY
 ============
 To equip Cute Slime pets with vanity items;
+	- Have your Cute Slime out and about (You can't dress up air, after all)
 	- Hold the Cute Slime accessory, either with the mouse or with it selected on your hotbar
 	- Left Click while holding the desired accessory
 		- The item will remain in your inventory
@@ -445,7 +446,6 @@ To equip Cute Slime pets with vanity items;
 	- Hold Right Click while holding a Cute Slime accessory to remove all equipped accessories
 	- Hold Right Click to re-equip all items removed on the previous Right Click
 	- All items in this category are crafted at a Loom, and require 15 Silk each
-	- Cute Slime must be out and about to be equipped
 
 Cute Bowtie
 	- A bowtie for your Cute Slime's chest
@@ -487,7 +487,7 @@ Freed Dungeon Soul
 	- Capture with a net after defeating Soul Harvester
 Chunky's Eye
 	- Capture Chunky's Eye with a net
-Dessicated Leather
+Desiccated Leather
 	- Drops from Soul Harvester
 Meatball's Eye
 	- Capture Meatball's Eye with a net
@@ -524,101 +524,9 @@ Bugs and Issues
 		- No known compatibility issues yet
 	Issues:
 		- Due to the way Cute Rainbow Slime is colored, most accessories applied to it will cause graphical issues
+		- Due to difficulty syncing in multiplayer, Cute Slime vanity items are client-side only
+			- You will see others' Cute Slimes in their naked glory, no matter what they have equipped
+			- This will be fixed in the future at some point
 		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
 		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to Soul Harvester being defeated
 			- This is similar to how Etherian Mana does not despawn when stored in chests
-
-============
-Changelog
-============
-??? ??, 2019
-Major Content Update #2
-Hours upon hours have gone into making this update between the two devs, and the results are in; this is a big update!
-
-FIXES
-	- Simplified Contents for ease of reading
-		- Expanded slightly upon certain criteria
-		- Consolidated enemies and pets with multiple similar appearances
-	- Fixed Stone Soldier's hitbox
-	- Cute Rainbow Slime texture issues fixed
-	- Lots of code cleanup
-	- Massive File size reduction
-		- Smaller filesize, same great quality
-	
-CHANGES
-	- Many items' sell values updated
-		- Sell values reflect an additive value based on the prices of the combined items
-		- Items that are not the result of combinations tend to be cheap, as to avoid giving the player an unfair amount early on
-	- Chunky and Meatball NPCs spawn more often
-	- Chunky and Meatball (Pet) now spawns both named eyes as separate entities
-		- No more red string of fate
-	- Cute Slime sprites updated
-	- Cute Slime spawn rate halved
-	- Juggerllusc has received a minor overhaul
-		- Stats redistributed, now much less annoying
-		- Can drop Flippers and Diving Helmet instead of Purple Mucos
-	- Stone Soldier slightly upgraded
-		- Drops a gem based on the color of its eyes
-			- Does not include Amber
-		- The deeper you go, the rarer the gems
-			- Amethyst is most common, Diamond is rarest
-	- Bipolar Candle in a Balloon now has a buff icon to let you know it's working
-		- It still doesn't actually do anything
-			- This is a feature
-				- Seriously
-
-ADDITONS
-	Accessories:
-		- Everburning Candelabra, a combination of all four Everburning Candle accessories
-		- Sigil of Emergency, an accessory that gives you an extra minion slot and spawns a temporary minion when at critically low health
-		- Sigil of Pain Suppression, an accessory that gives you increased defense and rapid health regeneration when at critically low health
-			- Has a cooldown of 10 minutes, reflected in its tooltip after activated
-		- Sigil of Retreat, an accessory that sends you home with 100 health when you would have died
-			- Has a cooldown of 10 minutes, reflected in its tooltip after activated
-		- Sigil of Last Stand, a combination of Sigil of Pain Suppression and Sigil of Retreat
-			- Shares the same cooldowns as both material items
-			
-	Armor:
-		- Soul Harvester Mask, a boss mask that drops from Soul Harvester
-	
-	Tools:
-		- Extendo-Net, a bug net capable of reaching much farther at the cost of slower speed
-		- Golden Extendo-Net, a golden bug net capable of reaching much farther at the cost of slower speed
-		
-	Pet Accessories:
-		- Vanity items can be crafted for your Cute Slime pets
-			- All items are crafted at a Loom with 15 Silk
-		- A whole bunch of them; read the Contents to see all of the available vanity items
-			
-	Pets:
-		- Companion Soul, a calm soul that lights the area around you
-		- Bottled Slime, newly sprited versions of the Cute Slime pets
-			- You can swap between their old and new appearances at a Solidifier
-		- Goblet Battle Standard, summoning a tiny goblin that eagerly follows you
-		- Unconscious Laser Eye, a new set of pet Demon Eyes based on Retinamini
-			- Comes in Red, Green, and Purple variants
-		
-	Potions:
-		- Empowerment Flask, a flask that increases your damage dealt over time as you avoid taking damage
-			- Taking damage resets the effect, but not its timer
-	
-	Weapons:
-		- Pocket Sand, a thrown clump of sand that often confuses would-be attackers
-		
-	Misc:
-		- Loose Dungeon Soul, Dungeon Souls captured with a net during the Soul Harvester encounter
-		- Freed Dungeon Soul, Dungeon Souls captured with a net that are expelled from Soul Harvester upon defeating it
-		- Desiccated Leather, chunks of disgusting green leather dropped by Soul Harvester
-		- Idol Of Decay, used to manually summon Soul Harvester in its first stage
-			- Must be used in the Dungeon
-		
-	NPCs:
-		- Soul Harvester, a new mini boss in the Dungeon
-			- Starts off invincible, and throws bones at you to deter you from bothering it
-			- Killing nearby enemies releases Loose Dungeon Soul that Soul Harvester will seek out and devour
-			- After eating a total of 15 souls, it becomes a Mini Boss
-			- Defeat it to earn Dessicated Leather and Freed Dungeon Soul
-		- Bladetongue, a fish that spawns in Hardmode Crimson water that drops the weapon of the same name
-		- Crystal Serpent, a fish that spawns in Hardmode Hallow water that drops the weapon of the same name
-		- Laser Eye, a new set of Demon Eyes that begin spawning after The Twins have been defeated
-		- Toxikarp, a fish that spawns in Hardmode Corruption water that drops the weapon of the same name
