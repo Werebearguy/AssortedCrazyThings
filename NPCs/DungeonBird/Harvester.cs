@@ -61,6 +61,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.alpha = 255;
+            music = MusicID.Boss5;
 
             //queenbee setdefaults
             //width = 66;

@@ -132,6 +132,7 @@ namespace AssortedCrazyThings
         {
             if (!Main.dayTime) //if night
             {
+                //Main.NewText("nig: " + Main.time);
                 if (!Main.fastForwardTime)
                 {
                     if (spawnHarvester && Main.netMode != 1 && Main.time > 4860.0) //after 4860.0 ticks, 81 seconds, spawn
@@ -155,6 +156,7 @@ namespace AssortedCrazyThings
             }
             else //if day
             {
+                //Main.NewText("day: " + Main.time);
                 //32400
                 if (Main.time >= 54000.0) //54000 is the last tick of the day
                 {
@@ -295,6 +297,8 @@ namespace AssortedCrazyThings
         {
             LimitSoulCount();
             UpdateEmpoweringFactor();
+
+            UpdateHarvesterSpawn();
 
             if (harvesterIndex >= 0 && !Main.npc[harvesterIndex].active)
             {

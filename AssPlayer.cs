@@ -254,19 +254,22 @@ namespace AssortedCrazyThings
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls
-            //if (player.ZoneDungeon)
-            //{
-                bool shouldDropSouls = false; //change to false
-                for (short j = 0; j < 200; j++)
+            bool shouldDropSouls = false;
+            int index = 200;
+            for (short j = 0; j < 200; j++)
+            {
+                if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
                 {
-                    if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
-                    {
-                        shouldDropSouls = true;
-                        break;
-                    }
+                    shouldDropSouls = true;
+                    index = j;
+                    break;
                 }
+            }
 
-                if (shouldDropSouls)
+            if (shouldDropSouls)
+            {
+                int distance = (int)(Main.npc[index].Center - player.Center).Length();
+                if (distance < 2880 || player.ZoneDungeon) //one and a half screens or in dungeon
                 {
                     for (short j = 0; j < 200; j++)
                     {
@@ -276,7 +279,7 @@ namespace AssortedCrazyThings
                         }
                     }
                 }
-            //}
+            }
         }
 
         private void UpdateTeleportHomeWhenLow()

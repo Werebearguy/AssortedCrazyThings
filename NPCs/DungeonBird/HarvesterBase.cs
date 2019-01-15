@@ -46,7 +46,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return lightColor * ((transformTime - AI_X_Timer) / transformTime);
             }
             return new Color((int)(lightColor.R * 1.2f + 20), (int)(lightColor.G * 1.2f + 20), (int)(lightColor.B * 1.2f + 20));
-            //return Color.White;
         }
 
         //public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
@@ -868,6 +867,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (Main.time % 120 == 2)
             {
                 //Print("soulseaten:" + soulsEaten);
+                Main.NewText(npc.timeLeft);
             }
 
             npc.noGravity = false;
@@ -1050,6 +1050,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 npc.noTileCollide = true;
                 Vector2 between = new Vector2(AI_X_Timer - npc.Center.X, AI_Y - npc.Center.Y); //use latest known position from UpdateStuck of target
                 Vector2 normBetween = new Vector2(between.X, between.Y);
+
+                npc.direction = (normBetween.X <= 0f) ? -1 : 1;
+
                 float distance = normBetween.Length();
                 float factor = 2.5f; //2f
                 int acc = 30; //4
@@ -1195,6 +1198,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to, 150); //150 for index 150 atleast
                                                                                            //(so the claws will likely spawn with lower index and rendered infront)
+                    Main.npc[index].SetDefaults(to);
                     if (Main.netMode == NetmodeID.Server && index < 200)
                     {
                         NetMessage.SendData(23, -1, -1, null, index);
