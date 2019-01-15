@@ -83,21 +83,24 @@ namespace AssortedCrazyThings.Items
 
         private void SpawnRangedDust(int type, Color color, float speed, Player player)
         {
-            //TODO somehow try to figure out what direction the user is shooting without using any projectile code
-            Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
-            for (int k = 0; k < 10; k++)
+            if(player.whoAmI == Main.myPlayer)
             {
-                if (Main.rand.NextFloat() < 0.8f)
+                //TODO somehow try to figure out what direction the user is shooting without using any projectile code
+                Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
+                for (int k = 0; k < 10; k++)
                 {
-                    float rand = Main.rand.NextFloat(0.7f, 1.3f);
-                    cm = cm.RotatedByRandom(MathHelper.ToRadians(6));
-                    float velox = ((cm.X * speed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
-                    float veloy = ((cm.Y * speed * rand) / cm.Length());
-                    Vector2 velo = new Vector2(velox, veloy);
-                    Vector2 pos = new Vector2(player.Center.X + velox * 1.2f, player.Center.Y + veloy * 1.2f);
-                    Dust dust = Dust.NewDustPerfect(pos, type, velo, 100, color, 2.368421f);
-                    dust.noGravity = true;
-                    dust.noLight = true;
+                    if (Main.rand.NextFloat() < 0.8f)
+                    {
+                        float rand = Main.rand.NextFloat(0.7f, 1.3f);
+                        cm = cm.RotatedByRandom(MathHelper.ToRadians(6));
+                        float velox = ((cm.X * speed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
+                        float veloy = ((cm.Y * speed * rand) / cm.Length());
+                        Vector2 velo = new Vector2(velox, veloy);
+                        Vector2 pos = new Vector2(player.Center.X + velox * 1.2f, player.Center.Y + veloy * 1.2f);
+                        Dust dust = Dust.NewDustPerfect(pos, type, velo, 100, color, 2.368421f);
+                        dust.noGravity = true;
+                        dust.noLight = true;
+                    }
                 }
             }
         }
