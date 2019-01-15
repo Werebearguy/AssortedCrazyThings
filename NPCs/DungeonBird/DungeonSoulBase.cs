@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     //this class also contains the NPC classes at the very bottom
 
-    public abstract class aaaDungeonSoulBase : ModNPC
+    public abstract class DungeonSoulBase : ModNPC
     {
         protected double frameCount;
         protected float fadeAwayMax;
@@ -255,7 +255,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
 
             npc.noTileCollide = false;
-            Lighting.AddLight(npc.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             if (AI_State == 0)
             {
@@ -335,18 +334,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     }
 
     //the one the harvester hunts for
-    public class aaaDungeonSoul : aaaDungeonSoulBase
+    public class DungeonSoul : DungeonSoulBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaDungeon Soul");
+            DisplayName.SetDefault("Dungeon Soul");
             Main.npcFrameCount[npc.type] = 8;
         }
 
         public override void MoreSetDefaults()
         {
             frameCount = 8.0;
-            Main.npcCatchable[mod.NPCType<aaaDungeonSoul>()] = true;
+            Main.npcCatchable[mod.NPCType<DungeonSoul>()] = true;
             npc.catchItem = (short)mod.ItemType<CaughtDungeonSoul>();
 
             fadeAwayMax = HarvesterBase.EatTimeConst;
@@ -354,19 +353,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     }
 
     //the one that gets converted into
-    public class aaaDungeonSoulAwakened : aaaDungeonSoulBase
+    public class DungeonSoulFreed : DungeonSoulBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaDungeon Soul");
+            DisplayName.SetDefault("Dungeon Soul");
             Main.npcFrameCount[npc.type] = 8;
         }
 
         public override void MoreSetDefaults()
         {
             frameCount = 4.0;
-            Main.npcCatchable[mod.NPCType<aaaDungeonSoulAwakened>()] = true;
-            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoulAwakened>();
+            Main.npcCatchable[mod.NPCType<DungeonSoulFreed>()] = true;
+            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoulFreed>();
 
             npc.timeLeft = 3600;
             fadeAwayMax = 3600;

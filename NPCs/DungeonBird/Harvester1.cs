@@ -7,7 +7,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public class aaaHarvester1 : HarvesterBase
+    public class Harvester1 : HarvesterBase
     {
 
         public override void SetStaticDefaults()
@@ -44,8 +44,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
             npc.chaseable = false;
             npc.npcSlots = 1f;
-            npc.width = aaaDungeonSoulBase.wid;
-            npc.height = aaaDungeonSoulBase.hei;
+            npc.width = DungeonSoulBase.wid;
+            npc.height = DungeonSoulBase.hei;
             npc.damage = 0;
             npc.defense = 1;
             npc.lifeMax = maxSoulsEaten + 1;

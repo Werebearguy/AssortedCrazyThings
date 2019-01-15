@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     {
         public const short EatTimeConst = 180; //shouldn't be equal to IdleTimeConst + 60
         public const short IdleTimeConst = 180;
-        public static readonly string message = "You hear a faint cawing come from nearby..."; //not used
+        public static readonly string message = "You hear a faint cawing come from nearby..."; //used for announcing
         protected const bool Target_Player = false;
         protected const bool Target_Soul = true;
         protected const int AI_State_Slot = 0;
@@ -75,7 +75,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
         }
 
-        public static string name = "aaaHarvester";
+        public static string name = "Soul Harvester";
 
         protected float maxVeloScale; //2f default //
         protected float maxAccScale; //0.07f default
@@ -190,7 +190,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             for (short j = 0; j < 200; j++)
             {
                 //ignore souls if they are noclipping
-                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>() && !Collision.SolidCollision(Main.npc[j].position, Main.npc[j].width, Main.npc[j].height))
+                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<DungeonSoul>() && !Collision.SolidCollision(Main.npc[j].position, Main.npc[j].width, Main.npc[j].height))
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();
@@ -348,7 +348,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             }
                             else
                             {
-                                aaaDungeonSoulBase.SetTimeLeft((NPC)GetTarget(), npc);
+                                DungeonSoulBase.SetTimeLeft((NPC)GetTarget(), npc);
                             }
                             stuckTimer = 0;
                             return;
@@ -1013,7 +1013,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.netUpdate = true;
 
                     //Print("distribute to stop");
-                    aaaDungeonSoulBase.SetTimeLeft((NPC)GetTarget(), npc);
+                    DungeonSoulBase.SetTimeLeft((NPC)GetTarget(), npc);
                     aiTargetType = Target_Player;
                     SelectTarget(restrictedSoulSearch); //now player
 

@@ -7,19 +7,19 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public abstract class aaaHarvester3Talon : ModNPC
+    public abstract class HarvesterTalon : ModNPC
     {
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/NPCs/DungeonBird/aaaHarvester3_talon"; //temp
+                return "AssortedCrazyThings/NPCs/DungeonBird/HarvesterTalon"; //temp
             }
         }
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("aaaHarvester3Talon");
+            DisplayName.SetDefault(Harvester.name);
             Main.npcFrameCount[npc.type] = 1;
         }
 
@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.width = 40; //38
             npc.height = 30; //42
             npc.aiStyle = -1;
-            npc.damage = aaaHarvester3.talonDamage;
+            npc.damage = Harvester.talonDamage;
             npc.defense = 28;
             npc.lifeMax = 1337;
             npc.HitSound = SoundID.NPCHit1;
@@ -72,17 +72,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AssWorld.harvesterIndex != -1)
             {
-                Texture2D texture = mod.GetTexture("NPCs/DungeonBird/aaaHarvester3_" + "chain");
+                Texture2D texture = mod.GetTexture("NPCs/DungeonBird/HarvesterChain");
                 //Main.chain21Texture
                 Vector2 center = new Vector2(npc.Center.X, npc.Center.Y);
                 float num22 = Main.npc[AssWorld.harvesterIndex].Center.X - center.X;
                 float num23 = Main.npc[AssWorld.harvesterIndex].Center.Y - center.Y;
-                num23 -= -aaaHarvester3.TalonOffsetY + 20f; //has to result to 7f
+                num23 -= -Harvester.TalonOffsetY + 20f; //has to result to 7f
 
                 //num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
 
-                num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX) : (num22 + aaaHarvester3.TalonOffsetLeftX)); //66f, -70f
-                num22 = (npc.spriteDirection == 1) ? num22 + (aaaHarvester3.TalonDirectionalOffset + 6) : num22 - (aaaHarvester3.TalonDirectionalOffset + 6);
+                num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
+                num22 = (npc.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
 
 
                 SpriteEffects effect = (npc.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -104,9 +104,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         center.Y += num23;
                         num22 = Main.npc[AssWorld.harvesterIndex].Center.X - center.X;
                         num23 = Main.npc[AssWorld.harvesterIndex].Center.Y - center.Y;
-                        num23 -= -aaaHarvester3.TalonOffsetY + 20f; //7f
-                        num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX) : (num22 + aaaHarvester3.TalonOffsetLeftX)); //66f, -70f
-                        num22 = (npc.spriteDirection == 1) ? num22 + (aaaHarvester3.TalonDirectionalOffset + 6) : num22 - (aaaHarvester3.TalonDirectionalOffset + 6);
+                        num23 -= -Harvester.TalonOffsetY + 20f; //7f
+                        num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
+                        num22 = (npc.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
 
                         if (Main.rand.NextBool(8))
                         {
@@ -121,7 +121,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                 }
 
-                texture = mod.GetTexture("NPCs/DungeonBird/aaaHarvester3_" + "talon");
+                texture = mod.GetTexture("NPCs/DungeonBird/HarvesterTalon");
                 spriteBatch.Draw(texture, npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, new Vector2((float)texture.Width * 0.5f, (float)texture.Height * 0.5f), 1f, effect, 0f);
             }
         }
@@ -143,7 +143,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else
             {
-                npc.gfxOffY = aaaHarvester3.sinY;
+                npc.gfxOffY = Harvester.sinY;
                 npc.spriteDirection = Main.npc[AssWorld.harvesterIndex].spriteDirection;
 
                 if (npc.alpha > 0)
@@ -176,29 +176,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Vector2 vector82 = new Vector2(npc.Center.X, npc.Center.Y);
                     float betweenSelfAndBodyX = Main.npc[AssWorld.harvesterIndex].Center.X - vector82.X;
                     float betweenSelfAndBodyY = Main.npc[AssWorld.harvesterIndex].Center.Y - vector82.Y;
-                    betweenSelfAndBodyY -= -aaaHarvester3.TalonOffsetY;
-                    betweenSelfAndBodyX = ((npc.type != AssWorld.harvesterTalonLeft) ? (betweenSelfAndBodyX + aaaHarvester3.TalonOffsetRightX) : (betweenSelfAndBodyX + aaaHarvester3.TalonOffsetLeftX));
+                    betweenSelfAndBodyY -= -Harvester.TalonOffsetY;
+                    betweenSelfAndBodyX = ((npc.type != AssWorld.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX));
                     float len = (float)Math.Sqrt((double)(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY));
                     float somevar = 12f;
                     if (len < somevar + num691)
                     {
-                        //if (npc.type == AssWorld.harvesterTalonLeft)
-                        //{
-                        //    Main.NewText("aaa " + len);
-                        //    Main.NewText("XXYXY " + betweenSelfAndBodyX);
-                        //}
-                        //npc.rotation = 0f;
                         npc.velocity.X = betweenSelfAndBodyX;
                         npc.velocity.Y = betweenSelfAndBodyY;
                         npc.ai[1] += 1f;
-                        //if (npc.life < npc.lifeMax / 2)
-                        //{
-                        //    npc.ai[1] += 1f;
-                        //}
-                        //if (npc.life < npc.lifeMax / 4)
-                        //{
-                        //    npc.ai[1] += 1f;
-                        //}
                         //new
                         if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 2)
                         {
@@ -208,16 +194,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             npc.ai[1] += 1f;
                         }
-                        //if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax)
-                        //{
-                        //    npc.ai[1] += 10f;
-                        //}
                         if (npc.ai[1] >= 60f)
                         {
-                            //if (npc.type == AssWorld.harvesterTalonLeft) Main.NewText("bbbbbb");
                             npc.TargetClosest();
                             //test is 100f
-                            float test = aaaHarvester3.Wid / 2; //its for checking which (or both) talons to shoot, so the left one has also range to the right 100 in
+                            float test = Harvester.Wid / 2; //its for checking which (or both) talons to shoot, so the left one has also range to the right 100 in
 
                             //new
                             float x = Main.player[npc.target].Center.X - npc.Center.X;
@@ -252,21 +233,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             retractFactor += 0.25f;
                         }
-
-
-
-
-
                         //end new
 
                         len = num691 / len;
                         npc.velocity.X = betweenSelfAndBodyX * len * retractFactor; //both 1f
                         npc.velocity.Y = betweenSelfAndBodyY * len * retractFactor;
-                        //npc.rotation = (float)Math.Atan2(0.0 - (double)npc.velocity.Y, 0.0 - (double)npc.velocity.X);
-                        //if (npc.type == AssWorld.harvesterTalonLeft)
-                        //{
-                        //    npc.rotation = (float)Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X);
-                        //}
                     }
                 }
                 else if (npc.ai[0] == 1f)
@@ -276,14 +247,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.collideX = false;
                     npc.collideY = false;
                     float num695 = 12f;
-                    //if (npc.life < npc.lifeMax / 2)
-                    //{
-                    //    num695 += 4f;
-                    //}
-                    //if (npc.life < npc.lifeMax / 4)
-                    //{
-                    //    num695 += 4f;
-                    //}
                     //new
                     if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 2)
                     {
@@ -293,10 +256,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         num695 += 4f;
                     }
-                    //if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax)
-                    //{
-                    //    num695 += 10f;
-                    //}
                     Vector2 vector83 = new Vector2(npc.Center.X, npc.Center.Y);
                     float num696 = Main.player[npc.target].Center.X - vector83.X;
                     float num697 = Main.player[npc.target].Center.Y - vector83.Y;
@@ -305,11 +264,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.velocity.X = num696 * num698;
                     npc.velocity.Y = num697 * num698;
                     npc.ai[0] = 2f;
-                    //npc.rotation = (float)Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X);
-                    //if (npc.type == AssWorld.harvesterTalonLeft)
-                    //{
-                    //    npc.rotation = (float)Math.Atan2(0.0 - (double)npc.velocity.Y, 0.0 - (double)npc.velocity.X);
-                    //}
                 }
                 else if (npc.ai[0] == 2f)
                 {
@@ -343,8 +297,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     float num700 = Main.npc[AssWorld.harvesterIndex].Center.Y - vector84.Y;
                     num699 += Main.npc[AssWorld.harvesterIndex].velocity.X;
                     num700 += Main.npc[AssWorld.harvesterIndex].velocity.Y;
-                    num700 -= -aaaHarvester3.TalonOffsetY;
-                    num699 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num699 + aaaHarvester3.TalonOffsetRightX) : (num699 + aaaHarvester3.TalonOffsetLeftX));
+                    num700 -= -Harvester.TalonOffsetY;
+                    num699 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX));
                     float num701 = (float)Math.Sqrt((double)(num699 * num699 + num700 * num700));
                     if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax)
                     {
@@ -359,27 +313,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     else
                     {
                         bool flag41 = npc.justHit;
-                        //check for if the head is on half health, then set flag to false
-                        //if (flag41)
-                        //{
-                        //    int num2;
-                        //    for (int num702 = 0; num702 < 200; num702 = num2 + 1)
-                        //    {
-                        //        if (Main.npc[num702].active && Main.npc[num702].type == headType)
-                        //        {
-                        //            if (Main.npc[num702].life < Main.npc[num702].lifeMax / 2)
-                        //            {
-                        //                if (npc.knockBackResist == 0f)
-                        //                {
-                        //                    flag41 = false;
-                        //                }
-                        //                npc.knockBackResist = 0f;
-                        //            }
-                        //            break;
-                        //        }
-                        //        num2 = num702;
-                        //    }
-                        //}
+
                         if ((num701 > 600f || npc.collideX || npc.collideY || Collision.SolidCollision(npc.position, npc.width, npc.height + 8)) | flag41)
                         {
                             npc.noTileCollide = true;
@@ -433,22 +367,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             npc.velocity.Y = npc.velocity.Y - num704 * 2f;
                         }
                     }
-                    //npc.rotation = (float)Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X);
-                    //if (npc.type == AssWorld.harvesterTalonLeft)
-                    //{
-                    //    npc.rotation = (float)Math.Atan2(0.0 - (double)npc.velocity.Y, 0.0 - (double)npc.velocity.X);
-                    //}
                 }
             }
         }
     }
 
-    public class aaaHarvester3Left : aaaHarvester3Talon
+    public class HarvesterTalonLeft : HarvesterTalon
     {
 
     }
 
-    public class aaaHarvester3Right : aaaHarvester3Talon
+    public class HarvesterTalonRight : HarvesterTalon
     {
 
     }

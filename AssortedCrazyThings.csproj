@@ -128,7 +128,7 @@
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetalFractured.cs" />
     <Compile Include="Items\Accessories\Vanity\SpazmatismEyelloon.cs" />
     <Compile Include="Items\CaughtDungeonSoul.cs" />
-    <Compile Include="Items\CaughtDungeonSoulAwakened.cs" />
+    <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
@@ -209,11 +209,11 @@
     <Compile Include="NPCs\DemonEyeFractured.cs" />
     <Compile Include="NPCs\DemonEyeSeasonal.cs" />
     <Compile Include="NPCs\DemonEyeRegular.cs" />
-    <Compile Include="NPCs\DungeonBird\aaaHarvester1.cs" />
-    <Compile Include="NPCs\DungeonBird\aaaHarvester2.cs" />
-    <Compile Include="NPCs\DungeonBird\aaaHarvester3.cs" />
-    <Compile Include="NPCs\DungeonBird\aaaDungeonSoulBase.cs" />
-    <Compile Include="NPCs\DungeonBird\aaaHarvester3Talon.cs" />
+    <Compile Include="NPCs\DungeonBird\Harvester1.cs" />
+    <Compile Include="NPCs\DungeonBird\Harvester2.cs" />
+    <Compile Include="NPCs\DungeonBird\Harvester.cs" />
+    <Compile Include="NPCs\DungeonBird\DungeonSoulBase.cs" />
+    <Compile Include="NPCs\DungeonBird\HarvesterTalon.cs" />
     <Compile Include="NPCs\DungeonBird\HarvesterBase.cs" />
     <Compile Include="NPCs\StrangeSlime.cs" />
     <Compile Include="NPCs\WalkingTombstoneGolden.cs" />

@@ -1,13 +1,8 @@
 using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Items.Pets;
-using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -57,7 +52,7 @@ namespace AssortedCrazyThings
                 animatedTextureArray = new Texture2D[2];
 
                 animatedTextureArray[0] = GetTexture("Items/CaughtDungeonSoulAnimated");
-                animatedTextureArray[1] = GetTexture("Items/CaughtDungeonSoulAwakenedAnimated");
+                animatedTextureArray[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated");
             }
         }
 

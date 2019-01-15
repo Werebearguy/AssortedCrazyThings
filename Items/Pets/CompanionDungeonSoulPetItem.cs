@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 1);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 1);
             recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 1);
             recipe.AddIngredient(ItemID.Bone, 2);
             recipe.AddTile(TileID.CrystalBall);

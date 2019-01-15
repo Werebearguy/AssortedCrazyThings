@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MeteoriteBar, 5);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulAwakened>(), 2);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 2);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

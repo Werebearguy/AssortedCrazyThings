@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Terraria.ModLoader.IO;
-using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using AssortedCrazyThings.Projectiles;
@@ -43,9 +42,9 @@ namespace AssortedCrazyThings
         public uint slotsPlayerLast = 0;
         private bool resetSlots = false;
         private double lastTime = 0.0;
-        private byte joinDelaySend = 60;
-        public int counter = 30;
-        public int clientcounter = 30;
+        //private byte joinDelaySend = 60;
+        //public int counter = 30;
+        //public int clientcounter = 30;
 
         public bool soulMinion = false;
         public bool tempSoulMinion = false;
@@ -271,7 +270,7 @@ namespace AssortedCrazyThings
                 {
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<aaaDungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<DungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
                         {
                             Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
                         }

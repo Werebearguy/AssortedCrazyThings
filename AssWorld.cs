@@ -43,11 +43,11 @@ namespace AssortedCrazyThings
 
         private void InitHarvesterSouls()
         {
-            harvesterTypes[0] = mod.NPCType<aaaHarvester1>();
-            harvesterTypes[1] = mod.NPCType<aaaHarvester2>();
-            harvesterTypes[2] = mod.NPCType<aaaHarvester3>();
-            harvesterTypes[3] = harvesterTalonLeft = mod.NPCType<aaaHarvester3Left>();
-            harvesterTypes[4] = harvesterTalonRight = mod.NPCType<aaaHarvester3Right>();
+            harvesterTypes[0] = mod.NPCType<Harvester1>();
+            harvesterTypes[1] = mod.NPCType<Harvester2>();
+            harvesterTypes[2] = mod.NPCType<Harvester>();
+            harvesterTypes[3] = harvesterTalonLeft = mod.NPCType<HarvesterTalonLeft>();
+            harvesterTypes[4] = harvesterTalonRight = mod.NPCType<HarvesterTalonRight>();
             downedHarvester = false;
             spawnHarvester = false;
 
@@ -138,7 +138,7 @@ namespace AssortedCrazyThings
                     {
                         for (int k = 0; k < 255; k++)
                         {
-                            if (Main.player[k].active && !Main.player[k].dead/* && (double)Main.player[k].position.Y < Main.worldSurface * 16.0*/)
+                            if (Main.player[k].active && !Main.player[k].dead && Main.player[k].ZoneDungeon)
                             {
                                 NPC.SpawnOnPlayer(k, harvesterTypes[0]);
                                 AwakeningMessage(HarvesterBase.message);
@@ -187,13 +187,13 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 30 == 15 && NPC.CountNPCS(mod.NPCType<aaaDungeonSoul>()) > 10) //limit soul count in the world to 15
+                if (Main.time % 30 == 15 && NPC.CountNPCS(mod.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<aaaDungeonSoul>())
+                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<DungeonSoul>())
                         {
                             if (Main.npc[j].timeLeft < timeleftmin)
                             {

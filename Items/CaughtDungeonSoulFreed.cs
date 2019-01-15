@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items
 {
     //the one actually used in recipes
-    public class CaughtDungeonSoulAwakened : CaughtDungeonSoulBase
+    public class CaughtDungeonSoulFreed : CaughtDungeonSoulBase
     {
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Freed Dungeon Soul");
-            Tooltip.SetDefault("Awakened by defeating the " + aaaHarvester3.name + ".");
+            Tooltip.SetDefault("Awakened by defeating the " + Harvester.name + ".");
             ItemID.Sets.ItemIconPulse[item.type] = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
