@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -71,6 +72,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<SigilOfRetreat>());
             recipe.AddIngredient(mod.ItemType<SigilOfPainSuppression>());
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
