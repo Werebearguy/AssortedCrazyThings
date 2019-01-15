@@ -49,7 +49,13 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
-
+            for (int i = 0; i < 15; i++)
+            {
+                if (Main.rand.NextFloat() < 0.6f)
+                {
+                    Dust.NewDust(npc.position - new Vector2(-20, 0), (npc.width - 10) / 2, npc.height, 1, 0f, 0f, 50, new Color(255, 255, 255), 1f);
+                }
+            }
         }
 
         private float Gaussian(float x, float mean, float var = 1f)
@@ -115,7 +121,10 @@ namespace AssortedCrazyThings.NPCs
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            drawColor = new Color((int)(drawColor.R * 1.2f + 20), (int)(drawColor.G * 1.2f + 20), (int)(drawColor.B * 1.2f + 20));
+            drawColor = new Color((int)(drawColor.R * 1.2f + 40), (int)(drawColor.G * 1.2f + 40), (int)(drawColor.B * 1.2f + 40));
+            drawColor.R = Math.Max(drawColor.R, (byte)100);
+            drawColor.G = Math.Max(drawColor.G, (byte)100);
+            drawColor.B = Math.Max(drawColor.B, (byte)100);
             //drawColor * 2f makes it so its twice as bright as the model itself (capped at Color.White), +20f makes it so its always a bit visible
             //since we only draw one frame, use texture.Bounds instead of npc.frame
             spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);

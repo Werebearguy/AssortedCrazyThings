@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,6 +26,13 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.SkeletonBone);
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
+            Main.PlaySound(0, projectile.position);
+            return true;
         }
 
         public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
