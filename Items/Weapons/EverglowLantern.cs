@@ -1,6 +1,7 @@
 ﻿using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -23,7 +24,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.summon = true;
             item.mana = 10;
             item.width = 18;
-            item.height = 46;
+            item.height = 38;
             item.useTime = 36;
             item.useAnimation = 36;
             item.useStyle = 4; //4 for life crystal
@@ -45,9 +46,10 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.position.Y - 2f, player.velocity.X + player.direction * 1.5f, -1f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.position.Y, player.velocity.X + player.direction * 1, -1/2f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
-            //return player.altFunctionUse != 2;
+            //one that shoots out far 
+            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
+            //one that shoots out less
+            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1/2f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
             return false;
         }
 
@@ -60,22 +62,52 @@ namespace AssortedCrazyThings.Items.Weapons
             return base.UseItem(player);
         }
 
+        public override void HoldItem(Player player)
+        {
+            player.itemLocation.X = player.Center.X;
+            player.itemLocation.Y = player.Bottom.Y + 2f;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            //need a dummy because you can't remove elements from a list while you are iterating
             TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
+
+            string[] newDamage;
+            string tempString;
+
             foreach (TooltipLine line2 in tooltips)
             {
-                //if (line2.mod == "Terraria" && line2.Name == "ItemName")
-                //{
-                //    line2.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
-                //}
                 if (line2.mod == "Terraria" && line2.Name == "BuffTime")
                 {
                     line = line2;
-                    break;
+                }
+
+                if (line2.mod == "Terraria" && line2.Name == "Damage")
+                {
+                    try //try catch in case some other mods modify it
+                    {
+                        //split string up into words
+                        newDamage = line2.text.Split(new string[] { " " }, 10, StringSplitOptions.RemoveEmptyEntries);
+
+                        //rebuild text string and add "x 2" after the damage number
+                        tempString = newDamage[0] + " x 2";
+
+                        //add remaining words back
+                        for (int i = 1; i < newDamage.Length; i++)
+                        {
+                            tempString += " " + newDamage[i];
+                        }
+
+                        line2.text = tempString;
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
                 }
             }
-            tooltips.Remove(line);
+            if(line.Name != "dummy") tooltips.Remove(line);
         }
 
         public override void AddRecipes()
