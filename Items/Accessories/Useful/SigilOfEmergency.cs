@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -9,7 +8,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Emergency");
-            Tooltip.SetDefault("Teleports you home when health is dangerously low");
+            Tooltip.SetDefault("Summons a temporary minion to help you upon reaching critical health." +
+                "\nIncreases your max number of minions" +
+                "\nIncreases minion damage by 10%");
         }
 
         public override void SetDefaults()

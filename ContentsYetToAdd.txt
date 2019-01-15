@@ -16,6 +16,8 @@ the harvester with no food (or less)
 - mention that the harvesters "progress" shows up as a green number that says how many souls it has to still eat until it evolves, when it eats one
 (also mention that we recommend the mod "Player Resource Bars" that displays a health bar on the bird for easier tracking of progress)
 
+- mention that sigil of emergency also increases minion damage by 10%
+
 about CHANGES:
 
 - change "All items' sell values updated" to ""Almost all items' sell values updated"
