@@ -54,11 +54,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (!npcfrom.Equals(npcto))
             {
-                if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1)) //type check since souls might despawn and index changes
+                //type check since souls might despawn and index changes
+                if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1) && npcto.timeLeft > HarvesterBase.EatTimeConst)
                 {
                     npcto.timeLeft = HarvesterBase.EatTimeConst;
                     //Main.NewText("set time left to " + HarvesterBase.EatTimeConst);
                     npcto.netUpdate = true;
+                    //if (Main.netMode == NetmodeID.Server)
+                    //{
+                    //    NetMessage.SendData(23, -1, -1, null, npcto.whoAmI);
+                    //}
                 }
             }
         }
@@ -290,7 +295,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //go into "eaten" mode
             if (!tarnpc.Equals(npc))
             {
-                if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height + 2)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
+                if (npc.getRect().Intersects(tarnpc.getRect()) && AI_State == 0 && !Collision.SolidCollision(npc.position, npc.width, npc.height/* + 2*/)/* && tarnpc.velocity.Y <= 0*/) // tarnpc.velocity.Y <= 0 for only when it jumps
                 {
                     AI_State = 1;
                     npc.velocity.Y = 1f;

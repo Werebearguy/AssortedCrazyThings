@@ -250,8 +250,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frame.Y = 0;
                 }
             }
-
-            //npc.frame.Y = frameHeight * 14;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -261,8 +259,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            //drawColor = new Color((int)(drawColor.R * 1.2f + 20), (int)(drawColor.G * 1.2f + 20), (int)(drawColor.B * 1.2f + 20));
-            //drawColor * 2f makes it so its twice as bright as the model itself (capped at Color.White), +20f makes it so its always a bit visible
             spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
 
             if (soulsEaten > 0)
@@ -285,14 +281,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AI_State == State_Stop && stopTime == eatTime)
             {
                 texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester2_" + "souleat");
-                //drawColor = npc.GetAlpha(Color.White) * ((stopTime - AI_X_Timer) / (float)stopTime);
-                drawColor = Color.White;
+
+                drawColor.R = Math.Max(drawColor.R, (byte)200);
+                drawColor.G = Math.Max(drawColor.G, (byte)200);
+                drawColor.B = Math.Max(drawColor.B, (byte)200);
                 spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
             }
 
             //Spawn light, add dust
             Lighting.AddLight(npc.Center, new Vector3(0.25f, 0.25f, 0.5f) * (soulsEaten / (float)maxSoulsEaten));
-            if (AI_State != State_Stop && AI_State != State_Transform && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / (float)maxSoulsEaten))
+            if (AI_State != State_Stop && AI_State != State_Transform && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / maxSoulsEaten))
             {
                 Vector2 position = npc.position;
 
@@ -320,24 +318,29 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SendExtraAI(BinaryWriter writer)
         {
             //from server to client
-            writer.Write((bool)aiTargetType);
             writer.Write((byte)soulsEaten);
             writer.Write((byte)stuckTimer);
             writer.Write((byte)rndJump);
             writer.Write((short)target);
-            writer.Write((bool)transformServer);
+            BitsByte flags = new BitsByte();
+            flags[0] = aiInit;
+            flags[1] = aiTargetType;
+            flags[2] = transformServer;
+            writer.Write(flags);
             //Print("send: " + AI_State + " " + soulsEaten.ToString() + " " + stuckTimer.ToString() + " " + rndJump.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             //from client to server
-            aiTargetType = reader.ReadBoolean();
             soulsEaten = reader.ReadByte();
             stuckTimer = reader.ReadByte();
             rndJump = reader.ReadByte();
             target = reader.ReadInt16();
-            transformServer = reader.ReadBoolean();
+            BitsByte flags = reader.ReadByte();
+            aiInit = flags[0];
+            aiTargetType = flags[1];
+            transformServer = flags[2];
             //Print("recv: " + AI_State + " " + soulsEaten.ToString() + " " + stuckTimer.ToString() + " " + rndJump.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
 

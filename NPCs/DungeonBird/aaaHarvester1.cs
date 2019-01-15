@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,7 +21,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             maxVeloScale = 1.3f; //1.3f default
             maxAccScale = 0.04f; //0.04f default
             stuckTime = 6; //*30 for ticks, *0.5 for seconds
-            afterEatTime = 180;
+            afterEatTime = 60;
             eatTime = EatTimeConst + 60;
             idleTime = IdleTimeConst;
             hungerTime = 1000; //AI_Timer
@@ -174,56 +175,41 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
 
                 texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester1_" + "souleat");
-                spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                drawColor.R = Math.Max(drawColor.R, (byte)200);
+                drawColor.G = Math.Max(drawColor.G, (byte)200);
+                drawColor.B = Math.Max(drawColor.B, (byte)200);
+                spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
             }
         }
 
         public override void SendExtraAI(BinaryWriter writer)
         {
             //from server to client
-            writer.Write((bool)aiTargetType);
             writer.Write((byte)soulsEaten);
             writer.Write((byte)stuckTimer);
             writer.Write((byte)rndJump);
             writer.Write((short)target);
-            writer.Write((bool)transformServer);
+            BitsByte flags = new BitsByte();
+            flags[0] = aiInit;
+            flags[1] = aiTargetType;
+            flags[2] = transformServer;
+            writer.Write(flags);
             //Print("send: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             //from client to server
-            aiTargetType = reader.ReadBoolean();
             soulsEaten = reader.ReadByte();
             stuckTimer = reader.ReadByte();
             rndJump = reader.ReadByte();
             target = reader.ReadInt16();
-            transformServer = reader.ReadBoolean();
+            BitsByte flags = reader.ReadByte();
+            aiInit = flags[0];
+            aiTargetType = flags[1];
+            transformServer = flags[2];
             //Print("recv: " + AI_State + " " + stuckTimer.ToString() + " " + target.ToString() + " " + transformServer.ToString());
         }
-
-        //public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        //{
-        //    bool shouldSpawn = true;
-        //    for (short j = 0; j < 200; j++)
-        //    {
-        //        if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
-        //        {
-        //            shouldSpawn = false;
-        //            break;
-        //        }
-        //    }
-
-        //    if (spawnInfo.player.ZoneDungeon && shouldSpawn)
-        //    {
-        //        //only spawns when in dungeon and when no other is alive atm
-        //        return 0.04f;
-        //    }
-        //    else
-        //    {
-        //        return 0f;
-        //    }
-        //}
 
         public override void AI()
         {

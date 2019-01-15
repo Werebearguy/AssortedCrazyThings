@@ -10,9 +10,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public abstract class HarvesterBase : ModNPC
     {
-        public const short EatTimeConst = 90; //shouldnt be equal to IdleTimeConst + 60
+        public const short EatTimeConst = 180; //shouldn't be equal to IdleTimeConst + 60
         public const short IdleTimeConst = 180;
-        public static readonly string message = "You hear a faint cawing come from nearby...";
+        public static readonly string message = "You hear a faint cawing come from nearby..."; //not used
         protected const bool Target_Player = false;
         protected const bool Target_Soul = true;
         protected const int AI_State_Slot = 0;
@@ -75,13 +75,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
-        }
-
         public static string name = "aaaHarvester";
 
         protected float maxVeloScale; //2f default //
@@ -106,6 +99,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public byte rndJump;
         public bool transformServer;
         public int transformTo;
+        public bool aiInit;
 
         public float AI_State
         {
@@ -167,18 +161,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public float AI_Init
-        {
-            get
-            {
-                return npc.localAI[1];
-            }
-            set
-            {
-                npc.localAI[1] = value;
-            }
-        }
-
         protected int SelectTarget(bool restricted = false)
         {
             if (aiTargetType == Target_Soul)
@@ -186,6 +168,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 target = SoulTargetClosest(restricted);
                 if (target == 200)
                 {
+                    stopTime = idleTime;
                     AI_State = State_Stop;
                 }
             }
@@ -873,13 +856,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 tile7[num + 2, num2] = tile8;
             }
 
-            if (TileID.Sets.Platforms[Main.tile[num, num2].type] && TileID.Sets.Platforms[Main.tile[num + 1, num2].type] && ((npc.direction == -1)? TileID.Sets.Platforms[Main.tile[num + 2, num2].type]:true) && (GetTarget().Center.Y - npc.Center.Y) > 0f)
+            if (TileID.Sets.Platforms[Main.tile[num, num2].type] && TileID.Sets.Platforms[Main.tile[num + 1, num2].type] && ((npc.direction == -1)? TileID.Sets.Platforms[Main.tile[num + 2, num2].type]:true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
             {
                 npc.netUpdate = true;
                 npc.position.Y += 1f;
             }
-
-
         }
 
         protected void HarvesterAI(bool allowNoclip = true)
@@ -900,16 +881,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if (AI_Init == 0 && Main.netMode != 1)
+            if (!aiInit/* && Main.netMode != 1*/)
             {
                 npc.life = soulsEaten + 1;
                 //initialize it to go for souls first
                 aiTargetType = Target_Soul;
                 stopTime = idleTime;
                 SelectTarget(restrictedSoulSearch);
-                AI_Init = 1;
+                aiInit = true;
                 AI_Timer = 0f;
-                AI_Local_Timer = 0f;
+                //AI_Local_Timer = 0f;
                 npc.netUpdate = true;
             }
 
@@ -923,11 +904,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return;
             }
 
-            if (AI_Local_Timer < afterEatTime)
-            {
-                AI_Local_Timer++;
-                return;
-            }
+            //if (AI_Local_Timer < afterEatTime)
+            //{
+            //    AI_Local_Timer++;
+            //    return;
+            //}
 
             if (!(AI_State == State_Noclip))
             {
@@ -1112,8 +1093,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     else if (stopTime == eatTime)
                     {
                         //Print("finished eating");
-                        AI_Init = 0; //reinitialize
-                        npc.HealEffect(++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
+                        aiInit = false; //reinitialize
+                        npc.HealEffect(npc.lifeMax - 1 - ++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
 
                         //poof visual
                         for (int i = 0; i < 20; i++)
@@ -1131,7 +1112,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             //soulsEaten = 0;
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                AI_Init = 1; //skip the reinit
+                                aiInit = true; //skip the reinit
                                 transformServer = true;
                                 //Print("set transform var to tru");
                             }
