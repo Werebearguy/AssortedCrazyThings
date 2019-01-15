@@ -57,6 +57,11 @@ namespace AssortedCrazyThings.NPCs
         {
             int itemid = 0;
 
+            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+            {
+                AiTexture = Main.rand.Next(5);
+            }
+
             switch ((int)AiTexture)
             {
                 case 0:

@@ -38,6 +38,11 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
+            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+            {
+                npc.ai[1] = Main.rand.Next(1, 7);
+            }
+
             Item.NewItem(npc.getRect(), ItemID.StoneBlock, 10 + Main.rand.Next(20));
             if (npc.ai[1] <= 1) Item.NewItem(npc.getRect(), ItemID.Amethyst, 1); //sorted by rarity
             else if (npc.ai[1] <= 2) Item.NewItem(npc.getRect(), ItemID.Topaz, 1);

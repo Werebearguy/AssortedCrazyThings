@@ -53,6 +53,12 @@ namespace AssortedCrazyThings.NPCs
                         public const short StrangePlant3 = 3387;
                         public const short StrangePlant4 = 3388;
             */
+
+            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+            {
+                AiTexture = Main.rand.Next(4);
+            }
+
             Item.NewItem(npc.getRect(), 3385 + (int)AiTexture);
         }
 
