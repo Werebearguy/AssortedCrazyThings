@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Items.Tools
             item.height = 40;
             item.scale = 1f;
             item.rare = -11;
-            item.value = Item.sellPrice(silver: 10);
+            item.value = Item.sellPrice(silver: 45);
 
             item.melee = true;
             item.noMelee = true;
@@ -40,6 +40,17 @@ namespace AssortedCrazyThings.Items.Tools
         {
             // Ensures no more than one spear can be thrown out, use this when using autoReuse
             return player.ownedProjectileCounts[item.shoot] < 1;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Wire, 10);
+            recipe.AddRecipeGroup("IronBar", 10);
+            recipe.AddIngredient(ItemID.BugNet, 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

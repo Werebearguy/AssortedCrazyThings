@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items
 		{
 			item.CloneDefaults(ItemID.Silk);
 			item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(silver: 50);
         }
 	}
 }

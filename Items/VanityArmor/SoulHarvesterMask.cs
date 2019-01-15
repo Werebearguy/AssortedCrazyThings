@@ -8,7 +8,6 @@ namespace AssortedCrazyThings.Items.VanityArmor
 		public override void SetStaticDefaults()
 		{
             DisplayName.SetDefault("Soul Harvester Mask");
-			//Tooltip.SetDefault("If you're reading this, the sprite is not final.");
 		}
 		public override void SetDefaults()
 		{
