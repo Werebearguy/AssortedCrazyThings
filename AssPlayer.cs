@@ -23,13 +23,13 @@ namespace AssortedCrazyThings
 
         public bool teleportHome = false;
         public bool canTeleportHome = false;
-        private const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
+        public const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
         public short teleportHomeTimer = 0; //gets saved when you relog so you cant cheese it
 
         //TECHNICALLY NOT DEFENCE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
         public bool getDefense = false;
         public bool canGetDefense = false;
-        private const short GetDefenseTimerMax = 600; //in seconds //10 ingame minutes
+        public const short GetDefenseTimerMax = 600; //in seconds //10 ingame minutes
         private const short GetDefenseDurationMax = 600; //in ticks //10 ingame seconds
         public short getDefenseDuration = 0;
         public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it
@@ -251,31 +251,43 @@ namespace AssortedCrazyThings
             }
         }
 
+        private bool SoulBuffBlacklist(int type)
+        {
+            //returns true if type exists in the blacklist
+            return Array.IndexOf(AssortedCrazyThings.soulBuffBlacklist, type) != -1;
+        }
+
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls
-            bool shouldDropSouls = false;
-            int index = 200;
-            for (short j = 0; j < 200; j++)
+            if(Main.time % 30 == 4)
             {
-                if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
+                bool shouldDropSouls = false;
+                int index = 200;
+                for (short j = 0; j < 200; j++)
                 {
-                    shouldDropSouls = true;
-                    index = j;
-                    break;
-                }
-            }
-
-            if (shouldDropSouls)
-            {
-                int distance = (int)(Main.npc[index].Center - player.Center).Length();
-                if (distance < 2880 || player.ZoneDungeon) //one and a half screens or in dungeon
-                {
-                    for (short j = 0; j < 200; j++)
+                    if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<DungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                        shouldDropSouls = true;
+                        index = j;
+                        break;
+                    }
+                }
+
+                if (shouldDropSouls)
+                {
+                    int distance = (int)(Main.npc[index].Center - player.Center).Length();
+                    if (distance < 2880 || player.ZoneDungeon) //one and a half screens or in dungeon
+                    {
+                        for (short j = 0; j < 200; j++)
                         {
-                            Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
+                            if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<DungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && !SoulBuffBlacklist(Main.npc[j].type))
+                            {
+                                if (Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                                {
+                                    Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
+                                }
+                            }
                         }
                     }
                 }

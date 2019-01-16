@@ -806,8 +806,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //}
 
             //hungerTimer
-            //AI_Timer++ in HarvesterAI when target available;
-            if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
+            //AI_Timer++ in HarvesterAI always
+            if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height/* + 2*/))
             {
                 SelectTarget(restricted: false);
                 if (IsTargetActive() && target != 200)
@@ -821,7 +821,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
                 if (target == 200)
                 {
-                    AI_Timer = hungerTime / 2;
+                    AI_Timer -= 360; //6 seconds
                 }
                 npc.netUpdate = true;
             }
@@ -980,7 +980,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //AI_X_Timer = 0f;
                 }
 
-                if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
+                if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height/* + 2*/))
                 {
                     SelectTarget(restricted: false);
                     if(IsTargetActive() && target != 200)
@@ -989,12 +989,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //goto noclip 
                         if (IsTargetActive())
                             PassCoordinates(GetTarget());
-                        //Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
+                        Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
                         AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                     }
                     if (target == 200)
                     {
-                        AI_Timer = hungerTime / 2;
+                        AI_Timer -= 360;
                     }
                     npc.netUpdate = true;
                 }
@@ -1004,7 +1004,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //{
                 if(Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    AI_Timer++; //count hungerTime up
+                    AI_Timer++; //count hungerTime up, always
                 }
             //}
 
@@ -1085,7 +1085,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         npc.direction = 1;
                     }
-                    AI_Timer = 0f; //reset humger timer
+                    if(AI_Timer > hungerTime - 180) AI_Timer -= 180; //halve hunger timer
+                    //AI_Timer = 0f; //reset hunger timer
                     AI_State = State_Approach;
                 }
                 else//keep state

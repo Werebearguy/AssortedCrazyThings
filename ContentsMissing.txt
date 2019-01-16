@@ -1,0 +1,4 @@
+- empowering buff: mention that it gives you a higher max value of the boost if you beat WoL and then Plantera
+
+- soul minions: mention that you can "launch" them through walls unlike most minions (via dashing mainly),
+so you can get rid of pesky enemies easily, instead of digging through
