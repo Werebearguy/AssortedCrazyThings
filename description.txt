@@ -4,5 +4,5 @@ This mod adds a large amount of enemies, a hefty amount of pets, and a few other
 Big update, see mod homepage for more details.
 This is the internally renamed version. As mentioned in the previous upload, download this version and uninstall version 1.1.
 
-*- Jan ??, 2019
+*- Jan 15, 2019
 Major update, visit the Mod Homepage below to see the current Changelog!

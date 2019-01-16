@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Fun
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod.ItemType("ShroomiteDiggingClaw"), 5);
+			recipe.AddIngredient(ItemID.ShroomiteDiggingClaw, 5);
             recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
