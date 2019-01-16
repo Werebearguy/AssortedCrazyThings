@@ -77,7 +77,7 @@ namespace AssortedCrazyThings.Items
             Lighting.AddLight(item.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = AssortedCrazyThings.animatedTextureArray[animatedTextureSelect];
+            Texture2D image = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect];
             Rectangle bounds = new Rectangle
             {
                 X = 0,

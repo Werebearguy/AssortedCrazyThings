@@ -1,8 +1,10 @@
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -23,7 +25,10 @@ namespace AssortedCrazyThings
         public static int[] slimePetLegacy = new int[9];
 
         //Soul item animated textures
-        public static Texture2D[] animatedTextureArray;
+        public static Texture2D[] animatedSoulTextures;
+
+        //Soul NPC spawn blacklist
+        public static int[] soulBuffBlacklist;
 
         private void InitPets()
         {
@@ -43,16 +48,56 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void InitSoulBuffBlacklist()
+        {
+            soulBuffBlacklist = new int[40];
+            int index = 0;
+            soulBuffBlacklist[index++] = NPCID.GiantWormBody;
+            soulBuffBlacklist[index++] = NPCID.GiantWormTail;
+            soulBuffBlacklist[index++] = NPCID.DiggerBody;
+            soulBuffBlacklist[index++] = NPCID.DiggerTail;
+            soulBuffBlacklist[index++] = NPCID.DevourerBody;
+            soulBuffBlacklist[index++] = NPCID.DevourerTail;
+            soulBuffBlacklist[index++] = NPCID.EaterofWorldsBody;
+            soulBuffBlacklist[index++] = NPCID.EaterofWorldsTail;
+            soulBuffBlacklist[index++] = NPCID.SeekerBody;
+            soulBuffBlacklist[index++] = NPCID.SeekerTail;
+            soulBuffBlacklist[index++] = NPCID.TombCrawlerBody;
+            soulBuffBlacklist[index++] = NPCID.TombCrawlerTail;
+            soulBuffBlacklist[index++] = NPCID.LeechBody;
+            soulBuffBlacklist[index++] = NPCID.LeechTail;
+            soulBuffBlacklist[index++] = NPCID.BoneSerpentBody;
+            soulBuffBlacklist[index++] = NPCID.BoneSerpentTail;
+            soulBuffBlacklist[index++] = NPCID.DuneSplicerBody;
+            soulBuffBlacklist[index++] = NPCID.DuneSplicerTail;
+            soulBuffBlacklist[index++] = NPCID.SpikeBall;
+            soulBuffBlacklist[index++] = NPCID.BlazingWheel;
+            //immune to all debuffs anyway
+            //soulBuffBlacklist[index++] = NPCID.TheDestroyerBody;
+            //soulBuffBlacklist[index++] = NPCID.TheDestroyerTail;
+            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody1;
+            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody2;
+            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody3;
+            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody4;
+            //soulBuffBlacklist[index++] = NPCID.CultistDragonTail;
+
+            Array.Resize(ref soulBuffBlacklist, index + 1);
+
+            //other modded worm types maybe later
+        }
+
         public override void Load()
         {
             InitPets();
 
+            InitSoulBuffBlacklist();
+
             if (!Main.dedServ && Main.netMode != 2)
             {
-                animatedTextureArray = new Texture2D[2];
+                animatedSoulTextures = new Texture2D[2];
 
-                animatedTextureArray[0] = GetTexture("Items/CaughtDungeonSoulAnimated");
-                animatedTextureArray[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated");
+                animatedSoulTextures[0] = GetTexture("Items/CaughtDungeonSoulAnimated");
+                animatedSoulTextures[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated");
             }
         }
 
@@ -61,7 +106,18 @@ namespace AssortedCrazyThings
             if (!Main.dedServ && Main.netMode != 2)
             {
                 PetAccessory.Unload();
-                animatedTextureArray = null;
+                animatedSoulTextures = null;
+            }
+        }
+
+        public override void PostSetupContent()
+        {
+            //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
+            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
+            if (bossChecklist != null)
+            {
+                //5.1f means just after skeletron
+                bossChecklist.Call("AddMiniBossWithInfo", NPCs.DungeonBird.Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<Items.IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
             }
         }
 
