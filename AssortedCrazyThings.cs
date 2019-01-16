@@ -72,6 +72,9 @@ namespace AssortedCrazyThings
             soulBuffBlacklist[index++] = NPCID.DuneSplicerTail;
             soulBuffBlacklist[index++] = NPCID.SpikeBall;
             soulBuffBlacklist[index++] = NPCID.BlazingWheel;
+
+            soulBuffBlacklist[index++] = NPCID.BlueSlime;
+            soulBuffBlacklist[index++] = NPCID.SlimeSpiked;
             //immune to all debuffs anyway
             //soulBuffBlacklist[index++] = NPCID.TheDestroyerBody;
             //soulBuffBlacklist[index++] = NPCID.TheDestroyerTail;
