@@ -25,10 +25,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            //tooltip based off of the teleport ability
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
             if (mPlayer.canTeleportHome)
             {
                 //the first string is irrelevant, its never used anywhere, basically just a name for that line
+                tooltips.Add(new TooltipLine(mod, "Cooldown", "Cooldown: " + (AssPlayer.TeleportHomeTimerMax/60) + " minutes"));
                 tooltips.Add(new TooltipLine(mod, "CanUse", "Ready to use"));
             }
             else

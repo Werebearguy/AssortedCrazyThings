@@ -142,6 +142,61 @@ namespace AssortedCrazyThings
                             if (Main.player[k].active && !Main.player[k].dead && Main.player[k].ZoneDungeon)
                             {
                                 NPC.SpawnOnPlayer(k, harvesterTypes[0]);
+
+                                if (false)
+                                {
+                                    /*integrate that somehow either into AI or here
+                                    if (this.ai[0] >= 650f && Main.netMode != 1)
+                                    {
+                                        this.ai[0] = 1f;
+                                        int num91 = (int)Main.player[target].position.X / 16;
+                                        int num92 = (int)Main.player[target].position.Y / 16;
+                                        int num93 = (int)base.position.X / 16;
+                                        int num94 = (int)base.position.Y / 16;
+                                        int num95 = 20;
+                                        int num96 = 0;
+                                        bool flag4 = false;
+                                        if (Math.Abs(base.position.X - Main.player[target].position.X) + Math.Abs(base.position.Y - Main.player[target].position.Y) > 2000f)
+                                        {
+                                            num96 = 100;
+                                            flag4 = true;
+                                        }
+                                        while (!flag4 && num96 < 100)
+                                        {
+                                            int num2 = num96;
+                                            num96 = num2 + 1;
+                                            int num97 = Main.rand.Next(num91 - num95, num91 + num95);
+                                            int num98 = Main.rand.Next(num92 - num95, num92 + num95);
+                                            for (int num99 = num98; num99 < num92 + num95; num99 = num2 + 1)
+                                            {
+                                                if ((num99 < num92 - 4 || num99 > num92 + 4 || num97 < num91 - 4 || num97 > num91 + 4) && (num99 < num94 - 1 || num99 > num94 + 1 || num97 < num93 - 1 || num97 > num93 + 1) && Main.tile[num97, num99].nactive())
+                                                {
+                                                    bool flag5 = true;
+                                                    if ((type == 32 || (type >= 281 && type <= 286)) && !Main.wallDungeon[Main.tile[num97, num99 - 1].wall])
+                                                    {
+                                                        flag5 = false;
+                                                    }
+                                                    else if (Main.tile[num97, num99 - 1].lava())
+                                                    {
+                                                        flag5 = false;
+                                                    }
+                                                    if (flag5 && Main.tileSolid[Main.tile[num97, num99].type] && !Collision.SolidTiles(num97 - 1, num97 + 1, num99 - 4, num99 - 1))
+                                                    {
+                                                        this.ai[1] = 20f;
+                                                        this.ai[2] = (float)num97;
+                                                        this.ai[3] = (float)num99;
+                                                        flag4 = true;
+                                                        break;
+                                                    }
+                                                }
+                                                num2 = num99;
+                                            }
+                                        }
+                                        netUpdate = true;
+                                    }
+                                    */
+                                }
+
                                 AwakeningMessage(HarvesterBase.message);
                                 spawnHarvester = false; //disallow it to spawn this night anymore
                                 break;
@@ -168,7 +223,7 @@ namespace AssortedCrazyThings
                             bool flag3 = false;
                             for (int n = 0; n < 255; n++)
                             {
-                                if (Main.player[n].active && Main.player[n].statLifeMax >= 300)
+                                if (Main.player[n].active && Main.player[n].statLifeMax2 >= 300)
                                 {
                                     flag3 = true;
                                     break;

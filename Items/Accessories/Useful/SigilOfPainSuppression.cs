@@ -31,6 +31,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             if (mPlayer.canGetDefense)
             {
                 //the first string is irrelevant, its never used anywhere, basically just a name for that line
+                tooltips.Add(new TooltipLine(mod, "Cooldown", "Cooldown: " + (AssPlayer.GetDefenseTimerMax / 60) + " minutes"));
                 tooltips.Add(new TooltipLine(mod, "CanUse", "Ready to use"));
             }
             else
