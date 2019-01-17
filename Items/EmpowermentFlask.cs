@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Items
         {
             DisplayName.SetDefault("Empowerment Flask");
             Tooltip.SetDefault("Incrementally increases damage dealt over time"
-                + "\nBonus resets upon taking damage");
+                + "\nBonus resets upon taking damage"
+                + "\n(Summon damage only increases marginally)");
         }
 
         public override void SetDefaults()
@@ -25,7 +26,7 @@ namespace AssortedCrazyThings.Items
             item.UseSound = SoundID.Item3;
             item.maxStack = 30;
             item.consumable = true;
-            item.buffTime = 5400; //one and a half minutes
+            item.buffTime = 7200; //twi minutes
             item.buffType = mod.BuffType<EmpoweringBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(silver: 2);
