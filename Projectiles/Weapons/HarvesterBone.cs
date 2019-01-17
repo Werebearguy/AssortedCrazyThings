@@ -7,7 +7,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 {
     //used in BaseHarvester, same as bone, just applies slow
 
-    //It doesnt produce any effects on impact with tiles
     public class HarvesterBone : ModProjectile
     {
         public override string Texture

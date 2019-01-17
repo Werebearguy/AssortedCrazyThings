@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Projectiles.Weapons;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
@@ -62,8 +64,6 @@ namespace AssortedCrazyThings.Items
                     }
                 }
             }
-            //Main.NewText("" + player.selectedItem + " " + player.HeldItem.active + " " + player.HeldItem.damage + " " + player.HeldItem.melee + " " + player.HeldItem.ranged + " " + player.HeldItem.magic + " " + player.HeldItem.thrown);
-            //return base.CanUseItem(item, player);
             return true;
         }
 
@@ -81,52 +81,16 @@ namespace AssortedCrazyThings.Items
             }
         }
 
-        private void SpawnRangedDust(int type, Color color, float speed, Player player)
-        {
-            if(player.whoAmI == Main.myPlayer)
-            {
-                //TODO somehow try to figure out what direction the user is shooting without using any projectile code
-                Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
-                for (int k = 0; k < 10; k++)
-                {
-                    if (Main.rand.NextFloat() < 0.8f)
-                    {
-                        float rand = Main.rand.NextFloat(0.7f, 1.3f);
-                        cm = cm.RotatedByRandom(MathHelper.ToRadians(6));
-                        float velox = ((cm.X * speed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
-                        float veloy = ((cm.Y * speed * rand) / cm.Length());
-                        Vector2 velo = new Vector2(velox, veloy);
-                        Vector2 pos = new Vector2(player.Center.X + velox * 1.2f, player.Center.Y + veloy * 1.2f);
-                        Dust dust = Dust.NewDustPerfect(pos, type, velo, 100, color, 2.368421f);
-                        dust.noGravity = true;
-                        dust.noLight = true;
-                    }
-                }
-            }
-        }
-
         private void ShootCandleDust(Item item, AssPlayer mPlayer)
         {
-            if (mPlayer.everburningCandleBuff)
-            {
-                Color color = new Color(255, 255, 255);
-                SpawnRangedDust(6, color, item.shootSpeed, mPlayer.player);
-            }
-            if (mPlayer.everburningCursedCandleBuff)
-            {
-                Color color = new Color(196, 255, 0); //so it's light green and not dark green
-                SpawnRangedDust(61, color, item.shootSpeed, mPlayer.player);
-            }
-            if (mPlayer.everfrozenCandleBuff)
-            {
-                Color color = new Color(255, 255, 255);
-                SpawnRangedDust(59, color, item.shootSpeed, mPlayer.player);
-            }
-            if (mPlayer.everburningShadowflameCandleBuff)
-            {
-                Color color = new Color(196, 0, 255);
-                SpawnRangedDust(62, color, item.shootSpeed, mPlayer.player);
-            }
+            Vector2 cm = new Vector2(Main.MouseWorld.X - mPlayer.player.Center.X, Main.MouseWorld.Y - mPlayer.player.Center.Y);
+            float rand = Main.rand.NextFloat(0.7f, 1.3f);
+            float velox = ((cm.X * item.shootSpeed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
+            float veloy = ((cm.Y * item.shootSpeed * rand) / cm.Length());
+            Vector2 velo = new Vector2(velox, veloy);
+            Vector2 pos = new Vector2(mPlayer.player.Center.X, mPlayer.player.Center.Y + 8f);
+
+            Projectile.NewProjectile(pos, velo + mPlayer.player.velocity, mod.ProjectileType<CandleDustDummy>(), 0, 0f, mPlayer.player.whoAmI);
         }
 
         public  override void MeleeEffects(Item item, Player player, Rectangle hitbox)
