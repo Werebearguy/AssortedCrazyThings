@@ -29,6 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
             projectile.timeLeft = LifeTime;
+            projectile.alpha = 255;
         }
 
         //ai 0 is the timer until the arrow starts dropping (caps at 15)
@@ -54,6 +55,8 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             new Color(196, 255, 0),
             new Color(255, 255, 255),
             new Color(196, 0, 255)};
+
+            projectile.alpha = 255;
 
             //projectile.ai[0] = 0; //fly straight
             //kinda cheaty since the arrow AI makes itself only visible after a few ticks, so no need to make alpha
