@@ -169,13 +169,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AI_State == State_Stop && stopTime == eatTime)
             {
-                Texture2D texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester1_" + "souleat");
+                Texture2D texture = mod.GetTexture("Glowmasks/Harvester/Harvester1Souleat");
                 Vector2 stupidOffset = new Vector2(0f, 3f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
                 SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
                 Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-                texture = mod.GetTexture("Glowmasks/Harvester/aaaHarvester1_" + "souleat");
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);
                 drawColor.B = Math.Max(drawColor.B, (byte)200);

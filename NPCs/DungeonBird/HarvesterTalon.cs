@@ -130,7 +130,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (target.whoAmI == Main.myPlayer && Main.rand.NextFloat() >= 0.5f)
             {
-                target.AddBuff(BuffID.Slow, 300, false); //5 seconds, 50% chance
+                target.AddBuff(BuffID.Slow, 120, false); //2 seconds, 50% chance
             }
         }
 

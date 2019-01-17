@@ -989,7 +989,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //goto noclip 
                         if (IsTargetActive())
                             PassCoordinates(GetTarget());
-                        Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
+                        //Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
                         AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
                     }
                     if (target == 200)
