@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Buffs
             {
                 int i = Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y, 0f, 0f, mod.ProjectileType<CuteSlimeRedNewPet>(), 0, 0f, player.whoAmI, 0f, 0f);
                 Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).SetAccessoryAll(mPlayer.slotsPlayer);
-                mPlayer.petIndex = i;
+                mPlayer.slimePetIndex = i;
             }
         }
     }

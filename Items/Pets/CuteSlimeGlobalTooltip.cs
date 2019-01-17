@@ -18,10 +18,10 @@ namespace AssortedCrazyThings.Items.Pets
                 //that pet is currently active
                 //its owner is the player
                 //its a slime pet
-                if (mPlayer.petIndex != -1 && Main.projectile[mPlayer.petIndex].active && Main.projectile[mPlayer.petIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.petIndex].modProjectile))
+                if (mPlayer.slimePetIndex != -1 && Main.projectile[mPlayer.slimePetIndex].active && Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile))
                 {
                     //checks if this item is infact a pet slime summoning item
-                    if (item.shoot == Main.projectile[mPlayer.petIndex].type)
+                    if (item.shoot == Main.projectile[mPlayer.slimePetIndex].type)
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {

@@ -1095,7 +1095,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                if (mPlayer.petIndex == -1)
+                if (mPlayer.slimePetIndex == -1)
                 {
                     //find first occurence of a player owned cute slime
                     for (int i = 0; i < 1000; i++)
@@ -1107,7 +1107,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                                 if (Main.projectile[i].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
-                                    mPlayer.petIndex = i;
+                                    mPlayer.slimePetIndex = i;
                                     return true;
                                 }
                             }
@@ -1125,9 +1125,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
                 //else normal left click use
 
-                if (mPlayer.petIndex != -1 && Main.projectile[mPlayer.petIndex].active && Main.projectile[mPlayer.petIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.petIndex].modProjectile))
+                if (mPlayer.slimePetIndex != -1 && Main.projectile[mPlayer.slimePetIndex].active && Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile))
                 {
-                    PetAccessoryProj gProjectile = Main.projectile[mPlayer.petIndex].GetGlobalProjectile<PetAccessoryProj>(mod);
+                    PetAccessoryProj gProjectile = Main.projectile[mPlayer.slimePetIndex].GetGlobalProjectile<PetAccessoryProj>(mod);
 
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
@@ -1142,7 +1142,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             Dust dust;
                             for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
                             {
-                                dust = Dust.NewDustPerfect(Main.projectile[mPlayer.petIndex].Center - new Vector2(0f, Main.projectile[mPlayer.petIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                dust = Dust.NewDustPerfect(Main.projectile[mPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[mPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }
 
                             //save it for next time shouldReset is true
@@ -1160,7 +1160,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         else if (player.altFunctionUse != 2)
                         {
                             //check if selected item is valid on the pet, if it is a legacy version
-                            if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.petIndex].type) != -1)
+                            if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.slimePetIndex].type) != -1)
                             {
                                 return true;
                             }
