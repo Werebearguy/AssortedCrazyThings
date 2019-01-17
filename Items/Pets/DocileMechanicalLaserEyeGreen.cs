@@ -9,7 +9,9 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Unconscious Laser Eye");
-            Tooltip.SetDefault("Summons a docile green Laser Eye to follow you.");
+            Tooltip.SetDefault("Summons a docile green Laser Eye to follow you."
+                + "\nLegacy Appearance, use 'Docile Demon Eye' instead."
+                + "\nThis version of the pet will be discontinued in the next update.");
         }
 
         public override void SetDefaults()

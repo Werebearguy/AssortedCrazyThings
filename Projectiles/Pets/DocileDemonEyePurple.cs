@@ -6,6 +6,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class DocileDemonEyePurple : ModProjectile
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/DocileDemonEye_2";
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Docile Demon Eye");

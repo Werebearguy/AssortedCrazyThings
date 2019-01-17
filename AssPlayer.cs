@@ -13,12 +13,12 @@ namespace AssortedCrazyThings
 {
     class AssPlayer : ModPlayer
     {
-        public bool everburningCandleBuff;
-        public bool everburningCursedCandleBuff;
-        public bool everfrozenCandleBuff;
+        public bool everburningCandleBuff = false;
+        public bool everburningCursedCandleBuff = false;
+        public bool everfrozenCandleBuff = false;
         //public bool variable_debuff_04;
         //public bool variable_debuff_05;
-        public bool everburningShadowflameCandleBuff;
+        public bool everburningShadowflameCandleBuff = false;
         //public bool variable_debuff_07;
 
         public bool teleportHome = false;
@@ -35,8 +35,8 @@ namespace AssortedCrazyThings
         public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it
 
         //slime accessory stuff
-        public int petIndex = -1;
-        public int petType = 0;
+        public int slimePetIndex = -1;
+        public int slimePetType = 0;
         public bool petTypeChanged = false;
         public uint slotsPlayer = 0;
         public uint slotsPlayerLast = 0;
@@ -46,11 +46,15 @@ namespace AssortedCrazyThings
         //public int counter = 30;
         //public int clientcounter = 30;
 
+        //docile demon eye stuff
+        public int eyePetIndex = -1;
+        public byte eyePetType = 0; //texture type, not ID
+
         public bool soulMinion = false;
         public bool tempSoulMinion = false;
 
         //empowering buff stuff
-        public bool empoweringBuff;
+        public bool empoweringBuff = false;
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
         public static float empoweringTotal = 1.5f; //this gets modified in AssWorld load and is updated there aswell
@@ -160,6 +164,7 @@ namespace AssortedCrazyThings
                 {"slotsPlayer", (int)slotsPlayer},
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
+                {"eyePetType", (byte)eyePetType},
             };
         }
 
@@ -168,6 +173,7 @@ namespace AssortedCrazyThings
             slotsPlayer = (uint)tag.GetInt("slotsPlayer");
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
+            eyePetType = tag.GetByte("eyePetType");
         }
 
         //public override void OnEnterWorld(Player player)

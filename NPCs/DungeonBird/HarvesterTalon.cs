@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return "AssortedCrazyThings/NPCs/DungeonBird/HarvesterTalon"; //temp
+                return "AssortedCrazyThings/NPCs/DungeonBird/HarvesterTalon";
             }
         }
 

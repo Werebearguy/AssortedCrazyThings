@@ -4,21 +4,22 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class DocileDemonEyeRed : ModItem
+    public class DocileDemonEye : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Unconscious Demon Eye");
-            Tooltip.SetDefault("Summons a docile red Demon Eye to follow you."
-                + "\nLegacy Appearance, use 'Docile Demon Eye' instead."
-                + "\nThis version of the pet will be discontinued in the next update.");
+            DisplayName.SetDefault("Docile Demon Eye");
+            Tooltip.SetDefault("Summons a docile Demon Eye to follow you."
+                + "\nChange its appearance with a Demon Eye Contact Case.");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("DocileDemonEyeRed");
-            item.buffType = mod.BuffType("DocileDemonEyeRed");
+            item.width = 34;
+            item.height = 22;
+            item.shoot = mod.ProjectileType("DocileDemonEyeProj");
+            item.buffType = mod.BuffType("DocileDemonEyeBuff");
             item.rare = -11;
             item.value = Item.sellPrice(silver: 10);
         }
@@ -27,7 +28,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BlackLens, 1);
-            recipe.AddIngredient(ItemID.Lens, 2);
+            recipe.AddIngredient(ItemID.Lens, 1);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

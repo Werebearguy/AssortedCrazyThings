@@ -67,6 +67,7 @@
     <Compile Include="Buffs\CuteSlimeYellowNewBuff.cs" />
     <Compile Include="Buffs\DemonHeart.cs" />
     <Compile Include="Buffs\DetachedHungry.cs" />
+    <Compile Include="Buffs\DocileDemonEyeBuff.cs" />
     <Compile Include="Buffs\DocileDemonEyeGreen.cs" />
     <Compile Include="Buffs\DocileDemonEyePurple.cs" />
     <Compile Include="Buffs\DocileDemonEyeRed.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
     <Compile Include="Items\Fun\CraftOfMiners.cs" />
     <Compile Include="Items\Fun\InfinityRocket.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Items\Pets\CuteSlimeYellowNew.cs" />
     <Compile Include="Items\Pets\DemonHeart.cs" />
     <Compile Include="Items\Pets\DetachedHungry.cs" />
+    <Compile Include="Items\Pets\DocileDemonEye.cs" />
     <Compile Include="Items\Pets\DocileDemonEyeGreen.cs" />
     <Compile Include="Items\Pets\DocileDemonEyePurple.cs" />
     <Compile Include="Items\Pets\DocileDemonEyeRed.cs" />
@@ -311,6 +314,7 @@
     <Compile Include="Projectiles\Pets\DemonHeart.cs" />
     <Compile Include="Projectiles\Pets\DetachedHungry.cs" />
     <Compile Include="Projectiles\Pets\DocileDemonEyeGreen.cs" />
+    <Compile Include="Projectiles\Pets\DocileDemonEyeProj.cs" />
     <Compile Include="Projectiles\Pets\DocileDemonEyePurple.cs" />
     <Compile Include="Projectiles\Pets\DocileDemonEyeRed.cs" />
     <Compile Include="Projectiles\Pets\DocileFracturedEyeGreen.cs" />
