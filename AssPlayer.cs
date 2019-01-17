@@ -181,14 +181,12 @@ namespace AssortedCrazyThings
 
         public override TagCompound Save()
         {
-            BitsByte flags = new BitsByte();
-            flags[0] = mechFrogCrown;
             return new TagCompound {
                 {"slotsPlayer", (int)slotsPlayer},
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
                 {"eyePetType", (byte)eyePetType},
-                {"byte1", (byte)flags},
+                {"mechFrogCrown", (bool)mechFrogCrown},
             };
         }
 
@@ -198,10 +196,7 @@ namespace AssortedCrazyThings
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             eyePetType = tag.GetByte("eyePetType");
-
-            BitsByte flags = new BitsByte();
-            flags = (BitsByte)tag.GetByte("byte1");
-            mechFrogCrown = flags[0];
+            mechFrogCrown = tag.GetBool("mechFrogCrown");
         }
 
         //public override void OnEnterWorld(Player player)
