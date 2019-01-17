@@ -132,6 +132,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\TinyFrogCrown.cs" />
     <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
     <Compile Include="Items\Fun\CraftOfMiners.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="NPCs\WhaleSharkPup.cs" />
     <Compile Include="NPCs\YoungHarpy.cs" />
     <Compile Include="NPCs\ZombieFlorist.cs" />
+    <Compile Include="Projectiles\MiscGlobalProj.cs" />
     <Compile Include="Projectiles\PetAccessoryProj.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj.cs" />

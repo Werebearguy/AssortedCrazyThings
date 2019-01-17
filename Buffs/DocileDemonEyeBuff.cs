@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Buffs
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
                 int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), 0f, 0f, mod.ProjectileType("DocileDemonEyeProj"), 0, 0f, player.whoAmI, 0f, 0f);
-                Main.projectile[i].GetGlobalProjectile<DocileEyeProj>(mod).SetEyeType(mPlayer.eyePetType);
+                Main.projectile[i].GetGlobalProjectile<MiscGlobalProj>(mod).SetEyeType(mPlayer.eyePetType);
                 mPlayer.eyePetIndex = i;
             }
         }

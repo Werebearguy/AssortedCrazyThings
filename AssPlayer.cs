@@ -50,6 +50,8 @@ namespace AssortedCrazyThings
         public int eyePetIndex = -1;
         public byte eyePetType = 0; //texture type, not ID
 
+        public bool mechFrogCrown = false;
+
         public bool soulMinion = false;
         public bool tempSoulMinion = false;
 
@@ -158,13 +160,35 @@ namespace AssortedCrazyThings
             }
         }
 
+        /*
+         * 
+         * 
+         * 
+         * public override void NetSend(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = downedHarvester;
+            writer.Write(flags);
+
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            downedHarvester = flags[0];
+        }
+         */
+
         public override TagCompound Save()
         {
+            BitsByte flags = new BitsByte();
+            flags[0] = mechFrogCrown;
             return new TagCompound {
                 {"slotsPlayer", (int)slotsPlayer},
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
                 {"eyePetType", (byte)eyePetType},
+                {"byte1", (byte)flags},
             };
         }
 
@@ -174,6 +198,10 @@ namespace AssortedCrazyThings
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             eyePetType = tag.GetByte("eyePetType");
+
+            BitsByte flags = new BitsByte();
+            flags = (BitsByte)tag.GetByte("byte1");
+            mechFrogCrown = flags[0];
         }
 
         //public override void OnEnterWorld(Player player)
