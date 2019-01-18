@@ -85,8 +85,23 @@ namespace AssortedCrazyThings
             //soulBuffBlacklist[index++] = NPCID.CultistDragonTail;
 
             Array.Resize(ref soulBuffBlacklist, index + 1);
+        }
 
-            //other modded worm types maybe later
+        private void AddToSoulBuffBlacklist()
+        {
+            int index = soulBuffBlacklist.Length - 1; //last index
+
+            Array.Resize(ref soulBuffBlacklist, index + 40); //buffer
+
+
+            Mod pinkymod = ModLoader.GetMod("pinkymod");
+            if (pinkymod != null)
+            {
+                soulBuffBlacklist[index++] = pinkymod.NPCType("BoneLeechBody");
+                soulBuffBlacklist[index++] = pinkymod.NPCType("BoneLeechTail");
+            }
+
+            Array.Resize(ref soulBuffBlacklist, index + 1);
         }
 
         public override void Load()
@@ -115,6 +130,8 @@ namespace AssortedCrazyThings
 
         public override void PostSetupContent()
         {
+            AddToSoulBuffBlacklist();
+
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
             if (bossChecklist != null)
