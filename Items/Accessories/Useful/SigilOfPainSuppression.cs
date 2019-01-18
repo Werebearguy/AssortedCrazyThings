@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -29,9 +28,36 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+
+            bool inVanitySlot = false;
+
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Name == "SocialDesc")
+                {
+                    inVanitySlot = true;
+                    tooltips[i].text = "Cooldown will go down while in social slot";
+                    break;
+                }
+            }
+
+            int insertIndex = tooltips.Count; //it can insert on the "last" index (special case)
+
+            if (!inVanitySlot)
+            {
+                for (int i = 0; i < tooltips.Count; i++)
+                {
+                    if (tooltips[i].Name == "Tooltip1")
+                    {
+                        insertIndex = i + 1; //it inserts "left" of where it found the index (without +1), so everything else get pushed one up
+                        break;
+                    }
+                }
+            }
+
             if (mPlayer.canGetDefense)
             {
-                tooltips.Add(new TooltipLine(mod, "Ready", "Ready to use"));
+                tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use"));
             }
             else
             {
@@ -55,7 +81,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " minute";
                     }
-                    tooltips.Add(new TooltipLine(mod, "Ready", "Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
+                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
                 }
                 else
                 {
@@ -67,7 +93,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " second";
                     }
-                    tooltips.Add(new TooltipLine(mod, "Ready", "Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
+                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
                 }
             }
         }

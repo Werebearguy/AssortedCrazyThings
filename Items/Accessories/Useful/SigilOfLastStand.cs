@@ -96,14 +96,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                 }
             }
-
-            foreach (TooltipLine line2 in tooltips)
-            {
-                //if (line2.mod == "Terraria")
-                //{
-                    Main.NewText(line2.Name + " " + line2.text);
-                //}
-            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
