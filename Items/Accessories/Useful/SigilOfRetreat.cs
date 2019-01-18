@@ -13,7 +13,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Retreat");
-            Tooltip.SetDefault("Teleports you home when health is dangerously low");
+            Tooltip.SetDefault("Teleports you home when health is dangerously low"
+                + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
         }
 
         public override void SetDefaults()
@@ -30,12 +31,19 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
             if (mPlayer.canTeleportHome)
             {
-                //the first string is irrelevant, its never used anywhere, basically just a name for that line
-                tooltips.Add(new TooltipLine(mod, "Cooldown", "Cooldown: " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes"));
-                tooltips.Add(new TooltipLine(mod, "CanUse", "Ready to use"));
+                tooltips.Add(new TooltipLine(mod, "Ready", "Ready to use"));
             }
             else
             {
+                //create animating "..." effect after the Ready line
+                string dots = "";
+                int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+
+                for (int i = 0; i < dotCount; i++)
+                {
+                    dots += ".";
+                }
+
                 string timeName;
                 if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
                 {
@@ -47,7 +55,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " minute";
                     }
-                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName));
+                    tooltips.Add(new TooltipLine(mod, "Ready", "Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
                 }
                 else
                 {
@@ -59,7 +67,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " second";
                     }
-                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + mPlayer.teleportHomeTimer + timeName));
+                    tooltips.Add(new TooltipLine(mod, "Ready", "Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                 }
             }
         }

@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Last Stand");
-            Tooltip.SetDefault("Combines the effect of Sigil of Retreat and Sigil of Pain Suppression.");
+            Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression."
+                + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax/60) + " minutes");
         }
 
         public override void SetDefaults()
@@ -27,14 +28,48 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         {
             //tooltip based off of the teleport ability
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+
+            bool inVanitySlot = false;
+
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Name == "SocialDesc")
+                {
+                    inVanitySlot = true;
+                    tooltips[i].text = "Cooldown will go down while in social slot";
+                    break;
+                }
+            }
+
+            int insertIndex = tooltips.Count; //it can insert on the "last" index (special case)
+
+            if (!inVanitySlot)
+            {
+                for (int i = 0; i < tooltips.Count; i++)
+                {
+                    if (tooltips[i].Name == "Tooltip1")
+                    {
+                        insertIndex = i + 1; //it inserts "left" of where it found the index (without +1), so everything else get pushed one up
+                        break;
+                    }
+                }
+            }
+
             if (mPlayer.canTeleportHome)
             {
-                //the first string is irrelevant, its never used anywhere, basically just a name for that line
-                tooltips.Add(new TooltipLine(mod, "Cooldown", "Cooldown: " + (AssPlayer.TeleportHomeTimerMax/60) + " minutes"));
-                tooltips.Add(new TooltipLine(mod, "CanUse", "Ready to use"));
+                tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use" + (inVanitySlot? ", equip it to trigger again": "")));
             }
             else
             {
+                //create animating "..." effect after the Ready line
+                string dots = "";
+                int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+
+                for(int i = 0; i < dotCount; i++)
+                {
+                    dots += ".";
+                }
+
                 string timeName;
                 if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
                 {
@@ -46,7 +81,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " minute";
                     }
-                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName));
+                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
                 }
                 else
                 {
@@ -58,8 +93,16 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                     {
                         timeName = " second";
                     }
-                    tooltips.Add(new TooltipLine(mod, "UsableIn", "Ready again in " + mPlayer.teleportHomeTimer + timeName));
+                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                 }
+            }
+
+            foreach (TooltipLine line2 in tooltips)
+            {
+                //if (line2.mod == "Terraria")
+                //{
+                    Main.NewText(line2.Name + " " + line2.text);
+                //}
             }
         }
 
