@@ -54,6 +54,14 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
+			if (npc.life <= 0)
+				{
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_01"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_02"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_03"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+				}
             for (int i = 0; i < 15; i++)
             {
                 if (Main.rand.NextFloat() < 0.6f)
@@ -134,5 +142,5 @@ namespace AssortedCrazyThings.NPCs
             //since we only draw one frame, use texture.Bounds instead of npc.frame
             spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
-    }
+	}
 }
