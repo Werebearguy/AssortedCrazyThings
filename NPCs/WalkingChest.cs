@@ -37,13 +37,16 @@ namespace AssortedCrazyThings.NPCs
 		{
             Item.NewItem(npc.getRect(), ItemID.Chest);
 		}
-
+		
 		public override void HitEffect(int hitDirection, double damage)
 		{
-			if (npc.life <= 0)
 			{
+				if (npc.life <= 0)
+					{
+						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WalkingTombstoneGore_01"), 1f);
+					}
 			}
-        }
+		}
 
         public override void PostAI()
         {
