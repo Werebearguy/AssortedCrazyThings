@@ -82,13 +82,6 @@ namespace AssortedCrazyThings.NPCs
                     Item.NewItem(npc.getRect(), ItemID.SnowCloudBlock, 10 + Main.rand.Next(20));
             }
         }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
-        }
 		
 		public override void AI()
 		{
