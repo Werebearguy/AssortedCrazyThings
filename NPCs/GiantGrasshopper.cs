@@ -42,6 +42,13 @@ namespace AssortedCrazyThings.NPCs
         {
             if (npc.life <= 0)
             {
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_01"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_03"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_03"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_03"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GiantGrasshopperGore_03"), 1f);
             }
         }
     }
