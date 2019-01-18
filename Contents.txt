@@ -163,40 +163,48 @@ Cute Gastropod
 	- Recipe: Caught with a net
 Cute Slime (Black)
 	- A tough black slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Blue)
 	- An inquisitive blue slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Green)
 	- A calm green slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Pink)
 	- A diminutive pink slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Purple)
 	- A tall and giddy purple slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Rainbow)
 	- A huge colorful slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Red)
 	- A sporty red slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Yellow)
 	- A bright yellow slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
+		- Can be equipped with vanity items, see Pet Vanity section below
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Cute Slime (Christmas)
 	- A naughty (or nice?) seasonal slime girl
+		- Appearance can be swapped between old and new sprites at a Solidifier
 	- Caught with a net
-	- Appearance can be altered at a Solidifier
 Mini Megalodon
 	- A spunky purple shark that likes to assert itself at your side
 	- Drop from Little Megalodon
@@ -239,19 +247,7 @@ Detached Hungry
 	- Recipe: Demon Altar, Underworldstone Ore x10 + Rotten Chunk x10
 Docile Demon Eye
 	- A docile demon eye with a more domesticated look
-	- Comes in Red, Green, and Purple
-	- Recipe: Demon Altar, Black Lens x1 + Lens x2
-Docile Fractured Eye
-	- A docile demon eye with a more domesticated look
-	- Comes in Red, Green, and Purple
-	- Recipe: Demon Altar, Black Lens x1 + Lens x2
-Docile Laser Eye
-	- A docile demon eye with a more domesticated look
-	- Comes in Red, Green, and Purple
-	- Recipe: Demon Altar, Black Lens x1 + Lens x2
-Docile Mechanical Eye
-	- A docile demon eye with a more domesticated look
-	- Comes in Red, Green, and Purple
+	- Appearance can be changed, see Pet Vanity section
 	- Recipe: Demon Altar, Black Lens x1 + Lens x2
 Enchanted Sword
 	- The sword in the stone now floats above your head
@@ -401,6 +397,10 @@ Everglow Lantern
 		- They cause shorter i-frames on bosses, so you can properly help them fight
 		- The buff icon is red, but is not a debuff
 	- Balanced for Post-Skeletron content
+	- The spawned minions can pass through walls, but do not chase through them
+		-This is for balance reasons
+		- They can still attack enemies behind walls if they float through and notice enemies
+	- Fun note; they spawn from the lantern itself, and inherit your current momentum
 	- Recipe: Anvil, Meteorite Bar x5, Freed Dungeon Soul x2
 Pocket Sand
 	- Throwing weapon that deals minimal damage, but confuses most enemies for a moment
@@ -435,17 +435,25 @@ Golden Extendo-Net
 		- If Gold is not readily available, you can use Platinum instead
 
 ============
-CUTE SLIME VANITY
+PET VANITY
 ============
-To equip Cute Slime pets with vanity items;
-	- Have your Cute Slime out and about (You can't dress up air, after all)
-	- Hold the Cute Slime accessory, either with the mouse or with it selected on your hotbar
-	- Left Click while holding the desired accessory
-		- The item will remain in your inventory
-	- Left Click with the item you'd like to remove, or equip a new item in the same slot
-	- Hold Right Click while holding a Cute Slime accessory to remove all equipped accessories
-	- Hold Right Click to re-equip all items removed on the previous Right Click
-	- All items in this category are crafted at a Loom, and require 15 Silk each
+Cute Slimes
+------------
+Introduced in Version 1.2, Cute Slimes were given accessories that they can wear
+	- These persist through logout, dismissing the pet, and so on
+	- Accessories do not show up for other players; only you see your Cute Slime's accessories
+
+Instructions:
+	- Craft any of the below Cute Vanity items at a Loom
+		- Recipe: Silk x15
+	- Have Bottled Slime (any color) equipped in your pet slot
+	- Have pet visible (make sure the eye icon is lit up)
+	- Place any of the below Cute Vanity items into your hotbar
+	- Highlight the Cute Vanity item on your hotbar and left click to make that item appear on your Cute Slime pet
+	- Highlight the Cute Vanity item on your hotbar and left click to remove the item, or replace it with another
+	- Highlight any Cute Vanity item on your hotbar and hold right click to remove all items after a short delay
+	- Highlight any Cute Vanity item on your hotbar and hold right click to return the previous costume part(s)
+
 
 Cute Bowtie
 	- A bowtie for your Cute Slime's chest
@@ -472,11 +480,51 @@ Cute Staff
 	- A toy staff for your Cute Slime
 	- Available Colors: Amber, Amethyst, Diamond, Emerald, Ruby, Sapphire, Topaz
 
+------------
+Docile Demon Eye
+------------
+Introduced in Version 1.????, the Docile Demon Eye pet received a costume of its own
+	- There is now only one pet crafted; Docile Demon Eye
+	- Old Docile Demon Eye pets will be removed in the next release, so swap over to the new one before then
+
+Instructions:
+	- Craft a Demon Eye Lens Case at a Workbench with Lens x11
+	- Summon your Docile Demon Eye pet
+	- Place the Demon Eye Lens Case in your hotbar
+	- Left click while the Demon Eye Lens Case is highlighted to cycle through the available appearances
+		- The order in which the appearance cycles is as follows;
+			- Red Normal
+			- Green Normal
+			- Purple Normal
+			- Red Toothy
+			- Green Toothy
+			- Purple Toothy
+			- Red Mechanical
+			- Green Mechanical
+			- Purple Mechanical
+			- Red Laser
+			- Green Laser
+			- Purple Laser
+			
+------------
+Lifelike Mechanical Frog
+------------
+Introduced in Version 1.????, the Lifelike Mechanical Frog received a costume of its own
+	- This one is more of a joke item since it's so tiny
+
+Instructions:
+	- Craft a Tiny Prince's Tiny Crown at any Anvil with Gold Bar x1
+	- Summon your Lifelike Mechanical Frog
+	- Place the Tiny Prince's Tiny Crown in your hotbar
+	- Left click while the Tiny Prince's Tiny Crown is highlighted to equip or remove a tiny golden crown
+
 ============	
 CONSUMABLES
 ============
 Empowerment Flask
 	- Incrementally increases damage dealt over time, but the bonus is reset upon taking damage
+		- Benefits greatly increase after defeating Wall of Flesh
+		- Benefits further increase after defeating Plantera
 		- Note; The effect will reset if you take damage while invulnerable, so keep dodging if you want the full effect
 	- Recipe: Alchemy, Bottled Water x 1 + Freed Dungeon Soul x 1 + Bone x 10
 
@@ -516,17 +564,15 @@ Star Forge
 ============
 Bugs and Issues
 ============
-	Bugs:
-		- Soul Harvester's first stages might behave weirdly or get stuck in extreme circumstances
-		- Everburning Candles' particles do not show up for other players in multiplayer when using ranged weapons
-			- The effects still work just fine
-	Compatibility:
-		- No known compatibility issues yet
-	Issues:
-		- Due to the way Cute Rainbow Slime is colored, most accessories applied to it will cause graphical issues
-		- Due to difficulty syncing in multiplayer, Cute Slime vanity items are client-side only
-			- You will see others' Cute Slimes in their naked glory, no matter what they have equipped
-			- This will be fixed in the future at some point
-		- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
-		- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to Soul Harvester being defeated
-			- This is similar to how Etherian Mana does not despawn when stored in chests
+Bugs:
+	- Soul Harvester's first stages might behave weirdly or get stuck in extreme circumstances
+Compatibility:
+	- No known compatibility issues yet
+Issues:
+	- Due to the way Cute Rainbow Slime is colored, most accessories applied to it will cause graphical issues
+	- Due to difficulty syncing in multiplayer, Cute Slime vanity items are client-side only
+		- You will see others' Cute Slimes in their naked glory, no matter what they have equipped
+		- This will be fixed in the future at some point
+	- Empowerment Flask's effect is reset when you dodge damage, such as with the Master Ninja Gear
+	- Loose Dungeon Souls don't upgrade into Freed Dungeon Souls when they are stored in a chest prior to Soul Harvester being defeated
+		- This is similar to how Etherian Mana does not despawn when stored in chests
