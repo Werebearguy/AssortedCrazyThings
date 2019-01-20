@@ -27,8 +27,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.Spazmamini);
-            projectile.width = 14;
-            projectile.height = 24;
+            projectile.width = 14; //14
+            projectile.height = 28; //24
             projectile.aiStyle = -1;
             projectile.friendly = true;
             projectile.minion = true; //only determines the damage type
@@ -118,13 +118,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Lighting.AddLight(projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = Main.projectileTexture[projectile.type];
+            Texture2D image = mod.GetTexture("Projectiles/Minions/ex");// Main.projectileTexture[projectile.type];
             Rectangle bounds = new Rectangle
             {
                 X = 0,
                 Y = projectile.frame,
                 Width = image.Bounds.Width,
-                Height = (image.Bounds.Height / 4)
+                Height = image.Bounds.Height / 4
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
