@@ -25,8 +25,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void UpdateAccessory(Player player, bool hideVisual) 
 		{
-			player.wingTimeMax = 95;
-			player.minionDamage *= 0.15f;
+            player.wingTimeMax = 95;
+			player.minionDamage += 0.15f;
             player.maxMinions++;
 		}
 
@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			ascentWhenFalling = 0.55f;
 			ascentWhenRising = 0.8f;
 			maxCanAscendMultiplier = 1f;
-			maxAscentMultiplier = 3f;
+			maxAscentMultiplier = 2.5f;
 			constantAscend = 0.135f;
 		}
 

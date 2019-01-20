@@ -8,10 +8,12 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using AssortedCrazyThings.Projectiles;
 using AssortedCrazyThings.Projectiles.Minions;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace AssortedCrazyThings
 {
-    class AssPlayer : ModPlayer
+    public class AssPlayer : ModPlayer
     {
         public bool everburningCandleBuff = false;
         public bool everburningCursedCandleBuff = false;
@@ -59,7 +61,7 @@ namespace AssortedCrazyThings
         public bool empoweringBuff = false;
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
-        public static float empoweringTotal = 1.5f; //this gets modified in AssWorld load and is updated there aswell
+        public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
         public float step;
 
         public override void ResetEffects()
@@ -359,15 +361,15 @@ namespace AssortedCrazyThings
                     if (empoweringTimer < empoweringTimerMax)
                     {
                         empoweringTimer++;
-                        step = (empoweringTimer * (empoweringTotal - 1f)) / empoweringTimerMax;
+                        step = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
                     }
                 }
                 
-                player.meleeDamage *= 1f + step;
-                player.thrownDamage *= 1f + step;
-                player.rangedDamage *= 1f + step;
-                player.magicDamage *= 1f + step;
-                player.minionDamage *= 1f + 0.25f * step;
+                player.meleeDamage += step;
+                player.thrownDamage += step;
+                player.rangedDamage += step;
+                player.magicDamage += step;
+                player.minionDamage += 0.25f * step;
 
                 //adds crit from 0 to 5/7/10 (depends)
                 player.meleeCrit += (int)(10 * step);
@@ -412,6 +414,63 @@ namespace AssortedCrazyThings
                 //}
             }
         }
+
+        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        {
+            int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
+            if (wingLayer != -1)
+            {
+                HarvesterWings.visible = true;
+                layers.Insert(wingLayer + 1, HarvesterWings);
+            }
+
+        }
+
+        public static readonly PlayerLayer HarvesterWings = new PlayerLayer("AssortedCrazyThings", "HarvesterWings", PlayerLayer.Wings, delegate (PlayerDrawInfo drawInfo)
+        {
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            Mod mod = ModLoader.GetMod("AssortedCrazyThings");
+
+            if (drawPlayer.wings == mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
+            {
+                Texture2D texture = mod.GetTexture("Glowmasks/HarvesterWings_Wings_Glowmask");
+                float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
+                float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
+
+                Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
+
+                SpriteEffects spriteEffects = SpriteEffects.None;
+                if (drawPlayer.gravDir == 1f)
+			     {
+				    if (drawPlayer.direction == 1)
+				    {
+					    spriteEffects = SpriteEffects.None;
+				    }
+				    else
+				    {
+					    spriteEffects = SpriteEffects.FlipHorizontally;
+				    }
+			    }
+			    else
+			    {
+				    if (drawPlayer.direction == 1)
+				    {
+					    spriteEffects = SpriteEffects.FlipVertically;
+				    }
+				    else
+				    {
+					    spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
+				    }
+			    }
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), new Color(255, 255, 255, 0)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
+                drawData.shader = drawInfo.wingShader;
+                Main.playerDrawData.Add(drawData);
+            }
+        });
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {

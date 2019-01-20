@@ -282,11 +282,8 @@ namespace AssortedCrazyThings
 
         private void UpdateEmpoweringFactor()
         {
-            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 2f)
-            {
-                AssPlayer.empoweringTotal = 2f;
-            }
-            else if (Main.hardMode && AssPlayer.empoweringTotal < 1.75f) AssPlayer.empoweringTotal = 1.75f;
+            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 1f) AssPlayer.empoweringTotal = 1f;
+            else if (Main.hardMode && AssPlayer.empoweringTotal < 0.75f) AssPlayer.empoweringTotal = 0.75f;
         }
 
         public override void PostUpdate()
