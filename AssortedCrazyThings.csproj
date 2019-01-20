@@ -101,6 +101,7 @@
     <Compile Include="Items\Accessories\Useful\EverburningShadowflameCandle.cs" />
     <Compile Include="Items\Accessories\Useful\EverfrozenCandle.cs" />
     <Compile Include="Items\Accessories\Useful\FestiveMirror.cs" />
+    <Compile Include="Items\Accessories\Useful\HarvesterWings.cs" />
     <Compile Include="Items\Accessories\Useful\LootMagnet.cs" />
     <Compile Include="Items\Accessories\Useful\MassiveBundleOfBalloons.cs" />
     <Compile Include="Items\Accessories\Useful\PeaceCandleInABalloon.cs" />

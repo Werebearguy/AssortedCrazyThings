@@ -10,9 +10,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Harvester Wings");
-            Tooltip.SetDefault("Allows slowfall" + 
-			"\nIncreases Minion damage by 15%" +
-			"\nIncreases Minion count by 1");
+            Tooltip.SetDefault("Increases your max number of minions" +
+            "\n15% increased summon damage");
         }
 
 		public override void SetDefaults() 
@@ -23,21 +22,22 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             item.rare = -11;
             item.accessory = true;
 		}
+
 		public override void UpdateAccessory(Player player, bool hideVisual) 
 		{
 			player.wingTimeMax = 95;
-			player.minionDamage += 0.15f;
+			player.minionDamage *= 0.15f;
             player.maxMinions++;
 		}
 
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) 
-			{
-				ascentWhenFalling = 0.55f;
-				ascentWhenRising = 0.8f;
-				maxCanAscendMultiplier = 1f;
-				maxAscentMultiplier = 3f;
-				constantAscend = 0.135f;
-			}
+		{
+			ascentWhenFalling = 0.55f;
+			ascentWhenRising = 0.8f;
+			maxCanAscendMultiplier = 1f;
+			maxAscentMultiplier = 3f;
+			constantAscend = 0.135f;
+		}
 
 		public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration) 
 		{
@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bone, 25);
             recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 25);
-            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 10);
+            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 5);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
