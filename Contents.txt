@@ -454,7 +454,6 @@ Instructions:
 	- Highlight any Cute Vanity item on your hotbar and hold right click to remove all items after a short delay
 	- Highlight any Cute Vanity item on your hotbar and hold right click to return the previous costume part(s)
 
-
 Cute Bowtie
 	- A bowtie for your Cute Slime's chest
 	- Available Colors: Red, Orange, Yellow, Green, Blue, Purple, Pink, White, Gray, Black

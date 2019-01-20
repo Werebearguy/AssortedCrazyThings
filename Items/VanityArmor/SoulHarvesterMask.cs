@@ -12,8 +12,8 @@ namespace AssortedCrazyThings.Items.VanityArmor
 		public override void SetDefaults()
 		{
 			//item.CloneDefaults(ItemID.BallaHat);
-            item.width = 28;
-            item.height = 20;
+            item.width = 30;
+            item.height = 22;
             item.rare = -11;
             item.value = 0;
             item.vanity = true;

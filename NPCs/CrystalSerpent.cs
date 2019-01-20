@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-			Item.NewItem(npc.getRect(), ItemID.Cloud);
+			Item.NewItem(npc.getRect(), ItemID.CrystalSerpent);
         }
 
         public override void HitEffect(int hitDirection, double damage)

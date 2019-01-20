@@ -9,20 +9,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Young Wyvern");
-            Main.projFrames[projectile.type] = 4;
+            Main.projFrames[projectile.type] = 11;
             Main.projPet[projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            aiType = ProjectileID.ZephyrFish;
+            projectile.CloneDefaults(ProjectileID.BlackCat);
+            aiType = ProjectileID.BlackCat;
         }
 
         public override bool PreAI()
         {
             Player player = Main.player[projectile.owner];
-            player.zephyrfish = false; // Relic from aiType
+            player.blackCat = false; // Relic from aiType
             return true;
         }
 
