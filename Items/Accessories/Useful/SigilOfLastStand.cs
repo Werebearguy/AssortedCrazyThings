@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    class SigilOfLastStand : ModItem
+    public class SigilOfLastStand : ModItem
     {
         public override void SetStaticDefaults()
         {

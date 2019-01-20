@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             DisplayName.SetDefault("Sigil of Emergency");
             Tooltip.SetDefault("Summons a temporary minion to help you upon reaching critical health." +
                 "\nIncreases your max number of minions" +
-                "\nIncreases minion damage by 10%");
+                "\n10% increased summon damage");
         }
 
         public override void SetDefaults()

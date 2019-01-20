@@ -155,6 +155,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 modPlayer.soulMinion = false;
             }
+
+            if (player.dead && projectile.minionSlots == 0f)
+            {
+                projectile.timeLeft = 0; //kill temporary soul when dead
+            }
+
+
             if (modPlayer.soulMinion && projectile.minionSlots == 0.5f) //if spawned naturally they will have 0.5f
             {
                 projectile.timeLeft = 2;

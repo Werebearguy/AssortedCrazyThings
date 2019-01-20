@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    class SigilOfPainSuppression : ModItem
+    public class SigilOfPainSuppression : ModItem
     {
 
         //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here: GetDefenseTimerMax

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    class SigilOfRetreat : ModItem
+    public class SigilOfRetreat : ModItem
     {
 
         //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here: TeleportHomeTimerMax
