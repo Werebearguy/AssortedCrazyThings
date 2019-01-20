@@ -17,9 +17,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 60; //40
-            npc.height = 48; //50
-            npc.damage = 45;
+            npc.width = 18; //40 //60
+            npc.height = 40; //50 //48
+            npc.damage = 30;
             npc.defense = 20;
             npc.lifeMax = 100;
             npc.HitSound = SoundID.NPCHit41;
@@ -55,13 +55,14 @@ namespace AssortedCrazyThings.NPCs
         public override void HitEffect(int hitDirection, double damage)
         {
 			if (npc.life <= 0)
-				{
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_01"), 1f);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_02"), 1f);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_03"), 1f);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
-				}
+			{
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_01"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_03"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+			}
+
             for (int i = 0; i < 15; i++)
             {
                 if (Main.rand.NextFloat() < 0.6f)
@@ -116,10 +117,10 @@ namespace AssortedCrazyThings.NPCs
                 npc.netUpdate = true;
             }
 
-            if (npc.ai[1] != 0)
+            if (npc.ai[1] != 0 && npc.ai[3] == 1)
             {
-                if(npc.direction == 1) npc.velocity.X += 0.02f;
-                else npc.velocity.X -= 0.02f;
+                if(npc.direction == 1) npc.velocity.X += 0.09f; //0.02
+                else npc.velocity.X -= 0.09f;
             }
 
             return true;
