@@ -10,7 +10,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Harvester Wings");
-            Tooltip.SetDefault("Increases your max number of minions" +
+            Tooltip.SetDefault("Allows flight and slow fall" +
+            "\nIncreases your max number of minions" +
             "\n15% increased summon damage");
         }
 

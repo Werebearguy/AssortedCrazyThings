@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             {
                 player.GetModPlayer<AssPlayer>().tempSoulMinion = true;
             }
-            player.minionDamage *= 1.1f;
+            player.minionDamage += 0.1f;
             player.maxMinions++;
         }
     }

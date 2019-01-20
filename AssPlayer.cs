@@ -469,6 +469,28 @@ namespace AssortedCrazyThings
                 DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), new Color(255, 255, 255, 0)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
                 drawData.shader = drawInfo.wingShader;
                 Main.playerDrawData.Add(drawData);
+
+
+
+                if (drawPlayer.velocity.Y != 0)
+                {
+                    if (Main.rand.NextBool(3))
+                    {
+                        int num74 = 4;
+                        if (drawPlayer.direction == 1)
+                        {
+                            num74 = -40;
+                        }
+                        int num75 = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + num74, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 30, 135, 0f, 0f, 100, default(Color), 1.5f);
+                        Main.dust[num75].noGravity = true;
+                        Main.dust[num75].noLight = true;
+                        Main.dust[num75].velocity *= 0.3f;
+                        if (Main.rand.NextBool(5))
+                        {
+                            Main.dust[num75].fadeIn = 1f;
+                        }
+                    }
+                }
             }
         });
 
