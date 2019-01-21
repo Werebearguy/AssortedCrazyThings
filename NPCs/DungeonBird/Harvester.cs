@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.lifeMax = 1500;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = Item.buyPrice(0, 15);
+            npc.value = Item.buyPrice(0, 10);
             npc.knockBackResist = 0f;
             npc.aiStyle = -1; //91;
             aiType = -1; //91

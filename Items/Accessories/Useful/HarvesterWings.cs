@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             DisplayName.SetDefault("Harvester Wings");
             Tooltip.SetDefault("Allows flight and slow fall" +
             "\nIncreases your max number of minions" +
-            "\n15% increased summon damage");
+            "\n10% increased summon damage");
         }
 
 		public override void SetDefaults() 
@@ -27,23 +27,23 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public override void UpdateAccessory(Player player, bool hideVisual) 
 		{
             player.wingTimeMax = 95;
-			player.minionDamage += 0.15f;
+			player.minionDamage += 0.1f;
             player.maxMinions++;
 		}
 
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) 
 		{
-			ascentWhenFalling = 0.55f;
-			ascentWhenRising = 0.8f;
-			maxCanAscendMultiplier = 1f;
+			ascentWhenFalling = 0.3f;
+			ascentWhenRising = 0.2f;
+			maxCanAscendMultiplier = 0.5f;
 			maxAscentMultiplier = 2.5f;
 			constantAscend = 0.135f;
 		}
 
 		public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration) 
 		{
-			speed = 9f;
-			acceleration *= 2.5f;
+			speed = 7f;
+			acceleration *= 1.5f;
 		}
 
 		public override void AddRecipes() 
