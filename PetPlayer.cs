@@ -17,7 +17,6 @@ namespace AssortedCrazyThings
 		public bool DocileMechanicalLaserEyePurple = false;
 		public bool DocileMechanicalLaserEyeRed = false;
 		public bool OrigamiCrane = false;
-		public bool Machan = false;
 		public bool MiniMegalodon = false;
 		public bool SmallMegalodon = false;
 		public bool CuteSlimeXmas = false;
@@ -73,7 +72,6 @@ namespace AssortedCrazyThings
 			DocileMechanicalLaserEyePurple = false;
 			DocileMechanicalLaserEyeRed = false;
 			OrigamiCrane = false;
-			Machan = false;
 			MiniMegalodon = false;
 			SmallMegalodon = false;
 			CuteSlimeXmas = false;

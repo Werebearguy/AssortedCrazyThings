@@ -16,8 +16,6 @@ CHANGES
 		- Bloated Bait Thief received a minor sprite update
 		- Bloated Bait Thief now flees when the player enters the water near it
 		- Cute Slime NPCs received a minor sprite update
-		- Cute Slime Pets received a minor sprite update
-			- This allows for easier customization for Cute Slime accessories
 		- Stone Soldier received a minor overhaul
 			- Now attacks while moving rather than stopping to swing
 			- Attack damage reduced to balance his new mobility
@@ -29,6 +27,8 @@ CHANGES
 			- Also matches the Cute Slime it fits on
 		- Cute Crowns, both Gold and Platinum, recevied a minor sprite update
 			- Also matched the Cute Slime it fits on
+		- Cute Slime Pets received a minor sprite update
+			- This allows for easier customization for Cute Slime accessories
 		- Unconscious Demon Eye (Red, Eye) renamed to Docile Demon Eye
 		- Unconscious Demon Eye pets' recipes removed
 			- They will be phased out in the future, see Additions below
@@ -49,8 +49,10 @@ ADDITIONS
 		- Unfortunate Delver
 		- Walking Chest
 		- Walking Tombstone
+	- Added Tiny Prince's Tiny Crown
+		- Use it to add or remove a crown from your Lifelike Mechanical Frog
+		
+MAY NOT GO PUBLIC?
 	- Added Soul Harvester Wings
 		- Crafted with Freed Dungeon Soul x25, Bone x25, and Desiccated Leather x5 at a hardmode anvil
 		- Adds one minion slot and boosts minion damage by 15%
-	- Added Tiny Prince's Tiny Crown
-		- Use it to add or remove a crown from your Lifelike Mechanical Frog
