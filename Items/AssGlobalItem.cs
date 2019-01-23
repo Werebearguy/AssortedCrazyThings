@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Items
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
 
-            if (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff )
+            if (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff)
             {
                 if (player.HeldItem.active && player.HeldItem.damage >= 0)
                 {
@@ -103,8 +103,8 @@ namespace AssortedCrazyThings.Items
             }
             if (mPlayer.everburningCursedCandleBuff)
             {
-                Color color = new Color(196, 255, 0);
-                SpawnMeleeDust(61, color, hitbox, player);
+                Color color = new Color(255, 255, 255); //(196, 255, 0);
+                SpawnMeleeDust(75, color, hitbox, player);
             }
             if (mPlayer.everfrozenCandleBuff)
             {

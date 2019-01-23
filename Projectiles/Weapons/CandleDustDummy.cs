@@ -46,13 +46,13 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
             int[] types = new int[] {
             6,
-            61,
+            75,
             59,
             62};
 
             Color[] colors = new Color[] {
             new Color(255, 255, 255),
-            new Color(196, 255, 0),
+            new Color(255, 255, 255),
             new Color(255, 255, 255),
             new Color(196, 0, 255)};
 
