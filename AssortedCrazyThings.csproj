@@ -82,7 +82,6 @@
     <Compile Include="Buffs\DocileMechanicalLaserEyeRed.cs" />
     <Compile Include="Buffs\EnchantedSword.cs" />
     <Compile Include="Buffs\LifelikeMechanicalFrog.cs" />
-    <Compile Include="Buffs\Machan.cs" />
     <Compile Include="Buffs\MiniMegalodon.cs" />
     <Compile Include="Buffs\OrigamiCrane.cs" />
     <Compile Include="Buffs\SmallMegalodon.cs" />
@@ -188,7 +187,6 @@
     <Compile Include="Items\Pets\DocileMechanicalLaserEyeRed.cs" />
     <Compile Include="Items\Pets\EnchantedSword.cs" />
     <Compile Include="Items\Pets\LifelikeMechanicalFrog.cs" />
-    <Compile Include="Items\Pets\Machan.cs" />
     <Compile Include="Items\Pets\MiniMegalodon.cs" />
     <Compile Include="Items\Pets\OrigamiCrane.cs" />
     <Compile Include="Items\Pets\SmallMegalodon.cs" />
@@ -203,6 +201,7 @@
     <Compile Include="Items\VanityArmor\OrigamiHat.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
+    <Compile Include="Items\Weapons\EverhallowedLantern.cs" />
     <Compile Include="Items\Weapons\EverglowLantern.cs" />
     <Compile Include="Items\Weapons\PocketSand.cs" />
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
@@ -283,6 +282,11 @@
     <Compile Include="NPCs\WhaleSharkPup.cs" />
     <Compile Include="NPCs\YoungHarpy.cs" />
     <Compile Include="NPCs\ZombieFlorist.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulFrightMinion.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulSightMinion.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulMightMinion.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulPostWOLMinion.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinionBase.cs" />
     <Compile Include="Projectiles\MiscGlobalProj.cs" />
     <Compile Include="Projectiles\PetAccessoryProj.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
@@ -332,7 +336,6 @@
     <Compile Include="Projectiles\Pets\EnchantedSword.cs" />
     <Compile Include="Projectiles\Pets\GobletPet.cs" />
     <Compile Include="Projectiles\Pets\LifelikeMechanicalFrog.cs" />
-    <Compile Include="Projectiles\Pets\Machan.cs" />
     <Compile Include="Projectiles\Pets\MiniMegalodon.cs" />
     <Compile Include="Projectiles\Pets\OrigamiCrane.cs" />
     <Compile Include="Projectiles\Pets\SmallMegalodon.cs" />

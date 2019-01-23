@@ -1,15 +1,15 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using Terraria.ModLoader.IO;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 using AssortedCrazyThings.Projectiles;
 using AssortedCrazyThings.Projectiles.Minions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
@@ -54,8 +54,11 @@ namespace AssortedCrazyThings
 
         public bool mechFrogCrown = false;
 
+        //soul minion stuff
         public bool soulMinion = false;
         public bool tempSoulMinion = false;
+        public int selectedSoulMinionType = (int)CompanionDungeonSoulMinionBase.SoulType.Dungeon;
+
 
         //empowering buff stuff
         public bool empoweringBuff = false;
@@ -251,14 +254,69 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void SpawnSoul()
+        public int SpawnSoul(CompanionDungeonSoulMinionBase.SoulStats stats, bool temp = false)
+        {
+            return SpawnSoul(stats.Type, stats.Damage, stats.Knockback, temp);
+        }
+
+        public int SpawnSoul(int type, int damage, float knockback, bool temp = false)
+        {
+            int index = 0;
+            Vector2 spawnPos = new Vector2(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f);
+            Vector2 spawnVelo = new Vector2(player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f);
+
+            index = Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
+            if (temp) return index; //spawn only one 
+
+            if (!(Main.hardMode || temp)) //other types cant really be summoned before hardmode anyway
+            {
+                spawnPos.Y += 2f;
+                spawnVelo.X -= 0.5f * player.direction;
+                spawnVelo.Y += 0.5f;
+                Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
+            }
+
+            return index;
+        }
+
+        public int CycleSoulType()
+        {
+            /*
+             * Default,
+             * Fright,
+             * Sight,
+             * Might,
+             * Temp
+             */
+            int[] values = (int[])Enum.GetValues(typeof(CompanionDungeonSoulMinionBase.SoulType));
+            bool[] unlocked = new bool[]
+            {
+                true,
+                NPC.downedMechBoss3, //skele
+                NPC.downedMechBoss2, //twins
+                NPC.downedMechBoss1, //destr
+                false,
+            };
+
+            int countUnlocked = 0;
+            for (int i = 0; i < unlocked.Length; i++)
+            {
+                if (unlocked[i]) countUnlocked++;
+            }
+
+            selectedSoulMinionType++;
+            if (selectedSoulMinionType >= countUnlocked) selectedSoulMinionType = 0;
+            return selectedSoulMinionType;
+        }
+
+        private void SpawnSoulTemp()
         {
             if (tempSoulMinion && player.whoAmI == Main.myPlayer)
             {
                 bool checkIfAlive = false;
                 for (int i = 0; i < 1000; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == mod.ProjectileType<CompanionDungeonSoulMinion>())
+                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == CompanionDungeonSoulMinionBase.GetAssociatedStats(mod, (int)CompanionDungeonSoulMinionBase.SoulType.Temp).Type)
                     {
                         if (Main.projectile[i].minionSlots == 0f)
                         {
@@ -271,11 +329,8 @@ namespace AssortedCrazyThings
                 if (!checkIfAlive)
                 {
                     //twice the damage
-                    int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction * 0.5f, -0.5f,
-                        mod.ProjectileType<CompanionDungeonSoulMinion>(),
-                        CompanionDungeonSoulMinion.Damage * 2,
-                        CompanionDungeonSoulMinion.Knockback,
-                        player.whoAmI, 0f, 0f);
+                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(mod, (int)CompanionDungeonSoulMinionBase.SoulType.Temp);
+                    int i = SpawnSoul(stats, true);
                     Main.projectile[i].minionSlots = 0f;
                     Main.projectile[i].timeLeft = 600; //10 seconds
                 }
@@ -498,7 +553,7 @@ namespace AssortedCrazyThings
         {
             ResetEmpoweringTimer();
 
-            SpawnSoul();
+            SpawnSoulTemp();
         }
 
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)

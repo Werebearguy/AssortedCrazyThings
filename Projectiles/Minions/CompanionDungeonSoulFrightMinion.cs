@@ -1,9 +1,10 @@
 ﻿namespace AssortedCrazyThings.Projectiles.Minions
 {
-    public class CompanionDungeonSoulMinion : CompanionDungeonSoulMinionBase
+    public class CompanionDungeonSoulFrightMinion : CompanionDungeonSoulMinionBase
     {
         public override void MoreSetDefaults()
         {
+            projectile.minionSlots = 1f;
             defdistanceFromTarget= 700f;
             defdistancePlayerFarAway = 800f;
             defdistancePlayerFarAwayWhenHasTarget = 1200f;
