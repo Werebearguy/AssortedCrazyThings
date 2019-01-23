@@ -20,7 +20,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void SetDefaults()
         {
-            item.damage = CompanionDungeonSoulMinion.Damage;
+            //Defaults for damage, shoot and knockback dont matter too much here
+            //default to PreWol
+            item.damage = CompanionDungeonSoulMinionBase.DefDamage / 2;
             item.summon = true;
             item.mana = 10;
             item.width = 18;
@@ -34,32 +36,26 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType<CompanionDungeonSoulMinion>();
             item.shootSpeed = 10f;
-            item.knockBack = CompanionDungeonSoulMinion.Knockback;
+            item.knockBack = CompanionDungeonSoulMinionBase.DefKnockback;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
             item.buffTime = 3600;
         }
 
         public override bool AltFunctionUse(Player player)
         {
-            return true;
+            return false; //true
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            //one that shoots out far 
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
-            //one that shoots out less
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1/2f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
-            return false;
-        }
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
+            ////one that shoots out far 
+            //Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
+            ////one that shoots out less
+            //Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1/2f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
 
-        public override bool UseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                player.MinionNPCTargetAim();
-            }
-            return base.UseItem(player);
+            return false;
         }
 
         public override void HoldItem(Player player)

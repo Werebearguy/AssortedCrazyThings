@@ -50,8 +50,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bone, 25);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 25);
-            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 5);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 50);
+            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 2);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
