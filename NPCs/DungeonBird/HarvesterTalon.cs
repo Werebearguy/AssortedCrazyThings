@@ -128,7 +128,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (target.whoAmI == Main.myPlayer && Main.rand.NextFloat() >= 0.5f)
+            if (/*target.whoAmI == Main.myPlayer && */Main.rand.NextFloat() >= 0.5f)
             {
                 target.AddBuff(BuffID.Slow, 120, false); //2 seconds, 50% chance
             }

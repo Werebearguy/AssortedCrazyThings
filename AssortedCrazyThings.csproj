@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssortedCrazyThings.cs" />
+    <Compile Include="Buffs\AbeeminationPetBuff.cs" />
     <Compile Include="Buffs\BipolarBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulMinionBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulPetBuff.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\Pets\AbeeminationPetItem.cs" />
     <Compile Include="Items\TinyFrogCrown.cs" />
     <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
@@ -290,6 +292,7 @@
     <Compile Include="Projectiles\MiscGlobalProj.cs" />
     <Compile Include="Projectiles\PetAccessoryProj.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
+    <Compile Include="Projectiles\Pets\AbeeminationPet.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj.cs" />
     <Compile Include="Projectiles\Pets\AlienHornet.cs" />
     <Compile Include="Projectiles\Pets\BabyCrimera.cs" />

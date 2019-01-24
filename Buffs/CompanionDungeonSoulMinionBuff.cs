@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Freed Dungeon Soul");
-            Description.SetDefault("A freed Dungeon Soul is fighting for you.");
+            DisplayName.SetDefault("Soul");
+            Description.SetDefault("A friendly Soul is fighting for you.");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

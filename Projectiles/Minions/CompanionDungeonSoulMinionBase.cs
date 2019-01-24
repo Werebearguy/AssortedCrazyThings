@@ -25,8 +25,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public float defplayerCatchUpIdle;// = 300f; //300f
         public float defbackToIdleFromNoclipping;// = 150f; //150f
         public float defdashDelay;// = 40f; //time it stays in the "dashing" state after a dash, he dashes when he is in state 0 aswell
+        public float defdistanceAttackNoclip; //defdashDelay * 5; only for prewol version
         public float defstartDashRange;// = defdistanceToEnemyBeforeCanDash + 10f; //30f
         public float defdashIntensity;// = 4f; //4f
+
+        public float veloFactorToEnemy;// = 6f; //8f
+        public float accFactorToEnemy;// = 16f; //41f
+
+        public float veloFactorAfterDash;// = 8f; //4f
+        public float accFactorAfterDash;// = 41f; //41f
 
         public float defveloIdle;// = 1f;
         public float defveloCatchUpIdle;// = 8f;
@@ -71,9 +78,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static SoulStats GetAssociatedStats(Mod mod, int soulType)
         {
             //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 2.5f), DefKnockback * 4, soulType);
-            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), DefDamage, DefKnockback, soulType);
-            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), DefDamage, DefKnockback, soulType);
+            if (soulType == (int)SoulType.Fright) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.2f), DefKnockback * 4, soulType);
+            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.8f), DefKnockback, soulType);
+            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.5f), DefKnockback * 8, soulType);
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
                 if (Main.hardMode)
@@ -114,9 +121,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.penetrate = -1;
             projectile.tileCollide = false;
 
-            MoreSetDefaults();
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = 8;
 
             dustColor = Color.White;
+
+            MoreSetDefaults();
         }
 
         public virtual void MoreSetDefaults()
@@ -134,16 +144,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return true;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            if (target.immune[projectile.owner] == 10)
-            {
-                projectile.usesLocalNPCImmunity = true;
-                projectile.localNPCImmunity[target.whoAmI] = 10;
-                target.immune[projectile.owner] = 8; //0
-                //immunity frame now 8 instead of 10 ticks long
-            }
-        }
+        //public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        //{
+        //    //if (target.immune[projectile.owner] == 10)
+        //    //{
+        //    //    projectile.usesLocalNPCImmunity = true;
+        //    //    projectile.localNPCImmunity[target.whoAmI] = 10;
+        //    //    target.immune[projectile.owner] = 8; //0
+        //    //    //immunity frame now 8 instead of 10 ticks long
+        //    //}
+        //}
 
         public void Draw()
         {
@@ -355,7 +365,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                                 //EITHER HE CAN SEE IT, OR THE TARGET IS (default case: 14) TILES AWAY BUT THE MINION IS INSIDE A TILE
                                 //makes it so the soul can still attack if it dashed "through tiles"
                                 (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPC2.position, nPC2.width, nPC2.height) ||
-                                (between < defdashDelay * 5 && Collision.SolidCollision(projectile.position, projectile.width, projectile.height))))
+                                (between < defdistanceAttackNoclip && Collision.SolidCollision(projectile.position, projectile.width, projectile.height))))
                             {
                                 distanceFromTarget = between;
                                 targetCenter = nPC2.Center;
@@ -385,17 +395,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     {
                         //if its far away from it
                         //Main.NewText("first " + Main.time);
-                        float veloFactorToEnemy = 6f; //8f
-                        float accFactorToEnemy = 16f; //41f
                         distanceToTargetVector *= veloFactorToEnemy;
                         projectile.velocity = (projectile.velocity * (accFactorToEnemy - 1) + distanceToTargetVector) / accFactorToEnemy;
                     }
                     else //slowdown after a dash
                     {
                         //if its close to the enemy
-                        //Main.NewText("second " + Main.time);
-                        float veloFactorAfterDash = 8; //4f
-                        float accFactorAfterDash = 41; //41f
+                        //Main.NewText("second " + distanceToTarget);
                         distanceToTargetVector *= 0f - veloFactorAfterDash;
                         projectile.velocity = (projectile.velocity * (accFactorAfterDash - 1) + distanceToTargetVector) / accFactorAfterDash;
                     }
@@ -441,8 +447,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 if (projectile.ai[1] > 0f)
                 {
-                    projectile.ai[1] += 1f;
-                    //projectile.ai[1] += Main.rand.Next(1, 4);
+                    //projectile.ai[1] += 1f;
+                    projectile.ai[1] += Main.rand.Next(1, 4);
                 }
 
                 if (projectile.ai[1] > defdashDelay)
@@ -458,7 +464,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         projectile.ai[1] = 1f;
                         if (Main.myPlayer == projectile.owner)
                         {
-                            //Main.NewText("dash " + Main.time);
+                            Main.NewText("dash " + distanceFromTarget);
                             AI_STATE = STATE_DASH;
                             Vector2 value20 = targetCenter - projectile.Center;
                             value20.Normalize();

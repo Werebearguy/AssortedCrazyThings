@@ -82,7 +82,6 @@ namespace AssortedCrazyThings.Items.Weapons
             if (player.altFunctionUse != 2)
             {
                 AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
-                Main.NewText(mPlayer.selectedSoulMinionType);
                 mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
             }
             return false;
