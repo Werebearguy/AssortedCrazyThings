@@ -3,11 +3,11 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.VanityArmor
 {
     [AutoloadEquip(EquipType.Head)]
-    public class HenkamMask : ModItem
+    public class PrettyMask : ModItem
 	{
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Henkam Mask");
+            DisplayName.SetDefault("Pretty Mask");
 			Tooltip.SetDefault("Goes well with a red scarf, red gloves, and red boots");
         }
 		public override void SetDefaults()
