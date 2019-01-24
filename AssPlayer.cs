@@ -282,30 +282,36 @@ namespace AssortedCrazyThings
         public int CycleSoulType()
         {
             /*
-             * Default,
-             * Fright,
-             * Sight,
-             * Might,
-             * Temp
+             * Default, 0
+             * Fright,  1
+             * Sight,   2
+             * Might,   3
+             * Temp     4
              */
-            int[] values = (int[])Enum.GetValues(typeof(CompanionDungeonSoulMinionBase.SoulType));
             bool[] unlocked = new bool[]
             {
-                true,
-                NPC.downedMechBoss3, //skele
-                NPC.downedMechBoss2, //twins
-                NPC.downedMechBoss1, //destr
-                false,
+                true,                //      0
+                NPC.downedMechBoss3, //skele 1
+                NPC.downedMechBoss2, //twins 2
+                NPC.downedMechBoss1, //destr 3
+                false,               //      4
             };
 
-            int countUnlocked = 0;
-            for (int i = 0; i < unlocked.Length; i++)
-            {
-                if (unlocked[i]) countUnlocked++;
-            }
+            //int countUnlocked = 0;
+            //for (int i = 0; i < unlocked.Length; i++)
+            //{
+            //    if (unlocked[i]) countUnlocked++;
+            //}
 
-            selectedSoulMinionType++;
-            if (selectedSoulMinionType >= countUnlocked) selectedSoulMinionType = 0;
+            do
+            {
+                selectedSoulMinionType++;
+                if (selectedSoulMinionType >= unlocked.Length) selectedSoulMinionType = 0;
+            }
+            while (!unlocked[selectedSoulMinionType]);
+
+            //selectedSoulMinionType++;
+            //if (selectedSoulMinionType >= countUnlocked) selectedSoulMinionType = 0;
             return selectedSoulMinionType;
         }
 

@@ -72,8 +72,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             //damage, knockback
             if (soulType == (int)SoulType.Fright) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 2.5f), DefKnockback * 4, soulType);
-            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), DefDamage, DefKnockback, soulType);
-            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), DefDamage, DefKnockback, soulType);
+            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), DefDamage, DefKnockback, soulType);
+            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), DefDamage, DefKnockback, soulType);
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
                 if (Main.hardMode)
@@ -214,6 +214,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, dustColor, 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
+                dust.GetColor(dustColor);
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
             }
 

@@ -14,12 +14,15 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everhallowed Lantern");
-            Tooltip.SetDefault("Summons a freed Dungeon Soul to fight for you.");
+            //"Summons a Soul to fight for you." is changed for the appropriate type in ModifyTooltips
+            Tooltip.SetDefault("Summons a Soul to fight for you."
+                + "\nRight click to cycle through available forms."
+                + "\nFight mechanical bosses to unlock new minions.");
         }
 
         public override void SetDefaults()
         {
-            //Defaults for damage, shoot and knockback dont matter too much here
+            //Defaults for damage, shoot and knockback dont matter too much here, only for the first summon
             //default to PostWol
             item.damage = CompanionDungeonSoulMinionBase.DefDamage;
             item.summon = true;
@@ -33,7 +36,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 95, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulFrightMinion>();
+            item.shoot = mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>();
             item.shootSpeed = 10f;
             item.knockBack = CompanionDungeonSoulMinionBase.DefKnockback;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
@@ -79,6 +82,7 @@ namespace AssortedCrazyThings.Items.Weapons
             if (player.altFunctionUse != 2)
             {
                 AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+                Main.NewText(mPlayer.selectedSoulMinionType);
                 mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
             }
             return false;
@@ -92,6 +96,15 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+            CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)mPlayer.selectedSoulMinionType;
+
+            string soulDesc = "Soul of " + soulType.ToString();
+            if (soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
+            {
+                soulDesc = soulType.ToString() + " Soul";
+            }
+
             //need a dummy because you can't remove elements from a list while you are iterating
             TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
 
@@ -104,27 +117,33 @@ namespace AssortedCrazyThings.Items.Weapons
             }
             if(line.Name != "dummy") tooltips.Remove(line);
 
-
-            int insertIndex = tooltips.Count; //it can insert on the "last" index (special case)
-
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (tooltips[i].Name == "Tooltip0")
+                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Tooltip0")
                 {
-                    insertIndex = i + 1; //it inserts "left" of where it found the index (without +1), so everything else get pushed one up
-                    break;
-                }
-            }
+                    string[] newString;
+                    string tempString;
+                    try //try catch in case some other mods modify it
+                    {
+                        //split string up into words
+                        newString = tooltips[i].text.Split(new string[] { " " }, 14, StringSplitOptions.RemoveEmptyEntries);
 
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
-            CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)mPlayer.selectedSoulMinionType;
-            if (soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
-            {
-                tooltips.Insert(insertIndex, new TooltipLine(mod, "Type", "Selected: " + soulType.ToString() + " Soul."));
-            }
-            else
-            {
-                tooltips.Insert(insertIndex, new TooltipLine(mod, "Type", "Selected: Soul of " + soulType.ToString() + "."));
+                        //rebuild text string to include the desc instead of "Soul"
+                        tempString = newString[0] + " " + newString[1] + " " + soulDesc;
+
+                        //add remaining words back
+                        for (int j = 3; j < newString.Length; j++)
+                        {
+                            tempString += " " + newString[j];
+                        }
+
+                        tooltips[i].text = tempString;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
             }
         }
 
