@@ -4,7 +4,8 @@ namespace AssortedCrazyThings
 {
     public class PetPlayer : ModPlayer
     {
-		public bool AbeeminationPet = false;
+		public bool Pigronata = false;
+		public bool Abeemination = false;
 		public bool CuteSlimeYellowNew = false;
 		public bool CuteSlimeXmasNew = false;
 		public bool CuteSlimeRedNew = false;
@@ -60,7 +61,8 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
 		{
-			AbeeminationPet = false;
+			Pigronata = false;
+			Abeemination = false;
 			CuteSlimeYellowNew = false;
 			CuteSlimeXmasNew = false;
 			CuteSlimeRedNew = false;
