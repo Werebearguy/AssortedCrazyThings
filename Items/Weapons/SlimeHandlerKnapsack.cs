@@ -6,7 +6,6 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    //imported from my tAPI mod because I'm lazy
     public class SlimeHandlerKnapsack : MinionItemBase
     {
         public override void SetStaticDefaults()

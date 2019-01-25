@@ -502,9 +502,20 @@ namespace AssortedCrazyThings
             {
                 Texture2D texture = mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back");
                 float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
-                float drawY = (int)drawInfo.position.Y/* + drawPlayer.height / 2f */- Main.screenPosition.Y;
+                float drawY = (int)drawInfo.position.Y + drawPlayer.height - Main.screenPosition.Y;
 
-                Vector2 stupidOffset = new Vector2((-3) * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + (-3) * drawPlayer.gravDir);
+                //Vector2 stupidOffset = new Vector2((-3) * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + (-3) * drawPlayer.gravDir);
+                Vector2 stupidOffset = new Vector2(0f, - drawPlayer.bodyFrame.Height / 2);
+                //stupidOffset = Vector2.Zero;
+
+                //Rectangle bodyFrame5 = drawPlayer.bodyFrame;
+                //int num116 = 0; //num2
+                //bodyFrame5.X += num116;
+                //bodyFrame5.Width -= num116;
+                //if (drawPlayer.direction == -1)
+                //{
+                //    num116 = 0;
+                //}
 
                 SpriteEffects spriteEffects = SpriteEffects.None;
                 if (drawPlayer.gravDir == 1f)
@@ -531,8 +542,18 @@ namespace AssortedCrazyThings
                 }
                 Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
 
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, 0, texture.Width, texture.Height), color/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
+                Main.NewText(new Vector2(drawX + drawPlayer.bodyFrame.Width / 2, drawY + drawPlayer.bodyFrame.Height + 4f) + drawPlayer.bodyPosition + stupidOffset);
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(drawData);
+
+                
+                //drawData = new DrawData(glowMaskTexture[glowMask2],
+                //new Vector2((float)((int)(Position.X - screenPosition.X - (float)(drawPlayer.bodyFrame.Width / 2) + (float)(drawPlayer.width / 2)) + num116),
+                //(float)(int)(Position.Y - screenPosition.Y + (float)drawPlayer.height - (float)drawPlayer.bodyFrame.Height + 4f)) + drawPlayer.bodyPosition + new Vector2((float)(drawPlayer.bodyFrame.Width / 2), (float)(drawPlayer.bodyFrame.Height / 2)),
+                //bodyFrame5, glowMaskColor2, drawPlayer.bodyRotation, drawPlayer.bodyOrigin, 1f, spriteEffects, 0);
+
+                //drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, 0, texture.Width, texture.Height), color/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
+                //Main.playerDrawData.Add(drawData);
             }
         });
 
