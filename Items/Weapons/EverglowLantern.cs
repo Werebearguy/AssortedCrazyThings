@@ -51,9 +51,9 @@ namespace AssortedCrazyThings.Items.Weapons
             //AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
             //mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
             //one that shoots out far 
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, Main.myPlayer, 0f, 0f);
             //one that shoots out less
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, item.shoot, item.damage, item.knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, item.shoot, item.damage, item.knockBack, Main.myPlayer, 0f, 0f);
 
             return false;
         }

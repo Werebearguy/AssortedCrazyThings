@@ -36,8 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssortedCrazyThings.cs" />
-    <Compile Include="Buffs\AbeeminationPetBuff.cs" />
+    <Compile Include="Buffs\AbeeminationBuff.cs" />
     <Compile Include="Buffs\BipolarBuff.cs" />
+    <Compile Include="Buffs\SlimePackMinionBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulMinionBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulPetBuff.cs" />
     <Compile Include="Buffs\AlienHornet.cs" />
@@ -133,7 +134,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
-    <Compile Include="Items\Pets\AbeeminationPetItem.cs" />
+    <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\TinyFrogCrown.cs" />
     <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Items\VanityArmor\OrigamiHat.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
+    <Compile Include="Items\Weapons\SlimeHandlerKnapsack.cs" />
     <Compile Include="Items\Weapons\EverhallowedLantern.cs" />
     <Compile Include="Items\Weapons\EverglowLantern.cs" />
     <Compile Include="Items\Weapons\PocketSand.cs" />
@@ -284,6 +286,7 @@
     <Compile Include="NPCs\WhaleSharkPup.cs" />
     <Compile Include="NPCs\YoungHarpy.cs" />
     <Compile Include="NPCs\ZombieFlorist.cs" />
+    <Compile Include="Projectiles\Minions\SlimePackMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulFrightMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulSightMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMightMinion.cs" />
@@ -292,7 +295,8 @@
     <Compile Include="Projectiles\MiscGlobalProj.cs" />
     <Compile Include="Projectiles\PetAccessoryProj.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
-    <Compile Include="Projectiles\Pets\AbeeminationPet.cs" />
+    <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
+    <Compile Include="Projectiles\Pets\Abeemination.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj.cs" />
     <Compile Include="Projectiles\Pets\AlienHornet.cs" />
     <Compile Include="Projectiles\Pets\BabyCrimera.cs" />
@@ -380,6 +384,9 @@
     <Reference Include="Terraria">
       <HintPath>E:\Steam\SteamApps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Projectiles\Minions\SlimePackMinions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

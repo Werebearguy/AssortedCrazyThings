@@ -59,6 +59,8 @@ namespace AssortedCrazyThings
         public bool tempSoulMinion = false;
         public int selectedSoulMinionType = (int)CompanionDungeonSoulMinionBase.SoulType.Dungeon;
 
+        public bool slimePackMinion = false;
+
 
         //empowering buff stuff
         public bool empoweringBuff = false;
@@ -80,6 +82,7 @@ namespace AssortedCrazyThings
             getDefense = false;
             soulMinion = false;
             tempSoulMinion = false;
+            slimePackMinion = false;
             empoweringBuff = false;
         }
 
@@ -476,16 +479,63 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void ModifyDrawLayers(List<PlayerLayer> layers)
-        {
-            int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
-            if (wingLayer != -1)
-            {
-                HarvesterWings.visible = true;
-                layers.Insert(wingLayer + 1, HarvesterWings);
-            }
+        /*if ((drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f) && (drawPlayer.inventory[drawPlayer.selectedItem].type == 1178 || drawPlayer.inventory[drawPlayer.selectedItem].type == 779 || drawPlayer.inventory[drawPlayer.selectedItem].type == 1295 || drawPlayer.inventory[drawPlayer.selectedItem].type == 1910 || drawPlayer.turtleArmor || drawPlayer.body == 106 || drawPlayer.body == 170))
+			{
+				int type6 = drawPlayer.inventory[drawPlayer.selectedItem].type;
+				drawData = new DrawData(BackPackTexture[num129], new Vector2((float)(int)(Position.X - screenPosition.X + (float)(drawPlayer.width / 2) - (float)(9 * drawPlayer.direction)) + num130 * (float)drawPlayer.direction, (float)(int)(Position.Y - screenPosition.Y + (float)(drawPlayer.height / 2) + 2f * drawPlayer.gravDir + num131 * drawPlayer.gravDir)), new Microsoft.Xna.Framework.Rectangle(0, 0, BackPackTexture[num129].Width, BackPackTexture[num129].Height), color12, drawPlayer.bodyRotation, new Vector2((float)(BackPackTexture[num129].Width / 2), (float)(BackPackTexture[num129].Height / 2)), 1f, spriteEffects, 0);
+				drawData.shader = shader;
+				playerDrawData.Add(drawData);
+				break;
+			}
+         */
 
-        }
+        public static readonly PlayerLayer MiscEffectsBack = new PlayerLayer("AssortedCrazyThings", "MiscEffectsBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
+        {
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            Mod mod = ModLoader.GetMod("AssortedCrazyThings");
+
+            if ((drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f) && (drawPlayer.inventory[drawPlayer.selectedItem].type == mod.ItemType<Items.Weapons.SlimeHandlerKnapsack>()))
+            {
+                Texture2D texture = mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back");
+                float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
+                float drawY = (int)drawInfo.position.Y/* + drawPlayer.height / 2f */- Main.screenPosition.Y;
+
+                Vector2 stupidOffset = new Vector2((-3) * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + (-3) * drawPlayer.gravDir);
+
+                SpriteEffects spriteEffects = SpriteEffects.None;
+                if (drawPlayer.gravDir == 1f)
+                {
+                    if (drawPlayer.direction == 1)
+                    {
+                        spriteEffects = SpriteEffects.None;
+                    }
+                    else
+                    {
+                        spriteEffects = SpriteEffects.FlipHorizontally;
+                    }
+                }
+                else
+                {
+                    if (drawPlayer.direction == 1)
+                    {
+                        spriteEffects = SpriteEffects.FlipVertically;
+                    }
+                    else
+                    {
+                        spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
+                    }
+                }
+                Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
+
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, 0, texture.Width, texture.Height), color/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
+                Main.playerDrawData.Add(drawData);
+            }
+        });
+
 
         public static readonly PlayerLayer HarvesterWings = new PlayerLayer("AssortedCrazyThings", "HarvesterWings", PlayerLayer.Wings, delegate (PlayerDrawInfo drawInfo)
         {
@@ -531,8 +581,6 @@ namespace AssortedCrazyThings
                 drawData.shader = drawInfo.wingShader;
                 Main.playerDrawData.Add(drawData);
 
-
-
                 if (drawPlayer.velocity.Y != 0)
                 {
                     if (Main.rand.NextBool(3))
@@ -554,6 +602,21 @@ namespace AssortedCrazyThings
                 }
             }
         });
+
+        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        {
+            int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
+            if(player.velocity.Y == 0f && (player.inventory[player.selectedItem].type == mod.ItemType<Items.Weapons.SlimeHandlerKnapsack>()))
+            {
+                layers.RemoveAt(wingLayer);
+            }
+            if (wingLayer != -1 && !(player.inventory[player.selectedItem].type == mod.ItemType<Items.Weapons.SlimeHandlerKnapsack>()))
+            {
+                HarvesterWings.visible = true;
+                layers.Insert(wingLayer + 1, HarvesterWings);
+            }
+            layers.Insert(wingLayer + 1, MiscEffectsBack);
+        }
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
