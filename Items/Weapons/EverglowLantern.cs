@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Weapons
 {
     //imported from my tAPI mod because I'm lazy
-    public class EverglowLantern : ModItem
+    public class EverglowLantern : MinionItemBase
     {
         public override void SetStaticDefaults()
         {
@@ -64,21 +64,14 @@ namespace AssortedCrazyThings.Items.Weapons
             player.itemLocation.Y = player.Bottom.Y + 2f;
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public override void MoreModifyTooltips(List<TooltipLine> tooltips)
         {
             //need a dummy because you can't remove elements from a list while you are iterating
-            TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
-
             string[] newDamage;
             string tempString;
 
             foreach (TooltipLine line2 in tooltips)
             {
-                if (line2.mod == "Terraria" && line2.Name == "BuffTime")
-                {
-                    line = line2;
-                }
-
                 if (line2.mod == "Terraria" && line2.Name == "Damage")
                 {
                     try //try catch in case some other mods modify it
@@ -103,7 +96,6 @@ namespace AssortedCrazyThings.Items.Weapons
                     }
                 }
             }
-            if(line.Name != "dummy") tooltips.Remove(line);
         }
 
         public override void AddRecipes()

@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class EverhallowedLantern : ModItem
+    public class EverhallowedLantern : MinionItemBase
     {
         public override void SetStaticDefaults()
         {
@@ -93,7 +93,7 @@ namespace AssortedCrazyThings.Items.Weapons
             player.itemLocation.Y = player.Bottom.Y + 2f;
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public override void MoreModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
             CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)mPlayer.selectedSoulMinionType;
@@ -103,18 +103,6 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 soulDesc = soulType.ToString() + " Soul";
             }
-
-            //need a dummy because you can't remove elements from a list while you are iterating
-            TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
-
-            foreach (TooltipLine line2 in tooltips)
-            {
-                if (line2.mod == "Terraria" && line2.Name == "BuffTime")
-                {
-                    line = line2;
-                }
-            }
-            if(line.Name != "dummy") tooltips.Remove(line);
 
             for (int i = 0; i < tooltips.Count; i++)
             {

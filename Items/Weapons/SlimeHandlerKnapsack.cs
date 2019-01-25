@@ -1,16 +1,13 @@
 ﻿using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
     //imported from my tAPI mod because I'm lazy
-    public class SlimeHandlerKnapsack : ModItem
+    public class SlimeHandlerKnapsack : MinionItemBase
     {
         public override void SetStaticDefaults()
         {
@@ -55,20 +52,6 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             player.itemLocation.X = 0; //kind of a hack, 
             player.itemLocation.Y = 0;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            //need a dummy because you can't remove elements from a list while you are iterating
-            TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
-            foreach (TooltipLine line2 in tooltips)
-            {
-                if (line2.mod == "Terraria" && line2.Name == "BuffTime")
-                {
-                    line = line2;
-                }
-            }
-            if (line.Name != "dummy") tooltips.Remove(line);
         }
 
         public override void AddRecipes()
