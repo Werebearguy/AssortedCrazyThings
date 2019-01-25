@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class AbeeminationPet : ModProjectile
+    public class Abeemination : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -38,9 +38,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.AbeeminationPet = false;
+                modPlayer.Abeemination = false;
             }
-            if (modPlayer.AbeeminationPet)
+            if (modPlayer.Abeemination)
             {
                 projectile.timeLeft = 2;
             }

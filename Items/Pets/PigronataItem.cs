@@ -4,19 +4,19 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class AbeeminationPetItem : ModItem
+    public class PigronataItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Abeemination +");
-            Tooltip.SetDefault("Summons a friendly Abeemination to follow you.");
+            DisplayName.SetDefault("Pigronata");
+            Tooltip.SetDefault("Summons a friendly Pigronata to follow you.");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("AbeeminationPet");
-            item.buffType = mod.BuffType("AbeeminationPetBuff");
+            item.shoot = mod.ProjectileType("Pigronata");
+            item.buffType = mod.BuffType("PigronataBuff");
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Abeemination, 1);
+            recipe.AddIngredient(ItemID.Pigronata, 1);
             recipe.AddIngredient(ItemID.LifeFruit, 1);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
