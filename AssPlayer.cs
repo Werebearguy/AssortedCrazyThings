@@ -542,7 +542,7 @@ namespace AssortedCrazyThings
                 }
                 Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
 
-                Main.NewText(new Vector2(drawX + drawPlayer.bodyFrame.Width / 2, drawY + drawPlayer.bodyFrame.Height + 4f) + drawPlayer.bodyPosition + stupidOffset);
+                //Main.NewText(new Vector2(drawX + drawPlayer.bodyFrame.Width / 2, drawY + drawPlayer.bodyFrame.Height + 4f) + drawPlayer.bodyPosition + stupidOffset);
                 DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(drawData);
 
