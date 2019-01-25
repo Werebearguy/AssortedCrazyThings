@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType("AlienHornet");
             item.buffType = mod.BuffType("AlienHornet");
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(gold: 5);
         }
 
         public override void AddRecipes()

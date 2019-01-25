@@ -124,7 +124,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 8;
 
-            dustColor = Color.White;
+            //dustColor = Color.White;
 
             MoreSetDefaults();
         }
@@ -224,7 +224,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, dustColor, 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
-                dust.GetColor(dustColor);
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
             }
 
@@ -464,7 +463,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         projectile.ai[1] = 1f;
                         if (Main.myPlayer == projectile.owner)
                         {
-                            Main.NewText("dash " + distanceFromTarget);
+                            //Main.NewText("dash " + distanceFromTarget);
                             AI_STATE = STATE_DASH;
                             Vector2 value20 = targetCenter - projectile.Center;
                             value20.Normalize();

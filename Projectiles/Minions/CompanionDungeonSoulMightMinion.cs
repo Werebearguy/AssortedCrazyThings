@@ -27,7 +27,7 @@
             defveloCatchUpIdle = 7f;
             defveloNoclip = 13f;
 
-            dustColor = Microsoft.Xna.Framework.Color.White;
+            dustColor = Microsoft.Xna.Framework.Color.DarkBlue;
         }
     }
 }
