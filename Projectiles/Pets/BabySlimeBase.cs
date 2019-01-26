@@ -293,15 +293,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         projectile.velocity.Y -= num42 * 1.5f;
                     }
                 }
-
-                //false for baby slime
-                //if (type != 499 && type != 398 && type != 390 && type != 391 && type != 392 && type != 127 && type != 200 && type != 208 && type != 210 && type != 236 && type != 266 && type != 268 && type != 269 && type != 313 && type != 314 && type != 319 && type != 324 && type != 334 && type != 353)
-                //{
-                //    int num60 = Dust.NewDust(new Vector2(projectile.position.X + (projectile.width / 2) - 4f, projectile.position.Y + (projectile.height / 2) - 4f) - velocity, 8, 8, 16, (0f - velocity.X) * 0.5f, velocity.Y * 0.5f, 50, default(Color), 1.7f);
-                //    Main.dust[num60].velocity.X = Main.dust[num60].velocity.X * 0.2f;
-                //    Main.dust[num60].velocity.Y = Main.dust[num60].velocity.Y * 0.2f;
-                //    Main.dust[num60].noGravity = true;
-                //}
             }
             else //projectile.ai[0] == 0f)
             {

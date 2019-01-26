@@ -91,10 +91,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
 
             Color color = drawColor * ((255 - projectile.alpha) / 255f);
-            //if (projectile.localAI[1] - 1 == 30 || projectile.localAI[1] - 1 == 31)
-            //{
-            //    color = Color.White;
-            //}
 
             spriteBatch.Draw(image, drawPos, bounds, color, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);
             return false;
@@ -123,8 +119,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
                     Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length));
-                    //Main.NewText(k + " " + projectile.oldPos[k]);
-                    //color = drawColor * ((255 - projectile.alpha) / 255f);
                     spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
                 }
             }
