@@ -3,6 +3,7 @@ using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
@@ -36,11 +37,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.buffTime = 3600;
         }
 
-        public override bool AltFunctionUse(Player player)
-        {
-            return false; //true
-        }
-
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Projectile.NewProjectile(player.position.X + (player.width / 2) - player.direction * 12f, player.position.Y - 8f, - player.velocity.X, player.velocity.Y - 6f, item.shoot, item.damage, item.knockBack, Main.myPlayer, 0f, 0f);
@@ -55,15 +51,14 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void AddRecipes()
         {
-            //TODO
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.SlimeCrown, 1);
-            //recipe.AddIngredient(ItemID.Gel, 999);
-            //recipe.AddIngredient(ItemID.SoulofLight, 10);
-            //recipe.AddIngredient(ItemID.SoulofNight, 10);
-            //recipe.AddTile(TileID.Anvils);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.SlimeCrown, 1);
+            recipe.AddIngredient(ItemID.Gel, 999);
+            recipe.AddIngredient(ItemID.SoulofLight, 10);
+            recipe.AddIngredient(ItemID.SoulofNight, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

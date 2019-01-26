@@ -16,8 +16,7 @@ namespace AssortedCrazyThings.Items.Weapons
             DisplayName.SetDefault("Everhallowed Lantern");
             //"Summons a Soul to fight for you." is changed for the appropriate type in ModifyTooltips
             Tooltip.SetDefault("Summons a Soul to fight for you."
-                + "\nRight click to cycle through available forms."
-                + "\nFight mechanical bosses to unlock new minions.");
+                + "\nRight click to cycle through available forms.");
         }
 
         public override void SetDefaults()
@@ -45,7 +44,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool AltFunctionUse(Player player)
         {
-            return true; //true
+            return true;
         }
 
         public override bool CanUseItem(Player player)
@@ -104,33 +103,29 @@ namespace AssortedCrazyThings.Items.Weapons
                 soulDesc = soulType.ToString() + " Soul";
             }
 
+            TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
+
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Tooltip0")
+                if (Main.LocalPlayer.HasItem(mod.ItemType<EverhallowedLantern>()))
                 {
-                    string[] newString;
-                    string tempString;
-                    try //try catch in case some other mods modify it
+                    if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                     {
-                        //split string up into words
-                        newString = tooltips[i].text.Split(new string[] { " " }, 14, StringSplitOptions.RemoveEmptyEntries);
-
-                        //rebuild text string to include the desc instead of "Soul"
-                        tempString = newString[0] + " " + newString[1] + " " + soulDesc;
-
-                        //add remaining words back
-                        for (int j = 3; j < newString.Length; j++)
-                        {
-                            tempString += " " + newString[j];
-                        }
-
-                        tooltips[i].text = tempString;
-                    }
-                    catch (Exception)
-                    {
-
+                        tooltips[i].text += " (" + soulDesc + ")";
                     }
                 }
+
+                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Tooltip0")
+                {
+                    line = tooltips[i];
+                }
+            }
+
+            if (line.Name != "dummy") tooltips.Remove(line);
+
+            if (!(NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && Main.LocalPlayer.HasItem(mod.ItemType<EverhallowedLantern>())))
+            {
+                tooltips.Add(new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions."));
             }
         }
 
