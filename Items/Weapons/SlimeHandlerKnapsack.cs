@@ -57,8 +57,10 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //TODO
             //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.MeteoriteBar, 5);
-            //recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 2);
+            //recipe.AddIngredient(ItemID.SlimeCrown, 1);
+            //recipe.AddIngredient(ItemID.Gel, 999);
+            //recipe.AddIngredient(ItemID.SoulofLight, 10);
+            //recipe.AddIngredient(ItemID.SoulofNight, 10);
             //recipe.AddTile(TileID.Anvils);
             //recipe.SetResult(this);
             //recipe.AddRecipe();
