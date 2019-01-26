@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Pain Suppression");
-            Tooltip.SetDefault("Drastically increases your defense when you are at critically low health."
+            Tooltip.SetDefault("Drastically increases your defense when you are at critically low health"
                 + "\nHas a cooldown of " + (AssPlayer.GetDefenseTimerMax / 60) + " minutes");
         }
 

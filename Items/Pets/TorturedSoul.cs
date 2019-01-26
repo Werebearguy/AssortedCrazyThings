@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tortured Soul");
-            Tooltip.SetDefault("Summons an unfriendly Tortured Soul to follow you.");
+            Tooltip.SetDefault("Summons an unfriendly Tortured Soul to follow you");
         }
 
         public override void SetDefaults()

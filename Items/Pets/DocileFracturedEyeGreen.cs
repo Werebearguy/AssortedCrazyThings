@@ -9,9 +9,9 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Unconscious Fractured Eye");
-            Tooltip.SetDefault("Summons a docile green Fractured Eye to follow you."
-                + "\nLegacy Appearance, use 'Docile Demon Eye' instead."
-                + "\nThis version of the pet will be discontinued in the next update.");
+            Tooltip.SetDefault("Summons a docile green Fractured Eye to follow you"
+                + "\nLegacy Appearance, use 'Docile Demon Eye' instead"
+                + "\nThis version of the pet will be discontinued in the next update");
         }
 
         public override void SetDefaults()

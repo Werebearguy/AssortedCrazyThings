@@ -15,8 +15,8 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             DisplayName.SetDefault("Everhallowed Lantern");
             //"Summons a Soul to fight for you." is changed for the appropriate type in ModifyTooltips
-            Tooltip.SetDefault("Summons a Soul to fight for you."
-                + "\nRight click to cycle through available forms.");
+            Tooltip.SetDefault("Summons a Soul to fight for you"
+                + "\nRight click to cycle through available forms");
         }
 
         public override void SetDefaults()

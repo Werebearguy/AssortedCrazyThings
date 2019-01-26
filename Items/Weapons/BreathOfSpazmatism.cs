@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Breath of Spazmatism");
-            Tooltip.SetDefault("Fires a stream of cursed flames.");
+            Tooltip.SetDefault("Fires a stream of cursed flames");
         }
 
         public override void SetDefaults()

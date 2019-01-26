@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everglow Lantern");
-            Tooltip.SetDefault("Summons two freed Dungeon Souls at a time to fight for you.\nEach Dungeon Soul occupies only half a minion slot.");
+            Tooltip.SetDefault("Summons two freed Dungeon Souls at a time to fight for you.\nEach Dungeon Soul occupies only half a minion slot");
         }
 
         public override void SetDefaults()

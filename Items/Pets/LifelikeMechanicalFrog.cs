@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SetStaticDefaults()
 			{
 				DisplayName.SetDefault("Lifelike Mechanical Frog");
-				Tooltip.SetDefault("Summons a friendly Frog to follow you.");
+				Tooltip.SetDefault("Summons a friendly Frog to follow you");
 			}
 		public override void SetDefaults()
 			{

@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Increased Coin Pickup Range"
                 + "\nIncreased Heart and Mana Pickup Range"
                 + "\nHitting Enemies Will Sometimes Drop Extra Coins"
-                + "\nShops Have Lowered Prices.");
+                + "\nShops Have Lowered Prices");
         }
 
         public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
 			public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Brain of Confusion");
-					Tooltip.SetDefault("Summons a Brain of Confusion to follow aimlessly behind you.");
+					Tooltip.SetDefault("Summons a Brain of Confusion to follow aimlessly behind you");
 				}
 			public override void SetDefaults()
 				{

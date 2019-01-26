@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Massive Bundle of Balloons");
-					Tooltip.SetDefault("Allows you to jump six more times."
-						+ "\nNegates fall damage and increases jump height.");
+					Tooltip.SetDefault("Allows you to jump six more times"
+						+ "\nNegates fall damage and increases jump height");
 				}
 			public override void SetDefaults()
 				{

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pigronata");
-            Tooltip.SetDefault("Summons a friendly Pigronata to follow you.");
+            Tooltip.SetDefault("Summons a friendly Pigronata to follow you");
         }
 
         public override void SetDefaults()

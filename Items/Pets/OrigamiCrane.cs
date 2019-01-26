@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Origami Crane");
-            Tooltip.SetDefault("Summons an Origami Crane that follows you.");
+            Tooltip.SetDefault("Summons an Origami Crane that follows you");
         }
 
         public override void SetDefaults()

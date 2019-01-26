@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Dreams");
-            Tooltip.SetDefault("Allows the holder to double jump.");
+            Tooltip.SetDefault("Allows the holder to double jump");
         }
 
         public override void SetDefaults()

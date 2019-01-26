@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Juicy Vertebrae");
-            Tooltip.SetDefault("Summons a baby Crimera to follow you.");
+            Tooltip.SetDefault("Summons a baby Crimera to follow you");
         }
 
         public override void SetDefaults()

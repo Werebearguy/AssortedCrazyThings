@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Baby Ocram");
-            Tooltip.SetDefault("Summons a miniature Ocram that follows you.");
+            Tooltip.SetDefault("Summons a miniature Ocram that follows you");
         }
 
         public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Goblet Battle Standard");
-            Tooltip.SetDefault("Summons a tiny goblin to follow you.");
+            Tooltip.SetDefault("Summons a tiny goblin to follow you");
         }
 
         public override void SetDefaults()

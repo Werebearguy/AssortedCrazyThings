@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Docile Demon Eye");
-            Tooltip.SetDefault("Summons a docile Demon Eye to follow you."
-                + "\nChange its appearance with a Demon Eye Contact Case.");
+            Tooltip.SetDefault("Summons a docile Demon Eye to follow you"
+                + "\nChange its appearance with a Demon Eye Contact Case");
         }
 
         public override void SetDefaults()

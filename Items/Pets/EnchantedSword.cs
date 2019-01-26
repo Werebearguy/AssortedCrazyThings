@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Enchanted Sword");
-            Tooltip.SetDefault("Summons an Enchanted Sword to watch over you.");
+            Tooltip.SetDefault("Summons an Enchanted Sword to watch over you");
         }
 
         public override void SetDefaults()

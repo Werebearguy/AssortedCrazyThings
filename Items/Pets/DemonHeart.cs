@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Demon Heart");
-            Tooltip.SetDefault("Summons a friendly Demon Heart to follow you.");
+            Tooltip.SetDefault("Summons a friendly Demon Heart to follow you");
         }
 
         public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Clump of Down Feathers");
-            Tooltip.SetDefault("Summons a friendly Harpy to follow you.");
+            Tooltip.SetDefault("Summons a friendly Harpy to follow you");
         }
 
         public override void SetDefaults()

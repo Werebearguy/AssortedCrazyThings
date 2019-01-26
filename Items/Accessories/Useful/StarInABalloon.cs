@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Star in a Balloon");
-            Tooltip.SetDefault("Increased mana regeneration and jump height.");
+            Tooltip.SetDefault("Increased mana regeneration and jump height");
         }
 
         public override void SetDefaults()

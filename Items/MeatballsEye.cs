@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Meatball's Eye");
-			Tooltip.SetDefault("Find Chunky's Eye and combine the two at a Demon Altar.");
+			Tooltip.SetDefault("Find Chunky's Eye and combine the two at a Demon Altar");
 		}
 		public override void SetDefaults()
 		{

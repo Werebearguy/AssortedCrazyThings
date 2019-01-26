@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soles of Fire and Ice");
-            Tooltip.SetDefault("Allows you to walk on water, lava, and thin ice.");
+            Tooltip.SetDefault("Allows you to walk on water, lava, and thin ice");
         }
 
         public override void SetDefaults()

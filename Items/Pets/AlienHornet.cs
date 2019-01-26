@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vortex Nectar");
-            Tooltip.SetDefault("Summons a friendly Alien Hornet to follow you.");
+            Tooltip.SetDefault("Summons a friendly Alien Hornet to follow you");
         }
 
         public override void SetDefaults()

@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slime Handler Knapsack");
-            Tooltip.SetDefault("Summons a friendly Slime from your Knapsack to fight for you.");
+            Tooltip.SetDefault("Summons a friendly Slime from your Knapsack to fight for you");
         }
 
         public override void SetDefaults()

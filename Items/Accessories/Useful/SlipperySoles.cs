@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Slippery Soles");
-					Tooltip.SetDefault("You slip and slide on all blocks.");
+					Tooltip.SetDefault("You slip and slide on all blocks");
 				}
 			public override void SetDefaults()
 				{

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chunky and Meatball");
-            Tooltip.SetDefault("Summons a pair of inseperable brothers to follow you.");
+            Tooltip.SetDefault("Summons a pair of inseperable brothers to follow you");
         }
 
         public override void SetDefaults()

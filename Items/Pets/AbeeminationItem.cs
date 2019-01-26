@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Abeemination+");
-            Tooltip.SetDefault("Summons a friendly Abeemination to follow you.");
+            DisplayName.SetDefault("Abeemination");
+            Tooltip.SetDefault("Summons a friendly Abeemination to follow you");
         }
 
         public override void SetDefaults()

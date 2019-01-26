@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fixed Bat Wing");
-            Tooltip.SetDefault("Summons a friendly vampire that flies with you.");
+            Tooltip.SetDefault("Summons a friendly vampire that flies with you");
         }
 
         public override void SetDefaults()

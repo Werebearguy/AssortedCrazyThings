@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tome of Shadowflame Skulls");
-            Tooltip.SetDefault("Inflicts Shadowflame on enemies.");
+            Tooltip.SetDefault("Inflicts Shadowflame on enemies");
         }
 
 		public override void AddRecipes()

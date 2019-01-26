@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wyverntail");
-            Tooltip.SetDefault("Summons a friendly Young Wyvern that flies with you.");
+            Tooltip.SetDefault("Summons a friendly Young Wyvern that flies with you");
         }
 
         public override void SetDefaults()

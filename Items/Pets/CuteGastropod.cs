@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
 			public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Mysterious Pod");
-					Tooltip.SetDefault("Summons a friendly Cute Gastropod to follow you.");
+					Tooltip.SetDefault("Summons a friendly Cute Gastropod to follow you");
 				}
 			public override void SetDefaults()
 				{

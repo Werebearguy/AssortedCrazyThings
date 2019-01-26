@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Unconscious Hungry");
-            Tooltip.SetDefault("Summons a detached Hungry to follow you.");
+            Tooltip.SetDefault("Summons a detached Hungry to follow you");
         }
 
         public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Small Megalodon Tooth");
-            Tooltip.SetDefault("Summons a friendly Mini Megalodon that follows you.");
+            Tooltip.SetDefault("Summons a friendly Mini Megalodon that follows you");
         }
 
         public override void SetDefaults()

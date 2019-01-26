@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sleeping Ichor Sticker");
-            Tooltip.SetDefault("Summons a Baby Ichor Sticker to follow you.");
+            Tooltip.SetDefault("Summons a Baby Ichor Sticker to follow you");
         }
 
         public override void SetDefaults()
