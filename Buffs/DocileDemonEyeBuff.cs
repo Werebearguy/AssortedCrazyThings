@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Docile Demon Eye");
-            Description.SetDefault("A Demon Eye is following you."
-                + "\nChange its appearance with a Demon Eye Contact Case.");
+            Description.SetDefault("A Demon Eye is following you"
+                + "\nChange its appearance with a Demon Eye Contact Case");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

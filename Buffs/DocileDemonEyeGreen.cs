@@ -8,9 +8,8 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Docile Demon Eye");
-            Description.SetDefault("A Demon Eye is following you."
-                + "\nLegacy Appearance, use 'Docile Demon Eye' instead."
-                + "\nThis version of the pet will be discontinued in the next update.");
+            Description.SetDefault("A Demon Eye is following you"
+                + "\nLegacy Appearance, use 'Docile Demon Eye' instead");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

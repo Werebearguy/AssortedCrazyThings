@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Soul");
-            Description.SetDefault("A friendly Soul is fighting for you.");
+            Description.SetDefault("A friendly Soul is fighting for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

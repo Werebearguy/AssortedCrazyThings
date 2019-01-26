@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Cute Red Slime");
-            Description.SetDefault("A cute red slime girl is following you.");
+            Description.SetDefault("A cute red slime girl is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

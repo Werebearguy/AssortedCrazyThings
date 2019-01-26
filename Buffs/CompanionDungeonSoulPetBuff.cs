@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Description.SetDefault("An friendly Dungeon Soul is following you.");
+            Description.SetDefault("An friendly Dungeon Soul is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.lightPet[Type] = true;
         }
