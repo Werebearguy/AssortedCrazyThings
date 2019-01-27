@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Abeemination+");
+            DisplayName.SetDefault("Abeemination");
             Description.SetDefault("An Abeemination is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;

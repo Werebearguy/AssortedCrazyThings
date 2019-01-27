@@ -331,17 +331,17 @@ namespace AssortedCrazyThings
             if (!lilmegalodonSpawned && lilmegalodonAlive)
             {
                 lilmegalodonAlive = false;
-                DisappearMessage("The " + megalodonName + " disappeared... for now.");
+                DisappearMessage("The " + megalodonName + " disappeared... for now");
             }
             if (!isMegalodonSpawned && megalodonAlive)
             {
                 megalodonAlive = false;
-                DisappearMessage("The " + megalodonName + " disappeared... for now.");
+                DisappearMessage("The " + megalodonName + " disappeared... for now");
             }
             if (!isMiniocramSpawned && miniocramAlive)
             {
                 miniocramAlive = false;
-                DisappearMessage("The " + miniocramName + " disappeared... for now.");
+                DisappearMessage("The " + miniocramName + " disappeared... for now");
             }
         }
         

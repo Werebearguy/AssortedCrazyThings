@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Chunky and Meatball");
-            Description.SetDefault("Two reunited brothers are following you.");
+            Description.SetDefault("Two reunited brothers are following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

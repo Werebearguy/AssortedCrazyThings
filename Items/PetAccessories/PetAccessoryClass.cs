@@ -777,8 +777,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
              * 
              * - if you want to remove certain accessories from being usable for the system, comment the line out in namesOfAccessories
              * and comment the corresponding Add line (with //)
-             * 
-             * - if you want to disable the whole system, comment the PetAccessories.Load() and PetAccessories.Unload() in AssortedCrazyThings.cs
              */
 
             //this is needed before you call Add() (it needs to know the total number of accessories)
@@ -853,7 +851,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //offsetX/Y is self explanatory, remember, negative X is left, negative Y is up
             //preDraw decides if that accessory should be drawn "behind" the actual slime (false means it will draw infront)
             //alpha says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
-            //order of the Add() doesn't matter
+            //order of the Add() doesn't matter, though it is alphabetically here for organization
 
             Add(name: "PetAccessoryBowtieBlack");
             Add(name: "PetAccessoryBowtieBlue");
@@ -926,13 +924,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
 
-        private static void Check(bool duringAdd = false, string addedClassName = "fv4zuuuuuuuuuuo728fzehoxg")
+        private static void Check(bool duringAdd = false, string addedClassName = "fv4zruuu")
         {
             if (duringAdd && namesOfAccessories.Length < addCounter)
             {
                 throw new Exception("Assigned number of Pet Accessories (" + namesOfAccessories.Length + ") is less than number of added Pet Accessories (" + addCounter + ").");
             }
-            else if (duringAdd && addedClassName != "fv4zuuuuuuuuuuo728fzehoxg" && Array.IndexOf(namesOfAccessories, addedClassName) == -1)
+            else if (duringAdd && addedClassName != "fv4zruuu" && Array.IndexOf(namesOfAccessories, addedClassName) == -1)
             {
                 throw new Exception("Tried to add '" + addedClassName + "', but it wasn't registed in 'namesOfAccessories'");
             }
@@ -1054,19 +1052,19 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             if(e == (byte)SlotType.Hat)
             {
-                return "Worn on the head.";
+                return "Worn on the head";
             }
             if (e == (byte)SlotType.Body)
             {
-                return "Worn on the body.";
+                return "Worn on the body";
             }
             if (e == (byte)SlotType.Carried)
             {
-                return "Carried.";
+                return "Carried";
             }
             if (e == (byte)SlotType.Misc)
             {
-                return "Worn somewhere else (misc).";
+                return "Worn somewhere else (misc)";
             }
             return "UNINTENDED BEHAVIOR, REPORT TO DEV";
         }
@@ -1079,7 +1077,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]])
             {
-                tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets."));
+                tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
             }
         }
 

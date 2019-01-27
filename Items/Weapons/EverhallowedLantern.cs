@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everhallowed Lantern");
-            //"Summons a Soul to fight for you." is changed for the appropriate type in ModifyTooltips
+            //"Summons a Soul to fight for you" is changed for the appropriate type in ModifyTooltips
             Tooltip.SetDefault("Summons a Soul to fight for you"
                 + "\nRight click to cycle through available forms");
         }
@@ -125,7 +125,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             if (!(NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && Main.LocalPlayer.HasItem(mod.ItemType<EverhallowedLantern>())))
             {
-                tooltips.Add(new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions."));
+                tooltips.Add(new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
             }
         }
 

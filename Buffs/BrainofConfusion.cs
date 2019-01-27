@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Brain of Confusion");
-            Description.SetDefault("A Brain of Confusion is following you.");
+            Description.SetDefault("A Brain of Confusion is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }
