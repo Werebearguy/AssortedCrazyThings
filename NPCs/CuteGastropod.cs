@@ -27,20 +27,14 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = 14;
             aiType = NPCID.FlyingSnake;
             animationType = NPCID.FlyingSnake;
-            Main.npcCatchable[mod.NPCType("CuteGastropod")] = true;
+            Main.npcCatchable[mod.NPCType<CuteGastropod>()] = true;
             npc.catchItem = (short)mod.ItemType("CuteGastropod");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldHallow.Chance * 0.05f;
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
+            if (!NPC.AnyNPCs(mod.NPCType<CuteGastropod>())) return SpawnCondition.OverworldHallow.Chance * 0.05f;
+            else return 0f;
         }
     }
 }

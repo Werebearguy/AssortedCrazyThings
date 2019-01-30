@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.NPCs
             npc.height = 66;
             npc.damage = 36;
             npc.defense = 20;
-            npc.lifeMax = 130;
+            npc.lifeMax = 250;
             npc.HitSound = SoundID.NPCHit50;
             npc.DeathSound = SoundID.NPCDeath53;
             npc.value = 240f;
@@ -30,9 +30,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.hardMode == true)
+            if (Main.hardMode)
             {
-                return SpawnCondition.Cavern.Chance * 0.005f;
+                return SpawnCondition.Cavern.Chance * 0.0075f;
             }
             else
             {
@@ -43,15 +43,15 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             {
-                if (Main.rand.NextBool(90))
+                if (Main.rand.NextBool(45))
                     Item.NewItem(npc.getRect(), ItemID.DepthMeter, 1);
             }
             {
-                if (Main.rand.NextBool(95))
+                if (Main.rand.NextBool(48))
                     Item.NewItem(npc.getRect(), ItemID.Compass, 1);
             }
             {
-                if (Main.rand.NextBool(97))
+                if (Main.rand.NextBool(49))
                     Item.NewItem(npc.getRect(), ItemID.Gradient, 1);
             }
         }
@@ -82,24 +82,6 @@ namespace AssortedCrazyThings.NPCs
             //Main.NewText(npc.ai[2]);
             //Main.NewText(npc.ai[3]);
             return true;
-        }
-
-        public override void PostAI()
-        {
-            //can't really increase velocity without having to go and fix 1200 lines of vanilla code just to change two variables
-            /* salamander speed cap
-            velocity.X *= 2f;
-			if (velocity.X > 3f)
-			{
-				velocity.X = 3f;
-			}
-			if (velocity.X < -3f)
-			{
-				velocity.X = -3f;
-			}
-			velocity.Y = -4f;
-			netUpdate = true;
-            */
         }
     }
 }

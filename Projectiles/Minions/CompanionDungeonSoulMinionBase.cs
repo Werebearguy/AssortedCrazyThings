@@ -352,6 +352,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 //        foundTarget = true;
                 //    }
                 //}
+                int targetIndex = - 1;
                 if (!foundTarget)
                 {
                     for (int j = 0; j < 200; j++)
@@ -364,10 +365,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
                                 //EITHER HE CAN SEE IT, OR THE TARGET IS (default case: 14) TILES AWAY BUT THE MINION IS INSIDE A TILE
                                 //makes it so the soul can still attack if it dashed "through tiles"
                                 (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPC2.position, nPC2.width, nPC2.height) ||
-                                (between < defdistanceAttackNoclip && Collision.SolidCollision(projectile.position, projectile.width, projectile.height))))
+                                (between < defdistanceAttackNoclip/* && Collision.SolidCollision(projectile.position, projectile.width, projectile.height)*/)))
                             {
                                 distanceFromTarget = between;
                                 targetCenter = nPC2.Center;
+                                targetIndex = j;
                                 foundTarget = true;
                             }
                         }
@@ -376,6 +378,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 float distanceNoclip = defdistancePlayerFarAway;
                 if (foundTarget)
                 {
+                    Main.NewText(projectile.ai[1] + " " + Main.time);
                     distanceNoclip = defdistancePlayerFarAwayWhenHasTarget;
                 }
                 if (Vector2.Distance(player.Center, projectile.Center) > distanceNoclip) //go to player
@@ -463,9 +466,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         projectile.ai[1] = 1f;
                         if (Main.myPlayer == projectile.owner)
                         {
-                            //Main.NewText("dash " + distanceFromTarget);
+                            Vector2 targetVeloOffset = Main.npc[targetIndex].velocity;
+
                             AI_STATE = STATE_DASH;
-                            Vector2 value20 = targetCenter - projectile.Center;
+                            Vector2 value20 = targetCenter + targetVeloOffset * 5 - projectile.Center;
                             value20.Normalize();
                             projectile.velocity = value20 * defdashIntensity; //8f
                             projectile.netUpdate = true;

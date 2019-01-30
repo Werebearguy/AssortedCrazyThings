@@ -14,7 +14,7 @@
             defbackToIdleFromNoclipping = 150f; //150f
             defdashDelay = 40f; //time it stays in the "dashing" state after a dash, he dashes when he is in state 0 aswell
             defdistanceAttackNoclip = defdistanceToEnemyBeforeCanDash + 100f;
-            defstartDashRange = defdistanceToEnemyBeforeCanDash + 300f; //30f
+            defstartDashRange = defdistanceToEnemyBeforeCanDash + 400f; //30f
             defdashIntensity = 8f; //4f
 
             veloFactorToEnemy = 8f; //8f
