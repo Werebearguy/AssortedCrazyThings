@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Armor
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Soul Savior Breastplate");
 			Tooltip.SetDefault("Increases minion damage by 10%"
-				+ "\nIncreases your max number of minions");
+				+ "\nIncreases your max number of minions by 2");
 		}
 
 		public override void SetDefaults() {

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul Summoner's Necklace");
-			Tooltip.SetDefault("Increases minion damage by 15%"
+			Tooltip.SetDefault("15% increased summon damage"
 				+ "\nIncreases your max number of minions by 3");
         }
 
