@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions++;
-			player.minionDamage += 0.15f;
+            player.maxMinions++;
         }
 
 		public override void AddRecipes() 
