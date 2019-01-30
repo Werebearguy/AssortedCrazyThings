@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Cute Green Slime");
-            Description.SetDefault("A cute green slime girl is following you");
+            DisplayName.SetDefault("Goblet");
+            Description.SetDefault("A tiny Goblin is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }
