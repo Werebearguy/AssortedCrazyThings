@@ -1248,6 +1248,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             }
 
                             gProjectile.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
+                            //AssWorld.ToggleSlimeRainSky();
 
                             //sync with player, for when he respawns, it gets reapplied
                             mPlayer.slotsPlayer = gProjectile.GetAccessoryAll();

@@ -282,7 +282,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.SendData(MessageID.WorldData);
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), new Color(35, 200, 254));
             }
         }

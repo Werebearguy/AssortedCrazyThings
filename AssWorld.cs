@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.Graphics.Effects;
 
 namespace AssortedCrazyThings
 {
@@ -40,6 +41,8 @@ namespace AssortedCrazyThings
 
         //Mods loaded
         public static bool isPlayerHealthManaBarLoaded = false;
+
+        public static bool slimeRainSky = false;
 
         private void InitHarvesterSouls()
         {
@@ -115,6 +118,25 @@ namespace AssortedCrazyThings
             else if (Main.netMode == NetmodeID.Server)
             {
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
+            }
+        }
+
+        public static void ToggleSlimeRainSky()
+        {
+            if (!Main.slimeRain && Main.netMode != 1)
+            {
+                if (!slimeRainSky)
+                {
+                    SkyManager.Instance.Activate("Slime", default(Vector2));
+                    CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), CombatText.HealLife, "Background Activated");
+                    slimeRainSky = true;
+                }
+                else
+                {
+                    SkyManager.Instance.Deactivate("Slime");
+                    CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), CombatText.DamagedFriendly, "Background Deactivated");
+                    slimeRainSky = false;
+                }
             }
         }
 

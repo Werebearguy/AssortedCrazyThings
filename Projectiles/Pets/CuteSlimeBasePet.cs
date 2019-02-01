@@ -90,8 +90,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     Texture2D texture = PetAccessory.Texture[slimeAccessory];
 
-                    if(slotNumber == (byte)SlotType.Hat)
-                    {
+                    //if(slotNumber == (byte)SlotType.Hat)
+                    //{
                         int altTextureNumber = PetAccessory.AltTexture[slimeAccessory, gProjectile.GetColor()];
                         
                         if (altTextureNumber != -1 && altTextureNumber != 0) //change texture if not -1 and not -0
@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             continue;
                         }
                         //else if 0: normal behavior
-                    }
+                    //}
 
 
                     Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);

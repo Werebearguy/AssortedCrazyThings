@@ -206,6 +206,7 @@
     <Compile Include="Items\VanityArmor\OrigamiHat.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
+    <Compile Include="Items\Weapons\LegendaryWoodenSword.cs" />
     <Compile Include="Items\Weapons\MinionItemBase.cs" />
     <Compile Include="Items\Weapons\SlimeHandlerKnapsack.cs" />
     <Compile Include="Items\Weapons\EverhallowedLantern.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Items\Weapons\PocketSand.cs" />
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
+    <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
     <Compile Include="NPCs\DemonEyeWandering.cs" />
     <Compile Include="NPCs\DemonEyeLaser.cs" />
