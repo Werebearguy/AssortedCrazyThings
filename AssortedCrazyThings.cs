@@ -23,6 +23,7 @@ namespace AssortedCrazyThings
 
         //Slime pet legacy
         public static int[] slimePetLegacy = new int[9];
+        public static int[] slimePetNoHair = new int[5];
 
         //Soul item animated textures
         public static Texture2D[] animatedSoulTextures;
@@ -41,6 +42,12 @@ namespace AssortedCrazyThings
             slimePetLegacy[6] = ProjectileType<CuteSlimeRedPet>();
             slimePetLegacy[7] = ProjectileType<CuteSlimeXmasPet>();
             slimePetLegacy[8] = ProjectileType<CuteSlimeYellowPet>();
+
+            slimePetNoHair[0] = ProjectileType<CuteSlimeBlackNewPet>();
+            slimePetNoHair[1] = ProjectileType<CuteSlimeBlueNewPet>();
+            slimePetNoHair[2] = ProjectileType<CuteSlimePinkNewPet>();
+            slimePetNoHair[3] = ProjectileType<CuteSlimeRedNewPet>();
+            slimePetNoHair[4] = ProjectileType<CuteSlimeYellowNewPet>();
 
             if (!Main.dedServ && Main.netMode != 2)
             {

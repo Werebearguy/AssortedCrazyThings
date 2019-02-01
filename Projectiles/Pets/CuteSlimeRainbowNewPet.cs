@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override bool MorePreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool MoreDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor, bool useNoHair)
         {
             double cX = projectile.position.X + Projwidth * 2 + drawOffsetX;
             double cY = projectile.position.Y + (Projheight - (drawOriginOffsetY + 20f)) * 2;  //20f for offset pre-draw, idk how and why

@@ -762,6 +762,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public static bool[] PreDraw;
         public static byte[] Alpha;
         public static bool[] AllowLegacy;
+        public static bool[] UseNoHair;
+        public static int[,] AltTexture; //accessory -> alt tex array for cuteslime<color>pet
 
         public static void Load(Mod mod)
         {
@@ -865,7 +867,27 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryBowtieYellow");
 
             Add(name: "PetAccessoryCrownGold");
+            AddAltTextures(name: "PetAccessoryCrownGold",
+            black: 1,
+            blue: 2,
+            green: 2,
+            pink: 3,
+            purple: 1,
+            rainbow: 2,
+            red: 2,
+            xmas: 0,
+            yellow: 4);
             Add(name: "PetAccessoryCrownPlatinum");
+            AddAltTextures(name: "PetAccessoryCrownPlatinum",
+            black: 1,
+            blue: 2,
+            green: 2,
+            pink: 3,
+            purple: 1,
+            rainbow: 2,
+            red: 2,
+            xmas: 0,
+            yellow: 4);
 
             Add(name: "PetAccessoryHairBowBlack");
             Add(name: "PetAccessoryHairBowBlue");
@@ -908,8 +930,28 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
 
-            Add(name: "PetAccessoryXmasHatGreen", offsetY: -13f);
-            Add(name: "PetAccessoryXmasHatRed", offsetY: -13f);
+            Add(name: "PetAccessoryXmasHatGreen", offsetY: -13f, useNoHair: true); //-13f, -8f for proper xmas hat tho
+            AddAltTextures(name: "PetAccessoryXmasHatGreen",
+            black: 1,
+            blue: 2,
+            green: 2,
+            pink: 3,
+            purple: 1,
+            rainbow: 2,
+            red: 2,
+            xmas: 0,
+            yellow: 2);
+            Add(name: "PetAccessoryXmasHatRed", offsetY: -13f, useNoHair: true);
+            AddAltTextures(name: "PetAccessoryXmasHatRed",
+            black: 1,
+            blue: 2,
+            green: 2,
+            pink: 3,
+            purple: 1,
+            rainbow: 2,
+            red: 2,
+            xmas: 0,
+            yellow: 2);
 
             Check();
 
@@ -964,6 +1006,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
             AllowLegacy = new bool[itemIndex + 1];
+            UseNoHair = new bool[itemIndex + 1];
+            AltTexture = new int[itemIndex + 1, 9];
 
             int[] parameters = new int[Items.Length * 2];
             for (int i = 0; i < Items.Length; i++)
@@ -974,16 +1018,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
             ItemsIndexed = IntSet(parameters);
         }
 
-        private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool allowLegacy = true)
+        private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool allowLegacy = true, bool useNoHair = false)
         {
             addCounter++;
 
             Check(true, name);
 
-            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, allowLegacy);
+            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, allowLegacy, useNoHair);
         }
 
-        private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool allowLegacy)
+        private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool allowLegacy, bool useNoHair)
         {
             Texture[ItemsIndexed[type]] = texture;
 
@@ -994,6 +1038,46 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Alpha[ItemsIndexed[type]] = alpha;
 
             AllowLegacy[ItemsIndexed[type]] = allowLegacy;
+
+            UseNoHair[ItemsIndexed[type]] = useNoHair;
+        }
+
+        private static void AddAltTextures(string name,
+            int black = 0,
+            int blue = 0,
+            int green = 0,
+            int pink = 0,
+            int purple = 0,
+            int rainbow = 0,
+            int red = 0,
+            int xmas = 0,
+            int yellow = 0)
+        {
+            //not specifying (or 0) anything means it only takes the default texture (_Draw)
+            //setting it to -1 makes it so the accessory won't render (excluding certain accessories for a slime)
+            //setting it to anything other than 0 makes it use the proper texture (_Draw<number>)
+
+            //order matters here:
+            /* public enum PetColor : byte
+                {
+                    Black,
+                    Blue,
+                    Green,
+                    Pink,
+                    Purple,
+                    Rainbow,
+                    Red,
+                    Xmas,
+                    Yellow
+                }
+             */
+            int[] intArray = new int[] {black, blue, green, pink, purple, rainbow, red, xmas, yellow};
+
+            //i is the color (CuteSlimeBasePet.PetColor)
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                AltTexture[ItemsIndexed[InternalMod.ItemType(name)], i] = intArray[i];
+            }
         }
 
         private static int[] IntSet(int[] inputs)
