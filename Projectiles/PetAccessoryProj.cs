@@ -17,6 +17,8 @@ namespace AssortedCrazyThings.Projectiles
             }
         }
 
+        private byte petColor = 0;
+
         private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
         private uint slots = 0;       //0000 0000|0000 0000|0000 0000|0000 0000 
                                       //slt3     |slt2     |slt1     |slt0     
@@ -75,6 +77,16 @@ namespace AssortedCrazyThings.Projectiles
         {
             slotNumber -= 1;
             return (slots >> (slotNumber * 8)) & mask; //shift the selected 8 bits of the slot into the rightmost position
+        }
+
+        public void SetColor(byte petColorvar)
+        {
+            petColor = petColorvar;
+        }
+
+        public byte GetColor()
+        {
+            return petColor;
         }
     }
 }
