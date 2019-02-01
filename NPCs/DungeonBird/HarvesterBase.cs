@@ -55,6 +55,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return false;
         }
 
+        //doesnt get affected by expert scaling anyway for some reason
+        //public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        //{
+        //    npc.lifeMax = (int)(npc.lifeMax * 0.5f);
+        //}
+
         //public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
         //{
         //    if (!AssWorld.isPlayerHealthManaBarLoaded)

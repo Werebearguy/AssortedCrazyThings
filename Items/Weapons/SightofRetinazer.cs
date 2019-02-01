@@ -23,6 +23,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shootSpeed = 15f;
             item.noMelee = true;
             item.ranged = true;
+            item.useAnimation = 10;
             item.useTime = 10;
             item.value = Item.sellPrice(gold: 1);
             item.rare = -11;

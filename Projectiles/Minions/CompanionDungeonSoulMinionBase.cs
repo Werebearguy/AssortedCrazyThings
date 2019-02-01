@@ -378,7 +378,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 float distanceNoclip = defdistancePlayerFarAway;
                 if (foundTarget)
                 {
-                    Main.NewText(projectile.ai[1] + " " + Main.time);
+                    //Main.NewText(projectile.ai[1] + " " + Main.time);
                     distanceNoclip = defdistancePlayerFarAwayWhenHasTarget;
                 }
                 if (Vector2.Distance(player.Center, projectile.Center) > distanceNoclip) //go to player

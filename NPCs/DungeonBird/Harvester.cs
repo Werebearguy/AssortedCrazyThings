@@ -274,16 +274,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
+            AssWorld.downedHarvester = true;
+
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(deathMessage, 35, 200, 254);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
+                NetMessage.SendData(MessageID.WorldData);
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), new Color(35, 200, 254));
             }
-
-            AssWorld.downedHarvester = true;
         }
 
         private const int AI_State_Slot = 0;
