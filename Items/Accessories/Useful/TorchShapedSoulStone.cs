@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class SoulNecklace : ModItem
+    public class TorchShapedSoulStone : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Soul Necklace");
-			Tooltip.SetDefault("Increases your max number of minions by 2");
+            DisplayName.SetDefault("Torch-Shaped Soul Stone");
+			Tooltip.SetDefault("Increases your max number of minions");
         }
 
         public override void SetDefaults()
         {
-            item.width = 30;
-            item.height = 28;
+            item.width = 22;
+            item.height = 30;
             item.value = Item.sellPrice(gold: 3);
             item.rare = -11;
             item.accessory = true;
@@ -24,14 +24,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions++;
-            player.maxMinions++;
         }
 
 		public override void AddRecipes() 
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PygmyNecklace, 1);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 15);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 999);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
