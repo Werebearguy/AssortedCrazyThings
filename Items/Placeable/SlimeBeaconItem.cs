@@ -6,12 +6,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-	public class SlimeRainItem : ModItem
+	public class SlimeBeaconItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Slime Rain Item");
-            Tooltip.SetDefault("'Slimes shall rain from the sky'"); //This is what the party machine says but with "Balloons" instead of "Slimes"
+            DisplayName.SetDefault("Slime Beacon");
+            Tooltip.SetDefault("'Do The Slime With Me!'"); //This is what the party machine says but with "Balloons" instead of "Slimes"
         }
 
         public override void SetDefaults()
@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			item.consumable = true;
 			item.rare = -11;
 			item.value = Item.buyPrice(0, 10, 0, 0);
-			item.createTile = mod.TileType<SlimeRainItemTile>();
+			item.createTile = mod.TileType<SlimeBeaconTile>();
 		}
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

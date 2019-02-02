@@ -8,10 +8,12 @@ namespace AssortedCrazyThings.Items.Weapons
 {
 	public class TrueLegendaryWoodenSword : ModItem
 	{
+        public static int ProjDamage = 15;
+
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("True Legendary Wooden Sword");
-            Tooltip.SetDefault("Truly Legendary");
+            Tooltip.SetDefault("'Truly Legendary'");
         }
 
 		public override void SetDefaults()
@@ -27,7 +29,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         //public override void HoldItem(Player player)
         //{
-        //    player.itemLocation.X += -player.direction * 3;
+        //    player.itemLocation.X += -player.direction * 3; 
         //}
 
         public override void MeleeEffects(Player player, Rectangle hitbox)
@@ -52,7 +54,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(player.Center + Vector2.Normalize(new Vector2(speedX, speedY)) * 30f, new Vector2(speedX, speedY), item.shoot, 50, item.knockBack, Main.myPlayer);
+            Projectile.NewProjectile(player.Center + Vector2.Normalize(new Vector2(speedX, speedY)) * 30f, new Vector2(speedX, speedY), item.shoot, ProjDamage, item.knockBack, Main.myPlayer);
             return false;
         }
     }

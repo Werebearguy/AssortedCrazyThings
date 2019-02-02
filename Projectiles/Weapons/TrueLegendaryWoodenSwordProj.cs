@@ -20,8 +20,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             projectile.height = 20;
             projectile.width = 20;
             projectile.alpha = 255;
-            //projectile.maxPenetrate = 0;
-            projectile.penetrate = -1;
+            //projectile.penetrate = 2;
             projectile.tileCollide = true;
             projectile.friendly = true;
             projectile.hostile = false;
@@ -74,6 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void PostAI()
         {
+            if (projectile.ai[0] < 15) projectile.ai[0] = 15;
             if (projectile.alpha > 0)
             {
                 projectile.alpha -= 25;

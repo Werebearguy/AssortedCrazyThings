@@ -8,12 +8,13 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-    class SlimeRainItemTile : ModTile
+    class SlimeBeaconTile : ModTile
     {
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;
+            TileID.Sets.HasOutlines[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(1, 2);
@@ -22,13 +23,13 @@ namespace AssortedCrazyThings.Tiles
             AddMapEntry(new Color(75, 139, 166));
             dustType = 1;
             animationFrameHeight = 56;
-            disableSmartCursor = false;
+            disableSmartCursor = true;
             //adjTiles = new int[] { TileID.LunarMonolith };
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, mod.ItemType<SlimeRainItem>());
+            Item.NewItem(i * 16, j * 16, 32, 48, mod.ItemType<SlimeBeaconItem>());
             AssWorld.DisableSlimeRainSky();
         }
 
@@ -74,7 +75,7 @@ namespace AssortedCrazyThings.Tiles
         {
             Main.LocalPlayer.noThrow = 2;
             Main.LocalPlayer.showItemIcon = true;
-            Main.LocalPlayer.showItemIcon2 = mod.ItemType<SlimeRainItem>();
+            Main.LocalPlayer.showItemIcon2 = mod.ItemType<SlimeBeaconItem>();
         }
     }
 }

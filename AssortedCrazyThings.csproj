@@ -138,7 +138,7 @@
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\Pets\PigronataItem.cs" />
-    <Compile Include="Items\Placeable\SlimeRainItem.cs" />
+    <Compile Include="Items\Placeable\SlimeBeaconItem.cs" />
     <Compile Include="Items\TinyFrogCrown.cs" />
     <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
@@ -369,7 +369,7 @@
     <Compile Include="Buffs\GobletBuff.cs" />
     <Compile Include="Items\Pets\GobletItem.cs" />
     <Compile Include="Tiles\AssGlobalTile.cs" />
-    <Compile Include="Tiles\SlimeRainItemTile.cs" />
+    <Compile Include="Tiles\SlimeBeaconTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
