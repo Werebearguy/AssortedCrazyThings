@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Fun
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Craft of Miners");
-			Tooltip.SetDefault("Use those fists of yours to tear through any blocks in your way");
+			Tooltip.SetDefault("'Use those fists of yours to tear through any blocks in your way'");
 		}
 
 		public override void SetDefaults()

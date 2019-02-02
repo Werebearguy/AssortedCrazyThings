@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pocket Sand");
-            Tooltip.SetDefault("Throw a clump of sand at an enemy to confuse it");
+            Tooltip.SetDefault("'Throw a clump of sand at an enemy to confuse it'");
         }
 
         public override void SetDefaults()

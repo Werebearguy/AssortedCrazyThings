@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Desiccated Leather");
-			Tooltip.SetDefault("It's dry, sticky, and smells horrible");
+			Tooltip.SetDefault("'It's dry, sticky, and smells horrible'");
 		}
 		public override void SetDefaults()
 		{

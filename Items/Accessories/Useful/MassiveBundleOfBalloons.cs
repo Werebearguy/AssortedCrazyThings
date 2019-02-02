@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-//NOT BEING USED
+
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	[AutoloadEquip(EquipType.Balloon)]

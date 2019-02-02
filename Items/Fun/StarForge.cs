@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Fun
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("StarForge");
-            Tooltip.SetDefault("An endless supply of the cosmos");
+            Tooltip.SetDefault("'An endless supply of the cosmos'");
         }
 
         public override void SetDefaults()

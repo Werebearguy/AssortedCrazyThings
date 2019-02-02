@@ -10,9 +10,9 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Empowerment Flask");
-            Tooltip.SetDefault("Incrementally increases damage dealt over time"
-                + "\nBonus resets upon taking damage"
-                + "\n(Summon damage only increases marginally)");
+            Tooltip.SetDefault("'Incrementally increases damage dealt over time'"
+                + "\n'Bonus resets upon taking damage'"
+                + "\n'(Summon damage only increases marginally)'");
         }
 
         public override void SetDefaults()

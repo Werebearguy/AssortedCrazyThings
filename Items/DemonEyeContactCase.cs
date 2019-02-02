@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Demon Eye Contact Case");
-            Tooltip.SetDefault("Use to switch your docile Demon Eye pet's appearance");
+            Tooltip.SetDefault("'Use to switch your docile Demon Eye pet's appearance'");
         }
 
         public override void SetDefaults()

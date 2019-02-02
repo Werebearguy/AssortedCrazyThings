@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("This book can be folded a thousand times...");
+            Tooltip.SetDefault("'This book can be folded a thousand times...'");
         }
 
         public override void SetDefaults()

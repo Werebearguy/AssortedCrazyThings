@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Black Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Blue Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Gray Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -74,7 +74,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Green Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -88,7 +88,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Orange Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -102,7 +102,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Pink Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -116,7 +116,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Purple Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -130,7 +130,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Red Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -144,7 +144,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute White Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -158,7 +158,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Yellow Bowtie");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -172,7 +172,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Gold Crown");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -186,7 +186,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Platinum Crown");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -200,7 +200,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Black Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -214,7 +214,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Blue Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -228,7 +228,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Gray Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -242,7 +242,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Green Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -256,7 +256,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Orange Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -270,7 +270,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Pink Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -284,7 +284,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Purple Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -298,7 +298,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Red Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -312,7 +312,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute White Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -326,7 +326,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Yellow Hair Bow");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -340,7 +340,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Kitchen Knife");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -354,7 +354,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Blue Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -368,7 +368,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Blue Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -382,7 +382,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Gray Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -396,7 +396,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Green Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -410,7 +410,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Orange Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -424,7 +424,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Pink Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -438,7 +438,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Purple Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -452,7 +452,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Red Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -466,7 +466,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute White Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -480,7 +480,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Yellow Mittens");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -494,7 +494,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Black Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -508,7 +508,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Blue Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -522,7 +522,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Green Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -536,7 +536,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Pink Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -550,7 +550,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Pinky Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -564,7 +564,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Purple Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -578,7 +578,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Red Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -592,7 +592,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Yellow Head Slime");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -606,7 +606,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Amber Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -620,7 +620,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Amethyst Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -634,7 +634,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Diamond Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -648,7 +648,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Emerald Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -662,7 +662,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Ruby Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -676,7 +676,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Sapphire Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -690,7 +690,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Topaz Staff");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -704,7 +704,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Green Santa Hat");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()
@@ -718,7 +718,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Santa Hat");
-            Tooltip.SetDefault("Something to decorate your cute slime with");
+            Tooltip.SetDefault("'Something to decorate your cute slime with'");
         }
 
         protected override void MoreSetDefaults()

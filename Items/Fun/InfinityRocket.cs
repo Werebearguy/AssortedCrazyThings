@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Fun
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Infinity Rocket");
-			Tooltip.SetDefault("It seriously never ends!");
+			Tooltip.SetDefault("'It seriously never ends!'");
 		}
 
 		public override void SetDefaults()

@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 			public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Spazmatism Eye-lloon");
-					Tooltip.SetDefault("A Demon Eye balloon, for your Demon Eye needs!");
+					Tooltip.SetDefault("'A Demon Eye balloon, for your Demon Eye needs!'");
 				}
 			public override void SetDefaults()
 				{

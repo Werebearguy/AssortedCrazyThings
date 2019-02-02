@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Idol Of Decay");
-            Tooltip.SetDefault("Summons " + Harvester.name + "'s first form in the dungeon");
+            Tooltip.SetDefault("'Summons " + Harvester.name + "'s first form in the dungeon'");
         }
 
         public override void SetDefaults()

@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.VanityArmor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pretty Mask");
-			Tooltip.SetDefault("Goes well with a red scarf, red gloves, and red boots");
+			Tooltip.SetDefault("'Goes well with a red scarf, red gloves, red boots, and your birthday suit'");
         }
 		public override void SetDefaults()
 		{

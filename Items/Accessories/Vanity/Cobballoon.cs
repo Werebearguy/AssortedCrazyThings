@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cobballoon");
-            Tooltip.SetDefault("A balloon made of rocks, don't ask how");
+            Tooltip.SetDefault("'A balloon made of rocks, don't ask how'");
         }
 
         public override void SetDefaults()

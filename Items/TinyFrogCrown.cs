@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiny Prince's Tiny Crown");
-            Tooltip.SetDefault("Give your Lifelike Mechanical Frog a Princelike Tiny Crown");
+            Tooltip.SetDefault("'Give your Lifelike Mechanical Frog a Princelike Tiny Crown'");
         }
 
         public override void SetDefaults()
