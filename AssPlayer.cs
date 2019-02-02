@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Fun;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles;
 using AssortedCrazyThings.Projectiles.Minions;
@@ -61,13 +62,16 @@ namespace AssortedCrazyThings
 
         public bool slimePackMinion = false;
 
-
         //empowering buff stuff
         public bool empoweringBuff = false;
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
         public float step;
+
+        public const int planteraGitGudCounterMax = 2;
+        public int planteraGitGudCounter = 0;
+        public bool planteraGitGud = false;
 
         public override void ResetEffects()
         {
@@ -84,6 +88,7 @@ namespace AssortedCrazyThings
             tempSoulMinion = false;
             slimePackMinion = false;
             empoweringBuff = false;
+            planteraGitGud = false;
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -195,6 +200,7 @@ namespace AssortedCrazyThings
                 {"getDefenseTimer", (int)getDefenseTimer},
                 {"eyePetType", (byte)eyePetType},
                 {"mechFrogCrown", (bool)mechFrogCrown},
+                {"planteraGitGudCounter", (int)planteraGitGudCounter},
             };
         }
 
@@ -205,6 +211,7 @@ namespace AssortedCrazyThings
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             eyePetType = tag.GetByte("eyePetType");
             mechFrogCrown = tag.GetBool("mechFrogCrown");
+            planteraGitGudCounter = tag.GetInt("planteraGitGudCounter");
         }
 
         //public override void OnEnterWorld(Player player)
@@ -271,7 +278,7 @@ namespace AssortedCrazyThings
             index = Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
             if (temp) return index; //spawn only one 
 
-            if (!(Main.hardMode || temp)) //other types cant really be summoned before hardmode anyway
+            if (!(Main.hardMode || temp)) //other types can't really be summoned before hardmode anyway
             {
                 spawnPos.Y += 2f;
                 spawnVelo.X -= 0.5f * player.direction;
@@ -300,12 +307,6 @@ namespace AssortedCrazyThings
                 false,               //      4
             };
 
-            //int countUnlocked = 0;
-            //for (int i = 0; i < unlocked.Length; i++)
-            //{
-            //    if (unlocked[i]) countUnlocked++;
-            //}
-
             do
             {
                 selectedSoulMinionType++;
@@ -313,8 +314,6 @@ namespace AssortedCrazyThings
             }
             while (!unlocked[selectedSoulMinionType]);
 
-            //selectedSoulMinionType++;
-            //if (selectedSoulMinionType >= countUnlocked) selectedSoulMinionType = 0;
             return selectedSoulMinionType;
         }
 
@@ -442,6 +441,20 @@ namespace AssortedCrazyThings
                 player.magicCrit += (int)(10 * step);
             }
             else empoweringTimer = 0;
+        }
+
+        private void UpdatePlanteraGitGud()
+        {
+            if (planteraGitGud) player.buffImmune[BuffID.Poisoned] = true;
+
+            if (planteraGitGudCounter >= planteraGitGudCounterMax)
+            {
+                planteraGitGudCounter = 0;
+                if (!player.HasItem(mod.ItemType<GreenThumb>()) && !planteraGitGud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<GreenThumb>(), 1);
+                }
+            }
         }
 
         private void ApplyCandleDebuffs(NPC npc)
@@ -624,8 +637,22 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
+            if (planteraGitGud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera))
+            {
+                damage = (int)(damage * 0.85f);
+            }
+        }
+
+
+        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        {
+            if (planteraGitGud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle))
+            {
+                damage = (int)(damage * 0.85f);
+            }
+
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -702,6 +729,11 @@ namespace AssortedCrazyThings
                 }
             }
 
+            if (NPC.AnyNPCs(NPCID.Plantera))
+            {
+                planteraGitGudCounter++;
+            }
+
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
 
@@ -722,6 +754,11 @@ namespace AssortedCrazyThings
             UpdateGetDefenseWhenLow();
 
             Empower();
+        }
+
+        public override void PostUpdateEquips() //this actually only gets called when player is alive
+        {
+            UpdatePlanteraGitGud();
         }
 
         public override void PreUpdate()

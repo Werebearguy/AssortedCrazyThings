@@ -31,6 +31,18 @@ namespace AssortedCrazyThings.NPCs
                     Item.NewItem(npc.getRect(), mod.ItemType("GobletItem"));
                 }
             }
+
+            if(npc.type == NPCID.Plantera)
+            {
+                for (int i = 0; i < 255; i++)
+                {
+                    if (Main.player[i].active)
+                    {
+                        AssPlayer mPlayer = Main.player[i].GetModPlayer<AssPlayer>(mod);
+                        mPlayer.planteraGitGudCounter = 0;
+                    }
+                }
+            }
         }
 
         public override void HitEffect(NPC npc, int hitDirection, double damage)
