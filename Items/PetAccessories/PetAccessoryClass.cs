@@ -761,7 +761,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public static Vector2[] Offset;
         public static bool[] PreDraw;
         public static byte[] Alpha;
-        public static bool[] AllowLegacy;
         public static bool[] UseNoHair;
         public static int[,] AltTexture; //accessory -> alt tex array for cuteslime<color>pet
 
@@ -776,6 +775,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
              * - call Add() with the appropriate parameters
              * - Game will throw you an error if the namesOfAccessories length and the added number of accessories is different,
              * or if one of the class names is misspelt
+             * 
+             * - if you want to add alternative textures (Suffixed with _Draw<identifyingNumber>), call AddAltTextures and assign each 
+             * pet a texture to use (-1 is "not rendered", 0 is "default, > 0 is "use _Draw<identifyingNumber> texture"
+             * you can leave the other pet types out if you only need to adjust the texture of one pet
              * 
              * - if you want to remove certain accessories from being usable for the system, comment the line out in namesOfAccessories
              * and comment the corresponding Add line (with //)
@@ -875,7 +878,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             purple: 1,
             rainbow: 2,
             red: 2,
-            xmas: 0,
+            //xmas: 0,
             yellow: 4);
             Add(name: "PetAccessoryCrownPlatinum");
             AddAltTextures(name: "PetAccessoryCrownPlatinum",
@@ -886,7 +889,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             purple: 1,
             rainbow: 2,
             red: 2,
-            xmas: 0,
+            //xmas: 0,
             yellow: 4);
 
             Add(name: "PetAccessoryHairBowBlack");
@@ -902,16 +905,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryKitchenKnife", offsetX: -6f, preDraw: true);
 
-            Add(name: "PetAccessoryMittensBlack", allowLegacy: false);
-            Add(name: "PetAccessoryMittensBlue", allowLegacy: false);
-            Add(name: "PetAccessoryMittensGray", allowLegacy: false);
-            Add(name: "PetAccessoryMittensGreen", allowLegacy: false);
-            Add(name: "PetAccessoryMittensOrange", allowLegacy: false);
-            Add(name: "PetAccessoryMittensPink", allowLegacy: false);
-            Add(name: "PetAccessoryMittensPurple", allowLegacy: false);
-            Add(name: "PetAccessoryMittensRed", allowLegacy: false);
-            Add(name: "PetAccessoryMittensWhite", allowLegacy: false);
-            Add(name: "PetAccessoryMittensYellow", allowLegacy: false);
+            Add(name: "PetAccessoryMittensBlack");
+            Add(name: "PetAccessoryMittensBlue");
+            Add(name: "PetAccessoryMittensGray");
+            Add(name: "PetAccessoryMittensGreen");
+            Add(name: "PetAccessoryMittensOrange");
+            Add(name: "PetAccessoryMittensPink");
+            Add(name: "PetAccessoryMittensPurple");
+            Add(name: "PetAccessoryMittensRed");
+            Add(name: "PetAccessoryMittensWhite");
+            Add(name: "PetAccessoryMittensYellow");
 
             Add(name: "PetAccessorySlimeHeadBlack", offsetY: -18f, alpha: 56);
             Add(name: "PetAccessorySlimeHeadBlue", offsetY: -18f, alpha: 56);
@@ -939,7 +942,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             purple: 1,
             rainbow: 2,
             red: 2,
-            xmas: 0,
+            //xmas: 0,
             yellow: 2);
             Add(name: "PetAccessoryXmasHatRed", offsetY: -13f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryXmasHatRed",
@@ -950,7 +953,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             purple: 1,
             rainbow: 2,
             red: 2,
-            xmas: 0,
+            //xmas: 0,
             yellow: 2);
 
             Check();
@@ -1005,7 +1008,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Offset = new Vector2[itemIndex + 1];
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
-            AllowLegacy = new bool[itemIndex + 1];
             UseNoHair = new bool[itemIndex + 1];
             AltTexture = new int[itemIndex + 1, 9];
 
@@ -1018,16 +1020,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
             ItemsIndexed = IntSet(parameters);
         }
 
-        private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool allowLegacy = true, bool useNoHair = false)
+        private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false)
         {
             addCounter++;
 
             Check(true, name);
 
-            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, allowLegacy, useNoHair);
+            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, useNoHair);
         }
 
-        private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool allowLegacy, bool useNoHair)
+        private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool useNoHair)
         {
             Texture[ItemsIndexed[type]] = texture;
 
@@ -1036,8 +1038,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw[ItemsIndexed[type]] = preDraw;
 
             Alpha[ItemsIndexed[type]] = alpha;
-
-            AllowLegacy[ItemsIndexed[type]] = allowLegacy;
 
             UseNoHair[ItemsIndexed[type]] = useNoHair;
         }
@@ -1159,10 +1159,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
 
-            if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]])
-            {
-                tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
-            }
+            tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
         }
 
         protected virtual void MoreSetDefaults()
@@ -1241,12 +1238,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         }
                         else if (player.altFunctionUse != 2)
                         {
-                            //check if selected item is valid on the pet, if it is a legacy version
-                            if (!PetAccessory.AllowLegacy[PetAccessory.ItemsIndexed[item.type]] && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.slimePetIndex].type) != -1)
-                            {
-                                return true;
-                            }
-
                             gProjectile.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
                             //AssWorld.ToggleSlimeRainSky();
 

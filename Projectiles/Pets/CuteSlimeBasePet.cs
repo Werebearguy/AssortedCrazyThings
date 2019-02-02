@@ -129,70 +129,70 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //fix for legacy slimes
                     if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
                     {
-                        if (!PetAccessory.AllowLegacy[slimeAccessory]) continue;
-
-                        if (slotNumber == (byte)SlotType.Carried)
-                        {
-                            //stupidOffset.X += -2f;
-                            if (projectile.spriteDirection == 1 && projectile.scale <= 1f)
+                        /*
+                            if (slotNumber == (byte)SlotType.Carried)
                             {
-                                stupidOffset.X += -2f;
-                            }
-
-                            stupidOffset.Y += -2f;
-                            if (projectile.frame > 2 && projectile.frame < 6)
-                            {
-                                stupidOffset += new Vector2(2f, -2f);
-                            }
-                        }
-
-                        if (slotNumber == (byte)SlotType.Body || slotNumber == (byte)SlotType.Misc)
-                        {
-                            if (projectile.frame > 2 && projectile.frame < 6)
-                            {
-                                stupidOffset += new Vector2(-4f * projectile.spriteDirection, 0f);
-                            }
-                            else
-                            {
-                                if (projectile.spriteDirection == 1)
+                                //stupidOffset.X += -2f;
+                                if (projectile.spriteDirection == 1 && projectile.scale <= 1f)
                                 {
-                                    stupidOffset += new Vector2(-4f, 0f);
+                                    stupidOffset.X += -2f;
+                                }
+
+                                stupidOffset.Y += -2f;
+                                if (projectile.frame > 2 && projectile.frame < 6)
+                                {
+                                    stupidOffset += new Vector2(2f, -2f);
                                 }
                             }
-                        }
 
-                        if (slotNumber == (byte)SlotType.Hat)
-                        {
-                            if (projectile.spriteDirection == -1)
+                            if (slotNumber == (byte)SlotType.Body || slotNumber == (byte)SlotType.Misc)
                             {
-                                Main.NewText("XD");
-                                //stupidOffset += new Vector2(-4f, 0f);
+                                if (projectile.frame > 2 && projectile.frame < 6)
+                                {
+                                    stupidOffset += new Vector2(-4f * projectile.spriteDirection, 0f);
+                                }
+                                else
+                                {
+                                    if (projectile.spriteDirection == 1)
+                                    {
+                                        stupidOffset += new Vector2(-4f, 0f);
+                                    }
+                                }
                             }
 
-                            if (projectile.type == AssortedCrazyThings.slimePetLegacy[5]) //rainbow slime fix
+                            if (slotNumber == (byte)SlotType.Hat)
                             {
                                 if (projectile.spriteDirection == -1)
                                 {
-                                    //stupidOffset += new Vector2(4f, 0f);
+                                    Main.NewText("XD");
+                                    //stupidOffset += new Vector2(-4f, 0f);
                                 }
-                            }
 
-                            if (projectile.frame < 6)
-                            {
-
-                                stupidOffset += new Vector2(-2f * projectile.spriteDirection, 2f);
-
-                                if (projectile.frame > 2)
+                                if (projectile.type == AssortedCrazyThings.slimePetLegacy[5]) //rainbow slime fix
                                 {
-                                    stupidOffset += new Vector2(-1f * projectile.spriteDirection, 0f);
+                                    if (projectile.spriteDirection == -1)
+                                    {
+                                        //stupidOffset += new Vector2(4f, 0f);
+                                    }
+                                }
+
+                                if (projectile.frame < 6)
+                                {
+
+                                    stupidOffset += new Vector2(-2f * projectile.spriteDirection, 2f);
+
+                                    if (projectile.frame > 2)
+                                    {
+                                        stupidOffset += new Vector2(-1f * projectile.spriteDirection, 0f);
+                                    }
+                                }
+                                else
+                                {
+                                    //-4f
+                                    stupidOffset += new Vector2(-3f * projectile.spriteDirection, 2f);
                                 }
                             }
-                            else
-                            {
-                                //-4f
-                                stupidOffset += new Vector2(-3f * projectile.spriteDirection, 2f);
-                            }
-                        }
+                        */
                     }
 
                     if (slotNumber == (byte)SlotType.Carried)
