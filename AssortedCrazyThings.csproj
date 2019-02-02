@@ -117,6 +117,7 @@
     <Compile Include="Items\Accessories\Useful\StarWispBalloon.cs" />
     <Compile Include="Items\Accessories\Useful\WaterCandleInABalloon.cs" />
     <Compile Include="Items\Accessories\Useful\WispInABalloon.cs" />
+    <Compile Include="Items\Accessories\Vanity\Cobballoon.cs" />
     <Compile Include="Items\Accessories\Vanity\EyelloonRetinazer.cs" />
     <Compile Include="Items\Accessories\Vanity\GreenEyelloon.cs" />
     <Compile Include="Items\Accessories\Vanity\GreenEyelloonFractured.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\Pets\PigronataItem.cs" />
+    <Compile Include="Items\Placeable\SlimeRainItem.cs" />
     <Compile Include="Items\TinyFrogCrown.cs" />
     <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
@@ -366,6 +368,7 @@
     <Compile Include="Buffs\GobletBuff.cs" />
     <Compile Include="Items\Pets\GobletItem.cs" />
     <Compile Include="Tiles\AssGlobalTile.cs" />
+    <Compile Include="Tiles\SlimeRainItemTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">

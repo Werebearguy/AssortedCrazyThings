@@ -1186,7 +1186,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         {
                             if (Main.projectile[i].modProjectile != null)
                             {
-                                if (Main.projectile[i].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile))
+                                if (Main.projectile[i].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile) && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[i].type) == -1)
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
                                     mPlayer.slimePetIndex = i;
@@ -1207,7 +1207,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
                 //else normal left click use
 
-                if (mPlayer.slimePetIndex != -1 && Main.projectile[mPlayer.slimePetIndex].active && Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile))
+                if (mPlayer.slimePetIndex != -1 && Main.projectile[mPlayer.slimePetIndex].active && Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile) && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.slimePetIndex].type) == -1)
                 {
                     PetAccessoryProj gProjectile = Main.projectile[mPlayer.slimePetIndex].GetGlobalProjectile<PetAccessoryProj>(mod);
 

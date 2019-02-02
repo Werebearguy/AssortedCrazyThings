@@ -68,7 +68,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            DrawAccessories(spriteBatch, drawColor, preDraw: true);
+            if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
+            {
+                DrawAccessories(spriteBatch, drawColor, preDraw: true);
+            }
 
             DrawBaseSprite(spriteBatch, drawColor);
             return false;
@@ -76,7 +79,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            DrawAccessories(spriteBatch, drawColor);
+            if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
+            {
+                DrawAccessories(spriteBatch, drawColor);
+            }
         }
 
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)

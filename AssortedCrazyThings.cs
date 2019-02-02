@@ -23,7 +23,7 @@ namespace AssortedCrazyThings
 
         //Slime pet legacy
         public static int[] slimePetLegacy = new int[9];
-        public static int[] slimePetNoHair = new int[5];
+        public static int[] slimePetNoHair = new int[6];
 
         //Soul item animated textures
         public static Texture2D[] animatedSoulTextures;
@@ -33,21 +33,25 @@ namespace AssortedCrazyThings
 
         private void InitPets()
         {
-            slimePetLegacy[0] = ProjectileType<CuteSlimeBlackPet>();
-            slimePetLegacy[1] = ProjectileType<CuteSlimeBluePet>();
-            slimePetLegacy[2] = ProjectileType<CuteSlimeGreenPet>();
-            slimePetLegacy[3] = ProjectileType<CuteSlimePinkPet>();
-            slimePetLegacy[4] = ProjectileType<CuteSlimePurplePet>();
-            slimePetLegacy[5] = ProjectileType<CuteSlimeRainbowPet>();
-            slimePetLegacy[6] = ProjectileType<CuteSlimeRedPet>();
-            slimePetLegacy[7] = ProjectileType<CuteSlimeXmasPet>();
-            slimePetLegacy[8] = ProjectileType<CuteSlimeYellowPet>();
+            int index = 0;
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeBlackPet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeBluePet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeGreenPet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimePinkPet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimePurplePet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeRainbowPet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeRedPet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeXmasPet>();
+            slimePetLegacy[index++] = ProjectileType<CuteSlimeYellowPet>();
 
-            slimePetNoHair[0] = ProjectileType<CuteSlimeBlackNewPet>();
-            slimePetNoHair[1] = ProjectileType<CuteSlimeBlueNewPet>();
-            slimePetNoHair[2] = ProjectileType<CuteSlimePinkNewPet>();
-            slimePetNoHair[3] = ProjectileType<CuteSlimeRedNewPet>();
-            slimePetNoHair[4] = ProjectileType<CuteSlimeYellowNewPet>();
+            index = 0;
+
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeBlackNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeBlueNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimePurpleNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimePinkNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeRedNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeYellowNewPet>();
 
             if (!Main.dedServ && Main.netMode != 2)
             {
