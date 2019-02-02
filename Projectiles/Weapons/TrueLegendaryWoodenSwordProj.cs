@@ -20,6 +20,8 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             projectile.height = 20;
             projectile.width = 20;
             projectile.alpha = 255;
+            //projectile.maxPenetrate = 0;
+            projectile.penetrate = -1;
             projectile.tileCollide = true;
             projectile.friendly = true;
             projectile.hostile = false;
