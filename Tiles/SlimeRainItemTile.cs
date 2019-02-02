@@ -29,6 +29,7 @@ namespace AssortedCrazyThings.Tiles
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 32, 48, mod.ItemType<SlimeRainItem>());
+            AssWorld.DisableSlimeRainSky();
         }
 
         //public override void NearbyEffects(int i, int j, bool closer)
@@ -59,7 +60,14 @@ namespace AssortedCrazyThings.Tiles
         public override void RightClick(int i, int j)
         {
             Main.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
-            AssWorld.ToggleSlimeRainSky();
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), new Color(255, 100, 30, 255), "NOT IN MULTIPLAYER");
+            }
+            else
+            {
+                AssWorld.ToggleSlimeRainSky();
+            }
         }
 
         public override void MouseOver(int i, int j)

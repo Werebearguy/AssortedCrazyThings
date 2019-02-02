@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AssortedCrazyThings.Tiles;
 using Terraria;
 using Terraria.ID;
@@ -29,8 +30,16 @@ namespace AssortedCrazyThings.Items.Placeable
 			item.createTile = mod.TileType<SlimeRainItemTile>();
 		}
 
-		public override void AddRecipes()
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            //new Color(255, 100, 30, 255)
+            if (Main.netMode == NetmodeID.MultiplayerClient) tooltips.Add(new TooltipLine(mod, "Multi", "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"));
+        }
+
+        public override void AddRecipes()
 		{
+            //Maybe sold by party girl?
+
 			//ModRecipe recipe = new ModRecipe(mod);
 			//recipe.AddIngredient(ItemID.LunarBar, 12);
 			//recipe.AddTile(TileID.LunarCraftingStation);

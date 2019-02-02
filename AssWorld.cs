@@ -140,6 +140,16 @@ namespace AssortedCrazyThings
             }
         }
 
+        public static void DisableSlimeRainSky()
+        {
+            if (!Main.slimeRain && slimeRainSky && Main.netMode != 1)
+            {
+                SkyManager.Instance.Deactivate("Slime");
+                CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), CombatText.DamagedFriendly, "Background Deactivated");
+                slimeRainSky = false;
+            }
+        }
+
         //not used anywhere, but might be helpful
         //private void KillInstantly(NPC npc)
         //{
@@ -154,7 +164,6 @@ namespace AssortedCrazyThings
         {
             if (!Main.dayTime) //if night
             {
-                //Main.NewText("nig: " + Main.time);
                 if (!Main.fastForwardTime)
                 {
                     if (spawnHarvester && Main.netMode != 1 && Main.time > 4860.0) //after 4860.0 ticks, 81 seconds, spawn

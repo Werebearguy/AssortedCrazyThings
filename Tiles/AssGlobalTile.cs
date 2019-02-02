@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using AssortedCrazyThings.Items.Weapons;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Tiles
@@ -11,7 +10,10 @@ namespace AssortedCrazyThings.Tiles
         {
             if(type == 186 && Main.tile[i, j].frameX >= 828 && Main.tile[i, j].frameX <= 844 && Main.tile[i, j].frameY >= 18) //fake sword shrine
             {
-                Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType<LegendaryWoodenSword>());
+                if (Main.rand.NextBool(10))
+                {
+                    Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType<LegendaryWoodenSword>());
+                }
             }
             return true;
         }
