@@ -25,10 +25,10 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shootSpeed = 10f; //fairly short range, similar to throwing knife
 		}
 
-        public override void HoldItem(Player player)
-        {
-            player.itemLocation.X += -player.direction * 6;
-        }
+        //public override void HoldItem(Player player)
+        //{
+        //    player.itemLocation.X += -player.direction * 3;
+        //}
 
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {

@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.IronShortsword);
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            //item.useStyle = ItemUseStyleID.SwingThrow;
             item.width = 32;
             item.height = 32;
             item.rare = -11;

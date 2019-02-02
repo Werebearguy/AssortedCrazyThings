@@ -25,10 +25,23 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             projectile.tileCollide = true;
             projectile.friendly = true;
             projectile.hostile = false;
+
             //drawOriginOffsetX = 0;
             //drawOffsetX = (int)0;
-            drawOriginOffsetX = -(10f - 50f / 2);
+            drawOriginOffsetX = -(projectile.width / 2 - 50f / 2);
             drawOffsetX = (int)-drawOriginOffsetX * 2;
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
+            for (int i = 0; i < 10; i++)
+            {
+                int dustid = Dust.NewDust(projectile.position - Vector2.Normalize(projectile.velocity) * 30f, 50, 50, 169, projectile.velocity.X, projectile.velocity.Y, 100, Color.White, 1.25f);
+                Main.dust[dustid].noGravity = true;
+            }
+            Main.PlaySound(0, projectile.position);
+            return true;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

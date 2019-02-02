@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Tiles
             AddMapEntry(new Color(75, 139, 166));
             dustType = 1;
             animationFrameHeight = 56;
-            disableSmartCursor = true;
+            disableSmartCursor = false;
             //adjTiles = new int[] { TileID.LunarMonolith };
         }
 
