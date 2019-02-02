@@ -1,3 +1,5 @@
+using AssortedCrazyThings.Projectiles.Weapons;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +11,8 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("True Legendary Wooden Sword");
-		}
+            Tooltip.SetDefault("Truly Legendary");
+        }
 
 		public override void SetDefaults()
 		{
@@ -17,10 +20,27 @@ namespace AssortedCrazyThings.Items.Weapons
             item.width = 50;
             item.height = 50;
             item.rare = -11;
-            item.value = Item.sellPrice(0, 0, 75, 0);
+            item.value = Item.sellPrice(0, 2, 25, 0); //2 gold for broken, 25 silver for legendary
+            item.shoot = mod.ProjectileType<TrueLegendaryWoodenSwordProj>();
+            item.shootSpeed = 10f; //fairly short range, similar to throwing knife
 		}
 
-		public override void AddRecipes()
+        public override void HoldItem(Player player)
+        {
+            player.itemLocation.X += -player.direction * 6;
+        }
+
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            //162 for "sparks"
+            //169 for just light
+            int dustType = 169;
+            int dustid = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, Color.White, 1.25f);
+            Main.dust[dustid].noGravity = true;
+            Main.dust[dustid].velocity *= 2f;
+        }
+
+        public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<LegendaryWoodenSword>(), 1);
@@ -29,6 +49,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
-		
-	}
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(player.Center, new Vector2(speedX, speedY), item.shoot, 50, item.knockBack);
+            return true;
+        }
+    }
 }
