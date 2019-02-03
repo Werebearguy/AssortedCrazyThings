@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Breath of Spazmatism");
-            Tooltip.SetDefault("'Uses gel to fire a stream of cursed flames'");
+            Tooltip.SetDefault("Uses gel to fire a stream of cursed flames");
         }
 
         public override void SetDefaults()
@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.useTime = 3; //adjusted from 10 to 3 to match spazmatism speed
             item.useAnimation = 3; //^
             item.useStyle = 5;
-            item.value = item.value = Item.sellPrice(gold: 1);
+            item.value = Item.sellPrice(gold: 15, silver: 20);
             item.rare = -11;
             item.autoReuse = true;
         }

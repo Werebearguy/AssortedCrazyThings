@@ -78,14 +78,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static SoulStats GetAssociatedStats(Mod mod, int soulType)
         {
             //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.2f), DefKnockback * 4, soulType);
-            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.8f), DefKnockback, soulType);
-            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.5f), DefKnockback * 8, soulType);
+            if (soulType == (int)SoulType.Fright) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType);
+            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType);
+            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
                 if (Main.hardMode)
                 {
-                    return new SoulStats(mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), DefDamage, DefKnockback, soulType); //postwol or temp
+                    return new SoulStats(mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
                 }
                 else if(soulType == (int)SoulType.Dungeon)
                 {

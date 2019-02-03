@@ -24,7 +24,6 @@ namespace AssortedCrazyThings.Tiles
             dustType = 1;
             animationFrameHeight = 56;
             disableSmartCursor = true;
-            //adjTiles = new int[] { TileID.LunarMonolith };
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -33,14 +32,15 @@ namespace AssortedCrazyThings.Tiles
             AssWorld.DisableSlimeRainSky();
         }
 
-        //public override void NearbyEffects(int i, int j, bool closer)
-        //{
-        //    if (Main.tile[i, j].frameY >= 56)
-        //    {
-        //        //ExamplePlayer modPlayer = Main.LocalPlayer.GetModPlayer<ExamplePlayer>(mod);
-        //        //modPlayer.voidMonolith = true;
-        //    }
-        //}
+        //you need these four things for the outline to work:
+        //_Hightlight.png
+        //TileID.Sets.HasOutlines[Type] = true;
+        //disableSmartCursor = true;
+        //and this hook
+        public override bool HasSmartInteract()
+        {
+            return true;
+        }
 
         public override void AnimateTile(ref int frame, ref int frameCounter)
         {
