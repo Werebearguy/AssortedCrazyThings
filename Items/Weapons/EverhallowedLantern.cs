@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //Defaults for damage, shoot and knockback dont matter too much here, only for the first summon
             //default to PostWol
-            item.damage = CompanionDungeonSoulMinionBase.DefDamage;
+            item.damage = (int)(CompanionDungeonSoulMinionBase.DefDamage * 1.1f);
             item.summon = true;
             item.mana = 10;
             item.width = 26;

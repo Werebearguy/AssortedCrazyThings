@@ -19,22 +19,23 @@ namespace AssortedCrazyThings.Items.Armor
         {
             item.width = 28;
             item.height = 22;
-            item.value = Item.sellPrice(copper: 50);
+            item.value = Item.sellPrice(gold: 3, silver: 70);
             item.rare = 2;
             item.defense = 18;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.maxMinions++;
-            player.maxMinions++;
+            player.maxMinions += 2;
             player.minionDamage += 0.1f;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 999);
+            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 1);
+            recipe.AddIngredient(ItemID.Ectoplasm, 4);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 24);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
