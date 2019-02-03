@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cobballoon");
-            Tooltip.SetDefault("'A balloon made of rocks, don't ask how'");
+            Tooltip.SetDefault("'A clump of stones that manages to float, much to your confusion'");
         }
 
         public override void SetDefaults()
@@ -26,7 +26,6 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.StoneBlock, 25);
             recipe.AddIngredient(ItemID.WhiteString, 1);
-            recipe.AddIngredient(ItemID.ShinyRedBalloon, 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();
