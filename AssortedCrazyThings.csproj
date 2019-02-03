@@ -207,6 +207,7 @@
     <Compile Include="Items\Tools\ExtendoNetGolden.cs" />
     <Compile Include="Items\Tools\ExtendoNetRegular.cs" />
     <Compile Include="Items\VanityArmor\OrigamiHat.cs" />
+    <Compile Include="Items\VanityArmor\PrettyMask.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
     <Compile Include="Items\Weapons\LegendaryWoodenSword.cs" />
