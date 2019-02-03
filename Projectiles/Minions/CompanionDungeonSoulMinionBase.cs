@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static int DefDamage = 26;
         public static float DefKnockback = 0.5f;
         private int sincounter;
-        public Color dustColor;
+        public Color dustColor; //does not actually work properly but w/e
 
 
         //SetDefaults stuff

@@ -6,6 +6,12 @@ namespace AssortedCrazyThings.Items.Fun
 {
 	public class GreenThumb : ModItem
 	{
+        /*Relevant fields in AssPlayer.cs:
+         *      public const int planteraGitGudCounterMax = 5;
+         *      public int planteraGitGudCounter = 0;
+         *      public bool planteraGitGud = false;
+         */
+
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Green Thumb");

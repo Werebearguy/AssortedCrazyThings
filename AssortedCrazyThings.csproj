@@ -132,6 +132,9 @@
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetal.cs" />
     <Compile Include="Items\Accessories\Vanity\RedEyelloonMetalFractured.cs" />
     <Compile Include="Items\Accessories\Vanity\SpazmatismEyelloon.cs" />
+    <Compile Include="Items\Armor\SoulSaviorHeaddress.cs" />
+    <Compile Include="Items\Armor\SoulSaviorPlate.cs" />
+    <Compile Include="Items\Armor\SoulSaviorRobe.cs" />
     <Compile Include="Items\CaughtDungeonSoul.cs" />
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />

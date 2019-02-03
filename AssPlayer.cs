@@ -69,9 +69,11 @@ namespace AssortedCrazyThings
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
         public float step;
 
-        public const int planteraGitGudCounterMax = 2;
+        public const int planteraGitGudCounterMax = 5;
         public int planteraGitGudCounter = 0;
         public bool planteraGitGud = false;
+
+        public bool soulSaviorArmor = false;
 
         public override void ResetEffects()
         {
@@ -89,6 +91,7 @@ namespace AssortedCrazyThings
             slimePackMinion = false;
             empoweringBuff = false;
             planteraGitGud = false;
+            soulSaviorArmor = false;
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -172,25 +175,6 @@ namespace AssortedCrazyThings
                 gProjectile.SetAccessoryAll(j);
             }
         }
-
-        /*
-         * 
-         * 
-         * 
-         * public override void NetSend(BinaryWriter writer)
-        {
-            BitsByte flags = new BitsByte();
-            flags[0] = downedHarvester;
-            writer.Write(flags);
-
-        }
-
-        public override void NetReceive(BinaryReader reader)
-        {
-            BitsByte flags = reader.ReadByte();
-            downedHarvester = flags[0];
-        }
-         */
 
         public override TagCompound Save()
         {
@@ -502,7 +486,18 @@ namespace AssortedCrazyThings
 			}
          */
 
-        public static readonly PlayerLayer MiscEffectsBack = new PlayerLayer("AssortedCrazyThings", "MiscEffectsBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
+        /*
+         * 	y = ref Position.Y;
+			y -= num;
+			if (((drawPlayer.wings != 0 && drawPlayer.velocity.Y != 0f) || (drawPlayer.inventory[drawPlayer.selectedItem].type != 1178 && drawPlayer.inventory[drawPlayer.selectedItem].type != 779 && drawPlayer.inventory[drawPlayer.selectedItem].type != 1295 && drawPlayer.inventory[drawPlayer.selectedItem].type != 1910 && !drawPlayer.turtleArmor && drawPlayer.body != 106 && drawPlayer.body != 170)) && drawPlayer.front > 0 && !drawPlayer.mount.Active)
+			{
+				drawData = new DrawData(accFrontTexture[drawPlayer.front], new Vector2((float)(int)(Position.X - screenPosition.X - (float)(drawPlayer.bodyFrame.Width / 2) + (float)(drawPlayer.width / 2)), (float)(int)(Position.Y - screenPosition.Y + (float)drawPlayer.height - (float)drawPlayer.bodyFrame.Height + 4f)) + drawPlayer.bodyPosition + new Vector2((float)(drawPlayer.bodyFrame.Width / 2), (float)(drawPlayer.bodyFrame.Height / 2)), drawPlayer.bodyFrame, color12, drawPlayer.bodyRotation, vector5, 1f, spriteEffects, 0);
+				drawData.shader = num9;
+				playerDrawData.Add(drawData);
+			}
+         */
+
+        public static readonly PlayerLayer SlimeHandlerKnapsack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f)
             {
@@ -615,6 +610,53 @@ namespace AssortedCrazyThings
                 }
             }
         });
+        
+        public static readonly PlayerLayer SoulSaviorGlowmask = new PlayerLayer("AssortedCrazyThings", "SoulSaviorGlowmask", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
+        {
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            Mod mod = ModLoader.GetMod("AssortedCrazyThings");
+            
+            if (drawPlayer.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
+            {
+                Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask");
+                float drawX = (int)drawInfo.position.X - drawPlayer.bodyFrame.Width / 2 + drawPlayer.width / 2 - Main.screenPosition.X;
+                float drawY = (int)drawInfo.position.Y + drawPlayer.height - drawPlayer.bodyFrame.Height + 4f - Main.screenPosition.Y;
+
+                Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
+
+                SpriteEffects spriteEffects = SpriteEffects.None;
+                if (drawPlayer.gravDir == 1f)
+                {
+                    if (drawPlayer.direction == 1)
+                    {
+                        spriteEffects = SpriteEffects.None;
+                    }
+                    else
+                    {
+                        spriteEffects = SpriteEffects.FlipHorizontally;
+                    }
+                }
+                else
+                {
+                    if (drawPlayer.direction == 1)
+                    {
+                        spriteEffects = SpriteEffects.FlipVertically;
+                    }
+                    else
+                    {
+                        spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
+                    }
+                }
+
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, spriteEffects, 0);
+                drawData.shader = drawInfo.bodyArmorShader;
+                Main.playerDrawData.Add(drawData);
+            }
+        });
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
@@ -625,7 +667,7 @@ namespace AssortedCrazyThings
                 {
                     layers.RemoveAt(wingLayer);
                 }
-                layers.Insert(wingLayer + 1, MiscEffectsBack);
+                layers.Insert(wingLayer + 1, SlimeHandlerKnapsack);
             }
             else
             {
@@ -635,6 +677,9 @@ namespace AssortedCrazyThings
                     layers.Insert(wingLayer + 1, HarvesterWings);
                 }
             }
+
+            int bodyLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Body"));
+            layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
