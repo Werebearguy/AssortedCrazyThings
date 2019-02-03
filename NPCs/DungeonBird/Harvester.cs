@@ -169,7 +169,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
             if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
-            if (Main.rand.NextFloat() < 0.66f) Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>());
+            Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>());
 
             if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
 
