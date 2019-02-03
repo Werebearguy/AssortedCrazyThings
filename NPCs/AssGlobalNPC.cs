@@ -66,5 +66,14 @@ namespace AssortedCrazyThings.NPCs
                 }
             }
         }
+
+        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        {
+            if (type == NPCID.PartyGirl && NPC.downedSlimeKing)
+            {
+                shop.item[nextSlot].SetDefaults(mod.ItemType<Items.Placeable.SlimeBeaconItem>());
+                nextSlot++;
+            }
+        }
     }
 }
