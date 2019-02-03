@@ -105,6 +105,35 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
+            short[] indexes = new short[1000];
+            byte[] textures = new byte[1000];
+            short arrayLength = 0;
+            for (int i = 0; i < 1000; i++)
+            {
+                if(Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<SlimePackMinion>())
+                {
+                    SlimePackMinion m = Main.projectile[i].modProjectile as SlimePackMinion;
+                    indexes[arrayLength] = (short)i;
+                    textures[arrayLength++] = m.texture;
+                }
+            }
+            Array.Resize(ref indexes, arrayLength + 1);
+            Array.Resize(ref textures, arrayLength + 1);
+
+            ModPacket packet = mod.GetPacket();
+            packet.Write((byte)AssMessageType.SyncKnapSackSlimeTextureOnEnterWorld);
+            packet.Write(arrayLength);
+            //Console.WriteLine(arrayLength);
+            for (int i = 0; i < arrayLength; i++)
+            {
+                packet.Write(indexes[i]);
+                packet.Write(textures[i]);
+            }
+            packet.Send(toWho);
+
+            //Console.WriteLine("sent texture " + m.texture + " from " + i + " to " + player.name);
+
+
             ////like OnEnterWorld but serverside
             ////HarvesterBase.Print("send SyncPlayer " + toWho + " " + fromWho + " " + newPlayer);
             //ModPacket packet = mod.GetPacket();
