@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Armor
             item.width = 28;
             item.height = 22;
             item.value = Item.sellPrice(gold: 3, silver: 70);
-            item.rare = 2;
+            item.rare = -11;
             item.defense = 18;
         }
 
