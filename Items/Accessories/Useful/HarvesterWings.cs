@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             DisplayName.SetDefault("Harvester Wings");
             Tooltip.SetDefault("Allows flight and slow fall" +
             "\nIncreases your max number of minions" +
-            "\n10% increased summon damage");
+            "\n5% increased summon damage");
         }
 
 		public override void SetDefaults() 
@@ -50,7 +50,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bone, 25);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 50);
+            recipe.AddIngredient(ItemID.SoulofFlight, 10);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 10);
             recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 2);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
