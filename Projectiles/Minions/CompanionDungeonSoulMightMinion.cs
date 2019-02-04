@@ -1,4 +1,6 @@
-﻿namespace AssortedCrazyThings.Projectiles.Minions
+﻿using Terraria.ID;
+
+namespace AssortedCrazyThings.Projectiles.Minions
 {
     public class CompanionDungeonSoulMightMinion : CompanionDungeonSoulMinionBase
     {
@@ -27,7 +29,7 @@
             defveloCatchUpIdle = 7f;
             defveloNoclip = 13f;
 
-            dustColor = Microsoft.Xna.Framework.Color.DarkBlue;
+            dustColor = ItemID.BlueDye;
         }
     }
 }

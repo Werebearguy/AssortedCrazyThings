@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static int DefDamage = 26;
         public static float DefKnockback = 0.5f;
         private int sincounter;
-        public Color dustColor; //does not actually work properly but w/e
+        public int dustColor;
 
 
         //SetDefaults stuff
@@ -124,7 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 8;
 
-            //dustColor = Color.White;
+            dustColor = 0;
 
             MoreSetDefaults();
         }
@@ -221,10 +222,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (Main.rand.NextFloat() < 0.015f)
             {
                 Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y);
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, dustColor, 1f);
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
+
+                if(dustColor != 0)
+                {
+                    dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
+                }
             }
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
@@ -280,10 +286,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     if (Main.rand.NextFloat() < (60 - projectile.localAI[0])/360f)
                     {
-                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, dustColor, (60 - projectile.localAI[0]) / 60f + 1f);
+                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, (60 - projectile.localAI[0]) / 60f + 1f);
                         dust.noGravity = false;
                         dust.noLight = true;
                         dust.fadeIn = Main.rand.NextFloat(0.0f, 0.2f);
+
+                        if (dustColor != 0)
+                        {
+                            dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
+                        }
                     }
                 }
                 projectile.localAI[0]++;

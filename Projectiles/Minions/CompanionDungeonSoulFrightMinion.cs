@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             defveloCatchUpIdle = 8f;
             defveloNoclip = 12f;
 
-            dustColor = Microsoft.Xna.Framework.Color.Red;
+            dustColor = ItemID.BrightOrangeDye;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
