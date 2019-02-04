@@ -308,6 +308,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (AI_STATE == STATE_DASH) //attack mode
 
             {
+                projectile.friendly = true;
                 projectile.ai[1] += 1f;
                 projectile.extraUpdates = 1;
 
@@ -378,6 +379,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 float distanceNoclip = defdistancePlayerFarAway;
                 if (foundTarget)
                 {
+                    projectile.friendly = true;
                     //Main.NewText(projectile.ai[1] + " " + Main.time);
                     distanceNoclip = defdistancePlayerFarAwayWhenHasTarget;
                 }
@@ -410,6 +412,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 }
                 else //!(foundTarget && AI_STATE == STATE_MAIN)
                 {
+                    projectile.friendly = false;
                     float veloIdle = defveloIdle; //6f
 
                     Vector2 distanceToPlayerVector = player.Center - projectile.Center + new Vector2(0f, defplayerFloatHeight); //at what height it floats above player

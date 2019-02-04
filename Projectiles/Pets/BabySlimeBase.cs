@@ -29,6 +29,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             MoreSetDefaults();
 
+            projectile.minion = (Damage > 0) ? true : false;
+
             projectile.minionSlots = (Damage > 0) ? 1f : 0f;
         }
 
@@ -428,6 +430,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         if (num90 < projectile.Center.Y - 100f && num106 > -50f && num106 < 50f && projectile.velocity.Y == 0f)
                         {
                             float num107 = Math.Abs(num90 - projectile.Center.Y);
+                            //jumping velocities
                             if (num107 < 120f)
                             {
                                 projectile.velocity.Y = -10f;
