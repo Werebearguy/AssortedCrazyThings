@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-            if (NPC.downedGolemBoss && !NPC.AnyNPCs(mod.NPCType(name)))
+            if (NPC.downedGolemBoss && !NPC.AnyNPCs(mod.NPCType<SpawnOfOcram>()))
             {
                 return SpawnCondition.OverworldNightMonster.Chance * 0.005f;
             }
@@ -69,6 +69,17 @@ namespace AssortedCrazyThings.NPCs
 				}
 			}
 		}
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            return new Color
+            {
+                R = Utils.Clamp<byte>(drawColor.R, 100, 255),
+                G = Utils.Clamp<byte>(drawColor.G, 100, 255),
+                B = Utils.Clamp<byte>(drawColor.B, 100, 255),
+                A = 255
+            };
+        }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
@@ -100,20 +111,6 @@ namespace AssortedCrazyThings.NPCs
                 spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
             }
             return true;
-        }
-
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            //Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-            ////the higher the k, the older the position
-            ////Length is implicitely set in TrailCacheLength up there
-            ////start from half the length so the origninal sprite isnt super blurred
-            //for (int k = (npc.oldPos.Length / 2); k < npc.oldPos.Length; k++)
-            //{
-            //    Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
-            //    Color color = npc.GetAlpha(drawColor) * ((float)(npc.oldPos.Length - k) / (1.5f * npc.oldPos.Length));
-            //    spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
-            //}
         }
 
         //Adapted from Vanilla, NPC type 94 Corruptor, AI type 5
