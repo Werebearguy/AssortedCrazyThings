@@ -14,6 +14,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             drawOriginOffsetY = 4;
         }
 
+        /*					
+            if (projPet[projectile[i].type] && !projectile[i].minion && projectile[i].owner != 255 && projectile[i].damage == 0 && !ProjectileID.Sets.LightPet[projectile[i].type])
+            {
+	            num3 = player[projectile[i].owner].cPet;
+            }
+         */
+
         public override void MoreSetDefaults()
         {
             //used to set dimensions and damage (if there is, defaults to 0)
