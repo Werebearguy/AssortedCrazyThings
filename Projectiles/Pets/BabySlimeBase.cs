@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public void BabySlimeAI() //not used yet
+        public void BabySlimeAI()
         {
             projectile.damage = Damage;
 
@@ -144,7 +144,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             //num = 60 + 30 * minionPos;
 
-            int num = 10;
+            int num = projectile.minion? 10: 25;
+            if (!projectile.minion) projectile.minionPos = 0;
             int num2 = 40 * (projectile.minionPos + 1) * Main.player[projectile.owner].direction;
             if (Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) < projectile.position.X + (projectile.width / 2) - num + num2)
             {
