@@ -164,7 +164,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             {
                                 if (projectile.spriteDirection == -1)
                                 {
-                                    Main.NewText("XD");
                                     //stupidOffset += new Vector2(-4f, 0f);
                                 }
 

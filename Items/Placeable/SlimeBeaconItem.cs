@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Placeable
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slime Beacon");
-            Tooltip.SetDefault("'Do The Slime With Me!'"); //This is what the party machine says but with "Balloons" instead of "Slimes"
+            Tooltip.SetDefault("'Do The Slime With Me!'");
         }
 
         public override void SetDefaults()
@@ -32,19 +32,7 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            //new Color(255, 100, 30, 255)
             if (Main.netMode == NetmodeID.MultiplayerClient) tooltips.Add(new TooltipLine(mod, "Multi", "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"));
         }
-
-        public override void AddRecipes()
-		{
-            //Maybe sold by party girl?
-
-			//ModRecipe recipe = new ModRecipe(mod);
-			//recipe.AddIngredient(ItemID.LunarBar, 12);
-			//recipe.AddTile(TileID.LunarCraftingStation);
-			//recipe.SetResult(this);
-			//recipe.AddRecipe();
-		}
 	}
 }
