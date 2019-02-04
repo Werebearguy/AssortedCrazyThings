@@ -145,7 +145,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 }
                             }
 
-                            if (slotNumber == (byte)SlotType.Body || slotNumber == (byte)SlotType.Misc)
+                            if (slotNumber == (byte)SlotType.Body || slotNumber == (byte)SlotType.Accessory)
                             {
                                 if (projectile.frame > 2 && projectile.frame < 6)
                                 {

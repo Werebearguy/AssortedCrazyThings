@@ -64,9 +64,9 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 return "Carry slot: ";
             }
-            if (b == (byte)SlotType.Misc)
+            if (b == (byte)SlotType.Accessory)
             {
-                return "Misc slot: ";
+                return "Accessory slot: ";
             }
             return "UNINTENDED BEHAVIOR, REPORT TO DEV";
         }

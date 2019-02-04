@@ -85,11 +85,6 @@ namespace AssortedCrazyThings.Items
                             dust.noGravity = true;
                             dust.noLight = true;
                         }
-
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            //mPlayer.SendRedrawPetAccessories();
-                        }
                     }
                 }
             }

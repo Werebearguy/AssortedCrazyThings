@@ -359,7 +359,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -373,7 +373,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -387,7 +387,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -401,7 +401,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -415,7 +415,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -429,7 +429,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -443,7 +443,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -457,7 +457,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -471,7 +471,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -485,7 +485,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Misc;
+            item.value = (int)SlotType.Accessory;
         }
     }
 
@@ -733,12 +733,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
         Body,
         Hat,
         Carried,
-        Misc
+        Accessory
         //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
         //Also, concider that there cant be more than one accessory active in each slot, so decide on proper
         //categories that make sense.
 
-        //for Carried, it's actually only the front facing hand. For something like gloves or dual wielding, use Misc instead
+        //for Carried, it's actually only the front facing hand. For something like gloves or dual wielding, use Accessory instead
 
         //also, keep the sprite dimensions the same as the slime girls
 
@@ -1146,7 +1146,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 return "Carried";
             }
-            if (e == (byte)SlotType.Misc)
+            if (e == (byte)SlotType.Accessory)
             {
                 return "Worn somewhere else (misc)";
             }
