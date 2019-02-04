@@ -665,6 +665,22 @@ namespace AssortedCrazyThings
                 DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, spriteEffects, 0);
                 drawData.shader = drawInfo.bodyArmorShader;
                 Main.playerDrawData.Add(drawData);
+
+                //Generate visual dust
+                if (Main.rand.NextFloat() < 0.1f)
+                {
+                    Vector2 position = drawPlayer.Center - new Vector2(8f, 0f) + new Vector2(Main.rand.Next(8), Main.rand.Next(8));
+                    if(drawPlayer.direction == 1)
+                    {
+                        position.X += 8f;
+                    }
+                    Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-0.3f, -0.1f)), 100, Color.White, 0.6f);
+                    dust.noGravity = true;
+                    dust.noLight = true;
+                    dust.fadeIn = Main.rand.NextFloat(0.5f, 0.8f);
+
+                    dust.shader = GameShaders.Armor.GetSecondaryShader(drawInfo.bodyArmorShader, drawPlayer);
+                }
             }
         });
 

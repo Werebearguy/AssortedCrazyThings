@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,6 +38,8 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
+            Lighting.AddLight(player.Center, new Vector3(0.05f, 0.05f, 0.15f));
+
             float minionFactor = (player.maxMinions >= player.slotsMinions) ? player.maxMinions : player.slotsMinions;
             float factor = (minionFactor / 10f) * player.minionDamage;
 
