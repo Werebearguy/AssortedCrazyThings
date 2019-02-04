@@ -9,8 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         {
             DisplayName.SetDefault("Sigil of Emergency");
             Tooltip.SetDefault("Summons a temporary minion to help you upon reaching critical health" +
-                "\nIncreases your max number of minions" +
-                "\n10% increased summon damage");
+                "\nIncreases your max number of minions");
         }
 
         public override void SetDefaults()
@@ -29,7 +28,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             {
                 player.GetModPlayer<AssPlayer>().tempSoulMinion = true;
             }
-            player.minionDamage += 0.1f;
             player.maxMinions++;
         }
     }

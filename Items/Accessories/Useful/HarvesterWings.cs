@@ -27,23 +27,23 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public override void UpdateAccessory(Player player, bool hideVisual) 
 		{
             player.wingTimeMax = 95;
-			player.minionDamage += 0.1f;
+			player.minionDamage += 0.05f;
             player.maxMinions++;
 		}
 
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) 
 		{
-			ascentWhenFalling = 0.3f;
-			ascentWhenRising = 0.2f;
-			maxCanAscendMultiplier = 0.5f;
-			maxAscentMultiplier = 2.5f;
-			constantAscend = 0.135f;
+			ascentWhenFalling = 0.25f;
+			ascentWhenRising = 0.15f;
+			maxCanAscendMultiplier = 0.4f;
+			maxAscentMultiplier = 2f;
+			constantAscend = 0.12f;
 		}
 
 		public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration) 
 		{
-			speed = 7f;
-			acceleration *= 1.5f;
+			speed = 6.5f;
+			acceleration *= 1.35f;
 		}
 
 		public override void AddRecipes() 
