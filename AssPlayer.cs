@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -264,7 +265,7 @@ namespace AssortedCrazyThings
 
         private void ResetEmpoweringTimer()
         {
-            if (empoweringBuff)
+            if (empoweringBuff && !player.HasBuff(BuffID.ShadowDodge))
             {
                 for (int i = 0; i < empoweringTimer; i++)
                 {
@@ -504,28 +505,7 @@ namespace AssortedCrazyThings
                 //}
             }
         }
-
-        /*if ((drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f) && (drawPlayer.inventory[drawPlayer.selectedItem].type == 1178 || drawPlayer.inventory[drawPlayer.selectedItem].type == 779 || drawPlayer.inventory[drawPlayer.selectedItem].type == 1295 || drawPlayer.inventory[drawPlayer.selectedItem].type == 1910 || drawPlayer.turtleArmor || drawPlayer.body == 106 || drawPlayer.body == 170))
-			{
-				int type6 = drawPlayer.inventory[drawPlayer.selectedItem].type;
-				drawData = new DrawData(BackPackTexture[num129], new Vector2((float)(int)(Position.X - screenPosition.X + (float)(drawPlayer.width / 2) - (float)(9 * drawPlayer.direction)) + num130 * (float)drawPlayer.direction, (float)(int)(Position.Y - screenPosition.Y + (float)(drawPlayer.height / 2) + 2f * drawPlayer.gravDir + num131 * drawPlayer.gravDir)), new Microsoft.Xna.Framework.Rectangle(0, 0, BackPackTexture[num129].Width, BackPackTexture[num129].Height), color12, drawPlayer.bodyRotation, new Vector2((float)(BackPackTexture[num129].Width / 2), (float)(BackPackTexture[num129].Height / 2)), 1f, spriteEffects, 0);
-				drawData.shader = shader;
-				playerDrawData.Add(drawData);
-				break;
-			}
-         */
-
-        /*
-         * 	y = ref Position.Y;
-			y -= num;
-			if (((drawPlayer.wings != 0 && drawPlayer.velocity.Y != 0f) || (drawPlayer.inventory[drawPlayer.selectedItem].type != 1178 && drawPlayer.inventory[drawPlayer.selectedItem].type != 779 && drawPlayer.inventory[drawPlayer.selectedItem].type != 1295 && drawPlayer.inventory[drawPlayer.selectedItem].type != 1910 && !drawPlayer.turtleArmor && drawPlayer.body != 106 && drawPlayer.body != 170)) && drawPlayer.front > 0 && !drawPlayer.mount.Active)
-			{
-				drawData = new DrawData(accFrontTexture[drawPlayer.front], new Vector2((float)(int)(Position.X - screenPosition.X - (float)(drawPlayer.bodyFrame.Width / 2) + (float)(drawPlayer.width / 2)), (float)(int)(Position.Y - screenPosition.Y + (float)drawPlayer.height - (float)drawPlayer.bodyFrame.Height + 4f)) + drawPlayer.bodyPosition + new Vector2((float)(drawPlayer.bodyFrame.Width / 2), (float)(drawPlayer.bodyFrame.Height / 2)), drawPlayer.bodyFrame, color12, drawPlayer.bodyRotation, vector5, 1f, spriteEffects, 0);
-				drawData.shader = num9;
-				playerDrawData.Add(drawData);
-			}
-         */
-
+        
         public static readonly PlayerLayer SlimeHandlerKnapsack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f)
@@ -627,7 +607,7 @@ namespace AssortedCrazyThings
                         {
                             num74 = -40;
                         }
-                        int num75 = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + num74, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 30, 135, 0f, 0f, 100, default(Color), 1.5f);
+                        int num75 = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + num74, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 30, 135, 0f, 0f, 0, default(Color), 1.5f);
                         Main.dust[num75].noGravity = true;
                         Main.dust[num75].noLight = true;
                         Main.dust[num75].velocity *= 0.3f;
@@ -635,6 +615,7 @@ namespace AssortedCrazyThings
                         {
                             Main.dust[num75].fadeIn = 1f;
                         }
+                        Main.dust[num75].shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
                     }
                 }
             }
@@ -717,6 +698,8 @@ namespace AssortedCrazyThings
             {
                 damage = (int)(damage * 0.85f);
             }
+
+            ResetEmpoweringTimer();
         }
 
 
@@ -730,11 +713,6 @@ namespace AssortedCrazyThings
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
-        }
-
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-            ResetEmpoweringTimer();
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)
