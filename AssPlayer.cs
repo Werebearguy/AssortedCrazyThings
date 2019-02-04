@@ -457,6 +457,66 @@ namespace AssortedCrazyThings
             else empoweringTimer = 0;
         }
 
+        private bool GetDefense(double damage)
+        {
+            if (getDefense)
+            {
+                if (canGetDefense)
+                {
+                    player.statLife += (int)damage;
+                    player.AddBuff(BuffID.RapidHealing, 600);
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
+
+                    getDefenseTimer = GetDefenseTimerMax;
+                    getDefenseDuration = GetDefenseDurationMax;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool TeleportHome(double damage)
+        {
+            if (teleportHome)
+            {
+                if (canTeleportHome && player.whoAmI == Main.myPlayer)
+                {
+                    //this part here is from vanilla magic mirror code
+                    player.grappling[0] = -1;
+                    player.grapCount = 0;
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        //Kill all grappling hooks
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].aiStyle == 7)
+                        {
+                            Main.projectile[i].Kill();
+                        }
+                    }
+
+                    //inserted before player.Spawn()
+                    player.statLife += (int)damage;
+
+                    player.Spawn();
+                    for (int i = 0; i < 70; i++)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
+                    }
+                    //end
+
+                    player.AddBuff(BuffID.RapidHealing, 300, false);
+
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+                    }
+
+                    teleportHomeTimer = TeleportHomeTimerMax;
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void UpdatePlanteraGitGud()
         {
             if (planteraGitGud) player.buffImmune[BuffID.Poisoned] = true;
@@ -468,6 +528,22 @@ namespace AssortedCrazyThings
                 {
                     Item.NewItem(player.getRect(), mod.ItemType<GreenThumb>(), 1);
                 }
+            }
+        }
+
+        private void PlanteraGitGudHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        {
+            if (planteraGitGud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera))
+            {
+                damage = (int)(damage * 0.85f);
+            }
+        }
+
+        private void PlanteraGitGudHitByNPC(NPC npc, ref int damage, ref bool crit)
+        {
+            if (planteraGitGud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle))
+            {
+                damage = (int)(damage * 0.85f);
             }
         }
 
@@ -552,7 +628,6 @@ namespace AssortedCrazyThings
                 Main.playerDrawData.Add(drawData);
             }
         });
-
 
         public static readonly PlayerLayer HarvesterWings = new PlayerLayer("AssortedCrazyThings", "HarvesterWings", PlayerLayer.Wings, delegate (PlayerDrawInfo drawInfo)
         {
@@ -710,21 +785,14 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            if (planteraGitGud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera))
-            {
-                damage = (int)(damage * 0.85f);
-            }
+            PlanteraGitGudHitByProjectile(proj, ref damage, ref crit);
 
             ResetEmpoweringTimer();
         }
 
-
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (planteraGitGud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle))
-            {
-                damage = (int)(damage * 0.85f);
-            }
+            PlanteraGitGudHitByNPC(npc, ref damage, ref crit);
 
             ResetEmpoweringTimer();
 
@@ -739,63 +807,10 @@ namespace AssortedCrazyThings
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             //getDefense before teleportHome (so you don't teleport BEFORE you gain the defense)
-            if (getDefense)
-            {
-                if (canGetDefense)
-                {
-                    player.statLife += (int)damage;
-                    player.AddBuff(BuffID.RapidHealing, 600);
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
 
-                    getDefenseTimer = GetDefenseTimerMax;
-                    getDefenseDuration = GetDefenseDurationMax;
-                    return false;
-                }
-            }
+            if (!GetDefense(damage)) return false;
 
-            if (teleportHome)
-            {
-                if (canTeleportHome && player.whoAmI == Main.myPlayer)
-                {
-                    //this part here is from vanilla magic mirror code
-                    int num3;
-                    for (int num326 = 0; num326 < 70; num326 = num3 + 1)
-                    {
-                        num3 = num326;
-                    }
-                    player.grappling[0] = -1;
-                    player.grapCount = 0;
-                    for (int num327 = 0; num327 < 1000; num327 = num3 + 1)
-                    {
-                        if (Main.projectile[num327].active && Main.projectile[num327].owner == player.whoAmI && Main.projectile[num327].aiStyle == 7)
-                        {
-                            Main.projectile[num327].Kill();
-                        }
-                        num3 = num327;
-                    }
-
-                    //inserted before player.Spawn()
-                    player.statLife += (int)damage;
-
-                    player.Spawn();
-                    for (int num328 = 0; num328 < 70; num328 = num3 + 1)
-                    {
-                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
-                        num3 = (int)(num328 * 1.5f);
-                    }
-                    //end
-
-                    player.AddBuff(BuffID.RapidHealing, 300, false);
-
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
-                    }
-
-                    teleportHomeTimer = TeleportHomeTimerMax;
-                    return false;
-                }
-            }
+            if (!TeleportHome(damage)) return false;
 
             if (NPC.AnyNPCs(NPCID.Plantera))
             {
