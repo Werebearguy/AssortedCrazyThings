@@ -21,11 +21,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected const int AI_Y_Slot = 2;
         protected const int AI_Timer_Slot = 3;
 
-        protected const float State_Distribute = 0f;
-        protected const float State_Approach = 1f;
-        protected const float State_Noclip = 2f;
-        protected const float State_Stop = 3f;
-        protected const float State_Transform = 4f;
+        protected const float STATE_DISTRIBUTE = 0f;
+        protected const float STATE_APPROACH = 1f;
+        protected const float STATE_NOCLIP = 2f;
+        protected const float STATE_STOP = 3f;
+        protected const float STATE_TRANSFORM = 4f;
 
         public static void Print(string msg)
         {
@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override Color? GetAlpha(Color lightColor)
         {
-            if (AI_State == State_Transform)
+            if (AI_State == STATE_TRANSFORM)
             {
                 return lightColor * ((transformTime - AI_X_Timer) / transformTime);
             }
@@ -181,7 +181,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (target == 200)
                 {
                     stopTime = idleTime;
-                    AI_State = State_Stop;
+                    AI_State = STATE_STOP;
                 }
             }
             else if (aiTargetType == Target_Player) //Target_Player
@@ -355,7 +355,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                                     //Print("noclipping");
                                     //Main.NewText("DOOR STUCK");
                                     PassCoordinates(GetTarget());
-                                    AI_State = State_Noclip; //pass targets X/Y to noclip
+                                    AI_State = STATE_NOCLIP; //pass targets X/Y to noclip
                                 }
                             }
                             else
@@ -448,7 +448,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     stopTime = eatTime;
                 }
-                AI_State = State_Distribute;
+                AI_State = STATE_DISTRIBUTE;
             }
             return lockedX;
         }
@@ -779,7 +779,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (!IsTargetActive())
             {
                 stopTime = idleTime;
-                AI_State = State_Stop;
+                AI_State = STATE_STOP;
                 return;
             }
             else
@@ -823,7 +823,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (IsTargetActive())
                         PassCoordinates(GetTarget());
                     //Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
-                    AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
+                    AI_State = STATE_NOCLIP; //this is needed in order for the harvester to keep progressing
                 }
                 if (target == 200)
                 {
@@ -882,6 +882,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (npc.timeLeft > 750) npc.timeLeft = 750;
 
                 bool shouldDecreaseTime = false;
+                bool allPlayersDead = true;
                 int closest = 255;
                 Vector2 playerPos = Vector2.Zero;
                 float oldDistance = 1000000000f;
@@ -900,10 +901,21 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             closest = j;
                             shouldDecreaseTime = true; //atleast one player is found
                         }
+                        if (allPlayersDead && !Main.player[j].dead) allPlayersDead = false;
                     }
                 }
 
-                if (shouldDecreaseTime)
+                if (allPlayersDead)
+                {
+                    AI_X_Timer = 0;
+                    aiTargetType = Target_Player;
+                    transformTime = 60;
+                    transformServer = true;
+                    AI_State = STATE_TRANSFORM;
+                    transformTo = -1; //fade out, but don't transform
+                }
+
+                if (shouldDecreaseTime && !allPlayersDead)
                 {
                     //decrease time only when distance is bigger than one and a half screens and player not in dungeon,
                     //otherwise dont decrease time (2880)
@@ -970,14 +982,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //    return;
             //}
 
-            if (!(AI_State == State_Noclip))
+            if (!(AI_State == STATE_NOCLIP))
             {
                 if(!IsTargetActive())
                 {
                     if (aiTargetType == Target_Soul)
                     {
                         stopTime = idleTime;
-                        AI_State = State_Stop;
+                        AI_State = STATE_STOP;
                     }
                     else //if target is player, its eating anyways (to prevent it from resetting because of target switch)
                     {
@@ -996,7 +1008,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         if (IsTargetActive())
                             PassCoordinates(GetTarget());
                         //Print("passed to noclip aaaaaaaaaaaaaaaaaaaa");
-                        AI_State = State_Noclip; //this is needed in order for the harvester to keep progressing
+                        AI_State = STATE_NOCLIP; //this is needed in order for the harvester to keep progressing
                     }
                     if (target == 200)
                     {
@@ -1017,18 +1029,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //Attack player
             if (AI_Timer % 20 == 0)
             {
-                if(AI_State == State_Stop && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
+                if(AI_State == STATE_STOP && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
                 {
                     AttackPlayer(5, 3f, 200, aiTargetType);
                 }
-                else if(AI_State != State_Stop && aiTargetType == Target_Soul)
+                else if(AI_State != STATE_STOP && aiTargetType == Target_Soul)
                 {
                     AttackPlayer(5, 3f, npc.width, aiTargetType);
                 }
             }
 
 
-            if (AI_State == State_Distribute/*0*/)
+            if (AI_State == STATE_DISTRIBUTE/*0*/)
             {
                 if(Main.time % 20 == 0)
                 {
@@ -1078,7 +1090,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     SelectTarget(restrictedSoulSearch); //now player
 
                     AI_X_Timer = 0f;
-                    AI_State = State_Stop; //start to eat
+                    AI_State = STATE_STOP; //start to eat
                 }
                 else if (stopTime != eatTime)
                 {
@@ -1093,18 +1105,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                     if(AI_Timer > hungerTime - 180) AI_Timer -= 180; //halve hunger timer
                     //AI_Timer = 0f; //reset hunger timer
-                    AI_State = State_Approach;
+                    AI_State = STATE_APPROACH;
                 }
                 else//keep state
                 {
-                    AI_State = State_Distribute;
+                    AI_State = STATE_DISTRIBUTE;
                 }
             }
-            else if (AI_State == State_Approach/*1*/)
+            else if (AI_State == STATE_APPROACH/*1*/)
             {
                 HarvesterAIGround(allowNoclip);
             }
-            else if (AI_State == State_Noclip/*2*/)
+            else if (AI_State == STATE_NOCLIP/*2*/)
             {
                 AI_Timer = 0f;
                 npc.noGravity = true;
@@ -1124,14 +1136,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (distance < npc.height /*600f*/ && between.Y < 20f && !Collision.SolidCollision(npc.position + new Vector2(-2f, npc.height / 2), npc.width + 4, npc.height / 2 + 4))
                 {
                     npc.netUpdate = true;
-                    AI_State = State_Distribute;
+                    AI_State = STATE_DISTRIBUTE;
                 }
             }
-            else if (3 == 4 /*idlemove, recalculate*/)
-            {
-                
-            }
-            else if (AI_State == State_Stop/*5*/)
+            else if (AI_State == STATE_STOP/*3*/)
             {
 
                 if (AI_X_Timer == 0f && stopTime == eatTime)
@@ -1147,7 +1155,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (AI_X_Timer > stopTime)
                 {
                     npc.netUpdate = true;
-                    AI_State = State_Distribute;
+                    AI_State = STATE_DISTRIBUTE;
                     AI_X_Timer = 0f;
 
                     if (stopTime == idleTime)
@@ -1180,16 +1188,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                                 transformServer = true;
                                 //Print("set transform var to tru");
                             }
-                            AI_State = State_Transform;
+                            AI_State = STATE_TRANSFORM;
                         }
                         else
                         {
-                            AI_State = State_Stop;
+                            AI_State = STATE_STOP;
                         }
                     }
                 }
             }
-            else if (AI_State == State_Transform/*6*/)
+            else if (AI_State == STATE_TRANSFORM/*6*/)
             {
                 npc.velocity.X = 0;
                 if (transformServer)
@@ -1215,7 +1223,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         KillInstantly(npc);
                     }
                     //handle fade out in GetAlpha scaled on AI_X_Timer,
-                    //and fade in scaled on Local_Timer (when soulseaten == 0)
+                    //and fade in via alpha
                 }
             }
         }

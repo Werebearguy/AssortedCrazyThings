@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
             npc.spriteDirection = -npc.direction;
             npc.gfxOffY = 0f;
-            if (AI_State == State_Approach)
+            if (AI_State == STATE_APPROACH)
             {
                 npc.frameCounter++;
                 if(npc.velocity.X != 0)
@@ -103,7 +103,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frame.Y = frameHeight * 3;
                 }
             }
-            else if(AI_State == State_Noclip)
+            else if(AI_State == STATE_NOCLIP)
             {
                 npc.frameCounter++;
                 if (npc.frameCounter <= 3.0)
@@ -119,12 +119,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frameCounter = 0;
                 }
             }
-            else if(AI_State == State_Transform)
+            else if(AI_State == STATE_TRANSFORM)
             {
                 npc.gfxOffY += 1f;
                 npc.frame.Y = 0;
             }
-            else if (AI_State == State_Stop)
+            else if (AI_State == STATE_STOP)
             {
                 npc.gfxOffY += 1f;
                 if(stopTime == eatTime)
@@ -167,7 +167,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (AI_State == State_Stop && stopTime == eatTime)
+            if (AI_State == STATE_STOP && stopTime == eatTime)
             {
                 Texture2D texture = mod.GetTexture("Glowmasks/Harvester/Harvester1Souleat");
                 Vector2 stupidOffset = new Vector2(0f, 3f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick

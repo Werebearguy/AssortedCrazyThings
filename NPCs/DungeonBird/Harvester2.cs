@@ -65,13 +65,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
             npc.spriteDirection = -npc.direction;
-            if (AI_State == State_Approach || AI_State == State_Distribute) //5 to 12
+            if (AI_State == STATE_APPROACH || AI_State == STATE_DISTRIBUTE) //5 to 12
             {
                 if (npc.velocity.X != 0)
                 {
                     npc.frameCounter += (double)Math.Abs(npc.velocity.X / 1.5);
-                    if (AI_State == State_Approach && (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f) ||
-                        AI_State == State_Distribute && SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)) //fuck
+                    if (AI_State == STATE_APPROACH && (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f) ||
+                        AI_State == STATE_DISTRIBUTE && SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)) //fuck
                     {
                         if (npc.frameCounter <= 8.0)
                         {
@@ -166,7 +166,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                 }
             }
-            else if (AI_State == State_Noclip)
+            else if (AI_State == STATE_NOCLIP)
             {
                 npc.frameCounter++;
                 if (npc.frameCounter <= 8.0)
@@ -190,7 +190,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frameCounter = 0;
                 }
             }
-            else if (AI_State == State_Stop)
+            else if (AI_State == STATE_STOP)
             {
                 if (stopTime == eatTime)
                 {
@@ -279,7 +279,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
 
-            if (AI_State == State_Stop && stopTime == eatTime)
+            if (AI_State == STATE_STOP && stopTime == eatTime)
             {
                 texture = mod.GetTexture("Glowmasks/Harvester/Harvester2Souleat");
 
@@ -291,11 +291,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //Spawn light, add dust
             Lighting.AddLight(npc.Center, new Vector3(0.25f, 0.25f, 0.5f) * (soulsEaten / (float)maxSoulsEaten));
-            if (AI_State != State_Stop && AI_State != State_Transform && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / maxSoulsEaten))
+            if (AI_State != STATE_STOP && AI_State != STATE_TRANSFORM && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / maxSoulsEaten))
             {
                 Vector2 position = npc.position;
 
-                if (AI_State != State_Noclip)
+                if (AI_State != STATE_NOCLIP)
                 {
                     if (npc.spriteDirection == -1)
                     {

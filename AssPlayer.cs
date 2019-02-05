@@ -391,7 +391,7 @@ namespace AssortedCrazyThings
                         {
                             if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<DungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && !SoulBuffBlacklist(Main.npc[j].type))
                             {
-                                if (Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly)
+                                if (Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly && !Main.npc[j].dontTakeDamage && !Main.npc[j].immortal)
                                 {
                                     Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
                                 }

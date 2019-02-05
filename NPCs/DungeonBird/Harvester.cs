@@ -437,22 +437,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.timeLeft = 10;
                 }
             }
-            else if (AI_State == State_Distribute)
-            {
+            //else if (AI_State == State_Distribute)
+            //{
 
-            }
-            else if (AI_State == State_Dash)
-            {
+            //}
+            //else if (AI_State == State_Dash)
+            //{
 
-            }
-            else if (AI_State == State_Retarget)
-            {
+            //}
+            //else if (AI_State == State_Retarget)
+            //{
 
-            }
-            else if (AI_State == State_Hover) //where it shoots bees
-            {
+            //}
+            //else if (AI_State == State_Hover) //where it shoots bees
+            //{
 
-            }
+            //}
             else if (AI_State == State_Main) //where it shoots stingers
             {
                 float num630 = 4f;
