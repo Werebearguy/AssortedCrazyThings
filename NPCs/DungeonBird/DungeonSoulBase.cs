@@ -31,6 +31,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.damage = 0;
             npc.defense = 0;
             npc.lifeMax = 5;
+            npc.scale = 1f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = 0f;
@@ -247,6 +248,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void AI()
         {
+            npc.scale = 1f;
             Entity tar = GetTarget();
             NPC tarnpc = new NPC();
             if (tar is NPC)

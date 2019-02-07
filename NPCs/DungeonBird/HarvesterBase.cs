@@ -4,7 +4,6 @@ using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
@@ -112,6 +111,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public bool transformServer;
         public int transformTo;
         public bool aiInit;
+
+        public float defScale = 1.0f;
+        public int defLifeMax; //should be the same as maxSoulsEaten
 
         public float AI_State
         {
@@ -877,6 +879,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void HarvesterAI(bool allowNoclip = true)
         {
+            npc.scale = defScale;
+            npc.lifeMax = defLifeMax;
+
             if (Main.time % 120 == 2)
             {
                 if (npc.timeLeft > 750) npc.timeLeft = 750;

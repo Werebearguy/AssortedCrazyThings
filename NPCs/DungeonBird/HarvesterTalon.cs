@@ -53,6 +53,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.damage = Harvester.talonDamage;
             npc.defense = 28;
             npc.lifeMax = 1337;
+            npc.scale = 1f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.alpha = 255;
@@ -154,6 +155,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         npc.alpha = 0;
                         npc.netUpdate = true;
                     }
+                    npc.scale = 1f;
                     npc.ai[1] = 0f;
                 }
 

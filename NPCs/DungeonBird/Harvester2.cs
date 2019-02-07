@@ -41,15 +41,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             transformServer = false;
             transformTo = AssWorld.harvesterTypes[2];
 
+            defLifeMax = maxSoulsEaten + 1;
+
 
             npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
             npc.chaseable = false;
-            npc.npcSlots = 1f;
+            npc.npcSlots = 0.5f;
             npc.width = DungeonSoulBase.wid;
             npc.height = DungeonSoulBase.hei; //100 or 98 when flying
             npc.damage = 0;
             npc.defense = 11;
-            npc.lifeMax = maxSoulsEaten + 1;
+            npc.scale = defScale;
+            npc.lifeMax = defLifeMax;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.aiStyle = -1; //91;

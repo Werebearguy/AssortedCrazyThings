@@ -46,6 +46,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.damage = 5; //contact damage
             npc.defense = 8;
             npc.lifeMax = 1500;
+            npc.scale = 1f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = Item.buyPrice(0, 10);
@@ -405,6 +406,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                     }
                 }
+                npc.scale = 1f;
                 npc.netUpdate = true;
                 AI_Local2 = 1;
                 AI_State = State_Main;
