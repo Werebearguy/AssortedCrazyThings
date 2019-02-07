@@ -63,7 +63,8 @@ namespace AssortedCrazyThings.Items.Armor
             //player.GetModPlayer<AssPlayer>().soulSaviorArmor = true;
 
             //TODO something shorter, also update it in the changelog and in the armor section
-            player.setBonus = "Reflects contact damage based on the number of total available minion slots and your minion damage increase"
+            player.setBonus = "Reflects 10% contact damage per available minion slot"
+                +"\nReflected damage further increased by effects that increase minion damage"
                 +"\nCurrent reflected damage: " + (int)(factor * 100) + "%";
         }
 
