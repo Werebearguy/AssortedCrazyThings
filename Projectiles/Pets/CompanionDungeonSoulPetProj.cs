@@ -80,11 +80,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
 
         //
-        public static void FlickerwickPet(Projectile projectile, bool lightPet = true, bool reverseSide = false, float offsetX = 0f, float offsetY = 0f)
+        public static void FlickerwickPet(Projectile projectile, bool lightPet = true, bool reverseSide = false, bool vanityPet = false, float offsetX = 0f, float offsetY = 0f)
         {
             Player player = Main.player[projectile.owner];
-            float num = 4f;
-            int num2 = 6;
+            float num = 6f;
+            int num2 = 10;
             int num3 = 4;
             int num4 = Main.projFrames[projectile.type];
             Vector2 value = new Vector2((player.direction * 30) + player.direction * offsetX, -20f + offsetY);
@@ -97,9 +97,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //}
             //value.Y += (float)Math.Cos((double)(projectile.localAI[0] * 0.05235988f)) * 2f;
 
-            num3 = 4;
-            num2 = 10;
-            num = 6f;
             Vector2 value2 = new Vector2((projectile.spriteDirection == -1) ? -6 : -2, -20f).RotatedBy(projectile.rotation);
 
             projectile.direction = projectile.spriteDirection = player.direction;
@@ -128,7 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 dust.velocity *= 0.5f;
                 dust.velocity.Y = dust.velocity.Y - 0.9f;
                 dust.scale += 0.1f + Main.rand.NextFloat() * 0.6f;
-                dust.shader = GameShaders.Armor.GetSecondaryShader(player.cLight, player);
+                dust.shader = GameShaders.Armor.GetSecondaryShader(!vanityPet? player.cLight : player.cPet, player);
             }
 
             if (lightPet)

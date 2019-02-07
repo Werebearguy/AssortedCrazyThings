@@ -4,24 +4,24 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class CompanionDungeonSoulPetBuff : ModBuff
+    public class CompanionDungeonSoulPetBuff2 : ModBuff
     {
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
             Description.SetDefault("A friendly Dungeon Soul is following you"
-                + "\n(light pet)");
+                +"\n(pet)");
             Main.buffNoTimeDisplay[Type] = true;
-            Main.lightPet[Type] = true;
+            Main.vanityPet[Type] = true;
         }
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).SoulLightPet = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPetProj>()] <= 0;
+            player.GetModPlayer<PetPlayer>(mod).SoulLightPet2 = true;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPetProj2>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, mod.ProjectileType<CompanionDungeonSoulPetProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, mod.ProjectileType<CompanionDungeonSoulPetProj2>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

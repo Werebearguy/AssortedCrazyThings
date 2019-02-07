@@ -57,6 +57,7 @@ namespace AssortedCrazyThings
 		public bool EnchantedSword = false;
         public bool GobletPet = false;
         public bool SoulLightPet = false;
+        public bool SoulLightPet2 = false;
         public bool DocileDemonEye = false;
         public bool QueenLarva = false;
 
@@ -115,6 +116,7 @@ namespace AssortedCrazyThings
 			EnchantedSword = false;
             GobletPet = false;
             SoulLightPet = false;
+            SoulLightPet2 = false;
             DocileDemonEye = false;
             QueenLarva = false;
         }	

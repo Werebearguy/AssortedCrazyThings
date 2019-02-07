@@ -1,19 +1,27 @@
-﻿using AssortedCrazyThings.Buffs;
+﻿using System.Collections.Generic;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Pets;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class CompanionDungeonSoulPetItem : CaughtDungeonSoulBase
+    public class CompanionDungeonSoulPetItem2 : CaughtDungeonSoulBase
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Items/Pets/CompanionDungeonSoulPetItem"; //use fixed texture
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
             Tooltip.SetDefault("Summons a friendly Soul to light your way"
-                               + "\n(light pet)");
+                               + "\n(pet)");
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
@@ -25,8 +33,8 @@ namespace AssortedCrazyThings.Items.Pets
 
             item.width = 26;
             item.height = 28;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj>();
-            item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff>();
+            item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj2>();
+            item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff2>();
             item.rare = -11;
 
             item.value = Item.sellPrice(copper: 10);
