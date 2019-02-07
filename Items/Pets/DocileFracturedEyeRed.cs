@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Unconscious Fractured Eye");
             Tooltip.SetDefault("Summons a docile red Fractured Eye to follow you"
-                + "\nLegacy Appearance, use 'Docile Demon Eye' instead"
+                + "\nLegacy Appearance, craft into 'Docile Demon Eye' at your nearest Demon Altar"
                 + "\nThis version of the pet will be discontinued in the next update");
         }
 
