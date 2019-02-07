@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class QueenLarva : ModItem
+    public class QueenLarvaItem : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             item.CloneDefaults(ItemID.ZephyrFish);
             item.shoot = mod.ProjectileType("QueenLarva");
-            item.buffType = mod.BuffType("QueenLarva");
+            item.buffType = mod.BuffType("QueenLarvaBuff");
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class QueenLarva : ModBuff
+    public class QueenLarvaBuff : ModBuff
     {
         public override void SetDefaults()
         {
