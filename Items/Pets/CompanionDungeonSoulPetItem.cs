@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Companion Soul");
             Tooltip.SetDefault("Summons a friendly Soul to light your way"
-                               + "\n(light pet)");
+                               + "\nLight pet slot");
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
