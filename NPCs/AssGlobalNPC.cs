@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.Items.Placeable;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -26,20 +28,22 @@ namespace AssortedCrazyThings.NPCs
         {
             if(npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
-                if (Main.rand.NextBool(99))
-                {
-                    Item.NewItem(npc.getRect(), mod.ItemType("GobletItem"));
-                }
+                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
             }
 
-            if(npc.type == NPCID.Plantera)
+            if (npc.type == NPCID.QueenBee)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
+            }
+
+            if (npc.type == NPCID.Plantera)
             {
                 for (int i = 0; i < 255; i++)
                 {
                     if (Main.player[i].active)
                     {
                         AssPlayer mPlayer = Main.player[i].GetModPlayer<AssPlayer>(mod);
-                        mPlayer.planteraGitGudCounter = 0;
+                        mPlayer.planteraGitGudCounter = 0; //resets even when all but one player is dead and plantera is defeated
                     }
                 }
             }
@@ -57,7 +61,7 @@ namespace AssortedCrazyThings.NPCs
 
                         //NewNPC starts looking for the first !active from 0 to 200
                         int soulID = NPC.NewNPC((int)npc.position.X + DungeonSoulBase.wid / 2, (int)npc.position.Y + DungeonSoulBase.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
-                        Main.npc[soulID].timeLeft = NPC.activeTime * 5; //change later
+                        Main.npc[soulID].timeLeft = DungeonSoulBase.SoulActiveTime;
                         if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(23, -1, -1, null, soulID);
@@ -71,7 +75,7 @@ namespace AssortedCrazyThings.NPCs
         {
             if (type == NPCID.PartyGirl && NPC.downedSlimeKing)
             {
-                shop.item[nextSlot].SetDefaults(mod.ItemType<Items.Placeable.SlimeBeaconItem>());
+                shop.item[nextSlot].SetDefaults(mod.ItemType<SlimeBeaconItem>());
                 nextSlot++;
             }
         }

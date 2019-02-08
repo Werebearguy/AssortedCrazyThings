@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
 
-                CompanionDungeonSoulPetProj.FlickerwickPet(projectile, lightPet: false, reverseSide: true, offsetX: 16f, offsetY: 10f);
+                CompanionDungeonSoulPetProj.FlickerwickPetAI(projectile, lightPet: false, reverseSide: true, offsetX: 16f, offsetY: 10f);
             }
         }
     }

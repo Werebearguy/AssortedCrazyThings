@@ -581,31 +581,29 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return null;
         }
 		
-			public override void HitEffect(int hitDirection, double damage)
-				{
-					{
-						if (npc.life <= 0)
-							{
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_01"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_03"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_03"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_04"), 1f);
-								Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_04"), 1f);
-							}
-					}
-				}
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			if (npc.life <= 0)
+			{
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_01"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_03"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_03"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_04"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_04"), 1f);
+			}
+		}
     }
 }

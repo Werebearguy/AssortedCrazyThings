@@ -14,6 +14,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     {
         protected double frameCount;
         protected float fadeAwayMax;
+        public static int SoulActiveTime = NPC.activeTime * 5;
 
         public static int wid = 34; //24
         public static int hei = 38;
@@ -39,7 +40,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             aiType = -1;// NPCID.ToxicSludge;
             animationType = -1;// NPCID.ToxicSludge;
             npc.color = new Color(0, 0, 0, 50);
-            npc.timeLeft = NPC.activeTime * 5;
+            npc.timeLeft = SoulActiveTime;
             npc.direction = 1;
             MoreSetDefaults();
         }
@@ -59,12 +60,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (npcfrom.active && (Array.IndexOf(AssWorld.harvesterTypes, npcfrom.type) != -1) && npcto.timeLeft > HarvesterBase.EatTimeConst)
                 {
                     npcto.timeLeft = HarvesterBase.EatTimeConst;
-                    //Main.NewText("set time left to " + HarvesterBase.EatTimeConst);
                     npcto.netUpdate = true;
-                    //if (Main.netMode == NetmodeID.Server)
-                    //{
-                    //    NetMessage.SendData(23, -1, -1, null, npcto.whoAmI);
-                    //}
                 }
             }
         }

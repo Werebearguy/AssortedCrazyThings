@@ -75,19 +75,42 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
 
-                FlickerwickPet(projectile);
+                FlickerwickPetAI(projectile);
+            }
+        }
+
+        public static void FlickerwickPetDraw(Projectile projectile, int frameCounterMaxFar, int frameCounterMaxClose)
+        {
+            if (projectile.velocity.Length() > 6f)
+            {
+                if (++projectile.frameCounter >= frameCounterMaxFar)
+                {
+                    projectile.frameCounter = 0;
+                    if (++projectile.frame >= Main.projFrames[projectile.type])
+                    {
+                        projectile.frame = 0;
+                    }
+                }
+            }
+            else
+            {
+                if (++projectile.frameCounter >= frameCounterMaxClose)
+                {
+                    projectile.frameCounter = 0;
+                    if (++projectile.frame >= Main.projFrames[projectile.type])
+                    {
+                        projectile.frame = 0;
+                    }
+                }
             }
         }
 
         //
-        public static void FlickerwickPet(Projectile projectile, bool lightPet = true, bool reverseSide = false, bool vanityPet = false, float offsetX = 0f, float offsetY = 0f)
+        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool reverseSide = false, bool vanityPet = false, float offsetX = 0f, float offsetY = 0f, int frameCounterMaxClose = 10, int frameCounterMaxFar = 4)
         {
             Player player = Main.player[projectile.owner];
-            float num = 6f;
-            int num2 = 10;
-            int num3 = 4;
-            int num4 = Main.projFrames[projectile.type];
-            Vector2 value = new Vector2((player.direction * 30) + player.direction * offsetX, -20f + offsetY);
+            float veloDistanceChange = 6f;
+            Vector2 desiredCenterRelative = new Vector2((player.direction * 30) + player.direction * offsetX, -20f + offsetY);
 
             //up and down bobbing
             //projectile.localAI[0] += 1f;
@@ -97,13 +120,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //}
             //value.Y += (float)Math.Cos((double)(projectile.localAI[0] * 0.05235988f)) * 2f;
 
-            Vector2 value2 = new Vector2((projectile.spriteDirection == -1) ? -6 : -2, -20f).RotatedBy(projectile.rotation);
+            Vector2 dustOffset = new Vector2((projectile.spriteDirection == -1) ? -6 : -2, -20f).RotatedBy(projectile.rotation);
 
             projectile.direction = projectile.spriteDirection = player.direction;
 
             if (reverseSide)
             {
-                value.X = -value.X;
+                desiredCenterRelative.X = -desiredCenterRelative.X;
                 //value2.X = -value2.X;
                 projectile.direction = -projectile.direction;
                 projectile.spriteDirection = -projectile.spriteDirection;
@@ -111,7 +134,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (lightPet && Main.rand.Next(24) == 0)
             {
-                Dust dust = Dust.NewDustDirect(projectile.Center + value2, 4, 4, 135, 0f, 0f, 100);
+                Dust dust = Dust.NewDustDirect(projectile.Center + dustOffset, 4, 4, 135, 0f, 0f, 100);
                 if (Main.rand.Next(3) != 0)
                 {
                     dust.noGravity = true;
@@ -137,34 +160,34 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Utils.PlotTileLine(player.Left, player.Right, 40f, DelegateMethods.CastLightOpen);
             }
 
-            Vector2 vector2 = player.MountedCenter + value;
-            float num6 = Vector2.Distance(projectile.Center, vector2);
-            if (num6 > 1000f)
+            Vector2 desiredCenter = player.MountedCenter + desiredCenterRelative;
+            float between = Vector2.Distance(projectile.Center, desiredCenter);
+            if (between > 1000f)
             {
-                projectile.Center = player.Center + value;
+                projectile.Center = player.Center + desiredCenterRelative;
             }
-            Vector2 vector3 = vector2 - projectile.Center;
-            if (num6 < num)
+            Vector2 betweenDirection = desiredCenter - projectile.Center;
+            if (between < veloDistanceChange)
             {
                 projectile.velocity *= 0.25f;
             }
-            if (vector3 != Vector2.Zero)
+            if (betweenDirection != Vector2.Zero)
             {
-                if (vector3.Length() < num * 0.5f)
+                if (betweenDirection.Length() < veloDistanceChange * 0.5f)
                 {
-                    projectile.velocity = vector3;
+                    projectile.velocity = betweenDirection;
                 }
                 else
                 {
-                    projectile.velocity = vector3 * 0.1f;
+                    projectile.velocity = betweenDirection * 0.1f;
                 }
             }
             if (projectile.velocity.Length() > 6f)
             {
-                float num7 = projectile.velocity.X * 0.08f + projectile.velocity.Y * projectile.spriteDirection * 0.02f;
-                if (Math.Abs(projectile.rotation - num7) >= 3.14159274f)
+                float rotationVelo = projectile.velocity.X * 0.08f + projectile.velocity.Y * projectile.spriteDirection * 0.02f;
+                if (Math.Abs(projectile.rotation - rotationVelo) >= 3.14159274f)
                 {
-                    if (num7 < projectile.rotation)
+                    if (rotationVelo < projectile.rotation)
                     {
                         projectile.rotation -= 6.28318548f;
                     }
@@ -173,16 +196,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         projectile.rotation += 6.28318548f;
                     }
                 }
-                float num8 = 12f;
-                projectile.rotation = (projectile.rotation * (num8 - 1f) + num7) / num8;
-                if (++projectile.frameCounter >= num3)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= Main.projFrames[projectile.type])
-                    {
-                        projectile.frame = 0;
-                    }
-                }
+                float rotationAcc = 12f;
+                projectile.rotation = (projectile.rotation * (rotationAcc - 1f) + rotationVelo) / rotationAcc;
             }
             else
             {
@@ -198,15 +213,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     projectile.rotation *= 0.96f;
                 }
-                if (++projectile.frameCounter >= num2)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= Main.projFrames[projectile.type])
-                    {
-                        projectile.frame = 0;
-                    }
-                }
             }
+
+            FlickerwickPetDraw(projectile, frameCounterMaxFar, frameCounterMaxClose);
         }
     }
 }
