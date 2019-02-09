@@ -648,27 +648,27 @@ namespace AssortedCrazyThings
 
                 SpriteEffects spriteEffects = SpriteEffects.None;
                 if (drawPlayer.gravDir == 1f)
-			     {
-				    if (drawPlayer.direction == 1)
-				    {
-					    spriteEffects = SpriteEffects.None;
-				    }
-				    else
-				    {
-					    spriteEffects = SpriteEffects.FlipHorizontally;
-				    }
-			    }
-			    else
-			    {
-				    if (drawPlayer.direction == 1)
-				    {
-					    spriteEffects = SpriteEffects.FlipVertically;
-				    }
-				    else
-				    {
-					    spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
-				    }
-			    }
+                {
+	                if (drawPlayer.direction == 1)
+	                {
+		                spriteEffects = SpriteEffects.None;
+	                }
+	                else
+	                {
+		                spriteEffects = SpriteEffects.FlipHorizontally;
+	                }
+                }
+                else
+                {
+	                if (drawPlayer.direction == 1)
+	                {
+		                spriteEffects = SpriteEffects.FlipVertically;
+	                }
+	                else
+	                {
+		                spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
+	                }
+                }
                 DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), new Color(255, 255, 255, 0)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
                 drawData.shader = drawInfo.wingShader;
                 Main.playerDrawData.Add(drawData);
@@ -677,20 +677,20 @@ namespace AssortedCrazyThings
                 {
                     if (Main.rand.NextBool(3))
                     {
-                        int num74 = 4;
+                        int dustOffset = 4;
                         if (drawPlayer.direction == 1)
                         {
-                            num74 = -40;
+                            dustOffset = -40;
                         }
-                        int num75 = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + num74, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 30, 135, 0f, 0f, 0, default(Color), 1.5f);
-                        Main.dust[num75].noGravity = true;
-                        Main.dust[num75].noLight = true;
-                        Main.dust[num75].velocity *= 0.3f;
+                        int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 30, 135, 0f, 0f, 0, default(Color), 1.5f);
+                        Main.dust[dustIndex].noGravity = true;
+                        Main.dust[dustIndex].noLight = true;
+                        Main.dust[dustIndex].velocity *= 0.3f;
                         if (Main.rand.NextBool(5))
                         {
-                            Main.dust[num75].fadeIn = 1f;
+                            Main.dust[dustIndex].fadeIn = 1f;
                         }
-                        Main.dust[num75].shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
+                        Main.dust[dustIndex].shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
                     }
                 }
             }
@@ -788,6 +788,8 @@ namespace AssortedCrazyThings
             PlanteraGitGudHitByProjectile(proj, ref damage, ref crit);
 
             ResetEmpoweringTimer();
+
+            SpawnSoulTemp();
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
@@ -812,20 +814,14 @@ namespace AssortedCrazyThings
 
             if (!TeleportHome(damage)) return false;
 
-            if (NPC.AnyNPCs(NPCID.Plantera))
-            {
-                planteraGitGudCounter++;
-            }
+            if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitGudCounter++;
 
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (getDefenseDuration != 0)
-            {
-                damage = 1;
-            }
+            if (getDefenseDuration != 0) damage = 1;
 
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
