@@ -110,7 +110,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             ProjectileID.Sets.Homing[projectile.type] = true;
         }
 
-        public override void SetDefaults()
+        public sealed override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.Spazmamini);
             projectile.width = 18; //14
@@ -156,7 +156,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         //    //}
         //}
 
-        public void Draw()
+        private void Draw()
         {
             if(AI_STATE == STATE_DASH)
             {
@@ -173,7 +173,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.frame++;
                 projectile.frameCounter = 0;
             }
-            if (projectile.frame > 7)
+            if (projectile.frame >= Main.projFrames[projectile.type])
             {
                 projectile.frame = 0;
             }
@@ -214,14 +214,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 X = 0,
                 Y = projectile.frame,
                 Width = image.Bounds.Width,
-                Height = image.Bounds.Height / 8
+                Height = image.Bounds.Height / Main.projFrames[projectile.type]
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
             //Generate visual dust
             if (Main.rand.NextFloat() < 0.015f)
             {
-                Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y);
+                Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2 + sinY);
                 Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
@@ -231,6 +231,28 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
                 }
+            }
+
+            //Dust upon spawning
+            if (projectile.localAI[0] < 60)
+            {
+                Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 3 + sinY);
+                for (int i = 0; i < 1; i++)
+                {
+                    if (Main.rand.NextFloat() < (60 - projectile.localAI[0]) / 360f)
+                    {
+                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, (60 - projectile.localAI[0]) / 60f + 1f);
+                        dust.noGravity = false;
+                        dust.noLight = true;
+                        dust.fadeIn = Main.rand.NextFloat(0.0f, 0.2f);
+
+                        if (dustColor != 0)
+                        {
+                            dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
+                        }
+                    }
+                }
+                projectile.localAI[0]++;
             }
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
@@ -272,32 +294,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.timeLeft = 0; //kill temporary soul when dead
             }
 
-
             if (mPlayer.soulMinion && (projectile.minionSlots == 0.5f || projectile.minionSlots == 1f)) //if spawned naturally they will have 0.5f
             {
                 projectile.timeLeft = 2;
-            }
-
-            //Dust upon spawning
-            if (projectile.localAI[0] < 60)
-            {
-                Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2);
-                for (int i = 0; i < 1; i++)
-                {
-                    if (Main.rand.NextFloat() < (60 - projectile.localAI[0])/360f)
-                    {
-                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, (60 - projectile.localAI[0]) / 60f + 1f);
-                        dust.noGravity = false;
-                        dust.noLight = true;
-                        dust.fadeIn = Main.rand.NextFloat(0.0f, 0.2f);
-
-                        if (dustColor != 0)
-                        {
-                            dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
-                        }
-                    }
-                }
-                projectile.localAI[0]++;
             }
 
             float distanceFromTarget = defdistanceFromTarget;
