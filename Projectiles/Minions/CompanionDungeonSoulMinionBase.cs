@@ -104,7 +104,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Main.projFrames[projectile.type] = 4;
+            Main.projFrames[projectile.type] = 8;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
@@ -173,7 +173,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.frame++;
                 projectile.frameCounter = 0;
             }
-            if (projectile.frame > 3)
+            if (projectile.frame > 7)
             {
                 projectile.frame = 0;
             }
@@ -214,7 +214,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 X = 0,
                 Y = projectile.frame,
                 Width = image.Bounds.Width,
-                Height = image.Bounds.Height / 4
+                Height = image.Bounds.Height / 8
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
