@@ -408,7 +408,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Gores\" />
     <Folder Include="Projectiles\Minions\SlimePackMinions\" />
+    <Folder Include="Wiki\Accessories\" />
+    <Folder Include="Wiki\Ammunition\" />
+    <Folder Include="Wiki\Armor\" />
+    <Folder Include="Wiki\BossSummons\" />
+    <Folder Include="Wiki\Consumables\" />
+    <Folder Include="Wiki\Materials\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
