@@ -713,6 +713,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryMetalHelmet : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight Helmet");
+            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryWizardHat : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Wizard Hat");
+            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
     public class PetAccessoryXmasHatRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -843,6 +871,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffSapphire",
                 "PetAccessoryStaffTopaz",
 
+                "PetAccessoryMetalHelmet",
+				
+                "PetAccessoryWizardHat",
+				
                 "PetAccessoryXmasHatRed",
                 "PetAccessoryXmasHatGreen",
             };
@@ -933,6 +965,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
 
+            Add(name: "PetAccessoryMetalHelmet", offsetY: -4f, useNoHair: true);
+			
+            Add(name: "PetAccessoryWizardHat", offsetY: -12f, useNoHair: true);
+            AddAltTextures(name: "PetAccessoryWizardHat",
+            black: 2,
+            blue: 1,
+            green: 1,
+            pink: 2,
+            purple: 2,
+            rainbow: 1,
+            red: 1,
+            //xmas: 0,
+            yellow: 1);
+			
             Add(name: "PetAccessoryXmasHatGreen", offsetY: -13f, useNoHair: true); //-13f, -8f for proper xmas hat tho
             AddAltTextures(name: "PetAccessoryXmasHatGreen",
             black: 1,
