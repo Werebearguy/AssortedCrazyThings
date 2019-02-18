@@ -68,7 +68,6 @@ namespace AssortedCrazyThings.Items
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        Main.NewText("toggled crown to " + !mPlayer.mechFrogCrown);
                         mPlayer.mechFrogCrown = !mPlayer.mechFrogCrown;
                         //pet projectile then checks in PreDraw for that bool
 

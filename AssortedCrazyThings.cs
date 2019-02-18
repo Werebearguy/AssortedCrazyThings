@@ -208,16 +208,16 @@ namespace AssortedCrazyThings
                 case AssMessageType.SendClientChanges:
                     playernumber = reader.ReadByte();
 
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        Main.NewText("recv sendclientchanges from " + playernumber);
-                    }
+                    //if (Main.netMode == NetmodeID.MultiplayerClient)
+                    //{
+                    //    Main.NewText("recv sendclientchanges from " + playernumber);
+                    //}
                     mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
                     mPlayer.mechFrogCrown = reader.ReadBoolean();
                     // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("server send SendClientChanges from " + playernumber), new Color(255, 25, 25));
+                        //NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("server send SendClientChanges from " + playernumber), new Color(255, 25, 25));
                         ModPacket packet = GetPacket();
                         packet.Write((byte)AssMessageType.SendClientChanges);
                         packet.Write(playernumber);

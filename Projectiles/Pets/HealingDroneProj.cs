@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         private void CustomAI()
         {
             Player player = Main.player[projectile.owner];
-            Sincounter = Sincounter > 120 ? 0 : Sincounter + 1;
+            Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
             //Sincounter = 0;
             sinY = (float)((Math.Sin((Sincounter / 120f) * 2 * Math.PI) - 1) * 4);
             //sinY = 0f;
@@ -156,13 +156,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 if (canShoot && shootOrigin.Y < target.Y) //when target below drone
                 {
-                    if (Sincounter % 60 == 30) //only shoot once a second, when target below drone and when turret aligned properly
+                    if (Sincounter % 80 == 30) //only shoot once a second, when target below drone and when turret aligned properly
                     {
-                        int heal = 2;
+                        int heal = 1;
                         player.statLife += heal;
                         player.HealEffect(heal);
                     }
-                    if (Sincounter % 60 == 35)
+                    if (Sincounter % 80 == 35)
                     {
                         QuickDustLine(shootOrigin, target, between.Length() / 3, Color.White, Vector2.Zero);
                     }
