@@ -18,10 +18,10 @@ namespace AssortedCrazyThings.Buffs
         {
             player.buffTime[buffIndex] = 18000;
             player.GetModPlayer<PetPlayer>(mod).QueenLarva = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<QueenLarva>()] <= 0;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<QueenLarvaProj>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<QueenLarva>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<QueenLarvaProj>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

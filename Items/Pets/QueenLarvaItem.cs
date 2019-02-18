@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("QueenLarva");
+            item.shoot = mod.ProjectileType("QueenLarvaProj");
             item.buffType = mod.BuffType("QueenLarvaBuff");
             item.width = 28;
             item.height = 32;

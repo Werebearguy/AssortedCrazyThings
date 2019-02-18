@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class QueenLarva : ModProjectile
+    public class QueenLarvaProj : ModProjectile
     {
         private int sincounter;
 
