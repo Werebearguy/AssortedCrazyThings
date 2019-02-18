@@ -14,7 +14,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetStaticDefaults()
         {
-            //I didnt change anything regarding ai, so this is a straight up clone of this https://terraria.gamepedia.com/Creeper_Egg
             DisplayName.SetDefault("Companion Soul");
             Main.projFrames[projectile.type] = 4;
             Main.projPet[projectile.type] = true;
@@ -76,6 +75,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
 
                 FlickerwickPetAI(projectile);
+
+                FlickerwickPetDraw(projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
             }
         }
 
@@ -106,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
 
         //
-        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool reverseSide = false, bool vanityPet = false, float offsetX = 0f, float offsetY = 0f, int frameCounterMaxClose = 10, int frameCounterMaxFar = 4)
+        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float offsetX = 0f, float offsetY = 0f)
         {
             Player player = Main.player[projectile.owner];
             float veloDistanceChange = 6f;
@@ -132,7 +133,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.spriteDirection = -projectile.spriteDirection;
             }
 
-            if (lightPet && Main.rand.Next(24) == 0)
+            if (lightDust && Main.rand.Next(24) == 0)
             {
                 Dust dust = Dust.NewDustDirect(projectile.Center + dustOffset, 4, 4, 135, 0f, 0f, 100);
                 if (Main.rand.Next(3) != 0)
@@ -184,7 +185,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (projectile.velocity.Length() > 6f)
             {
-                float rotationVelo = projectile.velocity.X * 0.08f + projectile.velocity.Y * projectile.spriteDirection * 0.02f;
+                float rotationVelo = projectile.velocity.X * 0.08f * veloXToRotationFactor + projectile.velocity.Y * projectile.spriteDirection * 0.02f;
                 if (Math.Abs(projectile.rotation - rotationVelo) >= 3.14159274f)
                 {
                     if (rotationVelo < projectile.rotation)
@@ -214,8 +215,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     projectile.rotation *= 0.96f;
                 }
             }
-
-            FlickerwickPetDraw(projectile, frameCounterMaxFar, frameCounterMaxClose);
         }
     }
 }

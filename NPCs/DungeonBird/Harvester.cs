@@ -275,7 +275,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            AssWorld.downedHarvester = true;
+            if (!AssWorld.downedHarvester)
+            {
+                AssWorld.downedHarvester = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+                }
+            }
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
