@@ -113,7 +113,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             
             if(player.statLife < player.statLifeMax2 / 2)
             {
-                Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 8f) + sinY);
+                Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
