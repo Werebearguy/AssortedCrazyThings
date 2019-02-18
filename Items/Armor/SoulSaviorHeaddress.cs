@@ -40,6 +40,9 @@ namespace AssortedCrazyThings.Items.Armor
         {
             Lighting.AddLight(player.Center, new Vector3(0.05f, 0.05f, 0.15f));
 
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            mPlayer.soulSaviorArmor = true;
+
             float minionFactor = (player.maxMinions >= player.slotsMinions) ? player.maxMinions : player.slotsMinions;
             float factor = (minionFactor / 10f) * player.minionDamage;
 
@@ -63,7 +66,8 @@ namespace AssortedCrazyThings.Items.Armor
             //player.GetModPlayer<AssPlayer>().soulSaviorArmor = true;
 
             //TODO something shorter, also update it in the changelog and in the armor section
-            player.setBonus = "Reflects 10% contact damage per available minion slot"
+            player.setBonus = "Empowers minions summoned by Everhallowed Lantern"
+                +"\nReflects 10% contact damage per available minion slot"
                 +"\nReflected damage further increased by effects that increase minion damage"
                 +"\nCurrent reflected damage: " + (int)(factor * 100) + "%";
         }

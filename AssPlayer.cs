@@ -600,7 +600,7 @@ namespace AssortedCrazyThings
                 //}
             }
         }
-        
+
         public static readonly PlayerLayer SlimeHandlerKnapsack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f)

@@ -49,6 +49,13 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool CanUseItem(Player player)
         {
+            if (!Main.hardMode && player.itemTime == 0)
+            {
+                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
+                 CombatText.DamagedFriendly, "Only usable in a hardmode world");
+                return false;
+            }
+
             if (player.altFunctionUse == 2 && player.itemTime == 0 && player.whoAmI == Main.myPlayer)
             {
                 AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
@@ -127,6 +134,8 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 tooltips.Add(new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
             }
+
+            tooltips.Add(new TooltipLine(mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
         }
 
         public override void AddRecipes()

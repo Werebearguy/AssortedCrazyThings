@@ -209,7 +209,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Minions/"+ Name);// Main.projectileTexture[projectile.type];
-            Rectangle bounds = new Rectangle
+
+            AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
+            if (mPlayer.soulSaviorArmor && projectile.minionSlots == 1f)
+            {
+                image = mod.GetTexture("Projectiles/Minions/" + Name + "_Empowered");
+            }
+             Rectangle bounds = new Rectangle
             {
                 X = 0,
                 Y = projectile.frame,
@@ -258,6 +264,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 10f) + sinY);
 
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+        }
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
+            if (mPlayer.soulSaviorArmor)
+            {
+                damage = (int)(1.3f * damage);
+            }
         }
 
         private const float STATE_MAIN = 0f;
