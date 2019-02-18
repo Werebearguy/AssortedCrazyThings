@@ -65,11 +65,10 @@ namespace AssortedCrazyThings.Items
 
                 if (frogIndex != -1 && Main.projectile[frogIndex].active && Main.projectile[frogIndex].owner == Main.myPlayer && Main.projectile[frogIndex].type == mod.ProjectileType<LifelikeMechanicalFrog>())
                 {
-                    MiscGlobalProj gProjectile = Main.projectile[frogIndex].GetGlobalProjectile<MiscGlobalProj>(mod);
-
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
                     {
+                        Main.NewText("toggled crown to " + !mPlayer.mechFrogCrown);
                         mPlayer.mechFrogCrown = !mPlayer.mechFrogCrown;
                         //pet projectile then checks in PreDraw for that bool
 
@@ -81,11 +80,6 @@ namespace AssortedCrazyThings.Items
                             dust = Main.dust[Dust.NewDust(Main.projectile[frogIndex].position, 18, 28, 204, Main.projectile[frogIndex].velocity.X * factor, Main.projectile[frogIndex].velocity.Y * factor, 0, new Color(255, 255, 255), 0.8f)];
                             dust.noGravity = true;
                             dust.noLight = true;
-                        }
-
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            //mPlayer.SendRedrawPetAccessories();
                         }
                     }
                 }

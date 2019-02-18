@@ -102,10 +102,16 @@ namespace AssortedCrazyThings
             //// Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
             //clone.petIndex = petIndex;
             //clone.slotsPlayer = slotsPlayer;
+
+            AssPlayer clone = clientClone as AssPlayer;
+            // Here we would make a backup clone of values that are only correct on the local players Player instance.
+            // Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
+            clone.mechFrogCrown = mechFrogCrown;
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
+            //like OnEnterWorld but serverside
             short[] indexes = new short[1000];
             byte[] textures = new byte[1000];
             short arrayLength = 0;
@@ -122,7 +128,9 @@ namespace AssortedCrazyThings
             Array.Resize(ref textures, arrayLength + 1);
 
             ModPacket packet = mod.GetPacket();
-            packet.Write((byte)AssMessageType.SyncKnapSackSlimeTextureOnEnterWorld);
+            packet.Write((byte)AssMessageType.OnEnterWorld);
+            packet.Write(player.whoAmI);
+            packet.Write(mechFrogCrown);
             packet.Write(arrayLength);
             //Console.WriteLine(arrayLength);
             for (int i = 0; i < arrayLength; i++)
@@ -163,6 +171,17 @@ namespace AssortedCrazyThings
             //    packet.Write(slotsPlayer);
             //    packet.Send();
             //}
+
+            AssPlayer clone = clientPlayer as AssPlayer;
+            if (clone.mechFrogCrown != mechFrogCrown)
+            {
+                // Send a Mod Packet with the changes.
+                ModPacket packet = mod.GetPacket();
+                packet.Write((byte)AssMessageType.SendClientChanges);
+                packet.Write((byte)player.whoAmI);
+                packet.Write(mechFrogCrown);
+                packet.Send();
+            }
         }
 
         public void SendRedrawPetAccessories(int toClient = -1, int ignoreClient = -1)

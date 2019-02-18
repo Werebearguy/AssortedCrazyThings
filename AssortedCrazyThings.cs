@@ -1,11 +1,13 @@
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Pets;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -159,6 +161,8 @@ namespace AssortedCrazyThings
             short knapSackSlimeIndex;
             int arrayLength;
             byte knapSackSlimeTexture;
+            byte playernumber;
+            AssPlayer mPlayer;
 
             switch (msgType)
             {
@@ -167,8 +171,6 @@ namespace AssortedCrazyThings
                     {
                         knapSackSlimeIndex = reader.ReadInt16();
                         knapSackSlimeTexture = reader.ReadByte();
-                        //Main.NewText("recv SyncKnapSackSlimeTexture with " + knapSackSlimeIndex + " " + knapSackSlimeTexture);
-                        //Main.NewText("active: " + Main.projectile[knapSackSlimeIndex].active);
                         if (Main.projectile[knapSackSlimeIndex].type == ProjectileType<SlimePackMinion>())
                         {
                             Main.projectile[knapSackSlimeIndex].localAI[1] = knapSackSlimeTexture;
@@ -176,9 +178,13 @@ namespace AssortedCrazyThings
                     }
                     break;
 
-                case AssMessageType.SyncKnapSackSlimeTextureOnEnterWorld:
+                case AssMessageType.OnEnterWorld:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
+                        playernumber = reader.ReadByte();
+                        mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
+                        mPlayer.mechFrogCrown = reader.ReadBoolean();
+
                         arrayLength = reader.ReadInt16();
                         //Main.NewText(arrayLength);
                         short[] indexes = new short[arrayLength];
@@ -197,6 +203,26 @@ namespace AssortedCrazyThings
                                 Main.projectile[indexes[i]].localAI[1] = textures[i];
                             }
                         }
+                    }
+                    break;
+                case AssMessageType.SendClientChanges:
+                    playernumber = reader.ReadByte();
+
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        Main.NewText("recv sendclientchanges from " + playernumber);
+                    }
+                    mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
+                    mPlayer.mechFrogCrown = reader.ReadBoolean();
+                    // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("server send SendClientChanges from " + playernumber), new Color(255, 25, 25));
+                        ModPacket packet = GetPacket();
+                        packet.Write((byte)AssMessageType.SendClientChanges);
+                        packet.Write(playernumber);
+                        packet.Write(mPlayer.mechFrogCrown);
+                        packet.Send(-1, playernumber);
                     }
                     break;
                 default:
@@ -367,6 +393,6 @@ namespace AssortedCrazyThings
         SendClientChanges,
         SyncPlayer,
         SyncKnapSackSlimeTexture,
-        SyncKnapSackSlimeTextureOnEnterWorld
+        OnEnterWorld
     }
 }

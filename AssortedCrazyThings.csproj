@@ -366,7 +366,7 @@
     <Compile Include="Projectiles\Pets\OrigamiCrane.cs" />
     <Compile Include="Projectiles\Pets\Pigronata.cs" />
     <Compile Include="Projectiles\Pets\HealingDroneProj.cs" />
-    <Compile Include="Projectiles\Pets\QueenLarva.cs" />
+    <Compile Include="Projectiles\Pets\QueenLarvaProj.cs" />
     <Compile Include="Projectiles\Pets\SmallMegalodon.cs" />
     <Compile Include="Projectiles\Pets\TorturedSoul.cs" />
     <Compile Include="Projectiles\Pets\VampireBat.cs" />
