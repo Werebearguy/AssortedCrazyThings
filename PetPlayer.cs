@@ -60,6 +60,7 @@ namespace AssortedCrazyThings
         public bool SoulLightPet2 = false;
         public bool DocileDemonEye = false;
         public bool QueenLarva = false;
+        public bool HealingDrone = false;
 
         public override void ResetEffects()
 		{
@@ -119,6 +120,7 @@ namespace AssortedCrazyThings
             SoulLightPet2 = false;
             DocileDemonEye = false;
             QueenLarva = false;
+            HealingDrone = false;
         }	
 	}
 }

@@ -40,6 +40,7 @@
     <Compile Include="Buffs\BipolarBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulPetBuff2.cs" />
     <Compile Include="Buffs\PigronataBuff.cs" />
+    <Compile Include="Buffs\HealingDroneBuff.cs" />
     <Compile Include="Buffs\QueenLarvaBuff.cs" />
     <Compile Include="Buffs\SlimePackMinionBuff.cs" />
     <Compile Include="Buffs\CompanionDungeonSoulMinionBuff.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\Pets\CompanionDungeonSoulPetItem2.cs" />
     <Compile Include="Items\Pets\PigronataItem.cs" />
+    <Compile Include="Items\Pets\HealingDroneItem.cs" />
     <Compile Include="Items\Pets\QueenLarvaItem.cs" />
     <Compile Include="Items\Placeable\SlimeBeaconItem.cs" />
     <Compile Include="Items\TinyFrogCrown.cs" />
@@ -363,6 +365,7 @@
     <Compile Include="Projectiles\Pets\MiniMegalodon.cs" />
     <Compile Include="Projectiles\Pets\OrigamiCrane.cs" />
     <Compile Include="Projectiles\Pets\Pigronata.cs" />
+    <Compile Include="Projectiles\Pets\HealingDroneProj.cs" />
     <Compile Include="Projectiles\Pets\QueenLarva.cs" />
     <Compile Include="Projectiles\Pets\SmallMegalodon.cs" />
     <Compile Include="Projectiles\Pets\TorturedSoul.cs" />
