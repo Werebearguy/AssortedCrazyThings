@@ -4,11 +4,12 @@ using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace AssortedCrazyThings
 {
@@ -33,6 +34,11 @@ namespace AssortedCrazyThings
 
         //Soul NPC spawn blacklist
         public static int[] soulBuffBlacklist;
+
+        // UI stuff
+        internal static UserInterface AmmoboxAmmoSwapInterface;
+        internal static AmmoSelectorUI AmmoboxSwapUI;
+        internal static ModHotKey AmmoboxAmmoSwapHotkey;
 
         private void InitPets()
         {
@@ -118,11 +124,26 @@ namespace AssortedCrazyThings
             Array.Resize(ref soulBuffBlacklist, index + 1);
         }
 
+        private void LoadUI()
+        {
+            AmmoboxAmmoSwapHotkey = RegisterHotKey("Switch between ammo", "C");
+
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                AmmoboxSwapUI = new AmmoSelectorUI();
+                AmmoboxSwapUI.Activate();
+                AmmoboxAmmoSwapInterface = new UserInterface();
+                AmmoboxAmmoSwapInterface.SetState(AmmoboxSwapUI);
+            }
+        }
+
         public override void Load()
         {
             InitPets();
 
             InitSoulBuffBlacklist();
+
+            LoadUI();
 
             if (!Main.dedServ && Main.netMode != 2)
             {
@@ -135,11 +156,16 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
+            PetAccessory.Unload();
+
             if (!Main.dedServ && Main.netMode != 2)
             {
-                PetAccessory.Unload();
                 animatedSoulTextures = null;
             }
+
+            AmmoboxAmmoSwapInterface = null;
+            AmmoboxSwapUI = null;
+            AmmoboxAmmoSwapHotkey = null;
         }
 
         public override void PostSetupContent()
@@ -152,6 +178,85 @@ namespace AssortedCrazyThings
             {
                 //5.1f means just after skeletron
                 bossChecklist.Call("AddMiniBossWithInfo", NPCs.DungeonBird.Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<Items.IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+            }
+        }
+
+        public override void UpdateUI(GameTime gameTime)
+        {
+            if (AmmoSelectorUI.visible && AmmoboxSwapUI != null)
+            {
+                AmmoboxSwapUI.Update(gameTime);
+            }
+            if (AmmoboxAmmoSwapHotkey.JustPressed) Main.NewText("HotKeyPressed");
+            if (AmmoboxAmmoSwapHotkey.JustReleased) Main.NewText("HotKeyReleased");
+            Main.NewText("visible: " + AmmoSelectorUI.visible);
+
+            if (AmmoboxAmmoSwapHotkey.JustPressed && true && AmmoSelectorUI.itemAllowed)
+            {
+                //  Spawn ammo selector
+                //Main.NewText("test");
+                AmmoboxSwapUI.UpdateAmmoTypeList();
+                AmmoSelectorUI.currentFirstAmmoType = Main.LocalPlayer.inventory[54].type;
+                AmmoSelectorUI.visible = true;
+                AmmoSelectorUI.spawnPosition = Main.MouseScreen;
+                AmmoSelectorUI.leftCorner = Main.MouseScreen - new Vector2(AmmoSelectorUI.mainRadius, AmmoSelectorUI.mainRadius);
+            }
+            else if (AmmoboxAmmoSwapHotkey.JustReleased && AmmoSelectorUI.visible)
+            {
+                //  Destroy ammo selector
+                Main.NewText("ammo selector closing");
+                //  Switch selected ammo
+                if (AmmoSelectorUI.selectedAmmoType != -1)
+                {
+                    List<Tuple<int, int>> available = new List<Tuple<int, int>>();
+                    //  Basic belt
+                    for (int i = 54; i <= 57; i++)
+                    {
+                        if (Main.LocalPlayer.inventory[i].type == AmmoSelectorUI.selectedAmmoType)
+                        {
+                            //  Add pairs slotID - stackSize of chosen ammo
+                            available.Add(new Tuple<int, int>(i, Main.LocalPlayer.inventory[i].stack));
+                        }
+                    }
+                    //  Lihzahrd belt
+                    if (false) //true
+                    {
+                        for (int j = 0; j < 54; j++)
+                        {
+                            if (Main.LocalPlayer.inventory[j].type == AmmoSelectorUI.selectedAmmoType)
+                            {
+                                available.Add(new Tuple<int, int>(j, Main.LocalPlayer.inventory[j].stack));
+                            }
+                        }
+                    }
+
+                    Tuple<int, int> chosen = available[0];
+                    //  Prioritize larger stacks for switching
+                    foreach (Tuple<int, int> tuple in available)
+                    {
+                        if (tuple.Item2 > chosen.Item2)
+                        {
+                            chosen = tuple;
+                        }
+                    }
+
+                    //  Switch ammo stacks
+                    //  Save first stack
+                    Item temp = Main.LocalPlayer.inventory[54];
+                    Item chosenItem = Main.LocalPlayer.inventory[chosen.Item1];
+                    Main.LocalPlayer.inventory[54] = chosenItem;
+                    Main.LocalPlayer.inventory[chosen.Item1] = temp;
+                }
+
+                AmmoSelectorUI.currentFirstAmmoType = -1;
+                AmmoSelectorUI.selectedAmmoType = -1;
+                AmmoSelectorUI.visible = false;
+                AmmoboxSwapUI.Update(gameTime);
+                //  Set amount of circles drawn to -1
+                AmmoSelectorUI.circleAmount = -1;
+                //  Clear ammo types already in the list
+                AmmoSelectorUI.ammoTypes.Clear();
+                AmmoSelectorUI.ammoCount.Clear();
             }
         }
 

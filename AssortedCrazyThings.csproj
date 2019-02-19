@@ -97,6 +97,7 @@
     <Compile Include="Buffs\VampireBat.cs" />
     <Compile Include="Buffs\YoungHarpy.cs" />
     <Compile Include="Buffs\YoungWyvern.cs" />
+    <Compile Include="AmmoSelectorUI.cs" />
     <Compile Include="Items\Accessories\Useful\AnomalousWings.cs" />
     <Compile Include="Items\Accessories\Useful\BipolarCandleInABalloon.cs" />
     <Compile Include="Items\Accessories\Useful\BottledDreams.cs" />

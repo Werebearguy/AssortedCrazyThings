@@ -35,6 +35,19 @@ namespace AssortedCrazyThings.Items
             }
         }
 
+        public override void HoldItem(Item item, Player player)
+        {
+            AmmoSelectorUI.heldItemType = item.type;
+            if (item.ranged && item.useAmmo != 0)
+            {
+                AmmoSelectorUI.itemAllowed = true;
+            }
+            else
+            {
+                AmmoSelectorUI.itemAllowed = false;
+            }
+        }
+
         public override bool CanUseItem(Item item, Player player)
         {
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
