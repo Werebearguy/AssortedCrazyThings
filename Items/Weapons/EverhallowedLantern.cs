@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             if (!Main.hardMode && player.itemTime == 0)
             {
-                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
+                if(player.altFunctionUse != 2) CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
                  CombatText.DamagedFriendly, "Only usable in a hardmode world");
                 return false;
             }

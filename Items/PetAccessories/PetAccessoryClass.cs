@@ -1008,10 +1008,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public static void Unload()
         {
-            Texture = null;
-            Offset = null;
-            InternalMod = null;
-            addCounter = 0;
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                Texture = null;
+                Offset = null;
+                InternalMod = null;
+                addCounter = 0;
+            }
         }
 
 
