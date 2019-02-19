@@ -158,7 +158,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         private void Draw()
         {
-            if(AI_STATE == STATE_DASH)
+            if (AI_STATE == STATE_DASH)
             {
                 projectile.rotation = projectile.velocity.X * 0.05f;
             }
@@ -228,7 +228,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (Main.rand.NextFloat() < 0.015f)
             {
                 Vector2 position = new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2 + sinY);
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, 1f);
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, 1f);
                 dust.noGravity = false;
                 dust.noLight = true;
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
@@ -247,7 +247,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     if (Main.rand.NextFloat() < (60 - projectile.localAI[0]) / 360f)
                     {
-                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 100, Color.White, (60 - projectile.localAI[0]) / 60f + 1f);
+                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, (60 - projectile.localAI[0]) / 60f + 1f);
                         dust.noGravity = false;
                         dust.noLight = true;
                         dust.fadeIn = Main.rand.NextFloat(0.0f, 0.2f);

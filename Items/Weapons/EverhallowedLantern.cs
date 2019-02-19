@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Items.Weapons
             DisplayName.SetDefault("Everhallowed Lantern");
             //"Summons a Soul to fight for you" is changed for the appropriate type in ModifyTooltips
             Tooltip.SetDefault("Summons a Soul to fight for you"
-                + "\nRight click to cycle through available forms");
+                + "\nRight click to pick from available forms");
         }
 
         public override void SetDefaults()
@@ -42,51 +42,10 @@ namespace AssortedCrazyThings.Items.Weapons
             item.buffTime = 3600;
         }
 
-        public override bool AltFunctionUse(Player player)
-        {
-            return false;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            //if (!Main.hardMode && player.itemTime == 0)
-            //{
-            //    if (player.altFunctionUse != 2) CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
-            //     CombatText.DamagedFriendly, "Only usable in a hardmode world");
-            //    return false;
-            //}
-
-            if (player.altFunctionUse == 2 && player.itemTime == 0 && player.whoAmI == Main.myPlayer)
-            {
-                AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
-                CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(mod, mPlayer.CycleSoulType()); //<- switch here
-                item.damage = stats.Damage;
-                item.shoot = stats.Type;
-                item.knockBack = stats.Knockback;
-
-                CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                if(soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
-                {
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
-                        CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
-                }
-                else
-                {
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
-                        CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
-                }
-                return true;
-            }
-            return true;
-        }
-
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (player.altFunctionUse != 2)
-            {
-                AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
-                mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
-            }
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
             return false;
         }
 
@@ -141,7 +100,7 @@ namespace AssortedCrazyThings.Items.Weapons
             recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.AddIngredient(ItemID.SoulofLight, 5);
             recipe.AddIngredient(mod.ItemType<EverglowLantern>(), 1);
-            recipe.AddTile(TileID.Anvils);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

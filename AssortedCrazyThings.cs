@@ -41,7 +41,7 @@ namespace AssortedCrazyThings
         // UI stuff
         internal static UserInterface AmmoboxAmmoSwapInterface;
         internal static AmmoSelectorUI AmmoboxSwapUI;
-        internal static ModHotKey AmmoboxAmmoSwapHotkey;
+        //internal static ModHotKey AmmoboxAmmoSwapHotkey;
 
         internal static UserInterface EverhallowedLanternSwapInterface;
         internal static EverhallowedLanternUI EverhallowedLanternSwapUI;
@@ -70,7 +70,7 @@ namespace AssortedCrazyThings
 
             if (!Main.dedServ && Main.netMode != 2)
             {
-                PetAccessory.Load(this);
+                PetAccessory.Load();
             }
         }
 
@@ -132,7 +132,7 @@ namespace AssortedCrazyThings
 
         private void LoadUI()
         {
-            AmmoboxAmmoSwapHotkey = RegisterHotKey("Switch between ammo", "C");
+            //AmmoboxAmmoSwapHotkey = RegisterHotKey("Switch between ammo", "C");
 
             if (!Main.dedServ && Main.netMode != 2)
             {
@@ -154,7 +154,7 @@ namespace AssortedCrazyThings
             {
                 AmmoboxAmmoSwapInterface = null;
                 AmmoboxSwapUI = null;
-                AmmoboxAmmoSwapHotkey = null;
+                //AmmoboxAmmoSwapHotkey = null;
 
                 EverhallowedLanternSwapInterface = null;
                 EverhallowedLanternSwapUI = null;
@@ -209,81 +209,81 @@ namespace AssortedCrazyThings
 
         private void UpdateAmmoBoxUI(GameTime gameTime)
         {
-            if (AmmoSelectorUI.visible && AmmoboxSwapUI != null)
-            {
-                AmmoboxSwapUI.Update(gameTime);
-            }
-            if (AmmoboxAmmoSwapHotkey.JustPressed) Main.NewText("HotKeyPressed");
-            if (AmmoboxAmmoSwapHotkey.JustReleased) Main.NewText("HotKeyReleased");
-            //Main.NewText("visible: " + AmmoSelectorUI.visible);
+        //    if (AmmoSelectorUI.visible && AmmoboxSwapUI != null)
+        //    {
+        //        AmmoboxSwapUI.Update(gameTime);
+        //    }
+        //    if (AmmoboxAmmoSwapHotkey.JustPressed) Main.NewText("HotKeyPressed");
+        //    if (AmmoboxAmmoSwapHotkey.JustReleased) Main.NewText("HotKeyReleased");
+        //    //Main.NewText("visible: " + AmmoSelectorUI.visible);
 
-            if (AmmoboxAmmoSwapHotkey.JustPressed && true && AmmoSelectorUI.itemAllowed)
-            {
-                //  Spawn ammo selector
-                //Main.NewText("test");
-                AmmoboxSwapUI.UpdateAmmoTypeList();
-                AmmoSelectorUI.currentFirstAmmoType = Main.LocalPlayer.inventory[54].type;
-                AmmoSelectorUI.visible = true;
-                AmmoSelectorUI.spawnPosition = Main.MouseScreen;
-                AmmoSelectorUI.leftCorner = Main.MouseScreen - new Vector2(AmmoSelectorUI.mainRadius, AmmoSelectorUI.mainRadius);
-            }
-            else if (AmmoboxAmmoSwapHotkey.JustReleased && AmmoSelectorUI.visible)
-            {
-                //  Destroy ammo selector
-                Main.NewText("ammo selector closing");
-                //  Switch selected ammo
-                if (AmmoSelectorUI.selectedAmmoType != -1)
-                {
-                    List<Tuple<int, int>> available = new List<Tuple<int, int>>();
-                    //  Basic belt
-                    for (int i = 54; i <= 57; i++)
-                    {
-                        if (Main.LocalPlayer.inventory[i].type == AmmoSelectorUI.selectedAmmoType)
-                        {
-                            //  Add pairs slotID - stackSize of chosen ammo
-                            available.Add(new Tuple<int, int>(i, Main.LocalPlayer.inventory[i].stack));
-                        }
-                    }
-                    //  Lihzahrd belt
-                    if (false) //true
-                    {
-                        for (int j = 0; j < 54; j++)
-                        {
-                            if (Main.LocalPlayer.inventory[j].type == AmmoSelectorUI.selectedAmmoType)
-                            {
-                                available.Add(new Tuple<int, int>(j, Main.LocalPlayer.inventory[j].stack));
-                            }
-                        }
-                    }
+        //    if (AmmoboxAmmoSwapHotkey.JustPressed && true && AmmoSelectorUI.itemAllowed)
+        //    {
+        //        //  Spawn ammo selector
+        //        //Main.NewText("test");
+        //        AmmoboxSwapUI.UpdateAmmoTypeList();
+        //        AmmoSelectorUI.currentFirstAmmoType = Main.LocalPlayer.inventory[54].type;
+        //        AmmoSelectorUI.visible = true;
+        //        AmmoSelectorUI.spawnPosition = Main.MouseScreen;
+        //        AmmoSelectorUI.leftCorner = Main.MouseScreen - new Vector2(AmmoSelectorUI.mainRadius, AmmoSelectorUI.mainRadius);
+        //    }
+        //    else if (AmmoboxAmmoSwapHotkey.JustReleased && AmmoSelectorUI.visible)
+        //    {
+        //        //  Destroy ammo selector
+        //        Main.NewText("ammo selector closing");
+        //        //  Switch selected ammo
+        //        if (AmmoSelectorUI.selectedAmmoType != -1)
+        //        {
+        //            List<Tuple<int, int>> available = new List<Tuple<int, int>>();
+        //            //  Basic belt
+        //            for (int i = 54; i <= 57; i++)
+        //            {
+        //                if (Main.LocalPlayer.inventory[i].type == AmmoSelectorUI.selectedAmmoType)
+        //                {
+        //                    //  Add pairs slotID - stackSize of chosen ammo
+        //                    available.Add(new Tuple<int, int>(i, Main.LocalPlayer.inventory[i].stack));
+        //                }
+        //            }
+        //            //  Lihzahrd belt
+        //            if (false) //true
+        //            {
+        //                for (int j = 0; j < 54; j++)
+        //                {
+        //                    if (Main.LocalPlayer.inventory[j].type == AmmoSelectorUI.selectedAmmoType)
+        //                    {
+        //                        available.Add(new Tuple<int, int>(j, Main.LocalPlayer.inventory[j].stack));
+        //                    }
+        //                }
+        //            }
 
-                    Tuple<int, int> chosen = available[0];
-                    //  Prioritize larger stacks for switching
-                    foreach (Tuple<int, int> tuple in available)
-                    {
-                        if (tuple.Item2 > chosen.Item2)
-                        {
-                            chosen = tuple;
-                        }
-                    }
+        //            Tuple<int, int> chosen = available[0];
+        //            //  Prioritize larger stacks for switching
+        //            foreach (Tuple<int, int> tuple in available)
+        //            {
+        //                if (tuple.Item2 > chosen.Item2)
+        //                {
+        //                    chosen = tuple;
+        //                }
+        //            }
 
-                    //  Switch ammo stacks
-                    //  Save first stack
-                    Item temp = Main.LocalPlayer.inventory[54];
-                    Item chosenItem = Main.LocalPlayer.inventory[chosen.Item1];
-                    Main.LocalPlayer.inventory[54] = chosenItem;
-                    Main.LocalPlayer.inventory[chosen.Item1] = temp;
-                }
+        //            //  Switch ammo stacks
+        //            //  Save first stack
+        //            Item temp = Main.LocalPlayer.inventory[54];
+        //            Item chosenItem = Main.LocalPlayer.inventory[chosen.Item1];
+        //            Main.LocalPlayer.inventory[54] = chosenItem;
+        //            Main.LocalPlayer.inventory[chosen.Item1] = temp;
+        //        }
 
-                AmmoSelectorUI.currentFirstAmmoType = -1;
-                AmmoSelectorUI.selectedAmmoType = -1;
-                AmmoSelectorUI.visible = false;
-                AmmoboxSwapUI.Update(gameTime);
-                //  Set amount of circles drawn to -1
-                AmmoSelectorUI.circleAmount = -1;
-                //  Clear ammo types already in the list
-                AmmoSelectorUI.ammoTypes.Clear();
-                AmmoSelectorUI.ammoCount.Clear();
-            }
+        //        AmmoSelectorUI.currentFirstAmmoType = -1;
+        //        AmmoSelectorUI.selectedAmmoType = -1;
+        //        AmmoSelectorUI.visible = false;
+        //        AmmoboxSwapUI.Update(gameTime);
+        //        //  Set amount of circles drawn to -1
+        //        AmmoSelectorUI.circleAmount = -1;
+        //        //  Clear ammo types already in the list
+        //        AmmoSelectorUI.ammoTypes.Clear();
+        //        AmmoSelectorUI.ammoCount.Clear();
+        //    }
         }
 
         private void UpdateEverhallowedLanternStats(int selectedSoulType)
@@ -316,11 +316,6 @@ namespace AssortedCrazyThings
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
-            //if (EverhallowedLanternUI.visible && EverhallowedLanternSwapUI != null)
-            //{
-            //    //EverhallowedLanternSwapUI.Update(gameTime);
-            //}
-
             if (mPlayer.RightClickPressed && Main.LocalPlayer.HeldItem.type == ItemType<Items.Weapons.EverhallowedLantern>())
             {
                 //  Spawn ammo selector
@@ -332,11 +327,11 @@ namespace AssortedCrazyThings
                 EverhallowedLanternUI.spawnPosition = Main.MouseScreen;
                 EverhallowedLanternUI.leftCorner = Main.MouseScreen - new Vector2(EverhallowedLanternUI.mainRadius, EverhallowedLanternUI.mainRadius);
             }
-
             else if (mPlayer.RightClickReleased && EverhallowedLanternUI.visible)
             {
                 if (EverhallowedLanternUI.selectedSoulMinionType != -1 && mPlayer.selectedSoulMinionType != EverhallowedLanternUI.selectedSoulMinionType)
                 {
+                    Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
                     mPlayer.selectedSoulMinionType = EverhallowedLanternUI.selectedSoulMinionType;
                     UpdateEverhallowedLanternStats(EverhallowedLanternUI.selectedSoulMinionType);
                 }
@@ -344,11 +339,16 @@ namespace AssortedCrazyThings
                 EverhallowedLanternUI.selectedSoulMinionType = -1;
                 EverhallowedLanternUI.visible = false;
             }
+            else if (EverhallowedLanternUI.heldItemType != Main.LocalPlayer.HeldItem.type)
+            {
+                EverhallowedLanternUI.selectedSoulMinionType = -1;
+                EverhallowedLanternUI.visible = false;
+            }
         }
 
         public override void UpdateUI(GameTime gameTime)
         {
-            UpdateAmmoBoxUI(gameTime);
+            //UpdateAmmoBoxUI(gameTime);
             UpdateEverhallowedLanternUI(gameTime);
         }
 
@@ -357,19 +357,19 @@ namespace AssortedCrazyThings
             int InventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
             if (InventoryIndex != -1)
             {
-                layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
-                    (
-                    "Ammobox+: Ammo Swapping",
-                    delegate {
-                        if (AmmoSelectorUI.visible) AmmoboxAmmoSwapInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
+                //layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
+                //    (
+                //    "ACT: Ammo Swapping",
+                //    delegate {
+                //        if (AmmoSelectorUI.visible) AmmoboxAmmoSwapInterface.Draw(Main.spriteBatch, new GameTime());
+                //        return true;
+                //    },
+                //    InterfaceScaleType.UI)
+                //);
 
                 layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
                     (
-                    "Ammobox+: Ammo Swapping2",
+                    "ACT: Everhallowed Lantern",
                     delegate {
                         if (EverhallowedLanternUI.visible) EverhallowedLanternSwapInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;

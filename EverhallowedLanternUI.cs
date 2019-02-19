@@ -56,9 +56,18 @@ namespace AssortedCrazyThings
             //Main.NewText("EverhallowedLanternUI DrawSelf");
             base.DrawSelf(spriteBatch);
 
+            CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(AssortedCrazyThings.Instance, currentSoulMinionType);
+
             //  Draw weapon circle
             Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
-            spriteBatch.Draw(Main.wireUITexture[CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition) ? 1 : 0], outputRect, Color.White);
+            //reset selected type
+            bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
+            if (middle)
+            {
+                selectedSoulMinionType = -1;
+            }
+
+            spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
 
             //  Draw weapon inside circle
             if (heldItemType != -1)
@@ -90,7 +99,7 @@ namespace AssortedCrazyThings
             //  done --> ID of currently drawn circle
             for (soulType = 0; soulType < circleAmount; ++soulType)
             {
-                CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(AssortedCrazyThings.Instance, soulType);
+                stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(AssortedCrazyThings.Instance, soulType);
 
                 double x = outerRadius * Math.Cos(i * Math.PI);
                 double y = outerRadius * Math.Sin(i * Math.PI);
@@ -118,10 +127,13 @@ namespace AssortedCrazyThings
                     Height = projHeight
                 };
 
-                spriteBatch.Draw(Main.projectileTexture[stats.Type], projRect, sourceRect, (soulType == currentSoulMinionType) ? Color.Gray : Color.White);
+                drawColor = Color.White;
+                if (!unlocked[soulType]) drawColor = Color.Gray;
+                spriteBatch.Draw(Main.projectileTexture[stats.Type], projRect, sourceRect, (soulType == currentSoulMinionType) ? Color.Gray : drawColor);
 
                 if (isMouseWithin && unlocked[soulType])
                 {
+                    //set the "returned" new type
                     selectedSoulMinionType = soulType;
 
                     //  Draw the tooltip
@@ -135,6 +147,16 @@ namespace AssortedCrazyThings
                 }
 
                 i += angleSteps;
+            }
+
+            //render current soul tooltip
+            if (middle)
+            {
+                Color fontColor = Color.White;
+                Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
+                CompanionDungeonSoulMinionBase.SoulType tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)currentSoulMinionType;
+                string tooltip = "Current: " + tempSoulType.ToString();
+                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(15, 15), fontColor, 0, Vector2.Zero, Vector2.One);
             }
         }
 

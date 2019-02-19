@@ -792,7 +792,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public static bool[] UseNoHair;
         public static int[,] AltTexture; //accessory -> alt tex array for cuteslime<color>pet
 
-        public static void Load(Mod mod)
+        public static void Load()
         {
             //-------------------------------------------------------------------
             //------------ADD PET ACCESSORY PROPERTIES HERE----------------------
@@ -879,7 +879,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryXmasHatGreen",
             };
 
-            Init(mod, namesOfAccessories);
+            Init(namesOfAccessories);
 
             //signature looks like this: Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0)
             //the "= something" is a default, if you dont specify that parameter it will assume it is that "something"
@@ -1035,19 +1035,18 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
-        private static void Init(Mod mod, string[] typeList)
+        private static void Init(string[] typeList)
         {
-            InternalMod = mod;
             Items = new int[typeList.Length];
             int itemIndex = 0;
 
             do
             {
-                if (mod.ItemType(typeList[itemIndex]) == 0)
+                if (AssortedCrazyThings.Instance.ItemType(typeList[itemIndex]) == 0)
                 {
                     throw new Exception("Pet Accessory named '" + typeList[itemIndex] + "' is not found. Is it spelt correctly?");
                 }
-                Items[itemIndex] = mod.ItemType(typeList[itemIndex]);
+                Items[itemIndex] = AssortedCrazyThings.Instance.ItemType(typeList[itemIndex]);
                 itemIndex++;
             }
             while (itemIndex < typeList.Length);
