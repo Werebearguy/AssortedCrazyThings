@@ -44,17 +44,17 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool AltFunctionUse(Player player)
         {
-            return true;
+            return false;
         }
 
         public override bool CanUseItem(Player player)
         {
-            if (!Main.hardMode && player.itemTime == 0)
-            {
-                if(player.altFunctionUse != 2) CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
-                 CombatText.DamagedFriendly, "Only usable in a hardmode world");
-                return false;
-            }
+            //if (!Main.hardMode && player.itemTime == 0)
+            //{
+            //    if (player.altFunctionUse != 2) CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
+            //     CombatText.DamagedFriendly, "Only usable in a hardmode world");
+            //    return false;
+            //}
 
             if (player.altFunctionUse == 2 && player.itemTime == 0 && player.whoAmI == Main.myPlayer)
             {
@@ -64,19 +64,16 @@ namespace AssortedCrazyThings.Items.Weapons
                 item.shoot = stats.Type;
                 item.knockBack = stats.Knockback;
 
-                if (player.whoAmI == Main.myPlayer)
+                CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                if(soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
                 {
-                    CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                    if(soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
-                         CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
-                    }
-                    else
-                    {
-                        CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
-                         CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
-                    }
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
+                        CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
+                }
+                else
+                {
+                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height),
+                        CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
                 }
                 return true;
             }

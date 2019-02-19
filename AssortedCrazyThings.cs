@@ -25,6 +25,9 @@ namespace AssortedCrazyThings
             };
         }
 
+        //Instance
+        public static AssortedCrazyThings Instance;
+
         //Slime pet legacy
         public static int[] slimePetLegacy = new int[9];
         public static int[] slimePetNoHair = new int[6];
@@ -39,6 +42,9 @@ namespace AssortedCrazyThings
         internal static UserInterface AmmoboxAmmoSwapInterface;
         internal static AmmoSelectorUI AmmoboxSwapUI;
         internal static ModHotKey AmmoboxAmmoSwapHotkey;
+
+        internal static UserInterface EverhallowedLanternSwapInterface;
+        internal static EverhallowedLanternUI EverhallowedLanternSwapUI;
 
         private void InitPets()
         {
@@ -134,11 +140,31 @@ namespace AssortedCrazyThings
                 AmmoboxSwapUI.Activate();
                 AmmoboxAmmoSwapInterface = new UserInterface();
                 AmmoboxAmmoSwapInterface.SetState(AmmoboxSwapUI);
+
+                EverhallowedLanternSwapUI = new EverhallowedLanternUI();
+                EverhallowedLanternSwapUI.Activate();
+                EverhallowedLanternSwapInterface = new UserInterface();
+                EverhallowedLanternSwapInterface.SetState(EverhallowedLanternSwapUI);
+            }
+        }
+
+        private void UnloadUI()
+        {
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                AmmoboxAmmoSwapInterface = null;
+                AmmoboxSwapUI = null;
+                AmmoboxAmmoSwapHotkey = null;
+
+                EverhallowedLanternSwapInterface = null;
+                EverhallowedLanternSwapUI = null;
             }
         }
 
         public override void Load()
         {
+            Instance = this;
+
             InitPets();
 
             InitSoulBuffBlacklist();
@@ -158,14 +184,14 @@ namespace AssortedCrazyThings
         {
             PetAccessory.Unload();
 
+            UnloadUI();
+
             if (!Main.dedServ && Main.netMode != 2)
             {
                 animatedSoulTextures = null;
             }
 
-            AmmoboxAmmoSwapInterface = null;
-            AmmoboxSwapUI = null;
-            AmmoboxAmmoSwapHotkey = null;
+            Instance = null;
         }
 
         public override void PostSetupContent()
@@ -181,7 +207,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void UpdateUI(GameTime gameTime)
+        private void UpdateAmmoBoxUI(GameTime gameTime)
         {
             if (AmmoSelectorUI.visible && AmmoboxSwapUI != null)
             {
@@ -189,7 +215,7 @@ namespace AssortedCrazyThings
             }
             if (AmmoboxAmmoSwapHotkey.JustPressed) Main.NewText("HotKeyPressed");
             if (AmmoboxAmmoSwapHotkey.JustReleased) Main.NewText("HotKeyReleased");
-            Main.NewText("visible: " + AmmoSelectorUI.visible);
+            //Main.NewText("visible: " + AmmoSelectorUI.visible);
 
             if (AmmoboxAmmoSwapHotkey.JustPressed && true && AmmoSelectorUI.itemAllowed)
             {
@@ -258,6 +284,100 @@ namespace AssortedCrazyThings
                 AmmoSelectorUI.ammoTypes.Clear();
                 AmmoSelectorUI.ammoCount.Clear();
             }
+        }
+
+        private void UpdateEverhallowedLanternStats(int selectedSoulType)
+        {
+            for(int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
+            {
+                if(Main.LocalPlayer.inventory[i].type == ItemType<Items.Weapons.EverhallowedLantern>())
+                {
+                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(this, selectedSoulType);
+                    Main.LocalPlayer.inventory[i].damage = stats.Damage;
+                    Main.LocalPlayer.inventory[i].shoot = stats.Type;
+                    Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;
+
+                    CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                    if (soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
+                    {
+                        CombatText.NewText(Main.LocalPlayer.getRect(),
+                            CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
+                    }
+                    else
+                    {
+                        CombatText.NewText(Main.LocalPlayer.getRect(),
+                            CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
+                    }
+                }
+            }
+        }
+
+        private void UpdateEverhallowedLanternUI(GameTime gameTime)
+        {
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+
+            //if (EverhallowedLanternUI.visible && EverhallowedLanternSwapUI != null)
+            //{
+            //    //EverhallowedLanternSwapUI.Update(gameTime);
+            //}
+
+            if (mPlayer.RightClickPressed && Main.LocalPlayer.HeldItem.type == ItemType<Items.Weapons.EverhallowedLantern>())
+            {
+                //  Spawn ammo selector
+                //Main.NewText("test");
+                EverhallowedLanternUI.visible = true;
+                EverhallowedLanternUI.circleAmount = 4;
+                EverhallowedLanternUI.heldItemType = Main.LocalPlayer.HeldItem.type;
+                EverhallowedLanternUI.currentSoulMinionType = mPlayer.selectedSoulMinionType;
+                EverhallowedLanternUI.spawnPosition = Main.MouseScreen;
+                EverhallowedLanternUI.leftCorner = Main.MouseScreen - new Vector2(EverhallowedLanternUI.mainRadius, EverhallowedLanternUI.mainRadius);
+            }
+
+            else if (mPlayer.RightClickReleased && EverhallowedLanternUI.visible)
+            {
+                if (EverhallowedLanternUI.selectedSoulMinionType != -1 && mPlayer.selectedSoulMinionType != EverhallowedLanternUI.selectedSoulMinionType)
+                {
+                    mPlayer.selectedSoulMinionType = EverhallowedLanternUI.selectedSoulMinionType;
+                    UpdateEverhallowedLanternStats(EverhallowedLanternUI.selectedSoulMinionType);
+                }
+                
+                EverhallowedLanternUI.selectedSoulMinionType = -1;
+                EverhallowedLanternUI.visible = false;
+            }
+        }
+
+        public override void UpdateUI(GameTime gameTime)
+        {
+            UpdateAmmoBoxUI(gameTime);
+            UpdateEverhallowedLanternUI(gameTime);
+        }
+
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+            int InventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
+            if (InventoryIndex != -1)
+            {
+                layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
+                    (
+                    "Ammobox+: Ammo Swapping",
+                    delegate {
+                        if (AmmoSelectorUI.visible) AmmoboxAmmoSwapInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+
+                layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
+                    (
+                    "Ammobox+: Ammo Swapping2",
+                    delegate {
+                        if (EverhallowedLanternUI.visible) EverhallowedLanternSwapInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

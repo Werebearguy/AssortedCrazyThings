@@ -51,10 +51,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public struct SoulStats
         {
-            public readonly int Type;
+            public readonly int Type; //actual projectile type
             public readonly int Damage;
             public readonly float Knockback;
-            public readonly int SoulType;
+            public readonly int SoulType; //enum type
 
             public SoulStats(int a, int b, float c, int d)
             {

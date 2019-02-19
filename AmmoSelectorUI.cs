@@ -55,13 +55,13 @@ namespace AssortedCrazyThings
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Main.NewText("AmmoSelectorUI Update");
+            //Main.NewText("AmmoSelectorUI Update");
             UpdateAmmoTypeList();
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            Main.NewText("AmmoSelectorUI DrawSelf");
+            //Main.NewText("AmmoSelectorUI DrawSelf");
             base.DrawSelf(spriteBatch);
             Texture2D bgTexture = Main.wireUITexture[0];
 

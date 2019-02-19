@@ -76,6 +76,9 @@ namespace AssortedCrazyThings
 
         public bool soulSaviorArmor = false;
 
+        public bool rightClickPrev = false;
+        public bool rightClickPrev2 = false;
+
         public override void ResetEffects()
         {
             everburningCandleBuff = false;
@@ -93,6 +96,22 @@ namespace AssortedCrazyThings
             empoweringBuff = false;
             planteraGitGud = false;
             soulSaviorArmor = false;
+        }
+
+        public bool RightClickPressed
+        {
+            get
+            {
+                return rightClickPrev && !rightClickPrev2;
+            }
+        }
+
+        public bool RightClickReleased
+        {
+            get
+            {
+                return !rightClickPrev && rightClickPrev2;
+            }
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -322,7 +341,7 @@ namespace AssortedCrazyThings
             return index;
         }
 
-        public int CycleSoulType()
+        public int CycleSoulType() //returns the enum type
         {
             /*
              * Default, 0
@@ -563,6 +582,29 @@ namespace AssortedCrazyThings
             if (planteraGitGud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle))
             {
                 damage = (int)(damage * 0.85f);
+            }
+        }
+
+        private void RightClickStatus()
+        {
+            if (Main.mouseRight && !rightClickPrev)
+            {
+                rightClickPrev = true;
+                return;
+            }
+            if (!Main.mouseRight && rightClickPrev)
+            {
+                rightClickPrev = false;
+                return;
+            }
+
+            if (rightClickPrev && !rightClickPrev2)
+            {
+                rightClickPrev2 = true;
+            }
+            if (!rightClickPrev && rightClickPrev2)
+            {
+                rightClickPrev2 = false;
             }
         }
 
@@ -862,6 +904,8 @@ namespace AssortedCrazyThings
         public override void PreUpdate()
         {
             SpawnSoulsWhenHarvesterIsAlive();
+
+            RightClickStatus();
 
             //if (joinDelaySend > 0)
             //{
