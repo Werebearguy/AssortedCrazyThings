@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Projectiles.Pets;
@@ -13,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             try
             {
-                AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+                PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
                 //checks if: player even has (or had) a slime pet
                 //that pet is currently active
                 //its owner is the player
@@ -25,7 +24,7 @@ namespace AssortedCrazyThings.Items.Pets
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {
-                            uint accessory = mPlayer.GetAccessoryPlayer(slotNumber);
+                            uint accessory = mPlayer.GetAccessory(slotNumber);
                             int type;
                             Item itemTemp;
 

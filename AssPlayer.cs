@@ -146,18 +146,21 @@ namespace AssortedCrazyThings
             Array.Resize(ref indexes, arrayLength + 1);
             Array.Resize(ref textures, arrayLength + 1);
 
-            ModPacket packet = mod.GetPacket();
-            packet.Write((byte)AssMessageType.OnEnterWorld);
-            packet.Write(player.whoAmI);
-            packet.Write(mechFrogCrown);
-            packet.Write(arrayLength);
-            //Console.WriteLine(arrayLength);
-            for (int i = 0; i < arrayLength; i++)
+            if(arrayLength > 0)
             {
-                packet.Write(indexes[i]);
-                packet.Write(textures[i]);
+                ModPacket packet = mod.GetPacket();
+                packet.Write((byte)AssMessageType.OnEnterWorld);
+                packet.Write((byte)player.whoAmI);
+                packet.Write(mechFrogCrown);
+                packet.Write(arrayLength);
+                //Console.WriteLine(arrayLength);
+                for (int i = 0; i < arrayLength; i++)
+                {
+                    packet.Write(indexes[i]);
+                    packet.Write(textures[i]);
+                }
+                packet.Send(toWho, fromWho);
             }
-            packet.Send(toWho);
 
             //Console.WriteLine("sent texture " + m.texture + " from " + i + " to " + player.name);
 
@@ -194,59 +197,20 @@ namespace AssortedCrazyThings
             AssPlayer clone = clientPlayer as AssPlayer;
             if (clone.mechFrogCrown != mechFrogCrown)
             {
+                Main.NewText("Send: " + mechFrogCrown);
                 // Send a Mod Packet with the changes.
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.SendClientChanges);
                 packet.Write((byte)player.whoAmI);
-                packet.Write(mechFrogCrown);
+                packet.Write((bool)mechFrogCrown);
                 packet.Send();
-            }
-        }
-
-        public void SendRedrawPetAccessories(int toClient = -1, int ignoreClient = -1)
-        {
-            ////HarvesterBase.Print("send SendRedrawPetAccessories " + Main.netMode);
-            //var packet = mod.GetPacket();
-            //packet.Write((byte)AssMessageType.RedrawPetAccessories);
-            //packet.Write((byte)player.whoAmI);
-            //packet.Write(petIndex);
-            //packet.Write(slotsPlayer);
-            //packet.Send(toClient, ignoreClient);
-        }
-
-        public void SendSlotData()
-        {
-            //if (Main.netMode == NetmodeID.MultiplayerClient)
-            //{
-            //    //Main.NewText("send from " + player.whoAmI);
-            //    ModPacket packet = mod.GetPacket();
-            //    //packet.Write((byte)AssMessageType.PetAccessorySlots);
-            //    packet.Write((byte)player.whoAmI);
-            //    packet.Write(petIndex);
-            //    packet.Write(slotsPlayer);
-            //    packet.Write(slotsPlayerLast);
-            //    packet.Send();
-            //}
-        }
-
-        public uint GetAccessoryPlayer(byte slotNumber)
-        {
-            slotNumber -= 1;
-            return (slotsPlayer >> (slotNumber * 8)) & 255; //shift the selected 8 bits of the slot into the rightmost position
-        }
-
-        public void ApplyPetAccessories(int i, uint j)
-        {
-            if (i != -1 && Main.projectile[i].active)
-            {
-                PetAccessoryProj gProjectile = Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod);
-                gProjectile.SetAccessoryAll(j);
             }
         }
 
         public override TagCompound Save()
         {
-            return new TagCompound {
+            return new TagCompound
+            {
                 {"slotsPlayer", (int)slotsPlayer},
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
@@ -270,36 +234,6 @@ namespace AssortedCrazyThings
         //{
         //    joinDelaySend = 60;
         //}
-
-        public bool ThreeTimesUseTime(double currentTime)
-        {
-            if (Math.Abs(lastTime - currentTime) > 35.0) //(usetime + 1) x 3 + 1
-            {
-                resetSlots = false;
-                lastTime = currentTime;
-                return false; //step one
-            }
-
-            //step two and three have to be done in 35 ticks
-            if (Math.Abs(lastTime - currentTime) <= 35.0)
-            {
-                if (!resetSlots)
-                {
-                    resetSlots = true;
-                    return false; //step two
-                }
-
-                //if program gets to here, it is about to return true
-
-                if (resetSlots)
-                {
-                    resetSlots = false;
-                    return true; //step three
-                }
-            }
-            //should never get here anyway
-            return false;
-        }
 
         private void ResetEmpoweringTimer()
         {

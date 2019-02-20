@@ -28,12 +28,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
         {
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             PetAccessoryProj gProjectile = projectile.GetGlobalProjectile<PetAccessoryProj>(mod);
             bool useNoHair = false;
             //PetAccessory.UseNoHair[slimeAccessory] && (slotNumber == (byte)SlotType.Hat)
-            uint slimeAccessoryHat = gProjectile.GetAccessory((byte)SlotType.Hat);
+            uint slimeAccessoryHat = mPlayer.GetAccessory((byte)SlotType.Hat);
             if (slimeAccessoryHat != 0 &&
                 PetAccessory.UseNoHair[slimeAccessoryHat] &&
                 Array.IndexOf(AssortedCrazyThings.slimePetNoHair, projectile.type) != -1 && //if it has a NoHair tex
@@ -88,18 +89,29 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)
         {
-            PetAccessoryProj gProjectile = projectile.GetGlobalProjectile<PetAccessoryProj>(mod);
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 //slimeAccessory is the indexed number of the accessory (from 0 to 255)
-                uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
+
+
+
+                //
+                //uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
+                uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
+
+
+
+
+
                 if ((preDraw || !PetAccessory.PreDraw[slimeAccessory]) && slimeAccessory != 0)
                 {
                     Texture2D texture = PetAccessory.Texture[slimeAccessory];
 
                     //if(slotNumber == (byte)SlotType.Hat)
                     //{
-                        int altTextureNumber = PetAccessory.AltTexture[slimeAccessory, gProjectile.GetColor()];
+                        int altTextureNumber = PetAccessory.AltTexture[slimeAccessory, mPlayer.petColor];
                         
                         if (altTextureNumber != -1 && altTextureNumber != 0) //change texture if not -1 and not -0
                         {

@@ -1074,7 +1074,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Check(true, name);
 
-            TryAdd(InternalMod.ItemType(name), InternalMod.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, useNoHair);
+            TryAdd(AssortedCrazyThings.Instance.ItemType(name), AssortedCrazyThings.Instance.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, useNoHair);
         }
 
         private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool useNoHair)
@@ -1124,7 +1124,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //i is the color (CuteSlimeBasePet.PetColor)
             for (int i = 0; i < intArray.Length; i++)
             {
-                AltTexture[ItemsIndexed[InternalMod.ItemType(name)], i] = intArray[i];
+                AltTexture[ItemsIndexed[AssortedCrazyThings.Instance.ItemType(name)], i] = intArray[i];
             }
         }
 
@@ -1203,8 +1203,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
-
             tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
 
             tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
@@ -1218,7 +1216,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override bool UseItem(Player player)
         {
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
@@ -1231,7 +1229,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         {
                             if (Main.projectile[i].modProjectile != null)
                             {
-                                if (Main.projectile[i].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile) && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[i].type) == -1)
+                                if (Main.projectile[i].owner == Main.myPlayer &&
+                                    typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile) &&
+                                    Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[i].type) == -1)
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
                                     mPlayer.slimePetIndex = i;
@@ -1252,10 +1252,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
                 //else normal left click use
 
-                if (mPlayer.slimePetIndex != -1 && Main.projectile[mPlayer.slimePetIndex].active && Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer && typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile) && Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.slimePetIndex].type) == -1)
+                if (mPlayer.slimePetIndex != -1 &&
+                    Main.projectile[mPlayer.slimePetIndex].active &&
+                    Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
+                    typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile) &&
+                    Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.slimePetIndex].type) == -1)
                 {
-                    PetAccessoryProj gProjectile = Main.projectile[mPlayer.slimePetIndex].GetGlobalProjectile<PetAccessoryProj>(mod);
-
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
                     {
@@ -1263,7 +1265,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         {
                             //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
 
-                            gProjectile.SetAccessoryAll(mPlayer.slotsPlayer != 0 ? 0 : mPlayer.slotsPlayerLast);
+                            if(mPlayer.slots != 0)
+                            {
+                                mPlayer.slotsLast = mPlayer.slots;
+                                mPlayer.slots = 0;
+                            }
+                            else
+                            {
+                                mPlayer.slots = mPlayer.slotsLast;
+                                mPlayer.slotsLast = 0;
+                            }
 
                             //"dust" originating from the center, forming a circle and going outwards
                             Dust dust;
@@ -1271,27 +1282,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             {
                                 dust = Dust.NewDustPerfect(Main.projectile[mPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[mPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }
-
-                            //save it for next time shouldReset is true
-                            mPlayer.slotsPlayerLast = mPlayer.slotsPlayer;
-
-                            //sync with player, for when he respawns, it gets reapplied
-                            mPlayer.slotsPlayer = gProjectile.GetAccessoryAll(); //triggers SyncPlayer
-
-                            if (Main.netMode == NetmodeID.MultiplayerClient)
-                            {
-                                mPlayer.SendRedrawPetAccessories();
-                            }
-                            //mPlayer.SendSlotData();
                         }
                         else if (player.altFunctionUse != 2)
                         {
-                            gProjectile.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
-                            //AssWorld.ToggleSlimeRainSky();
-
-                            //sync with player, for when he respawns, it gets reapplied
-                            mPlayer.slotsPlayer = gProjectile.GetAccessoryAll();
-                            //mPlayer.SendSlotData();
+                            mPlayer.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
                         }
                     }
                 }

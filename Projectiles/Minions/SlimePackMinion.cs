@@ -72,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         ModPacket packet = mod.GetPacket();
                         packet.Write((byte)AssMessageType.SyncKnapSackSlimeTexture);
                         packet.Write((short)projectile.whoAmI);
-                        packet.Write(tex);
+                        packet.Write((byte)tex);
                         packet.Send();
                     }
                     else
@@ -84,7 +84,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
             else
             {
-                texture = 1; //use temp texture until server sends packet
+                texture = 1;
+                //projectile.localAI[1] = 1; //use temp texture until server sends packet
             }
 
             return true;
