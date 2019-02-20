@@ -314,8 +314,6 @@
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMightMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulPostWOLMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinionBase.cs" />
-    <Compile Include="Projectiles\MiscGlobalProj.cs" />
-    <Compile Include="Projectiles\PetAccessoryProj.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
     <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
     <Compile Include="Projectiles\Pets\Abeemination.cs" />

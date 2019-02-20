@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Items.Fun;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -39,22 +38,9 @@ namespace AssortedCrazyThings
         public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it
 
         //slime accessory stuff
-        public int slimePetIndex = -1;
-        public int slimePetType = 0;
-        public bool petTypeChanged = false;
         public uint slotsPlayer = 0;
-        public uint slotsPlayerLast = 0;
-        private bool resetSlots = false;
-        private double lastTime = 0.0;
-        //private byte joinDelaySend = 60;
         //public int counter = 30;
         //public int clientcounter = 30;
-
-        //docile demon eye stuff
-        public int eyePetIndex = -1;
-        public byte eyePetType = 0; //texture type, not ID
-
-        public bool mechFrogCrown = false;
 
         //soul minion stuff
         public bool soulMinion = false;
@@ -114,20 +100,6 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void clientClone(ModPlayer clientClone)
-        {
-            //AssPlayer clone = clientClone as AssPlayer;
-            //// Here we would make a backup clone of values that are only correct on the local players Player instance.
-            //// Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
-            //clone.petIndex = petIndex;
-            //clone.slotsPlayer = slotsPlayer;
-
-            AssPlayer clone = clientClone as AssPlayer;
-            // Here we would make a backup clone of values that are only correct on the local players Player instance.
-            // Some examples would be RPG stats from a GUI, Hotkey states, and Extra Item Slots
-            clone.mechFrogCrown = mechFrogCrown;
-        }
-
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             //like OnEnterWorld but serverside
@@ -151,7 +123,6 @@ namespace AssortedCrazyThings
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.OnEnterWorld);
                 packet.Write((byte)player.whoAmI);
-                packet.Write(mechFrogCrown);
                 packet.Write(arrayLength);
                 //Console.WriteLine(arrayLength);
                 for (int i = 0; i < arrayLength; i++)
@@ -161,79 +132,36 @@ namespace AssortedCrazyThings
                 }
                 packet.Send(toWho, fromWho);
             }
-
-            //Console.WriteLine("sent texture " + m.texture + " from " + i + " to " + player.name);
-
-
-            ////like OnEnterWorld but serverside
-            ////HarvesterBase.Print("send SyncPlayer " + toWho + " " + fromWho + " " + newPlayer);
-            //ModPacket packet = mod.GetPacket();
-            //packet.Write((byte)AssMessageType.SyncPlayer);
-            //packet.Write((byte)player.whoAmI);
-            //packet.Write(slotsPlayer);
-            //packet.Send(toWho, fromWho);
-        }
-
-        public override void SendClientChanges(ModPlayer clientPlayer)
-        {
-            //// Here we would sync something like an RPG stat whenever the player changes it.
-            //AssPlayer clone = clientPlayer as AssPlayer;
-            //if (clone.slotsPlayer != slotsPlayer || clone.petIndex != petIndex || (petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type))
-            //{
-            //    //if (clone.slotsPlayer != slotsPlayer) HarvesterBase.Print("clone.slotsPlayer != slotsPlayer ");
-            //    //if (clone.petIndex != petIndex) HarvesterBase.Print("clone.petIndex != petIndex");
-            //    //if ((petIndex != -1 && clone.petIndex != -1 && Main.projectile[clone.petIndex].type != Main.projectile[petIndex].type)) HarvesterBase.Print("other thing");
-            //    //HarvesterBase.Print("send SendClientChanges " + Main.netMode);
-            //    // Send a Mod Packet with the changes.
-            //    var packet = mod.GetPacket();
-            //    packet.Write((byte)AssMessageType.SendClientChanges);
-            //    packet.Write((byte)player.whoAmI);
-            //    //packet.Write(petType);
-            //    packet.Write(petIndex);
-            //    packet.Write(slotsPlayer);
-            //    packet.Send();
-            //}
-
-            AssPlayer clone = clientPlayer as AssPlayer;
-            if (clone.mechFrogCrown != mechFrogCrown)
-            {
-                Main.NewText("Send: " + mechFrogCrown);
-                // Send a Mod Packet with the changes.
-                ModPacket packet = mod.GetPacket();
-                packet.Write((byte)AssMessageType.SendClientChanges);
-                packet.Write((byte)player.whoAmI);
-                packet.Write((bool)mechFrogCrown);
-                packet.Send();
-            }
         }
 
         public override TagCompound Save()
         {
             return new TagCompound
             {
-                {"slotsPlayer", (int)slotsPlayer},
+                {"slotsPlayer", (int)slotsPlayer}, //keep as legacy
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
-                {"eyePetType", (byte)eyePetType},
-                {"mechFrogCrown", (bool)mechFrogCrown},
                 {"planteraGitGudCounter", (int)planteraGitGudCounter},
             };
         }
 
         public override void Load(TagCompound tag)
         {
-            slotsPlayer = (uint)tag.GetInt("slotsPlayer");
+            slotsPlayer = (uint)tag.GetInt("slotsPlayer"); //keep as legacy
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
-            eyePetType = tag.GetByte("eyePetType");
-            mechFrogCrown = tag.GetBool("mechFrogCrown");
             planteraGitGudCounter = tag.GetInt("planteraGitGudCounter");
         }
 
-        //public override void OnEnterWorld(Player player)
-        //{
-        //    joinDelaySend = 60;
-        //}
+        public override void OnEnterWorld(Player player)
+        {
+            if(slotsPlayer != 0) //transfer legacy variable over to new one
+            {
+                PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
+                mPlayer.slots = slotsPlayer;
+                slotsPlayer = 0;
+            }
+        }
 
         private void ResetEmpoweringTimer()
         {

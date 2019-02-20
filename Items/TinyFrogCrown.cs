@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Items
         public override bool UseItem(Player player)
         {
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {

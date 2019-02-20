@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,13 @@ namespace AssortedCrazyThings
 {
     public class PetPlayer : ModPlayer
     {
+        //docile demon eye stuff
+        public int eyePetIndex = -1;
+        public byte petEyeType = 0; //texture type, not ID
+
+        //mech frog stuff
+        public bool mechFrogCrown = false;
+
         public bool Pigronata = false;
         public bool Abeemination = false;
         public bool CuteSlimeYellowNew = false;
@@ -160,13 +168,17 @@ namespace AssortedCrazyThings
         public override TagCompound Save()
         {
             return new TagCompound {
-                {"slots", (int)slots}
+                {"slots", (int)slots},
+                {"petEyeType", (byte)petEyeType},
+                {"mechFrogCrown", (bool)mechFrogCrown}
             };
         }
 
         public override void Load(TagCompound tag)
         {
             slots = (uint)tag.GetInt("slots");
+            petEyeType = tag.GetByte("petEyeType");
+            mechFrogCrown = tag.GetBool("mechFrogCrown");
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
@@ -175,7 +187,8 @@ namespace AssortedCrazyThings
             packet.Write((byte)AssMessageType.OnEnterWorldVanity);
             packet.Write((byte)player.whoAmI);
             packet.Write((uint)slots);
-            //packet.Write((uint)slotsLast);
+            packet.Write((byte)petEyeType);
+            packet.Write((bool)mechFrogCrown);
             packet.Send(toWho, fromWho);
         }
 
@@ -188,7 +201,8 @@ namespace AssortedCrazyThings
                 packet.Write((byte)AssMessageType.SendClientChangesVanity);
                 packet.Write((byte)player.whoAmI);
                 packet.Write((uint)slots);
-                //packet.Write((uint)slotsLast);
+                packet.Write((byte)petEyeType);
+                packet.Write((bool)mechFrogCrown);
                 packet.Send();
             }
         }
@@ -197,12 +211,13 @@ namespace AssortedCrazyThings
         {
             PetPlayer clone = clientClone as PetPlayer;
             clone.slots = slots;
+            clone.mechFrogCrown = mechFrogCrown;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             PetPlayer clone = clientPlayer as PetPlayer;
-            if (clone.slots != slots)
+            if (clone.slots != slots || clone.mechFrogCrown != mechFrogCrown)
             {
                 SendClientChangesPacket();
             }
@@ -213,10 +228,15 @@ namespace AssortedCrazyThings
             SendClientChangesPacket();
         }
 
+        public byte CyclePetEyeType()
+        {
+            petEyeType++;
+            if (petEyeType >= DocileDemonEyeProj.TotalNumberOfThese) petEyeType = 0;
+            return petEyeType;
+        }
+
         public int slimePetIndex = -1;
-
         public byte petColor = 0;
-
         public uint slotsLast = 0;
         private bool resetSlots = false;
         private double lastTime = 0.0;

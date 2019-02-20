@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Items
         public override bool UseItem(Player player)
         {
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
@@ -69,12 +69,10 @@ namespace AssortedCrazyThings.Items
 
                 if (mPlayer.eyePetIndex != -1 && Main.projectile[mPlayer.eyePetIndex].active && Main.projectile[mPlayer.eyePetIndex].owner == Main.myPlayer && Main.projectile[mPlayer.eyePetIndex].type == mod.ProjectileType<DocileDemonEyeProj>())
                 {
-                    MiscGlobalProj gProjectile = Main.projectile[mPlayer.eyePetIndex].GetGlobalProjectile<MiscGlobalProj>(mod);
-
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        mPlayer.eyePetType = gProjectile.CycleType();
+                        mPlayer.CyclePetEyeType();
 
                         Dust dust;
                         float factor = 1f;

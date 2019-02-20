@@ -31,7 +31,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
-            PetAccessoryProj gProjectile = projectile.GetGlobalProjectile<PetAccessoryProj>(mod);
             bool useNoHair = false;
             //PetAccessory.UseNoHair[slimeAccessory] && (slotNumber == (byte)SlotType.Hat)
             uint slimeAccessoryHat = mPlayer.GetAccessory((byte)SlotType.Hat);

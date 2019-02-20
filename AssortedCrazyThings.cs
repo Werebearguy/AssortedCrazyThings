@@ -413,7 +413,6 @@ namespace AssortedCrazyThings
                     {
                         playernumber = reader.ReadByte();
                         mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
-                        mPlayer.mechFrogCrown = reader.ReadBoolean();
 
                         arrayLength = reader.ReadInt16();
                         //Main.NewText(arrayLength);
@@ -441,28 +440,8 @@ namespace AssortedCrazyThings
                         playernumber = reader.ReadByte();
                         petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                         petPlayer.slots = reader.ReadUInt32();
-                        //petPlayer.slotsLast = reader.ReadUInt32();
-                    }
-                    break;
-                case AssMessageType.SendClientChanges:
-                    playernumber = reader.ReadByte();
-
-                    //if (Main.netMode == NetmodeID.MultiplayerClient)
-                    //{
-                    //    Main.NewText("recv sendclientchanges from " + playernumber);
-                    //}
-                    mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
-                    mPlayer.mechFrogCrown = reader.ReadBoolean();
-
-                    // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        //NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("server send SendClientChanges from " + playernumber), new Color(255, 25, 25));
-                        ModPacket packet = GetPacket();
-                        packet.Write((byte)AssMessageType.SendClientChanges);
-                        packet.Write((byte)playernumber);
-                        packet.Write((bool)mPlayer.mechFrogCrown);
-                        packet.Send(-1, playernumber);
+                        petPlayer.petEyeType = reader.ReadByte();
+                        petPlayer.mechFrogCrown = reader.ReadBoolean();
                     }
                     break;
                 case AssMessageType.SendClientChangesVanity:
@@ -474,7 +453,8 @@ namespace AssortedCrazyThings
                     //}
                     petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                     petPlayer.slots = reader.ReadUInt32();
-                    //petPlayer.slotsLast = reader.ReadUInt32();
+                    petPlayer.petEyeType = reader.ReadByte();
+                    petPlayer.mechFrogCrown = reader.ReadBoolean();
                     // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
                     if (Main.netMode == NetmodeID.Server)
                     {
@@ -483,7 +463,8 @@ namespace AssortedCrazyThings
                         packet.Write((byte)AssMessageType.SendClientChangesVanity);
                         packet.Write(playernumber);
                         packet.Write((uint)petPlayer.slots);
-                        //packet.Write((uint)petPlayer.slotsLast);
+                        packet.Write((byte)petPlayer.petEyeType);
+                        packet.Write((bool)petPlayer.mechFrogCrown);
                         packet.Send(-1, playernumber);
                     }
                     break;
@@ -654,7 +635,6 @@ namespace AssortedCrazyThings
         RedrawPetAccessories,
         SendClientChanges,
         SendClientChangesVanity,
-        SyncPlayer,
         SyncKnapSackSlimeTexture,
         OnEnterWorld,
         OnEnterWorldVanity
