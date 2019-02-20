@@ -441,9 +441,7 @@ namespace AssortedCrazyThings
                         playernumber = reader.ReadByte();
                         petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                         petPlayer.slots = reader.ReadUInt32();
-                        petPlayer.slotsLast = reader.ReadUInt32();
-
-                        Main.NewText("from " + playernumber + " Recv: " + petPlayer.slots + " " + petPlayer.slotsLast);
+                        //petPlayer.slotsLast = reader.ReadUInt32();
                     }
                     break;
                 case AssMessageType.SendClientChanges:
@@ -476,7 +474,7 @@ namespace AssortedCrazyThings
                     //}
                     petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                     petPlayer.slots = reader.ReadUInt32();
-                    petPlayer.slotsLast = reader.ReadUInt32();
+                    //petPlayer.slotsLast = reader.ReadUInt32();
                     // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
                     if (Main.netMode == NetmodeID.Server)
                     {
@@ -485,7 +483,7 @@ namespace AssortedCrazyThings
                         packet.Write((byte)AssMessageType.SendClientChangesVanity);
                         packet.Write(playernumber);
                         packet.Write((uint)petPlayer.slots);
-                        packet.Write((uint)petPlayer.slotsLast);
+                        //packet.Write((uint)petPlayer.slotsLast);
                         packet.Send(-1, playernumber);
                     }
                     break;

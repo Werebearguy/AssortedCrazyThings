@@ -169,19 +169,13 @@ namespace AssortedCrazyThings
             slots = (uint)tag.GetInt("slots");
         }
 
-        public override void clientClone(ModPlayer clientClone)
-        {
-            PetPlayer clone = clientClone as PetPlayer;
-            clone.slots = slots;
-        }
-
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.OnEnterWorldVanity);
             packet.Write((byte)player.whoAmI);
             packet.Write((uint)slots);
-            packet.Write((uint)slotsLast);
+            //packet.Write((uint)slotsLast);
             packet.Send(toWho, fromWho);
         }
 
@@ -194,9 +188,15 @@ namespace AssortedCrazyThings
                 packet.Write((byte)AssMessageType.SendClientChangesVanity);
                 packet.Write((byte)player.whoAmI);
                 packet.Write((uint)slots);
-                packet.Write((uint)slotsLast);
+                //packet.Write((uint)slotsLast);
                 packet.Send();
             }
+        }
+
+        public override void clientClone(ModPlayer clientClone)
+        {
+            PetPlayer clone = clientClone as PetPlayer;
+            clone.slots = slots;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
