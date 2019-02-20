@@ -73,6 +73,8 @@ namespace AssortedCrazyThings
         public bool DocileDemonEye = false;
         public bool QueenLarva = false;
         public bool HealingDrone = false;
+        public bool SunPet = false;
+        public bool MoonPet = false;
 
         public override void ResetEffects()
         {
@@ -133,6 +135,8 @@ namespace AssortedCrazyThings
             DocileDemonEye = false;
             QueenLarva = false;
             HealingDrone = false;
+            SunPet = false;
+            MoonPet = false;
         }
 
         public bool ThreeTimesUseTime(double currentTime)

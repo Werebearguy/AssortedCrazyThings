@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
 
         //
-        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float offsetX = 0f, float offsetY = 0f)
+        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float lightFactor = 1f, Vector3 lightColor = default(Vector3), float offsetX = 0f, float offsetY = 0f)
         {
             Player player = Main.player[projectile.owner];
             float veloDistanceChange = 6f;
@@ -154,7 +154,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (lightPet)
             {
-                Vector3 vector = DelegateMethods.v3_1 = new Vector3(0.3f, 0.5f, 1f);
+                if (lightColor == default(Vector3)) lightColor = new Vector3(0.3f, 0.5f, 1f);
+                //flickerwick is new Vector3(0.3f, 0.5f, 1f)
+                Vector3 vector = DelegateMethods.v3_1 = lightColor * lightFactor;
                 Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * 6f, 20f, DelegateMethods.CastLightOpen);
                 Utils.PlotTileLine(projectile.Left, projectile.Right, 20f, DelegateMethods.CastLightOpen);
                 Utils.PlotTileLine(player.Center, player.Center + player.velocity * 6f, 40f, DelegateMethods.CastLightOpen);
