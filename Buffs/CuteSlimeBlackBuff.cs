@@ -1,33 +1,21 @@
-using AssortedCrazyThings.Projectiles;
 using AssortedCrazyThings.Projectiles.Pets;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class CuteSlimeBlackBuff : ModBuff
+    public class CuteSlimeBlackBuff : CuteSlimeBaseBuff
     {
-        public override void SetDefaults()
+        protected override void MoreSetDefaults()
         {
             DisplayName.SetDefault("Cute Black Slime");
             Description.SetDefault("A cute black slime girl is following you");
-            Main.buffNoTimeDisplay[Type] = true;
-            Main.vanityPet[Type] = true;
         }
 
-        public override void Update(Player player, ref int buffIndex)
+        protected override void MoreUpdate(PetPlayer mPlayer)
         {
-            player.buffTime[buffIndex] = 18000;
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
-            player.GetModPlayer<PetPlayer>(mod).CuteSlimeBlack = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<CuteSlimeBlackPet>()] <= 0;
-            if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
-            {
-                int i = Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y, 0f, 0f, mod.ProjectileType<CuteSlimeBlackPet>(), 0, 0f, player.whoAmI, 0f, 0f);
-                Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).SetAccessoryAll(mPlayer.slotsPlayer);
-                Main.projectile[i].GetGlobalProjectile<PetAccessoryProj>(mod).SetColor((byte)CuteSlimeBasePet.PetColor.Black);
-                mPlayer.slimePetIndex = i;
-            }
+            mPlayer.CuteSlimeBlack = true;
+            projType = mod.ProjectileType<CuteSlimeBlackPet>();
+            //this is for the altTexture thing where you can specify which slime has which texture
+            color = (byte)CuteSlimeBasePet.PetColor.Black;
         }
     }
 }
