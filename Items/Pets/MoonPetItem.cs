@@ -8,8 +8,9 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Moon in a bottle");
-            Tooltip.SetDefault("Summons a small moon that provides you with constant moonlight");
+            DisplayName.SetDefault("Bottled Moon");
+            Tooltip.SetDefault("Summons a small moon that provides you with constant moonlight"
+                + "\n'No adverse gravitational effects will happen'");
         }
 
         public override void SetDefaults()

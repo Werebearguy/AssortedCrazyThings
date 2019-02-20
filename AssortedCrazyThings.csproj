@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buffs\SunMoonPetBuff.cs" />
     <Compile Include="Buffs\CuteSlimeBaseBuff.cs" />
     <Compile Include="Buffs\MoonPetBuff.cs" />
     <Compile Include="Buffs\SunPetBuff.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Items\Fun\GreenThumb.cs" />
     <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\Pets\CompanionDungeonSoulPetItem2.cs" />
+    <Compile Include="Items\Pets\SunMoonPetItem.cs" />
     <Compile Include="Items\Pets\PigronataItem.cs" />
     <Compile Include="Items\Pets\HealingDroneItem.cs" />
     <Compile Include="Items\Pets\MoonPetItem.cs" />

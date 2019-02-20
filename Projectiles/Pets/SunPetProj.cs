@@ -46,12 +46,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 texture = 1;
             }
 
-            Texture2D image = mod.GetTexture("Projectiles/Pets/SunPetProj_" + texture);
+            Texture2D image = AssortedCrazyThings.sunPetTextures[texture];
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 18f));
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
 
-            spriteBatch.Draw(image, drawPos, image.Bounds, Color.White, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(image, drawPos, image.Bounds, lightColor, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             return false;
         }
 

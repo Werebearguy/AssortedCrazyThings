@@ -32,6 +32,9 @@ namespace AssortedCrazyThings
         public static int[] slimePetLegacy = new int[9];
         public static int[] slimePetNoHair = new int[6];
 
+        //Sun pet textures
+        public static Texture2D[] sunPetTextures;
+
         //Soul item animated textures
         public static Texture2D[] animatedSoulTextures;
 
@@ -181,6 +184,14 @@ namespace AssortedCrazyThings
 
                 animatedSoulTextures[0] = GetTexture("Items/CaughtDungeonSoulAnimated");
                 animatedSoulTextures[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated");
+
+                sunPetTextures = new Texture2D[3];
+
+                for (int i = 0; i < 3; i++)
+                {
+                    sunPetTextures[i] = GetTexture("Projectiles/Pets/SunPetProj_" + i);
+                    PremultiplyTexture(sunPetTextures[i]);
+                }
             }
         }
 
@@ -193,6 +204,8 @@ namespace AssortedCrazyThings
             if (!Main.dedServ && Main.netMode != 2)
             {
                 animatedSoulTextures = null;
+
+                sunPetTextures = null;
             }
 
             Instance = null;
@@ -627,6 +640,18 @@ namespace AssortedCrazyThings
                 }
                 */
             }
+        }
+
+        public static void PremultiplyTexture(Texture2D texture)
+        {
+            Color[] buffer = new Color[texture.Width * texture.Height];
+            texture.GetData(buffer);
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                buffer[i] = Color.FromNonPremultiplied(
+                        buffer[i].R, buffer[i].G, buffer[i].B, buffer[i].A);
+            }
+            texture.SetData(buffer);
         }
     }
 
