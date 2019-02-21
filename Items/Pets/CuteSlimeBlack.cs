@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bottled Black Slime");
+            DisplayName.SetDefault("Bottled Cute Black Slime");
             Tooltip.SetDefault("Summons a friendly Cute Black Slime to follow you"
 						+ "\nLegacy Appearance");
         }
