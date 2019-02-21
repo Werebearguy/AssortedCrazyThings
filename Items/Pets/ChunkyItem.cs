@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Chunky");
+            DisplayName.SetDefault("Bottled Chunky");
             Tooltip.SetDefault("Summons Chunky to follow you");
         }
 

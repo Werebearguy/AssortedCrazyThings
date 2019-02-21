@@ -16,18 +16,18 @@ namespace AssortedCrazyThings
         //mech frog stuff
         public bool mechFrogCrown = false;
 
-        public bool RainbowSlimeProj = false;
-        public bool PrinceSlimeProj = false;
-        public bool IlluminantSlimeProj = false;
-        public bool ChunkySlimeProj = false;
-        public bool FairySlimeProj = false;
-        public bool HornedSlimeProj = false;
-        public bool JoyousSlimeProj = false;
-        public bool MeatballSlimeProj = false;
-        public bool OceanSlimeProj = false;
-        public bool StingSlimeBlackProj = false;
-        public bool StingSlimeOrangeProj = false;
-        public bool TurtleSlimeProj = false;
+        public bool RainbowSlimePet = false;
+        public bool PrinceSlimePet = false;
+        public bool IlluminantSlimePet = false;
+        public bool ChunkySlimePet = false;
+        public bool FairySlimePet = false;
+        public bool HornedSlimePet = false;
+        public bool JoyousSlimePet = false;
+        public bool MeatballSlimePet = false;
+        public bool OceanSlimePet = false;
+        public bool StingSlimeBlackPet = false;
+        public bool StingSlimeOrangePet = false;
+        public bool TurtleSlimePet = false;
         public bool Pigronata = false;
         public bool Abeemination = false;
         public bool CuteSlimeYellowNew = false;
@@ -90,18 +90,18 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
-            RainbowSlimeProj = false;
-            PrinceSlimeProj = false;
-            IlluminantSlimeProj = false;
-            ChunkySlimeProj = false;
-            FairySlimeProj = false;
-            HornedSlimeProj = false;
-            JoyousSlimeProj = false;
-            MeatballSlimeProj = false;
-            OceanSlimeProj = false;
-            StingSlimeBlackProj = false;
-            StingSlimeOrangeProj = false;
-            TurtleSlimeProj = false;
+            RainbowSlimePet = false;
+            PrinceSlimePet = false;
+            IlluminantSlimePet = false;
+            ChunkySlimePet = false;
+            FairySlimePet = false;
+            HornedSlimePet = false;
+            JoyousSlimePet = false;
+            MeatballSlimePet = false;
+            OceanSlimePet = false;
+            StingSlimeBlackPet = false;
+            StingSlimeOrangePet = false;
+            TurtleSlimePet = false;
             Pigronata = false;
             Abeemination = false;
             CuteSlimeYellowNew = false;

@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Meatball");
+            DisplayName.SetDefault("Bottled Meatball");
             Tooltip.SetDefault("Summons Meatball to follow you");
         }
 
