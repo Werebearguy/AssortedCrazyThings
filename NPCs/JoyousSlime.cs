@@ -30,6 +30,8 @@ namespace AssortedCrazyThings.NPCs
 					npc.friendly = true;
 					npc.alpha = 175;
 					npc.color = new Color(169, 141, 255, 100);
+					Main.npcCatchable[mod.NPCType("JoyousSlime")] = true;
+					npc.catchItem = (short)mod.ItemType("JoyousSlimeItem");
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{

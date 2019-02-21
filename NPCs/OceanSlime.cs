@@ -29,6 +29,8 @@ namespace AssortedCrazyThings.NPCs
 					animationType = NPCID.ToxicSludge;
 					npc.alpha = 175;
 					npc.color = new Color(65, 193, 247, 100);
+					Main.npcCatchable[mod.NPCType("OceanSlime")] = true;
+					npc.catchItem = (short)mod.ItemType("OceanSlimeItem");
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{

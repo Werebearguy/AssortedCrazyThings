@@ -28,6 +28,8 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = 1;
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
+			Main.npcCatchable[mod.NPCType("Meatball")] = true;
+			npc.catchItem = (short)mod.ItemType("MeatballItem");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

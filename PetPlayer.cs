@@ -16,6 +16,18 @@ namespace AssortedCrazyThings
         //mech frog stuff
         public bool mechFrogCrown = false;
 
+        public bool RainbowSlimeProj = false;
+        public bool PrinceSlimeProj = false;
+        public bool IlluminantSlimeProj = false;
+        public bool ChunkySlimeProj = false;
+        public bool FairySlimeProj = false;
+        public bool HornedSlimeProj = false;
+        public bool JoyousSlimeProj = false;
+        public bool MeatballSlimeProj = false;
+        public bool OceanSlimeProj = false;
+        public bool StingSlimeBlackProj = false;
+        public bool StingSlimeOrangeProj = false;
+        public bool TurtleSlimeProj = false;
         public bool Pigronata = false;
         public bool Abeemination = false;
         public bool CuteSlimeYellowNew = false;
@@ -78,6 +90,18 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
+            RainbowSlimeProj = false;
+            PrinceSlimeProj = false;
+            IlluminantSlimeProj = false;
+            ChunkySlimeProj = false;
+            FairySlimeProj = false;
+            HornedSlimeProj = false;
+            JoyousSlimeProj = false;
+            MeatballSlimeProj = false;
+            OceanSlimeProj = false;
+            StingSlimeBlackProj = false;
+            StingSlimeOrangeProj = false;
+            TurtleSlimeProj = false;
             Pigronata = false;
             Abeemination = false;
             CuteSlimeYellowNew = false;

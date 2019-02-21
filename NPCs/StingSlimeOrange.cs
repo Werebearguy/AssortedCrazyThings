@@ -27,6 +27,8 @@ namespace AssortedCrazyThings.NPCs
 					npc.aiStyle = 1;
 					aiType = NPCID.ToxicSludge;
 					animationType = NPCID.ToxicSludge;
+					Main.npcCatchable[mod.NPCType("StingSlimeOrange")] = true;
+					npc.catchItem = (short)mod.ItemType("StingSlimeOrangeItem");
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{

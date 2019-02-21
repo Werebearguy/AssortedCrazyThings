@@ -29,6 +29,8 @@ namespace AssortedCrazyThings.NPCs
 					animationType = NPCID.ToxicSludge;
 					npc.alpha = 175;
 					npc.color = new Color(240, 54, 115, 100);
+					Main.npcCatchable[mod.NPCType("HornedSlime")] = true;
+					npc.catchItem = (short)mod.ItemType("HornedSlimeItem");
 				}
 			public override float SpawnChance(NPCSpawnInfo spawnInfo)
 				{
