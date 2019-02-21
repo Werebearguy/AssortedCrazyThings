@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 18; //40 //60
-            npc.height = 40; //50 //48
+            npc.width = 18;
+            npc.height = 40;
             npc.damage = 30;
             npc.defense = 20;
             npc.lifeMax = 100;
@@ -96,7 +96,6 @@ namespace AssortedCrazyThings.NPCs
                 }
 
                 float sum = arr[arr.Length - 1];
-                //Main.NewText("sum: " + sum);
 
                 for (int j = 1; j < 7; j++)
                 {
@@ -129,8 +128,8 @@ namespace AssortedCrazyThings.NPCs
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             //base sprite is 80x66
-            //hitbox is 60x48
-            Texture2D texture = mod.GetTexture("Glowmasks/StoneSoldier_" + npc.ai[1]);
+            //hitbox is 18x40
+            Texture2D texture = mod.GetTexture("NPCs/StoneSoldier_" + npc.ai[1]);
             Vector2 stupidOffset = new Vector2(0f, -4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
@@ -139,8 +138,6 @@ namespace AssortedCrazyThings.NPCs
             drawColor.R = Math.Max(drawColor.R, (byte)100);
             drawColor.G = Math.Max(drawColor.G, (byte)100);
             drawColor.B = Math.Max(drawColor.B, (byte)100);
-            //drawColor * 2f makes it so its twice as bright as the model itself (capped at Color.White), +20f makes it so its always a bit visible
-            //since we only draw one frame, use texture.Bounds instead of npc.frame
             spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
 	}

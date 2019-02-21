@@ -563,7 +563,7 @@ namespace AssortedCrazyThings
 
             if (drawPlayer.wings == mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
             {
-                Texture2D texture = mod.GetTexture("Glowmasks/HarvesterWings_Wings_Glowmask");
+                Texture2D texture = mod.GetTexture("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask");
                 float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
                 float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
 

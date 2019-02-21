@@ -258,7 +258,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("Glowmasks/Harvester/Harvester2Wings");
+            Texture2D texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Wings");
             Vector2 stupidOffset = new Vector2(0f, -26f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
@@ -269,22 +269,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if(soulsEaten < maxSoulsEaten / 2)
                 {
-                    texture = mod.GetTexture("Glowmasks/Harvester/Harvester2Soulsmall");
+                    texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulsmall");
                 }
                 else if (soulsEaten != maxSoulsEaten - 1)
                 {
-                    texture = mod.GetTexture("Glowmasks/Harvester/Harvester2Soulpulse");
+                    texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulpulse");
                 }
                 else
                 {
-                    texture = mod.GetTexture("Glowmasks/Harvester/Harvester2Soulbig");
+                    texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulbig");
                 }
             }
             spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
 
             if (AI_State == STATE_STOP && stopTime == eatTime)
             {
-                texture = mod.GetTexture("Glowmasks/Harvester/Harvester2Souleat");
+                texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Souleat");
 
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);

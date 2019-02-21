@@ -120,7 +120,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("Glowmasks/MechanicalLaserEye_Glowmask");
+            Texture2D texture = mod.GetTexture("NPCs/DemonEyeLaser_Glowmask");
 
             Vector2 stupidOffset = new Vector2(-4f, npc.height / 3f);
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
