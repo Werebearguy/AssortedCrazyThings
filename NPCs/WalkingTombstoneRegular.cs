@@ -51,7 +51,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNight.Chance * 0.025f * 1f;
+            if (ModConf.WalkingTombstones) return SpawnCondition.OverworldNight.Chance * 0.025f * 1f;
+            else return 0f;
         }
 
         public override void NPCLoot()
@@ -146,11 +147,9 @@ namespace AssortedCrazyThings.NPCs
 		
 		public override void HitEffect(int hitDirection, double damage)
 		{
+			if (npc.life <= 0)
 			{
-				if (npc.life <= 0)
-					{
-						Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WalkingTombstoneGore_01"), 1f);
-					}
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WalkingTombstoneGore_01"), 1f);
 			}
 		}
     }

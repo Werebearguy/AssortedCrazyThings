@@ -173,6 +173,8 @@ namespace AssortedCrazyThings
         {
             Instance = this;
 
+            ModConf.Load();
+
             InitPets();
 
             InitSoulBuffBlacklist();

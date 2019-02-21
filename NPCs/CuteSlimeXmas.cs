@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,8 +17,8 @@ namespace AssortedCrazyThings.NPCs
             npc.width = 46;
             npc.height = 52;
             npc.friendly = true;
-            npc.damage = 7;
-            npc.defense = 2;
+            npc.damage = 0;
+            npc.defense = 0;
             npc.lifeMax = 5;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -37,7 +35,8 @@ namespace AssortedCrazyThings.NPCs
         {
             if (Main.xMas == true)
             {
-                return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
+                if (ModConf.CuteSlimes) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
+                else return 0f;
             }
             else
             {
@@ -50,13 +49,6 @@ namespace AssortedCrazyThings.NPCs
             Item.NewItem(npc.getRect(), ItemID.Gel);
             if (Main.rand.Next(5) < 1) // a 2 in 7 chance
                 Item.NewItem(npc.getRect(), ItemID.GiantBow);
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
         }
     }
 }
