@@ -35,11 +35,12 @@ namespace AssortedCrazyThings.Items.Pets
         //TODO add recipe
         public override void AddRecipes()
         {
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.TaxCollectorsStickOfDoom, 1);
-            //recipe.AddTile(TileID.DemonAltar);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MoonStone);
+            recipe.AddIngredient(ItemID.Sextant);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
