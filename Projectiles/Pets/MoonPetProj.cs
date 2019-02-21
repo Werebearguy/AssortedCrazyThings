@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 18f));
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
 
-            if (!Main.eclipse && projectile.frame != 4) spriteBatch.Draw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, SpriteEffects.FlipHorizontally, 0f);
+            if (!Main.eclipse && projectile.frame != 4) spriteBatch.Draw(image, drawPos, bounds, Color.LightGray, 0f, bounds.Size() / 2, 1f, SpriteEffects.FlipHorizontally, 0f);
             return false;
         }
 

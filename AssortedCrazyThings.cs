@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -335,8 +336,6 @@ namespace AssortedCrazyThings
 
             if (mPlayer.RightClickPressed && Main.LocalPlayer.HeldItem.type == ItemType<Items.Weapons.EverhallowedLantern>())
             {
-                //  Spawn ammo selector
-                //Main.NewText("test");
                 EverhallowedLanternUI.visible = true;
                 EverhallowedLanternUI.circleAmount = 4;
                 EverhallowedLanternUI.heldItemType = Main.LocalPlayer.HeldItem.type;
@@ -394,7 +393,6 @@ namespace AssortedCrazyThings
                     InterfaceScaleType.UI)
                 );
             }
-
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -485,163 +483,9 @@ namespace AssortedCrazyThings
                     ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
                     break;
             }
-            if (false)
-            {
-                /*
-                AssMessageType msgType = (AssMessageType)reader.ReadByte();
-                byte playernumber;
-                //Player tempPlayer;
-                AssPlayer mPlayer;
-                int petType;
-                int petIndex = -1;
-                uint slotsPlayer = 0;
-                //uint slotsPlayerLast;
-                switch (msgType)
-                {
-                    //case AssMessageType.PetAccessorySlots:
-                    //    playernumber = reader.ReadByte();
-                    //    petIndex = reader.ReadInt32();
-                    //    petTypeChanged = reader.ReadBoolean();
-                    //    slotsPlayer = (uint)reader.ReadInt32();
-                    //    slotsPlayerLast = (uint)reader.ReadInt32();
-
-                    //    tempPlayer = Main.player[playernumber];
-                    //    mPlayer = tempPlayer.GetModPlayer<AssPlayer>();
-                    //    mPlayer.petIndex = petIndex;
-                    //    mPlayer.slotsPlayer = slotsPlayer;
-                    //    mPlayer.slotsPlayerLast = slotsPlayerLast;
-                    //    if (Main.netMode == NetmodeID.Server)
-                    //    {
-                    //        Console.WriteLine("recieved a PetAccessorySlots packet from " + tempPlayer.name);
-                    //    }
-                    //    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    //    {
-                    //        try
-                    //        {
-                    //            mPlayer.ApplyPetAccessories(petIndex, slotsPlayer);
-                    //        }
-                    //        catch (Exception e)
-                    //        {
-                    //            ErrorLogger.Log(e);
-                    //        }
-                    //        Main.NewText("recieved a PetAccessorySlots packet " + tempPlayer.name);
-
-                    //    }
-                    //    if (Main.netMode == NetmodeID.Server)
-                    //    {
-                    //        Console.WriteLine("send ignoring " + tempPlayer.name);
-                    //        ModPacket packet = GetPacket();
-                    //        packet.Write((byte)AssMessageType.PetAccessorySlots);
-                    //        packet.Write(playernumber);
-                    //        packet.Write(petIndex);
-                    //        packet.Write(slotsPlayer);
-                    //        packet.Write(slotsPlayerLast);
-                    //        packet.Send(-1, playernumber);
-                    //    }
-
-                    //    break;
-
-                    case AssMessageType.RedrawPetAccessories:
-                        //HarvesterBase.Print("try recv RedrawPetAccessories");
-                        try
-                        {
-                            playernumber = reader.ReadByte();
-                            mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
-
-                            petIndex = reader.ReadInt32();
-                            slotsPlayer = (uint)reader.ReadInt32();
-
-                            mPlayer.ApplyPetAccessories(petIndex, slotsPlayer);
-
-
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                mPlayer.SendRedrawPetAccessories(-1, playernumber);
-                            }
-                            //HarvesterBase.Print("recv RedrawPetAccessories from " + playernumber);
-                        }
-                        catch (Exception e)
-                        {
-                            ErrorLogger.Log(petIndex);
-                            ErrorLogger.Log(slotsPlayer);
-                            ErrorLogger.Log(e);
-                        }
-                        break;
-
-                    case AssMessageType.SyncPlayer:
-                        try
-                        {
-                            playernumber = reader.ReadByte();
-                            mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
-
-                            slotsPlayer = (uint)reader.ReadInt32();
-
-                            mPlayer.slotsPlayer = slotsPlayer;
-                            //HarvesterBase.Print("recv SyncPlayer from " + playernumber);
-                            // SyncPlayer will be called automatically, so there is no need to forward this data to other clients.
-                        }
-                        catch (Exception e)
-                        {
-                            ErrorLogger.Log(e);
-                        }
-                        break;
-
-                    case AssMessageType.SendClientChanges:
-                        try
-                        {
-                            playernumber = reader.ReadByte();
-                            mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
-
-                            //petType = reader.ReadInt32();
-                            petIndex = reader.ReadInt32();
-                            slotsPlayer = (uint)reader.ReadInt32();
-
-                            if (petIndex != -1 && mPlayer.petIndex != -1 && Main.projectile[mPlayer.petIndex].type != Main.projectile[petIndex].type)
-                            {
-                                Main.NewText("redraw");
-                                mPlayer.ApplyPetAccessories(petIndex, slotsPlayer);
-                            }
-
-                            //mPlayer.petType = petType;
-                            mPlayer.petIndex = petIndex;
-                            //mPlayer.slotsPlayer = slotsPlayer;
-                            // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ModPacket packet = GetPacket();
-                                packet.Write((byte)AssMessageType.SendClientChanges);
-                                packet.Write(playernumber);
-                                //packet.Write(mPlayer.petType);
-                                packet.Write(petIndex);
-                                packet.Write(slotsPlayer);
-                                packet.Send(-1, playernumber);
-                            }
-                            if (Main.netMode == NetmodeID.MultiplayerClient)
-                            {
-                                try
-                                {
-                                    //mPlayer.ApplyPetAccessories(petIndex, slotsPlayer);
-                                }
-                                catch (Exception e)
-                                {
-                                    ErrorLogger.Log(e);
-                                }
-                            }
-                            //HarvesterBase.Print("recv SendClientChanges from " + playernumber);
-                        }
-                        catch (Exception e)
-                        {
-                            ErrorLogger.Log(e);
-                        }
-                        break;
-                    default:
-                        ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
-                        break;
-                }
-                */
-            }
         }
 
+        //Credit to jopojelly
         public static void PremultiplyTexture(Texture2D texture)
         {
             Color[] buffer = new Color[texture.Width * texture.Height];
@@ -652,6 +496,87 @@ namespace AssortedCrazyThings
                         buffer[i].R, buffer[i].G, buffer[i].B, buffer[i].A);
             }
             texture.SetData(buffer);
+        }
+
+        public static string GetTimeAsString(bool accurate = true)
+        {
+            int num = 0;
+            string text3 = Lang.inter[95].Value;
+            string text4 = "AM";
+            double num6 = Main.time;
+            if (!Main.dayTime)
+            {
+                num6 += 54000.0;
+            }
+            num6 = num6 / 86400.0 * 24.0;
+            double num7 = 7.5;
+            num6 = num6 - num7 - 12.0;
+            if (num6 < 0.0)
+            {
+                num6 += 24.0;
+            }
+            if (num6 >= 12.0)
+            {
+                text4 = "PM";
+            }
+            int num8 = (int)num6;
+            double num9 = num6 - (double)num8;
+            num9 = (double)(int)(num9 * 60.0);
+            string text5 = string.Concat(num9);
+            if (num9 < 10.0)
+            {
+                text5 = "0" + text5;
+            }
+            if (num8 > 12)
+            {
+                num8 -= 12;
+            }
+            if (num8 == 0)
+            {
+                num8 = 12;
+            }
+            if(!accurate) text5 = ((!(num9 < 30.0)) ? "30" : "00");
+            return text3 + ": " + num8 + ":" + text5 + " " + text4;
+        }
+
+        public static string GetMoonPhaseAsString(bool showNumber = false)
+        {
+            string suffix = "";
+            if (showNumber) suffix = " (" + (Main.moonPhase + 1) + ")";
+            string text3 = Lang.inter[102].Value;
+            if (Main.moonPhase == 0)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.FullMoon") + suffix;
+            }
+            else if (Main.moonPhase == 1)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.WaningGibbous") + suffix;
+            }
+            else if (Main.moonPhase == 2)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.ThirdQuarter") + suffix;
+            }
+            else if (Main.moonPhase == 3)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.WaningCrescent") + suffix;
+            }
+            else if (Main.moonPhase == 4)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.NewMoon") + suffix;
+            }
+            else if (Main.moonPhase == 5)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.WaxingCrescent") + suffix;
+            }
+            else if (Main.moonPhase == 6)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.FirstQuarter") + suffix;
+            }
+            else if (Main.moonPhase == 7)
+            {
+                return text3 + ": " + Language.GetTextValue("GameUI.WaxingGibbous") + suffix;
+            }
+            return "";
         }
     }
 

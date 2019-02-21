@@ -9,7 +9,9 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Sun and Moon");
-            Tooltip.SetDefault("Summons a small sun and moon that provide you with constant light");
+            Tooltip.SetDefault("Summons a small sun and moon that provide you with constant light"
+                + "\nShows the current time in the buff tip"
+                + "\nShows the current moon cycle in the buff tip");
         }
 
         public override void SetDefaults()
@@ -29,6 +31,16 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 player.AddBuff(item.buffType, 3600, true);
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<SunPetItem>());
+            recipe.AddIngredient(mod.ItemType<MoonPetItem>());
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

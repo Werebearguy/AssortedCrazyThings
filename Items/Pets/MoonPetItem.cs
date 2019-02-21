@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Bottled Moon");
             Tooltip.SetDefault("Summons a small moon that provides you with constant moonlight"
-                + "\n'No adverse gravitational effects will happen'");
+                + "\nShows the current moon cycle in the buff tip");
         }
 
         public override void SetDefaults()
@@ -30,6 +30,16 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 player.AddBuff(item.buffType, 3600, true);
             }
+        }
+
+        //TODO add recipe
+        public override void AddRecipes()
+        {
+            //ModRecipe recipe = new ModRecipe(mod);
+            //recipe.AddIngredient(ItemID.TaxCollectorsStickOfDoom, 1);
+            //recipe.AddTile(TileID.DemonAltar);
+            //recipe.SetResult(this);
+            //recipe.AddRecipe();
         }
     }
 }

@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Sun");
-            Tooltip.SetDefault("Summons a small sun that provides you with constant sunlight");
+            Tooltip.SetDefault("Summons a small sun that provides you with constant sunlight"
+                +"\nShows the current time in the buff tip");
         }
 
         public override void SetDefaults()
@@ -29,6 +30,16 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 player.AddBuff(item.buffType, 3600, true);
             }
+        }
+
+        //TODO add recipe
+        public override void AddRecipes()
+        {
+            //ModRecipe recipe = new ModRecipe(mod);
+            //recipe.AddIngredient(ItemID.TaxCollectorsStickOfDoom, 1);
+            //recipe.AddTile(TileID.DemonAltar);
+            //recipe.SetResult(this);
+            //recipe.AddRecipe();
         }
     }
 }
