@@ -36,6 +36,21 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
             }
 
+            if (npc.type == NPCID.RainbowSlime)
+            {
+                if (Main.rand.NextBool(2)) Item.NewItem(npc.getRect(), mod.ItemType<RainbowSlimeItem>());
+            }
+
+            if (npc.type == NPCID.IlluminantSlime)
+            {
+                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<IlluminantSlimeItem>());
+            }
+
+            if (npc.type == NPCID.KingSlime)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PrinceSlimeItem>());
+            }
+
             if (npc.type == NPCID.Plantera)
             {
                 for (int i = 0; i < 255; i++)

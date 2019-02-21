@@ -51,10 +51,10 @@ namespace AssortedCrazyThings.NPCs
                 npc.velocity.Y = -0.022f * 6f;
             }
             npc.ai[0]++;
-            npc.velocity.Y -= 0.022f * 1.7f; //0.022f * 2f;
-            if (npc.timeLeft > 60)
+            npc.velocity.Y -= 0.022f * 1.5f; //0.022f * 2f;
+            if (npc.timeLeft > 80)
             {
-                npc.timeLeft = 60;
+                npc.timeLeft = 80;
             }
         }
     }
