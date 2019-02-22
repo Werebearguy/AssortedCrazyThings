@@ -149,6 +149,7 @@
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\DroneParts.cs" />
+    <Compile Include="Items\Fun\GuideVoodoorang.cs" />
     <Compile Include="Items\Fun\GreenThumb.cs" />
     <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\Pets\ChunkyItem.cs" />
@@ -387,6 +388,7 @@
     <Compile Include="Projectiles\Tools\ExtendoNetGoldenProj.cs" />
     <Compile Include="Projectiles\Tools\ExtendoNetRegularProj.cs" />
     <Compile Include="Projectiles\Weapons\CandleDustDummy.cs" />
+    <Compile Include="Projectiles\Weapons\GuideVoodoorangProj.cs" />
     <Compile Include="Projectiles\Weapons\HarvesterBone.cs" />
     <Compile Include="Projectiles\Weapons\TrueLegendaryWoodenSwordProj.cs" />
     <Compile Include="Projectiles\Weapons\PocketSand.cs" />
