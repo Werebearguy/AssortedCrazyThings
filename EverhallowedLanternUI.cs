@@ -56,7 +56,7 @@ namespace AssortedCrazyThings
             //Main.NewText("EverhallowedLanternUI DrawSelf");
             base.DrawSelf(spriteBatch);
 
-            CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(AssortedCrazyThings.Instance, currentSoulMinionType);
+            CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(currentSoulMinionType);
 
             //  Draw weapon circle
             Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
@@ -99,7 +99,7 @@ namespace AssortedCrazyThings
             //  done --> ID of currently drawn circle
             for (soulType = 0; soulType < circleAmount; ++soulType)
             {
-                stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(AssortedCrazyThings.Instance, soulType);
+                stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType);
 
                 double x = outerRadius * Math.Cos(i * Math.PI);
                 double y = outerRadius * Math.Sin(i * Math.PI);

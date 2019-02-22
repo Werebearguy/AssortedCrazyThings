@@ -76,25 +76,25 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return 0;
         }
 
-        public static SoulStats GetAssociatedStats(Mod mod, int soulType)
+        public static SoulStats GetAssociatedStats(int soulType)
         {
             //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType);
-            if (soulType == (int)SoulType.Sight) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType);
-            if (soulType == (int)SoulType.Might) return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
+            if (soulType == (int)SoulType.Fright) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType);
+            if (soulType == (int)SoulType.Sight) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType);
+            if (soulType == (int)SoulType.Might) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
                 if (Main.hardMode)
                 {
-                    return new SoulStats(mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
+                    return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
                 }
                 else if(soulType == (int)SoulType.Dungeon)
                 {
-                    return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
+                    return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
                 }
                 else
                 {
-                    return new SoulStats(mod.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
+                    return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
                 }
             }
 

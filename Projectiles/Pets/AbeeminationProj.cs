@@ -3,7 +3,7 @@ using Terraria;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     //check this file for more info vvvvvvvv
-    public class Abeemination : BabySlimeBase
+    public class AbeeminationProj : BabySlimeBase
     {
         public override void SetStaticDefaults()
         {
@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             drawOffsetX = 0;
             drawOriginOffsetY = 4;
         }
-
-        /*					
-            if (projPet[projectile[i].type] && !projectile[i].minion && projectile[i].owner != 255 && projectile[i].damage == 0 && !ProjectileID.Sets.LightPet[projectile[i].type])
-            {
-	            num3 = player[projectile[i].owner].cPet;
-            }
-         */
 
         public override void MoreSetDefaults()
         {

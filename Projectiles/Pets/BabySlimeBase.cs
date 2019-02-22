@@ -33,6 +33,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             projectile.minionSlots = (Damage > 0) ? 1f : 0f;
         }
+        
+        /*					
+            if (projPet[projectile[i].type] && !projectile[i].minion && projectile[i].owner != 255 && projectile[i].damage == 0 && !ProjectileID.Sets.LightPet[projectile[i].type])
+            {
+	            num3 = player[projectile[i].owner].cPet;
+            }
+         */
 
         public virtual void MoreSetDefaults()
         {

@@ -18,10 +18,10 @@ namespace AssortedCrazyThings.Buffs
         {
             player.buffTime[buffIndex] = 18000;
             player.GetModPlayer<PetPlayer>(mod).Abeemination = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<Abeemination>()] <= 0;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<AbeeminationProj>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<Abeemination>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<AbeeminationProj>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

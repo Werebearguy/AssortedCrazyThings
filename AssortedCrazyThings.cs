@@ -18,12 +18,7 @@ namespace AssortedCrazyThings
     {
         public AssortedCrazyThings()
         {
-            Properties = new ModProperties()
-            {
-                Autoload = true,
-                AutoloadGores = true,
-                AutoloadSounds = true
-            };
+
         }
 
         //Instance
@@ -123,6 +118,7 @@ namespace AssortedCrazyThings
 
         private void AddToSoulBuffBlacklist()
         {
+            //assuming this is called after InitSoulBuffBlacklist
             int index = soulBuffBlacklist.Length - 1; //last index
 
             Array.Resize(ref soulBuffBlacklist, index + 40); //buffer
@@ -312,7 +308,7 @@ namespace AssortedCrazyThings
             {
                 if(Main.LocalPlayer.inventory[i].type == ItemType<Items.Weapons.EverhallowedLantern>())
                 {
-                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(this, selectedSoulType);
+                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
                     Main.LocalPlayer.inventory[i].damage = stats.Damage;
                     Main.LocalPlayer.inventory[i].shoot = stats.Type;
                     Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;

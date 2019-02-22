@@ -323,7 +323,7 @@
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinionBase.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
     <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
-    <Compile Include="Projectiles\Pets\Abeemination.cs" />
+    <Compile Include="Projectiles\Pets\AbeeminationProj.cs" />
     <Compile Include="Projectiles\Pets\ChunkySlimeProj.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj2.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj.cs" />
