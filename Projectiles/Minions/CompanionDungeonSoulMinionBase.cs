@@ -65,13 +65,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
-        public static int GetSoulTypeFromType(Mod mod, int type)
+        public static int GetSoulTypeFromType(int type)
         {
-            if (type == mod.ProjectileType<CompanionDungeonSoulMinion>()) return (int)SoulType.Dungeon;
-            if (type == mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>()) return (int)SoulType.Dungeon;
-            if (type == mod.ProjectileType<CompanionDungeonSoulFrightMinion>()) return (int)SoulType.Fright;
-            if (type == mod.ProjectileType<CompanionDungeonSoulSightMinion>()) return (int)SoulType.Sight;
-            if (type == mod.ProjectileType<CompanionDungeonSoulMightMinion>()) return (int)SoulType.Might;
+            //not used anywhere yet
+            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>()) return (int)SoulType.Dungeon;
+            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>()) return (int)SoulType.Dungeon;
+            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>()) return (int)SoulType.Fright;
+            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulSightMinion>()) return (int)SoulType.Sight;
+            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMightMinion>()) return (int)SoulType.Might;
             //Temp ignored
             return 0;
         }
