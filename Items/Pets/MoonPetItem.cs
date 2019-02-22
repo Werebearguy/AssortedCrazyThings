@@ -36,6 +36,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Bottle);
             recipe.AddIngredient(ItemID.MoonStone);
             recipe.AddIngredient(ItemID.Sextant);
             recipe.AddTile(TileID.CrystalBall);
