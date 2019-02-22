@@ -238,7 +238,7 @@ namespace AssortedCrazyThings
                 bool checkIfAlive = false;
                 for (int i = 0; i < 1000; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == CompanionDungeonSoulMinionBase.GetAssociatedStats(mod, (int)CompanionDungeonSoulMinionBase.SoulType.Temp).Type)
+                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == CompanionDungeonSoulMinionBase.GetAssociatedStats((int)CompanionDungeonSoulMinionBase.SoulType.Temp).Type)
                     {
                         if (Main.projectile[i].minionSlots == 0f)
                         {
@@ -251,7 +251,7 @@ namespace AssortedCrazyThings
                 if (!checkIfAlive)
                 {
                     //twice the damage
-                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(mod, (int)CompanionDungeonSoulMinionBase.SoulType.Temp);
+                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats((int)CompanionDungeonSoulMinionBase.SoulType.Temp);
                     int i = SpawnSoul(stats, true);
                     Main.projectile[i].minionSlots = 0f;
                     Main.projectile[i].timeLeft = 600; //10 seconds
@@ -329,6 +329,16 @@ namespace AssortedCrazyThings
             }
         }
 
+        public override void GetWeaponDamage(Item item, ref int damage)
+        {
+            if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
+        }
+
+        public override void GetWeaponCrit(Item item, ref int crit)
+        {
+            if (empoweringBuff) crit += (int)(10 * step);
+        }
+
         private void Empower()
         {
             if (empoweringBuff)
@@ -341,18 +351,6 @@ namespace AssortedCrazyThings
                         step = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
                     }
                 }
-                
-                player.meleeDamage += step;
-                player.thrownDamage += step;
-                player.rangedDamage += step;
-                player.magicDamage += step;
-                player.minionDamage += 0.25f * step;
-
-                //adds crit from 0 to 5/7/10 (depends)
-                player.meleeCrit += (int)(10 * step);
-                player.thrownCrit += (int)(10 * step);
-                player.rangedCrit += (int)(10 * step);
-                player.magicCrit += (int)(10 * step);
             }
             else empoweringTimer = 0;
         }
@@ -426,7 +424,7 @@ namespace AssortedCrazyThings
                 planteraGitGudCounter = 0;
                 if (!player.HasItem(mod.ItemType<GreenThumb>()) && !planteraGitGud)
                 {
-                    Item.NewItem(player.getRect(), mod.ItemType<GreenThumb>(), 1);
+                    Item.NewItem(player.getRect(), mod.ItemType<GreenThumb>());
                 }
             }
         }

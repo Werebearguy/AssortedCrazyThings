@@ -315,6 +315,7 @@
     <Compile Include="NPCs\WhaleSharkPup.cs" />
     <Compile Include="NPCs\YoungHarpy.cs" />
     <Compile Include="NPCs\ZombieFlorist.cs" />
+    <Compile Include="Projectiles\AssGlobalProj.cs" />
     <Compile Include="Projectiles\Minions\SlimePackMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulFrightMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulSightMinion.cs" />
