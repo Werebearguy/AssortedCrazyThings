@@ -329,16 +329,6 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void GetWeaponDamage(Item item, ref int damage)
-        {
-            if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
-        }
-
-        public override void GetWeaponCrit(Item item, ref int crit)
-        {
-            if (empoweringBuff) crit += (int)(10 * step);
-        }
-
         private void Empower()
         {
             if (empoweringBuff)
@@ -720,6 +710,16 @@ namespace AssortedCrazyThings
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
+        }
+
+        public override void GetWeaponDamage(Item item, ref int damage)
+        {
+            if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
+        }
+
+        public override void GetWeaponCrit(Item item, ref int crit)
+        {
+            if (empoweringBuff) crit += (int)(10 * step);
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)
