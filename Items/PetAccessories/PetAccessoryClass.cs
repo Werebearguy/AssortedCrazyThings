@@ -349,6 +349,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryMetalHelmet : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight Helmet");
+            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
     public class PetAccessoryMittensBlack : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -713,20 +727,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryMetalHelmet : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight Helmet");
-            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
     public class PetAccessoryToyShield : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -790,9 +790,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         Hat,
         Carried,
         Accessory
-        //Please settle on (max) four groups for now (ignoring None), those I listed are suggestions.
-        //Also, concider that there cant be more than one accessory active in each slot, so decide on proper
-        //categories that make sense.
 
         //for Carried, it's actually only the front facing hand. For something like gloves or dual wielding, use Accessory instead
 
@@ -812,7 +809,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         //public fields
         public static int[] Items;
         public static int[] ItemsIndexed; //used in ToggleAccessory
-        public static int[] ReverseIndexed; //CuteSlimeGlobalTooltip
         public static Texture2D[] Texture;
         public static Vector2[] Offset;
         public static bool[] PreDraw;
@@ -833,7 +829,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
              * or if one of the class names is misspelt
              * 
              * - if you want to add alternative textures (Suffixed with _Draw<identifyingNumber>), call AddAltTextures and assign each 
-             * pet a texture to use (-1 is "not rendered", 0 is "default, > 0 is "use _Draw<identifyingNumber> texture"
+             * pet a texture to use (-1 is "not rendered", 0 is "default, > 0 is "use _Draw<identifyingNumber> texture")
              * you can leave the other pet types out if you only need to adjust the texture of one pet
              * 
              * - if you want to remove certain accessories from being usable for the system, comment the line out in namesOfAccessories
@@ -871,6 +867,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
                 "PetAccessoryKitchenKnife",
 
+                "PetAccessoryMetalHelmet",
+
                 "PetAccessoryMittensBlack",
                 "PetAccessoryMittensBlue",
                 "PetAccessoryMittensGray",
@@ -898,8 +896,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffRuby",
                 "PetAccessoryStaffSapphire",
                 "PetAccessoryStaffTopaz",
-
-                "PetAccessoryMetalHelmet",
                 "PetAccessoryToyShield",
                 "PetAccessoryToySword",
 				
@@ -967,34 +963,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryKitchenKnife", offsetX: -6f, preDraw: true);
 
-            Add(name: "PetAccessoryMittensBlack");
-            Add(name: "PetAccessoryMittensBlue");
-            Add(name: "PetAccessoryMittensGray");
-            Add(name: "PetAccessoryMittensGreen");
-            Add(name: "PetAccessoryMittensOrange");
-            Add(name: "PetAccessoryMittensPink");
-            Add(name: "PetAccessoryMittensPurple");
-            Add(name: "PetAccessoryMittensRed");
-            Add(name: "PetAccessoryMittensWhite");
-            Add(name: "PetAccessoryMittensYellow");
-
-            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPink", offsetY: -20f, alpha: 39);
-            Add(name: "PetAccessorySlimeHeadPinky", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadRed", offsetY: -18f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -18f, alpha: 56);
-
-            Add(name: "PetAccessoryStaffAmber", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffAmethyst", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffDiamond", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffEmerald", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffRuby", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
-
             Add(name: "PetAccessoryMetalHelmet", offsetY: -4f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryMetalHelmet",
             black: 0,
@@ -1006,6 +974,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
             red: 0,
             //xmas: 0,
             yellow: 2);
+
+            Add(name: "PetAccessoryMittensBlack");
+            Add(name: "PetAccessoryMittensBlue");
+            Add(name: "PetAccessoryMittensGray");
+            Add(name: "PetAccessoryMittensGreen");
+            Add(name: "PetAccessoryMittensOrange");
+            Add(name: "PetAccessoryMittensPink");
+            Add(name: "PetAccessoryMittensPurple");
+            Add(name: "PetAccessoryMittensRed");
+            Add(name: "PetAccessoryMittensWhite");
+            Add(name: "PetAccessoryMittensYellow");
+
+            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPink", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPinky", offsetY: -20f, alpha: 39);
+            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadRed", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -20f, alpha: 56);
+
+            Add(name: "PetAccessoryStaffAmber", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffAmethyst", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffDiamond", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffEmerald", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffRuby", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
 
             Add(name: "PetAccessoryToyShield");
 
@@ -1289,7 +1285,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
                 {
-                    if (/*mPlayer.slotsPlayer != 0 &&*/ mPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
+                    if (mPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
                     {
                         shouldReset = true;
                     }
@@ -1307,8 +1303,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     {
                         if (shouldReset && player.altFunctionUse == 2)
                         {
-                            //CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "reverted all accessories");
-
                             if(mPlayer.slots != 0)
                             {
                                 mPlayer.slotsLast = mPlayer.slots;
