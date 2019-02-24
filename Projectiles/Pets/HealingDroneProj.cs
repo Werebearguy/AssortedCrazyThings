@@ -12,8 +12,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         private static readonly string nameGlow = "Projectiles/Pets/" + "HealingDroneProj_Glowmask";
         private static readonly string nameLower = "Projectiles/Pets/" + "HealingDroneProj_Lower";
         private static readonly string nameLowerGlow = "Projectiles/Pets/" + "HealingDroneProj_Lower_Glowmask";
-        private float sinY;
-        private float addRotation;
+        private float sinY; //depends on projectile.ai[0], no need to sync
+        private float addRotation; //same
 
         private float Sincounter
         {
@@ -57,59 +57,37 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 8f) + sinY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 drawOrigin = bounds.Size() / 2;
 
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, bounds.Size() / 2, 1f, effects, 0f);
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             image = mod.GetTexture(nameGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, bounds.Size() / 2, 1f, effects, 0f);
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            //Dust dust = Dust.NewDustPerfect(projectile.position + stupidOffset, 135, new Vector2(0f, 0f), 100, Color.White, 0.6f);
-            //dust.noGravity = true;
-            //dust.noLight = true;
+            Vector2 rotationOffset = new Vector2(0f, -2f);
+            drawPos += rotationOffset;
+            drawOrigin += rotationOffset;
 
-            //Dust dust2 = Dust.NewDustPerfect(projectile.position + stupidOffset - bounds.Size() / 2, 136, new Vector2(0f, 0f), 100, Color.White, 0.6f);
-            //dust2.noGravity = true;
-            //dust2.noLight = true;
+            //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
 
-            //ROTATION CENTER IS position WHEN origin IS bounds.Size() / 2
+            //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
+
+            //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
             image = mod.GetTexture(nameLower);
-            spriteBatch.Draw(image, drawPos + new Vector2(0f, -2f), bounds, lightColor, addRotation, bounds.Size() / 2 + new Vector2(0f, -2f), 1f, effects, 0f);
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
 
             image = mod.GetTexture(nameLowerGlow);
-            spriteBatch.Draw(image, drawPos + new Vector2(0f, -2f), bounds, Color.White, addRotation, bounds.Size() / 2 + new Vector2(0f, -2f), 1f, effects, 0f);
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0f);
 
             return false;
-        }
-
-        public static Dust QuickDust(Vector2 pos, Color color, Vector2 dustVelo)
-        {
-            int type = 61;
-            Dust dust = Dust.NewDustPerfect(pos, type, dustVelo, 120, color, 2f);
-            dust.position = pos;
-            dust.velocity = dustVelo;
-            dust.fadeIn = 1f;
-            dust.noLight = false;
-            dust.noGravity = true;
-            return dust;
-        }
-
-        public static void QuickDustLine(Vector2 start, Vector2 end, float splits, Color color, Vector2 dustVelo)
-        {
-            QuickDust(start, color, dustVelo);
-            float num = 1f / splits;
-            for (float num2 = 0f; num2 < 1f; num2 += num)
-            {
-                QuickDust(Vector2.Lerp(start, end, num2), color, dustVelo);
-            }
         }
 
         private void CustomAI()
         {
             Player player = Main.player[projectile.owner];
+
             Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
-            //Sincounter = 0;
             sinY = (float)((Math.Sin((Sincounter / 120f) * 2 * Math.PI) - 1) * 4);
-            //sinY = 0f;
             
             if(player.statLife < player.statLifeMax2 / 2)
             {
@@ -118,12 +96,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
-                shootOrigin += Vector2.Normalize(between) * 16f;
-                target += -Vector2.Normalize(between) * 12f;
+                shootOrigin += Vector2.Normalize(between) * 16f; //roughly tip of turret
+                target += -Vector2.Normalize(between) * 12f; //roughly center of head with a buffer
 
                 addRotation = between.ToRotation();
 
-                if (projectile.spriteDirection == 1)
+                if (projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
                     addRotation -= (float)Math.PI;
                     if (addRotation > 2 * Math.PI)
@@ -134,7 +112,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 bool canShoot = true;
 
-                if (projectile.spriteDirection == -1)
+                if (projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka player is too fast for the drone to catch up)
                 {
                     if (addRotation <= projectile.rotation)
                     {
@@ -151,26 +129,40 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                 }
 
-                //Main.NewText(projectile.rotation);
-                //Main.NewText(addRotation);
-
                 if (canShoot && shootOrigin.Y < target.Y) //when target below drone
                 {
-                    if (Sincounter % 80 == 30) //only shoot once a second, when target below drone and when turret aligned properly
+                    if (Sincounter % 80 == 30) //only shoot once every 1.333 seconds, when target below drone and when turret aligned properly
                     {
                         int heal = 1;
                         player.statLife += heal;
-                        player.HealEffect(heal);
+                        player.HealEffect(heal, false);
                     }
                     if (Sincounter % 80 == 35)
                     {
-                        QuickDustLine(shootOrigin, target, between.Length() / 3, Color.White, Vector2.Zero);
+                        AssUtils.QuickDustLine(61, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
                     }
                 }
             }
-            else
+            else //if above 50%, addRotation should go down to projectile.rotation
             {
-                addRotation = projectile.rotation;
+                //if addRotation is bigger than projectile.rotation by a small margin, reduce it down to projectile.rotation slowly
+                if (Math.Abs(addRotation) > Math.Abs(projectile.rotation) + 0.006f)
+                {
+                    float rotDiff = projectile.rotation - addRotation;
+                    if (Math.Abs(rotDiff) < 0.005f)
+                    {
+                        addRotation = projectile.rotation;
+                    }
+                    else
+                    {
+                        addRotation += addRotation * -0.15f;
+                    }
+                }
+                else
+                {
+                    //fix rotation so it doesn't get adjusted anymore
+                    addRotation = projectile.rotation;
+                }
             }
         }
 
