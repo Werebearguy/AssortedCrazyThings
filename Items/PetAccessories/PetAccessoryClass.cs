@@ -727,6 +727,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryToyShield : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight Shield");
+            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Accessory;
+        }
+    }
+
+    public class PetAccessoryToySword : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight Sword");
+            Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
     public class PetAccessoryWizardHat : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -872,6 +900,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffTopaz",
 
                 "PetAccessoryMetalHelmet",
+                "PetAccessoryToyShield",
+                "PetAccessoryToySword",
 				
                 "PetAccessoryWizardHat",
 				
@@ -976,6 +1006,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             red: 0,
             //xmas: 0,
             yellow: 2);
+
+            Add(name: "PetAccessoryToyShield");
+
+            Add(name: "PetAccessoryToySword", offsetX: -2f, preDraw: true);
 			
             Add(name: "PetAccessoryWizardHat", offsetY: -12f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryWizardHat",
