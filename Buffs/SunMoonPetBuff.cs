@@ -30,8 +30,8 @@ namespace AssortedCrazyThings.Buffs
 
         public override void ModifyBuffTip(ref string tip, ref int rare)
         {
-            tip += "\n" + AssortedCrazyThings.GetMoonPhaseAsString();
-            tip += "\n" + AssortedCrazyThings.GetTimeAsString();
+            tip += "\n" + AssUtils.GetMoonPhaseAsString();
+            tip += "\n" + AssUtils.GetTimeAsString();
         }
     }
 }
