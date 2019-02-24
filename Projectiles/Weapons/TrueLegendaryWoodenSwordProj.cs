@@ -43,34 +43,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             return true;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            //if (Main.rand.NextFloat() >= .50f)
-            //{
-            //    target.AddBuff(BuffID.Confused, 90); //1 1/2 seconds, 50% chance
-            //}
-        }
-
-        //private void SpawnSandDust(Color color, Rectangle hitbox, Player player, float velox)
-        //{
-        //    //the thick no-outline one that spreads
-        //    int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)(hitbox.Y - player.height / 2)), hitbox.Width, hitbox.Height, 102, player.velocity.X * 0.2f + (Main.rand.NextBool() ? velox : -velox), player.velocity.Y * 0.2f, 150, color, 1f);
-        //    Main.dust[dustid].noGravity = false;
-        //    Main.dust[dustid].fadeIn = 0.8f;
-        //    //the outline one 
-        //    int dustid2 = Dust.NewDust(new Vector2((float)hitbox.X, (float)(hitbox.Y - player.height / 2)), hitbox.Width, hitbox.Height, 32, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 200, color, 0.8f);
-        //    Main.dust[dustid2].noGravity = true;
-        //}
-
-        //public override void ModifyDamageHitbox(ref Rectangle hitbox)
-        //{
-        //    //increase hitbox used in colliding with NPCs while projectile life depletes
-        //    hitbox.Width += (int)((LifeTime - projectile.timeLeft) * 1.5f);
-        //    hitbox.Height += (int)((LifeTime - projectile.timeLeft) * 1.5f);
-        //    hitbox.X -= (int)((LifeTime - projectile.timeLeft) * 1.5f / 2f);
-        //    hitbox.Y -= (int)((LifeTime - projectile.timeLeft) * 1.5f / 2f);
-        //}
-
         public override void PostAI()
         {
             if (projectile.ai[0] < 15) projectile.ai[0] = 15;

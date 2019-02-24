@@ -98,7 +98,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
                 }
             }
-
             return new SoulStats(0, 0, 0, soulType);
         }
 

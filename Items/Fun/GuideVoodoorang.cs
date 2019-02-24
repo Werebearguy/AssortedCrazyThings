@@ -8,11 +8,11 @@ namespace AssortedCrazyThings.Items.Fun
 {
 	public class GuideVoodoorang : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Guide Voodoorang");
-			Tooltip.SetDefault("'Why are you like this?'");
-		}
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Guide Voodoorang");
+            Tooltip.SetDefault("'Why are you like this?'");
+        }
 
         public override void SetDefaults()
         {
@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override bool CanUseItem(Player player)
         {
-            // Ensures no more than one boomerang can be thrown out, use this when using autoReuse
+            // Ensures no more than one boomerang can be thrown out
             return player.ownedProjectileCounts[item.shoot] < 1;
         }
 
