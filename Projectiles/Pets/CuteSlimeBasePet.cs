@@ -58,6 +58,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY + drawOriginOffsetY);
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                 Color color = drawColor * ((255f - projectile.alpha) / 255f);
+
+                //AssUtils.ShowDustAtPos(135, drawPos + Main.screenPosition);
+
                 spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
             }
         }
@@ -93,50 +96,37 @@ namespace AssortedCrazyThings.Projectiles.Pets
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 //slimeAccessory is the indexed number of the accessory (from 0 to 255)
-
-
-
-                //
-                //uint slimeAccessory = gProjectile.GetAccessory(slotNumber);
+                
                 uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
-
-
-
-
 
                 if ((preDraw || !PetAccessory.PreDraw[slimeAccessory]) && slimeAccessory != 0)
                 {
                     Texture2D texture = PetAccessory.Texture[slimeAccessory];
 
-                    //if(slotNumber == (byte)SlotType.Hat)
-                    //{
-                        int altTextureNumber = PetAccessory.AltTexture[slimeAccessory, mPlayer.petColor];
+                    int altTextureNumber = PetAccessory.AltTexture[slimeAccessory, mPlayer.petColor];
                         
-                        if (altTextureNumber != -1 && altTextureNumber != 0) //change texture if not -1 and not -0
-                        {
-                            //because texture name is absolute but GetTexture takes the relative path, we only take the name as reference
-                            //and construct the rest
-                            string[] texNameList = texture.Name.Split(new string[] { "/" }, 10, StringSplitOptions.RemoveEmptyEntries);
-                            texture = mod.GetTexture("Items/PetAccessories/" + texNameList[texNameList.Length - 1] + altTextureNumber);
-                        }
-                        else if (altTextureNumber == -1)
-                        {
-                            continue;
-                        }
-                        //else if 0: normal behavior
-                    //}
-
+                    if (altTextureNumber != -1 && altTextureNumber != 0) //change texture if not -1 and not -0
+                    {
+                        //because texture name is absolute but GetTexture takes the relative path, we only take the name as reference
+                        //and construct the rest
+                        string[] texNameList = texture.Name.Split(new string[] { "/" }, 10, StringSplitOptions.RemoveEmptyEntries);
+                        texture = mod.GetTexture("Items/PetAccessories/" + texNameList[texNameList.Length - 1] + altTextureNumber);
+                    }
+                    else if (altTextureNumber == -1)
+                    {
+                        continue;
+                    }
+                    //else if 0: normal behavior
 
                     Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
 
                     //get necessary properties and parameters for draw
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
-                    Vector2 stupidOffset = PetAccessory.Offset[slimeAccessory] + new Vector2(0f, projectile.gfxOffY);
+                    Vector2 stupidOffset = new Vector2(0f, drawOriginOffsetY + projectile.gfxOffY);
                     Color color = drawColor * ((255 - PetAccessory.Alpha[slimeAccessory]) / 255f);
 
-                    //here, pick the sprite according to whats specified in the slimeAccessory
-                    //some kinda map
+                    //AssUtils.ShowDustAtPos(136, projectile.position + drawOrigin + stupidOffset);
 
                     //fix for legacy slimes
                     if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) != -1)
@@ -206,52 +196,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         */
                     }
 
-                    if (slotNumber == (byte)SlotType.Carried)
+                    Vector2 originOffset = - PetAccessory.Offset[slimeAccessory];
+                    if (projectile.spriteDirection == -1)
                     {
-                        float handsOffsetX = -22f * projectile.scale + 22f;
-                        if (PetAccessory.Offset[slimeAccessory].X <= -6f)
-                        {
-                            handsOffsetX = -(2.5f * projectile.scale) + 3.5f;
-                        }
-                        float handsOffsetY = (projectile.scale < 1) ? 2.5f * projectile.scale - 2.5f : 10f * projectile.scale - 10f;
-                        stupidOffset.X += handsOffsetX;
-                        stupidOffset.Y += handsOffsetY;
-                        //if (projectile.frame > 2 && projectile.frame < 6) //hands "bounce"
-                        //{
-                        //    // += -4f
-                        //    stupidOffset.X += -4f + handsOffsetX / 4f;
-                        //}
-
-                        if (projectile.spriteDirection == -1)
-                        {
-                            stupidOffset.X -= 2 * stupidOffset.X;
-                        }
+                        originOffset.X = -originOffset.X;
                     }
-
-                    if (slotNumber == (byte)SlotType.Hat)
-                    {
-                        if (projectile.scale == 0.6f) //hack
-                        {
-                            stupidOffset.Y -= 1f;
-                        }
-                        if (PetAccessory.Offset[slimeAccessory].Y != 0f)
-                        {
-                            if (projectile.scale == 1.2f)
-                            {
-                                stupidOffset.Y += 2f;
-                            }
-                            stupidOffset.Y += (1f - projectile.scale) * 16f;
-                        }
-                    }
-
-                    if (projectile.scale == 0.6f) //hack
-                    {
-                        stupidOffset.Y += -7.5f * 2.25f * projectile.scale + 7.5f; //2f
-                    }
-
-                    stupidOffset += new Vector2(0f, drawOriginOffsetY + (-7.5f * projectile.scale + 7.5f));
+                    
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
+                    spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), color, projectile.rotation, frameLocal.Size() / 2 + originOffset, projectile.scale, effect, 0f);
                 }
             }
         }
