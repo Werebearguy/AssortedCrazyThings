@@ -192,7 +192,7 @@ namespace AssortedCrazyThings
             index = Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
             if (temp) return index; //spawn only one 
 
-            if (!(Main.hardMode || temp)) //other types can't really be summoned before hardmode anyway
+            if (player.HeldItem.type != mod.ItemType<Items.Weapons.EverhallowedLantern>()) //spawn only one when holding Everhallowed Lantern
             {
                 spawnPos.Y += 2f;
                 spawnVelo.X -= 0.5f * player.direction;

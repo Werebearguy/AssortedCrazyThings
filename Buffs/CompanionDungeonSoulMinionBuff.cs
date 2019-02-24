@@ -20,7 +20,8 @@ namespace AssortedCrazyThings.Buffs
             int sum = 0;
             foreach(CompanionDungeonSoulMinionBase.SoulType soulType in Enum.GetValues(typeof(CompanionDungeonSoulMinionBase.SoulType)))
             {
-                //Main.NewText((int)soulType + " " + player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats(mod, (int)soulType).Type]);
+                //Main.NewText((int)soulType + " " + player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats((int)soulType).Type]);
+                sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>()];
                 sum += player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats((int)soulType).Type];
             }
             return sum;
