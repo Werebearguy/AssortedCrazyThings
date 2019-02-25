@@ -20,8 +20,8 @@ namespace AssortedCrazyThings.NPCs
             npc.width = 18;
             npc.height = 40;
             npc.damage = 30;
-            npc.defense = 20;
-            npc.lifeMax = 100;
+            npc.defense = 16;
+            npc.lifeMax = 50;
             npc.HitSound = SoundID.NPCHit41;
             npc.DeathSound = SoundID.NPCDeath52;
             npc.value = 60f;
