@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,18 +45,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), ItemID.Gel);
-            }
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            {
-                if (npc.life <= 0)
-                {
-                }
-            }
+            Item.NewItem(npc.getRect(), ItemID.Gel);
         }
     }
 }

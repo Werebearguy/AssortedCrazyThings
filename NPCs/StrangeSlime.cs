@@ -62,11 +62,6 @@ namespace AssortedCrazyThings.NPCs
             Item.NewItem(npc.getRect(), 3385 + (int)AiTexture);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-
-        }
-
         public float AiTexture
         {
             get

@@ -26,6 +26,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if(projectile.velocity.Y != 0.1f) projectile.rotation = projectile.velocity.X * 0.01f;
         }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
+            {
+                DrawAccessories(spriteBatch, drawColor, preDraw: true);
+            }
+
+            DrawBaseSprite(spriteBatch, drawColor);
+            return false;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
+            {
+                DrawAccessories(spriteBatch, drawColor);
+            }
+        }
+
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
@@ -42,7 +61,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 useNoHair = true;
             }
 
-            if(MoreDrawBaseSprite(spriteBatch, drawColor, useNoHair)) //do a pre-draw for the rainbow slimes
+            if (MoreDrawBaseSprite(spriteBatch, drawColor, useNoHair)) //do a pre-draw for the rainbow slimes
             {
                 Texture2D texture = Main.projectileTexture[projectile.type];
                 if (useNoHair) //only if not legacy
@@ -68,25 +87,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public virtual bool MoreDrawBaseSprite(SpriteBatch spriteBatch, Color drawColor, bool useNoHair)
         {
             return true;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
-            {
-                DrawAccessories(spriteBatch, drawColor, preDraw: true);
-            }
-
-            DrawBaseSprite(spriteBatch, drawColor);
-            return false;
-        }
-
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
-            {
-                DrawAccessories(spriteBatch, drawColor);
-            }
         }
 
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)

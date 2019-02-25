@@ -36,23 +36,19 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                if (Main.rand.NextBool(50))
-                    Item.NewItem(npc.getRect(), ItemID.Shackle, 1);
-                if (Main.rand.NextBool(250))
-                    Item.NewItem(npc.getRect(), ItemID.FlowerBoots, 1);
-            }
+            if (Main.rand.NextBool(50))
+                Item.NewItem(npc.getRect(), ItemID.Shackle, 1);
+            if (Main.rand.NextBool(250))
+                Item.NewItem(npc.getRect(), ItemID.FlowerBoots, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_01"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
-                }
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_01"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_zombie_02_02"), 1f);
             }
         }
     }
