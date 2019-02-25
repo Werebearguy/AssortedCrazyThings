@@ -51,13 +51,6 @@ namespace AssortedCrazyThings.NPCs
             Item.NewItem(npc.getRect(), ItemID.Bladetongue);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
-        }
-
         public override void AI()
         {
             //modified goldfish AI

@@ -34,13 +34,6 @@ namespace AssortedCrazyThings.NPCs
 			npc.catchItem = (short)mod.ItemType("ChunkysEye");
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-            }
-        }
-
         public override void AI()
         {
             if (npc.ai[0] == 0)

@@ -41,10 +41,7 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Book);
-            if(Main.rand.NextBool(50))
-            {
-                Item.NewItem(npc.getRect(), mod.ItemType("OrigamiManual"));
-            }
+            if(Main.rand.NextBool(50)) Item.NewItem(npc.getRect(), mod.ItemType("OrigamiManual")); 
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -63,13 +60,6 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextFloat() < 0.1f)
             {
                 Dust dust = Main.dust[Dust.NewDust(npc.Center, 30, 30, 15, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
-            }
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
             }
         }
     }

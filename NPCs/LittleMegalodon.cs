@@ -38,25 +38,21 @@ namespace AssortedCrazyThings.NPCs
             {
                 return SpawnCondition.Ocean.Chance * 0.0005f;
             }
-            return 0f;
+            else return 0f;
         }
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), mod.ItemType("MiniMegalodon"));
-            }
+            Item.NewItem(npc.getRect(), mod.ItemType("MiniMegalodon"));
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_06_01"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_06_02"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_06_03"), 1f);
-                }
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_06_01"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_06_02"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_shark_06_03"), 1f);
             }
         }
     }

@@ -7,6 +7,7 @@ namespace AssortedCrazyThings.NPCs
     public class Megalodon : ModNPC
     {
         public static string name = "Megalodon";
+
         public static string message = "A Megalodon is approaching! Get out of the ocean!";
 
         public override void SetStaticDefaults()
@@ -46,9 +47,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), mod.ItemType("SmallMegalodon"));
-            }
+            Item.NewItem(npc.getRect(), mod.ItemType("SmallMegalodon"));
         }
 
         public override void HitEffect(int hitDirection, double damage)

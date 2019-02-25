@@ -48,20 +48,16 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                Item.NewItem(npc.getRect(), ItemID.Worm, 2 + Main.rand.Next(7));
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), ItemID.GoldWorm);
-            }
+            Item.NewItem(npc.getRect(), ItemID.Worm, 2 + Main.rand.Next(7));
+            if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), ItemID.GoldWorm);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_fish_01_02"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_fish_01_01"), 1f);
-                }
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_fish_01_02"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_fish_01_01"), 1f);
             }
         }
 

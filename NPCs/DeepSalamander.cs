@@ -42,31 +42,23 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            {
-                if (Main.rand.NextBool(45))
-                    Item.NewItem(npc.getRect(), ItemID.DepthMeter, 1);
-            }
-            {
-                if (Main.rand.NextBool(48))
-                    Item.NewItem(npc.getRect(), ItemID.Compass, 1);
-            }
-            {
-                if (Main.rand.NextBool(49))
-                    Item.NewItem(npc.getRect(), ItemID.Gradient, 1);
-            }
+            if (Main.rand.NextBool(45))
+                Item.NewItem(npc.getRect(), ItemID.DepthMeter, 1);
+            if (Main.rand.NextBool(48))
+                Item.NewItem(npc.getRect(), ItemID.Compass, 1);
+            if (Main.rand.NextBool(49))
+                Item.NewItem(npc.getRect(), ItemID.Gradient, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life <= 0)
             {
-                if (npc.life <= 0)
-                {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_03"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_02"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_01"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_03"), 1f);
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_02"), 1f);
-                }
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_03"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_02"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_01"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_03"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_salamander_01_02"), 1f);
             }
         }
 
