@@ -12,6 +12,7 @@ namespace AssortedCrazyThings.Buffs
         public sealed override void SetDefaults()
         {
             MoreSetDefaults();
+            Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }
