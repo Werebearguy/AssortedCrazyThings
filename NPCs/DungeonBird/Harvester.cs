@@ -259,18 +259,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if(Main.player[j].active/* && !Main.player[j].dead*/)
                 {
-                    Item[][] inventoryArray = {Main.player[j].inventory, Main.player[j].bank.item, Main.player[j].bank2.item, Main.player[j].bank3.item }; //go though player inv
-                    for (int y = 0; y < inventoryArray.Length; y++)
+                    AssPlayer mPlayer = Main.player[j].GetModPlayer<AssPlayer>(mod);
+
+                    if (Main.netMode == NetmodeID.Server)
                     {
-                        for (int e = 0; e < inventoryArray[y].Length; e++)
-                        {
-                            if (inventoryArray[y][e].type == itemTypeOld) //find inert soul
-                            {
-                                tempStackCount = inventoryArray[y][e].stack;
-                                inventoryArray[y][e].SetDefaults(itemTypeNew); //override with awakened
-                                inventoryArray[y][e].stack = tempStackCount;
-                            }
-                        }
+                        SendConvertInertSoulsInventory();
+                    }
+                    else //singleplayer
+                    {
+                        mPlayer.ConvertInertSoulsInventory();
                     }
                 }
             }
@@ -294,15 +291,21 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
+        private void SendConvertInertSoulsInventory()
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket packet = mod.GetPacket();
+                packet.Write((byte)AssMessageType.ConvertInertSoulsInventory);
+                packet.Send();
+            }
+        }
+
         private const int AI_State_Slot = 0;
         private const int AI_Timer_Slot = 1;
         private const int AI_Counter_Slot = 2;
         private const int AI_Unused_Slot = 3;
 
-        private const float State_Distribute = -1f;
-        private const float State_Dash = 0f;
-        private const float State_Hover = 1f;
-        private const float State_Retarget = 2f;
         private const float State_Main = 3f;
 
         public float AI_State
@@ -446,23 +449,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.timeLeft = 10;
                 }
             }
-            //else if (AI_State == State_Distribute)
-            //{
-
-            //}
-            //else if (AI_State == State_Dash)
-            //{
-
-            //}
-            //else if (AI_State == State_Retarget)
-            //{
-
-            //}
-            //else if (AI_State == State_Hover) //where it shoots bees
-            //{
-
-            //}
-            else if (AI_State == State_Main) //where it shoots stingers
+            else if (AI_State == State_Main)
             {
                 float num630 = 4f;
                 float num631 = 0.05f;

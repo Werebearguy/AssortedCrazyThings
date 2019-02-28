@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Fun;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
@@ -121,7 +122,7 @@ namespace AssortedCrazyThings
             if(arrayLength > 0)
             {
                 ModPacket packet = mod.GetPacket();
-                packet.Write((byte)AssMessageType.OnEnterWorld);
+                packet.Write((byte)AssMessageType.SyncPlayer);
                 packet.Write((byte)player.whoAmI);
                 packet.Write(arrayLength);
                 //Console.WriteLine(arrayLength);
@@ -203,34 +204,6 @@ namespace AssortedCrazyThings
             return index;
         }
 
-        public int CycleSoulType() //returns the enum type
-        {
-            /*
-             * Default, 0
-             * Fright,  1
-             * Sight,   2
-             * Might,   3
-             * Temp     4
-             */
-            bool[] unlocked = new bool[]
-            {
-                true,                //      0
-                NPC.downedMechBoss3, //skele 1
-                NPC.downedMechBoss2, //twins 2
-                NPC.downedMechBoss1, //destr 3
-                false,               //      4
-            };
-
-            do
-            {
-                selectedSoulMinionType++;
-                if (selectedSoulMinionType >= unlocked.Length) selectedSoulMinionType = 0;
-            }
-            while (!unlocked[selectedSoulMinionType]);
-
-            return selectedSoulMinionType;
-        }
-
         private void SpawnSoulTemp()
         {
             if (tempSoulMinion && player.whoAmI == Main.myPlayer)
@@ -301,6 +274,37 @@ namespace AssortedCrazyThings
                 }
             }
         }
+
+        public void ConvertInertSoulsInventory()
+        {
+            //this gets called once on server side for all players, and then each player calls it on itself client side
+            int tempStackCount = 0;
+            int itemTypeOld = mod.ItemType<CaughtDungeonSoul>();
+            int itemTypeNew = mod.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
+
+            Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item }; //go though player inv
+            for (int y = 0; y < inventoryArray.Length; y++)
+            {
+                for (int e = 0; e < inventoryArray[y].Length; e++)
+                {
+                    if (inventoryArray[y][e].type == itemTypeOld) //find inert soul
+                    {
+                        tempStackCount = inventoryArray[y][e].stack;
+                        inventoryArray[y][e].SetDefaults(itemTypeNew); //override with awakened
+                        inventoryArray[y][e].stack = tempStackCount;
+                    }
+                }
+            }
+
+            //trash slot
+            if (player.trashItem.type == itemTypeOld)
+            {
+                tempStackCount = player.trashItem.stack;
+                player.trashItem.SetDefaults(itemTypeNew); //override with awakened
+                player.trashItem.stack = tempStackCount;
+            }
+        }
+
 
         private void UpdateTeleportHomeWhenLow()
         {
@@ -766,46 +770,6 @@ namespace AssortedCrazyThings
             SpawnSoulsWhenHarvesterIsAlive();
 
             RightClickStatus();
-
-            //if (joinDelaySend > 0)
-            //{
-            //    joinDelaySend--;
-            //    if (joinDelaySend == 0 && petIndex != -1 && Main.netMode == NetmodeID.MultiplayerClient) SendRedrawPetAccessories();
-            //}
-
-            //if (Main.netMode == NetmodeID.Server)
-            //{
-            //    if (counter == 0)
-            //    {
-            //        //Console.WriteLine(player.name + " slots " + slotsPlayer);
-            //        counter = 240;
-            //    }
-            //    counter--;
-            //}
-
-            //if (Main.netMode == NetmodeID.MultiplayerClient)
-            //{
-            //    if (clientcounter == 0)
-            //    {
-            //        for (int players = 0; players < Main.player.Length; players++)
-            //        {
-            //            if (Main.player[players].active)
-            //            {
-            //                if (Main.LocalPlayer.whoAmI == player.whoAmI)
-            //                {
-            //                    //Main.NewText("SELF:" + " slots " + slotsPlayer);
-            //                }
-            //                else
-            //                {
-            //                    //Main.NewText("OTHE:" +" slots " + slotsPlayer);
-            //                }
-            //            }
-            //        }
-
-            //        clientcounter = 240;
-            //    }
-            //    clientcounter--;
-            //}
         }
     }
 }

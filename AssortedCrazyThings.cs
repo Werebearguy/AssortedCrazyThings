@@ -393,6 +393,20 @@ namespace AssortedCrazyThings
             }
         }
 
+        //public void SyncAltTextureNPC(NPC npc)
+        //{
+        //    //server side only
+
+        //    if (Main.netMode == NetmodeID.Server)
+        //    {
+        //        ModPacket packet = GetPacket();
+        //        packet.Write((byte)AssMessageType.SyncAltTextureNPC);
+        //        packet.Write((byte)npc.whoAmI);
+        //        packet.Write((byte)npc.altTexture);
+        //        packet.Send();
+        //    }
+        //}
+
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             AssMessageType msgType = (AssMessageType)reader.ReadByte();
@@ -402,6 +416,8 @@ namespace AssortedCrazyThings
             byte playernumber;
             AssPlayer mPlayer;
             PetPlayer petPlayer;
+            //byte npcnumber;
+            //byte npcAltTexture;
 
             switch (msgType)
             {
@@ -417,7 +433,7 @@ namespace AssortedCrazyThings
                     }
                     break;
 
-                case AssMessageType.OnEnterWorld:
+                case AssMessageType.SyncPlayer:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         playernumber = reader.ReadByte();
@@ -443,7 +459,7 @@ namespace AssortedCrazyThings
                         }
                     }
                     break;
-                case AssMessageType.OnEnterWorldVanity:
+                case AssMessageType.SyncPlayerVanity:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         playernumber = reader.ReadByte();
@@ -453,21 +469,29 @@ namespace AssortedCrazyThings
                         petPlayer.mechFrogCrown = reader.ReadBoolean();
                     }
                     break;
+                //case AssMessageType.SyncAltTextureNPC:
+                //    if (Main.netMode == NetmodeID.MultiplayerClient)
+                //    {
+                //        npcnumber = reader.ReadByte();
+                //        npcAltTexture = reader.ReadByte();
+                //        Main.NewText("recv tex " + npcAltTexture + " from " + npcnumber);
+                //        Main.NewText("type " + Main.npc[npcnumber].type);
+                //        Main.NewText("extracount " + NPCID.Sets.ExtraTextureCount[Main.npc[npcnumber].type]);
+                //        if (NPCID.Sets.ExtraTextureCount[Main.npc[npcnumber].type] > 0)
+                //        {
+                //            Main.NewText("set tex to" + npcAltTexture);
+                //            Main.npc[npcnumber].altTexture = npcAltTexture;
+                //        }
+                //    }
+                //    break;
                 case AssMessageType.SendClientChangesVanity:
                     playernumber = reader.ReadByte();
-
-                    //if (Main.netMode == NetmodeID.MultiplayerClient)
-                    //{
-                    //    Main.NewText("recv sendclientchanges from " + playernumber);
-                    //}
                     petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
                     petPlayer.slots = reader.ReadUInt32();
                     petPlayer.petEyeType = reader.ReadByte();
                     petPlayer.mechFrogCrown = reader.ReadBoolean();
-                    // Unlike SyncPlayer, here we have to relay/forward these changes to all other connected clients
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        //NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("server send SendClientChanges from " + playernumber), new Color(255, 25, 25));
                         ModPacket packet = GetPacket();
                         packet.Write((byte)AssMessageType.SendClientChangesVanity);
                         packet.Write(playernumber);
@@ -475,6 +499,14 @@ namespace AssortedCrazyThings
                         packet.Write((byte)petPlayer.petEyeType);
                         packet.Write((bool)petPlayer.mechFrogCrown);
                         packet.Send(-1, playernumber);
+                    }
+                    break;
+                case AssMessageType.ConvertInertSoulsInventory:
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        //convert souls in local inventory
+                        mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+                        mPlayer.ConvertInertSoulsInventory();
                     }
                     break;
                 default:
@@ -495,96 +527,15 @@ namespace AssortedCrazyThings
             }
             texture.SetData(buffer);
         }
-
-        public static string GetTimeAsString(bool accurate = true)
-        {
-            int num = 0;
-            string text3 = Lang.inter[95].Value;
-            string text4 = "AM";
-            double num6 = Main.time;
-            if (!Main.dayTime)
-            {
-                num6 += 54000.0;
-            }
-            num6 = num6 / 86400.0 * 24.0;
-            double num7 = 7.5;
-            num6 = num6 - num7 - 12.0;
-            if (num6 < 0.0)
-            {
-                num6 += 24.0;
-            }
-            if (num6 >= 12.0)
-            {
-                text4 = "PM";
-            }
-            int num8 = (int)num6;
-            double num9 = num6 - (double)num8;
-            num9 = (double)(int)(num9 * 60.0);
-            string text5 = string.Concat(num9);
-            if (num9 < 10.0)
-            {
-                text5 = "0" + text5;
-            }
-            if (num8 > 12)
-            {
-                num8 -= 12;
-            }
-            if (num8 == 0)
-            {
-                num8 = 12;
-            }
-            if(!accurate) text5 = ((!(num9 < 30.0)) ? "30" : "00");
-            return text3 + ": " + num8 + ":" + text5 + " " + text4;
-        }
-
-        public static string GetMoonPhaseAsString(bool showNumber = false)
-        {
-            string suffix = "";
-            if (showNumber) suffix = " (" + (Main.moonPhase + 1) + ")";
-            string text3 = Lang.inter[102].Value;
-            if (Main.moonPhase == 0)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.FullMoon") + suffix;
-            }
-            else if (Main.moonPhase == 1)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.WaningGibbous") + suffix;
-            }
-            else if (Main.moonPhase == 2)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.ThirdQuarter") + suffix;
-            }
-            else if (Main.moonPhase == 3)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.WaningCrescent") + suffix;
-            }
-            else if (Main.moonPhase == 4)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.NewMoon") + suffix;
-            }
-            else if (Main.moonPhase == 5)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.WaxingCrescent") + suffix;
-            }
-            else if (Main.moonPhase == 6)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.FirstQuarter") + suffix;
-            }
-            else if (Main.moonPhase == 7)
-            {
-                return text3 + ": " + Language.GetTextValue("GameUI.WaxingGibbous") + suffix;
-            }
-            return "";
-        }
     }
 
     enum AssMessageType : byte
     {
-        RedrawPetAccessories,
-        SendClientChanges,
         SendClientChangesVanity,
         SyncKnapSackSlimeTexture,
-        OnEnterWorld,
-        OnEnterWorldVanity
+        SyncPlayer,
+        SyncPlayerVanity,
+        SyncAltTextureNPC,
+        ConvertInertSoulsInventory
     }
 }
