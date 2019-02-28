@@ -379,6 +379,7 @@ namespace AssortedCrazyThings
         public override void PreUpdate()
         {
             LimitSoulCount();
+
             UpdateEmpoweringFactor();
 
             UpdateHarvesterSpawn();

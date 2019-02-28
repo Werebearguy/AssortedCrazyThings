@@ -188,7 +188,7 @@ namespace AssortedCrazyThings
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = mod.GetPacket();
-            packet.Write((byte)AssMessageType.OnEnterWorldVanity);
+            packet.Write((byte)AssMessageType.SyncPlayerVanity);
             packet.Write((byte)player.whoAmI);
             packet.Write((uint)slots);
             packet.Write((byte)petEyeType);
@@ -215,13 +215,14 @@ namespace AssortedCrazyThings
         {
             PetPlayer clone = clientClone as PetPlayer;
             clone.slots = slots;
+            clone.petEyeType = petEyeType;
             clone.mechFrogCrown = mechFrogCrown;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             PetPlayer clone = clientPlayer as PetPlayer;
-            if (clone.slots != slots || clone.mechFrogCrown != mechFrogCrown)
+            if (clone.slots != slots || clone.petEyeType != petEyeType || clone.mechFrogCrown != mechFrogCrown)
             {
                 SendClientChangesPacket();
             }

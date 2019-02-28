@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -20,6 +21,14 @@ namespace AssortedCrazyThings.NPCs
                 return "AssortedCrazyThings/NPCs/DemonEyeWandering_0"; //use fixed texture
             }
         }
+
+        //public override string[] AltTextures
+        //{
+        //    get
+        //    {
+        //        return new[] { "AssortedCrazyThings/NPCs/DemonEyeWandering_1" };
+        //    }
+        //}
 
         public override void SetStaticDefaults()
         {
@@ -58,7 +67,7 @@ namespace AssortedCrazyThings.NPCs
         {
             if (npc.life <= 0)
             {
-                switch ((int)AiTexture)
+                switch ((int)AiTexture)//switch ((int)npc.altTexture)
                 {
                     case 0:
                         Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_biggreen"), 1f);
@@ -88,6 +97,23 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreAI()
         {
+            //if (npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            //{
+            //    //npc.altTexture = Main.rand.Next(TotalNumberOfThese);
+            //    //AssUtils.Print("generate texture " + npc.altTexture + " from " + npc.whoAmI);
+            //    //AssUtils.Print("type " + Main.npc[npc.whoAmI].type);
+            //    //AssUtils.Print("extracount " + NPCID.Sets.ExtraTextureCount[npc.type]);
+            //    //AssortedCrazyThings.Instance.SyncAltTextureNPC(npc);
+
+            //    npc.localAI[0] = 1;
+            //    npc.netUpdate = true;
+            //}
+
+            //if(Main.time % 60 == 0)
+            //{
+            //    AssUtils.Print("TEX " + npc.altTexture);
+            //}
+
             if (AiTexture == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 AiTexture = Main.rand.Next(TotalNumberOfThese);

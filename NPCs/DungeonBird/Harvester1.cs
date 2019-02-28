@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             idleTime = IdleTimeConst;
             hungerTime = 2040; //AI_Timer //1000
             maxSoulsEaten = 5; //3
-            jumpRange = 100;//also noclip detect range //100 for restricted v
+            jumpRange = 160;//also noclip detect range //100 for restricted v
             restrictedSoulSearch = true;
             noDamage = true;
 

@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!NPC.AnyNPCs(mod.NPCType<CuteGastropod>())) return SpawnCondition.OverworldHallow.Chance * 0.05f;
+            if (!NPC.AnyNPCs(mod.NPCType<CuteGastropod>()) && ModConf.CuteSlimes) return SpawnCondition.OverworldHallow.Chance * 0.05f;
             else return 0f;
         }
     }
