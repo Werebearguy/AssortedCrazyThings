@@ -28,6 +28,7 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.noTileCollide = true;
+            npc.dontTakeDamage = true;
             //aiType = NPCID.DemonEye;
             animationType = NPCID.DemonEye;
 			Main.npcCatchable[mod.NPCType("MeatballsEye")] = true;
@@ -38,11 +39,13 @@ namespace AssortedCrazyThings.NPCs
         {
             if (npc.ai[0] == 0)
             {
-                npc.rotation = (float)Math.PI / 2;
-                npc.direction = 1;
-                npc.velocity.X = 0;
-                npc.velocity.Y = -0.022f * 6f;
+                npc.velocity.Y = -0.022f * 2f;
+                npc.netUpdate = true;
             }
+
+            npc.rotation = (float)Math.PI / 2;
+            npc.direction = 1;
+            npc.velocity.X = 0;
             npc.ai[0]++;
             npc.velocity.Y -= 0.022f * 1.5f; //0.022f * 2f;
             if (npc.timeLeft > 80)

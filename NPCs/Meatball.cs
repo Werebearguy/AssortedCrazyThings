@@ -20,10 +20,10 @@ namespace AssortedCrazyThings.NPCs
             npc.height = 26;
             npc.damage = 7;
             npc.defense = 2;
-            npc.lifeMax = 25;
+            npc.lifeMax = 20;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
+            npc.value = 20f;
             npc.knockBackResist = 0.25f;
             npc.aiStyle = 1;
             aiType = NPCID.ToxicSludge;
@@ -41,15 +41,12 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Vertebrae);
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if(Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.rand.NextBool(10))
             {
-                if (npc.life <= 0 && Main.rand.NextBool(10))
+                int i = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y - 16, mod.NPCType("MeatballsEye"));
+                if (Main.netMode == NetmodeID.Server && i < 200)
                 {
-                    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y - 16, mod.NPCType("MeatballsEye"));
+                    NetMessage.SendData(23, -1, -1, null, i);
                 }
             }
         }
