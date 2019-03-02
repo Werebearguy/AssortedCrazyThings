@@ -31,6 +31,11 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
             }
 
+            if (npc.type == NPCID.DukeFishron)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoggyFishCake>());
+            }
+
             if (npc.type == NPCID.QueenBee)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
