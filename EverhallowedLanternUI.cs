@@ -27,9 +27,9 @@ namespace AssortedCrazyThings
         //  Held item type
         internal static int heldItemType = -1;
         //  List of ammo types matching the properties of the held weapon
-        internal static List<int> soulTypes;
+        //internal static List<int> soulTypes;
         //  Ammo count of ammo types used
-        internal static List<bool> soulUnlocked;
+        //internal static List<bool> soulUnlocked;
         //  Which ammo type is currently highlighted?
         internal static int selectedSoulMinionType = -1;
         //  Which soul type was selected when the UI was opened?
@@ -40,8 +40,8 @@ namespace AssortedCrazyThings
         {
             spawnPosition = new Vector2();
             leftCorner = new Vector2();
-            soulTypes = new List<int>();
-            soulUnlocked = new List<bool>();
+            //soulTypes = new List<int>();
+            //soulUnlocked = new List<bool>();
         }
 
         //  Update ammo type list with any changes made during display of the UI
@@ -56,7 +56,7 @@ namespace AssortedCrazyThings
             //Main.NewText("EverhallowedLanternUI DrawSelf");
             base.DrawSelf(spriteBatch);
 
-            CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(currentSoulMinionType);
+            var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(currentSoulMinionType);
 
             //  Draw weapon circle
             Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
@@ -72,8 +72,8 @@ namespace AssortedCrazyThings
             //  Draw weapon inside circle
             if (heldItemType != -1)
             {
-                int finalWidth = Main.itemTexture[heldItemType].Width / 2,
-                    finalHeight = Main.itemTexture[heldItemType].Height / 2;
+                int finalWidth = Main.itemTexture[heldItemType].Width / 2;
+                int finalHeight = Main.itemTexture[heldItemType].Height / 2;
                 Rectangle outputWeaponRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
                 spriteBatch.Draw(Main.itemTexture[heldItemType], outputWeaponRect, Color.White);
             }
@@ -86,7 +86,7 @@ namespace AssortedCrazyThings
                 NPC.downedMechBoss1, //destr 3
             };
 
-            int outerRadius = 48;
+            int outerRadius = 48; //48
             //  Apply offset depending on the amount of circles to be drawn
             double offset = 0.25;
             //  Angle between each circle
@@ -97,24 +97,24 @@ namespace AssortedCrazyThings
             //  Starting angle
             double i = offset;
             //  done --> ID of currently drawn circle
-            for (soulType = 0; soulType < circleAmount; ++soulType)
+            //Main.NewText("-----");
+            for (soulType = 0; soulType < circleAmount; soulType++)
             {
-                stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType);
+                stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
 
                 double x = outerRadius * Math.Cos(i * Math.PI);
                 double y = outerRadius * Math.Sin(i * Math.PI);
 
                 Rectangle ammoBgRect = new Rectangle((int)(leftCorner.X + x), (int)(leftCorner.Y + y), mainDiameter, mainDiameter);
                 //  Check if mouse is within the circle checked
-                //bool isMouseWithin = CheckMouseWithinCircle(Main.MouseScreen, mainRadius + 8, new Vector2((int)(spawnPosition.X + x), (int)(spawnPosition.Y + y)));
-                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, 96, mainRadius, offset * Math.PI, circleAmount, soulType);
+                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, 96, mainRadius, offset * Math.PI, circleAmount, soulType); //96
 
                 //  Actually draw the bg circle
                 Color drawColor = Color.White;
                 if (!unlocked[soulType]) drawColor = Color.DarkRed;
                 spriteBatch.Draw(Main.wireUITexture[isMouseWithin ? 1 : 0], ammoBgRect, (soulType == currentSoulMinionType) ? Color.Gray : drawColor);
 
-                //  Draw ammo sprites over the icons
+                //  Draw projectile sprites over the icons
                 int projWidth = Main.projectileTexture[stats.Type].Width;
                 int projHeight = Main.projectileTexture[stats.Type].Height / Main.projFrames[stats.Type];
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (projWidth / 2), (int)(spawnPosition.Y + y) - (projHeight / 2), projWidth, projHeight);
@@ -142,7 +142,8 @@ namespace AssortedCrazyThings
                     CompanionDungeonSoulMinionBase.SoulType tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
                     string tooltip = tempSoulType.ToString()
                         + "\nBase Damage: " + stats.Damage
-                        + "\nBase Knockback: " + stats.Knockback;
+                        + "\nBase Knockback: " + stats.Knockback
+                        + "\n" + stats.Description;
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(15, 15), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
 
@@ -162,15 +163,16 @@ namespace AssortedCrazyThings
 
         internal bool CheckMouseWithinCircle(Vector2 mousePos, int radius, Vector2 center)
         {
-            return ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y) <= radius * radius);
+            return ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) <= radius * radius;
         }
 
         internal bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int outerRadius, int innerRadius, double offset, int pieceCount, int elementNumber)
         {
             //  Check if mouse cursor is inside the outer circle
-            bool first = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y) <= outerRadius * outerRadius);
+            bool first = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) <= outerRadius * outerRadius;
+            //first = true;
             //  Check if mouse cursor is outside the inner circle
-            bool second = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y) > innerRadius * innerRadius);
+            bool second = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) > innerRadius * innerRadius;
 
 
             double finalOffset = offset;
@@ -181,7 +183,8 @@ namespace AssortedCrazyThings
             if (pieceCount == 5) finalOffset -= 35;
 
             double step = 360 / pieceCount;
-            double beginAngle = (finalOffset + step * (elementNumber)) % 360, endAngle = (beginAngle + step) % 360;
+            double beginAngle = (finalOffset + step * (elementNumber)) % 360;
+            double endAngle = (beginAngle + step) % 360;
             if (beginAngle < 0) beginAngle = 360 + beginAngle;
 
             //  Calculate x,y coords on outer circle
@@ -193,7 +196,7 @@ namespace AssortedCrazyThings
                 calculatedAngle = 360 + calculatedAngle;
             }
 
-            double calculatedDistance = Math.Sqrt((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y));
+            //double calculatedDistance = Math.Sqrt((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y));
 
             bool third = false;
             //(calculatedAngle <= endAngle && calculatedAngle >= beginAngle);
@@ -221,10 +224,10 @@ namespace AssortedCrazyThings
 
 
             //Main.NewText(beginAngle + " " + endAngle + " " + calculatedAngle);
-            bool fourth = calculatedDistance <= outerRadius;
+            //bool fourth = calculatedDistance <= outerRadius;
 
-            //Main.NewText(first + " " + second + " " + third + " " + fourth);
-            return first && second && third && fourth;
+            //Main.NewText(first + " " + second + " " + third/* + " " + fourth*/);
+            return first && second && third/* && fourth*/;
         }
     }
 }

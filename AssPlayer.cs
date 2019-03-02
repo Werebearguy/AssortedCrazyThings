@@ -28,7 +28,7 @@ namespace AssortedCrazyThings
         public bool teleportHome = false;
         public bool canTeleportHome = false;
         public const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
-        public short teleportHomeTimer = 0; //gets saved when you relog so you cant cheese it
+        public short teleportHomeTimer = 0; //gets saved when you relog so you can't cheese it
 
         //TECHNICALLY NOT DEFENCE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
         public bool getDefense = false;
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings
         public const short GetDefenseTimerMax = 600; //in seconds //10 ingame minutes
         private const short GetDefenseDurationMax = 600; //in ticks //10 ingame seconds
         public short getDefenseDuration = 0;
-        public short getDefenseTimer = 0; //gets saved when you relog so you cant cheese it
+        public short getDefenseTimer = 0; //gets saved when you relog so you can't cheese it
 
         //slime accessory stuff
         public uint slotsPlayer = 0;
@@ -224,7 +224,7 @@ namespace AssortedCrazyThings
                 if (!checkIfAlive)
                 {
                     //twice the damage
-                    CompanionDungeonSoulMinionBase.SoulStats stats = CompanionDungeonSoulMinionBase.GetAssociatedStats((int)CompanionDungeonSoulMinionBase.SoulType.Temp);
+                    var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats((int)CompanionDungeonSoulMinionBase.SoulType.Temp);
                     int i = SpawnSoul(stats, true);
                     Main.projectile[i].minionSlots = 0f;
                     Main.projectile[i].timeLeft = 600; //10 seconds

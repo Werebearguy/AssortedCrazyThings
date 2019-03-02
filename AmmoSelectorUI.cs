@@ -227,9 +227,9 @@ namespace AssortedCrazyThings
             //  Check if mouse cursor is outside the inner circle
             bool second = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y) > innerRadius * innerRadius);
 
-
+            offset *= 180 / Math.PI;
             double finalOffset = offset;
-            finalOffset *= 180 / Math.PI;
+            //finalOffset *= 180 / Math.PI;
             if (pieceCount == 2) finalOffset -= 90;
             if (pieceCount == 3) finalOffset -= 60;
             if (pieceCount == 4) finalOffset -= 45;
@@ -275,6 +275,7 @@ namespace AssortedCrazyThings
 
 
 
+            //Main.NewText(offset + " " + finalOffset);
             //Main.NewText(beginAngle + " " + endAngle + " " + calculatedAngle);
             bool fourth = calculatedDistance <= outerRadius;
 

@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cursed Skull");
-            Main.projFrames[projectile.type] = 4;
+            Main.projFrames[projectile.type] = 3;
             Main.projPet[projectile.type] = true;
         }
 
@@ -29,11 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override Color? GetAlpha(Color drawColor)
         {
-            drawColor.R = 255;
-            drawColor.G = 255;
-            drawColor.B = 255;
-            drawColor.A = 255;
-            return drawColor;
+            return Color.White;
         }
 
         public override void AI()
@@ -47,6 +43,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (modPlayer.CursedSkull)
             {
                 projectile.timeLeft = 2;
+            }
+        }
+
+        public override void PostAI()
+        {
+            if (projectile.frame >= 3) projectile.frame = 0;
+
+            if(projectile.Center.X - Main.player[projectile.owner].Center.X > 0f)
+            {
+                projectile.spriteDirection = 1;
+            }
+            else
+            {
+                projectile.spriteDirection = -1;
             }
         }
     }

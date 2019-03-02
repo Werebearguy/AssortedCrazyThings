@@ -55,13 +55,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
             public readonly int Damage;
             public readonly float Knockback;
             public readonly int SoulType; //enum type
+            public readonly string Description;
 
-            public SoulStats(int a, int b, float c, int d)
+            public SoulStats(int a, int b, float c, int d, string e = "")
             {
                 Type = a;
                 Damage = b;
                 Knockback = c;
                 SoulType = d;
+                Description = e;
             }
         }
 
@@ -77,15 +79,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return 0;
         }
 
-        public static SoulStats GetAssociatedStats(int soulType)
+        public static SoulStats GetAssociatedStats(int soulType, bool fromUI = false)
         {
             //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType);
-            if (soulType == (int)SoulType.Sight) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType);
+            if (soulType == (int)SoulType.Fright) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned");
+            if (soulType == (int)SoulType.Sight) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno");
             if (soulType == (int)SoulType.Might) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
-                if (Main.hardMode)
+                if (Main.hardMode || fromUI)
                 {
                     return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
                 }

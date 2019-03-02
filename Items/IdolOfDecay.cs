@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items
 
         public override bool UseItem(Player player)
         {
-            if(Main.netMode != NetmodeID.MultiplayerClient && !NPC.AnyNPCs(AssWorld.harvesterTypes[0]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[1]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[2]) && player.ZoneDungeon)
+            if(Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int i = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, AssWorld.harvesterTypes[0]);
                 AssWorld.AwakeningMessage("Soul Harvester has been Awakened!");
