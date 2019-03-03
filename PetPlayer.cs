@@ -16,7 +16,7 @@ namespace AssortedCrazyThings
         //mech frog stuff
         public bool mechFrogCrown = false;
 
-        public bool PetFishronProj = false;
+        public bool PetFishron = false;
         public bool RainbowSlimePet = false;
         public bool PrinceSlimePet = false;
         public bool IlluminantSlimePet = false;
@@ -79,7 +79,7 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
-            PetFishronProj = false;
+            PetFishron = false;
             RainbowSlimePet = false;
             PrinceSlimePet = false;
             IlluminantSlimePet = false;

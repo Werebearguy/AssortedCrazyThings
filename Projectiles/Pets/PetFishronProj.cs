@@ -34,9 +34,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.PetFishronProj = false;
+                modPlayer.PetFishron = false;
             }
-            if (modPlayer.PetFishronProj)
+            if (modPlayer.PetFishron)
             {
                 projectile.timeLeft = 2;
             }
