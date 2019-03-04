@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -22,26 +21,20 @@ namespace AssortedCrazyThings
         //  Circle radius
         internal static int mainRadius = 36 / 2;
 
-        //  Amount of spawned circles
+        // Amount of spawned circles
         internal static int circleAmount = -1;
-        //  Held item type
+        // Held item type
         internal static int heldItemType = -1;
-        //  List of ammo types matching the properties of the held weapon
-        //internal static List<int> soulTypes;
-        //  Ammo count of ammo types used
-        //internal static List<bool> soulUnlocked;
-        //  Which ammo type is currently highlighted?
+        // Which soul type is currently highlighted?
         internal static int selectedSoulMinionType = -1;
-        //  Which soul type was selected when the UI was opened?
+        // Which soul type was selected when the UI was opened?
         internal static int currentSoulMinionType = -1;
 
-        //  Initialization
+        // Initialization
         public override void OnInitialize()
         {
             spawnPosition = new Vector2();
             leftCorner = new Vector2();
-            //soulTypes = new List<int>();
-            //soulUnlocked = new List<bool>();
         }
 
         //  Update ammo type list with any changes made during display of the UI
@@ -98,6 +91,7 @@ namespace AssortedCrazyThings
             double i = offset;
             //  done --> ID of currently drawn circle
             //Main.NewText("-----");
+
             for (soulType = 0; soulType < circleAmount; soulType++)
             {
                 stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
@@ -135,7 +129,19 @@ namespace AssortedCrazyThings
                 {
                     //set the "returned" new type
                     selectedSoulMinionType = soulType;
+                }
 
+                i += angleSteps;
+            }
+
+            //extra loop so tooltips are always drawn after the circles
+            for (soulType = 0; soulType < circleAmount; soulType++)
+            {
+                stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
+
+                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, 96, mainRadius, offset * Math.PI, circleAmount, soulType);
+                if (isMouseWithin && unlocked[soulType])
+                {
                     //  Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
@@ -146,11 +152,9 @@ namespace AssortedCrazyThings
                         + "\n" + stats.Description;
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(15, 15), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
-
-                i += angleSteps;
             }
 
-            //render current soul tooltip
+            //render current soul tooltip on the item icon
             if (middle)
             {
                 Color fontColor = Color.White;
