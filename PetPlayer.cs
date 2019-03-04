@@ -16,12 +16,6 @@ namespace AssortedCrazyThings
         //mech frog stuff
         public bool mechFrogCrown = false;
 
-        //cursed skull stuff
-        public byte cursedSkullType = 0;
-
-        //young wyvern stuff
-        public byte youngWyvernType = 0;
-
         public bool PetFishron = false;
         public bool RainbowSlimePet = false;
         public bool PrinceSlimePet = false;
@@ -182,8 +176,6 @@ namespace AssortedCrazyThings
             return new TagCompound {
                 {"slots", (int)slots},
                 {"petEyeType", (byte)petEyeType},
-                {"cursedSkullType", (byte)cursedSkullType},
-                {"youngWyvernType", (byte)youngWyvernType},
                 {"mechFrogCrown", (bool)mechFrogCrown}
             };
         }
@@ -192,8 +184,6 @@ namespace AssortedCrazyThings
         {
             slots = (uint)tag.GetInt("slots");
             petEyeType = tag.GetByte("petEyeType");
-            cursedSkullType = tag.GetByte("cursedSkullType");
-            youngWyvernType = tag.GetByte("youngWyvernType");
             mechFrogCrown = tag.GetBool("mechFrogCrown");
         }
 

@@ -1,9 +1,6 @@
-using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Pets;
-using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,6 +21,9 @@ namespace AssortedCrazyThings
 
         }
 
+        //Instance
+        public static AssortedCrazyThings Instance;
+
         //Slime pet legacy
         public static int[] slimePetLegacy = new int[9];
         public static int[] slimePetNoHair = new int[6];
@@ -38,14 +38,9 @@ namespace AssortedCrazyThings
         public static int[] soulBuffBlacklist;
 
         // UI stuff
-        internal static UserInterface CircleUIInterface;
-        internal static CircleUI CircleUI;
-        internal static ModHotKey CircleUIHotkey;
-        
-        internal static CircleUIConf DocileDemonEyeConf;
-        internal static CircleUIConf LifeLikeMechFrogConf;
-        internal static CircleUIConf CursedSkullConf;
-        internal static CircleUIConf YoungWyvernConf;
+        internal static UserInterface AmmoboxAmmoSwapInterface;
+        internal static AmmoSelectorUI AmmoboxSwapUI;
+        internal static ModHotKey AmmoboxAmmoSwapHotkey;
 
         internal static UserInterface EverhallowedLanternSwapInterface;
         internal static EverhallowedLanternUI EverhallowedLanternSwapUI;
@@ -54,7 +49,7 @@ namespace AssortedCrazyThings
         public static string GithubUserName { get { return "Werebearguy"; } }
         public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
 
-        private void LoadPets()
+        private void InitPets()
         {
             int index = 0;
             slimePetLegacy[index++] = ProjectileType<CuteSlimeBlackPet>();
@@ -82,7 +77,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void LoadSoulBuffBlacklist()
+        private void InitSoulBuffBlacklist()
         {
             soulBuffBlacklist = new int[40];
             int index = 0;
@@ -141,18 +136,14 @@ namespace AssortedCrazyThings
 
         private void LoadUI()
         {
-            //has to be called after Load() because of the Main.projFrames[projectile.type] calls
+            //AmmoboxAmmoSwapHotkey = RegisterHotKey("Switch between ammo", "C");
+
             if (!Main.dedServ && Main.netMode != 2)
             {
-                CircleUI = new CircleUI();
-                CircleUI.Activate();
-                CircleUIInterface = new UserInterface();
-                CircleUIInterface.SetState(CircleUI);
-                
-                DocileDemonEyeConf = CircleUIConf.DocileDemonEyeConf();
-                LifeLikeMechFrogConf = CircleUIConf.LifeLikeMechFrogConf();
-                CursedSkullConf = CircleUIConf.CursedSkullConf();
-                YoungWyvernConf = CircleUIConf.YoungWyvernConf();
+                AmmoboxSwapUI = new AmmoSelectorUI();
+                AmmoboxSwapUI.Activate();
+                AmmoboxAmmoSwapInterface = new UserInterface();
+                AmmoboxAmmoSwapInterface.SetState(AmmoboxSwapUI);
 
                 EverhallowedLanternSwapUI = new EverhallowedLanternUI();
                 EverhallowedLanternSwapUI.Activate();
@@ -165,22 +156,27 @@ namespace AssortedCrazyThings
         {
             if (!Main.dedServ && Main.netMode != 2)
             {
-                CircleUIInterface = null;
-                CircleUI = null;
-                CircleUIHotkey = null;
-
-                DocileDemonEyeConf = null;
-                LifeLikeMechFrogConf = null;
-                CursedSkullConf = null;
-                YoungWyvernConf = null;
+                AmmoboxAmmoSwapInterface = null;
+                AmmoboxSwapUI = null;
+                AmmoboxAmmoSwapHotkey = null;
 
                 EverhallowedLanternSwapInterface = null;
                 EverhallowedLanternSwapUI = null;
             }
         }
 
-        private void LoadMisc()
+        public override void Load()
         {
+            Instance = this;
+
+            ModConf.Load();
+
+            InitPets();
+
+            InitSoulBuffBlacklist();
+
+            LoadUI();
+
             if (!Main.dedServ && Main.netMode != 2)
             {
                 animatedSoulTextures = new Texture2D[2];
@@ -198,49 +194,25 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void UnloadMisc()
-        {
-            if (!Main.dedServ && Main.netMode != 2)
-            {
-                animatedSoulTextures = null;
-
-                sunPetTextures = null;
-            }
-        }
-
-        public override void Load()
-        {
-            AssUtils.Instance = this;
-
-            CircleUIHotkey = RegisterHotKey("CircleUI", "C");
-
-            ModConf.Load();
-
-            LoadPets();
-
-            LoadSoulBuffBlacklist();
-
-            //LoadUI();
-
-            LoadMisc();
-        }
-
         public override void Unload()
         {
             PetAccessory.Unload();
 
             UnloadUI();
 
-            UnloadMisc();
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                animatedSoulTextures = null;
 
-            AssUtils.Instance = null;
+                sunPetTextures = null;
+            }
+
+            Instance = null;
         }
 
         public override void PostSetupContent()
         {
             AddToSoulBuffBlacklist();
-
-            LoadUI();
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
@@ -251,138 +223,82 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void CircleUIStart()
+        private void UpdateAmmoBoxUI(GameTime gameTime)
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-
-            if (Main.LocalPlayer.HeldItem.type == ItemType<VanitySelector>())
+            if (AmmoSelectorUI.visible && AmmoboxSwapUI != null)
             {
-                if (pPlayer.DocileDemonEye)
-                {
-                    //set custom config with starting value
-                    CircleUI.currentSelected = pPlayer.petEyeType;
-
-                    CircleUI.UIConf = DocileDemonEyeConf;
-                }
-                else if (pPlayer.LifelikeMechanicalFrog)
-                {
-                    CircleUI.currentSelected = pPlayer.mechFrogCrown? 1: 0;
-
-                    CircleUI.UIConf = LifeLikeMechFrogConf;
-                }
-                else if (pPlayer.CursedSkull)
-                {
-                    CircleUI.currentSelected = pPlayer.cursedSkullType;
-
-                    CircleUI.UIConf = CursedSkullConf;
-                }
-                else if (pPlayer.YoungWyvern)
-                {
-                    CircleUI.currentSelected = pPlayer.youngWyvernType;
-
-                    CircleUI.UIConf = YoungWyvernConf;
-                }
-                else
-                {
-                    return;
-                }
+                AmmoboxSwapUI.Update(gameTime);
             }
-            else
+            if (AmmoboxAmmoSwapHotkey.JustPressed) Main.NewText("HotKeyPressed");
+            if (AmmoboxAmmoSwapHotkey.JustReleased) Main.NewText("HotKeyReleased");
+            //Main.NewText("visible: " + AmmoSelectorUI.visible);
+
+            if (AmmoboxAmmoSwapHotkey.JustPressed && true && AmmoSelectorUI.itemAllowed)
             {
-                return;
+                //  Spawn ammo selector
+                //Main.NewText("test");
+                AmmoboxSwapUI.UpdateAmmoTypeList();
+                AmmoSelectorUI.currentFirstAmmoType = Main.LocalPlayer.inventory[54].type;
+                AmmoSelectorUI.visible = true;
+                AmmoSelectorUI.spawnPosition = Main.MouseScreen;
+                AmmoSelectorUI.leftCorner = Main.MouseScreen - new Vector2(AmmoSelectorUI.mainRadius, AmmoSelectorUI.mainRadius);
             }
-
-            // Spawn UI
-            CircleUI.visible = true;
-            CircleUI.spawnPosition = Main.MouseScreen;
-            CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
-            CircleUI.heldItemType = Main.LocalPlayer.HeldItem.type;
-            Main.NewText("CircleUIStart " + CircleUI.heldItemType);
-        }
-
-        private void PoofVisual(int projType)
-        {
-            int projIndex = -1;
-            //find first occurence of a player owned projectile
-            for (int i = 0; i < 1000; i++)
+            else if (AmmoboxAmmoSwapHotkey.JustReleased && AmmoSelectorUI.visible)
             {
-                if (Main.projectile[i].active)
+                //  Destroy ammo selector
+                Main.NewText("ammo selector closing");
+                //  Switch selected ammo
+                if (AmmoSelectorUI.selectedAmmoType != -1)
                 {
-                    if (Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].type == projType)
+                    List<Tuple<int, int>> available = new List<Tuple<int, int>>();
+                    //  Basic belt
+                    for (int i = 54; i <= 57; i++)
                     {
-                        projIndex = i;
-                        break;
+                        if (Main.LocalPlayer.inventory[i].type == AmmoSelectorUI.selectedAmmoType)
+                        {
+                            //  Add pairs slotID - stackSize of chosen ammo
+                            available.Add(new Tuple<int, int>(i, Main.LocalPlayer.inventory[i].stack));
+                        }
                     }
+                    //  Lihzahrd belt
+                    if (false) //true
+                    {
+                        for (int j = 0; j < 54; j++)
+                        {
+                            if (Main.LocalPlayer.inventory[j].type == AmmoSelectorUI.selectedAmmoType)
+                            {
+                                available.Add(new Tuple<int, int>(j, Main.LocalPlayer.inventory[j].stack));
+                            }
+                        }
+                    }
+
+                    Tuple<int, int> chosen = available[0];
+                    //  Prioritize larger stacks for switching
+                    foreach (Tuple<int, int> tuple in available)
+                    {
+                        if (tuple.Item2 > chosen.Item2)
+                        {
+                            chosen = tuple;
+                        }
+                    }
+
+                    //  Switch ammo stacks
+                    //  Save first stack
+                    Item temp = Main.LocalPlayer.inventory[54];
+                    Item chosenItem = Main.LocalPlayer.inventory[chosen.Item1];
+                    Main.LocalPlayer.inventory[54] = chosenItem;
+                    Main.LocalPlayer.inventory[chosen.Item1] = temp;
                 }
-            }
-            Dust dust;
-            float factor = 1f;
-            if (Main.projectile[projIndex].velocity.Length() > 5) factor = 2f;
-            for (int i = 0; i < 14; i++)
-            {
-                dust = Main.dust[Dust.NewDust(Main.projectile[projIndex].position, 18, 28, 204, Main.projectile[projIndex].velocity.X * factor, Main.projectile[projIndex].velocity.Y * factor, 0, new Color(255, 255, 255), 0.8f)];
-                dust.noGravity = true;
-                dust.noLight = true;
-            }
-        }
 
-        private void CircleUIEnd()
-        {
-            Main.NewText("CircleUIEnd " + CircleUI.heldItemType);
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-            if (CircleUI.returned != -1 && CircleUI.returned != CircleUI.currentSelected)
-            {
-                //if something returned AND if the returned thing isn't the same as the current one
-
-                if (CircleUI.heldItemType == ItemType<VanitySelector>())
-                {
-                    Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
-                    PoofVisual(CircleUI.UIConf.additionalInfo);
-
-                    if (pPlayer.DocileDemonEye)
-                    {
-                        pPlayer.petEyeType = (byte)CircleUI.returned;
-                    }
-                    else if (pPlayer.LifelikeMechanicalFrog)
-                    {
-                        pPlayer.mechFrogCrown = (CircleUI.returned > 0) ? true : false;
-                    }
-                    else if (pPlayer.CursedSkull)
-                    {
-                        pPlayer.cursedSkullType = (byte)CircleUI.returned;
-                    }
-                    else if (pPlayer.YoungWyvern)
-                    {
-                        pPlayer.youngWyvernType = (byte)CircleUI.returned;
-                    }
-                }
-            }
-
-            CircleUI.returned = -1;
-            CircleUI.visible = false;
-        }
-
-        private void UpdateCircleUI(GameTime gameTime)
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            if (CircleUIHotkey.JustPressed) Main.NewText("HotKeyPressed");
-            if (CircleUIHotkey.JustReleased) Main.NewText("HotKeyReleased");
-            //Main.NewText("visible: " + CircleUI.visible);
-
-            if (mPlayer.RightClickPressed && CircleUIConf.TriggerList.Contains(Main.LocalPlayer.HeldItem.type))
-            {
-                CircleUIStart();
-            }
-            else if (mPlayer.RightClickReleased && CircleUI.visible)
-            {
-                CircleUIEnd();
-            }
-            else if (CircleUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
-            {
-                CircleUI.returned = -1;
-                CircleUI.visible = false;
+                AmmoSelectorUI.currentFirstAmmoType = -1;
+                AmmoSelectorUI.selectedAmmoType = -1;
+                AmmoSelectorUI.visible = false;
+                AmmoboxSwapUI.Update(gameTime);
+                //  Set amount of circles drawn to -1
+                AmmoSelectorUI.circleAmount = -1;
+                //  Clear ammo types already in the list
+                AmmoSelectorUI.ammoTypes.Clear();
+                AmmoSelectorUI.ammoCount.Clear();
             }
         }
 
@@ -397,7 +313,7 @@ namespace AssortedCrazyThings
                     Main.LocalPlayer.inventory[i].shoot = stats.Type;
                     Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;
 
-                    var soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                    CompanionDungeonSoulMinionBase.SoulType soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
                     if (soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
                     {
                         CombatText.NewText(Main.LocalPlayer.getRect(),
@@ -416,7 +332,7 @@ namespace AssortedCrazyThings
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
-            if (mPlayer.RightClickPressed && Main.LocalPlayer.HeldItem.type == ItemType<EverhallowedLantern>())
+            if (mPlayer.RightClickPressed && Main.LocalPlayer.HeldItem.type == ItemType<Items.Weapons.EverhallowedLantern>())
             {
                 EverhallowedLanternUI.visible = true;
                 EverhallowedLanternUI.circleAmount = 4;
@@ -429,7 +345,6 @@ namespace AssortedCrazyThings
             {
                 if (EverhallowedLanternUI.selectedSoulMinionType != -1 && mPlayer.selectedSoulMinionType != EverhallowedLanternUI.selectedSoulMinionType)
                 {
-                    //if something returned AND if the returned thing isnt the same as the current one
                     Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
                     mPlayer.selectedSoulMinionType = EverhallowedLanternUI.selectedSoulMinionType;
                     UpdateEverhallowedLanternStats(EverhallowedLanternUI.selectedSoulMinionType);
@@ -438,7 +353,7 @@ namespace AssortedCrazyThings
                 EverhallowedLanternUI.selectedSoulMinionType = -1;
                 EverhallowedLanternUI.visible = false;
             }
-            else if (EverhallowedLanternUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
+            else if (EverhallowedLanternUI.heldItemType != Main.LocalPlayer.HeldItem.type)
             {
                 EverhallowedLanternUI.selectedSoulMinionType = -1;
                 EverhallowedLanternUI.visible = false;
@@ -447,7 +362,7 @@ namespace AssortedCrazyThings
 
         public override void UpdateUI(GameTime gameTime)
         {
-            UpdateCircleUI(gameTime);
+            UpdateAmmoBoxUI(gameTime);
             UpdateEverhallowedLanternUI(gameTime);
         }
 
@@ -458,10 +373,10 @@ namespace AssortedCrazyThings
             {
                 layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
                     (
-                    "ACT: Appearance Selection",
+                    "ACT: Ammo Swapping",
                     delegate
                     {
-                        if (CircleUI.visible) CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        if (AmmoSelectorUI.visible) AmmoboxAmmoSwapInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)

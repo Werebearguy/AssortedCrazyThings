@@ -43,7 +43,6 @@
     <Compile Include="Buffs\JoyousSlimeBuff.cs" />
     <Compile Include="Buffs\MeatballSlimeBuff.cs" />
     <Compile Include="Buffs\OceanSlimeBuff.cs" />
-    <Compile Include="Buffs\PetFishronBuff.cs" />
     <Compile Include="Buffs\PrinceSlimeBuff.cs" />
     <Compile Include="Buffs\RainbowSlimeBuff.cs" />
     <Compile Include="Buffs\StingSlimeBlackBuff.cs" />
@@ -104,6 +103,7 @@
     <Compile Include="Buffs\VampireBat.cs" />
     <Compile Include="Buffs\YoungHarpy.cs" />
     <Compile Include="Buffs\YoungWyvern.cs" />
+    <Compile Include="AmmoSelectorUI.cs" />
     <Compile Include="Items\Accessories\Useful\AnomalousWings.cs" />
     <Compile Include="Items\Accessories\Useful\BipolarCandleInABalloon.cs" />
     <Compile Include="Items\Accessories\Useful\BottledDreams.cs" />
@@ -149,7 +149,6 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
-    <Compile Include="Items\VanitySelector.cs" />
     <Compile Include="Items\DroneParts.cs" />
     <Compile Include="Items\Fun\GuideVoodoorang.cs" />
     <Compile Include="Items\Fun\GreenThumb.cs" />
@@ -164,7 +163,6 @@
     <Compile Include="Items\Pets\OceanSlimeItem.cs" />
     <Compile Include="Items\Pets\PrinceSlimeItem.cs" />
     <Compile Include="Items\Pets\RainbowSlimeItem.cs" />
-    <Compile Include="Items\Pets\SoggyFishCake.cs" />
     <Compile Include="Items\Pets\StingSlimeBlackItem.cs" />
     <Compile Include="Items\Pets\StingSlimeOrangeItem.cs" />
     <Compile Include="Items\Pets\SunMoonPetItem.cs" />
@@ -373,7 +371,6 @@
     <Compile Include="Projectiles\Pets\MiniMegalodon.cs" />
     <Compile Include="Projectiles\Pets\OceanSlimeProj.cs" />
     <Compile Include="Projectiles\Pets\OrigamiCrane.cs" />
-    <Compile Include="Projectiles\Pets\PetFishronProj.cs" />
     <Compile Include="Projectiles\Pets\Pigronata.cs" />
     <Compile Include="Projectiles\Pets\HealingDroneProj.cs" />
     <Compile Include="Projectiles\Pets\MoonPetProj.cs" />
@@ -402,8 +399,6 @@
     <Compile Include="Items\Pets\GobletItem.cs" />
     <Compile Include="Tiles\AssGlobalTile.cs" />
     <Compile Include="Tiles\SlimeBeaconTile.cs" />
-    <Compile Include="UI\CircleUI.cs" />
-    <Compile Include="UI\CircleUIConf.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
