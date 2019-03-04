@@ -70,11 +70,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static int GetSoulTypeFromType(int type)
         {
             //not used anywhere yet
-            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>()) return (int)SoulType.Dungeon;
-            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>()) return (int)SoulType.Dungeon;
-            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>()) return (int)SoulType.Fright;
-            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulSightMinion>()) return (int)SoulType.Sight;
-            if (type == AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMightMinion>()) return (int)SoulType.Might;
+            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulMinion>()) return (int)SoulType.Dungeon;
+            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>()) return (int)SoulType.Dungeon;
+            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>()) return (int)SoulType.Fright;
+            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>()) return (int)SoulType.Sight;
+            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>()) return (int)SoulType.Might;
             //Temp ignored
             return 0;
         }
@@ -82,22 +82,22 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static SoulStats GetAssociatedStats(int soulType, bool fromUI = false)
         {
             //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned");
-            if (soulType == (int)SoulType.Sight) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno");
-            if (soulType == (int)SoulType.Might) return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
+            if (soulType == (int)SoulType.Fright) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned");
+            if (soulType == (int)SoulType.Sight) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno");
+            if (soulType == (int)SoulType.Might) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
                 if (Main.hardMode || fromUI)
                 {
-                    return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
+                    return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
                 }
                 else if(soulType == (int)SoulType.Dungeon)
                 {
-                    return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
+                    return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
                 }
                 else
                 {
-                    return new SoulStats(AssortedCrazyThings.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
+                    return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
                 }
             }
             return new SoulStats(0, 0, 0, soulType);

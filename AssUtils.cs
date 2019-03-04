@@ -8,6 +8,7 @@ namespace AssortedCrazyThings
 {
     class AssUtils
     {
+        public static AssortedCrazyThings Instance { get; set; } //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
         public static void Print(string msg)
         {

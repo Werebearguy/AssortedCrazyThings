@@ -802,7 +802,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
     public class PetAccessory
     {
         //internal fields
-        internal static Mod InternalMod;
         internal static byte addCounter = 0; //if you ever add more than 255 accessories, make that a short
         internal static string[] namesOfAccessories;
 
@@ -1052,7 +1051,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 Texture = null;
                 Offset = null;
-                InternalMod = null;
                 addCounter = 0;
             }
         }
@@ -1082,11 +1080,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             do
             {
-                if (AssortedCrazyThings.Instance.ItemType(typeList[itemIndex]) == 0)
+                if (AssUtils.Instance.ItemType(typeList[itemIndex]) == 0)
                 {
                     throw new Exception("Pet Accessory named '" + typeList[itemIndex] + "' is not found. Is it spelt correctly?");
                 }
-                Items[itemIndex] = AssortedCrazyThings.Instance.ItemType(typeList[itemIndex]);
+                Items[itemIndex] = AssUtils.Instance.ItemType(typeList[itemIndex]);
                 itemIndex++;
             }
             while (itemIndex < typeList.Length);
@@ -1114,7 +1112,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Check(true, name);
 
-            TryAdd(AssortedCrazyThings.Instance.ItemType(name), AssortedCrazyThings.Instance.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, useNoHair);
+            TryAdd(AssUtils.Instance.ItemType(name), AssUtils.Instance.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, useNoHair);
         }
 
         private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool useNoHair)
@@ -1164,7 +1162,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //i is the color (CuteSlimeBasePet.PetColor)
             for (int i = 0; i < intArray.Length; i++)
             {
-                AltTexture[ItemsIndexed[AssortedCrazyThings.Instance.ItemType(name)], i] = intArray[i];
+                AltTexture[ItemsIndexed[AssUtils.Instance.ItemType(name)], i] = intArray[i];
             }
         }
 
