@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Buffs
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("DocileDemonEyeProj")] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), 0f, 0f, mod.ProjectileType("DocileDemonEyeProj"), 0, 0f, player.whoAmI, 0f, 0f);
+                int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction, -0.5f, mod.ProjectileType("DocileDemonEyeProj"), 0, 0f, player.whoAmI, 0f, 0f);
                 mPlayer.eyePetIndex = i;
             }
         }

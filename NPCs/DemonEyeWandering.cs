@@ -103,7 +103,7 @@ namespace AssortedCrazyThings.NPCs
             //    //AssUtils.Print("generate texture " + npc.altTexture + " from " + npc.whoAmI);
             //    //AssUtils.Print("type " + Main.npc[npc.whoAmI].type);
             //    //AssUtils.Print("extracount " + NPCID.Sets.ExtraTextureCount[npc.type]);
-            //    //AssortedCrazyThings.Instance.SyncAltTextureNPC(npc);
+            //    //AssUtils.Instance.SyncAltTextureNPC(npc);
 
             //    npc.localAI[0] = 1;
             //    npc.netUpdate = true;
