@@ -441,7 +441,7 @@ namespace AssortedCrazyThings
         {
             for(int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
             {
-                if(Main.LocalPlayer.inventory[i].type == ItemType<Items.Weapons.EverhallowedLantern>())
+                if(Main.LocalPlayer.inventory[i].type == ItemType<EverhallowedLantern>())
                 {
                     var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
                     Main.LocalPlayer.inventory[i].damage = stats.Damage;

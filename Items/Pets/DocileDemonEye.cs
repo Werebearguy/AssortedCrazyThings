@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Docile Demon Eye");
             Tooltip.SetDefault("Summons a docile Demon Eye to follow you"
-                + "\nChange its appearance with a Demon Eye Contact Case");
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SetDefaults()

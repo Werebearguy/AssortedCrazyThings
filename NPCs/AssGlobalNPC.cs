@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.NPCs
 
             if (npc.type == NPCID.DukeFishron)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoggyFishCake>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetFishronItem>());
             }
 
             if (npc.type == NPCID.Plantera)
@@ -75,25 +75,21 @@ namespace AssortedCrazyThings.NPCs
                     }
                 }
             }
-        }
 
-        public override void HitEffect(NPC npc, int hitDirection, double damage)
-        {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            //soul spawn from dead enemies
+
+            if (shouldSoulDrop)
             {
-                if (npc.life <= 0 && shouldSoulDrop)
+                if (npc.type != mod.NPCType<DungeonSoul>())
                 {
-                    if (npc.type != mod.NPCType<DungeonSoul>())
-                    {
-                        int soulType = mod.NPCType<DungeonSoul>();
+                    int soulType = mod.NPCType<DungeonSoul>();
 
-                        //NewNPC starts looking for the first !active from 0 to 200
-                        int soulID = NPC.NewNPC((int)npc.position.X + DungeonSoulBase.wid / 2, (int)npc.position.Y + DungeonSoulBase.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
-                        Main.npc[soulID].timeLeft = DungeonSoulBase.SoulActiveTime;
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            NetMessage.SendData(23, -1, -1, null, soulID);
-                        }
+                    //NewNPC starts looking for the first !active from 0 to 200
+                    int soulID = NPC.NewNPC((int)npc.position.X + DungeonSoulBase.wid / 2, (int)npc.position.Y + DungeonSoulBase.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
+                    Main.npc[soulID].timeLeft = DungeonSoulBase.SoulActiveTime;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(23, -1, -1, null, soulID);
                     }
                 }
             }

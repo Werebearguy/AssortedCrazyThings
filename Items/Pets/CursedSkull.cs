@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Inert Skull");
-            Tooltip.SetDefault("Summons a friendly cursed skull that follows you");
+            Tooltip.SetDefault("Summons a friendly cursed skull that follows you"
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SetDefaults()

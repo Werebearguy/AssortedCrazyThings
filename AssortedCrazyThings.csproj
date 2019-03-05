@@ -165,7 +165,7 @@
     <Compile Include="Items\Pets\OceanSlimeItem.cs" />
     <Compile Include="Items\Pets\PrinceSlimeItem.cs" />
     <Compile Include="Items\Pets\RainbowSlimeItem.cs" />
-    <Compile Include="Items\Pets\SoggyFishCake.cs" />
+    <Compile Include="Items\Pets\PetFishronItem.cs" />
     <Compile Include="Items\Pets\StingSlimeBlackItem.cs" />
     <Compile Include="Items\Pets\StingSlimeOrangeItem.cs" />
     <Compile Include="Items\Pets\PetSunMoonItem.cs" />

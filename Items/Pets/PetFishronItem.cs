@@ -4,12 +4,13 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class SoggyFishCake : ModItem
+    public class PetFishronItem : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soggy Fish Cake");
-            Tooltip.SetDefault("Summons a friendly Fishron that flies with you");
+            Tooltip.SetDefault("Summons a friendly Fishron that flies with you"
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SetDefaults()

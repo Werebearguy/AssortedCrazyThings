@@ -10,7 +10,8 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Bottled Moon");
             Tooltip.SetDefault("Summons a small moon that provides you with constant moonlight"
-                + "\nShows the current moon cycle in the buff tip");
+                + "\nShows the current moon cycle in the buff tip"
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SetDefaults()
