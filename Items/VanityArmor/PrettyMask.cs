@@ -1,3 +1,4 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.VanityArmor
@@ -20,5 +21,15 @@ namespace AssortedCrazyThings.Items.VanityArmor
             item.vanity = true;
             item.maxStack = 1;
         }
-	}
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Silk, 50);
+            recipe.AddIngredient(ItemID.RedHusk, 1);
+            recipe.AddTile(TileID.Loom);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }
