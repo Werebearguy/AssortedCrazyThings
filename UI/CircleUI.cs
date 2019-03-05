@@ -127,6 +127,10 @@ namespace AssortedCrazyThings.UI
             {
                 bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.circleAmount, done);
                 string tooltip = UIConf.Unlocked[done] ? UIConf.Tooltips[done] : UIConf.ToUnlock[done];
+
+                //if there is a "to unlock" message, prefix it
+                tooltip = (!UIConf.Unlocked[done] && UIConf.ToUnlock[done] != "") ? ("To unlock: " + tooltip) : tooltip;
+
                 if (isMouseWithin)
                 {
                     //  Draw the tooltip

@@ -19,11 +19,6 @@ namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
     {
-        public AssortedCrazyThings()
-        {
-
-        }
-
         //Slime pet legacy
         public static int[] slimePetLegacy = new int[9];
         public static int[] slimePetNoHair = new int[6];
@@ -46,6 +41,9 @@ namespace AssortedCrazyThings
         internal static CircleUIConf LifeLikeMechFrogConf;
         internal static CircleUIConf CursedSkullConf;
         internal static CircleUIConf YoungWyvernConf;
+        internal static CircleUIConf PetFishronConf;
+
+        internal static CircleUIConf EverhallowedLanternConf;
 
         internal static UserInterface EverhallowedLanternSwapInterface;
         internal static EverhallowedLanternUI EverhallowedLanternSwapUI;
@@ -153,6 +151,8 @@ namespace AssortedCrazyThings
                 LifeLikeMechFrogConf = CircleUIConf.LifeLikeMechFrogConf();
                 CursedSkullConf = CircleUIConf.CursedSkullConf();
                 YoungWyvernConf = CircleUIConf.YoungWyvernConf();
+                PetFishronConf = CircleUIConf.PetFishronConf();
+                EverhallowedLanternConf = CircleUIConf.EverhallowedLanternConf(); //isn't used anymore but needs to be created in order for the triggerItem to register
 
                 EverhallowedLanternSwapUI = new EverhallowedLanternUI();
                 EverhallowedLanternSwapUI.Activate();
@@ -168,11 +168,6 @@ namespace AssortedCrazyThings
                 CircleUIInterface = null;
                 CircleUI = null;
                 CircleUIHotkey = null;
-
-                DocileDemonEyeConf = null;
-                LifeLikeMechFrogConf = null;
-                CursedSkullConf = null;
-                YoungWyvernConf = null;
 
                 EverhallowedLanternSwapInterface = null;
                 EverhallowedLanternSwapUI = null;
@@ -251,56 +246,6 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void CircleUIStart()
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-
-            if (Main.LocalPlayer.HeldItem.type == ItemType<VanitySelector>())
-            {
-                if (pPlayer.DocileDemonEye)
-                {
-                    //set custom config with starting value
-                    CircleUI.currentSelected = pPlayer.petEyeType;
-
-                    CircleUI.UIConf = DocileDemonEyeConf;
-                }
-                else if (pPlayer.LifelikeMechanicalFrog)
-                {
-                    CircleUI.currentSelected = pPlayer.mechFrogCrown? 1: 0;
-
-                    CircleUI.UIConf = LifeLikeMechFrogConf;
-                }
-                else if (pPlayer.CursedSkull)
-                {
-                    CircleUI.currentSelected = pPlayer.cursedSkullType;
-
-                    CircleUI.UIConf = CursedSkullConf;
-                }
-                else if (pPlayer.YoungWyvern)
-                {
-                    CircleUI.currentSelected = pPlayer.youngWyvernType;
-
-                    CircleUI.UIConf = YoungWyvernConf;
-                }
-                else
-                {
-                    return;
-                }
-            }
-            else
-            {
-                return;
-            }
-
-            // Spawn UI
-            CircleUI.visible = true;
-            CircleUI.spawnPosition = Main.MouseScreen;
-            CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
-            CircleUI.heldItemType = Main.LocalPlayer.HeldItem.type;
-            Main.NewText("CircleUIStart " + CircleUI.heldItemType);
-        }
-
         private void PoofVisual(int projType)
         {
             int projIndex = -1;
@@ -317,45 +262,129 @@ namespace AssortedCrazyThings
                 }
             }
             Dust dust;
-            float factor = 1f;
-            if (Main.projectile[projIndex].velocity.Length() > 5) factor = 2f;
             for (int i = 0; i < 14; i++)
             {
-                dust = Main.dust[Dust.NewDust(Main.projectile[projIndex].position, 18, 28, 204, Main.projectile[projIndex].velocity.X * factor, Main.projectile[projIndex].velocity.Y * factor, 0, new Color(255, 255, 255), 0.8f)];
+                dust = Main.dust[Dust.NewDust(Main.projectile[projIndex].position, Main.projectile[projIndex].width, Main.projectile[projIndex].height, 204, Main.projectile[projIndex].velocity.X, Main.projectile[projIndex].velocity.Y, 0, new Color(255, 255, 255), 0.8f)];
                 dust.noGravity = true;
                 dust.noLight = true;
             }
         }
 
-        private void CircleUIEnd()
+        private void CircleUIStart(int triggerType, bool triggerLeft = true)
         {
-            Main.NewText("CircleUIEnd " + CircleUI.heldItemType);
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
+
+            if (triggerLeft) //left click
+            {
+                if (triggerType == ItemType<VanitySelector>())
+                {
+                    if (pPlayer.DocileDemonEye)
+                    {
+                        //set custom config with starting value
+                        CircleUI.currentSelected = pPlayer.petEyeType;
+
+                        CircleUI.UIConf = DocileDemonEyeConf;
+                    }
+                    else if (pPlayer.LifelikeMechanicalFrog)
+                    {
+                        CircleUI.currentSelected = pPlayer.mechFrogCrown ? 1 : 0;
+
+                        CircleUI.UIConf = LifeLikeMechFrogConf;
+                    }
+                    else if (pPlayer.CursedSkull)
+                    {
+                        CircleUI.currentSelected = pPlayer.cursedSkullType;
+
+                        CircleUI.UIConf = CursedSkullConf;
+                    }
+                    else if (pPlayer.YoungWyvern)
+                    {
+                        CircleUI.currentSelected = pPlayer.youngWyvernType;
+
+                        CircleUI.UIConf = YoungWyvernConf;
+                    }
+                    else if (pPlayer.PetFishron)
+                    {
+                        CircleUI.currentSelected = pPlayer.petFishronType;
+
+                        CircleUI.UIConf = PetFishronConf;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (triggerType == ItemType<EverhallowedLantern>())
+                {
+                    CircleUI.currentSelected = mPlayer.selectedSoulMinionType;
+
+                    //this one needs to be created anew because of the unlocked list
+                    CircleUI.UIConf = CircleUIConf.EverhallowedLanternConf();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            // Spawn UI
+            CircleUI.visible = true;
+            CircleUI.spawnPosition = Main.MouseScreen;
+            CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
+            CircleUI.heldItemType = triggerType;
+            //Main.NewText("CircleUIStart " + CircleUI.heldItemType);
+        }
+
+        private void CircleUIEnd(bool triggerLeft = true)
+        {
+            //Main.NewText("CircleUIEnd " + CircleUI.heldItemType);
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
             if (CircleUI.returned != -1 && CircleUI.returned != CircleUI.currentSelected)
             {
                 //if something returned AND if the returned thing isn't the same as the current one
 
-                if (CircleUI.heldItemType == ItemType<VanitySelector>())
+                if (triggerLeft) //left click
                 {
-                    Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
-                    PoofVisual(CircleUI.UIConf.additionalInfo);
+                    if (CircleUI.heldItemType == ItemType<VanitySelector>())
+                    {
+                        Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
+                        PoofVisual(CircleUI.UIConf.additionalInfo);
 
-                    if (pPlayer.DocileDemonEye)
-                    {
-                        pPlayer.petEyeType = (byte)CircleUI.returned;
+                        if (pPlayer.DocileDemonEye)
+                        {
+                            pPlayer.petEyeType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.LifelikeMechanicalFrog)
+                        {
+                            pPlayer.mechFrogCrown = (CircleUI.returned > 0) ? true : false;
+                        }
+                        else if (pPlayer.CursedSkull)
+                        {
+                            pPlayer.cursedSkullType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.YoungWyvern)
+                        {
+                            pPlayer.youngWyvernType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.PetFishron)
+                        {
+                            pPlayer.petFishronType = (byte)CircleUI.returned;
+                        }
                     }
-                    else if (pPlayer.LifelikeMechanicalFrog)
+                }
+                else //right click
+                {
+                    if (Main.LocalPlayer.HeldItem.type == ItemType<EverhallowedLantern>())
                     {
-                        pPlayer.mechFrogCrown = (CircleUI.returned > 0) ? true : false;
-                    }
-                    else if (pPlayer.CursedSkull)
-                    {
-                        pPlayer.cursedSkullType = (byte)CircleUI.returned;
-                    }
-                    else if (pPlayer.YoungWyvern)
-                    {
-                        pPlayer.youngWyvernType = (byte)CircleUI.returned;
+                        Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
+                        mPlayer.selectedSoulMinionType = CircleUI.returned;
+
+                        UpdateEverhallowedLanternStats(CircleUI.returned);
                     }
                 }
             }
@@ -367,22 +396,42 @@ namespace AssortedCrazyThings
         private void UpdateCircleUI(GameTime gameTime)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            if (CircleUIHotkey.JustPressed) Main.NewText("HotKeyPressed");
-            if (CircleUIHotkey.JustReleased) Main.NewText("HotKeyReleased");
+            //if (CircleUIHotkey.JustPressed) Main.NewText("HotKeyPressed");
+            //if (CircleUIHotkey.JustReleased) Main.NewText("HotKeyReleased");
             //Main.NewText("visible: " + CircleUI.visible);
 
-            if (mPlayer.RightClickPressed && CircleUIConf.TriggerList.Contains(Main.LocalPlayer.HeldItem.type))
+
+            bool? left = null;
+            if (mPlayer.LeftClickPressed && CircleUIConf.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
             {
-                CircleUIStart();
+                left = true;
             }
-            else if (mPlayer.RightClickReleased && CircleUI.visible)
+            else if (mPlayer.RightClickPressed && CircleUIConf.TriggerListRight.Contains(Main.LocalPlayer.HeldItem.type))
             {
-                CircleUIEnd();
+                left = false;
             }
-            else if (CircleUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
+
+            if (left != null) CircleUIStart(Main.LocalPlayer.HeldItem.type, (bool)left);
+
+            if (CircleUI.visible)
             {
-                CircleUI.returned = -1;
-                CircleUI.visible = false;
+                left = null;
+                if (mPlayer.LeftClickReleased)
+                {
+                    left = true;
+                }
+                else if (mPlayer.RightClickReleased)
+                {
+                    left = false;
+                }
+
+                if (left != null) CircleUIEnd((bool)left);
+
+                if (CircleUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
+                {
+                    CircleUI.returned = -1;
+                    CircleUI.visible = false;
+                }
             }
         }
 
@@ -448,7 +497,7 @@ namespace AssortedCrazyThings
         public override void UpdateUI(GameTime gameTime)
         {
             UpdateCircleUI(gameTime);
-            UpdateEverhallowedLanternUI(gameTime);
+            //UpdateEverhallowedLanternUI(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -602,6 +651,7 @@ namespace AssortedCrazyThings
         }
 
         //Credit to jopojelly
+        //makes alpha on .png textures actually properly rendered
         public static void PremultiplyTexture(Texture2D texture)
         {
             Color[] buffer = new Color[texture.Width * texture.Height];

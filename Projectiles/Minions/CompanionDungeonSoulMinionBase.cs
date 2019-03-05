@@ -56,14 +56,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
             public readonly float Knockback;
             public readonly int SoulType; //enum type
             public readonly string Description;
+            public readonly string ToUnlock;
 
-            public SoulStats(int a, int b, float c, int d, string e = "")
+            public SoulStats(int a, int b, float c, int d, string e = "", string f = "")
             {
                 Type = a;
                 Damage = b;
                 Knockback = c;
                 SoulType = d;
                 Description = e;
+                ToUnlock = f;
             }
         }
 
@@ -82,9 +84,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public static SoulStats GetAssociatedStats(int soulType, bool fromUI = false)
         {
             //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned");
-            if (soulType == (int)SoulType.Sight) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno");
-            if (soulType == (int)SoulType.Might) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType);
+            if (soulType == (int)SoulType.Fright) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned", "Defeat Skeletron Prime");
+            if (soulType == (int)SoulType.Sight) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno", "Defeat The Twins");
+            if (soulType == (int)SoulType.Might) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType, "", "Defeat The Destroyer");
             if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
             {
                 if (Main.hardMode || fromUI)

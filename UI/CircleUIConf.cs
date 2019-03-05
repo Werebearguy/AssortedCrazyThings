@@ -1,22 +1,18 @@
 ﻿using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Pets;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace AssortedCrazyThings.UI
 {
     public class CircleUIConf
     {
-        public static List<int> TriggerList = new List<int>();
+        public static List<int> TriggerListRight = new List<int>();
+        public static List<int> TriggerListLeft = new List<int>();
 
         public List<Texture2D> Textures { get; private set; }
         public List<bool> Unlocked { get; private set; } //all true if just selection
@@ -31,7 +27,7 @@ namespace AssortedCrazyThings.UI
         //mainly used for passing the projectile type atm
         public int additionalInfo = -1;
 
-        public CircleUIConf(int triggerItemType = 0, int spritesheetDividerArg = 0, int additionalInfoArg = -1, List<Texture2D> texturesArg = null, List<bool> unlockedArg = null, List<string> tooltipsArg = null, List<string> toUnlockArg = null)
+        public CircleUIConf(int triggerItemType = 0, bool triggerLeft = true, int spritesheetDividerArg = 0, int additionalInfoArg = -1, List<Texture2D> texturesArg = null, List<bool> unlockedArg = null, List<string> tooltipsArg = null, List<string> toUnlockArg = null)
         {
             if (triggerItemType == 0) throw new Exception("triggerItemType has to be specified as an item type (via 'mod.ItemType<ClassNameOfItem>()')");
 
@@ -77,77 +73,107 @@ namespace AssortedCrazyThings.UI
             Tooltips = new List<string>(tooltipsArg);
             ToUnlock = new List<string>(toUnlockArg);
 
-            if (!TriggerList.Contains(triggerItemType)) TriggerList.Add(triggerItemType);
-        }
-
-        public static CircleUIConf DocileDemonEyeConf()
-        {
-            List<Texture2D> l1 = new List<Texture2D>();
-            for (int i = 0; i < DocileDemonEyeProj.TotalNumberOfThese; i++)
+            if (triggerLeft)
             {
-                l1.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/DocileDemonEye_" + i));
+                if (!TriggerListLeft.Contains(triggerItemType)) TriggerListLeft.Add(triggerItemType);
             }
-            
-            List<string> l3 = new List<string>() { "Red", "Green", "Purple",
-                "Red Fractured", "Green Fractured", "Purple Fractured",
-                "Red Mechanical", "Green Mechanical", "Purple Mechanical",
-                "Red Laser", "Green Laser", "Purple Laser" };
-
-            //no need for unlocked + toUnlock
-            int test2 = AssUtils.Instance.ProjectileType<DocileDemonEyeProj>();
-            int test = Main.projFrames[test2];
-            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(),
-                Main.projFrames[AssUtils.Instance.ProjectileType<DocileDemonEyeProj>()],
-                AssUtils.Instance.ProjectileType<DocileDemonEyeProj>(),
-                l1, null, l3, null);
+            else
+            {
+                if (!TriggerListRight.Contains(triggerItemType)) TriggerListRight.Add(triggerItemType);
+            }
         }
+
+        private static CircleUIConf PetConf(string name, List<string> tooltips)
+        {
+            //uses VanitySelector as the triggerItem
+            //order of tooltips must be the same as the order of textures (0, 1 2 etc)
+
+            List<Texture2D> l1 = new List<Texture2D>();
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                l1.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+            }
+
+            int type = AssUtils.Instance.ProjectileType(name);
+
+            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(), true, Main.projFrames[type], type, l1, null, tooltips, null);
+        }
+
+        //here start the specific confs that are called in PostSetupContent
 
         public static CircleUIConf LifeLikeMechFrogConf()
         {
             List<Texture2D> l1 = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
                                                          AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
 
-            List<string> l3 = new List<string>() { "Regular", "Crowned"};
+            List<string> l3 = new List<string>() { "Regular", "Crowned" };
 
             //no need for unlocked + toUnlock
             return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(),
+                true,
                 Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
                 AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
                 l1, null, l3, null);
         }
 
+        public static CircleUIConf DocileDemonEyeConf()
+        {
+            List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
+                "Red Fractured", "Green Fractured", "Purple Fractured",
+                "Red Mechanical", "Green Mechanical", "Purple Mechanical",
+                "Red Laser", "Green Laser", "Purple Laser" };
+
+            return PetConf("DocileDemonEyeProj", tooltips);
+        }
+
         public static CircleUIConf CursedSkullConf()
         {
-            List<Texture2D> l1 = new List<Texture2D>();
-            for (int i = 0; i < CursedSkull.TotalNumberOfThese; i++)
-            {
-                l1.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/CursedSkull_" + i));
-            }
+            List<string> tooltips = new List<string>() { "Regular", "Dragon" };
 
-            List<string> l3 = new List<string>() { "Regular", "Dragon" };
-
-            //no need for unlocked + toUnlock
-            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(),
-                Main.projFrames[AssUtils.Instance.ProjectileType<CursedSkull>()],
-                AssUtils.Instance.ProjectileType<CursedSkull>(),
-                l1, null, l3, null);
+            return PetConf("CursedSkull", tooltips);
         }
 
         public static CircleUIConf YoungWyvernConf()
         {
-            List<Texture2D> l1 = new List<Texture2D>();
-            for (int i = 0; i < YoungWyvern.TotalNumberOfThese; i++)
+            List<string> tooltips = new List<string>() { "Regular", "Mythical", "Arch", "Arch (Legacy)" };
+            
+            return PetConf("YoungWyvern", tooltips);
+        }
+
+        public static CircleUIConf PetFishronConf()
+        {
+            List<string> tooltips = new List<string>() { "Regular", "Sharkron", "Sharknado" };
+
+            return PetConf("PetFishronProj", tooltips);
+        }
+
+        public static CircleUIConf EverhallowedLanternConf()
+        {
+            List<Texture2D> textures = new List<Texture2D>();
+            List<string> tooltips = new List<string>();
+            List<string> toUnlock = new List<string>();
+            for (int soulType = 0; soulType < 4; soulType++)
             {
-                l1.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/YoungWyvern_" + i));
+                var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
+                var tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                string tooltip = tempSoulType.ToString()
+                    + "\nBase Damage: " + stats.Damage
+                    + "\nBase Knockback: " + stats.Knockback
+                    + "\n" + stats.Description;
+                textures.Add(Main.projectileTexture[stats.Type]);
+                tooltips.Add(tooltip);
+                toUnlock.Add(stats.ToUnlock);
             }
 
-            List<string> l3 = new List<string>() { "Regular", "Mythical", "Arch", "Arch (Legacy)" };
-
-            //no need for unlocked + toUnlock
-            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(),
-                Main.projFrames[AssUtils.Instance.ProjectileType<YoungWyvern>()],
-                AssUtils.Instance.ProjectileType<YoungWyvern>(),
-                l1, null, l3, null);
+            List <bool> unlocked = new List<bool>()
+            {
+                true,                //      0
+                NPC.downedMechBoss3, //skele 1
+                NPC.downedMechBoss2, //twins 2
+                NPC.downedMechBoss1, //destr 3
+            };
+            
+            return new CircleUIConf(AssUtils.Instance.ItemType<EverhallowedLantern>(), false, 8, -1, textures, unlocked, tooltips, toUnlock);
         }
     }
 }
