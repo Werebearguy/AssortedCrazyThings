@@ -26,19 +26,10 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot(NPC npc)
         {
+            //other pets
             if(npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
-            }
-
-            if (npc.type == NPCID.DukeFishron)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoggyFishCake>());
-            }
-
-            if (npc.type == NPCID.QueenBee)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
             }
 
             if (npc.type == NPCID.RainbowSlime)
@@ -51,9 +42,26 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<IlluminantSlimeItem>());
             }
 
+            //boss pets
+
             if (npc.type == NPCID.KingSlime)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PrinceSlimeItem>());
+            }
+
+            if (npc.type == NPCID.QueenBee)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
+            }
+
+            if (npc.type == NPCID.WallofFlesh)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<WallFragmentItem>());
+            }
+
+            if (npc.type == NPCID.DukeFishron)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoggyFishCake>());
             }
 
             if (npc.type == NPCID.Plantera)

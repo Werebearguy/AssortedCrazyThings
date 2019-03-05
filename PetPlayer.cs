@@ -87,6 +87,7 @@ namespace AssortedCrazyThings
         public bool HealingDrone = false;
         public bool PetSun = false;
         public bool PetMoon = false;
+        public bool WallFragment = false;
 
         public override void ResetEffects()
         {
@@ -150,6 +151,7 @@ namespace AssortedCrazyThings
             HealingDrone = false;
             PetSun = false;
             PetMoon = false;
+            WallFragment = false;
         }
 
         public bool ThreeTimesUseTime(double currentTime)

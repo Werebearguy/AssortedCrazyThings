@@ -101,6 +101,7 @@
     <Compile Include="Buffs\SoulBuff.cs" />
     <Compile Include="Buffs\TorturedSoul.cs" />
     <Compile Include="Buffs\VampireBat.cs" />
+    <Compile Include="Buffs\WallFragmentBuff.cs" />
     <Compile Include="Buffs\YoungHarpy.cs" />
     <Compile Include="Buffs\YoungWyvern.cs" />
     <Compile Include="Items\Accessories\Useful\AnomalousWings.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\Pets\WallFragmentItem.cs" />
     <Compile Include="Items\VanitySelector.cs" />
     <Compile Include="Items\DroneParts.cs" />
     <Compile Include="Items\Fun\GuideVoodoorang.cs" />
@@ -328,6 +330,7 @@
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
     <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
     <Compile Include="Projectiles\Pets\AbeeminationProj.cs" />
+    <Compile Include="Projectiles\Pets\WallFragmentCombined.cs" />
     <Compile Include="Projectiles\Pets\ChunkySlimeProj.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj2.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj.cs" />
