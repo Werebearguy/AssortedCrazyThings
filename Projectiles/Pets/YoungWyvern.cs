@@ -8,8 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class YoungWyvern : ModProjectile
     {
-        public const byte TotalNumberOfThese = 4;
-
         public override string Texture
         {
             get

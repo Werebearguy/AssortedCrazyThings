@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/DocileDemonEye_0"; //temp
+                return "AssortedCrazyThings/Projectiles/Pets/DocileDemonEyeProj_0"; //temp
             }
         }
 
@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Pets/DocileDemonEye_" + mPlayer.petEyeType);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/DocileDemonEyeProj_" + mPlayer.petEyeType);
             Rectangle bounds = new Rectangle
             {
                 X = 0,

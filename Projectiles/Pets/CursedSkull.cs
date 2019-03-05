@@ -8,8 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class CursedSkull : ModProjectile
     {
-        public const byte TotalNumberOfThese = 2;
-
         public override string Texture
         {
             get
