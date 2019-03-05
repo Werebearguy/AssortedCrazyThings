@@ -6,13 +6,13 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class MoonPetProj : ModProjectile
+    public class PetMoonProj : ModProjectile
     {
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/MoonPetProj_0"; //temp
+                return "AssortedCrazyThings/Projectiles/Pets/PetMoonProj_0"; //temp
             }
         }
 
@@ -34,6 +34,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
             Vector3 lightVector = Vector3.One * 0.6f;
             float lightFactor = 1f;
 
@@ -53,7 +54,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 lightFactor = 0.55f;
             }
 
-            int texture = Main.moonType; //0, 1 and 2
+            //int texture = Main.moonType; //0, 1 and 2
+            int texture = mPlayer.petMoonType;
             if (Main.pumpkinMoon)
             {
                 texture = 3;
@@ -65,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             
             if (projectile.frame != 4) Lighting.AddLight(projectile.Center, lightVector * lightFactor);
 
-            Texture2D image = mod.GetTexture("Projectiles/Pets/MoonPetProj_" + texture);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/PetMoonProj_" + texture);
 
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
@@ -86,9 +88,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.MoonPet = false;
+                modPlayer.PetMoon = false;
             }
-            if (modPlayer.MoonPet)
+            if (modPlayer.PetMoon)
             {
                 projectile.timeLeft = 2;
 

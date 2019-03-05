@@ -6,13 +6,13 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class SunPetProj : ModProjectile
+    public class PetSunProj : ModProjectile
     {
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/SunPetProj_0"; //temp
+                return "AssortedCrazyThings/Projectiles/Pets/PetSunProj_0"; //temp
             }
         }
 
@@ -61,9 +61,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.SunPet = false;
+                modPlayer.PetSun = false;
             }
-            if (modPlayer.SunPet)
+            if (modPlayer.PetSun)
             {
                 projectile.timeLeft = 2;
 
