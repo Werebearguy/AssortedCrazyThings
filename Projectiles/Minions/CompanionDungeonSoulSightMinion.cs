@@ -31,11 +31,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
             defveloNoclip = 12f;
 
             dustColor = ItemID.BrightGreenDye;
+            
+            projectile.idStaticNPCHitCooldown = 14;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            int rand = Main.rand.Next(10);
+            int rand = Main.rand.Next(4);
             if (rand == 0)
             {
                 target.AddBuff(BuffID.CursedInferno, 120);
