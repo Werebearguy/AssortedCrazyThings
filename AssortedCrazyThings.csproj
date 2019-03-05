@@ -53,7 +53,6 @@
     <Compile Include="Buffs\PetMoonBuff.cs" />
     <Compile Include="Buffs\PetSunBuff.cs" />
     <Compile Include="Buffs\TurtleSlimeBuff.cs" />
-    <Compile Include="EverhallowedLanternUI.cs" />
     <Compile Include="AssortedCrazyThings.cs" />
     <Compile Include="Buffs\AbeeminationBuff.cs" />
     <Compile Include="Buffs\BipolarBuff.cs" />

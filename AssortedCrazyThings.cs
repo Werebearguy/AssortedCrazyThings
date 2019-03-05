@@ -35,7 +35,6 @@ namespace AssortedCrazyThings
         // UI stuff
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
-        internal static ModHotKey CircleUIHotkey;
         
         internal static CircleUIConf DocileDemonEyeConf;
         internal static CircleUIConf LifeLikeMechFrogConf;
@@ -45,9 +44,6 @@ namespace AssortedCrazyThings
         internal static CircleUIConf PetMoonConf;
 
         internal static CircleUIConf EverhallowedLanternConf;
-
-        internal static UserInterface EverhallowedLanternSwapInterface;
-        internal static EverhallowedLanternUI EverhallowedLanternSwapUI;
 
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
@@ -155,11 +151,6 @@ namespace AssortedCrazyThings
                 PetFishronConf = CircleUIConf.PetFishronConf();
                 PetMoonConf = CircleUIConf.PetMoonConf();
                 EverhallowedLanternConf = CircleUIConf.EverhallowedLanternConf(); //isn't used anymore but needs to be created in order for the triggerItem to register
-
-                EverhallowedLanternSwapUI = new EverhallowedLanternUI();
-                EverhallowedLanternSwapUI.Activate();
-                EverhallowedLanternSwapInterface = new UserInterface();
-                EverhallowedLanternSwapInterface.SetState(EverhallowedLanternSwapUI);
             }
         }
 
@@ -169,10 +160,6 @@ namespace AssortedCrazyThings
             {
                 CircleUIInterface = null;
                 CircleUI = null;
-                CircleUIHotkey = null;
-
-                EverhallowedLanternSwapInterface = null;
-                EverhallowedLanternSwapUI = null;
             }
         }
 
@@ -208,8 +195,6 @@ namespace AssortedCrazyThings
         public override void Load()
         {
             AssUtils.Instance = this;
-
-            CircleUIHotkey = RegisterHotKey("CircleUI", "C");
 
             ModConf.Load();
 
@@ -417,10 +402,6 @@ namespace AssortedCrazyThings
         private void UpdateCircleUI(GameTime gameTime)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            //if (CircleUIHotkey.JustPressed) Main.NewText("HotKeyPressed");
-            //if (CircleUIHotkey.JustReleased) Main.NewText("HotKeyReleased");
-            //Main.NewText("visible: " + CircleUI.visible);
-
 
             bool? left = null;
             if (mPlayer.LeftClickPressed && CircleUIConf.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
@@ -482,43 +463,9 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void UpdateEverhallowedLanternUI(GameTime gameTime)
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-
-            if (mPlayer.RightClickPressed && Main.LocalPlayer.HeldItem.type == ItemType<EverhallowedLantern>())
-            {
-                EverhallowedLanternUI.visible = true;
-                EverhallowedLanternUI.circleAmount = 4;
-                EverhallowedLanternUI.heldItemType = Main.LocalPlayer.HeldItem.type;
-                EverhallowedLanternUI.currentSoulMinionType = mPlayer.selectedSoulMinionType;
-                EverhallowedLanternUI.spawnPosition = Main.MouseScreen;
-                EverhallowedLanternUI.leftCorner = Main.MouseScreen - new Vector2(EverhallowedLanternUI.mainRadius, EverhallowedLanternUI.mainRadius);
-            }
-            else if (mPlayer.RightClickReleased && EverhallowedLanternUI.visible)
-            {
-                if (EverhallowedLanternUI.selectedSoulMinionType != -1 && mPlayer.selectedSoulMinionType != EverhallowedLanternUI.selectedSoulMinionType)
-                {
-                    //if something returned AND if the returned thing isnt the same as the current one
-                    Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
-                    mPlayer.selectedSoulMinionType = EverhallowedLanternUI.selectedSoulMinionType;
-                    UpdateEverhallowedLanternStats(EverhallowedLanternUI.selectedSoulMinionType);
-                }
-                
-                EverhallowedLanternUI.selectedSoulMinionType = -1;
-                EverhallowedLanternUI.visible = false;
-            }
-            else if (EverhallowedLanternUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
-            {
-                EverhallowedLanternUI.selectedSoulMinionType = -1;
-                EverhallowedLanternUI.visible = false;
-            }
-        }
-
         public override void UpdateUI(GameTime gameTime)
         {
             UpdateCircleUI(gameTime);
-            //UpdateEverhallowedLanternUI(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -532,16 +479,6 @@ namespace AssortedCrazyThings
                     delegate
                     {
                         if (CircleUI.visible) CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-
-                layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Everhallowed Lantern",
-                    delegate {
-                        if (EverhallowedLanternUI.visible) EverhallowedLanternSwapInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)
