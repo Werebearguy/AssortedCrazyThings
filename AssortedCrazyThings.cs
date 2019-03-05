@@ -506,9 +506,10 @@ namespace AssortedCrazyThings
             short knapSackSlimeIndex;
             int arrayLength;
             byte knapSackSlimeTexture;
-            byte playernumber;
+            byte playerNumber;
             AssPlayer mPlayer;
             PetPlayer petPlayer;
+            PetPlayerChanges changes = PetPlayerChanges.none;
             //byte npcnumber;
             //byte npcAltTexture;
 
@@ -529,8 +530,8 @@ namespace AssortedCrazyThings
                 case AssMessageType.SyncPlayer:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        playernumber = reader.ReadByte();
-                        mPlayer = Main.player[playernumber].GetModPlayer<AssPlayer>();
+                        playerNumber = reader.ReadByte();
+                        mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
 
                         arrayLength = reader.ReadInt16();
                         //Main.NewText(arrayLength);
@@ -555,10 +556,14 @@ namespace AssortedCrazyThings
                 case AssMessageType.SyncPlayerVanity:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        playernumber = reader.ReadByte();
-                        petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
+                        playerNumber = reader.ReadByte();
+                        petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
                         petPlayer.slots = reader.ReadUInt32();
                         petPlayer.petEyeType = reader.ReadByte();
+                        petPlayer.cursedSkullType = reader.ReadByte();
+                        petPlayer.youngWyvernType = reader.ReadByte();
+                        petPlayer.petFishronType = reader.ReadByte();
+                        petPlayer.petMoonType = reader.ReadByte();
                         petPlayer.mechFrogCrown = reader.ReadBoolean();
                     }
                     break;
@@ -578,20 +583,49 @@ namespace AssortedCrazyThings
                 //    }
                 //    break;
                 case AssMessageType.SendClientChangesVanity:
-                    playernumber = reader.ReadByte();
-                    petPlayer = Main.player[playernumber].GetModPlayer<PetPlayer>();
-                    petPlayer.slots = reader.ReadUInt32();
-                    petPlayer.petEyeType = reader.ReadByte();
-                    petPlayer.mechFrogCrown = reader.ReadBoolean();
+                    playerNumber = reader.ReadByte();
+                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+                    changes = (PetPlayerChanges)reader.ReadByte();
+
+                    switch (changes)
+                    {
+                        case PetPlayerChanges.all:
+                            petPlayer.slots = reader.ReadUInt32();
+                            petPlayer.petEyeType = reader.ReadByte();
+                            petPlayer.cursedSkullType = reader.ReadByte();
+                            petPlayer.youngWyvernType = reader.ReadByte();
+                            petPlayer.petFishronType = reader.ReadByte();
+                            petPlayer.petMoonType = reader.ReadByte();
+                            petPlayer.mechFrogCrown = reader.ReadBoolean();
+                            break;
+                        case PetPlayerChanges.slots:
+                            petPlayer.slots = reader.ReadUInt32();
+                            break;
+                        case PetPlayerChanges.petEyeType:
+                            petPlayer.petEyeType = reader.ReadByte();
+                            break;
+                        case PetPlayerChanges.cursedSkullType:
+                            petPlayer.cursedSkullType = reader.ReadByte();
+                            break;
+                        case PetPlayerChanges.youngWyvernType:
+                            petPlayer.youngWyvernType = reader.ReadByte();
+                            break;
+                        case PetPlayerChanges.petFishronType:
+                            petPlayer.petFishronType = reader.ReadByte();
+                            break;
+                        case PetPlayerChanges.petMoonType:
+                            petPlayer.petMoonType = reader.ReadByte();
+                            break;
+                        case PetPlayerChanges.mechFrogCrown:
+                            petPlayer.mechFrogCrown = reader.ReadBoolean();
+                            break;
+                        default: //shouldnt get there hopefully
+                            ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes.ToString());
+                            break;
+                    }
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        ModPacket packet = GetPacket();
-                        packet.Write((byte)AssMessageType.SendClientChangesVanity);
-                        packet.Write(playernumber);
-                        packet.Write((uint)petPlayer.slots);
-                        packet.Write((byte)petPlayer.petEyeType);
-                        packet.Write((bool)petPlayer.mechFrogCrown);
-                        packet.Send(-1, playernumber);
+                        petPlayer.SendClientChangesPacketSub(changes, -1, playerNumber);
                     }
                     break;
                 case AssMessageType.ConvertInertSoulsInventory:
@@ -623,7 +657,7 @@ namespace AssortedCrazyThings
         }
     }
 
-    enum AssMessageType : byte
+    public enum AssMessageType : byte
     {
         SendClientChangesVanity,
         SyncKnapSackSlimeTexture,
@@ -631,5 +665,19 @@ namespace AssortedCrazyThings
         SyncPlayerVanity,
         SyncAltTextureNPC,
         ConvertInertSoulsInventory
+    }
+
+    public enum PetPlayerChanges : byte
+    {
+        //easier to copypaste when its not capitalized
+        none,
+        all,
+        slots,
+        petEyeType,
+        cursedSkullType,
+        youngWyvernType,
+        petFishronType,
+        petMoonType,
+        mechFrogCrown,
     }
 }

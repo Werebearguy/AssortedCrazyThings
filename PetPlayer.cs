@@ -215,22 +215,66 @@ namespace AssortedCrazyThings
             packet.Write((byte)player.whoAmI);
             packet.Write((uint)slots);
             packet.Write((byte)petEyeType);
+            packet.Write((byte)cursedSkullType);
+            packet.Write((byte)youngWyvernType);
+            packet.Write((byte)petFishronType);
+            packet.Write((byte)petMoonType);
             packet.Write((bool)mechFrogCrown);
             packet.Send(toWho, fromWho);
         }
 
-        private void SendClientChangesPacket()
+        public void SendClientChangesPacketSub(PetPlayerChanges changes, int toClient = -1, int ignoreClient = -1)
         {
-            if(Main.netMode == NetmodeID.MultiplayerClient)
+            ModPacket packet = mod.GetPacket();
+            packet.Write((byte)AssMessageType.SendClientChangesVanity);
+            packet.Write((byte)player.whoAmI);
+            packet.Write((byte)changes);
+
+            switch (changes)
             {
-                //Main.NewText("Send: " + slots + " " + slotsLast);
-                ModPacket packet = mod.GetPacket();
-                packet.Write((byte)AssMessageType.SendClientChangesVanity);
-                packet.Write((byte)player.whoAmI);
-                packet.Write((uint)slots);
-                packet.Write((byte)petEyeType);
-                packet.Write((bool)mechFrogCrown);
-                packet.Send();
+                case PetPlayerChanges.all:
+                    packet.Write((uint)slots);
+                    packet.Write((byte)petEyeType);
+                    packet.Write((byte)cursedSkullType);
+                    packet.Write((byte)youngWyvernType);
+                    packet.Write((byte)petFishronType);
+                    packet.Write((byte)petMoonType);
+                    packet.Write((bool)mechFrogCrown);
+                    break;
+                case PetPlayerChanges.slots:
+                    packet.Write((uint)slots);
+                    break;
+                case PetPlayerChanges.petEyeType:
+                    packet.Write((byte)petEyeType);
+                    break;
+                case PetPlayerChanges.cursedSkullType:
+                    packet.Write((byte)cursedSkullType);
+                    break;
+                case PetPlayerChanges.youngWyvernType:
+                    packet.Write((byte)youngWyvernType);
+                    break;
+                case PetPlayerChanges.petFishronType:
+                    packet.Write((byte)petFishronType);
+                    break;
+                case PetPlayerChanges.petMoonType:
+                    packet.Write((byte)petMoonType);
+                    break;
+                case PetPlayerChanges.mechFrogCrown:
+                    packet.Write((bool)mechFrogCrown);
+                    break;
+                default: //shouldnt get there hopefully
+                    ErrorLogger.Log("Sending unspecified PetPlayerChanges " + changes.ToString());
+                    break;
+            }
+
+            packet.Send(toClient, ignoreClient);
+        }
+
+        private void SendClientChangesPacket(PetPlayerChanges changes)
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                SendClientChangesPacketSub(changes);
             }
         }
 
@@ -239,21 +283,31 @@ namespace AssortedCrazyThings
             PetPlayer clone = clientClone as PetPlayer;
             clone.slots = slots;
             clone.petEyeType = petEyeType;
+            clone.cursedSkullType = cursedSkullType;
+            clone.youngWyvernType = youngWyvernType;
+            clone.petFishronType = petFishronType;
+            clone.petMoonType = petMoonType;
             clone.mechFrogCrown = mechFrogCrown;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             PetPlayer clone = clientPlayer as PetPlayer;
-            if (clone.slots != slots || clone.petEyeType != petEyeType || clone.mechFrogCrown != mechFrogCrown)
-            {
-                SendClientChangesPacket();
-            }
+            PetPlayerChanges changes = PetPlayerChanges.none;
+            if (clone.slots != slots) changes = PetPlayerChanges.slots; 
+            else if (clone.petEyeType != petEyeType) changes = PetPlayerChanges.petEyeType;
+            else if (clone.cursedSkullType != cursedSkullType) changes = PetPlayerChanges.cursedSkullType;
+            else if (clone.youngWyvernType != youngWyvernType) changes = PetPlayerChanges.youngWyvernType;
+            else if (clone.petFishronType != petFishronType) changes = PetPlayerChanges.petFishronType;
+            else if (clone.petMoonType != petMoonType) changes = PetPlayerChanges.petMoonType;
+            else if (clone.mechFrogCrown != mechFrogCrown) changes = PetPlayerChanges.mechFrogCrown;
+
+            if (changes != PetPlayerChanges.none) SendClientChangesPacket(changes);
         }
 
         public override void OnEnterWorld(Player player)
         {
-            SendClientChangesPacket();
+            SendClientChangesPacket(PetPlayerChanges.all);
         }
 
         public byte CyclePetEyeType()
