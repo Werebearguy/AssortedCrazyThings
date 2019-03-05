@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.width = 30;
             item.height = 28;
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10); //TODO based on recipe
+            item.value = Item.sellPrice(gold: 3, silver: 75);
         }
 
         public override void UseStyle(Player player)
@@ -31,14 +31,17 @@ namespace AssortedCrazyThings.Items.Pets
             }
         }
 
-        //TODO
         public override void AddRecipes()
         {
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.Frog, 1);
-            //recipe.AddTile(TileID.Anvils);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<DroneParts>(), 1);
+            recipe.AddIngredient(ItemID.WireBulb, 1);
+            recipe.AddIngredient(ItemID.LifeCrystal, 1);
+            recipe.AddIngredient(ItemID.Wire, 5);
+            recipe.AddIngredient(ItemID.Cog, 5);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
