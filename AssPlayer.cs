@@ -63,8 +63,11 @@ namespace AssortedCrazyThings
 
         public bool soulSaviorArmor = false;
 
-        public bool rightClickPrev = false;
-        public bool rightClickPrev2 = false;
+        private bool rightClickPrev = false;
+        private bool rightClickPrev2 = false;
+
+        private bool leftClickPrev = false;
+        private bool leftClickPrev2 = false;
 
         public override void ResetEffects()
         {
@@ -98,6 +101,22 @@ namespace AssortedCrazyThings
             get
             {
                 return !rightClickPrev && rightClickPrev2;
+            }
+        }
+
+        public bool LeftClickPressed
+        {
+            get
+            {
+                return leftClickPrev && !leftClickPrev2;
+            }
+        }
+
+        public bool LeftClickReleased
+        {
+            get
+            {
+                return !leftClickPrev && leftClickPrev2;
             }
         }
 
@@ -462,6 +481,29 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void LeftClickStatus()
+        {
+            if (Main.mouseLeft && !leftClickPrev)
+            {
+                leftClickPrev = true;
+                return;
+            }
+            if (!Main.mouseLeft && leftClickPrev)
+            {
+                leftClickPrev = false;
+                return;
+            }
+
+            if (leftClickPrev && !leftClickPrev2)
+            {
+                leftClickPrev2 = true;
+            }
+            if (!leftClickPrev && leftClickPrev2)
+            {
+                leftClickPrev2 = false;
+            }
+        }
+
         private void ApplyCandleDebuffs(NPC npc)
         {
             if (npc != null)
@@ -770,6 +812,8 @@ namespace AssortedCrazyThings
             SpawnSoulsWhenHarvesterIsAlive();
 
             RightClickStatus();
+
+            LeftClickStatus();
         }
     }
 }

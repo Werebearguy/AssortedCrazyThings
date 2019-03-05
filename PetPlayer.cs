@@ -22,6 +22,9 @@ namespace AssortedCrazyThings
         //young wyvern stuff
         public byte youngWyvernType = 0;
 
+        //young wyvern stuff
+        public byte petFishronType = 0;
+
         public bool PetFishron = false;
         public bool RainbowSlimePet = false;
         public bool PrinceSlimePet = false;
@@ -184,6 +187,7 @@ namespace AssortedCrazyThings
                 {"petEyeType", (byte)petEyeType},
                 {"cursedSkullType", (byte)cursedSkullType},
                 {"youngWyvernType", (byte)youngWyvernType},
+                {"petFishronType", (byte)petFishronType},
                 {"mechFrogCrown", (bool)mechFrogCrown}
             };
         }
@@ -194,6 +198,7 @@ namespace AssortedCrazyThings
             petEyeType = tag.GetByte("petEyeType");
             cursedSkullType = tag.GetByte("cursedSkullType");
             youngWyvernType = tag.GetByte("youngWyvernType");
+            petFishronType = tag.GetByte("petFishronType");
             mechFrogCrown = tag.GetBool("mechFrogCrown");
         }
 
