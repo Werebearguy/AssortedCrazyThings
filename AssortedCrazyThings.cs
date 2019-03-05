@@ -317,6 +317,10 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = PetMoonConf;
                     }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else if (triggerType == ItemType<EverhallowedLantern>())
                 {
