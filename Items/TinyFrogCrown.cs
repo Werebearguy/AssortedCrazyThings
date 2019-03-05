@@ -1,7 +1,4 @@
-﻿using AssortedCrazyThings.Projectiles;
-using AssortedCrazyThings.Projectiles.Pets;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,11 +28,7 @@ namespace AssortedCrazyThings.Items
 
         public override void AddRecipes()
         {
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.GoldBar, 1);
-            //recipe.AddTile(TileID.Anvils);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            //migration recipes in VanitySlector
         }
     }
 }

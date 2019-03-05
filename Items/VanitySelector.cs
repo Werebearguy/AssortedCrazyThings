@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,13 +27,32 @@ namespace AssortedCrazyThings.Items
             item.value = Item.sellPrice(silver: 10);
         }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            //in the tooltip say if the currently equipped pet has alt appearances or not
+        }
+
         public override void AddRecipes()
         {
+            //actual recipe here
             //ModRecipe recipe = new ModRecipe(mod);
             //recipe.AddIngredient(ItemID.Lens, 11);
             //recipe.AddTile(TileID.Anvils);
             //recipe.SetResult(this);
             //recipe.AddRecipe();
+
+            //migration recipes
+            ModRecipe recipe2 = new ModRecipe(mod);
+            recipe2.AddIngredient(mod.ItemType<DemonEyeContactCase>());
+            //recipe.AddTile(TileID.Anvils);
+            recipe2.SetResult(this);
+            recipe2.AddRecipe();
+
+            ModRecipe recipe3 = new ModRecipe(mod);
+            recipe3.AddIngredient(mod.ItemType<TinyFrogCrown>());
+            //recipe.AddTile(TileID.Anvils);
+            recipe3.SetResult(this);
+            recipe3.AddRecipe();
         }
     }
 }

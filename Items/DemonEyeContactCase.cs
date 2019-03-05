@@ -28,11 +28,7 @@ namespace AssortedCrazyThings.Items
 
         public override void AddRecipes()
         {
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.Lens, 11);
-            //recipe.AddTile(TileID.Anvils);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            //migration recipes in VanitySlector
         }
     }
 }
