@@ -42,6 +42,7 @@ namespace AssortedCrazyThings
         internal static CircleUIConf CursedSkullConf;
         internal static CircleUIConf YoungWyvernConf;
         internal static CircleUIConf PetFishronConf;
+        internal static CircleUIConf PetMoonConf;
 
         internal static CircleUIConf EverhallowedLanternConf;
 
@@ -152,6 +153,7 @@ namespace AssortedCrazyThings
                 CursedSkullConf = CircleUIConf.CursedSkullConf();
                 YoungWyvernConf = CircleUIConf.YoungWyvernConf();
                 PetFishronConf = CircleUIConf.PetFishronConf();
+                PetMoonConf = CircleUIConf.PetMoonConf();
                 EverhallowedLanternConf = CircleUIConf.EverhallowedLanternConf(); //isn't used anymore but needs to be created in order for the triggerItem to register
 
                 EverhallowedLanternSwapUI = new EverhallowedLanternUI();
@@ -187,7 +189,7 @@ namespace AssortedCrazyThings
 
                 for (int i = 0; i < 3; i++)
                 {
-                    sunPetTextures[i] = GetTexture("Projectiles/Pets/SunPetProj_" + i);
+                    sunPetTextures[i] = GetTexture("Projectiles/Pets/PetSunProj_" + i);
                     PremultiplyTexture(sunPetTextures[i]);
                 }
             }
@@ -261,12 +263,16 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-            Dust dust;
-            for (int i = 0; i < 14; i++)
+
+            if(projIndex != -1)
             {
-                dust = Main.dust[Dust.NewDust(Main.projectile[projIndex].position, Main.projectile[projIndex].width, Main.projectile[projIndex].height, 204, Main.projectile[projIndex].velocity.X, Main.projectile[projIndex].velocity.Y, 0, new Color(255, 255, 255), 0.8f)];
-                dust.noGravity = true;
-                dust.noLight = true;
+                Dust dust;
+                for (int i = 0; i < 14; i++)
+                {
+                    dust = Main.dust[Dust.NewDust(Main.projectile[projIndex].position, Main.projectile[projIndex].width, Main.projectile[projIndex].height, 204, Main.projectile[projIndex].velocity.X, Main.projectile[projIndex].velocity.Y, 0, new Color(255, 255, 255), 0.8f)];
+                    dust.noGravity = true;
+                    dust.noLight = true;
+                }
             }
         }
 
@@ -318,7 +324,16 @@ namespace AssortedCrazyThings
             }
             else
             {
-                if (triggerType == ItemType<EverhallowedLantern>())
+                if (triggerType == ItemType<VanitySelector>())
+                {
+                    if (pPlayer.PetMoon)
+                    {
+                        CircleUI.currentSelected = pPlayer.petMoonType;
+
+                        CircleUI.UIConf = PetMoonConf;
+                    }
+                }
+                else if (triggerType == ItemType<EverhallowedLantern>())
                 {
                     CircleUI.currentSelected = mPlayer.selectedSoulMinionType;
 
@@ -348,13 +363,13 @@ namespace AssortedCrazyThings
             {
                 //if something returned AND if the returned thing isn't the same as the current one
 
+                Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
+                PoofVisual(CircleUI.UIConf.additionalInfo);
+
                 if (triggerLeft) //left click
                 {
                     if (CircleUI.heldItemType == ItemType<VanitySelector>())
                     {
-                        Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
-                        PoofVisual(CircleUI.UIConf.additionalInfo);
-
                         if (pPlayer.DocileDemonEye)
                         {
                             pPlayer.petEyeType = (byte)CircleUI.returned;
@@ -379,9 +394,15 @@ namespace AssortedCrazyThings
                 }
                 else //right click
                 {
-                    if (Main.LocalPlayer.HeldItem.type == ItemType<EverhallowedLantern>())
+                    if (CircleUI.heldItemType == ItemType<VanitySelector>())
                     {
-                        Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
+                        if (pPlayer.PetMoon)
+                        {
+                            pPlayer.petMoonType = (byte)CircleUI.returned;
+                        }
+                    }
+                    else if (CircleUI.heldItemType == ItemType<EverhallowedLantern>())
+                    {
                         mPlayer.selectedSoulMinionType = CircleUI.returned;
 
                         UpdateEverhallowedLanternStats(CircleUI.returned);

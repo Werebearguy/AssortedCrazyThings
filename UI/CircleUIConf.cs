@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.UI
             }
         }
 
-        private static CircleUIConf PetConf(string name, List<string> tooltips)
+        private static CircleUIConf PetConf(string name, List<string> tooltips, bool triggerLeft = true)
         {
             //uses VanitySelector as the triggerItem
             //order of tooltips must be the same as the order of textures (0, 1 2 etc)
@@ -96,10 +96,42 @@ namespace AssortedCrazyThings.UI
 
             int type = AssUtils.Instance.ProjectileType(name);
 
-            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(), true, Main.projFrames[type], type, l1, null, tooltips, null);
+            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(), triggerLeft, Main.projFrames[type], type, l1, null, tooltips, null);
         }
 
         //here start the specific confs that are called in PostSetupContent
+        //everhallowed
+
+        public static CircleUIConf EverhallowedLanternConf()
+        {
+            List<Texture2D> textures = new List<Texture2D>();
+            List<string> tooltips = new List<string>();
+            List<string> toUnlock = new List<string>();
+            for (int soulType = 0; soulType < 4; soulType++)
+            {
+                var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
+                var tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                string tooltip = tempSoulType.ToString()
+                    + "\nBase Damage: " + stats.Damage
+                    + "\nBase Knockback: " + stats.Knockback
+                    + "\n" + stats.Description;
+                textures.Add(Main.projectileTexture[stats.Type]);
+                tooltips.Add(tooltip);
+                toUnlock.Add(stats.ToUnlock);
+            }
+
+            List<bool> unlocked = new List<bool>()
+            {
+                true,                //      0
+                NPC.downedMechBoss3, //skele 1
+                NPC.downedMechBoss2, //twins 2
+                NPC.downedMechBoss1, //destr 3
+            };
+
+            return new CircleUIConf(AssUtils.Instance.ItemType<EverhallowedLantern>(), false, 8, -1, textures, unlocked, tooltips, toUnlock);
+        }
+
+        //pets
 
         public static CircleUIConf LifeLikeMechFrogConf()
         {
@@ -147,33 +179,11 @@ namespace AssortedCrazyThings.UI
             return PetConf("PetFishronProj", tooltips);
         }
 
-        public static CircleUIConf EverhallowedLanternConf()
+        public static CircleUIConf PetMoonConf()
         {
-            List<Texture2D> textures = new List<Texture2D>();
-            List<string> tooltips = new List<string>();
-            List<string> toUnlock = new List<string>();
-            for (int soulType = 0; soulType < 4; soulType++)
-            {
-                var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
-                var tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                string tooltip = tempSoulType.ToString()
-                    + "\nBase Damage: " + stats.Damage
-                    + "\nBase Knockback: " + stats.Knockback
-                    + "\n" + stats.Description;
-                textures.Add(Main.projectileTexture[stats.Type]);
-                tooltips.Add(tooltip);
-                toUnlock.Add(stats.ToUnlock);
-            }
+            List<string> tooltips = new List<string>() { "Regular", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
 
-            List <bool> unlocked = new List<bool>()
-            {
-                true,                //      0
-                NPC.downedMechBoss3, //skele 1
-                NPC.downedMechBoss2, //twins 2
-                NPC.downedMechBoss1, //destr 3
-            };
-            
-            return new CircleUIConf(AssUtils.Instance.ItemType<EverhallowedLantern>(), false, 8, -1, textures, unlocked, tooltips, toUnlock);
+            return PetConf("PetMoonProj", tooltips, false);
         }
     }
 }

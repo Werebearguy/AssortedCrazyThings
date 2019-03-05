@@ -10,7 +10,6 @@ namespace AssortedCrazyThings
     public class PetPlayer : ModPlayer
     {
         //docile demon eye stuff
-        public int eyePetIndex = -1;
         public byte petEyeType = 0; //texture type, not ID
 
         //mech frog stuff
@@ -24,6 +23,9 @@ namespace AssortedCrazyThings
 
         //young wyvern stuff
         public byte petFishronType = 0;
+
+        //moon pet stuff
+        public byte petMoonType = 0;
 
         public bool PetFishron = false;
         public bool RainbowSlimePet = false;
@@ -83,8 +85,8 @@ namespace AssortedCrazyThings
         public bool DocileDemonEye = false;
         public bool QueenLarva = false;
         public bool HealingDrone = false;
-        public bool SunPet = false;
-        public bool MoonPet = false;
+        public bool PetSun = false;
+        public bool PetMoon = false;
 
         public override void ResetEffects()
         {
@@ -146,8 +148,8 @@ namespace AssortedCrazyThings
             DocileDemonEye = false;
             QueenLarva = false;
             HealingDrone = false;
-            SunPet = false;
-            MoonPet = false;
+            PetSun = false;
+            PetMoon = false;
         }
 
         public bool ThreeTimesUseTime(double currentTime)
@@ -188,6 +190,7 @@ namespace AssortedCrazyThings
                 {"cursedSkullType", (byte)cursedSkullType},
                 {"youngWyvernType", (byte)youngWyvernType},
                 {"petFishronType", (byte)petFishronType},
+                {"petMoonType", (byte)petMoonType},
                 {"mechFrogCrown", (bool)mechFrogCrown}
             };
         }
@@ -199,6 +202,7 @@ namespace AssortedCrazyThings
             cursedSkullType = tag.GetByte("cursedSkullType");
             youngWyvernType = tag.GetByte("youngWyvernType");
             petFishronType = tag.GetByte("petFishronType");
+            petMoonType = tag.GetByte("petMoonType");
             mechFrogCrown = tag.GetBool("mechFrogCrown");
         }
 
