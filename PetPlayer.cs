@@ -27,6 +27,7 @@ namespace AssortedCrazyThings
         //moon pet stuff
         public byte petMoonType = 0;
 
+        public bool LilWrapsProj = false;
         public bool PetFishron = false;
         public bool RainbowSlimePet = false;
         public bool PrinceSlimePet = false;
@@ -91,6 +92,7 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
+            LilWrapsProj = false;
             PetFishron = false;
             RainbowSlimePet = false;
             PrinceSlimePet = false;
