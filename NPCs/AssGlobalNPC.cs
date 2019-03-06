@@ -42,6 +42,11 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<IlluminantSlimeItem>());
             }
 
+            if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
+            {
+                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<LilWrapsItem>());
+            }
+
             //boss pets
 
             if (npc.type == NPCID.KingSlime)
