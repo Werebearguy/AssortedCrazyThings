@@ -31,7 +31,7 @@ I didn't find any bugs while testing, surprisingly. While I was testing, I also 
 		* 6 - Christmas
 		* note; I tested each color beforehand, and they look different when dyed.
 		
-	* Queen Larva
+	* Queen Larva //DONE
 		* 0 - Default
 		* 1 - Prawn Larva
 		* 2 - Unexpected Seed

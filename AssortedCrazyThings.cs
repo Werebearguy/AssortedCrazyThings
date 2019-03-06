@@ -323,6 +323,12 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.PigronataConf();
                     }
+                    else if (pPlayer.QueenLarva)
+                    {
+                        CircleUI.currentSelected = pPlayer.queenLarvaType;
+
+                        CircleUI.UIConf = CircleUIConf.QueenLarvaConf();
+                    }
                     //FOR LEFT CLICK ONLY (REGULAR PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
@@ -435,6 +441,10 @@ namespace AssortedCrazyThings
                         else if (pPlayer.Pigronata)
                         {
                             pPlayer.pigronataType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.QueenLarva)
+                        {
+                            pPlayer.queenLarvaType = (byte)CircleUI.returned;
                         }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
@@ -722,6 +732,7 @@ namespace AssortedCrazyThings
         lilWrapsType,
         vampireBatType,
         pigronataType,
+        queenLarvaType,
         //ALTERNATE
         //classNameType,
     }

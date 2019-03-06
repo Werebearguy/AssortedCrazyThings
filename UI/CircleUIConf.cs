@@ -221,6 +221,13 @@ namespace AssortedCrazyThings.UI
             return PetConf("Pigronata", tooltips);
         }
 
+        public static CircleUIConf QueenLarvaConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
+
+            return PetConf("QueenLarvaProj", tooltips);
+        }
+
         //ALTERNATE
         //public static CircleUIConf ClassNameConf()
         //{

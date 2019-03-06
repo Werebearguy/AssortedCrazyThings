@@ -13,6 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return "AssortedCrazyThings/Projectiles/Pets/Pigronata_0"; //temp
             }
         }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pigronata");

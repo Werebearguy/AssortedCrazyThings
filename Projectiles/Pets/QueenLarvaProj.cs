@@ -11,6 +11,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
     {
         private int sincounter;
 
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/QueenLarvaProj_0"; //temp
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Queen Bee Larva");
@@ -29,7 +37,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D image = Main.projectileTexture[projectile.type];
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
