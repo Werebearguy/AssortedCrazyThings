@@ -5,6 +5,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
     //check this file for more info vvvvvvvv
     public class AbeeminationProj : BabySlimeBase
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/AbeeminationProj_0"; //temp
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Abeemination");
@@ -35,6 +43,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
             return true;
+        }
+
+        public override void PostAI()
+        {
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/AbeeminationProj_" + mPlayer.abeeminationType);
         }
     }
 }

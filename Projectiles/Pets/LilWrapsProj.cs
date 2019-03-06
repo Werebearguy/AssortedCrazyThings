@@ -9,6 +9,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class LilWrapsProj : ModProjectile
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/LilWrapsProj_0"; //temp
+            }
+        }
+
         private int frame2Counter = 0;
         private int frame2 = 0;
 
@@ -119,7 +127,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            Texture2D image = Main.projectileTexture[projectile.type];
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/LilWrapsProj_" + mPlayer.lilWrapsType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;

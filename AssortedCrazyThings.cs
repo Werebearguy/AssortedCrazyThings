@@ -299,6 +299,31 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.YoungHarpyConf();
                     }
+                    else if (pPlayer.Abeemination)
+                    {
+                        CircleUI.currentSelected = pPlayer.abeeminationType;
+
+                        CircleUI.UIConf = CircleUIConf.AbeeminiationConf();
+                    }
+                    else if (pPlayer.LilWraps)
+                    {
+                        CircleUI.currentSelected = pPlayer.lilWrapsType;
+
+                        CircleUI.UIConf = CircleUIConf.LilWrapsConf();
+                    }
+                    else if (pPlayer.VampireBat)
+                    {
+                        CircleUI.currentSelected = pPlayer.vampireBatType;
+
+                        CircleUI.UIConf = CircleUIConf.VampireBatConf();
+                    }
+                    else if (pPlayer.Pigronata)
+                    {
+                        CircleUI.currentSelected = pPlayer.pigronataType;
+
+                        CircleUI.UIConf = CircleUIConf.PigronataConf();
+                    }
+                    //FOR LEFT CLICK ONLY (REGULAR PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
                     //{
@@ -322,6 +347,7 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.PetMoonConf();
                     }
+                    //FOR RIGHT CLICK ONLY (LIGHT PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
                     //{
@@ -393,6 +419,22 @@ namespace AssortedCrazyThings
                         else if (pPlayer.YoungHarpy)
                         {
                             pPlayer.youngHarpyType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.Abeemination)
+                        {
+                            pPlayer.abeeminationType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.LilWraps)
+                        {
+                            pPlayer.lilWrapsType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.VampireBat)
+                        {
+                            pPlayer.vampireBatType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.Pigronata)
+                        {
+                            pPlayer.pigronataType = (byte)CircleUI.returned;
                         }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
@@ -676,6 +718,10 @@ namespace AssortedCrazyThings
         petFishronType,
         petMoonType,
         youngHarpyType,
+        abeeminationType,
+        lilWrapsType,
+        vampireBatType,
+        pigronataType,
         //ALTERNATE
         //classNameType,
     }

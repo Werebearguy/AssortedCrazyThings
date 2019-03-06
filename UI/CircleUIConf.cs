@@ -193,10 +193,38 @@ namespace AssortedCrazyThings.UI
             return PetConf("YoungHarpy", tooltips);
         }
 
+        public static CircleUIConf AbeeminiationConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
+
+            return PetConf("AbeeminationProj", tooltips);
+        }
+
+        public static CircleUIConf LilWrapsConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
+
+            return PetConf("LilWrapsProj", tooltips);
+        }
+
+        public static CircleUIConf VampireBatConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Werebat" };
+
+            return PetConf("VampireBat", tooltips);
+        }
+
+        public static CircleUIConf PigronataConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
+
+            return PetConf("Pigronata", tooltips);
+        }
+
         //ALTERNATE
         //public static CircleUIConf ClassNameConf()
         //{
-        //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2", etc };
+        //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
 
         //    return PetConf("ClassNameProj", tooltips);
         //}
