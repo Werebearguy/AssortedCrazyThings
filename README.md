@@ -5,4 +5,7 @@ Assorted Crazy Things, a mod for Terraria using tModLoader!
 
 This mod contains a huge assortment of various creatures, accessories, and so on.
 
+Small sample of the contents:
+![Sample](https://i.imgur.com/dafNLLU.png)
+
 Check the [Wiki](https://github.com/Werebearguy/AssortedCrazyThings/wiki) for content and a changelog
