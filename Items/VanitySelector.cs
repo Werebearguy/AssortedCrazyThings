@@ -35,11 +35,12 @@ namespace AssortedCrazyThings.Items
         public override void AddRecipes()
         {
             //actual recipe here
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.Lens, 11);
-            //recipe.AddTile(TileID.Anvils);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddRecipeGroup("IronBar", 10);
+            recipe.AddIngredient(ItemID.Silk, 50);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
 
             //migration recipes
             ModRecipe recipe2 = new ModRecipe(mod);
