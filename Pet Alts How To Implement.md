@@ -1,6 +1,6 @@
 ## Alternate Skins
 
-Prerequisites (0)
+ (0) Prerequisites
 
 >If you just want to add new textures to existing pets,
 >add a new texture in (1) and expand the tooltip list in (4), nothing else required.
@@ -9,7 +9,10 @@ Prerequisites (0)
 * if the projectile doesn't have "Proj" in its name, you don't need to include it manually, but for things like
 classNameType, there should be no "Proj" in it
 * in PetPlayer.cs: `public bool ClassName = false;` and `ClassName = false;` in ResetEffects()
-* in each step after the first, the place where you need to add stuff is marked via `//ALTERNATE`
+* in each step after the first, the place where you need to add stuff is marked via `//ALTERNATE`,
+please don't remove the commented out sample code
+* Example 1: `ClassName == YoungWyvern` (no Proj), `classNameType == youngWyvernType`
+* Example 2: `ClassName == PetFishronProj`, `classNameType == petFishronType`
 
 ***
 
@@ -43,8 +46,6 @@ public override void PostAI()
 }
 ```
 
-* Check with Modder's Toolkit if the hitbox aligns with the texture, if not, set `drawOffsetX/drawOriginOffsetY` accordingly in SetStaticDefaults() (example: YoungWyvern.cs)
-
 ***
 
 
@@ -73,6 +74,11 @@ public override void Load(TagCompound tag)
     [...]
 ```
 
+* At this point, the pet will render with its _0 texture selected.
+Check with Modder's Toolkit if the hitbox aligns with the texture, if not,
+set `drawOffsetX/drawOriginOffsetY` accordingly in SetStaticDefaults() (example: YoungWyvern.cs)
+
+
 ***
 
 
@@ -86,7 +92,7 @@ so if you have 10 textures but only name 6 tooltips it will only pick the textur
 	```csharp
 	public static CircleUIConf ClassNameConf()
 	{
-		List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2", etc };
+		List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
 
 		return PetConf("ClassNameProj", tooltips);
 	}
@@ -127,8 +133,11 @@ CircleUIEnd():
 
 ***
 
+Technically, this should now work in singleplayer, but for multiplayer, do this (just copypasting really):
 
  (6) Multiplayer stuff
+
+* **WARNING**: Order of the statements matters! Always have the latest added pet as the last line in each occasion
 
 * ACT.cs:
     * at the very bottom, add classNameType to the list of `PetPlayerChanges`

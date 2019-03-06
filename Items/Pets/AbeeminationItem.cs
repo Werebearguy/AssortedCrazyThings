@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Abeemination");
-            Tooltip.SetDefault("Summons a friendly Abeemination to follow you");
+            Tooltip.SetDefault("Summons a friendly Abeemination to follow you"
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SetDefaults()

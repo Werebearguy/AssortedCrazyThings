@@ -1,7 +1,7 @@
 ## Alternate Skins
 I didn't find any bugs while testing, surprisingly. While I was testing, I also made some more skins. Here's what got skins and what each one should be called.
 	
-	* Abeemination
+	* Abeemination //DONE
 		* 0 - Default
 		* 1 - Snow Bee
 		* 2 - Oil Spill
@@ -11,8 +11,9 @@ I didn't find any bugs while testing, surprisingly. While I was testing, I also 
 		* 0 - Default
 		* 1 - Phase 2
 		* note; I'm a bit uncertain on this one, give me opinions
+		//dunno, just leave it at the default one
 	
-	* Lil' Wraps
+	* Lil' Wraps //DONE
 		* 0 - Default
 		* 1 - Dark
 		* 2 - Light
@@ -20,7 +21,7 @@ I didn't find any bugs while testing, surprisingly. While I was testing, I also 
 		* 4 - Spectral
 		* note; all of these are based on the mummy sprites on the wiki
 		
-	* Pigronata
+	* Pigronata //DONE
 		* 0 - Default
 		* 1 - Winter
 		* 2 - Autumn
@@ -38,14 +39,16 @@ I didn't find any bugs while testing, surprisingly. While I was testing, I also 
 		* 4 - Where's The Baby?
 		* note; I do want to do more of this one, but I ran out of ideas fast
 		
-	* Vampire Bat
+	* Vampire Bat //DONE
 		* 0 - Default
 		* 1 - Werebat
 		* note; I'm a bit uncertain on this one, give me opinions
+		//I like it
 		
-	* Young Harpy
+	* Young Harpy //DONE
 		* 0 - Default
 		* 1 - Eagle
 		* 2 - Raven
 		* 3 - Dove
 		* note; I'm a bit uncertain on this one, give me opinions
+		//I like it too, maybe some shape changes to the dove and raven one in some way
