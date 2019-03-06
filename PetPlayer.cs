@@ -27,7 +27,7 @@ namespace AssortedCrazyThings
         //moon pet stuff
         public byte petMoonType = 0;
 
-        public bool LilWrapsProj = false;
+        public bool LilWraps = false;
         public bool PetFishron = false;
         public bool RainbowSlimePet = false;
         public bool PrinceSlimePet = false;
@@ -80,7 +80,7 @@ namespace AssortedCrazyThings
         public bool VampireBat = false;
         public bool TorturedSoul = false;
         public bool EnchantedSword = false;
-        public bool GobletPet = false;
+        public bool Goblet = false;
         public bool SoulLightPet = false;
         public bool SoulLightPet2 = false;
         public bool DocileDemonEye = false;
@@ -92,7 +92,7 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
-            LilWrapsProj = false;
+            LilWraps = false;
             PetFishron = false;
             RainbowSlimePet = false;
             PrinceSlimePet = false;
@@ -145,7 +145,7 @@ namespace AssortedCrazyThings
             VampireBat = false;
             TorturedSoul = false;
             EnchantedSword = false;
-            GobletPet = false;
+            Goblet = false;
             SoulLightPet = false;
             SoulLightPet2 = false;
             DocileDemonEye = false;
@@ -215,6 +215,7 @@ namespace AssortedCrazyThings
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncPlayerVanity);
             packet.Write((byte)player.whoAmI);
+            //no "changes" packet
             packet.Write((uint)slots);
             packet.Write((byte)petEyeType);
             packet.Write((byte)cursedSkullType);
@@ -225,7 +226,7 @@ namespace AssortedCrazyThings
             packet.Send(toWho, fromWho);
         }
 
-        public void SendClientChangesPacketSub(PetPlayerChanges changes, int toClient = -1, int ignoreClient = -1)
+        public void SendClientChangesPacketSub(byte changes, int toClient = -1, int ignoreClient = -1)
         {
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SendClientChangesVanity);
@@ -234,7 +235,7 @@ namespace AssortedCrazyThings
 
             switch (changes)
             {
-                case PetPlayerChanges.all:
+                case (byte)PetPlayerChanges.all:
                     packet.Write((uint)slots);
                     packet.Write((byte)petEyeType);
                     packet.Write((byte)cursedSkullType);
@@ -243,29 +244,29 @@ namespace AssortedCrazyThings
                     packet.Write((byte)petMoonType);
                     packet.Write((bool)mechFrogCrown);
                     break;
-                case PetPlayerChanges.slots:
+                case (byte)PetPlayerChanges.slots:
                     packet.Write((uint)slots);
                     break;
-                case PetPlayerChanges.petEyeType:
+                case (byte)PetPlayerChanges.petEyeType:
                     packet.Write((byte)petEyeType);
                     break;
-                case PetPlayerChanges.cursedSkullType:
+                case (byte)PetPlayerChanges.cursedSkullType:
                     packet.Write((byte)cursedSkullType);
                     break;
-                case PetPlayerChanges.youngWyvernType:
+                case (byte)PetPlayerChanges.youngWyvernType:
                     packet.Write((byte)youngWyvernType);
                     break;
-                case PetPlayerChanges.petFishronType:
+                case (byte)PetPlayerChanges.petFishronType:
                     packet.Write((byte)petFishronType);
                     break;
-                case PetPlayerChanges.petMoonType:
+                case (byte)PetPlayerChanges.petMoonType:
                     packet.Write((byte)petMoonType);
                     break;
-                case PetPlayerChanges.mechFrogCrown:
+                case (byte)PetPlayerChanges.mechFrogCrown:
                     packet.Write((bool)mechFrogCrown);
                     break;
-                default: //shouldnt get there hopefully
-                    ErrorLogger.Log("Sending unspecified PetPlayerChanges " + changes.ToString());
+                default: //shouldn't get there hopefully
+                    ErrorLogger.Log("Sending unspecified PetPlayerChanges " + changes);
                     break;
             }
 
@@ -276,7 +277,7 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                SendClientChangesPacketSub(changes);
+                SendClientChangesPacketSub((byte)changes);
             }
         }
 

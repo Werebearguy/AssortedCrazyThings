@@ -513,7 +513,7 @@ namespace AssortedCrazyThings
             byte playerNumber;
             AssPlayer mPlayer;
             PetPlayer petPlayer;
-            PetPlayerChanges changes = PetPlayerChanges.none;
+            byte changes;
             //byte npcnumber;
             //byte npcAltTexture;
 
@@ -562,6 +562,7 @@ namespace AssortedCrazyThings
                     {
                         playerNumber = reader.ReadByte();
                         petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+                        //no "changes" packet
                         petPlayer.slots = reader.ReadUInt32();
                         petPlayer.petEyeType = reader.ReadByte();
                         petPlayer.cursedSkullType = reader.ReadByte();
@@ -569,6 +570,60 @@ namespace AssortedCrazyThings
                         petPlayer.petFishronType = reader.ReadByte();
                         petPlayer.petMoonType = reader.ReadByte();
                         petPlayer.mechFrogCrown = reader.ReadBoolean();
+                    }
+                    break;
+                case AssMessageType.SendClientChangesVanity:
+                    playerNumber = reader.ReadByte();
+                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+                    changes = reader.ReadByte();
+
+                    switch (changes)
+                    {
+                        case (byte)PetPlayerChanges.all:
+                            petPlayer.slots = reader.ReadUInt32();
+                            petPlayer.petEyeType = reader.ReadByte();
+                            petPlayer.cursedSkullType = reader.ReadByte();
+                            petPlayer.youngWyvernType = reader.ReadByte();
+                            petPlayer.petFishronType = reader.ReadByte();
+                            petPlayer.petMoonType = reader.ReadByte();
+                            petPlayer.mechFrogCrown = reader.ReadBoolean();
+                            break;
+                        case (byte)PetPlayerChanges.slots:
+                            petPlayer.slots = reader.ReadUInt32();
+                            break;
+                        case (byte)PetPlayerChanges.petEyeType:
+                            petPlayer.petEyeType = reader.ReadByte();
+                            break;
+                        case (byte)PetPlayerChanges.cursedSkullType:
+                            petPlayer.cursedSkullType = reader.ReadByte();
+                            break;
+                        case (byte)PetPlayerChanges.youngWyvernType:
+                            petPlayer.youngWyvernType = reader.ReadByte();
+                            break;
+                        case (byte)PetPlayerChanges.petFishronType:
+                            petPlayer.petFishronType = reader.ReadByte();
+                            break;
+                        case (byte)PetPlayerChanges.petMoonType:
+                            petPlayer.petMoonType = reader.ReadByte();
+                            break;
+                        case (byte)PetPlayerChanges.mechFrogCrown:
+                            petPlayer.mechFrogCrown = reader.ReadBoolean();
+                            break;
+                        default: //shouldn't get there hopefully
+                            ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes);
+                            break;
+                    }
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        petPlayer.SendClientChangesPacketSub(changes, -1, playerNumber);
+                    }
+                    break;
+                case AssMessageType.ConvertInertSoulsInventory:
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        //convert souls in local inventory
+                        mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+                        mPlayer.ConvertInertSoulsInventory();
                     }
                     break;
                 //case AssMessageType.SyncAltTextureNPC:
@@ -586,60 +641,6 @@ namespace AssortedCrazyThings
                 //        }
                 //    }
                 //    break;
-                case AssMessageType.SendClientChangesVanity:
-                    playerNumber = reader.ReadByte();
-                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-                    changes = (PetPlayerChanges)reader.ReadByte();
-
-                    switch (changes)
-                    {
-                        case PetPlayerChanges.all:
-                            petPlayer.slots = reader.ReadUInt32();
-                            petPlayer.petEyeType = reader.ReadByte();
-                            petPlayer.cursedSkullType = reader.ReadByte();
-                            petPlayer.youngWyvernType = reader.ReadByte();
-                            petPlayer.petFishronType = reader.ReadByte();
-                            petPlayer.petMoonType = reader.ReadByte();
-                            petPlayer.mechFrogCrown = reader.ReadBoolean();
-                            break;
-                        case PetPlayerChanges.slots:
-                            petPlayer.slots = reader.ReadUInt32();
-                            break;
-                        case PetPlayerChanges.petEyeType:
-                            petPlayer.petEyeType = reader.ReadByte();
-                            break;
-                        case PetPlayerChanges.cursedSkullType:
-                            petPlayer.cursedSkullType = reader.ReadByte();
-                            break;
-                        case PetPlayerChanges.youngWyvernType:
-                            petPlayer.youngWyvernType = reader.ReadByte();
-                            break;
-                        case PetPlayerChanges.petFishronType:
-                            petPlayer.petFishronType = reader.ReadByte();
-                            break;
-                        case PetPlayerChanges.petMoonType:
-                            petPlayer.petMoonType = reader.ReadByte();
-                            break;
-                        case PetPlayerChanges.mechFrogCrown:
-                            petPlayer.mechFrogCrown = reader.ReadBoolean();
-                            break;
-                        default: //shouldnt get there hopefully
-                            ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes.ToString());
-                            break;
-                    }
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        petPlayer.SendClientChangesPacketSub(changes, -1, playerNumber);
-                    }
-                    break;
-                case AssMessageType.ConvertInertSoulsInventory:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        //convert souls in local inventory
-                        mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-                        mPlayer.ConvertInertSoulsInventory();
-                    }
-                    break;
                 default:
                     ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
                     break;
@@ -654,8 +655,7 @@ namespace AssortedCrazyThings
             texture.GetData(buffer);
             for (int i = 0; i < buffer.Length; i++)
             {
-                buffer[i] = Color.FromNonPremultiplied(
-                        buffer[i].R, buffer[i].G, buffer[i].B, buffer[i].A);
+                buffer[i] = Color.FromNonPremultiplied(buffer[i].R, buffer[i].G, buffer[i].B, buffer[i].A);
             }
             texture.SetData(buffer);
         }

@@ -41,6 +41,7 @@
     <Compile Include="Buffs\HornedSlimeBuff.cs" />
     <Compile Include="Buffs\IlluminantSlimeBuff.cs" />
     <Compile Include="Buffs\JoyousSlimeBuff.cs" />
+    <Compile Include="Buffs\LilWrapsBuff.cs" />
     <Compile Include="Buffs\MeatballSlimeBuff.cs" />
     <Compile Include="Buffs\OceanSlimeBuff.cs" />
     <Compile Include="Buffs\PetFishronBuff.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\Pets\LilWrapsItem.cs" />
     <Compile Include="Items\Pets\WallFragmentItem.cs" />
     <Compile Include="Items\VanitySelector.cs" />
     <Compile Include="Items\DroneParts.cs" />
@@ -330,6 +332,7 @@
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
     <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
     <Compile Include="Projectiles\Pets\AbeeminationProj.cs" />
+    <Compile Include="Projectiles\Pets\LilWrapsProj.cs" />
     <Compile Include="Projectiles\Pets\WallFragmentCombined.cs" />
     <Compile Include="Projectiles\Pets\ChunkySlimeProj.cs" />
     <Compile Include="Projectiles\Pets\CompanionDungeonSoulPetProj2.cs" />
@@ -366,7 +369,7 @@
     <Compile Include="Projectiles\Pets\DocileDemonEyeProj.cs" />
     <Compile Include="Projectiles\Pets\EnchantedSword.cs" />
     <Compile Include="Projectiles\Pets\FairySlimeProj.cs" />
-    <Compile Include="Projectiles\Pets\GobletPet.cs" />
+    <Compile Include="Projectiles\Pets\GobletProj.cs" />
     <Compile Include="Projectiles\Pets\HornedSlimeProj.cs" />
     <Compile Include="Projectiles\Pets\IlluminantSlimeProj.cs" />
     <Compile Include="Projectiles\Pets\JoyousSlimeProj.cs" />

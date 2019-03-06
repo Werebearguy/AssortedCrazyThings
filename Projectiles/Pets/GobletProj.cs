@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class GobletPet : ModProjectile
+    public class GobletProj : ModProjectile
     {
         private int frame2Counter = 0;
         private int frame2 = 0;
@@ -123,9 +123,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.GobletPet = false;
+                modPlayer.Goblet = false;
             }
-            if (modPlayer.GobletPet)
+            if (modPlayer.Goblet)
             {
                 projectile.timeLeft = 2;
             }

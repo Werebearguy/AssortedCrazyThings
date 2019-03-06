@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else if (projectile.velocity.X < -0.8f || projectile.velocity.X > 0.8f)
                     {
-                       frame2Counter += (int)Math.Abs(projectile.velocity.X);
+                       frame2Counter += (int)Math.Abs(2f * projectile.velocity.X);
                        frame2Counter++;
                         if (frame2Counter > 20) //6
                         {
@@ -123,9 +123,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.LilWrapsProj = false;
+                modPlayer.LilWraps = false;
             }
-            if (modPlayer.LilWrapsProj)
+            if (modPlayer.LilWraps)
             {
                 projectile.timeLeft = 2;
             }
