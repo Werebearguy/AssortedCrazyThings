@@ -37,12 +37,27 @@ public override string Texture
     }
 }
 ```
-* Add this at the very end:
+* Add this at the very end (it should work for both flying and walking pets)
 ```csharp
-public override void PostAI()
+public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 {
     PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-    Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType);
+    SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+    Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType);
+    Rectangle bounds = new Rectangle
+    {
+        X = 0,
+        Y = projectile.frame,
+        Width = image.Bounds.Width,
+        Height = image.Bounds.Height / Main.projFrames[projectile.type]
+    };
+    bounds.Y *= bounds.Height;
+
+    Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
+
+    spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+
+    return false;
 }
 ```
 
@@ -76,7 +91,7 @@ public override void Load(TagCompound tag)
 
 * At this point, the pet will render with its _0 texture selected.
 Check with Modder's Toolkit if the hitbox aligns with the texture, if not,
-set `drawOffsetX/drawOriginOffsetY` accordingly in SetStaticDefaults() (example: YoungWyvern.cs)
+adjust `stupidOffset` accordingly in PreDraw() (example: YoungWyvern.cs)
 
 
 ***

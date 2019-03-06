@@ -348,6 +348,7 @@ namespace AssortedCrazyThings
 
         public void RecvClientChangesPacketSub(BinaryReader reader, byte changes)
         {
+            //AssUtils.Print("RecvClientChangesPacketSub " + changes + " from p " + player.whoAmI);
             switch (changes)
             {
                 case (byte)PetPlayerChanges.all:
@@ -404,7 +405,7 @@ namespace AssortedCrazyThings
 
         public void SendClientChangesPacketSub(byte changes, int toClient = -1, int ignoreClient = -1)
         {
-            //AssUtils.Print("SendClientChangesPacketSub " + changes + " " + ((Main.netMode == NetmodeID.MultiplayerClient)? "client":"server"));
+            //AssUtils.Print("SendClientChangesPacketSub " + changes + " from p " + player.whoAmI + ((Main.netMode == NetmodeID.MultiplayerClient)? " client":" server"));
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SendClientChangesVanity);
             packet.Write((byte)player.whoAmI);

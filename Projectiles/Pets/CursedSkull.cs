@@ -63,9 +63,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.spriteDirection = -1;
             }
+        }
 
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/CursedSkull_" + mPlayer.cursedSkullType);
+            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Texture2D image = mod.GetTexture("Projectiles/Pets/CursedSkull_" + mPlayer.cursedSkullType);
+            Rectangle bounds = new Rectangle
+            {
+                X = 0,
+                Y = projectile.frame,
+                Width = image.Bounds.Width,
+                Height = image.Bounds.Height / Main.projFrames[projectile.type]
+            };
+            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + 2f + projectile.gfxOffY);
+
+            //BEWARE, HERE THE COLOR IS Color.White INSTEAD OF lightColor
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, Color.White, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+
+            return false;
         }
     }
 }

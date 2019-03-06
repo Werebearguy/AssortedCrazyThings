@@ -52,10 +52,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override void PostAI()
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/DocileDemonEyeProj_" + mPlayer.petEyeType);
+            SpriteEffects effects = SpriteEffects.None;
+            Texture2D image = mod.GetTexture("Projectiles/Pets/DocileDemonEyeProj_" + mPlayer.petEyeType);
+            Rectangle bounds = new Rectangle
+            {
+                X = 0,
+                Y = projectile.frame,
+                Width = image.Bounds.Width,
+                Height = image.Bounds.Height / 2
+            };
+            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2);
+
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+
+            return false;
         }
     }
 }
