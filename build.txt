@@ -4,4 +4,4 @@ displayName = Assorted Crazy Things
 hideCode = true
 hideResources = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Wiki\*
-homepage = https://forums.terraria.org/index.php?threads/assorted-crazy-things-a-mod-full-of-crazy-things.74330/
+homepage = https://github.com/Werebearguy/AssortedCrazyThings/wiki

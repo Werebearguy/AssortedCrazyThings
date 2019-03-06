@@ -1,4 +1,6 @@
 This mod adds a large amount of enemies, a hefty amount of pets, and a few other things. For a list of all content in this mod, please visit the homepage.
 
-*- Feb 08, 2019
-Wiki update! We now have a wiki, a public github so you can make fun of our code and sprites, a bunch of new items, and many more things.
+Assorted Crazy Things is a mod that started from the original intention of "I'd like my little ideas in the game", and has stayed true to that principle ever since it first began. Originally a one man project headed by an idea guy and spriter, I was blessed with incredible help on the coding side. As a two man team, we are working our butts off to add fun content that embodies the prior intention. We try our best to avoid making anything overpowered, unreasonable, or outright stupid, save for a few joke items here and there. On the art side, we focus on making things fit as best as we can with the vanilla aesthetic. On the coding side, we work on making sure everything works as best as possible almost daily. Overall, we try our best to have our mod seamlessly fit in with the base game, and fill it full of fun stuff for you to discover. The result of our hard work is this hefty mod full of strange, fun, and...assorted crazy things!
+
+*- Mar 08, 2019
+Hefty update! Homepage is now our Github repository. Click it to view our wiki and works in progress!
