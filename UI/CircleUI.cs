@@ -3,7 +3,6 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using System;
 
 namespace AssortedCrazyThings.UI
@@ -64,15 +63,15 @@ namespace AssortedCrazyThings.UI
             }
             
             int outerRadius = 48; //increase the more options are available
-            if (UIConf.circleAmount > 5) outerRadius += 5 * (UIConf.circleAmount - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
+            if (UIConf.CircleAmount > 5) outerRadius += 5 * (UIConf.CircleAmount - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
 
             double offset = 0;
-            double angleSteps = 2.0d / UIConf.circleAmount;
+            double angleSteps = 2.0d / UIConf.CircleAmount;
             int done = 0;
             // Starting angle
             double i = offset;
             // done --> ID of currently drawn circle
-            for (done = 0; done < UIConf.circleAmount; done++)
+            for (done = 0; done < UIConf.CircleAmount; done++)
             {
                 double x = outerRadius * Math.Sin(i * Math.PI);
                 double y = outerRadius * -Math.Cos(i * Math.PI);
@@ -80,7 +79,7 @@ namespace AssortedCrazyThings.UI
 
                 Rectangle bgRect = new Rectangle((int)(leftCorner.X + x), (int)(leftCorner.Y + y), mainDiameter, mainDiameter);
                 // Check if mouse is within the circle checked
-                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.circleAmount, done);
+                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
 
                 // Actually draw the bg circle
                 Color drawColor = Color.White;
@@ -97,7 +96,7 @@ namespace AssortedCrazyThings.UI
                 // Draw sprites over the icons
                 int width = UIConf.Textures[done].Width;
                 int height = UIConf.Textures[done].Height;
-                if (UIConf.spritesheetDivider > 0) height /= UIConf.spritesheetDivider;
+                if (UIConf.SpritesheetDivider > 0) height /= UIConf.SpritesheetDivider;
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
 
                 Rectangle sourceRect = new Rectangle
@@ -123,9 +122,9 @@ namespace AssortedCrazyThings.UI
             }
 
             //extra loop so tooltips are always drawn after the circles
-            for (done = 0; done < UIConf.circleAmount; done++)
+            for (done = 0; done < UIConf.CircleAmount; done++)
             {
-                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.circleAmount, done);
+                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
                 string tooltip = UIConf.Unlocked[done] ? UIConf.Tooltips[done] : UIConf.ToUnlock[done];
 
                 //if there is a "to unlock" message, prefix it

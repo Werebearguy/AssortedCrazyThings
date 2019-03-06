@@ -45,30 +45,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return Color.Black;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override void PostAI()
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            SpriteEffects effects = projectile.spriteDirection == -1? SpriteEffects.FlipHorizontally: SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog" + (mPlayer.mechFrogCrown? "Crown":""));
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / 8
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
-
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + 1f + projectile.gfxOffY);
-
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
-
-            return false;
+            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog" + (mPlayer.mechFrogCrown ? "Crown" : ""));
         }
     }
 }

@@ -95,10 +95,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
+        public override void AI()
+        {
+            Player player = Main.player[projectile.owner];
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            if (player.dead)
+            {
+                modPlayer.LilWraps = false;
+            }
+            if (modPlayer.LilWraps)
+            {
+                projectile.timeLeft = 2;
+            }
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if(Main.hasFocus) GetFrame();
-            
+            if (Main.hasFocus) GetFrame();
+
             lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
             SpriteEffects effects = SpriteEffects.None;
             if (projectile.direction != -1)
@@ -115,20 +129,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             return false;
-        }
-
-        public override void AI()
-        {
-            Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.LilWraps = false;
-            }
-            if (modPlayer.LilWraps)
-            {
-                projectile.timeLeft = 2;
-            }
         }
     }
 }

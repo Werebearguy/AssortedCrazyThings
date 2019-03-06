@@ -6,6 +6,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class YoungHarpy : ModProjectile
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/YoungHarpy_0"; //temp
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Young Harpy");
@@ -38,6 +46,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+        }
+
+        public override void PostAI()
+        {
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/YoungHarpy_" + mPlayer.youngHarpyType);
         }
     }
 }

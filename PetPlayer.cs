@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,23 +10,30 @@ namespace AssortedCrazyThings
 {
     public class PetPlayer : ModPlayer
     {
-        //docile demon eye stuff
+        //docile demon eye texture
         public byte petEyeType = 0; //texture type, not ID
 
-        //mech frog stuff
+        //mech frog texture
         public bool mechFrogCrown = false;
 
-        //cursed skull stuff
+        //cursed skull texture
         public byte cursedSkullType = 0;
 
-        //young wyvern stuff
+        //young wyvern texture
         public byte youngWyvernType = 0;
 
-        //young wyvern stuff
+        //young wyvern texture
         public byte petFishronType = 0;
 
-        //moon pet stuff
+        //moon pet texture
         public byte petMoonType = 0;
+
+        //young harpy texture
+        public byte youngHarpyType = 0;
+
+        //ALTERNATE
+        ////name pet texture
+        //public byte classNameType = 0;
 
         public bool LilWraps = false;
         public bool PetFishron = false;
@@ -89,6 +97,8 @@ namespace AssortedCrazyThings
         public bool PetSun = false;
         public bool PetMoon = false;
         public bool WallFragment = false;
+        //ALTERNATE
+        //public bool ClassName = false;
 
         public override void ResetEffects()
         {
@@ -154,6 +164,8 @@ namespace AssortedCrazyThings
             PetSun = false;
             PetMoon = false;
             WallFragment = false;
+            //ALTERNATE
+            //ClassName = false;
         }
 
         public bool ThreeTimesUseTime(double currentTime)
@@ -190,24 +202,65 @@ namespace AssortedCrazyThings
         {
             return new TagCompound {
                 {"slots", (int)slots},
+                {"mechFrogCrown", (bool)mechFrogCrown},
                 {"petEyeType", (byte)petEyeType},
                 {"cursedSkullType", (byte)cursedSkullType},
                 {"youngWyvernType", (byte)youngWyvernType},
                 {"petFishronType", (byte)petFishronType},
                 {"petMoonType", (byte)petMoonType},
-                {"mechFrogCrown", (bool)mechFrogCrown}
+                {"youngHarpyType", (byte)youngHarpyType},
+                //ALTERNATE
+                //{"classNameType", (byte)classNameType},
             };
         }
 
         public override void Load(TagCompound tag)
         {
             slots = (uint)tag.GetInt("slots");
+            mechFrogCrown = tag.GetBool("mechFrogCrown");
             petEyeType = tag.GetByte("petEyeType");
             cursedSkullType = tag.GetByte("cursedSkullType");
             youngWyvernType = tag.GetByte("youngWyvernType");
             petFishronType = tag.GetByte("petFishronType");
             petMoonType = tag.GetByte("petMoonType");
-            mechFrogCrown = tag.GetBool("mechFrogCrown");
+            youngHarpyType = tag.GetByte("youngHarpyType");
+            //ALTERNATE
+            //classNameType = tag.GetByte("classNameType");
+        }
+
+        public override void clientClone(ModPlayer clientClone)
+        {
+            PetPlayer clone = clientClone as PetPlayer;
+            clone.slots = slots;
+            clone.mechFrogCrown = mechFrogCrown;
+            clone.petEyeType = petEyeType;
+            clone.cursedSkullType = cursedSkullType;
+            clone.youngWyvernType = youngWyvernType;
+            clone.petFishronType = petFishronType;
+            clone.petMoonType = petMoonType;
+            clone.youngHarpyType = youngHarpyType;
+            //ALTERNATE
+            //clone.classNameType = classNameType;
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            PetPlayer clone = clientPlayer as PetPlayer;
+            PetPlayerChanges changes = PetPlayerChanges.none;
+            if (clone.slots != slots) changes = PetPlayerChanges.slots;
+            else if (clone.mechFrogCrown != mechFrogCrown) changes = PetPlayerChanges.mechFrogCrown;
+            else if (clone.petEyeType != petEyeType) changes = PetPlayerChanges.petEyeType;
+            else if (clone.cursedSkullType != cursedSkullType) changes = PetPlayerChanges.cursedSkullType;
+            else if (clone.youngWyvernType != youngWyvernType) changes = PetPlayerChanges.youngWyvernType;
+            else if (clone.petFishronType != petFishronType) changes = PetPlayerChanges.petFishronType;
+            else if (clone.petMoonType != petMoonType) changes = PetPlayerChanges.petMoonType;
+            else if (clone.youngHarpyType != youngHarpyType) changes = PetPlayerChanges.youngHarpyType;
+            //ALTERNATE
+            //else if (clone.classNameType != classNameType) changes = PetPlayerChanges.classNameType;
+
+            if (changes != PetPlayerChanges.none) Main.NewText("clientchanges with " + changes.ToString());
+
+            if (changes != PetPlayerChanges.none) SendClientChangesPacket(changes);
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
@@ -216,18 +269,82 @@ namespace AssortedCrazyThings
             packet.Write((byte)AssMessageType.SyncPlayerVanity);
             packet.Write((byte)player.whoAmI);
             //no "changes" packet
+            SendFieldValues(packet);
+            packet.Send(toWho, fromWho);
+        }
+
+        private void SendFieldValues(ModPacket packet)
+        {
             packet.Write((uint)slots);
+            packet.Write((bool)mechFrogCrown);
             packet.Write((byte)petEyeType);
             packet.Write((byte)cursedSkullType);
             packet.Write((byte)youngWyvernType);
             packet.Write((byte)petFishronType);
             packet.Write((byte)petMoonType);
-            packet.Write((bool)mechFrogCrown);
-            packet.Send(toWho, fromWho);
+            packet.Write((byte)youngHarpyType);
+            //ALTERNATE
+            //packet.Write((byte)classNameType);
+        }
+
+        public void RecvSyncPlayerVanitySub(BinaryReader reader)
+        {
+            slots = reader.ReadUInt32();
+            mechFrogCrown = reader.ReadBoolean();
+            petEyeType = reader.ReadByte();
+            cursedSkullType = reader.ReadByte();
+            youngWyvernType = reader.ReadByte();
+            petFishronType = reader.ReadByte();
+            petMoonType = reader.ReadByte();
+            youngHarpyType = reader.ReadByte();
+            //ALTERNATE
+            //classNameType = reader.ReadByte();
+        }
+
+        public void RecvClientChangesPacketSub(BinaryReader reader, byte changes)
+        {
+            switch (changes)
+            {
+                case (byte)PetPlayerChanges.all:
+                    RecvSyncPlayerVanitySub(reader);
+                    break;
+                case (byte)PetPlayerChanges.slots:
+                    slots = reader.ReadUInt32();
+                    break;
+                case (byte)PetPlayerChanges.mechFrogCrown:
+                    mechFrogCrown = reader.ReadBoolean();
+                    break;
+                case (byte)PetPlayerChanges.petEyeType:
+                    petEyeType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.cursedSkullType:
+                    cursedSkullType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.youngWyvernType:
+                    youngWyvernType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.petFishronType:
+                    petFishronType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.petMoonType:
+                    petMoonType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.youngHarpyType:
+                    youngHarpyType = reader.ReadByte();
+                    break;
+                //ALTERNATE
+                //case (byte)PetPlayerChanges.classNameType:
+                //    classNameType = reader.ReadByte();
+                //    break;
+                default: //shouldn't get there hopefully
+                    ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes);
+                    break;
+            }
         }
 
         public void SendClientChangesPacketSub(byte changes, int toClient = -1, int ignoreClient = -1)
         {
+            //AssUtils.Print("SendClientChangesPacketSub " + changes + " " + ((Main.netMode == NetmodeID.MultiplayerClient)? "client":"server"));
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SendClientChangesVanity);
             packet.Write((byte)player.whoAmI);
@@ -236,16 +353,13 @@ namespace AssortedCrazyThings
             switch (changes)
             {
                 case (byte)PetPlayerChanges.all:
-                    packet.Write((uint)slots);
-                    packet.Write((byte)petEyeType);
-                    packet.Write((byte)cursedSkullType);
-                    packet.Write((byte)youngWyvernType);
-                    packet.Write((byte)petFishronType);
-                    packet.Write((byte)petMoonType);
-                    packet.Write((bool)mechFrogCrown);
+                    SendFieldValues(packet);
                     break;
                 case (byte)PetPlayerChanges.slots:
                     packet.Write((uint)slots);
+                    break;
+                case (byte)PetPlayerChanges.mechFrogCrown:
+                    packet.Write((bool)mechFrogCrown);
                     break;
                 case (byte)PetPlayerChanges.petEyeType:
                     packet.Write((byte)petEyeType);
@@ -262,9 +376,13 @@ namespace AssortedCrazyThings
                 case (byte)PetPlayerChanges.petMoonType:
                     packet.Write((byte)petMoonType);
                     break;
-                case (byte)PetPlayerChanges.mechFrogCrown:
-                    packet.Write((bool)mechFrogCrown);
+                case (byte)PetPlayerChanges.youngHarpyType:
+                    packet.Write((byte)youngHarpyType);
                     break;
+                //ALTERNATE
+                //case (byte)PetPlayerChanges.classNameType:
+                //    packet.Write((byte)classNameType);
+                //    break;
                 default: //shouldn't get there hopefully
                     ErrorLogger.Log("Sending unspecified PetPlayerChanges " + changes);
                     break;
@@ -281,44 +399,12 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void clientClone(ModPlayer clientClone)
-        {
-            PetPlayer clone = clientClone as PetPlayer;
-            clone.slots = slots;
-            clone.petEyeType = petEyeType;
-            clone.cursedSkullType = cursedSkullType;
-            clone.youngWyvernType = youngWyvernType;
-            clone.petFishronType = petFishronType;
-            clone.petMoonType = petMoonType;
-            clone.mechFrogCrown = mechFrogCrown;
-        }
-
-        public override void SendClientChanges(ModPlayer clientPlayer)
-        {
-            PetPlayer clone = clientPlayer as PetPlayer;
-            PetPlayerChanges changes = PetPlayerChanges.none;
-            if (clone.slots != slots) changes = PetPlayerChanges.slots; 
-            else if (clone.petEyeType != petEyeType) changes = PetPlayerChanges.petEyeType;
-            else if (clone.cursedSkullType != cursedSkullType) changes = PetPlayerChanges.cursedSkullType;
-            else if (clone.youngWyvernType != youngWyvernType) changes = PetPlayerChanges.youngWyvernType;
-            else if (clone.petFishronType != petFishronType) changes = PetPlayerChanges.petFishronType;
-            else if (clone.petMoonType != petMoonType) changes = PetPlayerChanges.petMoonType;
-            else if (clone.mechFrogCrown != mechFrogCrown) changes = PetPlayerChanges.mechFrogCrown;
-
-            if (changes != PetPlayerChanges.none) SendClientChangesPacket(changes);
-        }
-
         public override void OnEnterWorld(Player player)
         {
             SendClientChangesPacket(PetPlayerChanges.all);
         }
 
-        public byte CyclePetEyeType()
-        {
-            petEyeType++;
-            if (petEyeType >= DocileDemonEyeProj.TotalNumberOfThese) petEyeType = 0;
-            return petEyeType;
-        }
+        //----------------------------------Slime Pet Vanity here---------------------------------------------
 
         public int slimePetIndex = -1;
         public byte petColor = 0;

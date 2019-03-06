@@ -18,61 +18,62 @@ namespace AssortedCrazyThings.UI
         public List<bool> Unlocked { get; private set; } //all true if just selection
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
         public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
-
+        
         // Amount of spawned circles
-        public int circleAmount = -1;
+        public int CircleAmount { get; private set; }
         // divider of spritesheet height (if needed)
-        public int spritesheetDivider = -1;
+        public int SpritesheetDivider { get; private set; }
 
         //mainly used for passing the projectile type atm
-        public int additionalInfo = -1;
+        public int AdditionalInfo { get; private set; }
 
-        public CircleUIConf(int triggerItemType = 0, bool triggerLeft = true, int spritesheetDividerArg = 0, int additionalInfoArg = -1, List<Texture2D> texturesArg = null, List<bool> unlockedArg = null, List<string> tooltipsArg = null, List<string> toUnlockArg = null)
+        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Texture2D> textures = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
         {
-            if (triggerItemType == 0) throw new Exception("triggerItemType has to be specified as an item type (via 'mod.ItemType<ClassNameOfItem>()')");
+            if (textures == null || textures.Count <= 0) throw new Exception("texturesArg has to be specified or has to contain at least one element");
+            else CircleAmount = textures.Count;
 
-            if (texturesArg == null || texturesArg.Count <= 0) throw new Exception("texturesArg has to be specified or has to contain at least one element");
-            else circleAmount = texturesArg.Count;
-
-            if (unlockedArg == null)
+            if (unlocked == null)
             {
-                unlockedArg = new List<bool>();
-                for (int i = 0; i < circleAmount; i++)
+                unlocked = new List<bool>();
+                for (int i = 0; i < CircleAmount; i++)
                 {
-                    unlockedArg.Add(true);
+                    unlocked.Add(true);
                 }
             }
 
-            if (tooltipsArg == null)
+            if (tooltips == null)
             {
-                tooltipsArg = new List<string>();
-                for (int i = 0; i < circleAmount; i++)
+                tooltips = new List<string>();
+                for (int i = 0; i < CircleAmount; i++)
                 {
-                    tooltipsArg.Add("");
+                    tooltips.Add("");
                 }
             }
 
-            if (toUnlockArg == null)
+            if (toUnlock == null)
             {
-                toUnlockArg = new List<string>();
-                for (int i = 0; i < circleAmount; i++)
+                toUnlock = new List<string>();
+                for (int i = 0; i < CircleAmount; i++)
                 {
-                    toUnlockArg.Add("");
+                    toUnlock.Add("");
                 }
             }
 
-            if (circleAmount != unlockedArg.Count ||
-                circleAmount != tooltipsArg.Count ||
-                circleAmount != toUnlockArg.Count) throw new Exception("atleast one of the specified lists isn't the same length as texturesArg");
+            if (CircleAmount != unlocked.Count ||
+                CircleAmount != tooltips.Count ||
+                CircleAmount != toUnlock.Count) throw new Exception("atleast one of the specified lists isn't the same length as texturesArg");
 
-            spritesheetDivider = spritesheetDividerArg;
-            additionalInfo = additionalInfoArg;
+            SpritesheetDivider = spritesheetDivider;
+            AdditionalInfo = additionalInfo;
 
-            Textures = new List<Texture2D>(texturesArg);
-            Unlocked = new List<bool>(unlockedArg);
-            Tooltips = new List<string>(tooltipsArg);
-            ToUnlock = new List<string>(toUnlockArg);
+            Textures = new List<Texture2D>(textures);
+            Unlocked = new List<bool>(unlocked);
+            Tooltips = new List<string>(tooltips);
+            ToUnlock = new List<string>(toUnlock);
+        }
 
+        public static void AddItemAsTrigger(int triggerItemType, bool triggerLeft = true)
+        {
             if (triggerLeft)
             {
                 if (!TriggerListLeft.Contains(triggerItemType)) TriggerListLeft.Add(triggerItemType);
@@ -83,7 +84,7 @@ namespace AssortedCrazyThings.UI
             }
         }
 
-        private static CircleUIConf PetConf(string name, List<string> tooltips, bool triggerLeft = true)
+        private static CircleUIConf PetConf(string name, List<string> tooltips)
         {
             //uses VanitySelector as the triggerItem
             //order of tooltips must be the same as the order of textures (0, 1 2 etc)
@@ -96,7 +97,7 @@ namespace AssortedCrazyThings.UI
 
             int type = AssUtils.Instance.ProjectileType(name);
 
-            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(), triggerLeft, Main.projFrames[type], type, l1, null, tooltips, null);
+            return new CircleUIConf(Main.projFrames[type], type, l1, null, tooltips, null);
         }
 
         //here start the specific confs that are called in PostSetupContent
@@ -128,7 +129,7 @@ namespace AssortedCrazyThings.UI
                 NPC.downedMechBoss1, //destr 3
             };
 
-            return new CircleUIConf(AssUtils.Instance.ItemType<EverhallowedLantern>(), false, 8, -1, textures, unlocked, tooltips, toUnlock);
+            return new CircleUIConf(8, -1, textures, unlocked, tooltips, toUnlock);
         }
 
         //pets
@@ -138,11 +139,10 @@ namespace AssortedCrazyThings.UI
             List<Texture2D> l1 = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
                                                          AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
 
-            List<string> l3 = new List<string>() { "Regular", "Crowned" };
+            List<string> l3 = new List<string>() { "Default", "Crowned" };
 
             //no need for unlocked + toUnlock
-            return new CircleUIConf(AssUtils.Instance.ItemType<VanitySelector>(),
-                true,
+            return new CircleUIConf(
                 Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
                 AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
                 l1, null, l3, null);
@@ -160,30 +160,45 @@ namespace AssortedCrazyThings.UI
 
         public static CircleUIConf CursedSkullConf()
         {
-            List<string> tooltips = new List<string>() { "Regular", "Dragon" };
+            List<string> tooltips = new List<string>() { "Default", "Dragon" };
 
             return PetConf("CursedSkull", tooltips);
         }
 
         public static CircleUIConf YoungWyvernConf()
         {
-            List<string> tooltips = new List<string>() { "Regular", "Mythical", "Arch", "Arch (Legacy)" };
+            List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
             
             return PetConf("YoungWyvern", tooltips);
         }
 
         public static CircleUIConf PetFishronConf()
         {
-            List<string> tooltips = new List<string>() { "Regular", "Sharkron", "Sharknado" };
+            List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
 
             return PetConf("PetFishronProj", tooltips);
         }
 
         public static CircleUIConf PetMoonConf()
         {
-            List<string> tooltips = new List<string>() { "Regular", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
+            List<string> tooltips = new List<string>() { "Default", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
 
-            return PetConf("PetMoonProj", tooltips, false);
+            return PetConf("PetMoonProj", tooltips);
         }
+
+        public static CircleUIConf YoungHarpyConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
+
+            return PetConf("YoungHarpy", tooltips);
+        }
+
+        //ALTERNATE
+        //public static CircleUIConf ClassNameConf()
+        //{
+        //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2", etc };
+
+        //    return PetConf("ClassNameProj", tooltips);
+        //}
     }
 }

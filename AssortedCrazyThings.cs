@@ -35,15 +35,6 @@ namespace AssortedCrazyThings
         // UI stuff
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
-        
-        internal static CircleUIConf DocileDemonEyeConf;
-        internal static CircleUIConf LifeLikeMechFrogConf;
-        internal static CircleUIConf CursedSkullConf;
-        internal static CircleUIConf YoungWyvernConf;
-        internal static CircleUIConf PetFishronConf;
-        internal static CircleUIConf PetMoonConf;
-
-        internal static CircleUIConf EverhallowedLanternConf;
 
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
@@ -136,21 +127,16 @@ namespace AssortedCrazyThings
 
         private void LoadUI()
         {
-            //has to be called after Load() because of the Main.projFrames[projectile.type] calls
             if (!Main.dedServ && Main.netMode != 2)
             {
                 CircleUI = new CircleUI();
                 CircleUI.Activate();
                 CircleUIInterface = new UserInterface();
                 CircleUIInterface.SetState(CircleUI);
-                
-                DocileDemonEyeConf = CircleUIConf.DocileDemonEyeConf();
-                LifeLikeMechFrogConf = CircleUIConf.LifeLikeMechFrogConf();
-                CursedSkullConf = CircleUIConf.CursedSkullConf();
-                YoungWyvernConf = CircleUIConf.YoungWyvernConf();
-                PetFishronConf = CircleUIConf.PetFishronConf();
-                PetMoonConf = CircleUIConf.PetMoonConf();
-                EverhallowedLanternConf = CircleUIConf.EverhallowedLanternConf(); //isn't used anymore but needs to be created in order for the triggerItem to register
+
+                CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
+                CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
+                CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>(), false); //right click of Costume Suitcase
             }
         }
 
@@ -174,7 +160,7 @@ namespace AssortedCrazyThings
 
                 sunPetTextures = new Texture2D[3];
 
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < sunPetTextures.Length; i++)
                 {
                     sunPetTextures[i] = GetTexture("Projectiles/Pets/PetSunProj_" + i);
                     PremultiplyTexture(sunPetTextures[i]);
@@ -202,8 +188,6 @@ namespace AssortedCrazyThings
 
             LoadSoulBuffBlacklist();
 
-            //LoadUI();
-
             LoadMisc();
         }
 
@@ -220,9 +204,11 @@ namespace AssortedCrazyThings
 
         public override void PostSetupContent()
         {
-            AddToSoulBuffBlacklist();
-
             LoadUI();
+
+            //for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
+
+            AddToSoulBuffBlacklist();
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
@@ -261,6 +247,12 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void UIText(string str)
+        {
+            CombatText.NewText(Main.LocalPlayer.getRect(),
+                CombatText.HealLife, "Selected: " + str);
+        }
+
         private void CircleUIStart(int triggerType, bool triggerLeft = true)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
@@ -275,39 +267,52 @@ namespace AssortedCrazyThings
                         //set custom config with starting value
                         CircleUI.currentSelected = pPlayer.petEyeType;
 
-                        CircleUI.UIConf = DocileDemonEyeConf;
+                        CircleUI.UIConf = CircleUIConf.DocileDemonEyeConf();
                     }
                     else if (pPlayer.LifelikeMechanicalFrog)
                     {
                         CircleUI.currentSelected = pPlayer.mechFrogCrown ? 1 : 0;
 
-                        CircleUI.UIConf = LifeLikeMechFrogConf;
+                        CircleUI.UIConf = CircleUIConf.LifeLikeMechFrogConf();
                     }
                     else if (pPlayer.CursedSkull)
                     {
                         CircleUI.currentSelected = pPlayer.cursedSkullType;
 
-                        CircleUI.UIConf = CursedSkullConf;
+                        CircleUI.UIConf = CircleUIConf.CursedSkullConf();
                     }
                     else if (pPlayer.YoungWyvern)
                     {
                         CircleUI.currentSelected = pPlayer.youngWyvernType;
 
-                        CircleUI.UIConf = YoungWyvernConf;
+                        CircleUI.UIConf = CircleUIConf.YoungWyvernConf();
                     }
                     else if (pPlayer.PetFishron)
                     {
                         CircleUI.currentSelected = pPlayer.petFishronType;
 
-                        CircleUI.UIConf = PetFishronConf;
+                        CircleUI.UIConf = CircleUIConf.PetFishronConf();
                     }
+                    else if (pPlayer.YoungHarpy)
+                    {
+                        CircleUI.currentSelected = pPlayer.youngHarpyType;
+
+                        CircleUI.UIConf = CircleUIConf.YoungHarpyConf();
+                    }
+                    //ALTERNATE
+                    //else if (pPlayer.ClassName)
+                    //{
+                    //    CircleUI.currentSelected = pPlayer.classNameType;
+
+                    //    CircleUI.UIConf = CircleUIConf.ClassNameConf();
+                    //}
                     else
                     {
                         return;
                     }
                 }
             }
-            else
+            else //right click
             {
                 if (triggerType == ItemType<VanitySelector>())
                 {
@@ -315,8 +320,15 @@ namespace AssortedCrazyThings
                     {
                         CircleUI.currentSelected = pPlayer.petMoonType;
 
-                        CircleUI.UIConf = PetMoonConf;
+                        CircleUI.UIConf = CircleUIConf.PetMoonConf();
                     }
+                    //ALTERNATE
+                    //else if (pPlayer.ClassName)
+                    //{
+                    //    CircleUI.currentSelected = pPlayer.classNameType;
+
+                    //    CircleUI.UIConf = CircleUIConf.ClassNameConf();
+                    //}
                     else
                     {
                         return;
@@ -340,12 +352,10 @@ namespace AssortedCrazyThings
             CircleUI.spawnPosition = Main.MouseScreen;
             CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
             CircleUI.heldItemType = triggerType;
-            //Main.NewText("CircleUIStart " + CircleUI.heldItemType);
         }
 
         private void CircleUIEnd(bool triggerLeft = true)
         {
-            //Main.NewText("CircleUIEnd " + CircleUI.heldItemType);
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
             if (CircleUI.returned != -1 && CircleUI.returned != CircleUI.currentSelected)
@@ -353,12 +363,13 @@ namespace AssortedCrazyThings
                 //if something returned AND if the returned thing isn't the same as the current one
 
                 Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
-                PoofVisual(CircleUI.UIConf.additionalInfo);
 
                 if (triggerLeft) //left click
                 {
                     if (CircleUI.heldItemType == ItemType<VanitySelector>())
                     {
+                        PoofVisual(CircleUI.UIConf.AdditionalInfo);
+                        UIText(CircleUI.UIConf.Tooltips[CircleUI.returned]);
                         if (pPlayer.DocileDemonEye)
                         {
                             pPlayer.petEyeType = (byte)CircleUI.returned;
@@ -379,16 +390,32 @@ namespace AssortedCrazyThings
                         {
                             pPlayer.petFishronType = (byte)CircleUI.returned;
                         }
+                        else if (pPlayer.YoungHarpy)
+                        {
+                            pPlayer.youngHarpyType = (byte)CircleUI.returned;
+                        }
+                        //ALTERNATE
+                        //else if (pPlayer.ClassName)
+                        //{
+                        //    pPlayer.classNameType = (byte)CircleUI.returned;
+                        //}
                     }
                 }
                 else //right click
                 {
                     if (CircleUI.heldItemType == ItemType<VanitySelector>())
                     {
+                        PoofVisual(CircleUI.UIConf.AdditionalInfo);
+                        UIText(CircleUI.UIConf.Tooltips[CircleUI.returned]);
                         if (pPlayer.PetMoon)
                         {
                             pPlayer.petMoonType = (byte)CircleUI.returned;
                         }
+                        //ALTERNATE
+                        //else if (pPlayer.ClassName)
+                        //{
+                        //    pPlayer.classNameType = (byte)CircleUI.returned;
+                        //}
                     }
                     else if (CircleUI.heldItemType == ItemType<EverhallowedLantern>())
                     {
@@ -443,26 +470,29 @@ namespace AssortedCrazyThings
 
         private void UpdateEverhallowedLanternStats(int selectedSoulType)
         {
+            bool first = true;
             for(int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
             {
                 if(Main.LocalPlayer.inventory[i].type == ItemType<EverhallowedLantern>())
                 {
                     var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
+                    //bad practice, don't do this
                     Main.LocalPlayer.inventory[i].damage = stats.Damage;
                     Main.LocalPlayer.inventory[i].shoot = stats.Type;
                     Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;
 
                     var soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                    if (soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
+                    if (first && soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
                     {
                         CombatText.NewText(Main.LocalPlayer.getRect(),
                             CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
                     }
-                    else
+                    else if(first)
                     {
                         CombatText.NewText(Main.LocalPlayer.getRect(),
                             CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
                     }
+                    first = false;
                 }
             }
         }
@@ -563,56 +593,18 @@ namespace AssortedCrazyThings
                         playerNumber = reader.ReadByte();
                         petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
                         //no "changes" packet
-                        petPlayer.slots = reader.ReadUInt32();
-                        petPlayer.petEyeType = reader.ReadByte();
-                        petPlayer.cursedSkullType = reader.ReadByte();
-                        petPlayer.youngWyvernType = reader.ReadByte();
-                        petPlayer.petFishronType = reader.ReadByte();
-                        petPlayer.petMoonType = reader.ReadByte();
-                        petPlayer.mechFrogCrown = reader.ReadBoolean();
+                        petPlayer.RecvSyncPlayerVanitySub(reader);
                     }
                     break;
                 case AssMessageType.SendClientChangesVanity:
+                    //client and server
                     playerNumber = reader.ReadByte();
                     petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
                     changes = reader.ReadByte();
 
-                    switch (changes)
-                    {
-                        case (byte)PetPlayerChanges.all:
-                            petPlayer.slots = reader.ReadUInt32();
-                            petPlayer.petEyeType = reader.ReadByte();
-                            petPlayer.cursedSkullType = reader.ReadByte();
-                            petPlayer.youngWyvernType = reader.ReadByte();
-                            petPlayer.petFishronType = reader.ReadByte();
-                            petPlayer.petMoonType = reader.ReadByte();
-                            petPlayer.mechFrogCrown = reader.ReadBoolean();
-                            break;
-                        case (byte)PetPlayerChanges.slots:
-                            petPlayer.slots = reader.ReadUInt32();
-                            break;
-                        case (byte)PetPlayerChanges.petEyeType:
-                            petPlayer.petEyeType = reader.ReadByte();
-                            break;
-                        case (byte)PetPlayerChanges.cursedSkullType:
-                            petPlayer.cursedSkullType = reader.ReadByte();
-                            break;
-                        case (byte)PetPlayerChanges.youngWyvernType:
-                            petPlayer.youngWyvernType = reader.ReadByte();
-                            break;
-                        case (byte)PetPlayerChanges.petFishronType:
-                            petPlayer.petFishronType = reader.ReadByte();
-                            break;
-                        case (byte)PetPlayerChanges.petMoonType:
-                            petPlayer.petMoonType = reader.ReadByte();
-                            break;
-                        case (byte)PetPlayerChanges.mechFrogCrown:
-                            petPlayer.mechFrogCrown = reader.ReadBoolean();
-                            break;
-                        default: //shouldn't get there hopefully
-                            ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes);
-                            break;
-                    }
+                    petPlayer.RecvClientChangesPacketSub(reader, changes);
+
+                    //server transmits to others
                     if (Main.netMode == NetmodeID.Server)
                     {
                         petPlayer.SendClientChangesPacketSub(changes, -1, playerNumber);
@@ -667,7 +659,7 @@ namespace AssortedCrazyThings
         SyncKnapSackSlimeTexture,
         SyncPlayer,
         SyncPlayerVanity,
-        SyncAltTextureNPC,
+        //SyncAltTextureNPC,
         ConvertInertSoulsInventory
     }
 
@@ -677,11 +669,14 @@ namespace AssortedCrazyThings
         none,
         all,
         slots,
+        mechFrogCrown,
         petEyeType,
         cursedSkullType,
         youngWyvernType,
         petFishronType,
         petMoonType,
-        mechFrogCrown,
+        youngHarpyType,
+        //ALTERNATE
+        //classNameType,
     }
 }

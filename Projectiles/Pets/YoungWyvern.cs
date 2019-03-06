@@ -21,6 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Young Wyvern");
             Main.projFrames[projectile.type] = 11;
             Main.projPet[projectile.type] = true;
+            drawOffsetX = -12;
         }
 
         public override void SetDefaults()
@@ -50,25 +51,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override void PostAI()
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Pets/YoungWyvern_" + mPlayer.youngWyvernType);
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / 11
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
-            
-            Vector2 stupidOffset = new Vector2(18, 23f + projectile.gfxOffY);
-
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
-
-            return false;
+            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/YoungWyvern_" + mPlayer.youngWyvernType);
         }
     }
 }
