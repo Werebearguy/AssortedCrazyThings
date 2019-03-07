@@ -489,38 +489,27 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void ApplyCandleDebuffs(NPC npc)
+        private void ApplyCandleDebuffs(Entity victim)
         {
-            if (npc != null)
+            if (victim is NPC)
             {
-                if (everburningCandleBuff)
-                {
-                    npc.AddBuff(BuffID.OnFire, 120);
-                }
-                if (everburningCursedCandleBuff)
-                {
-                    npc.AddBuff(BuffID.CursedInferno, 120);
-                }
-                if (everfrozenCandleBuff)
-                {
-                    npc.AddBuff(BuffID.Frostburn, 120);
-                }
-                //if (variable_debuff_04)
-                //{
-                //    npc.AddBuff(BuffID.Ichor, 120);
-                //}
-                //if (variable_debuff_05)
-                //{
-                //    npc.AddBuff(BuffID.Venom, 120);
-                //}
-                if (everburningShadowflameCandleBuff)
-                {
-                    npc.AddBuff(BuffID.ShadowFlame, 60);
-                }
-                //if (variable_debuff_07)
-                //{
-                //    npc.AddBuff(BuffID.Bleeding, 120);
-                //}
+                if (everburningCandleBuff) ((NPC)victim).AddBuff(BuffID.OnFire, 120);
+                if (everburningCursedCandleBuff) ((NPC)victim).AddBuff(BuffID.CursedInferno, 120);
+                if (everfrozenCandleBuff) ((NPC)victim).AddBuff(BuffID.Frostburn, 120);
+                //if (variable_debuff_04) ((NPC)victim).AddBuff(BuffID.Ichor, 120);
+                //if (variable_debuff_05) ((NPC)victim).AddBuff(BuffID.Venom, 120);
+                if (everburningShadowflameCandleBuff) ((NPC)victim).AddBuff(BuffID.ShadowFlame, 60);
+                //if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
+            }
+            else if(victim is Player)
+            {
+                if (everburningCandleBuff) ((Player)victim).AddBuff(BuffID.OnFire, 120);
+                if (everburningCursedCandleBuff) ((Player)victim).AddBuff(BuffID.CursedInferno, 120);
+                if (everfrozenCandleBuff) ((Player)victim).AddBuff(BuffID.Frostburn, 120);
+                //if (variable_debuff_04) ((NPC)victim).AddBuff(BuffID.Ichor, 120);
+                //if (variable_debuff_05) ((NPC)victim).AddBuff(BuffID.Venom, 120);
+                if (everburningShadowflameCandleBuff) ((Player)victim).AddBuff(BuffID.ShadowFlame, 60);
+                //if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
             }
         }
 
@@ -751,7 +740,7 @@ namespace AssortedCrazyThings
 
         public override void OnHitAnything(float x, float y, Entity victim)
         {
-            ApplyCandleDebuffs((NPC)victim);
+             ApplyCandleDebuffs(victim);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)

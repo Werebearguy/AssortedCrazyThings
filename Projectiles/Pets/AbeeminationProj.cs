@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -45,10 +47,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return true;
         }
 
-        public override void PostAI()
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
+            lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
+            SpriteEffects effects = SpriteEffects.None;
+            if (projectile.direction != -1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            Main.projectileTexture[projectile.type] = mod.GetTexture("Projectiles/Pets/AbeeminationProj_" + mPlayer.abeeminationType);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/AbeeminationProj_" + mPlayer.abeeminationType);
+            Rectangle bounds = new Rectangle();
+            bounds.X = 0;
+            bounds.Width = image.Bounds.Width;
+            bounds.Height = (int)(image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Y = projectile.frame * bounds.Height;
+            Vector2 stupidOffset = new Vector2(10f, 22f);
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+
+            return false;
         }
     }
 }
