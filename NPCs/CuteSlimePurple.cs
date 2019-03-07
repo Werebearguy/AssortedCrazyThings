@@ -30,7 +30,6 @@ namespace AssortedCrazyThings.NPCs
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
             npc.alpha = 125;
-            npc.color = new Color(200, 0, 255, 150);
             Main.npcCatchable[mod.NPCType("CuteSlimePurple")] = true;
             npc.catchItem = (short)mod.ItemType("CuteSlimePurpleNew");
         }
