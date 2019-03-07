@@ -45,6 +45,8 @@ namespace AssortedCrazyThings.UI
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
+            Main.LocalPlayer.mouseInterface = true;
+
             Texture2D bgTexture = Main.wireUITexture[0];
 
             // Draw held item bg circle

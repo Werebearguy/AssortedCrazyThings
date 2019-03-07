@@ -10,16 +10,16 @@ namespace AssortedCrazyThings
     {
         public static AssortedCrazyThings Instance { get; set; } //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
-        public static void Print(string msg)
+        public static void Print(object o)
         {
             if (Main.netMode == NetmodeID.Server)
             {
-                Console.WriteLine(msg);
+                Console.WriteLine(o.ToString());
             }
 
             if (Main.netMode == NetmodeID.MultiplayerClient || Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(msg);
+                Main.NewText(o.ToString());
             }
         }
 
@@ -46,15 +46,25 @@ namespace AssortedCrazyThings
 
         public static Dust ShowDustAtPos(int dustType, Vector2 pos)
         {
+            //used for showing a position as a dust on the screen for debugging
             Dust dust = QuickDust(dustType, pos, Color.White);
             dust.noGravity = true;
             dust.noLight = true;
             return dust;
         }
 
+        public static bool AnyNPCs(int[] types)
+        {
+            //Like AnyNPCs but checks for an array
+            for (int i = 0; i < types.Length; i++)
+            {
+                if (NPC.AnyNPCs(types[i])) return true;
+            }
+            return false;
+        }
+
         public static string GetTimeAsString(bool accurate = true)
         {
-            int num = 0;
             string text3 = Lang.inter[95].Value;
             string text4 = "AM";
             double num6 = Main.time;

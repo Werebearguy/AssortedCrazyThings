@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.UI;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -19,9 +21,10 @@ namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
     {
-        //Slime pet legacy
+        //Slime pets
         public static int[] slimePetLegacy = new int[9];
         public static int[] slimePetNoHair = new int[6];
+        public static int[] slimePetNPCs = new int[9];
 
         //Sun pet textures
         public static Texture2D[] sunPetTextures;
@@ -61,6 +64,18 @@ namespace AssortedCrazyThings
             slimePetNoHair[index++] = ProjectileType<CuteSlimePinkNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeRedNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeYellowNewPet>();
+
+            index = 0;
+
+            slimePetNPCs[index++] = NPCType<CuteSlimeBlack>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeBlue>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeGreen>();
+            slimePetNPCs[index++] = NPCType<CuteSlimePink>();
+            slimePetNPCs[index++] = NPCType<CuteSlimePurple>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeRainbow>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeRed>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeXmas>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeYellow>();
 
             if (!Main.dedServ && Main.netMode != 2)
             {
@@ -247,10 +262,10 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void UIText(string str)
+        private void UIText(string str, Color color)
         {
             CombatText.NewText(Main.LocalPlayer.getRect(),
-                CombatText.HealLife, "Selected: " + str);
+                color, str);
         }
 
         private void CircleUIStart(int triggerType, bool triggerLeft = true)
@@ -339,6 +354,7 @@ namespace AssortedCrazyThings
                     //}
                     else
                     {
+                        UIText("No alt costumes found for pet", CombatText.DamagedFriendly);
                         return;
                     }
                 }
@@ -363,6 +379,7 @@ namespace AssortedCrazyThings
                     //}
                     else
                     {
+                        UIText("No alt costumes found for light pet", CombatText.DamagedFriendly);
                         return;
                     }
                 }
@@ -401,7 +418,7 @@ namespace AssortedCrazyThings
                     if (CircleUI.heldItemType == ItemType<VanitySelector>())
                     {
                         PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                        UIText(CircleUI.UIConf.Tooltips[CircleUI.returned]);
+                        UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
                         if (pPlayer.DocileDemonEye)
                         {
                             pPlayer.petEyeType = (byte)CircleUI.returned;
@@ -458,7 +475,7 @@ namespace AssortedCrazyThings
                     if (CircleUI.heldItemType == ItemType<VanitySelector>())
                     {
                         PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                        UIText(CircleUI.UIConf.Tooltips[CircleUI.returned]);
+                        UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
                         if (pPlayer.PetMoon)
                         {
                             pPlayer.petMoonType = (byte)CircleUI.returned;
@@ -495,8 +512,20 @@ namespace AssortedCrazyThings
             {
                 left = false;
             }
+            //AssUtils.Print(!PlayerInput.LockTileUseButton);
+            //AssUtils.Print();
 
-            if (left != null) CircleUIStart(Main.LocalPlayer.HeldItem.type, (bool)left);
+            if (left != null &&
+                Main.hasFocus &&
+                !Main.LocalPlayer.mouseInterface &&
+                !Main.drawingPlayerChat &&
+                !Main.editSign &&
+                !Main.editChest &&
+                !Main.blockInput &&
+                !Main.mapFullscreen &&
+                !Main.HoveringOverAnNPC &&
+                Main.LocalPlayer.talkNPC == -1 &&
+                !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned)) CircleUIStart(Main.LocalPlayer.HeldItem.type, (bool)left);
 
             if (CircleUI.visible)
             {
