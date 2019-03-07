@@ -27,9 +27,9 @@ namespace AssortedCrazyThings.Items
             item.value = Item.sellPrice(silver: 10);
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public override bool CanUseItem(Player player)
         {
-            //in the tooltip say if the currently equipped pet has alt appearances or not
+            return false;
         }
 
         public override void AddRecipes()

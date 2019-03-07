@@ -322,6 +322,14 @@ namespace AssortedCrazyThings
                 player.trashItem.SetDefaults(itemTypeNew); //override with awakened
                 player.trashItem.stack = tempStackCount;
             }
+
+            //mouse item
+            if (Main.netMode != NetmodeID.Server && Main.mouseItem.type == itemTypeOld)
+            {
+                tempStackCount = Main.mouseItem.stack;
+                Main.mouseItem.SetDefaults(itemTypeNew); //override with awakened
+                Main.mouseItem.stack = tempStackCount;
+            }
         }
 
 

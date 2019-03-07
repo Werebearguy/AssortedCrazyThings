@@ -62,14 +62,12 @@ namespace AssortedCrazyThings.Items.Armor
              * with 7 minion slots and 150% minion damage you deal 105% thorns damage (for example when equipping sigil of emergency
              * and harvester wings)
              */
-
-            //player.GetModPlayer<AssPlayer>().soulSaviorArmor = true;
-
-            //TODO something shorter, also update it in the changelog and in the armor section
+             
             player.setBonus = "Empowers minions summoned by Everhallowed Lantern"
-                +"\nReflects 10% contact damage per available minion slot"
-                +"\nReflected damage further increased by effects that increase minion damage"
-                +"\nCurrent reflected damage: " + (int)(factor * 100) + "%";
+                + "\nReflects 10% contact damage per available minion slot"
+                + "\nReflected damage further increased by effects that increase minion damage"
+                + "\nCurrent reflected damage: " + (int)(factor * 100) + "%"
+                + "\nMinions summoned by the Everhallowed Lantern become 'empowered' and gain 30% more damage";
         }
 
         public override void AddRecipes()
