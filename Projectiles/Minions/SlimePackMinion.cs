@@ -2,6 +2,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,6 +48,18 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Damage = DefDamage;
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            //AssUtils.Print("send " + texture);
+            writer.Write((byte)texture);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            texture = reader.ReadByte();
+            //AssUtils.Print("recv " + texture);
+        }
+
         public override bool PreAI()
         {
             AssPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
@@ -60,33 +73,34 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
             
             //since default state is 0, textures will use [1 to TotalNumberOfThese] as indices, then it will substract 1 in pre-draw
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode != NetmodeID.Server)
             {
                 if(texture == 0)
                 {
                     byte tex = (byte)Main.rand.Next(1, TotalNumberOfThese + 1);
 
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        //Console.WriteLine("generated texture " + tex);
-                        ModPacket packet = mod.GetPacket();
-                        packet.Write((byte)AssMessageType.SyncKnapSackSlimeTexture);
-                        packet.Write((short)projectile.whoAmI);
-                        packet.Write((byte)tex);
-                        packet.Send();
-                    }
-                    else
-                    {
-                        projectile.localAI[1] = tex;
-                    }
+                    //if (Main.netMode == NetmodeID.Server)
+                    //{
+                    //    //Console.WriteLine("generated texture " + tex);
+                    //    ModPacket packet = mod.GetPacket();
+                    //    packet.Write((byte)AssMessageType.SyncKnapSackSlimeTexture);
+                    //    packet.Write((short)projectile.whoAmI);
+                    //    packet.Write((byte)tex);
+                    //    packet.Send();
+                    //}
+                    //else
+                    //{
+                    //    projectile.localAI[1] = tex;
+                    //}
                     texture = tex;
+                    projectile.netUpdate = true;
                 }
             }
-            else
-            {
-                texture = 1;
-                //projectile.localAI[1] = 1; //use temp texture until server sends packet
-            }
+            //else
+            //{
+            //    texture = 1;
+            //    //projectile.localAI[1] = 1; //use temp texture until server sends packet
+            //}
 
             return true;
         }
@@ -94,9 +108,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             //Rainbow is _10 and _11, Illuminant is _30 and _31
-            if (!(projectile.localAI[1] == 0))
+            if (!(texture == 0))
             {
-                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + (projectile.localAI[1] - 1));
+                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + (texture - 1));
                 Rectangle bounds = new Rectangle
                 {
                     X = 0,
@@ -105,12 +119,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     Height = image.Bounds.Height / 6
                 };
                 bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
-                Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+                Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
                 SpriteEffects effect = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-                if ((projectile.localAI[1] - 1) == 10 || (projectile.localAI[1] - 1) == 11)
+                if ((texture - 1) == 10 || (texture - 1) == 11)
                 {
                     double cX = projectile.Center.X + drawOffsetX;
                     double cY = projectile.Center.Y + drawOriginOffsetY;
@@ -126,11 +140,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (!(projectile.localAI[1] == 0))
+            if (!(texture == 0))
             {
-                if ((projectile.localAI[1] - 1) == 30 || (projectile.localAI[1] - 1) == 31)
+                if ((texture - 1) == 30 || (texture - 1) == 31)
                 {
-                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + (projectile.localAI[1] - 1) + "_Glowmask");
+                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + (texture - 1) + "_Glowmask");
                     Rectangle bounds = new Rectangle
                     {
                         X = 0,

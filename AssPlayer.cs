@@ -123,36 +123,36 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            //like OnEnterWorld but serverside
-            short[] indexes = new short[1000];
-            byte[] textures = new byte[1000];
-            short arrayLength = 0;
-            for (int i = 0; i < 1000; i++)
-            {
-                if(Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<SlimePackMinion>())
-                {
-                    SlimePackMinion m = Main.projectile[i].modProjectile as SlimePackMinion;
-                    indexes[arrayLength] = (short)i;
-                    textures[arrayLength++] = m.texture;
-                }
-            }
-            Array.Resize(ref indexes, arrayLength + 1);
-            Array.Resize(ref textures, arrayLength + 1);
+            ////like OnEnterWorld but serverside
+            //short[] indexes = new short[1000];
+            //byte[] textures = new byte[1000];
+            //short arrayLength = 0;
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    if(Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<SlimePackMinion>())
+            //    {
+            //        SlimePackMinion m = Main.projectile[i].modProjectile as SlimePackMinion;
+            //        indexes[arrayLength] = (short)i;
+            //        textures[arrayLength++] = m.texture;
+            //    }
+            //}
+            //Array.Resize(ref indexes, arrayLength + 1);
+            //Array.Resize(ref textures, arrayLength + 1);
 
-            if(arrayLength > 0)
-            {
-                ModPacket packet = mod.GetPacket();
-                packet.Write((byte)AssMessageType.SyncPlayer);
-                packet.Write((byte)player.whoAmI);
-                packet.Write(arrayLength);
-                //Console.WriteLine(arrayLength);
-                for (int i = 0; i < arrayLength; i++)
-                {
-                    packet.Write(indexes[i]);
-                    packet.Write(textures[i]);
-                }
-                packet.Send(toWho, fromWho);
-            }
+            //if(arrayLength > 0)
+            //{
+            //    ModPacket packet = mod.GetPacket();
+            //    packet.Write((byte)AssMessageType.SyncPlayer);
+            //    packet.Write((byte)player.whoAmI);
+            //    packet.Write(arrayLength);
+            //    //Console.WriteLine(arrayLength);
+            //    for (int i = 0; i < arrayLength; i++)
+            //    {
+            //        packet.Write(indexes[i]);
+            //        packet.Write(textures[i]);
+            //    }
+            //    packet.Send(toWho, fromWho);
+            //}
         }
 
         public override TagCompound Save()

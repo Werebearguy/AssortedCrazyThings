@@ -40,13 +40,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override Color? GetAlpha(Color drawColor)
-        {
-            drawColor.R = drawColor.R;
-            drawColor.G = drawColor.G;
-            drawColor.B = drawColor.B;
-            drawColor.A = 140;
-            return drawColor;
-        }
+        //public override Color? GetAlpha(Color drawColor)
+        //{
+        //    drawColor.R = drawColor.R;
+        //    drawColor.G = drawColor.G;
+        //    drawColor.B = drawColor.B;
+        //    drawColor.A = 140;
+        //    return drawColor;
+        //}
     }
 }

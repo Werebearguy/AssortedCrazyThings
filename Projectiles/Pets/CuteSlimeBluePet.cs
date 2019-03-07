@@ -41,13 +41,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override Color? GetAlpha(Color drawColor)
-        {
-            drawColor.R = Math.Min((byte)(drawColor.R * 0.7f), (byte)160);
-            drawColor.G = Math.Min((byte)(drawColor.G * 0.7f), (byte)160);
-            drawColor.B = Math.Min((byte)(drawColor.B * 0.7f), (byte)160);
-            drawColor.A = 200;
-            return drawColor;
-        }
+        //public override Color? GetAlpha(Color drawColor)
+        //{
+        //    drawColor.R = Math.Min((byte)(drawColor.R * 0.7f), (byte)160);
+        //    drawColor.G = Math.Min((byte)(drawColor.G * 0.7f), (byte)160);
+        //    drawColor.B = Math.Min((byte)(drawColor.B * 0.7f), (byte)160);
+        //    drawColor.A = 200;
+        //    return drawColor;
+        //}
     }
 }

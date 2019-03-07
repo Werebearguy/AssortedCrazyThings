@@ -29,6 +29,7 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = 1;
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
+            npc.alpha = 75;
             Main.npcCatchable[mod.NPCType("CuteSlimeRainbow")] = true;
             npc.catchItem = (short)mod.ItemType("CuteSlimeRainbowNew");
         }
@@ -46,7 +47,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Main.DiscoColor;
+            lightColor = Main.DiscoColor;
+            lightColor.A = (byte)(255 - npc.alpha);
+            return lightColor;
         }
     }
 }

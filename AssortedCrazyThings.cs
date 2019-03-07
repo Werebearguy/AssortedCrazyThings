@@ -700,7 +700,7 @@ namespace AssortedCrazyThings
                 case AssMessageType.SendClientChangesGitGud:
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        AssUtils.Print("recv SendClientChangesGitGud");
+                        //AssUtils.Print("recv SendClientChangesGitGud");
                         //recieve loaded values from the player tag compound
                         playerNumber = reader.ReadByte();
                         gPlayer = Main.player[playerNumber].GetModPlayer<GitGudPlayer>();
@@ -718,7 +718,7 @@ namespace AssortedCrazyThings
                         switch (gitgudType)
                         {
                             case (byte)GitGudType.Plantera:
-                                AssUtils.Print("got plantera reset");
+                                //AssUtils.Print("got plantera reset");
                                 gPlayer.planteraGitGudCounter = 0;
                                 break;
                             default: //shouldn't get there hopefully
@@ -774,12 +774,12 @@ namespace AssortedCrazyThings
         ResetGitGud
     }
 
-    public enum GitGudType : int
+    public enum GitGudType : byte
     {
-        None = 0,
-        Plantera = 1,
-        //KingSlime = 2,
-        //EyeOfChthulu = 4,
+        None,
+        Plantera,
+        //KingSlime,
+        //EyeOfChthulu,
 
     }
 
