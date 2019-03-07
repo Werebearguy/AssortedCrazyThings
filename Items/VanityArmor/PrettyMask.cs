@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.VanityArmor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Silk, 50);
-            recipe.AddIngredient(ItemID.RedHusk, 1);
+            recipe.AddIngredient(ItemID.Feather, 1);
             recipe.AddTile(TileID.Loom);
             recipe.SetResult(this);
             recipe.AddRecipe();

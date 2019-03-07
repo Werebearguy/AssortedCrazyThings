@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +9,8 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Costume Suitcase");
-            Tooltip.SetDefault("Use to switch your pet's appearance");
+            Tooltip.SetDefault("Left Click to change your Pet's appearance"
+                 + "\nRight Click to change your Light Pet's appearance");
         }
 
         public override void SetDefaults()

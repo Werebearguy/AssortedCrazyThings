@@ -9,10 +9,10 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Loot Magnet");
-            Tooltip.SetDefault("Increased Coin Pickup Range"
-                + "\nIncreased Heart and Mana Pickup Range"
-                + "\nHitting Enemies Will Sometimes Drop Extra Coins"
-                + "\nShops Have Lowered Prices");
+            Tooltip.SetDefault("Increased coin pickup range"
+                + "\nIncreased heart and mana pickup range"
+                + "\nHitting enemies will sometimes Drop extra coins"
+                + "\nShops have lowered prices");
         }
 
         public override void SetDefaults()
