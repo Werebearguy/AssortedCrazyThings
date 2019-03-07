@@ -24,6 +24,38 @@ namespace AssortedCrazyThings.NPCs
             shouldSoulDrop = false;
         }
 
+        private void ResetCounter(ref byte counter)
+        {
+            counter = 0;
+        }
+
+        private void GitGudReset(int type)
+        {
+            GitGudType gitGudType = GitGudType.None;
+
+            //Single and Server only
+            for (int i = 0; i < 255; i++)
+            {
+                if (Main.player[i].active)
+                {
+                    if (type == NPCID.Plantera)
+                    {
+                        gitGudType = GitGudType.Plantera;
+                        GitGudPlayer gPlayer = Main.player[i].GetModPlayer<GitGudPlayer>(mod);
+                        gPlayer.planteraGitGudCounter = 0; //resets even when all but one player is dead and plantera is defeated
+                    }
+                }
+            }
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket packet = mod.GetPacket();
+                packet.Write((byte)AssMessageType.ResetGitGud);
+                packet.Write((byte)gitGudType);
+                packet.Send(); //send to all clients
+            }
+        }
+
         public override void NPCLoot(NPC npc)
         {
             //other pets
@@ -69,18 +101,6 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetFishronItem>());
             }
 
-            if (npc.type == NPCID.Plantera)
-            {
-                for (int i = 0; i < 255; i++)
-                {
-                    if (Main.player[i].active)
-                    {
-                        AssPlayer mPlayer = Main.player[i].GetModPlayer<AssPlayer>(mod);
-                        mPlayer.planteraGitGudCounter = 0; //resets even when all but one player is dead and plantera is defeated
-                    }
-                }
-            }
-
             //soul spawn from dead enemies while harvester alive
 
             if (shouldSoulDrop)
@@ -98,6 +118,8 @@ namespace AssortedCrazyThings.NPCs
                     }
                 }
             }
+
+            GitGudReset(npc.type);
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)

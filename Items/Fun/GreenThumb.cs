@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Fun
 {
 	public class GreenThumb : ModItem
 	{
-        /*Relevant fields in AssPlayer.cs:
+        /*Relevant fields in GitGudPlayer.cs:
          *      public const int planteraGitGudCounterMax = 5;
          *      public int planteraGitGudCounter = 0;
          *      public bool planteraGitGud = false;
@@ -33,8 +33,8 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
-            mPlayer.planteraGitGud = true;
+            GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
+            gPlayer.planteraGitGud = true;
         }
     }
 }

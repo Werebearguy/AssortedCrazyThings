@@ -57,10 +57,6 @@ namespace AssortedCrazyThings
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
         public float step;
 
-        public const int planteraGitGudCounterMax = 5;
-        public int planteraGitGudCounter = 0;
-        public bool planteraGitGud = false;
-
         public bool soulSaviorArmor = false;
 
         private bool rightClickPrev = false;
@@ -68,6 +64,11 @@ namespace AssortedCrazyThings
 
         private bool leftClickPrev = false;
         private bool leftClickPrev2 = false;
+
+        //legacy, but don't delete
+        public const int planteraGitGudCounterMax = 5;
+        public int planteraGitGudCounter = 0;
+        public bool planteraGitGud = false;
 
         public override void ResetEffects()
         {
@@ -161,7 +162,7 @@ namespace AssortedCrazyThings
                 {"slotsPlayer", (int)slotsPlayer}, //keep as legacy
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
-                {"planteraGitGudCounter", (int)planteraGitGudCounter},
+                {"planteraGitGudCounter", (int)planteraGitGudCounter}, //keep as legacy
             };
         }
 
@@ -170,7 +171,7 @@ namespace AssortedCrazyThings
             slotsPlayer = (uint)tag.GetInt("slotsPlayer"); //keep as legacy
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
-            planteraGitGudCounter = tag.GetInt("planteraGitGudCounter");
+            planteraGitGudCounter = tag.GetInt("planteraGitGudCounter"); //keep as legacy
         }
 
         public override void OnEnterWorld(Player player)
@@ -180,6 +181,13 @@ namespace AssortedCrazyThings
                 PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
                 mPlayer.slots = slotsPlayer;
                 slotsPlayer = 0;
+            }
+
+            if (planteraGitGudCounter != 0) //transfer legacy variable over to new one
+            {
+                GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
+                gPlayer.planteraGitGudCounter = (byte)planteraGitGudCounter;
+                planteraGitGudCounter = 0;
             }
         }
 
@@ -332,7 +340,6 @@ namespace AssortedCrazyThings
             }
         }
 
-
         private void UpdateTeleportHomeWhenLow()
         {
             //this code runs even when the accessory is not equipped
@@ -434,36 +441,6 @@ namespace AssortedCrazyThings
                 }
             }
             return true;
-        }
-
-        private void UpdatePlanteraGitGud()
-        {
-            if (planteraGitGud) player.buffImmune[BuffID.Poisoned] = true;
-
-            if (planteraGitGudCounter >= planteraGitGudCounterMax)
-            {
-                planteraGitGudCounter = 0;
-                if (!player.HasItem(mod.ItemType<GreenThumb>()) && !planteraGitGud)
-                {
-                    Item.NewItem(player.getRect(), mod.ItemType<GreenThumb>());
-                }
-            }
-        }
-
-        private void PlanteraGitGudHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-        {
-            if (planteraGitGud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera))
-            {
-                damage = (int)(damage * 0.85f);
-            }
-        }
-
-        private void PlanteraGitGudHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            if (planteraGitGud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle))
-            {
-                damage = (int)(damage * 0.85f);
-            }
         }
 
         private void RightClickStatus()
@@ -750,8 +727,6 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            PlanteraGitGudHitByProjectile(proj, ref damage, ref crit);
-
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -759,8 +734,6 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            PlanteraGitGudHitByNPC(npc, ref damage, ref crit);
-
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -808,11 +781,6 @@ namespace AssortedCrazyThings
             UpdateGetDefenseWhenLow();
 
             Empower();
-        }
-
-        public override void PostUpdateEquips() //this actually only gets called when player is alive
-        {
-            UpdatePlanteraGitGud();
         }
 
         public override void PreUpdate()

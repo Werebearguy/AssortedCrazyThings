@@ -300,6 +300,7 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
+            //from server to clients
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncPlayerVanity);
             packet.Write((byte)player.whoAmI);
@@ -490,7 +491,7 @@ namespace AssortedCrazyThings
 
         private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
         public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000 
-                                      //slt3     |slt2     |slt1     |slt0     
+                                      //slot3    |slto2    |slto1    |slto0     
 
         private bool AddAccessory(byte slotNumber, uint type)
         {

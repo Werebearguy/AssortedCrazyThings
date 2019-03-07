@@ -513,6 +513,7 @@ namespace AssortedCrazyThings
 
             if (left != null &&
                 Main.hasFocus &&
+                !Main.LocalPlayer.dead &&
                 !Main.LocalPlayer.mouseInterface &&
                 !Main.drawingPlayerChat &&
                 !Main.editSign &&
@@ -620,7 +621,9 @@ namespace AssortedCrazyThings
             byte playerNumber;
             AssPlayer mPlayer;
             PetPlayer petPlayer;
+            GitGudPlayer gPlayer;
             byte changes;
+            byte gitgudType;
             //byte npcnumber;
             //byte npcAltTexture;
 
@@ -637,7 +640,6 @@ namespace AssortedCrazyThings
                         }
                     }
                     break;
-
                 case AssMessageType.SyncPlayer:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -695,6 +697,36 @@ namespace AssortedCrazyThings
                         mPlayer.ConvertInertSoulsInventory();
                     }
                     break;
+                case AssMessageType.SendClientChangesGitGud:
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        AssUtils.Print("recv SendClientChangesGitGud");
+                        //recieve loaded values from the player tag compound
+                        playerNumber = reader.ReadByte();
+                        gPlayer = Main.player[playerNumber].GetModPlayer<GitGudPlayer>();
+                        gPlayer.planteraGitGudCounter = reader.ReadByte();
+                    }
+                    break;
+                case AssMessageType.ResetGitGud:
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        //receive reset value from server, personalized packet
+                        //only set own value
+                        gitgudType = reader.ReadByte();
+                        gPlayer = Main.LocalPlayer.GetModPlayer<GitGudPlayer>();
+
+                        switch (gitgudType)
+                        {
+                            case (byte)GitGudType.Plantera:
+                                AssUtils.Print("got plantera reset");
+                                gPlayer.planteraGitGudCounter = 0;
+                                break;
+                            default: //shouldn't get there hopefully
+                                ErrorLogger.Log("Recieved unspecified ResetGitGud Packet " + gitgudType);
+                                break;
+                        }
+                    }
+                    break;
                 //case AssMessageType.SyncAltTextureNPC:
                 //    if (Main.netMode == NetmodeID.MultiplayerClient)
                 //    {
@@ -737,7 +769,18 @@ namespace AssortedCrazyThings
         SyncPlayer,
         SyncPlayerVanity,
         //SyncAltTextureNPC,
-        ConvertInertSoulsInventory
+        ConvertInertSoulsInventory,
+        SendClientChangesGitGud,
+        ResetGitGud
+    }
+
+    public enum GitGudType : int
+    {
+        None = 0,
+        Plantera = 1,
+        //KingSlime = 2,
+        //EyeOfChthulu = 4,
+
     }
 
     public enum PetPlayerChanges : byte
