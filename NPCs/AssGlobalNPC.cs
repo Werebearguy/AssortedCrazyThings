@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.NPCs
                 }
             }
 
-            if (Main.netMode == NetmodeID.Server)
+            if (Main.netMode == NetmodeID.Server && gitGudType != GitGudType.None)
             {
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.ResetGitGud);
