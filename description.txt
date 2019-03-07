@@ -1,24 +1,4 @@
-This mod adds a large amount of enemies, a hefty amount of pets, and a few other things. For a list of all content in this mod, please visit the homepage. For a brief list of what we offer:
-
-Enemies:
- * 66 Common-ish enemies
- * 2 Bosses
-
-Items:
-* 38 Accessories
- * 1 Accessory (Consolation Prize, see homepage)
- * 2 Ammo Types
- * 1 Armor Set (3 pieces)
- * 3 Armor Pieces (Vanity)
- * 1 Furniture
- * 52 Pets (Many of which have alt skins)
- * 54 Pet Vanity (For Cute Slimes)
- * 1 Pet Vanity (For many other pets)
- * 2 Tools
- * 11 Weapons
-
-Fun:
- * A lot, hopefully!
+This mod adds a large amount of enemies, a hefty amount of pets, and a few other things. For a list of all content in this mod, please visit the homepage. We've got a lot of stuff to offer in this mod.
 
 *- Mar 08, 2019
 Hefty update! Homepage is now our Github repository. Click it to view our wiki and works in progress!
