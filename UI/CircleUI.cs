@@ -7,41 +7,44 @@ using System;
 
 namespace AssortedCrazyThings.UI
 {
+    //Huge credit to Muzuwi: https://github.com/Muzuwi/AmmoboxPlus/blob/master/AmmoboxUI.cs
     class CircleUI : UIState
     {
-        // Is the UI visible?
+        //Is the UI visible?
         internal static bool visible = false;
-        // Spawn position, i.e. mouse position at the time of pressing the hotkey
+        //Spawn position, i.e. mouse position at UI start
         internal static Vector2 spawnPosition;
         internal static Vector2 leftCorner;
 
-        // Circle diameter
+        //Circle diameter
         internal static int mainDiameter = 36;
-        // Circle radius
+        //Circle radius
         internal static int mainRadius = 36 / 2;
 
-        // Held item type
+        //Held item type
         internal static int heldItemType = -1;
-        // Which thing is currently highlighted?
+        //Which thing is currently highlighted?
         internal static int returned = -1;
-        // Which thing was the previously selected one?
+        //Which thing was the previously selected one?
         internal static int currentSelected = -1;
 
+        //Holds data about what to draw
         internal static CircleUIConf UIConf;
 
-        // Initialization
+        //Initialization
         public override void OnInitialize()
         {
             spawnPosition = new Vector2();
             leftCorner = new Vector2();
         }
 
-        // Update, unused
+        //Update, unused
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }
 
+        //Draw
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
@@ -49,12 +52,14 @@ namespace AssortedCrazyThings.UI
 
             Texture2D bgTexture = Main.wireUITexture[0];
 
-            // Draw held item bg circle
+            //Draw held item bg circle
             Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
 
-            spriteBatch.Draw(Main.wireUITexture[CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition) ? 1 : 0], outputRect, Color.White);
+            bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
 
-            // Draw held item inside circle
+            spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
+
+            //Draw held item inside circle
             if (heldItemType != -1)
             {
                 int finalWidth = Main.itemTexture[heldItemType].Width / 2;
@@ -64,15 +69,15 @@ namespace AssortedCrazyThings.UI
                 spriteBatch.Draw(Main.itemTexture[heldItemType], outputWeaponRect, Color.White);
             }
             
-            int outerRadius = 48; //increase the more options are available
+            int outerRadius = 48;
             if (UIConf.CircleAmount > 5) outerRadius += 5 * (UIConf.CircleAmount - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
 
             double offset = 0;
             double angleSteps = 2.0d / UIConf.CircleAmount;
             int done = 0;
-            // Starting angle
+            //Starting angle
             double i = offset;
-            // done --> ID of currently drawn circle
+            //done --> ID of currently drawn circle
             for (done = 0; done < UIConf.CircleAmount; done++)
             {
                 double x = outerRadius * Math.Sin(i * Math.PI);
@@ -80,10 +85,10 @@ namespace AssortedCrazyThings.UI
                 
 
                 Rectangle bgRect = new Rectangle((int)(leftCorner.X + x), (int)(leftCorner.Y + y), mainDiameter, mainDiameter);
-                // Check if mouse is within the circle checked
+                //Check if mouse is within the circle checked
                 bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
 
-                // Actually draw the bg circle
+                //Actually draw the bg circle
                 Color drawColor = Color.White;
                 if (done == currentSelected)
                 {
@@ -95,7 +100,7 @@ namespace AssortedCrazyThings.UI
                 }
                 spriteBatch.Draw(Main.wireUITexture[isMouseWithin ? 1 : 0], bgRect, drawColor);
 
-                // Draw sprites over the icons
+                //Draw sprites over the icons
                 int width = UIConf.Textures[done].Width;
                 int height = UIConf.Textures[done].Height;
                 if (UIConf.SpritesheetDivider > 0) height /= UIConf.SpritesheetDivider;
@@ -114,13 +119,27 @@ namespace AssortedCrazyThings.UI
 
                 spriteBatch.Draw(UIConf.Textures[done], projRect, sourceRect, drawColor);
 
-                if (isMouseWithin && UIConf.Unlocked[done])
+                if (isMouseWithin)
                 {
-                    //set the "returned" new type
-                    returned = done;
+                    if (UIConf.Unlocked[done])
+                    {
+                        //set the "returned" new type
+                        returned = done;
+                    }
+                    else
+                    {
+                        //if hovering over a locked thing, don't return anything new
+                        returned = currentSelected;
+                    }
                 }
 
                 i += angleSteps;
+            }
+
+            if (middle)
+            {
+                //if hovering over the middle, don't return anything new
+                returned = currentSelected;
             }
 
             //extra loop so tooltips are always drawn after the circles
@@ -134,7 +153,7 @@ namespace AssortedCrazyThings.UI
 
                 if (isMouseWithin)
                 {
-                    //  Draw the tooltip
+                    // Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(15, 15), fontColor, 0, Vector2.Zero, Vector2.One);
@@ -149,7 +168,7 @@ namespace AssortedCrazyThings.UI
 
         internal bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int innerRadius, int pieceCount, int elementNumber)
         {
-            //  Check if mouse cursor is outside the inner circle
+            // Check if mouse cursor is outside the inner circle
             bool outsideInner = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) > innerRadius * innerRadius;
 
             double step = 360 / pieceCount;
@@ -160,7 +179,7 @@ namespace AssortedCrazyThings.UI
             double endAngle = (beginAngle + step) % 360;
             if (beginAngle < 0) beginAngle = 360 + beginAngle;
 
-            //  Calculate x,y coords on outer circle
+            // Calculate x,y coords on outer circle
             double calculatedAngle = Math.Atan2(mousePos.X - center.X, - (mousePos.Y - center.Y));
             calculatedAngle = calculatedAngle * 180 / Math.PI;
 
