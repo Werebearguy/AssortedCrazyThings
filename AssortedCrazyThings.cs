@@ -615,9 +615,6 @@ namespace AssortedCrazyThings
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             AssMessageType msgType = (AssMessageType)reader.ReadByte();
-            short knapSackSlimeIndex;
-            int arrayLength;
-            byte knapSackSlimeTexture;
             byte playerNumber;
             AssPlayer mPlayer;
             PetPlayer petPlayer;
@@ -629,43 +626,6 @@ namespace AssortedCrazyThings
 
             switch (msgType)
             {
-                case AssMessageType.SyncKnapSackSlimeTexture:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        knapSackSlimeIndex = reader.ReadInt16();
-                        knapSackSlimeTexture = reader.ReadByte();
-                        if (Main.projectile[knapSackSlimeIndex].type == ProjectileType<SlimePackMinion>())
-                        {
-                            Main.projectile[knapSackSlimeIndex].localAI[1] = knapSackSlimeTexture;
-                        }
-                    }
-                    break;
-                case AssMessageType.SyncPlayer:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        playerNumber = reader.ReadByte();
-                        mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-
-                        arrayLength = reader.ReadInt16();
-                        //Main.NewText(arrayLength);
-                        short[] indexes = new short[arrayLength];
-                        byte[] textures = new byte[arrayLength];
-
-                        for (int i = 0; i < arrayLength; i++)
-                        {
-                            indexes[i] = reader.ReadInt16();
-                            textures[i] = reader.ReadByte();
-                        }
-                        for (int i = 0; i < arrayLength; i++)
-                        {
-                            //Main.NewText("recv SyncKnapSackSlimeTextureOnEnterWorld with " + indexes[i] + " " + textures[i]);
-                            if (Main.projectile[indexes[i]].type == ProjectileType<SlimePackMinion>())
-                            {
-                                Main.projectile[indexes[i]].localAI[1] = textures[i];
-                            }
-                        }
-                    }
-                    break;
                 case AssMessageType.SyncPlayerVanity:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -765,8 +725,6 @@ namespace AssortedCrazyThings
     public enum AssMessageType : byte
     {
         SendClientChangesVanity,
-        SyncKnapSackSlimeTexture,
-        SyncPlayer,
         SyncPlayerVanity,
         //SyncAltTextureNPC,
         ConvertInertSoulsInventory,

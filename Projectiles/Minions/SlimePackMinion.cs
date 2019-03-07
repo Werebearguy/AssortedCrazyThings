@@ -1,11 +1,9 @@
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
@@ -50,14 +48,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            //AssUtils.Print("send " + texture);
             writer.Write((byte)texture);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             texture = reader.ReadByte();
-            //AssUtils.Print("recv " + texture);
         }
 
         public override bool PreAI()
@@ -78,29 +74,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 if(texture == 0)
                 {
                     byte tex = (byte)Main.rand.Next(1, TotalNumberOfThese + 1);
-
-                    //if (Main.netMode == NetmodeID.Server)
-                    //{
-                    //    //Console.WriteLine("generated texture " + tex);
-                    //    ModPacket packet = mod.GetPacket();
-                    //    packet.Write((byte)AssMessageType.SyncKnapSackSlimeTexture);
-                    //    packet.Write((short)projectile.whoAmI);
-                    //    packet.Write((byte)tex);
-                    //    packet.Send();
-                    //}
-                    //else
-                    //{
-                    //    projectile.localAI[1] = tex;
-                    //}
                     texture = tex;
                     projectile.netUpdate = true;
                 }
             }
-            //else
-            //{
-            //    texture = 1;
-            //    //projectile.localAI[1] = 1; //use temp texture until server sends packet
-            //}
 
             return true;
         }

@@ -121,40 +121,6 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-        {
-            ////like OnEnterWorld but serverside
-            //short[] indexes = new short[1000];
-            //byte[] textures = new byte[1000];
-            //short arrayLength = 0;
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    if(Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<SlimePackMinion>())
-            //    {
-            //        SlimePackMinion m = Main.projectile[i].modProjectile as SlimePackMinion;
-            //        indexes[arrayLength] = (short)i;
-            //        textures[arrayLength++] = m.texture;
-            //    }
-            //}
-            //Array.Resize(ref indexes, arrayLength + 1);
-            //Array.Resize(ref textures, arrayLength + 1);
-
-            //if(arrayLength > 0)
-            //{
-            //    ModPacket packet = mod.GetPacket();
-            //    packet.Write((byte)AssMessageType.SyncPlayer);
-            //    packet.Write((byte)player.whoAmI);
-            //    packet.Write(arrayLength);
-            //    //Console.WriteLine(arrayLength);
-            //    for (int i = 0; i < arrayLength; i++)
-            //    {
-            //        packet.Write(indexes[i]);
-            //        packet.Write(textures[i]);
-            //    }
-            //    packet.Send(toWho, fromWho);
-            //}
-        }
-
         public override TagCompound Save()
         {
             return new TagCompound
@@ -729,8 +695,20 @@ namespace AssortedCrazyThings
             SpawnSoulTemp();
         }
 
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            ApplyCandleDebuffs(target);
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            ApplyCandleDebuffs(target);
+        }
+
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
+            ApplyCandleDebuffs(target);
+
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -738,6 +716,8 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
+            ApplyCandleDebuffs(target);
+
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -751,21 +731,6 @@ namespace AssortedCrazyThings
         public override void GetWeaponCrit(Item item, ref int crit)
         {
             if (empoweringBuff) crit += (int)(10 * step);
-        }
-
-        //public override void OnHitAnything(float x, float y, Entity victim)
-        //{
-        //     ApplyCandleDebuffs(victim);
-        //}
-
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
-        {
-            ApplyCandleDebuffs(target);
-        }
-
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            ApplyCandleDebuffs(target);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
