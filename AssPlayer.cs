@@ -503,6 +503,7 @@ namespace AssortedCrazyThings
             }
             else if(victim is Player)
             {
+                return;
                 if (everburningCandleBuff) ((Player)victim).AddBuff(BuffID.OnFire, 120);
                 if (everburningCursedCandleBuff) ((Player)victim).AddBuff(BuffID.CursedInferno, 120);
                 if (everfrozenCandleBuff) ((Player)victim).AddBuff(BuffID.Frostburn, 120);
@@ -728,6 +729,20 @@ namespace AssortedCrazyThings
             SpawnSoulTemp();
         }
 
+        public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
+        {
+            ResetEmpoweringTimer();
+
+            SpawnSoulTemp();
+        }
+
+        public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
+        {
+            ResetEmpoweringTimer();
+
+            SpawnSoulTemp();
+        }
+
         public override void GetWeaponDamage(Item item, ref int damage)
         {
             if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
@@ -738,9 +753,19 @@ namespace AssortedCrazyThings
             if (empoweringBuff) crit += (int)(10 * step);
         }
 
-        public override void OnHitAnything(float x, float y, Entity victim)
+        //public override void OnHitAnything(float x, float y, Entity victim)
+        //{
+        //     ApplyCandleDebuffs(victim);
+        //}
+
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-             ApplyCandleDebuffs(victim);
+            ApplyCandleDebuffs(target);
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            ApplyCandleDebuffs(target);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
