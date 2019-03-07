@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType("PetFishronProj");
             item.buffType = mod.BuffType("PetFishronBuff");
             item.rare = -11;
-            item.value = Item.sellPrice(silver: 20);
+            item.value = Item.sellPrice(copper: 10);
         }
 
         public override void UseStyle(Player player)

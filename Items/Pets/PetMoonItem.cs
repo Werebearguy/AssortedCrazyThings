@@ -1,3 +1,5 @@
+using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,12 +19,12 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("PetMoonProj");
-            item.buffType = mod.BuffType("PetMoonBuff");
+            item.shoot = mod.ProjectileType<PetMoonProj>();
+            item.buffType = mod.BuffType<PetMoonBuff>();
             item.width = 20;
             item.height = 26;
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(gold: 7);
         }
 
         public override void UseStyle(Player player)

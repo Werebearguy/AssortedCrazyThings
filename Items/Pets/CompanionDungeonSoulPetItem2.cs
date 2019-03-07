@@ -37,15 +37,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff2>();
             item.rare = -11;
 
-            item.value = Item.sellPrice(copper: 10);
-        }
-
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
+            item.value = Item.sellPrice(silver: 50);
         }
 
         //hardmode recipe

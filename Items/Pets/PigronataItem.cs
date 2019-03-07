@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType("Pigronata");
             item.buffType = mod.BuffType("PigronataBuff");
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(gold: 2, silver: 20);
         }
 
         public override void AddRecipes()
