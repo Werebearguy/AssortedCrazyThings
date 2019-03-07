@@ -8,11 +8,6 @@ namespace AssortedCrazyThings.Items
 {
     public class AssGlobalItem : GlobalItem
 	{
-		public AssGlobalItem()
-		{
-
-		}
-
 		public override bool InstancePerEntity
 		{
 			get

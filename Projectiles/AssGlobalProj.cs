@@ -6,11 +6,6 @@ namespace AssortedCrazyThings.Projectiles
 {
     public class AssGlobalProj : GlobalProjectile
     {
-        public AssGlobalProj()
-        {
-
-        }
-
         public override bool InstancePerEntity
         {
             get

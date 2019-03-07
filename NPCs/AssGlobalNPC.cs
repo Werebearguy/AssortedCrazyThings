@@ -32,6 +32,11 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
             }
 
+            if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
+            {
+                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<LilWrapsItem>());
+            }
+
             if (npc.type == NPCID.RainbowSlime)
             {
                 if (Main.rand.NextBool(2)) Item.NewItem(npc.getRect(), mod.ItemType<RainbowSlimeItem>());
@@ -40,11 +45,6 @@ namespace AssortedCrazyThings.NPCs
             if (npc.type == NPCID.IlluminantSlime)
             {
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<IlluminantSlimeItem>());
-            }
-
-            if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
-            {
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<LilWrapsItem>());
             }
 
             //boss pets
@@ -81,7 +81,7 @@ namespace AssortedCrazyThings.NPCs
                 }
             }
 
-            //soul spawn from dead enemies
+            //soul spawn from dead enemies while harvester alive
 
             if (shouldSoulDrop)
             {

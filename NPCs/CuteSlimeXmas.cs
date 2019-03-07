@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.NPCs
         {
             if (Main.xMas == true)
             {
-                if (ModConf.CuteSlimes) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
+                if (ModConf.CuteSlimes && !AssUtils.AnyNPCs(AssortedCrazyThings.slimePetNPCs)) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
                 else return 0f;
             }
             else
