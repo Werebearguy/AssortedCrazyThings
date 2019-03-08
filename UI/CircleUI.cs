@@ -28,6 +28,9 @@ namespace AssortedCrazyThings.UI
         //Which thing was the previously selected one?
         internal static int currentSelected = -1;
 
+        //Fade in animation when opening the UI
+        internal static float fadeIn = 0;
+
         //Holds data about what to draw
         internal static CircleUIConf UIConf;
 
@@ -49,28 +52,11 @@ namespace AssortedCrazyThings.UI
         {
             base.DrawSelf(spriteBatch);
             Main.LocalPlayer.mouseInterface = true;
-
-            Texture2D bgTexture = Main.wireUITexture[0];
-
-            //Draw held item bg circle
-            Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
-
-            bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
-
-            spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
-
-            //Draw held item inside circle
-            if (heldItemType != -1)
-            {
-                int finalWidth = Main.itemTexture[heldItemType].Width / 2;
-                int finalHeight = Main.itemTexture[heldItemType].Height / 2;
-                Rectangle outputWeaponRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
-                //outputWeaponRect.Inflate(4, 4);
-                spriteBatch.Draw(Main.itemTexture[heldItemType], outputWeaponRect, Color.White);
-            }
             
+            //48
             int outerRadius = 48;
             if (UIConf.CircleAmount > 5) outerRadius += 5 * (UIConf.CircleAmount - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
+            if (fadeIn < outerRadius) outerRadius = (int)(fadeIn += (float)outerRadius / 10);
 
             double offset = 0;
             double angleSteps = 2.0d / UIConf.CircleAmount;
@@ -134,6 +120,25 @@ namespace AssortedCrazyThings.UI
                 }
 
                 i += angleSteps;
+            }
+
+            Texture2D bgTexture = Main.wireUITexture[0];
+
+            //Draw held item bg circle
+            Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
+
+            bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
+
+            spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
+
+            //Draw held item inside circle
+            if (heldItemType != -1)
+            {
+                int finalWidth = Main.itemTexture[heldItemType].Width / 2;
+                int finalHeight = Main.itemTexture[heldItemType].Height / 2;
+                Rectangle outputWeaponRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
+                //outputWeaponRect.Inflate(4, 4);
+                spriteBatch.Draw(Main.itemTexture[heldItemType], outputWeaponRect, Color.White);
             }
 
             if (middle)

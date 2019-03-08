@@ -36,14 +36,18 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.raining == true)
+            if (Main.hardMode)
             {
-                return SpawnCondition.CorruptWaterCritter.Chance * 0.2f;
+                if (Main.raining)
+                {
+                    return SpawnCondition.CorruptWaterCritter.Chance * 0.2f;
+                }
+                else
+                {
+                    return SpawnCondition.CorruptWaterCritter.Chance * 0.02f;
+                }
             }
-            else
-            {
-                return SpawnCondition.CorruptWaterCritter.Chance * 0.02f;
-            }
+            else return 0f;
         }
 
         public override void NPCLoot()

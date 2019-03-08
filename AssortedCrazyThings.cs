@@ -399,6 +399,7 @@ namespace AssortedCrazyThings
             CircleUI.spawnPosition = Main.MouseScreen;
             CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
             CircleUI.heldItemType = triggerType;
+            CircleUI.fadeIn = 0;
         }
 
         private void CircleUIEnd(bool triggerLeft = true)
