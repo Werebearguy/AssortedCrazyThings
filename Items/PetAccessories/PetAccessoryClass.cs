@@ -785,6 +785,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryToyMace : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Paladin's Mace");
+            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryToySpear : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Spartan Spear");
+            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
     public enum SlotType : byte
     {
         None, //reserved
@@ -897,6 +925,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffRuby",
                 "PetAccessoryStaffSapphire",
                 "PetAccessoryStaffTopaz",
+				
                 "PetAccessoryToyShield",
                 "PetAccessoryToySword",
 				
@@ -904,6 +933,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
 				
                 "PetAccessoryXmasHatRed",
                 "PetAccessoryXmasHatGreen",
+				
+                "PetAccessoryToyMace",
+                "PetAccessoryToySpear",
             };
 
             Init(namesOfAccessories);
@@ -1042,6 +1074,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             red: 2,
             //xmas: 0,
             yellow: 2);
+			
+            Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
+            Add(name: "PetAccessoryToySpear", offsetX: -14f, preDraw: true);
 
             Check();
 
