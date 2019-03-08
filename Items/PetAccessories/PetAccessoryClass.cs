@@ -729,6 +729,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryToyMace : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Paladin's Mace");
+            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
     public class PetAccessoryToyShield : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -740,6 +754,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
         protected override void MoreSetDefaults()
         {
             item.value = (int)SlotType.Accessory;
+        }
+    }
+
+    public class PetAccessoryToySpear : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Spartan's Spear");
+            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
         }
     }
 
@@ -782,34 +810,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         protected override void MoreSetDefaults()
         {
             item.value = (int)SlotType.Hat;
-        }
-    }
-
-    public class PetAccessoryToyMace : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Paladin's Mace");
-            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    public class PetAccessoryToySpear : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Spartan Spear");
-            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
         }
     }
 
@@ -926,16 +926,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffSapphire",
                 "PetAccessoryStaffTopaz",
 				
+                "PetAccessoryToyMace",
                 "PetAccessoryToyShield",
+                "PetAccessoryToySpear",
                 "PetAccessoryToySword",
-				
+
                 "PetAccessoryWizardHat",
 				
                 "PetAccessoryXmasHatRed",
                 "PetAccessoryXmasHatGreen",
-				
-                "PetAccessoryToyMace",
-                "PetAccessoryToySpear",
             };
 
             Init(namesOfAccessories);
@@ -1036,10 +1035,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
 
+            Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
             Add(name: "PetAccessoryToyShield");
-
+            Add(name: "PetAccessoryToySpear", offsetX: -14f, preDraw: true);
             Add(name: "PetAccessoryToySword", offsetX: -2f, preDraw: true);
-			
+
             Add(name: "PetAccessoryWizardHat", offsetY: -12f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryWizardHat",
             black: 2,
@@ -1074,9 +1074,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             red: 2,
             //xmas: 0,
             yellow: 2);
-			
-            Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
-            Add(name: "PetAccessoryToySpear", offsetX: -14f, preDraw: true);
 
             Check();
 
@@ -1091,7 +1088,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 addCounter = 0;
             }
         }
-
 
         private static void Check(bool duringAdd = false, string addedClassName = "fv4zruuu")
         {

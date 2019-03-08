@@ -92,8 +92,10 @@ namespace AssortedCrazyThings.Items
             float veloy = ((cm.Y * item.shootSpeed * rand) / cm.Length());
             Vector2 velo = new Vector2(velox, veloy);
             Vector2 pos = new Vector2(mPlayer.player.Center.X, mPlayer.player.Center.Y + 8f);
-
-            Projectile.NewProjectile(pos, velo + mPlayer.player.velocity, mod.ProjectileType<CandleDustDummy>(), 0, 0f, mPlayer.player.whoAmI);
+            
+            //reduce but not prevent spam from boomerang related weapons or modded damage classes
+            if (mPlayer.player.ownedProjectileCounts[mod.ProjectileType<CandleDustDummy>()] < 2)
+                Projectile.NewProjectile(pos, velo + mPlayer.player.velocity, mod.ProjectileType<CandleDustDummy>(), 0, 0f, mPlayer.player.whoAmI);
         }
 
         public  override void MeleeEffects(Item item, Player player, Rectangle hitbox)
