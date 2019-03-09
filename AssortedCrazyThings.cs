@@ -37,6 +37,9 @@ namespace AssortedCrazyThings
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
 
+        internal static UserInterface HoverNPCUIInterface;
+        internal static HoverNPCUI HoverNPCUI;
+
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
         public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
@@ -146,6 +149,11 @@ namespace AssortedCrazyThings
                 CircleUI.Activate();
                 CircleUIInterface = new UserInterface();
                 CircleUIInterface.SetState(CircleUI);
+
+                HoverNPCUI = new HoverNPCUI();
+                HoverNPCUI.Activate();
+                HoverNPCUIInterface = new UserInterface();
+                HoverNPCUIInterface.SetState(HoverNPCUI);
 
                 CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
@@ -576,22 +584,43 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void UpdateHoverNPCUI(GameTime gameTime)
+        {
+            HoverNPCUI.Update(gameTime);
+        }
+
         public override void UpdateUI(GameTime gameTime)
         {
             UpdateCircleUI(gameTime);
+            UpdateHoverNPCUI(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            int InventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
-            if (InventoryIndex != -1)
+            int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
+            if (inventoryIndex != -1)
             {
-                layers.Insert(++InventoryIndex, new LegacyGameInterfaceLayer
+                layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
                     (
                     "ACT: Appearance Selection",
                     delegate
                     {
                         if (CircleUI.visible) CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+
+            int mouseOverIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Over"));
+            if (mouseOverIndex != -1)
+            {
+                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+                    (
+                    "ACT: NPC Mouse Over",
+                    delegate
+                    {
+                        HoverNPCUIInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)

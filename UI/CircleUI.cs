@@ -158,10 +158,10 @@ namespace AssortedCrazyThings.UI
 
                 if (isMouseWithin)
                 {
-                    // Draw the tooltip
+                    //Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(15, 15), fontColor, 0, Vector2.Zero, Vector2.One);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
         }
@@ -173,7 +173,7 @@ namespace AssortedCrazyThings.UI
 
         internal bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int innerRadius, int pieceCount, int elementNumber)
         {
-            // Check if mouse cursor is outside the inner circle
+            //Check if mouse cursor is outside the inner circle
             bool outsideInner = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) > innerRadius * innerRadius;
 
             double step = 360 / pieceCount;
@@ -184,7 +184,7 @@ namespace AssortedCrazyThings.UI
             double endAngle = (beginAngle + step) % 360;
             if (beginAngle < 0) beginAngle = 360 + beginAngle;
 
-            // Calculate x,y coords on outer circle
+            //Calculate x,y coords on outer circle
             double calculatedAngle = Math.Atan2(mousePos.X - center.X, - (mousePos.Y - center.Y));
             calculatedAngle = calculatedAngle * 180 / Math.PI;
 

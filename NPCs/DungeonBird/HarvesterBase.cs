@@ -82,8 +82,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected short eatTime;
         protected short idleTime;
         protected short hungerTime; //AI_Timer, the "global failsafe", increments when a target exists
-        protected byte maxSoulsEaten;
         protected short jumpRange; //also noclip detect range //100 for restricted v
+        public byte maxSoulsEaten;
         public bool restrictedSoulSearch;
         public short transformTime;
         public bool noDamage;
@@ -1158,7 +1158,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         //AssUtils.Print("finished eating");
                         aiInit = false; //reinitialize
-                        npc.HealEffect(npc.lifeMax - 1 - ++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
+                        soulsEaten++;
+                        //npc.HealEffect(npc.lifeMax - 1 - ++soulsEaten); //life gets set manually anyway so it doesnt matter what number is here
 
                         //poof visual
                         for (int i = 0; i < 20; i++)
