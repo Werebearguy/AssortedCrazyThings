@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone Parts");
-            Tooltip.SetDefault("'Maybe the steampunker can help you with that'");
+            Tooltip.SetDefault("'Maybe the steampunker can help you with that'"
+            + "\nExpert mode only");
         }
 
         public override void SetDefaults()

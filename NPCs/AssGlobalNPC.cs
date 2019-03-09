@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
+using AssortedCrazyThings.Items;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -117,6 +119,13 @@ namespace AssortedCrazyThings.NPCs
                         NetMessage.SendData(23, -1, -1, null, soulID);
                     }
                 }
+            }
+
+            //RecipeBrowser fixes (not actual drops)
+
+            if (npc.type == NPCID.TheDestroyer && npc.Center == new Vector2(1000, 1000))
+            {
+                Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
             }
 
             GitGudReset(npc.type);

@@ -30,6 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
             projectile.timeLeft = LifeTime;
             projectile.alpha = 255;
+            projectile.tileCollide = false;
         }
 
         //ai 0 is the timer until the arrow starts dropping (caps at 15)

@@ -191,6 +191,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
+            //RecipeBrowser fix
+            if (npc.Center == new Vector2(1000, 1000))
+            {
+                Item.NewItem(npc.getRect(), mod.ItemType<CaughtDungeonSoulFreed>());
+            }
+
             Vector2 randVector = new Vector2(1, 1);
             float randFactor = 0f;
 
