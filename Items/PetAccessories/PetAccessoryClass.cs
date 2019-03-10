@@ -1079,7 +1079,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
             UseNoHair = new bool[itemIndex + 1];
-            AltTexture = new int[itemIndex + 1, 9];
+            AltTexture = new int[itemIndex + 1, 11]; //HARDCODED AMOUNT
 
             int[] parameters = new int[Items.Length * 2];
             for (int i = 0; i < Items.Length; i++)
