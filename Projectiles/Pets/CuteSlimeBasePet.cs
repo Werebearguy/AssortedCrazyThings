@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
-            if(projectile.ai[0] != 0f)
+            if(projectile.ai[0] != 0f) //frame 6 to 9 flying
             {
                 frame2Counter += 3;
                 if (frame2Counter > 6)
@@ -39,36 +39,36 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     frame2 = 6;
                 }
             }
-            else
+            else //frame 1 to 4 walking
             {
                 if (projectile.velocity.Y == 0.1f)
                 {
                     if (projectile.velocity.X == 0f)
                     {
-                        frame2 = 0;
+                        frame2 = 1; //0
                         frame2Counter = 0;
                     }
                     else if (Math.Abs(projectile.velocity.X) > 0.1)
                     {
-                        frame2Counter += (int)(Math.Abs(projectile.velocity.X) * 0.4f);
+                        frame2Counter += (int)(Math.Abs(projectile.velocity.X) * 0.2f);
                         frame2Counter++;
                         if (frame2Counter > 6)
                         {
                             frame2++;
                             frame2Counter = 0;
                         }
-                        if (frame2 > 5)
+                        if (frame2 > 4) //5
                         {
-                            frame2 = 0;
+                            frame2 = 1; //0
                         }
                     }
                     else
                     {
-                        frame2 = 0;
+                        frame2 = 1; //0
                         frame2Counter = 0;
                     }
                 }
-                else
+                else //frame 6 to 9 flying
                 {
                     frame2Counter++;
                     if (projectile.velocity.Y < 0f)
