@@ -35,6 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buffs\CuteSlimeCorruptNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeCrimsonNewBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
     <Compile Include="AssUtils.cs" />
     <Compile Include="Buffs\ChunkySlimeBuff.cs" />
@@ -151,6 +153,8 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\Pets\CuteSlimeCorruptNew.cs" />
+    <Compile Include="Items\Pets\CuteSlimeCrimsonNew.cs" />
     <Compile Include="Items\Pets\LilWrapsItem.cs" />
     <Compile Include="Items\Pets\WallFragmentItem.cs" />
     <Compile Include="Items\VanitySelector.cs" />
@@ -248,6 +252,8 @@
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
     <Compile Include="ModConf.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
+    <Compile Include="NPCs\CuteSlimeCorrupt.cs" />
+    <Compile Include="NPCs\CuteSlimeCrimson.cs" />
     <Compile Include="NPCs\DemonEyeWandering.cs" />
     <Compile Include="NPCs\DemonEyeLaser.cs" />
     <Compile Include="NPCs\DemonEyeMechanical.cs" />
@@ -333,6 +339,8 @@
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinion.cs" />
     <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
     <Compile Include="Projectiles\Pets\AbeeminationProj.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeCorruptNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeCrimsonNewPet.cs" />
     <Compile Include="Projectiles\Pets\LilWrapsProj.cs" />
     <Compile Include="Projectiles\Pets\WallFragmentCombined.cs" />
     <Compile Include="Projectiles\Pets\ChunkySlimeProj.cs" />

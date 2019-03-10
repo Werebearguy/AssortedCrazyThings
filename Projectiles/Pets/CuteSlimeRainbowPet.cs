@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 effects = SpriteEffects.FlipHorizontally;
             }
             Texture2D image = Main.projectileTexture[projectile.type];
-            Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, image.Width, image.Height / 10);
+            Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, image.Width, image.Height / 10);
             //Rectangle bounds = new Rectangle();
             //bounds.X = 0;
             //bounds.Width = image.Bounds.Width;

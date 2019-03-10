@@ -961,26 +961,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryCrownGold");
             AddAltTextures(name: "PetAccessoryCrownGold",
-            black: 1,
-            blue: 2,
-            green: 2,
-            pink: 3,
-            purple: 1,
-            rainbow: 2,
-            red: 2,
-            //xmas: 0,
-            yellow: 4);
+            pink: 1,
+            yellow: 2);
             Add(name: "PetAccessoryCrownPlatinum");
             AddAltTextures(name: "PetAccessoryCrownPlatinum",
-            black: 1,
-            blue: 2,
-            green: 2,
-            pink: 3,
-            purple: 1,
-            rainbow: 2,
-            red: 2,
-            //xmas: 0,
-            yellow: 4);
+            pink: 1,
+            yellow: 2);
 
             Add(name: "PetAccessoryHairBowBlack");
             Add(name: "PetAccessoryHairBowBlue");
@@ -993,19 +979,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryHairBowWhite");
             Add(name: "PetAccessoryHairBowYellow");
 
-            Add(name: "PetAccessoryKitchenKnife", offsetX: -6f, preDraw: true);
+            Add(name: "PetAccessoryKitchenKnife", preDraw: true);
 
-            Add(name: "PetAccessoryMetalHelmet", offsetY: -4f, useNoHair: true);
+            Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryMetalHelmet",
-            black: 0,
-            blue: 0,
-            green: 1,
-            pink: 0,
-            purple: 0,
-            rainbow: 0,
-            red: 0,
-            //xmas: 0,
-            yellow: 2);
+            green: 1);
 
             Add(name: "PetAccessoryMittensBlack");
             Add(name: "PetAccessoryMittensBlue");
@@ -1018,62 +996,37 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryMittensWhite");
             Add(name: "PetAccessoryMittensYellow");
 
-            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -20f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -20f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -20f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPink", offsetY: -20f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPinky", offsetY: -20f, alpha: 39);
-            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -20f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadRed", offsetY: -20f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -20f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -12f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -12f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -12f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPink", offsetY: -12f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadPinky", alpha: 39);
+            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -12f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadRed", offsetY: -12f, alpha: 56);
+            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -12f, alpha: 56);
 
-            Add(name: "PetAccessoryStaffAmber", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffAmethyst", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffDiamond", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffEmerald", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffRuby", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffSapphire", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryStaffTopaz", offsetX: -14f, preDraw: true);
+            Add(name: "PetAccessoryStaffAmber", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryStaffAmethyst", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryStaffDiamond", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryStaffEmerald", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryStaffRuby", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryStaffSapphire", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryStaffTopaz", offsetX: -8f, preDraw: true);
 
             Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
             Add(name: "PetAccessoryToyShield");
-            Add(name: "PetAccessoryToySpear", offsetX: -14f, preDraw: true);
-            Add(name: "PetAccessoryToySword", offsetX: -2f, preDraw: true);
+            Add(name: "PetAccessoryToySpear", offsetX: -8f, preDraw: true);
+            Add(name: "PetAccessoryToySword", preDraw: true);
 
-            Add(name: "PetAccessoryWizardHat", offsetY: -12f, useNoHair: true);
+            Add(name: "PetAccessoryWizardHat", offsetY: -10f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryWizardHat",
-            black: 2,
-            blue: 1,
-            green: 1,
+            black: 1,
+            corrupt: 1,
             pink: 2,
-            purple: 2,
-            rainbow: 1,
-            red: 1,
-            //xmas: 0,
-            yellow: 1);
+            purple: 1);
 			
-            Add(name: "PetAccessoryXmasHatGreen", offsetY: -13f, useNoHair: true); //-13f, -8f for proper xmas hat tho
-            AddAltTextures(name: "PetAccessoryXmasHatGreen",
-            black: 1,
-            blue: 2,
-            green: 2,
-            pink: 3,
-            purple: 1,
-            rainbow: 2,
-            red: 2,
-            //xmas: 0,
-            yellow: 2);
-            Add(name: "PetAccessoryXmasHatRed", offsetY: -13f, useNoHair: true);
-            AddAltTextures(name: "PetAccessoryXmasHatRed",
-            black: 1,
-            blue: 2,
-            green: 2,
-            pink: 3,
-            purple: 1,
-            rainbow: 2,
-            red: 2,
-            //xmas: 0,
-            yellow: 2);
+            Add(name: "PetAccessoryXmasHatGreen", offsetY: -4f, useNoHair: true);
+            Add(name: "PetAccessoryXmasHatRed", offsetY: -4f, useNoHair: true);
 
             Check();
 
@@ -1128,7 +1081,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
             UseNoHair = new bool[itemIndex + 1];
-            AltTexture = new int[itemIndex + 1, 9];
+            AltTexture = new int[itemIndex + 1, 11]; //HARDCODED AMOUNT
 
             int[] parameters = new int[Items.Length * 2];
             for (int i = 0; i < Items.Length; i++)
@@ -1164,6 +1117,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         private static void AddAltTextures(string name,
             int black = 0,
             int blue = 0,
+            int corrupt = 0,
+            int crimson = 0,
             int green = 0,
             int pink = 0,
             int purple = 0,
@@ -1172,7 +1127,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             int xmas = 0,
             int yellow = 0)
         {
-            //not specifying (or 0) anything means it only takes the default texture (_Draw)
+            //not specifying anything (or 0) means it only takes the default texture (_Draw)
             //setting it to -1 makes it so the accessory won't render (excluding certain accessories for a slime)
             //setting it to anything other than 0 makes it use the proper texture (_Draw<number>)
 
@@ -1190,7 +1145,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     Yellow
                 }
              */
-            int[] intArray = new int[] {black, blue, green, pink, purple, rainbow, red, xmas, yellow};
+            int[] intArray = new int[] {black, blue, corrupt, crimson, green, pink, purple, rainbow, red, xmas, yellow};
 
             //i is the color (CuteSlimeBasePet.PetColor)
             for (int i = 0; i < intArray.Length; i++)

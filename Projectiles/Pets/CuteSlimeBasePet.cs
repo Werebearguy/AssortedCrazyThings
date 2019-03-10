@@ -14,6 +14,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public const int Texwidth = 28;
         public const int Texheight = 52;
 
+        protected int frame2Counter = 0;
+        protected int frame2 = 0;
+
         public override bool PreAI()
         {
             Player player = Main.player[projectile.owner];
@@ -23,7 +26,72 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
-            if(projectile.velocity.Y != 0.1f) projectile.rotation = projectile.velocity.X * 0.01f;
+            if(projectile.ai[0] != 0f) //frame 6 to 9 flying
+            {
+                frame2Counter += 3;
+                if (frame2Counter > 6)
+                {
+                    frame2++;
+                    frame2Counter = 0;
+                }
+                if (frame2 <= 5 || frame2 > 9)
+                {
+                    frame2 = 6;
+                }
+            }
+            else //frame 1 to 4 walking
+            {
+                if (projectile.velocity.Y == 0.1f)
+                {
+                    if (projectile.velocity.X == 0f)
+                    {
+                        frame2 = 1; //0
+                        frame2Counter = 0;
+                    }
+                    else if (Math.Abs(projectile.velocity.X) > 0.1)
+                    {
+                        frame2Counter += (int)(Math.Abs(projectile.velocity.X) * 0.25f);
+                        frame2Counter++;
+                        if (frame2Counter > 6)
+                        {
+                            frame2++;
+                            frame2Counter = 0;
+                        }
+                        if (frame2 > 4) //5
+                        {
+                            frame2 = 1; //0
+                        }
+                    }
+                    else
+                    {
+                        frame2 = 1; //0
+                        frame2Counter = 0;
+                    }
+                }
+                else //frame 6 to 9 flying
+                {
+                    frame2Counter++;
+                    if (projectile.velocity.Y < 0f)
+                    {
+                        frame2Counter += 2;
+                    }
+                    if (frame2Counter > 6)
+                    {
+                        frame2++;
+                        frame2Counter = 0;
+                    }
+                    if (frame2 > 9)
+                    {
+                        frame2 = 6;
+                    }
+                    if (frame2 < 6)
+                    {
+                        frame2 = 6;
+                    }
+                }
+            }
+
+            if (projectile.velocity.Y != 0.1f) projectile.rotation = projectile.velocity.X * 0.01f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -71,7 +139,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     string[] texNameList = texture.Name.Split(new string[] { "/" }, 10, StringSplitOptions.RemoveEmptyEntries);
                     texture = mod.GetTexture("Projectiles/Pets/" + texNameList[texNameList.Length - 1] + "NoHair");
                 }
-                Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
+                Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, texture.Width, texture.Height / 10);
                 SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
                 Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY + drawOriginOffsetY);
@@ -118,7 +186,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     //else if 0: normal behavior
 
-                    Rectangle frameLocal = new Rectangle(0, projectile.frame * Texheight, texture.Width, texture.Height / 10);
+                    Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, texture.Width, texture.Height / 10);
 
                     //get necessary properties and parameters for draw
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -144,6 +212,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Black,
             Blue,
+            Corrupt,
+            Crimson,
             Green,
             Pink,
             Purple,

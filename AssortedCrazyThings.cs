@@ -21,8 +21,8 @@ namespace AssortedCrazyThings
     {
         //Slime pets
         public static int[] slimePetLegacy = new int[9];
-        public static int[] slimePetNoHair = new int[6];
-        public static int[] slimePetNPCs = new int[9];
+        public static int[] slimePetNoHair = new int[8];
+        public static int[] slimePetNPCs = new int[11];
 
         //Sun pet textures
         public static Texture2D[] sunPetTextures;
@@ -61,15 +61,20 @@ namespace AssortedCrazyThings
 
             slimePetNoHair[index++] = ProjectileType<CuteSlimeBlackNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeBlueNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeCrimsonNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeCorruptNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimePurpleNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimePinkNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeRedNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeYellowNewPet>();
+            //no green, rainbow and xmas
 
             index = 0;
 
             slimePetNPCs[index++] = NPCType<CuteSlimeBlack>();
             slimePetNPCs[index++] = NPCType<CuteSlimeBlue>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeCrimson>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeCorrupt>();
             slimePetNPCs[index++] = NPCType<CuteSlimeGreen>();
             slimePetNPCs[index++] = NPCType<CuteSlimePink>();
             slimePetNPCs[index++] = NPCType<CuteSlimePurple>();
