@@ -61,15 +61,20 @@ namespace AssortedCrazyThings
 
             slimePetNoHair[index++] = ProjectileType<CuteSlimeBlackNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeBlueNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeCrimsonNewPet>();
+            slimePetNoHair[index++] = ProjectileType<CuteSlimeCorruptNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimePurpleNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimePinkNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeRedNewPet>();
             slimePetNoHair[index++] = ProjectileType<CuteSlimeYellowNewPet>();
+            //no green, rainbow and xmas
 
             index = 0;
 
             slimePetNPCs[index++] = NPCType<CuteSlimeBlack>();
             slimePetNPCs[index++] = NPCType<CuteSlimeBlue>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeCrimson>();
+            slimePetNPCs[index++] = NPCType<CuteSlimeCorrupt>();
             slimePetNPCs[index++] = NPCType<CuteSlimeGreen>();
             slimePetNPCs[index++] = NPCType<CuteSlimePink>();
             slimePetNPCs[index++] = NPCType<CuteSlimePurple>();

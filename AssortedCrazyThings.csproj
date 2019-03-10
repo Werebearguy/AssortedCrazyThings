@@ -252,6 +252,8 @@
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
     <Compile Include="ModConf.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
+    <Compile Include="NPCs\CuteSlimeCorrupt.cs" />
+    <Compile Include="NPCs\CuteSlimeCrimson.cs" />
     <Compile Include="NPCs\DemonEyeWandering.cs" />
     <Compile Include="NPCs\DemonEyeLaser.cs" />
     <Compile Include="NPCs\DemonEyeMechanical.cs" />

@@ -982,6 +982,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryKitchenKnife", preDraw: true);
 
             Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
+            AddAltTextures(name: "PetAccessoryMetalHelmet",
+            green: 1);
 
             Add(name: "PetAccessoryMittensBlack");
             Add(name: "PetAccessoryMittensBlue");
