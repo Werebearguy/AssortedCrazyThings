@@ -40,6 +40,9 @@ namespace AssortedCrazyThings
         internal static UserInterface HoverNPCUIInterface;
         internal static HoverNPCUI HoverNPCUI;
 
+        internal static UserInterface HarvesterEdgeInterface;
+        internal static HarvesterEdgeUI HarvesterEdgeUI;
+
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
         public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
@@ -160,6 +163,11 @@ namespace AssortedCrazyThings
                 HoverNPCUIInterface = new UserInterface();
                 HoverNPCUIInterface.SetState(HoverNPCUI);
 
+                HarvesterEdgeUI = new HarvesterEdgeUI();
+                HarvesterEdgeUI.Activate();
+                HarvesterEdgeInterface = new UserInterface();
+                HarvesterEdgeInterface.SetState(HarvesterEdgeUI);
+
                 CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>(), false); //right click of Costume Suitcase
@@ -172,6 +180,8 @@ namespace AssortedCrazyThings
             {
                 CircleUIInterface = null;
                 CircleUI = null;
+
+                HarvesterEdgeUI.typeToTexture = null;
             }
         }
 
@@ -594,10 +604,16 @@ namespace AssortedCrazyThings
             HoverNPCUI.Update(gameTime);
         }
 
+        private void UpdateHarvesterEdgeUI(GameTime gameTime)
+        {
+            HarvesterEdgeUI.Update(gameTime);
+        }
+
         public override void UpdateUI(GameTime gameTime)
         {
             UpdateCircleUI(gameTime);
             UpdateHoverNPCUI(gameTime);
+            UpdateHarvesterEdgeUI(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -626,6 +642,17 @@ namespace AssortedCrazyThings
                     delegate
                     {
                         HoverNPCUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+
+                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+                    (
+                    "ACT: Harvester Edge",
+                    delegate
+                    {
+                        HarvesterEdgeInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)

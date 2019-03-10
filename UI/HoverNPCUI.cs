@@ -78,14 +78,17 @@ namespace AssortedCrazyThings.UI
                         {
                             ret = "Catch it with a net";
                         }
-                        else if(Main.npc[k].type == AssUtils.Instance.NPCType<Harvester1>() ||
-                                Main.npc[k].type == AssUtils.Instance.NPCType<Harvester2>())
+                        else if(Main.npc[k].type == AssUtils.Instance.NPCType<Harvester1>())
                         {
                             //can technically also take life-1
                             //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
                             //ret = "Souls eaten: " + m.soulsEaten + "/" + 15; //m.maxSoulsEaten
 
                             ret = "Souls eaten: " + (Main.npc[k].life - 1) + "/" + 15;
+                        }
+                        else if (Main.npc[k].type == AssUtils.Instance.NPCType<Harvester2>())
+                        {
+                            ret = "Souls eaten: " + (Main.npc[k].life - 1 + 5) + "/" + 15;
                         }
                         break;
                     }
@@ -132,7 +135,26 @@ namespace AssortedCrazyThings.UI
             Color fontColor = new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor);
             if (drawString != "") Main.LocalPlayer.showItemIcon = false;
             Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(16, 36), fontColor, 0, Vector2.Zero, Vector2.One);
+            mousePos.X += 10;
+            mousePos.Y += 10;
+            if (Main.ThickMouse)
+            {
+                mousePos.X += 6;
+                mousePos.Y += 6;
+            }
+
+            Vector2 vector = Main.fontMouseText.MeasureString(drawString);
+
+            if (mousePos.X + vector.X + 4f > Main.screenWidth)
+            {
+                mousePos.X = (int)((float)Main.screenWidth - vector.X - 4f);
+            }
+            if (mousePos.Y + vector.Y + 4f > Main.screenHeight)
+            {
+                mousePos.Y = (int)(Main.screenHeight - vector.Y - 4f);
+            }
+
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(0, 22), fontColor, 0, Vector2.Zero, Vector2.One);
         }
     }
 }
