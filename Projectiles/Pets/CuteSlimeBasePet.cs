@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else if (Math.Abs(projectile.velocity.X) > 0.1)
                     {
-                        frame2Counter += (int)(Math.Abs(projectile.velocity.X) * 0.2f);
+                        frame2Counter += (int)(Math.Abs(projectile.velocity.X) * 0.25f);
                         frame2Counter++;
                         if (frame2Counter > 6)
                         {
