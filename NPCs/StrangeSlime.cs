@@ -10,7 +10,6 @@ namespace AssortedCrazyThings.NPCs
     {
         private const int TotalNumberOfThese = 4;
 
-
         public override string Texture
         {
             get

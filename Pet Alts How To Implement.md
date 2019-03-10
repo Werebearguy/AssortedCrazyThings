@@ -2,8 +2,11 @@
 
  (0) Prerequisites
 
->If you just want to add new textures to existing pets,
->add a new texture in (1) and expand the tooltip list in (4), nothing else required.
+>If you just want to add new textures to existing pets that already have alt textures,
+>add a new texture in (1), and expand the tooltip list in (4), nothing else required.
+>
+>For pets that don't have alt textures yet, do everything from scratch besides the declaration of
+>the `public bool ClassName = false;` thing that you should already have
 
 * "ClassName" excludes the "Proj" suffix, it will be mentioned in the guide when you need to add it
 * if the projectile doesn't have "Proj" in its name, you don't need to include it manually, but for things like
@@ -39,6 +42,9 @@ public override string Texture
 ```
 * Add this at the very end (it should work for both flying and walking pets)
 ```csharp
+//you need those usings:
+//using Microsoft.Xna.Framework;
+//using Microsoft.Xna.Framework.Graphics;
 public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 {
     PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
