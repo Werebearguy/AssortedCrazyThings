@@ -408,6 +408,7 @@
     <Compile Include="Items\Pets\GobletItem.cs" />
     <Compile Include="Tiles\AssGlobalTile.cs" />
     <Compile Include="Tiles\SlimeBeaconTile.cs" />
+    <Compile Include="UI\HarvesterEdgeUI.cs" />
     <Compile Include="UI\HoverNPCUI.cs" />
     <Compile Include="UI\CircleUI.cs" />
     <Compile Include="UI\CircleUIConf.cs" />

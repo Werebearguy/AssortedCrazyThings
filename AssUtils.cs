@@ -44,7 +44,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        public static Dust ShowDustAtPos(int dustType, Vector2 pos)
+        public static Dust DrawDustAtPos(int dustType, Vector2 pos)
         {
             //used for showing a position as a dust on the screen for debugging
             Dust dust = QuickDust(dustType, pos, Color.White);
