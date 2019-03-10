@@ -1021,7 +1021,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryWizardHat", offsetY: -10f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryWizardHat",
             black: 1,
-            green: 3,
+            corrupt: 1,
             pink: 2,
             purple: 1);
 			
