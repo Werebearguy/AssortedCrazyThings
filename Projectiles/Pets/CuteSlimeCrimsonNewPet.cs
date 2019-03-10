@@ -5,11 +5,11 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteSlimeCorruptNewProj : CuteSlimeBasePet
+    public class CuteSlimeCrimsonNewPet : CuteSlimeBasePet
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Corrupt Slime");
+            DisplayName.SetDefault("Cute Crimson Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -18;
@@ -33,9 +33,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.CuteSlimeCorruptNewProj = false;
+                modPlayer.CuteSlimeCrimsonNew = false;
             }
-            if (modPlayer.CuteSlimeCorruptNewProj)
+            if (modPlayer.CuteSlimeCrimsonNew)
             {
                 projectile.timeLeft = 2;
             }

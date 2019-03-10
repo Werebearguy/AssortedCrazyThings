@@ -12,8 +12,8 @@ namespace AssortedCrazyThings.Buffs
 
         protected override void MoreUpdate(PetPlayer mPlayer)
         {
-            mPlayer.CuteSlimeCrimsonNewProj = true;
-            projType = mod.ProjectileType<CuteSlimeCrimsonNewProj>();
+            mPlayer.CuteSlimeCrimsonNew = true;
+            projType = mod.ProjectileType<CuteSlimeCrimsonNewPet>();
             //this is for the altTexture thing where you can specify which slime has which texture
             color = (byte)CuteSlimeBasePet.PetColor.Crimson;
         }

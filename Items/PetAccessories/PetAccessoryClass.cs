@@ -1134,6 +1134,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         private static void AddAltTextures(string name,
             int black = 0,
             int blue = 0,
+            int corrupt = 0,
+            int crimson = 0,
             int green = 0,
             int pink = 0,
             int purple = 0,
@@ -1142,7 +1144,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             int xmas = 0,
             int yellow = 0)
         {
-            //not specifying (or 0) anything means it only takes the default texture (_Draw)
+            //not specifying anything (or 0) means it only takes the default texture (_Draw)
             //setting it to -1 makes it so the accessory won't render (excluding certain accessories for a slime)
             //setting it to anything other than 0 makes it use the proper texture (_Draw<number>)
 
@@ -1160,7 +1162,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     Yellow
                 }
              */
-            int[] intArray = new int[] {black, blue, green, pink, purple, rainbow, red, xmas, yellow};
+            int[] intArray = new int[] {black, blue, corrupt, crimson, green, pink, purple, rainbow, red, xmas, yellow};
 
             //i is the color (CuteSlimeBasePet.PetColor)
             for (int i = 0; i < intArray.Length; i++)

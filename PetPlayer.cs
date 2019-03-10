@@ -50,8 +50,8 @@ namespace AssortedCrazyThings
         ////name pet texture
         //public byte classNameType = 0;
 
-        public bool CuteSlimeCrimsonNewProj = false;
-        public bool CuteSlimeCorruptNewProj = false;
+        public bool CuteSlimeCrimsonNew = false;
+        public bool CuteSlimeCorruptNew = false;
         public bool LilWraps = false;
         public bool PetFishron = false;
         public bool RainbowSlimePet = false;
@@ -119,8 +119,8 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
-            CuteSlimeCrimsonNewProj = false;
-            CuteSlimeCorruptNewProj = false;
+            CuteSlimeCrimsonNew = false;
+            CuteSlimeCorruptNew = false;
             LilWraps = false;
             PetFishron = false;
             RainbowSlimePet = false;
