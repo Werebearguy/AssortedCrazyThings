@@ -1081,7 +1081,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
             UseNoHair = new bool[itemIndex + 1];
-            AltTexture = new int[itemIndex + 1, 11]; //HARDCODED AMOUNT
+            AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePetNPCs.Count]; //assuming the number of slime pets is the same as the number of NPCs
 
             int[] parameters = new int[Items.Length * 2];
             for (int i = 0; i < Items.Length; i++)
@@ -1136,6 +1136,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 {
                     Black,
                     Blue,
+                    Corrupt,
+                    Crimson,
                     Green,
                     Pink,
                     Purple,
@@ -1257,7 +1259,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             {
                                 if (Main.projectile[i].owner == Main.myPlayer &&
                                     typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile) &&
-                                    Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[i].type) == -1)
+                                    !AssortedCrazyThings.slimePetLegacy.Contains(Main.projectile[i].type))
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
                                     mPlayer.slimePetIndex = i;
@@ -1282,7 +1284,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     Main.projectile[mPlayer.slimePetIndex].active &&
                     Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
                     typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile) &&
-                    Array.IndexOf(AssortedCrazyThings.slimePetLegacy, Main.projectile[mPlayer.slimePetIndex].type) == -1)
+                    !AssortedCrazyThings.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)

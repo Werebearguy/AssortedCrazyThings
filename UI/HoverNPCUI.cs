@@ -132,7 +132,9 @@ namespace AssortedCrazyThings.UI
             base.DrawSelf(spriteBatch);
 
             float num = Main.mouseTextColor / 255f;
-            Color fontColor = new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor);
+            //Color fontColor = new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor);
+            // 35, 200, 254);
+            Color baseColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
             if (drawString != "") Main.LocalPlayer.showItemIcon = false;
             Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
             mousePos.X += 10;
@@ -154,7 +156,7 @@ namespace AssortedCrazyThings.UI
                 mousePos.Y = (int)(Main.screenHeight - vector.Y - 4f);
             }
 
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(0, 22), fontColor, 0, Vector2.Zero, Vector2.One);
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(0, 22), baseColor, 0, Vector2.Zero, Vector2.One);
         }
     }
 }

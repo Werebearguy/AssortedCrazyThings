@@ -96,7 +96,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
+            if (!AssortedCrazyThings.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
             {
                 DrawAccessories(spriteBatch, drawColor, preDraw: true);
             }
@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if(Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if not a legacy slime
+            if(!AssortedCrazyThings.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
             {
                 DrawAccessories(spriteBatch, drawColor);
             }
@@ -119,12 +119,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             bool useNoHair = false;
-            //PetAccessory.UseNoHair[slimeAccessory] && (slotNumber == (byte)SlotType.Hat)
             uint slimeAccessoryHat = mPlayer.GetAccessory((byte)SlotType.Hat);
             if (slimeAccessoryHat != 0 &&
                 PetAccessory.UseNoHair[slimeAccessoryHat] &&
-                Array.IndexOf(AssortedCrazyThings.slimePetNoHair, projectile.type) != -1 && //if it has a NoHair tex
-                Array.IndexOf(AssortedCrazyThings.slimePetLegacy, projectile.type) == -1) //if its not legacy
+                //Array.IndexOf(AssortedCrazyThings.slimePetNoHair, projectile.type) != -1 && //if it has a NoHair tex
+                AssortedCrazyThings.slimePetNoHair.Contains(projectile.type) && //if it has a NoHair tex
+                !AssortedCrazyThings.slimePetLegacy.Contains(projectile.type)) //if its not legacy
             {
                 useNoHair = true;
             }
@@ -208,6 +208,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
+        //add a new color in alphabetic order (same in PetAccessoryClass.AddAltTextures, in the signature and in the intArray inside
         public enum PetColor : byte
         {
             Black,

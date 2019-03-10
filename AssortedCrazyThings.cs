@@ -20,9 +20,9 @@ namespace AssortedCrazyThings
     class AssortedCrazyThings : Mod
     {
         //Slime pets
-        public static int[] slimePetLegacy = new int[9];
-        public static int[] slimePetNoHair = new int[8];
-        public static int[] slimePetNPCs = new int[11];
+        public static List<int> slimePetLegacy = new List<int>();
+        public static List<int> slimePetNoHair = new List<int>();
+        public static List<int> slimePetNPCs = new List<int>();
 
         //Sun pet textures
         public static Texture2D[] sunPetTextures;
@@ -49,42 +49,48 @@ namespace AssortedCrazyThings
 
         private void LoadPets()
         {
-            int index = 0;
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeBlackPet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeBluePet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeGreenPet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimePinkPet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimePurplePet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeRainbowPet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeRedPet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeXmasPet>();
-            slimePetLegacy[index++] = ProjectileType<CuteSlimeYellowPet>();
+            //legacy, no need to adjust
+            slimePetLegacy.AddRange(new List<int>{
+                ProjectileType<CuteSlimeBlackPet>(),
+                ProjectileType<CuteSlimeBluePet>(),
+                ProjectileType<CuteSlimeGreenPet>(),
+                ProjectileType<CuteSlimePinkPet>(),
+                ProjectileType<CuteSlimePurplePet>(),
+                ProjectileType<CuteSlimeRainbowPet>(),
+                ProjectileType<CuteSlimeRedPet>(),
+                ProjectileType<CuteSlimeXmasPet>(),
+                ProjectileType<CuteSlimeYellowPet>(),
+            });
 
-            index = 0;
 
-            slimePetNoHair[index++] = ProjectileType<CuteSlimeBlackNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimeBlueNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimeCrimsonNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimeCorruptNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimePurpleNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimePinkNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimeRedNewPet>();
-            slimePetNoHair[index++] = ProjectileType<CuteSlimeYellowNewPet>();
+            //for adding slimes that have a nohair sprite
             //no green, rainbow and xmas
+            slimePetNoHair.AddRange(new List<int> {
+                ProjectileType<CuteSlimeBlackNewPet>(),
+                ProjectileType<CuteSlimeBlueNewPet>(),
+                ProjectileType<CuteSlimeCrimsonNewPet>(),
+                ProjectileType<CuteSlimeCorruptNewPet>(),
+                ProjectileType<CuteSlimePurpleNewPet>(),
+                ProjectileType<CuteSlimePinkNewPet>(),
+                ProjectileType<CuteSlimeRedNewPet>(),
+                ProjectileType<CuteSlimeYellowNewPet>(),
+            });
 
-            index = 0;
-
-            slimePetNPCs[index++] = NPCType<CuteSlimeBlack>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeBlue>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeCrimson>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeCorrupt>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeGreen>();
-            slimePetNPCs[index++] = NPCType<CuteSlimePink>();
-            slimePetNPCs[index++] = NPCType<CuteSlimePurple>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeRainbow>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeRed>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeXmas>();
-            slimePetNPCs[index++] = NPCType<CuteSlimeYellow>();
+            //for adding new slime NPCs
+            //used in AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePetNPCs.Count];
+            slimePetNPCs.AddRange(new List<int> {
+                NPCType<CuteSlimeBlack>(),
+                NPCType<CuteSlimeBlue>(),
+                NPCType<CuteSlimeCrimson>(),
+                NPCType<CuteSlimeCorrupt>(),
+                NPCType<CuteSlimeGreen>(),
+                NPCType<CuteSlimePink>(),
+                NPCType<CuteSlimePurple>(),
+                NPCType<CuteSlimeRainbow>(),
+                NPCType<CuteSlimeRed>(),
+                NPCType<CuteSlimeXmas>(),
+                NPCType<CuteSlimeYellow>()
+            });
 
             if (!Main.dedServ && Main.netMode != 2)
             {

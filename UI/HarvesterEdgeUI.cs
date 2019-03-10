@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.UI
         {
             typeToTexture = new Dictionary<int, Texture2D>
             {
-                { AssUtils.Instance.NPCType<Harvester1>(), AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester1Head") },
+                { AssUtils.Instance.NPCType<Harvester1>(), AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester2Head") }, //1
                 { AssUtils.Instance.NPCType<Harvester2>(), AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester2Head") }
             };
 

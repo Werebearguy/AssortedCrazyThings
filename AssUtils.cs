@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -59,6 +60,17 @@ namespace AssortedCrazyThings
             for (int i = 0; i < types.Length; i++)
             {
                 if (NPC.AnyNPCs(types[i])) return true;
+            }
+            return false;
+        }
+
+        public static bool AnyNPCs(List<int> types)
+        {
+            int[] typesArray = types.ToArray();
+            //Like AnyNPCs but checks for an array
+            for (int i = 0; i < typesArray.Length; i++)
+            {
+                if (NPC.AnyNPCs(typesArray[i])) return true;
             }
             return false;
         }
