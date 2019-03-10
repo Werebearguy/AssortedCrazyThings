@@ -228,6 +228,13 @@ namespace AssortedCrazyThings.UI
             return PetConf("QueenLarvaProj", tooltips);
         }
 
+        public static CircleUIConf OceanSlimeConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
+
+            return PetConf("OceanSlimeProj", tooltips);
+        }
+
         //ALTERNATE
         //public static CircleUIConf ClassNameConf()
         //{

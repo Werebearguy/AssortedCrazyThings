@@ -46,6 +46,9 @@ namespace AssortedCrazyThings
         //queen larva texture
         public byte queenLarvaType = 0;
 
+        //queen larva texture
+        public byte oceanSlimeType = 0;
+
         //ALTERNATE
         ////name pet texture
         //public byte classNameType = 0;
@@ -233,6 +236,7 @@ namespace AssortedCrazyThings
                 {"vampireBatType", (byte)vampireBatType},
                 {"pigronataType", (byte)pigronataType},
                 {"queenLarvaType", (byte)queenLarvaType},
+                {"oceanSlimeType", (byte)oceanSlimeType},
                 //ALTERNATE
                 //{"classNameType", (byte)classNameType},
             };
@@ -253,6 +257,7 @@ namespace AssortedCrazyThings
             vampireBatType = tag.GetByte("vampireBatType");
             pigronataType = tag.GetByte("pigronataType");
             queenLarvaType = tag.GetByte("queenLarvaType");
+            oceanSlimeType = tag.GetByte("oceanSlimeType");
             //ALTERNATE
             //classNameType = tag.GetByte("classNameType");
         }
@@ -273,6 +278,7 @@ namespace AssortedCrazyThings
             clone.vampireBatType = vampireBatType;
             clone.pigronataType = pigronataType;
             clone.queenLarvaType = queenLarvaType;
+            clone.oceanSlimeType = oceanSlimeType;
             //ALTERNATE
             //clone.classNameType = classNameType;
         }
@@ -294,6 +300,7 @@ namespace AssortedCrazyThings
             else if (clone.vampireBatType != vampireBatType) changes = PetPlayerChanges.vampireBatType;
             else if (clone.pigronataType != pigronataType) changes = PetPlayerChanges.pigronataType;
             else if (clone.queenLarvaType != queenLarvaType) changes = PetPlayerChanges.queenLarvaType;
+            else if (clone.oceanSlimeType != oceanSlimeType) changes = PetPlayerChanges.oceanSlimeType;
             //ALTERNATE
             //else if (clone.classNameType != classNameType) changes = PetPlayerChanges.classNameType;
 
@@ -328,6 +335,7 @@ namespace AssortedCrazyThings
             packet.Write((byte)vampireBatType);
             packet.Write((byte)pigronataType);
             packet.Write((byte)queenLarvaType);
+            packet.Write((byte)oceanSlimeType);
             //ALTERNATE
             //packet.Write((byte)classNameType);
         }
@@ -347,6 +355,7 @@ namespace AssortedCrazyThings
             vampireBatType = reader.ReadByte();
             pigronataType = reader.ReadByte();
             queenLarvaType = reader.ReadByte();
+            oceanSlimeType = reader.ReadByte();
             //ALTERNATE
             //classNameType = reader.ReadByte();
         }
@@ -397,6 +406,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.queenLarvaType:
                     queenLarvaType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.oceanSlimeType:
+                    oceanSlimeType = reader.ReadByte();
                     break;
                 //ALTERNATE
                 //case (byte)PetPlayerChanges.classNameType:
@@ -459,6 +471,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.queenLarvaType:
                     packet.Write((byte)queenLarvaType);
+                    break;
+                case (byte)PetPlayerChanges.oceanSlimeType:
+                    packet.Write((byte)oceanSlimeType);
                     break;
                 //ALTERNATE
                 //case (byte)PetPlayerChanges.classNameType:
