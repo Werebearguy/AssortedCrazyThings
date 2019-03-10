@@ -21,8 +21,8 @@ namespace AssortedCrazyThings
     {
         //Slime pets
         public static int[] slimePetLegacy = new int[9];
-        public static int[] slimePetNoHair = new int[6];
-        public static int[] slimePetNPCs = new int[9];
+        public static int[] slimePetNoHair = new int[8];
+        public static int[] slimePetNPCs = new int[11];
 
         //Sun pet textures
         public static Texture2D[] sunPetTextures;
