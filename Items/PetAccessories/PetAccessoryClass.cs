@@ -961,26 +961,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryCrownGold");
             AddAltTextures(name: "PetAccessoryCrownGold",
-            black: 1,
-            blue: 1,
-            green: 1,
-            pink: 2,
-            purple: 1,
-            rainbow: 1,
-            red: 1,
-            //xmas: 0,
-            yellow: 3);
+            pink: 1,
+            yellow: 2);
             Add(name: "PetAccessoryCrownPlatinum");
             AddAltTextures(name: "PetAccessoryCrownPlatinum",
-            black: 1,
-            blue: 1,
-            green: 1,
-            pink: 2,
-            purple: 1,
-            rainbow: 1,
-            red: 1,
-            //xmas: 0,
-            yellow: 3);
+            pink: 1,
+            yellow: 2);
 
             Add(name: "PetAccessoryHairBowBlack");
             Add(name: "PetAccessoryHairBowBlue");
@@ -1032,15 +1018,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryWizardHat", offsetY: -10f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryWizardHat",
-            black: 2,
-            blue: 1,
-            green: 1,
-            pink: 3,
-            purple: 2,
-            rainbow: 1,
-            red: 1,
-            //xmas: 0,
-            yellow: 3);
+            black: 1,
+            green: 3,
+            pink: 2,
+            purple: 1);
 			
             Add(name: "PetAccessoryXmasHatGreen", offsetY: -4f, useNoHair: true);
             Add(name: "PetAccessoryXmasHatRed", offsetY: -4f, useNoHair: true);
