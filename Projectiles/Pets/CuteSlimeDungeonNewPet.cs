@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using System;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 
@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
             projectile.scale = 1f;
-            projectile.alpha = 65;
+            projectile.alpha = 75;
         }
 
         public override void AI()
@@ -41,13 +41,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        //public override Color? GetAlpha(Color drawColor)
-        //{
-        //    drawColor.R = Math.Min((byte)(drawColor.R * 0.75f), (byte)175);
-        //    drawColor.G = Math.Min((byte)(drawColor.G * 0.75f), (byte)175);
-        //    drawColor.B = Math.Min((byte)(drawColor.B * 0.75f), (byte)175);
-        //    drawColor.A = 150;
-        //    return drawColor;
-        //}
+        public override bool MorePreDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor, bool useNoHair)
+        {
+            SpriteEffects effects = SpriteEffects.None;
+            if (projectile.spriteDirection == -1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeDungeonNewPetAddition");
+            Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, image.Width, image.Height / 10);
+            Vector2 stupidOffset = new Vector2(14f, 10f + projectile.gfxOffY);
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, new Rectangle?(frameLocal), lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
+            return true;
+        }
     }
 }

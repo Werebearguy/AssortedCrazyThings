@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Buffs\CuteSlimeCorruptNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeCrimsonNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeDungeonNewBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
     <Compile Include="AssUtils.cs" />
     <Compile Include="Buffs\ChunkySlimeBuff.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\Pets\CuteSlimeCorruptNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeCrimsonNew.cs" />
+    <Compile Include="Items\Pets\CuteSlimeDungeonNew.cs" />
     <Compile Include="Items\Pets\LilWrapsItem.cs" />
     <Compile Include="Items\Pets\WallFragmentItem.cs" />
     <Compile Include="Items\VanitySelector.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="NPCs\AssGlobalNPC.cs" />
     <Compile Include="NPCs\CuteSlimeCorrupt.cs" />
     <Compile Include="NPCs\CuteSlimeCrimson.cs" />
+    <Compile Include="NPCs\CuteSlimeDungeon.cs" />
     <Compile Include="NPCs\DemonEyeWandering.cs" />
     <Compile Include="NPCs\DemonEyeLaser.cs" />
     <Compile Include="NPCs\DemonEyeMechanical.cs" />
@@ -341,6 +344,7 @@
     <Compile Include="Projectiles\Pets\AbeeminationProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeCorruptNewPet.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeCrimsonNewPet.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeDungeonNewPet.cs" />
     <Compile Include="Projectiles\Pets\LilWrapsProj.cs" />
     <Compile Include="Projectiles\Pets\WallFragmentCombined.cs" />
     <Compile Include="Projectiles\Pets\ChunkySlimeProj.cs" />

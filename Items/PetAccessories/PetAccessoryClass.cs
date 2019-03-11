@@ -1,6 +1,4 @@
-﻿using AssortedCrazyThings.Projectiles;
-using AssortedCrazyThings.Projectiles.Pets;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -994,10 +992,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryCrownGold");
             AddAltTextures(name: "PetAccessoryCrownGold",
             pink: 1,
+            dungeon: 1,
             yellow: 2);
             Add(name: "PetAccessoryCrownPlatinum");
             AddAltTextures(name: "PetAccessoryCrownPlatinum",
             pink: 1,
+            dungeon: 1,
             yellow: 2);
 
             Add(name: "PetAccessoryHairBowBlack");
@@ -1058,6 +1058,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             AddAltTextures(name: "PetAccessoryWizardHat",
             black: 1,
             corrupt: 1,
+            dungeon: 1,
             pink: 2,
             purple: 1);
 			
@@ -1117,7 +1118,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PreDraw = new bool[itemIndex + 1];
             Alpha = new byte[itemIndex + 1];
             UseNoHair = new bool[itemIndex + 1];
-            AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePetNPCs.Count]; //assuming the number of slime pets is the same as the number of NPCs
+            AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePets.Count];
 
             int[] parameters = new int[Items.Length * 2];
             for (int i = 0; i < Items.Length; i++)
@@ -1155,6 +1156,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             int blue = 0,
             int corrupt = 0,
             int crimson = 0,
+            int dungeon = 0,
             int green = 0,
             int pink = 0,
             int purple = 0,
@@ -1183,7 +1185,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     Yellow
                 }
              */
-            int[] intArray = new int[] {black, blue, corrupt, crimson, green, pink, purple, rainbow, red, xmas, yellow};
+            int[] intArray = new int[] {black, blue, corrupt, crimson, dungeon, green, pink, purple, rainbow, red, xmas, yellow};
 
             //i is the color (CuteSlimeBasePet.PetColor)
             for (int i = 0; i < intArray.Length; i++)
@@ -1269,7 +1271,23 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
 
-            tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
+            PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
+
+            if (mPlayer.slimePetIndex != -1 &&
+                Main.projectile[mPlayer.slimePetIndex].active &&
+                Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
+                AssortedCrazyThings.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+            {
+                if (AssortedCrazyThings.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                {
+                    tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
+                }
+
+                if (AssortedCrazyThings.slimePetIsSlotTypeBlacklisted[AssortedCrazyThings.slimePets.IndexOf(Main.projectile[mPlayer.slimePetIndex].type), item.value])
+                {
+                    tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+                }
+            }
         }
 
         protected virtual void MoreSetDefaults()
@@ -1293,8 +1311,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         {
                             if (Main.projectile[i].modProjectile != null)
                             {
-                                if (Main.projectile[i].owner == Main.myPlayer &&
-                                    typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[i].modProjectile) &&
+                                if (AssortedCrazyThings.slimePets.Contains(Main.projectile[i].type) && 
+                                    Main.projectile[i].owner == Main.myPlayer &&
                                     !AssortedCrazyThings.slimePetLegacy.Contains(Main.projectile[i].type))
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
@@ -1319,8 +1337,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 if (mPlayer.slimePetIndex != -1 &&
                     Main.projectile[mPlayer.slimePetIndex].active &&
                     Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    typeof(CuteSlimeBasePet).IsInstanceOfType(Main.projectile[mPlayer.slimePetIndex].modProjectile) &&
-                    !AssortedCrazyThings.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                    AssortedCrazyThings.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type) &&
+                    !AssortedCrazyThings.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type) &&
+                    !AssortedCrazyThings.slimePetIsSlotTypeBlacklisted[AssortedCrazyThings.slimePets.IndexOf(Main.projectile[mPlayer.slimePetIndex].type), item.value])
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)

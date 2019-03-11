@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 
@@ -21,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
-            projectile.alpha = 100;
+            projectile.alpha = 75;
         }
 
         public override void AI()
@@ -36,6 +38,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+        }
+
+        public override void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor)
+        {
+            SpriteEffects effects = SpriteEffects.None;
+            if (projectile.spriteDirection == -1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeXmasNewPetAddition");
+            Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, image.Width, image.Height / 10);
+            Vector2 stupidOffset = new Vector2(14f, 10f + projectile.gfxOffY);
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, new Rectangle?(frameLocal), lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
         }
     }
 }

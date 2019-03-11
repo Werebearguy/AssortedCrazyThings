@@ -20,9 +20,13 @@ namespace AssortedCrazyThings
     class AssortedCrazyThings : Mod
     {
         //Slime pets
-        public static List<int> slimePetLegacy = new List<int>();
-        public static List<int> slimePetNoHair = new List<int>();
         public static List<int> slimePetNPCs = new List<int>();
+        public static List<int> slimePets = new List<int>();
+        public static List<int> slimePetNoHair = new List<int>();
+        public static bool[,] slimePetIsSlotTypeBlacklisted;
+        public static byte[] slimePetPreAdditionSlot;
+        public static byte[] slimePetPostAdditionSlot;
+        public static List<int> slimePetLegacy = new List<int>();
 
         //Sun pet textures
         public static Texture2D[] sunPetTextures;
@@ -49,8 +53,74 @@ namespace AssortedCrazyThings
 
         private void LoadPets()
         {
+            //for adding new slime NPCs
+            slimePetNPCs.AddRange(new List<int>
+            {
+                NPCType<CuteSlimeBlack>(),
+                NPCType<CuteSlimeBlue>(),
+                NPCType<CuteSlimeCrimson>(),
+                NPCType<CuteSlimeCorrupt>(),
+                NPCType<CuteSlimeDungeon>(),
+                NPCType<CuteSlimeGreen>(),
+                NPCType<CuteSlimePink>(),
+                NPCType<CuteSlimePurple>(),
+                NPCType<CuteSlimeRainbow>(),
+                NPCType<CuteSlimeRed>(),
+                NPCType<CuteSlimeXmas>(),
+                NPCType<CuteSlimeYellow>()
+            });
+
+            //for adding slimes that can wear accessories
+            //basically all New ones
+            //used in AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePets.Count];
+            slimePets.AddRange(new List<int>
+            {
+                ProjectileType<CuteSlimeBlackNewPet>(),
+                ProjectileType<CuteSlimeBlueNewPet>(),
+                ProjectileType<CuteSlimeCorruptNewPet>(),
+                ProjectileType<CuteSlimeCrimsonNewPet>(),
+                ProjectileType<CuteSlimeDungeonNewPet>(),
+                ProjectileType<CuteSlimeGreenNewPet>(),
+                ProjectileType<CuteSlimePurpleNewPet>(),
+                ProjectileType<CuteSlimePinkNewPet>(),
+                ProjectileType<CuteSlimeRainbowNewPet>(),
+                ProjectileType<CuteSlimeRedNewPet>(),
+                ProjectileType<CuteSlimeXmasNewPet>(),
+                ProjectileType<CuteSlimeYellowNewPet>(),
+            });
+
+            //for adding slimes that have a nohair sprite
+            //no green and rainbow
+            slimePetNoHair.AddRange(new List<int>
+            {
+                ProjectileType<CuteSlimeBlackNewPet>(),
+                ProjectileType<CuteSlimeBlueNewPet>(),
+                ProjectileType<CuteSlimeCrimsonNewPet>(),
+                ProjectileType<CuteSlimeCorruptNewPet>(),
+                ProjectileType<CuteSlimeDungeonNewPet>(),
+                ProjectileType<CuteSlimePurpleNewPet>(),
+                ProjectileType<CuteSlimePinkNewPet>(),
+                ProjectileType<CuteSlimeRedNewPet>(),
+                ProjectileType<CuteSlimeXmasNewPet>(),
+                ProjectileType<CuteSlimeYellowNewPet>(),
+            });
+
+            slimePetIsSlotTypeBlacklisted = new bool[slimePets.Count , Enum.GetValues(typeof(SlotType)).Length];
+
+            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewPet>()), (int)SlotType.Carried] = true;
+            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewPet>()), (int)SlotType.Accessory] = true;
+
+            slimePetPreAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
+            slimePetPreAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeDungeonNewPet>())] = (byte)SlotType.Hat;
+            //add one here just like for Post, but for things that render behind the base sprite and if they should be covered by any accessory of that type
+            //dungeon slime key doesn't count since it doesnt block any other accessories from drawing, unlike the xmas slime bow
+
+            slimePetPostAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
+            slimePetPostAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewPet>())] = (byte)SlotType.Body;
+
             //legacy, no need to adjust
-            slimePetLegacy.AddRange(new List<int>{
+            slimePetLegacy.AddRange(new List<int>
+            {
                 ProjectileType<CuteSlimeBlackPet>(),
                 ProjectileType<CuteSlimeBluePet>(),
                 ProjectileType<CuteSlimeGreenPet>(),
@@ -60,37 +130,6 @@ namespace AssortedCrazyThings
                 ProjectileType<CuteSlimeRedPet>(),
                 ProjectileType<CuteSlimeXmasPet>(),
                 ProjectileType<CuteSlimeYellowPet>(),
-            });
-
-
-            //for adding slimes that have a nohair sprite
-            //no green, rainbow and xmas
-            slimePetNoHair.AddRange(new List<int> {
-                ProjectileType<CuteSlimeBlackNewPet>(),
-                ProjectileType<CuteSlimeBlueNewPet>(),
-                ProjectileType<CuteSlimeCrimsonNewPet>(),
-                ProjectileType<CuteSlimeCorruptNewPet>(),
-                ProjectileType<CuteSlimeDungeonNewPet>(),
-                ProjectileType<CuteSlimePurpleNewPet>(),
-                ProjectileType<CuteSlimePinkNewPet>(),
-                ProjectileType<CuteSlimeRedNewPet>(),
-                ProjectileType<CuteSlimeYellowNewPet>(),
-            });
-
-            //for adding new slime NPCs
-            //used in AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePetNPCs.Count];
-            slimePetNPCs.AddRange(new List<int> {
-                NPCType<CuteSlimeBlack>(),
-                NPCType<CuteSlimeBlue>(),
-                NPCType<CuteSlimeCrimson>(),
-                NPCType<CuteSlimeCorrupt>(),
-                NPCType<CuteSlimeGreen>(),
-                NPCType<CuteSlimePink>(),
-                NPCType<CuteSlimePurple>(),
-                NPCType<CuteSlimeRainbow>(),
-                NPCType<CuteSlimeRed>(),
-                NPCType<CuteSlimeXmas>(),
-                NPCType<CuteSlimeYellow>()
             });
 
             if (!Main.dedServ && Main.netMode != 2)
