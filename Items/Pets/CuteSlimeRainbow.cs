@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SetDefaults()
 		{
 			item.CloneDefaults(ItemID.LizardEgg);
-			item.shoot = mod.ProjectileType<CuteSlimeRainbowPet>();
+			item.shoot = mod.ProjectileType<CuteSlimeRainbowProj>();
 			item.buffType = mod.BuffType<CuteSlimeRainbowBuff>();
 			item.rare = -11;
             item.value = Item.sellPrice(copper: 10);

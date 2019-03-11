@@ -13,9 +13,9 @@ namespace AssortedCrazyThings.Buffs
         protected override void MoreUpdate(PetPlayer mPlayer)
         {
             mPlayer.CuteSlimeYellow = true;
-            projType = mod.ProjectileType<CuteSlimeYellowPet>();
+            projType = mod.ProjectileType<CuteSlimeYellowProj>();
             //this is for the altTexture thing where you can specify which slime has which texture
-            color = (byte)CuteSlimeBasePet.PetColor.Yellow;
+            color = (byte)CuteSlimeBaseProj.PetColor.Yellow;
         }
     }
 }

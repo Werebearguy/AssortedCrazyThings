@@ -1,19 +1,18 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteSlimeBlackNewPet : CuteSlimeBasePet
+    public class CuteSlimePurpleProj : CuteSlimeBaseProj
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Black Slime");
+            DisplayName.SetDefault("Cute Purple Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = -18; //-20
+            drawOffsetX = -20;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = -18; //-22
+            drawOriginOffsetY = -14; //-18
         }
 
         public override void SetDefaults()
@@ -22,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
-            projectile.scale = 0.9f;
+            projectile.scale = 1.2f;
             projectile.alpha = 75;
         }
 
@@ -32,21 +31,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.CuteSlimeBlackNew = false;
+                modPlayer.CuteSlimePurple = false;
             }
-            if (modPlayer.CuteSlimeBlackNew)
+            if (modPlayer.CuteSlimePurple)
             {
                 projectile.timeLeft = 2;
             }
         }
-
-        //public override Color? GetAlpha(Color drawColor)
-        //{
-        //    drawColor.R = drawColor.R;
-        //    drawColor.G = drawColor.G;
-        //    drawColor.B = drawColor.B;
-        //    drawColor.A = 180;
-        //    return drawColor;
-        //}
     }
 }

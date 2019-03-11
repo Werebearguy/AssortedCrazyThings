@@ -75,61 +75,63 @@ namespace AssortedCrazyThings
             //used in AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePets.Count];
             slimePets.AddRange(new List<int>
             {
-                ProjectileType<CuteSlimeBlackNewPet>(),
-                ProjectileType<CuteSlimeBlueNewPet>(),
-                ProjectileType<CuteSlimeCorruptNewPet>(),
-                ProjectileType<CuteSlimeCrimsonNewPet>(),
-                ProjectileType<CuteSlimeDungeonNewPet>(),
-                ProjectileType<CuteSlimeGreenNewPet>(),
-                ProjectileType<CuteSlimePurpleNewPet>(),
-                ProjectileType<CuteSlimePinkNewPet>(),
-                ProjectileType<CuteSlimeRainbowNewPet>(),
-                ProjectileType<CuteSlimeRedNewPet>(),
-                ProjectileType<CuteSlimeXmasNewPet>(),
-                ProjectileType<CuteSlimeYellowNewPet>(),
+                ProjectileType<CuteSlimeBlackNewProj>(),
+                ProjectileType<CuteSlimeBlueNewProj>(),
+                ProjectileType<CuteSlimeCorruptNewProj>(),
+                ProjectileType<CuteSlimeCrimsonNewProj>(),
+                ProjectileType<CuteSlimeDungeonNewProj>(),
+                ProjectileType<CuteSlimeGreenNewProj>(),
+                ProjectileType<CuteSlimePurpleNewProj>(),
+                ProjectileType<CuteSlimePinkNewProj>(),
+                ProjectileType<CuteSlimeRainbowNewProj>(),
+                ProjectileType<CuteSlimeRedNewProj>(),
+                ProjectileType<CuteSlimeXmasNewProj>(),
+                ProjectileType<CuteSlimeYellowNewProj>(),
             });
 
             //for adding slimes that have a nohair sprite
             //no green and rainbow
             slimePetNoHair.AddRange(new List<int>
             {
-                ProjectileType<CuteSlimeBlackNewPet>(),
-                ProjectileType<CuteSlimeBlueNewPet>(),
-                ProjectileType<CuteSlimeCrimsonNewPet>(),
-                ProjectileType<CuteSlimeCorruptNewPet>(),
-                ProjectileType<CuteSlimeDungeonNewPet>(),
-                ProjectileType<CuteSlimePurpleNewPet>(),
-                ProjectileType<CuteSlimePinkNewPet>(),
-                ProjectileType<CuteSlimeRedNewPet>(),
-                ProjectileType<CuteSlimeXmasNewPet>(),
-                ProjectileType<CuteSlimeYellowNewPet>(),
+                ProjectileType<CuteSlimeBlackNewProj>(),
+                ProjectileType<CuteSlimeBlueNewProj>(),
+                ProjectileType<CuteSlimeCrimsonNewProj>(),
+                ProjectileType<CuteSlimeCorruptNewProj>(),
+                ProjectileType<CuteSlimeDungeonNewProj>(),
+                ProjectileType<CuteSlimePurpleNewProj>(),
+                ProjectileType<CuteSlimePinkNewProj>(),
+                ProjectileType<CuteSlimeRedNewProj>(),
+                ProjectileType<CuteSlimeXmasNewProj>(),
+                ProjectileType<CuteSlimeYellowNewProj>(),
             });
 
             slimePetIsSlotTypeBlacklisted = new bool[slimePets.Count , Enum.GetValues(typeof(SlotType)).Length];
 
-            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewPet>()), (int)SlotType.Carried] = true;
-            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewPet>()), (int)SlotType.Accessory] = true;
+            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>()), (int)SlotType.Carried] = true;
+            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>()), (int)SlotType.Accessory] = true;
 
             slimePetPreAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
-            slimePetPreAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeDungeonNewPet>())] = (byte)SlotType.Hat;
             //add one here just like for Post, but for things that render behind the base sprite and if they should be covered by any accessory of that type
             //dungeon slime key doesn't count since it doesnt block any other accessories from drawing, unlike the xmas slime bow
+            //
+            //example: dungeon key won't draw if slime wears a hat:
+            //slimePetPreAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeDungeonNewPet>())] = (byte)SlotType.Hat;
 
             slimePetPostAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
-            slimePetPostAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewPet>())] = (byte)SlotType.Body;
+            slimePetPostAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>())] = (byte)SlotType.Body;
 
             //legacy, no need to adjust
             slimePetLegacy.AddRange(new List<int>
             {
-                ProjectileType<CuteSlimeBlackPet>(),
-                ProjectileType<CuteSlimeBluePet>(),
-                ProjectileType<CuteSlimeGreenPet>(),
-                ProjectileType<CuteSlimePinkPet>(),
-                ProjectileType<CuteSlimePurplePet>(),
-                ProjectileType<CuteSlimeRainbowPet>(),
-                ProjectileType<CuteSlimeRedPet>(),
-                ProjectileType<CuteSlimeXmasPet>(),
-                ProjectileType<CuteSlimeYellowPet>(),
+                ProjectileType<CuteSlimeBlackProj>(),
+                ProjectileType<CuteSlimeBlueProj>(),
+                ProjectileType<CuteSlimeGreenProj>(),
+                ProjectileType<CuteSlimePinkProj>(),
+                ProjectileType<CuteSlimePurpleProj>(),
+                ProjectileType<CuteSlimeRainbowProj>(),
+                ProjectileType<CuteSlimeRedProj>(),
+                ProjectileType<CuteSlimeXmasProj>(),
+                ProjectileType<CuteSlimeYellowProj>(),
             });
 
             if (!Main.dedServ && Main.netMode != 2)
@@ -411,7 +413,7 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.QueenLarvaConf();
                     }
-                    else if (pPlayer.OceanSlimePet)
+                    else if (pPlayer.OceanSlime)
                     {
                         CircleUI.currentSelected = pPlayer.oceanSlimeType;
 
@@ -537,7 +539,7 @@ namespace AssortedCrazyThings
                         {
                             pPlayer.queenLarvaType = (byte)CircleUI.returned;
                         }
-                        else if (pPlayer.OceanSlimePet)
+                        else if (pPlayer.OceanSlime)
                         {
                             pPlayer.oceanSlimeType = (byte)CircleUI.returned;
                         }

@@ -1,20 +1,18 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteSlimeXmasPet : CuteSlimeBasePet
+    public class CuteSlimeBlueProj : CuteSlimeBaseProj
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Christmas Slime");
+            DisplayName.SetDefault("Cute Blue Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -20;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = -16; //-20
+            drawOriginOffsetY = -17; //-20
         }
 
         public override void SetDefaults()
@@ -23,6 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
+            projectile.alpha = 75;
         }
 
         public override void AI()
@@ -31,9 +30,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.CuteSlimeXmas = false;
+                modPlayer.CuteSlimeBlue = false;
             }
-            if (modPlayer.CuteSlimeXmas)
+            if (modPlayer.CuteSlimeBlue)
             {
                 projectile.timeLeft = 2;
             }

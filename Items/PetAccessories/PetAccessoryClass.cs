@@ -1187,7 +1187,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
              */
             int[] intArray = new int[] {black, blue, corrupt, crimson, dungeon, green, pink, purple, rainbow, red, xmas, yellow};
 
-            //i is the color (CuteSlimeBasePet.PetColor)
+            //i is the color (CuteSlimeBaseProj.PetColor)
             for (int i = 0; i < intArray.Length; i++)
             {
                 AltTexture[ItemsIndexed[AssUtils.Instance.ItemType(name)], i] = intArray[i];

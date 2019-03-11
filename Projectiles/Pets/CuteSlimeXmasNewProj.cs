@@ -5,16 +5,16 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteSlimeDungeonNewPet : CuteSlimeBasePet
+    public class CuteSlimeXmasNewProj : CuteSlimeBaseProj
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Dungeon Slime");
+            DisplayName.SetDefault("Cute Christmas Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -18;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = -18; //-22
+            drawOriginOffsetY = -16; //-20
         }
 
         public override void SetDefaults()
@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
-            projectile.scale = 1f;
             projectile.alpha = 75;
         }
 
@@ -33,26 +32,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.CuteSlimeDungeonNew = false;
+                modPlayer.CuteSlimeXmasNew = false;
             }
-            if (modPlayer.CuteSlimeDungeonNew)
+            if (modPlayer.CuteSlimeXmasNew)
             {
                 projectile.timeLeft = 2;
             }
         }
 
-        public override bool MorePreDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor, bool useNoHair)
+        public override void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor)
         {
             SpriteEffects effects = SpriteEffects.None;
             if (projectile.spriteDirection == -1)
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeDungeonNewPetAddition");
+            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeXmasNewPetAddition");
             Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, image.Width, image.Height / 10);
             Vector2 stupidOffset = new Vector2(14f, 10f + projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, new Rectangle?(frameLocal), lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
-            return true;
         }
     }
 }

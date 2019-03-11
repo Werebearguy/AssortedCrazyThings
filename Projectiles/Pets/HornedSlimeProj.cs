@@ -28,9 +28,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
             if (Main.player[projectile.owner].dead)
             {
-                modPlayer.HornedSlimePet = false;
+                modPlayer.HornedSlime = false;
             }
-            if (modPlayer.HornedSlimePet)
+            if (modPlayer.HornedSlime)
             {
                 projectile.timeLeft = 2;
             }

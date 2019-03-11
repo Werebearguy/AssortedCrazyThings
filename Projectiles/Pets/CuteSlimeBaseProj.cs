@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public abstract class CuteSlimeBasePet : ModProjectile
+    public abstract class CuteSlimeBaseProj : ModProjectile
     {
         public const int Projwidth = 28;
         public const int Projheight = 32;

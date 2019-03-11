@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
