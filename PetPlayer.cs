@@ -71,10 +71,12 @@ namespace AssortedCrazyThings
         public bool Abeemination = false;
         public bool CuteSlimeYellowNew = false;
         public bool CuteSlimeXmasNew = false;
+        public bool CuteSlimeToxicNew = false;
         public bool CuteSlimeRedNew = false;
         public bool CuteSlimeRainbowNew = false;
         public bool CuteSlimePurpleNew = false;
         public bool CuteSlimePinkNew = false;
+        public bool CuteSlimeIceNew = false;
         public bool CuteSlimeGreenNew = false;
         public bool CuteSlimeDungeonNew = false;
         public bool CuteSlimeCrimsonNew = false;
@@ -123,9 +125,6 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
-            CuteSlimeDungeonNew = false;
-            CuteSlimeCrimsonNew = false;
-            CuteSlimeCorruptNew = false;
             LilWraps = false;
             PetFishron = false;
             RainbowSlime = false;
@@ -144,13 +143,18 @@ namespace AssortedCrazyThings
             Abeemination = false;
             CuteSlimeYellowNew = false;
             CuteSlimeXmasNew = false;
+            CuteSlimeToxicNew = false;
             CuteSlimeRedNew = false;
             CuteSlimeRainbowNew = false;
             CuteSlimePurpleNew = false;
             CuteSlimePinkNew = false;
+            CuteSlimeIceNew = false;
             CuteSlimeGreenNew = false;
             CuteSlimeBlueNew = false;
             CuteSlimeBlackNew = false;
+            CuteSlimeCrimsonNew = false;
+            CuteSlimeCorruptNew = false;
+            CuteSlimeDungeonNew = false;
             OrigamiCrane = false;
             MiniMegalodon = false;
             SmallMegalodon = false;

@@ -62,10 +62,12 @@ namespace AssortedCrazyThings
                 NPCType<CuteSlimeCorrupt>(),
                 NPCType<CuteSlimeDungeon>(),
                 NPCType<CuteSlimeGreen>(),
+                NPCType<CuteSlimeIce>(),
                 NPCType<CuteSlimePink>(),
                 NPCType<CuteSlimePurple>(),
                 NPCType<CuteSlimeRainbow>(),
                 NPCType<CuteSlimeRed>(),
+                NPCType<CuteSlimeToxic>(),
                 NPCType<CuteSlimeXmas>(),
                 NPCType<CuteSlimeYellow>()
             });
@@ -81,16 +83,18 @@ namespace AssortedCrazyThings
                 ProjectileType<CuteSlimeCrimsonNewProj>(),
                 ProjectileType<CuteSlimeDungeonNewProj>(),
                 ProjectileType<CuteSlimeGreenNewProj>(),
+                ProjectileType<CuteSlimeIceNewProj>(),
                 ProjectileType<CuteSlimePurpleNewProj>(),
                 ProjectileType<CuteSlimePinkNewProj>(),
                 ProjectileType<CuteSlimeRainbowNewProj>(),
                 ProjectileType<CuteSlimeRedNewProj>(),
+                ProjectileType<CuteSlimeToxicNewProj>(),
                 ProjectileType<CuteSlimeXmasNewProj>(),
                 ProjectileType<CuteSlimeYellowNewProj>(),
             });
 
             //for adding slimes that have a nohair sprite
-            //no green and rainbow
+            //no green, ice, rainbow and toxic
             slimePetNoHair.AddRange(new List<int>
             {
                 ProjectileType<CuteSlimeBlackNewProj>(),
@@ -98,6 +102,7 @@ namespace AssortedCrazyThings
                 ProjectileType<CuteSlimeCrimsonNewProj>(),
                 ProjectileType<CuteSlimeCorruptNewProj>(),
                 ProjectileType<CuteSlimeDungeonNewProj>(),
+                ProjectileType<CuteSlimeIceNewProj>(),
                 ProjectileType<CuteSlimePurpleNewProj>(),
                 ProjectileType<CuteSlimePinkNewProj>(),
                 ProjectileType<CuteSlimeRedNewProj>(),

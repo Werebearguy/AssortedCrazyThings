@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Buffs
         protected override void MoreSetDefaults()
         {
             DisplayName.SetDefault("Cute Dungeon Slime");
-            Description.SetDefault("A cute Dungeon slime girl is following you");
+            Description.SetDefault("A cute dungeon slime girl is following you");
         }
 
         protected override void MoreUpdate(PetPlayer mPlayer)

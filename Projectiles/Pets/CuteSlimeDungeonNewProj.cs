@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeDungeonNewProjAddition");
             Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, image.Width, image.Height / 10);
-            Vector2 stupidOffset = new Vector2(14f, 10f + projectile.gfxOffY);
+            Vector2 stupidOffset = new Vector2(14f, 8f + projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, new Rectangle?(frameLocal), lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
             return true;
         }

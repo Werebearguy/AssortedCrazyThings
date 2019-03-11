@@ -1,12 +1,10 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class CuteSlimeDungeon : ModNPC
+    public class CuteSlimeToxic : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +14,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 54;
+            npc.width = 46;
             npc.height = 52;
             npc.friendly = true;
             npc.damage = 0;
@@ -30,13 +28,12 @@ namespace AssortedCrazyThings.NPCs
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
             npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeDungeon")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeDungeonNew");
+            Main.npcCatchable[mod.NPCType("CuteSlimeToxic")] = true;
+            npc.catchItem = (short)mod.ItemType("CuteSlimeToxicNew");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-
             if (ModConf.CuteSlimes && !AssUtils.AnyNPCs(AssortedCrazyThings.slimePetNPCs)) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
             else return 0f;
         }
@@ -44,19 +41,6 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Gel);
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            Texture2D texture = mod.GetTexture("NPCs/CuteSlimeDungeonAddition");
-            Vector2 stupidOffset = new Vector2(0f, 4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            drawColor.A = 255;
-            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
-
-            return true;
         }
     }
 }

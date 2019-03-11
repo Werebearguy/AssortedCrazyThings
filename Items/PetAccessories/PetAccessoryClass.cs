@@ -349,34 +349,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessorySwallowedKey : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Swallowed Key");
-            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    public class PetAccessoryMetalBreastplate : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight Breastplate");
-            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
-        }
-    }
-
     public class PetAccessoryMetalHelmet : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -741,17 +713,31 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryXmasHatGreen : PetAccessoryBase
+    public class PetAccessorySwallowedKey : PetAccessoryBase
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Green Santa Hat");
-            Tooltip.SetDefault("'A festive green hat for your cute slime to wear'");
+            DisplayName.SetDefault("Cute Swallowed Key");
+            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
         }
 
         protected override void MoreSetDefaults()
         {
-            item.value = (int)SlotType.Hat;
+            item.value = (int)SlotType.Accessory;
+        }
+    }
+
+    public class PetAccessoryToyBreastplate : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight Breastplate");
+            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
         }
     }
 
@@ -817,6 +803,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             DisplayName.SetDefault("Cute Wizard Hat");
             Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Hat;
+        }
+    }
+
+    public class PetAccessoryXmasHatGreen : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Green Santa Hat");
+            Tooltip.SetDefault("'A festive green hat for your cute slime to wear'");
         }
 
         protected override void MoreSetDefaults()
@@ -922,10 +922,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
                 "PetAccessoryKitchenKnife",
 				
-                "PetAccessorySwallowedKey",
-
-                "PetAccessoryMetalBreastplate",
-				
                 "PetAccessoryMetalHelmet",
 
                 "PetAccessoryMittensBlack",
@@ -955,7 +951,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffRuby",
                 "PetAccessoryStaffSapphire",
                 "PetAccessoryStaffTopaz",
-				
+
+                "PetAccessorySwallowedKey",
+
+                "PetAccessoryToyBreastplate",
                 "PetAccessoryToyMace",
                 "PetAccessoryToyShield",
                 "PetAccessoryToySpear",
@@ -1013,8 +1012,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryKitchenKnife", preDraw: true);
 
-            Add(name: "PetAccessoryMetalBreastplate");
-			
             Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryMetalHelmet",
             green: 1);
@@ -1048,7 +1045,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryStaffTopaz", offsetX: -8f, preDraw: true);
 			
             Add(name: "PetAccessorySwallowedKey", preDraw: true);
-
+            
+            Add(name: "PetAccessoryToyBreastplate");
+            AddAltTextures(name: "PetAccessoryToyBreastplate",
+            xmas: 1);
             Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
             Add(name: "PetAccessoryToyShield");
             Add(name: "PetAccessoryToySpear", offsetX: -8f, preDraw: true);
@@ -1060,7 +1060,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             corrupt: 1,
             dungeon: 1,
             pink: 2,
-            purple: 1);
+            purple: 1,
+            toxic: 1);
 			
             Add(name: "PetAccessoryXmasHatGreen", offsetY: -4f, useNoHair: true);
             Add(name: "PetAccessoryXmasHatRed", offsetY: -4f, useNoHair: true);
@@ -1158,10 +1159,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
             int crimson = 0,
             int dungeon = 0,
             int green = 0,
+            int ice = 0,
             int pink = 0,
             int purple = 0,
             int rainbow = 0,
             int red = 0,
+            int toxic = 0,
             int xmas = 0,
             int yellow = 0)
         {
@@ -1185,7 +1188,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     Yellow
                 }
              */
-            int[] intArray = new int[] {black, blue, corrupt, crimson, dungeon, green, pink, purple, rainbow, red, xmas, yellow};
+            int[] intArray = new int[] {black, blue, corrupt, crimson, dungeon, green, ice, pink, purple, rainbow, red, toxic, xmas, yellow};
 
             //i is the color (CuteSlimeBaseProj.PetColor)
             for (int i = 0; i < intArray.Length; i++)

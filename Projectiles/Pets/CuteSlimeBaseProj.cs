@@ -136,12 +136,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
                 {
                     uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
-
-                    if (slimeAccessory != 0 && AssortedCrazyThings.slimePetPreAdditionSlot[AssortedCrazyThings.slimePets.IndexOf(Main.projectile[mPlayer.slimePetIndex].type)] == slotNumber)
+                    
+                    if (slimeAccessory != 0 && AssortedCrazyThings.slimePetPreAdditionSlot[AssortedCrazyThings.slimePets.IndexOf(projectile.type)] == slotNumber)
                     {
                         drawPreAddition = false;
                     }
-                    if (slimeAccessory != 0 && AssortedCrazyThings.slimePetPostAdditionSlot[AssortedCrazyThings.slimePets.IndexOf(Main.projectile[mPlayer.slimePetIndex].type)] == slotNumber)
+                    //Main.projectile[mPlayer.slimePetIndex]
+                    if (slimeAccessory != 0 && AssortedCrazyThings.slimePetPostAdditionSlot[AssortedCrazyThings.slimePets.IndexOf(projectile.type)] == slotNumber)
                     {
                         drawPostAddition = false;
                     }
@@ -246,10 +247,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Crimson,
             Dungeon,
             Green,
+            Ice,
             Pink,
             Purple,
             Rainbow,
             Red,
+            Toxic,
             Xmas,
             Yellow
         }
