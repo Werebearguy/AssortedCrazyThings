@@ -351,6 +351,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessorySwallowedKey : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Swallowed Key");
+            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Carried;
+        }
+    }
+
+    public class PetAccessoryMetalBreastplate : PetAccessoryBase
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight Breastplate");
+            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
+        }
+
+        protected override void MoreSetDefaults()
+        {
+            item.value = (int)SlotType.Body;
+        }
+    }
+
     public class PetAccessoryMetalHelmet : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -895,7 +923,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryHairBowYellow",
 
                 "PetAccessoryKitchenKnife",
+				
+                "PetAccessorySwallowedKey",
 
+                "PetAccessoryMetalBreastplate",
+				
                 "PetAccessoryMetalHelmet",
 
                 "PetAccessoryMittensBlack",
@@ -981,6 +1013,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             Add(name: "PetAccessoryKitchenKnife", preDraw: true);
 
+            Add(name: "PetAccessoryMetalBreastplate");
+			
             Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
             AddAltTextures(name: "PetAccessoryMetalHelmet",
             green: 1);
@@ -1012,6 +1046,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryStaffRuby", offsetX: -8f, preDraw: true);
             Add(name: "PetAccessoryStaffSapphire", offsetX: -8f, preDraw: true);
             Add(name: "PetAccessoryStaffTopaz", offsetX: -8f, preDraw: true);
+			
+            Add(name: "PetAccessorySwallowedKey", preDraw: true);
 
             Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
             Add(name: "PetAccessoryToyShield");

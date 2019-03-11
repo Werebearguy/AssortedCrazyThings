@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.NPCs
                     itemid = ItemID.Gel;
                     break;
                 case 1:
-                    itemid = ItemID.PurpleMucos;
+                    itemid = ItemID.BlackInk;
                     break;
                 case 2:
                     itemid = ItemID.SharkFin;

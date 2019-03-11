@@ -70,6 +70,7 @@ namespace AssortedCrazyThings
                 ProjectileType<CuteSlimeBlueNewPet>(),
                 ProjectileType<CuteSlimeCrimsonNewPet>(),
                 ProjectileType<CuteSlimeCorruptNewPet>(),
+                ProjectileType<CuteSlimeDungeonNewPet>(),
                 ProjectileType<CuteSlimePurpleNewPet>(),
                 ProjectileType<CuteSlimePinkNewPet>(),
                 ProjectileType<CuteSlimeRedNewPet>(),

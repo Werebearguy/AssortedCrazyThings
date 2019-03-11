@@ -1,18 +1,20 @@
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteSlimeXmasNewPet : CuteSlimeBasePet
+    public class CuteSlimeDungeonNewPet : CuteSlimeBasePet
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Christmas Slime");
+            DisplayName.SetDefault("Cute Dungeon Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -18;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = -16; //-20
+            drawOriginOffsetY = -18; //-22
         }
 
         public override void SetDefaults()
@@ -21,7 +23,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
-            projectile.alpha = 100;
+            projectile.scale = 1f;
+            projectile.alpha = 65;
         }
 
         public override void AI()
@@ -30,12 +33,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.CuteSlimeXmasNew = false;
+                modPlayer.CuteSlimeDungeonNew = false;
             }
-            if (modPlayer.CuteSlimeXmasNew)
+            if (modPlayer.CuteSlimeDungeonNew)
             {
                 projectile.timeLeft = 2;
             }
         }
+
+        //public override Color? GetAlpha(Color drawColor)
+        //{
+        //    drawColor.R = Math.Min((byte)(drawColor.R * 0.75f), (byte)175);
+        //    drawColor.G = Math.Min((byte)(drawColor.G * 0.75f), (byte)175);
+        //    drawColor.B = Math.Min((byte)(drawColor.B * 0.75f), (byte)175);
+        //    drawColor.A = 150;
+        //    return drawColor;
+        //}
     }
 }

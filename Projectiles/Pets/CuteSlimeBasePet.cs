@@ -215,6 +215,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Blue,
             Corrupt,
             Crimson,
+            Dungeon,
             Green,
             Pink,
             Purple,
