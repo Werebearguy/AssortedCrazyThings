@@ -34,8 +34,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.hardMode) return SpawnCondition.Crimson.Chance * 0.05f;
-            return SpawnCondition.Crimson.Chance * 0.2f;
+            if (Main.hardMode) return SpawnCondition.Crimson.Chance * 0.04f;
+            return SpawnCondition.Crimson.Chance * 0.15f;
         }
 
         public override void NPCLoot()

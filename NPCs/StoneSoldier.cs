@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.NPCs
             npc.HitSound = SoundID.NPCHit41;
             npc.DeathSound = SoundID.NPCDeath52;
             npc.value = 60f;
-            npc.knockBackResist = 0.5f;
+            npc.knockBackResist = 1f;
             npc.aiStyle = 3;
             aiType = NPCID.ArmedZombie;
             animationType = NPCID.ArmedZombie;
