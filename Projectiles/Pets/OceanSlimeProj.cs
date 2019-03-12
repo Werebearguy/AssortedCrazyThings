@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = 52;
             projectile.height = 38;
 
-            Damage = 0;
+            projectile.minion = false;
         }
 
         public override bool PreAI()
@@ -63,7 +63,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY +4f);
 
-			spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            if (mPlayer.oceanSlimeType == 0)
+            {
+                lightColor = lightColor * ((255f - projectile.alpha) / 255f);
+            }
+
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
 			return false;
 		}

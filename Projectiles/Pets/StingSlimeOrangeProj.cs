@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = 52;
             projectile.height = 38;
 
-            Damage = 0;
+            projectile.minion = false;
         }
 
         public override bool PreAI()

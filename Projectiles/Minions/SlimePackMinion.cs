@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.width = 34;
             projectile.height = 30;
 
-            Damage = DefDamage;
+            projectile.minion = true;
         }
 
         public override void SendExtraAI(BinaryWriter writer)

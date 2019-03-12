@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.NPCs
         public override Color? GetAlpha(Color lightColor)
         {
             lightColor = Main.DiscoColor;
-            lightColor.A = (byte)(255 - npc.alpha);
+            lightColor = lightColor * ((255f - npc.alpha) / 255f);
             return lightColor;
         }
     }

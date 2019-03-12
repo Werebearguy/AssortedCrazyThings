@@ -8,11 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public abstract class BabySlimeBase : ModProjectile
     {
-        //set this to 0 if you want it to behave like a pet, otherwise it will behave like a minion with one slot
-        //(which won't summon if you already have max minions)
-        //concider doing it the minion summon way (everburning lantern + companionsoulminion files)
-        public int Damage = 0;
-
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BabySlime);
@@ -29,26 +24,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             MoreSetDefaults();
 
-            projectile.minion = (Damage > 0) ? true : false;
-
-            projectile.minionSlots = (Damage > 0) ? 1f : 0f;
+            projectile.minionSlots = projectile.minion? 1f : 0f;
         }
-        
-        /*					
-            if (projPet[projectile[i].type] && !projectile[i].minion && projectile[i].owner != 255 && projectile[i].damage == 0 && !ProjectileID.Sets.LightPet[projectile[i].type])
-            {
-	            num3 = player[projectile[i].owner].cPet;
-            }
-         */
 
         public virtual void MoreSetDefaults()
         {
-            //used to set dimensions and damage (if necessary)
+            //used to set dimensions (if necessary)
+            //also use to set projectile.minion
         }
 
         public override bool MinionContactDamage()
         {
-            return (Damage > 0) ? true : false;
+            return projectile.minion ? true : false;
         }
 
         public override void AI()
@@ -141,15 +128,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public void BabySlimeAI()
         {
-            projectile.damage = Damage;
+            //projectile.damage = Damage;
+            //Main.NewText(projectile.damage);
 
             bool flag = false;
             bool flag2 = false;
             bool flag3 = false;
             bool flag4 = false;
-            //int num = 85;
-
-            //num = 60 + 30 * minionPos;
 
             int num = projectile.minion? 10: 25;
             if (!projectile.minion) projectile.minionPos = 0;
@@ -206,8 +191,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 int num43 = 200;
 
                 projectile.tileCollide = false;
-                Vector2 vector7 = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
-                float num44 = Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - vector7.X;
+                float num44 = Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - projectile.Center.X;
 
                 num44 -= (40 * Main.player[projectile.owner].direction);
                 float num45 = 700f;
@@ -238,14 +222,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 if (!flag6)
                 {
-                    num44 -= (40 * projectile.minionPos * Main.player[projectile.owner].direction);
+                    num44 -= 40 * projectile.minionPos * Main.player[projectile.owner].direction;
                 }
                 if (flag6 && num46 >= 0)
                 {
                     projectile.ai[0] = 0f;
                 }
 
-                float num51 = Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - vector7.Y;
+                float num51 = Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - projectile.Center.Y;
 
                 float num52 = (float)Math.Sqrt((double)(num44 * num44 + num51 * num51));
                 float num53 = 10f;
@@ -331,7 +315,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //DISABLE MINION TARGETING------------------------------------------------------------
                     //------------------------------------------------------------------------------------
 
-                    if (Damage > 0)
+                    if (projectile.minion)
                     {
                         NPC ownerMinionAttackTargetNPC2 = projectile.OwnerMinionAttackTargetNPC;
                         if (ownerMinionAttackTargetNPC2 != null && ownerMinionAttackTargetNPC2.CanBeChasedBy(this))
