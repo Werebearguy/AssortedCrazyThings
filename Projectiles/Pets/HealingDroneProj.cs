@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
             sinY = (float)((Math.Sin((Sincounter / 120f) * 2 * Math.PI) - 1) * 4);
             
-            if(player.statLife < player.statLifeMax2 / 2)
+            if (player.statLife < player.statLifeMax2 / 2)
             {
                 Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;

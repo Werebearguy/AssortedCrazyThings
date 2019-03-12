@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         public override void PostAI()
         {
             //dont spawn the dust instantly when projectile spawns, give it 1/12th of a second
-            if(projectile.timeLeft < LifeTime - 5)
+            if (projectile.timeLeft < LifeTime - 5)
             {
                 SpawnSandDust(Color.White, projectile.Hitbox, Main.player[projectile.owner], (LifeTime - projectile.timeLeft) * 0.1f);
             }

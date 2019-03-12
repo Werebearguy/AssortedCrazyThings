@@ -273,9 +273,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         Vector2 between2 = between;
                         between2.Normalize();
                         between2 *= factor;
-                        if(npc.velocity.Length() < 1.5f)npc.velocity = (npc.velocity * (acc - 1) + between2) / acc;
+                        if (npc.velocity.Length() < 1.5f)npc.velocity = (npc.velocity * (acc - 1) + between2) / acc;
 
-                        if(between.Length() < 105f)
+                        if (between.Length() < 105f)
                         {
                             npc.netUpdate = true;
                         }

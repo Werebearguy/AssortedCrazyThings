@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Buffs
             player.GetModPlayer<PetPlayer>(mod).PetMoon = true;
             bool moreThanOneSun = player.ownedProjectileCounts[mod.ProjectileType<PetSunProj>()] > 0;
             bool moreThanOneMoon = player.ownedProjectileCounts[mod.ProjectileType<PetMoonProj>()] > 0;
-            if(player.whoAmI == Main.myPlayer)
+            if (player.whoAmI == Main.myPlayer)
             {
                 if (!moreThanOneSun) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, mod.ProjectileType<PetSunProj>(), 0, 0f, player.whoAmI, 0f, 0f);
                 if (!moreThanOneMoon) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, mod.ProjectileType<PetMoonProj>(), 0, 0f, player.whoAmI, 0f, 0f);

@@ -110,7 +110,7 @@ namespace AssortedCrazyThings
                 ProjectileType<CuteSlimeYellowNewProj>(),
             });
 
-            slimePetIsSlotTypeBlacklisted = new bool[slimePets.Count , Enum.GetValues(typeof(SlotType)).Length];
+            slimePetIsSlotTypeBlacklisted = new bool[slimePets.Count, Enum.GetValues(typeof(SlotType)).Length];
 
             slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>()), (int)SlotType.Carried] = true;
             slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>()), (int)SlotType.Accessory] = true;
@@ -324,7 +324,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            if(projIndex != -1)
+            if (projIndex != -1)
             {
                 Dust dust;
                 for (int i = 0; i < 14; i++)
@@ -636,9 +636,9 @@ namespace AssortedCrazyThings
         private void UpdateEverhallowedLanternStats(int selectedSoulType)
         {
             bool first = true;
-            for(int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
+            for (int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
             {
-                if(Main.LocalPlayer.inventory[i].type == ItemType<EverhallowedLantern>())
+                if (Main.LocalPlayer.inventory[i].type == ItemType<EverhallowedLantern>())
                 {
                     var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
                     //bad practice, don't do this
@@ -652,7 +652,7 @@ namespace AssortedCrazyThings
                         CombatText.NewText(Main.LocalPlayer.getRect(),
                             CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
                     }
-                    else if(first)
+                    else if (first)
                     {
                         CombatText.NewText(Main.LocalPlayer.getRect(),
                             CombatText.HealLife, "Selected: Soul of " + soulType.ToString());

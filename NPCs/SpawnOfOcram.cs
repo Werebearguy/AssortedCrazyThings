@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			{
 				Item.NewItem(npc.getRect(), ItemID.Emerald);
-				if(Main.rand.Next(5) < 1) // a 1 in 5 chance
+				if (Main.rand.Next(5) < 1) // a 1 in 5 chance
 				Item.NewItem(npc.getRect(), mod.ItemType("BabyOcram"));
 			}
 		}

@@ -93,7 +93,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
                 }
-                else if(soulType == (int)SoulType.Dungeon)
+                else if (soulType == (int)SoulType.Dungeon)
                 {
                     return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
                 }
@@ -237,7 +237,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 dust.noLight = true;
                 dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
 
-                if(dustColor != 0)
+                if (dustColor != 0)
                 {
                     dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
                 }

@@ -98,7 +98,7 @@ namespace AssortedCrazyThings
         //small methods I made for myself to not make the code cluttered since I have to use these six times
         public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
         {
-            if(soundStyle != -1) Main.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
+            if (soundStyle != -1) Main.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(message, 175, 75, 255);
@@ -327,11 +327,11 @@ namespace AssortedCrazyThings
             {
                 if (Main.npc[j].active)
                 {
-                    if(Main.npc[j].TypeName == lilmegalodonName && !lilmegalodonSpawned)
+                    if (Main.npc[j].TypeName == lilmegalodonName && !lilmegalodonSpawned)
                     {
                         lilmegalodonSpawned = true;
                         //check if it wasnt alive in previous update
-                        if(!lilmegalodonAlive)
+                        if (!lilmegalodonAlive)
                         {
                             AwakeningMessage(lilmegalodonMessage, Main.npc[j].position, 0);
                             lilmegalodonAlive = true;

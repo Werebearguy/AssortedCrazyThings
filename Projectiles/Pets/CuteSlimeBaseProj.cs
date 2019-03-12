@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
-            if(projectile.ai[0] != 0f) //frame 6 to 9 flying
+            if (projectile.ai[0] != 0f) //frame 6 to 9 flying
             {
                 frame2Counter += 3;
                 if (frame2Counter > 6)
@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if(!AssortedCrazyThings.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
+            if (!AssortedCrazyThings.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
             {
                 DrawAccessories(spriteBatch, drawColor);
             }

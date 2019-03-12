@@ -1251,7 +1251,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         private string Enum2string(int e)
         {
-            if(e == (byte)SlotType.Hat)
+            if (e == (byte)SlotType.Hat)
             {
                 return "Worn on the head";
             }
@@ -1349,7 +1349,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     {
                         if (shouldReset && player.altFunctionUse == 2)
                         {
-                            if(mPlayer.slots != 0)
+                            if (mPlayer.slots != 0)
                             {
                                 mPlayer.slotsLast = mPlayer.slots;
                                 mPlayer.slots = 0;

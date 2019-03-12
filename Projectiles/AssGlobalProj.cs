@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if((projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.friendly && projectile.damage > 0)
+            if ((projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.friendly && projectile.damage > 0)
             {
                 AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
                 if (mPlayer.empoweringBuff)

@@ -920,7 +920,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         npc.timeLeft = 750;
                     }
 
-                    if(npc.timeLeft < 0)
+                    if (npc.timeLeft < 0)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
@@ -976,7 +976,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (!(AI_State == STATE_NOCLIP))
             {
-                if(!IsTargetActive())
+                if (!IsTargetActive())
                 {
                     if (aiTargetType == Target_Soul)
                     {
@@ -993,7 +993,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (AI_Timer >= hungerTime && !SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height/* + 2*/))
                 {
                     SelectTarget(restricted: false);
-                    if(IsTargetActive() && target != 200)
+                    if (IsTargetActive() && target != 200)
                     {
                         AI_Timer = 0;
                         //goto noclip 
@@ -1012,7 +1012,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //if (IsTargetActive())
             //{
-                if(Main.netMode != NetmodeID.MultiplayerClient)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     AI_Timer++; //count hungerTime up, always
                 }
@@ -1021,11 +1021,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //Attack player
             if (AI_Timer % 20 == 0)
             {
-                if(AI_State == STATE_STOP && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
+                if (AI_State == STATE_STOP && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
                 {
                     AttackPlayer(5, 3f, 200, aiTargetType);
                 }
-                else if(AI_State != STATE_STOP && aiTargetType == Target_Soul)
+                else if (AI_State != STATE_STOP && aiTargetType == Target_Soul)
                 {
                     AttackPlayer(5, 3f, npc.width, aiTargetType);
                 }
@@ -1034,11 +1034,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (AI_State == STATE_DISTRIBUTE/*0*/)
             {
-                if(Main.time % 20 == 0)
+                if (Main.time % 20 == 0)
                 {
                     SelectTarget(restrictedSoulSearch);
                 }
-                else if(target == 200)
+                else if (target == 200)
                 {
                     //SelectTarget(restrictedSoulSearch);
                 }
@@ -1095,7 +1095,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         npc.direction = 1;
                     }
-                    if(AI_Timer > hungerTime - 180) AI_Timer -= 180; //halve hunger timer
+                    if (AI_Timer > hungerTime - 180) AI_Timer -= 180; //halve hunger timer
                     //AI_Timer = 0f; //reset hunger timer
                     AI_State = STATE_APPROACH;
                 }
@@ -1223,7 +1223,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         private void AttackPlayer(int dmg, float knock, int distance, bool prevTargetType)
         {
-            if(Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 aiTargetType = Target_Player;
                 SelectTarget();
@@ -1254,7 +1254,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public void Transform(int to)
         {
             //set to -1 to not transform
-            if(to != -1)
+            if (to != -1)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {

@@ -109,7 +109,7 @@ namespace AssortedCrazyThings.NPCs
             //    npc.netUpdate = true;
             //}
 
-            //if(Main.time % 60 == 0)
+            //if (Main.time % 60 == 0)
             //{
             //    AssUtils.Print("TEX " + npc.altTexture);
             //}

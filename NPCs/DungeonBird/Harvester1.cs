@@ -71,9 +71,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AI_State == STATE_APPROACH)
             {
                 npc.frameCounter++;
-                if(npc.velocity.X != 0)
+                if (npc.velocity.X != 0)
                 {
-                    if(npc.velocity.Y == 0)
+                    if (npc.velocity.Y == 0)
                     {
                         if (npc.frameCounter <= 8.0)
                         {
@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frame.Y = frameHeight * 3;
                 }
             }
-            else if(AI_State == STATE_NOCLIP)
+            else if (AI_State == STATE_NOCLIP)
             {
                 npc.frameCounter++;
                 if (npc.frameCounter <= 3.0)
@@ -122,7 +122,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frameCounter = 0;
                 }
             }
-            else if(AI_State == STATE_TRANSFORM)
+            else if (AI_State == STATE_TRANSFORM)
             {
                 npc.gfxOffY += 1f;
                 npc.frame.Y = 0;
@@ -130,7 +130,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             else if (AI_State == STATE_STOP)
             {
                 npc.gfxOffY += 1f;
-                if(stopTime == eatTime)
+                if (stopTime == eatTime)
                 {
                     npc.frameCounter++;
                     if (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f)

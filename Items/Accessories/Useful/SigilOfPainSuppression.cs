@@ -71,7 +71,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
 
                 string timeName;
-                if(mPlayer.getDefenseTimer > 60) //more than 1 minute
+                if (mPlayer.getDefenseTimer > 60) //more than 1 minute
                 {
                     if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
                     {

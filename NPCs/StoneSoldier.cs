@@ -79,7 +79,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreAI()
         {
-            if(npc.ai[1] == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (npc.ai[1] == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 float heightFactor = (float)(npc.position.Y - (16f * Main.rockLayer)) / (float)((Main.maxTilesY - 200 - Main.rockLayer) * 16f) * 6;
                 //0f == above rock layer
@@ -118,7 +118,7 @@ namespace AssortedCrazyThings.NPCs
 
             if (npc.ai[1] != 0 && npc.ai[3] == 1)
             {
-                if(npc.direction == 1) npc.velocity.X += 0.09f; //0.02
+                if (npc.direction == 1) npc.velocity.X += 0.09f; //0.02
                 else npc.velocity.X -= 0.09f;
             }
 

@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if(Main.hasFocus) GetFrame();
+            if (Main.hasFocus) GetFrame();
             
             lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
             SpriteEffects effects = SpriteEffects.None;

@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot(NPC npc)
         {
             //other pets
-            if(npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
+            if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
             }

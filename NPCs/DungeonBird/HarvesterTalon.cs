@@ -207,7 +207,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             float y = Main.player[npc.target].Center.Y - npc.Center.Y;
                             float toPlayer = (float)Math.Sqrt((double)(x * x + y * y));
 
-                            if(toPlayer < 500f && npc.BottomLeft.Y < Main.player[npc.target].BottomLeft.Y) //distance where it is allowed to swing at player
+                            if (toPlayer < 500f && npc.BottomLeft.Y < Main.player[npc.target].BottomLeft.Y) //distance where it is allowed to swing at player
                             {
                                 //end new
                                 if ((npc.type == AssWorld.harvesterTalonLeft && npc.Center.X + test > Main.player[npc.target].Center.X) || (npc.type == AssWorld.harvesterTalonRight && npc.Center.X - test < Main.player[npc.target].Center.X))

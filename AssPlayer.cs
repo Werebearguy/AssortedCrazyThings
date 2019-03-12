@@ -142,7 +142,7 @@ namespace AssortedCrazyThings
 
         public override void OnEnterWorld(Player player)
         {
-            if(slotsPlayer != 0) //transfer legacy variable over to new one
+            if (slotsPlayer != 0) //transfer legacy variable over to new one
             {
                 PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
                 mPlayer.slots = slotsPlayer;
@@ -234,7 +234,7 @@ namespace AssortedCrazyThings
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls
-            if(Main.time % 30 == 4)
+            if (Main.time % 30 == 4)
             {
                 bool shouldDropSouls = false;
                 int index = 200;
@@ -467,7 +467,7 @@ namespace AssortedCrazyThings
                 if (everburningShadowflameCandleBuff) ((NPC)victim).AddBuff(BuffID.ShadowFlame, 60);
                 //if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
             }
-            else if(victim is Player)
+            else if (victim is Player)
             {
                 return;
                 if (everburningCandleBuff) ((Player)victim).AddBuff(BuffID.OnFire, 120);
@@ -643,7 +643,7 @@ namespace AssortedCrazyThings
                 if (Main.rand.NextFloat() < 0.1f)
                 {
                     Vector2 position = drawPlayer.Center - new Vector2(8f, 0f) + new Vector2(Main.rand.Next(8), Main.rand.Next(8));
-                    if(drawPlayer.direction == 1)
+                    if (drawPlayer.direction == 1)
                     {
                         position.X += 8f;
                     }
@@ -670,7 +670,7 @@ namespace AssortedCrazyThings
             }
             else
             {
-                if(wingLayer != -1)
+                if (wingLayer != -1)
                 {
                     HarvesterWings.visible = true;
                     layers.Insert(wingLayer + 1, HarvesterWings);

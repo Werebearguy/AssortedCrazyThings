@@ -103,7 +103,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.spriteDirection = -npc.direction;
             npc.frameCounter++;
 
-            if(npc.alpha > 0)
+            if (npc.alpha > 0)
             {
                 npc.frame.Y = frameHeight * 4;
                 npc.frameCounter = 40.0;
@@ -263,7 +263,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //"convert" Item souls in inventory
             for (int j = 0; j < Main.player.Length; j++)
             {
-                if(Main.player[j].active/* && !Main.player[j].dead*/)
+                if (Main.player[j].active/* && !Main.player[j].dead*/)
                 {
                     AssPlayer mPlayer = Main.player[j].GetModPlayer<AssPlayer>(mod);
 
@@ -404,7 +404,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AI_Local2 == 0)
             {
                 AssWorld.harvesterIndex = npc.whoAmI;
-                if(Main.netMode != NetmodeID.MultiplayerClient)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                     int index1 = NPC.NewNPC((int)npc.Center.X + TalonOffsetLeftX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
@@ -434,7 +434,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (npc.alpha < 4)
                 {
                     npc.alpha = 0;
-                    if(Main.netMode != 1)
+                    if (Main.netMode != 1)
                     {
                         npc.netUpdate = true;
                     }

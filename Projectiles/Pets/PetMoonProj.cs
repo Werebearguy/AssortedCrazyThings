@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 lightFactor = 0.85f;
             }
-            else if(projectile.frame == 2 || projectile.frame == 6)
+            else if (projectile.frame == 2 || projectile.frame == 6)
             {
                 lightFactor = 0.7f;
             }

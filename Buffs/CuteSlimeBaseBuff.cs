@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Buffs
 
             if (projType != -1)
             {
-                if(color != 255)
+                if (color != 255)
                 {
 
                     bool petProjectileNotSpawned = player.ownedProjectileCounts[projType] <= 0;

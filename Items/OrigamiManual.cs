@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items
         {
             NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("FoldfishBoss"));
             Main.PlaySound(SoundID.Roar, player.position, 0);
-            if(Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int k = 0; k < 6; k++)
                 {

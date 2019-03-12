@@ -225,7 +225,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             npc.frameCounter = 0;
                         }
                     }
-                    else if(!SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
+                    else if (!SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
                     {
                         if (npc.frameCounter <= 8.0)
                         {
@@ -267,7 +267,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (soulsEaten > 0)
             {
-                if(soulsEaten < maxSoulsEaten / 2)
+                if (soulsEaten < maxSoulsEaten / 2)
                 {
                     texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulsmall");
                 }

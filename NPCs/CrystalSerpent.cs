@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.NPCs
                 float distancen = (float)Math.Sqrt((double)(distancex * distancex + distancey * distancey)); //distance between player and fish
                 if (Main.player[npc.target].wet && distancen < scareRange)
                 {
-                    if(!Main.player[npc.target].dead)
+                    if (!Main.player[npc.target].dead)
                     {
                         flag12 = true;
                     }

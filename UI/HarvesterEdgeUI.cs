@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.UI
             //find first occurence of suitable boss to display
             for (int k = 0; k < 200; k++)
             {
-                if(Main.npc[k].active && Array.IndexOf(typeList, Main.npc[k].type) != -1)
+                if (Main.npc[k].active && Array.IndexOf(typeList, Main.npc[k].type) != -1)
                 {
                     int ltype = Main.npc[k].type;
                     Vector2 ldrawPos = Vector2.Zero; 

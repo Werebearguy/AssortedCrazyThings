@@ -71,7 +71,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             //since default state is 0, textures will use [1 to TotalNumberOfThese] as indices, then it will substract 1 in pre-draw
             if (Main.netMode != NetmodeID.Server)
             {
-                if(texture == 0)
+                if (texture == 0)
                 {
                     byte tex = (byte)Main.rand.Next(1, TotalNumberOfThese + 1);
                     texture = tex;
