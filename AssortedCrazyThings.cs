@@ -44,8 +44,11 @@ namespace AssortedCrazyThings
         internal static UserInterface HoverNPCUIInterface;
         internal static HoverNPCUI HoverNPCUI;
 
-        internal static UserInterface HarvesterEdgeInterface;
+        internal static UserInterface HarvesterEdgeUIInterface;
         internal static HarvesterEdgeUI HarvesterEdgeUI;
+
+        internal static UserInterface EnhancedHunterUIInterface;
+        internal static EnhancedHunterUI EnhancedHunterUI;
 
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
@@ -218,8 +221,13 @@ namespace AssortedCrazyThings
 
                 HarvesterEdgeUI = new HarvesterEdgeUI();
                 HarvesterEdgeUI.Activate();
-                HarvesterEdgeInterface = new UserInterface();
-                HarvesterEdgeInterface.SetState(HarvesterEdgeUI);
+                HarvesterEdgeUIInterface = new UserInterface();
+                HarvesterEdgeUIInterface.SetState(HarvesterEdgeUI);
+
+                EnhancedHunterUI = new EnhancedHunterUI();
+                EnhancedHunterUI.Activate();
+                EnhancedHunterUIInterface = new UserInterface();
+                EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
 
                 CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
@@ -235,6 +243,7 @@ namespace AssortedCrazyThings
                 CircleUI = null;
 
                 HarvesterEdgeUI.typeToTexture = null;
+                EnhancedHunterUI.arrowTexture = null;
             }
         }
 
@@ -667,6 +676,19 @@ namespace AssortedCrazyThings
             HoverNPCUI.Update(gameTime);
         }
 
+        private void UpdateEnhancedHunterUI(GameTime gameTime)
+        {
+            if (Main.LocalPlayer.GetModPlayer<AssPlayer>().enhancedHunterBuff)
+            {
+                EnhancedHunterUI.visible = true;
+            }
+            else
+            {
+                EnhancedHunterUI.visible = false;
+            }
+            EnhancedHunterUI.Update(gameTime);
+        }
+
         private void UpdateHarvesterEdgeUI(GameTime gameTime)
         {
             HarvesterEdgeUI.Update(gameTime);
@@ -676,6 +698,7 @@ namespace AssortedCrazyThings
         {
             UpdateCircleUI(gameTime);
             UpdateHoverNPCUI(gameTime);
+            UpdateEnhancedHunterUI(gameTime);
             UpdateHarvesterEdgeUI(gameTime);
         }
 
@@ -712,10 +735,21 @@ namespace AssortedCrazyThings
 
                 layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
                     (
+                    "ACT: Enhanced Hunter",
+                    delegate
+                    {
+                        if (EnhancedHunterUI.visible) EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+
+                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+                    (
                     "ACT: Harvester Edge",
                     delegate
                     {
-                        HarvesterEdgeInterface.Draw(Main.spriteBatch, new GameTime());
+                        HarvesterEdgeUIInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)

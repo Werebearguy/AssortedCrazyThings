@@ -5,14 +5,14 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    class EmpowermentFlask: ModItem
+    class EnhancedHunterPotion: ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Empowerment Flask");
-            Tooltip.SetDefault("Incrementally increases damage dealt over time"
-                + "\nBonus resets upon taking damage"
-                + "\n(Summon damage only increases marginally)");
+            DisplayName.SetDefault("Enhanced Hunter Potion");
+            Tooltip.SetDefault("Shows the location of enemies"
+                + "\nAdditionally, shows the location of enemies outside your vision range"
+                + "\nRange is roughly one screen in each direction");
         }
 
         public override void SetDefaults()
@@ -26,18 +26,17 @@ namespace AssortedCrazyThings.Items
             item.UseSound = SoundID.Item3;
             item.maxStack = 30;
             item.consumable = true;
-            item.buffTime = 7200; //two minutes
-            item.buffType = mod.BuffType<EmpoweringBuff>();
+            item.buffTime = 18000; //five minutes
+            item.buffType = mod.BuffType<EnhancedHunterBuff>();
             item.rare = -11;
-            item.value = Item.sellPrice(silver: 2);
+            item.value = Item.sellPrice(silver: 2); //default 2 for hunter potion
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater, 1);
+            recipe.AddIngredient(ItemID.HunterPotion, 1);
             recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 3);
-            recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();

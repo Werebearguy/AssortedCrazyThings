@@ -120,7 +120,11 @@ namespace AssortedCrazyThings.UI
                         }
                         ldrawPos.Y = ldrawPos.X * slope;
 
+                        //revert offset
                         ldrawPos += new Vector2(pad.X, pad.Y);
+
+                        //since we were operating based on Center to Center, we need to put the drawPos back to position instead
+                        ldrawPos -= new Vector2(Main.npc[k].width / 2, Main.npc[k].height / 2);
 
                         type.Add(ltype);
                         drawPos.Add(ldrawPos);
@@ -163,11 +167,11 @@ namespace AssortedCrazyThings.UI
 
                     int finalWidth = tex.Width / 2;
                     int finalHeight = tempheight / 2;
-                    Rectangle outputWeaponRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
+                    Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
                     //outputWeaponRect.Inflate(10, 10);
                     //spriteBatch.Draw(tex, outputWeaponRect, Color.White);
                     Color color = Color.White * 0.78f;
-                    spriteBatch.Draw(tex, outputWeaponRect, new Rectangle(0, 0, tex.Width, tempheight), Color.White);
+                    spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tex.Width, tempheight), Color.White);
                 }
             }
         }

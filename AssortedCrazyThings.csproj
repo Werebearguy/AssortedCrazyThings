@@ -40,6 +40,7 @@
     <Compile Include="Buffs\CuteSlimeCorruptNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeCrimsonNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeDungeonNewBuff.cs" />
+    <Compile Include="Buffs\EnhancedHunterBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
     <Compile Include="AssUtils.cs" />
     <Compile Include="Buffs\ChunkySlimeBuff.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
+    <Compile Include="Items\EnhancedHunterPotion.cs" />
     <Compile Include="Items\Pets\CuteSlimeToxicNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeIceNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeCorruptNew.cs" />
@@ -428,6 +430,7 @@
     <Compile Include="Items\Pets\GobletItem.cs" />
     <Compile Include="Tiles\AssGlobalTile.cs" />
     <Compile Include="Tiles\SlimeBeaconTile.cs" />
+    <Compile Include="UI\EnhancedHunterUI.cs" />
     <Compile Include="UI\HarvesterEdgeUI.cs" />
     <Compile Include="UI\HoverNPCUI.cs" />
     <Compile Include="UI\CircleUI.cs" />

@@ -57,6 +57,9 @@ namespace AssortedCrazyThings
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
         public float step;
 
+        //enhanced hunter potion stuff
+        public bool enhancedHunterBuff = false;
+
         public bool soulSaviorArmor = false;
 
         private bool rightClickPrev = false;
@@ -66,9 +69,7 @@ namespace AssortedCrazyThings
         private bool leftClickPrev2 = false;
 
         //legacy, but don't delete
-        public const int planteraGitGudCounterMax = 5;
         public int planteraGitGudCounter = 0;
-        public bool planteraGitGud = false;
 
         public override void ResetEffects()
         {
@@ -85,7 +86,7 @@ namespace AssortedCrazyThings
             tempSoulMinion = false;
             slimePackMinion = false;
             empoweringBuff = false;
-            planteraGitGud = false;
+            enhancedHunterBuff = false;
             soulSaviorArmor = false;
         }
 
