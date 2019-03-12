@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    /* This class holds three retextures of DemonEye, that only differ by their texture and their gode
+    /* This class holds three retextures of DemonEye, that only differ by their texture and their gore
      * First off, you need to declare the total number of retextures that you intend to use for this particular class
      * (private const int TotalNumberOfThese)
      * Then for organizations sake you "name" them by their number so you can see in the code what texture is what number

@@ -29,8 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public virtual void MoreSetDefaults()
         {
-            //used to set dimensions (if necessary)
-            //also use to set projectile.minion
+            //used to set dimensions (if necessary) //also use to set projectile.minion
         }
 
         public override bool MinionContactDamage()

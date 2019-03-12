@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void MoreSetDefaults()
         {
-            //used to set dimensions and damage (if there is, defaults to 0)
+            //used to set dimensions (if necessary) //also use to set projectile.minion
             projectile.width = 34;
             projectile.height = 30;
 
