@@ -23,6 +23,8 @@ namespace AssortedCrazyThings.UI
 
         internal static List<float> drawAlpha;
 
+        internal static List<Color> drawColor;
+
         internal static Texture2D arrowTexture; //<- = null in Mod.Unload()
 
         internal static int[] blacklistNPCs;
@@ -34,10 +36,12 @@ namespace AssortedCrazyThings.UI
             drawPos = new List<Vector2>();
             drawRotation = new List<float>();
             drawAlpha = new List<float>();
+            drawColor = new List<Color>();
             arrowTexture = AssUtils.Instance.GetTexture("UI/UIArrow");
 
             blacklistNPCs = new int[]
             {
+                NPCID.Bee,
                 NPCID.BeeSmall,
                 NPCID.Creeper,
                 NPCID.ChaosBall,
@@ -64,6 +68,7 @@ namespace AssortedCrazyThings.UI
 				NPCID.TheHungryII,
                 NPCID.VileSpit,
 				NPCID.WallofFleshEye,
+                NPCID.WaterSphere,
             };
 
             Array.Sort(blacklistNPCs);
@@ -76,46 +81,45 @@ namespace AssortedCrazyThings.UI
             drawPos.Clear();
             drawRotation.Clear();
             drawAlpha.Clear();
+            drawColor.Clear();
             for (int k = 0; k < 200; k++)
             {
-                if (Main.npc[k].active)
-                {
-                    bool test = AssUtils.IsWormBodyOrTail(Main.npc[k]);
-                }
+                NPC npc = Main.npc[k];
+
                 if (type.Count < 20 && //limit to 20 drawn at all times
-                    Main.npc[k].active && !Main.npc[k].friendly && Main.npc[k].damage > 0 && Main.npc[k].lifeMax > 5 &&
-                    !Main.npc[k].dontCountMe && !Main.npc[k].hide && !Main.npc[k].dontTakeDamage &&
-                    Array.BinarySearch(blacklistNPCs, Main.npc[k].type) < 0 &&
-                    !AssUtils.IsWormBodyOrTail(Main.npc[k]))
+                    npc.active && !npc.friendly && npc.damage > 0 && npc.lifeMax > 5 &&
+                    !npc.dontCountMe && !npc.hide && !npc.dontTakeDamage &&
+                    Array.BinarySearch(blacklistNPCs, npc.type) < 0 &&
+                    !AssUtils.IsWormBodyOrTail(npc))
                 {
-                    Vector2 between = Main.npc[k].Center - Main.LocalPlayer.Center;
+                    Vector2 between = npc.Center - Main.LocalPlayer.Center;
                     //screen "radius" is 960, "diameter" is 1920
                     int diameter = 1300 * 3; //radar range * 3
 
                     if (between.Length() < diameter / 2)
                     {
 
-                        int ltype = Main.npc[k].type;
+                        int ltype = npc.type;
                         Vector2 ldrawPos = Vector2.Zero;
 
                         //rectangle at which the npc ISN'T rendered (so its sprite won't draw aswell as the NPC itself)
                         Rectangle rectangle = new Rectangle(
-                            (int)(Main.screenPosition.X - Main.npc[k].width / 2),
-                            (int)(Main.screenPosition.Y - Main.npc[k].height / 2),
-                            (int)(Main.PendingResolutionWidth + Main.npc[k].width),
-                            (int)(Main.PendingResolutionHeight + Main.npc[k].height));
+                            (int)(Main.screenPosition.X - npc.width / 2),
+                            (int)(Main.screenPosition.Y - npc.height / 2),
+                            (int)(Main.PendingResolutionWidth + npc.width),
+                            (int)(Main.PendingResolutionHeight + npc.height));
 
                         //rectangle.Inflate(-100, -100);
 
-                        if (!rectangle.Intersects(Main.npc[k].getRect()))
+                        if (!rectangle.Intersects(npc.getRect()))
                         {
                             if (between.X == 0f) between.X = 0.0001f; //protection against division by zero
                             float slope = between.Y / between.X;
 
                             Vector2 pad = new Vector2
                                 (
-                                (Main.screenWidth + Main.npc[k].width) / 2,
-                                (Main.screenHeight + Main.npc[k].height) / 2
+                                (Main.screenWidth + npc.width) / 2,
+                                (Main.screenHeight + npc.height) / 2
                                 );
 
                             //first iteration
@@ -170,22 +174,23 @@ namespace AssortedCrazyThings.UI
                             ldrawPos += new Vector2(pad.X, pad.Y);
 
                             //since we were operating based on Center to Center, we need to put the drawPos back to position instead
-                            ldrawPos -= new Vector2(Main.npc[k].width / 2, Main.npc[k].height / 2);
-
-
+                            ldrawPos -= new Vector2(npc.width / 2, npc.height / 2);
 
                             //get boss head texture if it has one and use that instead of the NPC texture
                             int lbossHeadIndex = -1;
-                            if (Main.npc[k].boss && Main.npc[k].GetBossHeadTextureIndex() >= 0 && Main.npc[k].GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
+                            if (npc.boss && npc.GetBossHeadTextureIndex() >= 0 && npc.GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
                             {
-                                lbossHeadIndex = Main.npc[k].GetBossHeadTextureIndex();
+                                lbossHeadIndex = npc.GetBossHeadTextureIndex();
                             }
+
+                            //get color if NPC has any
+                            drawColor.Add(npc.color);
 
                             type.Add(ltype);
                             bossHeadIndex.Add(lbossHeadIndex);
                             drawPos.Add(ldrawPos);
                             drawRotation.Add((float)Math.Atan2(between.Y, between.X));
-                            drawAlpha.Add(Collision.CanHitLine(Main.LocalPlayer.position, Main.LocalPlayer.width, Main.LocalPlayer.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height) ? 0.75f : 0.5f);
+                            drawAlpha.Add(Collision.CanHitLine(Main.LocalPlayer.position, Main.LocalPlayer.width, Main.LocalPlayer.height, npc.position, npc.width, npc.height) ? 0.75f : 0.5f);
                         }
                     }
                 }
@@ -245,9 +250,19 @@ namespace AssortedCrazyThings.UI
 
                 //create rect around center
                 Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
-                Color color = Color.LightGray * drawAlpha[i];
-                spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tempWidth, tempHeight), color);
 
+                //set color overlay if NPC has one
+                Color color = Color.LightGray;
+                if (drawColor[i] != default(Color))
+                {
+                    color = new Color(
+                        Math.Max(drawColor[i].R - 25, 50),
+                        Math.Max(drawColor[i].G - 25, 50),
+                        Math.Max(drawColor[i].B - 25, 50),
+                        Math.Max((byte)(drawColor[i].A * 1.5f), (byte)75));
+                }
+                color *= drawAlpha[i];
+                spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tempWidth, tempHeight), color);
 
                 //draw Arrow
                 Vector2 stupidOffset = drawRotation[i].ToRotationVector2() * 24f;

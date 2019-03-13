@@ -359,7 +359,7 @@ namespace AssortedCrazyThings
                 {
                     player.statLife += (int)damage;
                     player.AddBuff(BuffID.RapidHealing, 600);
-                    CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), CombatText.HealLife, "Defense increased");
+                    CombatText.NewText(player.getRect(), CombatText.HealLife, "Defense increased");
 
                     getDefenseTimer = GetDefenseTimerMax;
                     getDefenseDuration = GetDefenseDurationMax;

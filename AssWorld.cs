@@ -128,13 +128,13 @@ namespace AssortedCrazyThings
                 if (!slimeRainSky)
                 {
                     SkyManager.Instance.Activate("Slime", default(Vector2));
-                    CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), CombatText.HealLife, "Background Activated");
+                    CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.HealLife, "Background Activated");
                     slimeRainSky = true;
                 }
                 else
                 {
                     SkyManager.Instance.Deactivate("Slime");
-                    CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), CombatText.DamagedFriendly, "Background Deactivated");
+                    CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, "Background Deactivated");
                     slimeRainSky = false;
                 }
             }
@@ -145,7 +145,7 @@ namespace AssortedCrazyThings
             if (!Main.slimeRain && slimeRainSky && Main.netMode != 1)
             {
                 SkyManager.Instance.Deactivate("Slime");
-                CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), CombatText.DamagedFriendly, "Background Deactivated");
+                CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, "Background Deactivated");
                 slimeRainSky = false;
             }
         }

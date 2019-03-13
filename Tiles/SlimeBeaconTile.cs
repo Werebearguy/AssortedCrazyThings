@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Tiles
             Main.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                CombatText.NewText(new Rectangle((int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, Main.LocalPlayer.width, Main.LocalPlayer.height), new Color(255, 100, 30, 255), "NOT IN MULTIPLAYER");
+                CombatText.NewText(Main.LocalPlayer.getRect(), new Color(255, 100, 30, 255), "NOT IN MULTIPLAYER");
             }
             else
             {
