@@ -11,6 +11,8 @@ namespace AssortedCrazyThings
     {
         public static AssortedCrazyThings Instance { get; set; } //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
+        public static int[] isModdedWormBodyOrTail;
+
         public static void Print(object o)
         {
             if (Main.netMode == NetmodeID.Server)
@@ -73,6 +75,11 @@ namespace AssortedCrazyThings
                 if (NPC.AnyNPCs(typesArray[i])) return true;
             }
             return false;
+        }
+
+        public static bool IsWormBodyOrTail(NPC npc)
+        {
+            return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe;
         }
 
         public static string GetTimeAsString(bool accurate = true)

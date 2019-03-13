@@ -226,10 +226,11 @@ namespace AssortedCrazyThings
             }
         }
 
-        private bool SoulBuffBlacklist(int type)
+        private bool EligibleToRecieveSoulBuff(NPC npc)
         {
-            //returns true if type exists in the blacklist
-            return Array.IndexOf(AssortedCrazyThings.soulBuffBlacklist, type) != -1;
+            //returns true if isn't in soulbuffblacklist or is a worm body or tail
+            
+            return Array.IndexOf(AssortedCrazyThings.soulBuffBlacklist, npc.type) == -1 || AssUtils.IsWormBodyOrTail(npc);
         }
 
         private void SpawnSoulsWhenHarvesterIsAlive()
@@ -256,9 +257,9 @@ namespace AssortedCrazyThings
                     {
                         for (short j = 0; j < 200; j++)
                         {
-                            if (Main.npc[j].active && Main.npc[j].type != mod.NPCType<DungeonSoul>() && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && !SoulBuffBlacklist(Main.npc[j].type))
+                            if (Main.npc[j].active && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly && !Main.npc[j].dontTakeDamage && !Main.npc[j].immortal)
                             {
-                                if (Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly && !Main.npc[j].dontTakeDamage && !Main.npc[j].immortal)
+                                if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && EligibleToRecieveSoulBuff(Main.npc[j]))
                                 {
                                     Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
                                 }

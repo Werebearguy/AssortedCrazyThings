@@ -2,6 +2,7 @@ using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs;
+using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.UI;
@@ -150,59 +151,56 @@ namespace AssortedCrazyThings
 
         private void LoadSoulBuffBlacklist()
         {
-            soulBuffBlacklist = new int[40];
-            int index = 0;
-            soulBuffBlacklist[index++] = NPCID.GiantWormBody;
-            soulBuffBlacklist[index++] = NPCID.GiantWormTail;
-            soulBuffBlacklist[index++] = NPCID.DiggerBody;
-            soulBuffBlacklist[index++] = NPCID.DiggerTail;
-            soulBuffBlacklist[index++] = NPCID.DevourerBody;
-            soulBuffBlacklist[index++] = NPCID.DevourerTail;
-            soulBuffBlacklist[index++] = NPCID.EaterofWorldsBody;
-            soulBuffBlacklist[index++] = NPCID.EaterofWorldsTail;
-            soulBuffBlacklist[index++] = NPCID.SeekerBody;
-            soulBuffBlacklist[index++] = NPCID.SeekerTail;
-            soulBuffBlacklist[index++] = NPCID.TombCrawlerBody;
-            soulBuffBlacklist[index++] = NPCID.TombCrawlerTail;
-            soulBuffBlacklist[index++] = NPCID.LeechBody;
-            soulBuffBlacklist[index++] = NPCID.LeechTail;
-            soulBuffBlacklist[index++] = NPCID.BoneSerpentBody;
-            soulBuffBlacklist[index++] = NPCID.BoneSerpentTail;
-            soulBuffBlacklist[index++] = NPCID.DuneSplicerBody;
-            soulBuffBlacklist[index++] = NPCID.DuneSplicerTail;
-            soulBuffBlacklist[index++] = NPCID.SpikeBall;
-            soulBuffBlacklist[index++] = NPCID.BlazingWheel;
+            List<int> tempList = new List<int>
+            {
+                NPCID.Bee,
+                NPCID.BeeSmall,
+                NPCID.BlueSlime,
+                NPCID.BlazingWheel,
+                NPCID.Creeper,
+                NPCID.GolemFistLeft,
+                NPCID.GolemFistRight,
+                NPCID.PlanterasHook,
+                NPCID.PlanterasTentacle,
+                NPCID.Probe,
+                NPCID.ServantofCthulhu,
+                NPCID.SlimeSpiked,
+                NPCID.SpikeBall,
+                NPCID.TheHungry,
+                NPCID.TheHungryII,
 
-            soulBuffBlacklist[index++] = NPCID.BlueSlime;
-            soulBuffBlacklist[index++] = NPCID.SlimeSpiked;
-            //immune to all debuffs anyway
-            //soulBuffBlacklist[index++] = NPCID.TheDestroyerBody;
-            //soulBuffBlacklist[index++] = NPCID.TheDestroyerTail;
-            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody1;
-            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody2;
-            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody3;
-            //soulBuffBlacklist[index++] = NPCID.CultistDragonBody4;
-            //soulBuffBlacklist[index++] = NPCID.CultistDragonTail;
+            };
 
-            Array.Resize(ref soulBuffBlacklist, index + 1);
+            soulBuffBlacklist = tempList.ToArray();
         }
 
         private void AddToSoulBuffBlacklist()
         {
             //assuming this is called after InitSoulBuffBlacklist
-            int index = soulBuffBlacklist.Length - 1; //last index
-
-            Array.Resize(ref soulBuffBlacklist, index + 40); //buffer
-
-
-            Mod pinkymod = ModLoader.GetMod("pinkymod");
-            if (pinkymod != null)
+            List<int> tempList = new List<int>(soulBuffBlacklist)
             {
-                soulBuffBlacklist[index++] = pinkymod.NPCType("BoneLeechBody");
-                soulBuffBlacklist[index++] = pinkymod.NPCType("BoneLeechTail");
+                NPCType<DungeonSoul>(),
+                NPCType<DungeonSoulFreed>()
+            };
+
+            soulBuffBlacklist = tempList.ToArray();
+        }
+
+        private void LoadWormList()
+        {
+            List<int> tempList = new List<int>();
+
+            for (int i = 580; i < NPCLoader.NPCCount; i++)
+            {
+                ModNPC modNPC = NPCLoader.GetNPC(i);
+                if (modNPC != null && (modNPC.GetType().Name.EndsWith("Body") || modNPC.GetType().Name.EndsWith("Tail")))
+                {
+                    tempList.Add(modNPC.npc.type);
+                }
             }
 
-            Array.Resize(ref soulBuffBlacklist, index + 1);
+            AssUtils.isModdedWormBodyOrTail = tempList.ToArray();
+            Array.Sort(AssUtils.isModdedWormBodyOrTail);
         }
 
         private void LoadUI()
@@ -303,6 +301,8 @@ namespace AssortedCrazyThings
         public override void PostSetupContent()
         {
             LoadUI();
+
+            LoadWormList();
 
             //for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
 
