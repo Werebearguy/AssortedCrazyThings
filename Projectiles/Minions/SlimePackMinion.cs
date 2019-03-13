@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     {
         public const int DefDamage = 36;
 
-        private const byte TotalNumberOfThese = 33;
+        private const byte TotalNumberOfThese = 17; //17 for basic, 16 for advanced
 
         public override string Texture
         {
@@ -22,7 +22,27 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
-        public byte texture = 0;
+        private byte pickedTexture = 0;
+
+        public byte PickedTexture
+        {
+            get
+            {
+                return (byte)(pickedTexture - 1);
+            }
+            set
+            {
+                pickedTexture = value;
+            }
+        }
+
+        public bool HasTexture
+        {
+            get
+            {
+                return PickedTexture != 255;
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -48,12 +68,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write((byte)texture);
+            writer.Write((byte)PickedTexture);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            texture = reader.ReadByte();
+            PickedTexture = reader.ReadByte();
         }
 
         public override bool PreAI()
@@ -71,10 +91,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
             //since default state is 0, textures will use [1 to TotalNumberOfThese] as indices, then it will substract 1 in pre-draw
             if (Main.netMode != NetmodeID.Server)
             {
-                if (texture == 0)
+                if (!HasTexture)
                 {
                     byte tex = (byte)Main.rand.Next(1, TotalNumberOfThese + 1);
-                    texture = tex;
+                    PickedTexture = tex;
                     projectile.netUpdate = true;
                 }
             }
@@ -84,10 +104,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            //Rainbow is _10 and _11, Illuminant is _30 and _31
-            if (!(texture == 0))
+            //Rainbow is _5, Illuminant is _15
+            if (HasTexture)
             {
-                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + (texture - 1));
+                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + PickedTexture);
                 Rectangle bounds = new Rectangle
                 {
                     X = 0,
@@ -101,7 +121,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-                if ((texture - 1) == 10 || (texture - 1) == 11)
+                if (PickedTexture == 5)
                 {
                     double cX = projectile.Center.X + drawOffsetX;
                     double cY = projectile.Center.Y + drawOriginOffsetY;
@@ -110,6 +130,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 Color color = drawColor * ((255 - projectile.alpha) / 255f);
 
+                if (PickedTexture == 3)
+                {
+                    drawPos.Y += 7f;
+                    projectile.scale = 0.5f;
+                }
+
                 spriteBatch.Draw(image, drawPos, bounds, color, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);
             }
             return false;
@@ -117,11 +143,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (!(texture == 0))
+            if (HasTexture)
             {
-                if ((texture - 1) == 30 || (texture - 1) == 31)
+                if (PickedTexture == 15 || PickedTexture == 16)
                 {
-                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + (texture - 1) + "_Glowmask");
+                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + PickedTexture + "_Glowmask");
                     Rectangle bounds = new Rectangle
                     {
                         X = 0,
@@ -133,14 +159,24 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                     SpriteEffects effect = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
+                    Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
                     //the higher the k, the older the position
                     //Length is implicitely set in TrailCacheLength up there
                     //start from half the length so the origninal sprite isnt super blurred
-                    for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
+
+                    if (PickedTexture == 15)
                     {
-                        Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-                        Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length));
-                        spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
+                        for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
+                        {
+                            Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + stupidOffset;
+                            Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length));
+                            spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
+                        }
+                    }
+                    else
+                    {
+                        Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+                        spriteBatch.Draw(image, drawPos, bounds, drawColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);
                     }
                 }
             }
