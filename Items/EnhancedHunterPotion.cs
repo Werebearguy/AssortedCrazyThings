@@ -29,13 +29,14 @@ namespace AssortedCrazyThings.Items
             item.buffTime = 18000; //five minutes
             item.buffType = mod.BuffType<EnhancedHunterBuff>();
             item.rare = -11;
-            item.value = Item.sellPrice(silver: 2); //default 2 for hunter potion
+            item.value = Item.sellPrice(silver: 3);
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.HunterPotion, 1);
+            recipe.AddIngredient(ItemID.PixieDust, 1);
             recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 3);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);

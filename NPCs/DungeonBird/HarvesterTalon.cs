@@ -59,9 +59,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.alpha = 255;
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
-
             npc.buffImmune[BuffID.Confused] = true;
             npc.dontTakeDamage = true;
+            npc.dontCountMe = true;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

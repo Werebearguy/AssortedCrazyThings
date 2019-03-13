@@ -15,6 +15,8 @@ namespace AssortedCrazyThings.UI
 
         internal static List<int> type;
 
+        internal static List<int> bossHeadIndex;
+
         internal static List<Vector2> drawPos;
 
         internal static List<float> drawRotation;
@@ -28,6 +30,7 @@ namespace AssortedCrazyThings.UI
         public override void OnInitialize()
         {
             type = new List<int>();
+            bossHeadIndex = new List<int>();
             drawPos = new List<Vector2>();
             drawRotation = new List<float>();
             drawAlpha = new List<float>();
@@ -43,7 +46,6 @@ namespace AssortedCrazyThings.UI
                 NPCID.Golem,
 				NPCID.GolemFistLeft,
 				NPCID.GolemFistRight,
-				NPCID.MartianSaucer,
 				NPCID.MartianSaucerCannon,
 				NPCID.MartianSaucerTurret,
 				NPCID.MoonLordCore,
@@ -58,13 +60,9 @@ namespace AssortedCrazyThings.UI
 				NPCID.PrimeVice,
                 NPCID.Probe,
                 NPCID.SkeletronHand,
-				NPCID.SkeletronHead,
-				//NPCID.TheDestroyerBody,
-				//NPCID.TheDestroyerTail,
 				NPCID.TheHungry,
 				NPCID.TheHungryII,
                 NPCID.VileSpit,
-                //NPCID.WallofFlesh,
 				NPCID.WallofFleshEye,
             };
 
@@ -74,15 +72,21 @@ namespace AssortedCrazyThings.UI
         private bool SetDrawPos()
         {
             type.Clear();
+            bossHeadIndex.Clear();
             drawPos.Clear();
             drawRotation.Clear();
             drawAlpha.Clear();
             for (int k = 0; k < 200; k++)
             {
+                if (Main.npc[k].active)
+                {
+                    bool test = AssUtils.IsWormBodyOrTail(Main.npc[k]);
+                }
                 if (type.Count < 20 && //limit to 20 drawn at all times
                     Main.npc[k].active && !Main.npc[k].friendly && Main.npc[k].damage > 0 && Main.npc[k].lifeMax > 5 &&
-                    !Main.npc[k].dontCountMe && !Main.npc[k].hide && !Main.npc[k].dontTakeDamage
-                    && Array.BinarySearch(blacklistNPCs, Main.npc[k].type) < 0)
+                    !Main.npc[k].dontCountMe && !Main.npc[k].hide && !Main.npc[k].dontTakeDamage &&
+                    Array.BinarySearch(blacklistNPCs, Main.npc[k].type) < 0 &&
+                    !AssUtils.IsWormBodyOrTail(Main.npc[k]))
                 {
                     Vector2 between = Main.npc[k].Center - Main.LocalPlayer.Center;
                     //screen "radius" is 960, "diameter" is 1920
@@ -168,10 +172,17 @@ namespace AssortedCrazyThings.UI
                             //since we were operating based on Center to Center, we need to put the drawPos back to position instead
                             ldrawPos -= new Vector2(Main.npc[k].width / 2, Main.npc[k].height / 2);
 
-                            //rotation here for arrow
 
+
+                            //get boss head texture if it has one and use that instead of the NPC texture
+                            int lbossHeadIndex = -1;
+                            if (Main.npc[k].boss && Main.npc[k].GetBossHeadTextureIndex() >= 0 && Main.npc[k].GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
+                            {
+                                lbossHeadIndex = Main.npc[k].GetBossHeadTextureIndex();
+                            }
 
                             type.Add(ltype);
+                            bossHeadIndex.Add(lbossHeadIndex);
                             drawPos.Add(ldrawPos);
                             drawRotation.Add((float)Math.Atan2(between.Y, between.X));
                             drawAlpha.Add(Collision.CanHitLine(Main.LocalPlayer.position, Main.LocalPlayer.width, Main.LocalPlayer.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height) ? 0.75f : 0.5f);
@@ -188,7 +199,7 @@ namespace AssortedCrazyThings.UI
             base.Update(gameTime);
 
             //do stuff
-            SetDrawPos();
+            if (visible) SetDrawPos();
         }
 
         //Draw
@@ -198,7 +209,6 @@ namespace AssortedCrazyThings.UI
 
             for (int i = 0; i < type.Count; i++)
             {
-                //Main.NewText("rot " + drawRotation[i] + " " + drawRotation[i].ToRotationVector2());
                 Vector2 ldrawPos = drawPos[i]; //contains npc.Center basically, but for screenpos
                 Texture2D tex = Main.npcTexture[type[i]];
 
@@ -206,7 +216,7 @@ namespace AssortedCrazyThings.UI
                 int tempWidth = tex.Width;
                 int tempHeight = tex.Height / Main.npcFrameCount[type[i]];
                 float scaleFactor = (float)64 / ((tempWidth > tempHeight) ? tempWidth : tempHeight);
-                if(scaleFactor > 0.75f)
+                if(scaleFactor > 0.75f) //because when fully zoomed out, the texture isn't actually drawn in 1:1 scale onto the screen
                 {
                     scaleFactor = 0.75f; //only scale down, don't scale up
                 }
@@ -216,24 +226,31 @@ namespace AssortedCrazyThings.UI
                 //Main.NewText(scaleFactor);
                 //Main.NewText("tex : " + tempWidth + "; " + tempHeight);
                 //Main.NewText("fin : " + finalWidth + "; " + finalHeight);
+
+                //if it's a boss, draw the head texture instead, no scaling
+                if(bossHeadIndex[i] != -1)
+                {
+                    tex = Main.npcHeadBossTexture[bossHeadIndex[i]];
+                    tempWidth = tex.Width;
+                    tempHeight = tex.Height;
+                    finalWidth = tex.Width;
+                    finalHeight = tex.Height;
+                }
+
                 //adjust pos if outside of screen, more padding
-                if (ldrawPos.X >= Main.screenWidth - finalWidth * 1.5f) ldrawPos.X = Main.screenWidth - finalWidth * 1.5f;
-                if (ldrawPos.X <= finalWidth * 1.5f) ldrawPos.X = finalWidth * 1.5f;
+                if (ldrawPos.X >= Main.screenWidth - finalWidth * 1.25f) ldrawPos.X = Main.screenWidth - finalWidth * 1.25f;
+                if (ldrawPos.X <= finalWidth * 1.25f) ldrawPos.X = finalWidth * 1.25f;
                 if (ldrawPos.Y >= Main.screenHeight - finalHeight * 1.25f) ldrawPos.Y = Main.screenHeight - finalHeight * 1.25f;
                 if (ldrawPos.Y <= finalHeight * 1.25f) ldrawPos.Y = finalHeight * 1.25f;
 
-                //int finalWidth = tex.Width;
-                //int finalHeight = tempHeight;
                 //create rect around center
                 Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
-                //Main.NewText("rect: " + outputRect);
-                //outputWeaponRect.Inflate(10, 10);
-                //spriteBatch.Draw(tex, outputWeaponRect, Color.White);
                 Color color = Color.LightGray * drawAlpha[i];
                 spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tempWidth, tempHeight), color);
 
 
-                Vector2 stupidOffset = drawRotation[i].ToRotationVector2() * 32f;
+                //draw Arrow
+                Vector2 stupidOffset = drawRotation[i].ToRotationVector2() * 24f;
                 Vector2 drawPosArrow = ldrawPos + stupidOffset;
                 color = drawAlpha[i] == 0.5f ? Color.Red * 0.75f : Color.Green * 0.75f;
                 spriteBatch.Draw(arrowTexture, drawPosArrow, null, color, drawRotation[i], arrowTexture.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
