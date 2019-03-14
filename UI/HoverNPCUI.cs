@@ -12,6 +12,7 @@ namespace AssortedCrazyThings.UI
 {
     class HoverNPCUI : UIState
     {
+        internal static bool visible = false;
         internal static string drawString = "";
         internal static Color drawColor = Color.White;
 
@@ -100,6 +101,7 @@ namespace AssortedCrazyThings.UI
         //Update
         public override void Update(GameTime gameTime)
         {
+            if (!visible) return;
             base.Update(gameTime);
 
             drawString = "";
@@ -129,6 +131,7 @@ namespace AssortedCrazyThings.UI
         //Draw
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
+            if (!visible) return;
             base.DrawSelf(spriteBatch);
 
             float num = Main.mouseTextColor / 255f;

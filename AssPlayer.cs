@@ -49,6 +49,7 @@ namespace AssortedCrazyThings
         public int selectedSoulMinionType = (int)CompanionDungeonSoulMinionBase.SoulType.Dungeon;
 
         public bool slimePackMinion = false;
+        public byte selectedSlimePackMinionType = 0;
 
         //empowering buff stuff
         public bool empoweringBuff = false;
@@ -471,14 +472,14 @@ namespace AssortedCrazyThings
             }
             else if (victim is Player)
             {
-                return;
-                if (everburningCandleBuff) ((Player)victim).AddBuff(BuffID.OnFire, 120);
-                if (everburningCursedCandleBuff) ((Player)victim).AddBuff(BuffID.CursedInferno, 120);
-                if (everfrozenCandleBuff) ((Player)victim).AddBuff(BuffID.Frostburn, 120);
-                //if (variable_debuff_04) ((NPC)victim).AddBuff(BuffID.Ichor, 120);
-                //if (variable_debuff_05) ((NPC)victim).AddBuff(BuffID.Venom, 120);
-                if (everburningShadowflameCandleBuff) ((Player)victim).AddBuff(BuffID.ShadowFlame, 60);
-                //if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
+                //return;
+                //if (everburningCandleBuff) ((Player)victim).AddBuff(BuffID.OnFire, 120);
+                //if (everburningCursedCandleBuff) ((Player)victim).AddBuff(BuffID.CursedInferno, 120);
+                //if (everfrozenCandleBuff) ((Player)victim).AddBuff(BuffID.Frostburn, 120);
+                ////if (variable_debuff_04) ((NPC)victim).AddBuff(BuffID.Ichor, 120);
+                ////if (variable_debuff_05) ((NPC)victim).AddBuff(BuffID.Venom, 120);
+                //if (everburningShadowflameCandleBuff) ((Player)victim).AddBuff(BuffID.ShadowFlame, 60);
+                ////if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
             }
         }
 

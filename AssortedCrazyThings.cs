@@ -11,11 +11,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
+[assembly: AssemblyVersion("1.2.3.0")]
 namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
@@ -228,6 +230,7 @@ namespace AssortedCrazyThings
                 EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
 
                 CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
+                CircleUIConf.AddItemAsTrigger(ItemType<SlimeHandlerKnapsack>(), false); //right click of Slime Handler Knapsack
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>(), false); //right click of Costume Suitcase
             }
@@ -479,6 +482,13 @@ namespace AssortedCrazyThings
                     //this one needs to be created anew because of the unlocked list
                     CircleUI.UIConf = CircleUIConf.EverhallowedLanternConf();
                 }
+                else if (triggerType == ItemType<SlimeHandlerKnapsack>())
+                {
+                    CircleUI.currentSelected = mPlayer.selectedSlimePackMinionType;
+
+                    //this one needs to be created anew because of the unlocked list
+                    CircleUI.UIConf = CircleUIConf.SlimeHandlerKnapsackConf();
+                }
                 else
                 {
                     return;
@@ -586,6 +596,12 @@ namespace AssortedCrazyThings
 
                         UpdateEverhallowedLanternStats(CircleUI.returned);
                     }
+                    else if (CircleUI.heldItemType == ItemType<SlimeHandlerKnapsack>())
+                    {
+                        mPlayer.selectedSlimePackMinionType = (byte)CircleUI.returned;
+
+                        UIText("Selected: " + (mPlayer.selectedSlimePackMinionType == 0 ? "Default" : "Spiked"), CombatText.HealLife);
+                    }
                 }
             }
 
@@ -673,6 +689,14 @@ namespace AssortedCrazyThings
 
         private void UpdateHoverNPCUI(GameTime gameTime)
         {
+            if (AssUtils.AnyNPCs(AssWorld.harvesterTypes))
+            {
+                HoverNPCUI.visible = true;
+            }
+            else
+            {
+                HoverNPCUI.visible = false;
+            }
             HoverNPCUI.Update(gameTime);
         }
 

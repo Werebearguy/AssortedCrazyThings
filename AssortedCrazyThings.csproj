@@ -422,6 +422,7 @@
     <Compile Include="Projectiles\Weapons\CandleDustDummy.cs" />
     <Compile Include="Projectiles\Weapons\GuideVoodoorangProj.cs" />
     <Compile Include="Projectiles\Weapons\HarvesterBone.cs" />
+    <Compile Include="Projectiles\Minions\SlimePackMinionSpikeProj.cs" />
     <Compile Include="Projectiles\Weapons\TrueLegendaryWoodenSwordProj.cs" />
     <Compile Include="Projectiles\Weapons\PocketSand.cs" />
     <Compile Include="Projectiles\Weapons\SpazmatismFire.cs" />

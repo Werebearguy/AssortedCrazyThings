@@ -14,10 +14,18 @@ namespace AssortedCrazyThings.Buffs
             Main.buffNoTimeDisplay[Type] = true;
         }
 
+        private int SumOfSlimePackCounts(Player player)
+        {
+            int sum = 0;
+            sum += player.ownedProjectileCounts[mod.ProjectileType<SlimePackMinion>()];
+            sum += player.ownedProjectileCounts[mod.ProjectileType<SlimePackSpikedMinion>()];
+            return sum;
+        }
+
         public override void Update(Player player, ref int buffIndex)
         {
             AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
-            if (player.ownedProjectileCounts[mod.ProjectileType<SlimePackMinion>()] > 0)
+            if (SumOfSlimePackCounts(player) > 0)
             {
                 modPlayer.slimePackMinion = true;
             }

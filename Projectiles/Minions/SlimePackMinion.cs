@@ -10,37 +10,19 @@ namespace AssortedCrazyThings.Projectiles.Minions
     //check this file for more info vvvvvvvv
     public class SlimePackMinion : BabySlimeBase
     {
-        public const int DefDamage = 36;
+        public const int DefDamage = 26;
+        public const float DefKnockback = 4f; //same as slime staff x 2
+        public const float SpikedIncrease = 1.4f;
 
-        private const byte TotalNumberOfThese = 17; //17 for basic, 16 for advanced
+        protected const byte TotalNumberOfThese = 17; //17 for basic, 16 for advanced
+
+        protected string Spiked = ""; 
 
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Minions/SlimePackMinions/SlimeMinion_0"; //use fixed texture
-            }
-        }
-
-        private byte pickedTexture = 0;
-
-        public byte PickedTexture
-        {
-            get
-            {
-                return (byte)(pickedTexture - 1);
-            }
-            set
-            {
-                pickedTexture = value;
-            }
-        }
-
-        public bool HasTexture
-        {
-            get
-            {
-                return PickedTexture != 255;
+                return "AssortedCrazyThings/Projectiles/Minions/SlimePackMinions/SlimeMinion" + Spiked + "_0"; //use fixed texture
             }
         }
 
@@ -51,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
-            drawOffsetX = -8;
+            drawOffsetX = -10;
             drawOriginOffsetY = -2;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
@@ -60,20 +42,26 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 34;
+            projectile.width = 32;
             projectile.height = 30;
 
             projectile.minion = true;
+
+            shootSpikes = false;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
         {
+            //AssUtils.Print("send netupdate " + PickedTexture + " " + ShootTimer);
             writer.Write((byte)PickedTexture);
+            //writer.Write((byte)ShootTimer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             PickedTexture = reader.ReadByte();
+            //ShootTimer = reader.ReadByte();
+            //AssUtils.Print("recv netupdate " + PickedTexture + " " + ShootTimer);
         }
 
         public override bool PreAI()
@@ -88,26 +76,27 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 projectile.timeLeft = 2;
             }
             
-            //since default state is 0, textures will use [1 to TotalNumberOfThese] as indices, then it will substract 1 in pre-draw
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server && Main.myPlayer == projectile.owner)
             {
                 if (!HasTexture)
                 {
-                    byte tex = (byte)Main.rand.Next(1, TotalNumberOfThese + 1);
+                    byte tex = (byte)Main.rand.Next(TotalNumberOfThese);
+                    if (Spiked != "" && tex == TotalNumberOfThese - 1) tex--;
                     PickedTexture = tex;
                     projectile.netUpdate = true;
+                    //AssUtils.Print("gen texture " + tex + " " + PickedTexture);
                 }
             }
 
             return true;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             //Rainbow is _5, Illuminant is _15
             if (HasTexture)
             {
-                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + PickedTexture);
+                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + Spiked + "_" + PickedTexture);
                 Rectangle bounds = new Rectangle
                 {
                     X = 0,
@@ -125,10 +114,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     double cX = projectile.Center.X + drawOffsetX;
                     double cY = projectile.Center.Y + drawOriginOffsetY;
-                    drawColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), Main.DiscoColor * 1.2f);
+                    lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), Main.DiscoColor * 1.2f);
                 }
 
-                Color color = drawColor * ((255 - projectile.alpha) / 255f);
+                Color color = lightColor * ((255 - projectile.alpha) / 255f);
 
                 if (PickedTexture == 3)
                 {
@@ -141,13 +130,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return false;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             if (HasTexture)
             {
                 if (PickedTexture == 15 || PickedTexture == 16)
                 {
-                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion_" + PickedTexture + "_Glowmask");
+                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + Spiked + "_" + PickedTexture + "_Glowmask");
                     Rectangle bounds = new Rectangle
                     {
                         X = 0,
@@ -164,22 +153,39 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     //Length is implicitely set in TrailCacheLength up there
                     //start from half the length so the origninal sprite isnt super blurred
 
-                    if (PickedTexture == 15)
+                    if (PickedTexture == 15) //illuminant slime
                     {
                         for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
                         {
                             Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + stupidOffset;
-                            Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length));
+                            Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)) * ((255 - 80) / 255f);
+                            color.A = (byte)(80 * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)));
                             spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
                         }
                     }
-                    else
+                    else //prince slime crown
                     {
                         Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                        spriteBatch.Draw(image, drawPos, bounds, drawColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);
+                        spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);
                     }
                 }
             }
+        }
+    }
+
+    public class SlimePackSpikedMinion : SlimePackMinion
+    {
+        public override void MoreSetDefaults()
+        {
+            //used to set dimensions (if necessary) //also use to set projectile.minion
+            projectile.width = 32;
+            projectile.height = 30;
+
+            projectile.minion = true;
+
+            Spiked = "Spiked";
+
+            shootSpikes = true;
         }
     }
 }

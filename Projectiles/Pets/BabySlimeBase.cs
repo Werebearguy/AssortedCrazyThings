@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -8,6 +9,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public abstract class BabySlimeBase : ModProjectile
     {
+        public bool shootSpikes = false;
+        private static readonly byte shootDelay = 120;
+
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BabySlime);
@@ -122,6 +126,40 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     projectile.velocity.Y = 10f;
                 }
                 projectile.rotation = 0f;
+            }
+        }
+
+        public byte pickedTexture = 1;
+
+        public byte PickedTexture
+        {
+            get
+            {
+                return (byte)(pickedTexture - 1);
+            }
+            set
+            {
+                pickedTexture = (byte)(value + 1);
+            }
+        }
+
+        public bool HasTexture
+        {
+            get
+            {
+                return PickedTexture != 0;
+            }
+        }
+
+        public byte ShootTimer
+        {
+            get
+            {
+                return (byte)projectile.localAI[1];
+            }
+            set
+            {
+                projectile.localAI[1] = (byte)value;
             }
         }
 
@@ -289,7 +327,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else //projectile.ai[0] == 0f)
             {
-                Vector2 vector9 = Vector2.Zero;
+                Vector2 toTarget = Vector2.Zero;
 
                 float num87 = (40 * projectile.minionPos);
                 int num88 = 60;
@@ -304,10 +342,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 else
                 {
-                    float num89 = projectile.position.X;
-                    float num90 = projectile.position.Y;
-                    float num91 = 100000f;
-                    float num92 = num91;
+                    float targetX = projectile.position.X;
+                    float targetY = projectile.position.Y;
+                    float distance = 100000f;
+                    float num92 = distance;
                     int targetNPC = -1;
 
                     //------------------------------------------------------------------------------------
@@ -322,19 +360,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             float x = ownerMinionAttackTargetNPC2.Center.X;
                             float y = ownerMinionAttackTargetNPC2.Center.Y;
                             float num94 = Math.Abs(projectile.position.X + (projectile.width / 2) - x) + Math.Abs(projectile.position.Y + (projectile.height / 2) - y);
-                            if (num94 < num91)
+                            if (num94 < distance)
                             {
                                 if (targetNPC == -1 && num94 <= num92)
                                 {
                                     num92 = num94;
-                                    num89 = x;
-                                    num90 = y;
+                                    targetX = x;
+                                    targetY = y;
                                 }
                                 if (Collision.CanHit(projectile.position, projectile.width, projectile.height, ownerMinionAttackTargetNPC2.position, ownerMinionAttackTargetNPC2.width, ownerMinionAttackTargetNPC2.height))
                                 {
-                                    num91 = num94;
-                                    num89 = x;
-                                    num90 = y;
+                                    distance = num94;
+                                    targetX = x;
+                                    targetY = y;
                                     targetNPC = ownerMinionAttackTargetNPC2.whoAmI;
                                 }
                             }
@@ -349,19 +387,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                     float num96 = Main.npc[npcindex].Center.X;
                                     float num97 = Main.npc[npcindex].Center.Y;
                                     float between = Math.Abs(projectile.Center.X - num96) + Math.Abs(projectile.Center.Y - num97);
-                                    if (between < num91)
+                                    if (between < distance)
                                     {
                                         if (targetNPC == -1 && between <= num92)
                                         {
                                             num92 = between;
-                                            num89 = num96;
-                                            num90 = num97;
+                                            targetX = num96;
+                                            targetY = num97;
                                         }
                                         if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[npcindex].position, Main.npc[npcindex].width, Main.npc[npcindex].height))
                                         {
-                                            num91 = between;
-                                            num89 = num96;
-                                            num90 = num97;
+                                            distance = between;
+                                            targetX = num96;
+                                            targetY = num97;
                                             targetNPC = npcindex;
                                         }
                                     }
@@ -371,13 +409,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    if (targetNPC == -1 && num92 < num91)
+                    if (targetNPC == -1 && num92 < distance)
                     {
-                        num91 = num92;
+                        distance = num92;
                     }
                     else if (targetNPC >= 0) //has target
                     {
-                        vector9 = new Vector2(num89, num90) - projectile.Center;
+                        toTarget = new Vector2(targetX, targetY) - projectile.Center;
                     }
 
                     float num104 = 300f;
@@ -386,9 +424,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         num104 = 150f;
                     }
 
-                    if (num91 < num104 + num87 && targetNPC == -1)
+                    if (distance < num104 + num87 && targetNPC == -1)
                     {
-                        float num105 = num89 - (projectile.position.X + (projectile.width / 2));
+                        float num105 = targetX - (projectile.position.X + (projectile.width / 2));
                         if (num105 < -5f)
                         {
                             flag = true;
@@ -401,13 +439,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                     }
 
-                    bool flag9 = false;
+                    //bool flag9 = false;
 
-                    if (targetNPC >= 0 && num91 < 800f + num87)
+                    if (targetNPC >= 0 && distance < 800f + num87)
                     {
                         projectile.friendly = true;
                         projectile.localAI[0] = num88;
-                        float num106 = num89 - (projectile.position.X + (projectile.width / 2));
+                        float num106 = targetX - (projectile.position.X + (projectile.width / 2));
                         if (num106 < -10f)
                         {
                             flag = true;
@@ -418,11 +456,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             flag2 = true;
                             flag = false;
                         }
-                        if (num90 < projectile.Center.Y - 100f && num106 > -50f && num106 < 50f && projectile.velocity.Y == 0f)
+                        if (targetY < projectile.Center.Y - 100f && num106 > -50f && num106 < 50f && projectile.velocity.Y == 0f)
                         {
-                            float num107 = Math.Abs(num90 - projectile.Center.Y);
+                            float num107 = Math.Abs(targetY - projectile.Center.Y);
                             //jumping velocities
-                            if (num107 < 120f)
+                            if (num107 < 100f) //120f
                             {
                                 projectile.velocity.Y = -10f;
                             }
@@ -443,17 +481,49 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 projectile.velocity.Y = -18f;
                             }
                         }
-                        if (flag9)
+
+                        //---------------------------------------------------------------------
+                        //drop through platforms
+                        //only drop if targets center y is lower than the minions bottom y, and only if its less than 300 away from the target horizontally
+                        if (Main.npc[targetNPC].Center.Y > projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
                         {
-                            projectile.friendly = false;
-                            if (projectile.velocity.X < 0f)
+                            int tilex = (int)(projectile.position.X / 16f);
+                            int tiley = (int)((projectile.position.Y + projectile.height + 15f) / 16f);
+
+                            if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
+                                TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
+                                ((projectile.direction == -1) ? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type] : true))
                             {
-                                flag = true;
+                                //AssUtils.Print("drop " + Main.time);
+                                //Main.NewText("drop");
+                                projectile.netUpdate = true;
+                                projectile.position.Y += 1f;
                             }
-                            else if (projectile.velocity.X > 0f)
+                        }
+
+                        if (shootSpikes)
+                        {
+                            Vector2 velo = toTarget;
+                            //PickedTexture * 3 makes it so theres a small offset for minion shooting based on their texture, which means that if you have different slimes out,
+                            //they don't all shoot in sync
+                            if (ShootTimer > (shootDelay + PickedTexture * 3) && distance < 200f &&
+                                Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[targetNPC].position, Main.npc[targetNPC].width, Main.npc[targetNPC].height))
                             {
-                                flag2 = true;
+                                if (Main.netMode != 1)
+                                {
+                                    for (int k = 0; k < 3; k++)
+                                    {
+                                        Vector2 vector6 = new Vector2(k - 1, -2f);
+                                        vector6.X *= 1f + Main.rand.Next(-40, 41) * 0.02f;
+                                        vector6.Y *= 1f + Main.rand.Next(-40, 41) * 0.02f;
+                                        vector6.Normalize();
+                                        vector6 *= 3f + Main.rand.Next(-40, 41) * 0.01f;
+                                        Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, vector6.X, vector6.Y, mod.ProjectileType<SlimePackMinionSpikeProj>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
+                                        ShootTimer = (byte)(PickedTexture * 3);
+                                    }
+                                }
                             }
+                            if (ShootTimer <= shootDelay + PickedTexture * 3) ShootTimer = (byte)(ShootTimer + 1);
                         }
                     }
                     else

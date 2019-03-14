@@ -32,13 +32,48 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType<SlimePackMinion>();
             item.shootSpeed = 10f;
-            item.knockBack = 4f; //same as slime staff x 2
+            item.knockBack = SlimePackMinion.DefKnockback;
             item.buffType = mod.BuffType<SlimePackMinionBuff>();
             item.buffTime = 3600;
         }
 
+        public override void GetWeaponDamage(Player player, ref int damage)
+        {
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            if(mPlayer.selectedSlimePackMinionType == 1)
+            {
+                damage = (int)(damage * SlimePackMinion.SpikedIncrease); //from 26 to 36
+            }
+            else
+            {
+                //default
+            }
+        }
+
+        public override void GetWeaponKnockback(Player player, ref float knockback)
+        {
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            if (mPlayer.selectedSlimePackMinionType == 1)
+            {
+                knockback *= SlimePackMinion.SpikedIncrease;
+            }
+            else
+            {
+                //default
+            }
+        }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            if (mPlayer.selectedSlimePackMinionType == 1)
+            {
+                type = mod.ProjectileType<SlimePackSpikedMinion>();
+            }
+            else
+            {
+                //default
+            }
             Projectile.NewProjectile(player.position.X + (player.width / 2) - player.direction * 12f, player.position.Y - 8f, - player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
             return false;
         }

@@ -101,8 +101,8 @@ namespace AssortedCrazyThings.UI
         }
 
         //here start the specific confs that are called in PostSetupContent
-        //everhallowed
 
+        //everhallowed
         public static CircleUIConf EverhallowedLanternConf()
         {
             List<Texture2D> textures = new List<Texture2D>();
@@ -130,6 +130,32 @@ namespace AssortedCrazyThings.UI
             };
 
             return new CircleUIConf(8, -1, textures, unlocked, tooltips, toUnlock);
+        }
+
+        //slime knapsack
+        public static CircleUIConf SlimeHandlerKnapsackConf()
+        {
+            List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
+                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
+            List<string> tooltips = new List<string>
+            {
+                "Default"
+                + "\nBase Damage: " + SlimePackMinion.DefDamage
+                + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
+                "Spiked"
+                + "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * SlimePackMinion.SpikedIncrease)
+                + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease)
+                + "\nShoots spikes while fighting"
+            };
+            List<string> toUnlock = new List<string>() { "Default", "Defeat Plantera" };
+
+            List<bool> unlocked = new List<bool>()
+            {
+                true,                // 0
+                NPC.downedPlantBoss, // 1
+            };
+
+            return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
         }
 
         //pets
