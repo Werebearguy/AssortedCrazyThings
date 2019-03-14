@@ -10,16 +10,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("MeatballSlimeProj");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = 0;
-            drawOriginOffsetY = 4;
+            drawOffsetX = -6;
+            drawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 52;
-            projectile.height = 38;
-			projectile.alpha = 0;
+            projectile.width = 34;
+            projectile.height = 30;
+            projectile.alpha = 0;
 
             projectile.minion = false;
         }

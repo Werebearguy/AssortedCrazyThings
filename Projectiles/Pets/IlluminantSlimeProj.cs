@@ -13,18 +13,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Illuminant Slime");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = 0;
-            drawOriginOffsetY = 4;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
+            drawOffsetX = -6;
+            drawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 52;
-            projectile.height = 38;
-			projectile.alpha = 0;
+            projectile.width = 34;
+            projectile.height = 30;
+            projectile.alpha = 0;
 
             projectile.minion = false;
         }
@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
             SpriteEffects effect = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f + drawOriginOffsetY);
+            Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
             //the higher the k, the older the position
             //Length is implicitely set in TrailCacheLength up there
             //start from half the length so the origninal sprite isnt super blurred

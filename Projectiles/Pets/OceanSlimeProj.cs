@@ -20,15 +20,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Ocean Slime");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = 0;
-            drawOriginOffsetY = 4;
+            drawOffsetX = -6;
+            drawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 52;
-            projectile.height = 38;
+            projectile.width = 34;
+            projectile.height = 30;
 
             projectile.minion = false;
         }
@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			};
 			bounds.Y *= bounds.Height;
 
-			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY +4f);
+			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
 
             if (mPlayer.oceanSlimeType == 0)
             {
