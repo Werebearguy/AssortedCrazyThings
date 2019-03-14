@@ -201,15 +201,17 @@ namespace AssortedCrazyThings.UI
         //Update
         public override void Update(GameTime gameTime)
         {
+            if (!visible) return;
             base.Update(gameTime);
 
             //do stuff
-            if (visible) SetDrawPos();
+            SetDrawPos();
         }
 
         //Draw
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
+            if (!visible) return;
             base.DrawSelf(spriteBatch);
 
             for (int i = 0; i < type.Count; i++)

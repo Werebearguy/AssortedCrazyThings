@@ -405,7 +405,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 int num30;
                                 for (int num118 = 0; num118 < 4; num118 = num30 + 1)
                                 {
-                                    int num119 = 0/*Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + (float)projectile.height - 2f), projectile.width, 4, 5)*/;
+                                    /*int num119 = 0;Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + (float)projectile.height - 2f), projectile.width, 4, 5)*/;
                                     //Dust dust = Main.dust[num119];
                                     //dust.velocity += projectile.velocity;
                                     //dust = Main.dust[num119];

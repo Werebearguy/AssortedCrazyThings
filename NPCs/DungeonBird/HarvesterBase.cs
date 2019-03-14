@@ -830,34 +830,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //---------------------------------------------------------------------
             //NEW: DROP THROUGH PLATFORMS WHEN SOUL BELOW
-            //maybe use
-            //Framing.GetTileSafely((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16))
-            int num = (int)(npc.position.X / 16f);
-            int num2 = (int)((npc.position.Y + npc.height + 15f) / 16f);
+            int tilex = (int)(npc.position.X / 16f);
+            int tiley = (int)((npc.position.Y + npc.height + 15f) / 16f);
 
-            //tile under the left corner of the NPC
-            if (Main.tile[num, num2] == null)
-            {
-                Tile[,] tile3 = Main.tile;
-                Tile tile4 = new Tile();
-                tile3[num, num2] = tile4;
-            }
-            //tile on the right of that
-            if (Main.tile[num + 1, num2] == null)
-            {
-                Tile[,] tile5 = Main.tile;
-                Tile tile6 = new Tile();
-                tile5[num + 1, num2] = tile6;
-            }
-            //tile on the right right of that
-            if (npc.direction == -1 && Main.tile[num + 2, num2] == null)
-            {
-                Tile[,] tile7 = Main.tile;
-                Tile tile8 = new Tile();
-                tile7[num + 2, num2] = tile8;
-            }
-
-            if (TileID.Sets.Platforms[Main.tile[num, num2].type] && TileID.Sets.Platforms[Main.tile[num + 1, num2].type] && ((npc.direction == -1)? TileID.Sets.Platforms[Main.tile[num + 2, num2].type]:true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
+            if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
+                TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
+                ((npc.direction == -1)? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type]:true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
             {
                 npc.netUpdate = true;
                 npc.position.Y += 1f;
