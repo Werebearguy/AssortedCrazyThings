@@ -10,14 +10,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Turtle Slime");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = -6;
+            drawOffsetX = -10;
             drawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 34;
+            projectile.width = 32;
             projectile.height = 30;
             projectile.alpha = 0;
 

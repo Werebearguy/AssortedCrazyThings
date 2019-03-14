@@ -20,15 +20,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Abeemination");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = 0;
-            drawOriginOffsetY = 4;
+            drawOffsetX = -10;
+            drawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 38;
-            projectile.height = 40;
+            projectile.width = 32;
+            projectile.height = 30;
 
             projectile.minion = false;
         }
@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Width = image.Bounds.Width;
             bounds.Height = (int)(image.Bounds.Height / Main.projFrames[projectile.type]);
             bounds.Y = projectile.frame * bounds.Height;
-            Vector2 stupidOffset = new Vector2(10f, 22f);
+            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f/* + drawOffsetX * 0.5f*/, projectile.height * 0.5f + projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             return false;

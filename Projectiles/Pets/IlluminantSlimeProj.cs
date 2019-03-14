@@ -15,16 +15,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
-            drawOffsetX = -6;
+            drawOffsetX = -10;
             drawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 34;
+            projectile.width = 32;
             projectile.height = 30;
-            projectile.alpha = 0;
+            projectile.alpha = 80;
 
             projectile.minion = false;
         }
@@ -53,17 +53,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Width = image.Bounds.Width,
                 Height = image.Bounds.Height / 6
             };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+            bounds.Y *= bounds.Height;
 
             SpriteEffects effect = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
+            Vector2 drawOrigin = new Vector2((projectile.width - drawOffsetX) * 0.5f - 5, projectile.height * 0.5f + projectile.gfxOffY);
             //the higher the k, the older the position
             //Length is implicitely set in TrailCacheLength up there
-            //start from half the length so the origninal sprite isnt super blurred
             for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
             {
-                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-                Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length));
+                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin;
+                Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)) * ((255 - projectile.alpha) / 255f);
+                color.A = (byte)(projectile.alpha * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)));
                 spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
             }
         }
