@@ -21,8 +21,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
             projectile.aiStyle = 1;
-            projectile.height = 6;
-            projectile.width = 6;
+            projectile.height = 12;
+            projectile.width = 12;
             projectile.penetrate = 1;
             projectile.tileCollide = true;
             projectile.friendly = true;
@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             bounds.Height = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];
             if (PickedTexture > 15) PickedTexture = 15; //protection against prince slime
             bounds.Y = PickedTexture * bounds.Height;
-            Vector2 stupidOffset = new Vector2(0f, 0f);
+            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
 
             if (PickedTexture == 5)
             {

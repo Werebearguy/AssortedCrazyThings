@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.HunterPotion, 1);
             recipe.AddIngredient(ItemID.PixieDust, 1);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 3);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 1);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();

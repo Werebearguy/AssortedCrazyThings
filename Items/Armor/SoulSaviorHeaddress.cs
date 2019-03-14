@@ -43,8 +43,7 @@ namespace AssortedCrazyThings.Items.Armor
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             mPlayer.soulSaviorArmor = true;
 
-            float minionFactor = (player.maxMinions >= player.slotsMinions) ? player.maxMinions : player.slotsMinions;
-            float factor = (minionFactor / 10f) * player.minionDamage;
+            float factor = (player.maxMinions / 10f) * player.minionDamage;
 
             player.thorns = factor;
 
