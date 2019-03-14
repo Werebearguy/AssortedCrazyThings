@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
 using Terraria.ID;
+using AssortedCrazyThings.NPCs.DungeonBird;
 
 namespace AssortedCrazyThings.UI
 {
@@ -21,7 +22,7 @@ namespace AssortedCrazyThings.UI
 
         internal static List<float> drawRotation;
 
-        internal static List<float> drawAlpha;
+        internal static List<bool> drawLOS;
 
         internal static List<Color> drawColor;
 
@@ -35,7 +36,7 @@ namespace AssortedCrazyThings.UI
             bossHeadIndex = new List<int>();
             drawPos = new List<Vector2>();
             drawRotation = new List<float>();
-            drawAlpha = new List<float>();
+            drawLOS = new List<bool>();
             drawColor = new List<Color>();
             arrowTexture = AssUtils.Instance.GetTexture("UI/UIArrow");
 
@@ -48,27 +49,29 @@ namespace AssortedCrazyThings.UI
                 //NPCID.EaterofWorldsBody,
 				//NPCID.EaterofWorldsTail,
                 NPCID.Golem,
-				NPCID.GolemFistLeft,
-				NPCID.GolemFistRight,
-				NPCID.MartianSaucerCannon,
-				NPCID.MartianSaucerTurret,
-				NPCID.MoonLordCore,
-				NPCID.MoonLordHand,
-				NPCID.MoonLordHead,
-				NPCID.MoonLordFreeEye,
-				NPCID.PlanterasHook,
-				NPCID.PlanterasTentacle,
-				NPCID.PrimeCannon,
-				NPCID.PrimeLaser,
-				NPCID.PrimeSaw,
-				NPCID.PrimeVice,
+                NPCID.GolemFistLeft,
+                NPCID.GolemFistRight,
+                NPCID.MartianSaucerCannon,
+                NPCID.MartianSaucerTurret,
+                NPCID.MoonLordCore,
+                NPCID.MoonLordHand,
+                NPCID.MoonLordHead,
+                NPCID.MoonLordFreeEye,
+                NPCID.PlanterasHook,
+                NPCID.PlanterasTentacle,
+                NPCID.PrimeCannon,
+                NPCID.PrimeLaser,
+                NPCID.PrimeSaw,
+                NPCID.PrimeVice,
                 NPCID.Probe,
                 NPCID.SkeletronHand,
-				NPCID.TheHungry,
-				NPCID.TheHungryII,
+                NPCID.TheHungry,
+                NPCID.TheHungryII,
                 NPCID.VileSpit,
-				NPCID.WallofFleshEye,
+                NPCID.WallofFleshEye,
                 NPCID.WaterSphere,
+                AssUtils.Instance.NPCType<Harvester1>(),
+                AssUtils.Instance.NPCType<Harvester2>()
             };
 
             Array.Sort(blacklistNPCs);
@@ -80,7 +83,7 @@ namespace AssortedCrazyThings.UI
             bossHeadIndex.Clear();
             drawPos.Clear();
             drawRotation.Clear();
-            drawAlpha.Clear();
+            drawLOS.Clear();
             drawColor.Clear();
             for (int k = 0; k < 200; k++)
             {
@@ -94,7 +97,7 @@ namespace AssortedCrazyThings.UI
                 {
                     Vector2 between = npc.Center - Main.LocalPlayer.Center;
                     //screen "radius" is 960, "diameter" is 1920
-                    int diameter = 1300 * 3; //radar range * 3
+                    int diameter = 1300 * 3; //radar range * 3, basically two screens wide
 
                     if (between.Length() < diameter / 2)
                     {
@@ -108,8 +111,6 @@ namespace AssortedCrazyThings.UI
                             (int)(Main.screenPosition.Y - npc.height / 2),
                             (int)(Main.PendingResolutionWidth + npc.width),
                             (int)(Main.PendingResolutionHeight + npc.height));
-
-                        //rectangle.Inflate(-100, -100);
 
                         if (!rectangle.Intersects(npc.getRect()))
                         {
@@ -190,7 +191,7 @@ namespace AssortedCrazyThings.UI
                             bossHeadIndex.Add(lbossHeadIndex);
                             drawPos.Add(ldrawPos);
                             drawRotation.Add((float)Math.Atan2(between.Y, between.X));
-                            drawAlpha.Add(Collision.CanHitLine(Main.LocalPlayer.position, Main.LocalPlayer.width, Main.LocalPlayer.height, npc.position, npc.width, npc.height) ? 0.75f : 0.5f);
+                            drawLOS.Add(Collision.CanHitLine(Main.LocalPlayer.position, Main.LocalPlayer.width, Main.LocalPlayer.height, npc.position, npc.width, npc.height));
                         }
                     }
                 }
@@ -263,13 +264,14 @@ namespace AssortedCrazyThings.UI
                         Math.Max(drawColor[i].B - 25, 50),
                         Math.Max((byte)(drawColor[i].A * 1.5f), (byte)75));
                 }
-                color *= drawAlpha[i];
+                color *= drawLOS[i] ? 0.75f : 0.5f;
                 spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tempWidth, tempHeight), color);
 
                 //draw Arrow
                 Vector2 stupidOffset = drawRotation[i].ToRotationVector2() * 24f;
                 Vector2 drawPosArrow = ldrawPos + stupidOffset;
-                color = drawAlpha[i] == 0.5f ? Color.Red * 0.75f : Color.Green * 0.75f;
+                color = drawLOS[i] ? Color.Green * 0.75f : Color.Red * 0.75f;
+                color.A = 150;
                 spriteBatch.Draw(arrowTexture, drawPosArrow, null, color, drawRotation[i], arrowTexture.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             }
         }

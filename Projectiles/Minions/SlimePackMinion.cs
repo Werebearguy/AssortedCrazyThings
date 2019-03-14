@@ -119,7 +119,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 Color color = lightColor * ((255 - projectile.alpha) / 255f);
 
-                if (PickedTexture == 3)
+                if (PickedTexture == 3) //pinky
                 {
                     drawPos.Y += 7f;
                     projectile.scale = 0.5f;
@@ -149,14 +149,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     SpriteEffects effect = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
                     Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
-                    //the higher the k, the older the position
-                    //Length is implicitely set in TrailCacheLength up there
-                    //start from half the length so the origninal sprite isnt super blurred
 
                     if (PickedTexture == 15) //illuminant slime
                     {
                         for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
                         {
+                            //the higher the k, the older the position
+                            //Length is implicitely set in TrailCacheLength up there
+                            //start from half the length so the origninal sprite isnt super blurred
                             Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + stupidOffset;
                             Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)) * ((255 - 80) / 255f);
                             color.A = (byte)(80 * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)));

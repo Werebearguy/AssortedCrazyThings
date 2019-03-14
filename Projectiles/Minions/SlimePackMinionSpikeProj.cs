@@ -47,6 +47,47 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        private Color ColorFromTexture(byte tex)
+        {
+            switch (tex)
+            {
+                case 0:
+                    return new Color(70, 70, 70);
+                case 1:
+                    return new Color(90, 140, 255);
+                case 2:
+                    return new Color(10, 180, 40);
+                case 3:
+                    return new Color(255, 30, 90);
+                case 4:
+                    return new Color(220, 70, 255);
+                case 5:
+                    return new Color(110, 110, 110);
+                case 6:
+                    return new Color(255, 90, 60);
+                case 7:
+                    return new Color(150, 150, 10);
+                case 8:
+                    return new Color(160, 70, 22);
+                case 9:
+                    return new Color(210, 140, 100);
+                case 10:
+                    return new Color(200, 250, 255);
+                case 11:
+                    return new Color(80, 80, 140);
+                case 12:
+                    return new Color(70, 50, 140);
+                case 13:
+                    return new Color(100, 100, 200);
+                case 14:
+                    return new Color(200, 99, 100);
+                case 15:
+                    return new Color(255, 50, 230);
+                default:
+                    return default(Color);
+            }
+        }
+
         public override void PostAI()
         {
             //projectile.ai[1] used as color picker
@@ -55,10 +96,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 Main.PlaySound(SoundID.Item17, projectile.position);
             }
 
-            if (Main.rand.NextFloat() < 0.1f)
+            if (Main.rand.NextFloat() < 0.2f)
             {
-                Vector2 randVelo = new Vector2(Main.rand.NextFloat() - 0.5f, Main.rand.NextFloat() - 0.5f) + Vector2.Normalize(projectile.velocity);
-                Dust dust = Dust.NewDustPerfect(projectile.Center, 16, randVelo, 120, new Color(0, 0, 0), 0.9f);
+                Vector2 randVelo = new Vector2(Main.rand.NextFloat(0.5f) - 0.25f, Main.rand.NextFloat(0.5f) - 0.25f) + Vector2.Normalize(projectile.velocity) * 0.5f;
+                Dust dust = Dust.NewDustPerfect(projectile.Center, 16, randVelo, 120, ColorFromTexture((byte)projectile.ai[1]), 0.7f);
+                dust.fadeIn = 0f;
             }
 
         }

@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slime Handler Knapsack");
-            Tooltip.SetDefault("Summons a friendly Slime from your Knapsack to fight for you");
+            Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you");
         }
 
         public override void SetDefaults()
@@ -27,6 +27,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.useAnimation = 36;
             item.useStyle = 4; //4 for life crystal
             item.noMelee = true;
+            item.noUseGraphic = true;
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
@@ -78,11 +79,11 @@ namespace AssortedCrazyThings.Items.Weapons
             return false;
         }
 
-        public override void HoldItem(Player player)
-        {
-            player.itemLocation.X = 0; //kind of a hack, 
-            player.itemLocation.Y = 0;
-        }
+        //public override void HoldItem(Player player)
+        //{
+        //    player.itemLocation.X = 0; //kind of a hack, 
+        //    player.itemLocation.Y = 0;
+        //}
 
         public override void AddRecipes()
         {

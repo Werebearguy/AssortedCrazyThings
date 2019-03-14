@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
     public abstract class BabySlimeBase : ModProjectile
     {
         public bool shootSpikes = false;
-        private static readonly byte shootDelay = 120;
+        private static readonly byte shootDelay = 60; //either +1 or +0 every tick, so effectively every 90 ticks
 
         public override void SetDefaults()
         {
@@ -523,7 +523,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                     }
                                 }
                             }
-                            if (ShootTimer <= shootDelay + PickedTexture * 3) ShootTimer = (byte)(ShootTimer + 1);
+                            if (ShootTimer <= shootDelay + PickedTexture * 3) ShootTimer = (byte)(ShootTimer + Main.rand.Next(2));
                         }
                     }
                     else
