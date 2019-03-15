@@ -14,8 +14,6 @@ namespace AssortedCrazyThings.Buffs
         {
             mPlayer.CuteSlimeToxicNew = true;
             projType = mod.ProjectileType<CuteSlimeToxicNewProj>();
-            //this is for the altTexture thing where you can specify which slime has which texture
-            color = (byte)CuteSlimeBaseProj.PetColor.Toxic;
         }
     }
 }

@@ -105,8 +105,8 @@ namespace AssortedCrazyThings
             {
                 ProjectileType<CuteSlimeBlackNewProj>(),
                 ProjectileType<CuteSlimeBlueNewProj>(),
-                ProjectileType<CuteSlimeCrimsonNewProj>(),
                 ProjectileType<CuteSlimeCorruptNewProj>(),
+                ProjectileType<CuteSlimeCrimsonNewProj>(),
                 ProjectileType<CuteSlimeDungeonNewProj>(),
                 ProjectileType<CuteSlimeIceNewProj>(),
                 ProjectileType<CuteSlimePurpleNewProj>(),
@@ -123,7 +123,7 @@ namespace AssortedCrazyThings
 
             slimePetPreAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
             //add one here just like for Post, but for things that render behind the base sprite and if they should be covered by any accessory of that type
-            //dungeon slime key doesn't count since it doesnt block any other accessories from drawing, unlike the xmas slime bow
+            //dungeon slime key doesn't count since it doesn't block any other accessories from drawing, unlike the xmas slime bow
             //
             //example: dungeon key won't draw if slime wears a hat:
             //slimePetPreAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeDungeonNewPet>())] = (byte)SlotType.Hat;
@@ -147,6 +147,8 @@ namespace AssortedCrazyThings
 
             if (!Main.dedServ && Main.netMode != 2)
             {
+                SlimePets.Load();
+
                 PetAccessory.Load();
             }
         }

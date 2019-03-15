@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using System.IO;
 using Terraria;
@@ -509,7 +508,6 @@ namespace AssortedCrazyThings
         //----------------------------------Slime Pet Vanity here---------------------------------------------
 
         public int slimePetIndex = -1;
-        public byte petColor = 0;
         public uint slotsLast = 0;
         private bool resetSlots = false;
         private double lastTime = 0.0;
