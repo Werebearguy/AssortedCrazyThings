@@ -11,7 +11,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
     //Bowtie: Red, Crown: Gold, Hair Bow: Red, Mittens: Red, Head Slime: Blue, Staff: Amethyst, Xmas Hat: Red
 
     /*
-     * read the readme.txt
      * For every new Texture you add, copypaste a new class in this namespace (below PetAccessories), and adjust its DisplayName and item.value.
      * item.value is the "SlotType" in our case.
      * (yes, this means that the accessories are worth almost nothing when sold, who cares lmao)
@@ -921,7 +920,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryHairBowYellow",
 
                 "PetAccessoryKitchenKnife",
-				
+
                 "PetAccessoryMetalHelmet",
 
                 "PetAccessoryMittensBlack",
@@ -961,7 +960,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryToySword",
 
                 "PetAccessoryWizardHat",
-				
+
                 "PetAccessoryXmasHatRed",
                 "PetAccessoryXmasHatGreen",
             };

@@ -490,7 +490,7 @@ namespace AssortedCrazyThings
                 return;
             }
             Player drawPlayer = drawInfo.drawPlayer;
-            Mod mod = ModLoader.GetMod("AssortedCrazyThings");
+            Mod mod = AssUtils.Instance;
 
             if ((drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f)/* && (drawPlayer.inventory[drawPlayer.selectedItem].type == mod.ItemType<Items.Weapons.SlimeHandlerKnapsack>())*/)
             {
@@ -537,7 +537,7 @@ namespace AssortedCrazyThings
                 return;
             }
             Player drawPlayer = drawInfo.drawPlayer;
-            Mod mod = ModLoader.GetMod("AssortedCrazyThings");
+            Mod mod = AssUtils.Instance;
 
             if (drawPlayer.wings == mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
             {
@@ -604,7 +604,7 @@ namespace AssortedCrazyThings
                 return;
             }
             Player drawPlayer = drawInfo.drawPlayer;
-            Mod mod = ModLoader.GetMod("AssortedCrazyThings");
+            Mod mod = AssUtils.Instance;
             
             if (drawPlayer.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
             {

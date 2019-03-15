@@ -1,6 +1,4 @@
-﻿using AssortedCrazyThings.Items;
-using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.Projectiles.Minions;
+﻿using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework.Graphics;
 using System;

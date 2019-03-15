@@ -7,7 +7,7 @@ using Terraria.Localization;
 
 namespace AssortedCrazyThings
 {
-    class AssUtils
+    static class AssUtils
     {
         public static AssortedCrazyThings Instance { get; set; } //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
