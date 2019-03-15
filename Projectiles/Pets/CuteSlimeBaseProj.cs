@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (!AssortedCrazyThings.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
+            if (!SlimePets.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
             {
                 DrawAccessories(spriteBatch, drawColor);
             }
