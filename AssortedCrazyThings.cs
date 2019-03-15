@@ -22,15 +22,6 @@ namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
     {
-        //Slime pets
-        public static List<int> slimePetNPCs = new List<int>();
-        public static List<int> slimePets = new List<int>();
-        public static List<int> slimePetNoHair = new List<int>();
-        public static bool[,] slimePetIsSlotTypeBlacklisted;
-        public static byte[] slimePetPreAdditionSlot;
-        public static byte[] slimePetPostAdditionSlot;
-        public static List<int> slimePetLegacy = new List<int>();
-
         //Sun pet textures
         public static Texture2D[] sunPetTextures;
 
@@ -59,94 +50,10 @@ namespace AssortedCrazyThings
 
         private void LoadPets()
         {
-            //for adding new slime NPCs
-            slimePetNPCs.AddRange(new List<int>
-            {
-                NPCType<CuteSlimeBlack>(),
-                NPCType<CuteSlimeBlue>(),
-                NPCType<CuteSlimeCrimson>(),
-                NPCType<CuteSlimeCorrupt>(),
-                NPCType<CuteSlimeDungeon>(),
-                NPCType<CuteSlimeGreen>(),
-                NPCType<CuteSlimeIce>(),
-                NPCType<CuteSlimePink>(),
-                NPCType<CuteSlimePurple>(),
-                NPCType<CuteSlimeRainbow>(),
-                NPCType<CuteSlimeRed>(),
-                NPCType<CuteSlimeToxic>(),
-                NPCType<CuteSlimeXmas>(),
-                NPCType<CuteSlimeYellow>()
-            });
-
-            //for adding slimes that can wear accessories
-            //basically all New ones
-            //used in AltTexture = new int[itemIndex + 1, AssortedCrazyThings.slimePets.Count];
-            slimePets.AddRange(new List<int>
-            {
-                ProjectileType<CuteSlimeBlackNewProj>(),
-                ProjectileType<CuteSlimeBlueNewProj>(),
-                ProjectileType<CuteSlimeCorruptNewProj>(),
-                ProjectileType<CuteSlimeCrimsonNewProj>(),
-                ProjectileType<CuteSlimeDungeonNewProj>(),
-                ProjectileType<CuteSlimeGreenNewProj>(),
-                ProjectileType<CuteSlimeIceNewProj>(),
-                ProjectileType<CuteSlimePurpleNewProj>(),
-                ProjectileType<CuteSlimePinkNewProj>(),
-                ProjectileType<CuteSlimeRainbowNewProj>(),
-                ProjectileType<CuteSlimeRedNewProj>(),
-                ProjectileType<CuteSlimeToxicNewProj>(),
-                ProjectileType<CuteSlimeXmasNewProj>(),
-                ProjectileType<CuteSlimeYellowNewProj>(),
-            });
-
-            //for adding slimes that have a nohair sprite
-            //no green, ice, rainbow and toxic
-            slimePetNoHair.AddRange(new List<int>
-            {
-                ProjectileType<CuteSlimeBlackNewProj>(),
-                ProjectileType<CuteSlimeBlueNewProj>(),
-                ProjectileType<CuteSlimeCrimsonNewProj>(),
-                ProjectileType<CuteSlimeCorruptNewProj>(),
-                ProjectileType<CuteSlimeDungeonNewProj>(),
-                ProjectileType<CuteSlimeIceNewProj>(),
-                ProjectileType<CuteSlimePurpleNewProj>(),
-                ProjectileType<CuteSlimePinkNewProj>(),
-                ProjectileType<CuteSlimeRedNewProj>(),
-                ProjectileType<CuteSlimeXmasNewProj>(),
-                ProjectileType<CuteSlimeYellowNewProj>(),
-            });
-
-            slimePetIsSlotTypeBlacklisted = new bool[slimePets.Count, Enum.GetValues(typeof(SlotType)).Length];
-
-            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>()), (int)SlotType.Carried] = true;
-            slimePetIsSlotTypeBlacklisted[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>()), (int)SlotType.Accessory] = true;
-
-            slimePetPreAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
-            //add one here just like for Post, but for things that render behind the base sprite and if they should be covered by any accessory of that type
-            //dungeon slime key doesn't count since it doesnt block any other accessories from drawing, unlike the xmas slime bow
-            //
-            //example: dungeon key won't draw if slime wears a hat:
-            //slimePetPreAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeDungeonNewPet>())] = (byte)SlotType.Hat;
-
-            slimePetPostAdditionSlot = new byte[slimePets.Count]; //default 0, aka SlotType.None => addition doesn't get replaced by any accessory
-            slimePetPostAdditionSlot[slimePets.IndexOf(ProjectileType<CuteSlimeXmasNewProj>())] = (byte)SlotType.Body;
-
-            //legacy, no need to adjust
-            slimePetLegacy.AddRange(new List<int>
-            {
-                ProjectileType<CuteSlimeBlackProj>(),
-                ProjectileType<CuteSlimeBlueProj>(),
-                ProjectileType<CuteSlimeGreenProj>(),
-                ProjectileType<CuteSlimePinkProj>(),
-                ProjectileType<CuteSlimePurpleProj>(),
-                ProjectileType<CuteSlimeRainbowProj>(),
-                ProjectileType<CuteSlimeRedProj>(),
-                ProjectileType<CuteSlimeXmasProj>(),
-                ProjectileType<CuteSlimeYellowProj>(),
-            });
-
             if (!Main.dedServ && Main.netMode != 2)
             {
+                SlimePets.Load();
+
                 PetAccessory.Load();
             }
         }

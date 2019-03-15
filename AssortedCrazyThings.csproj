@@ -258,6 +258,7 @@
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
+    <Compile Include="SlimePets.cs" />
     <Compile Include="ModConf.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
     <Compile Include="NPCs\CuteSlimeToxic.cs" />

@@ -44,7 +44,11 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (item.shoot == mod.ProjectileType<CompanionDungeonSoulMinion>()) item.shoot = mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>();
+            if (item.shoot == mod.ProjectileType<CompanionDungeonSoulMinion>())
+            {
+                item.damage *= 2;
+                item.shoot = mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>();
+            }
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
             mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
             return false;

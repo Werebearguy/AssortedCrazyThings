@@ -236,7 +236,7 @@ namespace AssortedCrazyThings
 
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
-            //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls
+            //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls)
             if (Main.time % 30 == 4)
             {
                 bool shouldDropSouls = false;
