@@ -45,13 +45,17 @@ namespace AssortedCrazyThings
         //queen larva texture
         public byte queenLarvaType = 0;
 
-        //queen larva texture
+        //ocean slime texture
         public byte oceanSlimeType = 0;
+
+        //queen larva texture
+        public byte miniAntlionType = 0;
 
         //ALTERNATE
         ////name pet texture
         //public byte classNameType = 0;
 
+        public bool MiniAntlion = false;
         public bool LilWraps = false;
         public bool PetFishron = false;
         public bool RainbowSlime = false;
@@ -124,6 +128,7 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
+            MiniAntlion = false;
             LilWraps = false;
             PetFishron = false;
             RainbowSlime = false;
@@ -242,6 +247,7 @@ namespace AssortedCrazyThings
                 {"pigronataType", (byte)pigronataType},
                 {"queenLarvaType", (byte)queenLarvaType},
                 {"oceanSlimeType", (byte)oceanSlimeType},
+                {"miniAntlionType", (byte)miniAntlionType},
                 //ALTERNATE
                 //{"classNameType", (byte)classNameType},
             };
@@ -263,6 +269,7 @@ namespace AssortedCrazyThings
             pigronataType = tag.GetByte("pigronataType");
             queenLarvaType = tag.GetByte("queenLarvaType");
             oceanSlimeType = tag.GetByte("oceanSlimeType");
+            miniAntlionType = tag.GetByte("miniAntlionType");
             //ALTERNATE
             //classNameType = tag.GetByte("classNameType");
         }
@@ -284,6 +291,7 @@ namespace AssortedCrazyThings
             clone.pigronataType = pigronataType;
             clone.queenLarvaType = queenLarvaType;
             clone.oceanSlimeType = oceanSlimeType;
+            clone.miniAntlionType = miniAntlionType;
             //ALTERNATE
             //clone.classNameType = classNameType;
         }
@@ -306,6 +314,7 @@ namespace AssortedCrazyThings
             else if (clone.pigronataType != pigronataType) changes = PetPlayerChanges.pigronataType;
             else if (clone.queenLarvaType != queenLarvaType) changes = PetPlayerChanges.queenLarvaType;
             else if (clone.oceanSlimeType != oceanSlimeType) changes = PetPlayerChanges.oceanSlimeType;
+            else if (clone.miniAntlionType != miniAntlionType) changes = PetPlayerChanges.miniAntlionType;
             //ALTERNATE
             //else if (clone.classNameType != classNameType) changes = PetPlayerChanges.classNameType;
 
@@ -341,6 +350,7 @@ namespace AssortedCrazyThings
             packet.Write((byte)pigronataType);
             packet.Write((byte)queenLarvaType);
             packet.Write((byte)oceanSlimeType);
+            packet.Write((byte)miniAntlionType);
             //ALTERNATE
             //packet.Write((byte)classNameType);
         }
@@ -361,6 +371,7 @@ namespace AssortedCrazyThings
             pigronataType = reader.ReadByte();
             queenLarvaType = reader.ReadByte();
             oceanSlimeType = reader.ReadByte();
+            miniAntlionType = reader.ReadByte();
             //ALTERNATE
             //classNameType = reader.ReadByte();
         }
@@ -414,6 +425,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.oceanSlimeType:
                     oceanSlimeType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.miniAntlionType:
+                    miniAntlionType = reader.ReadByte();
                     break;
                 //ALTERNATE
                 //case (byte)PetPlayerChanges.classNameType:
@@ -479,6 +493,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.oceanSlimeType:
                     packet.Write((byte)oceanSlimeType);
+                    break;
+                case (byte)PetPlayerChanges.miniAntlionType:
+                    packet.Write((byte)miniAntlionType);
                     break;
                 //ALTERNATE
                 //case (byte)PetPlayerChanges.classNameType:

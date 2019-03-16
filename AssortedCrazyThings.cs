@@ -343,6 +343,12 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.OceanSlimeConf();
                     }
+                    else if (pPlayer.MiniAntlion)
+                    {
+                        CircleUI.currentSelected = pPlayer.miniAntlionType;
+
+                        CircleUI.UIConf = CircleUIConf.MiniAntlionConf();
+                    }
                     //FOR LEFT CLICK ONLY (REGULAR PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
@@ -473,6 +479,10 @@ namespace AssortedCrazyThings
                         else if (pPlayer.OceanSlime)
                         {
                             pPlayer.oceanSlimeType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.MiniAntlion)
+                        {
+                            pPlayer.miniAntlionType = (byte)CircleUI.returned;
                         }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
@@ -850,6 +860,7 @@ namespace AssortedCrazyThings
         pigronataType,
         queenLarvaType,
         oceanSlimeType,
+        miniAntlionType,
         //ALTERNATE
         //classNameType,
     }

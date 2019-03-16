@@ -14,8 +14,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 48;
-            npc.height = 16;
+            npc.width = 64;
+            npc.height = 18;
             npc.damage = 30;
             npc.defense = 1;
             npc.lifeMax = 50;

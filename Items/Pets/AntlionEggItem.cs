@@ -6,20 +6,20 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class OceanSlimeItem : ModItem
+    public class AntlionEggItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bottled Ocean Slime");
-            Tooltip.SetDefault("Summons a friendly Ocean Slime to follow you"
+            DisplayName.SetDefault("Antlion Egg");
+            Tooltip.SetDefault("Summons a friendly Mini Antlion to follow you"
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType<OceanSlimeProj>();
-            item.buffType = mod.BuffType<OceanSlimeBuff>();
+            item.shoot = mod.ProjectileType<MiniAntlionProj>();
+            item.buffType = mod.BuffType<MiniAntlionBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
