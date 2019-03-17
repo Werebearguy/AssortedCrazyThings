@@ -11,6 +11,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
     {
         public bool shootSpikes = false;
         private static readonly byte shootDelay = 60; //either +1 or +0 every tick, so effectively every 90 ticks
+        public byte flyingFrameSpeed = 6;
+        public byte walkingFrameSpeed = 20;
 
         public override void SetDefaults()
         {
@@ -25,6 +27,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 10;
+
+            flyingFrameSpeed = 6;
+            walkingFrameSpeed = 20;
 
             MoreSetDefaults();
 
@@ -46,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             BabySlimeAI();
         }
 
-        public virtual void Draw()
+        public void Draw()
         {
             if (projectile.ai[0] != 0)
             {
@@ -60,7 +65,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
 
                 projectile.frameCounter++;
-                if (projectile.frameCounter > 6)
+                if (projectile.frameCounter > flyingFrameSpeed)
                 {
                     projectile.frame++;
                     projectile.frameCounter = 0;
@@ -97,9 +102,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     projectile.frameCounter += 5;
                 }
-                if (projectile.frameCounter >= 20)
+                if (projectile.frameCounter >= walkingFrameSpeed)
                 {
-                    projectile.frameCounter -= 20;
+                    projectile.frameCounter -= walkingFrameSpeed;
                     projectile.frame++;
                 }
                 if (projectile.frame > 1)

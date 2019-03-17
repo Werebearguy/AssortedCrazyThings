@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.NPCs
         public override void SetDefaults()
         {
             npc.width = 38;
-            npc.height = 46;
+            npc.height = 32;
             npc.damage = 40;
             npc.defense = 20;
             npc.lifeMax = 300;
@@ -128,7 +128,7 @@ namespace AssortedCrazyThings.NPCs
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = mod.GetTexture("NPCs/DemonEyeWandering_" + AiTexture);
-            Vector2 stupidOffset = new Vector2(0f, npc.height / 3); //gfxoffY is for when the npc is on a slope or half brick
+            Vector2 stupidOffset = new Vector2(0f, 0f); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
