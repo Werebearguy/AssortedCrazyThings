@@ -77,28 +77,28 @@ namespace AssortedCrazyThings.NPCs
                 switch ((int)AiTexture)
                 {
                     case 0:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_cataract"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeCataractGore"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_0"), 1f);
                         break;
                     case 1:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_cataract"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purple"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeCataractGore"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_0"), 1f);
                         break;
                     case 2:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_dilated"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeDilatedGore"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_0"), 1f);
                         break;
                     case 3:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_dilated"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purple"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeDilatedGore"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_0"), 1f);
                         break;
                     case 4:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_sleepygreen"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeSleepyGore_0"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_0"), 1f);
                         break;
                     case 5:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_sleepypurple"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purple"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeSleepyGore_1"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_0"), 1f);
                         break;
                     default:
                         break;

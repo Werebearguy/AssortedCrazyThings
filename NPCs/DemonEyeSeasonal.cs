@@ -72,20 +72,20 @@ namespace AssortedCrazyThings.NPCs
                 switch ((int)AiTexture)
                 {
                     case 0:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_greenpupil"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_1"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_0"), 1f);
                         break;
                     case 1:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purplepupil"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purple"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_1"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_0"), 1f);
                         break;
                     case 2:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_greenpupil"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_green"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_1"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_0"), 1f);
                         break;
                     case 3:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purplepupil"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_purple"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_1"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_0"), 1f);
                         break;
                     default:
                         break;

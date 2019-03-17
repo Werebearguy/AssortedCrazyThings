@@ -4,21 +4,21 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class Anomalocaris : ModNPC
+    public class Opabinia : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Anomalocaris");
+            DisplayName.SetDefault("Opabinia");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Piranha];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 64;
+            npc.width = 68;
             npc.height = 18;
-            npc.damage = 30;
+            npc.damage = 18;
             npc.defense = 1;
-            npc.lifeMax = 50;
+            npc.lifeMax = 35;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = 75f;
@@ -44,12 +44,12 @@ namespace AssortedCrazyThings.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_2"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/OpabiniaGore_0"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/OpabiniaGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/OpabiniaGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/OpabiniaGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/OpabiniaGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/OpabiniaGore_2"), 1f);
             }
         }
     }

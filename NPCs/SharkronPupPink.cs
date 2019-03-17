@@ -47,8 +47,8 @@ namespace AssortedCrazyThings.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_fish_03_01"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_fish_03_02"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PinkSharkronPupGore_0"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PinkSharkronPupGore_1"), 1f);
             }
         }
     }

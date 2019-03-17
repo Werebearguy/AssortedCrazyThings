@@ -42,5 +42,15 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextBool(2500))
                 Item.NewItem(npc.getRect(), ItemID.ZombieArm, 1);
         }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SharkheadGore_0"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SharkheadGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SharkheadGore_1"), 1f);
+            }
+        }
     }
 }

@@ -70,12 +70,12 @@ namespace AssortedCrazyThings.NPCs
                 switch ((int)AiTexture)//switch ((int)npc.altTexture)
                 {
                     case 0:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_biggreen"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_biggreen"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WanderingEyeGreenGore"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WanderingEyeGreenGore"), 1f);
                         break;
                     case 1:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_bigpurple"), 1f);
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/gore_eye_bigpurple"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WanderingEyePurpleGore"), 1f);
+                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WanderingEyePurpleGore"), 1f);
                         break;
                     default:
                         break;

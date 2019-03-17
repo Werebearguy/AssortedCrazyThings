@@ -41,5 +41,14 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextBool(98))
                 Item.NewItem(npc.getRect(), ItemID.WoodenCrate, 1);
         }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WhaleSharkPupGore_0"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WhaleSharkPupGore_1"), 1f);
+            }
+        }
     }
 }

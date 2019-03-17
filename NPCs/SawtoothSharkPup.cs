@@ -43,5 +43,14 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextBool(98))
                 Item.NewItem(npc.getRect(), ItemID.SawtoothShark, 1);
         }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SawtoothPupGore_0"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SawtoothPupGore_1"), 1f);
+            }
+        }
     }
 }
