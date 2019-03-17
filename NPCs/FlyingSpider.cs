@@ -51,5 +51,16 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.Next(100) < 2)
                 Item.NewItem(npc.getRect(), ItemID.PoisonStaff);
         }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FlyingSpiderGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FlyingSpiderGore_2"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FlyingSpiderGore_1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FlyingSpiderGore_0"), 1f);
+            }
+        }
     }
 }
