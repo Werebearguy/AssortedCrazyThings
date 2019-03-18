@@ -1216,22 +1216,37 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
     public class APetAccessory
     {
-        public static List<APetAccessory> petAccessoryList = new List<APetAccessory>();
-        public static List<int> petAccessoryIds;
-        public static List<int> petAccessoryTypes;
-        //ID is the index of the accessory, petAccessories[index] is the item type
+        public static List<APetAccessory> petAccessoryListGlobal = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListB = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListH = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListC = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListA = new List<APetAccessory>();
+        public static List<int> petAccessoryIdsB;
+        public static List<int> petAccessoryIdsH;
+        public static List<int> petAccessoryIdsC;
+        public static List<int> petAccessoryIdsA;
+        public static List<int> petAccessoryTypesGlobal;
 
         public byte ID { private set; get; }
         public string Name { private set; get; }
         public int Type { private set; get; }
         public SlotType Slot { private set; get; }
         public byte Color { set; get; } //index for AltTextureSuffixes
+
+        /*
+         *         public static Vector2[] Offset;
+        public static bool[] PreDraw;
+        public static byte[] Alpha;
+        public static bool[] UseNoHair;
+         */
+
+
         public bool HasAlts { private set; get; }
         public List<string> AltTextureSuffixes { private set; get; }
         public List<Texture2D> AltTextures { private set; get; }
         public List<byte> PetVariations { private set; get; }
 
-        public APetAccessory(byte id, string name, SlotType slot, List<string> altTextures = null)
+        public APetAccessory(byte id, string name, SlotType slot = SlotType.None, List<string> altTextures = null)
         {
             ID = id;
             Name = name;
@@ -1278,59 +1293,129 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //    .AddPetVariation("CuteSlimeXmasNewProj", 1));
             //Add(new APetAccessory(id: 3, name: "PetAccessoryBowtieRed")
             //    .AddPetVariation("CuteSlimeXmasNewProj", 5));
-            Add(new APetAccessory(id: 4, name: "PetAccessoryBowtie", slot: SlotType.Body, altTextures: new List<string>() { "Red", "Blue", "Green" }));
-            Add(new APetAccessory(id: 11, name: "PetAccessoryCrown", slot: SlotType.Hat));
+            Add(SlotType.Body, new APetAccessory(id: 1, name: "PetAccessoryBowtie", altTextures: new List<string>() { "Red", "Blue", "Green" }));
+            Add(SlotType.Hat, new APetAccessory(id: 11, name: "PetAccessoryCrown"));
 
             CreateMaps();
 
-            APetAccessory test = GetAccessoryFromID(4);
-            AssUtils.Print(petAccessoryList.Count);
+            //APetAccessory test = GetAccessoryFromID(SlotType.Body, 1);
+            AssUtils.Print(petAccessoryListGlobal.Count);
+            AssUtils.Print(petAccessoryListB.Count);
+            AssUtils.Print(petAccessoryListH.Count);
+            AssUtils.Print(petAccessoryListC.Count);
+            AssUtils.Print(petAccessoryListA.Count);
         }
 
         public static void CreateMaps()
         {
-            petAccessoryIds = new List<int>(petAccessoryList.Count);
-            petAccessoryTypes = new List<int>(petAccessoryList.Count);
-            for (int i = 0; i < petAccessoryList.Count; i++)
+            petAccessoryIdsB = new List<int>(petAccessoryListB.Count);
+            petAccessoryIdsH = new List<int>(petAccessoryListH.Count);
+            petAccessoryIdsC = new List<int>(petAccessoryListC.Count);
+            petAccessoryIdsA = new List<int>(petAccessoryListA.Count);
+
+            foreach (SlotType slotType in Enum.GetValues(typeof(SlotType)))
             {
-                petAccessoryIds.Add(petAccessoryList[i].ID);
-                petAccessoryTypes.Add(petAccessoryList[i].Type);
+                if (slotType != SlotType.None)
+                {
+                    List<APetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
+                    List<int> tempIdList = GetIdListFromType(slotType);
+                    for (int i = 0; i < tempAccessoryList.Count; i++)
+                    {
+                        tempIdList.Add(tempAccessoryList[i].ID);
+                    }
+                }
+            }
+
+            petAccessoryTypesGlobal = new List<int>(petAccessoryListGlobal.Count); //because types are unique we use only one list
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            {
+                petAccessoryTypesGlobal.Add(petAccessoryListGlobal[i].Type);
             }
         }
 
         public static void Unload()
         {
-            petAccessoryList.Clear();
-            petAccessoryIds.Clear();
-            petAccessoryTypes.Clear();
+            petAccessoryListGlobal.Clear();
+            petAccessoryListB.Clear();
+            petAccessoryListH.Clear();
+            petAccessoryListC.Clear();
+            petAccessoryListA.Clear();
+            petAccessoryIdsB.Clear();
+            petAccessoryIdsH.Clear();
+            petAccessoryIdsC.Clear();
+            petAccessoryIdsA.Clear();
+            petAccessoryTypesGlobal.Clear();
         }
 
-        public static void Add(APetAccessory aPetAccessory)
+        private static List<APetAccessory> GetAccessoryListFromType(SlotType slotType)
         {
-            for (int i = 0; i < petAccessoryList.Count; i++)
+            switch (slotType)
             {
-                if (petAccessoryList[i].Name == aPetAccessory.Name) throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
-                if (petAccessoryList[i].ID == aPetAccessory.ID) throw new Exception("ID '" + aPetAccessory.ID + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessoryList[i].Name + "'");
+                case SlotType.Body:
+                    return petAccessoryListB;
+                case SlotType.Hat:
+                    return petAccessoryListH;
+                case SlotType.Carried:
+                    return petAccessoryListC;
+                case SlotType.Accessory:
+                    return petAccessoryListA;
+                default:
+                    return petAccessoryListGlobal;
             }
+        }
+
+        private static List<int> GetIdListFromType(SlotType slotType)
+        {
+            switch (slotType)
+            {
+                case SlotType.Body:
+                    return petAccessoryIdsB;
+                case SlotType.Hat:
+                    return petAccessoryIdsH;
+                case SlotType.Carried:
+                    return petAccessoryIdsC;
+                case SlotType.Accessory:
+                    return petAccessoryIdsA;
+                default:
+                    throw new Exception("invalid slottype");
+            }
+        }
+
+        public static void Add(SlotType slotType, APetAccessory aPetAccessory)
+        {
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            {
+                if (petAccessoryListGlobal[i].Name == aPetAccessory.Name) throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
+                if (petAccessoryListGlobal[i].Slot == slotType && petAccessoryListGlobal[i].ID == aPetAccessory.ID)
+                    throw new Exception("ID '" + aPetAccessory.ID + "' in Slot '" + aPetAccessory.Slot.ToString() + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessoryListGlobal[i].Name + "'");
+            }
+
+            aPetAccessory.Slot = slotType;
+            if (slotType == SlotType.None) throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
+
             //everything fine
-            petAccessoryList.Add(aPetAccessory);
+            List<APetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
+            tempAccessoryList.Add(aPetAccessory);
+
+            petAccessoryListGlobal.Add(aPetAccessory);
         }
 
-        public static APetAccessory GetAccessoryFromID(byte id)
+        public static APetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
         {
-            return petAccessoryList[petAccessoryIds.IndexOf(id)];
+            return GetAccessoryListFromType(slotType)[GetIdListFromType(slotType).IndexOf(id)];
+            //return petAccessoryListGlobal[petAccessoryIdsB.IndexOf(id)];
         }
 
-        public static APetAccessory GetAccessoryFromType(int type)
+        public static APetAccessory GetAccessoryFromType(int type) //since types are unique, just look up in the global list
         {
-            return petAccessoryList[petAccessoryTypes.IndexOf(type)];
+            return petAccessoryListGlobal[petAccessoryTypesGlobal.IndexOf(type)];
         }
 
         public static bool IsItemAPetVanity(int type)
         {
-            for (int i = 0; i < petAccessoryList.Count; i++)
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
             {
-                if (petAccessoryList[i].Type == type && petAccessoryList[i].HasAlts) return true;
+                if (petAccessoryListGlobal[i].Type == type && petAccessoryListGlobal[i].HasAlts) return true;
             }
             return false;
         }

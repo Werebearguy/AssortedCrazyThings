@@ -102,6 +102,7 @@ namespace AssortedCrazyThings.UI
                 {
                     //set the "returned" new type
                     returned = done;
+                    if (hasEquipped && done == petAccessory.Color) returned = -2;
                 }
 
                 i += angleSteps;
@@ -119,8 +120,8 @@ namespace AssortedCrazyThings.UI
             //Draw held item inside circle
             if (petAccessory.Type != -1)
             {
-                int finalWidth = Main.itemTexture[petAccessory.Type].Width / 2;
-                int finalHeight = Main.itemTexture[petAccessory.Type].Height / 2;
+                int finalWidth = Main.itemTexture[petAccessory.Type].Width;
+                int finalHeight = Main.itemTexture[petAccessory.Type].Height;
                 Rectangle outputWeaponRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
                 //outputWeaponRect.Inflate(4, 4);
                 spriteBatch.Draw(Main.itemTexture[petAccessory.Type], outputWeaponRect, Color.White);

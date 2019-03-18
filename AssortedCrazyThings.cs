@@ -641,7 +641,7 @@ namespace AssortedCrazyThings
                     PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
                     AssUtils.Print("BEFORE: slots: " + pPlayer.slots + "; color: " + pPlayer.color);
-                    if (PetVanityUI.returned != -1)
+                    if (PetVanityUI.returned > -1)
                     {
                         //if (PetVanityUI.returned != PetVanityUI.petAccessory.Color)
                         //{
@@ -652,10 +652,10 @@ namespace AssortedCrazyThings
 
                             PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
                             AssUtils.Print("accessory: " + PetVanityUI.petAccessory);
-                            pPlayer.AddAccessory(PetVanityUI.petAccessory);
+                            pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
                         //}
                     }
-                    else if (PetVanityUI.hasEquipped)
+                    else if (PetVanityUI.hasEquipped && PetVanityUI.returned == -1)
                     {
                         //hovered over the middle and had something equipped: take accessory away
 
