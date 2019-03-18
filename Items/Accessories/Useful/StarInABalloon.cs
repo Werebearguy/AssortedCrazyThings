@@ -24,8 +24,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.manaRegenDelayBonus++;
-            player.manaRegenBonus += 25;
+            //player.manaRegenDelayBonus++;
+            //player.manaRegenBonus += 25;
+            if (!player.HasBuff(BuffID.StarInBottle))
+            {
+                player.manaRegenBonus += 2;
+            }
             player.jumpBoost = true;
         }
 
