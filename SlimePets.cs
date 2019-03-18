@@ -169,6 +169,14 @@ namespace AssortedCrazyThings
             CreateMap();
         }
 
+        public static void Unload()
+        {
+            slimePets.Clear();
+            slimePetList.Clear();
+            slimePetLegacy.Clear();
+            slimePetNPCs.Clear();
+        }
+
         public static void CreateMap()
         {
             slimePets = new List<int>(slimePetList.Count);
@@ -198,6 +206,7 @@ namespace AssortedCrazyThings
         {
             Name = name;
             Type = AssUtils.Instance.ProjectileType(name);
+            if (Type == 0) throw new Exception("Pet projectile called '" + name + "' doesn't exist, are you sure you spelled it correctly?");
             Color = color;
             HasNoHair = hasNoHair;
             PreAdditionSlot = preAdditionSlot;

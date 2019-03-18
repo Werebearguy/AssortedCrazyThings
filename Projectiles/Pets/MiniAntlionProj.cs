@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -10;
-            drawOriginOffsetY = 0;
+            drawOriginOffsetY = 2;
         }
 
         public override void MoreSetDefaults()
@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			};
 			bounds.Y *= bounds.Height;
 
-			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
+			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY + drawOriginOffsetY);
 
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 

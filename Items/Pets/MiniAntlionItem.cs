@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class AntlionEggItem : ModItem
+    public class MiniAntlionItem : ModItem
     {
         public override void SetStaticDefaults()
         {

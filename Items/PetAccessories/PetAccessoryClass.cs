@@ -841,10 +841,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
     public enum SlotType : byte
     {
         None, //reserved
-        Body,
-        Hat,
-        Carried,
-        Accessory
+        Body = 1,
+        Hat = 2,
+        Carried = 3,
+        Accessory = 4
 
         //for Carried, it's actually only the front facing hand. For something like gloves or dual wielding, use Accessory instead
 
@@ -1212,7 +1212,275 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
             return ret;
         }
+    }
 
+    public class APetAccessory
+    {
+        public static List<APetAccessory> petAccessoryList = new List<APetAccessory>();
+        public static List<int> petAccessoryIds;
+        public static List<int> petAccessoryTypes;
+        //ID is the index of the accessory, petAccessories[index] is the item type
+
+        public byte ID { private set; get; }
+        public string Name { private set; get; }
+        public int Type { private set; get; }
+        public SlotType Slot { private set; get; }
+        public byte Color { set; get; } //index for AltTextureSuffixes
+        public bool HasAlts { private set; get; }
+        public List<string> AltTextureSuffixes { private set; get; }
+        public List<Texture2D> AltTextures { private set; get; }
+        public List<byte> PetVariations { private set; get; }
+
+        public APetAccessory(byte id, string name, SlotType slot, List<string> altTextures = null)
+        {
+            ID = id;
+            Name = name;
+            Type = AssUtils.Instance.ItemType(name);
+            Slot = slot;
+            if (Type == 0) throw new Exception("Item called '" + name + "' doesn't exist, are you sure you spelled it correctly?");
+            Color = 0;
+            AltTextureSuffixes = new List<string>();
+            if (altTextures != null)
+            {
+                AltTextureSuffixes.AddRange(altTextures);
+                HasAlts = true;
+            }
+            else
+            {
+                HasAlts = false;
+            }
+            //add icons for UI
+            AltTextures = new List<Texture2D>(AltTextureSuffixes.Count);
+            for (int i = 0; i < AltTextureSuffixes.Count; i++)
+            {
+                AltTextures.Add(AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]));
+            }
+
+            //fill list with zeroes
+            PetVariations = new List<byte>(SlimePets.slimePets.Count);
+            for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
+        }
+
+        public APetAccessory AddPetVariation(string petName, byte number)
+        {
+            int type = AssUtils.Instance.ProjectileType(petName);
+            if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("slime pet of type " + petName + " not registered in SlimePets.Load()");
+            PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
+            return this;
+        }
+
+        public static void Load()
+        {
+            //START WITH ID: 1
+            //Add(new APetAccessory(id: 1, name: "PetAccessoryCrownGold")
+            //    .AddPetVariation("CuteSlimePinkNewProj", 2));
+            //Add(new APetAccessory(id: 2, name: "PetAccessoryToyBreastplate")
+            //    .AddPetVariation("CuteSlimeXmasNewProj", 1));
+            //Add(new APetAccessory(id: 3, name: "PetAccessoryBowtieRed")
+            //    .AddPetVariation("CuteSlimeXmasNewProj", 5));
+            Add(new APetAccessory(id: 4, name: "PetAccessoryBowtie", slot: SlotType.Body, altTextures: new List<string>() { "Red", "Blue", "Green" }));
+            Add(new APetAccessory(id: 11, name: "PetAccessoryCrown", slot: SlotType.Hat));
+
+            CreateMaps();
+
+            APetAccessory test = GetAccessoryFromID(4);
+            AssUtils.Print(petAccessoryList.Count);
+        }
+
+        public static void CreateMaps()
+        {
+            petAccessoryIds = new List<int>(petAccessoryList.Count);
+            petAccessoryTypes = new List<int>(petAccessoryList.Count);
+            for (int i = 0; i < petAccessoryList.Count; i++)
+            {
+                petAccessoryIds.Add(petAccessoryList[i].ID);
+                petAccessoryTypes.Add(petAccessoryList[i].Type);
+            }
+        }
+
+        public static void Unload()
+        {
+            petAccessoryList.Clear();
+            petAccessoryIds.Clear();
+            petAccessoryTypes.Clear();
+        }
+
+        public static void Add(APetAccessory aPetAccessory)
+        {
+            for (int i = 0; i < petAccessoryList.Count; i++)
+            {
+                if (petAccessoryList[i].Name == aPetAccessory.Name) throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
+                if (petAccessoryList[i].ID == aPetAccessory.ID) throw new Exception("ID '" + aPetAccessory.ID + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessoryList[i].Name + "'");
+            }
+            //everything fine
+            petAccessoryList.Add(aPetAccessory);
+        }
+
+        public static APetAccessory GetAccessoryFromID(byte id)
+        {
+            return petAccessoryList[petAccessoryIds.IndexOf(id)];
+        }
+
+        public static APetAccessory GetAccessoryFromType(int type)
+        {
+            return petAccessoryList[petAccessoryTypes.IndexOf(type)];
+        }
+
+        public static bool IsItemAPetVanity(int type)
+        {
+            for (int i = 0; i < petAccessoryList.Count; i++)
+            {
+                if (petAccessoryList[i].Type == type && petAccessoryList[i].HasAlts) return true;
+            }
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return "ID: " + ID
+                + "; Color: " + Color
+                + "; Name: " + Name
+                + "; Type: " + Type
+                +" ; HasAlts: " + HasAlts;
+        }
+    }
+
+    public class PetAccessoryCrown : PetAccessoryBowtie
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Crown");
+            Tooltip.SetDefault("'A regal crown for your cute slime to wear on her head'");
+        }
+    }
+
+    public class PetAccessoryBowtie : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Bowtie");
+            Tooltip.SetDefault("'A soft bowtie for your cute slime to wear on her chest'");
+        }
+    }
+
+    public abstract class PetAccessoryItem : ModItem
+    {
+        public override void SetDefaults()
+        {
+            item.CloneDefaults(ItemID.Silk);
+            item.width = 28;
+            item.height = 30;
+            item.maxStack = 1;
+            item.rare = -11;
+            item.useAnimation = 16;
+            item.useTime = 16;
+            item.useStyle = 4;
+            item.UseSound = SoundID.Item1;
+            item.consumable = false;
+            item.value = Item.sellPrice(silver:30);
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            // if a right click, enable usage
+            if (player.altFunctionUse == 2) return true;
+            // if a left click and no alts, enable usage
+            else if (!APetAccessory.GetAccessoryFromType(item.type).HasAlts) return true;
+            // else disable (if it has alts when left clicked)
+            return false;
+        }
+
+        public override bool UseItem(Player player)
+        {
+            AssUtils.Print("using item in mode " + player.altFunctionUse);
+
+            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
+
+            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+            {
+                if (pPlayer.slimePetIndex == -1)
+                {
+                    //find first occurence of a player owned cute slime
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        if (Main.projectile[i].active)
+                        {
+                            if (Main.projectile[i].modProjectile != null)
+                            {
+                                if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
+                                    Main.projectile[i].owner == Main.myPlayer &&
+                                    !SlimePets.slimePetLegacy.Contains(Main.projectile[i].type))
+                                {
+                                    ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
+                                    pPlayer.slimePetIndex = i;
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                APetAccessory petAccessory = APetAccessory.GetAccessoryFromType(item.type);
+
+                bool shouldReset = false;
+                if (player.altFunctionUse == 2) //right click use
+                {
+                    if (pPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
+                    {
+                        shouldReset = true;
+                    }
+                }
+                //else normal left click use
+
+                if (pPlayer.slimePetIndex != -1 &&
+                    Main.projectile[pPlayer.slimePetIndex].active &&
+                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                {
+                    //only client side
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        if (shouldReset && player.altFunctionUse == 2)
+                        {
+                            if (pPlayer.slots != 0)
+                            {
+                                pPlayer.slotsLast = pPlayer.slots;
+                                pPlayer.slots = 0;
+                            }
+                            else
+                            {
+                                pPlayer.slots = pPlayer.slotsLast;
+                                pPlayer.slotsLast = 0;
+                            }
+
+                            //"dust" originating from the center, forming a circle and going outwards
+                            Dust dust;
+                            for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
+                            {
+                                dust = Dust.NewDustPerfect(Main.projectile[pPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                            }
+                        }
+                        else if (player.altFunctionUse != 2)
+                        {
+                            AssUtils.Print("BEFORE: slots: " + pPlayer.slots + "; color: " + pPlayer.color);
+
+                            AssUtils.Print("accessory: " + petAccessory);
+                            pPlayer.ToggleAccessory(petAccessory);
+
+                            AssUtils.Print("AFTER : slots: " + pPlayer.slots + "; color: " + pPlayer.color);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
     }
 
     public abstract class PetAccessoryBase : ModItem
