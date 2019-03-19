@@ -622,7 +622,6 @@ namespace AssortedCrazyThings
 
             if (mPlayer.LeftClickPressed && AllowedToOpenUI() && APetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type))
             {
-                AssUtils.Print("spawn UI");
                 // Spawn UI
                 PetVanityUI.visible = true;
                 PetVanityUI.spawnPosition = Main.MouseScreen;
@@ -637,34 +636,23 @@ namespace AssortedCrazyThings
             {
                 if (mPlayer.LeftClickReleased)
                 {
-                    AssUtils.Print("release UI");
                     PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-
-                    AssUtils.Print("BEFORE: slots: " + pPlayer.slots + "; color: " + pPlayer.color);
                     if (PetVanityUI.returned > -1)
                     {
-                        //if (PetVanityUI.returned != PetVanityUI.petAccessory.Color)
-                        //{
-                            //if something returned AND if the returned thing isn't the same as the current one
+                        //if something returned AND if the returned thing isn't the same as the current one
 
-                            Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
-                            //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
+                        Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
+                        //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
 
-                            PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
-                            AssUtils.Print("accessory: " + PetVanityUI.petAccessory);
-                            pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
-                        //}
+                        PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
+                        pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
                     }
                     else if (PetVanityUI.hasEquipped && PetVanityUI.returned == -1)
                     {
                         //hovered over the middle and had something equipped: take accessory away
-
-                        AssUtils.Print("Delslot");
                         pPlayer.DelAccessory(PetVanityUI.petAccessory);
                     }
-
-                    AssUtils.Print("AFTER : slots: " + pPlayer.slots + "; color: " + pPlayer.color);
-                    AssUtils.Print(PetVanityUI.returned);
+                    //else if (returned == -2) {nothing happens}
 
                     PetVanityUI.returned = -1;
                     PetVanityUI.visible = false;

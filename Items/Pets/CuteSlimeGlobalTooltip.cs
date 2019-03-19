@@ -13,39 +13,38 @@ namespace AssortedCrazyThings.Items.Pets
         {
             try
             {
-                PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
+                PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
                 //checks if: player even has (or had) a slime pet
                 //that pet is currently active
                 //it's owner is the player
                 //it's a slime pet
-                if (mPlayer.slimePetIndex != -1 &&
-                    Main.projectile[mPlayer.slimePetIndex].active &&
-                    Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                if (pPlayer.slimePetIndex != -1 &&
+                    Main.projectile[pPlayer.slimePetIndex].active &&
+                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))
                 {
                     //checks if this item is infact a pet slime summoning item
-                    if (item.shoot == Main.projectile[mPlayer.slimePetIndex].type)
+                    if (item.shoot == Main.projectile[pPlayer.slimePetIndex].type)
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {
-                            uint accessory = mPlayer.GetAccessory(slotNumber);
-                            int type;
-                            Item itemTemp;
+                            APetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
 
                             string tooltip = "";
 
-                            if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[slotNumber])
+                            if (SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[slotNumber])
                             {
                                 tooltip = "Blacklisted";
                             }
                             else
                             {
-                                if (accessory != 0)
+                                if (petAccessory != null)
                                 {
-                                    type = PetAccessory.Items[accessory - 1];
-                                    itemTemp = new Item();
-                                    itemTemp.SetDefaults(type);
+                                    //type = PetAccessory.Items[accessory - 1];
+                                    Item itemTemp = new Item();
+                                    itemTemp.SetDefaults(petAccessory.Type);
                                     tooltip = itemTemp.Name.StartsWith("Cute ") ? itemTemp.Name.Substring(5) : itemTemp.Name;
+                                    tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureSuffixes[petAccessory.Color] + ")" : "";
                                 }
                                 else
                                 {
@@ -82,7 +81,7 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 return "Accessory slot: ";
             }
-            return "UNINTENDED BEHAVIOR, REPORT TO DEV";
+            return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + b + ")";
         }
     }
 }

@@ -1240,7 +1240,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public bool HasAlts { private set; get; } //for deciding if it has a UI or not
         public List<string> AltTextureSuffixes { private set; get; } //for UI tooltips
         public List<Texture2D> AltTextures { private set; get; } //for UI only, the _Draw<number> stuff is done manually
-        public List<byte> PetVariations { private set; get; } //the number in _Draw<number>
+        public List<sbyte> PetVariations { private set; get; } //the number in _Draw<number>
 
         //private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false)
         public APetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
@@ -1274,12 +1274,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
 
             //fill list with zeroes
-            PetVariations = new List<byte>(SlimePets.slimePets.Count);
+            PetVariations = new List<sbyte>(SlimePets.slimePets.Count);
             for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
         }
 
-        public APetAccessory AddPetVariation(string petName, byte number)
+        public APetAccessory AddPetVariation(string petName, sbyte number)
         {
+            // (byte)-1, 0 (default), 1..254 alt texture number
             int type = AssUtils.Instance.ProjectileType("CuteSlime" + petName + "NewProj");
             if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
             PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
@@ -1302,16 +1303,19 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             Add(SlotType.Body, new APetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black"}));
             Add(SlotType.Body, new APetAccessory(id: 2, name: "ToyBreastplate")
-                 .AddPetVariation("Xmas", 1));
+                 .AddPetVariation("Xmas", 1)
+                 );
 
             //HAT SLOT ACCESSORIES GO HERE, SEPARATE IDs
             Add(SlotType.Hat, new APetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
                 .AddPetVariation("Pink", 1)
                 .AddPetVariation("Dungeon", 1)
-                .AddPetVariation("Yellow", 2));
+                .AddPetVariation("Yellow", 2)
+                );
             Add(SlotType.Hat, new APetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
             Add(SlotType.Hat, new APetAccessory(id: 3, name: "MetalHelmet")
-                .AddPetVariation("Green", 1));
+                .AddPetVariation("Green", 1)
+                );
             Add(SlotType.Hat, new APetAccessory(id: 4, name: "SlimeHead", offsetY: -12f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
             Add(SlotType.Hat, new APetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
                 .AddPetVariation("Black", 1)
@@ -1319,7 +1323,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 .AddPetVariation("Dungeon", 1)
                 .AddPetVariation("Pink", 2)
                 .AddPetVariation("Purple", 1)
-                .AddPetVariation("Toxic", 1));
+                .AddPetVariation("Toxic", 1)
+                );
             Add(SlotType.Hat, new APetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
@@ -1335,14 +1340,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(SlotType.Accessory, new APetAccessory(id: 3, name: "ToyShield"));
 
             CreateMaps();
-
-            APetAccessory test = GetAccessoryFromID(SlotType.Accessory, 1);
-            AssUtils.Print(petAccessoryListGlobal.Count);
-            AssUtils.Print(petAccessoryListB.Count);
-            AssUtils.Print(petAccessoryListH.Count);
-            AssUtils.Print(petAccessoryListC.Count);
-            AssUtils.Print(petAccessoryListA.Count);
-            AssUtils.Print(PetAccessory.ItemsIndexed.Length);
         }
 
         public static void CreateMaps()
@@ -1595,7 +1592,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute  Mittens");
+            DisplayName.SetDefault("Cute Mittens");
             Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
         }
     }
@@ -1635,6 +1632,51 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.value = Item.sellPrice(silver:30);
         }
 
+        private string Enum2string(int e)
+        {
+            if (e == (byte)SlotType.Hat)
+            {
+                return "Worn on the head";
+            }
+            if (e == (byte)SlotType.Body)
+            {
+                return "Worn on the body";
+            }
+            if (e == (byte)SlotType.Carried)
+            {
+                return "Carried";
+            }
+            if (e == (byte)SlotType.Accessory)
+            {
+                return "Worn as an accessory";
+            }
+            return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + e + ")";
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(mod, "slot", Enum2string((byte)APetAccessory.GetAccessoryFromType(item.type).Slot)));
+
+            PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
+
+            if (mPlayer.slimePetIndex != -1 &&
+                Main.projectile[mPlayer.slimePetIndex].active &&
+                Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer)
+            {
+                if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                {
+                    if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)APetAccessory.GetAccessoryFromType(item.type).Slot])
+                    {
+                        tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+                    }
+                }
+                else if (SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                {
+                    tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
+                }
+            }
+        }
+
         public override bool AltFunctionUse(Player player)
         {
             return true;
@@ -1652,8 +1694,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override bool UseItem(Player player)
         {
-            AssUtils.Print("using item in mode " + player.altFunctionUse);
-
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
@@ -1724,12 +1764,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         }
                         else if (player.altFunctionUse != 2)
                         {
-                            AssUtils.Print("BEFORE: slots: " + pPlayer.slots + "; color: " + pPlayer.color);
-
-                            AssUtils.Print("accessory: " + petAccessory);
                             pPlayer.ToggleAccessory(petAccessory);
-
-                            AssUtils.Print("AFTER : slots: " + pPlayer.slots + "; color: " + pPlayer.color);
                         }
                     }
                 }
@@ -1761,142 +1796,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
             return true;
         }
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Silk, 15);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-
-        private string Enum2string(int e)
-        {
-            if (e == (byte)SlotType.Hat)
-            {
-                return "Worn on the head";
-            }
-            if (e == (byte)SlotType.Body)
-            {
-                return "Worn on the body";
-            }
-            if (e == (byte)SlotType.Carried)
-            {
-                return "Carried";
-            }
-            if (e == (byte)SlotType.Accessory)
-            {
-                return "Worn somewhere else (misc)";
-            }
-            return "UNINTENDED BEHAVIOR, REPORT TO DEV";
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
-
-            PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
-
-            if (mPlayer.slimePetIndex != -1 &&
-                Main.projectile[mPlayer.slimePetIndex].active &&
-                Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer)
-            {
-                if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
-                {
-                    if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[item.value])
-                    {
-                        tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
-                    }
-                }
-                else if (SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
-                {
-                    tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
-                }
-            }
+            tooltips.Add(new TooltipLine(mod, "Discontinued", "Discontinued, craft them into the new version"));
         }
 
         protected virtual void MoreSetDefaults()
         {
 
-        }
-
-        public override bool UseItem(Player player)
-        {
-            //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
-            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
-
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                if (mPlayer.slimePetIndex == -1)
-                {
-                    //find first occurence of a player owned cute slime
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (Main.projectile[i].active)
-                        {
-                            if (Main.projectile[i].modProjectile != null)
-                            {
-                                if (SlimePets.slimePets.Contains(Main.projectile[i].type) && 
-                                    Main.projectile[i].owner == Main.myPlayer &&
-                                    !SlimePets.slimePetLegacy.Contains(Main.projectile[i].type))
-                                {
-                                    ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
-                                    mPlayer.slimePetIndex = i;
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                bool shouldReset = false;
-                if (player.altFunctionUse == 2) //right click use
-                {
-                    if (mPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
-                    {
-                        shouldReset = true;
-                    }
-                }
-                //else normal left click use
-
-                if (mPlayer.slimePetIndex != -1 &&
-                    Main.projectile[mPlayer.slimePetIndex].active &&
-                    Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type) &&
-                    !SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type) &&
-                    !SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[item.value])
-                {
-                    //only client side
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        if (shouldReset && player.altFunctionUse == 2)
-                        {
-                            if (mPlayer.slots != 0)
-                            {
-                                mPlayer.slotsLast = mPlayer.slots;
-                                mPlayer.slots = 0;
-                            }
-                            else
-                            {
-                                mPlayer.slots = mPlayer.slotsLast;
-                                mPlayer.slotsLast = 0;
-                            }
-
-                            //"dust" originating from the center, forming a circle and going outwards
-                            Dust dust;
-                            for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
-                            {
-                                dust = Dust.NewDustPerfect(Main.projectile[mPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[mPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
-                            }
-                        }
-                        else if (player.altFunctionUse != 2)
-                        {
-                            mPlayer.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
-                        }
-                    }
-                }
-            }
-            return true;
         }
     }
 }
