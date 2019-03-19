@@ -41,19 +41,6 @@ namespace AssortedCrazyThings.Items
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
-
-            //migration recipes
-            ModRecipe recipe2 = new ModRecipe(mod);
-            recipe2.AddIngredient(mod.ItemType<DemonEyeContactCase>());
-            //recipe.AddTile(TileID.Anvils);
-            recipe2.SetResult(this);
-            recipe2.AddRecipe();
-
-            ModRecipe recipe3 = new ModRecipe(mod);
-            recipe3.AddIngredient(mod.ItemType<TinyFrogCrown>());
-            //recipe.AddTile(TileID.Anvils);
-            recipe3.SetResult(this);
-            recipe3.AddRecipe();
         }
     }
 }
