@@ -115,11 +115,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
         {
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             bool useNoHair = false;
-            uint slimeAccessoryHat = mPlayer.GetAccessory((byte)SlotType.Hat);
+            uint slimeAccessoryHat = pPlayer.GetAccessory((byte)SlotType.Hat);
             if (slimeAccessoryHat != 0 &&
                 PetAccessory.UseNoHair[slimeAccessoryHat] &&
                 !SlimePets.slimePetLegacy.Contains(projectile.type) && //if its not legacy
@@ -135,7 +135,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
                 {
-                    uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
+                    uint slimeAccessory = pPlayer.GetAccessory(slotNumber);
                     
                     if (slimeAccessory != 0 && SlimePets.GetPet(projectile.type).PreAdditionSlot == slotNumber)
                     {
@@ -183,13 +183,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)
         {
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
 
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 //slimeAccessory is the indexed number of the accessory (from 0 to 255)
                 
-                uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
+                uint slimeAccessory = pPlayer.GetAccessory(slotNumber);
 
                 if ((preDraw || !PetAccessory.PreDraw[slimeAccessory]) &&
                     slimeAccessory != 0 &&
