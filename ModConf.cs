@@ -29,7 +29,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs/" + modName + ".json");
+        static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", modName + ".json");
 
         static Preferences ModConfig = new Preferences(ConfigPath);
 

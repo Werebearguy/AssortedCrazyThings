@@ -55,8 +55,8 @@ namespace AssortedCrazyThings.NPCs
         public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DemonEye);
-            npc.width = 38;
-            npc.height = 46;
+            npc.width = 32;
+            npc.height = 32;
             npc.damage = 18;
             npc.defense = 2;
             npc.lifeMax = 60;

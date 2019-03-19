@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -10;
-            drawOriginOffsetY = 0;
+            drawOriginOffsetY = 2;
         }
 
         public override void MoreSetDefaults()
@@ -30,6 +30,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = 32;
             projectile.height = 34;
 			projectile.alpha = 0;
+
+            flyingFrameSpeed = 3;
 
             projectile.minion = false;
         }
@@ -62,99 +64,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			};
 			bounds.Y *= bounds.Height;
 
-			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
-
-            if (mPlayer.miniAntlionType == 0)
-            {
-                lightColor = lightColor * ((255f - projectile.alpha) / 255f);
-            }
+			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY + drawOriginOffsetY);
 
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
 			return false;
 		}
-		
-		public override void Draw()
-        {
-            if (projectile.ai[0] != 0)
-            {
-                if (projectile.velocity.X > 0.5f)
-                {
-                    projectile.spriteDirection = -1;
-                }
-                else if (projectile.velocity.X < -0.5f)
-                {
-                    projectile.spriteDirection = 1;
-                }
-
-                projectile.frameCounter++;
-                if (projectile.frameCounter > 3)
-                {
-                    projectile.frame++;
-                    projectile.frameCounter = 0;
-                }
-                if (projectile.frame < 2 || projectile.frame > 5)
-                {
-                    projectile.frame = 2;
-                }
-                projectile.rotation = projectile.velocity.X * 0.1f;
-            }
-            else
-            {
-                if (projectile.direction == -1)
-                {
-                    projectile.spriteDirection = 1;
-                }
-                if (projectile.direction == 1)
-                {
-                    projectile.spriteDirection = -1;
-                }
-
-                if (projectile.velocity.Y >= 0f && projectile.velocity.Y <= 0.8f)
-                {
-                    if (projectile.velocity.X == 0f)
-                    {
-                        projectile.frameCounter++;
-                    }
-                    else
-                    {
-                        projectile.frameCounter += 3;
-                    }
-                }
-                else
-                {
-                    projectile.frameCounter += 5;
-                }
-                if (projectile.frameCounter >= 20)
-                {
-                    projectile.frameCounter -= 20;
-                    projectile.frame++;
-                }
-                if (projectile.frame > 1)
-                {
-                    projectile.frame = 0;
-                }
-                if (projectile.wet && Main.player[projectile.owner].position.Y + Main.player[projectile.owner].height < projectile.position.Y + projectile.height && projectile.localAI[0] == 0f)
-                {
-                    if (projectile.velocity.Y > -4f)
-                    {
-                        projectile.velocity.Y -= 0.2f;
-                    }
-                    if (projectile.velocity.Y > 0f)
-                    {
-                        projectile.velocity.Y *= 0.95f;
-                    }
-                }
-                else
-                {
-                    projectile.velocity.Y += 0.4f;
-                }
-                if (projectile.velocity.Y > 10f)
-                {
-                    projectile.velocity.Y = 10f;
-                }
-                projectile.rotation = 0f;
-            }
-        }
     }
 }

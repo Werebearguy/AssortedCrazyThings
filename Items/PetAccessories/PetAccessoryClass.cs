@@ -8,8 +8,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
 {
-    //Bowtie: Red, Crown: Gold, Hair Bow: Red, Mittens: Red, Head Slime: Blue, Staff: Amethyst, Xmas Hat: Red
-
     /*
      * For every new Texture you add, copypaste a new class in this namespace (below PetAccessories), and adjust its DisplayName and item.value.
      * item.value is the "SlotType" in our case.
@@ -334,33 +332,33 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryKitchenKnife : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Kitchen Knife");
-            Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
-        }
+    //public class PetAccessoryKitchenKnife : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Kitchen Knife");
+    //        Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Carried;
+    //    }
+    //}
 
-    public class PetAccessoryMetalHelmet : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight Helmet");
-            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
-        }
+    //public class PetAccessoryMetalHelmet : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Knight Helmet");
+    //        Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Hat;
+    //    }
+    //}
 
     public class PetAccessoryMittensBlack : PetAccessoryBase
     {
@@ -712,103 +710,103 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessorySwallowedKey : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Swallowed Key");
-            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
-        }
+    //public class PetAccessorySwallowedKey : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Swallowed Key");
+    //        Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Accessory;
+    //    }
+    //}
 
-    public class PetAccessoryToyBreastplate : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight Breastplate");
-            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
-        }
+    //public class PetAccessoryToyBreastplate : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Knight Breastplate");
+    //        Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Body;
+    //    }
+    //}
 
-    public class PetAccessoryToyMace : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Paladin's Mace");
-            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
-        }
+    //public class PetAccessoryToyMace : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Paladin's Mace");
+    //        Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Carried;
+    //    }
+    //}
 
-    public class PetAccessoryToyShield : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight Shield");
-            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
-        }
+    //public class PetAccessoryToyShield : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Knight Shield");
+    //        Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Accessory;
+    //    }
+    //}
 
-    public class PetAccessoryToySpear : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Spartan's Spear");
-            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
-        }
+    //public class PetAccessoryToySpear : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Spartan's Spear");
+    //        Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Carried;
+    //    }
+    //}
 
-    public class PetAccessoryToySword : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight Sword");
-            Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
-        }
+    //public class PetAccessoryToySword : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Knight Sword");
+    //        Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Carried;
+    //    }
+    //}
 
-    public class PetAccessoryWizardHat : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Wizard Hat");
-            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
-        }
+    //public class PetAccessoryWizardHat : PetAccessoryBase
+    //{
+    //    public override void SetStaticDefaults()
+    //    {
+    //        DisplayName.SetDefault("Cute Wizard Hat");
+    //        Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
+    //    }
 
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
+    //    protected override void MoreSetDefaults()
+    //    {
+    //        item.value = (int)SlotType.Hat;
+    //    }
+    //}
 
     public class PetAccessoryXmasHatGreen : PetAccessoryBase
     {
@@ -841,10 +839,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
     public enum SlotType : byte
     {
         None, //reserved
-        Body,
-        Hat,
-        Carried,
-        Accessory
+        Body = 1,
+        Hat = 2,
+        Carried = 3,
+        Accessory = 4
 
         //for Carried, it's actually only the front facing hand. For something like gloves or dual wielding, use Accessory instead
 
@@ -919,9 +917,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryHairBowWhite",
                 "PetAccessoryHairBowYellow",
 
-                "PetAccessoryKitchenKnife",
+                //"PetAccessoryKitchenKnife",
 
-                "PetAccessoryMetalHelmet",
+                //"PetAccessoryMetalHelmet",
 
                 "PetAccessoryMittensBlack",
                 "PetAccessoryMittensBlue",
@@ -951,15 +949,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 "PetAccessoryStaffSapphire",
                 "PetAccessoryStaffTopaz",
 
-                "PetAccessorySwallowedKey",
+                //"PetAccessorySwallowedKey",
 
-                "PetAccessoryToyBreastplate",
-                "PetAccessoryToyMace",
-                "PetAccessoryToyShield",
-                "PetAccessoryToySpear",
-                "PetAccessoryToySword",
+                //"PetAccessoryToyBreastplate",
+                //"PetAccessoryToyMace",
+                //"PetAccessoryToyShield",
+                //"PetAccessoryToySpear",
+                //"PetAccessoryToySword",
 
-                "PetAccessoryWizardHat",
+                //"PetAccessoryWizardHat",
 
                 "PetAccessoryXmasHatRed",
                 "PetAccessoryXmasHatGreen",
@@ -1009,11 +1007,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryHairBowWhite");
             Add(name: "PetAccessoryHairBowYellow");
 
-            Add(name: "PetAccessoryKitchenKnife", preDraw: true);
+            //Add(name: "PetAccessoryKitchenKnife", preDraw: true);
 
-            Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
-            AddAltTextures(name: "PetAccessoryMetalHelmet",
-            green: 1);
+            //Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
+            //AddAltTextures(name: "PetAccessoryMetalHelmet",
+            //green: 1);
 
             Add(name: "PetAccessoryMittensBlack");
             Add(name: "PetAccessoryMittensBlue");
@@ -1043,24 +1041,24 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(name: "PetAccessoryStaffSapphire", offsetX: -8f, preDraw: true);
             Add(name: "PetAccessoryStaffTopaz", offsetX: -8f, preDraw: true);
 			
-            Add(name: "PetAccessorySwallowedKey", preDraw: true);
+            //Add(name: "PetAccessorySwallowedKey", preDraw: true);
             
-            Add(name: "PetAccessoryToyBreastplate");
-            AddAltTextures(name: "PetAccessoryToyBreastplate",
-            xmas: 1);
-            Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
-            Add(name: "PetAccessoryToyShield");
-            Add(name: "PetAccessoryToySpear", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryToySword", preDraw: true);
+            //Add(name: "PetAccessoryToyBreastplate");
+            //AddAltTextures(name: "PetAccessoryToyBreastplate",
+            //xmas: 1);
+            //Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
+            //Add(name: "PetAccessoryToyShield");
+            //Add(name: "PetAccessoryToySpear", offsetX: -8f, preDraw: true);
+            //Add(name: "PetAccessoryToySword", preDraw: true);
 
-            Add(name: "PetAccessoryWizardHat", offsetY: -10f, useNoHair: true);
-            AddAltTextures(name: "PetAccessoryWizardHat",
-            black: 1,
-            corrupt: 1,
-            dungeon: 1,
-            pink: 2,
-            purple: 1,
-            toxic: 1);
+            //Add(name: "PetAccessoryWizardHat", offsetY: -10f, useNoHair: true);
+            //AddAltTextures(name: "PetAccessoryWizardHat",
+            //black: 1,
+            //corrupt: 1,
+            //dungeon: 1,
+            //pink: 2,
+            //purple: 1,
+            //toxic: 1);
 			
             Add(name: "PetAccessoryXmasHatGreen", offsetY: -4f, useNoHair: true);
             Add(name: "PetAccessoryXmasHatRed", offsetY: -4f, useNoHair: true);
@@ -1212,10 +1210,564 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
             return ret;
         }
-
     }
 
-    public abstract class PetAccessoryBase : ModItem
+    public class APetAccessory
+    {
+        public static List<APetAccessory> petAccessoryListGlobal = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListB = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListH = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListC = new List<APetAccessory>();
+        public static List<APetAccessory> petAccessoryListA = new List<APetAccessory>();
+        public static List<int> petAccessoryIdsB;
+        public static List<int> petAccessoryIdsH;
+        public static List<int> petAccessoryIdsC;
+        public static List<int> petAccessoryIdsA;
+        public static List<int> petAccessoryTypesGlobal;
+
+        public byte ID { private set; get; }
+        public string Name { private set; get; }
+        public int Type { private set; get; }
+        public SlotType Slot { private set; get; }
+        public byte Color { set; get; } //index for AltTextureSuffixes
+        public Vector2 Offset { private set; get; }
+        public bool PreDraw { private set; get; }
+        public byte Alpha { private set; get; }
+        public bool UseNoHair { private set; get; }
+
+        public bool HasAlts { private set; get; } //for deciding if it has a UI or not
+        public List<string> AltTextureSuffixes { private set; get; } //for UI tooltips
+        public List<Texture2D> AltTextures { private set; get; } //for UI only, the _Draw<number> stuff is done manually
+        public List<sbyte> PetVariations { private set; get; } //the number in _Draw<number>
+
+        //private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false)
+        public APetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
+        {
+            ID = id;
+            Name = "PetAccessory" + name;
+            Type = AssUtils.Instance.ItemType(Name);
+            if (Type == 0) throw new Exception("Item called '" + Name + "' doesn't exist, are you sure you spelled it correctly?");
+            Color = 0;
+
+            Offset = new Vector2(offsetX, offsetY);
+            PreDraw = preDraw;
+            Alpha = alpha;
+            UseNoHair = useNoHair;
+
+            AltTextureSuffixes = new List<string>();
+            if (altTextures != null)
+            {
+                AltTextureSuffixes.AddRange(altTextures);
+                HasAlts = true;
+            }
+            else
+            {
+                HasAlts = false;
+            }
+            //add icons for UI
+            AltTextures = new List<Texture2D>(AltTextureSuffixes.Count);
+            for (int i = 0; i < AltTextureSuffixes.Count; i++)
+            {
+                AltTextures.Add(AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]));
+            }
+
+            //fill list with zeroes
+            PetVariations = new List<sbyte>(SlimePets.slimePets.Count);
+            for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
+        }
+
+        public APetAccessory AddPetVariation(string petName, sbyte number)
+        {
+            //(byte)-1, 0 (default), 1..254 alt texture number
+            int type = AssUtils.Instance.ProjectileType("CuteSlime" + petName + "NewProj");
+            if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
+            PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
+            return this;
+        }
+
+        public static void Load()
+        {
+            //START WITH ID: 1
+            //Add(new APetAccessory(id: 1, name: "PetAccessoryCrownGold")
+            //    .AddPetVariation("CuteSlimePinkNewProj", 2));
+            //Add(new APetAccessory(id: 2, name: "PetAccessoryToyBreastplate")
+            //    .AddPetVariation("CuteSlimeXmasNewProj", 1));
+            //Add(new APetAccessory(id: 3, name: "PetAccessoryBowtieRed")
+            //    .AddPetVariation("CuteSlimeXmasNewProj", 5));
+
+            //Bowtie: Red, Crown: Gold, Hair Bow: Red, Mittens: Red, Head Slime: Blue, Staff: Amethyst, Xmas Hat: Red
+
+            //DONT CHANGE UP THE ORDER OF THE COLORS, IT'LL MESS THINGS UP (but not badly)
+            //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            Add(SlotType.Body, new APetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black"}));
+            Add(SlotType.Body, new APetAccessory(id: 2, name: "ToyBreastplate")
+                 .AddPetVariation("Xmas", 1)
+                 );
+
+            //HAT SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            Add(SlotType.Hat, new APetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
+                .AddPetVariation("Pink", 1)
+                .AddPetVariation("Dungeon", 1)
+                .AddPetVariation("Yellow", 2)
+                );
+            Add(SlotType.Hat, new APetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(SlotType.Hat, new APetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true)
+                .AddPetVariation("Green", 1)
+                );
+            Add(SlotType.Hat, new APetAccessory(id: 4, name: "SlimeHead", offsetY: -12f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
+            Add(SlotType.Hat, new APetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
+                .AddPetVariation("Black", 1)
+                .AddPetVariation("Corrupt", 1)
+                .AddPetVariation("Dungeon", 1)
+                .AddPetVariation("Pink", 2)
+                .AddPetVariation("Purple", 1)
+                .AddPetVariation("Toxic", 1)
+                );
+            Add(SlotType.Hat, new APetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+
+            //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            Add(SlotType.Carried, new APetAccessory(id: 1, name: "KitchenKnife"));
+            Add(SlotType.Carried, new APetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond"}));
+            Add(SlotType.Carried, new APetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true));
+            Add(SlotType.Carried, new APetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true));
+            Add(SlotType.Carried, new APetAccessory(id: 5, name: "ToySword", preDraw: true));
+
+            //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            Add(SlotType.Accessory, new APetAccessory(id: 1, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(SlotType.Accessory, new APetAccessory(id: 2, name: "SwallowedKey", preDraw: true));
+            Add(SlotType.Accessory, new APetAccessory(id: 3, name: "ToyShield"));
+
+            CreateMaps();
+        }
+
+        public static void CreateMaps()
+        {
+            petAccessoryIdsB = new List<int>(petAccessoryListB.Count);
+            petAccessoryIdsH = new List<int>(petAccessoryListH.Count);
+            petAccessoryIdsC = new List<int>(petAccessoryListC.Count);
+            petAccessoryIdsA = new List<int>(petAccessoryListA.Count);
+
+            foreach (SlotType slotType in Enum.GetValues(typeof(SlotType)))
+            {
+                if (slotType != SlotType.None)
+                {
+                    List<APetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
+                    List<int> tempIdList = GetIdListFromType(slotType);
+                    for (int i = 0; i < tempAccessoryList.Count; i++)
+                    {
+                        tempIdList.Add(tempAccessoryList[i].ID);
+                    }
+                }
+            }
+
+            petAccessoryTypesGlobal = new List<int>(petAccessoryListGlobal.Count); //because types are unique we use only one list
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            {
+                petAccessoryTypesGlobal.Add(petAccessoryListGlobal[i].Type);
+            }
+        }
+
+        public static void Unload()
+        {
+            petAccessoryListGlobal.Clear();
+            petAccessoryListB.Clear();
+            petAccessoryListH.Clear();
+            petAccessoryListC.Clear();
+            petAccessoryListA.Clear();
+            petAccessoryIdsB.Clear();
+            petAccessoryIdsH.Clear();
+            petAccessoryIdsC.Clear();
+            petAccessoryIdsA.Clear();
+            petAccessoryTypesGlobal.Clear();
+        }
+
+        private static List<APetAccessory> GetAccessoryListFromType(SlotType slotType)
+        {
+            switch (slotType)
+            {
+                case SlotType.Body:
+                    return petAccessoryListB;
+                case SlotType.Hat:
+                    return petAccessoryListH;
+                case SlotType.Carried:
+                    return petAccessoryListC;
+                case SlotType.Accessory:
+                    return petAccessoryListA;
+                default:
+                    return petAccessoryListGlobal;
+            }
+        }
+
+        private static List<int> GetIdListFromType(SlotType slotType)
+        {
+            switch (slotType)
+            {
+                case SlotType.Body:
+                    return petAccessoryIdsB;
+                case SlotType.Hat:
+                    return petAccessoryIdsH;
+                case SlotType.Carried:
+                    return petAccessoryIdsC;
+                case SlotType.Accessory:
+                    return petAccessoryIdsA;
+                default:
+                    throw new Exception("invalid slottype");
+            }
+        }
+
+        public static void Add(SlotType slotType, APetAccessory aPetAccessory)
+        {
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            {
+                if (petAccessoryListGlobal[i].Name == aPetAccessory.Name) throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
+                if (petAccessoryListGlobal[i].Slot == slotType && petAccessoryListGlobal[i].ID == aPetAccessory.ID)
+                    throw new Exception("ID '" + aPetAccessory.ID + "' in Slot '" + aPetAccessory.Slot.ToString() + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessoryListGlobal[i].Name + "'");
+            }
+
+            aPetAccessory.Slot = slotType;
+            if (slotType == SlotType.None) throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
+
+            //everything fine
+            List<APetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
+            tempAccessoryList.Add(aPetAccessory);
+
+            petAccessoryListGlobal.Add(aPetAccessory);
+        }
+
+        public static APetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
+        {
+            return GetAccessoryListFromType(slotType)[GetIdListFromType(slotType).IndexOf(id)];
+            //return petAccessoryListGlobal[petAccessoryIdsB.IndexOf(id)];
+        }
+
+        public static APetAccessory GetAccessoryFromType(int type) //since types are unique, just look up in the global list
+        {
+            return petAccessoryListGlobal[petAccessoryTypesGlobal.IndexOf(type)];
+        }
+
+        public static bool IsItemAPetVanity(int type)
+        {
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            {
+                if (petAccessoryListGlobal[i].Type == type && petAccessoryListGlobal[i].HasAlts) return true;
+            }
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return "ID: " + ID
+                + "; Col: " + Color
+                + "; Slo: " + Slot.ToString()
+                + "; Nam: " + Name
+                + "; Typ: " + Type
+                + "; Off: " + Offset
+                + "; Pre: " + (PreDraw ? "y" : "n")
+                + "; Alp: " + Alpha
+                + "; NoH: " + (UseNoHair ? "y" : "n")
+                + " ; Alt: " + (HasAlts? "y":"n");
+        }
+    }
+
+    public class PetAccessoryBowtie : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Bowtie");
+            Tooltip.SetDefault("'A soft bowtie for your cute slime to wear on her chest'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessoryBowtieBlack>(),
+                mod.ItemType<PetAccessoryBowtieBlue>(),
+                mod.ItemType<PetAccessoryBowtieGray>(),
+                mod.ItemType<PetAccessoryBowtieGreen>(),
+                mod.ItemType<PetAccessoryBowtieOrange>(),
+                mod.ItemType<PetAccessoryBowtiePink>(),
+                mod.ItemType<PetAccessoryBowtiePurple>(),
+                mod.ItemType<PetAccessoryBowtieRed>(),
+                mod.ItemType<PetAccessoryBowtieWhite>(),
+                mod.ItemType<PetAccessoryBowtieYellow>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessoryToyBreastplate : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Breastplate");
+            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
+        }
+    }
+
+    public class PetAccessoryCrown : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Crown");
+            Tooltip.SetDefault("'A regal crown for your cute slime to wear on her head'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessoryCrownGold>(),
+                mod.ItemType<PetAccessoryCrownPlatinum>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessoryHairBow : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Hair Bow");
+            Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessoryHairBowBlack>(),
+                mod.ItemType<PetAccessoryHairBowBlue>(),
+                mod.ItemType<PetAccessoryHairBowGray>(),
+                mod.ItemType<PetAccessoryHairBowGreen>(),
+                mod.ItemType<PetAccessoryHairBowOrange>(),
+                mod.ItemType<PetAccessoryHairBowPink>(),
+                mod.ItemType<PetAccessoryHairBowPurple>(),
+                mod.ItemType<PetAccessoryHairBowRed>(),
+                mod.ItemType<PetAccessoryHairBowWhite>(),
+                mod.ItemType<PetAccessoryHairBowYellow>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessoryMetalHelmet : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Helmet");
+            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
+        }
+    }
+
+    public class PetAccessorySlimeHead : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Head Slime");
+            Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessorySlimeHeadBlack>(),
+                mod.ItemType<PetAccessorySlimeHeadBlue>(),
+                mod.ItemType<PetAccessorySlimeHeadGreen>(),
+                mod.ItemType<PetAccessorySlimeHeadPink>(),
+                mod.ItemType<PetAccessorySlimeHeadPinky>(),
+                mod.ItemType<PetAccessorySlimeHeadPurple>(),
+                mod.ItemType<PetAccessorySlimeHeadRed>(),
+                mod.ItemType<PetAccessorySlimeHeadYellow>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessoryWizardHat : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Wizard Hat");
+            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
+        }
+    }
+
+    public class PetAccessoryXmasHat : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Santa Hat");
+            Tooltip.SetDefault("'A festive hat for your cute slime to wear'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessoryXmasHatGreen>(),
+                mod.ItemType<PetAccessoryXmasHatRed>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessoryKitchenKnife : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Kitchen Knife");
+            Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryStaff : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Staff");
+            Tooltip.SetDefault("'A plush staff for your cute slime to carry'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessoryStaffAmber>(),
+                mod.ItemType<PetAccessoryStaffAmethyst>(),
+                mod.ItemType<PetAccessoryStaffDiamond>(),
+                mod.ItemType<PetAccessoryStaffEmerald>(),
+                mod.ItemType<PetAccessoryStaffRuby>(),
+                mod.ItemType<PetAccessoryStaffSapphire>(),
+                mod.ItemType<PetAccessoryStaffTopaz>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessoryToyMace : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Paladin's Mace");
+            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryToySpear : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Spartan's Spear");
+            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryToySword : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Sword");
+            Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryMittens : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Mittens");
+            Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
+        }
+
+        protected override void MoreAddRecipes()
+        {
+            int[] types = new int[] {
+                mod.ItemType<PetAccessoryMittensBlack>(),
+                mod.ItemType<PetAccessoryMittensBlue>(),
+                mod.ItemType<PetAccessoryMittensGray>(),
+                mod.ItemType<PetAccessoryMittensGreen>(),
+                mod.ItemType<PetAccessoryMittensOrange>(),
+                mod.ItemType<PetAccessoryMittensPink>(),
+                mod.ItemType<PetAccessoryMittensPurple>(),
+                mod.ItemType<PetAccessoryMittensRed>(),
+                mod.ItemType<PetAccessoryMittensWhite>(),
+                mod.ItemType<PetAccessoryMittensYellow>(),
+            };
+
+            ModRecipe recipe;
+            for (int i = 0; i < types.Length; i++)
+            {
+                recipe = new ModRecipe(mod);
+                recipe.AddIngredient(types[i]);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
+        }
+    }
+
+    public class PetAccessorySwallowedKey : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Swallowed Key");
+            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
+        }
+    }
+
+    public class PetAccessoryToyShield : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Shield");
+            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
+        }
+    }
+
+    public abstract class PetAccessoryItem : ModItem
     {
         public override void SetDefaults()
         {
@@ -1229,22 +1781,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.useStyle = 4;
             item.UseSound = SoundID.Item1;
             item.consumable = false;
-            item.value = (int)SlotType.Body;
-            MoreSetDefaults();
-        }
-
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
-        }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Silk, 15);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            item.value = Item.sellPrice(silver:30);
         }
 
         private string Enum2string(int e)
@@ -1263,14 +1800,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
             if (e == (byte)SlotType.Accessory)
             {
-                return "Worn somewhere else (misc)";
+                return "Worn as an accessory";
             }
-            return "UNINTENDED BEHAVIOR, REPORT TO DEV";
+            return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + e + ")";
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(mod, "slot", Enum2string(item.value)));
+            tooltips.Add(new TooltipLine(mod, "slot", Enum2string((byte)APetAccessory.GetAccessoryFromType(item.type).Slot)));
 
             PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
 
@@ -1280,7 +1817,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
                 {
-                    if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[item.value])
+                    if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)APetAccessory.GetAccessoryFromType(item.type).Slot])
                     {
                         tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                     }
@@ -1292,19 +1829,55 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
-        protected virtual void MoreSetDefaults()
+        public sealed override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<KnittingSet>());
+            recipe.AddTile(TileID.Loom);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            MoreAddRecipes();
+        }
+
+        protected virtual void MoreAddRecipes()
         {
 
         }
 
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
+            //no valid slime pet found
+            if (!(pPlayer.slimePetIndex != -1 &&
+                Main.projectile[pPlayer.slimePetIndex].active &&
+                Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
+                SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type)))
+            {
+                return false;
+            }
+
+            //if a right click, enable usage
+            if (player.altFunctionUse == 2) return true;
+            //if a left click and no alts, enable usage
+            else if (!APetAccessory.GetAccessoryFromType(item.type).HasAlts) return true;
+            //else disable (if it has alts when left clicked)
+            return false;
+        }
+
         public override bool UseItem(Player player)
         {
-            //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
-            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                if (mPlayer.slimePetIndex == -1)
+                if (pPlayer.slimePetIndex == -1)
                 {
                     //find first occurence of a player owned cute slime
                     for (int i = 0; i < 1000; i++)
@@ -1313,12 +1886,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         {
                             if (Main.projectile[i].modProjectile != null)
                             {
-                                if (SlimePets.slimePets.Contains(Main.projectile[i].type) && 
+                                if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
                                     Main.projectile[i].owner == Main.myPlayer &&
                                     !SlimePets.slimePetLegacy.Contains(Main.projectile[i].type))
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
-                                    mPlayer.slimePetIndex = i;
+                                    pPlayer.slimePetIndex = i;
                                     return true;
                                 }
                             }
@@ -1326,54 +1899,87 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     }
                 }
 
+                APetAccessory petAccessory = APetAccessory.GetAccessoryFromType(item.type);
+
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
                 {
-                    if (mPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
+                    if (pPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
                     {
                         shouldReset = true;
                     }
                 }
                 //else normal left click use
 
-                if (mPlayer.slimePetIndex != -1 &&
-                    Main.projectile[mPlayer.slimePetIndex].active &&
-                    Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type) &&
-                    !SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type) &&
-                    !SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[item.value])
+                if (pPlayer.slimePetIndex != -1 &&
+                    Main.projectile[pPlayer.slimePetIndex].active &&
+                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type))
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
                     {
                         if (shouldReset && player.altFunctionUse == 2)
                         {
-                            if (mPlayer.slots != 0)
+                            if (pPlayer.slots != 0)
                             {
-                                mPlayer.slotsLast = mPlayer.slots;
-                                mPlayer.slots = 0;
+                                pPlayer.slotsLast = pPlayer.slots;
+                                pPlayer.slots = 0;
                             }
                             else
                             {
-                                mPlayer.slots = mPlayer.slotsLast;
-                                mPlayer.slotsLast = 0;
+                                pPlayer.slots = pPlayer.slotsLast;
+                                pPlayer.slotsLast = 0;
                             }
 
                             //"dust" originating from the center, forming a circle and going outwards
                             Dust dust;
                             for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
                             {
-                                dust = Dust.NewDustPerfect(Main.projectile[mPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[mPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                dust = Dust.NewDustPerfect(Main.projectile[pPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }
                         }
                         else if (player.altFunctionUse != 2)
                         {
-                            mPlayer.ToggleAccessory((byte)item.value, (uint)PetAccessory.ItemsIndexed[item.type]);
+                            if (!SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                            {
+                                pPlayer.ToggleAccessory(petAccessory);
+                            }
                         }
                     }
                 }
             }
             return true;
+        }
+    }
+
+    public abstract class PetAccessoryBase : ModItem
+    {
+        public override void SetDefaults()
+        {
+            item.CloneDefaults(ItemID.Silk);
+            item.width = 28;
+            item.height = 30;
+            item.maxStack = 1;
+            item.rare = -11;
+            //item.useAnimation = 16;
+            //item.useTime = 16;
+            //item.useStyle = 4;
+            //item.UseSound = SoundID.Item1;
+            item.consumable = false;
+            item.value = (int)SlotType.Body;
+            MoreSetDefaults();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(mod, "Discontinued", "Discontinued, craft it into the new version"));
+        }
+
+        protected virtual void MoreSetDefaults()
+        {
+
         }
     }
 }

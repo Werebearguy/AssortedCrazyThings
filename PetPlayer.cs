@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.PetAccessories;
 using System;
 using System.IO;
 using Terraria;
@@ -230,10 +231,14 @@ namespace AssortedCrazyThings
             return false;
         }
 
+        private bool petAccessoryRework = false;
+
         public override TagCompound Save()
         {
             return new TagCompound {
                 {"slots", (int)slots},
+                {"color", (int)color},
+                {"petAccessoryRework", (bool)petAccessoryRework},
                 {"mechFrogCrown", (bool)mechFrogCrown},
                 {"petEyeType", (byte)petEyeType},
                 {"cursedSkullType", (byte)cursedSkullType},
@@ -256,6 +261,8 @@ namespace AssortedCrazyThings
         public override void Load(TagCompound tag)
         {
             slots = (uint)tag.GetInt("slots");
+            color = (uint)tag.GetInt("color");
+            petAccessoryRework = tag.GetBool("petAccessoryRework");
             mechFrogCrown = tag.GetBool("mechFrogCrown");
             petEyeType = tag.GetByte("petEyeType");
             cursedSkullType = tag.GetByte("cursedSkullType");
@@ -278,6 +285,7 @@ namespace AssortedCrazyThings
         {
             PetPlayer clone = clientClone as PetPlayer;
             clone.slots = slots;
+            clone.color = color;
             clone.mechFrogCrown = mechFrogCrown;
             clone.petEyeType = petEyeType;
             clone.cursedSkullType = cursedSkullType;
@@ -300,7 +308,7 @@ namespace AssortedCrazyThings
         {
             PetPlayer clone = clientPlayer as PetPlayer;
             PetPlayerChanges changes = PetPlayerChanges.none;
-            if (clone.slots != slots) changes = PetPlayerChanges.slots;
+            if (clone.slots != slots || clone.color != color) changes = PetPlayerChanges.slots;
             else if (clone.mechFrogCrown != mechFrogCrown) changes = PetPlayerChanges.mechFrogCrown;
             else if (clone.petEyeType != petEyeType) changes = PetPlayerChanges.petEyeType;
             else if (clone.cursedSkullType != cursedSkullType) changes = PetPlayerChanges.cursedSkullType;
@@ -337,6 +345,7 @@ namespace AssortedCrazyThings
         private void SendFieldValues(ModPacket packet)
         {
             packet.Write((uint)slots);
+            packet.Write((uint)color);
             packet.Write((bool)mechFrogCrown);
             packet.Write((byte)petEyeType);
             packet.Write((byte)cursedSkullType);
@@ -358,6 +367,7 @@ namespace AssortedCrazyThings
         public void RecvSyncPlayerVanitySub(BinaryReader reader)
         {
             slots = reader.ReadUInt32();
+            color = reader.ReadUInt32();
             mechFrogCrown = reader.ReadBoolean();
             petEyeType = reader.ReadByte();
             cursedSkullType = reader.ReadByte();
@@ -386,6 +396,7 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.slots:
                     slots = reader.ReadUInt32();
+                    color = reader.ReadUInt32();
                     break;
                 case (byte)PetPlayerChanges.mechFrogCrown:
                     mechFrogCrown = reader.ReadBoolean();
@@ -454,6 +465,7 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.slots:
                     packet.Write((uint)slots);
+                    packet.Write((uint)color);
                     break;
                 case (byte)PetPlayerChanges.mechFrogCrown:
                     packet.Write((bool)mechFrogCrown);
@@ -519,6 +531,12 @@ namespace AssortedCrazyThings
 
         public override void OnEnterWorld(Player player)
         {
+            if (!petAccessoryRework)
+            {
+                petAccessoryRework = true;
+                ErrorLogger.Log("" + mod.Name + ": Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
+                slots = 0;
+            }
             SendClientChangesPacket(PetPlayerChanges.all);
         }
 
@@ -529,48 +547,103 @@ namespace AssortedCrazyThings
         private bool resetSlots = false;
         private double lastTime = 0.0;
 
-        private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111 
-        public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000 
-                                      //slot3    |slto2    |slto1    |slto0     
+        private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111
+        public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000
+        public uint color = 0;        //0000 0000|0000 0000|0000 0000|0000 0000
+                                      //slot4    |slot3    |slot2    |slot1     
 
-        private bool AddAccessory(byte slotNumber, uint type)
+        //private bool AddAccessory(byte slotNumber, uint type)
+        //{
+        //    //type is between 0 and 255
+
+        //    //returns false if accessory was already equipped   //for slotNumber = 1:
+        //    uint setmask = mask << (slotNumber * 8);            //0000 0000|0000 0000|1111 1111|0000 0000
+        //    uint clearmask = ~setmask; //setmask but inverted   //1111 1111|1111 1111|0000 0000|1111 1111
+            
+        //    type = type << (slotNumber * 8);
+        //    uint tempslots = slots & setmask;
+        //    if (type == tempslots) return false;
+
+        //    //if accessory not the same as the applied one: override/set
+        //    slots &= clearmask; //delete only current slot
+        //    slots |= type; //set current slot
+
+        //    return true;
+        //}
+
+        public bool AddAccessory(APetAccessory petAccessory)
         {
-            //type is between 0 and 255
+            //id is between 0 and 255
+            uint id = 0;
+            uint col = 0;
+            byte slotNumber = (byte)(petAccessory.Slot - 1);
 
             //returns false if accessory was already equipped   //for slotNumber = 1:
             uint setmask = mask << (slotNumber * 8);            //0000 0000|0000 0000|1111 1111|0000 0000
             uint clearmask = ~setmask; //setmask but inverted   //1111 1111|1111 1111|0000 0000|1111 1111
-            
-            type = type << (slotNumber * 8);
+
+            id = (uint)petAccessory.ID << (slotNumber * 8);
+            col = (uint)petAccessory.Color << (slotNumber * 8);
             uint tempslots = slots & setmask;
-            if (type == tempslots) return false;
+            uint tempcolor = color & setmask;
+            if (id == tempslots && col == tempcolor) return false;
 
             //if accessory not the same as the applied one: override/set
             slots &= clearmask; //delete only current slot
-            slots |= type; //set current slot
+            slots |= id; //set current slot id
+
+            color &= clearmask; //delete only current slot
+            color |= col; //set current slot color
 
             return true;
         }
 
-        private void DelAccessory(byte slotNumber)
+        //public void DelAccessory(byte slotNumber)
+        //{
+        //    uint setmask = mask << (slotNumber * 8);
+        //    uint clearmask = ~setmask; //setmask but inverted
+        //    slots &= clearmask; //delete only current slot
+        //}
+
+        public void DelAccessory(APetAccessory petAccessory)
         {
+            byte slotNumber = (byte)(petAccessory.Slot - 1);
             uint setmask = mask << (slotNumber * 8);
             uint clearmask = ~setmask; //setmask but inverted
             slots &= clearmask; //delete only current slot
+            color &= clearmask; //delete only current slot color
         }
 
-        public uint ToggleAccessory(byte slotNumber, uint type)
+        //public uint ToggleAccessory(byte slotNumber, uint type)
+        //{
+        //    if (slotNumber == 0) throw new Exception("can't toggle accessory on reserved slot");
+        //    slotNumber -= 1;
+        //    if (!AddAccessory(slotNumber, type)) DelAccessory(slotNumber);
+        //    return slots;
+        //}
+
+        public void ToggleAccessory(APetAccessory petAccessory)
         {
-            if (slotNumber == 0) return slots;
-            slotNumber -= 1;
-            if (!AddAccessory(slotNumber, type)) DelAccessory(slotNumber);
-            return slots;
+            if (petAccessory.Slot == SlotType.None) throw new Exception("can't toggle accessory on reserved slot");
+            if (!AddAccessory(petAccessory)) DelAccessory(petAccessory);
         }
 
-        public uint GetAccessory(byte slotNumber)
+        //public uint GetAccessory(byte slotNumber)
+        //{
+        //    slotNumber -= 1;
+        //    return (slots >> (slotNumber * 8)) & mask; //shift the selected 8 bits of the slot into the rightmost position
+        //}
+
+        public APetAccessory GetAccessoryInSlot(byte slotNumber)
         {
+            byte slot = slotNumber;
             slotNumber -= 1;
-            return (slots >> (slotNumber * 8)) & mask; //shift the selected 8 bits of the slot into the rightmost position
+            byte id = (byte)((slots >> (slotNumber * 8)) & mask); //(byte) only takes the rightmost byte
+            byte col = (byte)((color >> (slotNumber * 8)) & mask);
+            if (id == 0) return null;
+            APetAccessory petAccessory = APetAccessory.GetAccessoryFromID((SlotType)slot, id);
+            petAccessory.Color = col;
+            return petAccessory;
         }
 	}
 }

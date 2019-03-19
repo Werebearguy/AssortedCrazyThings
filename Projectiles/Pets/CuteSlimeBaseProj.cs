@@ -115,13 +115,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
         {
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             bool useNoHair = false;
-            uint slimeAccessoryHat = mPlayer.GetAccessory((byte)SlotType.Hat);
-            if (slimeAccessoryHat != 0 &&
-                PetAccessory.UseNoHair[slimeAccessoryHat] &&
+            APetAccessory petAccessoryHat = pPlayer.GetAccessoryInSlot((byte)SlotType.Hat);
+            if (petAccessoryHat != null &&
+                petAccessoryHat.UseNoHair &&
                 !SlimePets.slimePetLegacy.Contains(projectile.type) && //if its not legacy
                 SlimePets.GetPet(projectile.type).HasNoHair) //if it has a NoHair tex
             {
@@ -135,22 +135,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
                 {
-                    uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
+                    APetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
                     
-                    if (slimeAccessory != 0 && SlimePets.GetPet(projectile.type).PreAdditionSlot == slotNumber)
+                    if (petAccessory != null)
                     {
-                        drawPreAddition = false;
-                    }
-                    if (slimeAccessory != 0 && SlimePets.GetPet(projectile.type).PostAdditionSlot == slotNumber)
-                    {
-                        drawPostAddition = false;
+                        if (SlimePets.GetPet(projectile.type).PreAdditionSlot == slotNumber) drawPreAddition = false;
+                        if (SlimePets.GetPet(projectile.type).PostAdditionSlot == slotNumber) drawPostAddition = false;
                     }
                 }
             }
 
-            bool drawnPreDraw = drawPreAddition ? MorePreDrawBaseSprite(spriteBatch, drawColor, useNoHair) : true;
+            bool drawnPreDraw = drawPreAddition ? MorePreDrawBaseSprite(spriteBatch, drawColor, useNoHair) : true; //do a pre-draw for the rainbow slimes
 
-            if (drawnPreDraw) //do a pre-draw for the rainbow slimes
+            if (drawnPreDraw)
             {
                 //Draw NoHair if necessary, otherwise regular sprite
                 Texture2D texture = Main.projectileTexture[projectile.type];
@@ -181,33 +178,35 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         }
 
+        private const string PetAccessoryFolder = "AssortedCrazyThings/Items/PetAccessories/";
+
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)
         {
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
 
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
-                //slimeAccessory is the indexed number of the accessory (from 0 to 255)
+                APetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
                 
-                uint slimeAccessory = mPlayer.GetAccessory(slotNumber);
-
-                if ((preDraw || !PetAccessory.PreDraw[slimeAccessory]) &&
-                    slimeAccessory != 0 &&
+                if (petAccessory != null &&
+                    (preDraw || !petAccessory.PreDraw) &&
                     !SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[slotNumber])
                 {
-                    Texture2D texture = PetAccessory.Texture[slimeAccessory];
+                    string textureString = PetAccessoryFolder + petAccessory.Name;
+                    string colorString = petAccessory.HasAlts? petAccessory.AltTextureSuffixes[petAccessory.Color]: "";
 
-                    int altTextureNumber = PetAccessory.AltTexture[slimeAccessory, (byte)SlimePets.GetPet(projectile.type).Color];
-                       
+                    string drawString = "_Draw";
+
+                    sbyte altTextureNumber = petAccessory.PetVariations[SlimePets.slimePets.IndexOf(projectile.type)];
                     if (altTextureNumber > 0) //change texture if not -1 and not -0
                     {
-                        texture = ModLoader.GetTexture(texture.Name + altTextureNumber);
+                        drawString += altTextureNumber;
                     }
                     else if (altTextureNumber == -1)
                     {
                         continue;
                     }
-                    //else if 0: normal behavior
+                    Texture2D texture = ModLoader.GetTexture(textureString + colorString + drawString);
 
                     Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, texture.Width, texture.Height / 10);
 
@@ -215,9 +214,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
                     Vector2 stupidOffset = new Vector2(0f, drawOriginOffsetY + projectile.gfxOffY);
-                    Color color = drawColor * ((255 - PetAccessory.Alpha[slimeAccessory]) / 255f);
-
-                    Vector2 originOffset = - PetAccessory.Offset[slimeAccessory];
+                    Color color = drawColor * ((255 - petAccessory.Alpha) / 255f);
+                    
+                    Vector2 originOffset = -petAccessory.Offset;
                     if (projectile.spriteDirection == -1)
                     {
                         originOffset.X = -originOffset.X;

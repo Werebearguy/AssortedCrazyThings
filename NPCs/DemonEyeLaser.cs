@@ -32,8 +32,8 @@ namespace AssortedCrazyThings.NPCs
         public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DemonEye);
-            npc.width = 38;
-            npc.height = 46;
+            npc.width = 32;
+            npc.height = 32;
             npc.damage = 18;
             npc.defense = 2;
             npc.lifeMax = 60;
@@ -110,7 +110,7 @@ namespace AssortedCrazyThings.NPCs
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = mod.GetTexture("NPCs/DemonEyeLaser_" + AiTexture);
-            Vector2 stupidOffset = new Vector2(-4f, npc.height / 3); //gfxoffY is for when the npc is on a slope or half brick
+            Vector2 stupidOffset = new Vector2(-4f, 0f); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
@@ -122,7 +122,7 @@ namespace AssortedCrazyThings.NPCs
         {
             Texture2D texture = mod.GetTexture("NPCs/DemonEyeLaser_Glowmask");
 
-            Vector2 stupidOffset = new Vector2(-4f, npc.height / 3f);
+            Vector2 stupidOffset = new Vector2(-4f, 0f);
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;

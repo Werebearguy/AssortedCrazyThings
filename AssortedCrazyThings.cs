@@ -31,7 +31,7 @@ namespace AssortedCrazyThings
         //Soul NPC spawn blacklist
         public static int[] soulBuffBlacklist;
 
-        // UI stuff
+        //UI stuff
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
 
@@ -44,6 +44,9 @@ namespace AssortedCrazyThings
         internal static UserInterface EnhancedHunterUIInterface;
         internal static EnhancedHunterUI EnhancedHunterUI;
 
+        internal static UserInterface PetVanityUIInterface;
+        internal static PetVanityUI PetVanityUI;
+
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
         public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
@@ -54,7 +57,20 @@ namespace AssortedCrazyThings
             {
                 SlimePets.Load();
 
-                PetAccessory.Load();
+                //PetAccessory.Load();
+
+                APetAccessory.Load();
+            }
+        }
+        private void UnoadPets()
+        {
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                SlimePets.Unload();
+
+                //PetAccessory.Unload();
+
+                APetAccessory.Unload();
             }
         }
 
@@ -136,6 +152,11 @@ namespace AssortedCrazyThings
                 EnhancedHunterUIInterface = new UserInterface();
                 EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
 
+                PetVanityUI = new PetVanityUI();
+                PetVanityUI.Activate();
+                PetVanityUIInterface = new UserInterface();
+                PetVanityUIInterface.SetState(PetVanityUI);
+
                 CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
                 CircleUIConf.AddItemAsTrigger(ItemType<SlimeHandlerKnapsack>(), false); //right click of Slime Handler Knapsack
                 CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
@@ -150,8 +171,10 @@ namespace AssortedCrazyThings
                 CircleUIInterface = null;
                 CircleUI = null;
 
-                HarvesterEdgeUI.typeToTexture = null;
+                HarvesterEdgeUI.texture = null;
                 EnhancedHunterUI.arrowTexture = null;
+                CircleUIConf.TriggerListLeft.Clear();
+                CircleUIConf.TriggerListRight.Clear();
             }
         }
 
@@ -199,7 +222,7 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
-            PetAccessory.Unload();
+            UnoadPets();
 
             UnloadUI();
 
@@ -223,7 +246,7 @@ namespace AssortedCrazyThings
             if (bossChecklist != null)
             {
                 //5.1f means just after skeletron
-                bossChecklist.Call("AddMiniBossWithInfo", NPCs.DungeonBird.Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<Items.IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+                bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
             }
         }
 
@@ -408,7 +431,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            // Spawn UI
+            //Spawn UI
             CircleUI.visible = true;
             CircleUI.spawnPosition = Main.MouseScreen;
             CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
@@ -424,7 +447,7 @@ namespace AssortedCrazyThings
             {
                 //if something returned AND if the returned thing isn't the same as the current one
 
-                Main.PlaySound(SoundID.Item4.WithVolume(0.8f), Main.LocalPlayer.position);
+                Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
 
                 if (triggerLeft) //left click
                 {
@@ -540,18 +563,7 @@ namespace AssortedCrazyThings
                 left = false;
             }
 
-            if (left != null &&
-                Main.hasFocus &&
-                !Main.LocalPlayer.dead &&
-                !Main.LocalPlayer.mouseInterface &&
-                !Main.drawingPlayerChat &&
-                !Main.editSign &&
-                !Main.editChest &&
-                !Main.blockInput &&
-                !Main.mapFullscreen &&
-                !Main.HoveringOverAnNPC &&
-                Main.LocalPlayer.talkNPC == -1 &&
-                !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned)) CircleUIStart(Main.LocalPlayer.HeldItem.type, (bool)left);
+            if (left != null && AllowedToOpenUI()) CircleUIStart(Main.LocalPlayer.HeldItem.type, (bool)left);
 
             if (CircleUI.visible)
             {
@@ -604,6 +616,65 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void UpdatePetVanityUI(GameTime gameTime)
+        {
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
+
+            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && APetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type))
+            {
+                APetAccessory petAccessory = APetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
+                if(pPlayer.slimePetIndex != -1 &&
+                    Main.projectile[pPlayer.slimePetIndex].active &&
+                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                {
+                    //Spawn UI
+                    PetVanityUI.visible = true;
+                    PetVanityUI.spawnPosition = Main.MouseScreen;
+                    PetVanityUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
+                    PetVanityUI.petAccessory = petAccessory;
+                    APetAccessory petAcc = Main.LocalPlayer.GetModPlayer<PetPlayer>().GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
+                    PetVanityUI.hasEquipped = petAcc != null && petAcc.Type == petAccessory.Type;
+                    PetVanityUI.fadeIn = 0;
+                }
+            }
+
+            if (PetVanityUI.visible)
+            {
+                if (mPlayer.LeftClickReleased)
+                {
+                    if (PetVanityUI.returned > -1)
+                    {
+                        //if something returned AND if the returned thing isn't the same as the current one
+
+                        Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
+                        //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
+
+                        PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
+                        pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
+                    }
+                    else if (PetVanityUI.hasEquipped && PetVanityUI.returned == -1)
+                    {
+                        //hovered over the middle and had something equipped: take accessory away
+                        pPlayer.DelAccessory(PetVanityUI.petAccessory);
+                    }
+                    //else if (returned == -2) {nothing happens}
+
+                    PetVanityUI.returned = -1;
+                    PetVanityUI.visible = false;
+                }
+
+                if (PetVanityUI.petAccessory.Type != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
+                {
+                    PetVanityUI.returned = -1;
+                    PetVanityUI.visible = false;
+                }
+            }
+        }
+
         private void UpdateHoverNPCUI(GameTime gameTime)
         {
             if (AssUtils.AnyNPCs(AssWorld.harvesterTypes))
@@ -641,6 +712,22 @@ namespace AssortedCrazyThings
             UpdateHoverNPCUI(gameTime);
             UpdateEnhancedHunterUI(gameTime);
             UpdateHarvesterEdgeUI(gameTime);
+            UpdatePetVanityUI(gameTime);
+        }
+
+        private bool AllowedToOpenUI()
+        {
+            return Main.hasFocus &&
+                !Main.LocalPlayer.dead &&
+                !Main.LocalPlayer.mouseInterface &&
+                !Main.drawingPlayerChat &&
+                !Main.editSign &&
+                !Main.editChest &&
+                !Main.blockInput &&
+                !Main.mapFullscreen &&
+                !Main.HoveringOverAnNPC &&
+                Main.LocalPlayer.talkNPC == -1 &&
+                !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -650,10 +737,21 @@ namespace AssortedCrazyThings
             {
                 layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
                     (
-                    "ACT: Appearance Selection",
+                    "ACT: Appearance Select",
                     delegate
                     {
                         if (CircleUI.visible) CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+
+                layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
+                    (
+                    "ACT: Pet Vanity Select",
+                    delegate
+                    {
+                        if (PetVanityUI.visible) PetVanityUIInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -698,20 +796,6 @@ namespace AssortedCrazyThings
             }
         }
 
-        //public void SyncAltTextureNPC(NPC npc)
-        //{
-        //    //server side only
-
-        //    if (Main.netMode == NetmodeID.Server)
-        //    {
-        //        ModPacket packet = GetPacket();
-        //        packet.Write((byte)AssMessageType.SyncAltTextureNPC);
-        //        packet.Write((byte)npc.whoAmI);
-        //        packet.Write((byte)npc.altTexture);
-        //        packet.Send();
-        //    }
-        //}
-
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             AssMessageType msgType = (AssMessageType)reader.ReadByte();
@@ -721,8 +805,6 @@ namespace AssortedCrazyThings
             GitGudPlayer gPlayer;
             byte changes;
             byte gitgudType;
-            //byte npcnumber;
-            //byte npcAltTexture;
 
             switch (msgType)
             {
@@ -787,21 +869,6 @@ namespace AssortedCrazyThings
                         }
                     }
                     break;
-                //case AssMessageType.SyncAltTextureNPC:
-                //    if (Main.netMode == NetmodeID.MultiplayerClient)
-                //    {
-                //        npcnumber = reader.ReadByte();
-                //        npcAltTexture = reader.ReadByte();
-                //        Main.NewText("recv tex " + npcAltTexture + " from " + npcnumber);
-                //        Main.NewText("type " + Main.npc[npcnumber].type);
-                //        Main.NewText("extracount " + NPCID.Sets.ExtraTextureCount[Main.npc[npcnumber].type]);
-                //        if (NPCID.Sets.ExtraTextureCount[Main.npc[npcnumber].type] > 0)
-                //        {
-                //            Main.NewText("set tex to" + npcAltTexture);
-                //            Main.npc[npcnumber].altTexture = npcAltTexture;
-                //        }
-                //    }
-                //    break;
                 default:
                     ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
                     break;
@@ -826,7 +893,6 @@ namespace AssortedCrazyThings
     {
         SendClientChangesVanity,
         SyncPlayerVanity,
-        //SyncAltTextureNPC,
         ConvertInertSoulsInventory,
         SendClientChangesGitGud,
         ResetGitGud
@@ -838,7 +904,6 @@ namespace AssortedCrazyThings
         Plantera,
         //KingSlime,
         //EyeOfChthulu,
-
     }
 
     public enum PetPlayerChanges : byte
