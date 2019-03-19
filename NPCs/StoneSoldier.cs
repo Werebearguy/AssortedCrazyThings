@@ -130,7 +130,7 @@ namespace AssortedCrazyThings.NPCs
             //base sprite is 80x66
             //hitbox is 18x40
             Texture2D texture = mod.GetTexture("NPCs/StoneSoldier_" + npc.ai[1]);
-            Vector2 stupidOffset = new Vector2(0f, -4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            Vector2 stupidOffset = new Vector2(0f, -8f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;

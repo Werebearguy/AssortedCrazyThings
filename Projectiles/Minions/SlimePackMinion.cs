@@ -121,7 +121,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     PickedTexture == 5 ||
                     PickedTexture == 6 ||
                     PickedTexture == 7 ||
-                    PickedTexture == 10 ||
                     PickedTexture == 11)) color.A = 255;
 
                 if (PickedTexture == 3 && SlimeType != "Assorted") //pinky
@@ -139,7 +138,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             if (HasTexture)
             {
-                if ((PickedTexture == 15 && SlimeType != "Assorted") || PickedTexture == 12 && SlimeType == "Assorted")
+                if ((PickedTexture == 15 && SlimeType != "Assorted") || (PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
                 {
                     Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask");
                     Rectangle bounds = new Rectangle
@@ -168,7 +167,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                             spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
                         }
                     }
-                    else if (PickedTexture == 12 && SlimeType == "Assorted")
+                    else if ((PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
                     {
                         Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                         spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);

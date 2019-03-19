@@ -15,20 +15,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Mini Megalodon");
             Main.projFrames[projectile.type] = 8;
             Main.projPet[projectile.type] = true;
+            drawOffsetX = -4;
+            drawOriginOffsetY = -8;
         }
 
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.EyeSpring);
             projectile.aiStyle = -1;
+            projectile.width = 32;
+            projectile.height = 24;
             //aiType = ProjectileID.EyeSpring;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.eyeSpring = false; // Relic from aiType
-            return true;
         }
 
         public override void AI()
@@ -184,7 +181,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					float num110 = 0.4f;
 					if (flag)
 					{
-						if ((double)projectile.velocity.X > -3.5)
+						if (projectile.velocity.X > -3.5f)
 						{
 							projectile.velocity.X -= num110;
 						}
@@ -195,7 +192,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					}
 					else if (flag2)
 					{
-						if ((double)projectile.velocity.X < 3.5)
+						if (projectile.velocity.X < 3.5f)
 						{
 							projectile.velocity.X += num110;
 						}
@@ -232,7 +229,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 							flag4 = true;
 						}
 					}
-					if (player.position.Y + (float)player.height - 8f > projectile.position.Y + (float)projectile.height)
+					if (player.position.Y + player.height - 8f > projectile.position.Y + projectile.height)
 					{
 						flag3 = true;
 					}
@@ -248,8 +245,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					{
 						if (!flag3 && (projectile.velocity.X < 0f || projectile.velocity.X > 0f))
 						{
-							int num113 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-							int j2 = (int)(projectile.position.Y + (float)(projectile.height / 2)) / 16 + 1;
+							int num113 = (int)(projectile.position.X + (projectile.width / 2)) / 16;
+							int j2 = (int)(projectile.position.Y + (projectile.height / 2)) / 16 + 1;
 							if (flag)
 							{
 								int num30 = num113;
@@ -264,14 +261,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 						}
 						if (flag4)
 						{
-							int num114 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-							int num115 = (int)(projectile.position.Y + (float)projectile.height) / 16 + 1;
+							int num114 = (int)(projectile.position.X + projectile.width / 2) / 16;
+							int num115 = (int)(projectile.position.Y + projectile.height) / 16 + 1;
 							if (WorldGen.SolidTile(num114, num115) || Main.tile[num114, num115].halfBrick() || Main.tile[num114, num115].slope() > 0)
 							{
 								try
 								{
-									num114 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-									num115 = (int)(projectile.position.Y + (float)(projectile.height / 2)) / 16;
+									num114 = (int)(projectile.position.X + projectile.width / 2) / 16;
+									num115 = (int)(projectile.position.Y + projectile.height / 2) / 16;
 									if (flag)
 									{
 										int num30 = num114;
@@ -335,7 +332,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					{
                         projectile.direction = -1;
 					}
-					if (projectile.direction == -1)
+
+
+                    //fix cause im dumb and didnt copy ai code correctly
+                    if (!flag && !flag2)
+                    {
+                        projectile.direction = (player.Center - projectile.Center).X > 0 ? 1 : -1;
+                    }
+
+
+                    if (projectile.direction == -1)
 					{
 						projectile.spriteDirection = 1;
 					}

@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
-            Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY - drawOriginOffsetY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f + drawOriginOffsetY);
             Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;

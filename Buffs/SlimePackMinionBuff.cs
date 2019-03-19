@@ -18,6 +18,7 @@ namespace AssortedCrazyThings.Buffs
         {
             int sum = player.ownedProjectileCounts[mod.ProjectileType<SlimePackMinion>()];
             sum += player.ownedProjectileCounts[mod.ProjectileType<SlimePackSpikedMinion>()];
+            sum += player.ownedProjectileCounts[mod.ProjectileType<SlimePackAssortedMinion>()];
             return sum;
         }
 

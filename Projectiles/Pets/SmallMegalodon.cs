@@ -24,14 +24,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.EyeSpring);
             projectile.aiStyle = -1;
+            projectile.width = 32;
+            projectile.height = 32;
             //aiType = ProjectileID.EyeSpring;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.eyeSpring = false; // Relic from aiType
-            return true;
         }
 
         public override void AI()
@@ -335,6 +330,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         projectile.direction = -1;
                     }
+
+                    //fix cause im dumb and didnt copy ai code correctly
+                    if (!flag && !flag2)
+                    {
+                        projectile.direction = (player.Center - projectile.Center).X > 0 ? 1 : -1;
+                    }
+
                     if (projectile.direction == -1)
                     {
                         projectile.spriteDirection = 1;
