@@ -1,10 +1,8 @@
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
-using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,9 +55,7 @@ namespace AssortedCrazyThings
             {
                 SlimePets.Load();
 
-                //PetAccessory.Load();
-
-                APetAccessory.Load();
+                PetAccessory.Load();
             }
         }
         private void UnoadPets()
@@ -68,9 +64,7 @@ namespace AssortedCrazyThings
             {
                 SlimePets.Unload();
 
-                //PetAccessory.Unload();
-
-                APetAccessory.Unload();
+                PetAccessory.Unload();
             }
         }
 
@@ -621,9 +615,9 @@ namespace AssortedCrazyThings
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
-            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && APetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type))
+            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type, forUI: true))
             {
-                APetAccessory petAccessory = APetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
+                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
                 if(pPlayer.slimePetIndex != -1 &&
                     Main.projectile[pPlayer.slimePetIndex].active &&
                     Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
@@ -636,7 +630,7 @@ namespace AssortedCrazyThings
                     PetVanityUI.spawnPosition = Main.MouseScreen;
                     PetVanityUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
                     PetVanityUI.petAccessory = petAccessory;
-                    APetAccessory petAcc = Main.LocalPlayer.GetModPlayer<PetPlayer>().GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
+                    PetAccessory petAcc = Main.LocalPlayer.GetModPlayer<PetPlayer>().GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
                     PetVanityUI.hasEquipped = petAcc != null && petAcc.Type == petAccessory.Type;
                     PetVanityUI.fadeIn = 0;
                 }
@@ -735,27 +729,39 @@ namespace AssortedCrazyThings
             int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
             if (inventoryIndex != -1)
             {
-                layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Appearance Select",
-                    delegate
-                    {
-                        if (CircleUI.visible) CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
+                if (CircleUI.visible)
+                {
+                    //remove the item icon when using the item while held outside the inventory
+                    int mouseItemIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Item / NPC Head"));
+                    if (mouseItemIndex != -1) layers.RemoveAt(mouseItemIndex);
+                    layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
+                        (
+                        "ACT: Appearance Select",
+                        delegate
+                        {
+                            CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
+                            return true;
+                        },
+                        InterfaceScaleType.UI)
+                    );
+                }
 
-                layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Pet Vanity Select",
-                    delegate
-                    {
-                        if (PetVanityUI.visible) PetVanityUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
+                if (PetVanityUI.visible)
+                {
+                    //remove the item icon when using the item while held outside the inventory
+                    int mouseItemIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Item / NPC Head"));
+                    if (mouseItemIndex != -1) layers.RemoveAt(mouseItemIndex);
+                    layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
+                        (
+                        "ACT: Pet Vanity Select",
+                        delegate
+                        {
+                            PetVanityUIInterface.Draw(Main.spriteBatch, new GameTime());
+                            return true;
+                        },
+                        InterfaceScaleType.UI)
+                    );
+                }
             }
 
             int mouseOverIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Over"));

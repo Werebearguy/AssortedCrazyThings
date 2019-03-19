@@ -119,7 +119,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             bool useNoHair = false;
-            APetAccessory petAccessoryHat = pPlayer.GetAccessoryInSlot((byte)SlotType.Hat);
+            PetAccessory petAccessoryHat = pPlayer.GetAccessoryInSlot((byte)SlotType.Hat);
             if (petAccessoryHat != null &&
                 petAccessoryHat.UseNoHair &&
                 !SlimePets.slimePetLegacy.Contains(projectile.type) && //if its not legacy
@@ -135,7 +135,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
                 {
-                    APetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                    PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
                     
                     if (petAccessory != null)
                     {
@@ -186,7 +186,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
-                APetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
                 
                 if (petAccessory != null &&
                     (preDraw || !petAccessory.PreDraw) &&

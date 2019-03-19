@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Pets
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {
-                            APetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                            PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
 
                             string tooltip = "";
 

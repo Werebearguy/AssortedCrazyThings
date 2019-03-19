@@ -8,22 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
 {
-    /*
-     * For every new Texture you add, copypaste a new class in this namespace (below PetAccessories), and adjust its DisplayName and item.value.
-     * item.value is the "SlotType" in our case.
-     * (yes, this means that the accessories are worth almost nothing when sold, who cares lmao)
-     * 
-     * example:
-     * item.value = (int)SlotType.Body;
-     * 
-     * finally, go into Load(Mod mod) (further down below), and follow the instructions there
-     * 
-     * 
-     * suggestion for names : prefixed with "Cute ", so its easy to find in recipe browser 
-     * inside CuteSlimeGlobalTooltip the "Cute " prefix will be cut off in the tooltip to save space
-     * 
-     */
-
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieBlack : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -38,6 +23,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieBlue : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -52,6 +38,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -66,6 +53,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -80,6 +68,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieOrange : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -94,6 +83,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtiePink : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -108,6 +98,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtiePurple : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -122,6 +113,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -136,6 +128,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieWhite : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -150,6 +143,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryBowtieYellow : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -164,6 +158,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryCrownGold : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -178,6 +173,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryCrownPlatinum : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -192,6 +188,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowBlack : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -206,6 +203,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowBlue : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -220,6 +218,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -234,6 +233,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -248,6 +248,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowOrange : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -262,6 +263,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowPink : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -276,6 +278,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowPurple : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -290,6 +293,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -304,6 +308,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowWhite : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -318,6 +323,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryHairBowYellow : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -332,34 +338,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    //public class PetAccessoryKitchenKnife : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Kitchen Knife");
-    //        Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Carried;
-    //    }
-    //}
-
-    //public class PetAccessoryMetalHelmet : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Knight Helmet");
-    //        Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Hat;
-    //    }
-    //}
-
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensBlack : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -374,6 +353,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensBlue : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -388,6 +368,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensGray : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -402,6 +383,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -416,6 +398,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensOrange : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -430,6 +413,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensPink : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -444,6 +428,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensPurple : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -458,6 +443,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -472,6 +458,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensWhite : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -486,6 +473,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryMittensYellow : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -500,6 +488,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadBlack : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -514,6 +503,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadBlue : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -528,6 +518,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -542,6 +533,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadPink : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -556,6 +548,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadPinky : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -570,6 +563,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadPurple : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -584,6 +578,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -598,6 +593,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessorySlimeHeadYellow : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -612,6 +608,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffAmber : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -626,6 +623,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffAmethyst : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -640,6 +638,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffDiamond : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -654,6 +653,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffEmerald : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -668,6 +668,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffRuby : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -682,6 +683,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffSapphire : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -696,6 +698,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryStaffTopaz : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -710,104 +713,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    //public class PetAccessorySwallowedKey : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Swallowed Key");
-    //        Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Accessory;
-    //    }
-    //}
-
-    //public class PetAccessoryToyBreastplate : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Knight Breastplate");
-    //        Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Body;
-    //    }
-    //}
-
-    //public class PetAccessoryToyMace : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Paladin's Mace");
-    //        Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Carried;
-    //    }
-    //}
-
-    //public class PetAccessoryToyShield : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Knight Shield");
-    //        Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Accessory;
-    //    }
-    //}
-
-    //public class PetAccessoryToySpear : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Spartan's Spear");
-    //        Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Carried;
-    //    }
-    //}
-
-    //public class PetAccessoryToySword : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Knight Sword");
-    //        Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Carried;
-    //    }
-    //}
-
-    //public class PetAccessoryWizardHat : PetAccessoryBase
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Cute Wizard Hat");
-    //        Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
-    //    }
-
-    //    protected override void MoreSetDefaults()
-    //    {
-    //        item.value = (int)SlotType.Hat;
-    //    }
-    //}
-
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryXmasHatGreen : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -822,6 +728,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
     public class PetAccessoryXmasHatRed : PetAccessoryBase
     {
         public override void SetStaticDefaults()
@@ -838,7 +745,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
     public enum SlotType : byte
     {
-        None, //reserved
+        None = 0, //reserved
         Body = 1,
         Hat = 2,
         Carried = 3,
@@ -846,379 +753,18 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         //for Carried, it's actually only the front facing hand. For something like gloves or dual wielding, use Accessory instead
 
-        //also, keep the sprite dimensions the same as the slime girls
+        //also, keep the sprite dimensions the same as the cute slimes
 
         //also they will be rendered in this order aswell (means that Carried can overlap with Body)
     }
 
-    //this is the class that holds all the properties about the accessories, like texture, offset etc
     public class PetAccessory
     {
-        //internal fields
-        internal static byte addCounter = 0; //if you ever add more than 255 accessories, make that a short
-        internal static string[] namesOfAccessories;
-
-        //public fields
-        public static int[] Items;
-        public static int[] ItemsIndexed; //used in ToggleAccessory
-        public static Texture2D[] Texture;
-        public static Vector2[] Offset;
-        public static bool[] PreDraw;
-        public static byte[] Alpha;
-        public static bool[] UseNoHair;
-        public static int[,] AltTexture; //accessory -> alt tex array for cuteslime<color>pet
-
-        public static void Load()
-        {
-            //-------------------------------------------------------------------
-            //------------ADD PET ACCESSORY PROPERTIES HERE----------------------
-            //-------------------------------------------------------------------
-            /*
-             * How to:
-             * - put the name of the class you added in ^ to namesOfAccessories
-             * - call Add() with the appropriate parameters
-             * - Game will throw you an error if the namesOfAccessories length and the added number of accessories is different,
-             * or if one of the class names is misspelt
-             * 
-             * - if you want to add alternative textures (Suffixed with _Draw<identifyingNumber>), call AddAltTextures and assign each 
-             * pet a texture to use (-1 is "not rendered", 0 is "default, > 0 is "use _Draw<identifyingNumber> texture")
-             * you can leave the other pet types out if you only need to adjust the texture of one pet
-             * 
-             * - if you want to remove certain accessories from being usable for the system, comment the line out in namesOfAccessories
-             * and comment the corresponding Add line (with //)
-             */
-
-            //this is needed before you call Add() (it needs to know the total number of accessories)
-            //order doesn't matter
-            namesOfAccessories = new string[]
-            {
-                "PetAccessoryBowtieBlack",
-                "PetAccessoryBowtieBlue",
-                "PetAccessoryBowtieGray",
-                "PetAccessoryBowtieGreen",
-                "PetAccessoryBowtieOrange",
-                "PetAccessoryBowtiePink",
-                "PetAccessoryBowtiePurple",
-                "PetAccessoryBowtieRed",
-                "PetAccessoryBowtieWhite",
-                "PetAccessoryBowtieYellow",
-
-                "PetAccessoryCrownGold",
-                "PetAccessoryCrownPlatinum",
-
-                "PetAccessoryHairBowBlack",
-                "PetAccessoryHairBowBlue",
-                "PetAccessoryHairBowGray",
-                "PetAccessoryHairBowGreen",
-                "PetAccessoryHairBowOrange",
-                "PetAccessoryHairBowPink",
-                "PetAccessoryHairBowPurple",
-                "PetAccessoryHairBowRed",
-                "PetAccessoryHairBowWhite",
-                "PetAccessoryHairBowYellow",
-
-                //"PetAccessoryKitchenKnife",
-
-                //"PetAccessoryMetalHelmet",
-
-                "PetAccessoryMittensBlack",
-                "PetAccessoryMittensBlue",
-                "PetAccessoryMittensGray",
-                "PetAccessoryMittensGreen",
-                "PetAccessoryMittensOrange",
-                "PetAccessoryMittensPink",
-                "PetAccessoryMittensPurple",
-                "PetAccessoryMittensRed",
-                "PetAccessoryMittensWhite",
-                "PetAccessoryMittensYellow",
-
-                "PetAccessorySlimeHeadBlack",
-                "PetAccessorySlimeHeadBlue",
-                "PetAccessorySlimeHeadGreen",
-                "PetAccessorySlimeHeadPink",
-                "PetAccessorySlimeHeadPinky",
-                "PetAccessorySlimeHeadPurple",
-                "PetAccessorySlimeHeadRed",
-                "PetAccessorySlimeHeadYellow",
-
-                "PetAccessoryStaffAmber",
-                "PetAccessoryStaffAmethyst",
-                "PetAccessoryStaffDiamond",
-                "PetAccessoryStaffEmerald",
-                "PetAccessoryStaffRuby",
-                "PetAccessoryStaffSapphire",
-                "PetAccessoryStaffTopaz",
-
-                //"PetAccessorySwallowedKey",
-
-                //"PetAccessoryToyBreastplate",
-                //"PetAccessoryToyMace",
-                //"PetAccessoryToyShield",
-                //"PetAccessoryToySpear",
-                //"PetAccessoryToySword",
-
-                //"PetAccessoryWizardHat",
-
-                "PetAccessoryXmasHatRed",
-                "PetAccessoryXmasHatGreen",
-            };
-
-            Init(namesOfAccessories);
-
-            //signature looks like this: Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0)
-            //the "= something" is a default, if you dont specify that parameter it will assume it is that "something"
-
-            //name is the string name of the class you specify above
-            //offsetX/Y is self explanatory, remember, negative X is left, negative Y is up
-            //preDraw decides if that accessory should be drawn "behind" the actual slime (false means it will draw infront)
-            //alpha says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
-            //order of the Add() doesn't matter, though it is alphabetically here for organization
-
-            Add(name: "PetAccessoryBowtieBlack");
-            Add(name: "PetAccessoryBowtieBlue");
-            Add(name: "PetAccessoryBowtieGray");
-            Add(name: "PetAccessoryBowtieGreen");
-            Add(name: "PetAccessoryBowtieOrange");
-            Add(name: "PetAccessoryBowtiePink");
-            Add(name: "PetAccessoryBowtiePurple");
-            Add(name: "PetAccessoryBowtieRed");
-            Add(name: "PetAccessoryBowtieWhite");
-            Add(name: "PetAccessoryBowtieYellow");
-
-            Add(name: "PetAccessoryCrownGold");
-            AddAltTextures(name: "PetAccessoryCrownGold",
-            pink: 1,
-            dungeon: 1,
-            yellow: 2);
-            Add(name: "PetAccessoryCrownPlatinum");
-            AddAltTextures(name: "PetAccessoryCrownPlatinum",
-            pink: 1,
-            dungeon: 1,
-            yellow: 2);
-
-            Add(name: "PetAccessoryHairBowBlack");
-            Add(name: "PetAccessoryHairBowBlue");
-            Add(name: "PetAccessoryHairBowGray");
-            Add(name: "PetAccessoryHairBowGreen");
-            Add(name: "PetAccessoryHairBowOrange");
-            Add(name: "PetAccessoryHairBowPink");
-            Add(name: "PetAccessoryHairBowPurple");
-            Add(name: "PetAccessoryHairBowRed");
-            Add(name: "PetAccessoryHairBowWhite");
-            Add(name: "PetAccessoryHairBowYellow");
-
-            //Add(name: "PetAccessoryKitchenKnife", preDraw: true);
-
-            //Add(name: "PetAccessoryMetalHelmet", offsetY: -2f, useNoHair: true);
-            //AddAltTextures(name: "PetAccessoryMetalHelmet",
-            //green: 1);
-
-            Add(name: "PetAccessoryMittensBlack");
-            Add(name: "PetAccessoryMittensBlue");
-            Add(name: "PetAccessoryMittensGray");
-            Add(name: "PetAccessoryMittensGreen");
-            Add(name: "PetAccessoryMittensOrange");
-            Add(name: "PetAccessoryMittensPink");
-            Add(name: "PetAccessoryMittensPurple");
-            Add(name: "PetAccessoryMittensRed");
-            Add(name: "PetAccessoryMittensWhite");
-            Add(name: "PetAccessoryMittensYellow");
-
-            Add(name: "PetAccessorySlimeHeadBlack", offsetY: -12f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadBlue", offsetY: -12f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadGreen", offsetY: -12f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPink", offsetY: -12f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadPinky", alpha: 39);
-            Add(name: "PetAccessorySlimeHeadPurple", offsetY: -12f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadRed", offsetY: -12f, alpha: 56);
-            Add(name: "PetAccessorySlimeHeadYellow", offsetY: -12f, alpha: 56);
-
-            Add(name: "PetAccessoryStaffAmber", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryStaffAmethyst", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryStaffDiamond", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryStaffEmerald", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryStaffRuby", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryStaffSapphire", offsetX: -8f, preDraw: true);
-            Add(name: "PetAccessoryStaffTopaz", offsetX: -8f, preDraw: true);
-			
-            //Add(name: "PetAccessorySwallowedKey", preDraw: true);
-            
-            //Add(name: "PetAccessoryToyBreastplate");
-            //AddAltTextures(name: "PetAccessoryToyBreastplate",
-            //xmas: 1);
-            //Add(name: "PetAccessoryToyMace", offsetX: -4f, preDraw: true);
-            //Add(name: "PetAccessoryToyShield");
-            //Add(name: "PetAccessoryToySpear", offsetX: -8f, preDraw: true);
-            //Add(name: "PetAccessoryToySword", preDraw: true);
-
-            //Add(name: "PetAccessoryWizardHat", offsetY: -10f, useNoHair: true);
-            //AddAltTextures(name: "PetAccessoryWizardHat",
-            //black: 1,
-            //corrupt: 1,
-            //dungeon: 1,
-            //pink: 2,
-            //purple: 1,
-            //toxic: 1);
-			
-            Add(name: "PetAccessoryXmasHatGreen", offsetY: -4f, useNoHair: true);
-            Add(name: "PetAccessoryXmasHatRed", offsetY: -4f, useNoHair: true);
-
-            Check();
-
-        }
-
-        public static void Unload()
-        {
-            if (!Main.dedServ && Main.netMode != 2)
-            {
-                Texture = null;
-                addCounter = 0;
-            }
-        }
-
-        private static void Check(bool duringAdd = false, string addedClassName = "fv4zruuu")
-        {
-            if (duringAdd && namesOfAccessories.Length < addCounter)
-            {
-                throw new Exception("Assigned number of Pet Accessories (" + namesOfAccessories.Length + ") is less than number of added Pet Accessories (" + addCounter + ").");
-            }
-            else if (duringAdd && addedClassName != "fv4zruuu" && Array.IndexOf(namesOfAccessories, addedClassName) == -1)
-            {
-                throw new Exception("Tried to add '" + addedClassName + "', but it wasn't registed in 'namesOfAccessories'");
-            }
-
-            if (!duringAdd && namesOfAccessories.Length > addCounter)
-            {
-                throw new Exception("Assigned number of Pet Accessories (" + namesOfAccessories.Length + ") is bigger than number of added Pet Accessories (" + addCounter + ").");
-            }
-        }
-
-        private static void Init(string[] typeList)
-        {
-            Items = new int[typeList.Length];
-            int itemIndex = 0;
-
-            do
-            {
-                if (AssUtils.Instance.ItemType(typeList[itemIndex]) == 0)
-                {
-                    throw new Exception("Pet Accessory named '" + typeList[itemIndex] + "' is not found. Is it spelt correctly?");
-                }
-                Items[itemIndex] = AssUtils.Instance.ItemType(typeList[itemIndex]);
-                itemIndex++;
-            }
-            while (itemIndex < typeList.Length);
-
-            //+ 1 on all because the 0th index is actually never written (ItemsIndexed starts at 1)
-            Texture = new Texture2D[itemIndex + 1];
-            Offset = new Vector2[itemIndex + 1];
-            PreDraw = new bool[itemIndex + 1];
-            Alpha = new byte[itemIndex + 1];
-            UseNoHair = new bool[itemIndex + 1];
-            AltTexture = new int[itemIndex + 1, SlimePets.slimePets.Count];
-
-            int[] parameters = new int[Items.Length * 2];
-            for (int i = 0; i < Items.Length; i++)
-            {
-                parameters[2 * i] = Items[i];
-                parameters[2 * i + 1] = i + 1;
-            }
-            ItemsIndexed = IntSet(parameters);
-        }
-
-        private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false)
-        {
-            addCounter++;
-
-            Check(true, name);
-
-            TryAdd(AssUtils.Instance.ItemType(name), AssUtils.Instance.GetTexture("Items/PetAccessories/" + name + "_Draw"), new Vector2(offsetX, offsetY), preDraw, alpha, useNoHair);
-        }
-
-        private static void TryAdd(int type, Texture2D texture, Vector2 offset, bool preDraw, byte alpha, bool useNoHair)
-        {
-            Texture[ItemsIndexed[type]] = texture;
-
-            Offset[ItemsIndexed[type]] = offset;
-
-            PreDraw[ItemsIndexed[type]] = preDraw;
-
-            Alpha[ItemsIndexed[type]] = alpha;
-
-            UseNoHair[ItemsIndexed[type]] = useNoHair;
-        }
-
-        private static void AddAltTextures(string name,
-            int black = 0,
-            int blue = 0,
-            int corrupt = 0,
-            int crimson = 0,
-            int dungeon = 0,
-            int green = 0,
-            int ice = 0,
-            int pink = 0,
-            int purple = 0,
-            int rainbow = 0,
-            int red = 0,
-            int toxic = 0,
-            int xmas = 0,
-            int yellow = 0)
-        {
-            //not specifying anything (or 0) means it only takes the default texture (_Draw)
-            //setting it to -1 makes it so the accessory won't render (excluding certain accessories for a slime)
-            //setting it to anything other than 0 makes it use the proper texture (_Draw<number>)
-
-            //order matters here:
-            /* public enum PetColor : byte
-                {
-                    Black,
-                    Blue,
-                    Corrupt,
-                    Crimson,
-                    Green,
-                    Pink,
-                    Purple,
-                    Rainbow,
-                    Red,
-                    Xmas,
-                    Yellow
-                }
-             */
-            int[] intArray = new int[] {black, blue, corrupt, crimson, dungeon, green, ice, pink, purple, rainbow, red, toxic, xmas, yellow};
-
-            //i is the color (PetColor)
-            for (int i = 0; i < intArray.Length; i++)
-            {
-                AltTexture[ItemsIndexed[AssUtils.Instance.ItemType(name)], i] = intArray[i];
-            }
-        }
-
-        private static int[] IntSet(int[] inputs)
-        {
-            //inputs.Length % 2 == 0
-            int[] temp = new int[inputs.Length];
-            Array.Copy(inputs, temp, inputs.Length);
-            Array.Sort(temp); //highest index should hold the max value of inputs
-            int[] ret = new int[temp[temp.Length - 1] + 1];//length == max value of inputs
-            for (int i = 0; i < ret.Length; i++)
-            {
-                ret[i] = 0; //fill array with 0
-            }
-            for (int j = 0; j < inputs.Length; j += 2)
-            {
-                ret[inputs[j]] = inputs[j + 1]; //fill array with pair of key:value
-            }
-            return ret;
-        }
-    }
-
-    public class APetAccessory
-    {
-        public static List<APetAccessory> petAccessoryListGlobal = new List<APetAccessory>();
-        public static List<APetAccessory> petAccessoryListB = new List<APetAccessory>();
-        public static List<APetAccessory> petAccessoryListH = new List<APetAccessory>();
-        public static List<APetAccessory> petAccessoryListC = new List<APetAccessory>();
-        public static List<APetAccessory> petAccessoryListA = new List<APetAccessory>();
+        public static List<PetAccessory> petAccessoryListGlobal = new List<PetAccessory>();
+        public static List<PetAccessory> petAccessoryListB = new List<PetAccessory>();
+        public static List<PetAccessory> petAccessoryListH = new List<PetAccessory>();
+        public static List<PetAccessory> petAccessoryListC = new List<PetAccessory>();
+        public static List<PetAccessory> petAccessoryListA = new List<PetAccessory>();
         public static List<int> petAccessoryIdsB;
         public static List<int> petAccessoryIdsH;
         public static List<int> petAccessoryIdsC;
@@ -1240,9 +786,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public List<Texture2D> AltTextures { private set; get; } //for UI only, the _Draw<number> stuff is done manually
         public List<sbyte> PetVariations { private set; get; } //the number in _Draw<number>
 
-        //private static void Add(string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false)
-        public APetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
+        public PetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
         {
+            if (id == 0) throw new Exception("Invalid ID '0', start with 1");
             ID = id;
             Name = "PetAccessory" + name;
             Type = AssUtils.Instance.ItemType(Name);
@@ -1276,9 +822,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
         }
 
-        public APetAccessory AddPetVariation(string petName, sbyte number)
+        public PetAccessory AddPetVariation(string petName, sbyte number)
         {
-            //(byte)-1, 0 (default), 1..254 alt texture number
+            //(byte)-1, 0 (default), 1..127 alt texture number
             int type = AssUtils.Instance.ProjectileType("CuteSlime" + petName + "NewProj");
             if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
             PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
@@ -1287,35 +833,57 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public static void Load()
         {
+            //-------------------------------------------------------------------
+            //------------ADD PET ACCESSORY PROPERTIES HERE----------------------
+            //-------------------------------------------------------------------
+            /*
+             * How to:
+             * - call Add() with the appropriate parameters in its appropriate place (by slots)
+             * - watch out for brackets, they're finnicky here
+             * - the first parameter of Add() is always the SlotType, the second one is a 'PetAccessory' object, which has the following parameters:
+             *   * id: set that to the next highest ID thats specified in the other Add() calls for that particular SlotType
+             *   * name: the name of the class without the 'PetAccessory' infront, to save space
+             *   * offsetX/Y: self explanatory, remember, negative X is left, negative Y is up
+             *   * preDraw: decides if that accessory should be drawn "behind" the actual slime (false means it will draw infront)
+             *   * alpha: says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
+             *   * useNoHair: used for SlotType.Hat, if the accessory should cover the hair and should use a NoHair texture of the slime if available
+             *   * altTextures: a List of names that denotes the selection options for the UI
+             *   * For each `altTexture` thing you specify in the list, you need to add a texture (for the UI) suffixed with that thing,
+             *     and a `_Draw` texture (there will be a duplicate icon for the default item)
+             *     
+             * - after you've done that, add a `_Draw` texture with the same name as the item you add, now the item should work
+             *
+             * 
+             * - if you want to add alternative textures based on the pet they are on (Suffixed with _Draw<identifyingNumber>), call AddPetVariation()
+             * on the PetAccessory object (watch the brackets) and assign each pet a texture to use
+             * (-1 is "not rendered", 0 is "default, > 0 is "use _Draw<identifyingNumber> texture")
+             * you can leave the other pet types out if you only need to adjust the texture of one pet
+             * 
+             * - if you want to remove certain accessories from being usable for the system, comment the Add() call out with //
+             */
             //START WITH ID: 1
-            //Add(new APetAccessory(id: 1, name: "PetAccessoryCrownGold")
-            //    .AddPetVariation("CuteSlimePinkNewProj", 2));
-            //Add(new APetAccessory(id: 2, name: "PetAccessoryToyBreastplate")
-            //    .AddPetVariation("CuteSlimeXmasNewProj", 1));
-            //Add(new APetAccessory(id: 3, name: "PetAccessoryBowtieRed")
-            //    .AddPetVariation("CuteSlimeXmasNewProj", 5));
-
-            //Bowtie: Red, Crown: Gold, Hair Bow: Red, Mittens: Red, Head Slime: Blue, Staff: Amethyst, Xmas Hat: Red
 
             //DONT CHANGE UP THE ORDER OF THE COLORS, IT'LL MESS THINGS UP (but not badly)
             //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
-            Add(SlotType.Body, new APetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black"}));
-            Add(SlotType.Body, new APetAccessory(id: 2, name: "ToyBreastplate")
+            //------------------------------------------------
+            Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black"}));
+            Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate")
                  .AddPetVariation("Xmas", 1)
                  );
 
             //HAT SLOT ACCESSORIES GO HERE, SEPARATE IDs
-            Add(SlotType.Hat, new APetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
+            //------------------------------------------------
+            Add(SlotType.Hat, new PetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
                 .AddPetVariation("Pink", 1)
                 .AddPetVariation("Dungeon", 1)
                 .AddPetVariation("Yellow", 2)
                 );
-            Add(SlotType.Hat, new APetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Hat, new APetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true)
+            Add(SlotType.Hat, new PetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true)
                 .AddPetVariation("Green", 1)
                 );
-            Add(SlotType.Hat, new APetAccessory(id: 4, name: "SlimeHead", offsetY: -12f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
-            Add(SlotType.Hat, new APetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
+            Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", offsetY: -14f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
+            Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
                 .AddPetVariation("Black", 1)
                 .AddPetVariation("Corrupt", 1)
                 .AddPetVariation("Dungeon", 1)
@@ -1323,48 +891,23 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 .AddPetVariation("Purple", 1)
                 .AddPetVariation("Toxic", 1)
                 );
-            Add(SlotType.Hat, new APetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+            Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
-            Add(SlotType.Carried, new APetAccessory(id: 1, name: "KitchenKnife"));
-            Add(SlotType.Carried, new APetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond"}));
-            Add(SlotType.Carried, new APetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true));
-            Add(SlotType.Carried, new APetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true));
-            Add(SlotType.Carried, new APetAccessory(id: 5, name: "ToySword", preDraw: true));
+            //------------------------------------------------
+            Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true));
+            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond"}));
+            Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true));
+            Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true));
+            Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true));
 
             //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
-            Add(SlotType.Accessory, new APetAccessory(id: 1, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Accessory, new APetAccessory(id: 2, name: "SwallowedKey", preDraw: true));
-            Add(SlotType.Accessory, new APetAccessory(id: 3, name: "ToyShield"));
+            //------------------------------------------------
+            Add(SlotType.Accessory, new PetAccessory(id: 1, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(SlotType.Accessory, new PetAccessory(id: 2, name: "SwallowedKey", preDraw: true));
+            Add(SlotType.Accessory, new PetAccessory(id: 3, name: "ToyShield"));
 
             CreateMaps();
-        }
-
-        public static void CreateMaps()
-        {
-            petAccessoryIdsB = new List<int>(petAccessoryListB.Count);
-            petAccessoryIdsH = new List<int>(petAccessoryListH.Count);
-            petAccessoryIdsC = new List<int>(petAccessoryListC.Count);
-            petAccessoryIdsA = new List<int>(petAccessoryListA.Count);
-
-            foreach (SlotType slotType in Enum.GetValues(typeof(SlotType)))
-            {
-                if (slotType != SlotType.None)
-                {
-                    List<APetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
-                    List<int> tempIdList = GetIdListFromType(slotType);
-                    for (int i = 0; i < tempAccessoryList.Count; i++)
-                    {
-                        tempIdList.Add(tempAccessoryList[i].ID);
-                    }
-                }
-            }
-
-            petAccessoryTypesGlobal = new List<int>(petAccessoryListGlobal.Count); //because types are unique we use only one list
-            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
-            {
-                petAccessoryTypesGlobal.Add(petAccessoryListGlobal[i].Type);
-            }
         }
 
         public static void Unload()
@@ -1381,7 +924,34 @@ namespace AssortedCrazyThings.Items.PetAccessories
             petAccessoryTypesGlobal.Clear();
         }
 
-        private static List<APetAccessory> GetAccessoryListFromType(SlotType slotType)
+        public static void CreateMaps()
+        {
+            petAccessoryIdsB = new List<int>(petAccessoryListB.Count);
+            petAccessoryIdsH = new List<int>(petAccessoryListH.Count);
+            petAccessoryIdsC = new List<int>(petAccessoryListC.Count);
+            petAccessoryIdsA = new List<int>(petAccessoryListA.Count);
+
+            foreach (SlotType slotType in Enum.GetValues(typeof(SlotType)))
+            {
+                if (slotType != SlotType.None)
+                {
+                    List<PetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
+                    List<int> tempIdList = GetIdListFromType(slotType);
+                    for (int i = 0; i < tempAccessoryList.Count; i++)
+                    {
+                        tempIdList.Add(tempAccessoryList[i].ID);
+                    }
+                }
+            }
+
+            petAccessoryTypesGlobal = new List<int>(petAccessoryListGlobal.Count); //because types are unique we use only one list
+            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            {
+                petAccessoryTypesGlobal.Add(petAccessoryListGlobal[i].Type);
+            }
+        }
+
+        private static List<PetAccessory> GetAccessoryListFromType(SlotType slotType)
         {
             switch (slotType)
             {
@@ -1415,7 +985,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
-        public static void Add(SlotType slotType, APetAccessory aPetAccessory)
+        public static void Add(SlotType slotType, PetAccessory aPetAccessory)
         {
             for (int i = 0; i < petAccessoryListGlobal.Count; i++)
             {
@@ -1428,28 +998,28 @@ namespace AssortedCrazyThings.Items.PetAccessories
             if (slotType == SlotType.None) throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
 
             //everything fine
-            List<APetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
+            List<PetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
             tempAccessoryList.Add(aPetAccessory);
 
             petAccessoryListGlobal.Add(aPetAccessory);
         }
 
-        public static APetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
+        public static PetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
         {
             return GetAccessoryListFromType(slotType)[GetIdListFromType(slotType).IndexOf(id)];
             //return petAccessoryListGlobal[petAccessoryIdsB.IndexOf(id)];
         }
 
-        public static APetAccessory GetAccessoryFromType(int type) //since types are unique, just look up in the global list
+        public static PetAccessory GetAccessoryFromType(int type) //since types are unique, just look up in the global list
         {
             return petAccessoryListGlobal[petAccessoryTypesGlobal.IndexOf(type)];
         }
 
-        public static bool IsItemAPetVanity(int type)
+        public static bool IsItemAPetVanity(int type, bool forUI = false)
         {
             for (int i = 0; i < petAccessoryListGlobal.Count; i++)
             {
-                if (petAccessoryListGlobal[i].Type == type && petAccessoryListGlobal[i].HasAlts) return true;
+                if (petAccessoryListGlobal[i].Type == type && (forUI? petAccessoryListGlobal[i].HasAlts: true)) return true;
             }
             return false;
         }
@@ -1468,6 +1038,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 + " ; Alt: " + (HasAlts? "y":"n");
         }
     }
+
+    //NEW CLASSES GO HERE vvvvvvvvvvvvvvvvvvv
 
     public class PetAccessoryBowtie : PetAccessoryItem
     {
@@ -1767,6 +1339,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    //NEW CLASSES GO HERE ^^^^^^^^^^^^^^
+
     public abstract class PetAccessoryItem : ModItem
     {
         public override void SetDefaults()
@@ -1807,25 +1381,32 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(mod, "slot", Enum2string((byte)APetAccessory.GetAccessoryFromType(item.type).Slot)));
-
-            PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
-
-            if (mPlayer.slimePetIndex != -1 &&
-                Main.projectile[mPlayer.slimePetIndex].active &&
-                Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer)
+            if (PetAccessory.IsItemAPetVanity(item.type))
             {
-                if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                tooltips.Add(new TooltipLine(mod, "slot", Enum2string((byte)PetAccessory.GetAccessoryFromType(item.type).Slot)));
+
+                PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
+
+                if (mPlayer.slimePetIndex != -1 &&
+                    Main.projectile[mPlayer.slimePetIndex].active &&
+                    Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer)
                 {
-                    if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)APetAccessory.GetAccessoryFromType(item.type).Slot])
+                    if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
                     {
-                        tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+                        if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)PetAccessory.GetAccessoryFromType(item.type).Slot])
+                        {
+                            tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+                        }
+                    }
+                    else if (SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                    {
+                        tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
                     }
                 }
-                else if (SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
-                {
-                    tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
-                }
+            }
+            else
+            {
+                tooltips.Add(new TooltipLine(mod, "Disabled", "This accessory type is not registered for use by the devs"));
             }
         }
 
@@ -1852,21 +1433,21 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override bool CanUseItem(Player player)
         {
+            //item not registered
+            if (!PetAccessory.IsItemAPetVanity(item.type)) return false;
+
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
             //no valid slime pet found
             if (!(pPlayer.slimePetIndex != -1 &&
                 Main.projectile[pPlayer.slimePetIndex].active &&
                 Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
                 SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
-                !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type)))
-            {
-                return false;
-            }
+                !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type))) return false;
 
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
             //if a left click and no alts, enable usage
-            else if (!APetAccessory.GetAccessoryFromType(item.type).HasAlts) return true;
+            else if (!PetAccessory.GetAccessoryFromType(item.type).HasAlts) return true;
             //else disable (if it has alts when left clicked)
             return false;
         }
@@ -1899,7 +1480,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     }
                 }
 
-                APetAccessory petAccessory = APetAccessory.GetAccessoryFromType(item.type);
+                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(item.type);
 
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use

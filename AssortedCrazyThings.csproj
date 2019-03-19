@@ -194,8 +194,6 @@
     <Compile Include="Items\Pets\QueenLarvaItem.cs" />
     <Compile Include="Items\Pets\TurtleSlimeItem.cs" />
     <Compile Include="Items\Placeable\SlimeBeaconItem.cs" />
-    <Compile Include="Items\TinyFrogCrown.cs" />
-    <Compile Include="Items\DemonEyeContactCase.cs" />
     <Compile Include="Items\DesiccatedLeather.cs" />
     <Compile Include="Items\Fun\CraftOfMiners.cs" />
     <Compile Include="Items\Fun\InfinityRocket.cs" />

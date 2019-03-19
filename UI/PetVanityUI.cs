@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.UI
         internal static float fadeIn = 0;
 
         //Holds data about what to draw
-        internal static APetAccessory petAccessory;
+        internal static PetAccessory petAccessory;
 
         //Initialization
         public override void OnInitialize()
@@ -136,7 +136,7 @@ namespace AssortedCrazyThings.UI
                     //Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, "Take off", mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, "Unequip", mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
 
