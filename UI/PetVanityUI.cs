@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.UI
         //Circle radius
         internal static int mainRadius = 36 / 2;
 
-        //If pet currently has something of that kind in that slot
+        //If pet currently has something of that type in that slot
         internal static bool hasEquipped = false;
         //Which thing is currently highlighted?
         internal static int returned = -1;
@@ -130,7 +130,14 @@ namespace AssortedCrazyThings.UI
             if (middle)
             {
                 //if hovering over the middle, reset color
-                returned = -1; //-1
+                returned = -1;
+                if (hasEquipped)
+                {
+                    //Draw the tooltip
+                    Color fontColor = Color.White;
+                    Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, "Take off", mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
+                }
             }
 
             //extra loop so tooltips are always drawn after the circles

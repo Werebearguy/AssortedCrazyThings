@@ -231,11 +231,14 @@ namespace AssortedCrazyThings
             return false;
         }
 
+        private bool petAccessoryRework = false;
+
         public override TagCompound Save()
         {
             return new TagCompound {
                 {"slots", (int)slots},
                 {"color", (int)color},
+                {"petAccessoryRework", (bool)petAccessoryRework},
                 {"mechFrogCrown", (bool)mechFrogCrown},
                 {"petEyeType", (byte)petEyeType},
                 {"cursedSkullType", (byte)cursedSkullType},
@@ -259,6 +262,7 @@ namespace AssortedCrazyThings
         {
             slots = (uint)tag.GetInt("slots");
             color = (uint)tag.GetInt("color");
+            petAccessoryRework = tag.GetBool("petAccessoryRework");
             mechFrogCrown = tag.GetBool("mechFrogCrown");
             petEyeType = tag.GetByte("petEyeType");
             cursedSkullType = tag.GetByte("cursedSkullType");
@@ -527,6 +531,12 @@ namespace AssortedCrazyThings
 
         public override void OnEnterWorld(Player player)
         {
+            if (!petAccessoryRework)
+            {
+                petAccessoryRework = true;
+                ErrorLogger.Log("" + mod.Name + ": Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
+                slots = 0;
+            }
             SendClientChangesPacket(PetPlayerChanges.all);
         }
 

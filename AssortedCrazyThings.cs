@@ -31,7 +31,7 @@ namespace AssortedCrazyThings
         //Soul NPC spawn blacklist
         public static int[] soulBuffBlacklist;
 
-        // UI stuff
+        //UI stuff
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
 
@@ -57,7 +57,7 @@ namespace AssortedCrazyThings
             {
                 SlimePets.Load();
 
-                PetAccessory.Load();
+                //PetAccessory.Load();
 
                 APetAccessory.Load();
             }
@@ -68,7 +68,7 @@ namespace AssortedCrazyThings
             {
                 SlimePets.Unload();
 
-                PetAccessory.Unload();
+                //PetAccessory.Unload();
 
                 APetAccessory.Unload();
             }
@@ -431,7 +431,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            // Spawn UI
+            //Spawn UI
             CircleUI.visible = true;
             CircleUI.spawnPosition = Main.MouseScreen;
             CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
@@ -619,24 +619,33 @@ namespace AssortedCrazyThings
         private void UpdatePetVanityUI(GameTime gameTime)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
             if (mPlayer.LeftClickPressed && AllowedToOpenUI() && APetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type))
             {
-                // Spawn UI
-                PetVanityUI.visible = true;
-                PetVanityUI.spawnPosition = Main.MouseScreen;
-                PetVanityUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
-                PetVanityUI.petAccessory = APetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
-                APetAccessory petAcc = Main.LocalPlayer.GetModPlayer<PetPlayer>().GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
-                PetVanityUI.hasEquipped = petAcc != null;
-                PetVanityUI.fadeIn = 0;
+                APetAccessory petAccessory = APetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
+                if(pPlayer.slimePetIndex != -1 &&
+                    Main.projectile[pPlayer.slimePetIndex].active &&
+                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
+                    !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                {
+                    //Spawn UI
+                    PetVanityUI.visible = true;
+                    PetVanityUI.spawnPosition = Main.MouseScreen;
+                    PetVanityUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
+                    PetVanityUI.petAccessory = petAccessory;
+                    APetAccessory petAcc = Main.LocalPlayer.GetModPlayer<PetPlayer>().GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
+                    PetVanityUI.hasEquipped = petAcc != null && petAcc.Type == petAccessory.Type;
+                    PetVanityUI.fadeIn = 0;
+                }
             }
 
             if (PetVanityUI.visible)
             {
                 if (mPlayer.LeftClickReleased)
                 {
-                    PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
                     if (PetVanityUI.returned > -1)
                     {
                         //if something returned AND if the returned thing isn't the same as the current one
