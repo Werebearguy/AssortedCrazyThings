@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void GetWeaponDamage(Player player, ref int damage)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            if(mPlayer.selectedSlimePackMinionType == 1)
+            if (mPlayer.selectedSlimePackMinionType == 2)
             {
                 damage = (int)(damage * SlimePackMinion.SpikedIncrease); //from 26 to 36
             }
@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void GetWeaponKnockback(Player player, ref float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            if (mPlayer.selectedSlimePackMinionType == 1)
+            if (mPlayer.selectedSlimePackMinionType == 2)
             {
                 knockback *= SlimePackMinion.SpikedIncrease;
             }
@@ -68,6 +68,10 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.selectedSlimePackMinionType == 1)
+            {
+                type = mod.ProjectileType<SlimePackAssortedMinion>();
+            }
+            else if (mPlayer.selectedSlimePackMinionType == 2)
             {
                 type = mod.ProjectileType<SlimePackSpikedMinion>();
             }

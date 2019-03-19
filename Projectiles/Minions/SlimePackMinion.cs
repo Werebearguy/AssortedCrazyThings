@@ -14,15 +14,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public const float DefKnockback = 4f; //same as slime staff x 2
         public const float SpikedIncrease = 1.4f;
 
-        protected const byte TotalNumberOfThese = 17; //17 for basic, 16 for advanced
+        protected byte TotalNumberOfThese = 17; //17 for basic, 16 for advanced
 
-        protected string Spiked = ""; 
+        protected string SlimeType = ""; 
 
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Minions/SlimePackMinions/SlimeMinion" + Spiked + "_0"; //use fixed texture
+                return "AssortedCrazyThings/Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_0"; //use fixed texture
             }
         }
 
@@ -81,10 +81,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 if (!HasTexture)
                 {
                     byte tex = (byte)Main.rand.Next(TotalNumberOfThese);
-                    if (Spiked != "" && tex == TotalNumberOfThese - 1) tex--;
                     PickedTexture = tex;
                     projectile.netUpdate = true;
-                    //AssUtils.Print("gen texture " + tex + " " + PickedTexture);
                 }
             }
 
@@ -96,7 +94,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             //Rainbow is _5, Illuminant is _15
             if (HasTexture)
             {
-                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + Spiked + "_" + PickedTexture);
+                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture);
                 Rectangle bounds = new Rectangle
                 {
                     X = 0,
@@ -110,7 +108,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-                if (PickedTexture == 5)
+                if (PickedTexture == 5 && SlimeType != "Assorted")
                 {
                     double cX = projectile.Center.X + drawOffsetX;
                     double cY = projectile.Center.Y + drawOriginOffsetY;
@@ -119,7 +117,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 Color color = lightColor * ((255 - projectile.alpha) / 255f);
 
-                if (PickedTexture == 3) //pinky
+                if (SlimeType == "Assorted" && (PickedTexture == 0 ||
+                    PickedTexture == 5 ||
+                    PickedTexture == 6 ||
+                    PickedTexture == 7 ||
+                    PickedTexture == 10 ||
+                    PickedTexture == 11)) color.A = 255;
+
+                if (PickedTexture == 3 && SlimeType != "Assorted") //pinky
                 {
                     drawPos.Y += 7f;
                     projectile.scale = 0.5f;
@@ -134,9 +139,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             if (HasTexture)
             {
-                if (PickedTexture == 15 || PickedTexture == 16)
+                if ((PickedTexture == 15 && SlimeType != "Assorted") || PickedTexture == 12 && SlimeType == "Assorted")
                 {
-                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + Spiked + "_" + PickedTexture + "_Glowmask");
+                    Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask");
                     Rectangle bounds = new Rectangle
                     {
                         X = 0,
@@ -150,7 +155,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     Vector2 drawOrigin = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
                     Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
 
-                    if (PickedTexture == 15) //illuminant slime
+                    if (PickedTexture == 15 && SlimeType != "Assorted") //illuminant slime
                     {
                         for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
                         {
@@ -163,7 +168,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                             spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
                         }
                     }
-                    else //prince slime crown
+                    else if (PickedTexture == 12 && SlimeType == "Assorted")
                     {
                         Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                         spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effect, 0f);
@@ -183,9 +188,39 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             projectile.minion = true;
 
-            Spiked = "Spiked";
+            SlimeType = "Spiked";
+            TotalNumberOfThese = 16;
 
             shootSpikes = true;
+        }
+    }
+
+    public class SlimePackAssortedMinion : SlimePackMinion
+    {
+        public override void SetStaticDefaults()
+        {
+            //could've left it out but removed the trailing cache thing
+            DisplayName.SetDefault("Slime Pack Minion");
+            Main.projFrames[projectile.type] = 6;
+            Main.projPet[projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
+            ProjectileID.Sets.Homing[projectile.type] = true;
+            drawOffsetX = -10;
+            drawOriginOffsetY = -2;
+        }
+
+        public override void MoreSetDefaults()
+        {
+            //used to set dimensions (if necessary) //also use to set projectile.minion
+            projectile.width = 32;
+            projectile.height = 30;
+
+            projectile.minion = true;
+
+            SlimeType = "Assorted";
+            TotalNumberOfThese = 13;
+
+            shootSpikes = false;
         }
     }
 }
