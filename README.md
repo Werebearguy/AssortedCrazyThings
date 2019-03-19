@@ -1,4 +1,4 @@
-# Assorted-Crazy-Things
+# Assorted Crazy Things
 Assorted Crazy Things, a mod for Terraria using tModLoader!
 
 ![Icon](https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/icon.png)

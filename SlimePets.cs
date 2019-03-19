@@ -3,7 +3,6 @@ using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using System.Collections.Generic;
-using Terraria;
 
 namespace AssortedCrazyThings
 {
@@ -56,75 +55,62 @@ namespace AssortedCrazyThings
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeBlackNewProj",
-                color: PetColor.Black,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeBlueNewProj",
-                color: PetColor.Blue,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeCorruptNewProj",
-                color: PetColor.Corrupt,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeCrimsonNewProj",
-                color: PetColor.Crimson,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeDungeonNewProj",
-                color: PetColor.Dungeon,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeGreenNewProj",
-                color: PetColor.Green
+                name: "CuteSlimeGreenNewProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIceNewProj",
-                color: PetColor.Ice
+                name: "CuteSlimeIceNewProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimePurpleNewProj",
-                color: PetColor.Purple,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimePinkNewProj",
-                color: PetColor.Pink,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeRainbowNewProj",
-                color: PetColor.Rainbow
+                name: "CuteSlimeRainbowNewProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeRedNewProj",
-                color: PetColor.Red,
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeToxicNewProj",
-                color: PetColor.Toxic
+                name: "CuteSlimeToxicNewProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeXmasNewProj",
-                color: PetColor.Xmas,
                 hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Body,
                 carried: true,
@@ -133,7 +119,6 @@ namespace AssortedCrazyThings
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeYellowNewProj",
-                color: PetColor.Yellow,
                 hasNoHair: true
             ));
 
@@ -141,7 +126,6 @@ namespace AssortedCrazyThings
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeColorNewProj",
-                color: PetColor.Color,
                 hasNoHair: false,
                 preAdditionSlot: (byte)SlotType.None,
                 postAdditionSlot: (byte)SlotType.None,
@@ -154,7 +138,6 @@ namespace AssortedCrazyThings
             
              * TEMPLATE EXPLANATION:
              * name: name of the projectile class
-             * color: enum PetColor, specified at the end of this file
              * hasNoHair: if true, makes it so it uses the NoHair texture for a Hat accessory if specified
              * preAdditionSlot: SlotType that causes the Addition texture to not be drawn when equipped (used for drawing behind the pet)
              * postAdditionSlot: SlotType that causes the Addition texture to not be drawn when equipped (used for drawing infront of the pet) (Example: Xmas)
@@ -196,18 +179,16 @@ namespace AssortedCrazyThings
     {
         public string Name { private set; get; }
         public int Type { private set; get; }
-        public PetColor Color { private set; get; }
         public bool HasNoHair { private set; get; }
         public byte PreAdditionSlot { private set; get; }
         public byte PostAdditionSlot { private set; get; }
         public bool[] IsSlotTypeBlacklisted { private set; get; }
 
-        public SlimePet(string name, PetColor color, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0, List<bool> isSlotTypeBlacklisted = null)
+        public SlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0, List<bool> isSlotTypeBlacklisted = null)
         {
             Name = name;
             Type = AssUtils.Instance.ProjectileType(name);
             if (Type == 0) throw new Exception("Pet projectile called '" + name + "' doesn't exist, are you sure you spelled it correctly?");
-            Color = color;
             HasNoHair = hasNoHair;
             PreAdditionSlot = preAdditionSlot;
             PostAdditionSlot = postAdditionSlot;
@@ -232,12 +213,12 @@ namespace AssortedCrazyThings
             }
         }
 
-        public static SlimePet NewSlimePet(string name, PetColor color, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
+        public static SlimePet NewSlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
             bool body = false, bool hat = false, bool carried = false, bool accessory = false)
         {
             List<bool> isSlotTypeBlacklisted = new List<bool>(){ body, hat, carried, accessory };
 
-            return new SlimePet(name, color, hasNoHair, preAdditionSlot, postAdditionSlot, isSlotTypeBlacklisted);
+            return new SlimePet(name, hasNoHair, preAdditionSlot, postAdditionSlot, isSlotTypeBlacklisted);
         }
 
         public override string ToString()
@@ -248,25 +229,5 @@ namespace AssortedCrazyThings
                 + "; PreAdditionSlot: " + ((SlotType)PreAdditionSlot).ToString()
                 + "; PostAdditionSlot: " + ((SlotType)PostAdditionSlot).ToString();
         }
-    }
-
-    //add a new color in alphabetic order (same in PetAccessoryClass.AddAltTextures, in the signature and in the intArray inside
-    public enum PetColor : byte
-    {
-        // I REPEAT: ALPHABETIC ORDER
-        Black,
-        Blue,
-        Corrupt,
-        Crimson,
-        Dungeon,
-        Green,
-        Ice,
-        Pink,
-        Purple,
-        Rainbow,
-        Red,
-        Toxic,
-        Xmas,
-        Yellow
     }
 }

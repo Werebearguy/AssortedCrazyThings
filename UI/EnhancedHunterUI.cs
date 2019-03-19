@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.UI
                 {
                     Vector2 between = npc.Center - Main.LocalPlayer.Center;
                     //screen "radius" is 960, "diameter" is 1920
-                    int diameter = 1300 * 3; //radar range * 3, basically two screens wide
+                    int diameter = 1300 * 3; //radar range, basically two screens wide
 
                     if (between.Length() < diameter / 2)
                     {
@@ -230,10 +230,6 @@ namespace AssortedCrazyThings.UI
                 }
                 int finalWidth = (int)(tempWidth * scaleFactor);
                 int finalHeight = (int)(tempHeight * scaleFactor);
-
-                //Main.NewText(scaleFactor);
-                //Main.NewText("tex : " + tempWidth + "; " + tempHeight);
-                //Main.NewText("fin : " + finalWidth + "; " + finalHeight);
 
                 //if it's a boss, draw the head texture instead, no scaling
                 if(bossHeadIndex[i] != -1)
