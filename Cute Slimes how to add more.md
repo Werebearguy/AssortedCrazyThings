@@ -27,8 +27,11 @@ in the Buff class like this: `mPlayer.CuteSlimeColorNew`
 
  (2) Items/PetAccessories/PetAccessoryClass.cs
 
-* In AddAltTextures(), add a new argument **in alphabetic order** and into `intArray`
-that corresponds to the color you added in (1)
+* if you want to add alternative textures based on the pet they are on (Suffixed with `_Draw<identifyingNumber>`), call AddPetVariation()
+  on the PetAccessory object (watch the brackets) and assign each pet a texture to use
+  (-1 is "not rendered", 0 is "default, > 0 is "use `_Draw<identifyingNumber>` texture")
+  you can leave the other pet types out if you only need to adjust the texture of one pet
+
 
 ***
 

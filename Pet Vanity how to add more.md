@@ -1,6 +1,6 @@
 ## Moar Pet Vanity
 
-Everything is done in the Items/PetAccessoryClass.cs file
+Everything is done in the Items/PetAccessories/PetAccessoryClass.cs file
 
 (1) Add Item
 
