@@ -853,8 +853,10 @@ namespace AssortedCrazyThings
                         //recieve loaded values from the player tag compound
                         playerNumber = reader.ReadByte();
                         gPlayer = Main.player[playerNumber].GetModPlayer<GitGudPlayer>();
-                        gPlayer.kingSlimeGitGudCounter = reader.ReadByte();
-                        gPlayer.planteraGitGudCounter = reader.ReadByte();
+                        gPlayer.kingSlimeGitgudCounter = reader.ReadByte();
+                        gPlayer.eyeOfCthulhuGitgudCounter = reader.ReadByte();
+                        gPlayer.queenBeeGitgudCounter = reader.ReadByte();
+                        gPlayer.planteraGitgudCounter = reader.ReadByte();
                     }
                     break;
                 case AssMessageType.ResetGitGud:
@@ -868,12 +870,16 @@ namespace AssortedCrazyThings
                         switch (gitgudType)
                         {
                             case (byte)GitGudType.KingSlime:
-                                //AssUtils.Print("got kingslime reset");
-                                gPlayer.kingSlimeGitGudCounter = 0;
+                                gPlayer.kingSlimeGitgudCounter = 0;
+                                break;
+                            case (byte)GitGudType.EyeOfCthulhu:
+                                gPlayer.eyeOfCthulhuGitgudCounter = 0;
+                                break;
+                            case (byte)GitGudType.QueenBee:
+                                gPlayer.queenBeeGitgudCounter = 0;
                                 break;
                             case (byte)GitGudType.Plantera:
-                                //AssUtils.Print("got plantera reset");
-                                gPlayer.planteraGitGudCounter = 0;
+                                gPlayer.planteraGitgudCounter = 0;
                                 break;
                             default: //shouldn't get there hopefully
                                 ErrorLogger.Log("Recieved unspecified ResetGitGud Packet " + gitgudType);
@@ -914,9 +920,9 @@ namespace AssortedCrazyThings
     {
         None,
         KingSlime,
+        EyeOfCthulhu,
+        QueenBee,
         Plantera,
-        //KingSlime,
-        //EyeOfChthulu,
     }
 
     public enum PetPlayerChanges : byte

@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-	public class SlimeInquisitionNotice : ModItem
+	public class EyeOfCthulhuGitgud : ModItem
 	{
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Inquisition Notice");
-			Tooltip.SetDefault("15% reduced damage taken from King Slime"
+			DisplayName.SetDefault("Broken Lens");
+			Tooltip.SetDefault("15% reduced damage taken from Eye of Cthulhu"
                 + "\n[c/E180CE:'git gud']");
 		}
 
@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>(mod).kingSlimeGitGud = true;
+            player.GetModPlayer<GitGudPlayer>(mod).eyeOfCthulhuGitgud = true;
         }
     }
 }

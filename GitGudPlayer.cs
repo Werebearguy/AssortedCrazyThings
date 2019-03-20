@@ -13,18 +13,28 @@ namespace AssortedCrazyThings
         //GitGudReset in AssGlobalNPC
         //HandlePacket in ACT, and the enum
 
-        public const byte kingSlimeGitGudCounterMax = 5;
-        public byte kingSlimeGitGudCounter = 0;
-        public bool kingSlimeGitGud = false;
+        public const byte kingSlimeGitgudCounterMax = 5;
+        public byte kingSlimeGitgudCounter = 0;
+        public bool kingSlimeGitgud = false;
 
-        public const byte planteraGitGudCounterMax = 5;
-        public byte planteraGitGudCounter = 0;
-        public bool planteraGitGud = false;
+        public const byte eyeOfCthulhuGitgudCounterMax = 5;
+        public byte eyeOfCthulhuGitgudCounter = 0;
+        public bool eyeOfCthulhuGitgud = false;
+
+        public const byte queenBeeGitgudCounterMax = 5;
+        public byte queenBeeGitgudCounter = 0;
+        public bool queenBeeGitgud = false;
+
+        public const byte planteraGitgudCounterMax = 5;
+        public byte planteraGitgudCounter = 0;
+        public bool planteraGitgud = false;
 
         public override void ResetEffects()
         {
-            kingSlimeGitGud = false;
-            planteraGitGud = false;
+            kingSlimeGitgud = false;
+            eyeOfCthulhuGitgud = false;
+            queenBeeGitgud = false;
+            planteraGitgud = false;
         }
 
         //no need for syncplayer because the server handles the item drop stuff
@@ -33,21 +43,27 @@ namespace AssortedCrazyThings
         {
             return new TagCompound
             {
-                {"kingSlimeGitGudCounter", (byte)kingSlimeGitGudCounter},
-                {"planteraGitGudCounter", (byte)planteraGitGudCounter},
+                {"kingSlimeGitgudCounter", (byte)kingSlimeGitgudCounter},
+                {"eyeOfCthulhuGitgudCounter", (byte)eyeOfCthulhuGitgudCounter},
+                {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
+                {"planteraGitGudCounter", (byte)planteraGitgudCounter}, //don't correct the string
             };
         }
 
         public override void Load(TagCompound tag)
         {
-            kingSlimeGitGudCounter = tag.GetByte("kingSlimeGitGudCounter");
-            planteraGitGudCounter = tag.GetByte("planteraGitGudCounter");
+            kingSlimeGitgudCounter = tag.GetByte("kingSlimeGitgudCounter");
+            eyeOfCthulhuGitgudCounter = tag.GetByte("eyeOfCthulhuGitgudCounter");
+            queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
+            planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //don't correct the string
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            if ((kingSlimeGitGud && proj.type == ProjectileID.SpikedSlimeSpike) ||
-                (planteraGitGud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera)))
+            if ((kingSlimeGitgud && proj.type == ProjectileID.SpikedSlimeSpike) ||
+                (eyeOfCthulhuGitgud) ||
+                (queenBeeGitgud && proj.type == ProjectileID.Stinger) ||
+                (planteraGitgud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera || proj.type == ProjectileID.PoisonSeedPlantera)))
             {
                 damage = (int)(damage * 0.85f);
             }
@@ -55,8 +71,10 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if ((kingSlimeGitGud && (npc.type == NPCID.KingSlime || npc.type == NPCID.BlueSlime)) ||
-               (planteraGitGud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle)))
+            if ((kingSlimeGitgud && (npc.type == NPCID.KingSlime || npc.type == NPCID.BlueSlime)) ||
+                (eyeOfCthulhuGitgud && (npc.type == NPCID.EyeofCthulhu || npc.type == NPCID.ServantofCthulhu)) ||
+                (queenBeeGitgud && (npc.type == NPCID.QueenBee || npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)) ||
+               (planteraGitgud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle)))
             {
                 damage = (int)(damage * 0.85f);
             }
@@ -64,29 +82,51 @@ namespace AssortedCrazyThings
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (NPC.AnyNPCs(NPCID.KingSlime)) kingSlimeGitGudCounter++;
-            if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitGudCounter++;
+            if (NPC.AnyNPCs(NPCID.KingSlime)) kingSlimeGitgudCounter++;
+            if (NPC.AnyNPCs(NPCID.EyeofCthulhu)) eyeOfCthulhuGitgudCounter++;
+            if (NPC.AnyNPCs(NPCID.QueenBee)) queenBeeGitgudCounter++;
+            if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitgudCounter++;
 
             return true;
         }
 
         private void UpdateGitGud()
         {
-            if (kingSlimeGitGudCounter >= kingSlimeGitGudCounterMax)
+            if (kingSlimeGitgudCounter >= kingSlimeGitgudCounterMax)
             {
-                kingSlimeGitGudCounter = 0;
-                if (!player.HasItem(mod.ItemType<SlimeInquisitionNotice>()) && !kingSlimeGitGud)
+                kingSlimeGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<KingSlimeGitgud>()) && !kingSlimeGitgud)
                 {
-                    Item.NewItem(player.getRect(), mod.ItemType<SlimeInquisitionNotice>());
+                    Item.NewItem(player.getRect(), mod.ItemType<KingSlimeGitgud>());
                 }
             }
 
-            if (planteraGitGud) player.buffImmune[BuffID.Poisoned] = true;
-
-            if (planteraGitGudCounter >= planteraGitGudCounterMax)
+            if (eyeOfCthulhuGitgudCounter >= eyeOfCthulhuGitgudCounterMax)
             {
-                planteraGitGudCounter = 0;
-                if (!player.HasItem(mod.ItemType<GreenThumb>()) && !planteraGitGud)
+                eyeOfCthulhuGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<EyeOfCthulhuGitgud>()) && !eyeOfCthulhuGitgud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<EyeOfCthulhuGitgud>());
+                }
+            }
+
+            if (queenBeeGitgud) player.buffImmune[BuffID.Poisoned] = true;
+
+            if (queenBeeGitgudCounter >= queenBeeGitgudCounterMax)
+            {
+                queenBeeGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<QueenBeeGitgud>()) && !queenBeeGitgud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<QueenBeeGitgud>());
+                }
+            }
+
+            if (planteraGitgud) player.buffImmune[BuffID.Poisoned] = true;
+
+            if (planteraGitgudCounter >= planteraGitgudCounterMax)
+            {
+                planteraGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<GreenThumb>()) && !planteraGitgud)
                 {
                     Item.NewItem(player.getRect(), mod.ItemType<GreenThumb>());
                 }
@@ -103,8 +143,10 @@ namespace AssortedCrazyThings
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.SendClientChangesGitGud);
                 packet.Write((byte)player.whoAmI);
-                packet.Write((byte)kingSlimeGitGudCounter);
-                packet.Write((byte)planteraGitGudCounter);
+                packet.Write((byte)kingSlimeGitgudCounter);
+                packet.Write((byte)eyeOfCthulhuGitgudCounter);
+                packet.Write((byte)queenBeeGitgudCounter);
+                packet.Write((byte)planteraGitgudCounter);
                 packet.Send();
             }
         }

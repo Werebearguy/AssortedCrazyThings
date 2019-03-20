@@ -159,7 +159,9 @@
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\EnhancedHunterPotion.cs" />
-    <Compile Include="Items\Gitgud\SlimeInquisitionNotice.cs" />
+    <Compile Include="Items\Gitgud\EyeOfCthulhuGitgud.cs" />
+    <Compile Include="Items\Gitgud\QueenBeeGitgud.cs" />
+    <Compile Include="Items\Gitgud\KingSlimeGitgud.cs" />
     <Compile Include="Items\Gitgud\GreenThumb.cs" />
     <Compile Include="Items\KnittingSet.cs" />
     <Compile Include="Items\Pets\MiniAntlionItem.cs" />

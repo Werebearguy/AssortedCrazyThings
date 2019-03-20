@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-	public class GreenThumb : ModItem
+	public class QueenBeeGitgud : ModItem
 	{
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Green Thumb");
-			Tooltip.SetDefault("15% reduced damage taken from Plantera"
-                + "\nImmunity to poison while Plantera is alive"
+			DisplayName.SetDefault("Honey Thimble");
+			Tooltip.SetDefault("15% reduced damage taken from Queen Bee"
+                + "\nImmunity to poison while Queen Bee is alive"
                 + "\n[c/E180CE:'git gud']");
 		}
 
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 		{
 			item.CloneDefaults(ItemID.Silk);
             item.width = 32;
-            item.height = 30;
+            item.height = 32;
             item.value = Item.sellPrice(copper: 1);
             item.rare = -1;
             item.maxStack = 1;
@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>(mod).planteraGitgud = true;
+            player.GetModPlayer<GitGudPlayer>(mod).queenBeeGitgud = true;
         }
     }
 }

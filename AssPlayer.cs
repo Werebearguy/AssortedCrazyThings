@@ -152,7 +152,7 @@ namespace AssortedCrazyThings
             if (planteraGitGudCounter != 0) //transfer legacy variable over to new one
             {
                 GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
-                gPlayer.planteraGitGudCounter = (byte)planteraGitGudCounter;
+                gPlayer.planteraGitgudCounter = (byte)planteraGitGudCounter;
                 planteraGitGudCounter = 0;
             }
         }

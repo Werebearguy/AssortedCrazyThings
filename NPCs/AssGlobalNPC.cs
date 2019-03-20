@@ -45,12 +45,22 @@ namespace AssortedCrazyThings.NPCs
                     if (type == NPCID.KingSlime)
                     {
                         gitGudType = GitGudType.KingSlime;
-                        gPlayer.kingSlimeGitGudCounter = 0;
+                        gPlayer.kingSlimeGitgudCounter = 0;
+                    }
+                    else if (type == NPCID.EyeofCthulhu)
+                    {
+                        gitGudType = GitGudType.QueenBee;
+                        gPlayer.eyeOfCthulhuGitgudCounter = 0;
+                    }
+                    else if (type == NPCID.QueenBee)
+                    {
+                        gitGudType = GitGudType.QueenBee;
+                        gPlayer.queenBeeGitgudCounter = 0;
                     }
                     else if (type == NPCID.Plantera)
                     {
                         gitGudType = GitGudType.Plantera;
-                        gPlayer.planteraGitGudCounter = 0; 
+                        gPlayer.planteraGitgudCounter = 0; 
                     }
                 }
             }
