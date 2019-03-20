@@ -250,6 +250,7 @@
     <Compile Include="Items\VanityArmor\PrettyMask.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
+    <Compile Include="Items\Weapons\PlagueOfToads.cs" />
     <Compile Include="Items\Weapons\LegendaryWoodenSword.cs" />
     <Compile Include="Items\Weapons\MinionItemBase.cs" />
     <Compile Include="Items\Weapons\SlimeHandlerKnapsack.cs" />
@@ -260,6 +261,9 @@
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
+    <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
+    <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />
+    <Compile Include="Projectiles\Weapons\PlagueOfToadsFired.cs" />
     <Compile Include="SlimePets.cs" />
     <Compile Include="ModConf.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
