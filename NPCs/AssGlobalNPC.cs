@@ -40,11 +40,17 @@ namespace AssortedCrazyThings.NPCs
             {
                 if (Main.player[i].active)
                 {
-                    if (type == NPCID.Plantera)
+                    //resets even when all but one player is dead and boss is defeated
+                    GitGudPlayer gPlayer = Main.player[i].GetModPlayer<GitGudPlayer>(mod);
+                    if (type == NPCID.KingSlime)
+                    {
+                        gitGudType = GitGudType.KingSlime;
+                        gPlayer.kingSlimeGitGudCounter = 0;
+                    }
+                    else if (type == NPCID.Plantera)
                     {
                         gitGudType = GitGudType.Plantera;
-                        GitGudPlayer gPlayer = Main.player[i].GetModPlayer<GitGudPlayer>(mod);
-                        gPlayer.planteraGitGudCounter = 0; //resets even when all but one player is dead and plantera is defeated
+                        gPlayer.planteraGitGudCounter = 0; 
                     }
                 }
             }

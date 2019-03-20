@@ -159,6 +159,8 @@
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\EnhancedHunterPotion.cs" />
+    <Compile Include="Items\Gitgud\SlimeInquisitionNotice.cs" />
+    <Compile Include="Items\Gitgud\GreenThumb.cs" />
     <Compile Include="Items\KnittingSet.cs" />
     <Compile Include="Items\Pets\MiniAntlionItem.cs" />
     <Compile Include="Items\Pets\CuteSlimeToxicNew.cs" />
@@ -171,7 +173,6 @@
     <Compile Include="Items\VanitySelector.cs" />
     <Compile Include="Items\DroneParts.cs" />
     <Compile Include="Items\Fun\GuideVoodoorang.cs" />
-    <Compile Include="Items\Fun\GreenThumb.cs" />
     <Compile Include="Items\Pets\AbeeminationItem.cs" />
     <Compile Include="Items\Pets\ChunkyItem.cs" />
     <Compile Include="Items\Pets\CompanionDungeonSoulPetItem2.cs" />

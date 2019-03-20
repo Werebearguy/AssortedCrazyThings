@@ -712,6 +712,7 @@ namespace AssortedCrazyThings
         private bool AllowedToOpenUI()
         {
             return Main.hasFocus &&
+                !Main.gamePaused &&
                 !Main.LocalPlayer.dead &&
                 !Main.LocalPlayer.mouseInterface &&
                 !Main.drawingPlayerChat &&
@@ -852,6 +853,7 @@ namespace AssortedCrazyThings
                         //recieve loaded values from the player tag compound
                         playerNumber = reader.ReadByte();
                         gPlayer = Main.player[playerNumber].GetModPlayer<GitGudPlayer>();
+                        gPlayer.kingSlimeGitGudCounter = reader.ReadByte();
                         gPlayer.planteraGitGudCounter = reader.ReadByte();
                     }
                     break;
@@ -865,6 +867,10 @@ namespace AssortedCrazyThings
 
                         switch (gitgudType)
                         {
+                            case (byte)GitGudType.KingSlime:
+                                //AssUtils.Print("got kingslime reset");
+                                gPlayer.kingSlimeGitGudCounter = 0;
+                                break;
                             case (byte)GitGudType.Plantera:
                                 //AssUtils.Print("got plantera reset");
                                 gPlayer.planteraGitGudCounter = 0;
@@ -907,6 +913,7 @@ namespace AssortedCrazyThings
     public enum GitGudType : byte
     {
         None,
+        KingSlime,
         Plantera,
         //KingSlime,
         //EyeOfChthulu,

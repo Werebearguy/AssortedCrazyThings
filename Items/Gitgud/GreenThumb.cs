@@ -2,16 +2,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Items.Fun
+namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class GreenThumb : ModItem
 	{
-        /*Relevant fields in GitGudPlayer.cs:
-         *      public const int planteraGitGudCounterMax = 5;
-         *      public int planteraGitGudCounter = 0;
-         *      public bool planteraGitGud = false;
-         */
-
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Green Thumb");
@@ -33,8 +27,7 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
-            gPlayer.planteraGitGud = true;
+            player.GetModPlayer<GitGudPlayer>(mod).planteraGitGud = true;
         }
     }
 }
