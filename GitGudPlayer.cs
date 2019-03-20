@@ -21,6 +21,10 @@ namespace AssortedCrazyThings
         public byte eyeOfCthulhuGitgudCounter = 0;
         public bool eyeOfCthulhuGitgud = false;
 
+        public const byte eaterOfWorldsGitgudCounterMax = 2;
+        public byte eaterOfWorldsGitgudCounter = 0;
+        public bool eaterOfWorldsGitgud = false;
+
         public const byte queenBeeGitgudCounterMax = 5;
         public byte queenBeeGitgudCounter = 0;
         public bool queenBeeGitgud = false;
@@ -33,6 +37,7 @@ namespace AssortedCrazyThings
         {
             kingSlimeGitgud = false;
             eyeOfCthulhuGitgud = false;
+            eaterOfWorldsGitgud = false;
             queenBeeGitgud = false;
             planteraGitgud = false;
         }
@@ -45,6 +50,7 @@ namespace AssortedCrazyThings
             {
                 {"kingSlimeGitgudCounter", (byte)kingSlimeGitgudCounter},
                 {"eyeOfCthulhuGitgudCounter", (byte)eyeOfCthulhuGitgudCounter},
+                {"eaterOfWorldsGitgudCounter", (byte)eaterOfWorldsGitgudCounter},
                 {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
                 {"planteraGitGudCounter", (byte)planteraGitgudCounter}, //don't correct the string
             };
@@ -54,6 +60,7 @@ namespace AssortedCrazyThings
         {
             kingSlimeGitgudCounter = tag.GetByte("kingSlimeGitgudCounter");
             eyeOfCthulhuGitgudCounter = tag.GetByte("eyeOfCthulhuGitgudCounter");
+            eaterOfWorldsGitgudCounter = tag.GetByte("eaterOfWorldsGitgudCounter");
             queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
             planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //don't correct the string
         }
@@ -62,6 +69,7 @@ namespace AssortedCrazyThings
         {
             if ((kingSlimeGitgud && proj.type == ProjectileID.SpikedSlimeSpike) ||
                 (eyeOfCthulhuGitgud) ||
+                (eaterOfWorldsGitgud) ||
                 (queenBeeGitgud && proj.type == ProjectileID.Stinger) ||
                 (planteraGitgud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera || proj.type == ProjectileID.PoisonSeedPlantera)))
             {
@@ -73,6 +81,7 @@ namespace AssortedCrazyThings
         {
             if ((kingSlimeGitgud && (npc.type == NPCID.KingSlime || npc.type == NPCID.BlueSlime)) ||
                 (eyeOfCthulhuGitgud && (npc.type == NPCID.EyeofCthulhu || npc.type == NPCID.ServantofCthulhu)) ||
+                (eaterOfWorldsGitgud && (npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.VileSpit)) ||
                 (queenBeeGitgud && (npc.type == NPCID.QueenBee || npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)) ||
                (planteraGitgud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle)))
             {
@@ -84,6 +93,7 @@ namespace AssortedCrazyThings
         {
             if (NPC.AnyNPCs(NPCID.KingSlime)) kingSlimeGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.EyeofCthulhu)) eyeOfCthulhuGitgudCounter++;
+            if (NPC.AnyNPCs(NPCID.EaterofWorldsHead)) eaterOfWorldsGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.QueenBee)) queenBeeGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitgudCounter++;
 
@@ -110,7 +120,18 @@ namespace AssortedCrazyThings
                 }
             }
 
-            if (queenBeeGitgud) player.buffImmune[BuffID.Poisoned] = true;
+            if (eaterOfWorldsGitgud && NPC.AnyNPCs(NPCID.EaterofWorldsHead)) player.buffImmune[BuffID.Weak] = true;
+
+            if (eaterOfWorldsGitgudCounter >= eaterOfWorldsGitgudCounterMax)
+            {
+                eaterOfWorldsGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<EaterOfWorldsGitgud>()) && !eaterOfWorldsGitgud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<EaterOfWorldsGitgud>());
+                }
+            }
+
+            if (queenBeeGitgud && NPC.AnyNPCs(NPCID.QueenBee)) player.buffImmune[BuffID.Poisoned] = true;
 
             if (queenBeeGitgudCounter >= queenBeeGitgudCounterMax)
             {
@@ -121,7 +142,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            if (planteraGitgud) player.buffImmune[BuffID.Poisoned] = true;
+            if (planteraGitgud && NPC.AnyNPCs(NPCID.Plantera)) player.buffImmune[BuffID.Poisoned] = true;
 
             if (planteraGitgudCounter >= planteraGitgudCounterMax)
             {
@@ -145,6 +166,7 @@ namespace AssortedCrazyThings
                 packet.Write((byte)player.whoAmI);
                 packet.Write((byte)kingSlimeGitgudCounter);
                 packet.Write((byte)eyeOfCthulhuGitgudCounter);
+                packet.Write((byte)eaterOfWorldsGitgudCounter);
                 packet.Write((byte)queenBeeGitgudCounter);
                 packet.Write((byte)planteraGitgudCounter);
                 packet.Send();

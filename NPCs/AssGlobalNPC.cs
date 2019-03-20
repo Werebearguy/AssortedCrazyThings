@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.NPCs
             counter = 0;
         }
 
-        private void GitGudReset(int type)
+        private void GitGudReset(int type, int whoAmI, bool boss)
         {
             GitGudType gitGudType = GitGudType.None;
 
@@ -42,6 +42,10 @@ namespace AssortedCrazyThings.NPCs
                 {
                     //resets even when all but one player is dead and boss is defeated
                     GitGudPlayer gPlayer = Main.player[i].GetModPlayer<GitGudPlayer>(mod);
+
+                    //AssUtils.Print(Main.time + " killed head " + (type == NPCID.EaterofWorldsHead));
+                    //AssUtils.Print(Main.time + " tail alive " + NPC.AnyNPCs(NPCID.EaterofWorldsTail));
+                    //AssUtils.Print(Main.time + " body alive " + NPC.AnyNPCs(NPCID.EaterofWorldsBody));
                     if (type == NPCID.KingSlime)
                     {
                         gitGudType = GitGudType.KingSlime;
@@ -49,8 +53,28 @@ namespace AssortedCrazyThings.NPCs
                     }
                     else if (type == NPCID.EyeofCthulhu)
                     {
-                        gitGudType = GitGudType.QueenBee;
+                        gitGudType = GitGudType.EyeOfCthulhu;
                         gPlayer.eyeOfCthulhuGitgudCounter = 0;
+                    }
+                    else if (type == NPCID.EaterofWorldsHead)
+                    {
+                        AssUtils.Print("killed eater head with boss " + boss);
+                        //if (!AssUtils.AnyNPCs(new int[] { 14, 15 })) AssUtils.Print("no heads or tails");
+                        bool flag = true;
+                        for (int j = 0; j < 200; j++)
+                        {
+                            if (j != whoAmI && Main.npc[j].active && Main.npc[j].type >= 13 && Main.npc[j].type <= 15)
+                            {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag)
+                        {
+                            //AssUtils.Print("reset eater");
+                            gitGudType = GitGudType.EaterOfWorlds;
+                            gPlayer.queenBeeGitgudCounter = 0;
+                        }
                     }
                     else if (type == NPCID.QueenBee)
                     {
@@ -144,7 +168,7 @@ namespace AssortedCrazyThings.NPCs
                 Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
             }
 
-            GitGudReset(npc.type);
+            GitGudReset(npc.type, npc.whoAmI, npc.boss);
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
