@@ -1,6 +1,4 @@
 using AssortedCrazyThings.Items;
-using AssortedCrazyThings.Items.Fun;
-using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

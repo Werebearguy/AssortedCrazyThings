@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.UI
 
             if (CircleAmount != unlocked.Count ||
                 CircleAmount != tooltips.Count ||
-                CircleAmount != toUnlock.Count) throw new Exception("atleast one of the specified lists isn't the same length as texturesArg");
+                CircleAmount != toUnlock.Count) throw new Exception("atleast one of the specified lists isn't the same length as textures");
 
             SpritesheetDivider = spritesheetDivider;
             AdditionalInfo = additionalInfo;
@@ -85,7 +85,7 @@ namespace AssortedCrazyThings.UI
         private static CircleUIConf PetConf(string name, List<string> tooltips)
         {
             //uses VanitySelector as the triggerItem
-            //order of tooltips must be the same as the order of textures (0, 1 2 etc)
+            //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
 
             List<Texture2D> l1 = new List<Texture2D>();
             for (int i = 0; i < tooltips.Count; i++)

@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +8,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Handle with care");
+            DisplayName.SetDefault("'Handle with care'");
         }
 
         public override void SetDefaults()

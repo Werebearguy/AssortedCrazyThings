@@ -12,7 +12,8 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slime Handler Knapsack");
-            Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you");
+            Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you"
+                + "\nRight click to pick from available forms");
         }
 
         public override void SetDefaults()
@@ -82,12 +83,6 @@ namespace AssortedCrazyThings.Items.Weapons
             Projectile.NewProjectile(player.position.X + (player.width / 2) - player.direction * 12f, player.position.Y - 8f, - player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
             return false;
         }
-
-        //public override void HoldItem(Player player)
-        //{
-        //    player.itemLocation.X = 0; //kind of a hack, 
-        //    player.itemLocation.Y = 0;
-        //}
 
         public override void AddRecipes()
         {

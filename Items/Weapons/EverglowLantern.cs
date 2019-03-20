@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    //imported from my tAPI mod because I'm lazy
     public class EverglowLantern : MinionItemBase
     {
         public override void SetStaticDefaults()

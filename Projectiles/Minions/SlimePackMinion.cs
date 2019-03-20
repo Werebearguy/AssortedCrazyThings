@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public const float DefKnockback = 4f; //same as slime staff x 2
         public const float SpikedIncrease = 1.4f;
 
-        protected byte TotalNumberOfThese = 17; //17 for basic, 16 for advanced
+        protected byte TotalNumberOfThese = 16; //16 for default, 13 for assorted, 16 for spiked
 
         protected string SlimeType = ""; 
 
@@ -177,23 +177,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         }
     }
 
-    public class SlimePackSpikedMinion : SlimePackMinion
-    {
-        public override void MoreSetDefaults()
-        {
-            //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 32;
-            projectile.height = 30;
-
-            projectile.minion = true;
-
-            SlimeType = "Spiked";
-            TotalNumberOfThese = 16;
-
-            shootSpikes = true;
-        }
-    }
-
     public class SlimePackAssortedMinion : SlimePackMinion
     {
         public override void SetStaticDefaults()
@@ -220,6 +203,23 @@ namespace AssortedCrazyThings.Projectiles.Minions
             TotalNumberOfThese = 13;
 
             shootSpikes = false;
+        }
+    }
+
+    public class SlimePackSpikedMinion : SlimePackMinion
+    {
+        public override void MoreSetDefaults()
+        {
+            //used to set dimensions (if necessary) //also use to set projectile.minion
+            projectile.width = 32;
+            projectile.height = 30;
+
+            projectile.minion = true;
+
+            SlimeType = "Spiked";
+            TotalNumberOfThese = 16;
+
+            shootSpikes = true;
         }
     }
 }

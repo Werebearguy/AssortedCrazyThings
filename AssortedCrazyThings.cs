@@ -644,7 +644,7 @@ namespace AssortedCrazyThings
                     {
                         //if something returned AND if the returned thing isn't the same as the current one
 
-                        Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
+                        Main.PlaySound(SoundID.Item1.WithVolume(2f), Main.LocalPlayer.position);
                         //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
 
                         PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
