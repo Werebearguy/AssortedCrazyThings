@@ -8,8 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class MiniMegalodon : ModProjectile
     {
-        public bool flyForever = false;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mini Megalodon");
@@ -30,13 +28,23 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            MegalodonAI();
+            Player player = Main.player[projectile.owner];
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+            if (player.dead)
+            {
+                modPlayer.MiniMegalodon = false;
+            }
+            if (modPlayer.MiniMegalodon)
+            {
+                projectile.timeLeft = 2;
+            }
+            EyeSpringAI(projectile, flyForever: false);
         }
 
-        private void MegalodonAI()
+        public static void EyeSpringAI(Projectile projectile, bool flyForever = false)
         {
             Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (!player.active)
             {
                 projectile.active = false;
@@ -48,14 +56,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 bool flag3 = false;
                 bool flag4 = false;
                 int num = 85;
-				if (player.dead)
-				{
-					modPlayer.MiniMegalodon = false;
-				}
-				if (modPlayer.MiniMegalodon)
-				{
-					projectile.timeLeft = 2;
-				}
                 if (player.position.X + (float)(player.width / 2) < projectile.position.X + (float)(projectile.width / 2) - (float)num)
                 {
                     flag = true;
@@ -335,7 +335,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 
                     //fix cause im dumb and didnt copy ai code correctly
-                    if (!flag && !flag2)
+                    if (!flag && !flag2 && projectile.ai[0] == 0f)
                     {
                         projectile.direction = (player.Center - projectile.Center).X > 0 ? 1 : -1;
                     }

@@ -21,7 +21,7 @@ namespace AssortedCrazyThings
         public byte eyeOfCthulhuGitgudCounter = 0;
         public bool eyeOfCthulhuGitgud = false;
 
-        public const byte eaterOfWorldsGitgudCounterMax = 2;
+        public const byte eaterOfWorldsGitgudCounterMax = 5;
         public byte eaterOfWorldsGitgudCounter = 0;
         public bool eaterOfWorldsGitgud = false;
 

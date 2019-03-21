@@ -29,15 +29,16 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void Kill(int timeLeft)
         {
-            Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Bottom.Y - 2f), 2, 2, 154, 0f, 0f, 38, Color.Green, 1f)];
+            Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Bottom.Y - 2f), 2, 2, 154, 0f, 0f, 38, Color.LightGreen, 1f)];
             dust.velocity = new Vector2(Main.rand.NextFloat(2) - 1f, -projectile.oldVelocity.Y * 0.25f);
             dust.scale = 0.95f;
         }
 
         public override void AI()
         {
-            projectile.spriteDirection = projectile.ai[0] == 1f ? 1: -1;
-            projectile.rotation -= projectile.spriteDirection * projectile.velocity.Y * projectile.ai[1];
+            projectile.spriteDirection = ((int)projectile.ai[0] % 2 == 0)? 1: -1;
+            projectile.rotation -= projectile.spriteDirection * 2.5f * projectile.ai[1];
+            projectile.velocity.Y *= 1.005f + (projectile.ai[0] / 1000);
         }
     }
 }
