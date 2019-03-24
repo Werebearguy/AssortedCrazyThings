@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AssortedCrazyThings.Buffs;
+﻿using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
@@ -44,9 +43,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 1);
-            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 1);
-            recipe.AddIngredient(ItemID.Bone, 2);
+            recipe.AddIngredient(mod.ItemType<CompanionDungeonSoulPetItem>(), 1);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
