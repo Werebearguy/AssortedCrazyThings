@@ -875,7 +875,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //------------------------------------------------
             Add(SlotType.Hat, new PetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
                 .AddPetVariation("Pink", 1)
-                .AddPetVariation("Dungeon", 1)
+                .AddPetVariation("Dungeon", 3)
                 .AddPetVariation("Yellow", 2)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));

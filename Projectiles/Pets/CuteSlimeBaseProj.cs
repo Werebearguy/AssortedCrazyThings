@@ -11,8 +11,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
     {
         public const int Projwidth = 28;
         public const int Projheight = 32;
-        public const int Texwidth = 28;
-        public const int Texheight = 52;
 
         protected int frame2Counter = 0;
         protected int frame2 = 0;
@@ -155,9 +153,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     texture = ModLoader.GetTexture(texture.Name + "NoHair");
                 }
-                Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, texture.Width, texture.Height / 10);
+                Rectangle frameLocal = new Rectangle(0, frame2 * texture.Height / 10, texture.Width, texture.Height / 10);
                 SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
+                Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
                 Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY + drawOriginOffsetY);
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                 Color color = drawColor * ((255f - projectile.alpha) / 255f);
@@ -208,11 +206,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     Texture2D texture = ModLoader.GetTexture(textureString + colorString + drawString);
 
-                    Rectangle frameLocal = new Rectangle(0, frame2 * Texheight, texture.Width, texture.Height / 10);
+                    Rectangle frameLocal = new Rectangle(0, frame2 * (Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]), texture.Width, texture.Height / 10);
 
                     //get necessary properties and parameters for draw
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                    Vector2 drawOrigin = new Vector2(Texwidth * 0.5f, Texheight * 0.5f);
+                    Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
                     Vector2 stupidOffset = new Vector2(0f, drawOriginOffsetY + projectile.gfxOffY);
                     Color color = drawColor * ((255 - petAccessory.Alpha) / 255f);
                     
