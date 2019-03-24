@@ -40,6 +40,7 @@
     <Compile Include="Buffs\CuteSlimeCorruptNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeCrimsonNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeDungeonNewBuff.cs" />
+    <Compile Include="Buffs\DrumstickElementalBuff.cs" />
     <Compile Include="Buffs\EnhancedHunterBuff.cs" />
     <Compile Include="Buffs\MiniAntlionBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Items\Gitgud\KingSlimeGitgud.cs" />
     <Compile Include="Items\Gitgud\GreenThumb.cs" />
     <Compile Include="Items\KnittingSet.cs" />
+    <Compile Include="Items\Pets\DrumstickElementalItem.cs" />
     <Compile Include="Items\Pets\MiniAntlionItem.cs" />
     <Compile Include="Items\Pets\CuteSlimeToxicNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeIceNew.cs" />
@@ -264,6 +266,7 @@
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
+    <Compile Include="Projectiles\Pets\DrumstickElementalProj.cs" />
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />
