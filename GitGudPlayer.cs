@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Items.Gitgud;
+using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -7,6 +9,166 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
+    public class GitgudData
+    {
+        public static List<GitgudData> DataList = new List<GitgudData>();
+
+        public byte GgType { private set; get; }
+        public bool Accessory { private set; get; }
+        public byte Counter { private set; get; }
+        public byte CounterMax { private set; get; }
+        public int BuffType { private set; get; }
+        public int ItemType { private set; get; }
+        public List<int> BossTypeList { private set; get; }
+        public List<int> NPCTypeList { private set; get; }
+        public List<int> ProjTypeList { private set; get; }
+
+        public GitgudData(byte ggType, bool accessory, byte counter, byte counterMax,
+            int buffType, int itemType,
+            List<int> bossTypeList, List<int> nPCTypeList, List<int> projTypeList)
+        {
+            GgType = ggType;
+            Accessory = accessory;
+            Counter = counter;
+            CounterMax = counterMax;
+            BuffType = buffType;
+            ItemType = itemType;
+            BossTypeList = bossTypeList;
+            NPCTypeList = nPCTypeList;
+            ProjTypeList = projTypeList;
+        }
+
+        public static void Add(byte ggType, bool accessory, byte counter, byte counterMax,
+            int buffType, int itemType,
+            List<int> bossTypeList, List<int> nPCTypeList, List<int> projTypeList)
+        {
+            DataList.Add(new GitgudData(ggType, accessory, counter, counterMax, buffType, itemType, bossTypeList, nPCTypeList, projTypeList));
+        }
+
+        public static void Add(byte ggType, bool accessory, byte counter, byte counterMax,
+            int buffType, int itemType,
+            int bossType, List<int> nPCTypeList, List<int> projTypeList)
+        {
+            DataList.Add(new GitgudData((byte)DataList.Count, accessory, counter, counterMax, buffType, itemType, new List<int>() { bossType }, nPCTypeList, projTypeList));
+        }
+
+        public static void SendCounters(ModPacket packet)
+        {
+            for (int i = 0; i < DataList.Count; i++)
+            {
+                packet.Send((byte)DataList[i].Counter);
+            }
+        }
+
+        public static void RecvCounters(BinaryReader reader)
+        {
+            for (int i = 0; i < DataList.Count; i++)
+            {
+                DataList[i].Counter = reader.ReadByte();
+            }
+        }
+
+        public static void Reset(int bossType) //only called when npc.boss == true
+        {
+            //Single and Server only
+            for (int i = 0; i < 255; i++)
+            {
+                if (Main.player[i].active)
+                {
+                    for (int j = 0; j < DataList.Count; j++)
+                    {
+                        //resets even when all but one player is dead and boss is defeated
+                        if (DataList[j].BossTypeList.Contains(bossType))
+                        {
+                            DataList[j].Counter = 0;
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                ModPacket packet = AssUtils.Instance.GetPacket();
+                                packet.Write((byte)AssMessageType.ResetGitGud);
+                                packet.Write((byte)j);
+                                packet.Send(); //send to all clients
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void RecvReset(byte index)
+        {
+            DataList[index].Counter = 0;
+        }
+
+        public static void Update(Player player)
+        {
+            for (int i = 0; i < DataList.Count; i++)
+            {
+                if (DataList[i].Accessory && DataList[i].BuffType != -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)) player.buffImmune[DataList[i].BuffType] = true;
+
+                if (DataList[i].Counter >= DataList[i].CounterMax)
+                {
+                    DataList[i].Counter = 0;
+                    if (!player.HasItem(DataList[i].ItemType) && !DataList[i].Accessory)
+                    {
+                        Item.NewItem(player.getRect(), DataList[i].ItemType);
+                    }
+                }
+            }
+        }
+
+        public static void IncreaseCounters()
+        {
+            for (int k = 0; k < 200; k++)
+            {
+                if (Main.npc[k].active)
+                {
+                    for (int i = 0; i < DataList.Count; i++)
+                    {
+                        if (DataList[i].BossTypeList.Contains(Main.npc[k].type)) DataList[i].Counter++;
+                    }
+                }
+            }
+        }
+
+        public static bool CanReduceDamageNPC(int npcType)
+        {
+            for (int i = 0; i < DataList.Count; i++)
+            {
+                if (DataList[i].Accessory)
+                {
+                    for (int j = 0; j < DataList[i].NPCTypeList.Count; j++)
+                    {
+                        if (DataList[i].NPCTypeList.Contains(npcType)) return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool CanReduceDamageProj(int projType)
+        {
+            for (int i = 0; i < DataList.Count; i++)
+            {
+                if (DataList[i].Accessory)
+                {
+                    for (int j = 0; j < DataList[i].ProjTypeList.Count; j++)
+                    {
+                        if (DataList[i].ProjTypeList.Contains(projType)) return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static void UpdateAccessories(bool[] accessories)
+        {
+            for (int i = 0; i < accessories.Length; i++) //has to have the same order as DataList
+            {
+                DataList[i].Accessory = accessories[i];
+            }
+        }
+    }
+
     public class GitGudPlayer : ModPlayer
     {
         //other places where adjustments are needed:

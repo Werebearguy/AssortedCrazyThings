@@ -885,28 +885,28 @@ namespace AssortedCrazyThings
 
                         switch (gitgudType)
                         {
-                            case (byte)GitGudType.KingSlime:
+                            case (byte)GitgudType.KingSlime:
                                 gPlayer.kingSlimeGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.EyeOfCthulhu:
+                            case (byte)GitgudType.EyeOfCthulhu:
                                 gPlayer.eyeOfCthulhuGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.BrainOfCthulhu:
+                            case (byte)GitgudType.BrainOfCthulhu:
                                 gPlayer.brainOfCthulhuGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.EaterOfWorlds:
+                            case (byte)GitgudType.EaterOfWorlds:
                                 gPlayer.eaterOfWorldsGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.QueenBee:
+                            case (byte)GitgudType.QueenBee:
                                 gPlayer.queenBeeGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.Skeletron:
+                            case (byte)GitgudType.Skeletron:
                                 gPlayer.skeletronGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.WallOfFlesh:
+                            case (byte)GitgudType.WallOfFlesh:
                                 gPlayer.wallOfFleshGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.Plantera:
+                            case (byte)GitgudType.Plantera:
                                 gPlayer.planteraGitgudCounter = 0;
                                 break;
                             default: //shouldn't get there hopefully
@@ -944,7 +944,7 @@ namespace AssortedCrazyThings
         ResetGitGud
     }
 
-    public enum GitGudType : byte
+    public enum GitgudType : byte
     {
         None,
         KingSlime,

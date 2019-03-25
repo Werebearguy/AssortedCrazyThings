@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.NPCs
 
         private void GitGudReset(int type, bool boss)
         {
-            GitGudType gitGudType = GitGudType.None;
+            GitgudType gitGudType = GitgudType.None;
 
             //Single and Server only
             for (int i = 0; i < 255; i++)
@@ -44,48 +44,48 @@ namespace AssortedCrazyThings.NPCs
                     GitGudPlayer gPlayer = Main.player[i].GetModPlayer<GitGudPlayer>(mod);
                     if (type == NPCID.KingSlime)
                     {
-                        gitGudType = GitGudType.KingSlime;
+                        gitGudType = GitgudType.KingSlime;
                         gPlayer.kingSlimeGitgudCounter = 0;
                     }
                     else if (type == NPCID.EyeofCthulhu)
                     {
-                        gitGudType = GitGudType.EyeOfCthulhu;
+                        gitGudType = GitgudType.EyeOfCthulhu;
                         gPlayer.eyeOfCthulhuGitgudCounter = 0;
                     }
                     else if (type == NPCID.EyeofCthulhu)
                     {
-                        gitGudType = GitGudType.BrainOfCthulhu;
+                        gitGudType = GitgudType.BrainOfCthulhu;
                         gPlayer.brainOfCthulhuGitgudCounter = 0;
                     }
                     else if (boss && (type == NPCID.EaterofWorldsHead || type == NPCID.EaterofWorldsTail || type == NPCID.EaterofWorldsTail))
                     {
-                        gitGudType = GitGudType.EaterOfWorlds;
+                        gitGudType = GitgudType.EaterOfWorlds;
                         gPlayer.eaterOfWorldsGitgudCounter = 0;
                     }
                     else if (type == NPCID.QueenBee)
                     {
-                        gitGudType = GitGudType.QueenBee;
+                        gitGudType = GitgudType.QueenBee;
                         gPlayer.queenBeeGitgudCounter = 0;
                     }
                     else if (type == NPCID.SkeletronHead)
                     {
-                        gitGudType = GitGudType.Skeletron;
+                        gitGudType = GitgudType.Skeletron;
                         gPlayer.skeletronGitgudCounter = 0;
                     }
                     else if (type == NPCID.WallofFlesh)
                     {
-                        gitGudType = GitGudType.WallOfFlesh;
+                        gitGudType = GitgudType.WallOfFlesh;
                         gPlayer.wallOfFleshGitgudCounter = 0;
                     }
                     else if (type == NPCID.Plantera)
                     {
-                        gitGudType = GitGudType.Plantera;
+                        gitGudType = GitgudType.Plantera;
                         gPlayer.planteraGitgudCounter = 0; 
                     }
                 }
             }
 
-            if (Main.netMode == NetmodeID.Server && gitGudType != GitGudType.None)
+            if (Main.netMode == NetmodeID.Server && gitGudType != GitgudType.None)
             {
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.ResetGitGud);
