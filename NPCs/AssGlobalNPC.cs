@@ -52,6 +52,11 @@ namespace AssortedCrazyThings.NPCs
                         gitGudType = GitGudType.EyeOfCthulhu;
                         gPlayer.eyeOfCthulhuGitgudCounter = 0;
                     }
+                    else if (type == NPCID.EyeofCthulhu)
+                    {
+                        gitGudType = GitGudType.BrainOfCthulhu;
+                        gPlayer.brainOfCthulhuGitgudCounter = 0;
+                    }
                     else if (boss && (type == NPCID.EaterofWorldsHead || type == NPCID.EaterofWorldsTail || type == NPCID.EaterofWorldsTail))
                     {
                         gitGudType = GitGudType.EaterOfWorlds;

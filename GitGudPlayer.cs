@@ -21,6 +21,10 @@ namespace AssortedCrazyThings
         public byte eyeOfCthulhuGitgudCounter = 0;
         public bool eyeOfCthulhuGitgud = false;
 
+        public const byte brainOfCthulhuGitgudCounterMax = 5;
+        public byte brainOfCthulhuGitgudCounter = 0;
+        public bool brainOfCthulhuGitgud = false;
+
         public const byte eaterOfWorldsGitgudCounterMax = 5;
         public byte eaterOfWorldsGitgudCounter = 0;
         public bool eaterOfWorldsGitgud = false;
@@ -37,6 +41,7 @@ namespace AssortedCrazyThings
         {
             kingSlimeGitgud = false;
             eyeOfCthulhuGitgud = false;
+            brainOfCthulhuGitgud = false;
             eaterOfWorldsGitgud = false;
             queenBeeGitgud = false;
             planteraGitgud = false;
@@ -50,6 +55,7 @@ namespace AssortedCrazyThings
             {
                 {"kingSlimeGitgudCounter", (byte)kingSlimeGitgudCounter},
                 {"eyeOfCthulhuGitgudCounter", (byte)eyeOfCthulhuGitgudCounter},
+                {"brainOfCthulhuGitgudCounter", (byte)brainOfCthulhuGitgudCounter},
                 {"eaterOfWorldsGitgudCounter", (byte)eaterOfWorldsGitgudCounter},
                 {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
                 {"planteraGitGudCounter", (byte)planteraGitgudCounter}, //don't correct the string
@@ -60,6 +66,7 @@ namespace AssortedCrazyThings
         {
             kingSlimeGitgudCounter = tag.GetByte("kingSlimeGitgudCounter");
             eyeOfCthulhuGitgudCounter = tag.GetByte("eyeOfCthulhuGitgudCounter");
+            brainOfCthulhuGitgudCounter = tag.GetByte("brainOfCthulhuGitgudCounter");
             eaterOfWorldsGitgudCounter = tag.GetByte("eaterOfWorldsGitgudCounter");
             queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
             planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //don't correct the string
@@ -69,6 +76,7 @@ namespace AssortedCrazyThings
         {
             if ((kingSlimeGitgud && proj.type == ProjectileID.SpikedSlimeSpike) ||
                 (eyeOfCthulhuGitgud) ||
+                (brainOfCthulhuGitgud) ||
                 (eaterOfWorldsGitgud) ||
                 (queenBeeGitgud && proj.type == ProjectileID.Stinger) ||
                 (planteraGitgud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera || proj.type == ProjectileID.PoisonSeedPlantera)))
@@ -81,6 +89,7 @@ namespace AssortedCrazyThings
         {
             if ((kingSlimeGitgud && (npc.type == NPCID.KingSlime || npc.type == NPCID.BlueSlime)) ||
                 (eyeOfCthulhuGitgud && (npc.type == NPCID.EyeofCthulhu || npc.type == NPCID.ServantofCthulhu)) ||
+                (brainOfCthulhuGitgud && (npc.type == NPCID.BrainofCthulhu || npc.type == NPCID.ServantofCthulhu)) ||
                 (eaterOfWorldsGitgud && (npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.VileSpit)) ||
                 (queenBeeGitgud && (npc.type == NPCID.QueenBee || npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)) ||
                (planteraGitgud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle)))
@@ -93,6 +102,7 @@ namespace AssortedCrazyThings
         {
             if (NPC.AnyNPCs(NPCID.KingSlime)) kingSlimeGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.EyeofCthulhu)) eyeOfCthulhuGitgudCounter++;
+            if (NPC.AnyNPCs(NPCID.BrainofCthulhu)) brainOfCthulhuGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.EaterofWorldsHead)) eaterOfWorldsGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.QueenBee)) queenBeeGitgudCounter++;
             if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitgudCounter++;
@@ -117,6 +127,15 @@ namespace AssortedCrazyThings
                 if (!player.HasItem(mod.ItemType<EyeOfCthulhuGitgud>()) && !eyeOfCthulhuGitgud)
                 {
                     Item.NewItem(player.getRect(), mod.ItemType<EyeOfCthulhuGitgud>());
+                }
+            }
+
+            if (brainOfCthulhuGitgudCounter >= brainOfCthulhuGitgudCounterMax)
+            {
+                brainOfCthulhuGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<BrainOfCthulhuGitgud>()) && !brainOfCthulhuGitgud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<BrainOfCthulhuGitgud>());
                 }
             }
 
@@ -166,6 +185,7 @@ namespace AssortedCrazyThings
                 packet.Write((byte)player.whoAmI);
                 packet.Write((byte)kingSlimeGitgudCounter);
                 packet.Write((byte)eyeOfCthulhuGitgudCounter);
+                packet.Write((byte)brainOfCthulhuGitgudCounter);
                 packet.Write((byte)eaterOfWorldsGitgudCounter);
                 packet.Write((byte)queenBeeGitgudCounter);
                 packet.Write((byte)planteraGitgudCounter);

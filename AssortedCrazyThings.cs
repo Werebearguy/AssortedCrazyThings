@@ -867,6 +867,7 @@ namespace AssortedCrazyThings
                         gPlayer = Main.player[playerNumber].GetModPlayer<GitGudPlayer>();
                         gPlayer.kingSlimeGitgudCounter = reader.ReadByte();
                         gPlayer.eyeOfCthulhuGitgudCounter = reader.ReadByte();
+                        gPlayer.eyeOfCthulhuGitgudCounter = reader.ReadByte();
                         gPlayer.queenBeeGitgudCounter = reader.ReadByte();
                         gPlayer.queenBeeGitgudCounter = reader.ReadByte();
                         gPlayer.planteraGitgudCounter = reader.ReadByte();
@@ -888,10 +889,13 @@ namespace AssortedCrazyThings
                             case (byte)GitGudType.EyeOfCthulhu:
                                 gPlayer.eyeOfCthulhuGitgudCounter = 0;
                                 break;
-                            case (byte)GitGudType.QueenBee:
-                                gPlayer.queenBeeGitgudCounter = 0;
+                            case (byte)GitGudType.BrainOfCthulhu:
+                                gPlayer.brainOfCthulhuGitgudCounter = 0;
                                 break;
                             case (byte)GitGudType.EaterOfWorlds:
+                                gPlayer.eaterOfWorldsGitgudCounter = 0;
+                                break;
+                            case (byte)GitGudType.QueenBee:
                                 gPlayer.queenBeeGitgudCounter = 0;
                                 break;
                             case (byte)GitGudType.Plantera:
@@ -937,6 +941,7 @@ namespace AssortedCrazyThings
         None,
         KingSlime,
         EyeOfCthulhu,
+        BrainOfCthulhu,
         EaterOfWorlds,
         QueenBee,
         Plantera,
