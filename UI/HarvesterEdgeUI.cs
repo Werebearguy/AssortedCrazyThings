@@ -1,13 +1,10 @@
-﻿using Terraria.UI;
-using Terraria;
+﻿using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
-using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria.GameInput;
-using AssortedCrazyThings.NPCs.DungeonBird;
-using Terraria.ID;
+using Terraria;
+using Terraria.UI;
 
 namespace AssortedCrazyThings.UI
 {
@@ -40,23 +37,34 @@ namespace AssortedCrazyThings.UI
             //find first occurence of suitable boss to display
             for (int k = 0; k < 200; k++)
             {
-                if (Main.npc[k].active && Array.IndexOf(typeList, Main.npc[k].type) != -1)
+                NPC npc = Main.npc[k];
+                if (npc.active && Array.IndexOf(typeList, npc.type) != -1)
                 {
-                    int ltype = Main.npc[k].type;
-                    Vector2 ldrawPos = Vector2.Zero; 
+                    int ltype = npc.type;
+                    Vector2 ldrawPos = Vector2.Zero;
 
                     //when to draw the icon, has to be PendingResolutionWidth/Height because ScreenWidth/Height doesn't work in this case
-                    Rectangle rectangle = new Rectangle(
-                        (int)(Main.screenPosition.X - Main.npc[k].width),
-                        (int)(Main.screenPosition.Y - Main.npc[k].height),
-                        (int)(Main.PendingResolutionWidth + Main.npc[k].width),
-                        (int)(Main.PendingResolutionHeight + Main.npc[k].height));
 
-                    //rectangle.Inflate(-100, -100);
+                    float zoomFactorX = 0.25f * AssortedCrazyThings.ZoomFactor.X;
+                    float zoomFactorY = 0.25f * AssortedCrazyThings.ZoomFactor.Y;
+                    //for some reason with small hitbox NPCs, it starts drawing closer to the player than it should when zoomed in too much
+                    if (zoomFactorX > 0.175f) zoomFactorX = 0.175f;
+                    if (zoomFactorY > 0.175f) zoomFactorY = 0.175f;
 
-                    if (!rectangle.Intersects(Main.npc[k].getRect()))
+                    int rectPosX = (int)(Main.screenPosition.X + (Main.PendingResolutionWidth * zoomFactorX));
+                    int rectPosY = (int)(Main.screenPosition.Y + (Main.PendingResolutionHeight * zoomFactorY));
+                    int rectWidth = (int)(Main.PendingResolutionWidth * (1 - 2f * zoomFactorX));
+                    int rectHeight = (int)(Main.PendingResolutionHeight * (1 - 2f * zoomFactorY));
+
+                    //padding for npc height
+                    Rectangle rectangle = new Rectangle(rectPosX - npc.width / 2,
+                        rectPosY - npc.height / 2,
+                        rectWidth + npc.width,
+                        rectHeight + npc.height);
+
+                    if (!rectangle.Intersects(npc.getRect()))
                     {
-                        Vector2 between = Main.npc[k].Center - Main.LocalPlayer.Center;
+                        Vector2 between = npc.Center - Main.LocalPlayer.Center;
                         //you can also save a rotation here via Atan2 and then draw an arrow or similar
 
                         if (between.X == 0f) between.X = 0.0001f; //protection against division by zero
@@ -64,8 +72,8 @@ namespace AssortedCrazyThings.UI
 
                         Vector2 pad = new Vector2
                             (
-                            (Main.screenWidth + Main.npc[k].width) / 2,
-                            (Main.screenHeight + Main.npc[k].height) / 2
+                            (Main.screenWidth + npc.width) / 2,
+                            (Main.screenHeight + npc.height) / 2
                             );
 
                         //first iteration
@@ -120,7 +128,7 @@ namespace AssortedCrazyThings.UI
                         ldrawPos += new Vector2(pad.X, pad.Y);
 
                         //since we were operating based on Center to Center, we need to put the drawPos back to position instead
-                        ldrawPos -= new Vector2(Main.npc[k].width / 2, Main.npc[k].height / 2);
+                        ldrawPos -= new Vector2(npc.width / 2, npc.height / 2);
 
                         type.Add(ltype);
                         drawPos.Add(ldrawPos);

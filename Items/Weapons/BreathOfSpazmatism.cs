@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.CloneDefaults(ItemID.Flamethrower);
             item.width = 58;
             item.height = 30;
-            item.damage = 20;
+            //item.damage = 20; //same damage as flamethrower, which is 27
             item.UseSound = SoundID.Item34;
             item.shoot = mod.ProjectileType("SpazmatismFire");
             item.shootSpeed = 8f;
@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool ConsumeAmmo(Player player)
         {
-            return Main.rand.NextFloat() >= .75f; //75% chance not to consume ammo (since its so fast)
+            return Main.rand.NextFloat() >= .80f; //80% chance not to consume ammo (since its so fast)
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

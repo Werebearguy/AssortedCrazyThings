@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
+using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -28,6 +29,9 @@ namespace AssortedCrazyThings
 
         //Soul NPC spawn blacklist
         public static int[] soulBuffBlacklist;
+
+        //Zoom level, (for UIs)
+        public static Vector2 ZoomFactor; //0f == fully zoomed out, 1f == fully zoomed in
 
         //UI stuff
         internal static UserInterface CircleUIInterface;
@@ -804,6 +808,11 @@ namespace AssortedCrazyThings
                     InterfaceScaleType.UI)
                 );
             }
+        }
+
+        public override void ModifyTransformMatrix(ref SpriteViewMatrix Transform)
+        {
+            ZoomFactor = Transform.Zoom - (Vector2.UnitX + Vector2.UnitY);
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

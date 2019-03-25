@@ -1,11 +1,11 @@
-﻿using Terraria.UI;
-using Terraria;
+﻿using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
-using AssortedCrazyThings.NPCs.DungeonBird;
+using Terraria.UI;
 
 namespace AssortedCrazyThings.UI
 {
@@ -105,16 +105,33 @@ namespace AssortedCrazyThings.UI
                         int ltype = npc.type;
                         Vector2 ldrawPos = Vector2.Zero;
 
+                        //when to draw the icon, has to be PendingResolutionWidth/Height because ScreenWidth/Height doesn't work in this case
+
                         //rectangle at which the npc ISN'T rendered (so its sprite won't draw aswell as the NPC itself)
-                        Rectangle rectangle = new Rectangle(
-                            (int)(Main.screenPosition.X - npc.width / 2),
-                            (int)(Main.screenPosition.Y - npc.height / 2),
-                            (int)(Main.PendingResolutionWidth + npc.width),
-                            (int)(Main.PendingResolutionHeight + npc.height));
+
+                        //independent of resolution, but scales with zoom factor
+
+                        float zoomFactorX = 0.25f * AssortedCrazyThings.ZoomFactor.X;
+                        float zoomFactorY = 0.25f * AssortedCrazyThings.ZoomFactor.Y;
+                        //for some reason with small hitbox NPCs, it starts drawing closer to the player than it should when zoomed in too much
+                        if (zoomFactorX > 0.175f) zoomFactorX = 0.175f;
+                        if (zoomFactorY > 0.175f) zoomFactorY = 0.175f;
+
+                        int rectPosX = (int)(Main.screenPosition.X + (Main.PendingResolutionWidth * zoomFactorX));
+                        int rectPosY = (int)(Main.screenPosition.Y + (Main.PendingResolutionHeight * zoomFactorY));
+                        int rectWidth = (int)(Main.PendingResolutionWidth * (1 - 2f * zoomFactorX));
+                        int rectHeight = (int)(Main.PendingResolutionHeight * (1 - 2f * zoomFactorY));
+
+                        //padding for npc height
+                        Rectangle rectangle = new Rectangle(rectPosX - npc.width / 2,
+                            rectPosY - npc.height / 2,
+                            rectWidth + npc.width,
+                            rectHeight + npc.height);
 
                         if (!rectangle.Intersects(npc.getRect()))
                         {
                             if (between.X == 0f) between.X = 0.0001f; //protection against division by zero
+                            if (between.Y == 0f) between.Y = 0.0001f; //protection against NaN
                             float slope = between.Y / between.X;
 
                             Vector2 pad = new Vector2
