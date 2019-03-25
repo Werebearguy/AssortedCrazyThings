@@ -67,6 +67,16 @@ namespace AssortedCrazyThings.NPCs
                         gitGudType = GitGudType.QueenBee;
                         gPlayer.queenBeeGitgudCounter = 0;
                     }
+                    else if (type == NPCID.SkeletronHead)
+                    {
+                        gitGudType = GitGudType.Skeletron;
+                        gPlayer.skeletronGitgudCounter = 0;
+                    }
+                    else if (type == NPCID.WallofFlesh)
+                    {
+                        gitGudType = GitGudType.WallOfFlesh;
+                        gPlayer.wallOfFleshGitgudCounter = 0;
+                    }
                     else if (type == NPCID.Plantera)
                     {
                         gitGudType = GitGudType.Plantera;

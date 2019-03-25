@@ -160,6 +160,8 @@
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\EnhancedHunterPotion.cs" />
+    <Compile Include="Items\Gitgud\WallOfFleshGitgud.cs" />
+    <Compile Include="Items\Gitgud\SkeletronGitgud.cs" />
     <Compile Include="Items\Gitgud\BrainOfCthulhuGitgud.cs" />
     <Compile Include="Items\Gitgud\EyeOfCthulhuGitgud.cs" />
     <Compile Include="Items\Gitgud\EaterOfWorldsGitgud.cs" />

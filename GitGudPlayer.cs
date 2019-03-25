@@ -33,6 +33,14 @@ namespace AssortedCrazyThings
         public byte queenBeeGitgudCounter = 0;
         public bool queenBeeGitgud = false;
 
+        public const byte skeletronGitgudCounterMax = 5;
+        public byte skeletronGitgudCounter = 0;
+        public bool skeletronGitgud = false;
+
+        public const byte wallOfFleshGitgudCounterMax = 5;
+        public byte wallOfFleshGitgudCounter = 0;
+        public bool wallOfFleshGitgud = false;
+
         public const byte planteraGitgudCounterMax = 5;
         public byte planteraGitgudCounter = 0;
         public bool planteraGitgud = false;
@@ -44,6 +52,8 @@ namespace AssortedCrazyThings
             brainOfCthulhuGitgud = false;
             eaterOfWorldsGitgud = false;
             queenBeeGitgud = false;
+            skeletronGitgud = false;
+            wallOfFleshGitgud = false;
             planteraGitgud = false;
         }
 
@@ -58,6 +68,8 @@ namespace AssortedCrazyThings
                 {"brainOfCthulhuGitgudCounter", (byte)brainOfCthulhuGitgudCounter},
                 {"eaterOfWorldsGitgudCounter", (byte)eaterOfWorldsGitgudCounter},
                 {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
+                {"skeletronGitgudCounter", (byte)skeletronGitgudCounter},
+                {"wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter},
                 {"planteraGitGudCounter", (byte)planteraGitgudCounter}, //don't correct the string
             };
         }
@@ -69,16 +81,20 @@ namespace AssortedCrazyThings
             brainOfCthulhuGitgudCounter = tag.GetByte("brainOfCthulhuGitgudCounter");
             eaterOfWorldsGitgudCounter = tag.GetByte("eaterOfWorldsGitgudCounter");
             queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
+            skeletronGitgudCounter = tag.GetByte("skeletronGitgudCounter");
+            wallOfFleshGitgudCounter = tag.GetByte("wallOfFleshGitgudCounter");
             planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //don't correct the string
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
             if ((kingSlimeGitgud && proj.type == ProjectileID.SpikedSlimeSpike) ||
-                (eyeOfCthulhuGitgud) ||
-                (brainOfCthulhuGitgud) ||
-                (eaterOfWorldsGitgud) ||
+                /*(eyeOfCthulhuGitgud) ||*/
+                /*(brainOfCthulhuGitgud) ||*/
+                /*(eaterOfWorldsGitgud) ||*/
                 (queenBeeGitgud && proj.type == ProjectileID.Stinger) ||
+                (skeletronGitgud && proj.type == ProjectileID.Skull) ||
+                (wallOfFleshGitgud && proj.type == ProjectileID.EyeLaser) ||
                 (planteraGitgud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera || proj.type == ProjectileID.PoisonSeedPlantera)))
             {
                 damage = (int)(damage * 0.85f);
@@ -89,9 +105,11 @@ namespace AssortedCrazyThings
         {
             if ((kingSlimeGitgud && (npc.type == NPCID.KingSlime || npc.type == NPCID.BlueSlime)) ||
                 (eyeOfCthulhuGitgud && (npc.type == NPCID.EyeofCthulhu || npc.type == NPCID.ServantofCthulhu)) ||
-                (brainOfCthulhuGitgud && (npc.type == NPCID.BrainofCthulhu || npc.type == NPCID.ServantofCthulhu)) ||
+                (brainOfCthulhuGitgud && (npc.type == NPCID.BrainofCthulhu || npc.type == NPCID.Creeper)) ||
                 (eaterOfWorldsGitgud && (npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.VileSpit)) ||
                 (queenBeeGitgud && (npc.type == NPCID.QueenBee || npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)) ||
+                (skeletronGitgud && (npc.type == NPCID.SkeletronHead || npc.type == NPCID.SkeletronHand)) ||
+                (wallOfFleshGitgud && (npc.type == NPCID.WallofFlesh || npc.type == NPCID.WallofFleshEye || npc.type == NPCID.TheHungry || npc.type == NPCID.TheHungryII)) ||
                (planteraGitgud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle)))
             {
                 damage = (int)(damage * 0.85f);
@@ -100,12 +118,21 @@ namespace AssortedCrazyThings
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (NPC.AnyNPCs(NPCID.KingSlime)) kingSlimeGitgudCounter++;
-            if (NPC.AnyNPCs(NPCID.EyeofCthulhu)) eyeOfCthulhuGitgudCounter++;
-            if (NPC.AnyNPCs(NPCID.BrainofCthulhu)) brainOfCthulhuGitgudCounter++;
-            if (NPC.AnyNPCs(NPCID.EaterofWorldsHead)) eaterOfWorldsGitgudCounter++;
-            if (NPC.AnyNPCs(NPCID.QueenBee)) queenBeeGitgudCounter++;
-            if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitgudCounter++;
+            //to not call NPC.AnyNPCs() for every boss, do it manually
+            for (int k = 0; k < 200; k++)
+            {
+                if (Main.npc[k].active)
+                {
+                    if (Main.npc[k].type == NPCID.KingSlime) kingSlimeGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.EyeofCthulhu) eyeOfCthulhuGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.BrainofCthulhu) brainOfCthulhuGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.EaterofWorldsHead) eaterOfWorldsGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.QueenBee) queenBeeGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.SkeletronHead) skeletronGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.WallofFlesh) wallOfFleshGitgudCounter++;
+                    if (Main.npc[k].type == NPCID.Plantera) planteraGitgudCounter++;
+                }
+            }
 
             return true;
         }
@@ -129,6 +156,8 @@ namespace AssortedCrazyThings
                     Item.NewItem(player.getRect(), mod.ItemType<EyeOfCthulhuGitgud>());
                 }
             }
+
+            if (brainOfCthulhuGitgud && NPC.AnyNPCs(NPCID.BrainofCthulhu)) player.buffImmune[BuffID.Slow] = true;
 
             if (brainOfCthulhuGitgudCounter >= brainOfCthulhuGitgudCounterMax)
             {
@@ -161,6 +190,26 @@ namespace AssortedCrazyThings
                 }
             }
 
+            if (skeletronGitgud && NPC.AnyNPCs(NPCID.SkeletronHead)) player.buffImmune[BuffID.Bleeding] = true;
+
+            if (skeletronGitgudCounter >= skeletronGitgudCounterMax)
+            {
+                skeletronGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<SkeletronGitgud>()) && !skeletronGitgud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<SkeletronGitgud>());
+                }
+            }
+
+            if (wallOfFleshGitgudCounter >= wallOfFleshGitgudCounterMax)
+            {
+                wallOfFleshGitgudCounter = 0;
+                if (!player.HasItem(mod.ItemType<WallOfFleshGitgud>()) && !wallOfFleshGitgud)
+                {
+                    Item.NewItem(player.getRect(), mod.ItemType<WallOfFleshGitgud>());
+                }
+            }
+
             if (planteraGitgud && NPC.AnyNPCs(NPCID.Plantera)) player.buffImmune[BuffID.Poisoned] = true;
 
             if (planteraGitgudCounter >= planteraGitgudCounterMax)
@@ -188,6 +237,8 @@ namespace AssortedCrazyThings
                 packet.Write((byte)brainOfCthulhuGitgudCounter);
                 packet.Write((byte)eaterOfWorldsGitgudCounter);
                 packet.Write((byte)queenBeeGitgudCounter);
+                packet.Write((byte)skeletronGitgudCounter);
+                packet.Write((byte)wallOfFleshGitgudCounter);
                 packet.Write((byte)planteraGitgudCounter);
                 packet.Send();
             }

@@ -4,13 +4,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-	public class BrainOfCthulhuGitgud : ModItem
+	public class WallOfFleshGitgud : ModItem
 	{
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("InsanityBGone");
-			Tooltip.SetDefault("15% reduced damage taken from Brain of Cthulhu"
-                + "\nImmunity to slow while Brain of Cthulhu is alive"
+			DisplayName.SetDefault("Wall of Flesh Voodoo Doll");
+			Tooltip.SetDefault("15% reduced damage taken from Wall of Flesh"
                 + "\n[c/E180CE:'git gud']");
 		}
 
@@ -27,7 +26,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>(mod).brainOfCthulhuGitgud = true;
+            player.GetModPlayer<GitGudPlayer>(mod).wallOfFleshGitgud = true;
         }
     }
 }

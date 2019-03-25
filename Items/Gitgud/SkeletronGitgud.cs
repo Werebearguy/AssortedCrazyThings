@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-	public class BrainOfCthulhuGitgud : ModItem
+	public class SkeletronGitgud : ModItem
 	{
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("InsanityBGone");
-			Tooltip.SetDefault("15% reduced damage taken from Brain of Cthulhu"
-                + "\nImmunity to slow while Brain of Cthulhu is alive"
+			DisplayName.SetDefault("Carton of Soy Milk");
+			Tooltip.SetDefault("15% reduced damage taken from Skeletron"
+                + "\nImmunity to bleeding while Skeletron is alive"
                 + "\n[c/E180CE:'git gud']");
 		}
 
@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>(mod).brainOfCthulhuGitgud = true;
+            player.GetModPlayer<GitGudPlayer>(mod).skeletronGitgud = true;
         }
     }
 }
