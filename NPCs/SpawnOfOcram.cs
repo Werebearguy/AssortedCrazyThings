@@ -92,12 +92,12 @@ namespace AssortedCrazyThings.NPCs
             position4.X = position4.X + Main.npcTexture[npc.type].Width * 0.5f; //shadowdodgecount plus
 
             Vector2 drawPos = position4 - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
-            spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
 
             position4.X = position4.X - Main.npcTexture[npc.type].Width; //shadowdodgecount minus
 
             drawPos = position4 - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
-            spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
             */
 
             Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
@@ -108,7 +108,7 @@ namespace AssortedCrazyThings.NPCs
             {
                 Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
                 Color color = npc.GetAlpha(drawColor) * ((float)(npc.oldPos.Length - k) / (2f * npc.oldPos.Length));
-                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, new Rectangle?(npc.frame), color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, npc.frame, color, npc.oldRot[k], drawOrigin, npc.scale, SpriteEffects.None, 0f);
             }
             return true;
         }

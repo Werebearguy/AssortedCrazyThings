@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Texture2D image = Main.projectileTexture[projectile.type];
             Rectangle frameLocal = new Rectangle(0, frame2 * image.Height / 10, image.Width, image.Height / 10);
             Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, 4f + drawOriginOffsetY + 20f + projectile.gfxOffY); //20f for offset pre-draw, idk how and why
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, new Rectangle?(frameLocal), lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
+            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
             return false;
         }
     }

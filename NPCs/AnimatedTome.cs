@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.NPCs
                 SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
                 Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + new Vector2(0f, stupidOffset);
-                spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
             }
 
             if (Main.rand.NextFloat() < 0.1f)

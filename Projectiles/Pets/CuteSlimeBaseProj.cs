@@ -160,7 +160,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                 Color color = drawColor * ((255f - projectile.alpha) / 255f);
 
-                spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
+                spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
             }
 
             if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor); //used for xmas slime bow
@@ -221,7 +221,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    spriteBatch.Draw(texture, drawPos, new Rectangle?(frameLocal), color, projectile.rotation, frameLocal.Size() / 2 + originOffset, projectile.scale, effect, 0f);
+                    spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2 + originOffset, projectile.scale, effect, 0f);
                 }
             }
         }

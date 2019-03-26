@@ -158,7 +158,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Vector2 stupidOffset = new Vector2(0, -29f + npc.gfxOffY);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White * ((255 - npc.alpha) / 255f), npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White * ((255 - npc.alpha) / 255f), npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
 
         public override Color? GetAlpha(Color lightColor)

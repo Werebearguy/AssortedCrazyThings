@@ -263,7 +263,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
 
             if (soulsEaten > 0)
             {
@@ -280,7 +280,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulbig");
                 }
             }
-            spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
 
             if (AI_State == STATE_STOP && stopTime == eatTime)
             {
@@ -289,7 +289,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);
                 drawColor.B = Math.Max(drawColor.B, (byte)200);
-                spriteBatch.Draw(texture, drawPos, new Rectangle?(npc.frame), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
             }
 
             //Spawn light, add dust
