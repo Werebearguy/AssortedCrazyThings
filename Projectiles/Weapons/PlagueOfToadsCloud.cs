@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             {
                 projectile.ai[0] += 1f;
                 //8f
-                if (projectile.ai[0] > 10f)
+                if (projectile.ai[0] > 21f)
                 {
                     projectile.ai[0] = 0f;
                     if (projectile.owner == Main.myPlayer)
@@ -70,7 +70,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                 for (int i = 0; i < 1000; i++)
                 {
                     //check for both nimbus rod and plague of toads cloud
-                    if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == projectile.type || Main.projectile[i].type == ProjectileID.RainCloudRaining) && Main.projectile[i].ai[1] < 3600f)
+                    if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == projectile.type || Main.projectile[i].type == ProjectileID.BloodCloudRaining) && Main.projectile[i].ai[1] < 3600f)
                     {
                         cloudCount++;
                         if (Main.projectile[i].ai[1] > cloudAi1)
@@ -80,7 +80,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                         }
                     }
                 }
-                if (cloudCount > 2)
+                if (cloudCount > 1)
                 {
                     Main.projectile[cloudIndex].netUpdate = true;
                     Main.projectile[cloudIndex].ai[1] = 36000f;

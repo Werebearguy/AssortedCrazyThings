@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             projectile.height = 18;
             projectile.aiStyle = -1;
             projectile.friendly = true;
-            projectile.penetrate = -1;
+            projectile.penetrate = 1; //-1
             projectile.timeLeft = 300;
             projectile.scale = 1f;
             projectile.magic = true;
@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         public override void Kill(int timeLeft)
         {
             Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Bottom.Y - 2f), 2, 2, 154, 0f, 0f, 38, Color.LightGreen, 1f)];
-            dust.velocity = new Vector2(Main.rand.NextFloat(2) - 1f, -projectile.oldVelocity.Y * 0.25f);
+            dust.velocity = new Vector2(Main.rand.NextFloat(2) - 1f, Main.rand.NextFloat(2) - 1f);
             dust.scale = 0.95f;
         }
 

@@ -11,13 +11,29 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Plague of Toads");
-            Tooltip.SetDefault("Tooltip here");
+            Tooltip.SetDefault("Spawns a cloud that rains toads on your foes");
         }
 
         public override void SetDefaults()
         {
-            item.mana = 10;
-            item.damage = 36;
+            //item.mana = 10;
+            //item.damage = 36;
+            //item.useStyle = 1;
+            //item.shootSpeed = 16f;
+            //item.shoot = mod.ProjectileType<PlagueOfToadsFired>();
+            //item.width = 26;
+            //item.height = 28;
+            //item.UseSound = SoundID.Item66;
+            //item.useAnimation = 22;
+            //item.useTime = 22;
+            //item.rare = -11;
+            //item.noMelee = true;
+            //item.knockBack = 0f;
+            //item.value = Item.sellPrice(gold: 3, silver: 50);
+            //item.magic = true;
+
+            item.mana = 20;
+            item.damage = 8;
             item.useStyle = 1;
             item.shootSpeed = 16f;
             item.shoot = mod.ProjectileType<PlagueOfToadsFired>();
@@ -29,7 +45,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.rare = -11;
             item.noMelee = true;
             item.knockBack = 0f;
-            item.value = Item.sellPrice(gold: 3, silver: 50);
+            item.value = Item.sellPrice(silver: 70);
             item.magic = true;
         }
 
@@ -41,13 +57,12 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void AddRecipes()
         {
-            //TODO
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.MeteoriteBar, 5);
-            //recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 2);
-            //recipe.AddTile(TileID.Anvils);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.FrogStatue, 1);
+            recipe.AddIngredient(ItemID.WandofSparking, 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
