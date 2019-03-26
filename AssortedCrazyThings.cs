@@ -234,11 +234,12 @@ namespace AssortedCrazyThings
 
         public override void PostSetupContent()
         {
+            //for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
             LoadUI();
 
             LoadWormList();
 
-            //for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
+            GitgudData.Load();
 
             AddToSoulBuffBlacklist();
 
