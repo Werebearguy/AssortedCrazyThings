@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.rare = -11;
             item.noMelee = true;
             item.knockBack = 0f;
-            item.value = Item.sellPrice(silver: 70);
+            item.value = Item.sellPrice(silver: 25);
             item.magic = true;
         }
 
@@ -58,7 +58,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.FrogStatue, 1);
+            recipe.AddIngredient(ItemID.Frog, 1);
             recipe.AddIngredient(ItemID.WandofSparking, 1);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

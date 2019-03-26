@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                 float cloudAi1 = 0f;
                 for (int i = 0; i < 1000; i++)
                 {
-                    //check for both nimbus rod and plague of toads cloud
+                    //check for both crimson rod and plague of toads cloud
                     if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == projectile.type || Main.projectile[i].type == ProjectileID.BloodCloudRaining) && Main.projectile[i].ai[1] < 3600f)
                     {
                         cloudCount++;
