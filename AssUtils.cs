@@ -56,6 +56,14 @@ namespace AssortedCrazyThings
             return dust;
         }
 
+        public static T[] ConcatArray<T>(T[] first, T[] second)
+        {
+            T[] combined = new T[first.Length + second.Length];
+            Array.Copy(first, combined, first.Length);
+            Array.Copy(second, 0, combined, first.Length, second.Length);
+            return combined;
+        }
+
         public static bool AnyNPCs(int[] types)
         {
             //Like AnyNPCs but checks for an array

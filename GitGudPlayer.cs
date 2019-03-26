@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Items.Gitgud;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -13,30 +14,33 @@ namespace AssortedCrazyThings
     public class GitgudData
     {
         public static GitgudData[] DataList = new GitgudData[1];
-        
-        public bool Accessory { private set; get; }
-        public byte Counter { private set; get; }
-        public byte CounterMax { private set; get; }
-        public int BuffType { private set; get; }
-        public int ItemType { private set; get; }
-        public int[] BossTypeList { private set; get; }
-        public int[] NPCTypeList { private set; get; }
-        public int[] ProjTypeList { private set; get; }
 
-        public GitgudData(int itemType, int buffType,
+        private string ItemName { set; get; } //name for ToString
+        public int BuffType { private set; get; } //buff immunity while boss is alive
+        public int ItemType { private set; get; } //droped gitgud item
+        public int[] BossTypeList { private set; get; } //boss type (usually only one, can be multiple for worms)
+        public int[] NPCTypeList { private set; get; } //NPCs that deal damage during the boss fight (boss minions) (includes the boss itself by default)
+        public int[] ProjTypeList { private set; get; } //Projectiles that deal damage during the boss fight
+        public bool Accessory { private set; get; } //the bool that is set by the wearing accessory
+        public byte Counter { set; get; } //number of times player died to the boss
+        public byte CounterMax { private set; get; } //threshold, after which the item drops
+
+        public GitgudData(string itemName, int itemType, int buffType,
             int[] bossTypeList, int[] nPCTypeList, int[] projTypeList,
             bool accessory, byte counter, byte counterMax)
         {
+            ItemName = itemName;
             ItemType = itemType;
             BuffType = buffType;
             BossTypeList = bossTypeList;
 
             if (nPCTypeList == null) nPCTypeList = new int[1];
 
-            int[] combined = new int[nPCTypeList.Length + bossTypeList.Length];
-            Array.Copy(bossTypeList, combined, bossTypeList.Length);
-            Array.Copy(nPCTypeList, 0, combined, bossTypeList.Length, nPCTypeList.Length);
-            NPCTypeList = combined;
+            //int[] combined = new int[nPCTypeList.Length + bossTypeList.Length];
+            //Array.Copy(bossTypeList, combined, bossTypeList.Length);
+            //Array.Copy(nPCTypeList, 0, combined, bossTypeList.Length, nPCTypeList.Length);
+            //NPCTypeList = combined;
+            NPCTypeList = AssUtils.ConcatArray(nPCTypeList, bossTypeList);
 
             if (projTypeList == null) projTypeList = new int[1];
 
@@ -46,59 +50,75 @@ namespace AssortedCrazyThings
             CounterMax = counterMax;
         }
 
-        public static void Add(int itemType, int buffType,
+        public override string ToString()
+        {
+            return ItemName;
+        }
+
+        public static void Add(string itemName, int buffType,
             int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null,
             bool accessory = false, byte counter = 0, byte counterMax = 5)
         {
-            DataList[DataList.Length - 1] = new GitgudData(itemType, buffType, bossTypeList, nPCTypeList, projTypeList, accessory, counter, counterMax);
+            int itemType = AssUtils.Instance.ItemType(itemName);
+            if (itemType == 0) throw new Exception("no gitgud item called '" + itemName + "' found. Did you spell it correctly?");
+
+            DataList[DataList.Length - 1] = new GitgudData(itemName, itemType, buffType, bossTypeList, nPCTypeList, projTypeList, accessory, counter, counterMax);
             Array.Resize(ref DataList, DataList.Length + 1);
         }
 
-        public static void Add(int itemType, int buffType,
+        public static void Add(string itemName, int buffType,
             int bossType, int[] nPCTypeList = null, int[] projTypeList = null,
             bool accessory = false, byte counter = 0, byte counterMax = 5)
         {
-            DataList[DataList.Length - 1] = new GitgudData(itemType, buffType, new int[] { bossType }, nPCTypeList, projTypeList, accessory, counter, counterMax);
-            Array.Resize(ref DataList, DataList.Length + 1);
+            Add(itemName, buffType, new int[] { bossType }, nPCTypeList, projTypeList, accessory, counter, counterMax);
         }
 
         public static void SendCounters(ModPacket packet)
         {
-            //Length is synced on both sides anyway
-            for (int i = 0; i < DataList.Length; i++)
+            if (DataList != null)
             {
-                packet.Send((byte)DataList[i].Counter);
+                //Length is synced on both sides anyway
+                for (int i = 0; i < DataList.Length; i++)
+                {
+                    packet.Send((byte)DataList[i].Counter);
+                }
             }
-        }
+        } //in OnEnterWorld
 
         public static void RecvCounters(BinaryReader reader)
         {
-            //Length is synced on both sides anyway
-            for (int i = 0; i < DataList.Length; i++)
+            if (DataList != null)
             {
-                DataList[i].Counter = reader.ReadByte();
-            }
-        }
-
-        public static void Reset(int bossType) //only called when npc.boss == true
-        {
-            //Single and Server only
-            for (int i = 0; i < 255; i++)
-            {
-                if (Main.player[i].active)
+                //Length is synced on both sides anyway
+                for (int i = 0; i < DataList.Length; i++)
                 {
-                    for (int j = 0; j < DataList.Length; j++)
+                    DataList[i].Counter = reader.ReadByte();
+                }
+            }
+        } //in HandlePacket
+
+        public static void Reset(int bossType) //in NPCLoot, called when npc.boss == true
+        {
+            if (DataList != null)
+            {
+                //Single and Server only
+                for (int i = 0; i < 255; i++)
+                {
+                    if (Main.player[i].active)
                     {
-                        //resets even when all but one player is dead and boss is defeated
-                        if (Array.IndexOf(DataList[j].BossTypeList, bossType) != -1)
+                        for (int j = 0; j < DataList.Length; j++)
                         {
-                            DataList[j].Counter = 0;
-                            if (Main.netMode == NetmodeID.Server)
+                            //resets even when all but one player is dead and boss is defeated
+                            if (Array.IndexOf(DataList[j].BossTypeList, bossType) != -1)
                             {
-                                ModPacket packet = AssUtils.Instance.GetPacket();
-                                packet.Write((byte)AssMessageType.ResetGitGud);
-                                packet.Write((byte)j);
-                                packet.Send(); //send to all clients
+                                DataList[j].Counter = 0;
+                                if (Main.netMode == NetmodeID.Server)
+                                {
+                                    ModPacket packet = AssUtils.Instance.GetPacket();
+                                    packet.Write((byte)AssMessageType.ResetGitGud);
+                                    packet.Write((byte)j);
+                                    packet.Send(); //send to all clients
+                                }
                             }
                         }
                     }
@@ -108,42 +128,60 @@ namespace AssortedCrazyThings
 
         public static void RecvReset(byte index)
         {
-            DataList[index].Counter = 0;
+            if (DataList != null)
+            {
+                DataList[index].Counter = 0;
+            }
+        } //in HandlePacket
+
+        public static void SpawnItem(Player player) //called in OnRespawn
+        {
+            if (DataList != null)
+            {
+                for (int i = 0; i < DataList.Length; i++)
+                {
+                    if (DataList[i].Counter >= DataList[i].CounterMax)
+                    {
+                        DataList[i].Counter = 0;
+                        if (!player.HasItem(DataList[i].ItemType) && !DataList[i].Accessory)
+                        {
+                            int spawnX = Main.spawnTileX - 1;
+                            int spawnY = Main.spawnTileY - 1;
+                            if (player.SpawnX != -1 && player.SpawnY != -1)
+                            {
+                                spawnX = player.SpawnX;
+                                spawnY = player.SpawnY;
+                            }
+                            Item.NewItem(new Vector2(spawnX, spawnY) * 16, DataList[i].ItemType);
+                        }
+                    }
+                }
+            }
         }
 
-        public static void SpawnItem(Player player)
+        public static void ApplyBuffImmune(Player player) //called in UpdateEquips
         {
-            for (int i = 0; i < DataList.Length; i++)
+            if (DataList != null)
             {
-                if (DataList[i].Accessory && DataList[i].BuffType != -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)) player.buffImmune[DataList[i].BuffType] = true;
-
-                if (DataList[i].Counter >= DataList[i].CounterMax)
+                for (int i = 0; i < DataList.Length; i++)
                 {
-                    DataList[i].Counter = 0;
-                    if (!player.HasItem(DataList[i].ItemType) && !DataList[i].Accessory)
-                    {
-                        int spawnX = Main.spawnTileX - 1;
-                        int spawnY = Main.spawnTileY - 1;
-                        if (player.SpawnX != -1 && player.SpawnY != -1)
-                        {
-                            spawnX = player.SpawnX;
-                            spawnY = player.SpawnY;
-                        }
-                        Item.NewItem(new Vector2(spawnX, spawnY) * 16, DataList[i].ItemType);
-                    }
+                    if (DataList[i].Accessory && DataList[i].BuffType != -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)) player.buffImmune[DataList[i].BuffType] = true;
                 }
             }
         }
 
         public static void IncreaseCounters() //called in PreKill
         {
-            for (int k = 0; k < 200; k++)
+            if (DataList != null)
             {
-                if (Main.npc[k].active)
+                for (int k = 0; k < 200; k++)
                 {
-                    for (int i = 0; i < DataList.Length; i++)
+                    if (Main.npc[k].active)
                     {
-                        if (Array.IndexOf(DataList[i].BossTypeList, Main.npc[k].type) != -1) DataList[i].Counter++;
+                        for (int i = 0; i < DataList.Length; i++)
+                        {
+                            if (Array.IndexOf(DataList[i].BossTypeList, Main.npc[k].type) != -1) DataList[i].Counter++;
+                        }
                     }
                 }
             }
@@ -151,49 +189,111 @@ namespace AssortedCrazyThings
 
         public static bool CanReduceDamageNPC(int npcType)
         {
-            for (int i = 0; i < DataList.Length; i++)
+            if (DataList != null)
             {
-                if (DataList[i].Accessory)
+                for (int i = 0; i < DataList.Length; i++)
                 {
-                    for (int j = 0; j < DataList[i].NPCTypeList.Length; j++)
+                    if (DataList[i].Accessory)
                     {
-                        if (Array.IndexOf(DataList[i].NPCTypeList, npcType) != -1) return true;
+                        for (int j = 0; j < DataList[i].NPCTypeList.Length; j++)
+                        {
+                            if (Array.IndexOf(DataList[i].NPCTypeList, npcType) != -1) return true;
+                        }
                     }
                 }
             }
             return false;
-        }
+        } //ModifyHitByNPC
 
         public static bool CanReduceDamageProj(int projType)
         {
-            for (int i = 0; i < DataList.Length; i++)
+            if (DataList != null)
             {
-                if (DataList[i].Accessory)
+                for (int i = 0; i < DataList.Length; i++)
                 {
-                    for (int j = 0; j < DataList[i].ProjTypeList.Length; j++)
+                    if (DataList[i].Accessory)
                     {
-                        if (Array.IndexOf(DataList[i].ProjTypeList, projType) != -1) return true;
+                        for (int j = 0; j < DataList[i].ProjTypeList.Length; j++)
+                        {
+                            if (Array.IndexOf(DataList[i].ProjTypeList, projType) != -1) return true;
+                        }
                     }
                 }
             }
             return false;
-        }
+        } //ModifyHitByProjectile
 
         public static void UpdateAccessories(bool[] accessories) //passed with mPlayer.accessory to set the datalist stuff
         {
-            if (accessories.Length != DataList.Length) throw new Exception("number of gitgud accessory bools doesn't match with the registered Gitgud items");
-            for (int i = 0; i < accessories.Length; i++) //has to have the same order as DataList
+            if (DataList != null)
             {
-                DataList[i].Accessory = accessories[i];
+                if (accessories.Length != DataList.Length) throw new Exception("number of gitgud accessory bools don't match with the registered gitgud items");
+                for (int i = 0; i < accessories.Length; i++) //has to have the same order as DataList
+                {
+                    DataList[i].Accessory = accessories[i];
+                }
             }
+        }
+
+        public static void LoadCounters(byte[] counters) //Load
+        {
+            if (DataList != null)
+            {
+                if (counters.Length != DataList.Length) throw new Exception("number of gitgud counters don't match with the registered gitgud counters");
+                for (int i = 0; i < counters.Length; i++) //has to have the same order as DataList
+                {
+                    DataList[i].Counter = counters[i];
+                }
+            }
+        }
+
+        public static byte[] SaveCounters() //Save
+        {
+            List<byte> counterList = new List<byte>();
+            if (DataList != null)
+            {
+                for (int i = 0; i < DataList.Length; i++)
+                {
+                    counterList.Add(DataList[i].Counter);
+                }
+            }
+            return counterList.ToArray();
         }
 
         public static void Load()
         {
-            //Add(AssUtils.Instance.ItemType<KingSlimeGitgud>(), -1,
-            //    NPCID.KingSlime, new int[] { NPCID.BlueSlime }, new int[] { ProjectileID.SpikedSlimeSpike });
-            //Add(AssUtils.Instance.ItemType<EyeOfCthulhuGitgud>(), -1,
-            //    NPCID.EyeofCthulhu, new int[] { NPCID.ServantofCthulhu });
+            Add("KingSlimeGitgud", -1,
+                NPCID.KingSlime,
+                new int[] { NPCID.BlueSlime },
+                new int[] { ProjectileID.SpikedSlimeSpike });
+            Add("EyeOfCthulhuGitgud", -1,
+                NPCID.EyeofCthulhu,
+                new int[] { NPCID.ServantofCthulhu });
+            Add("BrainOfCthulhuGitgud", BuffID.Slow,
+                NPCID.BrainofCthulhu,
+                new int[] { NPCID.Creeper });
+            Add("EaterOfWorldsGitgud", BuffID.Weak,
+                new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.EaterofWorldsHead },
+                new int[] { NPCID.VileSpit });
+            Add("QueenBeeGitgud", BuffID.Poisoned,
+                NPCID.QueenBee,
+                new int[] { NPCID.Bee, NPCID.BeeSmall },
+                new int[] { ProjectileID.Stinger });
+            Add("SkeletronGitgud", BuffID.Bleeding,
+                NPCID.SkeletronHead,
+                new int[] { NPCID.SkeletronHand },
+                new int[] { ProjectileID.Skull });
+            Add("WallOfFleshGitgud", -1,
+                NPCID.WallofFlesh,
+                new int[] { NPCID.WallofFleshEye },
+                new int[] { ProjectileID.EyeLaser });
+            Add("GreenThumb", BuffID.Poisoned,
+                NPCID.Plantera,
+                new int[] { NPCID.PlanterasHook, NPCID.PlanterasTentacle },
+                new int[] { ProjectileID.ThornBall, ProjectileID.SeedPlantera, ProjectileID.PoisonSeedPlantera });
+            //since Add always increases the array size by one, it will make it so the last element is null
+
+            Array.Resize(ref DataList, DataList.Length - 1);
         }
     }
 
@@ -260,7 +360,7 @@ namespace AssortedCrazyThings
                 {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
                 {"skeletronGitgudCounter", (byte)skeletronGitgudCounter},
                 {"wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter},
-                {"planteraGitGudCounter", (byte)planteraGitgudCounter}, //don't correct the string
+                {"planteraGitgudCounter", (byte)planteraGitgudCounter},
             };
         }
 
@@ -273,21 +373,13 @@ namespace AssortedCrazyThings
             queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
             skeletronGitgudCounter = tag.GetByte("skeletronGitgudCounter");
             wallOfFleshGitgudCounter = tag.GetByte("wallOfFleshGitgudCounter");
-            planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //don't correct the string
-        }
-
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-        {
-            if ((kingSlimeGitgud && proj.type == ProjectileID.SpikedSlimeSpike) ||
-                /*(eyeOfCthulhuGitgud) ||*/
-                /*(brainOfCthulhuGitgud) ||*/
-                /*(eaterOfWorldsGitgud) ||*/
-                (queenBeeGitgud && proj.type == ProjectileID.Stinger) ||
-                (skeletronGitgud && proj.type == ProjectileID.Skull) ||
-                (wallOfFleshGitgud && proj.type == ProjectileID.EyeLaser) ||
-                (planteraGitgud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera || proj.type == ProjectileID.PoisonSeedPlantera)))
+            if (tag.ContainsKey("planteraGitGudCounter"))
             {
-                damage = (int)(damage * 0.85f);
+                planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //the one with the typo
+            }
+            else
+            {
+                planteraGitgudCounter = tag.GetByte("planteraGitgudCounter");
             }
         }
 
@@ -301,6 +393,21 @@ namespace AssortedCrazyThings
                 (skeletronGitgud && (npc.type == NPCID.SkeletronHead || npc.type == NPCID.SkeletronHand)) ||
                 (wallOfFleshGitgud && (npc.type == NPCID.WallofFlesh || npc.type == NPCID.WallofFleshEye || npc.type == NPCID.TheHungry || npc.type == NPCID.TheHungryII)) ||
                (planteraGitgud && (npc.type == NPCID.Plantera || npc.type == NPCID.PlanterasHook || npc.type == NPCID.PlanterasTentacle)))
+            {
+                damage = (int)(damage * 0.85f);
+            }
+        }
+
+        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        {
+            if ((kingSlimeGitgud && proj.type == ProjectileID.SpikedSlimeSpike) ||
+                /*(eyeOfCthulhuGitgud) ||*/
+                /*(brainOfCthulhuGitgud) ||*/
+                /*(eaterOfWorldsGitgud) ||*/
+                (queenBeeGitgud && proj.type == ProjectileID.Stinger) ||
+                (skeletronGitgud && proj.type == ProjectileID.Skull) ||
+                (wallOfFleshGitgud && proj.type == ProjectileID.EyeLaser) ||
+                (planteraGitgud && (proj.type == ProjectileID.ThornBall || proj.type == ProjectileID.SeedPlantera || proj.type == ProjectileID.PoisonSeedPlantera)))
             {
                 damage = (int)(damage * 0.85f);
             }

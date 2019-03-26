@@ -125,36 +125,32 @@ namespace AssortedCrazyThings
         {
             return new TagCompound
             {
-                {"slotsPlayer", (int)slotsPlayer}, //keep as legacy
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
-                {"planteraGitGudCounter", (int)planteraGitGudCounter}, //keep as legacy
             };
         }
 
         public override void Load(TagCompound tag)
         {
-            slotsPlayer = (uint)tag.GetInt("slotsPlayer"); //keep as legacy
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
-            planteraGitGudCounter = tag.GetInt("planteraGitGudCounter"); //keep as legacy
         }
 
         public override void OnEnterWorld(Player player)
         {
-            if (slotsPlayer != 0) //transfer legacy variable over to new one
-            {
-                PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
-                mPlayer.slots = slotsPlayer;
-                slotsPlayer = 0;
-            }
+            //if (slotsPlayer != 0) //transfer legacy variable over to new one
+            //{
+            //    PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
+            //    mPlayer.slots = slotsPlayer;
+            //    slotsPlayer = 0;
+            //}
 
-            if (planteraGitGudCounter != 0) //transfer legacy variable over to new one
-            {
-                GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
-                gPlayer.planteraGitgudCounter = (byte)planteraGitGudCounter;
-                planteraGitGudCounter = 0;
-            }
+            //if (planteraGitGudCounter != 0) //transfer legacy variable over to new one
+            //{
+            //    GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
+            //    gPlayer.planteraGitgudCounter = (byte)planteraGitGudCounter;
+            //    planteraGitGudCounter = 0;
+            //}
         }
 
         private void ResetEmpoweringTimer()
