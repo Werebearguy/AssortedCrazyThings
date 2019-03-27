@@ -20,7 +20,6 @@ in the Buff class like this: `mPlayer.CuteSlimeColorNew`
   * Add the NPC to `slimePetNPCs`
   * Add the pet to `slimePetList` **<-MUST HAVE FOR ACCESSORIES TO WORK**
   * Follow the "TEMPLATE EXPLANATION" comment or copypaste a similar pet and adjust that
-  * Add a new Color to `enum PetColor` at the bottom **in alphabetic order**
 
 ***
 

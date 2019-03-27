@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Plague of Toads");
-            Tooltip.SetDefault("Spawns a cloud that rains toads on your foes");
+            Tooltip.SetDefault("Summons a cloud to rain toads on your foes");
         }
 
         public override void SetDefaults()

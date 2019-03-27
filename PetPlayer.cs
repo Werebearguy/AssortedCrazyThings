@@ -82,8 +82,8 @@ namespace AssortedCrazyThings
         public bool CuteSlimeRainbowNew = false;
         public bool CuteSlimePurpleNew = false;
         public bool CuteSlimePinkNew = false;
-        public bool CuteSlimeJungleNew = false;
         public bool CuteSlimeIceNew = false;
+        public bool CuteSlimeJungleNew = false;
         public bool CuteSlimeGreenNew = false;
         public bool CuteSlimeDungeonNew = false;
         public bool CuteSlimeCrimsonNew = false;
@@ -104,7 +104,6 @@ namespace AssortedCrazyThings
         public bool CuteSlimePink = false;
         public bool CuteSlimeBlack = false;
         public bool CuteSlimePurple = false;
-        public bool CuteSlimeSand = false;
         public bool CuteSlimeRed = false;
         public bool CuteSlimeYellow = false;
         public bool CuteSlimeRainbow = false;
@@ -160,6 +159,7 @@ namespace AssortedCrazyThings
             CuteSlimePurpleNew = false;
             CuteSlimePinkNew = false;
             CuteSlimeIceNew = false;
+            CuteSlimeJungleNew = false;
             CuteSlimeGreenNew = false;
             CuteSlimeBlueNew = false;
             CuteSlimeBlackNew = false;
@@ -180,7 +180,6 @@ namespace AssortedCrazyThings
             CuteSlimePink = false;
             CuteSlimeBlack = false;
             CuteSlimePurple = false;
-            CuteSlimeSand = false;
             CuteSlimeRed = false;
             CuteSlimeYellow = false;
             CuteSlimeRainbow = false;

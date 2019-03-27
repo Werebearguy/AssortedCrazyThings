@@ -196,7 +196,7 @@ namespace AssortedCrazyThings.UI
 
                             //get boss head texture if it has one and use that instead of the NPC texture
                             int lbossHeadIndex = -1;
-                            if (npc.boss && npc.GetBossHeadTextureIndex() >= 0 && npc.GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
+                            if (npc.GetBossHeadTextureIndex() >= 0 && npc.GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
                             {
                                 lbossHeadIndex = npc.GetBossHeadTextureIndex();
                             }

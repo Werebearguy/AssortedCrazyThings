@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,8 +25,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-					player.enemySpawns = true;
-					player.calmed = true;
+            player.AddBuff(mod.BuffType<BipolarBuff>(), 60);
             player.noFallDmg = true;
             player.jumpBoost = true;
             player.doubleJumpCloud = true;

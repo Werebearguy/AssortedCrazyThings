@@ -35,6 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buffs\CuteSlimeJungleNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeSandNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeToxicNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeIceNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeCorruptNewBuff.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Items\Accessories\Useful\AnomalousWings.cs" />
     <Compile Include="Items\Accessories\Useful\BipolarCandleInABalloon.cs" />
     <Compile Include="Items\Accessories\Useful\BottledDreams.cs" />
+    <Compile Include="Items\Accessories\Useful\CrazyBundleOfAssortedBalloons.cs" />
     <Compile Include="Items\Accessories\Useful\EverburningCandelabra.cs" />
     <Compile Include="Items\Accessories\Useful\EverburningCandle.cs" />
     <Compile Include="Items\Accessories\Useful\EverburningCursedCandle.cs" />
@@ -169,6 +172,8 @@
     <Compile Include="Items\Gitgud\KingSlimeGitgud.cs" />
     <Compile Include="Items\Gitgud\GreenThumb.cs" />
     <Compile Include="Items\KnittingSet.cs" />
+    <Compile Include="Items\Pets\CuteSlimeJungleNew.cs" />
+    <Compile Include="Items\Pets\CuteSlimeSandNew.cs" />
     <Compile Include="Items\Pets\DrumstickElementalItem.cs" />
     <Compile Include="Items\Pets\MiniAntlionItem.cs" />
     <Compile Include="Items\Pets\CuteSlimeToxicNew.cs" />
@@ -269,6 +274,10 @@
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
+    <Compile Include="NPCs\CuteSlimeJungle.cs" />
+    <Compile Include="NPCs\CuteSlimeSand.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeJungleNewProj.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeSandNewProj.cs" />
     <Compile Include="Projectiles\Pets\DrumstickElementalProj.cs" />
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
