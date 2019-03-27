@@ -35,8 +35,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             player.doubleJumpSail = true;
             player.doubleJumpUnicorn = true;
             player.bee = true;
-            //player.manaRegenDelayBonus++;
-            //player.manaRegenBonus += 25;
             if (!player.HasBuff(BuffID.StarInBottle))
             {
                 player.manaRegenBonus += 2;

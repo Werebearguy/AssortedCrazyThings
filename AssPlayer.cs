@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Accessories.Useful;
+using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -477,6 +479,76 @@ namespace AssortedCrazyThings
             }
         }
 
+        private static SpriteEffects GetSpriteEffects(Player player)
+        {
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            if (player.gravDir == 1f)
+            {
+                if (player.direction == 1)
+                {
+                    spriteEffects = SpriteEffects.None;
+                }
+                else
+                {
+                    spriteEffects = SpriteEffects.FlipHorizontally;
+                }
+            }
+            else
+            {
+                if (player.direction == 1)
+                {
+                    spriteEffects = SpriteEffects.FlipVertically;
+                }
+                else
+                {
+                    spriteEffects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+                }
+            }
+            return spriteEffects;
+        }
+
+
+        public static readonly PlayerLayer CrazyBundleOfAssortedBalloons = new PlayerLayer("AssortedCrazyThings", "CrazyBundleOfAssortedBalloons", PlayerLayer.BalloonAcc, delegate (PlayerDrawInfo drawInfo)
+        {
+            //Since it's supposed to replace the Autoload texture, the regular _Balloon is just blank
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            Mod mod = AssUtils.Instance;
+            float mountOffset = drawPlayer.mount.PlayerOffset;
+
+            drawInfo.position.Y += (int)mountOffset / 2;
+            if (drawPlayer.balloon > 0)
+            {
+                Texture2D texture = mod.GetTexture("Items/Accessories/Useful/CrazyBundleOfAssortedBalloons_Balloon_Proper");
+
+                Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
+
+                int frameTimeY = DateTime.Now.Millisecond % 800 / 200;
+                Vector2 vector11 = Main.OffsetsPlayerOffhand[drawPlayer.bodyFrame.Y / 56];
+                if (drawPlayer.direction != 1)
+                {
+                    vector11.X = drawPlayer.width - vector11.X;
+                }
+                if (drawPlayer.gravDir != 1f)
+                {
+                    vector11.Y -= drawPlayer.height;
+                }
+                float drawX = (int)drawInfo.position.X + vector11.X - Main.screenPosition.X;
+                float drawY = (int)drawInfo.position.Y + vector11.Y * drawPlayer.gravDir - Main.screenPosition.Y;
+
+                Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 3); //works without it, but this makes it higher
+
+                Vector2 drawOrigin = new Vector2(26f + drawPlayer.direction * 4, 28f + drawPlayer.gravDir * 6f);
+
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * frameTimeY, texture.Width, texture.Height / 4), color, drawPlayer.bodyRotation, drawOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
+                drawData.shader = drawInfo.balloonShader;
+                Main.playerDrawData.Add(drawData);
+            }
+        });
+
         public static readonly PlayerLayer SlimeHandlerKnapsack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f)
@@ -493,33 +565,10 @@ namespace AssortedCrazyThings
                 float drawY = (int)drawInfo.position.Y + drawPlayer.height - Main.screenPosition.Y;
                 
                 Vector2 stupidOffset = new Vector2(0f, - drawPlayer.bodyFrame.Height / 2);
-
-                SpriteEffects spriteEffects = SpriteEffects.None;
-                if (drawPlayer.gravDir == 1f)
-                {
-                    if (drawPlayer.direction == 1)
-                    {
-                        spriteEffects = SpriteEffects.None;
-                    }
-                    else
-                    {
-                        spriteEffects = SpriteEffects.FlipHorizontally;
-                    }
-                }
-                else
-                {
-                    if (drawPlayer.direction == 1)
-                    {
-                        spriteEffects = SpriteEffects.FlipVertically;
-                    }
-                    else
-                    {
-                        spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
-                    }
-                }
+                
                 Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
 
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, spriteEffects, 0);
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
                 Main.playerDrawData.Add(drawData);
             }
         });
@@ -540,31 +589,8 @@ namespace AssortedCrazyThings
                 float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
 
                 Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
-
-                SpriteEffects spriteEffects = SpriteEffects.None;
-                if (drawPlayer.gravDir == 1f)
-                {
-	                if (drawPlayer.direction == 1)
-	                {
-		                spriteEffects = SpriteEffects.None;
-	                }
-	                else
-	                {
-		                spriteEffects = SpriteEffects.FlipHorizontally;
-	                }
-                }
-                else
-                {
-	                if (drawPlayer.direction == 1)
-	                {
-		                spriteEffects = SpriteEffects.FlipVertically;
-	                }
-	                else
-	                {
-		                spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
-	                }
-                }
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), new Color(255, 255, 255, 0)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, spriteEffects, 0);
+                
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), new Color(255, 255, 255, 0)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0);
                 drawData.shader = drawInfo.wingShader;
                 Main.playerDrawData.Add(drawData);
 
@@ -608,31 +634,7 @@ namespace AssortedCrazyThings
 
                 Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
 
-                SpriteEffects spriteEffects = SpriteEffects.None;
-                if (drawPlayer.gravDir == 1f)
-                {
-                    if (drawPlayer.direction == 1)
-                    {
-                        spriteEffects = SpriteEffects.None;
-                    }
-                    else
-                    {
-                        spriteEffects = SpriteEffects.FlipHorizontally;
-                    }
-                }
-                else
-                {
-                    if (drawPlayer.direction == 1)
-                    {
-                        spriteEffects = SpriteEffects.FlipVertically;
-                    }
-                    else
-                    {
-                        spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
-                    }
-                }
-
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, spriteEffects, 0);
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
                 drawData.shader = drawInfo.bodyArmorShader;
                 Main.playerDrawData.Add(drawData);
 
@@ -657,7 +659,7 @@ namespace AssortedCrazyThings
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
             int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
-            if (player.inventory[player.selectedItem].type == mod.ItemType<Items.Weapons.SlimeHandlerKnapsack>())
+            if (player.inventory[player.selectedItem].type == mod.ItemType<SlimeHandlerKnapsack>())
             {
                 if (player.velocity.Y == 0f)
                 {
@@ -676,6 +678,9 @@ namespace AssortedCrazyThings
 
             int bodyLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Body"));
             layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
+
+            int balloonLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("BalloonAcc"));
+            if (player.balloon == mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon)) layers.Insert(balloonLayer + 1, CrazyBundleOfAssortedBalloons);
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
