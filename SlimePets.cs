@@ -42,10 +42,12 @@ namespace AssortedCrazyThings
                 AssUtils.Instance.NPCType<CuteSlimeDungeon>(),
                 AssUtils.Instance.NPCType<CuteSlimeGreen>(),
                 AssUtils.Instance.NPCType<CuteSlimeIce>(),
+                AssUtils.Instance.NPCType<CuteSlimeJungle>(),
                 AssUtils.Instance.NPCType<CuteSlimePink>(),
                 AssUtils.Instance.NPCType<CuteSlimePurple>(),
                 AssUtils.Instance.NPCType<CuteSlimeRainbow>(),
                 AssUtils.Instance.NPCType<CuteSlimeRed>(),
+                AssUtils.Instance.NPCType<CuteSlimeSand>(),
                 AssUtils.Instance.NPCType<CuteSlimeToxic>(),
                 AssUtils.Instance.NPCType<CuteSlimeXmas>(),
                 AssUtils.Instance.NPCType<CuteSlimeYellow>()
@@ -87,6 +89,10 @@ namespace AssortedCrazyThings
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
+                name: "CuteSlimeJungleNewProj"
+            ));
+            slimePetList.Add(SlimePet.NewSlimePet
+            (
                 name: "CuteSlimePurpleNewProj",
                 hasNoHair: true
             ));
@@ -102,6 +108,11 @@ namespace AssortedCrazyThings
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeRedNewProj",
+                hasNoHair: true
+            ));
+            slimePetList.Add(SlimePet.NewSlimePet
+            (
+                name: "CuteSlimeSandNewProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
