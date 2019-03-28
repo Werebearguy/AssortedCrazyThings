@@ -14,8 +14,8 @@ namespace AssortedCrazyThings.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.enemySpawns = true;
-            player.calmed = true;
+            player.ZoneWaterCandle = true;
+            player.ZonePeaceCandle = true;
         }
     }
 }
