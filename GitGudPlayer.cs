@@ -139,11 +139,11 @@ namespace AssortedCrazyThings
             }
         } //in HandlePacket
 
-        public static void Reset(int bossType, NPC npc)
+        public static void Reset(NPC npc)
         {
+            //Single and Server only
             if (DataList != null)
             {
-                //Single and Server only
                 for (int j = 0; j < 255; j++)
                 {
                     if (Main.player[j].active && npc.playerInteraction[j])
@@ -151,7 +151,7 @@ namespace AssortedCrazyThings
                         for (int i = 0; i < DataList.Length; i++)
                         {
                             //resets even when all but one player is dead and boss is defeated
-                            if (Array.IndexOf(DataList[i].BossTypeList, bossType) != -1)
+                            if (npc.boss && Array.IndexOf(DataList[i].BossTypeList, npc.type) != -1)
                             {
                                 DataList[i].Counter[j] = 0;
                                 SetCounter(j, i, 0);
@@ -223,16 +223,18 @@ namespace AssortedCrazyThings
         {
             if (DataList != null)
             {
+                bool[] increasedFor = new bool[DataList.Length];
                 for (int k = 0; k < 200; k++)
                 {
                     if (Main.npc[k].active && Main.npc[k].playerInteraction[whoAmI])
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
-                            if (Array.IndexOf(DataList[i].BossTypeList, Main.npc[k].type) != -1)
+                            if (!increasedFor[i] && Array.IndexOf(DataList[i].BossTypeList, Main.npc[k].type) != -1)
                             {
                                 DataList[i].Counter[whoAmI]++;
                                 SetCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
+                                 increasedFor[i] = true;
                             }
                         }
                     }

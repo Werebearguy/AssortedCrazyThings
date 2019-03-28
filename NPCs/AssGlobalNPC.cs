@@ -101,7 +101,7 @@ namespace AssortedCrazyThings.NPCs
                 Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
             }
 
-            GitgudData.Reset(npc.type, npc);
+            GitgudData.Reset(npc);
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
