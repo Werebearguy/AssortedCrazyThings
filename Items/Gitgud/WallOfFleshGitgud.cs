@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall of Flesh Voodoo Doll");
-			Tooltip.SetDefault("15% reduced damage taken from Wall of Flesh"
+            Tooltip.SetDefault("Consolation Prize"
+                + "\n15% reduced damage taken from Wall of Flesh"
                 + "\n[c/E180CE:'git gud']");
 		}
 

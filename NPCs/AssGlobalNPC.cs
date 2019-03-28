@@ -31,69 +31,6 @@ namespace AssortedCrazyThings.NPCs
             counter = 0;
         }
 
-        private void GitGudReset(int type, bool boss)
-        {
-            GitgudType gitGudType = GitgudType.None;
-
-            //Single and Server only
-            for (int i = 0; i < 255; i++)
-            {
-                if (Main.player[i].active)
-                {
-                    //resets even when all but one player is dead and boss is defeated
-                    GitGudPlayer gPlayer = Main.player[i].GetModPlayer<GitGudPlayer>(mod);
-                    if (type == NPCID.KingSlime)
-                    {
-                        gitGudType = GitgudType.KingSlime;
-                        gPlayer.kingSlimeGitgudCounter = 0;
-                    }
-                    else if (type == NPCID.EyeofCthulhu)
-                    {
-                        gitGudType = GitgudType.EyeOfCthulhu;
-                        gPlayer.eyeOfCthulhuGitgudCounter = 0;
-                    }
-                    else if (type == NPCID.EyeofCthulhu)
-                    {
-                        gitGudType = GitgudType.BrainOfCthulhu;
-                        gPlayer.brainOfCthulhuGitgudCounter = 0;
-                    }
-                    else if (boss && (type == NPCID.EaterofWorldsHead || type == NPCID.EaterofWorldsTail || type == NPCID.EaterofWorldsTail))
-                    {
-                        gitGudType = GitgudType.EaterOfWorlds;
-                        gPlayer.eaterOfWorldsGitgudCounter = 0;
-                    }
-                    else if (type == NPCID.QueenBee)
-                    {
-                        gitGudType = GitgudType.QueenBee;
-                        gPlayer.queenBeeGitgudCounter = 0;
-                    }
-                    else if (type == NPCID.SkeletronHead)
-                    {
-                        gitGudType = GitgudType.Skeletron;
-                        gPlayer.skeletronGitgudCounter = 0;
-                    }
-                    else if (type == NPCID.WallofFlesh)
-                    {
-                        gitGudType = GitgudType.WallOfFlesh;
-                        gPlayer.wallOfFleshGitgudCounter = 0;
-                    }
-                    else if (type == NPCID.Plantera)
-                    {
-                        gitGudType = GitgudType.Plantera;
-                        gPlayer.planteraGitgudCounter = 0; 
-                    }
-                }
-            }
-
-            if (Main.netMode == NetmodeID.Server && gitGudType != GitgudType.None)
-            {
-                ModPacket packet = mod.GetPacket();
-                packet.Write((byte)AssMessageType.ResetGitGud);
-                packet.Write((byte)gitGudType);
-                packet.Send(); //send to all clients
-            }
-        }
-
         public override void NPCLoot(NPC npc)
         {
             //other pets
@@ -164,7 +101,7 @@ namespace AssortedCrazyThings.NPCs
                 Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
             }
 
-            GitGudReset(npc.type, npc.boss);
+            GitgudData.Reset(npc.type, npc);
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)

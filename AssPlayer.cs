@@ -671,7 +671,7 @@ namespace AssortedCrazyThings
             {
                 if (wingLayer != -1)
                 {
-                    HarvesterWings.visible = true;
+                    //HarvesterWings.visible = true;
                     layers.Insert(wingLayer + 1, HarvesterWings);
                 }
             }

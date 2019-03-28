@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Slime Inquisition Notice");
-			Tooltip.SetDefault("15% reduced damage taken from King Slime"
+            Tooltip.SetDefault("Consolation Prize"
+                + "\n15% reduced damage taken from King Slime"
                 + "\n[c/E180CE:'git gud']");
 		}
 

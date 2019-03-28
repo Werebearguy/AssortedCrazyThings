@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Green Thumb");
-			Tooltip.SetDefault("15% reduced damage taken from Plantera"
+            Tooltip.SetDefault("Consolation Prize"
+                + "\n15% reduced damage taken from Plantera"
                 + "\nImmunity to poison while Plantera is alive"
                 + "\n[c/E180CE:'git gud']");
 		}

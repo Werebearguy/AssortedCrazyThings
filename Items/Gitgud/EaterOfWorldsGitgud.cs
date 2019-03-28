@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Toy Seagull");
-			Tooltip.SetDefault("15% reduced damage taken from Eater of Worlds"
+            Tooltip.SetDefault("Consolation Prize"
+                + "\n15% reduced damage taken from Eater of Worlds"
                 + "\nImmunity to weak while Eater of Worlds is alive"
                 + "\n[c/E180CE:'git gud']");
 		}

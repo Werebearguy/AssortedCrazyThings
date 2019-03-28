@@ -822,9 +822,7 @@ namespace AssortedCrazyThings
             byte playerNumber;
             AssPlayer mPlayer;
             PetPlayer petPlayer;
-            GitGudPlayer gPlayer;
             byte changes;
-            byte gitgudType;
 
             switch (msgType)
             {
@@ -842,7 +840,6 @@ namespace AssortedCrazyThings
                     playerNumber = reader.ReadByte();
                     petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
                     changes = reader.ReadByte();
-
                     petPlayer.RecvClientChangesPacketSub(reader, changes);
 
                     //server transmits to others
@@ -859,61 +856,16 @@ namespace AssortedCrazyThings
                         mPlayer.ConvertInertSoulsInventory();
                     }
                     break;
-                case AssMessageType.SendClientChangesGitGud:
+                case AssMessageType.GitgudCounters:
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        //AssUtils.Print("recv SendClientChangesGitGud");
-                        //recieve loaded values from the player tag compound
-                        playerNumber = reader.ReadByte();
-                        gPlayer = Main.player[playerNumber].GetModPlayer<GitGudPlayer>();
-                        gPlayer.kingSlimeGitgudCounter = reader.ReadByte();
-                        gPlayer.eyeOfCthulhuGitgudCounter = reader.ReadByte();
-                        gPlayer.brainOfCthulhuGitgudCounter = reader.ReadByte();
-                        gPlayer.eaterOfWorldsGitgudCounter = reader.ReadByte();
-                        gPlayer.queenBeeGitgudCounter = reader.ReadByte();
-                        gPlayer.skeletronGitgudCounter = reader.ReadByte();
-                        gPlayer.skeletronGitgudCounter = reader.ReadByte();
-                        gPlayer.planteraGitgudCounter = reader.ReadByte();
+                        GitgudData.RecvCounters(reader);
                     }
                     break;
-                case AssMessageType.ResetGitGud:
+                case AssMessageType.GitgudReset:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        //receive reset value from server, personalized packet
-                        //only set own value
-                        gitgudType = reader.ReadByte();
-                        gPlayer = Main.LocalPlayer.GetModPlayer<GitGudPlayer>();
-
-                        switch (gitgudType)
-                        {
-                            case (byte)GitgudType.KingSlime:
-                                gPlayer.kingSlimeGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.EyeOfCthulhu:
-                                gPlayer.eyeOfCthulhuGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.BrainOfCthulhu:
-                                gPlayer.brainOfCthulhuGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.EaterOfWorlds:
-                                gPlayer.eaterOfWorldsGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.QueenBee:
-                                gPlayer.queenBeeGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.Skeletron:
-                                gPlayer.skeletronGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.WallOfFlesh:
-                                gPlayer.wallOfFleshGitgudCounter = 0;
-                                break;
-                            case (byte)GitgudType.Plantera:
-                                gPlayer.planteraGitgudCounter = 0;
-                                break;
-                            default: //shouldn't get there hopefully
-                                ErrorLogger.Log("Recieved unspecified ResetGitGud Packet " + gitgudType);
-                                break;
-                        }
+                        GitgudData.RecvReset(Main.myPlayer, reader);
                     }
                     break;
                 default:
@@ -941,8 +893,8 @@ namespace AssortedCrazyThings
         SendClientChangesVanity,
         SyncPlayerVanity,
         ConvertInertSoulsInventory,
-        SendClientChangesGitGud,
-        ResetGitGud
+        GitgudCounters,
+        GitgudReset
     }
 
     public enum GitgudType : byte
@@ -960,7 +912,7 @@ namespace AssortedCrazyThings
 
     public enum PetPlayerChanges : byte
     {
-        //easier to copypaste when its not capitalized
+        //easier to copypaste when it's not capitalized
         none,
         all,
         slots,

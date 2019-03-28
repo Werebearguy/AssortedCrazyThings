@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Carton of Soy Milk");
-			Tooltip.SetDefault("15% reduced damage taken from Skeletron"
+            Tooltip.SetDefault("Consolation Prize"
+                + "\n15% reduced damage taken from Skeletron"
                 + "\nImmunity to bleeding while Skeletron is alive"
                 + "\n[c/E180CE:'git gud']");
 		}

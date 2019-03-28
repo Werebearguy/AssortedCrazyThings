@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Broken Lens");
-			Tooltip.SetDefault("15% reduced damage taken from Eye of Cthulhu"
+            Tooltip.SetDefault("Consolation Prize"
+                + "\n15% reduced damage taken from Eye of Cthulhu"
                 + "\n[c/E180CE:'git gud']");
 		}
 
