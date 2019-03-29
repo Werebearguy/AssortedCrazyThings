@@ -739,8 +739,6 @@ namespace AssortedCrazyThings
 
             if (!TeleportHome(damage)) return false;
 
-            if (NPC.AnyNPCs(NPCID.Plantera)) planteraGitGudCounter++;
-
             return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
         }
 

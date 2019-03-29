@@ -163,6 +163,13 @@
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\EnhancedHunterPotion.cs" />
+    <Compile Include="Items\Gitgud\DestroyerGitgud.cs" />
+    <Compile Include="Items\Gitgud\LunaticCultistGitgud.cs" />
+    <Compile Include="Items\Gitgud\MoonLordGitgud.cs" />
+    <Compile Include="Items\Gitgud\DukeFishronGitgud.cs" />
+    <Compile Include="Items\Gitgud\GolemGitgud.cs" />
+    <Compile Include="Items\Gitgud\TwinsGitgud.cs" />
+    <Compile Include="Items\Gitgud\SkeletronPrimeGitgud.cs" />
     <Compile Include="Items\Gitgud\WallOfFleshGitgud.cs" />
     <Compile Include="Items\Gitgud\SkeletronGitgud.cs" />
     <Compile Include="Items\Gitgud\BrainOfCthulhuGitgud.cs" />
@@ -170,7 +177,7 @@
     <Compile Include="Items\Gitgud\EaterOfWorldsGitgud.cs" />
     <Compile Include="Items\Gitgud\QueenBeeGitgud.cs" />
     <Compile Include="Items\Gitgud\KingSlimeGitgud.cs" />
-    <Compile Include="Items\Gitgud\GreenThumb.cs" />
+    <Compile Include="Items\Gitgud\PlanteraGitgud.cs" />
     <Compile Include="Items\KnittingSet.cs" />
     <Compile Include="Items\Pets\CuteSlimeJungleNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeSandNew.cs" />

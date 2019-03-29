@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 			DisplayName.SetDefault("Honey Thimble");
             Tooltip.SetDefault("Consolation Prize"
                 + "\n15% reduced damage taken from Queen Bee"
-                + "\nImmunity to poison while Queen Bee is alive"
+                + "\nImmunity to 'Poisoned' while Queen Bee is alive"
                 + "\n[c/E180CE:'git gud']");
 		}
 

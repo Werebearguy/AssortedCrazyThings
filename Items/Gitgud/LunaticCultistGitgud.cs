@@ -4,31 +4,31 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-	public class SkeletronGitgud : ModItem
-	{
+    public class LunaticCultistGitgud : ModItem
+    {
         public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Carton of Soy Milk");
+        {
+            DisplayName.SetDefault("Lunatic Cultist Jab Item");
             Tooltip.SetDefault("Consolation Prize"
-                + "\n15% reduced damage taken from Skeletron"
-                + "\nImmunity to 'Bleeding' while Skeletron is alive"
+                + "\n15% reduced damage taken from Lunatic Cultist"
+                + "\nImmunity to 'On Fire!' while Golem is alive"
                 + "\n[c/E180CE:'git gud']");
-		}
+        }
 
-		public override void SetDefaults()
-		{
-			item.CloneDefaults(ItemID.Silk);
+        public override void SetDefaults()
+        {
+            item.CloneDefaults(ItemID.Silk);
             item.width = 32;
             item.height = 32;
             item.value = Item.sellPrice(copper: 1);
             item.rare = -1;
             item.maxStack = 1;
             item.accessory = true;
-		}
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>(mod).skeletronGitgud = true;
+            player.GetModPlayer<GitGudPlayer>(mod).lunaticCultistGitgud = true;
         }
     }
 }

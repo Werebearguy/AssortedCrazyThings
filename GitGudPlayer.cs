@@ -8,6 +8,24 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
+//GITGUD BEHAVIOR GOES HERE
+/*
+ * In GitGudPlayer:
+ *      Add these two in order:
+ *      public byte bossNameGitgudCounter = 0;
+ *      public bool bossNameGitgud = false;
+ *
+ *      **IMPORTANT**: IN ORDER OF BOSS PROGRESSION, HAS TO BE THE SAME ORDER IN EVERY CONTEXT
+ *      Add the byte to Save(), Load() and OnEnterWorld()
+ *      Add the bool to ResetEffects() and Initialize()
+ * 
+ * In GitgudData:
+ *      Add the byte to SetCounter() in the proper order, adjust the case <number> things so it's in order properly
+ *      Add new item into Items/Gitgud/ (with the proper bool in UpdateAccessory())
+ *      Register the item and its properties in RegisterItems()
+ * 
+ */
+
 namespace AssortedCrazyThings
 {
     public class GitgudData
@@ -42,6 +60,10 @@ namespace AssortedCrazyThings
 
             ProjTypeList = projTypeList;
             CounterMax = counterMax;
+
+            Array.Sort(BossTypeList);
+            Array.Sort(NPCTypeList);
+            Array.Sort(ProjTypeList);
 
             Counter = new byte[255];
             Accessory = new BitArray(255);
@@ -95,7 +117,28 @@ namespace AssortedCrazyThings
                     gPlayer.wallOfFleshGitgudCounter = value;
                     break;
                 case 7:
+                    gPlayer.destroyerGitgudCounter = value;
+                    break;
+                case 8:
+                    gPlayer.twinsGitgudCounter = value;
+                    break;
+                case 9:
+                    gPlayer.skeletronPrimeGitgudCounter = value;
+                    break;
+                case 10:
                     gPlayer.planteraGitgudCounter = value;
+                    break;
+                case 11:
+                    gPlayer.golemGitgudCounter = value;
+                    break;
+                case 12:
+                    gPlayer.dukeFishronGitgudCounter = value;
+                    break;
+                case 13:
+                    gPlayer.lunaticCultistGitgudCounter = value;
+                    break;
+                case 14:
+                    gPlayer.moonLordGitgudCounter = value;
                     break;
                 default: //shouldn't get there hopefully
                     if (packet) ErrorLogger.Log("Recieved unspecified GitgudReset Packet " + index);
@@ -118,7 +161,7 @@ namespace AssortedCrazyThings
                 }
                 packet.Send();
             }
-        } //in OnEnterWorld
+        } //OnEnterWorld
 
         public static void RecvCounters(BinaryReader reader)
         {
@@ -137,7 +180,7 @@ namespace AssortedCrazyThings
                     SetCounter(whoAmI, i, tempArray[i], true);
                 }
             }
-        } //in HandlePacket
+        } //Mod.HandlePacket
 
         public static void Reset(NPC npc)
         {
@@ -151,7 +194,7 @@ namespace AssortedCrazyThings
                         for (int i = 0; i < DataList.Length; i++)
                         {
                             //resets even when all but one player is dead and boss is defeated
-                            if (npc.boss && Array.IndexOf(DataList[i].BossTypeList, npc.type) != -1)
+                            if (npc.boss && Array.BinarySearch(DataList[i].BossTypeList, npc.type) > -1)
                             {
                                 DataList[i].Counter[j] = 0;
                                 SetCounter(j, i, 0);
@@ -167,7 +210,7 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //in NPCLoot, called when npc.boss == true, resets for all players
+        } //NPCLoot, resets for all players
 
         public static void RecvReset(int whoAmI, BinaryReader reader)
         {
@@ -177,7 +220,7 @@ namespace AssortedCrazyThings
                 DataList[index].Counter[whoAmI] = 0;
                 SetCounter(whoAmI, index, 0, true);
             }
-        } //in HandlePacket
+        } //Mod.HandlePacket
 
         public static void SpawnItem(Player player)
         {
@@ -203,7 +246,7 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //called in OnRespawn
+        } //OnRespawn
 
         public static void ApplyBuffImmune(Player player)
         {
@@ -217,7 +260,7 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //called in UpdateEquips
+        } //PostUpdateEquips
 
         public static void IncreaseCounters(int whoAmI)
         {
@@ -230,17 +273,18 @@ namespace AssortedCrazyThings
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
-                            if (!increasedFor[i] && Array.IndexOf(DataList[i].BossTypeList, Main.npc[k].type) != -1)
+                            if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, Main.npc[k].type) > -1)
                             {
+                                AssUtils.Print("increased counter");
                                 DataList[i].Counter[whoAmI]++;
                                 SetCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
-                                 increasedFor[i] = true;
+                                increasedFor[i] = true;
                             }
                         }
                     }
                 }
             }
-        } //called in PreKill
+        } //PreKill
 
         public static bool CanReduceDamageNPC(int whoAmI, int npcType)
         {
@@ -253,8 +297,9 @@ namespace AssortedCrazyThings
                         for (int j = 0; j < DataList[i].NPCTypeList.Length; j++)
                         {
                             //only reduce damage if accessory worn and a boss alive
-                            if (Array.IndexOf(DataList[i].NPCTypeList, npcType) != -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
+                            if (Array.BinarySearch(DataList[i].NPCTypeList, npcType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
                             {
+                                AssUtils.Print("reduced damage " + npcType);
                                 return true;
                             }
                         }
@@ -275,8 +320,9 @@ namespace AssortedCrazyThings
                         for (int j = 0; j < DataList[i].ProjTypeList.Length; j++)
                         {
                             //only reduce damage if accessory worn and a boss alive
-                            if (Array.IndexOf(DataList[i].ProjTypeList, projType) != -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
+                            if (Array.BinarySearch(DataList[i].ProjTypeList, projType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
                             {
+                                AssUtils.Print("reduced damage " + projType);
                                 return true;
                             }
                         }
@@ -296,7 +342,7 @@ namespace AssortedCrazyThings
                     DataList[i].Accessory[whoAmI] = accessories[i];
                 }
             }
-        } //passed with mPlayer.accessory to set the datalist stuff
+        } //PostUpdateEquips
 
         public static void LoadCounters(int whoAmI, byte[] counters)
         {
@@ -308,40 +354,7 @@ namespace AssortedCrazyThings
                     DataList[i].Counter[whoAmI] = counters[i];
                 }
             }
-        } //OnEnterWorld clientside, and in HandlePacket serverside
-        
-        public static void RegisterItems()
-        {
-            Add("KingSlimeGitgud", -1,
-                NPCID.KingSlime,
-                new int[] { NPCID.BlueSlime },
-                new int[] { ProjectileID.SpikedSlimeSpike });
-            Add("EyeOfCthulhuGitgud", -1,
-                NPCID.EyeofCthulhu,
-                new int[] { NPCID.ServantofCthulhu });
-            Add("BrainOfCthulhuGitgud", BuffID.Slow,
-                NPCID.BrainofCthulhu,
-                new int[] { NPCID.Creeper });
-            Add("EaterOfWorldsGitgud", BuffID.Weak,
-                new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.EaterofWorldsHead },
-                new int[] { NPCID.VileSpit });
-            Add("QueenBeeGitgud", BuffID.Poisoned,
-                NPCID.QueenBee,
-                new int[] { NPCID.Bee, NPCID.BeeSmall },
-                new int[] { ProjectileID.Stinger });
-            Add("SkeletronGitgud", BuffID.Bleeding,
-                NPCID.SkeletronHead,
-                new int[] { NPCID.SkeletronHand },
-                new int[] { ProjectileID.Skull });
-            Add("WallOfFleshGitgud", -1,
-                NPCID.WallofFlesh,
-                new int[] { NPCID.WallofFleshEye },
-                new int[] { ProjectileID.EyeLaser });
-            Add("GreenThumb", BuffID.Poisoned,
-                NPCID.Plantera,
-                new int[] { NPCID.PlanterasHook, NPCID.PlanterasTentacle },
-                new int[] { ProjectileID.ThornBall, ProjectileID.SeedPlantera, ProjectileID.PoisonSeedPlantera });
-        } //
+        } //OnEnterWorld clientside, Mod.HandlePacket serverside
 
         public static void Load()
         {
@@ -352,15 +365,77 @@ namespace AssortedCrazyThings
             //since Add always increases the array size by one, it will make it so the last element is null
             Array.Resize(ref DataList, DataList.Length - 1);
             if (DataList.Length == 0) DataList = null;
+        } //Mod.Load
+
+        private static void RegisterItems()
+        {
+            Add("KingSlimeGitgud", -1,
+                NPCID.KingSlime,
+                nPCTypeList: new int[] { NPCID.BlueSlime },
+                projTypeList: new int[] { ProjectileID.SpikedSlimeSpike });
+            Add("EyeOfCthulhuGitgud", -1,
+                NPCID.EyeofCthulhu,
+                nPCTypeList: new int[] { NPCID.ServantofCthulhu });
+            Add("BrainOfCthulhuGitgud", BuffID.Slow,
+                NPCID.BrainofCthulhu,
+                nPCTypeList: new int[] { NPCID.Creeper });
+            Add("EaterOfWorldsGitgud", BuffID.Weak,
+                new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.EaterofWorldsHead },
+                nPCTypeList: new int[] { NPCID.VileSpit });
+            Add("QueenBeeGitgud", BuffID.Poisoned,
+                NPCID.QueenBee,
+                nPCTypeList: new int[] { NPCID.Bee, NPCID.BeeSmall },
+                projTypeList: new int[] { ProjectileID.Stinger });
+            Add("SkeletronGitgud", BuffID.Bleeding,
+                NPCID.SkeletronHead,
+                nPCTypeList: new int[] { NPCID.SkeletronHand },
+                projTypeList: new int[] { ProjectileID.Skull });
+            Add("WallOfFleshGitgud", -1,
+                NPCID.WallofFlesh,
+                nPCTypeList: new int[] { NPCID.WallofFleshEye },
+                projTypeList: new int[] { ProjectileID.EyeLaser });
+            //HARDMODE
+            Add("DestroyerGitgud", -1,
+                NPCID.TheDestroyer,
+                nPCTypeList: new int[] { NPCID.TheDestroyerBody, NPCID.TheDestroyerTail, NPCID.Probe },
+                projTypeList: new int[] { ProjectileID.PinkLaser });
+            Add("TwinsGitgud", BuffID.CursedInferno,
+                new int[] { NPCID.Retinazer, NPCID.Spazmatism },
+                projTypeList: new int[] { ProjectileID.EyeLaser, ProjectileID.CursedFlameHostile, ProjectileID.EyeFire, });
+            Add("SkeletronPrimeGitgud", -1,
+                NPCID.SkeletronPrime,
+                nPCTypeList: new int[] { NPCID.PrimeCannon, NPCID.PrimeLaser, NPCID.PrimeSaw, NPCID.PrimeVice, },
+                projTypeList: new int[] { ProjectileID.DeathLaser, ProjectileID.BombSkeletronPrime, });
+            Add("GreenThumb", BuffID.Poisoned,
+                NPCID.Plantera,
+                nPCTypeList: new int[] { NPCID.PlanterasHook, NPCID.PlanterasTentacle },
+                projTypeList: new int[] { ProjectileID.ThornBall, ProjectileID.SeedPlantera, ProjectileID.PoisonSeedPlantera });
+            Add("GolemGitgud", BuffID.OnFire,
+                NPCID.Golem,
+                nPCTypeList: new int[] { NPCID.GolemFistLeft, NPCID.GolemFistRight, NPCID.GolemHead, NPCID.GolemHeadFree },
+                projTypeList: new int[] { ProjectileID.Fireball, ProjectileID.EyeBeam });
+            Add("DukeFishronGitgud", -1,
+                NPCID.DukeFishron,
+                nPCTypeList: new int[] { NPCID.DetonatingBubble, NPCID.Sharkron, NPCID.Sharkron2 },
+                projTypeList: new int[] { ProjectileID.Sharknado, ProjectileID.SharknadoBolt, ProjectileID.Cthulunado });
+            Add("LunaticCultistGitgud", BuffID.OnFire,
+                NPCID.CultistBoss,
+                nPCTypeList: new int[] { NPCID.AncientCultistSquidhead,/* NPCID.CultistBossClone,*/ },
+                projTypeList: new int[] { ProjectileID.CultistBossIceMist, ProjectileID.CultistBossLightningOrb, ProjectileID.CultistBossLightningOrbArc, ProjectileID.CultistBossFireBall, ProjectileID.CultistBossFireBallClone });
+            Add("MoonLordGitgud", -1,
+                NPCID.MoonLordCore,
+                nPCTypeList: new int[] { NPCID.MoonLordFreeEye,/* NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordLeechBlob */}, //don't deal any damage
+                projTypeList: new int[] { ProjectileID.PhantasmalEye, ProjectileID.PhantasmalSphere, ProjectileID.PhantasmalDeathray, ProjectileID.PhantasmalBolt });
+            //Add("NameOfClassOfItem", <BuffID, or -1>,
+            //    <NPCID of boss, or new int[] {NPCID1, NPCID2 etc } if multiple segments of a boss>,
+            //    <nPCTypeList: new int[] { NPCID1, NPCID2 etc } for the minions of the boss>,
+            //    <projTypeList: new int[] { ProjectileID1, ProjectileID2 etc } for the projectiles of the boss>);
+            // Last two optional (if boss is super basic, but I can't think of one)
         }
     }
 
     public class GitGudPlayer : ModPlayer
     {
-        //other places where adjustments are needed:
-        //GitGudReset in AssGlobalNPC
-        //HandlePacket in ACT, and the enum
-
         public Func<BitArray> gitgudAccessories;
         //public Func<byte[]> gitgudCounters;
         
@@ -384,9 +459,30 @@ namespace AssortedCrazyThings
         
         public byte wallOfFleshGitgudCounter = 0;
         public bool wallOfFleshGitgud = false;
-        
+
+        public byte destroyerGitgudCounter = 0;
+        public bool destroyerGitgud = false;
+
+        public byte twinsGitgudCounter = 0;
+        public bool twinsGitgud = false;
+
+        public byte skeletronPrimeGitgudCounter = 0;
+        public bool skeletronPrimeGitgud = false;
+
         public byte planteraGitgudCounter = 0;
         public bool planteraGitgud = false;
+
+        public byte golemGitgudCounter = 0;
+        public bool golemGitgud = false;
+
+        public byte dukeFishronGitgudCounter = 0;
+        public bool dukeFishronGitgud = false;
+
+        public byte lunaticCultistGitgudCounter = 0;
+        public bool lunaticCultistGitgud = false;
+
+        public byte moonLordGitgudCounter = 0;
+        public bool moonLordGitgud = false;
 
         public override void ResetEffects()
         {
@@ -397,7 +493,14 @@ namespace AssortedCrazyThings
             queenBeeGitgud = false;
             skeletronGitgud = false;
             wallOfFleshGitgud = false;
+            destroyerGitgud = false;
+            twinsGitgud = false;
+            skeletronPrimeGitgud = false;
             planteraGitgud = false;
+            golemGitgud = false;
+            dukeFishronGitgud = false;
+            lunaticCultistGitgud = false;
+            moonLordGitgud = false;
         }
 
         public override void Initialize()
@@ -411,10 +514,18 @@ namespace AssortedCrazyThings
                 queenBeeGitgud,
                 skeletronGitgud,
                 wallOfFleshGitgud,
+                destroyerGitgud,
+                twinsGitgud,
+                skeletronPrimeGitgud,
                 planteraGitgud,
+                golemGitgud,
+                dukeFishronGitgud,
+                lunaticCultistGitgud,
+                moonLordGitgud,
             }
             ));
 
+            //unused atm
             //gitgudCounters = new Func<byte[]>(() => new byte[]
             //{
             //    kingSlimeGitgudCounter,
@@ -442,7 +553,14 @@ namespace AssortedCrazyThings
                 {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
                 {"skeletronGitgudCounter", (byte)skeletronGitgudCounter},
                 {"wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter},
+                {"destroyerGitgudCounter", (byte)destroyerGitgudCounter},
+                {"twinsGitgudCounter", (byte)twinsGitgudCounter},
+                {"skeletronPrimeGitgudCounter", (byte)skeletronPrimeGitgudCounter},
                 {"planteraGitgudCounter", (byte)planteraGitgudCounter},
+                {"golemGitgudCounter", (byte)golemGitgudCounter},
+                {"dukeFishronGitgudCounter", (byte)dukeFishronGitgudCounter},
+                {"lunaticCultistGitgudCounter", (byte)lunaticCultistGitgudCounter},
+                {"moonLordGitgudCounter", (byte)moonLordGitgudCounter},
             };
         }
 
@@ -455,14 +573,14 @@ namespace AssortedCrazyThings
             queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
             skeletronGitgudCounter = tag.GetByte("skeletronGitgudCounter");
             wallOfFleshGitgudCounter = tag.GetByte("wallOfFleshGitgudCounter");
-            if (tag.ContainsKey("planteraGitGudCounter"))
-            {
-                planteraGitgudCounter = tag.GetByte("planteraGitGudCounter"); //the one with the typo
-            }
-            else
-            {
-                planteraGitgudCounter = tag.GetByte("planteraGitgudCounter");
-            }
+            destroyerGitgudCounter = tag.GetByte("destroyerGitgudCounter");
+            twinsGitgudCounter = tag.GetByte("twinsGitgudCounter");
+            skeletronPrimeGitgudCounter = tag.GetByte("skeletronPrimeGitgudCounter");
+            planteraGitgudCounter = tag.GetByte("planteraGitgudCounter");
+            golemGitgudCounter = tag.GetByte("golemGitgudCounter");
+            dukeFishronGitgudCounter = tag.GetByte("dukeFishronGitgudCounter");
+            lunaticCultistGitgudCounter = tag.GetByte("lunaticCultistGitgudCounter");
+            moonLordGitgudCounter = tag.GetByte("moonLordGitgudCounter");
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
@@ -493,7 +611,14 @@ namespace AssortedCrazyThings
                 queenBeeGitgudCounter,
                 skeletronGitgudCounter,
                 wallOfFleshGitgudCounter,
+                destroyerGitgudCounter,
+                twinsGitgudCounter,
+                skeletronPrimeGitgudCounter,
                 planteraGitgudCounter,
+                golemGitgudCounter,
+                dukeFishronGitgudCounter,
+                lunaticCultistGitgudCounter,
+                moonLordGitgudCounter,
             });
 
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -506,6 +631,7 @@ namespace AssortedCrazyThings
         {
             GitgudData.UpdateAccessories(player.whoAmI, gitgudAccessories());
             GitgudData.ApplyBuffImmune(player);
+            //AssUtils.Print(GitgudData.DataList.Length);
         }
 
         public override void OnRespawn(Player player)

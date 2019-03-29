@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 			DisplayName.SetDefault("Toy Seagull");
             Tooltip.SetDefault("Consolation Prize"
                 + "\n15% reduced damage taken from Eater of Worlds"
-                + "\nImmunity to weak while Eater of Worlds is alive"
+                + "\nImmunity to 'Weak' while Eater of Worlds is alive"
                 + "\n[c/E180CE:'git gud']");
 		}
 
