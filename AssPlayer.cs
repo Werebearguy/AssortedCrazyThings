@@ -667,13 +667,9 @@ namespace AssortedCrazyThings
                 }
                 layers.Insert(wingLayer + 1, SlimeHandlerKnapsack);
             }
-            else
+            if (wingLayer != -1)
             {
-                if (wingLayer != -1)
-                {
-                    //HarvesterWings.visible = true;
-                    layers.Insert(wingLayer + 1, HarvesterWings);
-                }
+                layers.Insert(wingLayer + 1, HarvesterWings);
             }
 
             int bodyLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Body"));
