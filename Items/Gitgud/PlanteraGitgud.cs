@@ -1,30 +1,19 @@
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-	public class GreenThumb : ModItem
-	{
+    public class GreenThumb : GitgudItem
+    {
         public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Green Thumb");
-            Tooltip.SetDefault("Consolation Prize"
-                + "\n15% reduced damage taken from Plantera"
-                + "\nImmunity to 'Poisoned' while Plantera is alive"
-                + "\n[c/E180CE:'git gud']");
-		}
+        {
+            DisplayName.SetDefault("Green Thumb");
+        }
 
-        public override void SetDefaults()
-		{
-			item.CloneDefaults(ItemID.Silk);
+        public override void MoreSetDefaults()
+        {
             item.width = 32;
-            item.height = 30;
-            item.value = Item.sellPrice(copper: 1);
-            item.rare = -1;
-            item.maxStack = 1;
-            item.accessory = true;
-		}
+            item.height = 32;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

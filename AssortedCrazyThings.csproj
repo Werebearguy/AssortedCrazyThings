@@ -163,6 +163,7 @@
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
     <Compile Include="Items\EnhancedHunterPotion.cs" />
+    <Compile Include="Items\Gitgud\GitgudItem.cs" />
     <Compile Include="Items\Gitgud\DestroyerGitgud.cs" />
     <Compile Include="Items\Gitgud\LunaticCultistGitgud.cs" />
     <Compile Include="Items\Gitgud\MoonLordGitgud.cs" />
