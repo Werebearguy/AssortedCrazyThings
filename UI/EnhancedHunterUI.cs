@@ -257,12 +257,19 @@ namespace AssortedCrazyThings.UI
                     finalWidth = tex.Width;
                     finalHeight = tex.Height;
                 }
+                int arrowPad = 10;
 
-                //adjust pos if outside of screen, more padding
-                if (ldrawPos.X >= Main.screenWidth - finalWidth * 1.25f) ldrawPos.X = Main.screenWidth - finalWidth * 1.25f;
-                if (ldrawPos.X <= finalWidth * 1.25f) ldrawPos.X = finalWidth * 1.25f;
-                if (ldrawPos.Y >= Main.screenHeight - finalHeight * 1.25f) ldrawPos.Y = Main.screenHeight - finalHeight * 1.25f;
-                if (ldrawPos.Y <= finalHeight * 1.25f) ldrawPos.Y = finalHeight * 1.25f;
+                //adjust pos if outside of screen, more padding for arrow
+                if (ldrawPos.X >= Main.screenWidth - finalWidth - arrowPad) ldrawPos.X = Main.screenWidth - finalWidth - arrowPad;
+                if (ldrawPos.X <= finalWidth + arrowPad) ldrawPos.X = finalWidth + arrowPad;
+                if (ldrawPos.Y >= Main.screenHeight - finalHeight - arrowPad) ldrawPos.Y = Main.screenHeight - finalHeight - arrowPad;
+                if (ldrawPos.Y <= finalHeight + arrowPad) ldrawPos.Y = finalHeight + arrowPad;
+
+                ////adjust pos if outside of screen, more padding
+                //if (ldrawPos.X >= Main.screenWidth - finalWidth * 1.25f) ldrawPos.X = Main.screenWidth - finalWidth * 1.25f;
+                //if (ldrawPos.X <= finalWidth * 1.25f) ldrawPos.X = finalWidth * 1.25f;
+                //if (ldrawPos.Y >= Main.screenHeight - finalHeight * 1.25f) ldrawPos.Y = Main.screenHeight - finalHeight * 1.25f;
+                //if (ldrawPos.Y <= finalHeight * 1.25f) ldrawPos.Y = finalHeight * 1.25f;
 
                 //create rect around center
                 Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);

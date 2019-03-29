@@ -87,7 +87,7 @@ namespace AssortedCrazyThings
 
         public static bool IsWormBodyOrTail(NPC npc)
         {
-            return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe || npc.realLife != -1;
+            return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe/* || npc.realLife != -1*/;
         }
 
         public static string GetTimeAsString(bool accurate = true)
