@@ -13,12 +13,13 @@ namespace AssortedCrazyThings.Items.Gitgud
             if (index != -1)
             {
                 tooltips.Add(new TooltipLine(mod, "Tooltip0", "Consolation Prize"));
-                tooltips.Add(new TooltipLine(mod, "Reduced", "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken from " + GitgudData.DataList[index].BossName));
+                string reduced = "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken " + (GitgudData.DataList[index].Invasion != null ? "during " + GitgudData.DataList[index].Invasion : "from " + GitgudData.DataList[index].BossName);
+                tooltips.Add(new TooltipLine(mod, "Reduced", reduced));
                 if (GitgudData.DataList[index].BuffType != -1)
                 {
                     tooltips.Add(new TooltipLine(mod, "BuffImmune", "Immunity to '" + GitgudData.DataList[index].BuffName + "' while " + GitgudData.DataList[index].BossName + " is alive"));
                 }
-
+                
                 if (!GitgudData.DataList[index].Accessory[Main.myPlayer] && !Main.LocalPlayer.HasItem(item.type))
                 {
                     tooltips.Add(new TooltipLine(mod, "Count", "Times died: " + GitgudData.DataList[index].Counter[Main.myPlayer] + "/" + GitgudData.DataList[index].CounterMax));

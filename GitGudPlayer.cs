@@ -43,13 +43,15 @@ namespace AssortedCrazyThings
         public int[] ProjTypeList { private set; get; } //Projectiles that deal damage during the boss fight
         public byte CounterMax { private set; get; } //threshold, after which the item drops
         public float Reduction { private set; get; } //percentage by which the damage gets reduced
+        public string Invasion { private set; get; } //invasion name
+        public Func<bool> InvasionBool { private set; get; } //invasion in progress, ignore the lists for damage reduction
 
         //used from outside, 255 long
         public BitArray Accessory { private set; get; } //the bool that is set by the wearing accessory
         public byte[] Counter { private set; get; } //number of times player died to the boss
 
         public GitgudData(string itemName, string buffName, int itemType, int buffType,
-            int[] bossTypeList, int[] nPCTypeList, int[] projTypeList, byte counterMax, float reduction)
+            int[] bossTypeList, int[] nPCTypeList, int[] projTypeList, byte counterMax, float reduction, string invasion, Func<bool> invasionBool)
         {
             ItemName = itemName;
             ItemType = itemType;
@@ -63,14 +65,14 @@ namespace AssortedCrazyThings
             npc.active = false;
 
             if (nPCTypeList == null) nPCTypeList = new int[1];
-
-            NPCTypeList = AssUtils.ConcatArray(nPCTypeList, bossTypeList);
-
             if (projTypeList == null) projTypeList = new int[1];
 
+            NPCTypeList = AssUtils.ConcatArray(nPCTypeList, bossTypeList);
             ProjTypeList = projTypeList;
             CounterMax = counterMax;
             Reduction = reduction;
+            Invasion = invasion;
+            InvasionBool = invasionBool ?? (() => false);
 
             Array.Sort(BossTypeList);
             Array.Sort(NPCTypeList);
@@ -86,19 +88,19 @@ namespace AssortedCrazyThings
         }
 
         public static void Add(string itemName, string buffName, int buffType,
-            int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f)
+            int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = null, Func<bool> invasionBool = null)
         {
             int itemType = AssUtils.Instance.ItemType(itemName);
             if (itemType == 0) throw new Exception("no gitgud item called '" + itemName + "' found. Did you spell it correctly?");
 
-            DataList[DataList.Length - 1] = new GitgudData(itemName, buffName, itemType, buffType, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction);
+            DataList[DataList.Length - 1] = new GitgudData(itemName, buffName, itemType, buffType, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, invasion, invasionBool);
             Array.Resize(ref DataList, DataList.Length + 1);
         }
 
         public static void Add(string itemName, string buffName, int buffType,
-            int bossType, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f)
+            int bossType, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = null, Func<bool> invasionBool = null)
         {
-            Add(itemName, buffName, buffType, new int[] { bossType }, nPCTypeList, projTypeList, counterMax, reduction);
+            Add(itemName, buffName, buffType, new int[] { bossType }, nPCTypeList, projTypeList, counterMax, reduction, invasion, invasionBool);
         }
 
         public static int GetIndexFromItemType(int type)
@@ -136,6 +138,7 @@ namespace AssortedCrazyThings
                 case 6:
                     gPlayer.wallOfFleshGitgudCounter = value;
                     break;
+                    //HARDMODE
                 case 7:
                     gPlayer.destroyerGitgudCounter = value;
                     break;
@@ -160,6 +163,10 @@ namespace AssortedCrazyThings
                 case 14:
                     gPlayer.moonLordGitgudCounter = value;
                     break;
+                    //INVASIONS
+                //case 15:
+                //    gPlayer.pirateInvasionGitgudCounter = value;
+                //    break;
                 default: //shouldn't get there hopefully
                     if (packet) ErrorLogger.Log("Recieved unspecified GitgudReset Packet " + index);
                     else throw new Exception("Unspecified index in the gitgud array");
@@ -231,7 +238,7 @@ namespace AssortedCrazyThings
                                     packet.Write((byte)i);
                                     packet.Send(); //send to all clients
                                 }
-                                AssUtils.Print("reset");
+                                //AssUtils.Print("reset");
                             }
                         }
                     }
@@ -302,7 +309,7 @@ namespace AssortedCrazyThings
                         {
                             if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, Main.npc[k].type) > -1)
                             {
-                                AssUtils.Print("increased counter");
+                                //AssUtils.Print("increased counter");
                                 DataList[i].Counter[whoAmI]++;
                                 SetCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
                                 increasedFor[i] = true;
@@ -321,10 +328,11 @@ namespace AssortedCrazyThings
                 {
                     if (DataList[i].Accessory[whoAmI])
                     {
-                        //only reduce damage if accessory worn and a boss alive
-                        if (Array.BinarySearch(DataList[i].NPCTypeList, npcType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
+                        //only reduce damage if accessory worn and (either an invasion is going on or a boss alive)
+                        if (DataList[i].InvasionBool() ||
+                            (Array.BinarySearch(DataList[i].NPCTypeList, npcType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)))
                         {
-                            AssUtils.Print("reduced damage " + npcType);
+                            //AssUtils.Print("reduced damage npc " + npcType + " " + DataList[i].InvasionBool());
                             damage = (int)(damage * (1 - DataList[i].Reduction));
                             return;
                         }
@@ -341,10 +349,11 @@ namespace AssortedCrazyThings
                 {
                     if (DataList[i].Accessory[whoAmI])
                     {
-                        //only reduce damage if accessory worn and a boss alive
-                        if (Array.BinarySearch(DataList[i].ProjTypeList, projType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
+                        //only reduce damage if accessory worn and (either an invasion is going on or a boss alive)
+                        if (DataList[i].InvasionBool() ||
+                            (Array.BinarySearch(DataList[i].ProjTypeList, projType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)))
                         {
-                            AssUtils.Print("reduced damage " + projType);
+                            //AssUtils.Print("reduced damage proj " + projType + " " + DataList[i].InvasionBool());
                             damage = (int)(damage * (1 - DataList[i].Reduction));
                             return;
                         }
@@ -422,6 +431,7 @@ namespace AssortedCrazyThings
                 NPCID.WallofFlesh,
                 nPCTypeList: new int[] { NPCID.WallofFleshEye },
                 projTypeList: new int[] { ProjectileID.EyeLaser });
+
             //HARDMODE
             Add("DestroyerGitgud",
                 "", -1,
@@ -462,7 +472,15 @@ namespace AssortedCrazyThings
                 new int[] { NPCID.MoonLordHead, NPCID.MoonLordCore },
                 nPCTypeList: new int[] { NPCID.MoonLordFreeEye,/* NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordLeechBlob */}, //don't deal any damage
                 projTypeList: new int[] { ProjectileID.PhantasmalEye, ProjectileID.PhantasmalSphere, ProjectileID.PhantasmalDeathray, ProjectileID.PhantasmalBolt });
-            //Add("NameOfClassOfItem",
+            //INVASIONS
+            //Add("PirateInvasionGitgud",
+            //    "", -1,
+            //    NPCID.PirateShip,
+            //    reduction: 0.10f,
+            //    invasion: "The Pirate Invasion",
+            //    invasionBool: ()=> (Main.invasionType == InvasionID.PirateInvasion));
+
+            //Add("ClassNameOfItem",
             //    <BuffName, should be "" when the other thing is -1>, <BuffID, or -1>,
             //    <NPCID of boss, or new int[] {NPCID1, NPCID2 etc } if multiple segments of a boss>,
             //    <nPCTypeList: new int[] { NPCID1, NPCID2 etc } for the minions of the boss>,
@@ -474,7 +492,6 @@ namespace AssortedCrazyThings
     public class GitGudPlayer : ModPlayer
     {
         public Func<BitArray> gitgudAccessories;
-        //public Func<byte[]> gitgudCounters;
         
         public byte kingSlimeGitgudCounter = 0;
         public bool kingSlimeGitgud = false;
@@ -496,6 +513,8 @@ namespace AssortedCrazyThings
         
         public byte wallOfFleshGitgudCounter = 0;
         public bool wallOfFleshGitgud = false;
+
+        //HARDMODE
 
         public byte destroyerGitgudCounter = 0;
         public bool destroyerGitgud = false;
@@ -521,6 +540,11 @@ namespace AssortedCrazyThings
         public byte moonLordGitgudCounter = 0;
         public bool moonLordGitgud = false;
 
+        //INVASIONS
+
+        //public byte pirateInvasionGitgudCounter = 0;
+        //public bool pirateInvasionGitgud = false;
+
         public override void ResetEffects()
         {
             kingSlimeGitgud = false;
@@ -538,6 +562,7 @@ namespace AssortedCrazyThings
             dukeFishronGitgud = false;
             lunaticCultistGitgud = false;
             moonLordGitgud = false;
+            //pirateInvasionGitgud = false;
         }
 
         public override void Initialize()
@@ -559,22 +584,9 @@ namespace AssortedCrazyThings
                 dukeFishronGitgud,
                 lunaticCultistGitgud,
                 moonLordGitgud,
+                //pirateInvasionGitgud,
             }
             ));
-
-            //unused atm
-            //gitgudCounters = new Func<byte[]>(() => new byte[]
-            //{
-            //    kingSlimeGitgudCounter,
-            //    eyeOfCthulhuGitgudCounter,
-            //    brainOfCthulhuGitgudCounter,
-            //    eaterOfWorldsGitgudCounter,
-            //    queenBeeGitgudCounter,
-            //    skeletronGitgudCounter,
-            //    wallOfFleshGitgudCounter,
-            //    planteraGitgudCounter,
-            //}
-            //);
         }
 
         //no need for syncplayer because the server handles the item drop stuff
@@ -598,6 +610,7 @@ namespace AssortedCrazyThings
                 {"dukeFishronGitgudCounter", (byte)dukeFishronGitgudCounter},
                 {"lunaticCultistGitgudCounter", (byte)lunaticCultistGitgudCounter},
                 {"moonLordGitgudCounter", (byte)moonLordGitgudCounter},
+                //{"pirateInvasionGitgudCounter", (byte)pirateInvasionGitgudCounter},
             };
         }
 
@@ -618,6 +631,7 @@ namespace AssortedCrazyThings
             dukeFishronGitgudCounter = tag.GetByte("dukeFishronGitgudCounter");
             lunaticCultistGitgudCounter = tag.GetByte("lunaticCultistGitgudCounter");
             moonLordGitgudCounter = tag.GetByte("moonLordGitgudCounter");
+            //pirateInvasionGitgudCounter = tag.GetByte("pirateInvasionGitgudCounter");
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
@@ -656,6 +670,7 @@ namespace AssortedCrazyThings
                 dukeFishronGitgudCounter,
                 lunaticCultistGitgudCounter,
                 moonLordGitgudCounter,
+                //pirateInvasionGitgudCounter,
             });
 
             if (Main.netMode == NetmodeID.MultiplayerClient)
