@@ -88,7 +88,7 @@ namespace AssortedCrazyThings
         }
 
         public static void Add(string itemName, string buffName, int buffType,
-            int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = null, Func<bool> invasionBool = null)
+            int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = "", Func<bool> invasionBool = null)
         {
             int itemType = AssUtils.Instance.ItemType(itemName);
             if (itemType == 0) throw new Exception("no gitgud item called '" + itemName + "' found. Did you spell it correctly?");
@@ -98,22 +98,42 @@ namespace AssortedCrazyThings
         }
 
         public static void Add(string itemName, string buffName, int buffType,
-            int bossType, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = null, Func<bool> invasionBool = null)
+            int bossType, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = "", Func<bool> invasionBool = null)
         {
             Add(itemName, buffName, buffType, new int[] { bossType }, nPCTypeList, projTypeList, counterMax, reduction, invasion, invasionBool);
         }
 
-        public static int GetIndexFromItemType(int type)
+        private static void DeleteItemFromInventory(Player player, int index)
         {
-            if (DataList != null)
+            int itemType = DataList[index].ItemType;
+
+            Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.armor }; //go though player inv
+            for (int y = 0; y < inventoryArray.Length; y++)
             {
-                for (int i = 0; i < DataList.Length; i++)
+                for (int e = 0; e < inventoryArray[y].Length; e++)
                 {
-                    if (DataList[i].ItemType == type) return i;
+                    if (inventoryArray[y][e].type == itemType) //find gitgud item
+                    {
+                        inventoryArray[y][e].TurnToAir();
+                        AssUtils.Print("reset in " + y + ", slot " + e);
+                    }
                 }
             }
-            return -1;
-        }
+
+            //trash slot
+            if (player.trashItem.type == itemType)
+            {
+                player.trashItem.TurnToAir();
+                AssUtils.Print("reset trash");
+            }
+
+            //mouse item
+            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
+            {
+                Main.mouseItem.TurnToAir();
+                AssUtils.Print("reset mouse");
+            }
+        } //Reset, RecvReset
 
         private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
         {
@@ -177,6 +197,18 @@ namespace AssortedCrazyThings
             }
         } //sets the player values
 
+        public static int GetIndexFromItemType(int type)
+        {
+            if (DataList != null)
+            {
+                for (int i = 0; i < DataList.Length; i++)
+                {
+                    if (DataList[i].ItemType == type) return i;
+                }
+            }
+            return -1;
+        } //GitgudItem
+
         public static void SendCounters(int whoAmI)
         {
             if (DataList != null)
@@ -234,6 +266,7 @@ namespace AssortedCrazyThings
                             {
                                 DataList[i].Counter[j] = 0;
                                 SetCounter(j, i, 0);
+                                DeleteItemFromInventory(Main.player[j], i);
                                 if (Main.netMode == NetmodeID.Server)
                                 {
                                     ModPacket packet = AssUtils.Instance.GetPacket();
@@ -256,6 +289,8 @@ namespace AssortedCrazyThings
                 int index = reader.ReadByte();
                 DataList[index].Counter[whoAmI] = 0;
                 SetCounter(whoAmI, index, 0, true);
+                DeleteItemFromInventory(Main.player[whoAmI], index);
+                //AssUtils.Print("recv reset from server");
             }
         } //Mod.HandlePacket
 

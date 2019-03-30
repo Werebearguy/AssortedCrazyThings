@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             if (index != -1)
             {
                 tooltips.Add(new TooltipLine(mod, "Tooltip0", "Consolation Prize"));
-                string reduced = "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken " + (GitgudData.DataList[index].Invasion != null ? "during " + GitgudData.DataList[index].Invasion : "from " + GitgudData.DataList[index].BossName);
+                string reduced = "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken " + (GitgudData.DataList[index].Invasion != "" ? "during " + GitgudData.DataList[index].Invasion : "from " + GitgudData.DataList[index].BossName);
                 tooltips.Add(new TooltipLine(mod, "Reduced", reduced));
                 if (GitgudData.DataList[index].BuffType != -1)
                 {
