@@ -679,14 +679,14 @@ namespace AssortedCrazyThings
 
         private void UpdateHoverNPCUI(GameTime gameTime)
         {
-            if (AssUtils.AnyNPCs(AssWorld.harvesterTypes))
-            {
-                HoverNPCUI.visible = true;
-            }
-            else
-            {
-                HoverNPCUI.visible = false;
-            }
+            //if (AssUtils.AnyNPCs(AssWorld.harvesterTypes))
+            //{
+            //    HoverNPCUI.visible = true;
+            //}
+            //else
+            //{
+            //    HoverNPCUI.visible = false;
+            //}
             HoverNPCUI.Update(gameTime);
         }
 

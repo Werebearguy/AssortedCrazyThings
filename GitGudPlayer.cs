@@ -105,9 +105,12 @@ namespace AssortedCrazyThings
 
         public static int GetIndexFromItemType(int type)
         {
-            for (int i = 0; i < DataList.Length; i++)
+            if (DataList != null)
             {
-                if (DataList[i].ItemType == type) return i;
+                for (int i = 0; i < DataList.Length; i++)
+                {
+                    if (DataList[i].ItemType == type) return i;
+                }
             }
             return -1;
         }

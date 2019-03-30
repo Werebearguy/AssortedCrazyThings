@@ -101,7 +101,7 @@ namespace AssortedCrazyThings.UI
         //Update
         public override void Update(GameTime gameTime)
         {
-            if (!visible) return;
+            //if (!visible) return;
             base.Update(gameTime);
 
             drawString = "";
@@ -131,7 +131,7 @@ namespace AssortedCrazyThings.UI
         //Draw
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            if (!visible) return;
+            //if (!visible) return;
             base.DrawSelf(spriteBatch);
 
             float num = Main.mouseTextColor / 255f;
