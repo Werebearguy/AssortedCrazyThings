@@ -81,6 +81,7 @@ namespace AssortedCrazyThings
         public bool CuteSlimeRedNew = false;
         public bool CuteSlimeRainbowNew = false;
         public bool CuteSlimePurpleNew = false;
+        public bool CuteSlimePrincessNew = false;
         public bool CuteSlimePinkNew = false;
         public bool CuteSlimeIceNew = false;
         public bool CuteSlimeJungleNew = false;
@@ -156,6 +157,7 @@ namespace AssortedCrazyThings
             CuteSlimeSandNew = false;
             CuteSlimeRedNew = false;
             CuteSlimeRainbowNew = false;
+            CuteSlimePrincessNew = false;
             CuteSlimePurpleNew = false;
             CuteSlimePinkNew = false;
             CuteSlimeIceNew = false;

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Buffs\CuteSlimeJungleNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimePrincessNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeSandNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeToxicNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeIceNewBuff.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Items\Gitgud\PlanteraGitgud.cs" />
     <Compile Include="Items\KnittingSet.cs" />
     <Compile Include="Items\Pets\CuteSlimeJungleNew.cs" />
+    <Compile Include="Items\Pets\CuteSlimePrincessNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeSandNew.cs" />
     <Compile Include="Items\Pets\DrumstickElementalItem.cs" />
     <Compile Include="Items\Pets\MiniAntlionItem.cs" />
@@ -284,6 +286,7 @@
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimePrincessNewProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeJungleNewProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeSandNewProj.cs" />
     <Compile Include="Projectiles\Pets\DrumstickElementalProj.cs" />

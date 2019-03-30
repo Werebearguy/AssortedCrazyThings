@@ -143,7 +143,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
             }
 
-            bool drawnPreDraw = drawPreAddition ? MorePreDrawBaseSprite(spriteBatch, drawColor, useNoHair) : true; //do a pre-draw for the rainbow slimes
+            bool drawnPreDraw = drawPreAddition ? MorePreDrawBaseSprite(spriteBatch, drawColor, useNoHair) : true; //do a pre-draw for the rainbow and dungeon slimes
 
             if (drawnPreDraw)
             {
@@ -163,7 +163,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
             }
 
-            if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor); //used for xmas slime bow
+            if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor); //used for xmas slime bow and princess crown
         }
 
         public virtual bool MorePreDrawBaseSprite(SpriteBatch spriteBatch, Color drawColor, bool useNoHair)

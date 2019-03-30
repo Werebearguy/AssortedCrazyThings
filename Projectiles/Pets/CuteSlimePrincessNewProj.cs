@@ -5,11 +5,19 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteSlimeXmasNewProj : CuteSlimeBaseProj
+    public class CuteSlimePrincessNewProj : CuteSlimeBaseProj
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/CuteSlimeBlueNewProj"; //temp
+            }
+        }
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Christmas Slime");
+            DisplayName.SetDefault("Cute Blue Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -18;
@@ -32,9 +40,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.CuteSlimeXmasNew = false;
+                modPlayer.CuteSlimePrincessNew = false;
             }
-            if (modPlayer.CuteSlimeXmasNew)
+            if (modPlayer.CuteSlimePrincessNew)
             {
                 projectile.timeLeft = 2;
             }
@@ -47,7 +55,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeXmasNewProjAddition");
+            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimePrincessNewProjAddition");
             Rectangle frameLocal = new Rectangle(0, frame2 * image.Height / 10, image.Width, image.Height / 10);
             Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, -6f - drawOriginOffsetY + projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effects, 0f);
