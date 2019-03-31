@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class ObservingEyeProj : ModProjectile
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/DocileDemonEyeProj_0"; //temp
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Observing Eye");
@@ -27,8 +19,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
             aiType = ProjectileID.ZephyrFish;
-            projectile.width = 22;
-            projectile.height = 34;
+            projectile.width = 30;
+            projectile.height = 48;
         }
 
         public override bool PreAI()
