@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Golem Jab Item");
+            DisplayName.SetDefault("Golem Consolation Item");
         }
 
         public override void MoreSetDefaults()

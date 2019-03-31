@@ -6,13 +6,13 @@ namespace AssortedCrazyThings.Items.Gitgud
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Moon Lord Jab Item");
+            DisplayName.SetDefault("Bright Side of the Moon");
         }
 
         public override void MoreSetDefaults()
         {
-            item.width = 32;
-            item.height = 32;
+            item.width = 30;
+            item.height = 30;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
