@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
@@ -56,6 +58,50 @@ namespace AssortedCrazyThings
             return dust;
         }
 
+        public static void DrawTether(string Tex, Vector2 Start, Vector2 End, int Alpha = 255)
+        {
+            DrawTether(ModLoader.GetTexture(Tex), Start, End, Alpha);
+        }
+
+        public static void DrawTether(Texture2D Tex, Vector2 Start, Vector2 End, int Alpha = 255)
+        {
+            Vector2 position = Start;
+            Vector2 mountedCenter = End;
+            Vector2 origin = new Vector2(Tex.Width * 0.5f, Tex.Height * 0.5f);
+            float num1 = Tex.Height;
+            Vector2 vector2_4 = mountedCenter - position;
+            Vector2 vector2_4tt = mountedCenter - position;
+            float keepgoing = vector2_4tt.Length();
+            Vector2 vector2t = vector2_4;
+            vector2t.Normalize();
+            position -= vector2t * (num1 * 0.5f);
+
+            float rotation = (float)Math.Atan2(vector2_4.Y, vector2_4.X) - 1.57f;
+            bool flag = true;
+            if (float.IsNaN(position.X) && float.IsNaN(position.Y))
+                flag = false;
+            if (float.IsNaN(vector2_4.X) && float.IsNaN(vector2_4.Y))
+                flag = false;
+            while (flag)
+            {
+                if (keepgoing <= -1)
+                {
+                    flag = false;
+                }
+                else
+                {
+                    Vector2 vector2_1 = vector2_4;
+                    vector2_1.Normalize();
+                    position += vector2_1 * num1;
+                    keepgoing -= num1;
+                    vector2_4 = mountedCenter - position;
+                    Color color2 = Lighting.GetColor((int)position.X / 16, (int)position.Y / 16);
+                    color2 = new Color(color2.R, color2.G, color2.B, Alpha);
+                    Main.spriteBatch.Draw(Tex, position - Main.screenPosition, new Rectangle(0, 0, Tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
+                }
+            }
+        }
+
         public static T[] ConcatArray<T>(T[] first, T[] second)
         {
             T[] combined = new T[first.Length + second.Length];
@@ -87,7 +133,7 @@ namespace AssortedCrazyThings
 
         public static bool IsWormBodyOrTail(NPC npc)
         {
-            return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe/* || npc.realLife != -1*/;
+            return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsBody/* || npc.realLife != -1*/;
         }
 
         public static string GetTimeAsString(bool accurate = true)

@@ -128,6 +128,7 @@ namespace AssortedCrazyThings
         public bool PetSun = false;
         public bool PetMoon = false;
         public bool WallFragment = false;
+        public bool TinyTwins = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -205,6 +206,7 @@ namespace AssortedCrazyThings
             PetSun = false;
             PetMoon = false;
             WallFragment = false;
+            TinyTwins = false;
             //ALTERNATE
             //ClassName = false;
         }

@@ -913,7 +913,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(SlotType.Accessory, new PetAccessory(id: 3, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
 
             CreateMaps();
-
         }
 
         public static void Unload()
