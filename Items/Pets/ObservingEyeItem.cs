@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.Items.Pets
 {
     public class ObservingEyeItem : ModItem
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Items/Pets/DocileDemonEye"; //use fixed texture
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Observing Eye");

@@ -8,18 +8,10 @@ namespace AssortedCrazyThings.Items.Pets
 {
     public class TinyTwinsItem : ModItem
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Items/Pets/ChunkyandMeatball"; //use fixed texture
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiny Twins");
-            Tooltip.SetDefault("Summons a tiny version of The Twins to follow you");
+            Tooltip.SetDefault("Summons a tiny pair of The Twins to follow you");
         }
 
         public override void SetDefaults()
