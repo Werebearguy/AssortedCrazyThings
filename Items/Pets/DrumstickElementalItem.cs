@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType<DrumstickElementalProj>();
             item.buffType = mod.BuffType<DrumstickElementalBuff>();
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(silver: 7, copper: 50);
         }
 
         public override void UseStyle(Player player)
@@ -29,6 +29,15 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 player.AddBuff(item.buffType, 3600, true);
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Duck);
+            recipe.AddTile(TileID.CookingPots);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
