@@ -132,7 +132,7 @@ namespace AssortedCrazyThings
                                 reset = "accessories";
                                 break;
                             default:
-                                reset = "unknown";
+                                reset = "inventory";
                                 break;
                         }
                         AssUtils.Print("reset " + itemName + " in " + reset + ", slot " + e);
@@ -148,11 +148,11 @@ namespace AssortedCrazyThings
             }
 
             //mouse item
-            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
-            {
-                Main.mouseItem.TurnToAir();
-                AssUtils.Print("reset " + itemName + " in mouse");
-            }
+            //if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
+            //{
+            //    Main.mouseItem.TurnToAir();
+            //    AssUtils.Print("reset " + itemName + " in mouse");
+            //}
         } //Reset, RecvReset
 
         private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
