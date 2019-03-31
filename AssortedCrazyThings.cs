@@ -33,6 +33,9 @@ namespace AssortedCrazyThings
         //Zoom level, (for UIs)
         public static Vector2 ZoomFactor; //0f == fully zoomed out, 1f == fully zoomed in
 
+        //Loaded Mods
+        public static bool BossAssistLoadedWithRadar;
+
         //UI stuff
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
@@ -62,6 +65,7 @@ namespace AssortedCrazyThings
                 PetAccessory.Load();
             }
         }
+
         private void UnoadPets()
         {
             if (!Main.dedServ && Main.netMode != 2)
@@ -249,6 +253,13 @@ namespace AssortedCrazyThings
             {
                 //5.1f means just after skeletron
                 bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+            }
+
+
+            Mod bossAssist = ModLoader.GetMod("BossAssist");
+            if (bossAssist != null && bossAssist.Version > new Version(0, 2, 2))
+            {
+                BossAssistLoadedWithRadar = true;
             }
         }
 
