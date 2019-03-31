@@ -822,6 +822,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
             for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
         }
 
+        public PetAccessory AddPetVariation(string[] petNames, sbyte number)
+        {
+            for (int i = 0; i < petNames.Length; i++)
+            {
+                AddPetVariation(petNames[i], number);
+            }
+            return this;
+        }
+
         public PetAccessory AddPetVariation(string petName, sbyte number)
         {
             //(byte)-1, 0 (default), 1..127 alt texture number
@@ -867,7 +876,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
             Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black"}));
-            Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate")
+            Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" })
                  .AddPetVariation("Xmas", 1)
                  );
 
@@ -879,35 +888,32 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 .AddPetVariation("Yellow", 2)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true)
+            Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" })
                 .AddPetVariation("Green", 1)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", offsetY: -14f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
             Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
-                .AddPetVariation("Black", 1)
-                .AddPetVariation("Corrupt", 1)
-                .AddPetVariation("Dungeon", 1)
+                .AddPetVariation(new string[] { "Black", "Corrupt", "Dungeon", "Purple", "Toxic"}, 1)
                 .AddPetVariation("Pink", 2)
-                .AddPetVariation("Purple", 1)
-                .AddPetVariation("Toxic", 1)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
-            Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true));
+            Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond"}));
-            Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true));
-            Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true));
-            Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true));
+            Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
 
             //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
             Add(SlotType.Accessory, new PetAccessory(id: 1, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
             Add(SlotType.Accessory, new PetAccessory(id: 2, name: "SwallowedKey", preDraw: true));
-            Add(SlotType.Accessory, new PetAccessory(id: 3, name: "ToyShield"));
+            Add(SlotType.Accessory, new PetAccessory(id: 3, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
 
             CreateMaps();
+
         }
 
         public static void Unload()

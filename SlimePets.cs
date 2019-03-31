@@ -85,7 +85,8 @@ namespace AssortedCrazyThings
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIceNewProj"
+                name: "CuteSlimeIceNewProj",
+                hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
