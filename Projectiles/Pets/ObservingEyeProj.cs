@@ -46,6 +46,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
+            if (projectile.frame > 1) projectile.frame = 0;
+
             Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
         }

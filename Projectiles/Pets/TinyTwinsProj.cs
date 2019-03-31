@@ -9,14 +9,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class TinySpazmatismProj : ModProjectile
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/ChunkyProj"; //temp
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiny Spazmatism");
@@ -28,8 +20,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
-            projectile.width = 22;
-            projectile.height = 34;
+            projectile.width = 30;
+            projectile.height = 48;
         }
 
         public override bool PreAI()
@@ -59,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<TinyRetinazerProj>() && projectile.owner == Main.projectile[i].owner)
                 {
-                    AssUtils.DrawTether(Main.chain12Texture, projectile.Center, Main.projectile[i].Center);
+                    AssUtils.DrawTether(/*Main.chain12Texture*/"AssortedCrazyThings/Projectiles/Pets/TinyTwinsProj_Chain", projectile.Center, Main.projectile[i].Center);
                     break;
                 }
             }
@@ -75,14 +67,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
     public class TinyRetinazerProj : ModProjectile
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/MeatballProj"; //temp
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiny Retinazer");
@@ -92,16 +76,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
-            projectile.width = 22;
-            projectile.height = 34;
+            projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            aiType = ProjectileID.ZephyrFish;
+            projectile.width = 30;
+            projectile.height = 48;
         }
 
         public override bool PreAI()
         {
             Player player = Main.player[projectile.owner];
-            player.eater = false; // Relic from aiType
+            player.zephyrfish = false; // Relic from aiType
             return true;
         }
 
@@ -121,6 +105,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
+            if (projectile.frame > 1) projectile.frame = 0;
+
             Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
         }
