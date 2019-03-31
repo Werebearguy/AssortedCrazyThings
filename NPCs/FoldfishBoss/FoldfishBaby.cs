@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,15 +37,15 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
 
 		public override void AI()
 		{
-            //modified foldfish AI
+            //modified goldfish AI
             npc.direction = npc.whoAmI % 2;
             npc.spriteDirection = npc.direction;
 			if (npc.velocity.Y == 0f)
 			{
 				if (Main.netMode != 1)
 				{
-					npc.velocity.Y = (float)Main.rand.Next(-50, -20) * 0.1f;
-					npc.velocity.X = (float)Main.rand.Next(-20, 20) * 0.1f;
+					npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
+					npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
 					npc.netUpdate = true;
 				}
 			}
@@ -58,12 +56,12 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
 			}
 			npc.ai[0] = 1f;
 
-			npc.rotation = npc.velocity.Y * (float)npc.direction * 0.1f;
-			if ((double)npc.rotation < -0.2)
+			npc.rotation = npc.velocity.Y * npc.direction * 0.1f;
+			if (npc.rotation < -0.2f)
 			{
 				npc.rotation = -0.2f;
 			}
-			if ((double)npc.rotation > 0.2)
+			if (npc.rotation > 0.2f)
 			{
 				npc.rotation = 0.2f;
 			}

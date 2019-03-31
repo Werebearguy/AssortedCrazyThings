@@ -1,7 +1,5 @@
 using System;
-using System.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +19,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
 		public override void SetDefaults()
 		{
             //npc.CloneDefaults(NPCID.KingSlime);
-			npc.aiStyle = -1; //set to -1 later
+			npc.aiStyle = -1;
 			npc.lifeMax = 4000;
 			npc.damage = 20;
 			npc.defense = 5;
@@ -156,8 +154,8 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                             }
                             if (flag11)
                             {
-                                npc.localAI[1] = (float)(num243 * 16 + 8);
-                                npc.localAI[2] = (float)(num244 * 16 + 16);
+                                npc.localAI[1] = num243 * 16 + 8;
+                                npc.localAI[2] = num244 * 16 + 16;
                                 break;
                             }
                         }
@@ -172,14 +170,10 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             }
             if (!Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
             {
-                //ref float reference = ref npc.ai[2];
-                //reference += 1f;
                 npc.ai[2] += 1f;
             }
             if (Math.Abs(npc.Top.Y - Main.player[npc.target].Bottom.Y) > 320f)
             {
-                //ref float reference = ref npc.ai[2];
-                //reference += 1f;
                 npc.ai[2] += 1f;
             }
             Dust dust3;
@@ -187,8 +181,6 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             {
                 flag8 = true;
                 npc.aiAction = 1;
-                //ref float reference = ref npc.ai[0];
-                //reference += 1f;
                 npc.ai[0] += 1f;
                 num238 = MathHelper.Clamp((40f - npc.ai[0]) / 40f, 0f, 1f); //60f to 40f
                 num238 = 0.5f + num238 * 0.5f;
@@ -231,8 +223,6 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             {
                 flag8 = true;
                 npc.aiAction = 0;
-                //ref float reference = ref npc.ai[0];
-                //reference += 1f;
                 npc.ai[0] += 1f;
                 num238 = MathHelper.Clamp(npc.ai[0] / 30f, 0f, 1f);
                 num238 = 0.5f + num238 * 0.5f;
@@ -264,43 +254,31 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             if (npc.velocity.Y == 0f)
             {
                 npc.velocity.X = npc.velocity.X * 0.8f;
-                if ((double)npc.velocity.X > -0.1 && (double)npc.velocity.X < 0.1)
+                if (npc.velocity.X > -0.1 && npc.velocity.X < 0.1)
                 {
                     npc.velocity.X = 0f;
                 }
                 if (!flag8)
                 {
-                    //ref float reference = ref npc.ai[0];
-                    //reference += 2f;
                     npc.ai[0] += 2f;
-                    if ((double)npc.life < (double)npc.lifeMax * 0.8)
+                    if (npc.life < npc.lifeMax * 0.8)
                     {
-                        //reference = ref npc.ai[0];
-                        //reference += 1f;
                         npc.ai[0] += 1f;
                     }
-                    if ((double)npc.life < (double)npc.lifeMax * 0.6)
+                    if (npc.life < npc.lifeMax * 0.6)
                     {
-                        //reference = ref npc.ai[0];
-                        //reference += 1f;
                         npc.ai[0] += 1f;
                     }
-                    if ((double)npc.life < (double)npc.lifeMax * 0.4)
+                    if (npc.life < npc.lifeMax * 0.4)
                     {
-                        //reference = ref npc.ai[0];
-                        //reference += 2f;
                         npc.ai[0] += 2f;
                     }
-                    if ((double)npc.life < (double)npc.lifeMax * 0.2)
+                    if (npc.life < npc.lifeMax * 0.2)
                     {
-                        //reference = ref npc.ai[0];
-                        //reference += 3f;
                         npc.ai[0] += 3f;
                     }
-                    if ((double)npc.life < (double)npc.lifeMax * 0.1)
+                    if (npc.life < npc.lifeMax * 0.1)
                     {
-                        //reference = ref npc.ai[0];
-                        //reference += 4f;
                         npc.ai[0] += 4f;
                     }
                     if (npc.ai[0] >= 0f)
@@ -310,26 +288,22 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                         if (npc.ai[1] == 3f) //jump heights here in velo.Y
                         {
                             npc.velocity.Y = -10f; //-13f
-                            npc.velocity.X = npc.velocity.X + 3.5f * (float)npc.direction;
+                            npc.velocity.X = npc.velocity.X + 3.5f * npc.direction;
                             npc.ai[0] = -110f; //-200f
                             npc.ai[1] = 0f;
                         }
                         else if (npc.ai[1] == 2f)
                         {
                             npc.velocity.Y = -6f; //-8f
-                            npc.velocity.X = npc.velocity.X + 4.5f * (float)npc.direction;
+                            npc.velocity.X = npc.velocity.X + 4.5f * npc.direction;
                             npc.ai[0] = -80f; //-120f
-                            //reference = ref npc.ai[1];
-                            //reference += 1f;
                             npc.ai[1] += 1f;
                         }
                         else
                         {
                             npc.velocity.Y = -6f; //-8f
-                            npc.velocity.X = npc.velocity.X + 4f * (float)npc.direction;
+                            npc.velocity.X = npc.velocity.X + 4f * npc.direction;
                             npc.ai[0] = -80f; //-120f
-                            //reference = ref npc.ai[1];
-                            //reference += 1f;
                             npc.ai[1] += 1f;
                         }
                     }
@@ -341,9 +315,9 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             }
             else if (npc.target < 255 && ((npc.direction == 1 && npc.velocity.X < 3f) || (npc.direction == -1 && npc.velocity.X > -3f)))
             {
-                if ((npc.direction == -1 && (double)npc.velocity.X < 0.1) || (npc.direction == 1 && (double)npc.velocity.X > -0.1))
+                if ((npc.direction == -1 && npc.velocity.X < 0.1) || (npc.direction == 1 && npc.velocity.X > -0.1))
                 {
-                    npc.velocity.X = npc.velocity.X + 0.2f * (float)npc.direction;
+                    npc.velocity.X = npc.velocity.X + 0.2f * npc.direction;
                 }
                 else
                 {
@@ -359,37 +333,37 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             //dust3.velocity *= 0.5f;
             if (npc.life > 0)
             {
-                float num253 = ((float)npc.life / (float)npc.lifeMax); //without npc.scale
+                float num253 = npc.life / npc.lifeMax; //without npc.scale
                 num253 = num253 * 0.5f + 0.75f;
                 num253 *= num238;
                 if (num253 != npc.scale)
                 {
-                    npc.position.X = npc.position.X + (float)(npc.width / 2);
-                    npc.position.Y = npc.position.Y + (float)npc.height;
+                    npc.position.X = npc.position.X + (npc.width / 2);
+                    npc.position.Y = npc.position.Y + npc.height;
                     npc.scale = num253;
                     npc.width = (int)(76f * npc.scale); //96f those are the hitbox adjusted scales for when the boss takes dammage (it gets smaller)
                     npc.height = (int)(38f * npc.scale); //92f
-                    npc.position.X = npc.position.X - (float)(npc.width / 2);
-                    npc.position.Y = npc.position.Y - (float)npc.height;
+                    npc.position.X = npc.position.X - (npc.width / 2);
+                    npc.position.Y = npc.position.Y - npc.height;
                 }
                 if (Main.netMode != 1)
                 {
-                    int num254 = (int)((double)npc.lifeMax * 0.05);
-                    if ((float)(npc.life + num254) < npc.ai[3])
+                    int num254 = (int)(npc.lifeMax * 0.05);
+                    if ((npc.life + num254) < npc.ai[3])
                     {
-                        npc.ai[3] = (float)npc.life;
+                        npc.ai[3] = npc.life;
                         int num255 = Main.rand.Next(1, 4);
                         int num2;
                         for (int num256 = 0; num256 < num255; num256 = num2 + 1) //spawn slimes when hit
                         {
-                            int x = (int)(npc.position.X + (float)Main.rand.Next(npc.width - 16)); //from 32 down to 16
-                            int y = (int)(npc.position.Y + (float)Main.rand.Next(npc.height - 16)); //from 32 down to 16
+                            int x = (int)(npc.position.X + Main.rand.Next(npc.width - 16)); //from 32 down to 16
+                            int y = (int)(npc.position.Y + Main.rand.Next(npc.height - 16)); //from 32 down to 16
                             int num257 = mod.NPCType("FoldfishBaby");
                             int num258 = NPC.NewNPC(x, y, num257);
                             Main.npc[num258].SetDefaults(num257);
-                            Main.npc[num258].velocity.X = (float)Main.rand.Next(-15, 16) * 0.1f;
-                            Main.npc[num258].velocity.Y = (float)Main.rand.Next(-30, 1) * 0.1f;
-                            Main.npc[num258].ai[0] = (float)(-1000 * Main.rand.Next(3));
+                            Main.npc[num258].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
+                            Main.npc[num258].velocity.Y = Main.rand.Next(-30, 1) * 0.1f;
+                            Main.npc[num258].ai[0] = (-1000 * Main.rand.Next(3));
                             Main.npc[num258].ai[1] = 0f;
                             if (Main.netMode == NetmodeID.Server)
                             {
@@ -401,11 +375,6 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                 }
             }
             npc.spriteDirection = npc.direction;
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            //nothing
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
