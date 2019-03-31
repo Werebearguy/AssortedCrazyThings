@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Gitgud
                     tooltips.Add(new TooltipLine(mod, "BuffImmune", "Immunity to '" + GitgudData.DataList[index].BuffName + "' while " + GitgudData.DataList[index].BossName + " is alive"));
                 }
                 
-                if (!GitgudData.DataList[index].Accessory[Main.myPlayer] && !Main.LocalPlayer.HasItem(item.type))
+                if (!(GitgudData.DataList[index].Accessory[Main.myPlayer] || Main.LocalPlayer.HasItem(item.type) || Main.LocalPlayer.trashItem.type == item.type))
                 {
                     tooltips.Add(new TooltipLine(mod, "Count", "Times died: " + GitgudData.DataList[index].Counter[Main.myPlayer] + "/" + GitgudData.DataList[index].CounterMax));
                 }

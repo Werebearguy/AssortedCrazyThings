@@ -183,7 +183,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                 npc.aiAction = 1;
                 npc.ai[0] += 1f;
                 num238 = MathHelper.Clamp((40f - npc.ai[0]) / 40f, 0f, 1f); //60f to 40f
-                num238 = 0.5f + num238 * 0.5f;
+                num238 = 0.5f + num238 * 0.5f; //0.5f
                 if (npc.ai[0] >= 60f)
                 {
                     flag9 = true;
@@ -333,7 +333,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             //dust3.velocity *= 0.5f;
             if (npc.life > 0)
             {
-                float num253 = npc.life / npc.lifeMax; //without npc.scale
+                float num253 = npc.life / (float)npc.lifeMax; //without npc.scale
                 num253 = num253 * 0.5f + 0.75f;
                 num253 *= num238;
                 if (num253 != npc.scale)

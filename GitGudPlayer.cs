@@ -148,11 +148,11 @@ namespace AssortedCrazyThings
             }
 
             //mouse item
-            //if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
-            //{
-            //    Main.mouseItem.TurnToAir();
-            //    AssUtils.Print("reset " + itemName + " in mouse");
-            //}
+            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
+            {
+                Main.mouseItem.TurnToAir();
+                AssUtils.Print("reset " + itemName + " in mouse");
+            }
         } //Reset, RecvReset
 
         private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
@@ -367,7 +367,7 @@ namespace AssortedCrazyThings
                         {
                             if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, Main.npc[k].type) > -1)
                             {
-                                //AssUtils.Print("increased counter");
+                                AssUtils.Print("increased counter from " +DataList[i].Counter[whoAmI] + " to " + (DataList[i].Counter[whoAmI] + 1));
                                 DataList[i].Counter[whoAmI]++;
                                 SetCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
                                 increasedFor[i] = true;
