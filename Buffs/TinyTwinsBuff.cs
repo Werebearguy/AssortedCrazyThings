@@ -21,8 +21,8 @@ namespace AssortedCrazyThings.Buffs
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<TinyRetinazerProj>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), 0f, 0f, mod.ProjectileType<TinySpazmatismProj>(), 0, 0f, player.whoAmI, 0f, 0f);
-                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y, 0f, 0f, mod.ProjectileType<TinyRetinazerProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), -player.direction, 0f, mod.ProjectileType<TinySpazmatismProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y, -player.direction, 0f, mod.ProjectileType<TinyRetinazerProj>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

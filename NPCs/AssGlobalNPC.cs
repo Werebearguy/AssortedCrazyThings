@@ -61,6 +61,11 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PrinceSlimeItem>());
             }
 
+            if (npc.type == NPCID.EyeofCthulhu)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<ObservingEyeItem>());
+            }
+
             if (npc.type == NPCID.QueenBee)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());

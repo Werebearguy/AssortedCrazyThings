@@ -6,27 +6,27 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class TinyTwinsItem : ModItem
+    public class ObservingEyeItem : ModItem
     {
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/Items/Pets/ChunkyandMeatball"; //use fixed texture
+                return "AssortedCrazyThings/Items/Pets/DocileDemonEye"; //use fixed texture
             }
         }
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Twins");
-            Tooltip.SetDefault("Summons a tiny version of The Twins to follow you");
+            DisplayName.SetDefault("Observing Eye");
+            Tooltip.SetDefault("Summons a tiny version of Eye of Cthulhu to follow you");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType<TinyRetinazerProj>();
-            item.buffType = mod.BuffType<TinyTwinsBuff>();
+            item.shoot = mod.ProjectileType<ObservingEyeProj>();
+            item.buffType = mod.BuffType<ObservingEyeBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }

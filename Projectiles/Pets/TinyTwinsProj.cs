@@ -53,8 +53,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        
-
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             for (int i = 0; i < 1000; i++)
