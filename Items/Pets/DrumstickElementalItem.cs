@@ -38,6 +38,12 @@ namespace AssortedCrazyThings.Items.Pets
             recipe.AddTile(TileID.CookingPots);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MallardDuck);
+            recipe.AddTile(TileID.CookingPots);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

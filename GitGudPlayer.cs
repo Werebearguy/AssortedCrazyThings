@@ -106,6 +106,7 @@ namespace AssortedCrazyThings
         private static void DeleteItemFromInventory(Player player, int index)
         {
             int itemType = DataList[index].ItemType;
+            string itemName = DataList[index].ItemName;
 
             Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.armor }; //go though player inv
             for (int y = 0; y < inventoryArray.Length; y++)
@@ -115,7 +116,26 @@ namespace AssortedCrazyThings
                     if (inventoryArray[y][e].type == itemType) //find gitgud item
                     {
                         inventoryArray[y][e].TurnToAir();
-                        AssUtils.Print("reset in " + y + ", slot " + e);
+                        string reset = "inventory";
+                        switch (y)
+                        {
+                            case 1:
+                                reset = "piggy";
+                                break;
+                            case 2:
+                                reset = "safe";
+                                break;
+                            case 3:
+                                reset = "forge";
+                                break;
+                            case 4:
+                                reset = "accessories";
+                                break;
+                            default:
+                                reset = "unknown";
+                                break;
+                        }
+                        AssUtils.Print("reset " + itemName + " in " + reset + ", slot " + e);
                     }
                 }
             }
@@ -124,14 +144,14 @@ namespace AssortedCrazyThings
             if (player.trashItem.type == itemType)
             {
                 player.trashItem.TurnToAir();
-                AssUtils.Print("reset trash");
+                AssUtils.Print("reset " + itemName + " in trash");
             }
 
             //mouse item
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
             {
                 Main.mouseItem.TurnToAir();
-                AssUtils.Print("reset mouse");
+                AssUtils.Print("reset " + itemName + " in mouse");
             }
         } //Reset, RecvReset
 
