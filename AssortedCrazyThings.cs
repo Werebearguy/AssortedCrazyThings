@@ -176,6 +176,18 @@ namespace AssortedCrazyThings
                 CircleUIInterface = null;
                 CircleUI = null;
 
+                HoverNPCUIInterface = null;
+                HoverNPCUI = null;
+
+                HarvesterEdgeUIInterface = null;
+                HarvesterEdgeUI = null;
+
+                EnhancedHunterUIInterface = null;
+                EnhancedHunterUI = null;
+
+                PetVanityUIInterface = null;
+                PetVanityUI = null;
+
                 HarvesterEdgeUI.texture = null;
                 EnhancedHunterUI.arrowTexture = null;
                 CircleUIConf.TriggerListLeft.Clear();
@@ -255,7 +267,6 @@ namespace AssortedCrazyThings
                 bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
             }
 
-
             Mod bossAssist = ModLoader.GetMod("BossAssist");
             if (bossAssist != null && bossAssist.Version > new Version(0, 2, 2))
             {
@@ -293,8 +304,7 @@ namespace AssortedCrazyThings
 
         private void UIText(string str, Color color)
         {
-            CombatText.NewText(Main.LocalPlayer.getRect(),
-                color, str);
+            CombatText.NewText(Main.LocalPlayer.getRect(), color, str);
         }
 
         private void CircleUIStart(int triggerType, bool triggerLeft = true)
@@ -867,16 +877,17 @@ namespace AssortedCrazyThings
                         mPlayer.ConvertInertSoulsInventory();
                     }
                     break;
-                case AssMessageType.GitgudCounters:
+                case AssMessageType.GitgudLoadCounters:
                     if (Main.netMode == NetmodeID.Server)
                     {
                         GitgudData.RecvCounters(reader);
                     }
                     break;
-                case AssMessageType.GitgudReset:
+                case AssMessageType.GitgudChangeCounters:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        GitgudData.RecvReset(Main.myPlayer, reader);
+                        //GitgudData.RecvReset(Main.myPlayer, reader);
+                        GitgudData.RecvChangeCounter(reader);
                     }
                     break;
                 default:
@@ -904,8 +915,8 @@ namespace AssortedCrazyThings
         SendClientChangesVanity,
         SyncPlayerVanity,
         ConvertInertSoulsInventory,
-        GitgudCounters,
-        GitgudReset
+        GitgudLoadCounters,
+        GitgudChangeCounters
     }
 
     public enum GitgudType : byte

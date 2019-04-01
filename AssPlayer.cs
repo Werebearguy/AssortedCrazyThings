@@ -619,7 +619,7 @@ namespace AssortedCrazyThings
         
         public static readonly PlayerLayer SoulSaviorGlowmask = new PlayerLayer("AssortedCrazyThings", "SoulSaviorGlowmask", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
         {
-            if (drawInfo.shadow != 0f)
+            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
             {
                 return;
             }

@@ -108,6 +108,8 @@ namespace AssortedCrazyThings
             int itemType = DataList[index].ItemType;
             string itemName = DataList[index].ItemName;
 
+            bool deleted = false;
+
             Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.armor }; //go though player inv
             for (int y = 0; y < inventoryArray.Length; y++)
             {
@@ -116,26 +118,27 @@ namespace AssortedCrazyThings
                     if (inventoryArray[y][e].type == itemType) //find gitgud item
                     {
                         inventoryArray[y][e].TurnToAir();
-                        string reset = "inventory";
-                        switch (y)
-                        {
-                            case 1:
-                                reset = "piggy";
-                                break;
-                            case 2:
-                                reset = "safe";
-                                break;
-                            case 3:
-                                reset = "forge";
-                                break;
-                            case 4:
-                                reset = "accessories";
-                                break;
-                            default:
-                                reset = "inventory";
-                                break;
-                        }
-                        AssUtils.Print("reset " + itemName + " in " + reset + ", slot " + e);
+                        deleted = true;
+                        //string reset = "inventory";
+                        //switch (y)
+                        //{
+                        //    case 1:
+                        //        reset = "piggy";
+                        //        break;
+                        //    case 2:
+                        //        reset = "safe";
+                        //        break;
+                        //    case 3:
+                        //        reset = "forge";
+                        //        break;
+                        //    case 4:
+                        //        reset = "accessories";
+                        //        break;
+                        //    default:
+                        //        reset = "inventory";
+                        //        break;
+                        //}
+                        //AssUtils.Print("reset " + itemName + " in " + reset + ", slot " + e);
                     }
                 }
             }
@@ -144,15 +147,19 @@ namespace AssortedCrazyThings
             if (player.trashItem.type == itemType)
             {
                 player.trashItem.TurnToAir();
-                AssUtils.Print("reset " + itemName + " in trash");
+                deleted = true;
+                //AssUtils.Print("reset " + itemName + " in trash");
             }
 
             //mouse item
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI && Main.mouseItem.type == itemType)
             {
                 Main.mouseItem.TurnToAir();
-                AssUtils.Print("reset " + itemName + " in mouse");
+                deleted = true;
+                //AssUtils.Print("reset " + itemName + " in mouse");
             }
+
+            if (deleted) Main.NewText("Message regarding the fact that you finally beat the boss after losing to it 5+ times and the item got deleted now");
         } //Reset, RecvReset
 
         private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
@@ -235,7 +242,7 @@ namespace AssortedCrazyThings
             {
                 //Length is synced on both sides anyway
                 ModPacket packet = AssUtils.Instance.GetPacket();
-                packet.Write((byte)AssMessageType.GitgudCounters);
+                packet.Write((byte)AssMessageType.GitgudLoadCounters);
                 packet.Write((byte)whoAmI);
                 for (int i = 0; i < DataList.Length; i++)
                 {
@@ -252,7 +259,7 @@ namespace AssortedCrazyThings
                 //Length is synced on both sides anyway
                 int whoAmI = reader.ReadByte();
                 byte[] tempArray = new byte[DataList.Length];
-                for (int i = 0; i < DataList.Length; i++)
+                for (int i = 0; i < DataList.Length; i++) //probably unnecessary but idk
                 {
                     tempArray[i] = reader.ReadByte();
                 }
@@ -271,7 +278,7 @@ namespace AssortedCrazyThings
             {
                 for (int j = 0; j < 255; j++)
                 {
-                    if (Main.player[j].active && npc.playerInteraction[j])
+                    if (Main.player[j].active && npc.playerInteraction[j]) //playerInteraction is only accurate in single and server
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
@@ -282,18 +289,19 @@ namespace AssortedCrazyThings
                                 canReset &= npc.boss;
                             }
 
-                            if (canReset)
+                            if (canReset && DataList[i].Counter[j] != 0)
                             {
                                 DataList[i].Counter[j] = 0;
                                 SetCounter(j, i, 0);
                                 DeleteItemFromInventory(Main.player[j], i);
-                                if (Main.netMode == NetmodeID.Server)
-                                {
-                                    ModPacket packet = AssUtils.Instance.GetPacket();
-                                    packet.Write((byte)AssMessageType.GitgudReset);
-                                    packet.Write((byte)i);
-                                    packet.Send(); //send to all clients
-                                }
+                                //if (Main.netMode == NetmodeID.Server)
+                                //{
+                                //    ModPacket packet = AssUtils.Instance.GetPacket();
+                                //    packet.Write((byte)AssMessageType.GitgudChangeCounters);
+                                //    packet.Write((byte)i);
+                                //    packet.Send(); //send to all clients
+                                //}
+                                SendChangeCounter(j, i, 0);
                                 //AssUtils.Print("reset");
                             }
                         }
@@ -354,6 +362,34 @@ namespace AssortedCrazyThings
             }
         } //PostUpdateEquips
 
+        public static void RecvChangeCounter(BinaryReader reader)
+        {
+            if (DataList != null && Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                int whoAmI = Main.LocalPlayer.whoAmI;
+                int index = reader.ReadByte();
+                byte value = reader.ReadByte();
+                DataList[index].Counter[whoAmI] = value;
+                SetCounter(whoAmI, index, value, true);
+                if (value == 0) DeleteItemFromInventory(Main.player[whoAmI], index);
+                //AssUtils.Print("recv changecounter from server with " + whoAmI + " " + index + " " + value);
+            }
+        } //Mod.HandlePacket
+
+        public static void SendChangeCounter(int whoAmI, int index, byte value)
+        {
+            if (DataList != null && Main.netMode == NetmodeID.Server)
+            {
+                //Length is synced on both sides anyway
+                ModPacket packet = AssUtils.Instance.GetPacket();
+                packet.Write((byte)AssMessageType.GitgudChangeCounters);
+                packet.Write((byte)index);
+                packet.Write((byte)value);
+                packet.Send(toClient: whoAmI);
+                //AssUtils.Print("send changecounter from server with " + whoAmI + " " + index + " " + value);
+            }
+        } //IncreaseCounters and Reset
+
         public static void IncreaseCounters(int whoAmI)
         {
             if (DataList != null)
@@ -361,15 +397,16 @@ namespace AssortedCrazyThings
                 bool[] increasedFor = new bool[DataList.Length];
                 for (int k = 0; k < 200; k++)
                 {
-                    if (Main.npc[k].active && Main.npc[k].playerInteraction[whoAmI])
+                    if (Main.npc[k].active && Main.npc[k].playerInteraction[whoAmI]) //playerInteraction is only accurate in single and server
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
                             if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, Main.npc[k].type) > -1)
                             {
-                                AssUtils.Print("increased counter from " +DataList[i].Counter[whoAmI] + " to " + (DataList[i].Counter[whoAmI] + 1));
+                                //AssUtils.Print("increased counter of " + whoAmI + " from " + DataList[i].Counter[whoAmI] + " to " + (DataList[i].Counter[whoAmI] + 1));
                                 DataList[i].Counter[whoAmI]++;
                                 SetCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
+                                SendChangeCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
                                 increasedFor[i] = true;
                             }
                         }
@@ -704,6 +741,7 @@ namespace AssortedCrazyThings
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
+            AssUtils.Print("call prekill on player " + player.whoAmI + " " + player.name);
             GitgudData.IncreaseCounters(player.whoAmI);
 
             return true;
