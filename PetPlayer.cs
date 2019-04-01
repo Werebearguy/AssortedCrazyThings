@@ -130,6 +130,7 @@ namespace AssortedCrazyThings
         public bool WallFragment = false;
         public bool TinyTwins = false;
         public bool ObservingEye = false;
+        public bool PetGoldfish = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -209,6 +210,7 @@ namespace AssortedCrazyThings
             WallFragment = false;
             TinyTwins = false;
             ObservingEye = false;
+            PetGoldfish = false;
             //ALTERNATE
             //ClassName = false;
         }
