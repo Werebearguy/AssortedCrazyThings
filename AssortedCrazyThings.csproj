@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buffs\CuteSlimeSpawnEnableBuff.cs" />
     <Compile Include="Buffs\ObservingEyeBuff.cs" />
     <Compile Include="Buffs\TinyTwinsBuff.cs" />
     <Compile Include="Buffs\CuteSlimeJungleNewBuff.cs" />
@@ -165,7 +166,9 @@
     <Compile Include="Items\CaughtDungeonSoulFreed.cs" />
     <Compile Include="Items\CaughtDungeonSoulBase.cs" />
     <Compile Include="Items\ChunkysEye.cs" />
-    <Compile Include="Items\EnhancedHunterPotion.cs" />
+    <Compile Include="Items\Consumables\EmpowermentFlask.cs" />
+    <Compile Include="Items\Consumables\EnhancedHunterPotion.cs" />
+    <Compile Include="Items\Consumables\CuteSlimeSpawnEnableFlask.cs" />
     <Compile Include="Items\Gitgud\GitgudItem.cs" />
     <Compile Include="Items\Gitgud\DestroyerGitgud.cs" />
     <Compile Include="Items\Gitgud\LunaticCultistGitgud.cs" />
@@ -270,7 +273,6 @@
     <Compile Include="Items\Pets\VampireBat.cs" />
     <Compile Include="Items\Pets\YoungHarpy.cs" />
     <Compile Include="Items\Pets\YoungWyvern.cs" />
-    <Compile Include="Items\EmpowermentFlask.cs" />
     <Compile Include="Items\IdolOfDecay.cs" />
     <Compile Include="Items\Tools\ExtendoNetGolden.cs" />
     <Compile Include="Items\Tools\ExtendoNetRegular.cs" />

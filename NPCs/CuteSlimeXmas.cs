@@ -36,15 +36,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.xMas == true)
-            {
-                if (ModConf.CuteSlimes && !AssUtils.AnyNPCs(SlimePets.slimePetNPCs)) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
-                else return 0f;
-            }
-            else
-            {
-                return SpawnCondition.OverworldDaySlime.Chance * 0f;
-            }
+            return CuteSlimeBlack.CuteSlimeSpawnChance(spawnInfo, Main.xMas? SpawnCondition.OverworldDaySlime.Chance * 0.0125f : 0f);
         }
 
         public override void NPCLoot()

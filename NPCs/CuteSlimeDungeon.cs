@@ -18,7 +18,8 @@ namespace AssortedCrazyThings.NPCs
         {
             npc.width = 54;
             npc.height = 52;
-            npc.friendly = true;
+            //npc.friendly = true;
+            npc.chaseable = false;
             npc.damage = 0;
             npc.defense = 0;
             npc.lifeMax = 5;
@@ -36,9 +37,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-
-            if (ModConf.CuteSlimes && !AssUtils.AnyNPCs(SlimePets.slimePetNPCs)) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
-            else return 0f;
+            return CuteSlimeBlack.CuteSlimeSpawnChance(spawnInfo, SpawnCondition.Dungeon.Chance * 0.02f);
         }
 
         public override void NPCLoot()

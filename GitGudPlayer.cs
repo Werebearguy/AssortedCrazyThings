@@ -271,6 +271,34 @@ namespace AssortedCrazyThings
             }
         } //Mod.HandlePacket
 
+        public static void RecvChangeCounter(BinaryReader reader)
+        {
+            if (DataList != null && Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                int whoAmI = Main.LocalPlayer.whoAmI;
+                int index = reader.ReadByte();
+                byte value = reader.ReadByte();
+                DataList[index].Counter[whoAmI] = value;
+                SetCounter(whoAmI, index, value, true);
+                if (value == 0) DeleteItemFromInventory(Main.player[whoAmI], index);
+                //AssUtils.Print("recv changecounter from server with " + whoAmI + " " + index + " " + value);
+            }
+        } //Mod.HandlePacket
+
+        private static void SendChangeCounter(int whoAmI, int index, byte value)
+        {
+            if (DataList != null && Main.netMode == NetmodeID.Server)
+            {
+                //Length is synced on both sides anyway
+                ModPacket packet = AssUtils.Instance.GetPacket();
+                packet.Write((byte)AssMessageType.GitgudChangeCounters);
+                packet.Write((byte)index);
+                packet.Write((byte)value);
+                packet.Send(toClient: whoAmI);
+                //AssUtils.Print("send changecounter from server with " + whoAmI + " " + index + " " + value);
+            }
+        } //IncreaseCounters and Reset
+
         public static void Reset(NPC npc)
         {
             //Single and Server only
@@ -361,34 +389,6 @@ namespace AssortedCrazyThings
                 }
             }
         } //PostUpdateEquips
-
-        public static void RecvChangeCounter(BinaryReader reader)
-        {
-            if (DataList != null && Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                int whoAmI = Main.LocalPlayer.whoAmI;
-                int index = reader.ReadByte();
-                byte value = reader.ReadByte();
-                DataList[index].Counter[whoAmI] = value;
-                SetCounter(whoAmI, index, value, true);
-                if (value == 0) DeleteItemFromInventory(Main.player[whoAmI], index);
-                //AssUtils.Print("recv changecounter from server with " + whoAmI + " " + index + " " + value);
-            }
-        } //Mod.HandlePacket
-
-        public static void SendChangeCounter(int whoAmI, int index, byte value)
-        {
-            if (DataList != null && Main.netMode == NetmodeID.Server)
-            {
-                //Length is synced on both sides anyway
-                ModPacket packet = AssUtils.Instance.GetPacket();
-                packet.Write((byte)AssMessageType.GitgudChangeCounters);
-                packet.Write((byte)index);
-                packet.Write((byte)value);
-                packet.Send(toClient: whoAmI);
-                //AssUtils.Print("send changecounter from server with " + whoAmI + " " + index + " " + value);
-            }
-        } //IncreaseCounters and Reset
 
         public static void IncreaseCounters(int whoAmI)
         {

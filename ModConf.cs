@@ -7,18 +7,19 @@ namespace AssortedCrazyThings
 {
     public static class ModConf
     {
-        public const int configVersion = 1;
+        public const int configVersion = 2;
         private readonly static string modName = "AssortedCrazyThings";
 
-        private const string cuteSlimesField = "CuteSlimes";
-        internal static bool cuteSlimes = true;
-        public static bool CuteSlimes
+        private const string cuteSlimesPotionOnlyField = "CuteSlimesPotionOnly";
+        internal static bool cuteSlimesPotionOnly = true;
+        public static bool CuteSlimesPotionOnly
         {
             get
             {
-                return cuteSlimes;
+                return cuteSlimesPotionOnly;
             }
         }
+
         private const string walkingTombstonesField = "WalkingTombstones";
         internal static bool walkingTombstones = true;
         public static bool WalkingTombstones
@@ -53,17 +54,16 @@ namespace AssortedCrazyThings
                 if (readVersion != configVersion)
                 {
                     bool canUpdate = false;
-                    //if (readVersion == 1)
-                    //{
-                    //    ErrorLogger.Log("AssortedCrazyThings: updated Version");
-                    //    canUpdate = true;
-                    //    ModConfig.Put("version", 2);
-                    //    ModConfig.Save();
-                    //}
+                    if (readVersion == 1)
+                    {
+                        ErrorLogger.Log("AssortedCrazyThings: updated Version");
+                        canUpdate = true;
+                        CreateConfig();
+                    }
                     if (!canUpdate) return false;
                 }
 
-                ModConfig.Get(cuteSlimesField, ref cuteSlimes);
+                ModConfig.Get(cuteSlimesPotionOnlyField, ref cuteSlimesPotionOnly);
                 ModConfig.Get(walkingTombstonesField, ref walkingTombstones);
                 return true;
             }
@@ -76,7 +76,7 @@ namespace AssortedCrazyThings
             ModConfig.Clear();
             ModConfig.Put("version", configVersion);
 
-            ModConfig.Put(cuteSlimesField, cuteSlimes);
+            ModConfig.Put(cuteSlimesPotionOnlyField, cuteSlimesPotionOnly);
             ModConfig.Put(walkingTombstonesField, walkingTombstones);
 
             ModConfig.Put("readme", "Check the mod homepage for a link to the wiki, and navigate to the 'Config' page for a readme");
