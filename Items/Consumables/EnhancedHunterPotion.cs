@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Items
+namespace AssortedCrazyThings.Items.Consumables
 {
     class EnhancedHunterPotion: ModItem
     {

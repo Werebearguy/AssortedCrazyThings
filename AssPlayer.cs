@@ -61,6 +61,9 @@ namespace AssortedCrazyThings
         //enhanced hunter potion stuff
         public bool enhancedHunterBuff = false;
 
+        //cute slime spawn enable buff
+        public bool cuteSlimeSpawnEnable = false;
+
         public bool soulSaviorArmor = false;
 
         private bool rightClickPrev = false;
@@ -88,6 +91,7 @@ namespace AssortedCrazyThings
             slimePackMinion = false;
             empoweringBuff = false;
             enhancedHunterBuff = false;
+            cuteSlimeSpawnEnable = false;
             soulSaviorArmor = false;
         }
 
@@ -590,7 +594,7 @@ namespace AssortedCrazyThings
 
                 Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
                 
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), new Color(255, 255, 255, 0)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0);
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0);
                 drawData.shader = drawInfo.wingShader;
                 Main.playerDrawData.Add(drawData);
 
@@ -603,7 +607,7 @@ namespace AssortedCrazyThings
                         {
                             dustOffset = -40;
                         }
-                        int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 30, 135, 0f, 0f, 0, default(Color), 1.5f);
+                        int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
                         Main.dust[dustIndex].noGravity = true;
                         Main.dust[dustIndex].noLight = true;
                         Main.dust[dustIndex].velocity *= 0.3f;
