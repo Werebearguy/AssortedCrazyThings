@@ -29,6 +29,9 @@ namespace AssortedCrazyThings.UI
         //Fade in animation when opening the UI
         internal static float fadeIn = 0;
 
+        //Red cross for when to unequip
+        internal static Texture2D redCrossTexture;
+
         //Holds data about what to draw
         internal static PetAccessory petAccessory;
 
@@ -37,6 +40,7 @@ namespace AssortedCrazyThings.UI
         {
             spawnPosition = new Vector2();
             leftCorner = new Vector2();
+            redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross");
         }
 
         //Update, unused
@@ -133,6 +137,12 @@ namespace AssortedCrazyThings.UI
                 returned = -1;
                 if (hasEquipped)
                 {
+                    //Draw the red cross
+                    int finalWidth = redCrossTexture.Width;
+                    int finalHeight = redCrossTexture.Height;
+                    Rectangle outputCrossRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
+                    spriteBatch.Draw(redCrossTexture, outputCrossRect, Color.White);
+
                     //Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);

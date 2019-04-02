@@ -190,6 +190,7 @@ namespace AssortedCrazyThings
 
                 HarvesterEdgeUI.texture = null;
                 EnhancedHunterUI.arrowTexture = null;
+                PetVanityUI.redCrossTexture = null;
                 CircleUIConf.TriggerListLeft.Clear();
                 CircleUIConf.TriggerListRight.Clear();
             }
