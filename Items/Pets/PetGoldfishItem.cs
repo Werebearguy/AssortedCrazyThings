@@ -12,6 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Pet Goldfish Item");
             Tooltip.SetDefault("Summons a goldfish that follows you"
+                + "\n'It only wants to swim with you!'"
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 

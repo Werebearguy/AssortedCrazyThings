@@ -1,5 +1,4 @@
 using AssortedCrazyThings.Items;
-using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
@@ -598,7 +597,7 @@ namespace AssortedCrazyThings
                 drawData.shader = drawInfo.wingShader;
                 Main.playerDrawData.Add(drawData);
 
-                if (drawPlayer.velocity.Y != 0)
+                if (drawPlayer.velocity.Y != 0 && drawPlayer.wingFrame != 0)
                 {
                     if (Main.rand.NextBool(3))
                     {

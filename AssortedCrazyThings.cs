@@ -396,6 +396,12 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.MiniAntlionConf();
                     }
+                    else if (pPlayer.PetGoldfish)
+                    {
+                        CircleUI.currentSelected = pPlayer.petGoldfishType;
+
+                        CircleUI.UIConf = CircleUIConf.PetGoldfishProj();
+                    }
                     //FOR LEFT CLICK ONLY (REGULAR PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
@@ -530,6 +536,10 @@ namespace AssortedCrazyThings
                         else if (pPlayer.MiniAntlion)
                         {
                             pPlayer.miniAntlionType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.PetGoldfish)
+                        {
+                            pPlayer.petGoldfishType = (byte)CircleUI.returned;
                         }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
@@ -953,6 +963,7 @@ namespace AssortedCrazyThings
         queenLarvaType,
         oceanSlimeType,
         miniAntlionType,
+        petGoldfishType,
         //ALTERNATE
         //classNameType,
     }

@@ -271,6 +271,13 @@ namespace AssortedCrazyThings.UI
             return PetConf("MiniAntlionProj", tooltips);
         }
 
+        public static CircleUIConf PetGoldfishProj()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
+
+            return PetConf("PetGoldfishProj", tooltips);
+        }
+
         //ALTERNATE
         //public static CircleUIConf ClassNameConf()
         //{

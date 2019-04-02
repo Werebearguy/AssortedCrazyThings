@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,6 +17,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return "AssortedCrazyThings/Projectiles/Pets/PetGoldfishProj_0"; //temp
             }
         }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pet Goldfish");
@@ -28,19 +30,101 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.CloneDefaults(ProjectileID.BabyGrinch);
             projectile.height = 24;
             projectile.width = 24;
-            //projectile.aiStyle = -1;
             aiType = ProjectileID.BabyGrinch;
         }
 
-        private bool Swimming
+        private bool Swimming { get { return Main.player[projectile.owner].wet; } }
+
+        private int Direction { get; set; }
+
+        private int Timer { get; set; }
+
+        private int SavedIndex
         {
             get
             {
-                return projectile.wet && Main.player[projectile.owner].wet;
+                return (int)projectile.ai[1];
+            }
+            set
+            {
+                projectile.ai[1] = value;
             }
         }
 
-        private void ZephyrfishAI()
+        private const int Width = 8;
+        private const int Height = 4;
+
+        private Point16 GetTilePosFromIndex(int index, Player player)
+        {
+            int indexX = index % Width;
+            int indexY = index / Width;
+            indexX *= Direction;
+
+            Point16 startingPos = GetStartingPos(player);
+            int tileX = startingPos.X + indexX;
+            int tileY = startingPos.Y + indexY;
+            return new Point16(tileX, tileY);
+        }
+
+        private Point16 GetStartingPos(Player player)
+        {
+            Point16 playerOrigin = new Point16((int)(player.Center.X / 16), (int)(player.Bottom.Y / 16));
+            return new Point16(playerOrigin.X + (Direction * -(Width / 2)), playerOrigin.Y - Height);
+        }
+
+        private void UpdateSavedIndex(Player player)
+        {
+            if (Timer > 30)
+            {
+                Timer = 0;
+                for (int index = 0; index < Width * Height; index++)
+                {
+                    Direction = player.direction;
+                    Point16 tilePos = GetTilePosFromIndex(index, player);
+                    if (Framing.GetTileSafely(tilePos.X, tilePos.Y).liquid == 255 && Framing.GetTileSafely(tilePos.X, tilePos.Y - 1).liquid == 255 && Framing.GetTileSafely(tilePos.X - player.direction, tilePos.Y).liquid == 255)
+                    {
+                        SavedIndex = index;
+                        break;
+                    }
+                    SavedIndex = -1;
+                }
+
+                //DEBUG
+                //for (int index = 0; index < Width * Height; index++)
+                //{
+                //    Point16 tilePos = GetTilePosFromIndex(index, player);
+                //    AssUtils.DrawDustAtPos(new Vector2(tilePos.X, tilePos.Y) * 16);
+                //}
+            }
+        }
+
+        private Vector2 GetDesiredCenter(Player player)
+        {
+            /* checked area is given by Width and Height, starting at startingPos as top left/right corner (depending on player direction)
+             *
+             * +-4 : -4 from player.bottom
+             * 
+             * start checking at +-8
+             */
+            Vector2 desiredCenter = new Vector2(0f, player.width / 2);
+            Point16 playerOrigin = new Point16((int)(player.Center.X / 16), (int)(player.Bottom.Y / 16));
+
+            UpdateSavedIndex(player);
+
+            if (SavedIndex != -1)
+            {
+                Point16 point = GetTilePosFromIndex(SavedIndex, player);
+                //DEBUG
+                //AssUtils.DrawDustAtPos(point.ToWorldCoordinates(0, 0), 1);
+
+                //player.direction * 8 makes it so it has some space to swim, instead of constantly being stuck against a wall if there is one
+                desiredCenter = point.ToWorldCoordinates(player.direction * 8, 8) - playerOrigin.ToWorldCoordinates(0, 0);
+            }
+
+            return desiredCenter;
+        }
+
+        private void SwimmingZephyrfishAI()
         {
             Player player = Main.player[projectile.owner];
             if (!player.active)
@@ -48,37 +132,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.active = false;
                 return;
             }
+            Timer++;
+
+            if (projectile.wet)
+            {
+                projectile.tileCollide = true;
+            }
+            else
+            {
+                projectile.tileCollide = false;
+            }
 
             float num17 = 0.3f;
-            projectile.tileCollide = true; //false
             int num18 = 100;
             Vector2 between = player.Center - projectile.Center;
 
-            Vector2 desiredCenter = new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21));
-            desiredCenter += new Vector2(60f * -player.direction, -60f);
-
-            //Vector2 tilePos = (desiredCenter + player.Center) / 16;
-            //int x = (int)tilePos.X;
-            //int y = (int)tilePos.Y;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            between += desiredCenter;
+            between += GetDesiredCenter(player) + new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21));
 
             float distance = between.Length();
-            //float magnitude = 6f;
-            if (distance < (float)num18 && player.velocity.Y == 0f && projectile.position.Y + (float)projectile.height <= player.position.Y + (float)player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            if (distance < num18 && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {
                 if (projectile.velocity.Y < -6f)
                 {
@@ -138,22 +210,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     projectile.velocity.Y = projectile.velocity.Y - num17 * 2f;
                 }
             }
-            //if ((double)projectile.velocity.X > 0.25)
-            //{
-            //    projectile.direction = -1;
-            //}
-            //else if ((double)projectile.velocity.X < -0.25)
-            //{
-            //    projectile.direction = 1;
-            //}
-            //projectile.spriteDirection = projectile.direction;
 
             //fix, direction gets set automatically by tmodloader based on velocity.X for some reason
-            if ((double)projectile.velocity.X > 0.25)
+            if (projectile.velocity.X > 0.25f)
             {
                 projectile.ai[0] = -1;
             }
-            else if ((double)projectile.velocity.X < -0.25)
+            else if (projectile.velocity.X < -0.25f)
             {
                 projectile.ai[0] = 1;
             }
@@ -240,9 +303,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreAI()
         {
             Player player = Main.player[projectile.owner];
-            int tileX = (int)((player.position.X /*+ (float)(player.width / 2) + (float)(15 * player.direction)*/) / 16f);
-            int tileY = (int)((player.position.Y + (float)player.height - 15f) / 16f);
-            Main.NewText(Framing.GetTileSafely(tileX, tileY).liquid == 255);
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -255,12 +315,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (Swimming)
             {
-                Main.NewText("swimming");
-                ZephyrfishAI();
+                SwimmingZephyrfishAI();
                 return false;
             }
-
-            Main.NewText("not swimming");
+            Timer = 0;
+            projectile.ai[1] = 0; //reset from ZephyrfishAI();
+            
             return true;
         }
 
@@ -275,13 +335,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 effects = SpriteEffects.FlipHorizontally;
             }
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            Texture2D image = mod.GetTexture("Projectiles/Pets/PetGoldfishProj_0"/* + mPlayer.lilWrapsType*/);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (int)(image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
             bounds.Y = frame2 * bounds.Height;
-            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - 2);
+            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - 2 + projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             return false;

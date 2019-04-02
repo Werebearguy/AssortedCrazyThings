@@ -52,6 +52,9 @@ namespace AssortedCrazyThings
         //queen larva texture
         public byte miniAntlionType = 0;
 
+        //pet goldfish texture
+        public byte petGoldfishType = 0;
+
         //ALTERNATE
         ////name pet texture
         //public byte classNameType = 0;
@@ -267,6 +270,7 @@ namespace AssortedCrazyThings
                 {"queenLarvaType", (byte)queenLarvaType},
                 {"oceanSlimeType", (byte)oceanSlimeType},
                 {"miniAntlionType", (byte)miniAntlionType},
+                {"petGoldfishType", (byte)petGoldfishType},
                 //ALTERNATE
                 //{"classNameType", (byte)classNameType},
             };
@@ -291,6 +295,7 @@ namespace AssortedCrazyThings
             queenLarvaType = tag.GetByte("queenLarvaType");
             oceanSlimeType = tag.GetByte("oceanSlimeType");
             miniAntlionType = tag.GetByte("miniAntlionType");
+            petGoldfishType = tag.GetByte("petGoldfishType");
             //ALTERNATE
             //classNameType = tag.GetByte("classNameType");
         }
@@ -314,6 +319,7 @@ namespace AssortedCrazyThings
             clone.queenLarvaType = queenLarvaType;
             clone.oceanSlimeType = oceanSlimeType;
             clone.miniAntlionType = miniAntlionType;
+            clone.petGoldfishType = petGoldfishType;
             //ALTERNATE
             //clone.classNameType = classNameType;
         }
@@ -337,6 +343,7 @@ namespace AssortedCrazyThings
             else if (clone.queenLarvaType != queenLarvaType) changes = PetPlayerChanges.queenLarvaType;
             else if (clone.oceanSlimeType != oceanSlimeType) changes = PetPlayerChanges.oceanSlimeType;
             else if (clone.miniAntlionType != miniAntlionType) changes = PetPlayerChanges.miniAntlionType;
+            else if (clone.petGoldfishType != miniAntlionType) changes = PetPlayerChanges.petGoldfishType;
             //ALTERNATE
             //else if (clone.classNameType != classNameType) changes = PetPlayerChanges.classNameType;
 
@@ -374,6 +381,7 @@ namespace AssortedCrazyThings
             packet.Write((byte)queenLarvaType);
             packet.Write((byte)oceanSlimeType);
             packet.Write((byte)miniAntlionType);
+            packet.Write((byte)petGoldfishType);
             //ALTERNATE
             //packet.Write((byte)classNameType);
         }
@@ -396,6 +404,7 @@ namespace AssortedCrazyThings
             queenLarvaType = reader.ReadByte();
             oceanSlimeType = reader.ReadByte();
             miniAntlionType = reader.ReadByte();
+            petGoldfishType = reader.ReadByte();
             //ALTERNATE
             //classNameType = reader.ReadByte();
         }
@@ -453,6 +462,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.miniAntlionType:
                     miniAntlionType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.petGoldfishType:
+                    petGoldfishType = reader.ReadByte();
                     break;
                 //ALTERNATE
                 //case (byte)PetPlayerChanges.classNameType:
@@ -522,6 +534,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.miniAntlionType:
                     packet.Write((byte)miniAntlionType);
+                    break;
+                case (byte)PetPlayerChanges.petGoldfishType:
+                    packet.Write((byte)petGoldfishType);
                     break;
                 //ALTERNATE
                 //case (byte)PetPlayerChanges.classNameType:

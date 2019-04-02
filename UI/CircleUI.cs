@@ -134,11 +134,11 @@ namespace AssortedCrazyThings.UI
             //Draw held item inside circle
             if (heldItemType != -1)
             {
-                int finalWidth = Main.itemTexture[heldItemType].Width / 2;
-                int finalHeight = Main.itemTexture[heldItemType].Height / 2;
-                Rectangle outputWeaponRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
+                int finalWidth = Main.itemTexture[heldItemType].Width/* / 2*/;
+                int finalHeight = Main.itemTexture[heldItemType].Height/* / 2*/;
+                Rectangle outputItemRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
                 //outputWeaponRect.Inflate(4, 4);
-                spriteBatch.Draw(Main.itemTexture[heldItemType], outputWeaponRect, Color.White);
+                spriteBatch.Draw(Main.itemTexture[heldItemType], outputItemRect, Color.White);
             }
 
             if (middle)
