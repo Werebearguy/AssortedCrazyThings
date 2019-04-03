@@ -88,9 +88,9 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SlimeCrown, 1);
-            recipe.AddIngredient(ItemID.Gel, 999);
-            recipe.AddIngredient(ItemID.SoulofLight, 10);
-            recipe.AddIngredient(ItemID.SoulofNight, 10);
+            recipe.AddIngredient(ItemID.Gel, 200);
+            recipe.AddIngredient(ItemID.SoulofLight, 5);
+            recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

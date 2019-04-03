@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //Defaults for damage, shoot and knockback dont matter too much here
             //default to PreWol
-            item.damage = CompanionDungeonSoulMinionBase.DefDamage / 2;
+            item.damage = CompanionDungeonSoulMinionBase.DefDamage / 2 - 1;
             item.summon = true;
             item.mana = 10;
             item.width = 18;
@@ -47,8 +47,6 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            //AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
-            //mPlayer.SpawnSoul(item.shoot, item.damage, item.knockBack);
             //one that shoots out far 
             Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, Main.myPlayer, 0f, 0f);
             //one that shoots out less

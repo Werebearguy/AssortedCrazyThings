@@ -62,8 +62,7 @@ namespace AssortedCrazyThings.Items.Armor
              * and harvester wings)
              */
              
-            player.setBonus = "Empowers minions summoned by Everhallowed Lantern"
-                + "\nReflects 10% contact damage per available minion slot"
+            player.setBonus = "Reflects 10% contact damage per available minion slot"
                 + "\nReflected damage further increased by effects that increase minion damage"
                 + "\nCurrent reflected damage: " + (int)(factor * 100) + "%"
                 + "\nMinions summoned by the Everhallowed Lantern become 'empowered' and gain 30% more damage";
