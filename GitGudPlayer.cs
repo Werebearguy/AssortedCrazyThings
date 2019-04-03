@@ -714,7 +714,6 @@ namespace AssortedCrazyThings
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            AssUtils.Print("call prekill on player " + player.whoAmI + " " + player.name);
             GitgudData.IncreaseCounters(player.whoAmI);
 
             return true;

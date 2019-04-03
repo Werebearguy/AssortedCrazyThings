@@ -884,12 +884,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //------------------------------------------------
             Add(SlotType.Hat, new PetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
                 .AddPetVariation("Pink", 1)
-                .AddPetVariation("Dungeon", 3)
                 .AddPetVariation("Yellow", 2)
+                .AddPetVariation("Dungeon", 3)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
             Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" })
                 .AddPetVariation("Green", 1)
+                .AddPetVariation("Jungle", 2)
+                .AddPetVariation("Xmas", 3)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", offsetY: -14f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
             Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
@@ -1333,6 +1335,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
             DisplayName.SetDefault("Cute Swallowed Key");
             Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
         }
+
+        protected override bool UseDefaultRecipe { get { return false; } }
+
+        protected override void MoreAddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<PetAccessorySwallowedKey>());
+            recipe.SetResult(ItemID.GoldenKey);
+            recipe.AddRecipe();
+        }
     }
 
     public class PetAccessoryToyShield : PetAccessoryItem
@@ -1415,13 +1427,18 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
+        protected virtual bool UseDefaultRecipe { get { return true; } }
+
         public sealed override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<KnittingSet>());
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            if (UseDefaultRecipe)
+            {
+                ModRecipe recipe = new ModRecipe(mod);
+                recipe.AddIngredient(mod.ItemType<KnittingSet>());
+                recipe.AddTile(TileID.Loom);
+                recipe.SetResult(this);
+                recipe.AddRecipe();
+            }
 
             MoreAddRecipes();
         }

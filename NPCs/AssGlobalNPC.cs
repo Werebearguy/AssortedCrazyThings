@@ -34,6 +34,11 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot(NPC npc)
         {
             //other pets
+            if (npc.type == NPCID.Antlion || npc.type == NPCID.FlyingAntlion || npc.type == NPCID.WalkingAntlion)
+            {
+                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<MiniAntlionItem>());
+            }
+
             if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());

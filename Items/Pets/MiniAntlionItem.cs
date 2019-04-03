@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Pets
             item.shoot = mod.ProjectileType<MiniAntlionProj>();
             item.buffType = mod.BuffType<MiniAntlionBuff>();
             item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            item.value = Item.sellPrice(silver: 10);
         }
 
         public override void UseStyle(Player player)

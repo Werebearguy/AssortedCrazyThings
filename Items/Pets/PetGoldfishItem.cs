@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Pet Goldfish Item");
+            DisplayName.SetDefault("Pet Goldfish");
             Tooltip.SetDefault("Summons a goldfish that follows you"
                 + "\n'It only wants to swim with you!'"
                 + "\nAppearance can be changed with Costume Suitcase");
@@ -31,6 +31,15 @@ namespace AssortedCrazyThings.Items.Pets
             {
                 player.AddBuff(item.buffType, 3600, true);
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.FishStatue, 1);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
