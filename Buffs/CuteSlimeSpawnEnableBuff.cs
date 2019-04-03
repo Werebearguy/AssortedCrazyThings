@@ -15,35 +15,27 @@ namespace AssortedCrazyThings.Buffs
 
         public override void ModifyBuffTip(ref string tip, ref int rare)
         {
-            string canSpawn = "\nSlimes that can spawn: ";
-            string suffix = "";
+            string canSpawn = "\nCute Slimes that can spawn: ";
+            string suffix = "None";
             
             foreach (SlimePets.SpawnConditionType type in Enum.GetValues(typeof(SlimePets.SpawnConditionType)))
             {
-                if (SlimePets.CanSpawn(Main.LocalPlayer, type)) Main.NewText(type.ToString() +" " + SlimePets.GetSpawnChance(Main.LocalPlayer, type));
                 if (SlimePets.CanSpawn(Main.LocalPlayer, type))
                 {
                     List<string> nameList = SlimePets.slimePetNPCsEnumToNames[(int)type];
                     if (nameList != null)
                     {
-                        if (suffix == "") suffix += "\n";
+                        if (suffix == "None") suffix = "\n";
                         for (int i = 0; i < nameList.Count; i++)
                         {
                             suffix += nameList[i];
-                            if (i < nameList.Count - 1) suffix += ", ";
-                            else suffix += "\n";
+                            if (i < nameList.Count - 1) suffix += ", "; //if not last element, add a comma
+                            else suffix += "\n"; //if last element, add line break
                         }
                     }
                 }
             }
-            if (suffix != "")
-            {
-                tip += canSpawn + suffix;
-            }
-            else
-            {
-                tip += canSpawn += "None";
-            }
+            tip += canSpawn + suffix;
         }
 
         public override void Update(Player player, ref int buffIndex)
