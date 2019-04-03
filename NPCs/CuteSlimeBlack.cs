@@ -33,35 +33,11 @@ namespace AssortedCrazyThings.NPCs
             npc.catchItem = (short)mod.ItemType("CuteSlimeBlackNew");
         }
 
-        public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, float customSpawnCondition)
-        {
-            if (ModConf.CuteSlimesPotionOnly)
-            {
-                if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
-                {
-                    //if flag active and potion, spawn normally
-                    return customSpawnCondition;
-                }
-                //if flag active and no potion, don't spawn
-                return 0f;
-            }
-            else
-            {
-                if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
-                {
-                    //if no flag and potion active, spawn with higher chance
-                    return customSpawnCondition * 3;
-                }
-                //if no flag and no potion, spawn normally
-                return customSpawnCondition;
-            }
-        }
-
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             //if (ModConf.CuteSlimesPotionOnly) return SpawnCondition.OverworldDaySlime.Chance * 0.025f * 0.5f;
             //else return 0f;
-            return CuteSlimeSpawnChance(spawnInfo, SpawnCondition.OverworldDaySlime.Chance * 0.0125f);
+            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Overworld);
         }
 
         public override void NPCLoot()

@@ -136,6 +136,11 @@ namespace AssortedCrazyThings
             return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsBody/* || npc.realLife != -1*/;
         }
 
+        public static bool EvilBiome(Player player)
+        {
+            return player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly;
+        }
+
         public static string GetTimeAsString(bool accurate = true)
         {
             string suffix = "AM";

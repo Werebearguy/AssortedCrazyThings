@@ -3,6 +3,8 @@ using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
@@ -12,7 +14,109 @@ namespace AssortedCrazyThings
 
         public static List<int> slimePets = new List<int>(); //slimePets.IndexOf(type) returns the indexed type
         public static List<int> slimePetLegacy = new List<int>();
-        public static List<int> slimePetNPCs = new List<int>();
+        public static List<List<string>> slimePetNPCsEnumToNames = new List<List<string>>();
+
+        public enum SpawnConditionType : byte
+        {
+            Overworld,
+            Desert,
+            Tundra,
+            Jungle,
+            Underground,
+            Hell,
+            Corruption,
+            Crimson,
+            Hallow,
+            Dungeon,
+            Xmas
+        }
+
+        public static bool CanSpawn(Player player, SpawnConditionType type)
+        {
+            switch (type)
+            {
+                case SpawnConditionType.Overworld:
+                    return Main.dayTime && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Desert:
+                    return Main.dayTime && player.ZoneOverworldHeight && player.ZoneDesert && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Tundra:
+                    return Main.dayTime && player.ZoneOverworldHeight && player.ZoneSnow && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Jungle:
+                    return Main.dayTime && player.ZoneOverworldHeight && player.ZoneJungle && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Underground:
+                    return Main.hardMode && player.ZoneDirtLayerHeight && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Hell:
+                    return player.ZoneUnderworldHeight && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Corruption:
+                    return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson);
+                case SpawnConditionType.Crimson:
+                    return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt);
+                case SpawnConditionType.Hallow:
+                    return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
+                case SpawnConditionType.Dungeon:
+                    return player.ZoneDungeon && !AssUtils.EvilBiome(player);
+                case SpawnConditionType.Xmas:
+                    return Main.xMas && Main.dayTime && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
+                default:
+                    return false;
+            }
+        }
+
+        public static float GetSpawnChance(Player player, SpawnConditionType type)
+        {
+            switch (type)
+            {
+                case SpawnConditionType.Overworld:
+                    return SpawnCondition.OverworldDaySlime.Chance * 0.0125f;
+                case SpawnConditionType.Desert:
+                    return SpawnCondition.OverworldDayDesert.Chance * 0.05f;
+                case SpawnConditionType.Tundra:
+                    return player.ZoneSnow ? SpawnCondition.OverworldDaySlime.Chance * 0.05f : 0f;
+                case SpawnConditionType.Jungle:
+                    return SpawnCondition.SurfaceJungle.Chance * 0.05f;
+                case SpawnConditionType.Underground:
+                    return Main.hardMode && player.ZoneDirtLayerHeight ? 0.0125f : 0f;
+                case SpawnConditionType.Hell:
+                    return SpawnCondition.Underworld.Chance * 0.0125f;
+                case SpawnConditionType.Corruption:
+                    return Main.hardMode ? (!Main.bloodMoon ? SpawnCondition.Corruption.Chance * 0.05f : SpawnCondition.Crimson.Chance * 0.05f) : 0f;
+                case SpawnConditionType.Crimson:
+                    return Main.hardMode ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.05f : SpawnCondition.Corruption.Chance * 0.05f) : 0f;
+                case SpawnConditionType.Hallow:
+                    return SpawnCondition.OverworldHallow.Chance * 0.05f;
+                case SpawnConditionType.Dungeon:
+                    return SpawnCondition.DungeonNormal.Chance * 0.02f;
+                case SpawnConditionType.Xmas:
+                    return Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.025f : 0f;
+                default:
+                    return 0f;
+            }
+        }
+
+        public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
+        {
+            float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
+            if (ModConf.CuteSlimesPotionOnly)
+            {
+                if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
+                {
+                    //if flag active and potion, spawn normally
+                    return spawnChance;
+                }
+                //if flag active and no potion, don't spawn
+                return 0f;
+            }
+            else
+            {
+                if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
+                {
+                    //if no flag and potion active, spawn with higher chance
+                    return spawnChance * 3;
+                }
+                //if no flag and no potion, spawn normally
+                return spawnChance;
+            }
+        }
 
         public static void Load()
         {
@@ -32,26 +136,23 @@ namespace AssortedCrazyThings
                 AssUtils.Instance.ProjectileType<CuteSlimeYellowProj>(),
             });
 
-            //for adding new slime NPCs
-            slimePetNPCs.AddRange(new List<int>
+            Array enumArray = Enum.GetValues(typeof(SpawnConditionType));
+            slimePetNPCsEnumToNames = new List<List<string>>(enumArray.Length);
+            for (int i = 0; i < enumArray.Length; i++)
             {
-                AssUtils.Instance.NPCType<CuteSlimeBlack>(),
-                AssUtils.Instance.NPCType<CuteSlimeBlue>(),
-                AssUtils.Instance.NPCType<CuteSlimeCrimson>(),
-                AssUtils.Instance.NPCType<CuteSlimeCorrupt>(),
-                AssUtils.Instance.NPCType<CuteSlimeDungeon>(),
-                AssUtils.Instance.NPCType<CuteSlimeGreen>(),
-                AssUtils.Instance.NPCType<CuteSlimeIce>(),
-                AssUtils.Instance.NPCType<CuteSlimeJungle>(),
-                AssUtils.Instance.NPCType<CuteSlimePink>(),
-                AssUtils.Instance.NPCType<CuteSlimePurple>(),
-                AssUtils.Instance.NPCType<CuteSlimeRainbow>(),
-                AssUtils.Instance.NPCType<CuteSlimeRed>(),
-                AssUtils.Instance.NPCType<CuteSlimeSand>(),
-                AssUtils.Instance.NPCType<CuteSlimeToxic>(),
-                AssUtils.Instance.NPCType<CuteSlimeXmas>(),
-                AssUtils.Instance.NPCType<CuteSlimeYellow>()
-            });
+                slimePetNPCsEnumToNames.Add(null);
+            }
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Overworld] = new List<string>() { "Black", "Blue", "Green", "Pink", "Purple", "Rainbow", "Red", "Yellow" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Desert] = new List<string>() { "Sand" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Tundra] = new List<string>() { "Ice" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Jungle] = new List<string>() { "Jungle" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Underground] = new List<string>() { "Toxic" };
+            //slimePetNPCsEnumToNames[(int)SpawnConditionType.Hell] = new List<string>() { "Lava" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
+            //slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() {"Illuminant" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
 
             //start list
             slimePetList.Add(SlimePet.NewSlimePet
@@ -176,7 +277,7 @@ namespace AssortedCrazyThings
             slimePets.Clear();
             slimePetList.Clear();
             slimePetLegacy.Clear();
-            slimePetNPCs.Clear();
+            slimePetNPCsEnumToNames.Clear();
         }
 
         public static void CreateMap()

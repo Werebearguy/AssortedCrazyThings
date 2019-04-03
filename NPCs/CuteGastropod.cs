@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return CuteSlimeBlack.CuteSlimeSpawnChance(spawnInfo, !NPC.AnyNPCs(mod.NPCType<CuteGastropod>()) ? SpawnCondition.OverworldHallow.Chance * 0.05f : 0f);
+            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Hallow, customFactor: !NPC.AnyNPCs(mod.NPCType<CuteGastropod>()) ? 1f : 0f);
         }
     }
 }

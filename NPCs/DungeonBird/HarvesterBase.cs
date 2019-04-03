@@ -435,7 +435,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
                 if (npc.getRect().Intersects(tarnpc.getRect()))
                 {
-                    AssUtils.Print("pass eatTime");
+                    //AssUtils.Print("pass eatTime");
                     stopTime = eatTime;
                 }
                 AI_State = STATE_DISTRIBUTE;

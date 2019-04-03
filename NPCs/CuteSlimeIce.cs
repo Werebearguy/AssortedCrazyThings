@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return CuteSlimeBlack.CuteSlimeSpawnChance(spawnInfo, spawnInfo.player.ZoneSnow? SpawnCondition.OverworldDaySlime.Chance * 0.025f : 0f);
+            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Tundra);
         }
 
         public override void NPCLoot()
