@@ -3,8 +3,6 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using Terraria.GameInput;
 using AssortedCrazyThings.NPCs.DungeonBird;
 
@@ -74,8 +72,8 @@ namespace AssortedCrazyThings.UI
                     Rectangle npcrect = new Rectangle((int)Main.npc[k].Bottom.X - Main.npc[k].frame.Width / 2, (int)Main.npc[k].Bottom.Y - Main.npc[k].frame.Height, Main.npc[k].frame.Width, Main.npc[k].frame.Height);
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
-                        if (Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoul>() ||
-                           Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoulFreed>())
+                        if ((Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoul>() ||
+                           Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoulFreed>()) && Main.npc[k].ai[0] == 0)
                         {
                             ret = "Catch it with a net";
                         }

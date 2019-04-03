@@ -168,8 +168,8 @@ namespace AssortedCrazyThings.UI
                     if (ldrawPos.Y >= Main.screenHeight - tempheight) ldrawPos.Y = Main.screenHeight - tempheight;
                     if (ldrawPos.Y <= tempheight) ldrawPos.Y = tempheight;
 
-                    int finalWidth = texture.Width / 2;
-                    int finalHeight = tempheight / 2;
+                    int finalWidth = texture.Width;
+                    int finalHeight = tempheight;
                     Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
                     //outputWeaponRect.Inflate(10, 10);
                     //spriteBatch.Draw(tex, outputWeaponRect, Color.White);

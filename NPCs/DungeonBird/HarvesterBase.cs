@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public abstract class HarvesterBase : ModNPC
     {
-        public const short EatTimeConst = 180; //shouldn't be equal to IdleTimeConst + 60
+        public const short EatTimeConst = 240; //shouldn't be equal to IdleTimeConst + 120####### //180 //+60
         public const short IdleTimeConst = 180;
         public static readonly string message = "You hear a faint cawing come from nearby..."; //used for announcing
         protected const bool Target_Player = false;
@@ -435,6 +435,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
                 if (npc.getRect().Intersects(tarnpc.getRect()))
                 {
+                    AssUtils.Print("pass eatTime");
                     stopTime = eatTime;
                 }
                 AI_State = STATE_DISTRIBUTE;
@@ -997,7 +998,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //}
 
             //Attack player
-            if (AI_Timer % 20 == 0)
+            if (AI_Timer % 30 == 0)
             {
                 if (AI_State == STATE_STOP && aiTargetType == Target_Player && soulsEaten <= maxSoulsEaten)
                 {
@@ -1016,10 +1017,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     SelectTarget(restrictedSoulSearch);
                 }
-                else if (target == 200)
-                {
-                    //SelectTarget(restrictedSoulSearch);
-                }
+                //else if (target == 200)
+                //{
+                //    //SelectTarget(restrictedSoulSearch);
+                //}
 
                 //check if atleast one of four tiles underneath exists properly , aka "on the ground"
 
@@ -1112,11 +1113,37 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             else if (AI_State == STATE_STOP/*3*/)
             {
 
-                if (AI_X_Timer == 0f && stopTime == eatTime)
+                if (stopTime == eatTime)
                 {
-                    AI_Timer = 0;
-                    //AssUtils.Print("started eating");
-                    npc.netUpdate = true;
+                    if (AI_X_Timer == 0f)
+                    {
+                        AI_Timer = 0;
+                        //AssUtils.Print("started eating");
+                        npc.netUpdate = true;
+                    }
+
+                    //if alteast one soul intersects with hitbox
+                    bool intersects = false;
+                    for (int k = 0; k < 200; k++)
+                    {
+                        if (Main.npc[k].active && Main.npc[k].type == mod.NPCType<DungeonSoul>())
+                        {
+                            if (npc.getRect().Intersects(Main.npc[k].getRect()))
+                            {
+                                intersects = true;
+                                //if (Main.time % 60 == 0) Main.NewText("intersects with " + k);
+                                break;
+                            }
+                        }
+                    }
+                    if (!intersects)
+                    {
+                        npc.netUpdate = true;
+                        AI_State = STATE_DISTRIBUTE;
+                        aiInit = false; //reinitialize
+                        AI_X_Timer = 0f;
+                        //AssUtils.Print("cancelled eating");
+                    }
                 }
                 npc.noGravity = false;
 
