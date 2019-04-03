@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AssortedCrazyThings.Buffs;
 using Terraria;
 using Terraria.ID;
@@ -9,15 +10,26 @@ namespace AssortedCrazyThings.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("CuteSlimeSpawnEnable");
-            Tooltip.SetDefault("Tooltip");
+            DisplayName.SetDefault("Jellied Ale");
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (ModConf.CuteSlimesPotionOnly)
+            {
+                tooltips.Add(new TooltipLine(mod, "Tooltip", "Allows you to see Cute Slimes for a short time"));
+            }
+            else
+            {
+                tooltips.Add(new TooltipLine(mod, "Tooltip", "You will see Cute Slimes more often for a short time"));
+            }
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.Silk);
-            item.width = 26;
-            item.height = 24;
+            item.width = 20;
+            item.height = 28;
             item.useStyle = ItemUseStyleID.EatingUsing;
             item.useAnimation = 17;
             item.useTime = 17;
@@ -25,10 +37,20 @@ namespace AssortedCrazyThings.Items.Consumables
             item.UseSound = SoundID.Item3;
             item.maxStack = 30;
             item.consumable = true;
-            item.buffTime = 24000; //eight minutes
+            item.buffTime = 18000; //five minutes
             item.buffType = mod.BuffType<CuteSlimeSpawnEnableBuff>();
             item.rare = -11;
-            item.value = Item.sellPrice(silver: 2);
+            item.value = Item.sellPrice(copper: 20);
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Ale, 1);
+            recipe.AddIngredient(ItemID.Gel, 1);
+            recipe.AddTile(TileID.Kegs);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

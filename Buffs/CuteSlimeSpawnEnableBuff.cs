@@ -7,8 +7,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Cute Slime Spawn Enable Buff");
-            Description.SetDefault("CuteSlimeSpawnEnableBuff Tooltip");
+            DisplayName.SetDefault("Jellied Ale");
+            Description.SetDefault("Your perception of slimes is a bit off...");
         }
 
         public override void Update(Player player, ref int buffIndex)
