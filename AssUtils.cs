@@ -58,17 +58,73 @@ namespace AssortedCrazyThings
             return dust;
         }
 
-        public static void DrawTether(string Tex, Vector2 Start, Vector2 End, int Alpha = 255)
+        public static void DrawTether(SpriteBatch spriteBatch, string texString, Vector2 start, Vector2 end)
         {
-            DrawTether(ModLoader.GetTexture(Tex), Start, End, Alpha);
+            DrawTether(spriteBatch, ModLoader.GetTexture(texString), start, end);
         }
 
-        public static void DrawTether(Texture2D Tex, Vector2 Start, Vector2 End, int Alpha = 255)
+        //AssUtils.DrawSkeletronLikeArms(spriteBatch, ModLoader.GetTexture("AssortedCrazyThings/Projectiles/Pets/Arm_Bone"), projectile.Center, 20f, Main.player[projectile.owner].Center, 0, 0);
+
+        public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
-            Vector2 position = Start;
-            Vector2 mountedCenter = End;
-            Vector2 origin = new Vector2(Tex.Width * 0.5f, Tex.Height * 0.5f);
-            float num1 = Tex.Height;
+            DrawSkeletronLikeArms(spriteBatch, ModLoader.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
+        }
+
+        public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, Texture2D tex, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
+        {
+            //with all float params = 0f, the arm will originate below the selfPos
+            //Pos parameters should be Entity.Center
+            //Pad parameters are actually just y offsets
+            //direction determines in what direction the elbow bends and by how much (-1 to 1 are preferred)
+            //if (tex == null) tex = Main.boneArmTexture;
+            Vector2 drawPos = selfPos;
+            drawPos += new Vector2(-5f * direction, selfPad);
+            centerPos.Y += -tex.Height / 2 + centerPad;
+            for (int i = 0; i < 2; i++)
+            {
+                float x = centerPos.X - drawPos.X;
+                float y = centerPos.Y - drawPos.Y;
+                float magnitude;
+                if (i == 0) //first arm piece starting at selfPos
+                {
+                    x += -(100 + tex.Height) * direction;
+                    y += 100 + tex.Width;
+                    magnitude = (float)Math.Sqrt(x * x + y * y);
+                    magnitude = (tex.Height / 2) / magnitude;
+                    drawPos.X += x * magnitude;
+                    drawPos.Y += y * magnitude;
+                }
+                else //second arm piece
+                {
+                    x += -(30 + tex.Width / 2) * direction;
+                    y += 30 + tex.Height / 2;
+                    magnitude = (float)Math.Sqrt(x * x + y * y);
+                    magnitude = (tex.Height / 2) / magnitude;
+                    drawPos.X += x * magnitude;
+                    drawPos.Y += y * magnitude;
+                }
+                float rotation = (float)Math.Atan2(y, x) - 1.57f;
+                Color color = Lighting.GetColor((int)drawPos.X / 16, (int)(drawPos.Y / 16f));
+                spriteBatch.Draw(tex, new Vector2(drawPos.X - Main.screenPosition.X, drawPos.Y - Main.screenPosition.Y), tex.Bounds, color, rotation, tex.Bounds.Size()/2, 1f, SpriteEffects.None, 0f);
+                if (i == 0)
+                {
+                    //padding for the second arm piece
+                    drawPos.X += x * magnitude * 1.1f;
+                    drawPos.Y += y * magnitude * 1.1f;
+                }
+                else if (Main.instance.IsActive) //not sure what this part does
+                {
+                    drawPos.X += x * magnitude - 16f;
+                    drawPos.Y += y * magnitude - 6f;
+                }
+            }
+        }
+
+        public static void DrawTether(SpriteBatch spriteBatch, Texture2D tex, Vector2 start, Vector2 end)
+        {
+            Vector2 position = start;
+            Vector2 mountedCenter = end;
+            float num1 = tex.Height;
             Vector2 vector2_4 = mountedCenter - position;
             Vector2 vector2_4tt = mountedCenter - position;
             float keepgoing = vector2_4tt.Length();
@@ -96,8 +152,8 @@ namespace AssortedCrazyThings
                     keepgoing -= num1;
                     vector2_4 = mountedCenter - position;
                     Color color2 = Lighting.GetColor((int)position.X / 16, (int)position.Y / 16);
-                    color2 = new Color(color2.R, color2.G, color2.B, Alpha);
-                    Main.spriteBatch.Draw(Tex, position - Main.screenPosition, new Rectangle(0, 0, Tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
+                    color2 = new Color(color2.R, color2.G, color2.B, 255);
+                    spriteBatch.Draw(tex, position - Main.screenPosition, new Rectangle(0, 0, tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, tex.Bounds.Size()/2, 1f, SpriteEffects.None, 0.0f);
                 }
             }
         }

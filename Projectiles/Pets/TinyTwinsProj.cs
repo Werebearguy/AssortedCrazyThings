@@ -14,6 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Tiny Spazmatism");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
+            drawOriginOffsetY = -10;
         }
 
         public override void SetDefaults()
@@ -21,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
             projectile.width = 30;
-            projectile.height = 48;
+            projectile.height = 30;
         }
 
         public override bool PreAI()
@@ -51,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<TinyRetinazerProj>() && projectile.owner == Main.projectile[i].owner)
                 {
-                    AssUtils.DrawTether(/*Main.chain12Texture*/"AssortedCrazyThings/Projectiles/Pets/TinyTwinsProj_Chain", projectile.Center, Main.projectile[i].Center);
+                    AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/TinyTwinsProj_Chain", projectile.Center, Main.projectile[i].Center);
                     break;
                 }
             }
@@ -72,6 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Tiny Retinazer");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
+            drawOriginOffsetY = -10;
         }
 
         public override void SetDefaults()
@@ -79,7 +81,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
             aiType = ProjectileID.ZephyrFish;
             projectile.width = 30;
-            projectile.height = 48;
+            projectile.height = 30;
         }
 
         public override bool PreAI()
