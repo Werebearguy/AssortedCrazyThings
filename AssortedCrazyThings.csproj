@@ -38,6 +38,7 @@
     <Compile Include="Buffs\PetGoldfishBuff.cs" />
     <Compile Include="Buffs\CuteSlimeSpawnEnableBuff.cs" />
     <Compile Include="Buffs\ObservingEyeBuff.cs" />
+    <Compile Include="Buffs\PetGolemHeadBuff.cs" />
     <Compile Include="Buffs\SkeletronHandBuff.cs" />
     <Compile Include="Buffs\TinyTwinsBuff.cs" />
     <Compile Include="Buffs\CuteSlimeJungleNewBuff.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Items\KnittingSet.cs" />
     <Compile Include="Items\Pets\PetGoldfishItem.cs" />
     <Compile Include="Items\Pets\ObservingEyeItem.cs" />
+    <Compile Include="Items\Pets\PetGolemHeadItem.cs" />
     <Compile Include="Items\Pets\SkeletronHandItem.cs" />
     <Compile Include="Items\Pets\TinyTwinsItem.cs" />
     <Compile Include="Items\Pets\CuteSlimeJungleNew.cs" />
@@ -299,6 +301,7 @@
     <Compile Include="NPCs\CuteSlimeSand.cs" />
     <Compile Include="Projectiles\Pets\PetGoldfishProj.cs" />
     <Compile Include="Projectiles\Pets\ObservingEyeProj.cs" />
+    <Compile Include="Projectiles\Pets\PetGolemHeadProj.cs" />
     <Compile Include="Projectiles\Pets\SkeletronHandProj.cs" />
     <Compile Include="Projectiles\Pets\TinyTwinsProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimePrincessNewProj.cs" />
@@ -306,6 +309,7 @@
     <Compile Include="Projectiles\Pets\CuteSlimeSandNewProj.cs" />
     <Compile Include="Projectiles\Pets\DrumstickElementalProj.cs" />
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
+    <Compile Include="Projectiles\Weapons\PetGolemHeadFireball.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsFired.cs" />

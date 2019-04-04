@@ -569,12 +569,22 @@ namespace AssortedCrazyThings
             }
         }
 
-        public static void ZephyrfishAI(Projectile projectile, float velocityFactor = 1f, float sway = 1f, byte swapSides = 0, float offsetX = 0f, float offsetY = 0f)
+        public static void ZephyrfishAI(Projectile projectile, float velocityFactor = 1f, float sway = 1f, bool random = true, byte swapSides = 0, float offsetX = 0f, float offsetY = 0f)
         {
+            //velocityFactor: 
+            //kinda wonky, leave at 1f
+
+            //sway: 
+            //tells by how much increase/decrease the left/right sway of the idle pet
+
             //swapSides:
-            //0 : always behind
+            // 0: always behind
             //-1: always left
-            //1: always right
+            // 1: always right
+
+            //offsetX/Y
+            //offsetting the desired center the pet hovers around
+
             Player player = Main.player[projectile.owner];
             if (!player.active)
             {
@@ -587,7 +597,7 @@ namespace AssortedCrazyThings
             int someDistance = 100;
             Vector2 between = player.MountedCenter - projectile.Center;
 
-            Vector2 desiredCenter = new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21));
+            Vector2 desiredCenter = random? new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21)) : Vector2.Zero;
 
             Vector2 offset = new Vector2(60f + offsetX, -60f + offsetY);
 
@@ -600,11 +610,8 @@ namespace AssortedCrazyThings
                 offset.X = offset.X * -player.direction;
             }
 
-
             //desiredCenter += new Vector2(60f * -player.direction, -60f);
             between += desiredCenter + offset;
-
-            AssUtils.DrawDustAtPos(desiredCenter + offset + player.MountedCenter);
 
             float distance = between.Length();
             //float magnitude = 6f;
