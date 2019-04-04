@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
-            MiniMegalodon.EyeSpringAI(projectile, false);
+            AssAI.EyeSpringAI(projectile, flyForever: false);
         }
     }
 }

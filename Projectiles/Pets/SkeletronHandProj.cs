@@ -20,6 +20,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
+            //projectile.aiStyle = -1;
             projectile.width = 30;
             projectile.height = 32;
         }
@@ -47,12 +48,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: 20f);
+            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: 20f, centerPad: -30f, direction: 0);
             return true;
         }
 
         public override void PostAI()
         {
+            //AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, swapSides: 0, offsetX: 90, offsetY: -20);
+            //AssAI.ZephyrfishDraw(projectile);
             projectile.rotation = projectile.velocity.X * 0.08f;
         }
     }
