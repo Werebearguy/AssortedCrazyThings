@@ -36,17 +36,17 @@ namespace AssortedCrazyThings
             switch (type)
             {
                 case SpawnConditionType.Overworld:
-                    return Main.dayTime && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
+                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Desert:
-                    return Main.dayTime && player.ZoneOverworldHeight && player.ZoneDesert && !AssUtils.EvilBiome(player);
+                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneDesert && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Tundra:
-                    return Main.dayTime && player.ZoneOverworldHeight && player.ZoneSnow && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
+                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneSnow && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Jungle:
-                    return Main.dayTime && player.ZoneOverworldHeight && player.ZoneJungle && !AssUtils.EvilBiome(player);
+                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneJungle && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Underground:
                     return Main.hardMode && player.ZoneDirtLayerHeight && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Hell:
-                    return player.ZoneUnderworldHeight && !AssUtils.EvilBiome(player);
+                    return player.ZoneUnderworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Corruption:
                     return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson);
                 case SpawnConditionType.Crimson:
@@ -54,9 +54,9 @@ namespace AssortedCrazyThings
                 case SpawnConditionType.Hallow:
                     return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
                 case SpawnConditionType.Dungeon:
-                    return player.ZoneDungeon && !AssUtils.EvilBiome(player);
+                    return player.ZoneDungeon && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Xmas:
-                    return Main.xMas && Main.dayTime && player.ZoneOverworldHeight && !AssUtils.EvilBiome(player);
+                    return Main.xMas && Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 default:
                     return false;
             }

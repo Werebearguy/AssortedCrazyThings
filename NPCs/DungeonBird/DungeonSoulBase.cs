@@ -24,7 +24,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //adjust stats here to match harvester hitbox 1:1, then do findframes in postdraw
             npc.width = wid; //42 //16
             npc.height = hei; //52 //24
-            npc.npcSlots = 0.1f; //takes 1/10 npc slots out of 200 when alive
+            npc.npcSlots = 0f; //takes 1/10 npc slots out of 200 when alive
+            npc.chaseable = false;
+            npc.dontCountMe = true;
             npc.dontTakeDamageFromHostiles = true;
             npc.dontTakeDamage = true;
             npc.friendly = true;

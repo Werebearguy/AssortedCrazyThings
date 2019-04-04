@@ -53,8 +53,6 @@ namespace AssortedCrazyThings
             harvesterTypes[4] = harvesterTalonRight = mod.NPCType<HarvesterTalonRight>();
             downedHarvester = false;
             spawnHarvester = false;
-
-            isPlayerHealthManaBarLoaded = ModLoader.GetMod("PlayerHealthManaBar") != null;
         }
 
         public override void Initialize()
