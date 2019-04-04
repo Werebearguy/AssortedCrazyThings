@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Replica Golem Head");
-            Tooltip.SetDefault("Summons a Replica Golem Head to watch over you");
+            Tooltip.SetDefault("Summons a Replica Golem Head to watch over you"
+                +"\nShoots bouncing fireballs at nearby enemies");
         }
 
         public override void SetDefaults()
