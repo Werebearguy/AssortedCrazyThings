@@ -574,7 +574,7 @@ namespace AssortedCrazyThings
                     {
                         mPlayer.selectedSlimePackMinionType = (byte)CircleUI.returned;
 
-                        UIText("Selected: " + (mPlayer.selectedSlimePackMinionType == 0 ? "Default" : "Spiked"), CombatText.HealLife);
+                        UIText("Selected: " + (mPlayer.selectedSlimePackMinionType == 0 ? "Default" : (mPlayer.selectedSlimePackMinionType == 1? "Assorted" : "Spiked")), CombatText.HealLife);
                     }
                 }
             }
@@ -761,6 +761,7 @@ namespace AssortedCrazyThings
                 !Main.blockInput &&
                 !Main.mapFullscreen &&
                 !Main.HoveringOverAnNPC &&
+                !Main.LocalPlayer.showItemIcon &&
                 Main.LocalPlayer.talkNPC == -1 &&
                 !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned);
         }
