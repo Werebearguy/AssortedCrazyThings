@@ -71,7 +71,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         velocity.Normalize();
                         velocity *= 7f;
                         //velocity.Y -= Math.Abs(velocity.Y) * 0.5f;
-                        AssUtils.Print(velocity + " " + Main.npc[targetIndex].velocity * 5f);
                         int index = Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), 10, 2f, Main.myPlayer, 0f, 0f);
                         Main.projectile[index].timeLeft = 300;
                         Main.projectile[index].netUpdate = true;

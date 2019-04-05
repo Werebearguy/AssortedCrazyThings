@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulMinion>();
+            item.shoot = mod.ProjectileType<CompanionDungeonSoulPreWOLMinion>();
             item.shootSpeed = 10f;
             item.knockBack = CompanionDungeonSoulMinionBase.DefKnockback;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();

@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (item.shoot == mod.ProjectileType<CompanionDungeonSoulMinion>())
+            if (item.shoot == mod.ProjectileType<CompanionDungeonSoulPreWOLMinion>())
             {
                 item.damage *= 2;
                 item.shoot = mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>();

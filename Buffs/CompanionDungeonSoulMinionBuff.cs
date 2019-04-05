@@ -22,6 +22,7 @@ namespace AssortedCrazyThings.Buffs
             {
                 //Main.NewText((int)soulType + " " + player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats((int)soulType).Type]);
                 sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>()];
+                sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPreWOLMinion>()];
                 sum += player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats((int)soulType).Type];
             }
             return sum;
