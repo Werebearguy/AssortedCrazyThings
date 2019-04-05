@@ -62,9 +62,7 @@ namespace AssortedCrazyThings
         {
             DrawTether(spriteBatch, ModLoader.GetTexture(texString), start, end);
         }
-
-        //AssUtils.DrawSkeletronLikeArms(spriteBatch, ModLoader.GetTexture("AssortedCrazyThings/Projectiles/Pets/Arm_Bone"), projectile.Center, 20f, Main.player[projectile.owner].Center, 0, 0);
-
+        
         public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
             DrawSkeletronLikeArms(spriteBatch, ModLoader.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
