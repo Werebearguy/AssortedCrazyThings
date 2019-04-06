@@ -89,14 +89,16 @@ namespace AssortedCrazyThings.Items.Weapons
                 }
             }
 
+            int tooltipIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
+
             if (line.Name != "dummy") tooltips.Remove(line);
 
             if (!(NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && Main.LocalPlayer.HasItem(mod.ItemType<EverhallowedLantern>())))
             {
-                tooltips.Add(new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
+                tooltips.Insert(tooltipIndex++, new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
             }
 
-            tooltips.Add(new TooltipLine(mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
+            tooltips.Insert(tooltipIndex++, new TooltipLine(mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
         }
 
         public override void AddRecipes()

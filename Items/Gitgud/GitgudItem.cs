@@ -10,22 +10,27 @@ namespace AssortedCrazyThings.Items.Gitgud
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int index = GitgudData.GetIndexFromItemType(item.type);
-            if (index != -1)
+            int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
+            if (insertIndex == -1) insertIndex = tooltips.Count;
+            if (tooltips.FindIndex(l => l.Name == "Social") == -1)
             {
-                tooltips.Add(new TooltipLine(mod, "Tooltip0", "Consolation Prize"));
-                string reduced = "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken " + (GitgudData.DataList[index].Invasion != "" ? "during " + GitgudData.DataList[index].Invasion : "from " + GitgudData.DataList[index].BossName);
-                tooltips.Add(new TooltipLine(mod, "Reduced", reduced));
-                if (GitgudData.DataList[index].BuffType != -1)
+                if (index != -1)
                 {
-                    tooltips.Add(new TooltipLine(mod, "BuffImmune", "Immunity to '" + GitgudData.DataList[index].BuffName + "' while " + GitgudData.DataList[index].BossName + " is alive"));
+                    tooltips.Insert(insertIndex++, new TooltipLine(mod, "Desc", "Consolation Prize"));
+                    string reduced = "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken " + (GitgudData.DataList[index].Invasion != "" ? "during " + GitgudData.DataList[index].Invasion : "from " + GitgudData.DataList[index].BossName);
+                    tooltips.Insert(insertIndex++, new TooltipLine(mod, "Reduced", reduced));
+                    if (GitgudData.DataList[index].BuffType != -1)
+                    {
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "BuffImmune", "Immunity to '" + GitgudData.DataList[index].BuffName + "' while " + GitgudData.DataList[index].BossName + " is alive"));
+                    }
+
+                    if (!(GitgudData.DataList[index].Accessory[Main.myPlayer] || Main.LocalPlayer.HasItem(item.type) || Main.LocalPlayer.trashItem.type == item.type))
+                    {
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Count", "Times died: " + GitgudData.DataList[index].Counter[Main.myPlayer] + "/" + GitgudData.DataList[index].CounterMax));
+                    }
                 }
-                
-                if (!(GitgudData.DataList[index].Accessory[Main.myPlayer] || Main.LocalPlayer.HasItem(item.type) || Main.LocalPlayer.trashItem.type == item.type))
-                {
-                    tooltips.Add(new TooltipLine(mod, "Count", "Times died: " + GitgudData.DataList[index].Counter[Main.myPlayer] + "/" + GitgudData.DataList[index].CounterMax));
-                }
+                tooltips.Insert(insertIndex++, new TooltipLine(mod, "Gitgud", "[c/E180CE:'git gud']"));
             }
-            tooltips.Add(new TooltipLine(mod, "Gitgud", "[c/E180CE:'git gud']"));
         }
 
         public sealed override void SetDefaults()

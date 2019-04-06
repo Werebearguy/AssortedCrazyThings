@@ -41,7 +41,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
             }
 
-            int insertIndex = tooltips.Count; //it can insert on the "last" index (special case)
+            int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
+            if (insertIndex == -1) insertIndex = tooltips.Count;
 
             if (!inVanitySlot)
             {
