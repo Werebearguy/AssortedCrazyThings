@@ -1,5 +1,4 @@
 ﻿using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using System.Collections.Generic;
@@ -44,7 +43,7 @@ namespace AssortedCrazyThings
                 case SpawnConditionType.Jungle:
                     return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneJungle && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Underground:
-                    return Main.hardMode && player.ZoneDirtLayerHeight && !AssUtils.EvilBiome(player);
+                    return Main.hardMode && player.ZoneDirtLayerHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Hell:
                     return player.ZoneUnderworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Corruption:

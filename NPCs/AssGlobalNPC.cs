@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.NPCs
 
             if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
+                if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
             }
 
             if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)

@@ -34,12 +34,32 @@ namespace AssortedCrazyThings
                 }
             }
         }
-        
-        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float lightFactor = 1f, Vector3 lightColor = default(Vector3), float offsetX = 0f, float offsetY = 0f)
+
+        public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool staticDirection = false, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float veloSpeed = 1f, float lightFactor = 1f, Vector3 lightColor = default(Vector3), float offsetX = 0f, float offsetY = 0f)
         {
+            //veloSpeed not bigger than veloDistanceChange * 0.5f
             Player player = Main.player[projectile.owner];
-            float veloDistanceChange = 6f;
-            Vector2 desiredCenterRelative = new Vector2((player.direction * 30) + player.direction * offsetX, -20f + offsetY);
+            float veloDistanceChange = 2f; //6f
+
+            int dir = player.direction;
+            if (staticDirection)
+            {
+                if (reverseSide)
+                {
+                    dir = -1;
+                }
+                else
+                {
+                    dir = 1;
+                }
+            }
+            else
+            {
+                if (reverseSide)
+                {
+                    dir = -dir;
+                }
+            }
 
             //up and down bobbing
             //projectile.localAI[0] += 1f;
@@ -51,15 +71,17 @@ namespace AssortedCrazyThings
 
             Vector2 dustOffset = new Vector2((projectile.spriteDirection == -1) ? -6 : -2, -20f).RotatedBy(projectile.rotation);
 
-            projectile.direction = projectile.spriteDirection = player.direction;
+            Vector2 desiredCenterRelative = new Vector2(dir * (offsetX + 30), -20f + offsetY);
 
-            if (reverseSide)
-            {
-                desiredCenterRelative.X = -desiredCenterRelative.X;
-                //value2.X = -value2.X;
-                projectile.direction = -projectile.direction;
-                projectile.spriteDirection = -projectile.spriteDirection;
-            }
+            projectile.direction = projectile.spriteDirection = dir;
+
+            //if (reverseSide)
+            //{
+            //    desiredCenterRelative.X = -desiredCenterRelative.X;
+            //    //value2.X = -value2.X;
+            //    projectile.direction = -projectile.direction;
+            //    projectile.spriteDirection = -projectile.spriteDirection;
+            //}
 
             if (lightDust && Main.rand.Next(24) == 0)
             {
@@ -106,11 +128,11 @@ namespace AssortedCrazyThings
             {
                 if (betweenDirection.Length() < veloDistanceChange * 0.5f)
                 {
-                    projectile.velocity = betweenDirection;
+                    projectile.velocity = betweenDirection * veloSpeed;
                 }
                 else
                 {
-                    projectile.velocity = betweenDirection * 0.1f;
+                    projectile.velocity = betweenDirection * 0.1f * veloSpeed;
                 }
             }
             if (projectile.velocity.Length() > 6f)

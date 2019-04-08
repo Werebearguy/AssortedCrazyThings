@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -23,6 +24,46 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.aiStyle = -1;
             projectile.width = 30;
             projectile.height = 32;
+            projectile.tileCollide = false;
+        }
+
+        private const int FireballDamage = 20;
+
+        private float sinY; //depends on projectile.ai[0], no need to sync
+
+        private float Sincounter
+        {
+            get
+            {
+                return projectile.localAI[0];
+            }
+            set
+            {
+                projectile.localAI[0] = value;
+            }
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Texture2D image = Main.projectileTexture[projectile.type];
+            Rectangle bounds = new Rectangle();
+            bounds.X = 0;
+            bounds.Width = image.Bounds.Width;
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
+            bounds.Y = projectile.frame * bounds.Height;
+
+            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            Sincounter = Sincounter > 360 ? 0 : Sincounter + 1;
+            sinY = (float)((Math.Sin((Sincounter / 180f) * 2 * Math.PI) - 1) * 4);
+
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + sinY);
+            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 drawOrigin = bounds.Size() / 2;
+
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+
+            return false;
         }
 
         public override void AI()
@@ -37,7 +78,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
-            AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, random: false, swapSides: 0, offsetX: -60, offsetY: -40);
+            //AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, random: false, swapSides: 0, offsetX: -60, offsetY: -40);
+            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
+
             AssAI.ZephyrfishDraw(projectile);
             projectile.rotation = 0f;
 
@@ -64,14 +107,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             }
                         }
                     }
-                    if (targetIndex != -1)
+                    if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
                         Vector2 position = projectile.Center;
                         Vector2 velocity = targetCenter + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
                         //velocity.Y -= Math.Abs(velocity.Y) * 0.5f;
-                        int index = Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), 10, 2f, Main.myPlayer, 0f, 0f);
+                        int index = Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
                         Main.projectile[index].timeLeft = 300;
                         Main.projectile[index].netUpdate = true;
                         projectile.netUpdate = true;
