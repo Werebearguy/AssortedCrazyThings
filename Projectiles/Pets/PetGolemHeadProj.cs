@@ -22,8 +22,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
             projectile.aiStyle = -1;
-            projectile.width = 30;
-            projectile.height = 32;
+            projectile.width = 38;
+            projectile.height = 38;
             projectile.tileCollide = false;
         }
 

@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Skeletron Pet Hand");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
-            drawOriginOffsetY = -10;
+            drawOriginOffsetY = -8;
         }
 
         public override void SetDefaults()
@@ -48,13 +48,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: 20f, centerPad: -30f, direction: 0);
+            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: 6f, centerPad: -20f, direction: 0);
             return true;
         }
 
         public override void PostAI()
         {
-            //AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, swapSides: 0, offsetX: 90, offsetY: -20);
+            //AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, swapSides: 0, offsetX: 90, offsetY: -10);
             //AssAI.ZephyrfishDraw(projectile);
             projectile.rotation = projectile.velocity.X * 0.08f;
         }
