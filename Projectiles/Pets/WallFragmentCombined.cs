@@ -4,7 +4,39 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class WallFragmentEye1 : ModProjectile
+    public abstract class WallFragmentProj : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            projectile.CloneDefaults(ProjectileID.BabyEater);
+            aiType = ProjectileID.BabyEater;
+            projectile.width = 26;
+            projectile.height = 40;
+        }
+
+        public override bool PreAI()
+        {
+            Player player = Main.player[projectile.owner];
+            player.eater = false; // Relic from aiType
+            return true;
+        }
+
+        public override void AI()
+        {
+            Player player = Main.player[projectile.owner];
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            if (player.dead)
+            {
+                modPlayer.WallFragment = false;
+            }
+            if (modPlayer.WallFragment)
+            {
+                projectile.timeLeft = 2;
+            }
+        }
+    }
+
+    public class WallFragmentEye1 : WallFragmentProj
     {
         public override void SetStaticDefaults()
         {
@@ -13,37 +45,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projPet[projectile.type] = true;
         }
 
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
-            projectile.width = 26;
-            projectile.height = 40;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.eater = false; // Relic from aiType
-            return true;
-        }
-
-        public override void AI()
-        {
-            Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.WallFragment = false;
-            }
-            if (modPlayer.WallFragment)
-            {
-                projectile.timeLeft = 2;
-            }
-        }
     }
 
-    public class WallFragmentEye2 : ModProjectile
+    public class WallFragmentEye2 : WallFragmentProj
     {
         public override void SetStaticDefaults()
         {
@@ -51,73 +55,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
         }
-
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
-            projectile.width = 26;
-            projectile.height = 40;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.eater = false; // Relic from aiType
-            return true;
-        }
-
-        public override void AI()
-        {
-            Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.WallFragment = false;
-            }
-            if (modPlayer.WallFragment)
-            {
-                projectile.timeLeft = 2;
-            }
-        }
     }
 
-    public class WallFragmentMouth : ModProjectile
+    public class WallFragmentMouth : WallFragmentProj
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall Mouth");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
-        }
-
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
-            projectile.width = 26;
-            projectile.height = 40;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.eater = false; // Relic from aiType
-            return true;
-        }
-
-        public override void AI()
-        {
-            Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.WallFragment = false;
-            }
-            if (modPlayer.WallFragment)
-            {
-                projectile.timeLeft = 2;
-            }
         }
     }
 }
