@@ -46,7 +46,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D image = Main.projectileTexture[projectile.type];
-            Rectangle bounds = new Rectangle();
+
+            if (projectile.ai[1] > 60)
+            {
+                if (projectile.ai[1] < 90)
+                {
+                    projectile.frame = 1;
+                }
+                else
+                {
+                    projectile.frame = 0;
+                }
+            }
+            else
+            {
+                projectile.frame = 0;
+            }
+
+
+                Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
             bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
@@ -68,6 +86,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
+            AssUtils.Print(projectile.ai[1]);
             Player player = Main.player[projectile.owner];
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
@@ -81,11 +100,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, random: false, swapSides: 0, offsetX: -60, offsetY: -40);
             AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
 
-            AssAI.ZephyrfishDraw(projectile);
+            //AssAI.ZephyrfishDraw(projectile);
             projectile.rotation = 0f;
 
             projectile.ai[1]++;
-            if (projectile.ai[1] > 60)
+            if ((int)projectile.ai[1] % 60 == 0)
             {
                 if (Main.myPlayer == projectile.owner)
                 {
@@ -109,7 +128,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
+                        if (projectile.ai[1] == 60) projectile.ai[1] += 60;
                         Vector2 position = projectile.Center;
+                        position.Y += 6f;
                         Vector2 velocity = targetCenter + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
@@ -119,8 +140,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         Main.projectile[index].netUpdate = true;
                         projectile.netUpdate = true;
                     }
+                    else
+                    {
+                        if (projectile.ai[1] > 60) projectile.ai[1] -= 60;
+                    }
                 }
-                projectile.ai[1] = 0;
+                projectile.ai[1] -= 60;
             }
         }
     }
