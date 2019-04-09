@@ -66,7 +66,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void UnoadPets()
+        private void UnloadPets()
         {
             if (!Main.dedServ && Main.netMode != 2)
             {
@@ -240,11 +240,13 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
-            UnoadPets();
+            UnloadPets();
 
             UnloadUI();
 
             UnloadMisc();
+
+            GitgudData.Unload();
 
             AssUtils.Instance = null;
         }
@@ -400,7 +402,13 @@ namespace AssortedCrazyThings
                     {
                         CircleUI.currentSelected = pPlayer.petGoldfishType;
 
-                        CircleUI.UIConf = CircleUIConf.PetGoldfishProj();
+                        CircleUI.UIConf = CircleUIConf.PetGoldfishConf();
+                    }
+                    else if (pPlayer.SkeletronHand)
+                    {
+                        CircleUI.currentSelected = pPlayer.skeletronHandType;
+
+                        CircleUI.UIConf = CircleUIConf.SkeletronHandConf();
                     }
                     //FOR LEFT CLICK ONLY (REGULAR PET)
                     //ALTERNATE
@@ -540,6 +548,10 @@ namespace AssortedCrazyThings
                         else if (pPlayer.PetGoldfish)
                         {
                             pPlayer.petGoldfishType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.SkeletronHand)
+                        {
+                            pPlayer.skeletronHandType = (byte)CircleUI.returned;
                         }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
@@ -965,6 +977,7 @@ namespace AssortedCrazyThings
         oceanSlimeType,
         miniAntlionType,
         petGoldfishType,
+        skeletronHandType,
         //ALTERNATE
         //classNameType,
     }

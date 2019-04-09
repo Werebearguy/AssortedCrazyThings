@@ -39,9 +39,6 @@ namespace AssortedCrazyThings
         public static bool downedHarvester;
         public static bool spawnHarvester;
 
-        //Mods loaded
-        public static bool isPlayerHealthManaBarLoaded = false;
-
         public static bool slimeRainSky = false;
 
         private void InitHarvesterSouls()

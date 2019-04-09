@@ -9,11 +9,11 @@ namespace AssortedCrazyThings
 {
     public static class SlimePets
     {
-        internal static List<SlimePet> slimePetList = new List<SlimePet>();
+        internal static List<SlimePet> slimePetList;
 
-        public static List<int> slimePets = new List<int>(); //slimePets.IndexOf(type) returns the indexed type
-        public static List<int> slimePetLegacy = new List<int>();
-        public static List<List<string>> slimePetNPCsEnumToNames = new List<List<string>>();
+        public static List<int> slimePets; //slimePets.IndexOf(type) returns the indexed type
+        public static List<int> slimePetLegacy;
+        public static List<List<string>> slimePetNPCsEnumToNames;
 
         public enum SpawnConditionType : byte
         {
@@ -119,6 +119,10 @@ namespace AssortedCrazyThings
 
         public static void Load()
         {
+            slimePetList = new List<SlimePet>();
+            slimePets = new List<int>(); //slimePets.IndexOf(type) returns the indexed type
+            slimePetLegacy = new List<int>();
+            slimePetNPCsEnumToNames = new List<List<string>>();
             //in all these lists, insert stuff in alphabetic order please
 
             //legacy, no need to adjust
@@ -273,10 +277,10 @@ namespace AssortedCrazyThings
 
         public static void Unload()
         {
-            slimePets.Clear();
-            slimePetList.Clear();
-            slimePetLegacy.Clear();
-            slimePetNPCsEnumToNames.Clear();
+            slimePets = null;
+            slimePetList = null;
+            slimePetLegacy = null;
+            slimePetNPCsEnumToNames = null;
         }
 
         public static void CreateMap()

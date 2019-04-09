@@ -463,7 +463,12 @@ namespace AssortedCrazyThings
             //since Add always increases the array size by one, it will make it so the last element is null
             Array.Resize(ref DataList, DataList.Length - 1);
             if (DataList.Length == 0) DataList = null;
-        } //Mod.Load
+        } //Mod.PostSetupContent
+
+        public static void Unload()
+        {
+            DataList = null;
+        } //Mod.Unload
 
         private static void RegisterItems()
         {

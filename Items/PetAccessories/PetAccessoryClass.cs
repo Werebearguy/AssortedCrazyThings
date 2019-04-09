@@ -760,11 +760,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
     public class PetAccessory
     {
-        public static List<PetAccessory> petAccessoryListGlobal = new List<PetAccessory>();
-        public static List<PetAccessory> petAccessoryListB = new List<PetAccessory>();
-        public static List<PetAccessory> petAccessoryListH = new List<PetAccessory>();
-        public static List<PetAccessory> petAccessoryListC = new List<PetAccessory>();
-        public static List<PetAccessory> petAccessoryListA = new List<PetAccessory>();
+        public static List<PetAccessory> petAccessoryListGlobal;
+        public static List<PetAccessory> petAccessoryListB;
+        public static List<PetAccessory> petAccessoryListH;
+        public static List<PetAccessory> petAccessoryListC;
+        public static List<PetAccessory> petAccessoryListA;
         public static List<int> petAccessoryIdsB;
         public static List<int> petAccessoryIdsH;
         public static List<int> petAccessoryIdsC;
@@ -842,6 +842,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public static void Load()
         {
+            petAccessoryListGlobal = new List<PetAccessory>();
+            petAccessoryListB = new List<PetAccessory>();
+            petAccessoryListH = new List<PetAccessory>();
+            petAccessoryListC = new List<PetAccessory>();
+            petAccessoryListA = new List<PetAccessory>();
             //-------------------------------------------------------------------
             //------------ADD PET ACCESSORY PROPERTIES HERE----------------------
             //-------------------------------------------------------------------
@@ -919,16 +924,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public static void Unload()
         {
-            petAccessoryListGlobal.Clear();
-            petAccessoryListB.Clear();
-            petAccessoryListH.Clear();
-            petAccessoryListC.Clear();
-            petAccessoryListA.Clear();
-            petAccessoryIdsB.Clear();
-            petAccessoryIdsH.Clear();
-            petAccessoryIdsC.Clear();
-            petAccessoryIdsA.Clear();
-            petAccessoryTypesGlobal.Clear();
+            petAccessoryListGlobal = null;
+            petAccessoryListB = null;
+            petAccessoryListH = null;
+            petAccessoryListC = null;
+            petAccessoryListA = null;
+            petAccessoryIdsB = null;
+            petAccessoryIdsH = null;
+            petAccessoryIdsC = null;
+            petAccessoryIdsA = null;
+            petAccessoryTypesGlobal = null;
         }
 
         public static void CreateMaps()

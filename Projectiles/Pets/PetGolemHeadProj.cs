@@ -86,7 +86,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            AssUtils.Print(projectile.ai[1]);
             Player player = Main.player[projectile.owner];
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
