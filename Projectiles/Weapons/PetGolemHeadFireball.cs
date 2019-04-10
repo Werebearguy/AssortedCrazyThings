@@ -39,5 +39,14 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             target.AddBuff(BuffID.OnFire, 240);
         }
+
+        public override void AI()
+        {
+            if (projectile.localAI[0] == 0f)
+            {
+                Main.PlaySound(SoundID.Item20, projectile.position);
+            }
+            projectile.localAI[0] += 1f;
+        }
     }
 }
