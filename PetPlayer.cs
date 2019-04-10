@@ -140,6 +140,7 @@ namespace AssortedCrazyThings
         public bool SkeletronHand = false;
         public bool PetGolemHead = false;
         public bool TrueObservingEye = false;
+        public bool PetCultist = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -226,9 +227,10 @@ namespace AssortedCrazyThings
             SkeletronHand = false;
             PetGolemHead = false;
             TrueObservingEye = false;
+            LegacyPet = false;
+            PetCultist = false;
             //ALTERNATE
             //ClassName = false;
-            LegacyPet = false;
         }
 
         public bool ThreeTimesUseTime(double currentTime)
