@@ -913,6 +913,21 @@ namespace AssortedCrazyThings
                         GitgudData.RecvChangeCounter(reader);
                     }
                     break;
+                case AssMessageType.ResetEmpoweringTimerpvp:
+                    //client and server
+                    playerNumber = reader.ReadByte();
+                    mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                    mPlayer.ResetEmpoweringTimer(fromServer: true);
+
+                    //server transmits to others
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        ModPacket packet = GetPacket();
+                        packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
+                        packet.Write((byte)playerNumber);
+                        packet.Send(playerNumber); //send to client
+                    }
+                    break;
                 default:
                     ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
                     break;
@@ -939,7 +954,8 @@ namespace AssortedCrazyThings
         SyncPlayerVanity,
         ConvertInertSoulsInventory,
         GitgudLoadCounters,
-        GitgudChangeCounters
+        GitgudChangeCounters,
+        ResetEmpoweringTimerpvp
     }
 
     public enum GitgudType : byte

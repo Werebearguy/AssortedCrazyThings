@@ -158,7 +158,7 @@ namespace AssortedCrazyThings
             //}
         }
 
-        private void ResetEmpoweringTimer()
+        public void ResetEmpoweringTimer(bool fromServer = false)
         {
             if (empoweringBuff && !player.HasBuff(BuffID.ShadowDodge))
             {
@@ -170,6 +170,14 @@ namespace AssortedCrazyThings
                     dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
                 }
                 empoweringTimer = 0;
+
+                if (Main.netMode == NetmodeID.MultiplayerClient && !fromServer)
+                {
+                    ModPacket packet = mod.GetPacket();
+                    packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
+                    packet.Write((byte)player.whoAmI);
+                    packet.Send(); //send to server
+                }
             }
         }
 
@@ -181,18 +189,21 @@ namespace AssortedCrazyThings
         public int SpawnSoul(int type, int damage, float knockback, bool temp = false)
         {
             int index = 0;
-            Vector2 spawnPos = new Vector2(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f);
-            Vector2 spawnVelo = new Vector2(player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f);
-
-            index = Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
-            if (temp) return index; //spawn only one 
-
-            if (player.HeldItem.type != mod.ItemType<Items.Weapons.EverhallowedLantern>()) //spawn only one when holding Everhallowed Lantern
+            if (Main.netMode != NetmodeID.Server)
             {
-                spawnPos.Y += 2f;
-                spawnVelo.X -= 0.5f * player.direction;
-                spawnVelo.Y += 0.5f;
-                Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
+                Vector2 spawnPos = new Vector2(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f);
+                Vector2 spawnVelo = new Vector2(player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f);
+
+                index = Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
+                if (temp) return index; //spawn only one 
+
+                if (player.HeldItem.type != mod.ItemType<EverhallowedLantern>()) //spawn only one when holding Everhallowed Lantern
+                {
+                    spawnPos.Y += 2f;
+                    spawnVelo.X -= 0.5f * player.direction;
+                    spawnVelo.Y += 0.5f;
+                    Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
+                }
             }
 
             return index;
@@ -708,20 +719,20 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
-            ApplyCandleDebuffs(target);
+            //ApplyCandleDebuffs(target);
 
-            ResetEmpoweringTimer();
+            target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
 
-            SpawnSoulTemp();
+            target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
         }
 
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
-            ApplyCandleDebuffs(target);
+            //ApplyCandleDebuffs(target);
 
-            ResetEmpoweringTimer();
+            target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
 
-            SpawnSoulTemp();
+            target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
         }
 
         public override void GetWeaponDamage(Item item, ref int damage)
