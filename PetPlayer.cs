@@ -139,6 +139,7 @@ namespace AssortedCrazyThings
         public bool PetGoldfish = false;
         public bool SkeletronHand = false;
         public bool PetGolemHead = false;
+        public bool TrueObservingEye = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -224,6 +225,7 @@ namespace AssortedCrazyThings
             PetGoldfish = false;
             SkeletronHand = false;
             PetGolemHead = false;
+            TrueObservingEye = false;
             //ALTERNATE
             //ClassName = false;
             LegacyPet = false;

@@ -46,13 +46,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             double cX = projectile.position.X + Projwidth * 2 + drawOffsetX;
             double cY = projectile.position.Y + (Projheight - (drawOriginOffsetY + 20f)) * 2;  //20f for offset pre-draw, idk how and why
-            Color baseColor = new Color()
-            {
-                R = (byte)Main.DiscoR,
-                G = (byte)Main.DiscoG,
-                B = (byte)Main.DiscoB
-            };
-            lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), baseColor * 1.2f);
+            lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), Main.DiscoColor * 1.2f);
             lightColor = lightColor * ((255f - projectile.alpha) / 255f);
             SpriteEffects effects = SpriteEffects.None;
             if (projectile.spriteDirection == -1)
