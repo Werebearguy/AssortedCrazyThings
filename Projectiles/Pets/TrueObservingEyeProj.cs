@@ -19,8 +19,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
             projectile.aiStyle = -1;
-            projectile.width = 32;
-            projectile.height = 32;
+            projectile.width = 12;
+            projectile.height = 12;
             projectile.tileCollide = false;
         }
 
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 eyeCenter = new Vector2(0f, 22f);
+            Vector2 eyeCenter = new Vector2(0f, 12f);
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
@@ -50,13 +50,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Vector2 between = Main.player[projectile.owner].Center - (projectile.position + stupidOffset);
             //between.Length(): 94 is "idle", 200 is very fast following
-            //25f = 200f / 8f
-            float magnitude = Utils.Clamp(between.Length() / 25f, 1f, 8f);
+            //28.5f = 200f / 7f
+            float magnitude = Utils.Clamp(between.Length() / 28.5f, 1f, 7f);
 
             between.Normalize();
             between *= magnitude;
-
-            drawPos += new Vector2(-projectile.spriteDirection, 0f) + between;
+            
+            drawPos += between;
             drawOrigin = image.Bounds.Size() / 2;
             spriteBatch.Draw(image, drawPos, image.Bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
             AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
-            AssAI.FlickerwickPetDraw(projectile, 8, 8);
+            AssAI.FlickerwickPetDraw(projectile, 6, 8);
         }
     }
 }

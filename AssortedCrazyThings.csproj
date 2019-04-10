@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buffs\PetCultistBuff.cs" />
     <Compile Include="Buffs\TrueObservingEyeBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLegacyPetWarningBuff.cs" />
     <Compile Include="Buffs\PetGoldfishBuff.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Items\KnittingSet.cs" />
     <Compile Include="Items\Pets\PetGoldfishItem.cs" />
     <Compile Include="Items\Pets\ObservingEyeItem.cs" />
+    <Compile Include="Items\Pets\PetCultistItem.cs" />
     <Compile Include="Items\Pets\TrueObservingEyeItem.cs" />
     <Compile Include="Items\Pets\PetGolemHeadItem.cs" />
     <Compile Include="Items\Pets\SkeletronHandItem.cs" />
@@ -296,6 +298,7 @@
     <Compile Include="Projectiles\Pets\CuteSlimeLegacyPetWarningProj.cs" />
     <Compile Include="Projectiles\Pets\PetGoldfishProj.cs" />
     <Compile Include="Projectiles\Pets\ObservingEyeProj.cs" />
+    <Compile Include="Projectiles\Pets\PetCultistProj.cs" />
     <Compile Include="Projectiles\Pets\TrueObservingEyeProj.cs" />
     <Compile Include="Projectiles\Pets\PetGolemHeadProj.cs" />
     <Compile Include="Projectiles\Pets\SkeletronHandProj.cs" />
