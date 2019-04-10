@@ -23,6 +23,15 @@ namespace AssortedCrazyThings.Items.Pets
             item.value = Item.sellPrice(copper: 10);
         }
 
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<CuteSlimeBlack>());
+            recipe.AddTile(TileID.Solidifier);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+
         public override void UseStyle(Player player)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)

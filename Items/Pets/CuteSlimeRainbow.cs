@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			DisplayName.SetDefault("Bottled Cute Rainbow Slime");
             Tooltip.SetDefault("Legacy Appearance, discontinued"
-                        + "\nCraft the item into the proper version");
+                        + "\nCraft the item into the non-legacy version");
         }
 
         public override void SetDefaults()

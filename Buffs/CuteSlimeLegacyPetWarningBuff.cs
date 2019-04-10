@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Buffs
         protected override void MoreSetDefaults()
         {
             DisplayName.SetDefault("Cute Slime (Legacy)");
-            Description.SetDefault("Craft the item into the proper version");
+            Description.SetDefault("Craft the item into the non-legacy version");
         }
 
         protected override void MoreUpdate(PetPlayer mPlayer)
