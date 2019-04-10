@@ -121,23 +121,8 @@ namespace AssortedCrazyThings
         {
             slimePetList = new List<SlimePet>();
             slimePets = new List<int>(); //slimePets.IndexOf(type) returns the indexed type
-            slimePetLegacy = new List<int>();
             slimePetNPCsEnumToNames = new List<List<string>>();
             //in all these lists, insert stuff in alphabetic order please
-
-            //legacy, no need to adjust
-            slimePetLegacy.AddRange(new List<int>
-            {
-                AssUtils.Instance.ProjectileType<CuteSlimeBlackProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimeBlueProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimeGreenProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimePinkProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimePurpleProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimeRainbowProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimeRedProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimeXmasProj>(),
-                AssUtils.Instance.ProjectileType<CuteSlimeYellowProj>(),
-            });
 
             Array enumArray = Enum.GetValues(typeof(SpawnConditionType));
             slimePetNPCsEnumToNames = new List<List<string>>(enumArray.Length);
@@ -279,7 +264,6 @@ namespace AssortedCrazyThings
         {
             slimePets = null;
             slimePetList = null;
-            slimePetLegacy = null;
             slimePetNPCsEnumToNames = null;
         }
 

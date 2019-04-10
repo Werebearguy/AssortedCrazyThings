@@ -674,7 +674,6 @@ namespace AssortedCrazyThings
                     Main.projectile[pPlayer.slimePetIndex].active &&
                     Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
                     SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
-                    !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
                     !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                 {
                     //Spawn UI

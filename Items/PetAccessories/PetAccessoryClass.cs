@@ -1420,10 +1420,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                         }
                     }
-                    else if (SlimePets.slimePetLegacy.Contains(Main.projectile[mPlayer.slimePetIndex].type))
-                    {
-                        tooltips.Add(new TooltipLine(mod, "AllowLegacy", "Does not work on 'Legacy Appearance' pets"));
-                    }
                 }
             }
             else
@@ -1468,8 +1464,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             if (!(pPlayer.slimePetIndex != -1 &&
                 Main.projectile[pPlayer.slimePetIndex].active &&
                 Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
-                !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type))) return false;
+                SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))) return false;
 
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
@@ -1495,8 +1490,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             if (Main.projectile[i].modProjectile != null)
                             {
                                 if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
-                                    Main.projectile[i].owner == Main.myPlayer &&
-                                    !SlimePets.slimePetLegacy.Contains(Main.projectile[i].type))
+                                    Main.projectile[i].owner == Main.myPlayer)
                                 {
                                     ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
                                     pPlayer.slimePetIndex = i;
@@ -1522,8 +1516,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 if (pPlayer.slimePetIndex != -1 &&
                     Main.projectile[pPlayer.slimePetIndex].active &&
                     Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
-                    !SlimePets.slimePetLegacy.Contains(Main.projectile[pPlayer.slimePetIndex].type))
+                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)

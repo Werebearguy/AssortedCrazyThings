@@ -94,10 +94,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (!SlimePets.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
-            {
-                DrawAccessories(spriteBatch, drawColor, preDraw: true);
-            }
+            DrawAccessories(spriteBatch, drawColor, preDraw: true);
 
             DrawBaseSprite(spriteBatch, drawColor);
             return false;
@@ -105,10 +102,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (!SlimePets.slimePetLegacy.Contains(projectile.type)) //if not a legacy slime
-            {
-                DrawAccessories(spriteBatch, drawColor);
-            }
+            DrawAccessories(spriteBatch, drawColor);
         }
 
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
@@ -120,7 +114,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetAccessory petAccessoryHat = pPlayer.GetAccessoryInSlot((byte)SlotType.Hat);
             if (petAccessoryHat != null &&
                 petAccessoryHat.UseNoHair &&
-                !SlimePets.slimePetLegacy.Contains(projectile.type) && //if its not legacy
                 SlimePets.GetPet(projectile.type).HasNoHair) //if it has a NoHair tex
             {
                 useNoHair = true;
@@ -129,17 +122,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bool drawPreAddition = true;
             bool drawPostAddition = true;
             //handle if pre/post additions are drawn based on the slimePet(Pre/Post)AdditionSlot
-            if (!SlimePets.slimePetLegacy.Contains(projectile.type))
+
+            for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
             {
-                for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
-                {
-                    PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
                     
-                    if (petAccessory != null)
-                    {
-                        if (SlimePets.GetPet(projectile.type).PreAdditionSlot == slotNumber) drawPreAddition = false;
-                        if (SlimePets.GetPet(projectile.type).PostAdditionSlot == slotNumber) drawPostAddition = false;
-                    }
+                if (petAccessory != null)
+                {
+                    if (SlimePets.GetPet(projectile.type).PreAdditionSlot == slotNumber) drawPreAddition = false;
+                    if (SlimePets.GetPet(projectile.type).PostAdditionSlot == slotNumber) drawPostAddition = false;
                 }
             }
 
