@@ -11,34 +11,25 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Cute Rainbow Slime");
-			Tooltip.SetDefault("Summons a friendly Cute Rainbow Slime to follow you"
-						+ "\nLegacy Appearance");
-		}
-		
-		public override void SetDefaults()
-		{
-			item.CloneDefaults(ItemID.LizardEgg);
-			item.shoot = mod.ProjectileType<CuteSlimeRainbowProj>();
-			item.buffType = mod.BuffType<CuteSlimeRainbowBuff>();
-			item.rare = -11;
+            Tooltip.SetDefault("Legacy Appearance, discontinued"
+                        + "\nCraft the item into the proper version");
+        }
+
+        public override void SetDefaults()
+        {
+            item.CloneDefaults(ItemID.LizardEgg);
+            item.shoot = mod.ProjectileType<CuteSlimeLegacyPetWarningProj>();
+            item.buffType = mod.BuffType<CuteSlimeLegacyPetWarningBuff>();
+            item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod, "CuteSlimeRainbowNew");
-			recipe.AddTile(TileID.Solidifier);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
-		
-		public override void UseStyle(Player player)
-		{
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-			{
-				player.AddBuff(item.buffType, 3600, true);
-			}
-		}
-	}
+
+        public override void UseStyle(Player player)
+        {
+            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+            {
+                player.AddBuff(item.buffType, 3600, true);
+            }
+        }
+    }
 }

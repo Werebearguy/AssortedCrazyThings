@@ -11,27 +11,18 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Cute Christmas Slime");
-            Tooltip.SetDefault("Summons a friendly Cute Christmas Slime to follow you"
-						+ "\nLegacy Appearance");
+            Tooltip.SetDefault("Legacy Appearance, discontinued"
+                        + "\nCraft the item into the proper version");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.LizardEgg);
-            item.shoot = mod.ProjectileType<CuteSlimeXmasProj>();
-            item.buffType = mod.BuffType<CuteSlimeXmasBuff>();
+            item.shoot = mod.ProjectileType<CuteSlimeLegacyPetWarningProj>();
+            item.buffType = mod.BuffType<CuteSlimeLegacyPetWarningBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod, "CuteSlimeXmasNew");
-			recipe.AddTile(TileID.Solidifier);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 
         public override void UseStyle(Player player)
         {

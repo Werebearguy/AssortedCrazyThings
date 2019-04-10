@@ -142,6 +142,9 @@ namespace AssortedCrazyThings
         //ALTERNATE
         //public bool ClassName = false;
 
+        //legacy pet
+        public bool LegacyPet = false;
+
         public override void ResetEffects()
         {
             DrumstickElemental = false;
@@ -223,6 +226,7 @@ namespace AssortedCrazyThings
             PetGolemHead = false;
             //ALTERNATE
             //ClassName = false;
+            LegacyPet = false;
         }
 
         public bool ThreeTimesUseTime(double currentTime)

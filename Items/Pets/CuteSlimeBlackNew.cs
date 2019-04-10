@@ -22,15 +22,6 @@ namespace AssortedCrazyThings.Items.Pets
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod, "CuteSlimeBlack");
-			recipe.AddTile(TileID.Solidifier);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 
         public override void UseStyle(Player player)
         {

@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Buffs\CuteSlimeLegacyPetWarningBuff.cs" />
     <Compile Include="Buffs\PetGoldfishBuff.cs" />
     <Compile Include="Buffs\CuteSlimeSpawnEnableBuff.cs" />
     <Compile Include="Buffs\ObservingEyeBuff.cs" />
@@ -299,6 +300,7 @@
     <Compile Include="AssAI.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeLegacyPetWarningProj.cs" />
     <Compile Include="Projectiles\Pets\PetGoldfishProj.cs" />
     <Compile Include="Projectiles\Pets\ObservingEyeProj.cs" />
     <Compile Include="Projectiles\Pets\PetGolemHeadProj.cs" />
