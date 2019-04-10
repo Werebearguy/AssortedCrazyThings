@@ -249,6 +249,7 @@ namespace AssortedCrazyThings
             GitgudData.Unload();
 
             AssUtils.Instance = null;
+
         }
 
         public override void PostSetupContent()
