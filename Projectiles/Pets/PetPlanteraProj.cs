@@ -70,7 +70,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void PostAI()
         {
             Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
-            projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            //projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            projectile.rotation += 3.14159f;
         }
     }
 
@@ -124,7 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 1f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
             Vector2 between = Main.projectile[(int)projectile.ai[1]].Center - projectile.Center;
-            projectile.spriteDirection = between.X > 0? 1: -1;
+            projectile.spriteDirection = between.X > 0 ? 1 : -1;
 
             AssAI.ZephyrfishDraw(projectile, 3 + Main.rand.Next(3));
         }
