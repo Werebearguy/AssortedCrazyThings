@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Buffs
             DisplayName.SetDefault("Tiny Cultist");
             Description.SetDefault("An tiny Cultist is following you");
             Main.buffNoTimeDisplay[Type] = true;
-            Main.vanityPet[Type] = true;
+            Main.lightPet[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)

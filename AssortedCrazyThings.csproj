@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Buffs\PetCultistBuff.cs" />
+    <Compile Include="Buffs\PetPlanteraBuff.cs" />
     <Compile Include="Buffs\TrueObservingEyeBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLegacyPetWarningBuff.cs" />
     <Compile Include="Buffs\PetGoldfishBuff.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Items\Pets\PetGoldfishItem.cs" />
     <Compile Include="Items\Pets\ObservingEyeItem.cs" />
     <Compile Include="Items\Pets\PetCultistItem.cs" />
+    <Compile Include="Items\Pets\PetPlanteraItem.cs" />
     <Compile Include="Items\Pets\TrueObservingEyeItem.cs" />
     <Compile Include="Items\Pets\PetGolemHeadItem.cs" />
     <Compile Include="Items\Pets\SkeletronHandItem.cs" />
@@ -296,6 +298,7 @@
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeLegacyPetWarningProj.cs" />
+    <Compile Include="Projectiles\Pets\PetPlanteraProj.cs" />
     <Compile Include="Projectiles\Pets\PetGoldfishProj.cs" />
     <Compile Include="Projectiles\Pets\ObservingEyeProj.cs" />
     <Compile Include="Projectiles\Pets\PetCultistProj.cs" />

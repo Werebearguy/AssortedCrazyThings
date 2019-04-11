@@ -96,10 +96,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
-            //AssAI.ZephyrfishAI(projectile, velocityFactor: 1f, sway: 2, random: false, swapSides: 0, offsetX: -60, offsetY: -40);
             AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
-
-            //AssAI.ZephyrfishDraw(projectile);
+            
             projectile.rotation = 0f;
 
             projectile.ai[1]++;
@@ -133,7 +131,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         Vector2 velocity = targetCenter + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
-                        //velocity.Y -= Math.Abs(velocity.Y) * 0.5f;
                         int index = Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
                         Main.projectile[index].timeLeft = 300;
                         Main.projectile[index].netUpdate = true;

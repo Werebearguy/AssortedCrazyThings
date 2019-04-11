@@ -21,7 +21,11 @@ namespace AssortedCrazyThings.Buffs
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<PetPlanteraProj>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<PetPlanteraProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                int index = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<PetPlanteraProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                for (int i = 0; i < 4; i++)
+                {
+                    Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + player.height / 3, 0f, 0f, mod.ProjectileType<PetPlanteraProjTentacle>(), 0, 0f, player.whoAmI, 0f, index);
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetGolemHeadItem : ModItem
+    public class PetPlanteraItem : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,7 +18,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.buffType = mod.BuffType<PetGolemHeadBuff>();
+            item.shoot = mod.ProjectileType<PetPlanteraProj>();
+            item.buffType = mod.BuffType<PetPlanteraBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }

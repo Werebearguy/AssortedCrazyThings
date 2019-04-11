@@ -57,11 +57,6 @@ namespace AssortedCrazyThings
             dust.noLight = true;
             return dust;
         }
-
-        public static void DrawTether(SpriteBatch spriteBatch, string texString, Vector2 start, Vector2 end)
-        {
-            DrawTether(spriteBatch, ModLoader.GetTexture(texString), start, end);
-        }
         
         public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
@@ -116,6 +111,11 @@ namespace AssortedCrazyThings
                     drawPos.Y += y * magnitude - 6f;
                 }
             }
+        }
+
+        public static void DrawTether(SpriteBatch spriteBatch, string texString, Vector2 start, Vector2 end)
+        {
+            DrawTether(spriteBatch, ModLoader.GetTexture(texString), start, end);
         }
 
         public static void DrawTether(SpriteBatch spriteBatch, Texture2D tex, Vector2 start, Vector2 end)

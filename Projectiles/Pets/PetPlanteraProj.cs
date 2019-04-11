@@ -7,22 +7,21 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class TinySpazmatismProj : ModProjectile
+    public class PetPlanteraProj : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Spazmatism");
+            DisplayName.SetDefault("Mean Seed");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
-            drawOriginOffsetY = -10;
         }
 
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
-            projectile.width = 30;
-            projectile.height = 30;
+            projectile.width = 36;
+            projectile.height = 36;
         }
 
         public override bool PreAI()
@@ -38,9 +37,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.TinyTwins = false;
+                modPlayer.PetPlantera = false;
             }
-            if (modPlayer.TinyTwins)
+            if (modPlayer.PetPlantera)
             {
                 projectile.timeLeft = 2;
             }
@@ -53,14 +52,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
+            int tentacleCount = 0;
+
             for (int i = 0; i < 1000; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<TinyRetinazerProj>() && projectile.owner == Main.projectile[i].owner)
+                if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<PetPlanteraProjTentacle>() && projectile.owner == Main.projectile[i].owner)
                 {
-                    AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/TinyTwinsProj_Chain", projectile.Center, Main.projectile[i].Center);
-                    break;
+                    AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Main.projectile[i].Center, projectile.Center);
+                    tentacleCount++;
                 }
+                if (tentacleCount >= 4) break;
             }
+            AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", projectile.Center, Main.player[projectile.owner].Center);
             return true;
         }
 
@@ -71,29 +74,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
-    public class TinyRetinazerProj : ModProjectile
+    public class PetPlanteraProjTentacle : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Retinazer");
+            DisplayName.SetDefault("Mean Seed Tentacle");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
-            drawOriginOffsetY = -10;
         }
 
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            aiType = ProjectileID.ZephyrFish;
-            projectile.width = 30;
-            projectile.height = 30;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.zephyrfish = false; // Relic from aiType
-            return true;
+            projectile.aiStyle = -1;
+            projectile.width = 14; //14
+            projectile.height = 19; //19
         }
 
         public override void AI()
@@ -102,25 +97,36 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.TinyTwins = false;
+                modPlayer.PetPlantera = false;
             }
-            if (modPlayer.TinyTwins)
+            if (modPlayer.PetPlantera)
             {
                 projectile.timeLeft = 2;
             }
-
-            if (Vector2.Distance(projectile.Center, player.Center) > 3000f)
+            float offsetX = 0;
+            float offsetY = 0;
+            switch (projectile.whoAmI % 4)
             {
-                projectile.Center = player.Center;
+                case 0:
+                    offsetX = -120 + Main.rand.Next(20);
+                    offsetY = 0;
+                    break;
+                case 1:
+                    offsetX = -120 + Main.rand.Next(20);
+                    offsetY = 120;
+                    break;
+                case 2:
+                    offsetX = 0 - Main.rand.Next(20);
+                    offsetY = 120;
+                    break;
+                default: //case 3
+                    break;
             }
-        }
+            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 1f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            Vector2 between = Main.projectile[(int)projectile.ai[1]].Center - projectile.Center;
+            projectile.spriteDirection = between.X > 0? 1: -1;
 
-        public override void PostAI()
-        {
-            if (projectile.frame > 1) projectile.frame = 0;
-
-            Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
-            projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            AssAI.ZephyrfishDraw(projectile, 3 + Main.rand.Next(3));
         }
     }
 }

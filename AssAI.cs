@@ -591,7 +591,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        public static void ZephyrfishAI(Projectile projectile, float velocityFactor = 1f, float sway = 1f, bool random = true, byte swapSides = 0, float offsetX = 0f, float offsetY = 0f)
+        public static void ZephyrfishAI(Projectile projectile, Entity parent = null, float velocityFactor = 1f, float sway = 1f, bool random = true, byte swapSides = 0, float offsetX = 0f, float offsetY = 0f)
         {
             //velocityFactor: 
             //kinda wonky, leave at 1f
@@ -614,10 +614,17 @@ namespace AssortedCrazyThings
                 return;
             }
 
+            if (parent == null) parent = player;
+            Vector2 parentCenter = parent.Center;
+            if (parent is Player)
+            {
+                parentCenter = ((Player)parent).MountedCenter;
+            }
+
             float veloDelta = 0.3f;
             projectile.tileCollide = false; //false
             int someDistance = 100;
-            Vector2 between = player.MountedCenter - projectile.Center;
+            Vector2 between = parentCenter - projectile.Center;
 
             Vector2 desiredCenter = random? new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21)) : Vector2.Zero;
 
@@ -629,15 +636,21 @@ namespace AssortedCrazyThings
             }
             else if (swapSides == 0)
             {
-                offset.X = offset.X * -player.direction;
+                offset.X = offset.X * -parent.direction;
             }
 
             //desiredCenter += new Vector2(60f * -player.direction, -60f);
             between += desiredCenter + offset;
+            
+            //added in manually since its kinda useful
+            if (Vector2.Distance(projectile.Center, parentCenter) > 3000f)
+            {
+                projectile.Center = parentCenter + desiredCenter + offset;
+            }
 
             float distance = between.Length();
             //float magnitude = 6f;
-            if (distance < someDistance && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            if (distance < someDistance && parent.velocity.Y == 0f && projectile.position.Y + projectile.height <= parent.position.Y + parent.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {
                 if (projectile.velocity.Y < -6f)
                 {
