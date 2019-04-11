@@ -47,11 +47,11 @@ namespace AssortedCrazyThings
                 case SpawnConditionType.Hell:
                     return player.ZoneUnderworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Corruption:
-                    return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson);
+                    return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson);
                 case SpawnConditionType.Crimson:
-                    return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt);
+                    return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt);
                 case SpawnConditionType.Hallow:
-                    return Main.dayTime && player.ZoneOverworldHeight && Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
+                    return Main.hardMode && (player.position.Y > Main.worldSurface * 16) && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
                 case SpawnConditionType.Dungeon:
                     return player.ZoneDungeon && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Xmas:
@@ -66,27 +66,27 @@ namespace AssortedCrazyThings
             switch (type)
             {
                 case SpawnConditionType.Overworld:
-                    return SpawnCondition.OverworldDaySlime.Chance * 0.0125f;
+                    return player.townNPCs < 3f ? SpawnCondition.OverworldDaySlime.Chance * 0.0125f : 0f;
                 case SpawnConditionType.Desert:
-                    return SpawnCondition.OverworldDayDesert.Chance * 0.05f;
+                    return player.townNPCs < 3f ? SpawnCondition.OverworldDayDesert.Chance * 0.05f : 0f;
                 case SpawnConditionType.Tundra:
-                    return player.ZoneSnow ? SpawnCondition.OverworldDaySlime.Chance * 0.05f : 0f;
+                    return player.townNPCs < 3f && player.ZoneSnow ? SpawnCondition.OverworldDaySlime.Chance * 0.05f : 0f;
                 case SpawnConditionType.Jungle:
-                    return SpawnCondition.SurfaceJungle.Chance * 0.05f;
+                    return player.townNPCs < 3f ? SpawnCondition.SurfaceJungle.Chance * 0.05f : 0f;
                 case SpawnConditionType.Underground:
-                    return Main.hardMode && player.ZoneDirtLayerHeight ? 0.0125f : 0f;
+                    return player.townNPCs < 3f && Main.hardMode && player.ZoneDirtLayerHeight ? 0.0125f : 0f;
                 case SpawnConditionType.Hell:
-                    return SpawnCondition.Underworld.Chance * 0.0125f;
+                    return player.townNPCs < 3f ? SpawnCondition.Underworld.Chance * 0.0125f : 0f;
                 case SpawnConditionType.Corruption:
                     return Main.hardMode ? (!Main.bloodMoon ? SpawnCondition.Corruption.Chance * 0.05f : SpawnCondition.Crimson.Chance * 0.05f) : 0f;
                 case SpawnConditionType.Crimson:
                     return Main.hardMode ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.05f : SpawnCondition.Corruption.Chance * 0.05f) : 0f;
                 case SpawnConditionType.Hallow:
-                    return SpawnCondition.OverworldHallow.Chance * 0.05f;
+                    return Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson) && (player.position.Y > Main.worldSurface * 16) ? 0.005f : 0f;
                 case SpawnConditionType.Dungeon:
-                    return SpawnCondition.DungeonNormal.Chance * 0.02f;
+                    return player.townNPCs < 3f ? SpawnCondition.DungeonNormal.Chance * 0.02f : 0f;
                 case SpawnConditionType.Xmas:
-                    return Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.025f : 0f;
+                    return player.townNPCs < 3f && Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.025f : 0f;
                 default:
                     return 0f;
             }
@@ -138,7 +138,7 @@ namespace AssortedCrazyThings
             //slimePetNPCsEnumToNames[(int)SpawnConditionType.Hell] = new List<string>() { "Lava" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
-            //slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() {"Illuminant" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() {"Illuminant" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
 
@@ -175,6 +175,11 @@ namespace AssortedCrazyThings
             slimePetList.Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeIceNewProj",
+                hasNoHair: true
+            ));
+            slimePetList.Add(SlimePet.NewSlimePet
+            (
+                name: "CuteSlimeIlluminantNewProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet

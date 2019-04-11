@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 if (tentacleCount >= 4) break;
             }
-            AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", projectile.Center, Main.player[projectile.owner].Center);
+            AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Main.player[projectile.owner].Center, projectile.Center);
             return true;
         }
 

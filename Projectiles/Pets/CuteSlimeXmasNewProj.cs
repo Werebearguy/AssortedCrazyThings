@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public override void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor)
+        public override void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor, bool useNoHair)
         {
             SpriteEffects effects = SpriteEffects.None;
             if (projectile.spriteDirection == -1)

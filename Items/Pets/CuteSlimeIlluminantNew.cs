@@ -6,19 +6,19 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class CuteSlimeToxicNew : ModItem
+    public class CuteSlimeIlluminantNew : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bottled Cute Toxic Slime");
-            Tooltip.SetDefault("Summons a friendly Cute Toxic Slime to follow you");
+            DisplayName.SetDefault("Bottled Cute Illuminant Slime");
+            Tooltip.SetDefault("Summons a friendly Cute Illuminant Slime to follow you");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.LizardEgg);
-            item.shoot = mod.ProjectileType<CuteSlimeToxicNewProj>();
-            item.buffType = mod.BuffType<CuteSlimeToxicNewBuff>();
+            item.shoot = mod.ProjectileType<CuteSlimeIlluminantNewProj>();
+            item.buffType = mod.BuffType<CuteSlimeIlluminantNewBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
