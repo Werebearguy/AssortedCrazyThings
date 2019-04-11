@@ -285,6 +285,13 @@ namespace AssortedCrazyThings.UI
             return PetConf("SkeletronHandProj", tooltips);
         }
 
+        public static CircleUIConf PetCultistConf()
+        {
+            List<string> tooltips = new List<string>() { "Lunar", "Solar" };
+
+            return PetConf("PetCultistProj", tooltips);
+        }
+
         //ALTERNATE
         //public static CircleUIConf ClassNameConf()
         //{

@@ -435,6 +435,12 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.PetMoonConf();
                     }
+                    else if (pPlayer.PetCultist)
+                    {
+                        CircleUI.currentSelected = pPlayer.petCultistType;
+
+                        CircleUI.UIConf = CircleUIConf.PetCultistConf();
+                    }
                     //FOR RIGHT CLICK ONLY (LIGHT PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
@@ -569,6 +575,10 @@ namespace AssortedCrazyThings
                         if (pPlayer.PetMoon)
                         {
                             pPlayer.petMoonType = (byte)CircleUI.returned;
+                        }
+                        else if (pPlayer.PetCultist)
+                        {
+                            pPlayer.petCultistType = (byte)CircleUI.returned;
                         }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
@@ -993,6 +1003,7 @@ namespace AssortedCrazyThings
         miniAntlionType,
         petGoldfishType,
         skeletronHandType,
+        petCultistType,
         //ALTERNATE
         //classNameType,
     }
