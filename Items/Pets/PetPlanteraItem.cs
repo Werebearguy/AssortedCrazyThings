@@ -6,19 +6,19 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetCultistItem : ModItem
+    public class PetGolemHeadItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Ominous Coin");
-            Tooltip.SetDefault("Summons a tiny cultist to follow you and heal when injured");
+            DisplayName.SetDefault("Potted Plantera Seed");
+            Tooltip.SetDefault("Summons a tiny Plantera to watch over you"
+                +"\n'It's a mean and green'");
         }
 
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType<PetCultistProj>();
-            item.buffType = mod.BuffType<PetCultistBuff>();
+            item.buffType = mod.BuffType<PetGolemHeadBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
