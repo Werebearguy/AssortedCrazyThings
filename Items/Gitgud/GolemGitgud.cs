@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Golem Consolation Item");
+            DisplayName.SetDefault("Rechargable Solar Battery");
         }
 
         public override void MoreSetDefaults()

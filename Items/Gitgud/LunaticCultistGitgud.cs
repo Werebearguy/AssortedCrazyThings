@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lunatic Cultist Jab Item");
+            DisplayName.SetDefault("Notice of Occupational Termination");
         }
 
         public override void MoreSetDefaults()
