@@ -58,6 +58,9 @@ namespace AssortedCrazyThings
         //skeletron hand texture
         public byte skeletronHandType = 0;
 
+        //skeletron prime hand texture
+        public byte skeletronPrimeHandType = 0;
+
         //pet cultist texture
         public byte petCultistType = 0;
 
@@ -143,6 +146,7 @@ namespace AssortedCrazyThings
         public bool ObservingEye = false;
         public bool PetGoldfish = false;
         public bool SkeletronHand = false;
+        public bool SkeletronPrimeHand = false;
         public bool PetGolemHead = false;
         public bool TrueObservingEye = false;
         public bool PetCultist = false;
@@ -233,6 +237,7 @@ namespace AssortedCrazyThings
             ObservingEye = false;
             PetGoldfish = false;
             SkeletronHand = false;
+            SkeletronPrimeHand = false;
             PetGolemHead = false;
             TrueObservingEye = false;
             LegacyPet = false;
@@ -296,6 +301,7 @@ namespace AssortedCrazyThings
                 {"miniAntlionType", (byte)miniAntlionType},
                 {"petGoldfishType", (byte)petGoldfishType},
                 {"skeletronHandType", (byte)skeletronHandType},
+                {"skeletronPrimeHandType", (byte)skeletronPrimeHandType},
                 {"petCultistType", (byte)petCultistType},
                 //ALTERNATE
                 //{"classNameType", (byte)classNameType},
@@ -323,6 +329,7 @@ namespace AssortedCrazyThings
             miniAntlionType = tag.GetByte("miniAntlionType");
             petGoldfishType = tag.GetByte("petGoldfishType");
             skeletronHandType = tag.GetByte("skeletronHandType");
+            skeletronPrimeHandType = tag.GetByte("skeletronPrimeHandType");
             petCultistType = tag.GetByte("petCultistType");
             //ALTERNATE
             //classNameType = tag.GetByte("classNameType");
@@ -349,6 +356,7 @@ namespace AssortedCrazyThings
             clone.miniAntlionType = miniAntlionType;
             clone.petGoldfishType = petGoldfishType;
             clone.skeletronHandType = skeletronHandType;
+            clone.skeletronPrimeHandType = skeletronPrimeHandType;
             clone.petCultistType = petCultistType;
             //ALTERNATE
             //clone.classNameType = classNameType;
@@ -375,6 +383,7 @@ namespace AssortedCrazyThings
             else if (clone.miniAntlionType != miniAntlionType) changes = PetPlayerChanges.miniAntlionType;
             else if (clone.petGoldfishType != petGoldfishType) changes = PetPlayerChanges.petGoldfishType;
             else if (clone.skeletronHandType != skeletronHandType) changes = PetPlayerChanges.skeletronHandType;
+            else if (clone.skeletronPrimeHandType != skeletronPrimeHandType) changes = PetPlayerChanges.skeletronPrimeHandType;
             else if (clone.petCultistType != petCultistType) changes = PetPlayerChanges.petCultistType;
             //ALTERNATE
             //else if (clone.classNameType != classNameType) changes = PetPlayerChanges.classNameType;
@@ -415,6 +424,7 @@ namespace AssortedCrazyThings
             packet.Write((byte)miniAntlionType);
             packet.Write((byte)petGoldfishType);
             packet.Write((byte)skeletronHandType);
+            packet.Write((byte)skeletronPrimeHandType);
             packet.Write((byte)petCultistType);
             //ALTERNATE
             //packet.Write((byte)classNameType);
@@ -440,6 +450,7 @@ namespace AssortedCrazyThings
             miniAntlionType = reader.ReadByte();
             petGoldfishType = reader.ReadByte();
             skeletronHandType = reader.ReadByte();
+            skeletronPrimeHandType = reader.ReadByte();
             petCultistType = reader.ReadByte();
             //ALTERNATE
             //classNameType = reader.ReadByte();
@@ -504,6 +515,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.skeletronHandType:
                     skeletronHandType = reader.ReadByte();
+                    break;
+                case (byte)PetPlayerChanges.skeletronPrimeHandType:
+                    skeletronPrimeHandType = reader.ReadByte();
                     break;
                 case (byte)PetPlayerChanges.petCultistType:
                     petCultistType = reader.ReadByte();
@@ -582,6 +596,9 @@ namespace AssortedCrazyThings
                     break;
                 case (byte)PetPlayerChanges.skeletronHandType:
                     packet.Write((byte)skeletronHandType);
+                    break;
+                case (byte)PetPlayerChanges.skeletronPrimeHandType:
+                    packet.Write((byte)skeletronPrimeHandType);
                     break;
                 case (byte)PetPlayerChanges.petCultistType:
                     packet.Write((byte)petCultistType);

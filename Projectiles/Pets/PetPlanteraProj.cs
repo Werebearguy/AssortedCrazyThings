@@ -100,17 +100,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 if (AI_STATE == STATE_ATTACK)
                 {
-                    targetIndex = FindTarget(player.Center, range: 400f, ignoreTiles: true); //currently fighting or in pursuit
+                    targetIndex = FindTarget(player.Center, range: 400f, ignoreTiles: true); //check for player surrounding
                     if (targetIndex == -1) //check for proj surrounding
                     {
                         AI_STATE = STATE_IDLE;
                         projectile.netUpdate = true;
-                        //AssUtils.Print("go to idle cause distance too much");
                     }
                 }
                 else
                 {
-                    //if idle, nothing happens
+                    //keep idling
                 }
             }
             else //target found
@@ -119,16 +118,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     AI_STATE = STATE_ATTACK;
                     projectile.netUpdate = true;
-                    //AssUtils.Print("go to attack cause target found: " + targetIndex);
                 }
                 else
                 {
-                    //if (Vector2.Distance(player.Center, projectile.Center) > 600f)
-                    //{
-                    //    AI_STATE = STATE_IDLE;
-                    //    projectile.netUpdate = true;
-                    //    AssUtils.Print("go to idle cause distance too much: " + Vector2.Distance(player.Center, projectile.Center));
-                    //}
+                    //keep attacking
                 }
             }
 

@@ -7,19 +7,19 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class SkeletronHandProj : ModProjectile
+    public class SkeletronPrimeHandProj : ModProjectile
     {
         public override string Texture
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/SkeletronHandProj_0"; //temp
+                return "AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHandProj_0"; //temp
             }
         }
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Skeletron Pet Hand");
+            DisplayName.SetDefault("Skeletron Prime Pet Hand");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
             drawOriginOffsetY = -8;
@@ -47,25 +47,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.SkeletronHand = false;
+                modPlayer.SkeletronPrimeHand = false;
             }
-            if (modPlayer.SkeletronHand)
+            if (modPlayer.SkeletronPrimeHand)
             {
                 projectile.timeLeft = 2;
             }
         }
+
         public override void PostAI()
         {
             projectile.rotation = projectile.velocity.X * -0.08f;
-            //projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f; 
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: projectile.height / 2, centerPad: -20f, direction: 0);
+            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: projectile.height / 2, centerPad: -20f, direction: 0);
 
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            Texture2D image = mod.GetTexture("Projectiles/Pets/SkeletronHandProj_" + mPlayer.skeletronHandType);
+            Texture2D image = mod.GetTexture("Projectiles/Pets/SkeletronPrimeHandProj_" + mPlayer.skeletronPrimeHandType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;

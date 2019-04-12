@@ -27,6 +27,8 @@ namespace AssortedCrazyThings.UI
         internal static int returned = -1;
         //Which thing was the previously selected one?
         internal static int currentSelected = -1;
+        //Which button was it activated with
+        internal static bool openedWithLeft = false;
 
         //Fade in animation when opening the UI
         internal static float fadeIn = 0;

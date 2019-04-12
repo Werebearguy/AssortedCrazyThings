@@ -410,6 +410,12 @@ namespace AssortedCrazyThings
 
                         CircleUI.UIConf = CircleUIConf.SkeletronHandConf();
                     }
+                    else if (pPlayer.SkeletronPrimeHand)
+                    {
+                        CircleUI.currentSelected = pPlayer.skeletronPrimeHandType;
+
+                        CircleUI.UIConf = CircleUIConf.SkeletronPrimeHandConf();
+                    }
                     //FOR LEFT CLICK ONLY (REGULAR PET)
                     //ALTERNATE
                     //else if (pPlayer.ClassName)
@@ -480,6 +486,7 @@ namespace AssortedCrazyThings
             CircleUI.spawnPosition = Main.MouseScreen;
             CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
             CircleUI.heldItemType = triggerType;
+            CircleUI.openedWithLeft = triggerLeft;
             CircleUI.fadeIn = 0;
         }
 
@@ -559,6 +566,10 @@ namespace AssortedCrazyThings
                         {
                             pPlayer.skeletronHandType = (byte)CircleUI.returned;
                         }
+                        else if (pPlayer.SkeletronPrimeHand)
+                        {
+                            pPlayer.skeletronPrimeHandType = (byte)CircleUI.returned;
+                        }
                         //ALTERNATE
                         //else if (pPlayer.ClassName)
                         //{
@@ -633,7 +644,7 @@ namespace AssortedCrazyThings
                     left = false;
                 }
 
-                if (left != null) CircleUIEnd((bool)left);
+                if (left != null && left == CircleUI.openedWithLeft) CircleUIEnd((bool)left);
 
                 if (CircleUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
                 {
@@ -705,7 +716,14 @@ namespace AssortedCrazyThings
                     {
                         //if something returned AND if the returned thing isn't the same as the current one
 
-                        Main.PlaySound(SoundID.Item1.WithVolume(2f), Main.LocalPlayer.position);
+                        try
+                        {
+                            Main.PlaySound(SoundID.Item1, Main.LocalPlayer.position);
+                        }
+                        catch
+                        {
+
+                        }
                         //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
 
                         PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
@@ -1003,6 +1021,7 @@ namespace AssortedCrazyThings
         miniAntlionType,
         petGoldfishType,
         skeletronHandType,
+        skeletronPrimeHandType,
         petCultistType,
         //ALTERNATE
         //classNameType,
