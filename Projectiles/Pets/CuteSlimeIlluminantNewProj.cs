@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
             {
                 Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin;
-                Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)) * ((255 - projectile.alpha) / 255f) * 0.78f;
+                Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length)) * ((255 - projectile.alpha) / 255f) * 0.5f;
                 color.A = (byte)(projectile.alpha * ((projectile.oldPos.Length - k) / projectile.oldPos.Length));
                 spriteBatch.Draw(image, drawPos, bounds, color, projectile.oldRot[k], bounds.Size() / 2, projectile.scale, effect, 0f);
             }

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Buffs\CuteSlimeIlluminantNewBuff.cs" />
+    <Compile Include="Buffs\CuteSlimeLavaNewBuff.cs" />
     <Compile Include="Buffs\PetCultistBuff.cs" />
     <Compile Include="Buffs\PetPlanteraBuff.cs" />
     <Compile Include="Buffs\TrueObservingEyeBuff.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Items\Gitgud\KingSlimeGitgud.cs" />
     <Compile Include="Items\Gitgud\PlanteraGitgud.cs" />
     <Compile Include="Items\KnittingSet.cs" />
+    <Compile Include="Items\Pets\CuteSlimeLavaNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeIlluminantNew.cs" />
     <Compile Include="Items\Pets\PetGoldfishItem.cs" />
     <Compile Include="Items\Pets\ObservingEyeItem.cs" />
@@ -297,11 +299,13 @@
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
     <Compile Include="AssAI.cs" />
+    <Compile Include="NPCs\CuteSlimeLava.cs" />
     <Compile Include="NPCs\CuteSlimeIlluminant.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeIlluminantNewProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeLegacyPetWarningProj.cs" />
+    <Compile Include="Projectiles\Pets\CuteSlimeLavaNewProj.cs" />
     <Compile Include="Projectiles\Pets\PetPlanteraProj.cs" />
     <Compile Include="Projectiles\Pets\PetGoldfishProj.cs" />
     <Compile Include="Projectiles\Pets\ObservingEyeProj.cs" />

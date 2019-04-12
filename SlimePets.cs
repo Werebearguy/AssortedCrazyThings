@@ -135,7 +135,7 @@ namespace AssortedCrazyThings
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Tundra] = new List<string>() { "Ice" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Jungle] = new List<string>() { "Jungle" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Underground] = new List<string>() { "Toxic" };
-            //slimePetNPCsEnumToNames[(int)SpawnConditionType.Hell] = new List<string>() { "Lava" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Hell] = new List<string>() { "Lava" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() {"Illuminant" };
@@ -181,6 +181,12 @@ namespace AssortedCrazyThings
             (
                 name: "CuteSlimeIlluminantNewProj",
                 hasNoHair: true
+            ));
+            slimePetList.Add(SlimePet.NewSlimePet
+            (
+                name: "CuteSlimeLavaNewProj",
+                hasNoHair: true,
+                postAdditionSlot: (byte)SlotType.Hat
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (

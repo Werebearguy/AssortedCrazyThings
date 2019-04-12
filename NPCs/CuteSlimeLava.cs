@@ -6,14 +6,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class CuteSlimeIlluminant : ModNPC
+    public class CuteSlimeLava : ModNPC
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Slime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-            NPCID.Sets.TrailingMode[npc.type] = 3;
-            NPCID.Sets.TrailCacheLength[npc.type] = 8;
         }
 
         public override void SetDefaults()
@@ -32,14 +30,14 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = 1;
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
-            npc.alpha = 80;
-            Main.npcCatchable[mod.NPCType("CuteSlimeIlluminant")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeIlluminantNew");
+            npc.alpha = 75;
+            Main.npcCatchable[mod.NPCType("CuteSlimeLava")] = true;
+            npc.catchItem = (short)mod.ItemType("CuteSlimeLavaNew");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Hallow);
+            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Hell);
         }
 
         public override void NPCLoot()
@@ -49,19 +47,13 @@ namespace AssortedCrazyThings.NPCs
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/CuteSlimeIlluminantAddition");
+            Texture2D texture = mod.GetTexture("NPCs/CuteSlimeLavaAddition");
+            Vector2 stupidOffset = new Vector2(0f, 4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f + npc.gfxOffY + 4f);
-
-            //the higher the k, the older the position
-            //Length is implicitely set in TrailCacheLength up there
-            for (int k = npc.oldPos.Length - 1; k >= 0; k--)
-            {
-                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin;
-                Color color = npc.GetAlpha(Color.White) * ((npc.oldPos.Length - k) / (1f * npc.oldPos.Length)) * ((255 - npc.alpha) / 255f) * 0.5f;
-                color.A = (byte)(npc.alpha * ((npc.oldPos.Length - k) / npc.oldPos.Length));
-                spriteBatch.Draw(texture, drawPos, npc.frame, color, npc.oldRot[k], npc.frame.Size() / 2, npc.scale, effect, 0f);
-            }
+            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
+            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            drawColor.A = 255;
+            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
     }
 }

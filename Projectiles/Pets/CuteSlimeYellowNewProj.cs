@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Main.projPet[projectile.type] = true;
             drawOffsetX = -18;
             //drawOriginOffsetX = 0;
-            drawOriginOffsetY = -14; //-18
+            drawOriginOffsetY = -16; //-14
         }
 
         public override void SetDefaults()
@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = Projwidth; //64 because of wings
             projectile.height = Projheight;
             aiType = ProjectileID.PetLizard;
-            projectile.scale = 1.2f;
+            //projectile.scale = 1.2f;
             projectile.alpha = 75;
         }
 
