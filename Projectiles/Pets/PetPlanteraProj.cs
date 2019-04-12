@@ -22,6 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             aiType = ProjectileID.BabyEater;
             projectile.width = 36;
             projectile.height = 36;
+            projectile.aiStyle = -1;
         }
 
         public override bool PreAI()
@@ -44,10 +45,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            if (Vector2.Distance(projectile.Center, player.Center) > 3000f)
-            {
-                projectile.Center = player.Center;
-            }
+            AssAI.BabyEaterAI(projectile);
+            AssAI.BabyEaterDraw(projectile);
+
+            Vector2 between = projectile.Center - player.Center;
+            //projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            projectile.rotation += 3.14159f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -65,13 +68,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Main.player[projectile.owner].Center, projectile.Center);
             return true;
-        }
-
-        public override void PostAI()
-        {
-            Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
-            //projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
-            projectile.rotation += 3.14159f;
         }
     }
 

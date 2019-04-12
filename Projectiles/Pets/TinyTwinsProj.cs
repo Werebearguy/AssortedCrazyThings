@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            if (Vector2.Distance(projectile.Center, player.Center) > 3000f)
+            if (Vector2.Distance(projectile.Center, player.Center) > 2000f)
             {
                 projectile.Center = player.Center;
             }
@@ -109,7 +109,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            if (Vector2.Distance(projectile.Center, player.Center) > 3000f)
+            if (Vector2.Distance(projectile.Center, player.Center) > 2000f)
             {
                 projectile.Center = player.Center;
             }

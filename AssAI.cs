@@ -643,7 +643,7 @@ namespace AssortedCrazyThings
             between += desiredCenter + offset;
             
             //added in manually since its kinda useful
-            if (Vector2.Distance(projectile.Center, parentCenter) > 3000f)
+            if (Vector2.Distance(projectile.Center, parentCenter) > 2000f)
             {
                 projectile.Center = parentCenter + desiredCenter + offset;
             }
@@ -652,6 +652,7 @@ namespace AssortedCrazyThings
             //float magnitude = 6f;
             if (distance < someDistance && parent.velocity.Y == 0f && projectile.position.Y + projectile.height <= parent.position.Y + parent.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {
+                //projectile.ai[0] = 0;
                 if (projectile.velocity.Y < -6f)
                 {
                     projectile.velocity.Y = -6f;
@@ -735,6 +736,136 @@ namespace AssortedCrazyThings
             projectile.direction = (int)projectile.ai[0];
             projectile.spriteDirection = projectile.direction;
             projectile.rotation = projectile.velocity.X * 0.05f;
+        }
+        #endregion
+
+        #region BabyEater
+        public static void BabyEaterDraw(Projectile projectile, int frameCounter = 6)
+        {
+            projectile.frameCounter++;
+            if (projectile.frameCounter > frameCounter)
+            {
+                projectile.frame++;
+                projectile.frameCounter = 0;
+            }
+            if (projectile.frame >= Main.projFrames[projectile.type]) //2
+            {
+                projectile.frame = 0;
+            }
+        }
+
+        public static void BabyEaterAI(Projectile projectile, float velocityFactor = 1f, float sway = 1f)
+        {
+            //velocityFactor: 
+            //kinda wonky, leave at 1f
+
+            //sway: 
+            //tells by how much increase/decrease the left/right sway of the idle pet
+
+            Player player = Main.player[projectile.owner];
+
+            if (!player.active)
+            {
+                projectile.active = false;
+                return;
+            }
+
+            float veloDelta = 0.1f;
+            projectile.tileCollide = false;
+            int someDistance = 300;
+            Vector2 between = player.MountedCenter - projectile.Center;
+            float distance = between.Length();
+            float magnitude = 7f;
+
+            //added in manually since its kinda useful
+            if (Vector2.Distance(projectile.Center, player.MountedCenter) > 2000f)
+            {
+                projectile.Center = player.MountedCenter;
+            }
+
+            if (distance < someDistance && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            {
+                if (projectile.velocity.Y < -6f)
+                {
+                    projectile.velocity.Y = -6f;
+                }
+            }
+            float swayDistance = 150f * sway;
+            if (distance < swayDistance)
+            {
+                if (Math.Abs(projectile.velocity.X) > 2f || Math.Abs(projectile.velocity.Y) > 2f)
+                {
+                    projectile.velocity *= 0.99f;
+                }
+                veloDelta = 0.01f;
+                if (between.X < -2f)
+                {
+                    between.X = -2f;
+                }
+                if (between.X > 2f)
+                {
+                    between.X = 2f;
+                }
+                if (between.Y < -2f)
+                {
+                    between.Y = -2f;
+                }
+                if (between.Y > 2f)
+                {
+                    between.Y = 2f;
+                }
+            }
+            else
+            {
+                if (distance > swayDistance * 2f)
+                {
+                    veloDelta = 0.2f;
+                }
+                between.Normalize();
+                between *= magnitude;
+            }
+
+            veloDelta *= velocityFactor;
+
+            if (Math.Abs(between.X) > Math.Abs(between.Y))
+            {
+                if (projectile.velocity.X < between.X)
+                {
+                    projectile.velocity.X = projectile.velocity.X + veloDelta;
+                    if (veloDelta > 0.05f && projectile.velocity.X < 0f)
+                    {
+                        projectile.velocity.X = projectile.velocity.X + veloDelta;
+                    }
+                }
+                if (projectile.velocity.X > between.X)
+                {
+                    projectile.velocity.X = projectile.velocity.X - veloDelta;
+                    if (veloDelta > 0.05f && projectile.velocity.X > 0f)
+                    {
+                        projectile.velocity.X = projectile.velocity.X - veloDelta;
+                    }
+                }
+            }
+            if (Math.Abs(between.X) <= Math.Abs(between.Y) || veloDelta == 0.05f)
+            {
+                if (projectile.velocity.Y < between.Y)
+                {
+                    projectile.velocity.Y = projectile.velocity.Y + veloDelta;
+                    if (veloDelta > 0.05f && projectile.velocity.Y < 0f)
+                    {
+                        projectile.velocity.Y = projectile.velocity.Y + veloDelta;
+                    }
+                }
+                if (projectile.velocity.Y > between.Y)
+                {
+                    projectile.velocity.Y = projectile.velocity.Y - veloDelta;
+                    if (veloDelta > 0.05f && projectile.velocity.Y > 0f)
+                    {
+                        projectile.velocity.Y = projectile.velocity.Y - veloDelta;
+                    }
+                }
+            }
+            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) - 1.57f;
         }
         #endregion
     }

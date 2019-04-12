@@ -37,8 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            int rand = Main.rand.Next(4);
-            if (rand == 0)
+            if (Main.rand.NextBool(4))
             {
                 target.AddBuff(BuffID.CursedInferno, 120);
             }

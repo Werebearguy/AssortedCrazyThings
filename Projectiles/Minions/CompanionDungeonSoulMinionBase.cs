@@ -461,8 +461,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     }
                     if (distanceToPlayer > 2000f) //teleport to player it distance too big
                     {
-                        projectile.position.X = player.Center.X - (projectile.width / 2);
-                        projectile.position.Y = player.Center.Y - (projectile.height / 2);
+                        projectile.position = player.Center;
                         projectile.netUpdate = true;
                     }
                     if (distanceToPlayer > 70f) //the immediate range around the player (when it passively floats about)
