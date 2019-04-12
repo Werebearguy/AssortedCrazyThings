@@ -525,7 +525,7 @@ namespace AssortedCrazyThings
                 NPCID.Plantera,
                 nPCTypeList: new int[] { NPCID.PlanterasHook, NPCID.PlanterasTentacle },
                 projTypeList: new int[] { ProjectileID.ThornBall, ProjectileID.SeedPlantera, ProjectileID.PoisonSeedPlantera });
-            Add("GolemGitgud", "Golem Consolation Item",
+            Add("GolemGitgud", "Rechargeable Solar Battery",
                 "On Fire!", BuffID.OnFire,
                 NPCID.Golem,
                 nPCTypeList: new int[] { NPCID.GolemFistLeft, NPCID.GolemFistRight, NPCID.GolemHead, NPCID.GolemHeadFree },
@@ -535,7 +535,7 @@ namespace AssortedCrazyThings
                 NPCID.DukeFishron,
                 nPCTypeList: new int[] { NPCID.DetonatingBubble, NPCID.Sharkron, NPCID.Sharkron2 },
                 projTypeList: new int[] { ProjectileID.Sharknado, ProjectileID.SharknadoBolt, ProjectileID.Cthulunado });
-            Add("LunaticCultistGitgud", "Lunatic Cultist Jab Item",
+            Add("LunaticCultistGitgud", "Notice of Occupational Termination",
                 "On Fire!", BuffID.OnFire,
                 NPCID.CultistBoss,
                 nPCTypeList: new int[] { NPCID.AncientCultistSquidhead,/* NPCID.CultistBossClone,*/ },

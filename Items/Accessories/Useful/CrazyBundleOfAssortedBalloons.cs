@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,10 +43,21 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Lighting.AddLight(player.Center, 0.7f, 1.3f, 1.6f);
         }
 
+        /*
+         * Massive bundle + Bipolar + Star + Star Wisp + Cobballoon + Retinazer + Spaz + Bundled Party + Balloon Animal
+         */
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, "MassiveBundleOfBalloons");
+            recipe.AddIngredient(mod.ItemType<MassiveBundleOfBalloons>());
+            recipe.AddIngredient(mod.ItemType<BipolarCandleInABalloon>());
+            recipe.AddIngredient(mod.ItemType<StarInABalloon>());
+            recipe.AddIngredient(mod.ItemType<StarWispBalloon>());
+            recipe.AddIngredient(mod.ItemType<Cobballoon>());
+            recipe.AddIngredient(mod.ItemType<EyelloonRetinazer>());
+            recipe.AddIngredient(mod.ItemType<SpazmatismEyelloon>());
+            recipe.AddIngredient(ItemID.PartyBundleOfBalloonsAccessory);
+            recipe.AddIngredient(ItemID.PartyBalloonAnimal);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

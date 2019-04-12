@@ -17,6 +17,7 @@ namespace AssortedCrazyThings.NPCs
         {
             npc.width = 46;
             npc.height = 52;
+            npc.scale = 1.2f;
             //npc.friendly = true;
             npc.chaseable = false;
             npc.damage = 0;

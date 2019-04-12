@@ -58,6 +58,8 @@ namespace AssortedCrazyThings
                     {
                         ErrorLogger.Log("AssortedCrazyThings: updated Version");
                         canUpdate = true;
+                        
+                        ModConfig.Get(walkingTombstonesField, ref walkingTombstones);
                         CreateConfig();
                     }
                     if (!canUpdate) return false;
