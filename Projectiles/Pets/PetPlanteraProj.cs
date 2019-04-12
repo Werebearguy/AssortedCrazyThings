@@ -9,6 +9,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class PetPlanteraProj : ModProjectile
     {
+        public const int ContactDamage = 20;
+        public const int ImmunityCooldown = 60;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mean Seed");
@@ -19,17 +22,64 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
             projectile.width = 36;
             projectile.height = 36;
+            projectile.friendly = true;
+            projectile.minion = true; //only determines the damage type
+            projectile.minionSlots = 0f;
+            projectile.penetrate = -1;
             projectile.aiStyle = -1;
+
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = ImmunityCooldown;
         }
 
-        public override bool PreAI()
+        public override bool? CanCutTiles()
         {
-            Player player = Main.player[projectile.owner];
-            player.eater = false; // Relic from aiType
+            return false;
+        }
+
+        public override bool MinionContactDamage()
+        {
             return true;
+        }
+
+        private const float STATE_IDLE = 0f;
+        private const float STATE_ATTACK = 1f;
+
+        public float AI_STATE
+        {
+            get
+            {
+                return projectile.ai[0];
+            }
+            set
+            {
+                projectile.ai[0] = value;
+            }
+        }
+
+        private int FindTarget(Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false) //finds target in range to relativeCenter
+        {
+            int targetIndex = -1;
+            float distanceFromTarget = 100000f;
+            Vector2 targetCenter = relativeCenter;
+            for (int k = 0; k < 200; k++)
+            {
+                NPC npc = Main.npc[k];
+                if (npc.active && npc.CanBeChasedBy(this))
+                {
+                    float between = Vector2.Distance(npc.Center, relativeCenter);
+                    if (((between < range && Vector2.Distance(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
+                        (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height) || ignoreTiles))
+                    {
+                        distanceFromTarget = between;
+                        targetCenter = npc.Center;
+                        targetIndex = k;
+                    }
+                }
+            }
+            return distanceFromTarget < range? targetIndex: -1;
         }
 
         public override void AI()
@@ -45,12 +95,73 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            AssAI.BabyEaterAI(projectile);
-            AssAI.BabyEaterDraw(projectile);
+            int targetIndex = FindTarget(player.Center); //check for player surrounding
+            if (targetIndex == -1)
+            {
+                if (AI_STATE == STATE_ATTACK)
+                {
+                    targetIndex = FindTarget(player.Center, range: 400f, ignoreTiles: true); //currently fighting or in pursuit
+                    if (targetIndex == -1) //check for proj surrounding
+                    {
+                        AI_STATE = STATE_IDLE;
+                        projectile.netUpdate = true;
+                        //AssUtils.Print("go to idle cause distance too much");
+                    }
+                }
+                else
+                {
+                    //if idle, nothing happens
+                }
+            }
+            else //target found
+            {
+                if (AI_STATE == STATE_IDLE)
+                {
+                    AI_STATE = STATE_ATTACK;
+                    projectile.netUpdate = true;
+                    //AssUtils.Print("go to attack cause target found: " + targetIndex);
+                }
+                else
+                {
+                    //if (Vector2.Distance(player.Center, projectile.Center) > 600f)
+                    //{
+                    //    AI_STATE = STATE_IDLE;
+                    //    projectile.netUpdate = true;
+                    //    AssUtils.Print("go to idle cause distance too much: " + Vector2.Distance(player.Center, projectile.Center));
+                    //}
+                }
+            }
 
-            Vector2 between = projectile.Center - player.Center;
-            //projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
-            projectile.rotation += 3.14159f;
+            if (AI_STATE == STATE_IDLE)
+            {
+                projectile.friendly = false;
+                AssAI.BabyEaterAI(projectile);
+
+                AssAI.BabyEaterDraw(projectile);
+                projectile.rotation += 3.14159f;
+            }
+            else //STATE_ATTACK
+            {
+                projectile.friendly = true;
+
+                if (targetIndex != -1)
+                {
+                    NPC npc = Main.npc[targetIndex];
+                    Vector2 distanceToTargetVector = npc.Center - projectile.Center;
+                    float distanceToTarget = distanceToTargetVector.Length();
+
+                    if (distanceToTarget > 30f)
+                    {
+                        distanceToTargetVector.Normalize();
+                        distanceToTargetVector *= 8f;
+                        projectile.velocity = (projectile.velocity * (16f - 1) + distanceToTargetVector) / 16f;
+
+                        projectile.rotation = (float)Math.Atan2(distanceToTargetVector.Y, distanceToTargetVector.X) + 1.57f;
+                    }
+                }
+
+                AssAI.BabyEaterDraw(projectile, 4);
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -119,7 +230,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 default: //case 3
                     break;
             }
-            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 1f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 2f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
             Vector2 between = Main.projectile[(int)projectile.ai[1]].Center - projectile.Center;
             projectile.spriteDirection = 1;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X);

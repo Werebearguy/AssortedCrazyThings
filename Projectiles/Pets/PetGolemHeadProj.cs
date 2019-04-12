@@ -63,8 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.frame = 0;
             }
 
-
-                Rectangle bounds = new Rectangle();
+            Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
             bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
@@ -111,7 +110,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     for (int k = 0; k < 200; k++)
                     {
                         NPC npc = Main.npc[k];
-                        if (npc.CanBeChasedBy(this))
+                        if (npc.active && npc.CanBeChasedBy(this))
                         {
                             float between = Vector2.Distance(npc.Center, projectile.Center);
                             if (((Vector2.Distance(projectile.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&

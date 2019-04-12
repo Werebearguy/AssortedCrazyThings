@@ -388,7 +388,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     for (int j = 0; j < 200; j++)
                     {
                         NPC nPC2 = Main.npc[j];
-                        if (nPC2.CanBeChasedBy(this))
+                        if (nPC2.active && nPC2.CanBeChasedBy(this))
                         {
                             float between = Vector2.Distance(nPC2.Center, projectile.Center);
                             if (((Vector2.Distance(projectile.Center, targetCenter) > between && between < distanceFromTarget) || !foundTarget) &&
