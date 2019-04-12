@@ -280,7 +280,7 @@ namespace AssortedCrazyThings.UI
 
         public static CircleUIConf SkeletronHandConf()
         {
-            List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It" };
+            List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
 
             return PetConf("SkeletronHandProj", tooltips);
         }
