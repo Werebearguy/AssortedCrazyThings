@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Possessed Fish Idol");
             Tooltip.SetDefault("Summons a goldfish that follows you"
-                + "\n'It only wants to swim with you!'"
+                + "\n'You feel like you lost something important in obtaining this idol...'"
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 
