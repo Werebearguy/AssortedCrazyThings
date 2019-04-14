@@ -33,6 +33,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SandBlock, 1);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(this, 10); //makes 10 instead of one per crafting operation
             recipe.AddRecipe();
         }

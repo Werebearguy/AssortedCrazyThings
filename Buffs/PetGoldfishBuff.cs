@@ -8,9 +8,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Pet Goldfish");
-            Description.SetDefault("A goldfish is following you"
-                + "\n'It only wants to swim with you!'");
+            DisplayName.SetDefault("Possessed Goldfish");
+            Description.SetDefault("A possessed goldfish is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

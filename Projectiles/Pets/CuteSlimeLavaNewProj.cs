@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
             
-            int height = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];
+            int height = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type] - 4;
             Vector2 pos = projectile.BottomLeft - new Vector2(0f, height);
             Main.dust[Dust.NewDust(pos, 28, height, 6)].noGravity = true;
         }
