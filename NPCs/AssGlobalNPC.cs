@@ -91,9 +91,19 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<WallFragmentItem>());
             }
 
+            if (npc.type == NPCID.SkeletronPrime)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SkeletronPrimeHandItem>());
+            }
+
             if (npc.type == NPCID.Retinazer && !NPC.AnyNPCs(NPCID.Spazmatism) || npc.type == NPCID.Spazmatism && !NPC.AnyNPCs(NPCID.Retinazer))
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<TinyTwinsItem>());
+            }
+
+            if (npc.type == NPCID.Plantera)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetPlanteraItem>());
             }
 
             if (npc.type == NPCID.Golem)
@@ -104,6 +114,16 @@ namespace AssortedCrazyThings.NPCs
             if (npc.type == NPCID.DukeFishron)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetFishronItem>());
+            }
+
+            if (npc.type == NPCID.CultistBoss)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetCultistItem>());
+            }
+
+            if (npc.type == NPCID.MoonLordCore)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<TrueObservingEyeItem>());
             }
 
             //soul spawn from dead enemies while harvester alive

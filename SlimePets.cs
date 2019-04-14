@@ -77,11 +77,11 @@ namespace AssortedCrazyThings
                 case SpawnConditionType.Hell:
                     return player.townNPCs < 3f ? SpawnCondition.Underworld.Chance * 0.012f : 0f;
                 case SpawnConditionType.Corruption:
-                    return Main.hardMode ? (!Main.bloodMoon ? SpawnCondition.Corruption.Chance * 0.045f : SpawnCondition.Crimson.Chance * 0.045f) : 0f;
+                    return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Corruption.Chance * 0.045f : SpawnCondition.Crimson.Chance * 0.045f) : 0f;
                 case SpawnConditionType.Crimson:
-                    return Main.hardMode ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.045f : SpawnCondition.Corruption.Chance * 0.045f) : 0f;
+                    return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.045f : SpawnCondition.Corruption.Chance * 0.045f) : 0f;
                 case SpawnConditionType.Hallow:
-                    return Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson) && (player.position.Y > Main.worldSurface * 16) ? 0.0045f : 0f;
+                    return Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson) && !player.ZoneOverworldHeight ? 0.0045f : 0f;
                 case SpawnConditionType.Dungeon:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.DungeonNormal.Chance * 0.016f : 0f;
                 case SpawnConditionType.Xmas:

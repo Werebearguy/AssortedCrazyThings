@@ -294,6 +294,17 @@ namespace AssortedCrazyThings
                             {
                                 canReset &= npc.boss;
                             }
+                            if (i == 8) //Twins
+                            {
+                                if (npc.type == NPCID.Retinazer)
+                                {
+                                    canReset &= !NPC.AnyNPCs(NPCID.Spazmatism);
+                                }
+                                else
+                                {
+                                    canReset &= !NPC.AnyNPCs(NPCID.Retinazer);
+                                }
+                            }
 
                             if (canReset)
                             {
