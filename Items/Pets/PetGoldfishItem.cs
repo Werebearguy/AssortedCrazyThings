@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Pet Goldfish");
+            DisplayName.SetDefault("Possessed Fish Idol");
             Tooltip.SetDefault("Summons a goldfish that follows you"
                 + "\n'It only wants to swim with you!'"
                 + "\nAppearance can be changed with Costume Suitcase");

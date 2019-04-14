@@ -80,7 +80,13 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 //default
             }
-            Projectile.NewProjectile(player.position.X + (player.width / 2) - player.direction * 12f, player.position.Y - 8f, - player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
+            Vector2 spawnPos = new Vector2(player.Center.X - player.direction * 12f, player.position.Y - 8f);
+            if (Collision.SolidCollision(spawnPos + new Vector2(-player.direction * 18f, 0f), 12, 1))
+            {
+                spawnPos.X = player.Center.X + player.direction * 8f;
+                spawnPos.Y = player.Center.Y;
+            }
+            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, - player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
             return false;
         }
 

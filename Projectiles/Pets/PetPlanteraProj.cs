@@ -7,10 +7,26 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    //cannot be dyed since it counts as a minion and deals damage
     public class PetPlanteraProj : ModProjectile
     {
         public const int ContactDamage = 20;
         public const int ImmunityCooldown = 60;
+
+        private const float STATE_IDLE = 0f;
+        private const float STATE_ATTACK = 1f;
+
+        public float AI_STATE
+        {
+            get
+            {
+                return projectile.ai[0];
+            }
+            set
+            {
+                projectile.ai[0] = value;
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -42,21 +58,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool MinionContactDamage()
         {
             return true;
-        }
-
-        private const float STATE_IDLE = 0f;
-        private const float STATE_ATTACK = 1f;
-
-        public float AI_STATE
-        {
-            get
-            {
-                return projectile.ai[0];
-            }
-            set
-            {
-                projectile.ai[0] = value;
-            }
         }
 
         private int FindTarget(Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false) //finds target in range to relativeCenter
@@ -95,6 +96,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
+            #region HandleState
             int targetIndex = FindTarget(player.Center); //check for player surrounding
             if (targetIndex == -1)
             {
@@ -124,7 +126,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //keep attacking
                 }
             }
+            #endregion
 
+            #region ActUponState
             if (AI_STATE == STATE_IDLE)
             {
                 projectile.friendly = false;
@@ -155,6 +159,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 AssAI.BabyEaterDraw(projectile, 4);
             }
+            #endregion
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -190,6 +195,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.aiStyle = -1;
             projectile.width = 14; //14
             projectile.height = 19; //19
+            //gets set in the buff
+            //projectile.damage = 1; //to prevent dyes from working on it
         }
 
         public override void AI()
@@ -223,7 +230,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 default: //case 3
                     break;
             }
-            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 2f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 1.5f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
             Vector2 between = Main.projectile[(int)projectile.ai[1]].Center - projectile.Center;
             projectile.spriteDirection = 1;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X);

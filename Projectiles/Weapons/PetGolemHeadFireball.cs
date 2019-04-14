@@ -18,6 +18,8 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pet Golem Head Fireball");
+            ProjectileID.Sets.Homing[projectile.type] = true;
+            ProjectileID.Sets.MinionShot[projectile.type] = true;
         }
 
         public override void SetDefaults()

@@ -8,6 +8,14 @@ namespace AssortedCrazyThings
     //contains AI for stuff that only uses ai[], used with thing.aiStyle = -1
     public static class AssAI
     {
+        public static void TeleportIfTooFar(Projectile projectile, Vector2 desiredCenter, int distance = 2000)
+        {
+            if (Vector2.Distance(projectile.Center, desiredCenter) > distance)
+            {
+                projectile.Center = desiredCenter;
+            }
+        }
+
         #region Flickerwick
         public static void FlickerwickPetDraw(Projectile projectile, int frameCounterMaxFar, int frameCounterMaxClose)
         {
@@ -115,10 +123,11 @@ namespace AssortedCrazyThings
 
             Vector2 desiredCenter = player.MountedCenter + desiredCenterRelative;
             float between = Vector2.Distance(projectile.Center, desiredCenter);
-            if (between > 1000f)
-            {
-                projectile.Center = player.Center + desiredCenterRelative;
-            }
+            //if (between > 1000f)
+            //{
+            //    projectile.Center = player.Center + desiredCenterRelative;
+            //}
+            TeleportIfTooFar(projectile, desiredCenter, 1000);
             Vector2 betweenDirection = desiredCenter - projectile.Center;
             if (between < veloDistanceChange)
             {
@@ -207,8 +216,9 @@ namespace AssortedCrazyThings
                     float num41 = (float)Math.Sqrt((double)(num39 * num39 + num40 * num40));
                     if (num41 > 2000f)
                     {
-                        projectile.position.X = player.position.X + (float)(player.width / 2) - (float)(projectile.width / 2);
-                        projectile.position.Y = player.position.Y + (float)(player.height / 2) - (float)(projectile.height / 2);
+                        TeleportIfTooFar(projectile, player.Center);
+                        //projectile.position.X = player.position.X + (float)(player.width / 2) - (float)(projectile.width / 2);
+                        //projectile.position.Y = player.position.Y + (float)(player.height / 2) - (float)(projectile.height / 2);
                     }
                     else if (num41 > (float)num38 || (Math.Abs(num40) > 300f) || flyForever)
                     {
@@ -641,12 +651,14 @@ namespace AssortedCrazyThings
 
             //desiredCenter += new Vector2(60f * -player.direction, -60f);
             between += desiredCenter + offset;
-            
-            //added in manually since its kinda useful
-            if (Vector2.Distance(projectile.Center, parentCenter) > 2000f)
-            {
-                projectile.Center = parentCenter + desiredCenter + offset;
-            }
+
+            ////added in manually since its kinda useful
+            //if (Vector2.Distance(projectile.Center, parentCenter) > 2000f)
+            //{
+            //    projectile.Center = parentCenter + desiredCenter + offset;
+            //}
+
+            TeleportIfTooFar(projectile, parentCenter + desiredCenter + offset);
 
             float distance = between.Length();
             //float magnitude = 6f;
@@ -680,6 +692,7 @@ namespace AssortedCrazyThings
                 }
                 between.Normalize();
                 between *= 6f;
+                between *= velocityFactor;
             }
             veloDelta *= velocityFactor;
             if (projectile.velocity.X < between.X)
@@ -778,10 +791,11 @@ namespace AssortedCrazyThings
             float magnitude = 7f;
 
             //added in manually since its kinda useful
-            if (Vector2.Distance(projectile.Center, player.MountedCenter) > 2000f)
-            {
-                projectile.Center = player.MountedCenter;
-            }
+            //if (Vector2.Distance(projectile.Center, player.MountedCenter) > 2000f)
+            //{
+            //    projectile.Center = player.MountedCenter;
+            //}
+            TeleportIfTooFar(projectile, player.MountedCenter);
 
             if (distance < someDistance && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {

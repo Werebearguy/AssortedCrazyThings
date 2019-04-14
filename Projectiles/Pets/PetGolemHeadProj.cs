@@ -10,23 +10,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class PetGolemHeadProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Replica Golem Head");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
-            drawOriginOffsetY = -10;
-        }
-
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            projectile.aiStyle = -1;
-            projectile.width = 38;
-            projectile.height = 38;
-            projectile.tileCollide = false;
-        }
-
         private const int FireballDamage = 20;
 
         private float sinY; //depends on projectile.ai[0], no need to sync
@@ -41,6 +24,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.localAI[0] = value;
             }
+        }
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Replica Golem Head");
+            Main.projFrames[projectile.type] = 2;
+            Main.projPet[projectile.type] = true;
+            ProjectileID.Sets.Homing[projectile.type] = true;
+            drawOriginOffsetY = -10;
+        }
+
+        public override void SetDefaults()
+        {
+            projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            projectile.aiStyle = -1;
+            projectile.width = 38;
+            projectile.height = 38;
+            projectile.tileCollide = false;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

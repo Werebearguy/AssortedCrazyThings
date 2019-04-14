@@ -36,6 +36,11 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Cavern.Chance * 0.04f;
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (Main.hardMode) npc.lifeMax = npc.lifeMax * 2;
+        }
+
         public override void NPCLoot()
         {
             if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix

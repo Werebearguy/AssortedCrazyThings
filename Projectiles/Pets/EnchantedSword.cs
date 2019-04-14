@@ -39,6 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
         }
     }
 }

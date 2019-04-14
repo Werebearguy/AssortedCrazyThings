@@ -45,10 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            if (Vector2.Distance(projectile.Center, player.Center) > 2000f)
-            {
-                projectile.Center = player.Center;
-            }
+            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -108,11 +105,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
-
-            if (Vector2.Distance(projectile.Center, player.Center) > 2000f)
-            {
-                projectile.Center = player.Center;
-            }
+            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
         }
 
         public override void PostAI()

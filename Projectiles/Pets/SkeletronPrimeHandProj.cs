@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -53,6 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
         }
 
         public override void PostAI()
