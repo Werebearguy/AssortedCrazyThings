@@ -149,7 +149,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
                 Vector2 stupidOffset = new Vector2(0f, projectile.gfxOffY + drawOriginOffsetY);
                 Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                Color color = drawColor * ((255f - projectile.alpha) / 255f);
+                Color color = projectile.GetAlpha(drawColor);
+                color = color /** ((255f - projectile.alpha) / 255f)*/;
 
                 spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
             }

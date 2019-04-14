@@ -38,6 +38,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+            
+            int height = Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type];
+            Vector2 pos = projectile.BottomLeft - new Vector2(0f, height);
+            Main.dust[Dust.NewDust(pos, 28, height, 6)].noGravity = true;
+        }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            drawColor = Color.White;
+            drawColor.A = 75;
+            return drawColor;
         }
 
         public override void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color lightColor, bool useNoHair)

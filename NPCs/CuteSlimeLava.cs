@@ -30,9 +30,23 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = 1;
             aiType = NPCID.ToxicSludge;
             animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
+            //npc.alpha = 75;
             Main.npcCatchable[mod.NPCType("CuteSlimeLava")] = true;
             npc.catchItem = (short)mod.ItemType("CuteSlimeLavaNew");
+            npc.lavaImmune = true;
+        }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            drawColor = Color.White * 0.78f;
+            drawColor.A = 75;
+            return drawColor;
+        }
+
+        public override void DrawEffects(ref Color drawColor)
+        {
+            int widthOffset = 12;
+            Main.dust[Dust.NewDust(npc.position + new Vector2(widthOffset, 0), npc.width - 2 * widthOffset, npc.height, 6)].noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

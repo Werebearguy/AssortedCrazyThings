@@ -32,6 +32,7 @@ namespace AssortedCrazyThings.NPCs
             npc.color = new Color(240, 54, 115, 100);
             Main.npcCatchable[mod.NPCType("HornedSlime")] = true;
             npc.catchItem = (short)mod.ItemType("HornedSlimeItem");
+            npc.lavaImmune = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
