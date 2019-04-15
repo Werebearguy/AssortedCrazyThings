@@ -58,7 +58,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Frog, 1);
+            recipe.AddIngredient(ItemID.Frog, 3);
             recipe.AddIngredient(ItemID.WandofSparking, 1);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
