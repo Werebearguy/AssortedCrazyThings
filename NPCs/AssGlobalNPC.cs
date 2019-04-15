@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.NPCs
             //other pets
             if (npc.type == NPCID.Antlion || npc.type == NPCID.FlyingAntlion || npc.type == NPCID.WalkingAntlion)
             {
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<MiniAntlionItem>());
+                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), mod.ItemType<MiniAntlionItem>());
             }
 
             if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
@@ -46,12 +46,12 @@ namespace AssortedCrazyThings.NPCs
 
             if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
             {
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<LilWrapsItem>());
+                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), mod.ItemType<LilWrapsItem>());
             }
 
             if (npc.type == NPCID.RainbowSlime)
             {
-                if (Main.rand.NextBool(2)) Item.NewItem(npc.getRect(), mod.ItemType<RainbowSlimeItem>());
+                if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<RainbowSlimeItem>());
             }
 
             if (npc.type == NPCID.IlluminantSlime)

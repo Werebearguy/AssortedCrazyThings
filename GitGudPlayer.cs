@@ -62,6 +62,18 @@ namespace AssortedCrazyThings
             NPC npc = new NPC();
             npc.SetDefaults(bossTypeList[0]);
             BossName = npc.GetFullNetName().ToString();
+            if (bossTypeList.Length > 1)
+            {
+                for (int i = 1; i < bossTypeList.Length; i++)
+                {
+                    npc = new NPC();
+                    npc.SetDefaults(bossTypeList[i]);
+                    if (!BossName.Contains(npc.GetFullNetName().ToString()))
+                    {
+                        BossName += " or " + npc.GetFullNetName().ToString();
+                    }
+                }
+            }
             npc.active = false;
 
             if (nPCTypeList == null) nPCTypeList = new int[1];

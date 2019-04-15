@@ -727,27 +727,28 @@ namespace AssortedCrazyThings
                     projectile.velocity.Y = projectile.velocity.Y - veloDelta * 2f;
                 }
             }
-            //if ((double)projectile.velocity.X > 0.25)
-            //{
-            //    projectile.direction = -1;
-            //}
-            //else if ((double)projectile.velocity.X < -0.25)
-            //{
-            //    projectile.direction = 1;
-            //}
-            //projectile.spriteDirection = projectile.direction;
-
-            //fix, direction gets set automatically by tmodloader based on velocity.X for some reason
-            if (projectile.velocity.X > 0.25f)
+            projectile.manualDirectionChange = true;
+            if (projectile.velocity.X > 0.25f && projectile.direction == 1)
             {
-                projectile.ai[0] = -1;
+                projectile.direction = -1;
             }
-            else if (projectile.velocity.X < -0.25f)
+            else if (projectile.velocity.X < -0.25f && projectile.direction != 1)
             {
-                projectile.ai[0] = 1;
+                projectile.direction = 1;
             }
-            projectile.direction = (int)projectile.ai[0];
             projectile.spriteDirection = projectile.direction;
+
+            //fix, direction gets set automatically by "manualDirectionChange = false" based on velocity.X
+            //if (projectile.velocity.X > 0.25f)
+            //{
+            //    projectile.ai[0] = -1;
+            //}
+            //else if (projectile.velocity.X < -0.25f)
+            //{
+            //    projectile.ai[0] = 1;
+            //}
+            //projectile.direction = (int)projectile.ai[0];
+            //projectile.spriteDirection = projectile.direction;
             projectile.rotation = projectile.velocity.X * 0.05f;
         }
         #endregion

@@ -16,17 +16,18 @@ namespace AssortedCrazyThings.Items.Gitgud
             {
                 if (index != -1)
                 {
+                    GitgudData data = GitgudData.DataList[index];
                     tooltips.Insert(insertIndex++, new TooltipLine(mod, "Desc", "Consolation Prize"));
-                    string reduced = "" + (GitgudData.DataList[index].Reduction * 100) + "% reduced damage taken " + (GitgudData.DataList[index].Invasion != "" ? "during " + GitgudData.DataList[index].Invasion : "from " + GitgudData.DataList[index].BossName);
+                    string reduced = "" + (data.Reduction * 100) + "% reduced damage taken " + (data.Invasion != "" ? "during " + data.Invasion : "from " + data.BossName);
                     tooltips.Insert(insertIndex++, new TooltipLine(mod, "Reduced", reduced));
-                    if (GitgudData.DataList[index].BuffType != -1)
+                    if (data.BuffType != -1)
                     {
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "BuffImmune", "Immunity to '" + GitgudData.DataList[index].BuffName + "' while " + GitgudData.DataList[index].BossName + " is alive"));
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "BuffImmune", "Immunity to '" + data.BuffName + "' while " + data.BossName + (data.BossName.Contains(" or ")? " are":" is") + " alive"));
                     }
 
-                    if (!(GitgudData.DataList[index].Accessory[Main.myPlayer] || Main.LocalPlayer.HasItem(item.type) || Main.LocalPlayer.trashItem.type == item.type))
+                    if (!(data.Accessory[Main.myPlayer] || Main.LocalPlayer.HasItem(item.type) || Main.LocalPlayer.trashItem.type == item.type))
                     {
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Count", "Times died: " + GitgudData.DataList[index].Counter[Main.myPlayer] + "/" + GitgudData.DataList[index].CounterMax));
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Count", "Times died: " + data.Counter[Main.myPlayer] + "/" + data.CounterMax));
                     }
                 }
                 tooltips.Insert(insertIndex++, new TooltipLine(mod, "Gitgud", "[c/E180CE:'git gud']"));

@@ -131,14 +131,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         Vector2 velocity = targetCenter + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
-                        int index = Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
-                        Main.projectile[index].timeLeft = 300;
-                        Main.projectile[index].netUpdate = true;
+                        /*int index = */Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
+                        //Main.projectile[index].netUpdate = true;
                         projectile.netUpdate = true;
                     }
                     else
                     {
-                        if (projectile.ai[1] > 60) projectile.ai[1] -= 60;
+                        if (projectile.ai[1] > 60)
+                        {
+                            projectile.ai[1] -= 60;
+                            projectile.netUpdate = true;
+                        }
                     }
                 }
                 projectile.ai[1] -= 60;

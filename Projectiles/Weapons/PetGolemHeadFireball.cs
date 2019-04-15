@@ -27,6 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             projectile.CloneDefaults(ProjectileID.Fireball);
             projectile.hostile = false;
             projectile.friendly = true;
+            projectile.timeLeft = 300;
             projectile.penetrate = 1;
         }
 

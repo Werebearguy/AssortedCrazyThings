@@ -211,6 +211,32 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+
+            #region FindParent
+            //set parent when spawned
+            if (projectile.ai[0] == 0f)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<PetPlanteraProj>() && projectile.owner == Main.projectile[i].owner)
+                    {
+                        //since technically index 0 also exists, shift it by 1 when found
+                        projectile.ai[0] = i + 1;
+                        projectile.netUpdate = true;
+                        break;
+                    }
+                }
+            }
+
+            //if something goes wrong, abort mission
+            if (projectile.ai[0] == 0f)
+            {
+                projectile.Kill();
+                return;
+            }
+            #endregion
+
+            //offsets so the tentacles are distributed evenly
             float offsetX = 0;
             float offsetY = 0;
             switch (projectile.whoAmI % 4)
@@ -230,8 +256,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 default: //case 3
                     break;
             }
-            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[1]], velocityFactor: 1.5f + projectile.whoAmI % 4, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
-            Vector2 between = Main.projectile[(int)projectile.ai[1]].Center - projectile.Center;
+
+            //velocityFactor: 1.5f + (projectile.whoAmI % 4) * 0.8f so all tentacles don't share the same movement 
+            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[0] - 1], velocityFactor: 1.5f + (projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            Vector2 between = Main.projectile[(int)projectile.ai[0] - 1].Center - projectile.Center;
             projectile.spriteDirection = 1;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X);
 
