@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings
+namespace AssortedCrazyThings.Base
 {
     static class AssUtils
     {

@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Base\AssAI.cs" />
+    <Compile Include="Base\AssUtils.cs" />
+    <Compile Include="Base\SlimePets.cs" />
     <Compile Include="Buffs\CuteSlimeIlluminantNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLavaNewBuff.cs" />
     <Compile Include="Buffs\PetCultistBuff.cs" />
@@ -60,7 +63,6 @@
     <Compile Include="Buffs\EnhancedHunterBuff.cs" />
     <Compile Include="Buffs\MiniAntlionBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
-    <Compile Include="AssUtils.cs" />
     <Compile Include="Buffs\ChunkySlimeBuff.cs" />
     <Compile Include="Buffs\FairySlimeBuff.cs" />
     <Compile Include="Buffs\HornedSlimeBuff.cs" />
@@ -300,7 +302,6 @@
     <Compile Include="Items\Weapons\SightofRetinazer.cs" />
     <Compile Include="Items\Weapons\TomeOfShadowflameSkulls.cs" />
     <Compile Include="Items\Weapons\TrueLegendaryWoodenSword.cs" />
-    <Compile Include="AssAI.cs" />
     <Compile Include="NPCs\CuteSlimeLava.cs" />
     <Compile Include="NPCs\CuteSlimeIlluminant.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
@@ -326,7 +327,6 @@
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsFired.cs" />
-    <Compile Include="SlimePets.cs" />
     <Compile Include="ModConf.cs" />
     <Compile Include="NPCs\AssGlobalNPC.cs" />
     <Compile Include="NPCs\CuteSlimeToxic.cs" />

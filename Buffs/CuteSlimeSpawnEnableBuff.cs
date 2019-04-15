@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssortedCrazyThings.Base;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;

@@ -5,6 +5,7 @@ using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameInput;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.UI
 {

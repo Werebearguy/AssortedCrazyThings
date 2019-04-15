@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Projectiles.Weapons;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -105,34 +106,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 if (Main.myPlayer == projectile.owner)
                 {
-                    int targetIndex = -1;
-                    float distanceFromTarget = 100000f;
-                    Vector2 targetCenter = projectile.position;
-                    for (int k = 0; k < 200; k++)
-                    {
-                        NPC npc = Main.npc[k];
-                        if (npc.active && npc.CanBeChasedBy(this))
-                        {
-                            float between = Vector2.Distance(npc.Center, projectile.Center);
-                            if (((Vector2.Distance(projectile.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                                Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
-                            {
-                                distanceFromTarget = between;
-                                targetCenter = npc.Center;
-                                targetIndex = k;
-                            }
-                        }
-                    }
+                    int targetIndex = AssAI.FindTarget(projectile, player.Center, range: 600f);
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
                         if (projectile.ai[1] == 60) projectile.ai[1] += 60;
                         Vector2 position = projectile.Center;
                         position.Y += 6f;
-                        Vector2 velocity = targetCenter + Main.npc[targetIndex].velocity * 5f - projectile.Center;
+                        Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
-                        /*int index = */Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
-                        //Main.projectile[index].netUpdate = true;
+                        Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
                         projectile.netUpdate = true;
                     }
                     else

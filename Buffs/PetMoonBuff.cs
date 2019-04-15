@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.Base;
 using Terraria;
 using Terraria.ModLoader;
 

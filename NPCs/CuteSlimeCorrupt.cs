@@ -1,7 +1,7 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.NPCs
 {

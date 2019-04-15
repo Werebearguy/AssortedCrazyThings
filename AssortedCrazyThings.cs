@@ -4,6 +4,7 @@ using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.UI;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

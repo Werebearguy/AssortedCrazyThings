@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings
+namespace AssortedCrazyThings.Base
 {
     public static class SlimePets
     {
@@ -51,7 +51,7 @@ namespace AssortedCrazyThings
                 case SpawnConditionType.Crimson:
                     return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt);
                 case SpawnConditionType.Hallow:
-                    return Main.hardMode && (player.position.Y > Main.worldSurface * 16) && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
+                    return Main.hardMode && !player.ZoneOverworldHeight && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
                 case SpawnConditionType.Dungeon:
                     return player.ZoneDungeon && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Xmas:
@@ -72,7 +72,7 @@ namespace AssortedCrazyThings
                 case SpawnConditionType.Tundra:
                     return player.townNPCs < 3f && player.ZoneSnow ? SpawnCondition.OverworldDaySlime.Chance * 0.06f : 0f;
                 case SpawnConditionType.Jungle:
-                    return player.townNPCs < 3f ? SpawnCondition.SurfaceJungle.Chance * 0.06f : 0f;
+                    return player.townNPCs < 3f && Main.dayTime ? SpawnCondition.SurfaceJungle.Chance * 0.06f : 0f;
                 case SpawnConditionType.Underground:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.hardMode && player.ZoneDirtLayerHeight ? 0.015f : 0f;
                 case SpawnConditionType.Hell:

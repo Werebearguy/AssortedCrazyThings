@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using AssortedCrazyThings.Base;
 using System;
 using Terraria;
 using Terraria.ID;

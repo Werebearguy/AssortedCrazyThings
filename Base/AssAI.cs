@@ -3,7 +3,7 @@ using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace AssortedCrazyThings
+namespace AssortedCrazyThings.Base
 {
     //contains AI for stuff that only uses ai[], used with thing.aiStyle = -1
     public static class AssAI
@@ -14,6 +14,31 @@ namespace AssortedCrazyThings
             {
                 projectile.Center = desiredCenter;
             }
+        }
+
+        //finds target in range of relativeCenter
+        //returns index of target
+        public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false)
+        {
+            int targetIndex = -1;
+            float distanceFromTarget = 100000f;
+            Vector2 targetCenter = relativeCenter;
+            for (int k = 0; k < 200; k++)
+            {
+                NPC npc = Main.npc[k];
+                if (npc.active && npc.CanBeChasedBy(projectile.modProjectile))
+                {
+                    float between = Vector2.Distance(npc.Center, relativeCenter);
+                    if (((between < range && Vector2.Distance(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
+                        (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height) || ignoreTiles))
+                    {
+                        distanceFromTarget = between;
+                        targetCenter = npc.Center;
+                        targetIndex = k;
+                    }
+                }
+            }
+            return distanceFromTarget < range ? targetIndex : -1;
         }
 
         #region Flickerwick

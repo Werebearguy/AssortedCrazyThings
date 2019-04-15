@@ -5,6 +5,7 @@ using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.UI
 {

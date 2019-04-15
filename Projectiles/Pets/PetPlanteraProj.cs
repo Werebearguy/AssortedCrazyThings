@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -60,29 +61,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return true;
         }
 
-        private int FindTarget(Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false) //finds target in range to relativeCenter
-        {
-            int targetIndex = -1;
-            float distanceFromTarget = 100000f;
-            Vector2 targetCenter = relativeCenter;
-            for (int k = 0; k < 200; k++)
-            {
-                NPC npc = Main.npc[k];
-                if (npc.active && npc.CanBeChasedBy(this))
-                {
-                    float between = Vector2.Distance(npc.Center, relativeCenter);
-                    if (((between < range && Vector2.Distance(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                        (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height) || ignoreTiles))
-                    {
-                        distanceFromTarget = between;
-                        targetCenter = npc.Center;
-                        targetIndex = k;
-                    }
-                }
-            }
-            return distanceFromTarget < range? targetIndex: -1;
-        }
-
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
@@ -97,12 +75,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
 
             #region HandleState
-            int targetIndex = FindTarget(player.Center); //check for player surrounding
+            int targetIndex = AssAI.FindTarget(projectile, player.Center); //check for player surrounding
             if (targetIndex == -1)
             {
                 if (AI_STATE == STATE_ATTACK)
                 {
-                    targetIndex = FindTarget(player.Center, range: 400f, ignoreTiles: true); //check for player surrounding
+                    targetIndex = AssAI.FindTarget(projectile, player.Center, range: 400f); //check for player surrounding
                     if (targetIndex == -1) //check for proj surrounding
                     {
                         AI_STATE = STATE_IDLE;
