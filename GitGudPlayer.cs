@@ -150,7 +150,7 @@ namespace AssortedCrazyThings
                 deleted = true;
             }
 
-            if (deleted) Main.NewText("You won't be needing the " + itemName + " anymore...", Color.Yellow);
+            if (deleted) Main.NewText("You won't be needing the " + itemName + " anymore...", new Color(255, 175, 0));
         } //Reset, RecvReset
 
         private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)

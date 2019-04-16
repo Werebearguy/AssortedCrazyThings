@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameInput;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs;
 
 namespace AssortedCrazyThings.UI
 {
@@ -26,6 +27,8 @@ namespace AssortedCrazyThings.UI
                 rectangle.Y = (int)Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
             }
 
+            float num = Main.mouseTextColor / 255f;
+
             for (int k = 0; k < 200; k++)
             {
                 //LoadNPC(Main.npc[k].type); //idk why
@@ -38,6 +41,7 @@ namespace AssortedCrazyThings.UI
                     }
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
+                        drawColor = new Color((byte)(255 * num), (byte)(255 * num), (byte)(255 * num), Main.mouseTextColor);
                         player.showItemIcon = false;
                         ret = Main.npc[k].GivenOrTypeName;
                         int num2 = k;
@@ -66,6 +70,8 @@ namespace AssortedCrazyThings.UI
                 rectangle.Y = (int)Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
             }
 
+            float num = Main.mouseTextColor / 255f;
+
             for (int k = 0; k < 200; k++)
             {
                 if (Main.npc[k].active)
@@ -73,6 +79,7 @@ namespace AssortedCrazyThings.UI
                     Rectangle npcrect = new Rectangle((int)Main.npc[k].Bottom.X - Main.npc[k].frame.Width / 2, (int)Main.npc[k].Bottom.Y - Main.npc[k].frame.Height, Main.npc[k].frame.Width, Main.npc[k].frame.Height);
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
+                        drawColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
                         if ((Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoul>() ||
                            Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoulFreed>()) && Main.npc[k].ai[0] == 0)
                         {
@@ -89,6 +96,12 @@ namespace AssortedCrazyThings.UI
                         else if (Main.npc[k].type == AssUtils.Instance.NPCType<Harvester2>())
                         {
                             ret = "Souls eaten: " + (Main.npc[k].life - 1 + 5) + "/" + 15;
+                        }
+
+                        if (Main.npc[k].type == AssUtils.Instance.NPCType<ChunkysEye>() || Main.npc[k].type == AssUtils.Instance.NPCType<MeatballsEye>())
+                        {
+                            drawColor = Color.White * num;
+                            ret = "Catch it with a net";
                         }
                         break;
                     }
@@ -133,10 +146,6 @@ namespace AssortedCrazyThings.UI
             //if (!visible) return;
             base.DrawSelf(spriteBatch);
 
-            float num = Main.mouseTextColor / 255f;
-            //Color fontColor = new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor);
-            // 35, 200, 254);
-            Color baseColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
             if (drawString != "") Main.LocalPlayer.showItemIcon = false;
             Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
             mousePos.X += 10;
@@ -158,7 +167,7 @@ namespace AssortedCrazyThings.UI
                 mousePos.Y = (int)(Main.screenHeight - vector.Y - 4f);
             }
 
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(0, 22), baseColor, 0, Vector2.Zero, Vector2.One);
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(0, 22), drawColor, 0, Vector2.Zero, Vector2.One);
         }
     }
 }

@@ -44,14 +44,14 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         }
 
         /*
-         * Massive bundle + Bipolar + Star + Star Wisp + Cobballoon + Retinazer + Spaz + Bundled Party + Balloon Animal
+         * Massive bundle + Bipolar (+ Star) + Star Wisp + Cobballoon + Retinazer + Spaz + Bundled Party + Balloon Animal
          */
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<MassiveBundleOfBalloons>());
             recipe.AddIngredient(mod.ItemType<BipolarCandleInABalloon>());
-            recipe.AddIngredient(mod.ItemType<StarInABalloon>());
+            //recipe.AddIngredient(mod.ItemType<StarInABalloon>());
             recipe.AddIngredient(mod.ItemType<StarWispBalloon>());
             recipe.AddIngredient(mod.ItemType<Cobballoon>());
             recipe.AddIngredient(mod.ItemType<EyelloonRetinazer>());
