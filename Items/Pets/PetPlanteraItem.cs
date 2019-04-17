@@ -11,8 +11,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Potted Plantera Seed");
-            Tooltip.SetDefault("Summons a tiny Plantera to watch over you"
-                +"\n'It's a mean and green'");
+            Tooltip.SetDefault("Summons a Plantera Sprout to watch over you"
+                + "\n'It's a mean and green'");
         }
 
         public override void SetDefaults()

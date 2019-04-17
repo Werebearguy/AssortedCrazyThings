@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Mini Antlion");
-            Description.SetDefault("A miniature Antlion is following you");
+            DisplayName.SetDefault("Baby Antlion");
+            Description.SetDefault("A Baby Antlion is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

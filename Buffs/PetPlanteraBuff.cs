@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Mean Seed");
-            Description.SetDefault("A tiny Mean Seed is following you");
+            DisplayName.SetDefault("Plantera Sprout");
+            Description.SetDefault("A Plantera Sprout is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

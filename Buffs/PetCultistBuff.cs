@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Tiny Cultist");
-            Description.SetDefault("An tiny Cultist is following you");
+            DisplayName.SetDefault("Dwarf Cultist");
+            Description.SetDefault("A tiny Cultist is following you");
             Main.buffNoTimeDisplay[Type] = true;
             Main.lightPet[Type] = true;
         }

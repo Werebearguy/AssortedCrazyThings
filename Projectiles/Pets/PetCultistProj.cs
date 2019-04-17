@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Cultist");
+            DisplayName.SetDefault("Dwarf Cultist");
             Main.projFrames[projectile.type] = 4;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.LightPet[projectile.type] = true;

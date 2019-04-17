@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Antlion Egg");
-            Tooltip.SetDefault("Summons a friendly Mini Antlion to follow you"
+            Tooltip.SetDefault("Summons a friendly Baby Antlion to follow you"
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 

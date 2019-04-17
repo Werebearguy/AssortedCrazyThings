@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ocean Slime");
+            DisplayName.SetDefault("Baby Antlion");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
             drawOffsetX = -10;
