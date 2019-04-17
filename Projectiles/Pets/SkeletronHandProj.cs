@@ -78,7 +78,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawOrigin = bounds.Size() / 2;
             drawOrigin.Y += projectile.height / 2;
 
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, SpriteEffects.None, 0f);
+            float betweenX = Main.player[projectile.owner].Center.X - projectile.Center.X;
+            SpriteEffects effects = betweenX < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
             return false;
         }
     }
