@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             if (Main.rand.NextFloat() >= .50f)
             {
-                target.AddBuff(BuffID.Confused, 90); //1 1/2 seconds, 50% chance
+                target.AddBuff(BuffID.Confused, 120); //2 seconds, 50% chance
             }
         }
 

@@ -799,7 +799,7 @@ namespace AssortedCrazyThings.Base
             //kinda wonky, leave at 1f
 
             //sway: 
-            //tells by how much increase/decrease the left/right sway of the idle pet
+            //tells by how much increase/decrease the left/right sway radius of the idle pet
 
             Player player = Main.player[projectile.owner];
 

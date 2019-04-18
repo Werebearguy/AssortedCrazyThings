@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY + drawOriginOffsetY);
 
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
-
+            
 			return false;
 		}
     }

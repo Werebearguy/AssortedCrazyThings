@@ -29,16 +29,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
             aiType = ProjectileID.BabyEater;
-            //projectile.aiStyle = -1;
+            projectile.aiStyle = -1;
             projectile.width = 24;
             projectile.height = 32;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[projectile.owner];
-            player.eater = false; // Relic from aiType
-            return true;
         }
 
         public override void AI()
@@ -53,7 +46,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+            AssAI.BabyEaterAI(projectile, sway: 0.8f);
+            AssAI.BabyEaterDraw(projectile);
         }
 
         public override void PostAI()

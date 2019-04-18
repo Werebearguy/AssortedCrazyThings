@@ -114,6 +114,7 @@ namespace AssortedCrazyThings.UI
         public override void Update(GameTime gameTime)
         {
             //if (!visible) return;
+            if (Main.hoverItemName != "") return;
             base.Update(gameTime);
 
             drawString = "";
@@ -144,6 +145,7 @@ namespace AssortedCrazyThings.UI
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             //if (!visible) return;
+            if (Main.hoverItemName != "") return;
             base.DrawSelf(spriteBatch);
 
             if (drawString != "") Main.LocalPlayer.showItemIcon = false;

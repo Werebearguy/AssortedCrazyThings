@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 between = Main.player[projectile.owner].Center - (projectile.position + stupidOffset);
             //between.Length(): 94 is "idle", 200 is very fast following
             //28.5f = 200f / 7f
-            float magnitude = Utils.Clamp(between.Length() / 28.5f, 1f, 7f);
+            float magnitude = Utils.Clamp(between.Length() / 28.5f, 1.3f, 7f);
 
             between.Normalize();
             between *= magnitude;

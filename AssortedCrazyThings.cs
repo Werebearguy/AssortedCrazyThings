@@ -17,7 +17,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-[assembly: AssemblyVersion("1.2.3.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
 namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
@@ -751,14 +751,6 @@ namespace AssortedCrazyThings
 
         private void UpdateHoverNPCUI(GameTime gameTime)
         {
-            //if (AssUtils.AnyNPCs(AssWorld.harvesterTypes))
-            //{
-            //    HoverNPCUI.visible = true;
-            //}
-            //else
-            //{
-            //    HoverNPCUI.visible = false;
-            //}
             HoverNPCUI.Update(gameTime);
         }
 
