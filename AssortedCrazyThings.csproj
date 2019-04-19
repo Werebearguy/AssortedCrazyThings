@@ -38,7 +38,6 @@
     <Compile Include="Base\AssAI.cs" />
     <Compile Include="Base\AssUtils.cs" />
     <Compile Include="Base\SlimePets.cs" />
-    <Compile Include="Base\WeakRefs.cs" />
     <Compile Include="Buffs\CuteSlimeIlluminantNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLavaNewBuff.cs" />
     <Compile Include="Buffs\PetCultistBuff.cs" />
