@@ -4,4 +4,5 @@ displayName = Assorted Crazy Things
 hideCode = true
 hideResources = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Wiki\*
+weakReferences = TerrariaOverhaul@3.2.2
 homepage = https://github.com/Werebearguy/AssortedCrazyThings/wiki

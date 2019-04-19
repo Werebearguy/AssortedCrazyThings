@@ -2,6 +2,7 @@ using AssortedCrazyThings.Projectiles.Tools;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TerrariaOverhaul;
 
 namespace AssortedCrazyThings.Items.Tools
 {
@@ -40,6 +41,11 @@ namespace AssortedCrazyThings.Items.Tools
         {
             // Ensures no more than one spear can be thrown out, use this when using autoReuse
             return player.ownedProjectileCounts[item.shoot] < 1;
+        }
+
+        public void OverhaulInit()
+        {
+            this.SetTag(ItemTags.AllowQuickUse);
         }
 
         public override void AddRecipes()

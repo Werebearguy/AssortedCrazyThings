@@ -38,6 +38,7 @@
     <Compile Include="Base\AssAI.cs" />
     <Compile Include="Base\AssUtils.cs" />
     <Compile Include="Base\SlimePets.cs" />
+    <Compile Include="Base\WeakRefs.cs" />
     <Compile Include="Buffs\CuteSlimeIlluminantNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLavaNewBuff.cs" />
     <Compile Include="Buffs\PetCultistBuff.cs" />
@@ -521,6 +522,9 @@
     <Reference Include="System" />
     <Reference Include="Terraria">
       <HintPath>E:\Steam\SteamApps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
+    <Reference Include="TerrariaOverhaul">
+      <HintPath>D:\Visual Studio\References\TerrariaOverhaul.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

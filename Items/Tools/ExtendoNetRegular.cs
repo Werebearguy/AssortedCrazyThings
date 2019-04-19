@@ -2,6 +2,7 @@ using AssortedCrazyThings.Projectiles.Tools;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TerrariaOverhaul;
 
 namespace AssortedCrazyThings.Items.Tools
 {
@@ -34,6 +35,11 @@ namespace AssortedCrazyThings.Items.Tools
 
             item.UseSound = SoundID.Item1;
             item.shoot = mod.ProjectileType<ExtendoNetRegularProj>();
+        }
+
+        public void OverhaulInit()
+        {
+            this.SetTag(ItemTags.AllowQuickUse);
         }
 
         public override bool CanUseItem(Player player)
