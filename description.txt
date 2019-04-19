@@ -1,4 +1,4 @@
 This mod adds a large amount of enemies, a hefty amount of pets, and a few other things. For a list of all content in this mod, please visit the homepage. We've got a lot of stuff to offer in this mod.
 
-*- Mar 08, 2019
-Hefty update! Homepage is now our Github repository. Click it to view our wiki and works in progress!
+*- APR 19, 2019
+Another big update! Many new additions to pets and accessories, as well as sprite updates! Check the mod's changelog on the homepage for more info!
