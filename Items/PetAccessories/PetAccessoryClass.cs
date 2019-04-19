@@ -905,6 +905,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 .AddPetVariation("Pink", 2)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+            Add(SlotType.Hat, new PetAccessory(id: 7, name: "BunnyEars", preDraw: true, offsetY: -12f));
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
@@ -1094,6 +1095,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             DisplayName.SetDefault("Cute Knight's Breastplate");
             Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
+        }
+    }
+
+    public class PetAccessoryBunnyEars : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Bunny Ears");
+            Tooltip.SetDefault("'A pair of Easter bunny ears for your cute slime to wear on her head'");
         }
     }
 
