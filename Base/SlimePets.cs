@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Base
                 case SpawnConditionType.Overworld:
                     return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Desert:
-                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneDesert/* && !AssUtils.EvilBiome(player)*/;
+                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneDesert && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Tundra:
                     return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneSnow && player.ZoneOverworldHeight/* && !AssUtils.EvilBiome(player)*/;
                 case SpawnConditionType.Jungle:
@@ -68,7 +68,7 @@ namespace AssortedCrazyThings.Base
                 case SpawnConditionType.Overworld:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.012f : 0f;
                 case SpawnConditionType.Desert:
-                    return player.townNPCs < 3f ? SpawnCondition.OverworldDayDesert.Chance * 0.12f : 0f;
+                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDayDesert.Chance * 0.12f : 0f;
                 case SpawnConditionType.Tundra:
                     return player.townNPCs < 3f && player.ZoneSnow ? SpawnCondition.OverworldDaySlime.Chance * 0.06f : 0f;
                 case SpawnConditionType.Jungle:
