@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            SpriteEffects effects = SpriteEffects.None;
+            SpriteEffects effects = projectile.spriteDirection == -1? SpriteEffects.FlipHorizontally: SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Pets/DocileDemonEyeProj_" + mPlayer.petEyeType);
             Rectangle bounds = new Rectangle
             {
@@ -73,6 +73,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             return false;
+        }
+
+        public override void PostAI()
+        {
+            projectile.spriteDirection = projectile.direction = (projectile.velocity.X < 0).ToDirectionInt();
         }
     }
 }

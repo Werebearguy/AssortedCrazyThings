@@ -43,6 +43,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
         }
+
+        public override void PostAI()
+        {
+            float betweenX = projectile.Center.X - Main.player[projectile.owner].Center.X;
+            projectile.spriteDirection = projectile.direction = (projectile.velocity.X < 0).ToDirectionInt();
+        }
     }
 
     public class MeatballProj : ModProjectile
@@ -82,6 +88,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
             AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+        }
+
+        public override void PostAI()
+        {
+            float betweenX = projectile.Center.X - Main.player[projectile.owner].Center.X;
+            projectile.spriteDirection = projectile.direction = (projectile.velocity.X < 0).ToDirectionInt();
         }
     }
 }

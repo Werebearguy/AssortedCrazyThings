@@ -13,6 +13,7 @@ namespace AssortedCrazyThings.Base
             if (Vector2.Distance(projectile.Center, desiredCenter) > distance)
             {
                 projectile.Center = desiredCenter;
+                projectile.netUpdate = true;
             }
         }
 

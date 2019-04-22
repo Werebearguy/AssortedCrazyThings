@@ -66,6 +66,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            projectile.spriteDirection = projectile.direction = - (between.X < 0).ToDirectionInt();
         }
     }
 
@@ -115,6 +116,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            projectile.spriteDirection = projectile.direction = - (between.X < 0).ToDirectionInt();
         }
     }
 }
