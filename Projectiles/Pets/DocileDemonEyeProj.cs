@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            SpriteEffects effects = projectile.spriteDirection == -1? SpriteEffects.FlipHorizontally: SpriteEffects.None;
+            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally: SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Pets/DocileDemonEyeProj_" + mPlayer.petEyeType);
             Rectangle bounds = new Rectangle
             {

@@ -46,7 +46,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
-            float betweenX = projectile.Center.X - Main.player[projectile.owner].Center.X;
             projectile.spriteDirection = projectile.direction = (projectile.velocity.X < 0).ToDirectionInt();
         }
     }
@@ -92,7 +91,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
-            float betweenX = projectile.Center.X - Main.player[projectile.owner].Center.X;
             projectile.spriteDirection = projectile.direction = (projectile.velocity.X < 0).ToDirectionInt();
         }
     }

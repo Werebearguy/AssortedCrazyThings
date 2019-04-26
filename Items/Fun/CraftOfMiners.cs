@@ -17,6 +17,7 @@ namespace AssortedCrazyThings.Items.Fun
 		public override void SetDefaults()
 		{
 			item.CloneDefaults(ItemID.ShroomiteDiggingClaw);
+            item.damage = 13;
             item.useAnimation = 3;
             item.useTime = 3;
             item.value = Item.sellPrice(gold: 5);

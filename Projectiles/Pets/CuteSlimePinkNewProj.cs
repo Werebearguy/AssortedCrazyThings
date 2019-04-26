@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Cute Pink Slime");
             Main.projFrames[projectile.type] = 10;
             Main.projPet[projectile.type] = true;
-            drawOffsetX = -18;
+            drawOffsetX = -18; //-18
             //drawOriginOffsetX = 0;
             drawOriginOffsetY = -21;
         }
