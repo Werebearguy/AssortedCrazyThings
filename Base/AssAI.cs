@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
@@ -764,7 +765,7 @@ namespace AssortedCrazyThings.Base
             }
             projectile.spriteDirection = projectile.direction;
 
-            //fix, direction gets set automatically by "manualDirectionChange = false" based on velocity.X
+            //fix, direction gets set automatically by "manualDirectionChange = false" projectiled on velocity.X
             //if (projectile.velocity.X > 0.25f)
             //{
             //    projectile.ai[0] = -1;
@@ -909,5 +910,323 @@ namespace AssortedCrazyThings.Base
             projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) - 1.57f;
         }
         #endregion
+
+        #region StardustDragon
+        public static void StardustDragonSetDefaults(Projectile projectile, bool minion = true, WormType wormType = WormType.None)
+        {
+            if (minion)
+            {
+                //if (projectile.type == 625 || projectile.type == 628)
+                //{
+                //    projectile.netImportant = true;
+                //}
+                if (wormType == WormType.Body1 || wormType == WormType.Body2)
+                {
+                    projectile.minionSlots = 0.5f;
+                }
+                projectile.minion = true;
+                projectile.hide = true;
+                projectile.netImportant = true;
+            }
+            projectile.width = 24;
+            projectile.height = 24;
+            projectile.penetrate = -1;
+            projectile.timeLeft *= 5;
+            projectile.friendly = true;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+            projectile.alpha = 255;
+        }
+
+        //ProjectileID.Sets.NeedsUUID[Type]
+        //wormTypes = new int[] {head, body1, body2, tail} //projectiletype
+        public static void StardustDragonAI(Projectile projectile, int[] wormTypes, bool minion = true)
+        {
+            Player player = Main.player[projectile.owner];
+            if ((int)Main.time % 120 == 0)
+            {
+                projectile.netUpdate = true;
+            }
+            if (!player.active)
+            {
+                projectile.active = false;
+                return;
+            }
+            bool head = projectile.type == wormTypes[0];
+            bool stardustdragon = true;//projectile.type == 625 || projectile.type == 626 || projectile.type == 627 || projectile.type == 628;
+            int num1048 = 10;
+            if (stardustdragon)
+            {
+                //if (player.dead)
+                //{
+                //    player.stardustDragon = false;
+                //}
+                //if (player.stardustDragon)
+                //{
+                //    projectile.timeLeft = 2;
+                //}
+                num1048 = 30;
+                //if (Main.rand.Next(30) == 0)
+                //{
+                //    int num1049 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 0, default(Color), 2f);
+                //    Main.dust[num1049].noGravity = true;
+                //    Main.dust[num1049].fadeIn = 2f;
+                //    Point point4 = Main.dust[num1049].position.ToTileCoordinates();
+                //    if (WorldGen.InWorld(point4.X, point4.Y, 5) && WorldGen.SolidTile(point4.X, point4.Y))
+                //    {
+                //        Main.dust[num1049].noLight = true;
+                //    }
+                //}
+            }
+            if (head)
+            {
+                Vector2 desiredCenter = player.Center;
+                float num1050 = 700f;
+                float num1051 = 1000f;
+                int targetIndex = -1;
+                TeleportIfTooFar(projectile, desiredCenter);
+                if (minion)
+                {
+                    //bool flag66 = true;
+                    //if (flag66)
+                    //{
+                    NPC ownerMinionAttackTargetNPC5 = projectile.OwnerMinionAttackTargetNPC;
+                    if (ownerMinionAttackTargetNPC5 != null && ownerMinionAttackTargetNPC5.CanBeChasedBy(projectile, false))
+                    {
+                        float num1053 = projectile.Distance(ownerMinionAttackTargetNPC5.Center);
+                        if (num1053 < num1050 * 2f)
+                        {
+                            targetIndex = ownerMinionAttackTargetNPC5.whoAmI;
+                            //if (ownerMinionAttackTargetNPC5.boss)
+                            //{
+                            //    int whoAmI = ownerMinionAttackTargetNPC5.whoAmI;
+                            //}
+                            //else
+                            //{
+                            //    int whoAmI2 = ownerMinionAttackTargetNPC5.whoAmI;
+                            //}
+                        }
+                    }
+                    if (targetIndex < 0)
+                    {
+                        for (int i = 0; i < 200; i++)
+                        {
+                            NPC nPC14 = Main.npc[i];
+                            if (nPC14.CanBeChasedBy(projectile, false) && player.Distance(nPC14.Center) < num1051)
+                            {
+                                float num1055 = projectile.Distance(nPC14.Center);
+                                if (num1055 < num1050)
+                                {
+                                    targetIndex = i;
+                                }
+                            }
+                        }
+                    }
+                    //}
+                }
+                if (targetIndex != -1)
+                {
+                    NPC npc = Main.npc[targetIndex];
+                    Vector2 betweenNPC = npc.Center - projectile.Center;
+                    //(vector147.X > 0f).ToDirectionInt();
+                    //(vector147.Y > 0f).ToDirectionInt();
+                    float scaleFactor15 = 0.4f;
+                    if (betweenNPC.Length() < 600f)
+                    {
+                        scaleFactor15 = 0.6f;
+                    }
+                    if (betweenNPC.Length() < 300f)
+                    {
+                        scaleFactor15 = 0.8f;
+                    }
+                    if (betweenNPC.Length() > npc.Size.Length() * 0.75f)
+                    {
+                        projectile.velocity += Vector2.Normalize(betweenNPC) * scaleFactor15 * 1.5f;
+                        if (Vector2.Dot(projectile.velocity, betweenNPC) < 0.25f)
+                        {
+                            projectile.velocity *= 0.8f;
+                        }
+                    }
+                    float num1056 = 30f;
+                    if (projectile.velocity.Length() > num1056)
+                    {
+                        projectile.velocity = Vector2.Normalize(projectile.velocity) * num1056;
+                    }
+                }
+                else
+                {
+                    float num1057 = 0.2f;
+                    Vector2 betweenPlayer = desiredCenter - projectile.Center;
+                    if (betweenPlayer.Length() < 200f)
+                    {
+                        num1057 = 0.12f;
+                    }
+                    if (betweenPlayer.Length() < 140f)
+                    {
+                        num1057 = 0.06f;
+                    }
+                    if (betweenPlayer.Length() > 100f)
+                    {
+                        if (Math.Abs(desiredCenter.X - projectile.Center.X) > 20f)
+                        {
+                            projectile.velocity.X = projectile.velocity.X + num1057 * (float)Math.Sign(desiredCenter.X - projectile.Center.X);
+                        }
+                        if (Math.Abs(desiredCenter.Y - projectile.Center.Y) > 10f)
+                        {
+                            projectile.velocity.Y = projectile.velocity.Y + num1057 * (float)Math.Sign(desiredCenter.Y - projectile.Center.Y);
+                        }
+                    }
+                    else if (projectile.velocity.Length() > 2f)
+                    {
+                        projectile.velocity *= 0.96f;
+                    }
+                    if (Math.Abs(projectile.velocity.Y) < 1f)
+                    {
+                        projectile.velocity.Y = projectile.velocity.Y - 0.1f;
+                    }
+                    float num1058 = 15f;
+                    if (projectile.velocity.Length() > num1058)
+                    {
+                        projectile.velocity = Vector2.Normalize(projectile.velocity) * num1058;
+                    }
+                }
+                projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
+                int direction = projectile.direction;
+                projectile.direction = projectile.spriteDirection = (projectile.velocity.X > 0f) ? 1 : -1;
+                if (direction != projectile.direction)
+                {
+                    projectile.netUpdate = true;
+                }
+                float num1059 = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
+                projectile.position = projectile.Center;
+                projectile.scale = 1f + num1059 * 0.01f;
+                projectile.width = projectile.height = (int)((float)num1048 * projectile.scale);
+                projectile.Center = projectile.position;
+                if (projectile.alpha > 0)
+                {
+                    int num3;
+                    for (int num1060 = 0; num1060 < 2; num1060 = num3 + 1)
+                    {
+                        int num1061 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 135, 0f, 0f, 100, default(Color), 2f);
+                        Main.dust[num1061].noGravity = true;
+                        Main.dust[num1061].noLight = true;
+                        num3 = num1060;
+                    }
+                    projectile.alpha -= 42;
+                    if (projectile.alpha < 0)
+                    {
+                        projectile.alpha = 0;
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                bool parentFound = false;
+                Vector2 pCenter = Vector2.Zero;
+                //Vector2 zero3 = Vector2.Zero;
+                float parentRotation = 0f;
+                float scaleFactor16 = 0f;
+                float scaleFactor17 = 1f;
+                if (projectile.ai[1] == 1f)
+                {
+                    projectile.ai[1] = 0f;
+                    projectile.netUpdate = true;
+                }
+
+                //Projectile match = null;
+                //for (short i = 0; i < 1000; i++)
+                //{
+                //    Projectile proj = Main.projectile[i];
+                //    if (proj.active && proj.owner == projectile.owner && proj.identity == projectile.identity && proj.type == projectile.type)
+                //    {
+                //        match = proj;
+                //        break;
+                //    }
+                //}
+                //if (match != null)
+                //{
+                //    // do stuff
+                //}
+
+                int parentByUUID = Projectile.GetByUUID(projectile.owner, (int)projectile.ai[0]);
+                Projectile parent;
+                if (stardustdragon && parentByUUID >= 0)
+                {
+                    parent = Main.projectile[parentByUUID];
+                    if (parent.active && (parent.type == wormTypes[0] || parent.type == wormTypes[1] || parent.type == wormTypes[2]))
+                    {
+                        parentFound = true;
+                        pCenter = parent.Center;
+                        Vector2 velocity2 = parent.velocity;
+                        parentRotation = parent.rotation;
+                        scaleFactor17 = MathHelper.Clamp(parent.scale, 0f, 50f);
+                        scaleFactor16 = 16f;
+                        int num1064 = parent.alpha;
+                        parent.localAI[0] = projectile.localAI[0] + 1f;
+                        if (parent.type != wormTypes[0])
+                        {
+                            parent.localAI[1] = (float)projectile.whoAmI;
+                        }
+                        if (projectile.owner == Main.myPlayer && parent.type == wormTypes[0] && projectile.type == wormTypes[3])
+                        {
+                            parent.Kill();
+                            projectile.Kill();
+                            return;
+                        }
+                    }
+                }
+                
+                if (!parentFound)
+                {
+                    return;
+                }
+                if (projectile.alpha > 0)
+                {
+                    int num3;
+                    for (int num1065 = 0; num1065 < 2; num1065 = num3 + 1)
+                    {
+                        int num1066 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 135, 0f, 0f, 100, default(Color), 2f);
+                        Main.dust[num1066].noGravity = true;
+                        Main.dust[num1066].noLight = true;
+                        num3 = num1065;
+                    }
+                }
+                projectile.alpha -= 42;
+                if (projectile.alpha < 0)
+                {
+                    projectile.alpha = 0;
+                }
+                projectile.velocity = Vector2.Zero;
+                Vector2 vector149 = pCenter - projectile.Center;
+                if (parentRotation != projectile.rotation)
+                {
+                    float num1067 = MathHelper.WrapAngle(parentRotation - projectile.rotation);
+                    vector149 = vector149.RotatedBy((double)(num1067 * 0.1f));
+                }
+                projectile.rotation = vector149.ToRotation() + 1.57079637f;
+                projectile.position = projectile.Center;
+                projectile.scale = scaleFactor17;
+                projectile.width = projectile.height = (int)(num1048 * projectile.scale);
+                projectile.Center = projectile.position;
+                if (vector149 != Vector2.Zero)
+                {
+                    projectile.Center = pCenter - Vector2.Normalize(vector149) * scaleFactor16 * scaleFactor17;
+                }
+                projectile.spriteDirection = (vector149.X > 0f) ? 1 : -1;
+                return;
+            }
+        }
+
+        #endregion
+    }
+
+    public enum WormType : byte
+    {
+        None = 0,
+        Head = 1,
+        Body1 = 2, 
+        Body2 = 3,
+        Tail = 4
     }
 }
