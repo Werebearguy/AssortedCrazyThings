@@ -942,7 +942,9 @@ namespace AssortedCrazyThings.Base
             projectile.alpha = 255;
         }
 
-        //ProjectileID.Sets.NeedsUUID[Type]
+        //ProjectileID.Sets.
+        //NeedsUUID
+        //DontAttachHideToAlpha
         //wormTypes = new int[] {head, body1, body2, tail} //projectiletype
 
         //if minion = true:

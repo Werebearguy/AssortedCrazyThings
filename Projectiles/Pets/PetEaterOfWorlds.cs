@@ -44,7 +44,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else
             {
-                Main.NewText("head:");
                 AssAI.BabyEaterAI(projectile);
                 //float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
                 //projectile.scale = 1f + scaleFactor * 0.01f;
@@ -52,8 +51,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
                 projectile.direction = projectile.spriteDirection = (projectile.velocity.X > 0f).ToDirectionInt();
             }
-
-            Main.NewText("" + projectile.type + " " + projectile.localAI[0] + " " + projectile.scale);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
