@@ -2,6 +2,7 @@ using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.UI;
 using AssortedCrazyThings.Base;
@@ -262,6 +263,14 @@ namespace AssortedCrazyThings
             GitgudData.Load();
 
             AddToSoulBuffBlacklist();
+
+            PetEaterofWorldsBase.wormTypes = new int[]
+            {
+                ProjectileType<PetEaterofWorldsHead>(),
+                ProjectileType<PetEaterofWorldsBody1>(),
+                ProjectileType<PetEaterofWorldsBody2>(),
+                ProjectileType<PetEaterofWorldsTail>()
+            };
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");

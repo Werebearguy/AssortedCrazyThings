@@ -9,21 +9,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public abstract class PetEaterofWorldsBase : ModProjectile
     {
+        public static int[] wormTypes;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiny Eater of Worlds");
             Main.projFrames[projectile.type] = 1;
             Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.NeedsUUID[projectile.type] = true;
+            //ProjectileID.Sets.NeedsUUID[projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
             AssAI.StardustDragonSetDefaults(projectile, minion: false);
-            if (projectile.type == mod.ProjectileType<PetEaterofWorldsHead>())
-            {
-                projectile.alpha = 0;
-            }
+            projectile.alpha = 0;
         }
 
         public override void AI()
@@ -41,36 +40,35 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (projectile.type != mod.ProjectileType<PetEaterofWorldsHead>())
             {
-                AssAI.StardustDragonAI(projectile, new int[]
-                {
-                mod.ProjectileType<PetEaterofWorldsHead>(),
-                mod.ProjectileType<PetEaterofWorldsBody1>(),
-                mod.ProjectileType<PetEaterofWorldsBody2>(),
-                mod.ProjectileType<PetEaterofWorldsTail>(),
-                },
-                minion: false);
+                AssAI.StardustDragonAI(projectile, wormTypes, minion: false);
             }
             else
             {
+                Main.NewText("head:");
                 AssAI.BabyEaterAI(projectile);
+                //float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
+                //projectile.scale = 1f + scaleFactor * 0.01f;
+
                 projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
                 projectile.direction = projectile.spriteDirection = (projectile.velocity.X > 0f).ToDirectionInt();
             }
+
+            Main.NewText("" + projectile.type + " " + projectile.localAI[0] + " " + projectile.scale);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 vector66 = projectile.position + new Vector2(projectile.width, projectile.height) / 2f + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
+            Vector2 drawPos = projectile.Center + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
             Texture2D texture2D34 = Main.projectileTexture[projectile.type];
-            Rectangle rectangle17 = texture2D34.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
-            Color alpha5 = projectile.GetAlpha(lightColor);
-            Vector2 origin11 = rectangle17.Size() / 2f;
+            Rectangle drawRect = texture2D34.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+            Color color = projectile.GetAlpha(lightColor);
+            Vector2 drawOrigin = drawRect.Size() / 2f;
             
-            alpha5.A /= 2;
+            //alpha5.A /= 2;
 
-            Main.spriteBatch.Draw(texture2D34, vector66, new Microsoft.Xna.Framework.Rectangle?(rectangle17), alpha5, projectile.rotation, origin11, projectile.scale, effects, 0f);
+            Main.spriteBatch.Draw(texture2D34, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
 
             return false;
         }
