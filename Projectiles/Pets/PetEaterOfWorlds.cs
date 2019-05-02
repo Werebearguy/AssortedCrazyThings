@@ -16,6 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Tiny Eater of Worlds");
             Main.projFrames[projectile.type] = 1;
             Main.projPet[projectile.type] = true;
+            //ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; //doesn't work for some reason with hide = true
             //ProjectileID.Sets.NeedsUUID[projectile.type] = true;
         }
 
@@ -40,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (projectile.type != mod.ProjectileType<PetEaterofWorldsHead>())
             {
-                AssAI.StardustDragonAI(projectile, wormTypes, minion: false);
+                AssAI.StardustDragonAI(projectile, wormTypes);
             }
             else
             {
@@ -71,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
-public class PetEaterofWorldsHead : PetEaterofWorldsBase
+    public class PetEaterofWorldsHead : PetEaterofWorldsBase
     {
         public override string Texture
         {

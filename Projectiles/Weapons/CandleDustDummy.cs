@@ -29,7 +29,8 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
             projectile.timeLeft = LifeTime;
-            projectile.alpha = 255;
+            projectile.hide = true;
+            //projectile.alpha = 255;
             projectile.tileCollide = false;
         }
 
@@ -57,7 +58,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             new Color(255, 255, 255),
             new Color(196, 0, 255)};
 
-            projectile.alpha = 255;
+            //projectile.alpha = 255;
 
             //projectile.ai[0] = 0; //fly straight
             //kinda cheaty since the arrow AI makes itself only visible after a few ticks, so no need to make alpha

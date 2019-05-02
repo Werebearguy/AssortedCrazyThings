@@ -912,10 +912,16 @@ namespace AssortedCrazyThings.Base
         #endregion
 
         #region StardustDragon
-        
+
+
+        //ProjectileID.Sets.
+        //NeedsUUID = true;
+        //DontAttachHideToAlpha =true;
+
         //if minion = true:
         //ProjectileID.Sets.MinionSacrificable[projectile.type] = false, cause the replacing code for worm minions is complicated
         //damage set in NewProjectile/item
+        //scales in size with the amount of segments
         public static void StardustDragonSetDefaults(Projectile projectile, bool minion = true, WormType wormType = WormType.None)
         {
             if (minion)
@@ -929,7 +935,7 @@ namespace AssortedCrazyThings.Base
                     projectile.minionSlots = 0.5f;
                 }
                 projectile.minion = true;
-                projectile.hide = true;
+                //projectile.hide = true;
                 projectile.netImportant = true;
             }
             projectile.width = 24;
@@ -941,19 +947,16 @@ namespace AssortedCrazyThings.Base
             projectile.tileCollide = false;
             projectile.alpha = 255;
         }
-
-        //ProjectileID.Sets.
-        //NeedsUUID
-        //DontAttachHideToAlpha
         //wormTypes = new int[] {head, body1, body2, tail} //projectiletype
 
         //if minion = true:
         //float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
         //projectile.scale = 1f + scaleFactor * 0.01f;
-        public static void StardustDragonAI(Projectile projectile, int[] wormTypes, bool minion = true)
+        public static void StardustDragonAI(Projectile projectile, int[] wormTypes)
         {
             Player player = Main.player[projectile.owner];
-            if ((int)Main.time % 120 == 0)
+
+            if (projectile.minion && (int)Main.time % 120 == 0)
             {
                 projectile.netUpdate = true;
             }
@@ -995,12 +998,12 @@ namespace AssortedCrazyThings.Base
             if (head)
             {
                 Vector2 desiredCenter = player.Center;
-                float maxProjDistance = 700f;
-                float maxPlayerDistance = 1000f;
                 int targetIndex = -1;
                 TeleportIfTooFar(projectile, desiredCenter);
-                if (minion)
+                if (projectile.minion)
                 {
+                    float maxProjDistance = 700f;
+                    float maxPlayerDistance = 1000f;
                     NPC ownerMinionAttackTargetNPC5 = projectile.OwnerMinionAttackTargetNPC;
                     if (ownerMinionAttackTargetNPC5 != null && ownerMinionAttackTargetNPC5.CanBeChasedBy(projectile, false))
                     {
@@ -1093,12 +1096,12 @@ namespace AssortedCrazyThings.Base
                 projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
                 int direction = projectile.direction;
                 projectile.direction = projectile.spriteDirection = (projectile.velocity.X > 0f) ? 1 : -1;
-                if (direction != projectile.direction)
+                if (projectile.minion && direction != projectile.direction)
                 {
                     projectile.netUpdate = true;
                 }
                 float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
-                if (!minion) scaleFactor = 0;
+                if (!projectile.minion) scaleFactor = 0;
                 projectile.position = projectile.Center;
                 projectile.scale = 1f + scaleFactor * 0.01f;
                 projectile.width = projectile.height = (int)(defScaleFactor * projectile.scale);
@@ -1136,7 +1139,7 @@ namespace AssortedCrazyThings.Base
                         Vector2 velocity2 = parent.velocity;
                         parentRotation = parent.rotation;
                         scaleOffset = MathHelper.Clamp(parent.scale, 0f, 50f);
-                        if (!minion) scaleOffset = 1;
+                        if (!projectile.minion) scaleOffset = 1;
                         positionOffset = 16f;
                         parent.localAI[0] = projectile.localAI[0] + 1f;
                         if (parent.type != wormTypes[0])
