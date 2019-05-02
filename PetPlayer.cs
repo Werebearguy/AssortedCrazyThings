@@ -155,9 +155,6 @@ namespace AssortedCrazyThings
         //ALTERNATE
         //public bool ClassName = false;
 
-        //legacy pet
-        public bool LegacyPet = false;
-
         public override void ResetEffects()
         {
             DrumstickElemental = false;
@@ -241,7 +238,6 @@ namespace AssortedCrazyThings
             SkeletronPrimeHand = false;
             PetGolemHead = false;
             TrueObservingEye = false;
-            LegacyPet = false;
             PetCultist = false;
             PetPlantera = false;
             PetEaterofWorlds = false;

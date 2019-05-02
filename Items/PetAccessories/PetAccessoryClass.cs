@@ -9,738 +9,166 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
 {
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieBlack : PetAccessoryBase
+    public class PetAccessoryBowtie : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Black Bowtie");
-            Tooltip.SetDefault("'A soft black bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Bowtie");
+            Tooltip.SetDefault("'A soft bowtie for your cute slime to wear on her chest'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieBlue : PetAccessoryBase
+    public class PetAccessoryToyBreastplate : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Blue Bowtie");
-            Tooltip.SetDefault("'A soft blue bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Knight's Breastplate");
+            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieGray : PetAccessoryBase
+    public class PetAccessoryBunnyEars : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Gray Bowtie");
-            Tooltip.SetDefault("'A soft gray bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Bunny Ears");
+            Tooltip.SetDefault("'A pair of Easter bunny ears for your cute slime to wear on her head'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieGreen : PetAccessoryBase
+    public class PetAccessoryCrown : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Green Bowtie");
-            Tooltip.SetDefault("'A soft green bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Crown");
+            Tooltip.SetDefault("'A regal crown for your cute slime to wear on her head'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieOrange : PetAccessoryBase
+    public class PetAccessoryHairBow : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Orange Bowtie");
-            Tooltip.SetDefault("'A soft orange bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Hair Bow");
+            Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtiePink : PetAccessoryBase
+    public class PetAccessoryMetalHelmet : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Pink Bowtie");
-            Tooltip.SetDefault("'A soft pink bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Knight's Helmet");
+            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtiePurple : PetAccessoryBase
+    public class PetAccessorySlimeHead : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Purple Bowtie");
-            Tooltip.SetDefault("'A soft purple bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Head Slime");
+            Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieRed : PetAccessoryBase
+    public class PetAccessoryWizardHat : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Red Bowtie");
-            Tooltip.SetDefault("'A soft red bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
+            DisplayName.SetDefault("Cute Wizard Hat");
+            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
         }
     }
 
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieWhite : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute White Bowtie");
-            Tooltip.SetDefault("'A soft white bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryBowtieYellow : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Yellow Bowtie");
-            Tooltip.SetDefault("'A soft yellow bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Body;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryCrownGold : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Gold Crown");
-            Tooltip.SetDefault("'A regal golden crown for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryCrownPlatinum : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Platinum Crown");
-            Tooltip.SetDefault("'A regal platinum crown for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowBlack : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Black Hair Bow");
-            Tooltip.SetDefault("'A large black bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowBlue : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Blue Hair Bow");
-            Tooltip.SetDefault("'A large blue bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowGray : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Gray Hair Bow");
-            Tooltip.SetDefault("'A large gray bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowGreen : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Green Hair Bow");
-            Tooltip.SetDefault("'A large green bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowOrange : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Orange Hair Bow");
-            Tooltip.SetDefault("'A large orange bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowPink : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Pink Hair Bow");
-            Tooltip.SetDefault("'A large pink bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowPurple : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Purple Hair Bow");
-            Tooltip.SetDefault("'A large purple bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowRed : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Red Hair Bow");
-            Tooltip.SetDefault("'A large red bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowWhite : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute White Hair Bow");
-            Tooltip.SetDefault("'A large white bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryHairBowYellow : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Yellow Hair Bow");
-            Tooltip.SetDefault("'A large yellow bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensBlack : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Black Mittens");
-            Tooltip.SetDefault("'Warm black mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensBlue : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Blue Mittens");
-            Tooltip.SetDefault("'Warm blue mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensGray : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Gray Mittens");
-            Tooltip.SetDefault("'Warm gray mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensGreen : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Green Mittens");
-            Tooltip.SetDefault("'Warm green mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensOrange : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Orange Mittens");
-            Tooltip.SetDefault("'Warm orange mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensPink : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Pink Mittens");
-            Tooltip.SetDefault("'Warm pink mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensPurple : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Purple Mittens");
-            Tooltip.SetDefault("'Warm purple mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensRed : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Red Mittens");
-            Tooltip.SetDefault("'Warm red mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensWhite : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute White Mittens");
-            Tooltip.SetDefault("'Warm white mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryMittensYellow : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Yellow Mittens");
-            Tooltip.SetDefault("'Warm yellow mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Accessory;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadBlack : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Black Head Slime");
-            Tooltip.SetDefault("'A black slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadBlue : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Blue Head Slime");
-            Tooltip.SetDefault("'A blue slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadGreen : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Green Head Slime");
-            Tooltip.SetDefault("'A green slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadPink : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Pink Head Slime");
-            Tooltip.SetDefault("'A pink slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadPinky : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Pinky Head Slime");
-            Tooltip.SetDefault("'A Pinky plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadPurple : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Purple Head Slime");
-            Tooltip.SetDefault("'A purple slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadRed : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Red Head Slime");
-            Tooltip.SetDefault("'A red slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessorySlimeHeadYellow : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Yellow Head Slime");
-            Tooltip.SetDefault("'A yellow slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffAmber : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Amber Staff");
-            Tooltip.SetDefault("'A plush amber staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffAmethyst : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Amethyst Staff");
-            Tooltip.SetDefault("'A plush amethyst staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffDiamond : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Diamond Staff");
-            Tooltip.SetDefault("'A plush diamond staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffEmerald : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Emerald Staff");
-            Tooltip.SetDefault("'A plush emerald staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffRuby : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Ruby Staff");
-            Tooltip.SetDefault("'A plush ruby staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffSapphire : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Sapphire Staff");
-            Tooltip.SetDefault("'A plush sapphire staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryStaffTopaz : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Topaz Staff");
-            Tooltip.SetDefault("'A plush topaz staff for your cute slime to carry'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Carried;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryXmasHatGreen : PetAccessoryBase
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Green Santa Hat");
-            Tooltip.SetDefault("'A festive green hat for your cute slime to wear'");
-        }
-
-        protected override void MoreSetDefaults()
-        {
-            item.value = (int)SlotType.Hat;
-        }
-    }
-
-    //OLD CLASS; WILL BE REMOVED NEXT UPDATE
-    public class PetAccessoryXmasHatRed : PetAccessoryBase
+    public class PetAccessoryXmasHat : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Santa Hat");
-            Tooltip.SetDefault("'A festive red hat for your cute slime to wear'");
+            Tooltip.SetDefault("'A festive hat for your cute slime to wear'");
+        }
+    }
+
+    public class PetAccessoryKitchenKnife : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Kitchen Knife");
+            Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryStaff : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Staff");
+            Tooltip.SetDefault("'A plush staff for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryToyMace : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Paladin's Mace");
+            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryToySpear : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Spartan's Spear");
+            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryToySword : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Sword");
+            Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryMittens : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Mittens");
+            Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
+        }
+    }
+
+    public class PetAccessorySwallowedKey : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Swallowed Key");
+            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
         }
 
-        protected override void MoreSetDefaults()
+        protected override bool UseDefaultRecipe { get { return false; } }
+
+        protected override void MoreAddRecipes()
         {
-            item.value = (int)SlotType.Hat;
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<PetAccessorySwallowedKey>());
+            recipe.SetResult(ItemID.GoldenKey);
+            recipe.AddRecipe();
+        }
+    }
+
+    public class PetAccessoryToyShield : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Shield");
+            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
         }
     }
 
@@ -1053,327 +481,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    //NEW CLASSES GO HERE vvvvvvvvvvvvvvvvvvv
-
-    public class PetAccessoryBowtie : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Bowtie");
-            Tooltip.SetDefault("'A soft bowtie for your cute slime to wear on her chest'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessoryBowtieBlack>(),
-                mod.ItemType<PetAccessoryBowtieBlue>(),
-                mod.ItemType<PetAccessoryBowtieGray>(),
-                mod.ItemType<PetAccessoryBowtieGreen>(),
-                mod.ItemType<PetAccessoryBowtieOrange>(),
-                mod.ItemType<PetAccessoryBowtiePink>(),
-                mod.ItemType<PetAccessoryBowtiePurple>(),
-                mod.ItemType<PetAccessoryBowtieRed>(),
-                mod.ItemType<PetAccessoryBowtieWhite>(),
-                mod.ItemType<PetAccessoryBowtieYellow>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessoryToyBreastplate : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight's Breastplate");
-            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
-        }
-    }
-
-    public class PetAccessoryBunnyEars : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Bunny Ears");
-            Tooltip.SetDefault("'A pair of Easter bunny ears for your cute slime to wear on her head'");
-        }
-    }
-
-    public class PetAccessoryCrown : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Crown");
-            Tooltip.SetDefault("'A regal crown for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessoryCrownGold>(),
-                mod.ItemType<PetAccessoryCrownPlatinum>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessoryHairBow : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Hair Bow");
-            Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessoryHairBowBlack>(),
-                mod.ItemType<PetAccessoryHairBowBlue>(),
-                mod.ItemType<PetAccessoryHairBowGray>(),
-                mod.ItemType<PetAccessoryHairBowGreen>(),
-                mod.ItemType<PetAccessoryHairBowOrange>(),
-                mod.ItemType<PetAccessoryHairBowPink>(),
-                mod.ItemType<PetAccessoryHairBowPurple>(),
-                mod.ItemType<PetAccessoryHairBowRed>(),
-                mod.ItemType<PetAccessoryHairBowWhite>(),
-                mod.ItemType<PetAccessoryHairBowYellow>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessoryMetalHelmet : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight's Helmet");
-            Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
-        }
-    }
-
-    public class PetAccessorySlimeHead : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Head Slime");
-            Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessorySlimeHeadBlack>(),
-                mod.ItemType<PetAccessorySlimeHeadBlue>(),
-                mod.ItemType<PetAccessorySlimeHeadGreen>(),
-                mod.ItemType<PetAccessorySlimeHeadPink>(),
-                mod.ItemType<PetAccessorySlimeHeadPinky>(),
-                mod.ItemType<PetAccessorySlimeHeadPurple>(),
-                mod.ItemType<PetAccessorySlimeHeadRed>(),
-                mod.ItemType<PetAccessorySlimeHeadYellow>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessoryWizardHat : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Wizard Hat");
-            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
-        }
-    }
-
-    public class PetAccessoryXmasHat : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Santa Hat");
-            Tooltip.SetDefault("'A festive hat for your cute slime to wear'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessoryXmasHatGreen>(),
-                mod.ItemType<PetAccessoryXmasHatRed>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessoryKitchenKnife : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Kitchen Knife");
-            Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
-        }
-    }
-
-    public class PetAccessoryStaff : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Staff");
-            Tooltip.SetDefault("'A plush staff for your cute slime to carry'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessoryStaffAmber>(),
-                mod.ItemType<PetAccessoryStaffAmethyst>(),
-                mod.ItemType<PetAccessoryStaffDiamond>(),
-                mod.ItemType<PetAccessoryStaffEmerald>(),
-                mod.ItemType<PetAccessoryStaffRuby>(),
-                mod.ItemType<PetAccessoryStaffSapphire>(),
-                mod.ItemType<PetAccessoryStaffTopaz>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessoryToyMace : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Paladin's Mace");
-            Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
-        }
-    }
-
-    public class PetAccessoryToySpear : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Spartan's Spear");
-            Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
-        }
-    }
-
-    public class PetAccessoryToySword : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight's Sword");
-            Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
-        }
-    }
-
-    public class PetAccessoryMittens : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Mittens");
-            Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
-        }
-
-        protected override void MoreAddRecipes()
-        {
-            int[] types = new int[] {
-                mod.ItemType<PetAccessoryMittensBlack>(),
-                mod.ItemType<PetAccessoryMittensBlue>(),
-                mod.ItemType<PetAccessoryMittensGray>(),
-                mod.ItemType<PetAccessoryMittensGreen>(),
-                mod.ItemType<PetAccessoryMittensOrange>(),
-                mod.ItemType<PetAccessoryMittensPink>(),
-                mod.ItemType<PetAccessoryMittensPurple>(),
-                mod.ItemType<PetAccessoryMittensRed>(),
-                mod.ItemType<PetAccessoryMittensWhite>(),
-                mod.ItemType<PetAccessoryMittensYellow>(),
-            };
-
-            ModRecipe recipe;
-            for (int i = 0; i < types.Length; i++)
-            {
-                recipe = new ModRecipe(mod);
-                recipe.AddIngredient(types[i]);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-        }
-    }
-
-    public class PetAccessorySwallowedKey : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Swallowed Key");
-            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
-        }
-
-        protected override bool UseDefaultRecipe { get { return false; } }
-
-        protected override void MoreAddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<PetAccessorySwallowedKey>());
-            recipe.SetResult(ItemID.GoldenKey);
-            recipe.AddRecipe();
-        }
-    }
-
-    public class PetAccessoryToyShield : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight's Shield");
-            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
-        }
-    }
-
-    //NEW CLASSES GO HERE ^^^^^^^^^^^^^^
-
     public abstract class PetAccessoryItem : ModItem
     {
         public override void SetDefaults()
@@ -1563,35 +670,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
             }
             return true;
-        }
-    }
-
-    public abstract class PetAccessoryBase : ModItem
-    {
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.Silk);
-            item.width = 28;
-            item.height = 30;
-            item.maxStack = 1;
-            item.rare = -11;
-            //item.useAnimation = 16;
-            //item.useTime = 16;
-            //item.useStyle = 4;
-            //item.UseSound = SoundID.Item1;
-            item.consumable = false;
-            item.value = (int)SlotType.Body;
-            MoreSetDefaults();
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            tooltips.Add(new TooltipLine(mod, "Discontinued", "Discontinued, craft it into the new version"));
-        }
-
-        protected virtual void MoreSetDefaults()
-        {
-
         }
     }
 }
