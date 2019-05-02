@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //28.5f = 200f / 7f
             float magnitude = Utils.Clamp(between.Length() / 28.5f, 1.3f, 7f);
 
-            between.Normalize();
+            between.SafeNormalize(default(Vector2));
             between *= magnitude;
             
             drawPos += between;

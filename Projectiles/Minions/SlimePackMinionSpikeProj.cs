@@ -98,7 +98,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             if (Main.rand.NextFloat() < 0.2f)
             {
-                Vector2 randVelo = new Vector2(Main.rand.NextFloat(0.5f) - 0.25f, Main.rand.NextFloat(0.5f) - 0.25f) + Vector2.Normalize(projectile.velocity) * 0.5f;
+                Vector2 randVelo = new Vector2(Main.rand.NextFloat(0.5f) - 0.25f, Main.rand.NextFloat(0.5f) - 0.25f) + Utils.SafeNormalize(projectile.velocity, default(Vector2)) * 0.5f;
                 Dust dust = Dust.NewDustPerfect(projectile.Center, 16, randVelo, 120, ColorFromTexture((byte)projectile.ai[1]), 0.7f);
                 dust.fadeIn = 0f;
             }

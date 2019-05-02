@@ -88,7 +88,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                         if (Main.rand.NextFloat() < 0.8f)
                         {
                             float rand = Main.rand.NextFloat(0.7f, 1.3f);
-                            Vector2 cm = Vector2.Normalize(projectile.velocity);
+                            Vector2 cm = Utils.SafeNormalize(projectile.velocity, default(Vector2));
                             cm = projectile.velocity.RotatedByRandom(MathHelper.ToRadians(10));
                             Vector2 velo = cm * rand;
                             Dust dust = Dust.NewDustPerfect(projectile.position, types[randomindex[i]], velo, 100 * (int)(projectile.ai[0] + 1f), colors[randomindex[i]], 2.368421f);

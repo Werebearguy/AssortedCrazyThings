@@ -273,7 +273,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         float factor = 2f; //2f
                         int acc = 100; //4
                         Vector2 between2 = between;
-                        between2.Normalize();
+                        between2.SafeNormalize(default(Vector2));
                         between2 *= factor;
                         if (npc.velocity.Length() < 1.5f)npc.velocity = (npc.velocity * (acc - 1) + between2) / acc;
 

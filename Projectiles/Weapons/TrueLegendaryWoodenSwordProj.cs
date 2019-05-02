@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
             for (int i = 0; i < 10; i++)
             {
-                int dustid = Dust.NewDust(projectile.position - Vector2.Normalize(projectile.velocity) * 30f, 50, 50, 169, projectile.velocity.X, projectile.velocity.Y, 100, Color.White, 1.25f);
+                int dustid = Dust.NewDust(projectile.position - Utils.SafeNormalize(projectile.velocity, default(Vector2)) * 30f, 50, 50, 169, projectile.velocity.X, projectile.velocity.Y, 100, Color.White, 1.25f);
                 Main.dust[dustid].noGravity = true;
             }
             Main.PlaySound(0, projectile.position);
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                 //162 for "sparks"
                 //169 for just light
                 int dustType = 169;
-                int dustid = Dust.NewDust(new Vector2(projectile.Hitbox.X, projectile.Hitbox.Y) - Vector2.Normalize(projectile.velocity) * 40f, projectile.Hitbox.Width, projectile.Hitbox.Height, dustType, projectile.velocity.X, projectile.velocity.Y, 100, Color.White, 1.25f);
+                int dustid = Dust.NewDust(new Vector2(projectile.Hitbox.X, projectile.Hitbox.Y) - Utils.SafeNormalize(projectile.velocity, default(Vector2)) * 40f, projectile.Hitbox.Width, projectile.Hitbox.Height, dustType, projectile.velocity.X, projectile.velocity.Y, 100, Color.White, 1.25f);
                 Main.dust[dustid].noGravity = true;
             }
             projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 0.785f;

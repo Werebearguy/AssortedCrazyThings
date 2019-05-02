@@ -423,7 +423,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     Vector2 distanceToTargetVector = targetCenter - projectile.Center;
                     float distanceToTarget = distanceToTargetVector.Length();
-                    distanceToTargetVector.Normalize();
+                    distanceToTargetVector.SafeNormalize(default(Vector2));
                     //Main.NewText(distanceToTarget);
                     if (distanceToTarget > defdistanceToEnemyBeforeCanDash) //200f //approach distance to enemy
                     {
@@ -467,7 +467,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     }
                     if (distanceToPlayer > 70f) //the immediate range around the player (when it passively floats about)
                     {
-                        distanceToPlayerVector.Normalize();
+                        distanceToPlayerVector.SafeNormalize(default(Vector2));
                         distanceToPlayerVector *= veloIdle;
                         float accIdle = 100f; //41f
                         projectile.velocity = (projectile.velocity * (accIdle - 1) + distanceToPlayerVector) / accIdle;
@@ -502,7 +502,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                             AI_STATE = STATE_DASH;
                             Vector2 value20 = targetCenter + targetVeloOffset * 5 - projectile.Center;
-                            value20.Normalize();
+                            value20.SafeNormalize(default(Vector2));
                             projectile.velocity = value20 * defdashIntensity; //8f
                             projectile.netUpdate = true;
                         }
