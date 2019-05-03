@@ -34,7 +34,7 @@ namespace AssortedCrazyThings
     {
         public static GitgudData[] DataList;
 
-        private string ItemName { set; get; } //name for the delete message
+        public string ItemName { set; get; } //name for the delete message
         public string BossName { set; get; } //boss name for tooltip
         public int BuffType { private set; get; } //buff immunity while boss is alive
         public string BuffName { private set; get; } //buff name for tooltip
@@ -44,6 +44,7 @@ namespace AssortedCrazyThings
         public int[] ProjTypeList { private set; get; } //Projectiles that deal damage during the boss fight
         public byte CounterMax { private set; get; } //threshold, after which the item drops
         public float Reduction { private set; get; } //percentage by which the damage gets reduced
+        //unused
         public string Invasion { private set; get; } //invasion name
         public Func<bool> InvasionBool { private set; get; } //invasion in progress, ignore the lists for damage reduction
 

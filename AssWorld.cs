@@ -19,7 +19,7 @@ namespace AssortedCrazyThings
         public bool megalodonAlive = false;
         public bool miniocramAlive = false;
         //"are they alive this update"
-        bool lilmegalodonSpawned;
+        bool isLilmegalodonSpawned;
         bool isMegalodonSpawned;
         bool isMiniocramSpawned;
         //static names, in case you want to change them later
@@ -145,16 +145,6 @@ namespace AssortedCrazyThings
             }
         }
 
-        //not used anywhere, but might be helpful
-        //private void KillInstantly(NPC npc)
-        //{
-        //    // These 3 lines instantly kill the npc without showing damage numbers, dropping loot, or playing DeathSound. Use this for instant deaths
-        //    npc.life = 0;
-        //    npc.HitEffect();
-        //    npc.active = false;
-        //    Main.PlaySound(SoundID.NPCDeath16, npc.position); // plays a fizzle sound
-        //}
-
         private void UpdateHarvesterSpawn()
         {
             if (!Main.dayTime) //if night
@@ -229,15 +219,10 @@ namespace AssortedCrazyThings
                             }
                         }
                     }
-                    //if (Main.time >= 32400.0) //32400 is the last tick of the night
-                    //{
-                    //    spawnHarvester = true; //allow it to spawn the next night (after world reload)
-                    //}
                 }
             }
             else //if day
             {
-                //Main.NewText("day: " + Main.time);
                 //32400
                 if (Main.time >= 54000.0) //54000 is the last tick of the day
                 {
@@ -303,7 +288,7 @@ namespace AssortedCrazyThings
                         }
                     }
                 }
-            } //end Main.NetMode
+            }
         }
 
         private void UpdateEmpoweringFactor()
@@ -314,17 +299,18 @@ namespace AssortedCrazyThings
 
         public override void PostUpdate()
 		{
+            //this code is when I first started modding, terrible stuff
             //those flags are checked for trueness each update
-            lilmegalodonSpawned = false;
-            isMiniocramSpawned = false;
+            isLilmegalodonSpawned = false;
             isMegalodonSpawned = false;
+            isMiniocramSpawned = false;
             for (short j = 0; j < 200; j++)
             {
                 if (Main.npc[j].active)
                 {
-                    if (Main.npc[j].TypeName == lilmegalodonName && !lilmegalodonSpawned)
+                    if (Main.npc[j].TypeName == lilmegalodonName && !isLilmegalodonSpawned)
                     {
-                        lilmegalodonSpawned = true;
+                        isLilmegalodonSpawned = true;
                         //check if it wasnt alive in previous update
                         if (!lilmegalodonAlive)
                         {
@@ -354,7 +340,7 @@ namespace AssortedCrazyThings
             }
             //after this we know that either atleast one miniboss is active or not
             //if alive, but not active, print disappear message
-            if (!lilmegalodonSpawned && lilmegalodonAlive)
+            if (!isLilmegalodonSpawned && lilmegalodonAlive)
             {
                 lilmegalodonAlive = false;
                 DisappearMessage("The " + megalodonName + " disappeared... for now");

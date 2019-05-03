@@ -6,6 +6,7 @@ using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -76,6 +77,11 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<BrainofConfusion>());
             }
 
+            if (Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) != -1 && npc.boss)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetEaterofWorldsItem>());
+            }
+
             if (npc.type == NPCID.QueenBee)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
@@ -89,6 +95,11 @@ namespace AssortedCrazyThings.NPCs
             if (npc.type == NPCID.WallofFlesh)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<WallFragmentItem>());
+            }
+
+            if (npc.type == NPCID.TheDestroyer)
+            {
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetDestroyerItem>());
             }
 
             if (npc.type == NPCID.SkeletronPrime)

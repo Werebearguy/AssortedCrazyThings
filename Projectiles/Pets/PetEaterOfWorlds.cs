@@ -72,47 +72,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
-    public class PetEaterofWorldsHead : PetEaterofWorldsBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "Terraria/Projectile_" + ProjectileID.StardustDragon1;
-            }
-        }
-    }
+    public class PetEaterofWorldsHead : PetEaterofWorldsBase { }
 
-    public class PetEaterofWorldsBody1 : PetEaterofWorldsBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "Terraria/Projectile_" + ProjectileID.StardustDragon2;
-            }
-        }
-    }
+    public class PetEaterofWorldsBody1 : PetEaterofWorldsBase { }
 
-    public class PetEaterofWorldsBody2 : PetEaterofWorldsBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "Terraria/Projectile_" + ProjectileID.StardustDragon3;
-            }
-        }
-    }
+    public class PetEaterofWorldsBody2 : PetEaterofWorldsBase { }
 
-    public class PetEaterofWorldsTail : PetEaterofWorldsBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "Terraria/Projectile_" + ProjectileID.StardustDragon4;
-            }
-        }
-    }
+    public class PetEaterofWorldsTail : PetEaterofWorldsBase { }
 }

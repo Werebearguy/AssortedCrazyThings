@@ -272,6 +272,14 @@ namespace AssortedCrazyThings
                 ProjectileType<PetEaterofWorldsTail>()
             };
 
+            PetDestroyerBase.wormTypes = new int[]
+            {
+                ProjectileType<PetDestroyerHead>(),
+                ProjectileType<PetDestroyerBody1>(),
+                ProjectileType<PetDestroyerBody2>(),
+                ProjectileType<PetDestroyerTail>()
+            };
+
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
             if (bossChecklist != null)

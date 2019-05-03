@@ -40,6 +40,7 @@
     <Compile Include="Base\SlimePets.cs" />
     <Compile Include="Buffs\CuteSlimeIlluminantNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLavaNewBuff.cs" />
+    <Compile Include="Buffs\PetDestroyerBuff.cs" />
     <Compile Include="Buffs\PetEaterofWorldsBuff.cs" />
     <Compile Include="Buffs\PetCultistBuff.cs" />
     <Compile Include="Buffs\PetPlanteraBuff.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Items\Gitgud\KingSlimeGitgud.cs" />
     <Compile Include="Items\Gitgud\PlanteraGitgud.cs" />
     <Compile Include="Items\KnittingSet.cs" />
+    <Compile Include="Items\Pets\PetDestroyerItem.cs" />
     <Compile Include="Items\Pets\PetEaterofWorldsItem.cs" />
     <Compile Include="Items\Pets\CuteSlimeLavaNew.cs" />
     <Compile Include="Items\Pets\CuteSlimeIlluminantNew.cs" />
@@ -298,6 +300,7 @@
     <Compile Include="NPCs\CuteSlimeIlluminant.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
+    <Compile Include="Projectiles\Pets\PetDestroyer.cs" />
     <Compile Include="Projectiles\Pets\PetEaterofWorlds.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeIlluminantNewProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeLavaNewProj.cs" />
