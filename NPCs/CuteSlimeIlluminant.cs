@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Slime");
+            DisplayName.SetDefault("Cute Illuminant Slime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
             NPCID.Sets.TrailingMode[npc.type] = 3;
             NPCID.Sets.TrailCacheLength[npc.type] = 8;
@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.NPCs
             npc.damage = 0;
             npc.defense = 2;
             npc.lifeMax = 20;
+            npc.rarity = 1;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = 25f;

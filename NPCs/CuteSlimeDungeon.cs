@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Slime");
+            DisplayName.SetDefault("Cute Dungeon Slime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
         }
 
@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.NPCs
             npc.damage = 0;
             npc.defense = 2;
             npc.lifeMax = 20;
+            npc.rarity = 1;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = 25f;
