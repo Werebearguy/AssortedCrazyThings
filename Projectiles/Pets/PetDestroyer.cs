@@ -1,7 +1,6 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -145,7 +144,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             float offsetX = (between.X < 0f).ToDirectionInt() * 60f;
             float offsetY = 60;
             
-            AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 0.5f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 1f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
             
             projectile.ai[1]++;
             int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);

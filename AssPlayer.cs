@@ -242,7 +242,7 @@ namespace AssortedCrazyThings
         {
             //returns true if isn't in soulbuffblacklist or is a worm body or tail
             
-            return Array.IndexOf(AssortedCrazyThings.soulBuffBlacklist, npc.type) == -1 || AssUtils.IsWormBodyOrTail(npc);
+            return Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) < 0 || AssUtils.IsWormBodyOrTail(npc);
         }
 
         private void SpawnSoulsWhenHarvesterIsAlive()

@@ -116,6 +116,7 @@ namespace AssortedCrazyThings
             };
 
             soulBuffBlacklist = tempList.ToArray();
+            Array.Sort(soulBuffBlacklist);
         }
 
         private void LoadWormList()
