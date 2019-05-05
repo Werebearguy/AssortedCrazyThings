@@ -716,7 +716,7 @@ namespace AssortedCrazyThings.Base
                 {
                     veloDelta = 0.4f;
                 }
-                between.SafeNormalize(default(Vector2));
+                between.Normalize();
                 between *= 6f;
                 between *= velocityFactor;
             }
@@ -862,7 +862,7 @@ namespace AssortedCrazyThings.Base
                 {
                     veloDelta = 0.2f;
                 }
-                between.SafeNormalize(default(Vector2));
+                between.Normalize();
                 between *= magnitude;
             }
 
@@ -1043,7 +1043,7 @@ namespace AssortedCrazyThings.Base
                     }
                     if (betweenNPC.Length() > npc.Size.Length() * 0.75f)
                     {
-                        projectile.velocity += Utils.SafeNormalize(betweenNPC, default(Vector2)) * veloFactor * 1.5f;
+                        projectile.velocity += Vector2.Normalize(betweenNPC) * veloFactor * 1.5f;
                         if (Vector2.Dot(projectile.velocity, betweenNPC) < 0.25f)
                         {
                             projectile.velocity *= 0.8f;
@@ -1052,7 +1052,7 @@ namespace AssortedCrazyThings.Base
                     float targetMagnitude = 30f;
                     if (projectile.velocity.Length() > targetMagnitude)
                     {
-                        projectile.velocity = Utils.SafeNormalize(projectile.velocity, default(Vector2)) * targetMagnitude;
+                        projectile.velocity = Vector2.Normalize(projectile.velocity) * targetMagnitude;
                     }
                 }
                 else
@@ -1089,7 +1089,7 @@ namespace AssortedCrazyThings.Base
                     float idleMagnitude = 15f;
                     if (projectile.velocity.Length() > idleMagnitude)
                     {
-                        projectile.velocity = Utils.SafeNormalize(projectile.velocity, default(Vector2)) * idleMagnitude;
+                        projectile.velocity = Vector2.Normalize(projectile.velocity) * idleMagnitude;
                     }
                 }
                 projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
@@ -1167,7 +1167,7 @@ namespace AssortedCrazyThings.Base
                     projectile.Center = projectile.position;
                     if (newVelocity != Vector2.Zero)
                     {
-                        projectile.Center = pCenter - Utils.SafeNormalize(newVelocity, default(Vector2)) * positionOffset * scaleOffset;
+                        projectile.Center = pCenter - Vector2.Normalize(newVelocity) * positionOffset * scaleOffset;
                     }
                     projectile.spriteDirection = (newVelocity.X > 0f) ? 1 : -1;
                 }

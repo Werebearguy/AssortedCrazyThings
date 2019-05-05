@@ -127,7 +127,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                     if (distanceToTarget > 30f)
                     {
-                        distanceToTargetVector.SafeNormalize(default(Vector2));
+                        distanceToTargetVector.Normalize();
                         distanceToTargetVector *= 8f;
                         projectile.velocity = (projectile.velocity * (16f - 1) + distanceToTargetVector) / 16f;
 

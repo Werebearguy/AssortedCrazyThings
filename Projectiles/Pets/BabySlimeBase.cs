@@ -521,7 +521,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                         Vector2 vector6 = new Vector2(k - 1, -2f);
                                         vector6.X *= 1f + Main.rand.Next(-40, 41) * 0.02f;
                                         vector6.Y *= 1f + Main.rand.Next(-40, 41) * 0.02f;
-                                        vector6.SafeNormalize(default(Vector2));
+                                        vector6.Normalize();
                                         vector6 *= 3f + Main.rand.Next(-40, 41) * 0.01f;
                                         Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, vector6.X, vector6.Y, mod.ProjectileType<SlimePackMinionSpikeProj>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
                                         ShootTimer = (byte)(PickedTexture * 3);

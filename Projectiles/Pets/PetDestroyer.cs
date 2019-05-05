@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -173,9 +174,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         if (projectile.ai[1] == AttackDelay) projectile.ai[1] += AttackDelay;
                         Vector2 position = projectile.Center;
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
-                        velocity.SafeNormalize(default(Vector2));
+                        velocity.Normalize();
                         velocity *= 7f;
-                        Main.projectile[Projectile.NewProjectile(position, velocity, ProjectileID.MiniRetinaLaser, LaserDamage, 2f, Main.myPlayer, 0f, 0f)].penetrate = 1;
+                        Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
                         projectile.netUpdate = true;
                         parent.netUpdate = true;
                     }

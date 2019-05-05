@@ -1100,7 +1100,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float distance = normBetween.Length();
                 float factor = 2.5f; //2f
                 int acc = 30; //4
-                normBetween.SafeNormalize(default(Vector2));
+                normBetween.Normalize();
                 normBetween *= factor;
                 npc.velocity = (npc.velocity * (acc - 1) + normBetween) / acc;
                 //concider only the bottom half of the hitbox (plus a small bit below)
@@ -1238,7 +1238,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //if either direct LOS or player above (so it can go around small obstacles)
                 {
                     Vector2 between = GetTarget().Center - npc.Center;
-                    between.SafeNormalize(default(Vector2));
+                    between.Normalize();
                     if (between.Y > 0.2f) between *= 1.1f; //small arc
                     if (between.Y > 0.8f) between *= 1.1f; //big arc
                     between *= 7f;

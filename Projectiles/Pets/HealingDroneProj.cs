@@ -97,8 +97,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
-                shootOrigin += Utils.SafeNormalize(between, default(Vector2)) * 16f; //roughly tip of turret
-                target += -Utils.SafeNormalize(between, default(Vector2)) * 12f; //roughly center of head with a buffer
+                shootOrigin += Vector2.Normalize(between) * 16f; //roughly tip of turret
+                target += -Vector2.Normalize(between) * 12f; //roughly center of head with a buffer
 
                 addRotation = between.ToRotation();
 

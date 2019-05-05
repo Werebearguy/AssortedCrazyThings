@@ -176,7 +176,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     num17 = 0.4f;
                 }
-                between.SafeNormalize(default(Vector2));
+                between.Normalize();
                 between *= 6f;
             }
             if (projectile.velocity.X < between.X)

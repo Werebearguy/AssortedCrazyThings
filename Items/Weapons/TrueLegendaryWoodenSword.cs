@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(player.Center + Utils.SafeNormalize(new Vector2(speedX, speedY), default(Vector2)) * 30f, new Vector2(speedX, speedY), item.shoot, ProjDamage, item.knockBack, Main.myPlayer);
+            Projectile.NewProjectile(player.Center + Vector2.Normalize(new Vector2(speedX, speedY)) * 30f, new Vector2(speedX, speedY), item.shoot, ProjDamage, item.knockBack, Main.myPlayer);
             return false;
         }
     }

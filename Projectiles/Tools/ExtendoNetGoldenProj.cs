@@ -87,7 +87,7 @@ namespace AssortedCrazyThings.Projectiles.Tools
             if (Main.myPlayer == projectile.owner)
             {
                 Vector2 between = projOwner.Center - projectile.Center;
-                between.SafeNormalize(default(Vector2));
+                between.Normalize();
                 Rectangle hitboxMod = new Rectangle(projectile.Hitbox.X + (int)(between.X * projectile.width * 1.3f),
                     projectile.Hitbox.Y + (int)(between.Y * projectile.height * 1.3f),
                     projectile.width,
