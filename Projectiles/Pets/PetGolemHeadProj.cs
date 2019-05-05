@@ -11,6 +11,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class PetGolemHeadProj : ModProjectile
     {
+        public const int AttackDelay = 60;
+
         private const int FireballDamage = 20;
 
         private float sinY; //depends on projectile.ai[0], no need to sync
@@ -102,14 +104,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.rotation = 0f;
 
             projectile.ai[1]++;
-            if ((int)projectile.ai[1] % 60 == 0)
+            if ((int)projectile.ai[1] % AttackDelay == 0)
             {
                 if (Main.myPlayer == projectile.owner)
                 {
                     int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
-                        if (projectile.ai[1] == 60) projectile.ai[1] += 60;
+                        if (projectile.ai[1] == AttackDelay) projectile.ai[1] += AttackDelay;
                         Vector2 position = projectile.Center;
                         position.Y += 6f;
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
@@ -120,14 +122,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else
                     {
-                        if (projectile.ai[1] > 60)
+                        if (projectile.ai[1] > AttackDelay)
                         {
-                            projectile.ai[1] -= 60;
+                            projectile.ai[1] -= AttackDelay;
                             projectile.netUpdate = true;
                         }
                     }
                 }
-                projectile.ai[1] -= 60;
+                projectile.ai[1] -= AttackDelay;
             }
         }
     }

@@ -160,6 +160,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
     public class PetPlanteraProjTentacle : ModProjectile
     {
+        //since the index might be different between clients, using ai[] for it will break stuff
+        public int PARENT_INDEX
+        {
+            get
+            {
+                return (int)projectile.localAI[0] - 1;
+            }
+            set
+            {
+                projectile.localAI[0] = value + 1;
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mean Seed Tentacle");
@@ -192,22 +205,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             #region FindParent
             //set parent when spawned
-            if (projectile.ai[0] == 0f)
+            if (PARENT_INDEX < 0)
             {
                 for (int i = 0; i < 1000; i++)
                 {
                     if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<PetPlanteraProj>() && projectile.owner == Main.projectile[i].owner)
                     {
-                        //since technically index 0 also exists, shift it by 1 when found
-                        projectile.ai[0] = i + 1;
-                        projectile.netUpdate = true;
+                        PARENT_INDEX = i;
+                        //projectile.netUpdate = true;
                         break;
                     }
                 }
             }
 
             //if something goes wrong, abort mission
-            if (projectile.ai[0] == 0f)
+            if (PARENT_INDEX < 0)
             {
                 projectile.Kill();
                 return;
@@ -236,8 +248,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
 
             //velocityFactor: 1.5f + (projectile.whoAmI % 4) * 0.8f so all tentacles don't share the same movement 
-            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[(int)projectile.ai[0] - 1], velocityFactor: 1.5f + (projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
-            Vector2 between = Main.projectile[(int)projectile.ai[0] - 1].Center - projectile.Center;
+            AssAI.ZephyrfishAI(projectile, parent: Main.projectile[PARENT_INDEX], velocityFactor: 1.5f + (projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            Vector2 between = Main.projectile[PARENT_INDEX].Center - projectile.Center;
             projectile.spriteDirection = 1;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X);
 

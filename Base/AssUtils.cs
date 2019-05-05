@@ -127,7 +127,7 @@ namespace AssortedCrazyThings.Base
             Vector2 vector2_4tt = mountedCenter - position;
             float keepgoing = vector2_4tt.Length();
             Vector2 vector2t = vector2_4;
-            vector2t.SafeNormalize(default(Vector2));
+            vector2t.Normalize();
             position -= vector2t * (num1 * 0.5f);
 
             float rotation = (float)Math.Atan2(vector2_4.Y, vector2_4.X) - 1.57f;
@@ -145,7 +145,7 @@ namespace AssortedCrazyThings.Base
                 else
                 {
                     Vector2 vector2_1 = vector2_4;
-                    vector2_1.SafeNormalize(default(Vector2));
+                    vector2_1.Normalize();
                     position += vector2_1 * num1;
                     keepgoing -= num1;
                     vector2_4 = mountedCenter - position;

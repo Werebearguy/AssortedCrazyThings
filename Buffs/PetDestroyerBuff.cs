@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Buffs
 
                 //spawn probes
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, mod.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, (player.whoAmI * 13) % PetDestroyerProbe.AttackDelay);
 
             }
         }
