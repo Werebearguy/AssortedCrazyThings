@@ -11,6 +11,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public class PetGolemHeadProj : ModProjectile
     {
+        public int AttackCounter
+        {
+            get
+            {
+                return (int)projectile.ai[1];
+            }
+            set
+            {
+                projectile.ai[1] = value;
+            }
+        }
+
         public const int AttackDelay = 60;
 
         private const int FireballDamage = 20;
@@ -51,9 +63,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Texture2D image = Main.projectileTexture[projectile.type];
 
-            if (projectile.ai[1] > 60)
+            if (AttackCounter > 60)
             {
-                if (projectile.ai[1] < 90)
+                if (AttackCounter < 90)
                 {
                     projectile.frame = 1;
                 }
@@ -103,15 +115,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
             
             projectile.rotation = 0f;
 
-            projectile.ai[1]++;
-            if ((int)projectile.ai[1] % AttackDelay == 0)
+            AttackCounter++;
+            if (AttackCounter % AttackDelay == 0)
             {
                 if (Main.myPlayer == projectile.owner)
                 {
                     int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
-                        if (projectile.ai[1] == AttackDelay) projectile.ai[1] += AttackDelay;
+                        if (AttackCounter == AttackDelay) AttackCounter += AttackDelay;
                         Vector2 position = projectile.Center;
                         position.Y += 6f;
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
@@ -122,14 +134,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else
                     {
-                        if (projectile.ai[1] > AttackDelay)
+                        if (AttackCounter > AttackDelay)
                         {
-                            projectile.ai[1] -= AttackDelay;
+                            AttackCounter -= AttackDelay;
                             projectile.netUpdate = true;
                         }
                     }
                 }
-                projectile.ai[1] -= AttackDelay;
+                AttackCounter -= AttackDelay;
             }
         }
     }

@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,6 +48,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             else
             {
                 AssAI.BabyEaterAI(projectile);
+                if (projectile.owner == Main.myPlayer && Math.Sign(projectile.oldVelocity.X) != Math.Sign(projectile.velocity.X))
+                {
+                    projectile.netUpdate = true;
+                }
                 //float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
                 //projectile.scale = 1f + scaleFactor * 0.01f;
 
@@ -84,7 +89,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
     public class PetDestroyerProbe : ModProjectile
     {
         //since the index might be different between clients, using ai[] for it will break stuff
-        public int PARENT_INDEX
+        public int ParentIndex
         {
             get
             {
@@ -93,6 +98,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
             set
             {
                 projectile.localAI[0] = value + 1;
+            }
+        }
+
+        public int AttackCounter
+        {
+            get
+            {
+                return (int)projectile.ai[1];
+            }
+            set
+            {
+                projectile.ai[1] = value;
             }
         }
 
@@ -110,6 +127,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            projectile.netImportant = false;
             projectile.aiStyle = -1;
             projectile.width = 16;
             projectile.height = 16;
@@ -131,28 +149,27 @@ namespace AssortedCrazyThings.Projectiles.Pets
             #region FindParent
             //set parent when spawned
 
-            int parentType = projectile.whoAmI % 2 == 0 ? mod.ProjectileType<PetDestroyerHead>() : mod.ProjectileType<PetDestroyerTail>();
-            if (PARENT_INDEX < 0)
+            int parentType = projectile.identity % 2 == 0 ? mod.ProjectileType<PetDestroyerHead>() : mod.ProjectileType<PetDestroyerTail>();
+            if (ParentIndex < 0)
             {
                 for (int i = 0; i < 1000; i++)
                 {
                     if (Main.projectile[i].active && Main.projectile[i].type == parentType && projectile.owner == Main.projectile[i].owner)
                     {
-                        //since technically index 0 also exists, shift it by 1 when found
-                        PARENT_INDEX = i;
-                        projectile.netUpdate = true;
+                        ParentIndex = i;
+                        //projectile.netUpdate = true;
                         break;
                     }
                 }
             }
 
             //if something goes wrong, abort mission
-            if (PARENT_INDEX < 0)
+            if (ParentIndex < 0)
             {
                 projectile.Kill();
                 return;
             }
-            Projectile parent = Main.projectile[PARENT_INDEX];
+            Projectile parent = Main.projectile[ParentIndex];
             #endregion
 
             //offsets to the drones
@@ -160,36 +177,39 @@ namespace AssortedCrazyThings.Projectiles.Pets
             float offsetX = (between.X < 0f).ToDirectionInt() * 60f;
             float offsetY = 60;
             
-            AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 1f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 1f, random: false, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
             
             int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 500f);
 
             if (Main.myPlayer == projectile.owner)
             {
-                projectile.ai[1] += Main.rand.Next(1, 3);
-                if ((int)projectile.ai[1] % AttackDelay == 0)
+                //safe random increase so the modulo still goes to 0 properly
+                bool closeToAttackDelay = (AttackCounter % AttackDelay) == AttackDelay - 1;
+                AttackCounter += Main.rand.Next(1, closeToAttackDelay? 2: 3);
+                if (AttackCounter % AttackDelay == 0)
                 {
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
-                        if (projectile.ai[1] == AttackDelay) projectile.ai[1] += AttackDelay;
+                        if (AttackCounter == AttackDelay) AttackCounter += AttackDelay;
                         Vector2 position = projectile.Center;
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
                         Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
                         projectile.netUpdate = true;
-                        parent.netUpdate = true;
+                        //decide not to update parent, instead, parent updates itself
+                        //parent.netUpdate = true;
                     }
                     else
                     {
-                        if (projectile.ai[1] > AttackDelay)
+                        if (AttackCounter > AttackDelay)
                         {
-                            projectile.ai[1] -= AttackDelay;
+                            AttackCounter -= AttackDelay;
                             projectile.netUpdate = true;
-                            parent.netUpdate = true;
+                            //parent.netUpdate = true;
                         }
                     }
-                    projectile.ai[1] -= AttackDelay;
+                    AttackCounter -= AttackDelay;
                 }
             }
 
