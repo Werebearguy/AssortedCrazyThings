@@ -135,7 +135,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
             }
 
-            bool drawnPreDraw = drawPreAddition ? MorePreDrawBaseSprite(spriteBatch, drawColor, useNoHair) : true; //do a pre-draw for the rainbow and dungeon slimes
+            bool drawnPreDraw = drawPreAddition ? MorePreDrawBaseSprite(spriteBatch, drawColor, useNoHair) : true; //do a pre-draw for rainbow and dungeon
 
             if (drawnPreDraw)
             {
@@ -156,7 +156,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
             }
 
-            if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor, useNoHair); //used for xmas slime bow, princess crown and illuminant slime afterimage
+            if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor, useNoHair); //used for xmas  bow, lava horn, princess crown and illuminant afterimage
         }
 
         public virtual bool MorePreDrawBaseSprite(SpriteBatch spriteBatch, Color drawColor, bool useNoHair)
@@ -208,11 +208,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     Color color = drawColor * ((255 - petAccessory.Alpha) / 255f);
                     
                     Vector2 originOffset = -petAccessory.Offset;
-                    if (projectile.spriteDirection == -1)
-                    {
-                        originOffset.X = -originOffset.X;
-                    }
-                    
+                    originOffset.X *= Math.Sign(projectile.spriteDirection);
+
                     Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                     spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2 + originOffset, projectile.scale, effect, 0f);
                 }

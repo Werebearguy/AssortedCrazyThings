@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Base
             return dust;
         }
 
-        public static void QuickDustLine(int dustType, Vector2 start, Vector2 end, float splits, Color color, Vector2 dustVelo = default(Vector2), int alpha = 0, float scale = 1f)
+        public static void QuickDustLine(int dustType, Vector2 start, Vector2 end, float splits, Color color = default(Color), Vector2 dustVelo = default(Vector2), int alpha = 0, float scale = 1f)
         {
             QuickDust(dustType, start, color, dustVelo);
             float num = 1f / splits;

@@ -113,6 +113,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
+        public float rot;
+
         public const int AttackDelay = 90;
 
         private const int LaserDamage = 8;
@@ -215,13 +217,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if(targetIndex != -1)
             {
-                projectile.rotation = (Main.npc[targetIndex].Center - projectile.Center).ToRotation();
+                rot = (Main.npc[targetIndex].Center - projectile.Center).ToRotation();
             }
             else
             {
-                projectile.rotation = projectile.velocity.ToRotation();
+                float desiredRotation = projectile.velocity.ToRotation();
+
+                rot = rot.AngleTowards(desiredRotation, 0.1f);
             }
 
+            projectile.rotation = rot;
             projectile.direction = projectile.spriteDirection = -1;
         }
 
@@ -233,10 +238,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 effects = SpriteEffects.FlipHorizontally;
             }
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetDestroyerProbe");
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            Rectangle bounds = image.Bounds;
             bounds.Y = projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
