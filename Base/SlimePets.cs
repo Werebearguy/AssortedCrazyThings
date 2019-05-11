@@ -66,7 +66,7 @@ namespace AssortedCrazyThings.Base
             switch (type)
             {
                 case SpawnConditionType.Overworld:
-                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.012f : 0f;
+                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.01f : 0f;
                 case SpawnConditionType.Desert:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDayDesert.Chance * 0.12f : 0f;
                 case SpawnConditionType.Tundra:
@@ -121,15 +121,11 @@ namespace AssortedCrazyThings.Base
         {
             slimePetList = new List<SlimePet>();
             slimePets = new List<int>(); //slimePets.IndexOf(type) returns the indexed type
-            slimePetNPCsEnumToNames = new List<List<string>>();
             //in all these lists, insert stuff in alphabetic order please
 
             Array enumArray = Enum.GetValues(typeof(SpawnConditionType));
-            slimePetNPCsEnumToNames = new List<List<string>>(enumArray.Length);
-            for (int i = 0; i < enumArray.Length; i++)
-            {
-                slimePetNPCsEnumToNames.Add(null);
-            }
+
+            AssUtils.FillWithDefault(ref slimePetNPCsEnumToNames, null, enumArray.Length);
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Overworld] = new List<string>() { "Black", "Blue", "Green", "Pink", "Purple", "Rainbow", "Red", "Yellow" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Desert] = new List<string>() { "Sand" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Tundra] = new List<string>() { "Ice" };

@@ -2,6 +2,7 @@
 using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.Base
 {
@@ -13,7 +14,7 @@ namespace AssortedCrazyThings.Base
             if (Vector2.Distance(projectile.Center, desiredCenter) > distance)
             {
                 projectile.Center = desiredCenter;
-                projectile.netUpdate = true;
+                if (Main.myPlayer == projectile.owner && Main.netMode == NetmodeID.MultiplayerClient) projectile.netUpdate = true;
             }
         }
 
@@ -123,7 +124,7 @@ namespace AssortedCrazyThings.Base
                 if (Main.rand.Next(3) != 0)
                 {
                     dust.noGravity = true;
-                    dust.velocity.Y = dust.velocity.Y - 3f;
+                    dust.velocity.Y += - 3f;
                     dust.noLight = true;
                 }
                 else if (Main.rand.Next(2) != 0)
@@ -131,7 +132,7 @@ namespace AssortedCrazyThings.Base
                     dust.noLight = true;
                 }
                 dust.velocity *= 0.5f;
-                dust.velocity.Y = dust.velocity.Y - 0.9f;
+                dust.velocity.Y += - 0.9f;
                 dust.scale += 0.1f + Main.rand.NextFloat() * 0.6f;
                 dust.shader = GameShaders.Armor.GetSecondaryShader(!vanityPet ? player.cLight : player.cPet, player);
             }
@@ -261,7 +262,7 @@ namespace AssortedCrazyThings.Base
                     float num51 = player.position.Y + (float)(player.height / 2) - vector7.Y;
                     float num52 = (float)Math.Sqrt((double)(num44 * num44 + num51 * num51));
                     float num53 = 10f;
-                    float num54 = num52;
+                    //float num54 = num52;
                     if (num52 < (float)num43 && player.velocity.Y == 0f && projectile.position.Y + (float)projectile.height <= player.position.Y + (float)player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
                         projectile.ai[0] = 0f;
@@ -672,7 +673,7 @@ namespace AssortedCrazyThings.Base
             }
             else if (swapSides == 0)
             {
-                offset.X = offset.X * -parent.direction;
+                offset.X *= -parent.direction;
             }
 
             //desiredCenter += new Vector2(60f * -player.direction, -60f);
@@ -723,34 +724,34 @@ namespace AssortedCrazyThings.Base
             veloDelta *= velocityFactor;
             if (projectile.velocity.X < between.X)
             {
-                projectile.velocity.X = projectile.velocity.X + veloDelta;
+                projectile.velocity.X += veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.X < 0f)
                 {
-                    projectile.velocity.X = projectile.velocity.X + veloDelta;
+                    projectile.velocity.X += + veloDelta;
                 }
             }
             if (projectile.velocity.X > between.X)
             {
-                projectile.velocity.X = projectile.velocity.X - veloDelta;
+                projectile.velocity.X += - veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.X > 0f)
                 {
-                    projectile.velocity.X = projectile.velocity.X - veloDelta;
+                    projectile.velocity.X += - veloDelta;
                 }
             }
             if (projectile.velocity.Y < between.Y)
             {
-                projectile.velocity.Y = projectile.velocity.Y + veloDelta;
+                projectile.velocity.Y += veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.Y < 0f)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y + veloDelta * 2f;
+                    projectile.velocity.Y += veloDelta * 2f;
                 }
             }
             if (projectile.velocity.Y > between.Y)
             {
-                projectile.velocity.Y = projectile.velocity.Y - veloDelta;
+                projectile.velocity.Y += - veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.Y > 0f)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y - veloDelta * 2f;
+                    projectile.velocity.Y += - veloDelta * 2f;
                 }
             }
             projectile.manualDirectionChange = true;
@@ -872,18 +873,18 @@ namespace AssortedCrazyThings.Base
             {
                 if (projectile.velocity.X < between.X)
                 {
-                    projectile.velocity.X = projectile.velocity.X + veloDelta;
+                    projectile.velocity.X += veloDelta;
                     if (veloDelta > 0.05f && projectile.velocity.X < 0f)
                     {
-                        projectile.velocity.X = projectile.velocity.X + veloDelta;
+                        projectile.velocity.X += veloDelta;
                     }
                 }
                 if (projectile.velocity.X > between.X)
                 {
-                    projectile.velocity.X = projectile.velocity.X - veloDelta;
+                    projectile.velocity.X += - veloDelta;
                     if (veloDelta > 0.05f && projectile.velocity.X > 0f)
                     {
-                        projectile.velocity.X = projectile.velocity.X - veloDelta;
+                        projectile.velocity.X += - veloDelta;
                     }
                 }
             }
@@ -891,18 +892,18 @@ namespace AssortedCrazyThings.Base
             {
                 if (projectile.velocity.Y < between.Y)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y + veloDelta;
+                    projectile.velocity.Y += veloDelta;
                     if (veloDelta > 0.05f && projectile.velocity.Y < 0f)
                     {
-                        projectile.velocity.Y = projectile.velocity.Y + veloDelta;
+                        projectile.velocity.Y += veloDelta;
                     }
                 }
                 if (projectile.velocity.Y > between.Y)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y - veloDelta;
+                    projectile.velocity.Y += - veloDelta;
                     if (veloDelta > 0.05f && projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y = projectile.velocity.Y - veloDelta;
+                        projectile.velocity.Y += - veloDelta;
                     }
                 }
             }
@@ -1071,11 +1072,11 @@ namespace AssortedCrazyThings.Base
                     {
                         if (Math.Abs(desiredCenter.X - projectile.Center.X) > 20f)
                         {
-                            projectile.velocity.X = projectile.velocity.X + idleVelo * Math.Sign(desiredCenter.X - projectile.Center.X);
+                            projectile.velocity.X += idleVelo * Math.Sign(desiredCenter.X - projectile.Center.X);
                         }
                         if (Math.Abs(desiredCenter.Y - projectile.Center.Y) > 10f)
                         {
-                            projectile.velocity.Y = projectile.velocity.Y + idleVelo * Math.Sign(desiredCenter.Y - projectile.Center.Y);
+                            projectile.velocity.Y += idleVelo * Math.Sign(desiredCenter.Y - projectile.Center.Y);
                         }
                     }
                     else if (projectile.velocity.Length() > 2f)
@@ -1084,7 +1085,7 @@ namespace AssortedCrazyThings.Base
                     }
                     if (Math.Abs(projectile.velocity.Y) < 1f)
                     {
-                        projectile.velocity.Y = projectile.velocity.Y - 0.1f;
+                        projectile.velocity.Y += - 0.1f;
                     }
                     float idleMagnitude = 15f;
                     if (projectile.velocity.Length() > idleMagnitude)

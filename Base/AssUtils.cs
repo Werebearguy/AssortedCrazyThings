@@ -164,6 +164,50 @@ namespace AssortedCrazyThings.Base
             return combined;
         }
 
+        //fills an array with a default value
+        //if array is null, creates one with the length specified
+        //else, overrides each element with default value
+        public static void FillWithDefault<T>(ref T[] array, T def, int length = -1)
+        {
+            if (array == null)
+            {
+                if (length == -1)
+                    throw new ArgumentOutOfRangeException("array is null but length isn't specified");
+                array = new T[length];
+            }
+            else
+            {
+                length = array.Length;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                array[i] = def;
+            }
+        }
+
+        //fills a list with a default value
+        //if list is null, creates one with the length specified
+        //else, overrides each element with default value
+        public static void FillWithDefault<T>(ref List<T> list, T def, int length = -1)
+        {
+            if (list == null)
+            {
+                if (length == -1)
+                    throw new ArgumentOutOfRangeException("list is null but length isn't specified");
+                list = new List<T>(length);
+            }
+            else
+            {
+                length = list.Count;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                list.Add(def);
+            }
+        }
+
         public static bool AnyNPCs(int[] types)
         {
             //Like AnyNPCs but checks for an array
@@ -174,15 +218,10 @@ namespace AssortedCrazyThings.Base
             return false;
         }
 
+        //unused yet
         public static bool AnyNPCs(List<int> types)
         {
-            int[] typesArray = types.ToArray();
-            //Like AnyNPCs but checks for an array
-            for (int i = 0; i < typesArray.Length; i++)
-            {
-                if (NPC.AnyNPCs(typesArray[i])) return true;
-            }
-            return false;
+            return AnyNPCs(types.ToArray());
         }
 
         public static bool IsWormBodyOrTail(NPC npc)

@@ -31,32 +31,11 @@ namespace AssortedCrazyThings.UI
             if (textures == null || textures.Count <= 0) throw new Exception("texturesArg has to be specified or has to contain at least one element");
             else CircleAmount = textures.Count;
 
-            if (unlocked == null)
-            {
-                unlocked = new List<bool>();
-                for (int i = 0; i < CircleAmount; i++)
-                {
-                    unlocked.Add(true);
-                }
-            }
+            AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
 
-            if (tooltips == null)
-            {
-                tooltips = new List<string>();
-                for (int i = 0; i < CircleAmount; i++)
-                {
-                    tooltips.Add("");
-                }
-            }
+            AssUtils.FillWithDefault(ref tooltips, "", CircleAmount);
 
-            if (toUnlock == null)
-            {
-                toUnlock = new List<string>();
-                for (int i = 0; i < CircleAmount; i++)
-                {
-                    toUnlock.Add("");
-                }
-            }
+            AssUtils.FillWithDefault(ref toUnlock, "", CircleAmount);
 
             if (CircleAmount != unlocked.Count ||
                 CircleAmount != tooltips.Count ||

@@ -10,6 +10,8 @@ namespace AssortedCrazyThings
 {
     public class PetPlayer : ModPlayer
     {
+        private bool petAccessoryRework = false;
+
         //docile demon eye texture
         public byte petEyeType = 0; //texture type, not ID
 
@@ -276,8 +278,6 @@ namespace AssortedCrazyThings
             //should never get here anyway
             return false;
         }
-
-        private bool petAccessoryRework = false;
 
         public override TagCompound Save()
         {
