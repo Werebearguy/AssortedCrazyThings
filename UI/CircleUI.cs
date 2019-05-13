@@ -8,7 +8,7 @@ using System;
 namespace AssortedCrazyThings.UI
 {
     //Huge credit to Muzuwi: https://github.com/Muzuwi/AmmoboxPlus/blob/master/AmmoboxUI.cs
-    class CircleUI : UIState
+    public class CircleUI : UIState
     {
         //Is the UI visible?
         internal static bool visible = false;

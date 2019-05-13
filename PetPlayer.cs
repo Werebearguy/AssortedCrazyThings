@@ -1,5 +1,11 @@
+using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.UI;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -634,7 +640,7 @@ namespace AssortedCrazyThings
             SendClientChangesPacket(PetPlayerChanges.all);
         }
 
-        //----------------------------------Slime Pet Vanity here---------------------------------------------
+        #region Slime Pet Vanity
 
         public int slimePetIndex = -1;
         public uint slotsLast = 0;
@@ -698,5 +704,87 @@ namespace AssortedCrazyThings
             petAccessory.Color = col;
             return petAccessory;
         }
-	}
+        #endregion
+
+        #region CircleUI
+
+        public List<Temp> CircleUIList;
+
+        public override void Initialize()
+        {
+            CircleUIList = new List<Temp>();
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return DocileDemonEye;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
+                "Red Fractured", "Green Fractured", "Purple Fractured",
+                "Red Mechanical", "Green Mechanical", "Purple Mechanical",
+                "Red Laser", "Green Laser", "Purple Laser" };
+
+                    return Temp.PetConf("DocileDemonEyeProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return petEyeType;
+                },
+                onUIEnd: delegate
+                {
+                    petEyeType = (byte)CircleUI.returned;
+                }
+            ));
+        }
+
+        #endregion
+    }
+    public class Temp
+    {
+        //Item it is used with
+        public int TriggerItem { get; private set; }
+
+        public Func<bool> Condition { get; private set; }
+
+        //all these three things get called when their respective condition returns true
+        //Holds data about what to draw
+        public Func<CircleUIConf> UIConf { get; private set; }
+
+        //assigns the CircleUI the selected thing
+        public Func<int> OnUIStart { get; private set; }
+
+        //Does things when the UI closes
+        public Action OnUIEnd { get; private set; }
+
+        //On leftclick
+        public bool TriggerLeft { get; private set; }
+
+        public Temp(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true)
+        {
+            TriggerItem = triggerItem;
+            Condition = condition;
+            UIConf = uiConf;
+            OnUIStart = onUIStart;
+            OnUIEnd = onUIEnd;
+            TriggerLeft = triggerLeft;
+        }
+
+        public static CircleUIConf PetConf(string name, List<string> tooltips)
+        {
+            //uses VanitySelector as the triggerItem
+            //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
+
+            List<Texture2D> textures = new List<Texture2D>();
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                textures.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+            }
+
+            int type = AssUtils.Instance.ProjectileType(name);
+
+            return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
+        }
+    }
 }

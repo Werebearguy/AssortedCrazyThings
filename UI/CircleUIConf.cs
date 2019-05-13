@@ -18,24 +18,22 @@ namespace AssortedCrazyThings.UI
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
         public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
         
-        // Amount of spawned circles
-        public int CircleAmount { get; private set; }
-        // divider of spritesheet height (if needed)
-        public int SpritesheetDivider { get; private set; }
+        public int CircleAmount { get; private set; } //amount of spawned circles
 
-        //mainly used for passing the projectile type atm
-        public int AdditionalInfo { get; private set; }
+        public int SpritesheetDivider { get; private set; }//divider of spritesheet height (if needed)
+
+        public int AdditionalInfo { get; private set; }//mainly used for passing the projectile type atm
 
         public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Texture2D> textures = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
         {
             if (textures == null || textures.Count <= 0) throw new Exception("texturesArg has to be specified or has to contain at least one element");
             else CircleAmount = textures.Count;
 
-            AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
+            if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
 
-            AssUtils.FillWithDefault(ref tooltips, "", CircleAmount);
+            if (tooltips == null) AssUtils.FillWithDefault(ref tooltips, "", CircleAmount);
 
-            AssUtils.FillWithDefault(ref toUnlock, "", CircleAmount);
+            if (toUnlock == null) AssUtils.FillWithDefault(ref toUnlock, "", CircleAmount);
 
             if (CircleAmount != unlocked.Count ||
                 CircleAmount != tooltips.Count ||
@@ -67,15 +65,15 @@ namespace AssortedCrazyThings.UI
             //uses VanitySelector as the triggerItem
             //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
 
-            List<Texture2D> l1 = new List<Texture2D>();
+            List<Texture2D> textures = new List<Texture2D>();
             for (int i = 0; i < tooltips.Count; i++)
             {
-                l1.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+                textures.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
             }
 
             int type = AssUtils.Instance.ProjectileType(name);
 
-            return new CircleUIConf(Main.projFrames[type], type, l1, null, tooltips, null);
+            return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
         }
 
         //here start the specific confs that are called in PostSetupContent
@@ -145,16 +143,16 @@ namespace AssortedCrazyThings.UI
 
         public static CircleUIConf LifeLikeMechFrogConf()
         {
-            List<Texture2D> l1 = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
+            List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
                                                          AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
 
-            List<string> l3 = new List<string>() { "Default", "Crowned" };
+            List<string> tooltips = new List<string>() { "Default", "Crowned" };
 
             //no need for unlocked + toUnlock
             return new CircleUIConf(
                 Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
                 AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
-                l1, null, l3, null);
+                textures, null, tooltips, null);
         }
 
         public static CircleUIConf DocileDemonEyeConf()
