@@ -30,7 +30,7 @@ namespace AssortedCrazyThings
         public const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
         public short teleportHomeTimer = 0; //gets saved when you relog so you can't cheese it
 
-        //TECHNICALLY NOT DEFENCE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
+        //TECHNICALLY NOT DEFENSE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
         public bool getDefense = false;
         public bool canGetDefense = false;
         public const short GetDefenseTimerMax = 600; //in seconds //10 ingame minutes
@@ -40,8 +40,6 @@ namespace AssortedCrazyThings
 
         //slime accessory stuff
         public uint slotsPlayer = 0;
-        //public int counter = 30;
-        //public int clientcounter = 30;
 
         //soul minion stuff
         public bool soulMinion = false;
@@ -80,10 +78,7 @@ namespace AssortedCrazyThings
             everburningCandleBuff = false;
             everburningCursedCandleBuff = false;
             everfrozenCandleBuff = false;
-            //variable_debuff_04 = false;
-            //variable_debuff_05 = false;
             everburningShadowflameCandleBuff = false;
-            //variable_debuff_07 = false;
             teleportHome = false;
             getDefense = false;
             soulMinion = false;
@@ -285,7 +280,7 @@ namespace AssortedCrazyThings
         public void ConvertInertSoulsInventory()
         {
             //this gets called once on server side for all players, and then each player calls it on itself client side
-            int tempStackCount = 0;
+            int tempStackCount;
             int itemTypeOld = mod.ItemType<CaughtDungeonSoul>();
             int itemTypeNew = mod.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
@@ -476,10 +471,7 @@ namespace AssortedCrazyThings
                 if (everburningCandleBuff) ((NPC)victim).AddBuff(BuffID.OnFire, 120);
                 if (everburningCursedCandleBuff) ((NPC)victim).AddBuff(BuffID.CursedInferno, 120);
                 if (everfrozenCandleBuff) ((NPC)victim).AddBuff(BuffID.Frostburn, 120);
-                //if (variable_debuff_04) ((NPC)victim).AddBuff(BuffID.Ichor, 120);
-                //if (variable_debuff_05) ((NPC)victim).AddBuff(BuffID.Venom, 120);
                 if (everburningShadowflameCandleBuff) ((NPC)victim).AddBuff(BuffID.ShadowFlame, 60);
-                //if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
             }
             else if (victim is Player)
             {
@@ -496,7 +488,7 @@ namespace AssortedCrazyThings
 
         private static SpriteEffects GetSpriteEffects(Player player)
         {
-            SpriteEffects spriteEffects = SpriteEffects.None;
+            SpriteEffects spriteEffects;
             if (player.gravDir == 1f)
             {
                 if (player.direction == 1)
@@ -558,8 +550,10 @@ namespace AssortedCrazyThings
 
                 Vector2 drawOrigin = new Vector2(26f + drawPlayer.direction * 4, 28f + drawPlayer.gravDir * 6f);
 
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * frameTimeY, texture.Width, texture.Height / 4), color, drawPlayer.bodyRotation, drawOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
-                drawData.shader = drawInfo.balloonShader;
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * frameTimeY, texture.Width, texture.Height / 4), color, drawPlayer.bodyRotation, drawOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
+                {
+                    shader = drawInfo.balloonShader
+                };
                 Main.playerDrawData.Add(drawData);
             }
         });
@@ -604,9 +598,11 @@ namespace AssortedCrazyThings
                 float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
 
                 Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
-                
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0);
-                drawData.shader = drawInfo.wingShader;
+
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
+                {
+                    shader = drawInfo.wingShader
+                };
                 Main.playerDrawData.Add(drawData);
 
                 if (drawPlayer.velocity.Y != 0 && drawPlayer.wingFrame != 0)
@@ -649,8 +645,10 @@ namespace AssortedCrazyThings
 
                 Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
 
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
-                drawData.shader = drawInfo.bodyArmorShader;
+                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
+                {
+                    shader = drawInfo.bodyArmorShader
+                };
                 Main.playerDrawData.Add(drawData);
 
                 //Generate visual dust

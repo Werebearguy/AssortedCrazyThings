@@ -650,16 +650,14 @@ namespace AssortedCrazyThings
         public bool AddAccessory(PetAccessory petAccessory)
         {
             //id is between 0 and 255
-            uint id = 0;
-            uint col = 0;
             byte slotNumber = (byte)(petAccessory.Slot - 1);
 
             //returns false if accessory was already equipped   //for slotNumber = 1:
             uint setmask = mask << (slotNumber * 8);            //0000 0000|0000 0000|1111 1111|0000 0000
             uint clearmask = ~setmask; //setmask but inverted   //1111 1111|1111 1111|0000 0000|1111 1111
 
-            id = (uint)petAccessory.ID << (slotNumber * 8);
-            col = (uint)petAccessory.Color << (slotNumber * 8);
+            uint id = (uint)petAccessory.ID << (slotNumber * 8);
+            uint col = (uint)petAccessory.Color << (slotNumber * 8);
             uint tempslots = slots & setmask;
             uint tempcolor = color & setmask;
             if (id == tempslots && col == tempcolor) return false;

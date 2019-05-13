@@ -293,8 +293,10 @@ namespace AssortedCrazyThings
 
         private void UpdateEmpoweringFactor()
         {
-            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 1f) AssPlayer.empoweringTotal = 1f;
-            else if (Main.hardMode && AssPlayer.empoweringTotal < 0.75f) AssPlayer.empoweringTotal = 0.75f;
+            if (NPC.downedPlantBoss && AssPlayer.empoweringTotal < 1f)
+                AssPlayer.empoweringTotal = 1f;
+            else if (Main.hardMode && AssPlayer.empoweringTotal < 0.75f)
+                AssPlayer.empoweringTotal = 0.75f;
         }
 
         public override void PostUpdate()
@@ -361,9 +363,9 @@ namespace AssortedCrazyThings
         {
             LimitSoulCount();
 
-            UpdateEmpoweringFactor();
-
             UpdateHarvesterSpawn();
+
+            UpdateEmpoweringFactor();
 
             if (harvesterIndex >= 0 && !Main.npc[harvesterIndex].active)
             {

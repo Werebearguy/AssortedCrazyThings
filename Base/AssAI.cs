@@ -823,7 +823,7 @@ namespace AssortedCrazyThings.Base
             //{
             //    projectile.Center = player.MountedCenter;
             //}
-            TeleportIfTooFar(projectile, player.MountedCenter);
+            TeleportIfTooFar(projectile, player.MountedCenter, 1380);
 
             if (distance < someDistance && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {

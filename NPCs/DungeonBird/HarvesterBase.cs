@@ -184,9 +184,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected short SoulTargetClosest(bool restrictedvar = false)
         {
             short closest = 200;
-            Vector2 soulPos = Vector2.Zero;
+            Vector2 soulPos;
             float oldDistance = 1000000000f;
-            float newDistance = oldDistance;
+            float newDistance;
             //return index of closest soul
             for (short j = 0; j < 200; j++)
             {
@@ -445,11 +445,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         protected void UpdateOtherMovement(bool flag3var)
         {
-            bool flag3 = false;
-            if (npc.velocity.X == 0f)
-            {
-                flag3 = true;
-            }
+            //bool flag3 = false;
+            //if (npc.velocity.X == 0f)
+            //{
+            //    flag3 = true;
+            //}
             bool flag22 = false;
             //might scrap it idk
             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -602,8 +602,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             if (flag22)
             {
-                int num200 = 0;
-                int num201 = 0;
+                int num200;
+                int num201;
                 if (1 == 1)
                 {
                     num200 = (int)((npc.position.X + (float)(npc.width / 2) + (float)(15 * npc.direction)) / 16f);
@@ -668,49 +668,49 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //Main.NewText("" + num200 + " " + num201);
                     if ((npc.velocity.X < 0f && npc.direction == -1) || (npc.velocity.X > 0f && npc.direction == 1)) //spritedir instead of dir before
                     {
-                        if (1 == 2)
-                        {
-                            if (npc.height >= 32 && Main.tile[num200, num201 - 2].nactive() && Main.tileSolid[Main.tile[num200, num201 - 2].type])
-                            {
-                                if (Main.tile[num200, num201 - 3].nactive() && Main.tileSolid[Main.tile[num200, num201 - 3].type])
-                                {
-                                    Main.NewText("1111");
-                                    npc.velocity.Y = -8f;
-                                    npc.netUpdate = true;
-                                }
-                                else
-                                {
-                                    Main.NewText("2222");
-                                    npc.velocity.Y = -7f;
-                                    npc.netUpdate = true;
-                                }
-                            }
-                            else if (Main.tile[num200, num201 - 1].nactive() && Main.tileSolid[Main.tile[num200, num201 - 1].type])
-                            {
-                                Main.NewText("3333");
-                                npc.velocity.Y = -6f;
-                                npc.netUpdate = true;
-                            }
-                            else if (npc.position.Y + (float)npc.height - (float)(num201 * 16) > 20f && Main.tile[num200, num201].nactive() && !Main.tile[num200, num201].topSlope() && Main.tileSolid[Main.tile[num200, num201].type])
-                            {
-                                Main.NewText("4444");
-                                npc.velocity.Y = -5f;
-                                npc.netUpdate = true;
-                            }
-                            else if (npc.directionY < 0 && (!Main.tile[num200, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200, num201 + 1].type]) && (!Main.tile[num200 + npc.direction, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200 + npc.direction, num201 + 1].type]))
-                            {
-                                //this is for when player stands on an elevation and it just jumped aswell
-                                Main.NewText("5555");
-                                npc.velocity.Y = -8f;
-                                npc.velocity.X *= 1.5f;
-                                npc.netUpdate = true;
-                            }
-                            if (npc.velocity.Y == 0f && flag3 && false/* && aiFighter == 1f*/)
-                            {
-                                Main.NewText("6666");
-                                npc.velocity.Y = -5f;
-                            }
-                        }
+                        //if (1 == 2)
+                        //{
+                        //    if (npc.height >= 32 && Main.tile[num200, num201 - 2].nactive() && Main.tileSolid[Main.tile[num200, num201 - 2].type])
+                        //    {
+                        //        if (Main.tile[num200, num201 - 3].nactive() && Main.tileSolid[Main.tile[num200, num201 - 3].type])
+                        //        {
+                        //            Main.NewText("1111");
+                        //            npc.velocity.Y = -8f;
+                        //            npc.netUpdate = true;
+                        //        }
+                        //        else
+                        //        {
+                        //            Main.NewText("2222");
+                        //            npc.velocity.Y = -7f;
+                        //            npc.netUpdate = true;
+                        //        }
+                        //    }
+                        //    else if (Main.tile[num200, num201 - 1].nactive() && Main.tileSolid[Main.tile[num200, num201 - 1].type])
+                        //    {
+                        //        Main.NewText("3333");
+                        //        npc.velocity.Y = -6f;
+                        //        npc.netUpdate = true;
+                        //    }
+                        //    else if (npc.position.Y + (float)npc.height - (float)(num201 * 16) > 20f && Main.tile[num200, num201].nactive() && !Main.tile[num200, num201].topSlope() && Main.tileSolid[Main.tile[num200, num201].type])
+                        //    {
+                        //        Main.NewText("4444");
+                        //        npc.velocity.Y = -5f;
+                        //        npc.netUpdate = true;
+                        //    }
+                        //    else if (npc.directionY < 0 && (!Main.tile[num200, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200, num201 + 1].type]) && (!Main.tile[num200 + npc.direction, num201 + 1].nactive() || !Main.tileSolid[Main.tile[num200 + npc.direction, num201 + 1].type]))
+                        //    {
+                        //        //this is for when player stands on an elevation and it just jumped aswell
+                        //        Main.NewText("5555");
+                        //        npc.velocity.Y = -8f;
+                        //        npc.velocity.X *= 1.5f;
+                        //        npc.netUpdate = true;
+                        //    }
+                        //    if (npc.velocity.Y == 0f && flag3 && false/* && aiFighter == 1f*/)
+                        //    {
+                        //        Main.NewText("6666");
+                        //        npc.velocity.Y = -5f;
+                        //    }
+                        //}
 
 
                         //heck this ima do this MY way
@@ -855,9 +855,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 bool shouldDecreaseTime = false;
                 bool allPlayersDead = true;
                 int closest = 255;
-                Vector2 playerPos = Vector2.Zero;
+                Vector2 playerPos;
                 float oldDistance = 1000000000f;
-                float newDistance = oldDistance;
+                float newDistance;
 
                 //return index of closest player
                 for (short j = 0; j < 255; j++)

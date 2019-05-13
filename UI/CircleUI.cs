@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.UI
 
             double offset = 0;
             double angleSteps = 2.0d / UIConf.CircleAmount;
-            int done = 0;
+            int done;
             //Starting angle
             double i = offset;
             //done --> ID of currently drawn circle
