@@ -164,10 +164,10 @@ namespace AssortedCrazyThings
                 PetVanityUIInterface = new UserInterface();
                 PetVanityUIInterface.SetState(PetVanityUI);
 
-                CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
-                CircleUIConf.AddItemAsTrigger(ItemType<SlimeHandlerKnapsack>(), false); //right click of Slime Handler Knapsack
-                CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
-                CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>(), false); //right click of Costume Suitcase
+                //CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
+                //CircleUIConf.AddItemAsTrigger(ItemType<SlimeHandlerKnapsack>(), false); //right click of Slime Handler Knapsack
+                //CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
+                //CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>(), false); //right click of Costume Suitcase
             }
         }
 
@@ -323,7 +323,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        private void UIText(string str, Color color)
+        public static void UIText(string str, Color color)
         {
             CombatText.NewText(Main.LocalPlayer.getRect(), color, str);
         }
@@ -334,201 +334,40 @@ namespace AssortedCrazyThings
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
             int triggerType = Main.LocalPlayer.HeldItem.type;
 
-            if (true)
+            //combine both lists of the players (split for organization and player load shenanigans)
+            List<Temp> l = mPlayer.CircleUIList;
+            l.AddRange(pPlayer.CircleUIList);
+
+            bool found = false;
+            for (int i = 0; i < l.Count; i++)
             {
-                bool found = false;
-                List<Temp> l = pPlayer.CircleUIList;
-                for (int i = 0; i < l.Count; i++)
+                if (l[i].Condition())
                 {
-                    if (l[i].Condition())
+                    if (l[i].TriggerItem == triggerType)
                     {
-                        if (l[i].TriggerItem == triggerType)
+                        if (l[i].TriggerLeft == triggerLeft)
                         {
-                            if (l[i].TriggerLeft == triggerLeft)
-                            {
-                                CircleUI.UIConf = l[i].UIConf();
-                                CircleUI.currentSelected = l[i].OnUIStart();
-                                found = true;
-                                break;
-                            }
+                            CircleUI.UIConf = l[i].UIConf();
+                            CircleUI.currentSelected = l[i].OnUIStart();
+                            found = true;
+                            break;
                         }
-                    }
-                }
-                if (!found)
-                {
-                    if (triggerType == ItemType<VanitySelector>())
-                    {
-                        UIText("No alt costumes found for pet", CombatText.DamagedFriendly);
-                        return;
                     }
                 }
             }
-            else
+            if (!found)
             {
-                if (triggerLeft) //left click
+                if (triggerType == ItemType<VanitySelector>())
                 {
-                    if (triggerType == ItemType<VanitySelector>())
+                    if (triggerLeft)
                     {
-                        if (pPlayer.DocileDemonEye)
-                        {
-                            //set custom config with starting value
-                            CircleUI.currentSelected = pPlayer.petEyeType;
-
-                            CircleUI.UIConf = CircleUIConf.DocileDemonEyeConf();
-                        }
-                        else if (pPlayer.LifelikeMechanicalFrog)
-                        {
-                            CircleUI.currentSelected = pPlayer.mechFrogCrown ? 1 : 0;
-
-                            CircleUI.UIConf = CircleUIConf.LifeLikeMechFrogConf();
-                        }
-                        else if (pPlayer.CursedSkull)
-                        {
-                            CircleUI.currentSelected = pPlayer.cursedSkullType;
-
-                            CircleUI.UIConf = CircleUIConf.CursedSkullConf();
-                        }
-                        else if (pPlayer.YoungWyvern)
-                        {
-                            CircleUI.currentSelected = pPlayer.youngWyvernType;
-
-                            CircleUI.UIConf = CircleUIConf.YoungWyvernConf();
-                        }
-                        else if (pPlayer.PetFishron)
-                        {
-                            CircleUI.currentSelected = pPlayer.petFishronType;
-
-                            CircleUI.UIConf = CircleUIConf.PetFishronConf();
-                        }
-                        else if (pPlayer.YoungHarpy)
-                        {
-                            CircleUI.currentSelected = pPlayer.youngHarpyType;
-
-                            CircleUI.UIConf = CircleUIConf.YoungHarpyConf();
-                        }
-                        else if (pPlayer.Abeemination)
-                        {
-                            CircleUI.currentSelected = pPlayer.abeeminationType;
-
-                            CircleUI.UIConf = CircleUIConf.AbeeminiationConf();
-                        }
-                        else if (pPlayer.LilWraps)
-                        {
-                            CircleUI.currentSelected = pPlayer.lilWrapsType;
-
-                            CircleUI.UIConf = CircleUIConf.LilWrapsConf();
-                        }
-                        else if (pPlayer.VampireBat)
-                        {
-                            CircleUI.currentSelected = pPlayer.vampireBatType;
-
-                            CircleUI.UIConf = CircleUIConf.VampireBatConf();
-                        }
-                        else if (pPlayer.Pigronata)
-                        {
-                            CircleUI.currentSelected = pPlayer.pigronataType;
-
-                            CircleUI.UIConf = CircleUIConf.PigronataConf();
-                        }
-                        else if (pPlayer.QueenLarva)
-                        {
-                            CircleUI.currentSelected = pPlayer.queenLarvaType;
-
-                            CircleUI.UIConf = CircleUIConf.QueenLarvaConf();
-                        }
-                        else if (pPlayer.OceanSlime)
-                        {
-                            CircleUI.currentSelected = pPlayer.oceanSlimeType;
-
-                            CircleUI.UIConf = CircleUIConf.OceanSlimeConf();
-                        }
-                        else if (pPlayer.MiniAntlion)
-                        {
-                            CircleUI.currentSelected = pPlayer.miniAntlionType;
-
-                            CircleUI.UIConf = CircleUIConf.MiniAntlionConf();
-                        }
-                        else if (pPlayer.PetGoldfish)
-                        {
-                            CircleUI.currentSelected = pPlayer.petGoldfishType;
-
-                            CircleUI.UIConf = CircleUIConf.PetGoldfishConf();
-                        }
-                        else if (pPlayer.SkeletronHand)
-                        {
-                            CircleUI.currentSelected = pPlayer.skeletronHandType;
-
-                            CircleUI.UIConf = CircleUIConf.SkeletronHandConf();
-                        }
-                        else if (pPlayer.SkeletronPrimeHand)
-                        {
-                            CircleUI.currentSelected = pPlayer.skeletronPrimeHandType;
-
-                            CircleUI.UIConf = CircleUIConf.SkeletronPrimeHandConf();
-                        }
-                        //FOR LEFT CLICK ONLY (REGULAR PET)
-                        //ALTERNATE
-                        //else if (pPlayer.ClassName)
-                        //{
-                        //    CircleUI.currentSelected = pPlayer.classNameType;
-
-                        //    CircleUI.UIConf = CircleUIConf.ClassNameConf();
-                        //}
-                        else
-                        {
-                            UIText("No alt costumes found for pet", CombatText.DamagedFriendly);
-                            return;
-                        }
-                    }
-                }
-                else //right click
-                {
-                    if (triggerType == ItemType<VanitySelector>())
-                    {
-                        if (pPlayer.PetMoon)
-                        {
-                            CircleUI.currentSelected = pPlayer.petMoonType;
-
-                            CircleUI.UIConf = CircleUIConf.PetMoonConf();
-                        }
-                        else if (pPlayer.PetCultist)
-                        {
-                            CircleUI.currentSelected = pPlayer.petCultistType;
-
-                            CircleUI.UIConf = CircleUIConf.PetCultistConf();
-                        }
-                        //FOR RIGHT CLICK ONLY (LIGHT PET)
-                        //ALTERNATE
-                        //else if (pPlayer.ClassName)
-                        //{
-                        //    CircleUI.currentSelected = pPlayer.classNameType;
-
-                        //    CircleUI.UIConf = CircleUIConf.ClassNameConf();
-                        //}
-                        else
-                        {
-                            UIText("No alt costumes found for light pet", CombatText.DamagedFriendly);
-                            return;
-                        }
-                    }
-                    else if (triggerType == ItemType<EverhallowedLantern>())
-                    {
-                        CircleUI.currentSelected = mPlayer.selectedSoulMinionType;
-
-                        //this one needs to be created anew because of the unlocked list
-                        CircleUI.UIConf = CircleUIConf.EverhallowedLanternConf();
-                    }
-                    else if (triggerType == ItemType<SlimeHandlerKnapsack>())
-                    {
-                        CircleUI.currentSelected = mPlayer.selectedSlimePackMinionType;
-
-                        //this one needs to be created anew because of the unlocked list
-                        CircleUI.UIConf = CircleUIConf.SlimeHandlerKnapsackConf();
+                        UIText("No alt costumes found for pet", CombatText.DamagedFriendly);
                     }
                     else
                     {
-                        return;
+                        UIText("No alt costumes found for light pet", CombatText.DamagedFriendly);
                     }
+                    return;
                 }
             }
 
@@ -551,141 +390,26 @@ namespace AssortedCrazyThings
 
                 Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
 
-                if (true)
+                List<Temp> l = mPlayer.CircleUIList;
+                for (int i = 0; i < l.Count; i++)
                 {
-                    List<Temp> l = pPlayer.CircleUIList;
-                    for (int i = 0; i < l.Count; i++)
+                    if (l[i].Condition())
                     {
-                        if (l[i].Condition())
+                        if (l[i].TriggerItem == CircleUI.heldItemType)
                         {
-                            if (l[i].TriggerItem == CircleUI.heldItemType)
+                            if (l[i].TriggerLeft == triggerLeft)
                             {
-                                if (l[i].TriggerLeft == triggerLeft)
-                                {
-                                    l[i].OnUIEnd();
-                                    break;
-                                }
+                                l[i].OnUIEnd();
+                                break;
                             }
                         }
-                    }
-                    if (CircleUI.heldItemType == ItemType<VanitySelector>())
-                    {
-                        PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                        UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
                     }
                 }
-                else
+                //extra things that happen
+                if (CircleUI.heldItemType == ItemType<VanitySelector>())
                 {
-                    if (triggerLeft) //left click
-                    {
-                        if (CircleUI.heldItemType == ItemType<VanitySelector>())
-                        {
-                            PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                            UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
-                            if (pPlayer.DocileDemonEye)
-                            {
-                                pPlayer.petEyeType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.LifelikeMechanicalFrog)
-                            {
-                                pPlayer.mechFrogCrown = (CircleUI.returned > 0) ? true : false;
-                            }
-                            else if (pPlayer.CursedSkull)
-                            {
-                                pPlayer.cursedSkullType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.YoungWyvern)
-                            {
-                                pPlayer.youngWyvernType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.PetFishron)
-                            {
-                                pPlayer.petFishronType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.YoungHarpy)
-                            {
-                                pPlayer.youngHarpyType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.Abeemination)
-                            {
-                                pPlayer.abeeminationType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.LilWraps)
-                            {
-                                pPlayer.lilWrapsType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.VampireBat)
-                            {
-                                pPlayer.vampireBatType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.Pigronata)
-                            {
-                                pPlayer.pigronataType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.QueenLarva)
-                            {
-                                pPlayer.queenLarvaType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.OceanSlime)
-                            {
-                                pPlayer.oceanSlimeType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.MiniAntlion)
-                            {
-                                pPlayer.miniAntlionType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.PetGoldfish)
-                            {
-                                pPlayer.petGoldfishType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.SkeletronHand)
-                            {
-                                pPlayer.skeletronHandType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.SkeletronPrimeHand)
-                            {
-                                pPlayer.skeletronPrimeHandType = (byte)CircleUI.returned;
-                            }
-                            //ALTERNATE
-                            //else if (pPlayer.ClassName)
-                            //{
-                            //    pPlayer.classNameType = (byte)CircleUI.returned;
-                            //}
-                        }
-                    }
-                    else //right click
-                    {
-                        if (CircleUI.heldItemType == ItemType<VanitySelector>())
-                        {
-                            PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                            UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
-                            if (pPlayer.PetMoon)
-                            {
-                                pPlayer.petMoonType = (byte)CircleUI.returned;
-                            }
-                            else if (pPlayer.PetCultist)
-                            {
-                                pPlayer.petCultistType = (byte)CircleUI.returned;
-                            }
-                            //ALTERNATE
-                            //else if (pPlayer.ClassName)
-                            //{
-                            //    pPlayer.classNameType = (byte)CircleUI.returned;
-                            //}
-                        }
-                        else if (CircleUI.heldItemType == ItemType<EverhallowedLantern>())
-                        {
-                            mPlayer.selectedSoulMinionType = CircleUI.returned;
-
-                            UpdateEverhallowedLanternStats(CircleUI.returned);
-                        }
-                        else if (CircleUI.heldItemType == ItemType<SlimeHandlerKnapsack>())
-                        {
-                            mPlayer.selectedSlimePackMinionType = (byte)CircleUI.returned;
-
-                            UIText("Selected: " + (mPlayer.selectedSlimePackMinionType == 0 ? "Default" : (mPlayer.selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
-                        }
-                    }
+                    PoofVisual(CircleUI.UIConf.AdditionalInfo);
+                    UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
                 }
             }
 
@@ -730,36 +454,6 @@ namespace AssortedCrazyThings
                 }
             }
         }
-
-        private void UpdateEverhallowedLanternStats(int selectedSoulType)
-        {
-            bool first = true;
-            for (int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
-            {
-                if (Main.LocalPlayer.inventory[i].type == ItemType<EverhallowedLantern>())
-                {
-                    var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
-                    //bad practice, don't do this
-                    Main.LocalPlayer.inventory[i].damage = stats.Damage;
-                    Main.LocalPlayer.inventory[i].shoot = stats.Type;
-                    Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;
-
-                    var soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                    if (first && soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
-                    {
-                        CombatText.NewText(Main.LocalPlayer.getRect(),
-                            CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
-                    }
-                    else if (first)
-                    {
-                        CombatText.NewText(Main.LocalPlayer.getRect(),
-                            CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
-                    }
-                    first = false;
-                }
-            }
-        }
-
         private void UpdatePetVanityUI()
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();

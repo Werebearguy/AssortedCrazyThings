@@ -8,6 +8,57 @@ using Terraria;
 
 namespace AssortedCrazyThings.UI
 {
+    public class Temp
+    {
+        //Item it is used with
+        public int TriggerItem { get; private set; }
+
+        public Func<bool> Condition { get; private set; }
+
+        //all these three things get called when their respective condition returns true
+        //Holds data about what to draw
+        public Func<CircleUIConf> UIConf { get; private set; }
+
+        //assigns the CircleUI the selected thing
+        public Func<int> OnUIStart { get; private set; }
+
+        //Does things when the UI closes
+        public Action OnUIEnd { get; private set; }
+
+        //optional arguments
+        //On leftclick
+        public bool TriggerLeft { get; private set; }
+
+        //if it needs saving, this will be the tag name for the tagCompound, saved as a byte thats returned from OnUIStart
+        public string SavedName { get; private set; }
+
+        public Temp(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, string savedName = "")
+        {
+            TriggerItem = triggerItem;
+            Condition = condition;
+            UIConf = uiConf;
+            OnUIStart = onUIStart;
+            OnUIEnd = onUIEnd;
+            TriggerLeft = triggerLeft;
+            SavedName = savedName;
+        }
+
+        public static CircleUIConf PetConf(string name, List<string> tooltips)
+        {
+            //uses VanitySelector as the triggerItem
+            //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
+
+            List<Texture2D> textures = new List<Texture2D>();
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                textures.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+            }
+
+            int type = AssUtils.Instance.ProjectileType(name);
+
+            return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
+        }
+    }
     public class CircleUIConf
     {
         public static List<int> TriggerListRight = new List<int>();
@@ -59,230 +110,5 @@ namespace AssortedCrazyThings.UI
                 if (!TriggerListRight.Contains(triggerItemType)) TriggerListRight.Add(triggerItemType);
             }
         }
-
-        private static CircleUIConf PetConf(string name, List<string> tooltips)
-        {
-            //uses VanitySelector as the triggerItem
-            //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
-
-            List<Texture2D> textures = new List<Texture2D>();
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                textures.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
-            }
-
-            int type = AssUtils.Instance.ProjectileType(name);
-
-            return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
-        }
-
-        //here start the specific confs that are called in PostSetupContent
-
-        //everhallowed
-        public static CircleUIConf EverhallowedLanternConf()
-        {
-            List<Texture2D> textures = new List<Texture2D>();
-            List<string> tooltips = new List<string>();
-            List<string> toUnlock = new List<string>();
-            for (int soulType = 0; soulType < 4; soulType++)
-            {
-                var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
-                var tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                string tooltip = tempSoulType.ToString()
-                    + "\nBase Damage: " + stats.Damage
-                    + "\nBase Knockback: " + stats.Knockback
-                    + "\n" + stats.Description;
-                textures.Add(Main.projectileTexture[stats.Type]);
-                tooltips.Add(tooltip);
-                toUnlock.Add(stats.ToUnlock);
-            }
-
-            List<bool> unlocked = new List<bool>()
-            {
-                true,                //      0
-                NPC.downedMechBoss3, //skele 1
-                NPC.downedMechBoss2, //twins 2
-                NPC.downedMechBoss1, //destr 3
-            };
-
-            return new CircleUIConf(8, -1, textures, unlocked, tooltips, toUnlock);
-        }
-
-        //slime knapsack
-        public static CircleUIConf SlimeHandlerKnapsackConf()
-        {
-            List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
-                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
-                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
-            List<string> tooltips = new List<string>
-            {
-                "Default"
-                + "\nBase Damage: " + SlimePackMinion.DefDamage
-                + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
-                "Assorted"
-                + "\nBase Damage: " + SlimePackMinion.DefDamage
-                + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
-                "Spiked"
-                + "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * SlimePackMinion.SpikedIncrease)
-                + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease)
-                + "\nShoots spikes while fighting"
-            };
-            List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
-
-            List<bool> unlocked = new List<bool>()
-            {
-                true,                // 0
-                true,                // 1
-                NPC.downedPlantBoss, // 2
-            };
-
-            return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
-        }
-
-        //pets
-
-        public static CircleUIConf LifeLikeMechFrogConf()
-        {
-            List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
-                                                         AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
-
-            List<string> tooltips = new List<string>() { "Default", "Crowned" };
-
-            //no need for unlocked + toUnlock
-            return new CircleUIConf(
-                Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
-                AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
-                textures, null, tooltips, null);
-        }
-
-        public static CircleUIConf DocileDemonEyeConf()
-        {
-            List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
-                "Red Fractured", "Green Fractured", "Purple Fractured",
-                "Red Mechanical", "Green Mechanical", "Purple Mechanical",
-                "Red Laser", "Green Laser", "Purple Laser" };
-
-            return PetConf("DocileDemonEyeProj", tooltips);
-        }
-
-        public static CircleUIConf CursedSkullConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Dragon" };
-
-            return PetConf("CursedSkull", tooltips);
-        }
-
-        public static CircleUIConf YoungWyvernConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
-            
-            return PetConf("YoungWyvern", tooltips);
-        }
-
-        public static CircleUIConf PetFishronConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
-
-            return PetConf("PetFishronProj", tooltips);
-        }
-
-        public static CircleUIConf PetMoonConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
-
-            return PetConf("PetMoonProj", tooltips);
-        }
-
-        public static CircleUIConf YoungHarpyConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
-
-            return PetConf("YoungHarpy", tooltips);
-        }
-
-        public static CircleUIConf AbeeminiationConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
-
-            return PetConf("AbeeminationProj", tooltips);
-        }
-
-        public static CircleUIConf LilWrapsConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
-
-            return PetConf("LilWrapsProj", tooltips);
-        }
-
-        public static CircleUIConf VampireBatConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Werebat" };
-
-            return PetConf("VampireBat", tooltips);
-        }
-
-        public static CircleUIConf PigronataConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
-
-            return PetConf("Pigronata", tooltips);
-        }
-
-        public static CircleUIConf QueenLarvaConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
-
-            return PetConf("QueenLarvaProj", tooltips);
-        }
-
-        public static CircleUIConf OceanSlimeConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
-
-            return PetConf("OceanSlimeProj", tooltips);
-        }
-
-        public static CircleUIConf MiniAntlionConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Albino" };
-
-            return PetConf("MiniAntlionProj", tooltips);
-        }
-
-        public static CircleUIConf PetGoldfishConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
-
-            return PetConf("PetGoldfishProj", tooltips);
-        }
-
-        public static CircleUIConf SkeletronHandConf()
-        {
-            List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
-
-            return PetConf("SkeletronHandProj", tooltips);
-        }
-
-        public static CircleUIConf SkeletronPrimeHandConf()
-        {
-            List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
-
-            return PetConf("SkeletronPrimeHandProj", tooltips);
-        }
-
-        public static CircleUIConf PetCultistConf()
-        {
-            List<string> tooltips = new List<string>() { "Lunar", "Solar" };
-
-            return PetConf("PetCultistProj", tooltips);
-        }
-
-        //ALTERNATE
-        //public static CircleUIConf ClassNameConf()
-        //{
-        //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
-
-        //    return PetConf("ClassNameProj", tooltips);
-        //}
     }
 }

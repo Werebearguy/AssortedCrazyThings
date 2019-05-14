@@ -8,10 +8,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override void MoreSetDefaults()
         {
             projectile.minionSlots = 1f;
-            defdistanceFromTarget= 700f;
+            defdistanceFromTarget = 700f;
             defdistancePlayerFarAway = 800f;
             defdistancePlayerFarAwayWhenHasTarget = 1200f;
-            defdistanceToEnemyBeforeCanDash = 20f; //20f
+            defdistanceToEnemyBeforeCanDash = 30f; //20f
             defplayerFloatHeight = -60f; //-60f
             defplayerCatchUpIdle = 300f; //300f
             defbackToIdleFromNoclipping = 150f; //150f
@@ -20,10 +20,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
             defstartDashRange = defdistanceToEnemyBeforeCanDash + 10f; //30f
             defdashIntensity = 4f; //4f
 
-            veloFactorToEnemy = 8f; //8f
+            veloFactorToEnemy = 7f; //8f
             accFactorToEnemy = 16f; //41f
 
-            veloFactorAfterDash = 8f; //4f
+            veloFactorAfterDash = 7f; //4f
             accFactorAfterDash = 16f; //41f
 
             defveloIdle = 2f;

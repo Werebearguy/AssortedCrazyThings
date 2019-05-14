@@ -12,6 +12,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using AssortedCrazyThings.UI;
 
 namespace AssortedCrazyThings
 {
@@ -486,34 +487,168 @@ namespace AssortedCrazyThings
             }
         }
 
+        #region CircleUI
+
+        public List<Temp> CircleUIList;
+
+        public override void Initialize()
+        {
+            CircleUIList = new List<Temp>();
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<EverhallowedLantern>(),
+                condition: delegate
+                {
+                    return true;
+                },
+                uiConf: delegate
+                {
+                    List<Texture2D> textures = new List<Texture2D>();
+                    List<string> tooltips = new List<string>();
+                    List<string> toUnlock = new List<string>();
+                    for (int soulType = 0; soulType < 4; soulType++)
+                    {
+                        var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
+                        var tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                        string tooltip = tempSoulType.ToString()
+                            + "\nBase Damage: " + stats.Damage
+                            + "\nBase Knockback: " + stats.Knockback
+                            + "\n" + stats.Description;
+                        textures.Add(Main.projectileTexture[stats.Type]);
+                        tooltips.Add(tooltip);
+                        toUnlock.Add(stats.ToUnlock);
+                    }
+
+                    List<bool> unlocked = new List<bool>()
+                    {
+                        true,                //      0
+                        NPC.downedMechBoss3, //skele 1
+                        NPC.downedMechBoss2, //twins 2
+                        NPC.downedMechBoss1, //destr 3
+                    };
+
+                    return new CircleUIConf(8, -1, textures, unlocked, tooltips, toUnlock);
+                },
+                onUIStart: delegate
+                {
+                    return selectedSoulMinionType;
+                },
+                onUIEnd: delegate
+                {
+                    selectedSoulMinionType = (byte)CircleUI.returned;
+                    UpdateEverhallowedLanternStats(CircleUI.returned);
+                },
+                triggerLeft: false
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<SlimeHandlerKnapsack>(),
+                condition: delegate
+                {
+                    return true;
+                },
+                uiConf: delegate
+                {
+                    List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
+                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
+                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
+                    List<string> tooltips = new List<string>
+                    {
+                        "Default"
+                        + "\nBase Damage: " + SlimePackMinion.DefDamage
+                        + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
+                        "Assorted"
+                        + "\nBase Damage: " + SlimePackMinion.DefDamage
+                        + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
+                        "Spiked"
+                        + "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * SlimePackMinion.SpikedIncrease)
+                        + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease)
+                        + "\nShoots spikes while fighting"
+                    };
+                            List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
+
+                            List<bool> unlocked = new List<bool>()
+                    {
+                        true,                // 0
+                        true,                // 1
+                        NPC.downedPlantBoss, // 2
+                    };
+
+                    return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
+                },
+                onUIStart: delegate
+                {
+                    return selectedSlimePackMinionType;
+                },
+                onUIEnd: delegate
+                {
+                    selectedSlimePackMinionType = (byte)CircleUI.returned;
+                    AssortedCrazyThings.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
+                },
+                triggerLeft: false
+            ));
+
+            // after filling the list, set the trigger list
+            for (int i = 0; i < CircleUIList.Count; i++)
+            {
+                CircleUIConf.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
+            }
+        }
+
+        private void UpdateEverhallowedLanternStats(int selectedSoulType)
+        {
+            bool first = true;
+            for (int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
+            {
+                if (Main.LocalPlayer.inventory[i].type == mod.ItemType<EverhallowedLantern>())
+                {
+                    var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
+                    //bad practice, don't do this
+                    Main.LocalPlayer.inventory[i].damage = stats.Damage;
+                    Main.LocalPlayer.inventory[i].shoot = stats.Type;
+                    Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;
+
+                    var soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
+                    if (first && soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
+                    {
+                        CombatText.NewText(Main.LocalPlayer.getRect(),
+                            CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
+                    }
+                    else if (first)
+                    {
+                        CombatText.NewText(Main.LocalPlayer.getRect(),
+                            CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
+                    }
+                    first = false;
+                }
+            }
+        }
+
+        #endregion
+
         private static SpriteEffects GetSpriteEffects(Player player)
         {
-            SpriteEffects spriteEffects;
             if (player.gravDir == 1f)
             {
                 if (player.direction == 1)
                 {
-                    spriteEffects = SpriteEffects.None;
+                    return SpriteEffects.None;
                 }
                 else
                 {
-                    spriteEffects = SpriteEffects.FlipHorizontally;
+                    return SpriteEffects.FlipHorizontally;
                 }
             }
             else
             {
                 if (player.direction == 1)
                 {
-                    spriteEffects = SpriteEffects.FlipVertically;
+                    return SpriteEffects.FlipVertically;
                 }
                 else
                 {
-                    spriteEffects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+                    return SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
                 }
             }
-            return spriteEffects;
         }
-
 
         public static readonly PlayerLayer CrazyBundleOfAssortedBalloons = new PlayerLayer("AssortedCrazyThings", "CrazyBundleOfAssortedBalloons", PlayerLayer.BalloonAcc, delegate (PlayerDrawInfo drawInfo)
         {

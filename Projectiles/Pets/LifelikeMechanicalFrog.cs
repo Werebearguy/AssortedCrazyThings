@@ -49,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog" + (mPlayer.mechFrogCrown ? "Crown" : ""));
+            Texture2D image = mod.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog" + (mPlayer.mechFrogCrown == 1 ? "Crown" : ""));
             Rectangle bounds = new Rectangle
             {
                 X = 0,

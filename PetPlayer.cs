@@ -22,7 +22,7 @@ namespace AssortedCrazyThings
         public byte petEyeType = 0; //texture type, not ID
 
         //mech frog texture
-        public bool mechFrogCrown = false;
+        public byte mechFrogCrown = 0;
 
         //cursed skull texture
         public byte cursedSkullType = 0;
@@ -291,7 +291,7 @@ namespace AssortedCrazyThings
                 {"slots", (int)slots},
                 {"color", (int)color},
                 {"petAccessoryRework", (bool)petAccessoryRework},
-                {"mechFrogCrown", (bool)mechFrogCrown},
+                {"mechFrogCrown", (byte)mechFrogCrown},
                 {"petEyeType", (byte)petEyeType},
                 {"cursedSkullType", (byte)cursedSkullType},
                 {"youngWyvernType", (byte)youngWyvernType},
@@ -319,7 +319,7 @@ namespace AssortedCrazyThings
             slots = (uint)tag.GetInt("slots");
             color = (uint)tag.GetInt("color");
             petAccessoryRework = tag.GetBool("petAccessoryRework");
-            mechFrogCrown = tag.GetBool("mechFrogCrown");
+            mechFrogCrown = tag.GetByte("mechFrogCrown");
             petEyeType = tag.GetByte("petEyeType");
             cursedSkullType = tag.GetByte("cursedSkullType");
             youngWyvernType = tag.GetByte("youngWyvernType");
@@ -414,7 +414,7 @@ namespace AssortedCrazyThings
         {
             packet.Write((uint)slots);
             packet.Write((uint)color);
-            packet.Write((bool)mechFrogCrown);
+            packet.Write((byte)mechFrogCrown);
             packet.Write((byte)petEyeType);
             packet.Write((byte)cursedSkullType);
             packet.Write((byte)youngWyvernType);
@@ -440,7 +440,7 @@ namespace AssortedCrazyThings
         {
             slots = reader.ReadUInt32();
             color = reader.ReadUInt32();
-            mechFrogCrown = reader.ReadBoolean();
+            mechFrogCrown = reader.ReadByte();
             petEyeType = reader.ReadByte();
             cursedSkullType = reader.ReadByte();
             youngWyvernType = reader.ReadByte();
@@ -475,7 +475,7 @@ namespace AssortedCrazyThings
                     color = reader.ReadUInt32();
                     break;
                 case (byte)PetPlayerChanges.mechFrogCrown:
-                    mechFrogCrown = reader.ReadBoolean();
+                    mechFrogCrown = reader.ReadByte();
                     break;
                 case (byte)PetPlayerChanges.petEyeType:
                     petEyeType = reader.ReadByte();
@@ -556,7 +556,7 @@ namespace AssortedCrazyThings
                     packet.Write((uint)color);
                     break;
                 case (byte)PetPlayerChanges.mechFrogCrown:
-                    packet.Write((bool)mechFrogCrown);
+                    packet.Write((byte)mechFrogCrown);
                     break;
                 case (byte)PetPlayerChanges.petEyeType:
                     packet.Write((byte)petEyeType);
@@ -717,6 +717,35 @@ namespace AssortedCrazyThings
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
                 condition: delegate
                 {
+                    return LifelikeMechanicalFrog;
+                },
+                uiConf: delegate
+                {
+                    List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
+                                                         AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
+
+                    List<string> tooltips = new List<string>() { "Default", "Crowned" };
+
+                    //no need for unlocked + toUnlock
+                    return new CircleUIConf(
+                        Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
+                        AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
+                        textures, null, tooltips, null);
+                },
+                onUIStart: delegate
+                {
+                    return mechFrogCrown;
+                },
+                onUIEnd: delegate
+                {
+                    mechFrogCrown = (byte)CircleUI.returned;
+                },
+                savedName: "mechFrogCrown"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
                     return DocileDemonEye;
                 },
                 uiConf: delegate
@@ -735,56 +764,394 @@ namespace AssortedCrazyThings
                 onUIEnd: delegate
                 {
                     petEyeType = (byte)CircleUI.returned;
-                }
+                },
+                savedName: "petEyeType"
             ));
-        }
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return CursedSkull;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Dragon" };
 
-        #endregion
-    }
-    public class Temp
-    {
-        //Item it is used with
-        public int TriggerItem { get; private set; }
+                    return Temp.PetConf("CursedSkull", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return cursedSkullType;
+                },
+                onUIEnd: delegate
+                {
+                    cursedSkullType = (byte)CircleUI.returned;
+                },
+                savedName: "cursedSkullType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return YoungWyvern;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
 
-        public Func<bool> Condition { get; private set; }
+                    return Temp.PetConf("YoungWyvern", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return youngWyvernType;
+                },
+                onUIEnd: delegate
+                {
+                    youngWyvernType = (byte)CircleUI.returned;
+                },
+                savedName: "youngWyvernType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return PetFishron;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
 
-        //all these three things get called when their respective condition returns true
-        //Holds data about what to draw
-        public Func<CircleUIConf> UIConf { get; private set; }
+                    return Temp.PetConf("PetFishronProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return petFishronType;
+                },
+                onUIEnd: delegate
+                {
+                    petFishronType = (byte)CircleUI.returned;
+                },
+                savedName: "petFishronType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return PetMoon;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
 
-        //assigns the CircleUI the selected thing
-        public Func<int> OnUIStart { get; private set; }
+                    return Temp.PetConf("PetMoonProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return petMoonType;
+                },
+                onUIEnd: delegate
+                {
+                    petMoonType = (byte)CircleUI.returned;
+                },
+                triggerLeft: false,
+                savedName: "petMoonType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return YoungHarpy;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
 
-        //Does things when the UI closes
-        public Action OnUIEnd { get; private set; }
+                    return Temp.PetConf("YoungHarpy", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return youngHarpyType;
+                },
+                onUIEnd: delegate
+                {
+                    youngHarpyType = (byte)CircleUI.returned;
+                },
+                savedName: "youngHarpyType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return Abeemination;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
 
-        //On leftclick
-        public bool TriggerLeft { get; private set; }
+                    return Temp.PetConf("AbeeminationProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return abeeminationType;
+                },
+                onUIEnd: delegate
+                {
+                    abeeminationType = (byte)CircleUI.returned;
+                },
+                savedName: "abeeminationType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return LilWraps;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
 
-        public Temp(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true)
-        {
-            TriggerItem = triggerItem;
-            Condition = condition;
-            UIConf = uiConf;
-            OnUIStart = onUIStart;
-            OnUIEnd = onUIEnd;
-            TriggerLeft = triggerLeft;
-        }
+                    return Temp.PetConf("LilWrapsProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return lilWrapsType;
+                },
+                onUIEnd: delegate
+                {
+                    lilWrapsType = (byte)CircleUI.returned;
+                },
+                savedName: "lilWrapsType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return VampireBat;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Werebat" };
 
-        public static CircleUIConf PetConf(string name, List<string> tooltips)
-        {
-            //uses VanitySelector as the triggerItem
-            //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
+                    return Temp.PetConf("VampireBat", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return vampireBatType;
+                },
+                onUIEnd: delegate
+                {
+                    vampireBatType = (byte)CircleUI.returned;
+                },
+                savedName: "vampireBatType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return Pigronata;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
 
-            List<Texture2D> textures = new List<Texture2D>();
-            for (int i = 0; i < tooltips.Count; i++)
+                    return Temp.PetConf("Pigronata", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return pigronataType;
+                },
+                onUIEnd: delegate
+                {
+                    pigronataType = (byte)CircleUI.returned;
+                },
+                savedName: "pigronataType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return QueenLarva;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
+
+                    return Temp.PetConf("QueenLarvaProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return queenLarvaType;
+                },
+                onUIEnd: delegate
+                {
+                    queenLarvaType = (byte)CircleUI.returned;
+                },
+                savedName: "queenLarvaType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return OceanSlime;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
+
+                    return Temp.PetConf("OceanSlimeProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return oceanSlimeType;
+                },
+                onUIEnd: delegate
+                {
+                    oceanSlimeType = (byte)CircleUI.returned;
+                },
+                savedName: "oceanSlimeType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return MiniAntlion;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Albino" };
+
+                    return Temp.PetConf("MiniAntlionProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return miniAntlionType;
+                },
+                onUIEnd: delegate
+                {
+                    miniAntlionType = (byte)CircleUI.returned;
+                },
+                savedName: "miniAntlionType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return PetGoldfish;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
+
+                    return Temp.PetConf("PetGoldfishProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return petGoldfishType;
+                },
+                onUIEnd: delegate
+                {
+                    petGoldfishType = (byte)CircleUI.returned;
+                },
+                savedName: "petGoldfishType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return SkeletronHand;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
+
+                    return Temp.PetConf("SkeletronHandProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return skeletronHandType;
+                },
+                onUIEnd: delegate
+                {
+                    skeletronHandType = (byte)CircleUI.returned;
+                },
+                savedName: "skeletronHandType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return SkeletronPrimeHand;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
+
+                    return Temp.PetConf("SkeletronPrimeHandProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return skeletronPrimeHandType;
+                },
+                onUIEnd: delegate
+                {
+                    skeletronPrimeHandType = (byte)CircleUI.returned;
+                },
+                savedName: "skeletronPrimeHandType"
+            ));
+            CircleUIList.Add(new Temp(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return PetCultist;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Lunar", "Solar" };
+
+                    return Temp.PetConf("PetCultistProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return petCultistType;
+                },
+                onUIEnd: delegate
+                {
+                    petCultistType = (byte)CircleUI.returned;
+                },
+                triggerLeft: false,
+                savedName: "petCultistType"
+            ));
+
+            //ALTERNATE
+            //CircleUIList.Add(new Temp(
+            //    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+            //    condition: delegate
+            //    {
+            //        return ClassName;
+            //    },
+            //    uiConf: delegate
+            //    {
+            //        List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
+
+            //        return Temp.PetConf("ClassNameProj", tooltips);
+            //    },
+            //    onUIStart: delegate
+            //    {
+            //        return classNameType;
+            //    },
+            //    onUIEnd: delegate
+            //    {
+            //        classNameType = (byte)CircleUI.returned;
+            //    },
+            //    savedName: "classNameType"
+            //));
+
+            // after filling the list, set the trigger list
+            for (int i = 0; i < CircleUIList.Count; i++)
             {
-                textures.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+                CircleUIConf.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
             }
-
-            int type = AssUtils.Instance.ProjectileType(name);
-
-            return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
         }
+        #endregion
     }
 }
