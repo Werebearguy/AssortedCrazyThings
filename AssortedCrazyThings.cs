@@ -1,9 +1,7 @@
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
-using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.UI;
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
@@ -193,8 +191,8 @@ namespace AssortedCrazyThings
                 HarvesterEdgeUI.texture = null;
                 EnhancedHunterUI.arrowTexture = null;
                 PetVanityUI.redCrossTexture = null;
-                CircleUIConf.TriggerListLeft.Clear();
-                CircleUIConf.TriggerListRight.Clear();
+                CircleUIHandler.TriggerListLeft.Clear();
+                CircleUIHandler.TriggerListRight.Clear();
             }
         }
 
@@ -335,7 +333,7 @@ namespace AssortedCrazyThings
             int triggerType = Main.LocalPlayer.HeldItem.type;
 
             //combine both lists of the players (split for organization and player load shenanigans)
-            List<Temp> l = mPlayer.CircleUIList;
+            List<CircleUIHandler> l = mPlayer.CircleUIList;
             l.AddRange(pPlayer.CircleUIList);
 
             bool found = false;
@@ -355,6 +353,7 @@ namespace AssortedCrazyThings
                     }
                 }
             }
+            //extra things that happen
             if (!found)
             {
                 if (triggerType == ItemType<VanitySelector>())
@@ -390,7 +389,7 @@ namespace AssortedCrazyThings
 
                 Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
 
-                List<Temp> l = mPlayer.CircleUIList;
+                List<CircleUIHandler> l = mPlayer.CircleUIList;
                 for (int i = 0; i < l.Count; i++)
                 {
                     if (l[i].Condition())
@@ -422,11 +421,11 @@ namespace AssortedCrazyThings
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
             bool? left = null;
-            if (mPlayer.LeftClickPressed && CircleUIConf.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
+            if (mPlayer.LeftClickPressed && CircleUIHandler.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
             {
                 left = true;
             }
-            else if (mPlayer.RightClickPressed && CircleUIConf.TriggerListRight.Contains(Main.LocalPlayer.HeldItem.type))
+            else if (mPlayer.RightClickPressed && CircleUIHandler.TriggerListRight.Contains(Main.LocalPlayer.HeldItem.type))
             {
                 left = false;
             }
@@ -658,6 +657,7 @@ namespace AssortedCrazyThings
             AssPlayer mPlayer;
             PetPlayer petPlayer;
             byte changes;
+            byte index;
 
             switch (msgType)
             {
@@ -670,17 +670,18 @@ namespace AssortedCrazyThings
                         petPlayer.RecvSyncPlayerVanitySub(reader);
                     }
                     break;
-                case AssMessageType.SendClientChangesVanity:
+                case AssMessageType.ClientChangesVanity:
                     //client and server
                     playerNumber = reader.ReadByte();
                     petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
                     changes = reader.ReadByte();
-                    petPlayer.RecvClientChangesPacketSub(reader, changes);
+                    index = reader.ReadByte();
+                    petPlayer.RecvClientChangesPacketSub(reader, changes, index);
 
                     //server transmits to others
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        petPlayer.SendClientChangesPacketSub(changes, -1, playerNumber);
+                        petPlayer.SendClientChangesPacketSub(changes, index, toClient: -1, ignoreClient: playerNumber);
                     }
                     break;
                 case AssMessageType.ConvertInertSoulsInventory:
@@ -741,7 +742,7 @@ namespace AssortedCrazyThings
 
     public enum AssMessageType : byte
     {
-        SendClientChangesVanity,
+        ClientChangesVanity,
         SyncPlayerVanity,
         ConvertInertSoulsInventory,
         GitgudLoadCounters,
@@ -768,6 +769,7 @@ namespace AssortedCrazyThings
         none,
         all,
         slots,
+        petTypes,
         mechFrogCrown,
         petEyeType,
         cursedSkullType,

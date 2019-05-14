@@ -7,7 +7,7 @@ using System;
 
 namespace AssortedCrazyThings.UI
 {
-    //Huge credit to Muzuwi: https://github.com/Muzuwi/AmmoboxPlus/blob/master/AmmoboxUI.cs
+    //Huge credit to Muzuwi (with permission): https://github.com/Muzuwi/AmmoboxPlus/blob/master/AmmoboxUI.cs
     public class CircleUI : UIState
     {
         //Is the UI visible?

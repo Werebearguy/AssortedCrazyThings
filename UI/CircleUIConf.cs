@@ -1,6 +1,4 @@
-﻿using AssortedCrazyThings.Projectiles.Minions;
-using AssortedCrazyThings.Projectiles.Pets;
-using AssortedCrazyThings.Base;
+﻿using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,8 +6,11 @@ using Terraria;
 
 namespace AssortedCrazyThings.UI
 {
-    public class Temp
+    public class CircleUIHandler
     {
+        public static List<int> TriggerListRight = new List<int>();
+        public static List<int> TriggerListLeft = new List<int>();
+
         //Item it is used with
         public int TriggerItem { get; private set; }
 
@@ -32,7 +33,7 @@ namespace AssortedCrazyThings.UI
         //if it needs saving, this will be the tag name for the tagCompound, saved as a byte thats returned from OnUIStart
         public string SavedName { get; private set; }
 
-        public Temp(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, string savedName = "")
+        public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, string savedName = "")
         {
             TriggerItem = triggerItem;
             Condition = condition;
@@ -58,12 +59,21 @@ namespace AssortedCrazyThings.UI
 
             return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
         }
+
+        public static void AddItemAsTrigger(int triggerItemType, bool triggerLeft = true)
+        {
+            if (triggerLeft)
+            {
+                if (!TriggerListLeft.Contains(triggerItemType)) TriggerListLeft.Add(triggerItemType);
+            }
+            else
+            {
+                if (!TriggerListRight.Contains(triggerItemType)) TriggerListRight.Add(triggerItemType);
+            }
+        }
     }
     public class CircleUIConf
     {
-        public static List<int> TriggerListRight = new List<int>();
-        public static List<int> TriggerListLeft = new List<int>();
-
         public List<Texture2D> Textures { get; private set; }
         public List<bool> Unlocked { get; private set; } //all true if just selection
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
@@ -97,18 +107,6 @@ namespace AssortedCrazyThings.UI
             Unlocked = new List<bool>(unlocked);
             Tooltips = new List<string>(tooltips);
             ToUnlock = new List<string>(toUnlock);
-        }
-
-        public static void AddItemAsTrigger(int triggerItemType, bool triggerLeft = true)
-        {
-            if (triggerLeft)
-            {
-                if (!TriggerListLeft.Contains(triggerItemType)) TriggerListLeft.Add(triggerItemType);
-            }
-            else
-            {
-                if (!TriggerListRight.Contains(triggerItemType)) TriggerListRight.Add(triggerItemType);
-            }
         }
     }
 }

@@ -489,12 +489,14 @@ namespace AssortedCrazyThings
 
         #region CircleUI
 
-        public List<Temp> CircleUIList;
+        public List<CircleUIHandler> CircleUIList;
 
         public override void Initialize()
         {
-            CircleUIList = new List<Temp>();
-            CircleUIList.Add(new Temp(
+            //needs to call new List() since Initialize() is called per player in the player select screen
+            CircleUIList = new List<CircleUIHandler>
+            {
+                new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<EverhallowedLantern>(),
                 condition: delegate
                 {
@@ -538,8 +540,8 @@ namespace AssortedCrazyThings
                     UpdateEverhallowedLanternStats(CircleUI.returned);
                 },
                 triggerLeft: false
-            ));
-            CircleUIList.Add(new Temp(
+            ),
+                new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<SlimeHandlerKnapsack>(),
                 condition: delegate
                 {
@@ -547,9 +549,10 @@ namespace AssortedCrazyThings
                 },
                 uiConf: delegate
                 {
-                    List<Texture2D> textures = new List<Texture2D>() { AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
-                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
-                                                               AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
+                    List<Texture2D> textures = new List<Texture2D>() {
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
                     List<string> tooltips = new List<string>
                     {
                         "Default"
@@ -563,9 +566,9 @@ namespace AssortedCrazyThings
                         + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease)
                         + "\nShoots spikes while fighting"
                     };
-                            List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
+                    List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
 
-                            List<bool> unlocked = new List<bool>()
+                    List<bool> unlocked = new List<bool>()
                     {
                         true,                // 0
                         true,                // 1
@@ -584,12 +587,13 @@ namespace AssortedCrazyThings
                     AssortedCrazyThings.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
                 },
                 triggerLeft: false
-            ));
+            )
+            };
 
             // after filling the list, set the trigger list
             for (int i = 0; i < CircleUIList.Count; i++)
             {
-                CircleUIConf.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
+                CircleUIHandler.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
             }
         }
 
@@ -653,7 +657,7 @@ namespace AssortedCrazyThings
         public static readonly PlayerLayer CrazyBundleOfAssortedBalloons = new PlayerLayer("AssortedCrazyThings", "CrazyBundleOfAssortedBalloons", PlayerLayer.BalloonAcc, delegate (PlayerDrawInfo drawInfo)
         {
             //Since it's supposed to replace the Autoload texture, the regular _Balloon is just blank
-            if (drawInfo.shadow != 0f)
+            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
             {
                 return;
             }
@@ -669,17 +673,17 @@ namespace AssortedCrazyThings
                 Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
 
                 int frameTimeY = DateTime.Now.Millisecond % 800 / 200;
-                Vector2 vector11 = Main.OffsetsPlayerOffhand[drawPlayer.bodyFrame.Y / 56];
+                Vector2 offsetHand = Main.OffsetsPlayerOffhand[drawPlayer.bodyFrame.Y / 56];
                 if (drawPlayer.direction != 1)
                 {
-                    vector11.X = drawPlayer.width - vector11.X;
+                    offsetHand.X = drawPlayer.width - offsetHand.X;
                 }
                 if (drawPlayer.gravDir != 1f)
                 {
-                    vector11.Y -= drawPlayer.height;
+                    offsetHand.Y -= drawPlayer.height;
                 }
-                float drawX = (int)drawInfo.position.X + vector11.X - Main.screenPosition.X;
-                float drawY = (int)drawInfo.position.Y + vector11.Y * drawPlayer.gravDir - Main.screenPosition.Y;
+                float drawX = (int)drawInfo.position.X + offsetHand.X - Main.screenPosition.X;
+                float drawY = (int)drawInfo.position.Y + offsetHand.Y * drawPlayer.gravDir - Main.screenPosition.Y;
 
                 Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 3); //works without it, but this makes it higher
 
