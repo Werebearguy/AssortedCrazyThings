@@ -30,10 +30,10 @@ namespace AssortedCrazyThings.UI
         //On leftclick
         public bool TriggerLeft { get; private set; }
 
-        //if it needs saving, this will be the tag name for the tagCompound, saved as a byte thats returned from OnUIStart
-        public string SavedName { get; private set; }
+        //if it needs saving (has to be added manually to related hooks for saving/loading)
+        public bool NeedsSaving { get; private set; }
 
-        public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, string savedName = "")
+        public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, bool needsSaving = false)
         {
             TriggerItem = triggerItem;
             Condition = condition;
@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.UI
             OnUIStart = onUIStart;
             OnUIEnd = onUIEnd;
             TriggerLeft = triggerLeft;
-            SavedName = savedName;
+            NeedsSaving = needsSaving;
         }
 
         public static CircleUIConf PetConf(string name, List<string> tooltips)

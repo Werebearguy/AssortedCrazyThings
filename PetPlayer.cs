@@ -298,32 +298,6 @@ namespace AssortedCrazyThings
             var petTypes = new List<byte>(ClonedTypes);
             tag.Add("petTypes", petTypes);
             return tag;
-            //return new TagCompound {
-            //    {"slots", (int)slots},
-            //    {"color", (int)color},
-            //    {"petAccessoryRework", (bool)petAccessoryRework},
-            //    {"petVanityRework", (bool)petVanityRework},
-            //    {"mechFrogCrown", (byte)mechFrogCrown},
-            //    {"petEyeType", (byte)petEyeType},
-            //    {"cursedSkullType", (byte)cursedSkullType},
-            //    {"youngWyvernType", (byte)youngWyvernType},
-            //    {"petFishronType", (byte)petFishronType},
-            //    {"petMoonType", (byte)petMoonType},
-            //    {"youngHarpyType", (byte)youngHarpyType},
-            //    {"abeeminationType", (byte)abeeminationType},
-            //    {"lilWrapsType", (byte)lilWrapsType},
-            //    {"vampireBatType", (byte)vampireBatType},
-            //    {"pigronataType", (byte)pigronataType},
-            //    {"queenLarvaType", (byte)queenLarvaType},
-            //    {"oceanSlimeType", (byte)oceanSlimeType},
-            //    {"miniAntlionType", (byte)miniAntlionType},
-            //    {"petGoldfishType", (byte)petGoldfishType},
-            //    {"skeletronHandType", (byte)skeletronHandType},
-            //    {"skeletronPrimeHandType", (byte)skeletronPrimeHandType},
-            //    {"petCultistType", (byte)petCultistType},
-            //    //ALTERNATE
-            //    //{"classNameType", (byte)classNameType},
-            //};
         }
 
         public override void Load(TagCompound tag)
@@ -332,28 +306,30 @@ namespace AssortedCrazyThings
             color = (uint)tag.GetInt("color");
             petAccessoryRework = tag.GetBool("petAccessoryRework");
             petVanityRework = tag.GetBool("petVanityRework");
-            if (!petVanityRework)
+            if (!petVanityRework) //transfer to new system
             {
-                mechFrogCrown = tag.GetByte("mechFrogCrown");
-                petEyeType = tag.GetByte("petEyeType");
-                cursedSkullType = tag.GetByte("cursedSkullType");
-                youngWyvernType = tag.GetByte("youngWyvernType");
-                petFishronType = tag.GetByte("petFishronType");
-                petMoonType = tag.GetByte("petMoonType");
-                youngHarpyType = tag.GetByte("youngHarpyType");
-                abeeminationType = tag.GetByte("abeeminationType");
-                lilWrapsType = tag.GetByte("lilWrapsType");
-                vampireBatType = tag.GetByte("vampireBatType");
-                pigronataType = tag.GetByte("pigronataType");
-                queenLarvaType = tag.GetByte("queenLarvaType");
-                oceanSlimeType = tag.GetByte("oceanSlimeType");
-                miniAntlionType = tag.GetByte("miniAntlionType");
-                petGoldfishType = tag.GetByte("petGoldfishType");
-                skeletronHandType = tag.GetByte("skeletronHandType");
-                skeletronPrimeHandType = tag.GetByte("skeletronPrimeHandType");
-                petCultistType = tag.GetByte("petCultistType");
-                //ALTERNATE
-                //classNameType = tag.GetByte("classNameType");
+                //DON'T TOUCH ANYTHING IN THIS SECTION
+                int index = -1;
+                ClonedTypes[++index] = mechFrogCrown = tag.GetByte("mechFrogCrown");
+                ClonedTypes[++index] = petEyeType = tag.GetByte("petEyeType");
+                ClonedTypes[++index] = cursedSkullType = tag.GetByte("cursedSkullType");
+                ClonedTypes[++index] = youngWyvernType = tag.GetByte("youngWyvernType");
+                ClonedTypes[++index] = petFishronType = tag.GetByte("petFishronType");
+                ClonedTypes[++index] = petMoonType = tag.GetByte("petMoonType");
+                ClonedTypes[++index] = youngHarpyType = tag.GetByte("youngHarpyType");
+                ClonedTypes[++index] = abeeminationType = tag.GetByte("abeeminationType");
+                ClonedTypes[++index] = lilWrapsType = tag.GetByte("lilWrapsType");
+                ClonedTypes[++index] = vampireBatType = tag.GetByte("vampireBatType");
+                ClonedTypes[++index] = pigronataType = tag.GetByte("pigronataType");
+                ClonedTypes[++index] = queenLarvaType = tag.GetByte("queenLarvaType");
+                ClonedTypes[++index] = oceanSlimeType = tag.GetByte("oceanSlimeType");
+                ClonedTypes[++index] = miniAntlionType = tag.GetByte("miniAntlionType");
+                ClonedTypes[++index] = petGoldfishType = tag.GetByte("petGoldfishType");
+                ClonedTypes[++index] = skeletronHandType = tag.GetByte("skeletronHandType");
+                ClonedTypes[++index] = skeletronPrimeHandType = tag.GetByte("skeletronPrimeHandType");
+                ClonedTypes[++index] = petCultistType = tag.GetByte("petCultistType");
+                //every other new type will be 0 (makes sense since this is when the player first updates to the new version)
+                //DON'T TOUCH ANYTHING IN THIS SECTION
             }
             else
             {
@@ -368,26 +344,6 @@ namespace AssortedCrazyThings
             clone.slots = slots;
             clone.color = color;
             Array.Copy(ClonedTypes, clone.ClonedTypes, ClonedTypes.Length);
-            //clone.mechFrogCrown = mechFrogCrown;
-            //clone.petEyeType = petEyeType;
-            //clone.cursedSkullType = cursedSkullType;
-            //clone.youngWyvernType = youngWyvernType;
-            //clone.petFishronType = petFishronType;
-            //clone.petMoonType = petMoonType;
-            //clone.youngHarpyType = youngHarpyType;
-            //clone.abeeminationType = abeeminationType;
-            //clone.lilWrapsType = lilWrapsType;
-            //clone.vampireBatType = vampireBatType;
-            //clone.pigronataType = pigronataType;
-            //clone.queenLarvaType = queenLarvaType;
-            //clone.oceanSlimeType = oceanSlimeType;
-            //clone.miniAntlionType = miniAntlionType;
-            //clone.petGoldfishType = petGoldfishType;
-            //clone.skeletronHandType = skeletronHandType;
-            //clone.skeletronPrimeHandType = skeletronPrimeHandType;
-            //clone.petCultistType = petCultistType;
-            //ALTERNATE
-            //clone.classNameType = classNameType;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -412,29 +368,6 @@ namespace AssortedCrazyThings
                 }
             }
 
-            //else if (clone.mechFrogCrown != mechFrogCrown) changes = PetPlayerChanges.mechFrogCrown;
-            //else if (clone.petEyeType != petEyeType) changes = PetPlayerChanges.petEyeType;
-            //else if (clone.cursedSkullType != cursedSkullType) changes = PetPlayerChanges.cursedSkullType;
-            //else if (clone.youngWyvernType != youngWyvernType) changes = PetPlayerChanges.youngWyvernType;
-            //else if (clone.petFishronType != petFishronType) changes = PetPlayerChanges.petFishronType;
-            //else if (clone.petMoonType != petMoonType) changes = PetPlayerChanges.petMoonType;
-            //else if (clone.youngHarpyType != youngHarpyType) changes = PetPlayerChanges.youngHarpyType;
-            //else if (clone.abeeminationType != abeeminationType) changes = PetPlayerChanges.abeeminationType;
-            //else if (clone.lilWrapsType != lilWrapsType) changes = PetPlayerChanges.lilWrapsType;
-            //else if (clone.vampireBatType != vampireBatType) changes = PetPlayerChanges.vampireBatType;
-            //else if (clone.pigronataType != pigronataType) changes = PetPlayerChanges.pigronataType;
-            //else if (clone.queenLarvaType != queenLarvaType) changes = PetPlayerChanges.queenLarvaType;
-            //else if (clone.oceanSlimeType != oceanSlimeType) changes = PetPlayerChanges.oceanSlimeType;
-            //else if (clone.miniAntlionType != miniAntlionType) changes = PetPlayerChanges.miniAntlionType;
-            //else if (clone.petGoldfishType != petGoldfishType) changes = PetPlayerChanges.petGoldfishType;
-            //else if (clone.skeletronHandType != skeletronHandType) changes = PetPlayerChanges.skeletronHandType;
-            //else if (clone.skeletronPrimeHandType != skeletronPrimeHandType) changes = PetPlayerChanges.skeletronPrimeHandType;
-            //else if (clone.petCultistType != petCultistType) changes = PetPlayerChanges.petCultistType;
-            //ALTERNATE
-            //else if (clone.classNameType != classNameType) changes = PetPlayerChanges.classNameType;
-
-            //if (changes != PetPlayerChanges.none) Main.NewText("clientchanges with " + changes.ToString());
-
             if (changes != PetPlayerChanges.none) SendClientChangesPacket(changes, index);
         }
 
@@ -453,57 +386,27 @@ namespace AssortedCrazyThings
         {
             packet.Write((uint)slots);
             packet.Write((uint)color);
-            packet.Write((byte)mechFrogCrown);
-            packet.Write((byte)petEyeType);
-            packet.Write((byte)cursedSkullType);
-            packet.Write((byte)youngWyvernType);
-            packet.Write((byte)petFishronType);
-            packet.Write((byte)petMoonType);
-            packet.Write((byte)youngHarpyType);
-            packet.Write((byte)abeeminationType);
-            packet.Write((byte)lilWrapsType);
-            packet.Write((byte)vampireBatType);
-            packet.Write((byte)pigronataType);
-            packet.Write((byte)queenLarvaType);
-            packet.Write((byte)oceanSlimeType);
-            packet.Write((byte)miniAntlionType);
-            packet.Write((byte)petGoldfishType);
-            packet.Write((byte)skeletronHandType);
-            packet.Write((byte)skeletronPrimeHandType);
-            packet.Write((byte)petCultistType);
-            //ALTERNATE
-            //packet.Write((byte)classNameType);
+
+            for (int i = 0; i < ClonedTypes.Length; i++)
+            {
+                packet.Write((byte)ClonedTypes[i]);
+            }
         }
 
         public void RecvSyncPlayerVanitySub(BinaryReader reader)
         {
             slots = reader.ReadUInt32();
             color = reader.ReadUInt32();
-            mechFrogCrown = reader.ReadByte();
-            petEyeType = reader.ReadByte();
-            cursedSkullType = reader.ReadByte();
-            youngWyvernType = reader.ReadByte();
-            petFishronType = reader.ReadByte();
-            petMoonType = reader.ReadByte();
-            youngHarpyType = reader.ReadByte();
-            abeeminationType = reader.ReadByte();
-            lilWrapsType = reader.ReadByte();
-            vampireBatType = reader.ReadByte();
-            pigronataType = reader.ReadByte();
-            queenLarvaType = reader.ReadByte();
-            oceanSlimeType = reader.ReadByte();
-            miniAntlionType = reader.ReadByte();
-            petGoldfishType = reader.ReadByte();
-            skeletronHandType = reader.ReadByte();
-            skeletronPrimeHandType = reader.ReadByte();
-            petCultistType = reader.ReadByte();
-            //ALTERNATE
-            //classNameType = reader.ReadByte();
+            for (int i = 0; i < ClonedTypes.Length; i++)
+            {
+                ClonedTypes[i] = reader.ReadByte();
+            }
+            GetFromClonedTypes("in mp");
         }
 
         public void RecvClientChangesPacketSub(BinaryReader reader, byte changes, int index)
         {
-            //AssUtils.Print("RecvClientChangesPacketSub " + changes + " from p " + player.whoAmI);
+            //AssUtils.Print("RecvClientChangesPacketSub " + changes + " index " + index + " from p " + player.whoAmI);
             switch (changes)
             {
                 case (byte)PetPlayerChanges.all:
@@ -516,78 +419,21 @@ namespace AssortedCrazyThings
                 case (byte)PetPlayerChanges.petTypes:
                     if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
                     break;
-                //case (byte)PetPlayerChanges.mechFrogCrown:
-                //    mechFrogCrown = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.petEyeType:
-                //    petEyeType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.cursedSkullType:
-                //    cursedSkullType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.youngWyvernType:
-                //    youngWyvernType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.petFishronType:
-                //    petFishronType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.petMoonType:
-                //    petMoonType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.youngHarpyType:
-                //    youngHarpyType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.abeeminationType:
-                //    abeeminationType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.lilWrapsType:
-                //    lilWrapsType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.vampireBatType:
-                //    vampireBatType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.pigronataType:
-                //    pigronataType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.queenLarvaType:
-                //    queenLarvaType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.oceanSlimeType:
-                //    oceanSlimeType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.miniAntlionType:
-                //    miniAntlionType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.petGoldfishType:
-                //    petGoldfishType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.skeletronHandType:
-                //    skeletronHandType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.skeletronPrimeHandType:
-                //    skeletronPrimeHandType = reader.ReadByte();
-                //    break;
-                //case (byte)PetPlayerChanges.petCultistType:
-                //    petCultistType = reader.ReadByte();
-                //    break;
-                //ALTERNATE
-                //case (byte)PetPlayerChanges.classNameType:
-                //    classNameType = reader.ReadByte();
-                //    break;
                 default: //shouldn't get there hopefully
                     ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes);
                     break;
             }
-            GetFromClonedTypes();
+            GetFromClonedTypes("in mp");
         }
 
         public void SendClientChangesPacketSub(byte changes, int index, int toClient = -1, int ignoreClient = -1)
         {
-            //AssUtils.Print("SendClientChangesPacketSub " + changes + " from p " + player.whoAmI + ((Main.netMode == NetmodeID.MultiplayerClient)? " client":" server"));
+            //AssUtils.Print("SendClientChangesPacketSub " + changes + " index " + index + " from p " + player.whoAmI + ((Main.netMode == NetmodeID.MultiplayerClient)? " client":" server"));
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.ClientChangesVanity);
             packet.Write((byte)player.whoAmI);
             packet.Write((byte)changes);
+            packet.Write((byte)index);
 
             switch (changes)
             {
@@ -599,67 +445,8 @@ namespace AssortedCrazyThings
                     packet.Write((uint)color);
                     break;
                 case (byte)PetPlayerChanges.petTypes:
-                    packet.Write((byte)index);
                     packet.Write((byte)ClonedTypes[index]);
                     break;
-                //case (byte)PetPlayerChanges.mechFrogCrown:
-                //    packet.Write((byte)mechFrogCrown);
-                //    break;
-                //case (byte)PetPlayerChanges.petEyeType:
-                //    packet.Write((byte)petEyeType);
-                //    break;
-                //case (byte)PetPlayerChanges.cursedSkullType:
-                //    packet.Write((byte)cursedSkullType);
-                //    break;
-                //case (byte)PetPlayerChanges.youngWyvernType:
-                //    packet.Write((byte)youngWyvernType);
-                //    break;
-                //case (byte)PetPlayerChanges.petFishronType:
-                //    packet.Write((byte)petFishronType);
-                //    break;
-                //case (byte)PetPlayerChanges.petMoonType:
-                //    packet.Write((byte)petMoonType);
-                //    break;
-                //case (byte)PetPlayerChanges.youngHarpyType:
-                //    packet.Write((byte)youngHarpyType);
-                //    break;
-                //case (byte)PetPlayerChanges.abeeminationType:
-                //    packet.Write((byte)abeeminationType);
-                //    break;
-                //case (byte)PetPlayerChanges.lilWrapsType:
-                //    packet.Write((byte)lilWrapsType);
-                //    break;
-                //case (byte)PetPlayerChanges.vampireBatType:
-                //    packet.Write((byte)vampireBatType);
-                //    break;
-                //case (byte)PetPlayerChanges.pigronataType:
-                //    packet.Write((byte)pigronataType);
-                //    break;
-                //case (byte)PetPlayerChanges.queenLarvaType:
-                //    packet.Write((byte)queenLarvaType);
-                //    break;
-                //case (byte)PetPlayerChanges.oceanSlimeType:
-                //    packet.Write((byte)oceanSlimeType);
-                //    break;
-                //case (byte)PetPlayerChanges.miniAntlionType:
-                //    packet.Write((byte)miniAntlionType);
-                //    break;
-                //case (byte)PetPlayerChanges.petGoldfishType:
-                //    packet.Write((byte)petGoldfishType);
-                //    break;
-                //case (byte)PetPlayerChanges.skeletronHandType:
-                //    packet.Write((byte)skeletronHandType);
-                //    break;
-                //case (byte)PetPlayerChanges.skeletronPrimeHandType:
-                //    packet.Write((byte)skeletronPrimeHandType);
-                //    break;
-                //case (byte)PetPlayerChanges.petCultistType:
-                //    packet.Write((byte)petCultistType);
-                //    break;
-                //ALTERNATE
-                //case (byte)PetPlayerChanges.classNameType:
-                //    packet.Write((byte)classNameType);
-                //    break;
                 default: //shouldn't get there hopefully
                     ErrorLogger.Log("Sending unspecified PetPlayerChanges " + changes);
                     break;
@@ -691,18 +478,15 @@ namespace AssortedCrazyThings
             }
             else
             {
-                GetFromClonedTypes();
+                //AssUtils.Print("onenterworld p " + player.whoAmI);
+                GetFromClonedTypes("in sp");
             }
             SendClientChangesPacket(PetPlayerChanges.all);
         }
 
         public override void PreUpdate()
         {
-            SetClonedTypes();
-            //if (Main.time % 60 == 34)
-            //{
-            //    GetFromClonedTypes();
-            //}
+            if (Main.myPlayer == player.whoAmI) SetClonedTypes();
         }
 
         #region Slime Pet Vanity
@@ -810,7 +594,7 @@ namespace AssortedCrazyThings
                 {
                     mechFrogCrown = (byte)CircleUI.returned;
                 },
-                savedName: "mechFrogCrown"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -835,7 +619,7 @@ namespace AssortedCrazyThings
                 {
                     petEyeType = (byte)CircleUI.returned;
                 },
-                savedName: "petEyeType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -857,7 +641,7 @@ namespace AssortedCrazyThings
                 {
                     cursedSkullType = (byte)CircleUI.returned;
                 },
-                savedName: "cursedSkullType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -879,7 +663,7 @@ namespace AssortedCrazyThings
                 {
                     youngWyvernType = (byte)CircleUI.returned;
                 },
-                savedName: "youngWyvernType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -901,7 +685,7 @@ namespace AssortedCrazyThings
                 {
                     petFishronType = (byte)CircleUI.returned;
                 },
-                savedName: "petFishronType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -924,7 +708,7 @@ namespace AssortedCrazyThings
                     petMoonType = (byte)CircleUI.returned;
                 },
                 triggerLeft: false,
-                savedName: "petMoonType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -946,7 +730,7 @@ namespace AssortedCrazyThings
                 {
                     youngHarpyType = (byte)CircleUI.returned;
                 },
-                savedName: "youngHarpyType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -968,7 +752,7 @@ namespace AssortedCrazyThings
                 {
                     abeeminationType = (byte)CircleUI.returned;
                 },
-                savedName: "abeeminationType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -990,7 +774,7 @@ namespace AssortedCrazyThings
                 {
                     lilWrapsType = (byte)CircleUI.returned;
                 },
-                savedName: "lilWrapsType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1012,7 +796,7 @@ namespace AssortedCrazyThings
                 {
                     vampireBatType = (byte)CircleUI.returned;
                 },
-                savedName: "vampireBatType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1034,7 +818,7 @@ namespace AssortedCrazyThings
                 {
                     pigronataType = (byte)CircleUI.returned;
                 },
-                savedName: "pigronataType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1056,7 +840,7 @@ namespace AssortedCrazyThings
                 {
                     queenLarvaType = (byte)CircleUI.returned;
                 },
-                savedName: "queenLarvaType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1078,7 +862,7 @@ namespace AssortedCrazyThings
                 {
                     oceanSlimeType = (byte)CircleUI.returned;
                 },
-                savedName: "oceanSlimeType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1100,7 +884,7 @@ namespace AssortedCrazyThings
                 {
                     miniAntlionType = (byte)CircleUI.returned;
                 },
-                savedName: "miniAntlionType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1122,7 +906,7 @@ namespace AssortedCrazyThings
                 {
                     petGoldfishType = (byte)CircleUI.returned;
                 },
-                savedName: "petGoldfishType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1144,7 +928,7 @@ namespace AssortedCrazyThings
                 {
                     skeletronHandType = (byte)CircleUI.returned;
                 },
-                savedName: "skeletronHandType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1166,7 +950,7 @@ namespace AssortedCrazyThings
                 {
                     skeletronPrimeHandType = (byte)CircleUI.returned;
                 },
-                savedName: "skeletronPrimeHandType"
+                needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1189,7 +973,7 @@ namespace AssortedCrazyThings
                     petCultistType = (byte)CircleUI.returned;
                 },
                 triggerLeft: false,
-                savedName: "petCultistType"
+                needsSaving: true
             ),
             //ALTERNATE
             //    new CircleUIHandler(
@@ -1212,8 +996,9 @@ namespace AssortedCrazyThings
             //    {
             //        classNameType = (byte)CircleUI.returned;
             //    },
-            //    savedName: "classNameType"
-            //)
+            //    triggerLeft: true
+            //    needsSaving: true
+            //),
             };
 
             // after filling the list, set the trigger list
@@ -1226,15 +1011,16 @@ namespace AssortedCrazyThings
             int length = 0;
             for (int i = 0; i < CircleUIList.Count; i++)
             {
-                if (CircleUIList[i].SavedName != "") length++;
+                if (CircleUIList[i].NeedsSaving) length++;
             }
 
             ClonedTypes = new byte[length];
         }
 
-        //called whenever something is received (MP only, or in Singleplayer in OnEnterWorld)
-        public void GetFromClonedTypes()
+        //called whenever something is received (MP only, or in Singleplayer/Local client in OnEnterWorld)
+        public void GetFromClonedTypes(string mp = "")
         {
+            //AssUtils.Print("set getfromclonedtypes p " + player.whoAmI + " " + mp);
             int index = 0;
             mechFrogCrown = ClonedTypes[index++];
             petEyeType = ClonedTypes[index++];
@@ -1254,6 +1040,8 @@ namespace AssortedCrazyThings
             skeletronHandType = ClonedTypes[index++];
             skeletronPrimeHandType = ClonedTypes[index++];
             petCultistType = ClonedTypes[index++];
+            //ALTERNATE
+            //classNameType = ClonedTypes[index++];
         }
 
         //called in PreUpdate (which runs before OnEnterWorld, hence the check)
@@ -1280,6 +1068,8 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = skeletronHandType;
                 ClonedTypes[++index] = skeletronPrimeHandType;
                 ClonedTypes[++index] = petCultistType;
+                //ALTERNATE
+                //ClonedTypes[++index] = classNameType;
             }
         }
 

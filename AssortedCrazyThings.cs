@@ -750,19 +750,6 @@ namespace AssortedCrazyThings
         ResetEmpoweringTimerpvp
     }
 
-    public enum GitgudType : byte
-    {
-        None,
-        KingSlime,
-        EyeOfCthulhu,
-        BrainOfCthulhu,
-        EaterOfWorlds,
-        QueenBee,
-        Skeletron,
-        WallOfFlesh,
-        Plantera,
-    }
-
     public enum PetPlayerChanges : byte
     {
         //easier to copypaste when it's not capitalized
@@ -770,25 +757,5 @@ namespace AssortedCrazyThings
         all,
         slots,
         petTypes,
-        mechFrogCrown,
-        petEyeType,
-        cursedSkullType,
-        youngWyvernType,
-        petFishronType,
-        petMoonType,
-        youngHarpyType,
-        abeeminationType,
-        lilWrapsType,
-        vampireBatType,
-        pigronataType,
-        queenLarvaType,
-        oceanSlimeType,
-        miniAntlionType,
-        petGoldfishType,
-        skeletronHandType,
-        skeletronPrimeHandType,
-        petCultistType,
-        //ALTERNATE
-        //classNameType,
     }
 }
