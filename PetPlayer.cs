@@ -74,6 +74,9 @@ namespace AssortedCrazyThings
         //pet cultist texture
         public byte petCultistType = 0;
 
+        //pet cultist texture
+        public byte animatedTomeType = 0;
+
         //ALTERNATE
         ////name pet texture
         //public byte classNameType = 0;
@@ -163,6 +166,7 @@ namespace AssortedCrazyThings
         public bool PetPlantera = false;
         public bool PetEaterofWorlds = false;
         public bool PetDestroyer = false;
+        public bool AnimatedTome = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -253,6 +257,7 @@ namespace AssortedCrazyThings
             PetPlantera = false;
             PetEaterofWorlds = false;
             PetDestroyer = false;
+            AnimatedTome = false;
             //ALTERNATE
             //ClassName = false;
         }
@@ -335,6 +340,7 @@ namespace AssortedCrazyThings
             {
                 var petTypeList = tag.GetList<byte>("petTypes");
                 ClonedTypes = new List<byte>(petTypeList).ToArray();
+                Array.Resize(ref ClonedTypes, ClonedTypesLength);
             }
         }
 
@@ -559,6 +565,7 @@ namespace AssortedCrazyThings
 
         public List<CircleUIHandler> CircleUIList;
         public byte[] ClonedTypes;
+        private byte ClonedTypesLength;
 
         public override void Initialize()
         {
@@ -975,6 +982,28 @@ namespace AssortedCrazyThings
                 triggerLeft: false,
                 needsSaving: true
             ),
+                new CircleUIHandler(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return AnimatedTome;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow" };
+
+                    return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return animatedTomeType;
+                },
+                onUIEnd: delegate
+                {
+                    animatedTomeType = (byte)CircleUI.returned;
+                },
+                needsSaving: true
+            ),
             //ALTERNATE
             //    new CircleUIHandler(
             //    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1014,7 +1043,8 @@ namespace AssortedCrazyThings
                 if (CircleUIList[i].NeedsSaving) length++;
             }
 
-            ClonedTypes = new byte[length];
+            ClonedTypesLength = (byte)length;
+            ClonedTypes = new byte[ClonedTypesLength];
         }
 
         //called whenever something is received (MP only, or in Singleplayer/Local client in OnEnterWorld)
@@ -1040,6 +1070,7 @@ namespace AssortedCrazyThings
             skeletronHandType = ClonedTypes[index++];
             skeletronPrimeHandType = ClonedTypes[index++];
             petCultistType = ClonedTypes[index++];
+            animatedTomeType = ClonedTypes[index++];
             //ALTERNATE
             //classNameType = ClonedTypes[index++];
         }
@@ -1068,6 +1099,7 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = skeletronHandType;
                 ClonedTypes[++index] = skeletronPrimeHandType;
                 ClonedTypes[++index] = petCultistType;
+                ClonedTypes[++index] = animatedTomeType;
                 //ALTERNATE
                 //ClonedTypes[++index] = classNameType;
             }

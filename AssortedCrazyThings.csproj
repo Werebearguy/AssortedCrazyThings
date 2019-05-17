@@ -63,6 +63,7 @@
     <Compile Include="Buffs\DrumstickElementalBuff.cs" />
     <Compile Include="Buffs\EnhancedHunterBuff.cs" />
     <Compile Include="Buffs\MiniAntlionBuff.cs" />
+    <Compile Include="Buffs\AnimatedTomeBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
     <Compile Include="Buffs\ChunkySlimeBuff.cs" />
     <Compile Include="Buffs\FairySlimeBuff.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Items\Pets\CuteSlimeDungeonNew.cs" />
     <Compile Include="Items\Pets\LilWrapsItem.cs" />
     <Compile Include="Items\Pets\WallFragmentItem.cs" />
+    <Compile Include="Items\Pets\AnimatedTomeItem.cs" />
     <Compile Include="Items\VanitySelector.cs" />
     <Compile Include="Items\DroneParts.cs" />
     <Compile Include="Items\Fun\GuideVoodoorang.cs" />
@@ -318,6 +320,7 @@
     <Compile Include="Projectiles\Pets\CuteSlimeSandNewProj.cs" />
     <Compile Include="Projectiles\Pets\DrumstickElementalProj.cs" />
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
+    <Compile Include="Projectiles\Pets\AnimatedTomeProj.cs" />
     <Compile Include="Projectiles\Weapons\PetGolemHeadFireball.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />

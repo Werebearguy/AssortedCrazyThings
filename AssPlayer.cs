@@ -21,10 +21,7 @@ namespace AssortedCrazyThings
         public bool everburningCandleBuff = false;
         public bool everburningCursedCandleBuff = false;
         public bool everfrozenCandleBuff = false;
-        //public bool variable_debuff_04;
-        //public bool variable_debuff_05;
         public bool everburningShadowflameCandleBuff = false;
-        //public bool variable_debuff_07;
 
         public bool teleportHome = false;
         public bool canTeleportHome = false;
@@ -91,37 +88,13 @@ namespace AssortedCrazyThings
             soulSaviorArmor = false;
         }
 
-        public bool RightClickPressed
-        {
-            get
-            {
-                return rightClickPrev && !rightClickPrev2;
-            }
-        }
+        public bool RightClickPressed { get { return rightClickPrev && !rightClickPrev2; } }
 
-        public bool RightClickReleased
-        {
-            get
-            {
-                return !rightClickPrev && rightClickPrev2;
-            }
-        }
+        public bool RightClickReleased { get { return !rightClickPrev && rightClickPrev2; } }
 
-        public bool LeftClickPressed
-        {
-            get
-            {
-                return leftClickPrev && !leftClickPrev2;
-            }
-        }
+        public bool LeftClickPressed { get { return leftClickPrev && !leftClickPrev2; } }
 
-        public bool LeftClickReleased
-        {
-            get
-            {
-                return !leftClickPrev && leftClickPrev2;
-            }
-        }
+        public bool LeftClickReleased { get { return !leftClickPrev && leftClickPrev2; } }
 
         public override TagCompound Save()
         {
@@ -136,23 +109,6 @@ namespace AssortedCrazyThings
         {
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
-        }
-
-        public override void OnEnterWorld(Player player)
-        {
-            //if (slotsPlayer != 0) //transfer legacy variable over to new one
-            //{
-            //    PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
-            //    mPlayer.slots = slotsPlayer;
-            //    slotsPlayer = 0;
-            //}
-
-            //if (planteraGitGudCounter != 0) //transfer legacy variable over to new one
-            //{
-            //    GitGudPlayer gPlayer = player.GetModPlayer<GitGudPlayer>(mod);
-            //    gPlayer.planteraGitgudCounter = (byte)planteraGitGudCounter;
-            //    planteraGitGudCounter = 0;
-            //}
         }
 
         public void ResetEmpoweringTimer(bool fromServer = false)
@@ -474,17 +430,7 @@ namespace AssortedCrazyThings
                 if (everfrozenCandleBuff) ((NPC)victim).AddBuff(BuffID.Frostburn, 120);
                 if (everburningShadowflameCandleBuff) ((NPC)victim).AddBuff(BuffID.ShadowFlame, 60);
             }
-            else if (victim is Player)
-            {
-                //return;
-                //if (everburningCandleBuff) ((Player)victim).AddBuff(BuffID.OnFire, 120);
-                //if (everburningCursedCandleBuff) ((Player)victim).AddBuff(BuffID.CursedInferno, 120);
-                //if (everfrozenCandleBuff) ((Player)victim).AddBuff(BuffID.Frostburn, 120);
-                ////if (variable_debuff_04) ((NPC)victim).AddBuff(BuffID.Ichor, 120);
-                ////if (variable_debuff_05) ((NPC)victim).AddBuff(BuffID.Venom, 120);
-                //if (everburningShadowflameCandleBuff) ((Player)victim).AddBuff(BuffID.ShadowFlame, 60);
-                ////if (variable_debuff_07) ((NPC)victim).AddBuff(BuffID.Bleeding, 120);
-            }
+            //else if (victim is Player)
         }
 
         #region CircleUI

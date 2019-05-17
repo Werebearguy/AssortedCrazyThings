@@ -31,6 +31,8 @@ namespace AssortedCrazyThings.NPCs
             npc.noGravity = true;
             aiType = NPCID.GiantBat;
             animationType = NPCID.GiantBat;
+            Main.npcCatchable[mod.NPCType("AnimatedTome")] = true;
+            npc.catchItem = (short)mod.ItemType("AnimatedTomeItem");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -59,7 +61,7 @@ namespace AssortedCrazyThings.NPCs
 
             if (Main.rand.NextFloat() < 0.1f)
             {
-                Dust dust = Main.dust[Dust.NewDust(npc.Center, 30, 30, 15, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
+                Dust.NewDust(npc.position, npc.width, npc.height, 15, 0f, 0f, 0, new Color(255, 255, 255), 1f);
             }
         }
     }
