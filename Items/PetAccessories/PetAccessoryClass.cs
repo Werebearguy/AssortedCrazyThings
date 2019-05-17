@@ -9,6 +9,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
 {
+    //Add new classes here in alphabetic order
+
     public class PetAccessoryBowtie : PetAccessoryItem
     {
         public override void SetStaticDefaults()
@@ -172,6 +174,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    /// <summary>
+    /// The type of pet vanity it is. Used for rendering, has separate lists
+    /// </summary>
     public enum SlotType : byte
     {
         None = 0, //reserved
@@ -187,6 +192,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
         //also they will be rendered in this order aswell (means that Carried can overlap with Body)
     }
 
+    /// <summary>
+    /// Contains data about all pet vanity accessories
+    /// </summary>
     public class PetAccessory
     {
         public static List<PetAccessory> petAccessoryListGlobal;
@@ -200,6 +208,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public static List<int> petAccessoryIdsA;
         public static List<int> petAccessoryTypesGlobal;
 
+
+        /// <summary>
+        /// Unique ID for this accessory (unique in the scope of a single SlotType)
+        /// </summary>
         public byte ID { private set; get; }
         public string Name { private set; get; }
         public int Type { private set; get; }
@@ -251,6 +263,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
         }
 
+        /// <summary>
+        /// Shorter overload of AddPetVariation that takes a list
+        /// </summary>
         public PetAccessory AddPetVariation(string[] petNames, sbyte number)
         {
             for (int i = 0; i < petNames.Length; i++)
@@ -260,6 +275,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             return this;
         }
 
+        /// <summary>
+        /// Adds a color variation for the current pet vanity accessory
+        /// </summary>
         public PetAccessory AddPetVariation(string petName, sbyte number)
         {
             //(byte)-1, 0 (default), 1..127 alt texture number
@@ -269,6 +287,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             return this;
         }
 
+        /// <summary>
+        /// Called in Mod.Load
+        /// </summary>
         public static void Load()
         {
             petAccessoryListGlobal = new List<PetAccessory>();
@@ -352,6 +373,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             CreateMaps();
         }
 
+        /// <summary>
+        /// Called in Mod.Unload
+        /// </summary>
         public static void Unload()
         {
             petAccessoryListGlobal = null;
@@ -366,6 +390,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             petAccessoryTypesGlobal = null;
         }
 
+        /// <summary>
+        /// Called in Load, creates a map of pet vanity accessory -> ID for each SlotType
+        /// </summary>
         public static void CreateMaps()
         {
             petAccessoryIdsB = new List<int>(petAccessoryListB.Count);
@@ -393,6 +420,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
+        /// <summary>
+        /// Returns the specific list that only contains pet vanity accessories of the specified SlotType
+        /// </summary>
         private static List<PetAccessory> GetAccessoryListFromType(SlotType slotType)
         {
             switch (slotType)
@@ -405,11 +435,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     return petAccessoryListC;
                 case SlotType.Accessory:
                     return petAccessoryListA;
+                case SlotType.None:
                 default:
+                    //unused
                     return petAccessoryListGlobal;
             }
         }
 
+        /// <summary>
+        /// Returns the specific list that only contains IDs of pet vanity accessories of the specified SlotType
+        /// </summary>
         private static List<int> GetIdListFromType(SlotType slotType)
         {
             switch (slotType)
@@ -422,11 +457,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     return petAccessoryIdsC;
                 case SlotType.Accessory:
                     return petAccessoryIdsA;
+                case SlotType.None:
                 default:
                     throw new Exception("invalid slottype");
             }
         }
 
+        /// <summary>
+        /// Add a new pet vanity accessory to the list
+        /// </summary>
         public static void Add(SlotType slotType, PetAccessory aPetAccessory)
         {
             for (int i = 0; i < petAccessoryListGlobal.Count; i++)
@@ -440,8 +479,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             if (slotType == SlotType.None) throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
 
             //everything fine
-            List<PetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
-            tempAccessoryList.Add(aPetAccessory);
+            GetAccessoryListFromType(slotType).Add(aPetAccessory);
 
             petAccessoryListGlobal.Add(aPetAccessory);
         }
@@ -449,14 +487,19 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public static PetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
         {
             return GetAccessoryListFromType(slotType)[GetIdListFromType(slotType).IndexOf(id)];
-            //return petAccessoryListGlobal[petAccessoryIdsB.IndexOf(id)];
         }
 
-        public static PetAccessory GetAccessoryFromType(int type) //since types are unique, just look up in the global list
+        /// <summary>
+        /// Returns the pet vanity accessory corresponding to the item type
+        /// </summary>
+        public static PetAccessory GetAccessoryFromType(int type) //since item types are unique, just look up in the global list
         {
             return petAccessoryListGlobal[petAccessoryTypesGlobal.IndexOf(type)];
         }
 
+        /// <summary>
+        /// Checks if the item is a registered PetVanity, and if it has multiple variants when attempting to open it as a UI
+        /// </summary>
         public static bool IsItemAPetVanity(int type, bool forUI = false)
         {
             for (int i = 0; i < petAccessoryListGlobal.Count; i++)
@@ -477,10 +520,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 + "; Pre: " + (PreDraw ? "y" : "n")
                 + "; Alp: " + Alpha
                 + "; NoH: " + (UseNoHair ? "y" : "n")
-                + " ; Alt: " + (HasAlts? "y":"n");
+                + "; Alt: " + (HasAlts? "y":"n");
         }
     }
 
+    /// <summary>
+    /// Class that all vanity accessories inherit from. Provides the functionality.
+    /// Has a default recipe which can be changed
+    /// </summary>
     public abstract class PetAccessoryItem : ModItem
     {
         public override void SetDefaults()
@@ -498,32 +545,29 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.value = Item.sellPrice(silver:30);
         }
 
-        private string Enum2string(int e)
+        private string Enum2string(SlotType e)
         {
-            if (e == (byte)SlotType.Hat)
+            switch (e)
             {
-                return "Worn on the head";
+                case SlotType.Body:
+                    return "Worn on the body";
+                case SlotType.Hat:
+                    return "Worn on the head";
+                case SlotType.Carried:
+                    return "Carried";
+                case SlotType.Accessory:
+                    return "Worn as an accessory";
+                case SlotType.None:
+                default:
+                    return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + e + ")";
             }
-            if (e == (byte)SlotType.Body)
-            {
-                return "Worn on the body";
-            }
-            if (e == (byte)SlotType.Carried)
-            {
-                return "Carried";
-            }
-            if (e == (byte)SlotType.Accessory)
-            {
-                return "Worn as an accessory";
-            }
-            return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + e + ")";
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             if (PetAccessory.IsItemAPetVanity(item.type))
             {
-                tooltips.Add(new TooltipLine(mod, "slot", Enum2string((byte)PetAccessory.GetAccessoryFromType(item.type).Slot)));
+                tooltips.Add(new TooltipLine(mod, "slot", Enum2string(PetAccessory.GetAccessoryFromType(item.type).Slot)));
 
                 PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
 
@@ -624,7 +668,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
                 {
-                    if (pPlayer.ThreeTimesUseTime(Main.time)) //true after three right clicks in 60 ticks
+                    if (pPlayer.ThreeTimesUseTime()) //true after three right clicks in 60 ticks
                     {
                         shouldReset = true;
                     }

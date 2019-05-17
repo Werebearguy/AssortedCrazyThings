@@ -75,7 +75,7 @@ namespace AssortedCrazyThings.UI
 
                 Rectangle bgRect = new Rectangle((int)(leftCorner.X + x), (int)(leftCorner.Y + y), mainDiameter, mainDiameter);
                 //Check if mouse is within the circle checked
-                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, petAccessory.AltTextures.Count, done);
+                bool isMouseWithin = CircleUI.CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, petAccessory.AltTextures.Count, done);
 
                 //Actually draw the bg circle
                 Color drawColor = Color.White;
@@ -118,7 +118,7 @@ namespace AssortedCrazyThings.UI
             //Draw held item bg circle
             Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
 
-            bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
+            bool middle = CircleUI.CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
 
             spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
 
@@ -154,7 +154,7 @@ namespace AssortedCrazyThings.UI
             //extra loop so tooltips are always drawn after the circles
             for (done = 0; done < petAccessory.AltTextures.Count; done++)
             {
-                bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, petAccessory.AltTextures.Count, done);
+                bool isMouseWithin = CircleUI.CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, petAccessory.AltTextures.Count, done);
                 string tooltip = petAccessory.AltTextureSuffixes[done];
 
                 if (isMouseWithin)
@@ -165,57 +165,6 @@ namespace AssortedCrazyThings.UI
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
-        }
-
-        internal bool CheckMouseWithinCircle(Vector2 mousePos, int radius, Vector2 center)
-        {
-            return ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) <= radius * radius;
-        }
-
-        internal bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int innerRadius, int pieceCount, int elementNumber)
-        {
-            //Check if mouse cursor is outside the inner circle
-            bool outsideInner = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) > innerRadius * innerRadius;
-
-            double step = 360 / pieceCount;
-            //finalOffset *= 180 / Math.PI;
-            double finalOffset = -step / 2;
-
-            double beginAngle = (finalOffset + step * elementNumber) % 360;
-            double endAngle = (beginAngle + step) % 360;
-            if (beginAngle < 0) beginAngle = 360 + beginAngle;
-
-            //Calculate x,y coords on outer circle
-            double calculatedAngle = Math.Atan2(mousePos.X - center.X, - (mousePos.Y - center.Y));
-            calculatedAngle = calculatedAngle * 180 / Math.PI;
-
-            if (calculatedAngle < 0)
-            {
-                calculatedAngle = 360 + calculatedAngle;
-            }
-
-            bool insideSegment = false;
-            //(calculatedAngle <= endAngle && calculatedAngle >= beginAngle);
-            if (beginAngle < endAngle)
-            {
-                if (beginAngle < calculatedAngle && calculatedAngle < endAngle)
-                {
-                    insideSegment = true;
-                }
-            }
-            else
-            {
-                if (calculatedAngle > beginAngle && calculatedAngle > endAngle)
-                {
-                    insideSegment = true;
-                }
-                if (calculatedAngle < beginAngle && calculatedAngle < endAngle)
-                {
-                    insideSegment = true;
-                }
-            }
-
-            return outsideInner && insideSegment;
         }
     }
 }

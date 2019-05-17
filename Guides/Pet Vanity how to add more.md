@@ -4,7 +4,7 @@ Everything is done in the Items/PetAccessories/PetAccessoryClass.cs file
 
 (1) Add Item
 
-* add a new class under `NEW CLASSES GO HERE vvvvvvvvvvvvvvvvvvv`
+* add a new class under `//Add new classes here in alphabetic order`
 * suggestion for names : prefixed with "Cute ", so its easy to find in recipe browser 
 * template: (replace `Thing` with whatever the item is)
 

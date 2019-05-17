@@ -36,9 +36,6 @@ namespace AssortedCrazyThings
         public short getDefenseDuration = 0;
         public short getDefenseTimer = 0; //gets saved when you relog so you can't cheese it
 
-        //slime accessory stuff
-        public uint slotsPlayer = 0;
-
         //soul minion stuff
         public bool soulMinion = false;
         public bool tempSoulMinion = false;
@@ -134,11 +131,17 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Shorter overload, spawns a Dungeon Soul minion 
+        /// </summary>
         public int SpawnSoul(CompanionDungeonSoulMinionBase.SoulStats stats, bool temp = false)
         {
             return SpawnSoul(stats.Type, stats.Damage, stats.Knockback, temp);
         }
 
+        /// <summary>
+        /// Spawns a dungeon soul minion
+        /// </summary>
         public int SpawnSoul(int type, int damage, float knockback, bool temp = false)
         {
             int index = 0;
@@ -162,6 +165,9 @@ namespace AssortedCrazyThings
             return index;
         }
 
+        /// <summary>
+        /// Spawns the temporary soul when wearing the accessory that allows it
+        /// </summary>
         private void SpawnSoulTemp()
         {
             if (tempSoulMinion && player.whoAmI == Main.myPlayer)
@@ -375,6 +381,9 @@ namespace AssortedCrazyThings
             return true;
         }
 
+        /// <summary>
+        /// updates the status of right click (one tick delay, used for UI)
+        /// </summary>
         private void RightClickStatus()
         {
             if (Main.mouseRight && !rightClickPrev)
@@ -398,6 +407,9 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// updates the status of left click (one tick delay, used for UI)
+        /// </summary>
         private void LeftClickStatus()
         {
             if (Main.mouseLeft && !leftClickPrev)
@@ -435,6 +447,9 @@ namespace AssortedCrazyThings
 
         #region CircleUI
 
+        /// <summary>
+        /// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
+        /// </summary>
         public List<CircleUIHandler> CircleUIList;
 
         public override void Initialize()

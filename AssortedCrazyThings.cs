@@ -293,6 +293,10 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Creates golden dust particles at the projectiles location with that type and LocalPlayer as owner. (Used for pets)
+        /// </summary>
+        /// <param name="projType"></param>
         private void PoofVisual(int projType)
         {
             int projIndex = -1;
@@ -321,11 +325,19 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// CombatText replacement, used on LocalPlayer
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="color"></param>
         public static void UIText(string str, Color color)
         {
             CombatText.NewText(Main.LocalPlayer.getRect(), color, str);
         }
 
+        /// <summary>
+        /// Called when CircleUI starts
+        /// </summary>
         private void CircleUIStart(bool triggerLeft = true)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
@@ -373,12 +385,14 @@ namespace AssortedCrazyThings
             //Spawn UI
             CircleUI.visible = true;
             CircleUI.spawnPosition = Main.MouseScreen;
-            CircleUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
             CircleUI.heldItemType = triggerType;
             CircleUI.openedWithLeft = triggerLeft;
             CircleUI.fadeIn = 0;
         }
 
+        /// <summary>
+        /// Called when CircleUI ends
+        /// </summary>
         private void CircleUIEnd(bool triggerLeft = true)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
@@ -416,6 +430,9 @@ namespace AssortedCrazyThings
             CircleUI.visible = false;
         }
 
+        /// <summary>
+        /// Called in UpdateUI
+        /// </summary>
         private void UpdateCircleUI()
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
@@ -550,6 +567,10 @@ namespace AssortedCrazyThings
             UpdatePetVanityUI();
         }
 
+        /// <summary>
+        /// Checks if LocalPlayer can open a UI
+        /// </summary>
+        /// <returns></returns>
         private bool AllowedToOpenUI()
         {
             return Main.hasFocus &&
@@ -727,7 +748,10 @@ namespace AssortedCrazyThings
         }
 
         //Credit to jopojelly
-        //makes alpha on .png textures actually properly rendered
+        /// <summary>
+        /// makes alpha on .png textures actually properly rendered
+        /// </summary>
+        /// <param name="texture"></param>
         public static void PremultiplyTexture(Texture2D texture)
         {
             Color[] buffer = new Color[texture.Width * texture.Height];
@@ -752,10 +776,9 @@ namespace AssortedCrazyThings
 
     public enum PetPlayerChanges : byte
     {
-        //easier to copypaste when it's not capitalized
-        none,
-        all,
-        slots,
-        petTypes,
+        None,
+        All,
+        Slots,
+        PetTypes,
     }
 }

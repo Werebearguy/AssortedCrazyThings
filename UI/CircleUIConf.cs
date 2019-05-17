@@ -6,31 +6,59 @@ using Terraria;
 
 namespace AssortedCrazyThings.UI
 {
+    /// <summary>
+    /// Contains Information about the data and the actions necessary to open/close/act upon the data in the Circle UI
+    /// 
+    /// </summary>
+    /// <seealso cref="CircleUI"/>
     public class CircleUIHandler
     {
+        /// <summary>
+        /// List that contains the trigger items (when using right click) from all CircleUIHandlers combined
+        /// (makes the check easier on the CPU each tick since most Handlers share the trigger item)
+        /// </summary>
         public static List<int> TriggerListRight = new List<int>();
+        /// <summary>
+        /// List that contains the trigger items (when using left click) from all CircleUIHandlers combined
+        /// (makes the check easier on the CPU each tick since most Handlers share the trigger item)
+        /// </summary>
         public static List<int> TriggerListLeft = new List<int>();
 
-        //Item it is used with
+        /// <summary>
+        /// Item it is used with
+        /// </summary>
         public int TriggerItem { get; private set; }
 
+        /// <summary>
+        /// If the UI even opens if the condition is met
+        /// </summary>
         public Func<bool> Condition { get; private set; }
 
         //all these three things get called when their respective condition returns true
-        //Holds data about what to draw
+        /// <summary>
+        /// Holds data about what to draw
+        /// </summary>
         public Func<CircleUIConf> UIConf { get; private set; }
 
-        //assigns the CircleUI the selected thing
+        /// <summary>
+        /// Assigns the CircleUI the selected thing
+        /// </summary>
         public Func<int> OnUIStart { get; private set; }
 
-        //Does things when the UI closes
+        /// <summary>
+        /// Does things when the UI closes
+        /// </summary>
         public Action OnUIEnd { get; private set; }
 
         //optional arguments
-        //On leftclick
+        /// <summary>
+        /// If the UI opens on left click (false if right click)
+        /// </summary>
         public bool TriggerLeft { get; private set; }
 
-        //if it needs saving (has to be added manually to related hooks for saving/loading)
+        /// <summary>
+        /// If it needs saving (has to be added manually to related hooks for saving/loading)
+        /// </summary>
         public bool NeedsSaving { get; private set; }
 
         public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, bool needsSaving = false)
@@ -44,6 +72,12 @@ namespace AssortedCrazyThings.UI
             NeedsSaving = needsSaving;
         }
 
+        /// <summary>
+        /// creates a simplified conf specific for pets
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="tooltips"></param>
+        /// <returns></returns>
         public static CircleUIConf PetConf(string name, List<string> tooltips)
         {
             //uses VanitySelector as the triggerItem
@@ -60,6 +94,11 @@ namespace AssortedCrazyThings.UI
             return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
         }
 
+        /// <summary>
+        /// Add trigger item for the UI to check for when holding the item type
+        /// </summary>
+        /// <param name="triggerItemType"></param>
+        /// <param name="triggerLeft"></param>
         public static void AddItemAsTrigger(int triggerItemType, bool triggerLeft = true)
         {
             if (triggerLeft)
@@ -72,6 +111,10 @@ namespace AssortedCrazyThings.UI
             }
         }
     }
+
+    /// <summary>
+    /// Contains data for displaying the Circle UI
+    /// </summary>
     public class CircleUIConf
     {
         public List<Texture2D> Textures { get; private set; }

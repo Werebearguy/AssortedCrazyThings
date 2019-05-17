@@ -12,6 +12,9 @@ namespace AssortedCrazyThings
 
         private const string cuteSlimesPotionOnlyField = "CuteSlimesPotionOnly";
         internal static bool cuteSlimesPotionOnly = true;
+        /// <summary>
+        /// Affects the way Cute Slimes spawn and how the Jellied Ale works
+        /// </summary>
         public static bool CuteSlimesPotionOnly
         {
             get
@@ -22,6 +25,9 @@ namespace AssortedCrazyThings
 
         private const string walkingTombstonesField = "WalkingTombstones";
         internal static bool walkingTombstones = true;
+        /// <summary>
+        /// Enable/Disable Walking Tombstones spawning
+        /// </summary>
         public static bool WalkingTombstones
         {
             get
@@ -32,7 +38,10 @@ namespace AssortedCrazyThings
 
         static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", modName + ".json");
 
-        static Preferences ModConfig = new Preferences(ConfigPath);
+        /// <summary>
+        /// The config that holds the data
+        /// </summary>
+        static readonly Preferences ModConfig = new Preferences(ConfigPath);
 
         internal static void Load()
         {

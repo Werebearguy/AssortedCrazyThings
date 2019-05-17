@@ -16,8 +16,16 @@ namespace AssortedCrazyThings
 {
     public class PetPlayer : ModPlayer
     {
+        /// <summary>
+        /// transition from 1.2.3 to 1.3.0 (reset cute slime vanity slots)
+        /// </summary>
         private bool petAccessoryRework = false;
+
+        /// <summary>
+        /// transition from 1.3.0 to <CURRENT VERSION> (simplified pet type handling)
+        /// </summary>
         private bool petVanityRework = false;
+
         private bool enteredWorld = false;
 
         //docile demon eye texture
@@ -262,17 +270,20 @@ namespace AssortedCrazyThings
             //ClassName = false;
         }
 
-        public bool ThreeTimesUseTime(double currentTime)
+        /// <summary>
+        /// Returns true if this has been called the third time after two successful calls within 36 ticks
+        /// </summary>
+        public bool ThreeTimesUseTime()
         {
-            if (Math.Abs(lastTime - currentTime) > 35.0) //(usetime + 1) x 3 + 1
+            if (Math.Abs(lastTime - Main.time) > 35.0) //(usetime + 1) x 3 + 1
             {
                 resetSlots = false;
-                lastTime = currentTime;
+                lastTime = Main.time;
                 return false; //step one
             }
 
             //step two and three have to be done in 35 ticks
-            if (Math.Abs(lastTime - currentTime) <= 35.0)
+            if (Math.Abs(lastTime - Main.time) <= 35.0)
             {
                 if (!resetSlots)
                 {
@@ -339,8 +350,10 @@ namespace AssortedCrazyThings
             else
             {
                 var petTypeList = tag.GetList<byte>("petTypes");
+                int clonedTypesLength = ClonedTypes.Length;
                 ClonedTypes = new List<byte>(petTypeList).ToArray();
-                Array.Resize(ref ClonedTypes, ClonedTypesLength);
+                //in case new types got added (since this assignment overrides the old ClonedTypes length)
+                Array.Resize(ref ClonedTypes, clonedTypesLength);
             }
         }
 
@@ -355,11 +368,11 @@ namespace AssortedCrazyThings
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             PetPlayer clone = clientPlayer as PetPlayer;
-            PetPlayerChanges changes = PetPlayerChanges.none;
-            int index = -1;
+            PetPlayerChanges changes = PetPlayerChanges.None;
+            int index = 255;
             if (clone.slots != slots || clone.color != color)
             {
-                changes = PetPlayerChanges.slots;
+                changes = PetPlayerChanges.Slots;
             }
             else
             {
@@ -367,14 +380,14 @@ namespace AssortedCrazyThings
                 {
                     if (clone.ClonedTypes[i] != ClonedTypes[i])
                     {
-                        changes = PetPlayerChanges.petTypes;
+                        changes = PetPlayerChanges.PetTypes;
                         index = i;
                         break;
                     }
                 }
             }
 
-            if (changes != PetPlayerChanges.none) SendClientChangesPacket(changes, index);
+            if (changes != PetPlayerChanges.None) SendClientChangesPacket(changes, index);
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
@@ -410,19 +423,22 @@ namespace AssortedCrazyThings
             GetFromClonedTypes("in mp");
         }
 
+        /// <summary>
+        /// Reads from reader to assign the player fields (Called in Mod.HandlePacket())
+        /// </summary>
         public void RecvClientChangesPacketSub(BinaryReader reader, byte changes, int index)
         {
             //AssUtils.Print("RecvClientChangesPacketSub " + changes + " index " + index + " from p " + player.whoAmI);
             switch (changes)
             {
-                case (byte)PetPlayerChanges.all:
+                case (byte)PetPlayerChanges.All:
                     RecvSyncPlayerVanitySub(reader);
                     break;
-                case (byte)PetPlayerChanges.slots:
+                case (byte)PetPlayerChanges.Slots:
                     slots = reader.ReadUInt32();
                     color = reader.ReadUInt32();
                     break;
-                case (byte)PetPlayerChanges.petTypes:
+                case (byte)PetPlayerChanges.PetTypes:
                     if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
                     break;
                 default: //shouldn't get there hopefully
@@ -432,6 +448,10 @@ namespace AssortedCrazyThings
             GetFromClonedTypes("in mp");
         }
 
+        /// <summary>
+        /// Sends the player fields either to clients or to the server. Called in OnEnterWorld (to the server), and in Mod.HandlePacket()
+        /// (forwarding data from the server to other players)
+        /// </summary>
         public void SendClientChangesPacketSub(byte changes, int index, int toClient = -1, int ignoreClient = -1)
         {
             //AssUtils.Print("SendClientChangesPacketSub " + changes + " index " + index + " from p " + player.whoAmI + ((Main.netMode == NetmodeID.MultiplayerClient)? " client":" server"));
@@ -443,14 +463,14 @@ namespace AssortedCrazyThings
 
             switch (changes)
             {
-                case (byte)PetPlayerChanges.all:
+                case (byte)PetPlayerChanges.All:
                     SendFieldValues(packet);
                     break;
-                case (byte)PetPlayerChanges.slots:
+                case (byte)PetPlayerChanges.Slots:
                     packet.Write((uint)slots);
                     packet.Write((uint)color);
                     break;
-                case (byte)PetPlayerChanges.petTypes:
+                case (byte)PetPlayerChanges.PetTypes:
                     packet.Write((byte)ClonedTypes[index]);
                     break;
                 default: //shouldn't get there hopefully
@@ -461,7 +481,11 @@ namespace AssortedCrazyThings
             packet.Send(toClient, ignoreClient);
         }
 
-        private void SendClientChangesPacket(PetPlayerChanges changes, int index = -1)
+        /// <summary>
+        /// Cliendside method to send the chances specified to the server.
+        /// Called in OnEnterWorld() and in SendClientChanges()
+        /// </summary>
+        private void SendClientChangesPacket(PetPlayerChanges changes, int index = 255)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -487,7 +511,7 @@ namespace AssortedCrazyThings
                 //AssUtils.Print("onenterworld p " + player.whoAmI);
                 GetFromClonedTypes("in sp");
             }
-            SendClientChangesPacket(PetPlayerChanges.all);
+            SendClientChangesPacket(PetPlayerChanges.All);
         }
 
         public override void PreUpdate()
@@ -507,7 +531,9 @@ namespace AssortedCrazyThings
         public uint color = 0;        //0000 0000|0000 0000|0000 0000|0000 0000
                                       //slot4    |slot3    |slot2    |slot1     
 
-
+        /// <summary>
+        /// Adds the pet vanity accessory to the current pet
+        /// </summary>
         public bool AddAccessory(PetAccessory petAccessory)
         {
             //id is between 0 and 255
@@ -533,6 +559,9 @@ namespace AssortedCrazyThings
             return true;
         }
 
+        /// <summary>
+        /// Deletes the pet vanity accessory on the current pet
+        /// </summary>
         public void DelAccessory(PetAccessory petAccessory)
         {
             byte slotNumber = (byte)(petAccessory.Slot - 1);
@@ -542,12 +571,18 @@ namespace AssortedCrazyThings
             color &= clearmask; //delete only current slot color
         }
 
+        /// <summary>
+        /// Toggles the pet vanity acessory on the current pet
+        /// </summary>
         public void ToggleAccessory(PetAccessory petAccessory)
         {
             if (petAccessory.Slot == SlotType.None) throw new Exception("can't toggle accessory on reserved slot");
             if (!AddAccessory(petAccessory)) DelAccessory(petAccessory);
         }
 
+        /// <summary>
+        /// Returns the pet vanity accessory equipped in the specified SlotType of the current pet
+        /// </summary>
         public PetAccessory GetAccessoryInSlot(byte slotNumber)
         {
             byte slot = slotNumber;
@@ -563,9 +598,17 @@ namespace AssortedCrazyThings
 
         #region CircleUI
 
+        /// <summary>
+        /// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
+        /// </summary>
         public List<CircleUIHandler> CircleUIList;
+
+        /// <summary>
+        /// Contains a list of pet type fields (assigned during Load() and every tick in PreUpdate(),
+        /// and read from in OnEnterWorld(), and in Multiplayer whenever data is received).
+        /// Simplifies the saving/loading of tags
+        /// </summary>
         public byte[] ClonedTypes;
-        private byte ClonedTypesLength;
 
         public override void Initialize()
         {
@@ -1004,6 +1047,28 @@ namespace AssortedCrazyThings
                 },
                 needsSaving: true
             ),
+                new CircleUIHandler(
+                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                condition: delegate
+                {
+                    return AnimatedTome;
+                },
+                uiConf: delegate
+                {
+                    List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow" };
+
+                    return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
+                },
+                onUIStart: delegate
+                {
+                    return animatedTomeType;
+                },
+                onUIEnd: delegate
+                {
+                    animatedTomeType = (byte)CircleUI.returned;
+                },
+                needsSaving: true
+            ),
             //ALTERNATE
             //    new CircleUIHandler(
             //    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
@@ -1043,11 +1108,13 @@ namespace AssortedCrazyThings
                 if (CircleUIList[i].NeedsSaving) length++;
             }
 
-            ClonedTypesLength = (byte)length;
-            ClonedTypes = new byte[ClonedTypesLength];
+            ClonedTypes = new byte[length];
         }
 
-        //called whenever something is received (MP only, or in Singleplayer/Local client in OnEnterWorld)
+        /// <summary>
+        /// Called whenever something is received (MP on reveive, or in Singleplayer/Local client in OnEnterWorld).
+        /// Sets the pet type of the corresponding entry of ClonedTypes
+        /// </summary>
         public void GetFromClonedTypes(string mp = "")
         {
             //AssUtils.Print("set getfromclonedtypes p " + player.whoAmI + " " + mp);
@@ -1075,7 +1142,10 @@ namespace AssortedCrazyThings
             //classNameType = ClonedTypes[index++];
         }
 
-        //called in PreUpdate (which runs before OnEnterWorld, hence the check)
+        /// <summary>
+        /// Called in PreUpdate (which runs before OnEnterWorld, hence the check).
+        /// Sets each entry of ClonedTypes to the corresponding pet type
+        /// </summary>
         public void SetClonedTypes()
         {
             if (enteredWorld)

@@ -30,27 +30,73 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
+    /// <summary>
+    /// Holds static functions and data related to the Gitgud accessories
+    /// </summary>
     public class GitgudData
     {
+        /// <summary>
+        /// Holds the data of all Gitgud Accessories, and a list of counters per player
+        /// </summary>
         public static GitgudData[] DataList;
+        /// <summary>
+        /// Name for the delete message
+        /// </summary>
+        public string ItemName { set; get; }
+        /// <summary>
+        /// Boss name for tooltip
+        /// </summary>
+        public string BossName { set; get; }
+        /// <summary>
+        /// Buff immunity while boss is alive
+        /// </summary>
+        public int BuffType { private set; get; }
+        /// <summary>
+        /// Buff name for tooltip
+        /// </summary>
+        public string BuffName { private set; get; }
+        /// <summary>
+        /// Dropped gitgud item
+        /// </summary>
+        public int ItemType { private set; get; }
+        /// <summary>
+        /// Boss type (usually only one, can be multiple for worms)
+        /// </summary>
+        public int[] BossTypeList { private set; get; }
+        /// <summary>
+        /// NPCs that deal damage during the boss fight (boss minions) (includes the boss itself by default)
+        /// </summary>
+        public int[] NPCTypeList { private set; get; }
+        /// <summary>
+        /// Projectiles that deal damage during the boss fight
+        /// </summary>
+        public int[] ProjTypeList { private set; get; }
+        /// <summary>
+        /// Threshold, after which the item drops
+        /// </summary>
+        public byte CounterMax { private set; get; }
+        /// <summary>
+        /// Percentage by which the damage gets reduced
+        /// </summary>
+        public float Reduction { private set; get; }
+        /// <summary>
+        /// Invasion name, unused
+        /// </summary>
+        public string Invasion { private set; get; } 
+        /// <summary>
+        /// Invasion in progress, ignore the lists for damage reduction
+        /// </summary>
+        public Func<bool> InvasionBool { private set; get; }
 
-        public string ItemName { set; get; } //name for the delete message
-        public string BossName { set; get; } //boss name for tooltip
-        public int BuffType { private set; get; } //buff immunity while boss is alive
-        public string BuffName { private set; get; } //buff name for tooltip
-        public int ItemType { private set; get; } //droped gitgud item
-        public int[] BossTypeList { private set; get; } //boss type (usually only one, can be multiple for worms)
-        public int[] NPCTypeList { private set; get; } //NPCs that deal damage during the boss fight (boss minions) (includes the boss itself by default)
-        public int[] ProjTypeList { private set; get; } //Projectiles that deal damage during the boss fight
-        public byte CounterMax { private set; get; } //threshold, after which the item drops
-        public float Reduction { private set; get; } //percentage by which the damage gets reduced
-        //unused
-        public string Invasion { private set; get; } //invasion name
-        public Func<bool> InvasionBool { private set; get; } //invasion in progress, ignore the lists for damage reduction
-
-        //used from outside, 255 long
-        public BitArray Accessory { private set; get; } //the bool that is set by the wearing accessory
-        public byte[] Counter { private set; get; } //number of times player died to the boss
+        //255 long
+        /// <summary>
+        ///  The bool that is set by the wearing accessory
+        /// </summary>
+        public BitArray Accessory { private set; get; }
+        /// <summary>
+        /// number of times player died to the boss
+        /// </summary>
+        public byte[] Counter { private set; get; }
 
         public GitgudData(string displayName, string buffName, int itemType, int buffType,
             int[] bossTypeList, int[] nPCTypeList, int[] projTypeList, byte counterMax, float reduction, string invasion, Func<bool> invasionBool)
@@ -117,6 +163,9 @@ namespace AssortedCrazyThings
             Add(itemName, displayName, buffName, buffType, new int[] { bossType }, nPCTypeList, projTypeList, counterMax, reduction, invasion, invasionBool);
         }
 
+        /// <summary>
+        /// Called in Reset and RecvReset. Deletes the item from the inventory, trash slot, mouse item, and accessories
+        /// </summary>
         private static void DeleteItemFromInventory(Player player, int index)
         {
             int itemType = DataList[index].ItemType;
@@ -152,10 +201,14 @@ namespace AssortedCrazyThings
             }
 
             if (deleted) Main.NewText("You won't be needing the " + itemName + " anymore...", new Color(255, 175, 0));
-        } //Reset, RecvReset
+        }
 
+        /// <summary>
+        /// Sets the counter on both the DataList and the players respective field
+        /// </summary>
         private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
         {
+            DataList[index].Counter[whoAmI] = value;
             GitGudPlayer gPlayer = Main.player[whoAmI].GetModPlayer<GitGudPlayer>();
             switch (index)
             {
@@ -214,8 +267,11 @@ namespace AssortedCrazyThings
                     else throw new Exception("Unspecified index in the gitgud array");
                     break;
             }
-        } //sets the player values
+        }
 
+        /// <summary>
+        /// Used in GitgudItem.ModifyTooltips
+        /// </summary>
         public static int GetIndexFromItemType(int type)
         {
             if (DataList != null)
@@ -226,8 +282,11 @@ namespace AssortedCrazyThings
                 }
             }
             return -1;
-        } //GitgudItem
+        }
 
+        /// <summary>
+        /// Called in LoadCounters
+        /// </summary>
         public static void SendCounters(int whoAmI)
         {
             if (DataList != null)
@@ -242,8 +301,11 @@ namespace AssortedCrazyThings
                 }
                 packet.Send();
             }
-        } //OnEnterWorld
+        }
 
+        /// <summary>
+        /// Called in Mod.HandlePacket. Reads the whole list when the player joins to synchronize
+        /// </summary>
         public static void RecvCounters(BinaryReader reader)
         {
             if (DataList != null)
@@ -257,12 +319,15 @@ namespace AssortedCrazyThings
                 }
                 for (int i = 0; i < DataList.Length; i++)
                 {
-                    DataList[i].Counter[whoAmI] = tempArray[i];
+                    //DataList[i].Counter[whoAmI] = tempArray[i];
                     SetCounter(whoAmI, i, tempArray[i], true);
                 }
             }
-        } //Mod.HandlePacket
+        }
 
+        /// <summary>
+        /// Called in Mod.HandlePacket
+        /// </summary>
         public static void RecvChangeCounter(BinaryReader reader)
         {
             if (DataList != null && Main.netMode == NetmodeID.MultiplayerClient)
@@ -270,13 +335,16 @@ namespace AssortedCrazyThings
                 int whoAmI = Main.LocalPlayer.whoAmI;
                 int index = reader.ReadByte();
                 byte value = reader.ReadByte();
-                DataList[index].Counter[whoAmI] = value;
+                //DataList[index].Counter[whoAmI] = value;
                 SetCounter(whoAmI, index, value, true);
                 if (value == 0) DeleteItemFromInventory(Main.player[whoAmI], index);
                 //AssUtils.Print("recv changecounter from server with " + whoAmI + " " + index + " " + value);
             }
-        } //Mod.HandlePacket
+        }
 
+        /// <summary>
+        /// Called in IncreaseCounters and Reset. Serverside
+        /// </summary>
         private static void SendChangeCounter(int whoAmI, int index, byte value)
         {
             if (DataList != null && Main.netMode == NetmodeID.Server)
@@ -289,8 +357,11 @@ namespace AssortedCrazyThings
                 packet.Send(toClient: whoAmI);
                 //AssUtils.Print("send changecounter from server with " + whoAmI + " " + index + " " + value);
             }
-        } //IncreaseCounters and Reset
+        }
 
+        /// <summary>
+        /// Called in AssGlobalNPC.NPCLoot. Sends all participating players a reset packet
+        /// </summary>
         public static void Reset(NPC npc)
         {
             //Single and Server only
@@ -327,7 +398,7 @@ namespace AssortedCrazyThings
                                 //only send a packet if necessary
                                 if (DataList[i].Counter[j] != 0)
                                 {
-                                    DataList[i].Counter[j] = 0;
+                                    //DataList[i].Counter[j] = 0;
                                     SetCounter(j, i, 0);
                                     SendChangeCounter(j, i, 0);
                                 }
@@ -336,20 +407,11 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //NPCLoot, resets for all players
+        }
 
-        public static void RecvReset(int whoAmI, BinaryReader reader)
-        {
-            if (DataList != null)
-            {
-                int index = reader.ReadByte();
-                DataList[index].Counter[whoAmI] = 0;
-                SetCounter(whoAmI, index, 0, true);
-                DeleteItemFromInventory(Main.player[whoAmI], index);
-                //AssUtils.Print("recv reset from server");
-            }
-        } //Mod.HandlePacket
-
+        /// <summary>
+        /// Called in OnRespawn, spawns the item if the counter was overflown. Not clientside (not even sure myself at this point)
+        /// </summary>
         public static void SpawnItem(Player player)
         {
             if (DataList != null)
@@ -358,7 +420,7 @@ namespace AssortedCrazyThings
                 {
                     if (DataList[i].Counter[player.whoAmI] >= DataList[i].CounterMax)
                     {
-                        DataList[i].Counter[player.whoAmI] = 0;
+                        //DataList[i].Counter[player.whoAmI] = 0;
                         SetCounter(player.whoAmI, i, 0);
                         if (!player.HasItem(DataList[i].ItemType) && !DataList[i].Accessory[player.whoAmI])
                         {
@@ -374,8 +436,11 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //OnRespawn
+        }
 
+        /// <summary>
+        /// Called in PostUpdateEquips
+        /// </summary>
         public static void ApplyBuffImmune(Player player)
         {
             if (DataList != null)
@@ -388,8 +453,11 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //PostUpdateEquips
+        }
 
+        /// <summary>
+        /// Called in PreKill, checks what NPCs are alive, then increases the counter by 1
+        /// </summary>
         public static void IncreaseCounters(int whoAmI)
         {
             if (DataList != null)
@@ -404,17 +472,20 @@ namespace AssortedCrazyThings
                             if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, Main.npc[k].type) > -1)
                             {
                                 //AssUtils.Print("increased counter of " + whoAmI + " from " + DataList[i].Counter[whoAmI] + " to " + (DataList[i].Counter[whoAmI] + 1));
-                                DataList[i].Counter[whoAmI]++;
-                                SetCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
-                                SendChangeCounter(whoAmI, i, DataList[i].Counter[whoAmI]);
+                                //DataList[i].Counter[whoAmI]++;
+                                SetCounter(whoAmI, i, (byte)(DataList[i].Counter[whoAmI] + 1));
+                                SendChangeCounter(whoAmI, i, (byte)(DataList[i].Counter[whoAmI] + 1));
                                 increasedFor[i] = true;
                             }
                         }
                     }
                 }
             }
-        } //PreKill
+        }
 
+        /// <summary>
+        /// Called in ModifyHitByNPC
+        /// </summary>
         public static void ReduceDamageNPC(int whoAmI, int npcType, ref int damage)
         {
             if (DataList != null)
@@ -433,8 +504,11 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //ModifyHitByNPC
+        }
 
+        /// <summary>
+        /// Called in ModifyHitByProjectile
+        /// </summary>
         public static void ReduceDamageProj(int whoAmI, int projType, ref int damage)
         {
             if (DataList != null)
@@ -453,8 +527,11 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-        } //ModifyHitByProjectile
+        }
 
+        /// <summary>
+        /// Called in PostUpdateEquips. Updates the DataList with if the accessories are worn
+        /// </summary>
         public static void UpdateAccessories(int whoAmI, BitArray accessories)
         {
             if (DataList != null)
@@ -465,8 +542,11 @@ namespace AssortedCrazyThings
                     DataList[i].Accessory[whoAmI] = accessories[i];
                 }
             }
-        } //PostUpdateEquips
+        }
 
+        /// <summary>
+        /// Called in OnEnterWorld, Sets up the counters in the DataList for each accessory. Clientside
+        /// </summary>
         public static void LoadCounters(int whoAmI, byte[] counters)
         {
             if (DataList != null)
@@ -476,9 +556,18 @@ namespace AssortedCrazyThings
                 {
                     DataList[i].Counter[whoAmI] = counters[i];
                 }
-            }
-        } //OnEnterWorld clientside, Mod.HandlePacket serverside
 
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    GitgudData.SendCounters(whoAmI);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called in Mod.PostSetupContent. Basically a RegisterItems()
+        /// <seealso cref="RegisterItems"/>
+        /// </summary>
         public static void Load()
         {
             DataList = new GitgudData[1];
@@ -488,13 +577,19 @@ namespace AssortedCrazyThings
             //since Add always increases the array size by one, it will make it so the last element is null
             Array.Resize(ref DataList, DataList.Length - 1);
             if (DataList.Length == 0) DataList = null;
-        } //Mod.PostSetupContent
+        }
 
+        /// <summary>
+        /// Called in Mod.Unload
+        /// </summary>
         public static void Unload()
         {
             DataList = null;
-        } //Mod.Unload
+        }
 
+        /// <summary>
+        /// Fills the DataList with data for each accessory
+        /// </summary>
         private static void RegisterItems()
         {
             Add("KingSlimeGitgud", "Slime Inquisition Notice",
@@ -770,11 +865,6 @@ namespace AssortedCrazyThings
                 moonLordGitgudCounter,
                 //pirateInvasionGitgudCounter,
             });
-
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                GitgudData.SendCounters(player.whoAmI);
-            }
         }
 
         public override void PostUpdateEquips()

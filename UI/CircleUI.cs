@@ -8,39 +8,76 @@ using System;
 namespace AssortedCrazyThings.UI
 {
     //Huge credit to Muzuwi (with permission): https://github.com/Muzuwi/AmmoboxPlus/blob/master/AmmoboxUI.cs
+    /// <summary>
+    /// UI that is used to select something out of a list of things, opened via item
+    /// </summary>
     public class CircleUI : UIState
     {
-        //Is the UI visible?
+        /// <summary>
+        /// Is the UI visible?
+        /// </summary>
         internal static bool visible = false;
-        //Spawn position, i.e. mouse position at UI start
-        internal static Vector2 spawnPosition;
-        internal static Vector2 leftCorner;
 
-        //Circle diameter
+        /// <summary>
+        /// Spawn position, i.e. mouse position at UI start
+        /// </summary>
+        internal static Vector2 spawnPosition;
+
+        /// <summary>
+        /// Circle diameter
+        /// </summary>
         internal static int mainDiameter = 36;
-        //Circle radius
+
+        /// <summary>
+        /// Circle radius
+        /// </summary>
         internal static int mainRadius = 36 / 2;
 
-        //Held item type
+        /// <summary>
+        /// Held item type
+        /// </summary>
         internal static int heldItemType = -1;
-        //Which thing is currently highlighted?
+
+        /// <summary>
+        /// Which thing is currently highlighted?
+        /// </summary>
         internal static int returned = -1;
-        //Which thing was the previously selected one?
+
+        /// <summary>
+        /// Which thing was the previously selected one?
+        /// </summary>
         internal static int currentSelected = -1;
-        //Which button was it activated with
+
+        /// <summary>
+        /// Which button was it activated with
+        /// </summary>
         internal static bool openedWithLeft = false;
 
-        //Fade in animation when opening the UI
+        /// <summary>
+        /// Fade in animation when opening the UI
+        /// </summary>
         internal static float fadeIn = 0;
 
-        //Holds data about what to draw
+        /// <summary>
+        /// Holds data about what to draw
+        /// </summary>
         internal static CircleUIConf UIConf;
+
+        /// <summary>
+        /// Spawn position offset to top left corner of that to draw the icons
+        /// </summary>
+        private Vector2 TopLeftCorner
+        {
+            get
+            {
+                return spawnPosition - new Vector2(mainRadius, mainRadius);
+            }
+        }
 
         //Initialization
         public override void OnInitialize()
         {
             spawnPosition = new Vector2();
-            leftCorner = new Vector2();
         }
 
         //Update, unused
@@ -54,7 +91,7 @@ namespace AssortedCrazyThings.UI
         {
             base.DrawSelf(spriteBatch);
             Main.LocalPlayer.mouseInterface = true;
-            
+
             //48
             int outerRadius = 48;
             if (UIConf.CircleAmount > 5) outerRadius += 5 * (UIConf.CircleAmount - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
@@ -72,7 +109,7 @@ namespace AssortedCrazyThings.UI
                 double y = outerRadius * -Math.Cos(i * Math.PI);
                 
 
-                Rectangle bgRect = new Rectangle((int)(leftCorner.X + x), (int)(leftCorner.Y + y), mainDiameter, mainDiameter);
+                Rectangle bgRect = new Rectangle((int)(TopLeftCorner.X + x), (int)(TopLeftCorner.Y + y), mainDiameter, mainDiameter);
                 //Check if mouse is within the circle checked
                 bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
 
@@ -127,7 +164,7 @@ namespace AssortedCrazyThings.UI
             Texture2D bgTexture = Main.wireUITexture[0];
 
             //Draw held item bg circle
-            Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
+            Rectangle outputRect = new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, mainDiameter, mainDiameter);
 
             bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
 
@@ -168,12 +205,18 @@ namespace AssortedCrazyThings.UI
             }
         }
 
-        internal bool CheckMouseWithinCircle(Vector2 mousePos, int radius, Vector2 center)
+        /// <summary>
+        /// Check if the mouse cursor is within the radius around the position specified by center
+        /// </summary>
+        internal static bool CheckMouseWithinCircle(Vector2 mousePos, int radius, Vector2 center)
         {
             return ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) <= radius * radius;
         }
 
-        internal bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int innerRadius, int pieceCount, int elementNumber)
+        /// <summary>
+        /// Checks if the mouse cursor is currently inside the segment specified by the arguments. Decided by angle (radius only matters for the inner element).
+        /// </summary>
+        internal static bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int innerRadius, int pieceCount, int elementNumber)
         {
             //Check if mouse cursor is outside the inner circle
             bool outsideInner = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) > innerRadius * innerRadius;

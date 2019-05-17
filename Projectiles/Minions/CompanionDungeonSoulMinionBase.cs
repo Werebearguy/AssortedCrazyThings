@@ -41,6 +41,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public float defveloCatchUpIdle;// = 8f;
         public float defveloNoclip;// = 12f;
 
+        /// <summary>
+        /// Holds the type of Dungeon Soul
+        /// </summary>
         public enum SoulType : int
         {
             Dungeon,
@@ -50,6 +53,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Temp
         }
 
+        /// <summary>
+        /// Holds the stats of each type of Dungeon Soul
+        /// </summary>
         public struct SoulStats
         {
             public readonly int Type; //actual projectile type
@@ -70,6 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        //unused
         public static int GetSoulTypeFromType(int type)
         {
             //not used anywhere yet
@@ -82,6 +89,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return 0;
         }
 
+        /// <summary>
+        /// Returns the SoulStats of the specified type
+        /// </summary>
         public static SoulStats GetAssociatedStats(int soulType, bool fromUI = false)
         {
             //damage, knockback
