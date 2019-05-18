@@ -190,6 +190,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         //also, keep the sprite dimensions the same as the cute slimes
 
         //also they will be rendered in this order aswell (means that Carried can overlap with Body)
+
+        //Each slot can have up to 255 accessories (total of 1020)
     }
 
     /// <summary>
@@ -197,17 +199,46 @@ namespace AssortedCrazyThings.Items.PetAccessories
     /// </summary>
     public class PetAccessory
     {
+        /// <summary>
+        /// Contains all pet vanity accessories
+        /// </summary>
         public static List<PetAccessory> petAccessoryListGlobal;
+        /// <summary>
+        /// Contains all pet vanity accessories of SlotType.Body
+        /// </summary>
         public static List<PetAccessory> petAccessoryListB;
+        /// <summary>
+        /// Contains all pet vanity accessories of SlotType.Head
+        /// </summary>
         public static List<PetAccessory> petAccessoryListH;
+        /// <summary>
+        /// Contains all pet vanity accessories of SlotType.Carried
+        /// </summary>
         public static List<PetAccessory> petAccessoryListC;
+        /// <summary>
+        /// Contains all pet vanity accessories of SlotType.Accessory
+        /// </summary>
         public static List<PetAccessory> petAccessoryListA;
+        /// <summary>
+        /// Contains IDs of pet vanity accessories of SlotType.Body
+        /// </summary>
         public static List<int> petAccessoryIdsB;
+        /// <summary>
+        /// Contains IDs of pet vanity accessories of SlotType.Head
+        /// </summary>
         public static List<int> petAccessoryIdsH;
+        /// <summary>
+        /// Contains IDs of pet vanity accessories of SlotType.Carried
+        /// </summary>
         public static List<int> petAccessoryIdsC;
+        /// <summary>
+        /// Contains IDs of pet vanity accessories of SlotType.Accessory
+        /// </summary>
         public static List<int> petAccessoryIdsA;
+        /// <summary>
+        /// Look-up table where the index is the ID and it returns the corresponding item type
+        /// </summary>
         public static List<int> petAccessoryTypesGlobal;
-
 
         /// <summary>
         /// Unique ID for this accessory (unique in the scope of a single SlotType)
@@ -216,16 +247,42 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public string Name { private set; get; }
         public int Type { private set; get; }
         public SlotType Slot { private set; get; }
-        public byte Color { set; get; } //index for AltTextureSuffixes
+        private byte _color;
+        /// <summary>
+        /// Index for AltTextureSuffixes. Not Private, since it is set directly when used
+        /// </summary>
+        public byte Color
+        {
+            set
+            {
+                _color = value;
+            }
+            get
+            {
+                return Utils.Clamp(_color, (byte)0, (byte)(AltTextureSuffixes.Count - 1));
+            }
+        }
         public Vector2 Offset { private set; get; }
         public bool PreDraw { private set; get; }
         public byte Alpha { private set; get; }
         public bool UseNoHair { private set; get; }
 
-        public bool HasAlts { private set; get; } //for deciding if it has a UI or not
-        public List<string> AltTextureSuffixes { private set; get; } //for UI tooltips
-        public List<Texture2D> AltTextures { private set; get; } //for UI only, the _Draw<number> stuff is done manually
-        public List<sbyte> PetVariations { private set; get; } //the number in _Draw<number>
+        /// <summary>
+        /// For deciding if it has a UI or not
+        /// </summary>
+        public bool HasAlts { private set; get; }
+        /// <summary>
+        /// For UI tooltips
+        /// </summary>
+        public List<string> AltTextureSuffixes { private set; get; }
+        /// <summary>
+        /// For UI only, the _Draw{number} stuff is done manually
+        /// </summary>
+        public List<Texture2D> AltTextures { private set; get; }
+        /// <summary>
+        /// The number in _Draw{number}
+        /// </summary>
+        public List<sbyte> PetVariations { private set; get; }
 
         public PetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
         {
@@ -276,11 +333,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
         /// <summary>
-        /// Adds a color variation for the current pet vanity accessory
+        /// Adds a color variation for the current pet vanity accessory.
+        /// -1: Accessory won't be drawn.
+        /// 0 (default): Use default texture.
+        /// 1..127: Use texture specified by _Draw{number}
         /// </summary>
         public PetAccessory AddPetVariation(string petName, sbyte number)
         {
-            //(byte)-1, 0 (default), 1..127 alt texture number
             int type = AssUtils.Instance.ProjectileType("CuteSlime" + petName + "NewProj");
             if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
             PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
@@ -443,7 +502,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
         /// <summary>
-        /// Returns the specific list that only contains IDs of pet vanity accessories of the specified SlotType
+        /// Returns a list that only contains IDs of pet vanity accessories of the specified SlotType
         /// </summary>
         private static List<int> GetIdListFromType(SlotType slotType)
         {
@@ -484,6 +543,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             petAccessoryListGlobal.Add(aPetAccessory);
         }
 
+        /// <summary>
+        /// Called in PetPlayer.GetAccessoryInSlot.
+        /// Used to retreive the pet vanity accessory in the current slot of that current ID
+        /// </summary>
         public static PetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
         {
             return GetAccessoryListFromType(slotType)[GetIdListFromType(slotType).IndexOf(id)];

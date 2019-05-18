@@ -296,7 +296,6 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Creates golden dust particles at the projectiles location with that type and LocalPlayer as owner. (Used for pets)
         /// </summary>
-        /// <param name="projType"></param>
         private void PoofVisual(int projType)
         {
             int projIndex = -1;
@@ -328,8 +327,6 @@ namespace AssortedCrazyThings
         /// <summary>
         /// CombatText replacement, used on LocalPlayer
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="color"></param>
         public static void UIText(string str, Color color)
         {
             CombatText.NewText(Main.LocalPlayer.getRect(), color, str);
@@ -751,7 +748,6 @@ namespace AssortedCrazyThings
         /// <summary>
         /// makes alpha on .png textures actually properly rendered
         /// </summary>
-        /// <param name="texture"></param>
         public static void PremultiplyTexture(Texture2D texture)
         {
             Color[] buffer = new Color[texture.Width * texture.Height];

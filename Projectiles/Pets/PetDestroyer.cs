@@ -222,7 +222,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             else
             {
                 float desiredRotation = projectile.velocity.ToRotation();
-
+				//float targetAngle = (-normalized).ToRotation();
+				//CurrentAngle = CurrentAngle.AngleLerp(targetAngle, AngleLerp);
                 rot = rot.AngleTowards(desiredRotation, 0.1f);
             }
 

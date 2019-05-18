@@ -8,10 +8,18 @@ namespace AssortedCrazyThings.Base
 {
     public static class SlimePets
     {
+        /// <summary>
+        /// Contains every slime pet
+        /// </summary>
         internal static List<SlimePet> slimePetList;
 
-        public static List<int> slimePets; //slimePets.IndexOf(type) returns the indexed type
-        public static List<int> slimePetLegacy;
+        /// <summary>
+        /// slimePets.IndexOf(type) returns the indexed type
+        /// </summary>
+        public static List<int> slimePets;
+        /// <summary>
+        /// For the Jellied Ale bufftip
+        /// </summary>
         public static List<List<string>> slimePetNPCsEnumToNames;
 
         public enum SpawnConditionType : byte
@@ -30,6 +38,10 @@ namespace AssortedCrazyThings.Base
             Xmas
         }
 
+        /// <summary>
+        /// Used in CuteSlimeSpawnEnableBuff.ModifyTooltips
+        /// Since SpawnCondition is unresponsive, implement the conditions manually
+        /// </summary>
         public static bool CanSpawn(Player player, SpawnConditionType type)
         {
             switch (type)
@@ -61,6 +73,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Used in CuteSlimeSpawnChance, returns the spawn chance based on the SpawnConditionType
+        /// </summary>
         public static float GetSpawnChance(Player player, SpawnConditionType type = SpawnConditionType.None)
         {
             switch (type)
@@ -92,6 +107,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Used in ModNPC.SpawnChance. Short way of specifying a spawn chance
+        /// </summary>
         public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
         {
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
@@ -117,6 +135,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Called in Mod.Load
+        /// </summary>
         public static void Load()
         {
             slimePetList = new List<SlimePet>();
@@ -267,6 +288,9 @@ namespace AssortedCrazyThings.Base
             CreateMap();
         }
 
+        /// <summary>
+        /// Called in Mod.Unload
+        /// </summary>
         public static void Unload()
         {
             slimePets = null;
@@ -274,6 +298,9 @@ namespace AssortedCrazyThings.Base
             slimePetNPCsEnumToNames = null;
         }
 
+        /// <summary>
+        /// Called after Load. Indexes the slime pets
+        /// </summary>
         public static void CreateMap()
         {
             slimePets = new List<int>(slimePetList.Count);
@@ -283,12 +310,18 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Used to access the slime pet from just the projectile type
+        /// </summary>
         public static SlimePet GetPet(int type)
         {
             return slimePetList[slimePets.IndexOf(type)];
         }
     }
 
+    /// <summary>
+    /// Contains data about a slime pet
+    /// </summary>
     public class SlimePet
     {
         public string Name { private set; get; }
@@ -327,6 +360,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// "Sort of" constructor, compresses each blacklist field into a list
+        /// </summary>
         public static SlimePet NewSlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
             bool body = false, bool hat = false, bool carried = false, bool accessory = false)
         {

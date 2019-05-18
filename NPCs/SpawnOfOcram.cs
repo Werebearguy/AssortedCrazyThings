@@ -34,10 +34,10 @@ namespace AssortedCrazyThings.NPCs
 			npc.knockBackResist = 0f;
 			npc.aiStyle = -1; //5
 			//aiType = NPCID.Corruptor;
-			animationType = NPCID.Corruptor;
+			animationType = NPCID.EaterofSouls;
 			npc.noGravity = true;
 			npc.noTileCollide = true;
-            npc.buffImmune[BuffID.Confused] = false;
+            npc.buffImmune[BuffID.Confused] = true;
         }
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

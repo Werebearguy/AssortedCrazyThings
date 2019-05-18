@@ -75,9 +75,6 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// creates a simplified conf specific for pets
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="tooltips"></param>
-        /// <returns></returns>
         public static CircleUIConf PetConf(string name, List<string> tooltips)
         {
             //uses VanitySelector as the triggerItem
@@ -97,8 +94,6 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// Add trigger item for the UI to check for when holding the item type
         /// </summary>
-        /// <param name="triggerItemType"></param>
-        /// <param name="triggerLeft"></param>
         public static void AddItemAsTrigger(int triggerItemType, bool triggerLeft = true)
         {
             if (triggerLeft)
