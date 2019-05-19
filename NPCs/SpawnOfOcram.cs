@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.NPCs
 			npc.knockBackResist = 0f;
 			npc.aiStyle = -1; //5
 			//aiType = NPCID.Corruptor;
-			animationType = NPCID.EaterofSouls;
+			animationType = NPCID.Corruptor;
 			npc.noGravity = true;
 			npc.noTileCollide = true;
             npc.buffImmune[BuffID.Confused] = true;
@@ -53,8 +53,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			{
 				Item.NewItem(npc.getRect(), ItemID.Emerald);
-				if (Main.rand.Next(5) < 1) // a 1 in 5 chance
-				Item.NewItem(npc.getRect(), mod.ItemType("BabyOcram"));
+				if (Main.rand.NextBool(5)) Item.NewItem(npc.getRect(), mod.ItemType("BabyOcram"));
 			}
 		}
 

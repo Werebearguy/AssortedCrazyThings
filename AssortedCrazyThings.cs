@@ -161,11 +161,6 @@ namespace AssortedCrazyThings
                 PetVanityUI.Activate();
                 PetVanityUIInterface = new UserInterface();
                 PetVanityUIInterface.SetState(PetVanityUI);
-
-                //CircleUIConf.AddItemAsTrigger(ItemType<EverhallowedLantern>(), false); //right click of Everhallowed Lantern
-                //CircleUIConf.AddItemAsTrigger(ItemType<SlimeHandlerKnapsack>(), false); //right click of Slime Handler Knapsack
-                //CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>()); //left click of Costume Suitcase
-                //CircleUIConf.AddItemAsTrigger(ItemType<VanitySelector>(), false); //right click of Costume Suitcase
             }
         }
 

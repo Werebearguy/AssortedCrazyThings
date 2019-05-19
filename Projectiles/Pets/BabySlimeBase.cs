@@ -38,7 +38,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public virtual void MoreSetDefaults()
         {
-            //used to set dimensions (if necessary) //also use to set projectile.minion
+            //used to set dimensions (if necessary)
+            //also used to set projectile.minion
         }
 
         public override bool MinionContactDamage()
@@ -164,7 +165,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             set
             {
-                projectile.localAI[1] = (byte)value;
+                projectile.localAI[1] = value;
             }
         }
 
@@ -229,53 +230,51 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (projectile.ai[0] != 0f)
             {
-                float num42 = 0.2f;
+                float veloDelta = 0.2f;
                 int num43 = 200;
 
                 projectile.tileCollide = false;
-                float num44 = Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - projectile.Center.X;
+                float desiredVeloX = Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - projectile.Center.X;
 
-                num44 -= (40 * Main.player[projectile.owner].direction);
+                desiredVeloX -= 40 * Main.player[projectile.owner].direction;
                 float num45 = 700f;
 
                 bool flag6 = false;
                 int num46 = -1;
-                int num30;
 
-                for (int num47 = 0; num47 < 200; num47 = num30 + 1)
+                for (int k = 0; k < 200; k++)
                 {
-                    if (Main.npc[num47].CanBeChasedBy(this))
+                    if (Main.npc[k].CanBeChasedBy(this))
                     {
-                        float num48 = Main.npc[num47].position.X + (Main.npc[num47].width / 2);
-                        float num49 = Main.npc[num47].position.Y + (Main.npc[num47].height / 2);
+                        float num48 = Main.npc[k].position.X + (Main.npc[k].width / 2);
+                        float num49 = Main.npc[k].position.Y + (Main.npc[k].height / 2);
                         float num50 = Math.Abs(Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - num48) + Math.Abs(Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - num49);
                         if (num50 < num45)
                         {
-                            if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[num47].position, Main.npc[num47].width, Main.npc[num47].height))
+                            if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height))
                             {
-                                num46 = num47;
+                                num46 = k;
                             }
                             flag6 = true;
                             break;
                         }
                     }
-                    num30 = num47;
                 }
 
                 if (!flag6)
                 {
-                    num44 -= 40 * projectile.minionPos * Main.player[projectile.owner].direction;
+                    desiredVeloX -= 40 * projectile.minionPos * Main.player[projectile.owner].direction;
                 }
                 if (flag6 && num46 >= 0)
                 {
                     projectile.ai[0] = 0f;
                 }
 
-                float num51 = Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - projectile.Center.Y;
+                float desiredVeloY = Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - projectile.Center.Y;
 
-                float num52 = (float)Math.Sqrt((double)(num44 * num44 + num51 * num51));
+                float num52 = (float)Math.Sqrt((double)(desiredVeloX * desiredVeloX + desiredVeloY * desiredVeloY));
                 float num53 = 10f;
-                float num54 = num52;
+                //float num54 = num52;
 
                 if (num52 < num43 && Main.player[projectile.owner].velocity.Y == 0f && projectile.position.Y + projectile.height <= Main.player[projectile.owner].position.Y + Main.player[projectile.owner].height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                 {
@@ -287,54 +286,54 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 if (num52 < 60f)
                 {
-                    num44 = projectile.velocity.X;
-                    num51 = projectile.velocity.Y;
+                    desiredVeloX = projectile.velocity.X;
+                    desiredVeloY = projectile.velocity.Y;
                 }
                 else
                 {
                     num52 = num53 / num52;
-                    num44 *= num52;
-                    num51 *= num52;
+                    desiredVeloX *= num52;
+                    desiredVeloY *= num52;
                 }
 
-                if (projectile.velocity.X < num44)
+                if (projectile.velocity.X < desiredVeloX)
                 {
-                    projectile.velocity.X += num42;
+                    projectile.velocity.X += veloDelta;
                     if (projectile.velocity.X < 0f)
                     {
-                        projectile.velocity.X += num42 * 1.5f;
+                        projectile.velocity.X += veloDelta * 1.5f;
                     }
                 }
-                if (projectile.velocity.X > num44)
+                if (projectile.velocity.X > desiredVeloX)
                 {
-                    projectile.velocity.X -= num42;
+                    projectile.velocity.X -= veloDelta;
                     if (projectile.velocity.X > 0f)
                     {
-                        projectile.velocity.X -= num42 * 1.5f;
+                        projectile.velocity.X -= veloDelta * 1.5f;
                     }
                 }
-                if (projectile.velocity.Y < num51)
+                if (projectile.velocity.Y < desiredVeloY)
                 {
-                    projectile.velocity.Y += num42;
+                    projectile.velocity.Y += veloDelta;
                     if (projectile.velocity.Y < 0f)
                     {
-                        projectile.velocity.Y += num42 * 1.5f;
+                        projectile.velocity.Y += veloDelta * 1.5f;
                     }
                 }
-                if (projectile.velocity.Y > num51)
+                if (projectile.velocity.Y > desiredVeloY)
                 {
-                    projectile.velocity.Y -= num42;
+                    projectile.velocity.Y -= veloDelta;
                     if (projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y -= num42 * 1.5f;
+                        projectile.velocity.Y -= veloDelta * 1.5f;
                     }
                 }
             }
-            else //projectile.ai[0] == 0f)
+            else //projectile.ai[0] == 0f
             {
                 Vector2 toTarget = Vector2.Zero;
 
-                float num87 = (40 * projectile.minionPos);
+                float num87 = 40 * projectile.minionPos;
                 int num88 = 60;
                 projectile.localAI[0] -= 1f;
                 if (projectile.localAI[0] < 0f)
@@ -384,13 +383,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                         if (targetNPC == -1)
                         {
-                            int num30;
-                            for (int npcindex = 0; npcindex < 200; npcindex = num30 + 1)
+                            for (int k = 0; k < 200; k++)
                             {
-                                if (Main.npc[npcindex].CanBeChasedBy(this))
+                                if (Main.npc[k].CanBeChasedBy(this))
                                 {
-                                    float num96 = Main.npc[npcindex].Center.X;
-                                    float num97 = Main.npc[npcindex].Center.Y;
+                                    float num96 = Main.npc[k].Center.X;
+                                    float num97 = Main.npc[k].Center.Y;
                                     float between = Math.Abs(projectile.Center.X - num96) + Math.Abs(projectile.Center.Y - num97);
                                     if (between < distance)
                                     {
@@ -400,16 +398,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                             targetX = num96;
                                             targetY = num97;
                                         }
-                                        if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[npcindex].position, Main.npc[npcindex].width, Main.npc[npcindex].height))
+                                        if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height))
                                         {
                                             distance = between;
                                             targetX = num96;
                                             targetY = num97;
-                                            targetNPC = npcindex;
+                                            targetNPC = k;
                                         }
                                     }
                                 }
-                                num30 = npcindex;
                             }
                         }
                     }
@@ -508,7 +505,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                         if (shootSpikes)
                         {
-                            Vector2 velo = toTarget;
                             //PickedTexture * 3 makes it so theres a small offset for minion shooting based on their texture, which means that if you have different slimes out,
                             //they don't all shoot in sync
                             if (ShootTimer > (shootDelay + PickedTexture * 3) && distance < 200f &&
@@ -595,13 +591,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     int j = (int)(projectile.position.Y + (projectile.height / 2)) / 16;
                     if (flag)
                     {
-                        int num30 = num112;
-                        num112 = num30 - 1;
+                        num112--;
                     }
                     if (flag2)
                     {
-                        int num30 = num112;
-                        num112 = num30 + 1;
+                        num112++;
                     }
                     num112 += (int)projectile.velocity.X;
                     if (WorldGen.SolidTile(num112, j))
@@ -634,38 +628,36 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     if (flag4)
                     {
-                        int num114 = (int)(projectile.position.X + (projectile.width / 2)) / 16;
-                        int num115 = (int)(projectile.position.Y + projectile.height) / 16 + 1;
-                        if (WorldGen.SolidTile(num114, num115) || Main.tile[num114, num115].halfBrick() || Main.tile[num114, num115].slope() > 0)
+                        int x = (int)(projectile.position.X + (projectile.width / 2)) / 16;
+                        int y = (int)(projectile.position.Y + projectile.height) / 16 + 1;
+                        if (WorldGen.SolidTile(x, y) || Main.tile[x, y].halfBrick() || Main.tile[x, y].slope() > 0)
                         {
                             try
                             {
-                                num114 = (int)(projectile.position.X + (projectile.width / 2)) / 16;
-                                num115 = (int)(projectile.position.Y + (projectile.height / 2)) / 16;
+                                x = (int)(projectile.position.X + (projectile.width / 2)) / 16;
+                                y = (int)(projectile.position.Y + (projectile.height / 2)) / 16;
                                 if (flag)
                                 {
-                                    int num30 = num114;
-                                    num114 = num30 - 1;
+                                    x--;
                                 }
                                 if (flag2)
                                 {
-                                    int num30 = num114;
-                                    num114 = num30 + 1;
+                                    x++;
                                 }
-                                num114 += (int)projectile.velocity.X;
-                                if (!WorldGen.SolidTile(num114, num115 - 1) && !WorldGen.SolidTile(num114, num115 - 2))
+                                x += (int)projectile.velocity.X;
+                                if (!WorldGen.SolidTile(x, y - 1) && !WorldGen.SolidTile(x, y - 2))
                                 {
                                     projectile.velocity.Y = -5.1f;
                                 }
-                                else if (!WorldGen.SolidTile(num114, num115 - 2))
+                                else if (!WorldGen.SolidTile(x, y - 2))
                                 {
                                     projectile.velocity.Y = -7.1f;
                                 }
-                                else if (WorldGen.SolidTile(num114, num115 - 5))
+                                else if (WorldGen.SolidTile(x, y - 5))
                                 {
                                     projectile.velocity.Y = -11.1f;
                                 }
-                                else if (WorldGen.SolidTile(num114, num115 - 4))
+                                else if (WorldGen.SolidTile(x, y - 4))
                                 {
                                     projectile.velocity.Y = -10.1f;
                                 }

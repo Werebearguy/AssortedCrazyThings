@@ -5,6 +5,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
+    /// <summary>
+    /// Serves as a base for all gitgud items
+    /// </summary>
     public abstract class GitgudItem : ModItem
     {
         public override void ModifyTooltips(List<TooltipLine> tooltips)

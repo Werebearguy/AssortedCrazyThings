@@ -249,7 +249,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public SlotType Slot { private set; get; }
         private byte _color;
         /// <summary>
-        /// Index for AltTextureSuffixes. Not Private, since it is set directly when used
+        /// Index for AltTextureSuffixes. No private setter, since it is set directly when used
         /// </summary>
         public byte Color
         {

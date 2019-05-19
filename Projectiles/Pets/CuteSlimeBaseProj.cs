@@ -10,6 +10,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
     public abstract class CuteSlimeBaseProj : ModProjectile
     {
+        private const string PetAccessoryFolder = "AssortedCrazyThings/Items/PetAccessories/";
+
         public const int Projwidth = 28;
         public const int Projheight = 32;
 
@@ -25,6 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
+            //readjusting the animation
             if (projectile.ai[0] != 0f) //frame 6 to 9 flying
             {
                 frame2Counter += 3;
@@ -90,6 +93,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
             }
 
+            //0.1f because vanilla sets it to 0.1f when on the ground
             if (projectile.velocity.Y != 0.1f) projectile.rotation = projectile.velocity.X * 0.01f;
         }
 
@@ -98,14 +102,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DrawAccessories(spriteBatch, drawColor, preDraw: true);
 
             DrawBaseSprite(spriteBatch, drawColor);
+
+            DrawAccessories(spriteBatch, drawColor);
             return false;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            DrawAccessories(spriteBatch, drawColor);
-        }
-
+        /// <summary>
+        /// Draws the base sprite. Picks the NoHair variant if needed
+        /// </summary>
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
         {
             PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
@@ -113,25 +117,27 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //otherwise use default one
             bool useNoHair = false;
             PetAccessory petAccessoryHat = pPlayer.GetAccessoryInSlot((byte)SlotType.Hat);
+            SlimePet sPet = SlimePets.GetPet(projectile.type);
+
             if (petAccessoryHat != null &&
                 petAccessoryHat.UseNoHair &&
-                SlimePets.GetPet(projectile.type).HasNoHair) //if it has a NoHair tex
+                sPet.HasNoHair) //if it has a NoHair tex
             {
                 useNoHair = true;
             }
 
             bool drawPreAddition = true;
             bool drawPostAddition = true;
-            //handle if pre/post additions are drawn based on the slimePet(Pre/Post)AdditionSlot
 
+            //handle if pre/post additions are drawn based on the slimePet(Pre/Post)AdditionSlot
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
             {
                 PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
                     
                 if (petAccessory != null)
                 {
-                    if (SlimePets.GetPet(projectile.type).PreAdditionSlot == slotNumber) drawPreAddition = false;
-                    if (SlimePets.GetPet(projectile.type).PostAdditionSlot == slotNumber) drawPostAddition = false;
+                    if (sPet.PreAdditionSlot == slotNumber) drawPreAddition = false;
+                    if (sPet.PostAdditionSlot == slotNumber) drawPostAddition = false;
                 }
             }
 
@@ -159,21 +165,29 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor, useNoHair); //used for xmas  bow, lava horn, princess crown and illuminant afterimage
         }
 
+        /// <summary>
+        /// Draw the pet specific PreDraw behind the base sprite
+        /// </summary>
         public virtual bool MorePreDrawBaseSprite(SpriteBatch spriteBatch, Color drawColor, bool useNoHair)
         {
             return true;
         }
 
+        /// <summary>
+        /// Draw the pet specific PostDraw infront of the base sprite
+        /// </summary>
         public virtual void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color drawColor, bool useNoHair)
         {
 
         }
 
-        private const string PetAccessoryFolder = "AssortedCrazyThings/Items/PetAccessories/";
-
+        /// <summary>
+        /// Draws the pet vanity accessories (behind or infront of the base sprite)
+        /// </summary>
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)
         {
             PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            SlimePet sPet = SlimePets.GetPet(projectile.type);
 
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
@@ -181,7 +195,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 
                 if (petAccessory != null &&
                     (preDraw || !petAccessory.PreDraw) &&
-                    !SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[slotNumber])
+                    !sPet.IsSlotTypeBlacklisted[slotNumber])
                 {
                     string textureString = PetAccessoryFolder + petAccessory.Name;
                     string colorString = petAccessory.HasAlts? petAccessory.AltTextureSuffixes[petAccessory.Color]: "";
@@ -189,7 +203,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     string drawString = "_Draw";
 
                     sbyte altTextureNumber = petAccessory.PetVariations[SlimePets.slimePets.IndexOf(projectile.type)];
-                    if (altTextureNumber > 0) //change texture if not -1 and not -0
+                    if (altTextureNumber > 0) //change texture if not -1 and not 0
                     {
                         drawString += altTextureNumber;
                     }
