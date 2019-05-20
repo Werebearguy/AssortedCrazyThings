@@ -13,6 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using AssortedCrazyThings.UI;
+using AssortedCrazyThings.Buffs;
 
 namespace AssortedCrazyThings
 {
@@ -59,14 +60,13 @@ namespace AssortedCrazyThings
 
         public bool soulSaviorArmor = false;
 
+        public bool wyvernCampfire = false;
+
         private bool rightClickPrev = false;
         private bool rightClickPrev2 = false;
 
         private bool leftClickPrev = false;
         private bool leftClickPrev2 = false;
-
-        //legacy, but don't delete
-        public int planteraGitGudCounter = 0;
 
         public override void ResetEffects()
         {
@@ -797,6 +797,11 @@ namespace AssortedCrazyThings
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
+
+            if (wyvernCampfire && proj.type == ProjectileID.HarpyFeather)
+            {
+                player.noKnockback = true;
+            }
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
@@ -873,6 +878,8 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
+            if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2);
+
             SpawnSoulsWhenHarvesterIsAlive();
 
             RightClickStatus();

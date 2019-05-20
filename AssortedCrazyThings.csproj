@@ -64,6 +64,7 @@
     <Compile Include="Buffs\EnhancedHunterBuff.cs" />
     <Compile Include="Buffs\MiniAntlionBuff.cs" />
     <Compile Include="Buffs\AnimatedTomeBuff.cs" />
+    <Compile Include="Buffs\WyvernCampfireBuff.cs" />
     <Compile Include="GitGudPlayer.cs" />
     <Compile Include="Buffs\ChunkySlimeBuff.cs" />
     <Compile Include="Buffs\FairySlimeBuff.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Items\Pets\LilWrapsItem.cs" />
     <Compile Include="Items\Pets\WallFragmentItem.cs" />
     <Compile Include="Items\Pets\AnimatedTomeItem.cs" />
+    <Compile Include="Items\Placeable\WyvernCampfireItem.cs" />
     <Compile Include="Items\VanitySelector.cs" />
     <Compile Include="Items\DroneParts.cs" />
     <Compile Include="Items\Fun\GuideVoodoorang.cs" />
@@ -490,6 +492,7 @@
     <Compile Include="Items\Pets\GobletItem.cs" />
     <Compile Include="Tiles\AssGlobalTile.cs" />
     <Compile Include="Tiles\SlimeBeaconTile.cs" />
+    <Compile Include="Tiles\WyvernCampfireTile.cs" />
     <Compile Include="UI\PetVanityUI.cs" />
     <Compile Include="UI\EnhancedHunterUI.cs" />
     <Compile Include="UI\HarvesterEdgeUI.cs" />

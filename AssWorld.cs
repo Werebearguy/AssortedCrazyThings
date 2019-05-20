@@ -299,6 +299,11 @@ namespace AssortedCrazyThings
                 AssPlayer.empoweringTotal = 0.75f;
         }
 
+        public override void ResetNearbyTileEffects()
+        {
+            Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = false;
+        }
+
         public override void PostUpdate()
 		{
             //this code is when I first started modding, terrible stuff

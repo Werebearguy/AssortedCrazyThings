@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Tiles
         }
 
         //you need these four things for the outline to work:
-        //_Hightlight.png
+        //_Highlight.png
         //TileID.Sets.HasOutlines[Type] = true;
         //disableSmartCursor = true;
         //and this hook
