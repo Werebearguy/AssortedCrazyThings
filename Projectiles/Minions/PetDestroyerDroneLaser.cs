@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Weapons
+namespace AssortedCrazyThings.Projectiles.Minions
 {
     public class PetDestroyerDroneLaser : ModProjectile
     {

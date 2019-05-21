@@ -1,5 +1,5 @@
 using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Projectiles.Weapons;
+using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

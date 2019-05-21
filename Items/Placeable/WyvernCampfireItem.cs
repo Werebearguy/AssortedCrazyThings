@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using AssortedCrazyThings.Tiles;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable

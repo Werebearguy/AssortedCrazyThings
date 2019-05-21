@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using AssortedCrazyThings.UI;
 using AssortedCrazyThings.Buffs;
+using Terraria.Utilities;
 
 namespace AssortedCrazyThings
 {
@@ -879,7 +880,6 @@ namespace AssortedCrazyThings
         public override void PreUpdate()
         {
             if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2);
-
             SpawnSoulsWhenHarvesterIsAlive();
 
             RightClickStatus();

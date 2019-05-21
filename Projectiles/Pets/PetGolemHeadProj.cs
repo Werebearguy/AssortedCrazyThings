@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Projectiles.Weapons;
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,6 +5,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using AssortedCrazyThings.Projectiles.Minions;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -63,9 +63,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Texture2D image = Main.projectileTexture[projectile.type];
 
-            if (AttackCounter > 60)
+            if (AttackCounter > AttackDelay)
             {
-                if (AttackCounter < 90)
+                if (AttackCounter < (int)(AttackDelay * 1.5f))
                 {
                     projectile.frame = 1;
                 }
