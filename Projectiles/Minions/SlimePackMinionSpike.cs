@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-    public class SlimePackMinionSpikeProj : ModProjectile
+    public class SlimePackMinionSpike : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             if (PickedTexture == 15)
             {
-                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinionSpikeProj_Glowmask");
+                Texture2D image = mod.GetTexture("Projectiles/Minions/SlimePackMinionSpike_Glowmask");
                 SpriteEffects effects = SpriteEffects.None;
 
                 for (int k = projectile.oldPos.Length - 1; k >= 0; k--)

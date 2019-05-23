@@ -14,7 +14,6 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using AssortedCrazyThings.UI;
 using AssortedCrazyThings.Buffs;
-using Terraria.Utilities;
 
 namespace AssortedCrazyThings
 {
@@ -63,6 +62,10 @@ namespace AssortedCrazyThings
 
         public bool wyvernCampfire = false;
 
+        public bool droneControllerMinion = false;
+
+        public float slotsMinionsMirror = 0f;
+
         private bool rightClickPrev = false;
         private bool rightClickPrev2 = false;
 
@@ -84,6 +87,7 @@ namespace AssortedCrazyThings
             enhancedHunterBuff = false;
             cuteSlimeSpawnEnable = false;
             soulSaviorArmor = false;
+            droneControllerMinion = false;
         }
 
         public bool RightClickPressed { get { return rightClickPrev && !rightClickPrev2; } }
@@ -115,7 +119,7 @@ namespace AssortedCrazyThings
             {
                 for (int i = 0; i < empoweringTimer; i++)
                 {
-                    Dust dust = Dust.NewDustPerfect(player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1.5f, 2.4f));
+                    Dust dust = Dust.NewDustPerfect(player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
                     dust.noLight = true;
                     dust.noGravity = true;
                     dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
@@ -880,6 +884,7 @@ namespace AssortedCrazyThings
         public override void PreUpdate()
         {
             if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2);
+            slotsMinionsMirror = player.slotsMinions;
             SpawnSoulsWhenHarvesterIsAlive();
 
             RightClickStatus();

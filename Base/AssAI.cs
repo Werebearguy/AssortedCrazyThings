@@ -70,6 +70,10 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// No use of ai[] or LocalAI[].
+        /// Default offset is x = 30, y = -20
+        /// </summary>
         public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool staticDirection = false, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float veloSpeed = 1f, float lightFactor = 1f, Vector3 lightColor = default(Vector3), float offsetX = 0f, float offsetY = 0f)
         {
             //veloSpeed not bigger than veloDistanceChange * 0.5f
@@ -795,7 +799,7 @@ namespace AssortedCrazyThings.Base
             }
         }
 
-        public static void BabyEaterAI(Projectile projectile, float velocityFactor = 1f, float sway = 1f)
+        public static void BabyEaterAI(Projectile projectile, Entity parent = null, Vector2 originOffset = default(Vector2), float velocityFactor = 1f, float sway = 1f)
         {
             //velocityFactor: 
             //kinda wonky, leave at 1f
@@ -810,22 +814,24 @@ namespace AssortedCrazyThings.Base
                 projectile.active = false;
                 return;
             }
+            if (parent == null) parent = player;
+            Vector2 parentCenter = parent.Center;
+            if (parent is Player)
+            {
+                parentCenter = ((Player)parent).MountedCenter;
+            }
+            parentCenter += originOffset;
 
             float veloDelta = 0.1f;
             projectile.tileCollide = false;
             int someDistance = 300;
-            Vector2 between = player.MountedCenter - projectile.Center;
+            Vector2 between = parentCenter - projectile.Center;
             float distance = between.Length();
             float magnitude = 7f;
 
-            //added in manually since its kinda useful
-            //if (Vector2.Distance(projectile.Center, player.MountedCenter) > 2000f)
-            //{
-            //    projectile.Center = player.MountedCenter;
-            //}
-            TeleportIfTooFar(projectile, player.MountedCenter, 1380);
+            TeleportIfTooFar(projectile, parentCenter, 1380);
 
-            if (distance < someDistance && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            if (distance < someDistance && parent.velocity.Y == 0f && projectile.position.Y + projectile.height <= parent.position.Y + parent.height + originOffset.Y && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {
                 if (projectile.velocity.Y < -6f)
                 {

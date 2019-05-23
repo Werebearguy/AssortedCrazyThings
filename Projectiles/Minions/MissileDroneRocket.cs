@@ -48,6 +48,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 240;
+
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = 10;
         }
 
         public override void Kill(int timeLeft)
@@ -59,25 +62,25 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.height = inflationAmount;
             projectile.position.X = projectile.position.X - projectile.width / 2;
             projectile.position.Y = projectile.position.Y - projectile.height / 2;
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 20; i++) //40
             {
-                Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f)];
-                dust.velocity *= 3f;
-                if (Main.rand.Next(2) == 0)
+                Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f)];
+                dust.velocity *= 2f; //3f
+                if (Main.rand.NextBool(2))
                 {
                     dust.scale = 0.5f;
                     dust.fadeIn = 1f + (float)Main.rand.Next(10) * 0.1f;
                 }
             }
-            for (int i = 0; i < 70; i++)
+            for (int i = 0; i < 35; i++) //70
             {
-                Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3f)];
+                Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 3f)];
                 dust.noGravity = true;
-                dust.velocity *= 5f;
-                dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2f)];
+                dust.velocity *= 4f; //5f
+                dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 2f)];
                 dust.velocity *= 2f;
             }
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++) //3
             {
                 float scaleFactor10 = 0.33f;
                 if (i == 1)

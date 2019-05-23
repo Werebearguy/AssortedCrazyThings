@@ -74,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            #region HandleState
+            #region Handle State
             int targetIndex = AssAI.FindTarget(projectile, player.Center); //check for player surrounding
             if (targetIndex == -1)
             {
@@ -106,11 +106,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             #endregion
 
-            #region ActUponState
+            #region Act Upon State
             if (AI_STATE == STATE_IDLE)
             {
                 projectile.friendly = false;
-                AssAI.BabyEaterAI(projectile);
+                AssAI.BabyEaterAI(projectile, originOffset: new Vector2(0f, -60f));
 
                 AssAI.BabyEaterDraw(projectile);
                 projectile.rotation += 3.14159f;
@@ -203,7 +203,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            #region FindParent
+            #region Find Parent
             //set parent when spawned
             if (ParentIndex < 0)
             {

@@ -519,7 +519,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                         vector6.Y *= 1f + Main.rand.Next(-40, 41) * 0.02f;
                                         vector6.Normalize();
                                         vector6 *= 3f + Main.rand.Next(-40, 41) * 0.01f;
-                                        Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, vector6.X, vector6.Y, mod.ProjectileType<SlimePackMinionSpikeProj>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
+                                        Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, vector6.X, vector6.Y, mod.ProjectileType<SlimePackMinionSpike>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
                                         ShootTimer = (byte)(PickedTexture * 3);
                                     }
                                 }

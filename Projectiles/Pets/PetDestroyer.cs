@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else
             {
-                AssAI.BabyEaterAI(projectile);
+                AssAI.BabyEaterAI(projectile, originOffset: new Vector2(0f, -100f));
                 if (projectile.owner == Main.myPlayer && Math.Sign(projectile.oldVelocity.X) != Math.Sign(projectile.velocity.X))
                 {
                     projectile.netUpdate = true;
@@ -148,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            #region FindParent
+            #region Find Parent
             //set parent when spawned
 
             int parentType = projectile.identity % 2 == 0 ? mod.ProjectileType<PetDestroyerHead>() : mod.ProjectileType<PetDestroyerTail>();

@@ -7,8 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     public class SigilOfPainSuppression : ModItem
     {
-
-        //TODO set the time in seconds that the item stays in cooldown in AssPlayer.cs, here: GetDefenseTimerMax
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Pain Suppression");

@@ -9,7 +9,7 @@ using AssortedCrazyThings.Projectiles.Minions;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetGolemHeadProj : ModProjectile
+    public class PetGolemHeadProj : CombatDroneBase
     {
         public int AttackCounter
         {
@@ -27,26 +27,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private const int FireballDamage = 20;
 
-        private float sinY; //depends on projectile.ai[0], no need to sync
-
-        private float Sincounter
-        {
-            get
-            {
-                return projectile.localAI[0];
-            }
-            set
-            {
-                projectile.localAI[0] = value;
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Replica Golem Head");
             Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.Homing[projectile.type] = true;
             drawOriginOffsetY = -10;
         }
 
@@ -62,22 +47,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D image = Main.projectileTexture[projectile.type];
-
-            if (AttackCounter > AttackDelay)
-            {
-                if (AttackCounter < (int)(AttackDelay * 1.5f))
-                {
-                    projectile.frame = 1;
-                }
-                else
-                {
-                    projectile.frame = 0;
-                }
-            }
-            else
-            {
-                projectile.frame = 0;
-            }
 
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
@@ -99,7 +68,26 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return false;
         }
 
-        public override void AI()
+        protected override void CustomDraw(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        {
+            if (AttackCounter > AttackDelay)
+            {
+                if (AttackCounter < (int)(AttackDelay * 1.5f))
+                {
+                    projectile.frame = 1;
+                }
+                else
+                {
+                    projectile.frame = 0;
+                }
+            }
+            else
+            {
+                projectile.frame = 0;
+            }
+        }
+
+        protected override void CheckActive()
         {
             Player player = Main.player[projectile.owner];
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
@@ -111,6 +99,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+        }
+
+        protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
+        {
+            return false;
+        }
+
+        protected override void CustomAI()
+        {
+            Player player = Main.player[projectile.owner];
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
             
             projectile.rotation = 0f;
@@ -126,7 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         if (AttackCounter == AttackDelay) AttackCounter += AttackDelay;
                         Vector2 position = projectile.Center;
                         position.Y += 6f;
-                        Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
+                        Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - position;
                         velocity.Normalize();
                         velocity *= 7f;
                         Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);

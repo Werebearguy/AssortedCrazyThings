@@ -38,6 +38,7 @@
     <Compile Include="Base\AssAI.cs" />
     <Compile Include="Base\AssUtils.cs" />
     <Compile Include="Base\SlimePets.cs" />
+    <Compile Include="Buffs\DroneControllerBuff.cs" />
     <Compile Include="Buffs\CuteSlimeIlluminantNewBuff.cs" />
     <Compile Include="Buffs\CuteSlimeLavaNewBuff.cs" />
     <Compile Include="Buffs\PetDestroyerBuff.cs" />
@@ -293,6 +294,7 @@
     <Compile Include="Items\Weapons\PlagueOfToads.cs" />
     <Compile Include="Items\Weapons\LegendaryWoodenSword.cs" />
     <Compile Include="Items\Weapons\MinionItemBase.cs" />
+    <Compile Include="Items\Weapons\DroneController.cs" />
     <Compile Include="Items\Weapons\SlimeHandlerKnapsack.cs" />
     <Compile Include="Items\Weapons\EverhallowedLantern.cs" />
     <Compile Include="Items\Weapons\EverglowLantern.cs" />
@@ -304,7 +306,10 @@
     <Compile Include="NPCs\CuteSlimeIlluminant.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
+    <Compile Include="Projectiles\Minions\HeavyLaserDrone.cs" />
+    <Compile Include="Projectiles\Minions\CombatDroneBase.cs" />
     <Compile Include="Projectiles\Minions\MissileDroneRocket.cs" />
+    <Compile Include="Projectiles\Minions\MissileDrone.cs" />
     <Compile Include="Projectiles\Pets\PetDestroyer.cs" />
     <Compile Include="Projectiles\Pets\PetEaterofWorlds.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeIlluminantNewProj.cs" />
@@ -325,6 +330,7 @@
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
     <Compile Include="Projectiles\Pets\AnimatedTomeProj.cs" />
     <Compile Include="Projectiles\Minions\PetGolemHeadFireball.cs" />
+    <Compile Include="Projectiles\Minions\HeavyLaserDroneLaser.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsFired.cs" />
@@ -483,7 +489,7 @@
     <Compile Include="Projectiles\Weapons\CandleDustDummy.cs" />
     <Compile Include="Projectiles\Weapons\GuideVoodoorangProj.cs" />
     <Compile Include="Projectiles\Weapons\HarvesterBone.cs" />
-    <Compile Include="Projectiles\Minions\SlimePackMinionSpikeProj.cs" />
+    <Compile Include="Projectiles\Minions\SlimePackMinionSpike.cs" />
     <Compile Include="Projectiles\Minions\PetDestroyerDroneLaser.cs" />
     <Compile Include="Projectiles\Weapons\TrueLegendaryWoodenSwordProj.cs" />
     <Compile Include="Projectiles\Weapons\PocketSand.cs" />
