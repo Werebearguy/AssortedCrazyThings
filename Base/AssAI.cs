@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Base
 
         //Credit to Itorius
         /// <summary>
-        /// makes alpha on .png textures actually properly rendered
+        /// Uses ray tracking as an alternative to Collision.CanHitLine
         /// </summary>
         public static bool CheckLineOfSight(Vector2 center, Vector2 target)
         {
