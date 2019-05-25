@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
             bounds.Y = projectile.frame * bounds.Height;
 
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -193,17 +193,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Lighting.AddLight(lightPos, new Vector3(124 / 700f, 251 / 700f, 34 / 700f));
                 //frameoffset 0
             }
-            
-            projectile.frame -= frameOffset;
+
+            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
 
             if (projectile.velocity.Length() > 6f)
             {
                 if (++projectile.frameCounter >= frameCounterMaxFar)
                 {
                     projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2)
+                    if (++projectile.frame >= 2 + frameOffset)
                     {
-                        projectile.frame = 0;
+                        projectile.frame = frameOffset;
                     }
                 }
             }
@@ -212,14 +212,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 if (++projectile.frameCounter >= frameCounterMaxClose)
                 {
                     projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2)
+                    if (++projectile.frame >= 2 + frameOffset)
                     {
-                        projectile.frame = 0;
+                        projectile.frame = frameOffset;
                     }
                 }
             }
-
-            projectile.frame += frameOffset;
         }
 
         public override void AI()

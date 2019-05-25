@@ -1,4 +1,5 @@
 ﻿using AssortedCrazyThings.Items.Weapons;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,7 +10,7 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Drone Controller");
-            //Description.SetDefault("A friendly Soul is fighting for you");
+            Description.SetDefault("Command a swarm of drones");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
@@ -29,6 +30,21 @@ namespace AssortedCrazyThings.Buffs
             else
             {
                 player.buffTime[buffIndex] = 18000;
+            }
+        }
+
+        public override void ModifyBuffTip(ref string tip, ref int rare)
+        {
+            foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
+            {
+                if (type != DroneType.None)
+                {
+                    int ownedCount = Main.LocalPlayer.ownedProjectileCounts[DroneController.GetDroneType(type)];
+                    if (ownedCount > 0)
+                    {
+                        tip += "\n" + DroneController.GetTooltip(type, onlyName: true) + "s : " + ownedCount;
+                    }
+                }
             }
         }
     }

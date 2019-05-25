@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using AssortedCrazyThings.Projectiles.Minions;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -68,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return false;
         }
 
-        protected override void CustomDraw(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
             if (AttackCounter > AttackDelay)
             {

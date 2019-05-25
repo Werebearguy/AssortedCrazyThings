@@ -306,6 +306,7 @@
     <Compile Include="NPCs\CuteSlimeIlluminant.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
+    <Compile Include="Projectiles\Minions\BasicLaserDrone.cs" />
     <Compile Include="Projectiles\Minions\HeavyLaserDrone.cs" />
     <Compile Include="Projectiles\Minions\CombatDroneBase.cs" />
     <Compile Include="Projectiles\Minions\MissileDroneRocket.cs" />

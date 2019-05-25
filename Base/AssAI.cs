@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -18,6 +20,26 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        //Credit to Itorius
+        /// <summary>
+        /// makes alpha on .png textures actually properly rendered
+        /// </summary>
+        public static bool CheckLineOfSight(Vector2 center, Vector2 target)
+        {
+            Ray ray = new Ray(new Vector3(center, 0), new Vector3(target - center, 0));
+
+            List<Vector2> tiles = new List<Vector2>();
+            Utils.PlotTileLine(center, target, 42, (i, j) =>
+            {
+                tiles.Add(i * 16 > center.X ? new Vector2(i, j + 1) * 16 : new Vector2(i, j) * 16);
+                return true;
+            });
+
+            return tiles
+                .Where(tile => WorldGen.SolidTile((int)(tile.X / 16), (int)(tile.Y / 16)))
+                .All(tile => new BoundingBox(new Vector3(tile - new Vector2(2), 0), new Vector3(tile + new Vector2(20), 0)).Intersects(ray) == null);
+        }
+
         //finds target in range of relativeCenter
         //returns index of target
         public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false)
@@ -28,11 +50,12 @@ namespace AssortedCrazyThings.Base
             for (int k = 0; k < 200; k++)
             {
                 NPC npc = Main.npc[k];
-                if (npc.active && npc.CanBeChasedBy(projectile.modProjectile))
+                if (npc.CanBeChasedBy(projectile.modProjectile))
                 {
+                    //Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height)
                     float between = Vector2.Distance(npc.Center, relativeCenter);
                     if (((between < range && Vector2.Distance(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                        (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height) || ignoreTiles))
+                        (CheckLineOfSight(relativeCenter, npc.Center) || ignoreTiles))
                     {
                         distanceFromTarget = between;
                         targetCenter = npc.Center;

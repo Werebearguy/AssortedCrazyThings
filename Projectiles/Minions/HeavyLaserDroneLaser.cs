@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.hide = true;
             projectile.friendly = true;
             projectile.hostile = false;
-            projectile.alpha = 255;
+            projectile.alpha = 255; //might not be needed
             projectile.ranged = false;
             projectile.penetrate = -1;
             projectile.aiStyle = -1;

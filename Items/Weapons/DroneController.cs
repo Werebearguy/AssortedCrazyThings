@@ -19,9 +19,12 @@ namespace AssortedCrazyThings.Items.Weapons
                 + "\nRight click to pick from available forms");
         }
 
+        public const int BaseDmg = 22;
+        public const float BaseKB = 3f;
+
         public override void SetDefaults()
         {
-            item.damage = SlimePackMinion.DefDamage;
+            item.damage = BaseDmg;
             item.summon = true;
             item.mana = 10;
             item.width = 24;
@@ -36,60 +39,185 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType<HeavyLaserDrone>();
             item.shootSpeed = 10f;
-            item.knockBack = SlimePackMinion.DefKnockback;
+            item.knockBack = BaseKB;
             item.buffType = mod.BuffType<DroneControllerBuff>();
             item.buffTime = 3600;
         }
 
         public override void GetWeaponDamage(Player player, ref int damage)
         {
-            //AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            //if (mPlayer.selectedSlimePackMinionType == 2)
-            //{
-            //    damage = (int)(damage * SlimePackMinion.SpikedIncrease); //from 26 to 36
-            //}
-            //else
-            //{
-            //    //default
-            //}
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+
+            DroneType selected = mPlayer.selectedDroneControllerMinionType;
+            damage = (int)(damage * GetDamageModifier(selected));
         }
 
         public override void GetWeaponKnockback(Player player, ref float knockback)
         {
-            //AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            //if (mPlayer.selectedSlimePackMinionType == 2)
-            //{
-            //    knockback *= SlimePackMinion.SpikedIncrease;
-            //}
-            //else
-            //{
-            //    //default
-            //}
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+
+            DroneType selected = mPlayer.selectedDroneControllerMinionType;
+            knockback *= GetKBModifier(selected);
+        }
+
+        public static int GetDroneType(DroneType selected)
+        {
+            int type = 0;
+            switch (selected)
+            {
+                case DroneType.BasicLaser:
+                    return AssUtils.Instance.ProjectileType<BasicLaserDrone>();
+                    break;
+                case DroneType.HeavyLaser:
+                    return AssUtils.Instance.ProjectileType<HeavyLaserDrone>();
+                case DroneType.Missile:
+                    return AssUtils.Instance.ProjectileType<MissileDrone>();
+                //case DroneType.Unused1:
+                //    break;
+                //case DroneType.Unused2:
+                //    break;
+                //case DroneType.Unused3:
+                //    break;
+                //case DroneType.Healing:
+                //    return mod.ProjectileType<HealingDroneProj>();
+                //case DroneType.Shield:
+                //    break;
+                case DroneType.None:
+                default:
+                    break;
+            }
+            return type;
+        }
+        public static float GetKBModifier(DroneType selected)
+        {
+            float modifier = 1f;
+            switch (selected)
+            {
+                case DroneType.BasicLaser:
+                    //modifier = 1f;
+                    break;
+                case DroneType.HeavyLaser:
+                    modifier = 4f;
+                    break;
+                case DroneType.Missile:
+                    modifier = 1.333334f;
+                    break;
+                //case DroneType.Unused1:
+                //    //modifier = 1f;
+                //    break;
+                //case DroneType.Unused2:
+                //    //modifier = 1f;
+                //    break;
+                //case DroneType.Unused3:
+                //    //modifier = 1f;
+                //    break;
+                //case DroneType.Healing:
+                //    break;
+                //case DroneType.Shield:
+                //    break;
+                //case DroneType.None:
+                //default:
+                //    break;
+            }
+            return modifier;
+        }
+
+        public static float GetDamageModifier(DroneType selected)
+        {
+            float modifier = 1f;
+            switch (selected)
+            {
+                case DroneType.BasicLaser:
+                    modifier = 1f;
+                    break;
+                case DroneType.HeavyLaser:
+                    modifier = 9.091f;
+                    break;
+                case DroneType.Missile:
+                    modifier = 1.2f;
+                    break;
+                //case DroneType.Unused1:
+                //    modifier = 1f;
+                //    break;
+                //case DroneType.Unused2:
+                //    modifier = 1f;
+                //    break;
+                //case DroneType.Unused3:
+                //    modifier = 1f;
+                //    break;
+                //case DroneType.Healing:
+                //    break;
+                //case DroneType.Shield:
+                //    break;
+                case DroneType.None:
+                default:
+                    break;
+            }
+            return modifier;
+        }
+
+        public static string GetTooltip(DroneType selected, bool onlyName = false)
+        {
+            string name;
+            string stats = "\nBase Damage: " + (int)(BaseDmg * GetDamageModifier(selected))
+                         + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * GetKBModifier(selected), 1);
+            string desc;
+            switch (selected)
+            {
+                case DroneType.BasicLaser:
+                    name = "Basic Laser Drone";
+                    desc = "Rapidly fires lasers";
+                    break;
+                case DroneType.HeavyLaser:
+                    name = "Heavy Laser Drone";
+                    desc = "Fires a penetrating laser after a long delay";
+                    break;
+                case DroneType.Missile:
+                    name = "Missile Launcher Drone";
+                    desc = "Fires a salvo of missiles after a long delay";
+                    break;
+                //case DroneType.Unused1:
+                //    name = "Basic Laser Drone";
+                //    desc = "Rapidly fires lasers";
+                //    break;
+                //case DroneType.Unused2:
+                //    name = "Basic Laser Drone";
+                //    desc = "Rapidly fires lasers";
+                //    break;
+                //case DroneType.Unused3:
+                //    name = "Basic Laser Drone";
+                //    desc = "Rapidly fires lasers";
+                //    break;
+                //case DroneType.Healing:
+                //    name = "Basic Laser Drone";
+                //    desc = "Rapidly fires lasers";
+                //    break;
+                //case DroneType.Shield:
+                //    name = "Basic Laser Drone";
+                //    desc = "Rapidly fires lasers";
+                //    break;
+                case DroneType.None:
+                default:
+                    return "";
+            }
+            return name + (!onlyName ? (stats + "\n" + desc): "");
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            //if (mPlayer.selectedSlimePackMinionType == 1)
-            //{
-            //    type = mod.ProjectileType<SlimePackAssortedMinion>();
-            //}
-            //else if (mPlayer.selectedSlimePackMinionType == 2)
-            //{
-            //    type = mod.ProjectileType<SlimePackSpikedMinion>();
-            //}
-            //else
-            //{
-            //    //default
-            //}
+            DroneType selected = mPlayer.selectedDroneControllerMinionType;
+            type = GetDroneType(selected);
             Vector2 spawnPos = new Vector2(player.Center.X, player.Center.Y);
             int currentCount = GetSlotOfNextCombatDrone(player);
             Projectile.NewProjectile(spawnPos.X, spawnPos.Y, - player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, currentCount);
+
             return false;
         }
 
         public override void AddRecipes()
         {
+            //TODO Recipe
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SlimeCrown, 1);
             recipe.AddIngredient(ItemID.Gel, 200);
@@ -102,7 +230,12 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public static int GetSlotOfNextCombatDrone(Player player)
         {
-            int[] combatDrones = new int[] { AssUtils.Instance.ProjectileType<MissileDrone>() };
+            int[] combatDrones = new int[]
+            {
+                AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
+                AssUtils.Instance.ProjectileType<HeavyLaserDrone>(),
+                AssUtils.Instance.ProjectileType<MissileDrone>()
+            };
             int slot = 0;
             int min = 1000;
             for (int i = 0; i < 1000; i++)
@@ -148,8 +281,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public static int SumOfCombatDrones(Player player)
         {
-            int sum = player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<MissileDrone>()];
+            int sum = player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<BasicLaserDrone>()];
             sum += player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<HeavyLaserDrone>()];
+            sum += player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<MissileDrone>()];
             return sum;
         }
 
@@ -158,5 +292,22 @@ namespace AssortedCrazyThings.Items.Weapons
             int sum = player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<HealingDroneProj>()];
             return sum;
         }
+    }
+
+    /// <summary>
+    /// The type of drone enumerated, so you can check against it via .HasFlag(DroneType.SomeType)
+    /// </summary>
+    [Flags]
+    public enum DroneType: byte
+    {
+        None = 0,
+        BasicLaser = 1,
+        HeavyLaser = 2,
+        Missile = 4,
+        //Unused1 = 8,
+        //Unused2 = 16,
+        //Unused3 = 32,
+        //Healing = 64,
+        //Shield = 128
     }
 }

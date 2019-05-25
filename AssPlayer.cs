@@ -50,7 +50,7 @@ namespace AssortedCrazyThings
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
-        public float step;
+        public float step = 0f;
 
         //enhanced hunter potion stuff
         public bool enhancedHunterBuff = false;
@@ -64,7 +64,15 @@ namespace AssortedCrazyThings
 
         public bool droneControllerMinion = false;
 
-        public float slotsMinionsMirror = 0f;
+        /// <summary>
+        /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
+        /// </summary>
+        public DroneType droneControllerUnlocked = DroneType.None;
+
+        /// <summary>
+        /// Contains the DroneType value (not 0 to 7, but 2^0 to 2^7)
+        /// </summary>
+        public DroneType selectedDroneControllerMinionType = DroneType.BasicLaser;
 
         private bool rightClickPrev = false;
         private bool rightClickPrev2 = false;
@@ -104,6 +112,7 @@ namespace AssortedCrazyThings
             {
                 {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
                 {"getDefenseTimer", (int)getDefenseTimer},
+                {"droneControllerUnlocked", (byte)droneControllerUnlocked}
             };
         }
 
@@ -111,6 +120,7 @@ namespace AssortedCrazyThings
         {
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
+            droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
         }
 
         public void ResetEmpoweringTimer(bool fromServer = false)
@@ -529,7 +539,7 @@ namespace AssortedCrazyThings
                         + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
                         "Spiked"
                         + "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * SlimePackMinion.SpikedIncrease)
-                        + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease)
+                        + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease, 1)
                         + "\nShoots spikes while fighting"
                     };
                     List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
@@ -551,6 +561,52 @@ namespace AssortedCrazyThings
                 {
                     selectedSlimePackMinionType = (byte)CircleUI.returned;
                     AssortedCrazyThings.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
+                },
+                triggerLeft: false
+            ),
+                new CircleUIHandler(
+                triggerItem: AssUtils.Instance.ItemType<DroneController>(),
+                condition: delegate
+                {
+                    return true;
+                },
+                uiConf: delegate
+                {
+                    //TODO Preview images
+                    List<Texture2D> textures = new List<Texture2D>() {
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/HealingDroneProj"),
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/HealingDroneProj"),
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/HealingDroneProj")};
+
+                    List<string> tooltips = new List<string>();
+
+                    foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
+                    {
+                        if (type != DroneType.None)
+                        {
+                            tooltips.Add(DroneController.GetTooltip(type));
+                        }
+                    }
+
+                    List<string> toUnlock = new List<string>() { "Default", "Default", "Default" };
+
+                    List<bool> unlocked = new List<bool>()
+                    {
+                        true,                // 0
+                        true,                // 1
+                        true,                // 2
+                    };
+
+                    return new CircleUIConf(6, -1, textures, unlocked, tooltips, toUnlock);
+                },
+                onUIStart: delegate
+                {
+                    return (int)Math.Log((int)selectedDroneControllerMinionType, 2);
+                },
+                onUIEnd: delegate
+                {
+                    selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
+                    AssortedCrazyThings.UIText("Selected: " + DroneController.GetTooltip(selectedDroneControllerMinionType, onlyName: true), CombatText.HealLife);
                 },
                 triggerLeft: false
             )
@@ -884,7 +940,7 @@ namespace AssortedCrazyThings
         public override void PreUpdate()
         {
             if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2);
-            slotsMinionsMirror = player.slotsMinions;
+
             SpawnSoulsWhenHarvesterIsAlive();
 
             RightClickStatus();

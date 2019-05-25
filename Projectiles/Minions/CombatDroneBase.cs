@@ -4,11 +4,12 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using AssortedCrazyThings.Items.Weapons;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
     /// <summary>
-    /// Uses only ai[1] for the minion position and localAI[0] for the bobbing.
+    /// Uses ai[1] for the minion position and localAI[0] & localAI[1] for the bobbing and a random number.
     /// Bobbing needs to be implemented manually in some draw hook
     /// </summary>
     public abstract class CombatDroneBase : ModProjectile
@@ -16,11 +17,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
         /// <summary>
         /// Custom MinionPos to determine position
         /// </summary>
-        protected float MinionPos
+        protected int MinionPos
         {
             get
             {
-                return projectile.ai[1];
+                return (int)projectile.ai[1];
             }
             set
             {
@@ -41,7 +42,30 @@ namespace AssortedCrazyThings.Projectiles.Minions
         }
 
         /// <summary>
-        /// depends on projectile.localAI[0]
+        /// Need to sync manually in the inheriting class
+        /// </summary>
+        protected byte RandomNumber
+        {
+            get
+            {
+                return (byte)projectile.localAI[1];
+            }
+            set
+            {
+                projectile.localAI[1] = value;
+            }
+        }
+
+        protected bool RealOwner
+        {
+            get
+            {
+                return Main.netMode != NetmodeID.Server && projectile.owner == Main.myPlayer;
+            }
+        }
+
+        /// <summary>
+        /// Depends on projectile.localAI[0]
         /// </summary>
         protected float sinY;
 
@@ -50,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         }
 
-        protected virtual void CustomDraw(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        protected virtual void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
 
         }
@@ -78,11 +102,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             #region Default AI
             Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
-            offset += DroneController.GetPosition(projectile, (int)MinionPos);
+            offset += DroneController.GetPosition(projectile, MinionPos);
+            if (RandomNumber == 0)
+            {
+                RandomNumber = (byte)Main.rand.Next(1, 256);
+            }
+
             bool staticDirection = true;
             bool reverseSide = false;
-            float veloXToRotationFactor = 0.5f;
-            float veloSpeed = 1f;
+            float veloXToRotationFactor = 0.5f + (RandomNumber / 255f - 0.5f) * 0.5f;
+            float veloSpeed = 1f + (RandomNumber / 255f - 0.5f) * 0.4f;
             float offsetX = offset.X;
             float offsetY = offset.Y;
             bool run = ModifyDefaultAI(ref staticDirection, ref reverseSide, ref veloXToRotationFactor, ref veloSpeed, ref offsetX, ref offsetY);
@@ -91,11 +120,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: staticDirection, reverseSide: reverseSide, veloXToRotationFactor: veloXToRotationFactor, veloSpeed: veloSpeed, offsetX: offsetX, offsetY: offsetY);
                 projectile.direction = projectile.spriteDirection = -Main.player[projectile.owner].direction;
             }
+            Player player = Main.player[projectile.owner];
+            player.numMinions--; //make it so it doesn't affect projectile.minionPos of non-drone minions
+
             #endregion
 
             CustomAI();
             Bobbing();
-            CustomDraw();
+            CustomFrame();
         }
     }
 }

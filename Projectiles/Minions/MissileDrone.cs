@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using AssortedCrazyThings.Base;
-using System;
 using Terraria;
 using Terraria.ID;
 
@@ -24,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private static readonly string nameLower = "Projectiles/Pets/" + "HealingDroneProj_Lower";
         private static readonly string nameLowerGlow = "Projectiles/Pets/" + "HealingDroneProj_Lower_Glowmask";
 
-        public const int AttackDelay = 120;
+        public const int AttackDelay = 180; //120 but incremented by 1.5f
 
         private const int MissileDamage = 20;
 
@@ -102,7 +101,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             Player player = Main.player[projectile.owner];
 
-            AttackCounter++;
+            AttackCounter += Main.rand.Next(1, 3);
             if (AttackCounter % AttackDelay == 0 || AttackCounter % AttackDelay == 15 || AttackCounter % AttackDelay == 30)
             {
                 if (Main.myPlayer == projectile.owner)
@@ -118,6 +117,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                             Vector2 position = projectile.Center;
                             position.Y -= 6f;
                             Projectile.NewProjectile(position, new Vector2(Main.rand.NextFloat(-2, 2), -5), mod.ProjectileType<MissileDroneRocket>(), MissileDamage, 2f, Main.myPlayer, 0f, 0f);
+                            projectile.velocity.Y += 2f;
                             if (AttackCounter % AttackDelay == 0) projectile.netUpdate = true;
                         }
                     }
@@ -134,7 +134,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
-        protected override void CustomDraw(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
             //frame 0, 1: above two thirds health
             //frame 2, 3: above half health, below two thirds health

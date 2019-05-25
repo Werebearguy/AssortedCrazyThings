@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using AssortedCrazyThings.Base;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -9,7 +8,8 @@ using System.IO;
 namespace AssortedCrazyThings.Projectiles.Minions
 {
     /// <summary>
-    /// Fires a penetrating laser beam horizontally to the player with a very long delay
+    /// Fires a penetrating laser beam horizontally to the player with a very long delay.
+    /// Only recognizes enemies at around the y level of the player
     /// </summary>
     public class HeavyLaserDrone : CombatDroneBase
     {
@@ -26,16 +26,18 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private static readonly string nameLowerGlow = "Projectiles/Pets/" + "HealingDroneProj_Lower_Glowmask";
 
         private const int AttackCooldown = 180;
-        private const int SearchDelay = 60;
+        private const int SearchDelay = 90; //60 but incremented 1.5f
         private const int ChargeDelay = 120;
-
-        private const int LaserDamage = 200;
 
         private const byte STATE_COOLDOWN = 0;
         private const byte STATE_IDLE = 1;
         private const byte STATE_CHARGE = 2;
+        private const byte STATE_RECOIL = 3;
 
         private byte AI_STATE = 0;
+        private byte PosInCharge = 0;
+        private int Direction = -1;
+        private float InitialDistance = 0;
 
         public int Counter
         {
@@ -55,7 +57,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
-            ProjectileID.Sets.Homing[projectile.type] = true;
         }
 
         public override void SetDefaults()
@@ -73,150 +74,33 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             //AssUtils.Print("send netupdate " + PickedTexture + " " + ShootTimer);
             writer.Write((byte)AI_STATE);
+            writer.Write((byte)PosInCharge);
+            writer.Write((byte)RandomNumber);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             AI_STATE = reader.ReadByte();
+            PosInCharge = reader.ReadByte();
+            RandomNumber = reader.ReadByte();
             //AssUtils.Print("recv netupdate " + PickedTexture + " " + ShootTimer);
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            Texture2D image = Main.projectileTexture[projectile.type];
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
-
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 8f) + sinY);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
-            Vector2 drawOrigin = bounds.Size() / 2;
-
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            image = mod.GetTexture(nameGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            Vector2 rotationOffset = new Vector2(0f, -2f);
-            drawPos += rotationOffset;
-            drawOrigin += rotationOffset;
-
-            //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
-
-            //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
-
-            //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-            image = mod.GetTexture(nameLower);
-            bounds.Y = 0;
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            image = mod.GetTexture(nameLowerGlow);
-            bounds.Y = 0;
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            return false;
-        }
-
-        protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
-        {
-            if (AI_STATE == STATE_CHARGE)
-            {
-                //offset x = 30 when facing right
-                staticDirection = true;
-                offsetX = (Main.player[projectile.owner].direction == 1? -80: 20);
-                offsetY = 10;
-            }
-            Main.NewText("offset: " + offsetX + " : " + offsetY);
-            return true;
-        }
-
-        protected override void CustomAI()
+        protected override void CheckActive()
         {
             Player player = Main.player[projectile.owner];
-            Main.NewText("State: " + AI_STATE);
-            Main.NewText("Counter: " + Counter);
-
-            #region Handle State
-            if (AI_STATE == STATE_COOLDOWN)
+            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
+            if (player.dead)
             {
-                if (Counter > AttackCooldown)
-                {
-                    Counter = 0;
-                    AI_STATE = STATE_IDLE;
-                    projectile.netUpdate = true;
-                }
-                //else stay in cooldown and wait for counter to reach 
+                modPlayer.droneControllerMinion = false;
             }
-            else if (AI_STATE == STATE_IDLE)
+            if (modPlayer.droneControllerMinion)
             {
-                if (Counter > SearchDelay)
-                {
-                    Counter = 0;
-                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
-                    if (targetIndex != -1)
-                    {
-                        AI_STATE = STATE_CHARGE;
-                        projectile.netUpdate = true;
-                    }
-                    //else stay in idle until target found
-                }
-            }
-            //else if (AI_STATE == STATE_CHARGE)
-            //{
-            //    //other code handles transition to STATE_COOLDOWN
-            //}
-            #endregion
-
-            Counter++;
-
-            if (AI_STATE == STATE_CHARGE)
-            {
-                Sincounter = 0;
-                int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
-
-                projectile.spriteDirection = projectile.direction = -player.direction;
-
-                if (Counter <= ChargeDelay)
-                {
-                    if (projectile.soundDelay <= 0)
-                    {
-                        projectile.soundDelay = 10;
-                        projectile.soundDelay *= 2;
-                        Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
-                        //Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
-                    }
-                }
-                else
-                {
-                    if (Main.myPlayer == projectile.owner)
-                    {
-                        Counter = 0;
-                        if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
-                        {
-                            Vector2 position = projectile.Center;
-                            position.Y += -6f + sinY;
-                            Vector2 velocity = Main.npc[targetIndex].Center - position;
-                            velocity.Normalize();
-                            velocity *= 6f;
-                            Projectile.NewProjectile(position, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
-                            AI_STATE = STATE_COOLDOWN;
-                            projectile.netUpdate = true;
-                        }
-                        if (targetIndex == -1)
-                        {
-                            AI_STATE = STATE_IDLE;
-                            projectile.netUpdate = true;
-                        }
-                    }
-                }
+                projectile.timeLeft = 2;
             }
         }
 
-        protected override void CustomDraw(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
             //frame 0, 1: above two thirds health
             //frame 2, 3: above half health, below two thirds health
@@ -266,18 +150,241 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.frame += frameOffset;
         }
 
-        protected override void CheckActive()
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Texture2D image = Main.projectileTexture[projectile.type];
+            Rectangle bounds = new Rectangle();
+            bounds.X = 0;
+            bounds.Width = image.Bounds.Width;
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
+            bounds.Y = projectile.frame * bounds.Height;
+
+            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 8f) + sinY);
+            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 drawOrigin = bounds.Size() / 2;
+
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+
+            image = mod.GetTexture(nameGlow);
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
+
+            Vector2 rotationOffset = new Vector2(0f, -2f);
+            drawPos += rotationOffset;
+            drawOrigin += rotationOffset;
+
+            //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
+
+            //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
+
+            //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
+            image = mod.GetTexture(nameLower);
+            bounds.Y = 0;
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+
+            image = mod.GetTexture(nameLowerGlow);
+            bounds.Y = 0;
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
+
+            return false;
+        }
+
+        protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
+        {
+            if (AI_STATE == STATE_CHARGE)
+            {
+                //offset x = 30 when facing right
+                //staticDirection = true;
+                offsetX = Direction == 1? -80: 20;
+                offsetX += Math.Sign(offsetX) * PosInCharge * projectile.width * 1.5f;
+                offsetY = 10;
+                veloSpeed = 0.5f;
+            }
+            else if (AI_STATE == STATE_RECOIL)
+            {
+                //150 to 50 is smooth, distance
+                Vector2 pos = new Vector2(offsetX, offsetY) - new Vector2(-30, 20);
+                //veloSpeed = (float)Math.Pow((double)Counter / AttackCooldown, 2) + 0.05f;
+                Vector2 distanceToTargetVector = (pos + Main.player[projectile.owner].Center) - projectile.Center;
+                float distanceToTarget = distanceToTargetVector.Length();
+                if (Counter == 0) InitialDistance = distanceToTarget;
+                //Main.NewText("proper: " + distanceToTargetVector.Length());
+                float magnitude = 1f + distanceToTargetVector.LengthSquared() / (InitialDistance * InitialDistance);
+                distanceToTargetVector.Normalize();
+                distanceToTargetVector *= magnitude;
+                //-(Counter - AttackCooldown / 5) -> goes from 36 to 0
+                float accel = Utils.Clamp(-(Counter - AttackCooldown / 5), 4, 20);
+                projectile.velocity = (projectile.velocity * (accel - 1) + distanceToTargetVector) / accel;
+                return false;
+            }
+            return true;
+        }
+
+        protected override void Bobbing()
+        {
+            if (AI_STATE == STATE_CHARGE)
+            {
+                sinY = 0;
+            }
+            else
+            {
+                Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
+                sinY = (float)((Math.Sin(((Sincounter + MinionPos * 10f) / 120f) * 2 * Math.PI) - 1) * 4);
+            }
+        }
+
+        protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
-            if (player.dead)
+            //Main.NewText("State: " + AI_STATE);
+            //Main.NewText("Counter: " + Counter);
+
+            #region Handle State
+            if (AI_STATE == STATE_COOLDOWN)
             {
-                modPlayer.droneControllerMinion = false;
+                if (Counter > AttackCooldown)
+                {
+                    Counter = 0;
+                    //Main.NewText("Change from cooldown to idle");
+                    AI_STATE = STATE_IDLE;
+                    if (RealOwner) projectile.netUpdate = true;
+                }
+                //else stay in cooldown and wait for counter to reach 
             }
-            if (modPlayer.droneControllerMinion)
+            else if (AI_STATE == STATE_IDLE)
             {
-                projectile.timeLeft = 2;
+                if (Counter > SearchDelay)
+                {
+                    Counter = 0;
+                    int targetIndex = FindClosestHorizontalTarget();
+                    if (targetIndex != -1)
+                    {
+                        PosInCharge = (byte)GetChargePosition();
+                        //Main.NewText("Change from idle to charge");
+                        AI_STATE = STATE_CHARGE;
+                        if (RealOwner) projectile.netUpdate = true;
+                    }
+                    //else stay in idle until target found
+                }
             }
+            else if (AI_STATE == STATE_RECOIL)
+            {
+                if (Counter > AttackCooldown / 3)
+                {
+                    AI_STATE = STATE_COOLDOWN;
+                }
+            }
+            #endregion
+
+            Counter += Main.rand.Next(1, AI_STATE != STATE_IDLE? 2: 3);
+
+            if (AI_STATE == STATE_CHARGE)
+            {
+                int targetIndex = FindClosestHorizontalTarget();
+
+                projectile.spriteDirection = projectile.direction = -Direction;
+
+                if (Counter <= ChargeDelay)
+                {
+                    if (RealOwner && targetIndex == -1)
+                    {
+                        //Main.NewText("Change from charge to idle cuz no target");
+                        AI_STATE = STATE_IDLE;
+                        projectile.netUpdate = true;
+                    }
+                    if (projectile.soundDelay <= 0)
+                    {
+                        projectile.soundDelay = 20;
+                        Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 15, 0.7f + (Counter / (float)ChargeDelay) * 0.5f, -0.1f + (Counter / (float)ChargeDelay) * 0.4f);
+                        //Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
+                        //Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
+                    }
+                }
+                else
+                {
+                    if (RealOwner)
+                    {
+                        Counter = 0;
+                        if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+                        {
+                            Vector2 position = projectile.Center;
+                            position.Y += -6f + sinY;
+                            Vector2 velocity = Main.npc[targetIndex].Center - position;
+                            velocity.Normalize();
+                            velocity *= 6f;
+                            projectile.velocity += -velocity * 0.75f; //recoil
+                            Projectile.NewProjectile(position, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+
+                            AI_STATE = STATE_RECOIL;
+                            projectile.netUpdate = true;
+                        }
+                        if (targetIndex == -1)
+                        {
+                            //Main.NewText("Change from charge to idle");
+                            AI_STATE = STATE_IDLE;
+                            projectile.netUpdate = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private int FindClosestHorizontalTarget()
+        {
+            Player player = Main.player[projectile.owner];
+            int targetIndex = -1;
+            float distanceFromTarget = 100000f;
+            Vector2 targetCenter = player.Center;
+            float margin = 100;
+            int range = 600;
+            for (int k = 0; k < 200; k++)
+            {
+                NPC npc = Main.npc[k];
+                if (npc.active && npc.CanBeChasedBy(projectile))
+                {
+                    float between = Vector2.Distance(npc.Center, player.Center);
+                    if (((between < range &&
+                        Vector2.Distance(player.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
+                        Collision.CanHitLine(player.Center, 1, 1, npc.Center, 1, 1))
+                    {
+                        distanceFromTarget = between;
+                        targetCenter = npc.Center;
+                        targetIndex = k;
+                    }
+                }
+            }
+            Direction = (targetCenter.X - player.Center.X > 0f).ToDirectionInt();
+            float betweenY = targetCenter.Y - player.Top.Y; //bigger margin upwards
+            //Main.NewText("betweenY: " + betweenY);
+            return (Math.Abs(betweenY) < margin && distanceFromTarget < range)? targetIndex : -1;
+        }
+
+        /// <summary>
+        /// Called when not in STATE_CHARGE itself. Returns the minionPos for the laser charge
+        /// </summary>
+        private int GetChargePosition()
+        {
+            int pos = 0;
+            int min = 1000;
+            for (int i = 0; i < 1000; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == projectile.owner && proj.type == projectile.type)
+                {
+                    HeavyLaserDrone h = (HeavyLaserDrone)proj.modProjectile;
+                    if (h.AI_STATE == STATE_CHARGE)
+                    {
+                        byte projPos = h.PosInCharge;
+                        min = Math.Min(min, projPos);
+                        if (projPos > pos) pos = projPos;
+                    }
+                    //also works on itself
+                }
+            }
+            if (min > 0) return 0;
+
+            return pos + 1;
         }
     }
 }
