@@ -159,6 +159,9 @@ namespace AssortedCrazyThings
         public bool SoulLightPet2 = false;
         public bool DocileDemonEye = false;
         public bool QueenLarva = false;
+        /// <summary>
+        /// Deprecated
+        /// </summary>
         public bool HealingDrone = false;
         public bool PetSun = false;
         public bool PetMoon = false;

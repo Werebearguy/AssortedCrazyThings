@@ -462,6 +462,7 @@ namespace AssortedCrazyThings
                 }
             }
         }
+
         private void UpdatePetVanityUI()
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
@@ -481,7 +482,7 @@ namespace AssortedCrazyThings
                     PetVanityUI.spawnPosition = Main.MouseScreen;
                     PetVanityUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
                     PetVanityUI.petAccessory = petAccessory;
-                    PetAccessory petAcc = Main.LocalPlayer.GetModPlayer<PetPlayer>().GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
+                    PetAccessory petAcc = pPlayer.GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
                     PetVanityUI.hasEquipped = petAcc != null && petAcc.Type == petAccessory.Type;
                     PetVanityUI.fadeIn = 0;
                 }
@@ -562,7 +563,6 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Checks if LocalPlayer can open a UI
         /// </summary>
-        /// <returns></returns>
         private bool AllowedToOpenUI()
         {
             return Main.hasFocus &&
@@ -741,7 +741,7 @@ namespace AssortedCrazyThings
 
         //Credit to jopojelly
         /// <summary>
-        /// makes alpha on .png textures actually properly rendered
+        /// Makes alpha on .png textures actually properly rendered
         /// </summary>
         public static void PremultiplyTexture(Texture2D texture)
         {

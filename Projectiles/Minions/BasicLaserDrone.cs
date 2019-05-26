@@ -3,10 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using System.IO;
 using AssortedCrazyThings.Base;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
@@ -19,13 +16,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/HealingDroneProj";
+                return "AssortedCrazyThings/Projectiles/Minions/HealingDrone";
             }
         }
 
-        private static readonly string nameGlow = "Projectiles/Pets/" + "HealingDroneProj_Glowmask";
-        private static readonly string nameLower = "Projectiles/Pets/" + "HealingDroneProj_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Pets/" + "HealingDroneProj_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
 
         private const int AttackDelay = 30; //actually 20 but because incremented by 1.5f
 
@@ -66,7 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.height = 30;
             projectile.alpha = 0;
             projectile.minion = true;
-            projectile.minionSlots = 1f; //2f
+            projectile.minionSlots = 1f;
         }
 
         protected override void CheckActive()
@@ -249,7 +246,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     }
                 }
 
-                bool canShoot = true;
+                bool canShoot = shootOrigin.Y < target.Y + Target.height / 2;
 
                 if (projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka target is too fast for the drone to catch up)
                 {
@@ -267,7 +264,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         addRotation = projectile.rotation;
                     }
                 }
-                canShoot |= shootOrigin.Y < target.Y + Target.height / 2;
 
                 if (canShoot) //when target below drone
                 {

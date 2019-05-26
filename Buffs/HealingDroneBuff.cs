@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Healing Drone");
-            Description.SetDefault("A Healing Drone is following you");
+            Description.SetDefault("Legacy Item, discontinued"
+                + "\nCraft the item into the non-legacy version");
             Main.buffNoTimeDisplay[Type] = true;
             Main.lightPet[Type] = true;
         }

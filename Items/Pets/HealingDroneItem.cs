@@ -9,7 +9,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Healing Drone");
-            Tooltip.SetDefault("Summons a Healing Drone to follow you and heal when injured");
+            Tooltip.SetDefault("Legacy Item, discontinued"
+                + "\nCraft the item into the non-legacy version");
         }
 
         public override void SetDefaults()
@@ -33,6 +34,7 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void AddRecipes()
         {
+            //TODO Migration recipe
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<DroneParts>(), 1);
             recipe.AddIngredient(ItemID.WireBulb, 1);

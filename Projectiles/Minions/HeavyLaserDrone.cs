@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using System.IO;
+using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
@@ -17,13 +18,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/HealingDroneProj";
+                return "AssortedCrazyThings/Projectiles/Minions/HealingDrone";
             }
         }
 
-        private static readonly string nameGlow = "Projectiles/Pets/" + "HealingDroneProj_Glowmask";
-        private static readonly string nameLower = "Projectiles/Pets/" + "HealingDroneProj_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Pets/" + "HealingDroneProj_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
 
         private const int AttackCooldown = 180;
         private const int SearchDelay = 90; //60 but incremented 1.5f
@@ -51,6 +52,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        private Vector2 BarrelPos
+        {
+            get
+            {
+                Vector2 position = projectile.Center;
+                position.Y += sinY;
+                return position;
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Heavy Laser Drone");
@@ -67,7 +78,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.height = 30;
             projectile.alpha = 0;
             projectile.minion = true;
-            projectile.minionSlots = 1f; //2f
+            projectile.minionSlots = 2f;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -195,7 +206,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (AI_STATE == STATE_CHARGE)
             {
                 //offset x = 30 when facing right
-                //staticDirection = true;
                 offsetX = Direction == 1? -80: 20;
                 offsetX += Math.Sign(offsetX) * PosInCharge * projectile.width * 1.5f;
                 offsetY = 10;
@@ -214,7 +224,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 distanceToTargetVector.Normalize();
                 distanceToTargetVector *= magnitude;
                 //-(Counter - AttackCooldown / 5) -> goes from 36 to 0
-                float accel = Utils.Clamp(-(Counter - AttackCooldown / 5), 4, 20);
+                float accel = Utils.Clamp(-(Counter - 36), 4, 20);
                 projectile.velocity = (projectile.velocity * (accel - 1) + distanceToTargetVector) / accel;
                 return false;
             }
@@ -270,7 +280,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
             else if (AI_STATE == STATE_RECOIL)
             {
-                if (Counter > AttackCooldown / 3)
+                if (Counter > 60)
                 {
                     AI_STATE = STATE_COOLDOWN;
                 }
@@ -287,18 +297,38 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 if (Counter <= ChargeDelay)
                 {
+                    //if lose target
                     if (RealOwner && targetIndex == -1)
                     {
                         //Main.NewText("Change from charge to idle cuz no target");
                         AI_STATE = STATE_IDLE;
                         projectile.netUpdate = true;
                     }
+
+                    //make sound
                     if (projectile.soundDelay <= 0)
                     {
                         projectile.soundDelay = 20;
-                        Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 15, 0.7f + (Counter / (float)ChargeDelay) * 0.5f, -0.1f + (Counter / (float)ChargeDelay) * 0.4f);
+                        Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item15.Style, 0.7f + (Counter / (float)ChargeDelay) * 0.5f, -0.1f + (Counter / (float)ChargeDelay) * 0.4f);
                         //Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
                         //Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
+                    }
+
+                    //spawn dust
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (Counter <= ChargeDelay && Main.rand.NextFloat() < (float)Counter / ChargeDelay)
+                        {
+                            int dustType = 60;
+                            //if facing left: + Direction * 48
+                            int height = (int)(9 * (ChargeDelay - Counter) / (float)ChargeDelay) + 4;
+                            Rectangle rect = new Rectangle((int)BarrelPos.X + Direction * (Direction == 1 ? 16 : 48), (int)BarrelPos.Y - height, 32, 2 * height);
+                            Dust d = Main.dust[Dust.NewDust(rect.TopLeft(), rect.Width, rect.Height, dustType)];
+                            d.noGravity = true;
+                            d.velocity.X *= 0.75f;
+                            d.velocity.Y *= (d.position.Y > rect.Center().Y).ToDirectionInt(); //y velocity goes "inwards"
+                            d.velocity *= 3 * ((ChargeDelay - Counter) / (float)ChargeDelay);
+                        }
                     }
                 }
                 else
@@ -306,15 +336,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     if (RealOwner)
                     {
                         Counter = 0;
-                        if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+                        if (targetIndex != -1 && !Collision.SolidCollision(BarrelPos, 1, 1))
                         {
-                            Vector2 position = projectile.Center;
-                            position.Y += -6f + sinY;
-                            Vector2 velocity = Main.npc[targetIndex].Center - position;
+                            Vector2 velocity = Main.npc[targetIndex].Center - BarrelPos;
                             velocity.Normalize();
-                            velocity *= 6f;
+                            velocity *= 10f;
                             projectile.velocity += -velocity * 0.75f; //recoil
-                            Projectile.NewProjectile(position, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(BarrelPos, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
 
                             AI_STATE = STATE_RECOIL;
                             projectile.netUpdate = true;
@@ -336,8 +364,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
             int targetIndex = -1;
             float distanceFromTarget = 100000f;
             Vector2 targetCenter = player.Center;
-            float margin = 100;
-            int range = 600;
+            float margin = 200;
+            int range = 1000;
             for (int k = 0; k < 200; k++)
             {
                 NPC npc = Main.npc[k];
@@ -346,7 +374,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     float between = Vector2.Distance(npc.Center, player.Center);
                     if (((between < range &&
                         Vector2.Distance(player.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                        Collision.CanHitLine(player.Center, 1, 1, npc.Center, 1, 1))
+                         AssAI.CheckLineOfSight(player.Center, npc.Center))
                     {
                         distanceFromTarget = between;
                         targetCenter = npc.Center;
@@ -361,7 +389,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         }
 
         /// <summary>
-        /// Called when not in STATE_CHARGE itself. Returns the minionPos for the laser charge
+        /// Called before switching to STATE_CHARGE. Returns the minionPos for the laser charge
         /// </summary>
         private int GetChargePosition()
         {
@@ -382,6 +410,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     //also works on itself
                 }
             }
+            return 3;
             if (min > 0) return 0;
 
             return pos + 1;

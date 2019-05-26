@@ -67,7 +67,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
         /// </summary>
-        public DroneType droneControllerUnlocked = DroneType.None;
+        public DroneType droneControllerUnlocked = DroneType.BasicLaser;
 
         /// <summary>
         /// Contains the DroneType value (not 0 to 7, but 2^0 to 2^7)
@@ -574,9 +574,10 @@ namespace AssortedCrazyThings
                 {
                     //TODO Preview images
                     List<Texture2D> textures = new List<Texture2D>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/HealingDroneProj"),
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/HealingDroneProj"),
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/HealingDroneProj")};
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone")};
 
                     List<string> tooltips = new List<string>();
 
@@ -588,20 +589,25 @@ namespace AssortedCrazyThings
                         }
                     }
 
-                    List<string> toUnlock = new List<string>() { "Default", "Default", "Default" };
+                    List<string> toUnlock = new List<string>() { "Default", "Default", "Default", "Default" };
 
                     List<bool> unlocked = new List<bool>()
                     {
                         true,                // 0
                         true,                // 1
                         true,                // 2
+                        true,                // 3
                     };
 
                     return new CircleUIConf(6, -1, textures, unlocked, tooltips, toUnlock);
                 },
                 onUIStart: delegate
                 {
-                    return (int)Math.Log((int)selectedDroneControllerMinionType, 2);
+                    if (Utils.IsPowerOfTwo((int)selectedDroneControllerMinionType))
+                    {
+                        return (int)Math.Log((int)selectedDroneControllerMinionType, 2);
+                    }
+                    return 0;
                 },
                 onUIEnd: delegate
                 {

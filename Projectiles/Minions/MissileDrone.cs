@@ -15,13 +15,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Pets/HealingDroneProj";
+                return "AssortedCrazyThings/Projectiles/Minions/HealingDrone";
             }
         }
 
-        private static readonly string nameGlow = "Projectiles/Pets/" + "HealingDroneProj_Glowmask";
-        private static readonly string nameLower = "Projectiles/Pets/" + "HealingDroneProj_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Pets/" + "HealingDroneProj_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
 
         public const int AttackDelay = 180; //120 but incremented by 1.5f
 
