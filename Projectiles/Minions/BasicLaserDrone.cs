@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     /// <summary>
     /// Fires a weak laser rapidly
     /// </summary>
-    public class BasicLaserDrone : CombatDroneBase
+    public class BasicLaserDrone : DroneBase
     {
         public override string Texture
         {
@@ -64,20 +64,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.alpha = 0;
             projectile.minion = true;
             projectile.minionSlots = 1f;
-        }
-
-        protected override void CheckActive()
-        {
-            Player player = Main.player[projectile.owner];
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.droneControllerMinion = false;
-            }
-            if (modPlayer.droneControllerMinion)
-            {
-                projectile.timeLeft = 2;
-            }
         }
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
@@ -148,7 +134,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             image = mod.GetTexture(nameGlow);
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            Vector2 rotationOffset = new Vector2(0f, -2f);
+            Vector2 rotationOffset = new Vector2(0f, -4f); //-2f
             drawPos += rotationOffset;
             drawOrigin += rotationOffset;
 
@@ -280,7 +266,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                                 between *= 6f;
                                 Projectile.NewProjectile(position, between, mod.ProjectileType<PetDestroyerDroneLaser>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
 
-                                projectile.netUpdate = true;
+                                //projectile.netUpdate = true;
                             }
                         }
                     }

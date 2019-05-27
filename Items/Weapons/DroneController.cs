@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Returns the custom MinionPos
         /// </summary>
-        public static int GetSlotOfNextCombatDrone(Player player, int[] combatDrones)
+        public static int GetSlotOfNextDrone(Player player, int[] combatDrones)
         {
             int slot = 0;
             int min = 1000;
@@ -105,6 +105,7 @@ namespace AssortedCrazyThings.Items.Weapons
             }
             return type;
         }
+
         public static float GetKBModifier(DroneType selected)
         {
             float modifier = 1f;
@@ -322,7 +323,7 @@ namespace AssortedCrazyThings.Items.Weapons
             };
             if (Array.IndexOf(combatDrones, type) != -1)
             {
-                currentCount = GetSlotOfNextCombatDrone(player, combatDrones);
+                currentCount = GetSlotOfNextDrone(player, combatDrones);
             }
             Vector2 spawnPos = new Vector2(player.Center.X, player.Center.Y);
             Projectile.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, currentCount);

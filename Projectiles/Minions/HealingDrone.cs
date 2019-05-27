@@ -4,7 +4,6 @@ using AssortedCrazyThings.Base;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
@@ -12,31 +11,26 @@ namespace AssortedCrazyThings.Projectiles.Minions
     /// Heals the player if below max health
     /// Heals faster when below 50% health
     /// </summary>
-    public class HealingDrone : ModProjectile
+    public class HealingDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
         private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
         private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
-        private float sinY; //depends on projectile.ai[0], no need to sync
         private float addRotation; //same
-
-        private float Sincounter
-        {
-            get
-            {
-                return projectile.ai[0];
-            }
-            set
-            {
-                projectile.ai[0] = value;
-            }
-        }
 
         private bool CanHeal
         {
             get
             {
                 return Main.player[projectile.owner].statLife < Main.player[projectile.owner].statLifeMax2;
+            }
+        }
+
+        protected override bool IsCombatDrone
+        {
+            get
+            {
+                return false;
             }
         }
 
@@ -59,6 +53,59 @@ namespace AssortedCrazyThings.Projectiles.Minions
             projectile.minionSlots = 1f;
         }
 
+        protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        {
+            //frame 0, 1: full life
+            //frame 2, 3: above half health, healing
+            //frame 4, 5: below half health, healing faster
+            Player player = Main.player[projectile.owner];
+
+            Vector2 lightPos = projectile.position + new Vector2(projectile.spriteDirection == 1 ? 0f : projectile.width, projectile.height / 2);
+
+            int frameOffset = 0; //frame 0, 1
+
+            if (player.statLife < player.statLifeMax2 / 2) //frame 4, 5
+            {
+                Lighting.AddLight(lightPos, new Vector3(153 / 700f, 63 / 700f, 66 / 700f));
+                frameOffset = 4;
+            }
+            else if (CanHeal) //frame 2, 3
+            {
+                Lighting.AddLight(lightPos, new Vector3(240 / 700f, 198 / 700f, 0f));
+                frameOffset = 2;
+            }
+            else
+            {
+                Lighting.AddLight(lightPos, new Vector3(124 / 700f, 251 / 700f, 34 / 700f));
+                //frameoffset 0
+            }
+
+            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
+
+            if (projectile.velocity.Length() > 6f)
+            {
+                if (++projectile.frameCounter >= frameCounterMaxFar)
+                {
+                    projectile.frameCounter = 0;
+                    if (++projectile.frame >= 2 + frameOffset)
+                    {
+                        projectile.frame = frameOffset;
+                    }
+                }
+            }
+            else
+            {
+                if (++projectile.frameCounter >= frameCounterMaxClose)
+                {
+                    projectile.frameCounter = 0;
+                    if (++projectile.frame >= 2 + frameOffset)
+                    {
+                        projectile.frame = frameOffset;
+                    }
+                }
+            }
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D image = Main.projectileTexture[projectile.type];
@@ -79,7 +126,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             image = mod.GetTexture(nameGlow);
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            Vector2 rotationOffset = new Vector2(0f, -2f);
+            Vector2 rotationOffset = new Vector2(0f, -4f); //-2f)
             drawPos += rotationOffset;
             drawOrigin += rotationOffset;
 
@@ -97,13 +144,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return false;
         }
 
-        private void CustomAI()
+        protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
+        {
+            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: CanHeal ? -16f : 4f); //2f
+            return false;
+        }
+
+        protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
 
-            Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
-            sinY = (float)((Math.Sin((Sincounter / 120f) * 2 * Math.PI) - 1) * 4);
-            
             if (CanHeal)
             {
                 Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
@@ -180,79 +230,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     //fix rotation so it doesn't get adjusted anymore
                     addRotation = projectile.rotation;
                 }
-            }
-        }
-
-        private void CustomDraw(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
-        {
-            //frame 0, 1: full life
-            //frame 2, 3: above half health, healing
-            //frame 4, 5: below half health, healing faster
-            Player player = Main.player[projectile.owner];
-
-            Vector2 lightPos = projectile.position + new Vector2(projectile.spriteDirection == 1? 0f : projectile.width, projectile.height / 2);
-
-            int frameOffset = 0; //frame 0, 1
-            
-            if (player.statLife < player.statLifeMax2 / 2) //frame 4, 5
-            {
-                Lighting.AddLight(lightPos, new Vector3(153 / 700f, 63 / 700f, 66 / 700f));
-                frameOffset = 4;
-            }
-            else if (CanHeal) //frame 2, 3
-            {
-                Lighting.AddLight(lightPos, new Vector3(240 / 700f, 198 / 700f, 0f));
-                frameOffset = 2;
-            }
-            else
-            {
-                Lighting.AddLight(lightPos, new Vector3(124 / 700f, 251 / 700f, 34 / 700f));
-                //frameoffset 0
-            }
-
-            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
-
-            if (projectile.velocity.Length() > 6f)
-            {
-                if (++projectile.frameCounter >= frameCounterMaxFar)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
-                }
-            }
-            else
-            {
-                if (++projectile.frameCounter >= frameCounterMaxClose)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
-                }
-            }
-        }
-
-        public override void AI()
-        {
-            Player player = Main.player[projectile.owner];
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.droneControllerMinion = false;
-            }
-            if (modPlayer.droneControllerMinion)
-            {
-                projectile.timeLeft = 2;
-
-                AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: CanHeal? -16f: 4f); //2f
-
-                CustomAI();
-
-                CustomDraw();
             }
         }
     }

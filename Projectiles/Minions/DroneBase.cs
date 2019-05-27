@@ -5,14 +5,15 @@ using Terraria;
 using Terraria.ModLoader;
 using AssortedCrazyThings.Items.Weapons;
 using Terraria.ID;
+using System.IO;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
     /// <summary>
     /// Uses ai[1] for the minion position and localAI[0] & localAI[1] for the bobbing and a random number.
-    /// Bobbing needs to be implemented manually in some draw hook
+    /// Bobbing (sinY) needs to be implemented manually in some draw hook
     /// </summary>
-    public abstract class CombatDroneBase : ModProjectile
+    public abstract class DroneBase : ModProjectile
     {
         /// <summary>
         /// Custom MinionPos to determine position
@@ -64,10 +65,28 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        protected virtual bool IsCombatDrone
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// Depends on projectile.localAI[0]
         /// </summary>
         protected float sinY;
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((byte)RandomNumber);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            RandomNumber = reader.ReadByte();
+        }
 
         protected virtual void CustomAI()
         {
@@ -79,7 +98,19 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         }
 
-        protected abstract void CheckActive();
+        protected virtual void CheckActive()
+        {
+            Player player = Main.player[projectile.owner];
+            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
+            if (player.dead)
+            {
+                modPlayer.droneControllerMinion = false;
+            }
+            if (modPlayer.droneControllerMinion)
+            {
+                projectile.timeLeft = 2;
+            }
+        }
 
         protected virtual void Bobbing()
         {
@@ -101,11 +132,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
             CheckActive();
 
             #region Default AI
+            Player player = Main.player[projectile.owner];
             Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
             offset += DroneController.GetPosition(projectile, MinionPos);
             if (RandomNumber == 0)
             {
                 RandomNumber = (byte)Main.rand.Next(1, 256);
+            }
+            if (!IsCombatDrone)
+            {
+                MinionPos = 0;
             }
 
             bool staticDirection = true;
@@ -118,9 +154,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (run)
             {
                 AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: staticDirection, reverseSide: reverseSide, veloXToRotationFactor: veloXToRotationFactor, veloSpeed: veloSpeed, offsetX: offsetX, offsetY: offsetY);
-                projectile.direction = projectile.spriteDirection = -Main.player[projectile.owner].direction;
+                projectile.direction = projectile.spriteDirection = -player.direction;
             }
-            Player player = Main.player[projectile.owner];
             player.numMinions--; //make it so it doesn't affect projectile.minionPos of non-drone minions
 
             #endregion

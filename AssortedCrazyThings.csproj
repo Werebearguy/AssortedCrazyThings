@@ -309,7 +309,7 @@
     <Compile Include="Projectiles\Minions\BasicLaserDrone.cs" />
     <Compile Include="Projectiles\Minions\HealingDrone.cs" />
     <Compile Include="Projectiles\Minions\HeavyLaserDrone.cs" />
-    <Compile Include="Projectiles\Minions\CombatDroneBase.cs" />
+    <Compile Include="Projectiles\Minions\DroneBase.cs" />
     <Compile Include="Projectiles\Minions\MissileDroneRocket.cs" />
     <Compile Include="Projectiles\Minions\MissileDrone.cs" />
     <Compile Include="Projectiles\Pets\PetDestroyer.cs" />

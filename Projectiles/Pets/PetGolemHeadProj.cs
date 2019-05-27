@@ -8,8 +8,12 @@ using AssortedCrazyThings.Projectiles.Minions;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetGolemHeadProj : CombatDroneBase
+    public class PetGolemHeadProj : DroneBase
     {
+        public const int AttackDelay = 60;
+
+        private const int FireballDamage = 20;
+
         public int AttackCounter
         {
             get
@@ -22,9 +26,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        public const int AttackDelay = 60;
-
-        private const int FireballDamage = 20;
+        protected override bool IsCombatDrone
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -41,6 +49,39 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = 38;
             projectile.height = 38;
             projectile.tileCollide = false;
+        }
+
+        protected override void CheckActive()
+        {
+            Player player = Main.player[projectile.owner];
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            if (player.dead)
+            {
+                modPlayer.PetGolemHead = false;
+            }
+            if (modPlayer.PetGolemHead)
+            {
+                projectile.timeLeft = 2;
+            }
+        }
+
+        protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
+        {
+            if (AttackCounter > AttackDelay)
+            {
+                if (AttackCounter < (int)(AttackDelay * 1.5f))
+                {
+                    projectile.frame = 1;
+                }
+                else
+                {
+                    projectile.frame = 0;
+                }
+            }
+            else
+            {
+                projectile.frame = 0;
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -67,41 +108,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return false;
         }
 
-        protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
-        {
-            if (AttackCounter > AttackDelay)
-            {
-                if (AttackCounter < (int)(AttackDelay * 1.5f))
-                {
-                    projectile.frame = 1;
-                }
-                else
-                {
-                    projectile.frame = 0;
-                }
-            }
-            else
-            {
-                projectile.frame = 0;
-            }
-        }
-
-        protected override void CheckActive()
-        {
-            Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.PetGolemHead = false;
-            }
-            if (modPlayer.PetGolemHead)
-            {
-                projectile.timeLeft = 2;
-            }
-        }
-
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
         {
+            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
             return false;
         }
 
@@ -109,8 +118,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Player player = Main.player[projectile.owner];
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
-            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
-            
+
             projectile.rotation = 0f;
 
             AttackCounter++;

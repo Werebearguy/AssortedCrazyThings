@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     /// Fires a penetrating laser beam horizontally to the player with a very long delay.
     /// Only recognizes enemies at around the y level of the player
     /// </summary>
-    public class HeavyLaserDrone : CombatDroneBase
+    public class HeavyLaserDrone : DroneBase
     {
         public override string Texture
         {
@@ -83,32 +83,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            //AssUtils.Print("send netupdate " + PickedTexture + " " + ShootTimer);
+            base.SendExtraAI(writer);
             writer.Write((byte)AI_STATE);
             writer.Write((byte)PosInCharge);
-            writer.Write((byte)RandomNumber);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
+            base.ReceiveExtraAI(reader);
             AI_STATE = reader.ReadByte();
             PosInCharge = reader.ReadByte();
-            RandomNumber = reader.ReadByte();
-            //AssUtils.Print("recv netupdate " + PickedTexture + " " + ShootTimer);
-        }
-
-        protected override void CheckActive()
-        {
-            Player player = Main.player[projectile.owner];
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
-            if (player.dead)
-            {
-                modPlayer.droneControllerMinion = false;
-            }
-            if (modPlayer.droneControllerMinion)
-            {
-                projectile.timeLeft = 2;
-            }
         }
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
@@ -410,7 +394,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     //also works on itself
                 }
             }
-            return 3;
             if (min > 0) return 0;
 
             return pos + 1;
