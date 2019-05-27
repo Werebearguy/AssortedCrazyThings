@@ -15,6 +15,18 @@ namespace AssortedCrazyThings.Projectiles.Minions
     /// </summary>
     public abstract class DroneBase : ModProjectile
     {
+        public int Counter
+        {
+            get
+            {
+                return (int)projectile.ai[0];
+            }
+            set
+            {
+                projectile.ai[0] = value;
+            }
+        }
+
         /// <summary>
         /// Custom MinionPos to determine position
         /// </summary>
@@ -42,9 +54,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
-        /// <summary>
-        /// Need to sync manually in the inheriting class
-        /// </summary>
         protected byte RandomNumber
         {
             get
@@ -57,6 +66,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        /// <summary>
+        /// Combined != Server and owner == myPlayer check
+        /// </summary>
         protected bool RealOwner
         {
             get
@@ -65,6 +77,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        /// <summary>
+        /// Currently only used to make MinionPos 0 again. The assignment of MinionPos still depends on the array used in Shoot()
+        /// </summary>
         protected virtual bool IsCombatDrone
         {
             get
@@ -74,9 +89,33 @@ namespace AssortedCrazyThings.Projectiles.Minions
         }
 
         /// <summary>
+        /// Use this when spawning projectiles
+        /// </summary>
+        protected int CustomDmg
+        {
+            get
+            {
+                return (int)(projectile.damage * dmgModifier);
+            }
+        }
+
+        /// <summary>
+        /// Use this when spawning projectiles
+        /// </summary>
+        protected float CustomKB
+        {
+            get
+            {
+                return projectile.knockBack * kbModifier;
+            }
+        }
+
+        /// <summary>
         /// Depends on projectile.localAI[0]
         /// </summary>
-        protected float sinY;
+        protected float sinY = 0f;
+        private float dmgModifier = 1f;
+        private float kbModifier = 1f;
 
         public override void SendExtraAI(BinaryWriter writer)
         {
@@ -112,6 +151,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
+        /// <summary>
+        /// Bobbing logic. Implement sinY yourself
+        /// </summary>
         protected virtual void Bobbing()
         {
             Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
@@ -119,7 +161,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
         }
 
         /// <summary>
-        /// To to change any default values of the AI on the fly (called before Default AI is called).
+        /// Use to decide what happens when the player holds the Drone Controller.
+        /// Can be used to change damage and knockback, or internal timers
+        /// </summary>
+        protected virtual void ModifyDroneControllerHeld(ref float dmgModifier, ref float kbModifier)
+        {
+
+        }
+
+        /// <summary>
+        /// Use to change any default values of the AI on the fly (called before Default AI is called).
         /// Return false to prevent the default AI to run
         /// </summary>
         protected virtual bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
@@ -130,11 +181,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public sealed override void AI()
         {
             CheckActive();
+            // HeavyLaserDrone h = (HeavyLaserDrone)proj.modProjectile;
 
             #region Default AI
-            Player player = Main.player[projectile.owner];
-            Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
-            offset += DroneController.GetPosition(projectile, MinionPos);
             if (RandomNumber == 0)
             {
                 RandomNumber = (byte)Main.rand.Next(1, 256);
@@ -143,6 +192,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 MinionPos = 0;
             }
+
+            Player player = Main.player[projectile.owner];
+            Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
+            offset += DroneController.GetPosition(projectile, MinionPos);
 
             bool staticDirection = true;
             bool reverseSide = false;
@@ -160,6 +213,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             #endregion
 
+            dmgModifier = 1f;
+            kbModifier = 1f;
+            if (player.HeldItem.type == mod.ItemType<DroneController>())
+            {
+                ModifyDroneControllerHeld(ref dmgModifier, ref kbModifier);
+            }
             CustomAI();
             Bobbing();
             CustomFrame();

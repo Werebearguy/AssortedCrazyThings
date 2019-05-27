@@ -249,7 +249,8 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             DisplayName.SetDefault("Drone Controller");
             Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
-                + "\nRight click to pick from available drones");
+                + "\nRight click to pick from available drones"
+                + "\nHolding the item improves the Drones supportive and offensive abilities");
         }
 
         public const int BaseDmg = 22;
@@ -342,6 +343,7 @@ namespace AssortedCrazyThings.Items.Weapons
             //recipe.SetResult(this);
             //recipe.AddRecipe();
         }
+
         public override void MoreModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();

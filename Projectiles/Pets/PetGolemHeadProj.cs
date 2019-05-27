@@ -14,18 +14,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private const int FireballDamage = 20;
 
-        public int AttackCounter
-        {
-            get
-            {
-                return (int)projectile.ai[1];
-            }
-            set
-            {
-                projectile.ai[1] = value;
-            }
-        }
-
         protected override bool IsCombatDrone
         {
             get
@@ -67,9 +55,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            if (AttackCounter > AttackDelay)
+            if (Counter > AttackDelay)
             {
-                if (AttackCounter < (int)(AttackDelay * 1.5f))
+                if (Counter < (int)(AttackDelay * 1.5f))
                 {
                     projectile.frame = 1;
                 }
@@ -121,15 +109,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             projectile.rotation = 0f;
 
-            AttackCounter++;
-            if (AttackCounter % AttackDelay == 0)
+            Counter++;
+            if (Counter % AttackDelay == 0)
             {
                 if (Main.myPlayer == projectile.owner)
                 {
                     int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
-                        if (AttackCounter == AttackDelay) AttackCounter += AttackDelay;
+                        if (Counter == AttackDelay) Counter += AttackDelay;
                         Vector2 position = projectile.Center;
                         position.Y += 6f;
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - position;
@@ -140,14 +128,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else
                     {
-                        if (AttackCounter > AttackDelay)
+                        if (Counter > AttackDelay)
                         {
-                            AttackCounter -= AttackDelay;
+                            Counter -= AttackDelay;
                             projectile.netUpdate = true;
                         }
                     }
                 }
-                AttackCounter -= AttackDelay;
+                Counter -= AttackDelay;
             }
         }
     }

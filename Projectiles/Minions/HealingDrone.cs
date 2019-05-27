@@ -17,6 +17,19 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
         private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
         private float addRotation; //same
+        private const int HealDelay = 80;
+
+        private float HealCounter
+        {
+            get
+            {
+                return projectile.ai[0];
+            }
+            set
+            {
+                projectile.ai[0] = value;
+            }
+        }
 
         private bool CanHeal
         {
@@ -144,6 +157,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return false;
         }
 
+        protected override void ModifyDroneControllerHeld(ref float dmgModifier, ref float kbModifier)
+        {
+            HealCounter += 0.333f;
+        }
+
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
         {
             AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: CanHeal ? -16f : 4f); //2f
@@ -196,18 +214,29 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 if (canShoot) //when target below drone
                 {
+                    HealCounter++;
+                    int final = HealDelay - (player.statLife < player.statLifeMax2 / 2 ? 20 : 0);
                     float delay = player.statLife < player.statLifeMax2 / 2 ? 60 : 80;
 
-                    if (Sincounter % delay == 30) //only shoot once every 1.333 or 1.5 seconds, when target below drone and when turret aligned properly
+                    if (HealCounter > final)
                     {
+                        HealCounter = 0;
                         int heal = 1;
                         player.statLife += heal;
                         player.HealEffect(heal, false);
-                    }
-                    if (Sincounter % delay == 35)
-                    {
                         AssUtils.QuickDustLine(61, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
                     }
+
+                    //if (Sincounter % delay == 30) //only shoot once every 1.333 or 1.5 seconds, when target below drone and when turret aligned properly
+                    //{
+                    //    int heal = 1;
+                    //    player.statLife += heal;
+                    //    player.HealEffect(heal, false);
+                    //}
+                    //if (Sincounter % delay == 35)
+                    //{
+                    //    AssUtils.QuickDustLine(61, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
+                    //}
                 }
             }
             else //if above 50%, addRotation should go down to projectile.rotation

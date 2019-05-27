@@ -37,18 +37,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private byte AI_STATE = 0;
         private int RocketNumber = 0;
 
-        public int Counter
-        {
-            get
-            {
-                return (int)projectile.ai[0];
-            }
-            set
-            {
-                projectile.ai[0] = value;
-            }
-        }
-
         private Vector2 ShootOrigin
         {
             get
@@ -180,6 +168,17 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return false;
         }
 
+        protected override void ModifyDroneControllerHeld(ref float dmgModifier, ref float kbModifier)
+        {
+            dmgModifier = 1.1f;
+            kbModifier = 1.1f;
+
+            if (AI_STATE == STATE_COOLDOWN)
+            {
+                Counter += Main.rand.Next(2);
+            }
+        }
+
         protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
@@ -244,15 +243,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         {
                             if (!Collision.SolidCollision(ShootOrigin, 1, 1))
                             {
-                                Vector2 aboveCheck = new Vector2(0, -16 * 8);
-                                if (Collision.CanHitLine(ShootOrigin, 1, 1, ShootOrigin + aboveCheck, 1, 1) &&
-                                    Collision.CanHitLine(ShootOrigin + aboveCheck, 1, 1, ShootOrigin + aboveCheck + new Vector2(-16 * 5, 0), 1, 1) &&
-                                    Collision.CanHitLine(ShootOrigin + aboveCheck, 1, 1, ShootOrigin + aboveCheck + new Vector2(16 * 5, 0), 1, 1))
-                                {
-                                    Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), mod.ProjectileType<MissileDroneRocket>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
-                                    projectile.velocity.Y += 2f;
-                                    projectile.netUpdate = true;
-                                }
+                                Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), mod.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
+                                projectile.velocity.Y += 2f;
+                                projectile.netUpdate = true;
                             }
                         }
                     }
@@ -260,39 +253,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
 
             Counter += Main.rand.Next(1, AI_STATE != STATE_IDLE ? 2 : 3);
-
-            /*
-            if (Counter % AttackCooldown == 0 || Counter % AttackCooldown == 15 || Counter % AttackCooldown == 30)
-            {
-                if (Main.myPlayer == projectile.owner)
-                {
-                    targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
-                    if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
-                    {
-                        if (Collision.CanHitLine(projectile.Center, 1, 1, projectile.Center + new Vector2(0, -16 * 8), 1, 1) &&
-                            Collision.CanHitLine(projectile.Center + new Vector2(0, -16 * 8), 1, 1, projectile.Center + new Vector2(0, -16 * 8) + new Vector2(-16 * 5, 0), 1, 1) &&
-                            Collision.CanHitLine(projectile.Center + new Vector2(0, -16 * 8), 1, 1, projectile.Center + new Vector2(0, -16 * 8) + new Vector2( 16 * 5, 0), 1, 1))
-                        {
-                            if (Counter == AttackCooldown) Counter += AttackCooldown;
-                            Vector2 position = projectile.Center;
-                            position.Y -= 6f;
-                            Projectile.NewProjectile(position, new Vector2(Main.rand.NextFloat(-2, 2), -5), mod.ProjectileType<MissileDroneRocket>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
-                            projectile.velocity.Y += 2f;
-                            if (Counter % AttackCooldown == 0) projectile.netUpdate = true;
-                        }
-                    }
-                    else
-                    {
-                        if (Counter > AttackCooldown)
-                        {
-                            Counter -= AttackCooldown;
-                            projectile.netUpdate = true;
-                        }
-                    }
-                }
-                if (Counter % AttackCooldown == 0) Counter -= AttackCooldown;
-            }
-            */
         }
     }
 }

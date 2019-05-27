@@ -40,18 +40,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private int Direction = -1;
         private float InitialDistance = 0;
 
-        public int Counter
-        {
-            get
-            {
-                return (int)projectile.ai[0];
-            }
-            set
-            {
-                projectile.ai[0] = value;
-            }
-        }
-
         private Vector2 BarrelPos
         {
             get
@@ -117,16 +105,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 //frameoffset 0
             }
 
-            projectile.frame -= frameOffset;
+            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
 
             if (projectile.velocity.Length() > 6f)
             {
                 if (++projectile.frameCounter >= frameCounterMaxFar)
                 {
                     projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2)
+                    if (++projectile.frame >= 2 + frameOffset)
                     {
-                        projectile.frame = 0;
+                        projectile.frame = frameOffset;
                     }
                 }
             }
@@ -135,14 +123,12 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 if (++projectile.frameCounter >= frameCounterMaxClose)
                 {
                     projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2)
+                    if (++projectile.frame >= 2 + frameOffset)
                     {
-                        projectile.frame = 0;
+                        projectile.frame = frameOffset;
                     }
                 }
             }
-
-            projectile.frame += frameOffset;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -183,6 +169,17 @@ namespace AssortedCrazyThings.Projectiles.Minions
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             return false;
+        }
+
+        protected override void ModifyDroneControllerHeld(ref float dmgModifier, ref float kbModifier)
+        {
+            dmgModifier = 1.1f;
+            kbModifier = 1.1f;
+
+            if (AI_STATE == STATE_COOLDOWN)
+            {
+                Counter += Main.rand.Next(2);
+            }
         }
 
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
@@ -266,6 +263,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 if (Counter > 60)
                 {
+                    Counter = 0;
                     AI_STATE = STATE_COOLDOWN;
                 }
             }
@@ -289,11 +287,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         projectile.netUpdate = true;
                     }
 
+                    float ratio = Counter / (float)ChargeDelay;
+                    float otherRatio = (ChargeDelay - Counter) / (float)ChargeDelay;
+
                     //make sound
                     if (projectile.soundDelay <= 0)
                     {
                         projectile.soundDelay = 20;
-                        Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item15.Style, 0.7f + (Counter / (float)ChargeDelay) * 0.5f, -0.1f + (Counter / (float)ChargeDelay) * 0.4f);
+                        Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item15.Style, 0.7f + ratio * 0.5f, -0.1f + ratio * 0.4f);
                         //Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
                         //Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
                     }
@@ -301,17 +302,17 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     //spawn dust
                     for (int i = 0; i < 3; i++)
                     {
-                        if (Counter <= ChargeDelay && Main.rand.NextFloat() < (float)Counter / ChargeDelay)
+                        if (Counter <= ChargeDelay && Main.rand.NextFloat() < ratio)
                         {
                             int dustType = 60;
                             //if facing left: + Direction * 48
-                            int height = (int)(9 * (ChargeDelay - Counter) / (float)ChargeDelay) + 4;
+                            int height = (int)(9 * otherRatio) + 4;
                             Rectangle rect = new Rectangle((int)BarrelPos.X + Direction * (Direction == 1 ? 16 : 48), (int)BarrelPos.Y - height, 32, 2 * height);
                             Dust d = Main.dust[Dust.NewDust(rect.TopLeft(), rect.Width, rect.Height, dustType)];
                             d.noGravity = true;
                             d.velocity.X *= 0.75f;
                             d.velocity.Y *= (d.position.Y > rect.Center().Y).ToDirectionInt(); //y velocity goes "inwards"
-                            d.velocity *= 3 * ((ChargeDelay - Counter) / (float)ChargeDelay);
+                            d.velocity *= 3 * otherRatio;
                         }
                     }
                 }
@@ -326,7 +327,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                             velocity.Normalize();
                             velocity *= 10f;
                             projectile.velocity += -velocity * 0.75f; //recoil
-                            Projectile.NewProjectile(BarrelPos, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(BarrelPos, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
 
                             AI_STATE = STATE_RECOIL;
                             projectile.netUpdate = true;

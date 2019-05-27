@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
         private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
 
-        private const int AttackDelay = 30; //actually 20 but because incremented by 1.5f
+        private const int AttackDelay = 25;
 
         private const byte STATE_IDLE = 0;
         private const byte STATE_TARGET_FOUND = 1;
@@ -34,18 +34,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         private int Direction = -1;
         private float addRotation; //same
         private NPC Target;
-
-        public int Counter
-        {
-            get
-            {
-                return (int)projectile.ai[0];
-            }
-            set
-            {
-                projectile.ai[0] = value;
-            }
-        }
 
         public override void SetStaticDefaults()
         {
@@ -169,20 +157,29 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return true;
         }
 
+        protected override void ModifyDroneControllerHeld(ref float dmgModifier, ref float kbModifier)
+        {
+            if (AI_STATE == STATE_TARGET_FIRE)
+            {
+                if (Main.rand.NextBool(3)) Counter++;
+            }
+            dmgModifier = 1.25f;
+            kbModifier = 1.25f;
+        }
+
         protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
             //Main.NewText("State: " + AI_STATE);
-            //Main.NewText("frame: " + projectile.frame);
             //Main.NewText("Counter: " + Counter);
 
             #region Handle State
-            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 1300);
+            int targetIndex = FindClosestTargetBelow(1300);
             if (targetIndex != -1)
             {
                 AI_STATE = STATE_TARGET_FOUND;
 
-                targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900);
+                targetIndex = FindClosestTargetBelow(1000);
                 if (targetIndex != -1)
                 {
                     AI_STATE = STATE_TARGET_FIRE;
@@ -200,20 +197,21 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (AI_STATE != STATE_TARGET_FIRE)
             {
                 Direction = player.direction;
+                Counter = 3 * MinionPos;
             }
             else
             {
                 Target = Main.npc[targetIndex];
                 Direction = (Target.Center.X - projectile.Center.X > 0f).ToDirectionInt();
             }
-            #endregion
 
             projectile.spriteDirection = projectile.direction = -Direction;
+            #endregion
 
-            Counter += Main.rand.Next(1, 3);
 
             if (AI_STATE == STATE_TARGET_FIRE)
             {
+                Counter ++;
                 Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;
                 Vector2 target = Target.Center + new Vector2(0f, -5f);
@@ -264,7 +262,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                                 between = target + Target.velocity * 6f - shootOrigin;
                                 between.Normalize();
                                 between *= 6f;
-                                Projectile.NewProjectile(position, between, mod.ProjectileType<PetDestroyerDroneLaser>(), projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(position, between, mod.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
 
                                 //projectile.netUpdate = true;
                             }
@@ -297,6 +295,32 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     addRotation = projectile.rotation;
                 }
             }
+        }
+
+
+        private int FindClosestTargetBelow(int range = 1000)
+        {
+            Player player = Main.player[projectile.owner];
+            int targetIndex = -1;
+            float distanceFromTarget = 100000f;
+            Vector2 targetCenter = player.Center;
+            for (int k = 0; k < 200; k++)
+            {
+                NPC npc = Main.npc[k];
+                if (npc.active && npc.CanBeChasedBy(projectile))
+                {
+                    float between = Vector2.Distance(npc.Center, player.Center);
+                    if (((between < range &&
+                        Vector2.Distance(player.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
+                        npc.Center.Y > player.Top.Y - 100 && AssAI.CheckLineOfSight(player.Center, npc.Center))
+                    {
+                        distanceFromTarget = between;
+                        targetCenter = npc.Center;
+                        targetIndex = k;
+                    }
+                }
+            }
+            return (distanceFromTarget < range) ? targetIndex : -1;
         }
     }
 }
