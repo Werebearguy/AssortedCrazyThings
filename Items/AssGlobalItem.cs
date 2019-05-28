@@ -22,13 +22,13 @@ namespace AssortedCrazyThings.Items
 			return myClone;
 		}
 
-        public override void OpenVanillaBag(string context, Player player, int arg)
-        {
-            if (context == "bossBag" && arg == ItemID.DestroyerBossBag)
-            {
-                player.QuickSpawnItem(mod.ItemType<DroneParts>());
-            }
-        }
+        //public override void OpenVanillaBag(string context, Player player, int arg)
+        //{
+        //    if (context == "bossBag" && arg == ItemID.DestroyerBossBag)
+        //    {
+        //        player.QuickSpawnItem(mod.ItemType<DroneParts>());
+        //    }
+        //}
 
         public override bool CanUseItem(Item item, Player player)
         {

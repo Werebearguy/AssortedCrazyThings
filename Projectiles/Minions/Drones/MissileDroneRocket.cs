@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions
+namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     public class MissileDroneRocket : ModProjectile
     {

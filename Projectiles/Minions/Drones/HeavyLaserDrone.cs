@@ -6,7 +6,7 @@ using Terraria.ID;
 using System.IO;
 using AssortedCrazyThings.Base;
 
-namespace AssortedCrazyThings.Projectiles.Minions
+namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
     /// Fires a penetrating laser beam horizontally to the player with a very long delay.
@@ -18,13 +18,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Minions/HealingDrone";
+                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
             }
         }
 
-        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
 
         private const int AttackCooldown = 180;
         private const int SearchDelay = 90; //60 but incremented 1.5f

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using AssortedCrazyThings.Projectiles.Minions.Drones;
 using AssortedCrazyThings.Projectiles.Minions;
 
 namespace AssortedCrazyThings.Projectiles.Pets

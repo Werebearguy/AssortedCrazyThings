@@ -176,6 +176,7 @@
     <Compile Include="Items\Consumables\EmpowermentFlask.cs" />
     <Compile Include="Items\Consumables\EnhancedHunterPotion.cs" />
     <Compile Include="Items\Consumables\CuteSlimeSpawnEnableFlask.cs" />
+    <Compile Include="Items\DroneUnlockables.cs" />
     <Compile Include="Items\Gitgud\GitgudItem.cs" />
     <Compile Include="Items\Gitgud\DestroyerGitgud.cs" />
     <Compile Include="Items\Gitgud\LunaticCultistGitgud.cs" />
@@ -306,12 +307,12 @@
     <Compile Include="NPCs\CuteSlimeIlluminant.cs" />
     <Compile Include="NPCs\CuteSlimeJungle.cs" />
     <Compile Include="NPCs\CuteSlimeSand.cs" />
-    <Compile Include="Projectiles\Minions\BasicLaserDrone.cs" />
-    <Compile Include="Projectiles\Minions\HealingDrone.cs" />
-    <Compile Include="Projectiles\Minions\HeavyLaserDrone.cs" />
-    <Compile Include="Projectiles\Minions\DroneBase.cs" />
-    <Compile Include="Projectiles\Minions\MissileDroneRocket.cs" />
-    <Compile Include="Projectiles\Minions\MissileDrone.cs" />
+    <Compile Include="Projectiles\Minions\Drones\BasicLaserDrone.cs" />
+    <Compile Include="Projectiles\Minions\Drones\HealingDrone.cs" />
+    <Compile Include="Projectiles\Minions\Drones\HeavyLaserDrone.cs" />
+    <Compile Include="Projectiles\Minions\Drones\DroneBase.cs" />
+    <Compile Include="Projectiles\Minions\Drones\MissileDroneRocket.cs" />
+    <Compile Include="Projectiles\Minions\Drones\MissileDrone.cs" />
     <Compile Include="Projectiles\Pets\PetDestroyer.cs" />
     <Compile Include="Projectiles\Pets\PetEaterofWorlds.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeIlluminantNewProj.cs" />
@@ -332,7 +333,7 @@
     <Compile Include="Projectiles\Pets\MiniAntlionProj.cs" />
     <Compile Include="Projectiles\Pets\AnimatedTomeProj.cs" />
     <Compile Include="Projectiles\Minions\PetGolemHeadFireball.cs" />
-    <Compile Include="Projectiles\Minions\HeavyLaserDroneLaser.cs" />
+    <Compile Include="Projectiles\Minions\Drones\HeavyLaserDroneLaser.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsCloud.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsProj.cs" />
     <Compile Include="Projectiles\Weapons\PlagueOfToadsFired.cs" />

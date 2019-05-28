@@ -17,6 +17,7 @@ namespace AssortedCrazyThings.Base
         /// slimePets.IndexOf(type) returns the indexed type
         /// </summary>
         public static List<int> slimePets;
+
         /// <summary>
         /// For the Jellied Ale bufftip
         /// </summary>

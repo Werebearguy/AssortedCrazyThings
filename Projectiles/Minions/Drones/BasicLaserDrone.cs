@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using AssortedCrazyThings.Base;
 
-namespace AssortedCrazyThings.Projectiles.Minions
+namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
     /// Fires a weak laser rapidly
@@ -16,13 +16,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Minions/HealingDrone";
+                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
             }
         }
 
-        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "ProjectilesMinions/Drones/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "ProjectilesMinions/Drones/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "ProjectilesMinions/Drones/" + "HealingDrone_Lower_Glowmask";
 
         private const int AttackDelay = 25;
 
@@ -170,7 +170,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
-            Main.NewText("State: " + AI_STATE);
+            //Main.NewText("State: " + AI_STATE);
             //Main.NewText("Counter: " + Counter);
 
             #region Handle State

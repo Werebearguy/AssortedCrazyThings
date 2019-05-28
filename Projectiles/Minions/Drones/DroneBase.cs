@@ -7,7 +7,7 @@ using AssortedCrazyThings.Items.Weapons;
 using Terraria.ID;
 using System.IO;
 
-namespace AssortedCrazyThings.Projectiles.Minions
+namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
     /// Uses ai[0] for a counter and ai[1] for the minion position.
@@ -157,7 +157,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         }
 
         /// <summary>
-        /// Bobbing logic. Implement sinY yourself
+        /// Bobbing logic. Implement sinY yourself. Return false to not let default AI calculate it
         /// </summary>
         protected virtual bool Bobbing()
         {
@@ -185,7 +185,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public sealed override void AI()
         {
             CheckActive();
-            // HeavyLaserDrone h = (HeavyLaserDrone)proj.modProjectile;
 
             #region Default AI
             if (RandomNumber == 0)
@@ -209,7 +208,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: staticDirection, reverseSide: reverseSide, veloXToRotationFactor: veloXToRotationFactor, veloSpeed: veloSpeed, offsetX: offsetX, offsetY: offsetY);
                 projectile.direction = projectile.spriteDirection = -player.direction;
             }
-            player.numMinions--; //make it so it doesn't affect projectile.minionPos of non-drone minions
+            if (IsCombatDrone) player.numMinions--; //make it so it doesn't affect projectile.minionPos of non-drone minions
 
             #endregion
 

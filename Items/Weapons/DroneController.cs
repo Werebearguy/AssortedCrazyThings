@@ -1,6 +1,6 @@
 ﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
-using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.Projectiles.Minions.Drones;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -251,6 +251,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 default:
                     break;
             }
+            canSpawn &= player.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(selected);
             return canSpawn;
         }
 

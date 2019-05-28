@@ -95,6 +95,8 @@ namespace AssortedCrazyThings.NPCs
             if (npc.type == NPCID.TheDestroyer)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetDestroyerItem>());
+
+                npc.DropItemInstanced(npc.Center, npc.Size, mod.ItemType<DroneParts>());
             }
 
             if (npc.type == NPCID.SkeletronPrime)

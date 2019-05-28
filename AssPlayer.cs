@@ -572,34 +572,36 @@ namespace AssortedCrazyThings
                 },
                 uiConf: delegate
                 {
+                    string name = "";
                     //TODO Preview images
                     List<Texture2D> textures = new List<Texture2D>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/HealingDrone")};
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/BasicLaserDronePreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/HeavyLaserDronePreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/MissileDronePreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/HealingDronePreview")};
 
                     List<string> tooltips = new List<string>();
+                    List<string> toUnlock = new List<string>();
 
                     foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
                     {
                         if (type != DroneType.None)
                         {
+                            name = DroneController.GetTooltip(type, onlyName: true);
                             tooltips.Add(DroneController.GetTooltip(type));
+                            toUnlock.Add("Use a " + name + " Item");
                         }
                     }
 
-                    List<string> toUnlock = new List<string>() { "Default", "Default", "Default", "Default" };
-
                     List<bool> unlocked = new List<bool>()
                     {
-                        true,                // 0
-                        true,                // 1
-                        true,                // 2
-                        true,                // 3
+                        droneControllerUnlocked.HasFlag(DroneType.BasicLaser),
+                        droneControllerUnlocked.HasFlag(DroneType.HeavyLaser),
+                        droneControllerUnlocked.HasFlag(DroneType.Missile),
+                        droneControllerUnlocked.HasFlag(DroneType.Healing)
                     };
 
-                    return new CircleUIConf(6, -1, textures, unlocked, tooltips, toUnlock);
+                    return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
                 },
                 onUIStart: delegate
                 {

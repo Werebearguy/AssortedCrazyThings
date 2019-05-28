@@ -115,13 +115,13 @@ namespace AssortedCrazyThings.UI
 
                 //Actually draw the bg circle
                 Color drawColor = Color.White;
-                if (done == currentSelected)
-                {
-                    drawColor = Color.Gray;
-                }
-                else if (!UIConf.Unlocked[done])
+                if (!UIConf.Unlocked[done])
                 {
                     drawColor = Color.DarkRed;
+                }
+                else if (done == currentSelected)
+                {
+                    drawColor = Color.Gray;
                 }
                 spriteBatch.Draw(Main.wireUITexture[isMouseWithin ? 1 : 0], bgRect, drawColor);
 

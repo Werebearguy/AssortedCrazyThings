@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using System.IO;
 
-namespace AssortedCrazyThings.Projectiles.Minions
+namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
     /// Fires a salvo of homing rockets with a long delay
@@ -16,13 +16,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Minions/HealingDrone";
+                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
             }
         }
 
-        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
 
         public const int AttackCooldown = 180; //120 but incremented by 1.5f
         public const int AttackDelay = 60;

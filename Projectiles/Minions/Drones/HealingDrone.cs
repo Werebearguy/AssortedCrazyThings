@@ -5,7 +5,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 
-namespace AssortedCrazyThings.Projectiles.Minions
+namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
     /// Heals the player if below max health
@@ -13,9 +13,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
     /// </summary>
     public class HealingDrone : DroneBase
     {
-        private static readonly string nameGlow = "Projectiles/Minions/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
         private float addRotation; //same
         private const int HealDelay = 80;
 
