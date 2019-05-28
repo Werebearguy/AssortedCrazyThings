@@ -312,5 +312,86 @@ namespace AssortedCrazyThings.Base
             }
             return "";
         }
+
+        /// <summary>
+        /// Alternative NewProjectile, automatically sets owner to Main.myPlayer.
+        /// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles.
+        /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
+        /// Use preSync to set ai[0], ai[1] and other values.
+        /// </summary>
+        public static int NewProjectile(Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
+        {
+            return NewProjectile(position.X, position.Y, velocity.X, velocity.Y, Type, Damage, KnockBack, preCreate, preSync);
+        }
+
+        /// <summary>
+        /// Alternative NewProjectile, automatically sets owner to Main.myPlayer.
+        /// Use preSync to set ai[0], ai[1] and other values.
+        /// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles
+        /// </summary>
+        public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
+        {
+            if (preCreate != null)
+            {
+                Projectile test = new Projectile();
+                test.SetDefaults(Type);
+                if (!preCreate(test)) return 1000;
+            }
+
+            int num = 1000;
+            for (int i = 0; i < 1000; i++)
+            {
+                if (!Main.projectile[i].active)
+                {
+                    num = i;
+                    break;
+                }
+            }
+            if (num == 1000)
+            {
+                return num;
+            }
+            int Owner = Main.myPlayer;
+            //float ai0 = 0f;
+            //float ai1 = 0f;
+
+            Projectile projectile = Main.projectile[num];
+            projectile.SetDefaults(Type);
+            projectile.position.X = X - projectile.width * 0.5f;
+            projectile.position.Y = Y - projectile.height * 0.5f;
+            projectile.owner = Owner;
+            projectile.velocity.X = SpeedX;
+            projectile.velocity.Y = SpeedY;
+            projectile.damage = Damage;
+            projectile.knockBack = KnockBack;
+            projectile.identity = num;
+            projectile.gfxOffY = 0f;
+            projectile.stepSpeed = 1f;
+            projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
+            if (projectile.ignoreWater)
+            {
+                projectile.wet = false;
+            }
+            projectile.honeyWet = Collision.honey;
+            Main.projectileIdentity[Owner, num] = num;
+            //projectile.ai[0] = ai0;
+            //projectile.ai[1] = ai1;
+            if (Type > 0)
+            {
+                if (ProjectileID.Sets.NeedsUUID[Type])
+                {
+                    projectile.projUUID = projectile.identity;
+                }
+            }
+
+            if (preSync != null) preSync(projectile);
+
+            if (Main.netMode != 0)
+            {
+                NetMessage.SendData(27, -1, -1, null, num);
+            }
+            return num;
+        }
+
     }
 }
