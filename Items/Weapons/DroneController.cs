@@ -17,18 +17,28 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Returns the custom MinionPos
         /// </summary>
-        public static int GetSlotOfNextDrone(Player player, int[] combatDrones)
+        public static int GetSlotOfNextDrone(Projectile self)
         {
             int slot = 0;
             int min = 1000;
             for (int i = 0; i < 1000; i++)
             {
                 Projectile proj = Main.projectile[i];
-                if (proj.active && proj.owner == player.whoAmI && Array.IndexOf(combatDrones, proj.type) != -1)
+                if (proj.active)
                 {
-                    //proj.ai[1] is MinionPos
-                    min = Math.Min(min, (int)proj.ai[1]);
-                    if (proj.ai[1] > slot) slot = (int)proj.ai[1];
+                    if (proj.owner == self.owner && proj.identity != self.identity)
+                    {
+                        if (proj.modProjectile != null && proj.modProjectile is DroneBase)
+                        {
+                            DroneBase drone = (DroneBase)proj.modProjectile;
+                            if (drone.IsCombatDrone)
+                            {
+                                int minionPos = drone.MinionPos;
+                                min = Math.Min(min, minionPos);
+                                if (minionPos > slot) slot = minionPos;
+                            }
+                        }
+                    }
                 }
             }
             if (min > 0) return 0;
@@ -180,7 +190,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             string name;
             string stats = "\nBase Damage: " + (int)(BaseDmg * GetDamageModifier(selected))
-                         + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * GetKBModifier(selected), 1);
+                         + "\nBase Knockback: " + Math.Round(BaseKB * GetKBModifier(selected), 1);
             string desc = "";
             string misc = "";
             switch (selected)
@@ -243,6 +253,16 @@ namespace AssortedCrazyThings.Items.Weapons
             }
             return canSpawn;
         }
+
+        private static void PreSync(Projectile proj)
+        {
+            if (proj.modProjectile != null && proj.modProjectile is DroneBase)
+            {
+                DroneBase drone = (DroneBase)proj.modProjectile;
+                if (drone.IsCombatDrone) drone.MinionPos = GetSlotOfNextDrone(proj);
+            }
+        }
+
         #endregion
 
         public override void SetStaticDefaults()
@@ -254,7 +274,7 @@ namespace AssortedCrazyThings.Items.Weapons
         }
 
         public const int BaseDmg = 22;
-        public const float BaseKB = 3f;
+        public const float BaseKB = 2.5f;
 
         public override void SetDefaults()
         {
@@ -315,33 +335,33 @@ namespace AssortedCrazyThings.Items.Weapons
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
             type = GetDroneType(selected);
 
-            int currentCount = 0;
-            int[] combatDrones = new int[]
-            {
-            AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
-            AssUtils.Instance.ProjectileType<HeavyLaserDrone>(),
-            AssUtils.Instance.ProjectileType<MissileDrone>()
-            };
-            if (Array.IndexOf(combatDrones, type) != -1)
-            {
-                currentCount = GetSlotOfNextDrone(player, combatDrones);
-            }
+            //int currentCount = 0;
+            //int[] combatDrones = new int[]
+            //{
+            //AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
+            //AssUtils.Instance.ProjectileType<HeavyLaserDrone>(),
+            //AssUtils.Instance.ProjectileType<MissileDrone>()
+            //};
+            //if (Array.IndexOf(combatDrones, type) != -1)
+            //{
+            //    currentCount = GetSlotOfNextDrone(player, combatDrones);
+            //}
             Vector2 spawnPos = new Vector2(player.Center.X, player.Center.Y);
-            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, currentCount);
+            AssUtils.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, preSync: PreSync);
+            //Projectile.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, currentCount);
             return false;
         }
 
         public override void AddRecipes()
         {
             //TODO Recipe
-            //ModRecipe recipe = new ModRecipe(mod);
-            //recipe.AddIngredient(ItemID.SlimeCrown, 1);
-            //recipe.AddIngredient(ItemID.Gel, 200);
-            //recipe.AddIngredient(ItemID.SoulofLight, 5);
-            //recipe.AddIngredient(ItemID.SoulofNight, 5);
-            //recipe.AddTile(TileID.MythrilAnvil);
-            //recipe.SetResult(this);
-            //recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.HallowedBar, 1);
+            recipe.AddIngredient(ItemID.Switch, 2);
+            recipe.AddIngredient(ItemID.Wire, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
 
         public override void MoreModifyTooltips(List<TooltipLine> tooltips)
@@ -362,12 +382,14 @@ namespace AssortedCrazyThings.Items.Weapons
                 }
             }
 
+            DroneType unlocked = mPlayer.droneControllerUnlocked;
+
             bool allUnlocked = true;
             foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
             {
                 if (type != DroneType.None)
                 {
-                    if (!selected.HasFlag(type))
+                    if (!unlocked.HasFlag(type))
                     {
                         allUnlocked = false;
                     }

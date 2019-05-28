@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private const int FireballDamage = 20;
 
-        protected override bool IsCombatDrone
+        public override bool IsCombatDrone
         {
             get
             {
@@ -96,6 +96,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             return false;
         }
 
+        protected override bool Bobbing()
+        {
+            return false;
+        }
+
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
         {
             AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
@@ -105,7 +110,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
         protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
 
             projectile.rotation = 0f;
 

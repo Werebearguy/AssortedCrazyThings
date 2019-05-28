@@ -170,38 +170,39 @@ namespace AssortedCrazyThings.Projectiles.Minions
         protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
-            //Main.NewText("State: " + AI_STATE);
+            Main.NewText("State: " + AI_STATE);
             //Main.NewText("Counter: " + Counter);
 
             #region Handle State
-            int targetIndex = FindClosestTargetBelow(1300);
+            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1300);
             if (targetIndex != -1)
             {
                 AI_STATE = STATE_TARGET_FOUND;
+                Target = Main.npc[targetIndex];
 
                 targetIndex = FindClosestTargetBelow(1000);
                 if (targetIndex != -1)
                 {
+                    Target = Main.npc[targetIndex];
                     AI_STATE = STATE_TARGET_FIRE;
                 }
-                else
-                {
-                    AI_STATE = STATE_IDLE;
-                }
+                //else
+                //{
+                //    AI_STATE = STATE_IDLE;
+                //}
             }
             else
             {
                 AI_STATE = STATE_IDLE;
             }
 
-            if (AI_STATE != STATE_TARGET_FIRE)
+            if (AI_STATE == STATE_IDLE)
             {
                 Direction = player.direction;
                 Counter = 3 * MinionPos;
             }
-            else
+            else //definitely has a target (may or may not shoot)
             {
-                Target = Main.npc[targetIndex];
                 Direction = (Target.Center.X - projectile.Center.X > 0f).ToDirectionInt();
             }
 
@@ -211,7 +212,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
             if (AI_STATE == STATE_TARGET_FIRE)
             {
-                Counter ++;
+                Counter++;
                 Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;
                 Vector2 target = Target.Center + new Vector2(0f, -5f);
@@ -230,13 +231,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     }
                 }
 
-                bool canShoot = shootOrigin.Y < target.Y + Target.height / 2;
+                bool canShoot = true;/*shootOrigin.Y < target.Y + Target.height / 2 + 40;*/
 
                 if (projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka target is too fast for the drone to catch up)
                 {
                     if (addRotation <= projectile.rotation)
                     {
-                        canShoot = false;
+                        //canShoot = false;
                         addRotation = projectile.rotation;
                     }
                 }
@@ -244,7 +245,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 {
                     if (addRotation <= projectile.rotation - Math.PI)
                     {
-                        canShoot = false;
+                        //canShoot = false;
                         addRotation = projectile.rotation;
                     }
                 }
@@ -258,11 +259,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         {
                             if (targetIndex != -1 && !Collision.SolidCollision(shootOrigin, 1, 1))
                             {
-                                Vector2 position = shootOrigin;
                                 between = target + Target.velocity * 6f - shootOrigin;
                                 between.Normalize();
                                 between *= 6f;
-                                Projectile.NewProjectile(position, between, mod.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(shootOrigin, between, mod.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
 
                                 //projectile.netUpdate = true;
                             }
@@ -271,7 +271,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 }
                 else
                 {
-                    AI_STATE = STATE_IDLE;
+                    AI_STATE = STATE_TARGET_FOUND;
                 }
             }
             else //if no target, addRotation should go down to projectile.rotation
@@ -303,16 +303,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Player player = Main.player[projectile.owner];
             int targetIndex = -1;
             float distanceFromTarget = 100000f;
-            Vector2 targetCenter = player.Center;
+            Vector2 targetCenter = projectile.Center;
             for (int k = 0; k < 200; k++)
             {
                 NPC npc = Main.npc[k];
                 if (npc.active && npc.CanBeChasedBy(projectile))
                 {
-                    float between = Vector2.Distance(npc.Center, player.Center);
+                    float between = Vector2.Distance(npc.Center, projectile.Center);
                     if (((between < range &&
                         Vector2.Distance(player.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                        npc.Center.Y > player.Top.Y - 100 && AssAI.CheckLineOfSight(player.Center, npc.Center))
+                        projectile.Bottom.Y < npc.Top.Y + 40 && AssAI.CheckLineOfSight(projectile.Center, npc.Center))
                     {
                         distanceFromTarget = between;
                         targetCenter = npc.Center;

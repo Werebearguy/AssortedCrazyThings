@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
-        protected override bool IsCombatDrone
+        public override bool IsCombatDrone
         {
             get
             {

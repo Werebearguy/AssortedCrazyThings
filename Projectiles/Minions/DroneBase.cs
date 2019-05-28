@@ -10,27 +10,28 @@ using System.IO;
 namespace AssortedCrazyThings.Projectiles.Minions
 {
     /// <summary>
-    /// Uses ai[1] for the minion position and localAI[0] & localAI[1] for the bobbing and a random number.
+    /// Uses ai[0] for a counter and ai[1] for the minion position.
+    /// LocalAI[0] & localAI[1] for the bobbing and a random number.
     /// Bobbing (sinY) needs to be implemented manually in some draw hook
     /// </summary>
     public abstract class DroneBase : ModProjectile
     {
-        public int Counter
+
+        /// <summary>
+        /// Currently only used to make MinionPos 0 again. The assignment of MinionPos still depends on the array used in Shoot()
+        /// </summary>
+        public virtual bool IsCombatDrone
         {
             get
             {
-                return (int)projectile.ai[0];
-            }
-            set
-            {
-                projectile.ai[0] = value;
+                return true;
             }
         }
 
         /// <summary>
         /// Custom MinionPos to determine position
         /// </summary>
-        protected int MinionPos
+        public int MinionPos
         {
             get
             {
@@ -39,6 +40,21 @@ namespace AssortedCrazyThings.Projectiles.Minions
             set
             {
                 projectile.ai[1] = value;
+            }
+        }
+
+        /// <summary>
+        /// General purpose counter using ai[0]
+        /// </summary>
+        protected int Counter
+        {
+            get
+            {
+                return (int)projectile.ai[0];
+            }
+            set
+            {
+                projectile.ai[0] = value;
             }
         }
 
@@ -74,17 +90,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             get
             {
                 return Main.netMode != NetmodeID.Server && projectile.owner == Main.myPlayer;
-            }
-        }
-
-        /// <summary>
-        /// Currently only used to make MinionPos 0 again. The assignment of MinionPos still depends on the array used in Shoot()
-        /// </summary>
-        protected virtual bool IsCombatDrone
-        {
-            get
-            {
-                return true;
             }
         }
 
@@ -154,10 +159,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
         /// <summary>
         /// Bobbing logic. Implement sinY yourself
         /// </summary>
-        protected virtual void Bobbing()
+        protected virtual bool Bobbing()
         {
-            Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
-            sinY = (float)((Math.Sin(((Sincounter + MinionPos * 10f) / 120f) * 2 * Math.PI) - 1) * 4);
+            return true;
         }
 
         /// <summary>
@@ -188,10 +192,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 RandomNumber = (byte)Main.rand.Next(1, 256);
             }
-            if (!IsCombatDrone)
-            {
-                MinionPos = 0;
-            }
 
             Player player = Main.player[projectile.owner];
             Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
@@ -220,7 +220,11 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 ModifyDroneControllerHeld(ref dmgModifier, ref kbModifier);
             }
             CustomAI();
-            Bobbing();
+            if (Bobbing())
+            {
+                Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
+                sinY = (float)((Math.Sin(((Sincounter + MinionPos * 10f) / 120f) * 2 * Math.PI) - 1) * 4);
+            }
             CustomFrame();
         }
     }

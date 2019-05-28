@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Items.Weapons
 {
     public abstract class MinionItemBase : ModItem
     {
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public sealed override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             //need a dummy because you can't remove elements from a list while you are iterating
             TooltipLine line = new TooltipLine(mod, "dummy", "dummy");

@@ -212,17 +212,19 @@ namespace AssortedCrazyThings.Projectiles.Minions
             return true;
         }
 
-        protected override void Bobbing()
+        protected override bool Bobbing()
         {
             if (AI_STATE == STATE_CHARGE)
             {
                 sinY = 0;
+                return false;
             }
-            else
-            {
-                Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
-                sinY = (float)((Math.Sin(((Sincounter + MinionPos * 10f) / 120f) * 2 * Math.PI) - 1) * 4);
-            }
+            return true;
+            //else
+            //{
+            //    Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
+            //    sinY = (float)((Math.Sin(((Sincounter + MinionPos * 10f) / 120f) * 2 * Math.PI) - 1) * 4);
+            //}
         }
 
         protected override void CustomAI()
