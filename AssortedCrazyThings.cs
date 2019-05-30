@@ -15,6 +15,7 @@ using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using AssortedCrazyThings.Items.Weapons;
 
 [assembly: AssemblyVersion("1.3.0.0")]
 namespace AssortedCrazyThings
@@ -243,6 +244,8 @@ namespace AssortedCrazyThings
 
             GitgudData.Unload();
 
+            DroneController.Unload();
+
             AssUtils.Instance = null;
         }
 
@@ -254,6 +257,8 @@ namespace AssortedCrazyThings
             LoadWormList();
 
             GitgudData.Load();
+
+            DroneController.Load();
 
             AddToSoulBuffBlacklist();
 
@@ -733,6 +738,33 @@ namespace AssortedCrazyThings
                         packet.Send(playerNumber); //send to client
                     }
                     break;
+                case AssMessageType.WyvernCampfireKill:
+                    //reusing playerNumber as the npc.whoami
+                    playerNumber = reader.ReadByte();
+                    if (Main.npc[playerNumber].type == NPCID.WyvernHead)
+                    {
+                        DungeonSoulBase.KillInstantly(Main.npc[playerNumber]);
+                        if (playerNumber < 200)
+                        {
+                            NetMessage.SendData(23, -1, -1, null, playerNumber);
+                        }
+                    }
+                    else
+                    {
+                        for (int k = 0; k < 200; k++)
+                        {
+                            if (Main.npc[k].active && Main.npc[k].type == NPCID.WyvernHead)
+                            {
+                                DungeonSoulBase.KillInstantly(Main.npc[k]);
+                                if (playerNumber < 200)
+                                {
+                                    NetMessage.SendData(23, -1, -1, null, k);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    break;
                 default:
                     ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
                     break;
@@ -762,7 +794,8 @@ namespace AssortedCrazyThings
         ConvertInertSoulsInventory,
         GitgudLoadCounters,
         GitgudChangeCounters,
-        ResetEmpoweringTimerpvp
+        ResetEmpoweringTimerpvp,
+        WyvernCampfireKill
     }
 
     public enum PetPlayerChanges : byte

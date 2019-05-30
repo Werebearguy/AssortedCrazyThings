@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public void KillInstantly()
+        public static void KillInstantly(NPC npc)
         {
             npc.life = 0;
             npc.active = false;
@@ -328,7 +328,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             --npc.timeLeft;
             if (npc.timeLeft < 0)
             {
-                KillInstantly();
+                KillInstantly(npc);
             }
         }
     }
@@ -385,7 +385,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             --npc.timeLeft;
             if (npc.timeLeft < 0)
             {
-                KillInstantly();
+                KillInstantly(npc);
             }
             return false;
         }

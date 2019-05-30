@@ -13,6 +13,7 @@ namespace AssortedCrazyThings.NPCs
 	public class AssGlobalNPC : GlobalNPC
 	{
         public bool shouldSoulDrop = false;
+        public bool sentWyvernPacket = false;
 
 		public override bool InstancePerEntity
 		{
@@ -297,26 +298,41 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreAI(NPC npc)
         {
-            if (npc.type == NPCID.WyvernHead && Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<AssPlayer>().wyvernCampfire)
+            if (Main.netMode != NetmodeID.Server)
             {
-                if (!SlowDown(ref npc))
+                //this section of code doesn't run on the server anyway cause wyvernCampfire only gets set on LocalPlayer
+                if (npc.type == NPCID.WyvernHead && Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<AssPlayer>().wyvernCampfire)
                 {
-                    if (fadeTimerCount <= fadeTimer)
+                    if (!sentWyvernPacket && Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        FadeAway(ref fadeTimerCount, ref npc);
+                        sentWyvernPacket = true;
+                        ModPacket packet = mod.GetPacket();
+                        packet.Write((byte)AssMessageType.WyvernCampfireKill);
+                        packet.Write(npc.whoAmI);
+                        packet.Send();
                     }
-                    else
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        fadeTimerCount = 0;
-                        KillInstantly(npc);
+                        if (!SlowDown(ref npc))
+                        {
+                            if (fadeTimerCount <= fadeTimer)
+                            {
+                                FadeAway(ref fadeTimerCount, ref npc);
+                            }
+                            else
+                            {
+                                fadeTimerCount = 0;
+                                KillInstantly(npc);
+                            }
+                            return false;
+                        }
+                        else
+                        {
+                            fadeTimerCount = 0;
+                        }
                     }
-                    return false;
+                    //id 87 == head -> id 92 == tail
                 }
-                else
-                {
-                    fadeTimerCount = 0;
-                }
-                //id 87 == head -> id 92 == tail
             }
             return true;
         }
