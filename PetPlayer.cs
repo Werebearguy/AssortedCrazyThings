@@ -22,7 +22,7 @@ namespace AssortedCrazyThings
         private bool petAccessoryRework = false;
 
         /// <summary>
-        /// transition from 1.3.0 to <CURRENT VERSION> (simplified pet type handling)
+        /// transition from 1.3.0 to "CURRENT VERSION" (simplified pet type handling)
         /// </summary>
         private bool petVanityRework = false;
 

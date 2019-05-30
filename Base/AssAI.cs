@@ -69,26 +69,12 @@ namespace AssortedCrazyThings.Base
         #region Flickerwick
         public static void FlickerwickPetDraw(Projectile projectile, int frameCounterMaxFar, int frameCounterMaxClose)
         {
-            if (projectile.velocity.Length() > 6f)
+            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f) ? frameCounterMaxFar : frameCounterMaxClose))
             {
-                if (++projectile.frameCounter >= frameCounterMaxFar)
+                projectile.frameCounter = 0;
+                if (++projectile.frame >= Main.projFrames[projectile.type])
                 {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= Main.projFrames[projectile.type])
-                    {
-                        projectile.frame = 0;
-                    }
-                }
-            }
-            else
-            {
-                if (++projectile.frameCounter >= frameCounterMaxClose)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= Main.projFrames[projectile.type])
-                    {
-                        projectile.frame = 0;
-                    }
+                    projectile.frame = 0;
                 }
             }
         }

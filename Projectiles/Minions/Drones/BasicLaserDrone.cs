@@ -20,15 +20,17 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
         }
 
-        private static readonly string nameGlow = "ProjectilesMinions/Drones/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "ProjectilesMinions/Drones/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "ProjectilesMinions/Drones/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
 
         private const int AttackDelay = 25;
+        private const int SearchDelay = 30;
 
         private const byte STATE_IDLE = 0;
         private const byte STATE_TARGET_FOUND = 1;
-        private const byte STATE_TARGET_FIRE = 2;
+        private const byte STATE_TARGET_ACQUIRED = 2;
+        private const byte STATE_TARGET_FIRE = 3;
 
         private byte AI_STATE = 0;
         private int Direction = -1;
@@ -56,9 +58,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            //frame 0, 1: above two thirds health
-            //frame 2, 3: above half health, below two thirds health
-            //frame 4, 5: below half health, healing
             Player player = Main.player[projectile.owner];
 
             int frameOffset = 0; //frame 0, 1
@@ -67,37 +66,23 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             {
                 frameOffset = 4;
             }
-            else if (AI_STATE == STATE_TARGET_FOUND) //frame 2, 3
+            else if (AI_STATE == STATE_TARGET_FOUND || AI_STATE == STATE_TARGET_ACQUIRED) //frame 2, 3
             {
                 frameOffset = 2;
             }
-            else
-            {
-                //frameoffset 0
-            }
+            //else
+            //{
+            //    //frameoffset 0
+            //}
             
             if (projectile.frame < frameOffset) projectile.frame = frameOffset;
 
-            if (projectile.velocity.Length() > 6f)
+            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f)? frameCounterMaxFar: frameCounterMaxClose))
             {
-                if (++projectile.frameCounter >= frameCounterMaxFar)
+                projectile.frameCounter = 0;
+                if (++projectile.frame >= 2 + frameOffset)
                 {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
-                }
-            }
-            else
-            {
-                if (++projectile.frameCounter >= frameCounterMaxClose)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
+                    projectile.frame = frameOffset;
                 }
             }
         }
@@ -122,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             image = mod.GetTexture(nameGlow);
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            Vector2 rotationOffset = new Vector2(0f, -4f); //-2f
+            Vector2 rotationOffset = new Vector2(0f, -2f); //-2f
             drawPos += rotationOffset;
             drawOrigin += rotationOffset;
 
@@ -145,7 +130,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             if (AI_STATE == STATE_TARGET_FIRE)
             {
                 Vector2 between = Target.Center - projectile.Center;
-                //between.Length(): 100 is "close", 1000 is "edge of map"
+                //between.Length(): 100 is "close", 1000 is "edge of screen"
                 //15.6f = 1000f / 64f
                 float magnitude = Utils.Clamp(between.Length() / 15.6f, 6f, 64f);
                 between.Normalize();
@@ -174,60 +159,73 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //Main.NewText("Counter: " + Counter);
 
             #region Handle State
-            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1300);
+            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1000, ignoreTiles: true);
             if (targetIndex != -1)
             {
-                AI_STATE = STATE_TARGET_FOUND;
+                if (AI_STATE == STATE_IDLE) AI_STATE = STATE_TARGET_FOUND;
                 Target = Main.npc[targetIndex];
 
                 targetIndex = FindClosestTargetBelow(1000);
                 if (targetIndex != -1)
                 {
                     Target = Main.npc[targetIndex];
-                    AI_STATE = STATE_TARGET_FIRE;
+                    if (AI_STATE != STATE_TARGET_FIRE)
+                    {
+                        AI_STATE = STATE_TARGET_ACQUIRED;
+                    }
+
+                    if(AI_STATE == STATE_TARGET_ACQUIRED)
+                    {
+                        if (Counter > SearchDelay)
+                        {
+                            Counter = 0;
+                            AI_STATE = STATE_TARGET_FIRE;
+                        }
+                    }
                 }
-                //else
-                //{
-                //    AI_STATE = STATE_IDLE;
-                //}
+                else
+                {
+                    Counter = 0;
+                    AI_STATE = STATE_TARGET_FOUND;
+                }
             }
             else
             {
                 AI_STATE = STATE_IDLE;
             }
 
-            if (AI_STATE == STATE_IDLE)
+            if (AI_STATE == STATE_IDLE || AI_STATE == STATE_TARGET_FOUND)
             {
                 Direction = player.direction;
-                Counter = 3 * MinionPos;
             }
             else //definitely has a target (may or may not shoot)
             {
                 Direction = (Target.Center.X - projectile.Center.X > 0f).ToDirectionInt();
             }
 
+            if (AI_STATE == STATE_IDLE) Counter = 2 * MinionPos;
+            else Counter++;
+
             projectile.spriteDirection = projectile.direction = -Direction;
             #endregion
 
-
             if (AI_STATE == STATE_TARGET_FIRE)
             {
-                Counter++;
-                Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
+                Vector2 shootOffset = new Vector2(projectile.width / 2 + projectile.spriteDirection * 4f, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;
                 Vector2 target = Target.Center + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
                 shootOrigin += Vector2.Normalize(between) * 16f; //roughly tip of turret
 
-                addRotation = between.ToRotation();
+                float rotationAmount = between.ToRotation();
 
                 if (projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
-                    addRotation -= (float)Math.PI;
-                    if (addRotation > 2 * Math.PI)
+                    rotationAmount -= (float)Math.PI;
+                    if (rotationAmount > 2 * Math.PI)
                     {
-                        addRotation = -addRotation;
+                        rotationAmount = -rotationAmount;
                     }
                 }
 
@@ -235,20 +233,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka target is too fast for the drone to catch up)
                 {
-                    if (addRotation <= projectile.rotation)
+                    if (rotationAmount <= projectile.rotation)
                     {
-                        //canShoot = false;
-                        addRotation = projectile.rotation;
+                        canShoot = false;
+                        rotationAmount = projectile.rotation;
                     }
                 }
                 else
                 {
-                    if (addRotation <= projectile.rotation - Math.PI)
+                    if (rotationAmount <= projectile.rotation - Math.PI)
                     {
-                        //canShoot = false;
-                        addRotation = projectile.rotation;
+                        canShoot = false;
+                        rotationAmount = projectile.rotation;
                     }
                 }
+                addRotation = addRotation.AngleLerp(rotationAmount, 0.1f);
 
                 if (canShoot) //when target below drone
                 {
@@ -271,29 +270,31 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 }
                 else
                 {
-                    AI_STATE = STATE_TARGET_FOUND;
+                    Counter = 0;
+                    AI_STATE = STATE_TARGET_ACQUIRED;
                 }
             }
             else //if no target, addRotation should go down to projectile.rotation
             {
                 //if addRotation is bigger than projectile.rotation by a small margin, reduce it down to projectile.rotation slowly
-                if (Math.Abs(addRotation) > Math.Abs(projectile.rotation) + 0.006f)
-                {
-                    float rotDiff = projectile.rotation - addRotation;
-                    if (Math.Abs(rotDiff) < 0.005f)
-                    {
-                        addRotation = projectile.rotation;
-                    }
-                    else
-                    {
-                        addRotation += addRotation * -0.15f;
-                    }
-                }
-                else
-                {
-                    //fix rotation so it doesn't get adjusted anymore
-                    addRotation = projectile.rotation;
-                }
+                //if (Math.Abs(addRotation) > Math.Abs(projectile.rotation) + 0.006f)
+                //{
+                //    float rotDiff = projectile.rotation - addRotation;
+                //    if (Math.Abs(rotDiff) < 0.005f)
+                //    {
+                //        addRotation = projectile.rotation;
+                //    }
+                //    else
+                //    {
+                //        addRotation += addRotation * -0.15f;
+                //    }
+                //}
+                //else
+                //{
+                //    //fix rotation so it doesn't get adjusted anymore
+                //    addRotation = projectile.rotation;
+                //}
+                addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
             }
         }
 

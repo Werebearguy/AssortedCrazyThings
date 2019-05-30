@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            string name = DroneController.GetTooltip(UnlockedType, onlyName: true);
+            string name = DroneController.GetDroneData(UnlockedType).Name;
             if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
             {
                 tooltips.Add(new TooltipLine(mod, "Unlocks", "Unlocks the " + name + " for the Drone Controller"));
@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Items
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
             {
                 player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
-                AssortedCrazyThings.UIText("Unlocked: " + DroneController.GetTooltip(UnlockedType, onlyName: true), CombatText.HealLife);
+                AssortedCrazyThings.UIText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
             }
             return true;
         }

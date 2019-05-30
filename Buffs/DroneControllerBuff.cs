@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
-            if (DroneController.SumOfCombatDrones(player) + DroneController.SumOfSupportDrones(player) > 0)
+            if (DroneController.SumOfSummonedDrones(player) > 0)
             {
                 modPlayer.droneControllerMinion = true;
             }
@@ -39,10 +39,11 @@ namespace AssortedCrazyThings.Buffs
             {
                 if (type != DroneType.None)
                 {
-                    int ownedCount = Main.LocalPlayer.ownedProjectileCounts[DroneController.GetDroneType(type)];
+                    DroneData data = DroneController.GetDroneData(type);
+                    int ownedCount = Main.LocalPlayer.ownedProjectileCounts[data.ProjType];
                     if (ownedCount > 0)
                     {
-                        tip += "\n" + DroneController.GetTooltip(type, onlyName: true) + "s : " + ownedCount;
+                        tip += "\n" + data.Name + "s : " + ownedCount;
                     }
                 }
             }

@@ -73,183 +73,22 @@ namespace AssortedCrazyThings.Items.Weapons
             return offset;
         }
 
-        public static int SumOfCombatDrones(Player player)
+        public static int SumOfSummonedDrones(Player player)
         {
-            int sum = player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<BasicLaserDrone>()];
-            sum += player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<HeavyLaserDrone>()];
-            sum += player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<MissileDrone>()];
+            int sum = 0;
+            for (int i = 0; i < DataList.Length; i++)
+            {
+                sum += player.ownedProjectileCounts[DataList[i].ProjType];
+            }
             return sum;
-        }
-
-        public static int SumOfSupportDrones(Player player)
-        {
-            int sum = player.ownedProjectileCounts[AssUtils.Instance.ProjectileType<HealingDrone>()];
-            return sum;
-        }
-
-
-        public static int GetDroneType(DroneType selected)
-        {
-            int type = 0;
-            switch (selected)
-            {
-                case DroneType.BasicLaser:
-                    return AssUtils.Instance.ProjectileType<BasicLaserDrone>();
-                case DroneType.HeavyLaser:
-                    return AssUtils.Instance.ProjectileType<HeavyLaserDrone>();
-                case DroneType.Missile:
-                    return AssUtils.Instance.ProjectileType<MissileDrone>();
-                //case DroneType.Unused1:
-                //    break;
-                //case DroneType.Unused2:
-                //    break;
-                //case DroneType.Unused3:
-                //    break;
-                case DroneType.Healing:
-                    return AssUtils.Instance.ProjectileType<HealingDrone>();
-                //case DroneType.Shield:
-                //    break;
-                case DroneType.None:
-                default:
-                    break;
-            }
-            return type;
-        }
-
-        public static float GetKBModifier(DroneType selected)
-        {
-            float modifier = 1f;
-            switch (selected)
-            {
-                case DroneType.BasicLaser:
-                    modifier = 1f;
-                    break;
-                case DroneType.HeavyLaser:
-                    modifier = 4f;
-                    break;
-                case DroneType.Missile:
-                    modifier = 1.333334f;
-                    break;
-                //case DroneType.Unused1:
-                //    //modifier = 1f;
-                //    break;
-                //case DroneType.Unused2:
-                //    //modifier = 1f;
-                //    break;
-                //case DroneType.Unused3:
-                //    //modifier = 1f;
-                //    break;
-                case DroneType.Healing:
-                    modifier = 0f;
-                    break;
-                //case DroneType.Shield:
-                //    break;
-                case DroneType.None:
-                default:
-                    break;
-            }
-            return modifier;
-        }
-
-        public static float GetDamageModifier(DroneType selected)
-        {
-            float modifier = 1f;
-            switch (selected)
-            {
-                case DroneType.BasicLaser:
-                    modifier = 1f;
-                    break;
-                case DroneType.HeavyLaser:
-                    modifier = 9.091f;
-                    break;
-                case DroneType.Missile:
-                    modifier = 1.2f;
-                    break;
-                //case DroneType.Unused1:
-                //    modifier = 1f;
-                //    break;
-                //case DroneType.Unused2:
-                //    modifier = 1f;
-                //    break;
-                //case DroneType.Unused3:
-                //    modifier = 1f;
-                //    break;
-                case DroneType.Healing:
-                    modifier = 0f;
-                    break;
-                //case DroneType.Shield:
-                //    break;
-                case DroneType.None:
-                default:
-                    break;
-            }
-            return modifier;
-        }
-
-        public static string GetTooltip(DroneType selected, bool onlyName = false)
-        {
-            string name;
-            string stats = "\nBase Damage: " + (int)(BaseDmg * GetDamageModifier(selected))
-                         + "\nBase Knockback: " + Math.Round(BaseKB * GetKBModifier(selected), 1);
-            string desc = "";
-            string misc = "";
-            switch (selected)
-            {
-                case DroneType.BasicLaser:
-                    name = "Basic Laser Drone";
-                    desc = "Rapidly fires lasers";
-                    break;
-                case DroneType.HeavyLaser:
-                    name = "Heavy Laser Drone";
-                    desc = "Fires a penetrating laser after a long delay";
-                    misc = "Occupies two minion slots";
-                    break;
-                case DroneType.Missile:
-                    name = "Missile Launcher Drone";
-                    desc = "Fires a salvo of missiles after a long delay";
-                    misc = "Occupies two minion slots";
-                    break;
-                //case DroneType.Unused1:
-                //    name = "Basic Laser Drone";
-                //    desc = "Rapidly fires lasers";
-                //    break;
-                //case DroneType.Unused2:
-                //    name = "Basic Laser Drone";
-                //    desc = "Rapidly fires lasers";
-                //    break;
-                //case DroneType.Unused3:
-                //    name = "Basic Laser Drone";
-                //    desc = "Rapidly fires lasers";
-                //    break;
-                case DroneType.Healing:
-                    name = "Healing Drone";
-                    stats = "";
-                    desc = "Heals you when hurt";
-                    misc = "Only one can be summoned";
-                    break;
-                //case DroneType.Shield:
-                //    name = "Basic Laser Drone";
-                //    desc = "Rapidly fires lasers";
-                //    break;
-                case DroneType.None:
-                default:
-                    return "";
-            }
-            return name + (!onlyName ? (stats + "\n" + desc + "\n" + misc) : "");
         }
 
         public static bool CanSpawn(Player player, DroneType selected)
         {
             bool canSpawn = true;
-            switch (selected)
+            if (selected == DroneType.Healing)
             {
-                case DroneType.Healing:
-                    canSpawn = player.ownedProjectileCounts[GetDroneType(selected)] == 0;
-                    break;
-                //case DroneType.Shield:
-                //    break;
-                default:
-                    break;
+                canSpawn = player.ownedProjectileCounts[GetDroneData(DroneType.Healing).ProjType] == 0;
             }
             canSpawn &= player.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(selected);
             return canSpawn;
@@ -264,6 +103,85 @@ namespace AssortedCrazyThings.Items.Weapons
             }
         }
 
+        /// <summary>
+        /// Sets the data up for a DroneType
+        /// </summary>
+        public static DroneData SetDroneData(DroneType selected)
+        {
+            switch (selected)
+            {
+                case DroneType.BasicLaser:
+                    return new DroneData
+                        (
+                        projType: AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
+                        name: "Basic Laser Drone",
+                        desc: "Rapidly fires lasers"
+                        );
+                case DroneType.HeavyLaser:
+                    return new DroneData
+                        (
+                        projType: AssUtils.Instance.ProjectileType<HeavyLaserDrone>(),
+                        name: "Heavy Laser Drone",
+                        desc: "Fires a penetrating laser after a long delay",
+                        misc: "Occupies two minion slots",
+                        dmgModifier: 9.091f,
+                        kBModifier: 4f
+                        );
+                case DroneType.Missile:
+                    return new DroneData
+                        (
+                        projType: AssUtils.Instance.ProjectileType<MissileDrone>(),
+                        name: "Missile Drone",
+                        desc: "Fires a salvo of missiles after a long delay",
+                        misc: "Occupies two minion slots",
+                        dmgModifier: 1.2f,
+                        kBModifier: 1.333334f
+                        );
+                case DroneType.Healing:
+                    return new DroneData
+                        (
+                        projType: AssUtils.Instance.ProjectileType<HealingDrone>(),
+                        name: "Healing Drone",
+                        desc: "Heals you when hurt",
+                        misc: "Only one can be summoned",
+                        combat: false
+                        );
+                default:
+                    throw new Exception("No DroneType specified");
+            }
+        }
+
+        /// <summary>
+        /// Holds data about each DroneType
+        /// </summary>
+        public static DroneData[] DataList;
+
+        /// <summary>
+        /// Used to access a particular DroneTypes data
+        /// </summary>
+        public static DroneData GetDroneData(DroneType selected)
+        {
+            return DataList[(int)Math.Log((int)selected, 2)];
+        }
+
+        public static void Load()
+        {
+            Array a = Enum.GetValues(typeof(DroneType));
+            DataList = new DroneData[a.Length - 1]; //without None
+            int i = 0;
+            foreach (DroneType type in a)
+            {
+                if (type != DroneType.None)
+                {
+                    DataList[i++] = SetDroneData(type);
+                }
+            }
+        }
+
+        public static void Unload()
+        {
+            DataList = null;
+        }
         #endregion
 
         public override void SetStaticDefaults()
@@ -304,7 +222,7 @@ namespace AssortedCrazyThings.Items.Weapons
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
-            damage = (int)(damage * GetDamageModifier(selected));
+            damage = (int)(damage * GetDroneData(selected).DmgModifier);
         }
 
         public override void GetWeaponKnockback(Player player, ref float knockback)
@@ -312,7 +230,7 @@ namespace AssortedCrazyThings.Items.Weapons
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
-            knockback *= GetKBModifier(selected);
+            knockback *= GetDroneData(selected).KBModifier;
         }
 
         public override bool CanUseItem(Player player)
@@ -334,7 +252,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
-            type = GetDroneType(selected);
+            type = GetDroneData(selected).ProjType;
 
             //int currentCount = 0;
             //int[] combatDrones = new int[]
@@ -370,7 +288,7 @@ namespace AssortedCrazyThings.Items.Weapons
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
 
-            string name = GetTooltip(selected, onlyName: true);
+            string name = GetDroneData(selected).Name;
 
             for (int i = 0; i < tooltips.Count; i++)
             {
@@ -408,6 +326,35 @@ namespace AssortedCrazyThings.Items.Weapons
             }
         }
     }
+
+    /// <summary>
+    /// Holds data about a DroneType
+    /// </summary>
+    public struct DroneData
+    {
+        public readonly int ProjType;
+        public readonly string Name;
+        public readonly string PreviewTextureName;
+
+        public readonly float DmgModifier;
+        public readonly float KBModifier;
+        public readonly string Tooltip;
+
+        public DroneData(int projType, string name, string desc, string misc = "", float dmgModifier = 1f, float kBModifier = 1f, bool combat = true)
+        {
+            ProjType = projType;
+            Name = name;
+            name = name.Replace(" ", "");
+            PreviewTextureName = "Projectiles/Minions/Drones/" + name + "Preview";
+            DmgModifier = dmgModifier;
+            KBModifier = kBModifier;
+            string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * DmgModifier)
+             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier)) : "";
+            Tooltip = Name + stats + "\n" + desc + "\n" + misc;
+        }
+    }
+
+
 
     /// <summary>
     /// The type of drone enumerated, so you can check against it via .HasFlag(DroneType.SomeType)

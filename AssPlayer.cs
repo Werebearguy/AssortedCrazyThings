@@ -572,34 +572,48 @@ namespace AssortedCrazyThings
                 },
                 uiConf: delegate
                 {
-                    string name = "";
                     //TODO Preview images
-                    List<Texture2D> textures = new List<Texture2D>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/BasicLaserDronePreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/HeavyLaserDronePreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/MissileDronePreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/HealingDronePreview")};
+                    //string name = "";
+                    //List<Texture2D> textures = new List<Texture2D>() {
+                    //    AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/BasicLaserDronePreview"),
+                    //    AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/HeavyLaserDronePreview"),
+                    //    AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/MissileDronePreview"),
+                    //    AssUtils.Instance.GetTexture("Projectiles/Minions/Drones/HealingDronePreview")};
 
                     List<string> tooltips = new List<string>();
                     List<string> toUnlock = new List<string>();
+                    List<Texture2D> textures = new List<Texture2D>();
+                    List<bool> unlocked = new List<bool>();
+
+                    //foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
+                    //{
+                    //    if (type != DroneType.None)
+                    //    {
+                    //        name = DroneController.GetTooltip(type, onlyName: true);
+                    //        tooltips.Add(DroneController.GetTooltip(type));
+                    //        toUnlock.Add("Use a " + name + " Item");
+                    //    }
+                    //}
+
+                    //List<bool> unlocked = new List<bool>()
+                    //{
+                    //    droneControllerUnlocked.HasFlag(DroneType.BasicLaser),
+                    //    droneControllerUnlocked.HasFlag(DroneType.HeavyLaser),
+                    //    droneControllerUnlocked.HasFlag(DroneType.Missile),
+                    //    droneControllerUnlocked.HasFlag(DroneType.Healing)
+                    //};
 
                     foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
                     {
                         if (type != DroneType.None)
                         {
-                            name = DroneController.GetTooltip(type, onlyName: true);
-                            tooltips.Add(DroneController.GetTooltip(type));
-                            toUnlock.Add("Use a " + name + " Item");
+                            DroneData data = DroneController.GetDroneData(type);
+                            textures.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName));
+                            unlocked.Add(droneControllerUnlocked.HasFlag(type));
+                            tooltips.Add(data.Tooltip);
+                            toUnlock.Add("Craft and use a " + data.Name + " Item");
                         }
                     }
-
-                    List<bool> unlocked = new List<bool>()
-                    {
-                        droneControllerUnlocked.HasFlag(DroneType.BasicLaser),
-                        droneControllerUnlocked.HasFlag(DroneType.HeavyLaser),
-                        droneControllerUnlocked.HasFlag(DroneType.Missile),
-                        droneControllerUnlocked.HasFlag(DroneType.Healing)
-                    };
 
                     return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
                 },
@@ -614,7 +628,7 @@ namespace AssortedCrazyThings
                 onUIEnd: delegate
                 {
                     selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-                    AssortedCrazyThings.UIText("Selected: " + DroneController.GetTooltip(selectedDroneControllerMinionType, onlyName: true), CombatText.HealLife);
+                    AssortedCrazyThings.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
                 },
                 triggerLeft: false
             )

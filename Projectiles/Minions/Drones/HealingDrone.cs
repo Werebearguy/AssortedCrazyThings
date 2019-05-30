@@ -95,26 +95,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             if (projectile.frame < frameOffset) projectile.frame = frameOffset;
 
-            if (projectile.velocity.Length() > 6f)
+            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f) ? frameCounterMaxFar : frameCounterMaxClose))
             {
-                if (++projectile.frameCounter >= frameCounterMaxFar)
+                projectile.frameCounter = 0;
+                if (++projectile.frame >= 2 + frameOffset)
                 {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
-                }
-            }
-            else
-            {
-                if (++projectile.frameCounter >= frameCounterMaxClose)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
+                    projectile.frame = frameOffset;
                 }
             }
         }
@@ -139,7 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             image = mod.GetTexture(nameGlow);
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            Vector2 rotationOffset = new Vector2(0f, -4f); //-2f)
+            Vector2 rotationOffset = new Vector2(0f, -2f); //-2f)
             drawPos += rotationOffset;
             drawOrigin += rotationOffset;
 
@@ -174,22 +160,22 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             if (CanHeal)
             {
-                Vector2 shootOffset = new Vector2(projectile.width / 2, (projectile.height - 2f) + sinY);
+                Vector2 shootOffset = new Vector2(projectile.width / 2 + projectile.spriteDirection * 4f, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
-                shootOrigin += Vector2.Normalize(between) * 16f; //roughly tip of turret
+                shootOrigin += Vector2.Normalize(between) * 19f; //roughly tip of turret
                 target += -Vector2.Normalize(between) * 12f; //roughly center of head with a buffer
 
-                addRotation = between.ToRotation();
+                float rotationAmount = between.ToRotation();
 
                 if (projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
-                    addRotation -= (float)Math.PI;
-                    if (addRotation > 2 * Math.PI)
+                    rotationAmount -= (float)Math.PI;
+                    if (rotationAmount > 2 * Math.PI)
                     {
-                        addRotation = -addRotation;
+                        rotationAmount = -rotationAmount;
                     }
                 }
 
@@ -197,20 +183,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka target is too fast for the drone to catch up)
                 {
-                    if (addRotation <= projectile.rotation)
+                    if (rotationAmount <= projectile.rotation)
                     {
                         canShoot = false;
-                        addRotation = projectile.rotation;
+                        rotationAmount = projectile.rotation;
                     }
                 }
                 else
                 {
-                    if (addRotation <= projectile.rotation - Math.PI)
+                    if (rotationAmount <= projectile.rotation - Math.PI)
                     {
                         canShoot = false;
-                        addRotation = projectile.rotation;
+                        rotationAmount = projectile.rotation;
                     }
                 }
+                addRotation = addRotation.AngleLerp(rotationAmount, 0.1f);
 
                 if (canShoot) //when target below drone
                 {
@@ -241,24 +228,25 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
             else //if above 50%, addRotation should go down to projectile.rotation
             {
-                //if addRotation is bigger than projectile.rotation by a small margin, reduce it down to projectile.rotation slowly
-                if (Math.Abs(addRotation) > Math.Abs(projectile.rotation) + 0.006f)
-                {
-                    float rotDiff = projectile.rotation - addRotation;
-                    if (Math.Abs(rotDiff) < 0.005f)
-                    {
-                        addRotation = projectile.rotation;
-                    }
-                    else
-                    {
-                        addRotation += addRotation * -0.15f;
-                    }
-                }
-                else
-                {
-                    //fix rotation so it doesn't get adjusted anymore
-                    addRotation = projectile.rotation;
-                }
+                ////if addRotation is bigger than projectile.rotation by a small margin, reduce it down to projectile.rotation slowly
+                //if (Math.Abs(addRotation) > Math.Abs(projectile.rotation) + 0.006f)
+                //{
+                //    float rotDiff = projectile.rotation - addRotation;
+                //    if (Math.Abs(rotDiff) < 0.005f)
+                //    {
+                //        addRotation = projectile.rotation;
+                //    }
+                //    else
+                //    {
+                //        addRotation += addRotation * -0.15f;
+                //    }
+                //}
+                //else
+                //{
+                //    //fix rotation so it doesn't get adjusted anymore
+                //    addRotation = projectile.rotation;
+                //}
+                addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
             }
         }
     }
