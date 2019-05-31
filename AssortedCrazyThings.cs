@@ -702,6 +702,31 @@ namespace AssortedCrazyThings
                         petPlayer.SendClientChangesPacketSub(changes, index, toClient: -1, ignoreClient: playerNumber);
                     }
                     break;
+                case AssMessageType.SyncAssPlayer:
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        playerNumber = reader.ReadByte();
+                        mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                        mPlayer.shieldDroneReduction = reader.ReadByte();
+                    }
+                    break;
+                case AssMessageType.ClientChangesAssPlayer:
+                    //client and server
+                    playerNumber = reader.ReadByte();
+                    mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                    mPlayer.shieldDroneReduction = reader.ReadByte();
+                    Console.WriteLine("recv packet player " + playerNumber);
+
+                    //server transmits to others
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        ModPacket packet = GetPacket();
+                        packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
+                        packet.Write((byte)playerNumber);
+                        packet.Write((byte)mPlayer.shieldDroneReduction);
+                        packet.Send(toClient: -1, ignoreClient: playerNumber);
+                    }
+                    break;
                 case AssMessageType.ConvertInertSoulsInventory:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -791,6 +816,8 @@ namespace AssortedCrazyThings
     {
         ClientChangesVanity,
         SyncPlayerVanity,
+        ClientChangesAssPlayer,
+        SyncAssPlayer,
         ConvertInertSoulsInventory,
         GitgudLoadCounters,
         GitgudChangeCounters,
@@ -803,6 +830,6 @@ namespace AssortedCrazyThings
         None,
         All,
         Slots,
-        PetTypes,
+        PetTypes
     }
 }

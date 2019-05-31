@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    //TODO remove after the next release
     public class HealingDroneItem : ModItem
     {
         public override void SetStaticDefaults()
@@ -34,15 +35,9 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void AddRecipes()
         {
-            //TODO Migration recipe
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<DroneParts>(), 1);
-            recipe.AddIngredient(ItemID.WireBulb, 1);
-            recipe.AddIngredient(ItemID.LifeCrystal, 1);
-            recipe.AddIngredient(ItemID.Wire, 5);
-            recipe.AddIngredient(ItemID.Cog, 5);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
+            recipe.AddIngredient(item.type, 1);
+            recipe.SetResult(mod.ItemType<DroneUnlockableHealing>());
             recipe.AddRecipe();
         }
     }

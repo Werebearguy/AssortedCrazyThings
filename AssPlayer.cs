@@ -64,6 +64,9 @@ namespace AssortedCrazyThings
 
         public bool droneControllerMinion = false;
 
+        public const byte shieldDroneReductionMax = 50;
+        public byte shieldDroneReduction = 0; //percentage * 100
+
         /// <summary>
         /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
         /// </summary>
@@ -122,6 +125,35 @@ namespace AssortedCrazyThings
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
         }
+        public override void clientClone(ModPlayer clientClone)
+        {
+            AssPlayer clone = clientClone as AssPlayer;
+            clone.shieldDroneReduction = shieldDroneReduction;
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            AssPlayer clone = clientPlayer as AssPlayer;
+            if (clone.shieldDroneReduction != shieldDroneReduction)
+            {
+                Main.NewText("send packet");
+                ModPacket packet = mod.GetPacket();
+                packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
+                packet.Write((byte)player.whoAmI);
+                packet.Write((byte)shieldDroneReduction);
+                packet.Send();
+            }
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            //from server to clients
+            ModPacket packet = mod.GetPacket();
+            packet.Write((byte)AssMessageType.SyncAssPlayer);
+            packet.Write((byte)player.whoAmI);
+            packet.Write((byte)shieldDroneReduction);
+            packet.Send(toWho, fromWho);
+        }
 
         public void ResetEmpoweringTimer(bool fromServer = false)
         {
@@ -143,6 +175,24 @@ namespace AssortedCrazyThings
                     packet.Write((byte)player.whoAmI);
                     packet.Send(); //send to server
                 }
+            }
+        }
+
+        public void DecreaseDroneShield(ref int damage)
+        {
+            if(shieldDroneReduction > 0)
+            {
+                for (int i = 0; i < shieldDroneReduction / 2; i++)
+                {
+                    Dust dust = Dust.NewDustPerfect(player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                    dust.noLight = true;
+                    dust.noGravity = true;
+                    dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
+                }
+
+                Main.NewText("reduction: " + ((100 - shieldDroneReduction) / 100f));
+                damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
+                if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= 10; //since this is only set clientside by the projectile and synced by packets
             }
         }
 
@@ -877,6 +927,8 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
+            DecreaseDroneShield(ref damage);
+
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -889,6 +941,8 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
+            DecreaseDroneShield(ref damage);
+
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
@@ -962,6 +1016,9 @@ namespace AssortedCrazyThings
         public override void PreUpdate()
         {
             if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2);
+
+            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI &&
+                player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
 
             SpawnSoulsWhenHarvesterIsAlive();
 

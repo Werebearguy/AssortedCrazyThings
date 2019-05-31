@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.Silk);
-            item.rare = -12;
+            item.rare = -11;
             item.width = 26;
             item.height = 24;
             item.consumable = true;
@@ -123,6 +123,22 @@ namespace AssortedCrazyThings.Items
             get
             {
                 return DroneType.Healing;
+            }
+        }
+    }
+
+    public class DroneUnlockableShield : DroneUnlockables
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Shield Drone");
+        }
+
+        public override DroneType UnlockedType
+        {
+            get
+            {
+                return DroneType.Shield;
             }
         }
     }

@@ -90,6 +90,10 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 canSpawn = player.ownedProjectileCounts[GetDroneData(DroneType.Healing).ProjType] == 0;
             }
+            else if (selected == DroneType.Shield)
+            {
+                canSpawn = player.ownedProjectileCounts[GetDroneData(DroneType.Shield).ProjType] == 0;
+            }
             canSpawn &= player.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(selected);
             return canSpawn;
         }
@@ -144,6 +148,15 @@ namespace AssortedCrazyThings.Items.Weapons
                         name: "Healing Drone",
                         desc: "Heals you when hurt",
                         misc: "Only one can be summoned",
+                        combat: false
+                        );
+                case DroneType.Shield:
+                    return new DroneData
+                        (
+                        projType: AssUtils.Instance.ProjectileType<ShieldDrone>(),
+                        name: "Shield Drone",
+                        desc: "Creates a damage reducing shield",
+                        misc: "Only one can be summoned\nShield resets if drone despawns",
                         combat: false
                         );
                 default:
@@ -367,9 +380,9 @@ namespace AssortedCrazyThings.Items.Weapons
         HeavyLaser = 2,
         Missile = 4,
         Healing = 8,
+        Shield = 16
         //Unused1 = 8,
         //Unused2 = 16,
         //Unused3 = 32,
-        //Shield = 128
     }
 }

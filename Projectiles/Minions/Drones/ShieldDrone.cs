@@ -8,18 +8,27 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
-    /// Heals the player if below max health
-    /// Heals faster when below 50% health
+    /// Creates a damage reducing shield
+    /// Checks if its active for the player in AssPlayer.PreUpdate, then resets shield
     /// </summary>
-    public class HealingDrone : DroneBase
+    public class ShieldDrone : DroneBase
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
+            }
+        }
+
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
         private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
         private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
         private float addRotation; //same
-        private const int HealDelay = 80;
+        private const int ShieldDelay = 180;
+        private const byte ShieldIncreaseAmount = 10;
 
-        private float HealCounter
+        private float ShieldCounter
         {
             get
             {
@@ -31,11 +40,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
         }
 
-        private bool CanHeal
+        private bool CanShield
         {
             get
             {
-                return Main.player[projectile.owner].statLife < Main.player[projectile.owner].statLifeMax2;
+                AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
+                return mPlayer.shieldDroneReduction < AssPlayer.shieldDroneReductionMax;
             }
         }
 
@@ -49,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Healing Drone");
+            DisplayName.SetDefault("Shield Drone");
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
@@ -73,23 +83,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //frame 4, 5: below half health, healing faster
             Player player = Main.player[projectile.owner];
 
-            Vector2 lightPos = projectile.position + new Vector2(projectile.spriteDirection == 1 ? 0f : projectile.width, projectile.height / 2);
-
             int frameOffset = 0; //frame 0, 1
 
-            if (player.statLife < player.statLifeMax2 / 2) //frame 4, 5
+            if (CanShield) //frame 4, 5
             {
-                Lighting.AddLight(lightPos, new Vector3(153 / 700f, 63 / 700f, 66 / 700f));
                 frameOffset = 4;
             }
-            else if (CanHeal) //frame 2, 3
+            else if (CanShield) //frame 2, 3
             {
-                Lighting.AddLight(lightPos, new Vector3(240 / 700f, 198 / 700f, 0f));
                 frameOffset = 2;
             }
             else
             {
-                Lighting.AddLight(lightPos, new Vector3(124 / 700f, 251 / 700f, 34 / 700f));
                 //frameoffset 0
             }
 
@@ -145,20 +150,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void ModifyDroneControllerHeld(ref float dmgModifier, ref float kbModifier)
         {
-            if (CanHeal) HealCounter += 0.333f;
+            if (CanShield) ShieldCounter += 0.333f;
         }
 
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
         {
-            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: CanHeal ? -16f : 4f); //2f
+            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloXToRotationFactor: 0.5f, offsetX: -30f, offsetY: -50f);
             return false;
         }
 
         protected override void CustomAI()
         {
             Player player = Main.player[projectile.owner];
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
-            if (CanHeal)
+            if (CanShield)
             {
                 Vector2 shootOffset = new Vector2(projectile.width / 2 + projectile.spriteDirection * 4f, (projectile.height - 2f) + sinY);
                 Vector2 shootOrigin = projectile.position + shootOffset;
@@ -201,50 +207,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (canShoot) //when target below drone
                 {
-                    HealCounter++;
-                    int delay = HealDelay - (player.statLife < player.statLifeMax2 / 2 ? 20 : 0);
+                    ShieldCounter++;
 
-                    if (HealCounter > delay)
+                    if (ShieldCounter > ShieldDelay)
                     {
-                        HealCounter = 0;
-                        int heal = 1;
-                        player.statLife += heal;
-                        player.HealEffect(heal, false);
-                        AssUtils.QuickDustLine(61, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
+                        ShieldCounter = 0;
+                        if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) mPlayer.shieldDroneReduction += ShieldIncreaseAmount;
+                        CombatText.NewText(player.getRect(), Color.LightBlue, ShieldIncreaseAmount);
+                        AssUtils.QuickDustLine(16, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
                     }
-
-                    //if (Sincounter % delay == 30) //only shoot once every 1.333 or 1.5 seconds, when target below drone and when turret aligned properly
-                    //{
-                    //    int heal = 1;
-                    //    player.statLife += heal;
-                    //    player.HealEffect(heal, false);
-                    //}
-                    //if (Sincounter % delay == 35)
-                    //{
-                    //    AssUtils.QuickDustLine(61, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
-                    //}
                 }
             }
             else //if above 50%, addRotation should go down to projectile.rotation
             {
-                ////if addRotation is bigger than projectile.rotation by a small margin, reduce it down to projectile.rotation slowly
-                //if (Math.Abs(addRotation) > Math.Abs(projectile.rotation) + 0.006f)
-                //{
-                //    float rotDiff = projectile.rotation - addRotation;
-                //    if (Math.Abs(rotDiff) < 0.005f)
-                //    {
-                //        addRotation = projectile.rotation;
-                //    }
-                //    else
-                //    {
-                //        addRotation += addRotation * -0.15f;
-                //    }
-                //}
-                //else
-                //{
-                //    //fix rotation so it doesn't get adjusted anymore
-                //    addRotation = projectile.rotation;
-                //}
                 addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
             }
         }
