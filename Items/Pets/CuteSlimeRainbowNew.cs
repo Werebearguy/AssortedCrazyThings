@@ -1,13 +1,12 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Pets;
+using Terraria;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	public class CuteSlimeRainbowNew : ModItem
-	{
+    public class CuteSlimeRainbowNew : CuteSlimeItem
+    {
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Cute Rainbow Slime");
@@ -22,13 +21,5 @@ namespace AssortedCrazyThings.Items.Pets
 			item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }
-
-        public override void UseStyle(Player player)
-		{
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-			{
-				player.AddBuff(item.buffType, 3600, true);
-			}
-		}
 	}
 }

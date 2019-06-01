@@ -8,9 +8,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class CuteSlimeGlobalTooltip : GlobalItem
+    public abstract class CuteSlimeItem : ModItem
     {
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        public override void UseStyle(Player player)
+        {
+            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+            {
+                player.AddBuff(item.buffType, 3600, true);
+            }
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             try
             {
@@ -52,7 +60,7 @@ namespace AssortedCrazyThings.Items.Pets
                                     tooltip = "None";
                                 }
                             }
-                            
+
                             tooltips.Add(new TooltipLine(mod, ((SlotType)slotNumber).ToString(), Enum2String(slotNumber) + tooltip));
                         }
                     }

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class CuteSlimePrincessNew : ModItem
+    public class CuteSlimePrincessNew : CuteSlimeItem
     {
         public override void SetStaticDefaults()
         {
@@ -32,13 +32,5 @@ namespace AssortedCrazyThings.Items.Pets
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
-
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
     }
 }

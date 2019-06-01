@@ -177,6 +177,9 @@ namespace AssortedCrazyThings.Items.Weapons
             return DataList[(int)Math.Log((int)selected, 2)];
         }
 
+        /// <summary>
+        /// Called in Mod.Load
+        /// </summary>
         public static void Load()
         {
             Array a = Enum.GetValues(typeof(DroneType));
@@ -191,6 +194,9 @@ namespace AssortedCrazyThings.Items.Weapons
             }
         }
 
+        /// <summary>
+        /// Called in Mod.Unload
+        /// </summary>
         public static void Unload()
         {
             DataList = null;
