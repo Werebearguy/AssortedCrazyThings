@@ -447,7 +447,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// updates the status of right click (one tick delay, used for UI)
+        /// Updates the status of right click (one tick delay, used for UI)
         /// </summary>
         private void RightClickStatus()
         {
@@ -473,7 +473,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// updates the status of left click (one tick delay, used for UI)
+        /// Updates the status of left click (one tick delay, used for UI)
         /// </summary>
         private void LeftClickStatus()
         {

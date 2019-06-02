@@ -28,11 +28,15 @@ namespace AssortedCrazyThings
         //Soul item animated textures
         public static Texture2D[] animatedSoulTextures;
 
-        //Soul NPC spawn blacklist
+        /// <summary>
+        /// Soul NPC spawn blacklist
+        /// </summary>
         public static int[] soulBuffBlacklist;
 
-        //Zoom level, (for UIs)
-        public static Vector2 ZoomFactor; //0f == fully zoomed out, 1f == fully zoomed in
+        /// <summary>
+        /// Zoom level, (for UIs). 0f == fully zoomed out, 1f == fully zoomed in
+        /// </summary>
+        public static Vector2 ZoomFactor;
 
         //Loaded Mods
         public static bool BossAssistLoadedWithRadar;
@@ -104,6 +108,10 @@ namespace AssortedCrazyThings
             soulBuffBlacklist = tempList.ToArray();
         }
 
+        /// <summary>
+        /// Assuming this is called after InitSoulBuffBlacklist.
+        /// Adds NPC types to soulBuffBlacklist manually
+        /// </summary>
         private void AddToSoulBuffBlacklist()
         {
             //assuming this is called after InitSoulBuffBlacklist
@@ -117,6 +125,9 @@ namespace AssortedCrazyThings
             Array.Sort(soulBuffBlacklist);
         }
 
+        /// <summary>
+        /// Fills isModdedWormBodyOrTail with types of modded NPCs which names are ending with Body or Tail
+        /// </summary>
         private void LoadWormList()
         {
             List<int> tempList = new List<int>();
@@ -468,6 +479,9 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Called in UpdateUI
+        /// </summary>
         private void UpdatePetVanityUI()
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
@@ -715,6 +729,7 @@ namespace AssortedCrazyThings
                     playerNumber = reader.ReadByte();
                     mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
                     mPlayer.shieldDroneReduction = reader.ReadByte();
+                    //TODO test shield in mp
                     Console.WriteLine("recv packet player " + playerNumber);
 
                     //server transmits to others

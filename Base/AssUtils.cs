@@ -11,8 +11,14 @@ namespace AssortedCrazyThings.Base
 {
     static class AssUtils
     {
+        /// <summary>
+        /// The instance of the mod
+        /// </summary>
         public static AssortedCrazyThings Instance { get; set; } //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
+        /// <summary>
+        /// Types of modded NPCs which names are ending with Body or Tail
+        /// </summary>
         public static int[] isModdedWormBodyOrTail;
 
         public static void Print(object o)
@@ -49,6 +55,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Something similar to Dust.QuickDust
+        /// </summary>
         public static Dust DrawDustAtPos(Vector2 pos, int dustType = 169)
         {
             //used for showing a position as a dust for debugging
@@ -63,6 +72,9 @@ namespace AssortedCrazyThings.Base
             DrawSkeletronLikeArms(spriteBatch, ModLoader.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
         }
 
+        /// <summary>
+        /// Draws two "arms" originating from selfPos, "attached" at centerPos
+        /// </summary>
         public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, Texture2D tex, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
             //with all float params = 0f, the arm will originate below the selfPos
@@ -118,6 +130,10 @@ namespace AssortedCrazyThings.Base
             DrawTether(spriteBatch, ModLoader.GetTexture(texString), start, end);
         }
 
+        //Credit to IDGCaptainRussia
+        /// <summary>
+        /// Draws a "connection" between two points
+        /// </summary>
         public static void DrawTether(SpriteBatch spriteBatch, Texture2D tex, Vector2 start, Vector2 end)
         {
             Vector2 position = start;
@@ -156,6 +172,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Combines two arrays (first + second in order)
+        /// </summary>
         public static T[] ConcatArray<T>(T[] first, T[] second)
         {
             T[] combined = new T[first.Length + second.Length];
@@ -164,9 +183,11 @@ namespace AssortedCrazyThings.Base
             return combined;
         }
 
-        //fills an array with a default value
-        //if array is null, creates one with the length specified
-        //else, overrides each element with default value
+        /// <summary>
+        /// Fills an array with a default value.
+        /// If array is null, creates one with the length specified.
+        /// Else, overrides each element with default value
+        /// </summary>
         public static void FillWithDefault<T>(ref T[] array, T def, int length = -1)
         {
             if (array == null)
@@ -186,9 +207,11 @@ namespace AssortedCrazyThings.Base
             }
         }
 
-        //fills a list with a default value
-        //if list is null, creates one with the length specified
-        //else, overrides each element with default value
+        /// <summary>
+        /// Fills a list with a default value.
+        /// If array is null, creates one with the length specified.
+        /// Else, overrides each element with default value
+        /// </summary>
         public static void FillWithDefault<T>(ref List<T> list, T def, int length = -1)
         {
             if (list == null)
@@ -208,6 +231,10 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Like NPC.AnyNPC, but checks for each type in the passed array.
+        /// If one exists, returns true
+        /// </summary>
         public static bool AnyNPCs(int[] types)
         {
             //Like AnyNPCs but checks for an array
@@ -224,16 +251,25 @@ namespace AssortedCrazyThings.Base
             return AnyNPCs(types.ToArray());
         }
 
+        /// <summary>
+        /// Checks if given NPC is a worm body or tail
+        /// </summary>
         public static bool IsWormBodyOrTail(NPC npc)
         {
             return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsBody/* || npc.realLife != -1*/;
         }
 
+        /// <summary>
+        /// Checks if player is in an evil biome (any of three)
+        /// </summary>
         public static bool EvilBiome(Player player)
         {
             return player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly;
         }
 
+        /// <summary>
+        /// Formats Main.time into a string representation with AM/PM
+        /// </summary>
         public static string GetTimeAsString(bool accurate = true)
         {
             string suffix = "AM";
@@ -278,38 +314,37 @@ namespace AssortedCrazyThings.Base
             string suffix = "";
             if (showNumber) suffix = " (" + (Main.moonPhase + 1) + ")";
             string prefix = Lang.inter[102].Value + ": "; //can't seem to find "Moon Phase" in the lang files for GameUI
-            if (Main.moonPhase == 0)
+            string value = "";
+            switch (Main.moonPhase)
             {
-                return prefix + Language.GetTextValue("GameUI.FullMoon") + suffix;
+                case 0:
+                    value = Language.GetTextValue("GameUI.FullMoon");
+                    break;
+                case 1:
+                    value = Language.GetTextValue("GameUI.WaningGibbous");
+                    break;
+                case 2:
+                    value = Language.GetTextValue("GameUI.ThirdQuarter");
+                    break;
+                case 3:
+                    value = Language.GetTextValue("GameUI.WaningCrescent");
+                    break;
+                case 4:
+                    value = Language.GetTextValue("GameUI.NewMoon");
+                    break;
+                case 5:
+                    value = Language.GetTextValue("GameUI.WaxingCrescent");
+                    break;
+                case 6:
+                    value = Language.GetTextValue("GameUI.FirstQuarter");
+                    break;
+                case 7:
+                    value = Language.GetTextValue("GameUI.WaxingGibbous");
+                    break;
+                default:
+                    break;
             }
-            else if (Main.moonPhase == 1)
-            {
-                return prefix + Language.GetTextValue("GameUI.WaningGibbous") + suffix;
-            }
-            else if (Main.moonPhase == 2)
-            {
-                return prefix + Language.GetTextValue("GameUI.ThirdQuarter") + suffix;
-            }
-            else if (Main.moonPhase == 3)
-            {
-                return prefix + Language.GetTextValue("GameUI.WaningCrescent") + suffix;
-            }
-            else if (Main.moonPhase == 4)
-            {
-                return prefix + Language.GetTextValue("GameUI.NewMoon") + suffix;
-            }
-            else if (Main.moonPhase == 5)
-            {
-                return prefix + Language.GetTextValue("GameUI.WaxingCrescent") + suffix;
-            }
-            else if (Main.moonPhase == 6)
-            {
-                return prefix + Language.GetTextValue("GameUI.FirstQuarter") + suffix;
-            }
-            else if (Main.moonPhase == 7)
-            {
-                return prefix + Language.GetTextValue("GameUI.WaxingGibbous") + suffix;
-            }
+            if (value != "") return prefix + value + suffix;
             return "";
         }
 
@@ -317,7 +352,7 @@ namespace AssortedCrazyThings.Base
         /// Alternative NewProjectile, automatically sets owner to Main.myPlayer.
         /// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles.
         /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
-        /// Use preSync to set ai[0], ai[1] and other values.
+        /// Use preSync to set ai[0], ai[1] and other values
         /// </summary>
         public static int NewProjectile(Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
         {
@@ -326,8 +361,9 @@ namespace AssortedCrazyThings.Base
 
         /// <summary>
         /// Alternative NewProjectile, automatically sets owner to Main.myPlayer.
-        /// Use preSync to set ai[0], ai[1] and other values.
-        /// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles
+        /// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles.
+        /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
+        /// Use preSync to set ai[0], ai[1] and other values
         /// </summary>
         public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
         {
