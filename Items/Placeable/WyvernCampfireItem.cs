@@ -27,5 +27,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			item.value = Item.buyPrice(0, 10, 0, 0);
 			item.createTile = mod.TileType<WyvernCampfireTile>();
 		}
+
+        //TODO wyvern recipe
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.NPCs;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -19,9 +20,15 @@ namespace AssortedCrazyThings.Base
         public static List<int> slimePets;
 
         /// <summary>
+        /// For the Cute Slime Statue, non-biome ones only
+        /// </summary>
+        public static List<int> slimePetNPCs;
+
+        /// <summary>
         /// For the Jellied Ale bufftip
         /// </summary>
         public static List<List<string>> slimePetNPCsEnumToNames;
+
 
         public enum SpawnConditionType : byte
         {
@@ -159,6 +166,18 @@ namespace AssortedCrazyThings.Base
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() {"Illuminant" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
+
+            slimePetNPCs = new List<int>
+            {
+                AssUtils.Instance.NPCType<CuteSlimeBlack>(),
+                AssUtils.Instance.NPCType<CuteSlimeBlue>(),
+                AssUtils.Instance.NPCType<CuteSlimeGreen>(),
+                AssUtils.Instance.NPCType<CuteSlimePink>(),
+                AssUtils.Instance.NPCType<CuteSlimePurple>(),
+                AssUtils.Instance.NPCType<CuteSlimeRainbow>(),
+                AssUtils.Instance.NPCType<CuteSlimeRed>(),
+                AssUtils.Instance.NPCType<CuteSlimeYellow>()
+            };
 
             //start list
             slimePetList.Add(SlimePet.NewSlimePet

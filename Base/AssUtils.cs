@@ -252,6 +252,19 @@ namespace AssortedCrazyThings.Base
         }
 
         /// <summary>
+        /// Counts all NPCs in the passed array
+        /// </summary>
+        public static int CountAllNPCs(int[] types)
+        {
+            int count = 0;
+            for (int i = 0; i < types.Length; i++)
+            {
+                count += NPC.CountNPCS(types[i]);
+            }
+            return count;
+        }
+
+        /// <summary>
         /// Checks if given NPC is a worm body or tail
         /// </summary>
         public static bool IsWormBodyOrTail(NPC npc)

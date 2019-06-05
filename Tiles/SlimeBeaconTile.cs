@@ -20,7 +20,9 @@ namespace AssortedCrazyThings.Tiles
             TileObjectData.newTile.Origin = new Point16(1, 2);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(75, 139, 166));
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Slime Beacon");
+            AddMapEntry(new Color(75, 139, 166), name);
             dustType = 1;
             animationFrameHeight = 56;
             disableSmartCursor = true;

@@ -58,34 +58,6 @@ namespace AssortedCrazyThings.Items.Weapons
         public const float BaseKB = 0.5f;
 
         #region Static Methods
-
-        /// <summary>
-        /// Returns the SoulStats of the specified type
-        /// </summary>
-        //public static SoulStats GetAssociatedStats(int soulType, bool fromUI = false)
-        //{
-        //    //damage, knockback
-        //    if (soulType == (int)SoulType.Fright) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned", "Defeat Skeletron Prime");
-        //    if (soulType == (int)SoulType.Sight) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno", "Defeat The Twins");
-        //    if (soulType == (int)SoulType.Might) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType, "", "Defeat The Destroyer");
-        //    if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
-        //    {
-        //        if (Main.hardMode || fromUI)
-        //        {
-        //            return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
-        //        }
-        //        else if (soulType == (int)SoulType.Dungeon)
-        //        {
-        //            return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPreWOLMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
-        //        }
-        //        else
-        //        {
-        //            return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPreWOLMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
-        //        }
-        //    }
-        //    return new SoulStats(0, 0, 0, soulType);
-        //}
-
         /// <summary>
         /// Sets the data up for a SoulType
         /// </summary>

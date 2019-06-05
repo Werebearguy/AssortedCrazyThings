@@ -16,6 +16,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.Items.Pets;
 
 [assembly: AssemblyVersion("1.3.0.0")]
 namespace AssortedCrazyThings
@@ -306,6 +307,21 @@ namespace AssortedCrazyThings
             {
                 BossAssistLoadedWithRadar = true;
             }
+        }
+
+        public override void AddRecipeGroups()
+        {
+            RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Lang.misc[37] + " " + "Regular Bottled Slime", new int[]
+            {
+                ItemType<CuteSlimeBlueNew>(),
+                ItemType<CuteSlimeBlackNew>(),
+                ItemType<CuteSlimeGreenNew>(),
+                ItemType<CuteSlimePinkNew>(),
+                ItemType<CuteSlimePurpleNew>(),
+                ItemType<CuteSlimeRainbowNew>(),
+                ItemType<CuteSlimeRedNew>(),
+                ItemType<CuteSlimeYellowNew>()
+            }));
         }
 
         /// <summary>

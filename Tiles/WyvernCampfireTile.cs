@@ -30,7 +30,9 @@ namespace AssortedCrazyThings.Tiles
             TileObjectData.newTile.Origin = new Point16(1, 1);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(105, 105, 105));
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Wyvern Campfire");
+            AddMapEntry(new Color(105, 105, 105), name);
             dustType = -1;
             animationFrameHeight = 36;
             disableSmartCursor = true;

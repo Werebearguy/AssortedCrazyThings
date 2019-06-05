@@ -33,6 +33,7 @@ namespace AssortedCrazyThings.NPCs
             npc.alpha = 75;
             Main.npcCatchable[mod.NPCType("CuteSlimePink")] = true;
             npc.catchItem = (short)mod.ItemType("CuteSlimePinkNew");
+            drawOffsetY = -2f;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
