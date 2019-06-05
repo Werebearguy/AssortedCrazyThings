@@ -6,7 +6,6 @@ namespace AssortedCrazyThings.Items
 {
     public class DroneParts : ModItem
     {
-        //TODO have them drop for each player in the fight
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone Parts");

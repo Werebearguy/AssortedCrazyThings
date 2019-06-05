@@ -1,6 +1,6 @@
 ﻿namespace AssortedCrazyThings.Projectiles.Minions
 {
-    public class CompanionDungeonSoulPostWOLMinion : CompanionDungeonSoulMinionBase
+    public class CompanionDungeonSoulPostWOFMinion : CompanionDungeonSoulMinionBase
     {
         public override void MoreSetDefaults()
         {

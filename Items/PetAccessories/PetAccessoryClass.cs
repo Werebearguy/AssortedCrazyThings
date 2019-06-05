@@ -576,14 +576,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             return "ID: " + ID
                 + "; Col: " + Color
-                + "; Slo: " + Slot.ToString()
+                + "; Slo: " + Slot
                 + "; Nam: " + Name
                 + "; Typ: " + Type
                 + "; Off: " + Offset
                 + "; Pre: " + (PreDraw ? "y" : "n")
                 + "; Alp: " + Alpha
                 + "; NoH: " + (UseNoHair ? "y" : "n")
-                + "; Alt: " + (HasAlts? "y":"n");
+                + "; Alt: " + (HasAlts ? "y" : "n");
         }
     }
 

@@ -1,7 +1,7 @@
-﻿using AssortedCrazyThings.Base;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -11,11 +11,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
 {
     public abstract class CompanionDungeonSoulMinionBase : ModProjectile
     {
-        //change damage here, this is for a single minion
-        public static int DefDamage = 26;
-        public static float DefKnockback = 0.5f;
         private int sincounter;
         public int dustColor;
+        //more like an initializer (set minionSlots and timeLeft accordingly)
+        public bool isTemp = false;
 
 
         //SetDefaults stuff
@@ -40,81 +39,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public float defveloIdle;// = 1f;
         public float defveloCatchUpIdle;// = 8f;
         public float defveloNoclip;// = 12f;
-
-        /// <summary>
-        /// Holds the type of Dungeon Soul
-        /// </summary>
-        public enum SoulType : int
-        {
-            Dungeon,
-            Fright,
-            Sight,
-            Might,
-            Temp
-        }
-
-        /// <summary>
-        /// Holds the stats of each type of Dungeon Soul
-        /// </summary>
-        public struct SoulStats
-        {
-            public readonly int Type; //actual projectile type
-            public readonly int Damage;
-            public readonly float Knockback;
-            public readonly int SoulType; //enum type
-            public readonly string Description;
-            public readonly string ToUnlock;
-
-            public SoulStats(int a, int b, float c, int d, string e = "", string f = "")
-            {
-                Type = a;
-                Damage = b;
-                Knockback = c;
-                SoulType = d;
-                Description = e;
-                ToUnlock = f;
-            }
-        }
-
-        //unused
-        public static int GetSoulTypeFromType(int type)
-        {
-            //not used anywhere yet
-            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulPreWOLMinion>()) return (int)SoulType.Dungeon;
-            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>()) return (int)SoulType.Dungeon;
-            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>()) return (int)SoulType.Fright;
-            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>()) return (int)SoulType.Sight;
-            if (type == AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>()) return (int)SoulType.Might;
-            //Temp ignored
-            return 0;
-        }
-
-        /// <summary>
-        /// Returns the SoulStats of the specified type
-        /// </summary>
-        public static SoulStats GetAssociatedStats(int soulType, bool fromUI = false)
-        {
-            //damage, knockback
-            if (soulType == (int)SoulType.Fright) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(), (int)(DefDamage * 1.25f), DefKnockback * 4, soulType, "Inflicts Ichor and Posioned", "Defeat Skeletron Prime");
-            if (soulType == (int)SoulType.Sight) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(), (int)(DefDamage * 0.85f), DefKnockback, soulType, "Inflicts Cursed Inferno", "Defeat The Twins");
-            if (soulType == (int)SoulType.Might) return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(), (int)(DefDamage * 1.55f), DefKnockback * 8, soulType, "", "Defeat The Destroyer");
-            if (soulType == (int)SoulType.Temp || soulType == (int)SoulType.Dungeon)
-            {
-                if (Main.hardMode || fromUI)
-                {
-                    return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOLMinion>(), (int)(DefDamage * 1.1f), DefKnockback, soulType); //postwol or temp
-                }
-                else if (soulType == (int)SoulType.Dungeon)
-                {
-                    return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPreWOLMinion>(), DefDamage / 2, DefKnockback, soulType); //prewol
-                }
-                else
-                {
-                    return new SoulStats(AssUtils.Instance.ProjectileType<CompanionDungeonSoulPreWOLMinion>(), DefDamage, DefKnockback, soulType); //prewol temp
-                }
-            }
-            return new SoulStats(0, 0, 0, soulType);
-        }
 
         public override void SetStaticDefaults()
         {
@@ -148,6 +72,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public virtual void MoreSetDefaults()
         {
 
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((bool)isTemp);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            isTemp = reader.ReadBoolean();
         }
 
         public override bool? CanCutTiles()
@@ -265,7 +199,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, (60 - projectile.localAI[0]) / 60f + 1f);
                         dust.noGravity = false;
                         dust.noLight = true;
-                        dust.fadeIn = Main.rand.NextFloat(0.0f, 0.2f);
+                        dust.fadeIn = Main.rand.NextFloat(0.2f);
 
                         if (dustColor != 0)
                         {
@@ -317,6 +251,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (player.dead)
             {
                 mPlayer.soulMinion = false;
+            }
+
+            if (isTemp)
+            {
+                projectile.minionSlots = 0f;
+                projectile.timeLeft = 600; //10 seconds
+                isTemp = false;
             }
 
             if (player.dead && projectile.minionSlots == 0f)

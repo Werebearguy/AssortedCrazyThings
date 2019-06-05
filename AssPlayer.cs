@@ -40,7 +40,7 @@ namespace AssortedCrazyThings
         //soul minion stuff
         public bool soulMinion = false;
         public bool tempSoulMinion = false;
-        public int selectedSoulMinionType = (int)CompanionDungeonSoulMinionBase.SoulType.Dungeon;
+        public SoulType selectedSoulMinionType = SoulType.Dungeon;
 
         public bool slimePackMinion = false;
         public byte selectedSlimePackMinionType = 0;
@@ -190,44 +190,19 @@ namespace AssortedCrazyThings
                     dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
                 }
 
+                //TODO testing shield drone
                 Main.NewText("reduction: " + ((100 - shieldDroneReduction) / 100f));
                 damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
                 if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= 10; //since this is only set clientside by the projectile and synced by packets
             }
         }
-
-        /// <summary>
-        /// Shorter overload, spawns a Dungeon Soul minion 
-        /// </summary>
-        public int SpawnSoul(CompanionDungeonSoulMinionBase.SoulStats stats, bool temp = false)
+        private void PreSync(Projectile proj)
         {
-            return SpawnSoul(stats.Type, stats.Damage, stats.Knockback, temp);
-        }
-
-        /// <summary>
-        /// Spawns a dungeon soul minion
-        /// </summary>
-        public int SpawnSoul(int type, int damage, float knockback, bool temp = false)
-        {
-            int index = 0;
-            if (Main.netMode != NetmodeID.Server)
+            if (proj.modProjectile != null && proj.modProjectile is CompanionDungeonSoulMinionBase)
             {
-                Vector2 spawnPos = new Vector2(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f);
-                Vector2 spawnVelo = new Vector2(player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f);
-
-                index = Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
-                if (temp) return index; //spawn only one 
-
-                if (player.HeldItem.type != mod.ItemType<EverhallowedLantern>()) //spawn only one when holding Everhallowed Lantern
-                {
-                    spawnPos.Y += 2f;
-                    spawnVelo.X -= 0.5f * player.direction;
-                    spawnVelo.Y += 0.5f;
-                    Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockback, player.whoAmI, 0f, 0f);
-                }
+                CompanionDungeonSoulMinionBase soul = (CompanionDungeonSoulMinionBase)proj.modProjectile;
+                soul.isTemp = true;
             }
-
-            return index;
         }
 
         /// <summary>
@@ -238,11 +213,13 @@ namespace AssortedCrazyThings
             if (tempSoulMinion && player.whoAmI == Main.myPlayer)
             {
                 bool checkIfAlive = false;
+                int spawnedType = Main.hardMode ? mod.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
+                int spawnedDamage = Main.hardMode ? (int)(EverhallowedLantern.BaseDmg * 1.1f * 2f) : ((EverhallowedLantern.BaseDmg / 2 - 1) * 2);
                 for (int i = 0; i < 1000; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == CompanionDungeonSoulMinionBase.GetAssociatedStats((int)CompanionDungeonSoulMinionBase.SoulType.Temp).Type)
+                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == spawnedType)
                     {
-                        if (Main.projectile[i].minionSlots == 0f)
+                        if (Main.projectile[i].minionSlots == 0f) //criteria for temp, is set by isTemp
                         {
                             checkIfAlive = true;
                             break;
@@ -252,11 +229,7 @@ namespace AssortedCrazyThings
                 
                 if (!checkIfAlive)
                 {
-                    //twice the damage
-                    var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats((int)CompanionDungeonSoulMinionBase.SoulType.Temp);
-                    int i = SpawnSoul(stats, true);
-                    Main.projectile[i].minionSlots = 0f;
-                    Main.projectile[i].timeLeft = 600; //10 seconds
+                    AssUtils.NewProjectile(player.Center.X, player.Center.Y, -player.velocity.X, player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSync);
                 }
             }
         }
@@ -530,40 +503,37 @@ namespace AssortedCrazyThings
                 },
                 uiConf: delegate
                 {
-                    List<Texture2D> textures = new List<Texture2D>();
                     List<string> tooltips = new List<string>();
                     List<string> toUnlock = new List<string>();
-                    for (int soulType = 0; soulType < 4; soulType++)
-                    {
-                        var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(soulType, fromUI: true);
-                        var tempSoulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                        string tooltip = tempSoulType.ToString()
-                            + "\nBase Damage: " + stats.Damage
-                            + "\nBase Knockback: " + stats.Knockback
-                            + "\n" + stats.Description;
-                        textures.Add(Main.projectileTexture[stats.Type]);
-                        tooltips.Add(tooltip);
-                        toUnlock.Add(stats.ToUnlock);
-                    }
+                    List<Texture2D> textures = new List<Texture2D>();
+                    List<bool> unlocked = new List<bool>();
 
-                    List<bool> unlocked = new List<bool>()
+                    foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
                     {
-                        true,                //      0
-                        NPC.downedMechBoss3, //skele 1
-                        NPC.downedMechBoss2, //twins 2
-                        NPC.downedMechBoss1, //destr 3
-                    };
+                        if (type != SoulType.None)
+                        {
+                            SoulData data = EverhallowedLantern.GetSoulData(type);
+                            textures.Add(Main.projectileTexture[data.ProjType]);
+                            unlocked.Add(data.Unlocked());
+                            tooltips.Add(data.Tooltip);
+                            toUnlock.Add(data.ToUnlock);
+                        }
+                    }
 
                     return new CircleUIConf(8, -1, textures, unlocked, tooltips, toUnlock);
                 },
                 onUIStart: delegate
                 {
-                    return selectedSoulMinionType;
+                    if (Utils.IsPowerOfTwo((int)selectedSoulMinionType))
+                    {
+                        return (int)Math.Log((int)selectedSoulMinionType, 2);
+                    }
+                    return 0;
                 },
                 onUIEnd: delegate
                 {
-                    selectedSoulMinionType = (byte)CircleUI.returned;
-                    UpdateEverhallowedLanternStats(CircleUI.returned);
+                    selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
+                    AssortedCrazyThings.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
                 },
                 triggerLeft: false
             ),
@@ -690,36 +660,6 @@ namespace AssortedCrazyThings
                 CircleUIHandler.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
             }
         }
-
-        private void UpdateEverhallowedLanternStats(int selectedSoulType)
-        {
-            bool first = true;
-            for (int i = 0; i < Main.LocalPlayer.inventory.Length; i++)
-            {
-                if (Main.LocalPlayer.inventory[i].type == mod.ItemType<EverhallowedLantern>())
-                {
-                    var stats = CompanionDungeonSoulMinionBase.GetAssociatedStats(selectedSoulType);
-                    //bad practice, don't do this
-                    Main.LocalPlayer.inventory[i].damage = stats.Damage;
-                    Main.LocalPlayer.inventory[i].shoot = stats.Type;
-                    Main.LocalPlayer.inventory[i].knockBack = stats.Knockback;
-
-                    var soulType = (CompanionDungeonSoulMinionBase.SoulType)stats.SoulType;
-                    if (first && soulType == CompanionDungeonSoulMinionBase.SoulType.Dungeon)
-                    {
-                        CombatText.NewText(Main.LocalPlayer.getRect(),
-                            CombatText.HealLife, "Selected: " + soulType.ToString() + " Soul");
-                    }
-                    else if (first)
-                    {
-                        CombatText.NewText(Main.LocalPlayer.getRect(),
-                            CombatText.HealLife, "Selected: Soul of " + soulType.ToString());
-                    }
-                    first = false;
-                }
-            }
-        }
-
         #endregion
 
         private static SpriteEffects GetSpriteEffects(Player player)

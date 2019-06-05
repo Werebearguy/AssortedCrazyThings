@@ -425,9 +425,9 @@
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulFrightMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulSightMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMightMinion.cs" />
-    <Compile Include="Projectiles\Minions\CompanionDungeonSoulPostWOLMinion.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulPostWOFMinion.cs" />
     <Compile Include="Projectiles\Minions\CompanionDungeonSoulMinionBase.cs" />
-    <Compile Include="Projectiles\Minions\CompanionDungeonSoulPreWOLMinion.cs" />
+    <Compile Include="Projectiles\Minions\CompanionDungeonSoulPreWOFMinion.cs" />
     <Compile Include="Projectiles\Pets\BabySlimeBase.cs" />
     <Compile Include="Projectiles\Pets\AbeeminationProj.cs" />
     <Compile Include="Projectiles\Pets\CuteSlimeToxicNewProj.cs" />

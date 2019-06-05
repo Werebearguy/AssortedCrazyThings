@@ -8,9 +8,14 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Base
 {
-    //contains AI for stuff that only uses ai[], used with thing.aiStyle = -1
+    /// <summary>
+    /// contains AI for stuff that only uses ai[], used with thing.aiStyle = -1
+    /// </summary>
     public static class AssAI
     {
+        /// <summary>
+        /// Makes the projectile teleport if it is too far away from the player
+        /// </summary>
         public static void TeleportIfTooFar(Projectile projectile, Vector2 desiredCenter, int distance = 2000)
         {
             if (Vector2.Distance(projectile.Center, desiredCenter) > distance)
@@ -40,8 +45,9 @@ namespace AssortedCrazyThings.Base
                 .All(tile => new BoundingBox(new Vector3(tile - new Vector2(2), 0), new Vector3(tile + new Vector2(20), 0)).Intersects(ray) == null);
         }
 
-        //finds target in range of relativeCenter
-        //returns index of target
+        /// <summary>
+        /// Finds target in range of relativeCenter. Returns index of target
+        /// </summary>
         public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false)
         {
             int targetIndex = -1;
@@ -220,6 +226,10 @@ namespace AssortedCrazyThings.Base
         #endregion
 
         #region EyeSpring
+
+        /// <summary>
+        /// Almost proper working Eye Spring clone
+        /// </summary>
         public static void EyeSpringAI(Projectile projectile, bool flyForever = false)
         {
             Player player = Main.player[projectile.owner];
@@ -345,7 +355,7 @@ namespace AssortedCrazyThings.Base
                     {
                         projectile.frame = 6;
                     }
-                    projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.58f;
+                    projectile.rotation = projectile.velocity.ToRotation() + 1.57f;
                 }
                 else
                 {
@@ -641,6 +651,9 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        /// <summary>
+        /// Stays around a certain offset position around the parent.
+        /// </summary>
         public static void ZephyrfishAI(Projectile projectile, Entity parent = null, float velocityFactor = 1f, float sway = 1f, bool random = true, byte swapSides = 0, float offsetX = 0f, float offsetY = 0f)
         {
             //velocityFactor: 
@@ -922,7 +935,7 @@ namespace AssortedCrazyThings.Base
                     }
                 }
             }
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) - 1.57f;
+            projectile.rotation = projectile.velocity.ToRotation() - 1.57f;
         }
         #endregion
 

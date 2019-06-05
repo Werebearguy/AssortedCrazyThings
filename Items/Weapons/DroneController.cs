@@ -292,7 +292,6 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void AddRecipes()
         {
-            //TODO Recipe
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.HallowedBar, 1);
             recipe.AddIngredient(ItemID.Switch, 2);
@@ -334,7 +333,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 }
             }
 
-            if (!(allUnlocked && Main.LocalPlayer.HasItem(mod.ItemType<DroneController>())))
+            if (!(allUnlocked && Main.LocalPlayer.HasItem(item.type)))
             {
                 tooltips.Add(new TooltipLine(mod, "Destroyer", "Defeat the destroyer to unlock more drones"));
             }
@@ -368,7 +367,7 @@ namespace AssortedCrazyThings.Items.Weapons
             DmgModifier = dmgModifier;
             KBModifier = kBModifier;
             string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * DmgModifier)
-             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier)) : "";
+             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier, 1)) : "";
             Tooltip = Name + stats + "\n" + desc + "\n" + misc;
         }
     }

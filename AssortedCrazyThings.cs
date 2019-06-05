@@ -257,6 +257,8 @@ namespace AssortedCrazyThings
 
             DroneController.Unload();
 
+            EverhallowedLantern.Unload();
+
             AssUtils.Instance = null;
         }
 
@@ -270,6 +272,8 @@ namespace AssortedCrazyThings
             GitgudData.Load();
 
             DroneController.Load();
+
+            EverhallowedLantern.Load();
 
             AddToSoulBuffBlacklist();
 

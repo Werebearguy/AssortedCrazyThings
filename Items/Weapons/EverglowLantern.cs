@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //Defaults for damage, shoot and knockback dont matter too much here
             //default to PreWol
-            item.damage = CompanionDungeonSoulMinionBase.DefDamage / 2 - 1;
+            item.damage = EverhallowedLantern.BaseDmg / 2 - 1;
             item.summon = true;
             item.mana = 10;
             item.width = 18;
@@ -33,9 +33,9 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulPreWOLMinion>();
+            item.shoot = mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
             item.shootSpeed = 10f;
-            item.knockBack = CompanionDungeonSoulMinionBase.DefKnockback;
+            item.knockBack = EverhallowedLantern.BaseKB;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
             item.buffTime = 3600;
         }
@@ -48,9 +48,9 @@ namespace AssortedCrazyThings.Items.Weapons
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             //one that shoots out far 
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, item.shoot, item.damage, item.knockBack, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
             //one that shoots out less
-            Projectile.NewProjectile(player.position.X + (player.width / 2) + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, item.shoot, item.damage, item.knockBack, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
 
             return false;
         }

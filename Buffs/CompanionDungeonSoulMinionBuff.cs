@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.Projectiles.Minions;
+﻿using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.Projectiles.Minions;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -18,13 +19,15 @@ namespace AssortedCrazyThings.Buffs
         private int SumOfSoulCounts(Player player)
         {
             int sum = 0;
-            foreach(CompanionDungeonSoulMinionBase.SoulType soulType in Enum.GetValues(typeof(CompanionDungeonSoulMinionBase.SoulType)))
+            foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
             {
-                //Main.NewText((int)soulType + " " + player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats((int)soulType).Type]);
-                sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPostWOLMinion>()];
-                sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPreWOLMinion>()];
-                sum += player.ownedProjectileCounts[CompanionDungeonSoulMinionBase.GetAssociatedStats((int)soulType).Type];
+                if (type != SoulType.None)
+                {
+                    sum += player.ownedProjectileCounts[EverhallowedLantern.GetSoulData(type).ProjType];
+                }
             }
+
+            sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
             return sum;
         }
 
@@ -43,6 +46,31 @@ namespace AssortedCrazyThings.Buffs
             else
             {
                 player.buffTime[buffIndex] = 18000;
+            }
+        }
+
+        public override void ModifyBuffTip(ref string tip, ref int rare)
+        {
+            int ownedCount;
+            foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
+            {
+                if (type != SoulType.None)
+                {
+                    SoulData data = EverhallowedLantern.GetSoulData(type);
+                    ownedCount = Main.LocalPlayer.ownedProjectileCounts[data.ProjType];
+                    if (ownedCount > 0)
+                    {
+                        string name = data.Name;
+                        int startIndex = name.IndexOf("Soul");
+                        name = name.Insert(startIndex + 4, "s");
+                        tip += "\n" + name + " : " + ownedCount;
+                    }
+                }
+            }
+            ownedCount = Main.LocalPlayer.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
+            if (ownedCount > 0)
+            {
+                tip += "\n" + "Tiny Dungeon Souls: " + ownedCount;
             }
         }
     }
