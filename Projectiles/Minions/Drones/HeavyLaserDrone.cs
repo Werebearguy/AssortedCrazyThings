@@ -290,7 +290,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     }
 
                     float ratio = Counter / (float)ChargeDelay;
-                    float otherRatio = (ChargeDelay - Counter) / (float)ChargeDelay;
+                    float otherRatio = 1f - ratio;
 
                     //make sound
                     if (projectile.soundDelay <= 0)
@@ -394,7 +394,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         min = Math.Min(min, projPos);
                         if (projPos > pos) pos = projPos;
                     }
-                    //also works on itself
+                    //also works on itself but since AI_STATE is only switched to STATE_CHARGE AFTER this gets called it doesn't have an effect
                 }
             }
             if (min > 0) return 0;

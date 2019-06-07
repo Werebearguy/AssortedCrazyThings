@@ -7,6 +7,7 @@ using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items;
 using Microsoft.Xna.Framework;
 using System;
+using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -153,12 +154,22 @@ namespace AssortedCrazyThings.NPCs
                 }
             }
 
+            //Other
+            if (!AssWorld.downedHarvester)
+            {
+                Player player = Main.player[npc.FindClosestPlayer()];
+                if (player.ZoneDungeon && !player.HasItem(mod.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
+                {
+                    if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+                }
+            }
+
             //RecipeBrowser fixes (not actual drops)
 
-            if (npc.type == NPCID.TheDestroyer && npc.Center == new Vector2(1000, 1000))
-            {
-                Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
-            }
+            //if (npc.type == NPCID.TheDestroyer && npc.Center == new Vector2(1000, 1000))
+            //{
+            //    Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
+            //}
 
             GitgudData.Reset(npc);
         }

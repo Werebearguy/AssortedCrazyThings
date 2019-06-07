@@ -222,6 +222,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             {
                 addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
             }
+
+            //if (Main.rand.NextFloat() < 0.05f)
+            //{
+            //    float speedX = Main.rand.NextFloat(-7, 7);
+            //    float speedY = Main.rand.NextFloat(-6, -3);
+            //    Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), 1, 1, 222, speedX, speedY, 100, default(Color), 0.8f)];
+            //    dust.velocity *= 0.2f;
+            //}
         }
     }
 }
