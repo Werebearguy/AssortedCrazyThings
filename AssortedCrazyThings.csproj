@@ -293,9 +293,9 @@
     <Compile Include="Items\VanityArmor\PrettyMask.cs" />
     <Compile Include="Items\VanityArmor\SoulHarvesterMask.cs" />
     <Compile Include="Items\Weapons\BreathOfSpazmatism.cs" />
+    <Compile Include="Items\Weapons\MinionItemBase.cs" />
     <Compile Include="Items\Weapons\PlagueOfToads.cs" />
     <Compile Include="Items\Weapons\LegendaryWoodenSword.cs" />
-    <Compile Include="Items\Weapons\MinionItemBase.cs" />
     <Compile Include="Items\Weapons\DroneController.cs" />
     <Compile Include="Items\Weapons\SlimeHandlerKnapsack.cs" />
     <Compile Include="Items\Weapons\EverhallowedLantern.cs" />

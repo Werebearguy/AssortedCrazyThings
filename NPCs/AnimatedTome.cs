@@ -52,16 +52,16 @@ namespace AssortedCrazyThings.NPCs
             if (i != 4)
             {
                 Texture2D texture = mod.GetTexture("NPCs/AnimatedTome_" + i);
-                float stupidOffset = 4f;
+                Vector2 stupidOffset = new Vector2(0f, 4f);
                 SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-                Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + new Vector2(0f, stupidOffset);
+                Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
                 spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
             }
 
             if (Main.rand.NextFloat() < 0.1f)
             {
-                Dust.NewDust(npc.position, npc.width, npc.height, 15, 0f, 0f, 0, new Color(255, 255, 255), 1f);
+                Dust.NewDust(npc.position, npc.width, npc.height, 15);
             }
         }
     }

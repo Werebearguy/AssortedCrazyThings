@@ -37,6 +37,8 @@ namespace AssortedCrazyThings
         public static int harvesterTalonRight;
         public static int harvesterIndex = -1;
         public static bool downedHarvester;
+        //To prevent the item dropping more than once in a single game instance if boss is not defeated
+        public static bool droppedHarvesterSpawnItemThisSession;
 
         public static bool slimeRainSky = false;
 
@@ -48,6 +50,7 @@ namespace AssortedCrazyThings
             harvesterTypes[3] = harvesterTalonLeft = mod.NPCType<HarvesterTalonLeft>();
             harvesterTypes[4] = harvesterTalonRight = mod.NPCType<HarvesterTalonRight>();
             downedHarvester = false;
+            droppedHarvesterSpawnItemThisSession = false;
         }
 
         public override void Initialize()

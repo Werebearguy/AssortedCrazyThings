@@ -37,7 +37,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shootSpeed = 10f;
             item.knockBack = EverhallowedLantern.BaseKB;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
-            item.buffTime = 3600;
         }
 
         public override bool AltFunctionUse(Player player)
@@ -61,7 +60,7 @@ namespace AssortedCrazyThings.Items.Weapons
             player.itemLocation.Y = player.Bottom.Y + 2f;
         }
 
-        public override void MoreModifyTooltips(List<TooltipLine> tooltips)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             //need a dummy because you can't remove elements from a list while you are iterating
             string[] newDamage;

@@ -125,6 +125,8 @@ namespace AssortedCrazyThings
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
+            //since GetByte defaults to 0 if this player is made before the update, set it to the BasicLaser type
+            if (droneControllerUnlocked == DroneType.None) droneControllerUnlocked = DroneType.BasicLaser;
         }
         public override void clientClone(ModPlayer clientClone)
         {
@@ -137,7 +139,6 @@ namespace AssortedCrazyThings
             AssPlayer clone = clientPlayer as AssPlayer;
             if (clone.shieldDroneReduction != shieldDroneReduction)
             {
-                Main.NewText("send packet");
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
                 packet.Write((byte)player.whoAmI);
@@ -192,12 +193,13 @@ namespace AssortedCrazyThings
                 }
 
                 //TODO testing shield drone
-                Main.NewText("reduction: " + ((100 - shieldDroneReduction) / 100f));
+                //Main.NewText("reduction: " + ((100 - shieldDroneReduction) / 100f));
                 damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
                 if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= 10; //since this is only set clientside by the projectile and synced by packets
             }
         }
-        private void PreSync(Projectile proj)
+
+        private void PreSyncSoulTemp(Projectile proj)
         {
             if (proj.modProjectile != null && proj.modProjectile is CompanionDungeonSoulMinionBase)
             {
@@ -230,7 +232,7 @@ namespace AssortedCrazyThings
                 
                 if (!checkIfAlive)
                 {
-                    AssUtils.NewProjectile(player.Center.X, player.Center.Y, -player.velocity.X, player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSync);
+                    AssUtils.NewProjectile(player.Center.X, player.Center.Y, -player.velocity.X, player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
                 }
             }
         }
@@ -605,7 +607,7 @@ namespace AssortedCrazyThings
                             DroneData data = DroneController.GetDroneData(type);
                             textures.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName));
                             unlocked.Add(droneControllerUnlocked.HasFlag(type));
-                            tooltips.Add(data.Tooltip);
+                            tooltips.Add(data.UITooltip);
                             toUnlock.Add("Craft and use a " + data.Name + " Item");
                         }
                     }
@@ -876,6 +878,7 @@ namespace AssortedCrazyThings
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
             //ApplyCandleDebuffs(target);
+            target.GetModPlayer<AssPlayer>().DecreaseDroneShield(ref damage);
 
             target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
 
@@ -885,6 +888,7 @@ namespace AssortedCrazyThings
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
             //ApplyCandleDebuffs(target);
+            target.GetModPlayer<AssPlayer>().DecreaseDroneShield(ref damage);
 
             target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
 

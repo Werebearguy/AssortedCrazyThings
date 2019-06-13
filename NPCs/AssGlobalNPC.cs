@@ -31,7 +31,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot(NPC npc)
         {
-            //other pets
+            //Other pets
+
             if (npc.type == NPCID.Antlion || npc.type == NPCID.FlyingAntlion || npc.type == NPCID.WalkingAntlion)
             {
                 if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), mod.ItemType<MiniAntlionItem>());
@@ -57,7 +58,7 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<IlluminantSlimeItem>());
             }
 
-            //boss pets
+            //Boss pets
 
             if (npc.type == NPCID.KingSlime)
             {
@@ -136,7 +137,7 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<TrueObservingEyeItem>());
             }
 
-            //soul spawn from dead enemies while harvester alive
+            //Soul spawn from dead enemies while harvester alive
 
             if (shouldSoulDrop)
             {
@@ -155,21 +156,20 @@ namespace AssortedCrazyThings.NPCs
             }
 
             //Other
-            if (!AssWorld.downedHarvester)
+
+            if (!AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession)
             {
                 Player player = Main.player[npc.FindClosestPlayer()];
                 if (player.ZoneDungeon && !player.HasItem(mod.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
                 {
-                    if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+                    if (Main.rand.NextBool(200))
+                    {
+                        Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+                        //To prevent the item dropping more than once in a single game instance if boss is not defeated
+                        AssWorld.droppedHarvesterSpawnItemThisSession = true;
+                    }
                 }
             }
-
-            //RecipeBrowser fixes (not actual drops)
-
-            //if (npc.type == NPCID.TheDestroyer && npc.Center == new Vector2(1000, 1000))
-            //{
-            //    Item.NewItem(npc.getRect(), mod.ItemType<DroneParts>());
-            //}
 
             GitgudData.Reset(npc);
         }

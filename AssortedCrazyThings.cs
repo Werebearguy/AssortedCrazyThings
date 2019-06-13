@@ -749,8 +749,6 @@ namespace AssortedCrazyThings
                     playerNumber = reader.ReadByte();
                     mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
                     mPlayer.shieldDroneReduction = reader.ReadByte();
-                    //TODO test shield in mp
-                    Console.WriteLine("recv packet player " + playerNumber);
 
                     //server transmits to others
                     if (Main.netMode == NetmodeID.Server)

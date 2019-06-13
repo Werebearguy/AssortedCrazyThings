@@ -12,7 +12,6 @@ namespace AssortedCrazyThings.Items.Weapons
 {
     public class DroneController : MinionItemBase
     {
-
         #region Static Methods
         /// <summary>
         /// Returns the custom MinionPos
@@ -86,13 +85,9 @@ namespace AssortedCrazyThings.Items.Weapons
         public static bool CanSpawn(Player player, DroneType selected)
         {
             bool canSpawn = true;
-            if (selected == DroneType.Healing)
+            if (selected == DroneType.Healing || selected == DroneType.Shield)
             {
-                canSpawn = player.ownedProjectileCounts[GetDroneData(DroneType.Healing).ProjType] == 0;
-            }
-            else if (selected == DroneType.Shield)
-            {
-                canSpawn = player.ownedProjectileCounts[GetDroneData(DroneType.Shield).ProjType] == 0;
+                canSpawn = player.ownedProjectileCounts[GetDroneData(selected).ProjType] == 0;
             }
             canSpawn &= player.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(selected);
             return canSpawn;
@@ -119,7 +114,8 @@ namespace AssortedCrazyThings.Items.Weapons
                         (
                         projType: AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
                         name: "Basic Laser Drone",
-                        desc: "Rapidly fires lasers"
+                        desc: "Rapidly fires lasers",
+                        firerate: "Very high"
                         );
                 case DroneType.HeavyLaser:
                     return new DroneData
@@ -128,6 +124,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         name: "Heavy Laser Drone",
                         desc: "Fires a penetrating laser after a long delay",
                         misc: "Occupies two minion slots",
+                        firerate: "Extremely slow",
                         dmgModifier: 9.091f,
                         kBModifier: 4f
                         );
@@ -138,6 +135,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         name: "Missile Drone",
                         desc: "Fires a salvo of missiles after a long delay",
                         misc: "Occupies two minion slots",
+                        firerate: "Very slow",
                         dmgModifier: 1.2f,
                         kBModifier: 1.333334f
                         );
@@ -223,7 +221,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.height = 30;
             item.useTime = 36;
             item.useAnimation = 36;
-            item.useStyle = 4; //4 for life crystal
+            item.useStyle = 1; //4 for life crystal
             item.noMelee = true;
             item.noUseGraphic = true;
             item.value = Item.sellPrice(0, 0, 75, 0);
@@ -233,7 +231,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shootSpeed = 10f;
             item.knockBack = BaseKB;
             item.buffType = mod.BuffType<DroneControllerBuff>();
-            item.buffTime = 3600;
         }
 
         public override void GetWeaponDamage(Player player, ref int damage)
@@ -273,20 +270,7 @@ namespace AssortedCrazyThings.Items.Weapons
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
             type = GetDroneData(selected).ProjType;
 
-            //int currentCount = 0;
-            //int[] combatDrones = new int[]
-            //{
-            //AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
-            //AssUtils.Instance.ProjectileType<HeavyLaserDrone>(),
-            //AssUtils.Instance.ProjectileType<MissileDrone>()
-            //};
-            //if (Array.IndexOf(combatDrones, type) != -1)
-            //{
-            //    currentCount = GetSlotOfNextDrone(player, combatDrones);
-            //}
-            Vector2 spawnPos = new Vector2(player.Center.X, player.Center.Y);
-            AssUtils.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, preSync: PreSync);
-            //Projectile.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, currentCount);
+            AssUtils.NewProjectile(player.Center.X, player.Center.Y, 0f, player.velocity.Y - 6f, type, damage, knockBack, preSync: PreSync);
             return false;
         }
 
@@ -301,12 +285,14 @@ namespace AssortedCrazyThings.Items.Weapons
             recipe.AddRecipe();
         }
 
-        public override void MoreModifyTooltips(List<TooltipLine> tooltips)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
 
-            string name = GetDroneData(selected).Name;
+            DroneData data = GetDroneData(selected);
+
+            int firerateIndex = -1;
 
             for (int i = 0; i < tooltips.Count; i++)
             {
@@ -314,9 +300,18 @@ namespace AssortedCrazyThings.Items.Weapons
                 {
                     if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                     {
-                        tooltips[i].text += " (" + name + ")";
+                        tooltips[i].text += " (" + data.Name + ")";
                     }
                 }
+                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Knockback")
+                {
+                    firerateIndex = i;
+                }
+            }
+
+            if (firerateIndex != -1 && data.Firerate != "")
+            {
+                tooltips.Insert(firerateIndex, new TooltipLine(mod, "Firerate", data.Firerate + " firerate"));
             }
 
             DroneType unlocked = mPlayer.droneControllerUnlocked;
@@ -340,7 +335,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             if (!CanSpawn(Main.LocalPlayer, selected))
             {
-                tooltips.Add(new TooltipLine(mod, "CanSpawn", "Only one " + name + " can be out at once"));
+                tooltips.Add(new TooltipLine(mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
             }
         }
     }
@@ -352,23 +347,29 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public readonly int ProjType;
         public readonly string Name;
-        public readonly string PreviewTextureName;
+        public string PreviewTextureName
+        {
+            get
+            {
+                return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
+            }
+        }
 
         public readonly float DmgModifier;
         public readonly float KBModifier;
-        public readonly string Tooltip;
+        public readonly string UITooltip;
+        public readonly string Firerate;
 
-        public DroneData(int projType, string name, string desc, string misc = "", float dmgModifier = 1f, float kBModifier = 1f, bool combat = true)
+        public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 1f, float kBModifier = 1f, bool combat = true)
         {
             ProjType = projType;
             Name = name;
-            name = name.Replace(" ", "");
-            PreviewTextureName = "Projectiles/Minions/Drones/" + name + "Preview";
             DmgModifier = dmgModifier;
             KBModifier = kBModifier;
+            Firerate = firerate;
             string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * DmgModifier)
              + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier, 1)) : "";
-            Tooltip = Name + stats + "\n" + desc + "\n" + misc;
+            UITooltip = Name + stats + "\n" + desc + "\n" + misc;
         }
     }
 

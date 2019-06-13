@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using AssortedCrazyThings.Items.Weapons;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.Tiles
 {

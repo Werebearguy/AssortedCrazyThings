@@ -36,7 +36,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shootSpeed = 10f;
             item.knockBack = SlimePackMinion.DefKnockback;
             item.buffType = mod.BuffType<SlimePackMinionBuff>();
-            item.buffTime = 3600;
         }
 
         public override void GetWeaponDamage(Player player, ref int damage)

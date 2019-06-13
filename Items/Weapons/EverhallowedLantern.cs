@@ -175,8 +175,8 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shoot = mod.ProjectileType<CompanionDungeonSoulPostWOFMinion>();
             item.shootSpeed = 10f;
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
-            item.buffTime = 3600;
         }
+
         public override void GetWeaponDamage(Player player, ref int damage)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
@@ -212,7 +212,7 @@ namespace AssortedCrazyThings.Items.Weapons
             player.itemLocation.Y = player.Bottom.Y + 2f;
         }
 
-        public override void MoreModifyTooltips(List<TooltipLine> tooltips)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             SoulType selected = mPlayer.selectedSoulMinionType;
