@@ -398,24 +398,13 @@ namespace AssortedCrazyThings
             {
                 if (triggerType == ItemType<VanitySelector>())
                 {
-                    if (triggerLeft)
-                    {
-                        UIText("No alt costumes found for pet", CombatText.DamagedFriendly);
-                    }
-                    else
-                    {
-                        UIText("No alt costumes found for light pet", CombatText.DamagedFriendly);
-                    }
+                    UIText("No alt costumes found for " + (triggerLeft? "": "light") + " pet", CombatText.DamagedFriendly);
                     return;
                 }
             }
 
             //Spawn UI
-            CircleUI.visible = true;
-            CircleUI.spawnPosition = Main.MouseScreen;
-            CircleUI.heldItemType = triggerType;
-            CircleUI.openedWithLeft = triggerLeft;
-            CircleUI.fadeIn = 0;
+            CircleUI.Start(triggerType, triggerLeft);
         }
 
         /// <summary>
@@ -429,7 +418,14 @@ namespace AssortedCrazyThings
             {
                 //if something returned AND if the returned thing isn't the same as the current one
 
-                Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
+                try
+                {
+                    Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
+                }
+                catch
+                {
+                    //No idea why but this threw errors one time
+                }
 
                 List<CircleUIHandler> l = mPlayer.CircleUIList;
                 for (int i = 0; i < l.Count; i++)
@@ -517,13 +513,7 @@ namespace AssortedCrazyThings
                     !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                 {
                     //Spawn UI
-                    PetVanityUI.visible = true;
-                    PetVanityUI.spawnPosition = Main.MouseScreen;
-                    PetVanityUI.leftCorner = Main.MouseScreen - new Vector2(CircleUI.mainRadius, CircleUI.mainRadius);
-                    PetVanityUI.petAccessory = petAccessory;
-                    PetAccessory petAcc = pPlayer.GetAccessoryInSlot((byte)PetVanityUI.petAccessory.Slot);
-                    PetVanityUI.hasEquipped = petAcc != null && petAcc.Type == petAccessory.Type;
-                    PetVanityUI.fadeIn = 0;
+                    PetVanityUI.Start(petAccessory);
                 }
             }
 
@@ -541,7 +531,7 @@ namespace AssortedCrazyThings
                         }
                         catch
                         {
-
+                            //No idea why but this threw errors one time
                         }
                         //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
 

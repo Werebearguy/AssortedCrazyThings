@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// Spawn position, i.e. mouse position at UI start
         /// </summary>
-        internal static Vector2 spawnPosition;
+        internal static Vector2 spawnPosition = default(Vector2);
 
         /// <summary>
         /// Circle diameter
@@ -74,12 +74,6 @@ namespace AssortedCrazyThings.UI
             }
         }
 
-        //Initialization
-        public override void OnInitialize()
-        {
-            spawnPosition = new Vector2();
-        }
-
         //Update, unused
         public override void Update(GameTime gameTime)
         {
@@ -97,18 +91,14 @@ namespace AssortedCrazyThings.UI
             if (UIConf.CircleAmount > 5) outerRadius += 5 * (UIConf.CircleAmount - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
             if (fadeIn < outerRadius) outerRadius = (int)(fadeIn += (float)outerRadius / 10);
 
-            double offset = 0;
             double angleSteps = 2.0d / UIConf.CircleAmount;
             int done;
-            //Starting angle
-            double i = offset;
             //done --> ID of currently drawn circle
             for (done = 0; done < UIConf.CircleAmount; done++)
             {
-                double x = outerRadius * Math.Sin(i * Math.PI);
-                double y = outerRadius * -Math.Cos(i * Math.PI);
+                double x = outerRadius * Math.Sin(angleSteps * done * Math.PI);
+                double y = outerRadius * -Math.Cos(angleSteps * done * Math.PI);
                 
-
                 Rectangle bgRect = new Rectangle((int)(TopLeftCorner.X + x), (int)(TopLeftCorner.Y + y), mainDiameter, mainDiameter);
                 //Check if mouse is within the circle checked
                 bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
@@ -131,16 +121,10 @@ namespace AssortedCrazyThings.UI
                 if (UIConf.SpritesheetDivider > 0) height /= UIConf.SpritesheetDivider;
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
 
-                Rectangle sourceRect = new Rectangle
-                {
-                    X = 0,
-                    Y = 0,
-                    Width = width,
-                    Height = height
-                };
-
                 drawColor = Color.White;
                 if (done == currentSelected || !UIConf.Unlocked[done]) drawColor = Color.Gray;
+
+                Rectangle sourceRect = new Rectangle(0, 0, width, height);
 
                 spriteBatch.Draw(UIConf.Textures[done], projRect, sourceRect, drawColor);
 
@@ -157,8 +141,6 @@ namespace AssortedCrazyThings.UI
                         returned = currentSelected;
                     }
                 }
-
-                i += angleSteps;
             }
 
             Texture2D bgTexture = Main.wireUITexture[0];
@@ -260,6 +242,18 @@ namespace AssortedCrazyThings.UI
             }
 
             return outsideInner && insideSegment;
+        }
+
+        /// <summary>
+        /// Called when the UI is about to appear
+        /// </summary>
+        public static void Start(int triggerType, bool triggerLeft)
+        {
+            visible = true;
+            spawnPosition = Main.MouseScreen;
+            heldItemType = triggerType;
+            openedWithLeft = triggerLeft;
+            fadeIn = 0;
         }
     }
 }

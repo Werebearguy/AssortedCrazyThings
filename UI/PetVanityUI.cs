@@ -14,8 +14,7 @@ namespace AssortedCrazyThings.UI
         //Is the UI visible?
         internal static bool visible = false;
         //Spawn position, i.e. mouse position at UI start
-        internal static Vector2 spawnPosition;
-        internal static Vector2 leftCorner;
+        internal static Vector2 spawnPosition = default(Vector2);
 
         //Circle diameter
         internal static int mainDiameter = 36;
@@ -30,6 +29,17 @@ namespace AssortedCrazyThings.UI
         //Fade in animation when opening the UI
         internal static float fadeIn = 0;
 
+        /// <summary>
+        /// Spawn position offset to top left corner of that to draw the icons
+        /// </summary>
+        private Vector2 TopLeftCorner
+        {
+            get
+            {
+                return spawnPosition - new Vector2(mainRadius, mainRadius);
+            }
+        }
+
         //Red cross for when to unequip
         internal static Texture2D redCrossTexture;
 
@@ -39,8 +49,6 @@ namespace AssortedCrazyThings.UI
         //Initialization
         public override void OnInitialize()
         {
-            spawnPosition = new Vector2();
-            leftCorner = new Vector2();
             redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross");
         }
 
@@ -61,19 +69,16 @@ namespace AssortedCrazyThings.UI
             if (petAccessory.AltTextures.Count > 5) outerRadius += 5 * (petAccessory.AltTextures.Count - 5); //increase by 5 after having more than 5 options, starts getting clumped at about 24 circles
             if (fadeIn < outerRadius) outerRadius = (int)(fadeIn += (float)outerRadius / 10);
 
-            double offset = 0;
             double angleSteps = 2.0d / petAccessory.AltTextures.Count;
             int done;
-            //Starting angle
-            double i = offset;
             //done --> ID of currently drawn circle
             for (done = 0; done < petAccessory.AltTextures.Count; done++)
             {
-                double x = outerRadius * Math.Sin(i * Math.PI);
-                double y = outerRadius * -Math.Cos(i * Math.PI);
+                double x = outerRadius * Math.Sin(angleSteps * done * Math.PI);
+                double y = outerRadius * -Math.Cos(angleSteps * done * Math.PI);
                 
 
-                Rectangle bgRect = new Rectangle((int)(leftCorner.X + x), (int)(leftCorner.Y + y), mainDiameter, mainDiameter);
+                Rectangle bgRect = new Rectangle((int)(TopLeftCorner.X + x), (int)(TopLeftCorner.Y + y), mainDiameter, mainDiameter);
                 //Check if mouse is within the circle checked
                 bool isMouseWithin = CircleUI.CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, petAccessory.AltTextures.Count, done);
 
@@ -90,33 +95,24 @@ namespace AssortedCrazyThings.UI
                 int height = petAccessory.AltTextures[done].Height;
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
 
-                Rectangle sourceRect = new Rectangle
-                {
-                    X = 0,
-                    Y = 0,
-                    Width = width,
-                    Height = height
-                };
-
                 drawColor = Color.White;
                 if (hasEquipped && done == petAccessory.Color) drawColor = Color.Gray;
 
-                spriteBatch.Draw(petAccessory.AltTextures[done], projRect, sourceRect, drawColor);
+                spriteBatch.Draw(petAccessory.AltTextures[done], projRect, petAccessory.AltTextures[done].Bounds, drawColor);
 
                 if (isMouseWithin)
                 {
                     //set the "returned" new type
                     returned = done;
+                    //In UpdatePetVanityUI(): else if (returned == -2) {nothing happens}
                     if (hasEquipped && done == petAccessory.Color) returned = -2;
                 }
-
-                i += angleSteps;
             }
 
             Texture2D bgTexture = Main.wireUITexture[0];
 
             //Draw held item bg circle
-            Rectangle outputRect = new Rectangle((int)leftCorner.X, (int)leftCorner.Y, mainDiameter, mainDiameter);
+            Rectangle outputRect = new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, mainDiameter, mainDiameter);
 
             bool middle = CircleUI.CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
 
@@ -165,6 +161,20 @@ namespace AssortedCrazyThings.UI
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
+        }
+
+        /// <summary>
+        /// Called when the UI is about to appear
+        /// </summary>
+        public static void Start(PetAccessory pAccessory)
+        {
+            visible = true;
+            spawnPosition = Main.MouseScreen;
+            petAccessory = pAccessory;
+            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
+            PetAccessory equipped = pPlayer.GetAccessoryInSlot((byte)petAccessory.Slot);
+            hasEquipped = equipped != null && equipped.Type == petAccessory.Type;
+            fadeIn = 0;
         }
     }
 }

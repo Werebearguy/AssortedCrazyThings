@@ -74,7 +74,7 @@ namespace AssortedCrazyThings
         public DroneType droneControllerUnlocked = DroneType.None;
 
         /// <summary>
-        /// Contains the DroneType value (not 0 to 7, but 2^0 to 2^7)
+        /// Contains the DroneType value
         /// </summary>
         public DroneType selectedDroneControllerMinionType = DroneType.BasicLaser;
 
