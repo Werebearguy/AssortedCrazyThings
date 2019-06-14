@@ -442,5 +442,64 @@ namespace AssortedCrazyThings.Base
             return num;
         }
 
+        /// <summary>
+        /// Alternative, static version of npc.DropItemInstanced. Checks the playerCondition delegate before syncing/spawning the item
+        /// </summary>
+        public static void DropItemInstanced(NPC npc, Vector2 Position, Vector2 HitboxSize, int itemType, int itemStack = 1, Func<Player, bool> playerCondition = null, bool interactionRequired = true)
+        {
+            if (itemType > 0)
+            {
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    int item = Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
+                    Main.itemLockoutTime[item] = 54000;
+                    for (int p = 0; p < 255; p++)
+                    {
+                        if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))
+                        {
+                            bool canSpawn = false;
+                            if (playerCondition != null)
+                            {
+                                if (playerCondition(Main.player[p])) canSpawn = true;
+                            }
+                            else canSpawn = true;
+                            if (canSpawn) NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
+                        }
+                    }
+                    Main.item[item].active = false;
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    if (playerCondition != null)
+                    {
+                        bool canSpawn = false;
+                        if (playerCondition != null)
+                        {
+                            if (playerCondition(Main.LocalPlayer)) canSpawn = true;
+                        }
+                        else canSpawn = true;
+                        if (canSpawn) Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
+                    }
+                }
+                //npc.value = 0f;
+
+            }
+        }
+
+        /// <summary>
+        /// Checks if given item is present in the players inventory or equip slots
+        /// </summary>
+        public static bool ItemInInventoryOrEquipped(Player player, Item item)
+        {
+            if (player.HasItem(item.type)) return true;
+            if (item.accessory)
+            {
+                for (int i = 0; i < player.armor.Length; i++)
+                {
+                    if (player.armor[i].type == item.type) return true;
+                }
+            }
+            return false;
+        }
     }
 }

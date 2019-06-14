@@ -71,7 +71,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
         /// </summary>
-        public DroneType droneControllerUnlocked = DroneType.BasicLaser;
+        public DroneType droneControllerUnlocked = DroneType.None;
 
         /// <summary>
         /// Contains the DroneType value (not 0 to 7, but 2^0 to 2^7)
@@ -125,25 +125,35 @@ namespace AssortedCrazyThings
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
-            //since GetByte defaults to 0 if this player is made before the update, set it to the BasicLaser type
-            if (droneControllerUnlocked == DroneType.None) droneControllerUnlocked = DroneType.BasicLaser;
         }
         public override void clientClone(ModPlayer clientClone)
         {
             AssPlayer clone = clientClone as AssPlayer;
             clone.shieldDroneReduction = shieldDroneReduction;
+            //Needs syncing because spawning drone parts depends on this serverside (See AssGlobalNPC.NPCLoot)
+            clone.droneControllerUnlocked = droneControllerUnlocked;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             AssPlayer clone = clientPlayer as AssPlayer;
-            if (clone.shieldDroneReduction != shieldDroneReduction)
+            if (clone.shieldDroneReduction != shieldDroneReduction ||
+                clone.droneControllerUnlocked != droneControllerUnlocked)
+            {
+                SendClientChangesPacket();
+            }
+        }
+
+        public void SendClientChangesPacket(int toClient = -1,int ignoreClient = -1)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
                 packet.Write((byte)player.whoAmI);
                 packet.Write((byte)shieldDroneReduction);
-                packet.Send();
+                packet.Write((byte)droneControllerUnlocked);
+                packet.Send(toClient, ignoreClient);
             }
         }
 
@@ -155,6 +165,11 @@ namespace AssortedCrazyThings
             packet.Write((byte)player.whoAmI);
             packet.Write((byte)shieldDroneReduction);
             packet.Send(toWho, fromWho);
+        }
+
+        public override void OnEnterWorld(Player player)
+        {
+            SendClientChangesPacket();
         }
 
         public void ResetEmpoweringTimer(bool fromServer = false)

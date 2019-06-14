@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssortedCrazyThings.Base;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -56,84 +57,87 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
             }
 
-            if (mPlayer.canTeleportHome && mPlayer.canGetDefense)
+            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, item))
             {
-                tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use"));
-            }
-
-            if (!mPlayer.canGetDefense)
-            {
-                //create animating "..." effect after the Ready line
-                string dots = "";
-                int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
-
-                for (int i = 0; i < dotCount; i++)
+                if (mPlayer.canTeleportHome && mPlayer.canGetDefense)
                 {
-                    dots += ".";
+                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use"));
                 }
 
-                string timeName;
-                if (mPlayer.getDefenseTimer > 60) //more than 1 minute
+                if (!mPlayer.canGetDefense)
                 {
-                    if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
+                    //create animating "..." effect after the Ready line
+                    string dots = "";
+                    int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+
+                    for (int i = 0; i < dotCount; i++)
                     {
-                        timeName = " minutes";
+                        dots += ".";
+                    }
+
+                    string timeName;
+                    if (mPlayer.getDefenseTimer > 60) //more than 1 minute
+                    {
+                        if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
+                        {
+                            timeName = " minutes";
+                        }
+                        else
+                        {
+                            timeName = " minute";
+                        }
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
                     }
                     else
                     {
-                        timeName = " minute";
+                        if (mPlayer.getDefenseTimer > 1) //more than 1 second
+                        {
+                            timeName = " seconds";
+                        }
+                        else
+                        {
+                            timeName = " second";
+                        }
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
                     }
-                    tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
                 }
-                else
+
+                if (!mPlayer.canTeleportHome)
                 {
-                    if (mPlayer.getDefenseTimer > 1) //more than 1 second
+                    //create animating "..." effect after the Ready line
+                    string dots = "";
+                    int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+
+                    for (int i = 0; i < dotCount; i++)
                     {
-                        timeName = " seconds";
+                        dots += ".";
+                    }
+
+                    string timeName;
+                    if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
+                    {
+                        if (mPlayer.teleportHomeTimer > 90) //more than 1:30 minutes because of round
+                        {
+                            timeName = " minutes";
+                        }
+                        else
+                        {
+                            timeName = " minute";
+                        }
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
                     }
                     else
                     {
-                        timeName = " second";
+                        if (mPlayer.teleportHomeTimer > 1) //more than 1 second
+                        {
+                            timeName = " seconds";
+                        }
+                        else
+                        {
+                            timeName = " second";
+                        }
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                     }
-                    tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
-                }
-            }
-
-            if (!mPlayer.canTeleportHome)
-            {
-                //create animating "..." effect after the Ready line
-                string dots = "";
-                int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
-
-                for (int i = 0; i < dotCount; i++)
-                {
-                    dots += ".";
-                }
-
-                string timeName;
-                if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
-                {
-                    if (mPlayer.teleportHomeTimer > 90) //more than 1:30 minutes because of round
-                    {
-                        timeName = " minutes";
-                    }
-                    else
-                    {
-                        timeName = " minute";
-                    }
-                    tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
-                }
-                else
-                {
-                    if (mPlayer.teleportHomeTimer > 1) //more than 1 second
-                    {
-                        timeName = " seconds";
-                    }
-                    else
-                    {
-                        timeName = " second";
-                    }
-                    tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                 }
             }
         }

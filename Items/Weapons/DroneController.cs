@@ -14,6 +14,32 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         #region Static Methods
         /// <summary>
+        /// Checks if drones are unlocked 
+        /// </summary>
+        public static bool AllUnlocked(DroneType unlocked)
+        {
+            foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
+            {
+                if (type != DroneType.None)
+                {
+                    if (!unlocked.HasFlag(type))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if all drones are unlocked for the player
+        /// </summary>
+        public static bool AllUnlocked(Player player)
+        {
+            return AllUnlocked(player.GetModPlayer<AssPlayer>(AssUtils.Instance).droneControllerUnlocked);
+        }
+
+        /// <summary>
         /// Returns the custom MinionPos
         /// </summary>
         public static int GetSlotOfNextDrone(Projectile self)
@@ -115,7 +141,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         projType: AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
                         name: "Basic Laser Drone",
                         desc: "Rapidly fires lasers",
-                        firerate: "Very high"
+                        firerate: "High"
                         );
                 case DroneType.HeavyLaser:
                     return new DroneData
@@ -221,7 +247,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.height = 30;
             item.useTime = 36;
             item.useAnimation = 36;
-            item.useStyle = 1; //4 for life crystal
+            item.useStyle = 4;
             item.noMelee = true;
             item.noUseGraphic = true;
             item.value = Item.sellPrice(0, 0, 75, 0);
@@ -292,7 +318,8 @@ namespace AssortedCrazyThings.Items.Weapons
 
             DroneData data = GetDroneData(selected);
 
-            int firerateIndex = -1;
+            int knockbackIndex = -1;
+            int damageIndex = -1;
 
             for (int i = 0; i < tooltips.Count; i++)
             {
@@ -303,30 +330,39 @@ namespace AssortedCrazyThings.Items.Weapons
                         tooltips[i].text += " (" + data.Name + ")";
                     }
                 }
+
+                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Damage")
+                {
+                    damageIndex = i;
+                }
+
                 if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Knockback")
                 {
-                    firerateIndex = i;
+                    knockbackIndex = i;
                 }
             }
 
-            if (firerateIndex != -1 && data.Firerate != "")
+            if (damageIndex != -1)
             {
-                tooltips.Insert(firerateIndex, new TooltipLine(mod, "Firerate", data.Firerate + " firerate"));
-            }
-
-            DroneType unlocked = mPlayer.droneControllerUnlocked;
-
-            bool allUnlocked = true;
-            foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
-            {
-                if (type != DroneType.None)
+                if (!data.Combat)
                 {
-                    if (!unlocked.HasFlag(type))
-                    {
-                        allUnlocked = false;
-                    }
+                    tooltips.RemoveAt(damageIndex);
                 }
             }
+
+            if (knockbackIndex != -1)
+            {
+                if (data.Combat)
+                {
+                    if (data.Firerate != "") tooltips.Insert(knockbackIndex, new TooltipLine(mod, "Firerate", data.Firerate + " firerate"));
+                }
+                else
+                {
+                    tooltips.RemoveAt(knockbackIndex);
+                }
+            }
+
+            bool allUnlocked = AllUnlocked(mPlayer.droneControllerUnlocked);
 
             if (!(allUnlocked && Main.LocalPlayer.HasItem(item.type)))
             {
@@ -359,6 +395,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public readonly float KBModifier;
         public readonly string UITooltip;
         public readonly string Firerate;
+        public readonly bool Combat;
 
         public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 1f, float kBModifier = 1f, bool combat = true)
         {
@@ -370,6 +407,7 @@ namespace AssortedCrazyThings.Items.Weapons
             string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * DmgModifier)
              + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier, 1)) : "";
             UITooltip = Name + stats + "\n" + desc + "\n" + misc;
+            Combat = combat;
         }
     }
 

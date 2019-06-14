@@ -706,7 +706,7 @@ namespace AssortedCrazyThings
         {
             AssMessageType msgType = (AssMessageType)reader.ReadByte();
             byte playerNumber;
-            AssPlayer mPlayer;
+            AssPlayer aPlayer;
             PetPlayer petPlayer;
             byte changes;
             byte index;
@@ -740,32 +740,29 @@ namespace AssortedCrazyThings
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         playerNumber = reader.ReadByte();
-                        mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                        mPlayer.shieldDroneReduction = reader.ReadByte();
+                        aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                        aPlayer.shieldDroneReduction = reader.ReadByte();
                     }
                     break;
                 case AssMessageType.ClientChangesAssPlayer:
                     //client and server
                     playerNumber = reader.ReadByte();
-                    mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                    mPlayer.shieldDroneReduction = reader.ReadByte();
+                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                    aPlayer.shieldDroneReduction = reader.ReadByte();
+                    aPlayer.droneControllerUnlocked = (DroneType)reader.ReadByte();
 
                     //server transmits to others
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        ModPacket packet = GetPacket();
-                        packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
-                        packet.Write((byte)playerNumber);
-                        packet.Write((byte)mPlayer.shieldDroneReduction);
-                        packet.Send(toClient: -1, ignoreClient: playerNumber);
+                        aPlayer.SendClientChangesPacket(toClient: -1, ignoreClient: playerNumber);
                     }
                     break;
                 case AssMessageType.ConvertInertSoulsInventory:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         //convert souls in local inventory
-                        mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-                        mPlayer.ConvertInertSoulsInventory();
+                        aPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+                        aPlayer.ConvertInertSoulsInventory();
                     }
                     break;
                 case AssMessageType.GitgudLoadCounters:
@@ -784,8 +781,8 @@ namespace AssortedCrazyThings
                 case AssMessageType.ResetEmpoweringTimerpvp:
                     //client and server
                     playerNumber = reader.ReadByte();
-                    mPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                    mPlayer.ResetEmpoweringTimer(fromServer: true);
+                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                    aPlayer.ResetEmpoweringTimer(fromServer: true);
 
                     //server transmits to others
                     if (Main.netMode == NetmodeID.Server)

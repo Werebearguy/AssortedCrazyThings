@@ -8,6 +8,7 @@ using AssortedCrazyThings.Items;
 using Microsoft.Xna.Framework;
 using System;
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Weapons;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -99,7 +100,11 @@ namespace AssortedCrazyThings.NPCs
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetDestroyerItem>());
 
-                npc.DropItemInstanced(npc.Center, npc.Size, mod.ItemType<DroneParts>());
+                AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, mod.ItemType<DroneParts>(),
+                    playerCondition: delegate (Player player)
+                    {
+                        return !DroneController.AllUnlocked(player);
+                    });
             }
 
             if (npc.type == NPCID.SkeletronPrime)
@@ -159,14 +164,18 @@ namespace AssortedCrazyThings.NPCs
 
             if (!AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession)
             {
-                Player player = Main.player[npc.FindClosestPlayer()];
-                if (player.ZoneDungeon && !player.HasItem(mod.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
+                int index = npc.FindClosestPlayer();
+                if (index != -1)
                 {
-                    if (Main.rand.NextBool(200))
+                    Player player = Main.player[index];
+                    if (player.ZoneDungeon && !player.HasItem(mod.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
                     {
-                        Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
-                        //To prevent the item dropping more than once in a single game instance if boss is not defeated
-                        AssWorld.droppedHarvesterSpawnItemThisSession = true;
+                        if (Main.rand.NextBool(200))
+                        {
+                            Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+                            //To prevent the item dropping more than once in a single game instance if boss is not defeated
+                            AssWorld.droppedHarvesterSpawnItemThisSession = true;
+                        }
                     }
                 }
             }
