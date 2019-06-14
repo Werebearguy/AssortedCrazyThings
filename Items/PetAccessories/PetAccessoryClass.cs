@@ -341,7 +341,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public PetAccessory AddPetVariation(string petName, sbyte number)
         {
             int type = AssUtils.Instance.ProjectileType("CuteSlime" + petName + "NewProj");
-            if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
+            if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("Slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
             PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
             return this;
         }
@@ -518,7 +518,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     return petAccessoryIdsA;
                 case SlotType.None:
                 default:
-                    throw new Exception("invalid slottype");
+                    throw new Exception("Invalid slottype " + slotType);
             }
         }
 
@@ -717,7 +717,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                                 if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
                                     Main.projectile[i].owner == Main.myPlayer)
                                 {
-                                    ErrorLogger.Log("had to change index of slime pet of " + player.name + " because it was -1");
+                                    ErrorLogger.Log(mod.Name + ": had to change index of slime pet of " + player.name + " because it was -1");
                                     pPlayer.slimePetIndex = i;
                                     return true;
                                 }

@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Buffs
             }
             else
             {
-                throw new Exception("projType not specified in " + Name);
+                throw new Exception("'projType' not specified in " + Name);
             }
         }
 

@@ -193,7 +193,7 @@ namespace AssortedCrazyThings.Base
             if (array == null)
             {
                 if (length == -1)
-                    throw new ArgumentOutOfRangeException("array is null but length isn't specified");
+                    throw new ArgumentOutOfRangeException("Array is null but length isn't specified");
                 array = new T[length];
             }
             else
@@ -217,7 +217,7 @@ namespace AssortedCrazyThings.Base
             if (list == null)
             {
                 if (length == -1)
-                    throw new ArgumentOutOfRangeException("list is null but length isn't specified");
+                    throw new ArgumentOutOfRangeException("List is null but length isn't specified");
                 list = new List<T>(length);
             }
             else
@@ -457,29 +457,18 @@ namespace AssortedCrazyThings.Base
                     {
                         if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))
                         {
-                            bool canSpawn = false;
-                            if (playerCondition != null)
-                            {
-                                if (playerCondition(Main.player[p])) canSpawn = true;
-                            }
-                            else canSpawn = true;
-                            if (canSpawn) NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
+                            if (playerCondition != null && playerCondition(Main.player[p]) ||
+                                playerCondition == null)
+                                NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
                         }
                     }
                     Main.item[item].active = false;
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if (playerCondition != null)
-                    {
-                        bool canSpawn = false;
-                        if (playerCondition != null)
-                        {
-                            if (playerCondition(Main.LocalPlayer)) canSpawn = true;
-                        }
-                        else canSpawn = true;
-                        if (canSpawn) Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
-                    }
+                    if (playerCondition != null && playerCondition(Main.LocalPlayer) ||
+                        playerCondition == null)
+                        Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
                 }
                 //npc.value = 0f;
             }

@@ -445,7 +445,7 @@ namespace AssortedCrazyThings
                     if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
                     break;
                 default: //shouldn't get there hopefully
-                    ErrorLogger.Log("Recieved unspecified PetPlayerChanges Packet " + changes);
+                    ErrorLogger.Log(mod.Name + ": Recieved unspecified PetPlayerChanges Packet " + changes);
                     break;
             }
             GetFromClonedTypes("in mp");
@@ -477,7 +477,7 @@ namespace AssortedCrazyThings
                     packet.Write((byte)ClonedTypes[index]);
                     break;
                 default: //shouldn't get there hopefully
-                    ErrorLogger.Log("Sending unspecified PetPlayerChanges " + changes);
+                    ErrorLogger.Log(mod.Name + ": Sending unspecified PetPlayerChanges " + changes);
                     break;
             }
 
@@ -502,7 +502,7 @@ namespace AssortedCrazyThings
             if (!petAccessoryRework)
             {
                 petAccessoryRework = true;
-                ErrorLogger.Log("" + mod.Name + ": Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
+                ErrorLogger.Log(mod.Name + ": Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
                 slots = 0;
             }
             if (!petVanityRework)
@@ -579,7 +579,7 @@ namespace AssortedCrazyThings
         /// </summary>
         public void ToggleAccessory(PetAccessory petAccessory)
         {
-            if (petAccessory.Slot == SlotType.None) throw new Exception("can't toggle accessory on reserved slot");
+            if (petAccessory.Slot == SlotType.None) throw new Exception("Can't toggle accessory on reserved slot");
             if (!AddAccessory(petAccessory)) DelAccessory(petAccessory);
         }
 

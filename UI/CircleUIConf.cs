@@ -125,7 +125,7 @@ namespace AssortedCrazyThings.UI
 
         public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Texture2D> textures = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
         {
-            if (textures == null || textures.Count <= 0) throw new Exception("texturesArg has to be specified or has to contain at least one element");
+            if (textures == null || textures.Count <= 0) throw new Exception("'texturesArg' has to be specified or has to contain at least one element");
             else CircleAmount = textures.Count;
 
             if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
@@ -136,7 +136,7 @@ namespace AssortedCrazyThings.UI
 
             if (CircleAmount != unlocked.Count ||
                 CircleAmount != tooltips.Count ||
-                CircleAmount != toUnlock.Count) throw new Exception("atleast one of the specified lists isn't the same length as textures");
+                CircleAmount != toUnlock.Count) throw new Exception("Atleast one of the specified lists isn't the same length as textures");
 
             SpritesheetDivider = spritesheetDivider;
             AdditionalInfo = additionalInfo;

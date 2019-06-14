@@ -151,7 +151,7 @@ namespace AssortedCrazyThings
             int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = "", Func<bool> invasionBool = null)
         {
             int itemType = AssUtils.Instance.ItemType(itemName);
-            if (itemType == 0) throw new Exception("no gitgud item called '" + itemName + "' found. Did you spell it correctly?");
+            if (itemType == 0) throw new Exception("No gitgud item called '" + itemName + "' found. Did you spell it correctly?");
 
             DataList[DataList.Length - 1] = new GitgudData(displayName, buffName, itemType, buffType, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, invasion, invasionBool);
             Array.Resize(ref DataList, DataList.Length + 1);
@@ -263,8 +263,8 @@ namespace AssortedCrazyThings
                 //    gPlayer.pirateInvasionGitgudCounter = value;
                 //    break;
                 default: //shouldn't get there hopefully
-                    if (packet) ErrorLogger.Log("Recieved unspecified GitgudReset Packet " + index);
-                    else throw new Exception("Unspecified index in the gitgud array");
+                    if (packet) ErrorLogger.Log(AssUtils.Instance.Name + ": Recieved unspecified GitgudReset Packet " + index);
+                    else throw new Exception("Unspecified index in the gitgud array " + index);
                     break;
             }
         }
@@ -536,7 +536,7 @@ namespace AssortedCrazyThings
         {
             if (DataList != null)
             {
-                if (accessories.Length != DataList.Length) throw new Exception("number of gitgud accessory bools don't match with the registered gitgud items");
+                if (accessories.Length != DataList.Length) throw new Exception("Number of gitgud accessory bools don't match with the registered gitgud items");
                 for (int i = 0; i < accessories.Length; i++) //has to have the same order as DataList
                 {
                     DataList[i].Accessory[whoAmI] = accessories[i];
@@ -551,7 +551,7 @@ namespace AssortedCrazyThings
         {
             if (DataList != null)
             {
-                if (counters.Length != DataList.Length) throw new Exception("number of gitgud counters don't match with the registered gitgud counters");
+                if (counters.Length != DataList.Length) throw new Exception("Number of gitgud counters don't match with the registered gitgud counters");
                 for (int i = 0; i < counters.Length; i++) //has to have the same order as DataList
                 {
                     DataList[i].Counter[whoAmI] = counters[i];

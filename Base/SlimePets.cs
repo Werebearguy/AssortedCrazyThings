@@ -363,7 +363,7 @@ namespace AssortedCrazyThings.Base
             if (isSlotTypeBlacklisted != null)
             {
                 if (isSlotTypeBlacklisted.Count != Enum.GetValues(typeof(SlotType)).Length - 1)
-                    throw new Exception("isSlotTypeBlacklisted is longer than the amount of accessory slot types");
+                    throw new Exception("'isSlotTypeBlacklisted' is longer than the amount of accessory slot types");
                 else
                 {
                     IsSlotTypeBlacklisted = new bool[5];

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using AssortedCrazyThings.Base;
+using System.IO;
 using Terraria;
 using Terraria.IO;
 using Terraria.ModLoader;
@@ -8,7 +9,6 @@ namespace AssortedCrazyThings
     public static class ModConf
     {
         public const int configVersion = 2;
-        private readonly static string modName = "AssortedCrazyThings";
 
         private const string cuteSlimesPotionOnlyField = "CuteSlimesPotionOnly";
         internal static bool cuteSlimesPotionOnly = true;
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", modName + ".json");
+        static readonly string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", AssUtils.Instance.Name + ".json");
 
         /// <summary>
         /// The config that holds the data
@@ -48,7 +48,7 @@ namespace AssortedCrazyThings
             bool success = ReadConfig();
             if (!success)
             {
-                ErrorLogger.Log("AssortedCrazyThings: Couldn't load config file, creating new file.");
+                ErrorLogger.Log(AssUtils.Instance.Name + ": Couldn't load config file, creating new file.");
                 CreateConfig();
             }
         }
@@ -65,7 +65,7 @@ namespace AssortedCrazyThings
                     bool canUpdate = false;
                     if (readVersion == 1)
                     {
-                        ErrorLogger.Log("AssortedCrazyThings: updated Version");
+                        ErrorLogger.Log(AssUtils.Instance.Name + ": updated Version");
                         canUpdate = true;
                         
                         ModConfig.Get(walkingTombstonesField, ref walkingTombstones);

@@ -821,7 +821,7 @@ namespace AssortedCrazyThings
                     }
                     break;
                 default:
-                    ErrorLogger.Log("AssortedCrazyThings: Unknown Message type: " + msgType);
+                    ErrorLogger.Log(Name +": Unknown Message type: " + msgType);
                     break;
             }
         }
