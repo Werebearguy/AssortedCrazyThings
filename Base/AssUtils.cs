@@ -482,7 +482,6 @@ namespace AssortedCrazyThings.Base
                     }
                 }
                 //npc.value = 0f;
-
             }
         }
 
