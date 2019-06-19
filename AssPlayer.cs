@@ -15,6 +15,7 @@ using Terraria.ModLoader.IO;
 using AssortedCrazyThings.UI;
 using AssortedCrazyThings.Buffs;
 using System.IO;
+using Terraria.GameInput;
 
 namespace AssortedCrazyThings
 {
@@ -947,7 +948,7 @@ namespace AssortedCrazyThings
             Empower();
         }
 
-        public override void PreUpdate()
+		public override void PreUpdate()
         {
             if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2); //visual only
 

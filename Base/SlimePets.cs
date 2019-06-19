@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.Base
             switch (type)
             {
                 case SpawnConditionType.Overworld:
-                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.01f : 0f;
+                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.0075f : 0f;
                 case SpawnConditionType.Desert:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDayDesert.Chance * 0.12f : 0f;
                 case SpawnConditionType.Tundra:
@@ -109,7 +109,7 @@ namespace AssortedCrazyThings.Base
                 case SpawnConditionType.Dungeon:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.DungeonNormal.Chance * 0.025f : 0f;
                 case SpawnConditionType.Xmas:
-                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.06f : 0f;
+                    return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.05f : 0f;
                 default:
                     return 1f;
             }

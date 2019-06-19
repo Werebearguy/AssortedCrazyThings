@@ -12,26 +12,28 @@ namespace AssortedCrazyThings.UI
     /// UI that is used to select something out of a list of things, opened via item
     /// </summary>
     public class CircleUI : UIState
-    {
-        /// <summary>
-        /// Is the UI visible?
-        /// </summary>
-        internal static bool visible = false;
+	{
+		internal const int NONE = -1;
+
+		/// <summary>
+		/// Circle diameter
+		/// </summary>
+		internal const int mainDiameter = 36;
+
+		/// <summary>
+		/// Circle radius
+		/// </summary>
+		internal const int mainRadius = mainDiameter / 2;
+
+		/// <summary>
+		/// Is the UI visible?
+		/// </summary>
+		internal static bool visible = false;
 
         /// <summary>
         /// Spawn position, i.e. mouse position at UI start
         /// </summary>
         internal static Vector2 spawnPosition = default(Vector2);
-
-        /// <summary>
-        /// Circle diameter
-        /// </summary>
-        internal static int mainDiameter = 36;
-
-        /// <summary>
-        /// Circle radius
-        /// </summary>
-        internal static int mainRadius = 36 / 2;
 
         /// <summary>
         /// Held item type
@@ -41,12 +43,12 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// Which thing is currently highlighted?
         /// </summary>
-        internal static int returned = -1;
+        internal static int returned = NONE;
 
         /// <summary>
         /// Which thing was the previously selected one?
         /// </summary>
-        internal static int currentSelected = -1;
+        internal static int currentSelected = NONE;
 
         /// <summary>
         /// Which button was it activated with
@@ -73,6 +75,8 @@ namespace AssortedCrazyThings.UI
                 return spawnPosition - new Vector2(mainRadius, mainRadius);
             }
         }
+
+        //TODO add some static var that has the current segment the mouse is in
 
         //Update, unused
         public override void Update(GameTime gameTime)

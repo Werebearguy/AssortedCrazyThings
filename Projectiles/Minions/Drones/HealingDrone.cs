@@ -209,6 +209,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         HealCounter = 0;
                         int heal = 1;
                         player.statLife += heal;
+                        //if it would be just clientside, test this:
+                        //if (Main.netMode != NetmodeID.Singleplayer) NetMessage.SendData(MessageID.PlayerHealth, -1, -1, null, player.whoAmI);
                         player.HealEffect(heal, false);
                         AssUtils.QuickDustLine(61, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
                     }

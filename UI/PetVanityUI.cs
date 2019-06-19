@@ -10,44 +10,67 @@ using AssortedCrazyThings.Base;
 namespace AssortedCrazyThings.UI
 {
     class PetVanityUI : UIState
-    {
-        //Is the UI visible?
-        internal static bool visible = false;
-        //Spawn position, i.e. mouse position at UI start
-        internal static Vector2 spawnPosition = default(Vector2);
+	{
+		internal const int NONE = -1;
 
-        //Circle diameter
-        internal static int mainDiameter = 36;
-        //Circle radius
-        internal static int mainRadius = 36 / 2;
+		internal const int IGNORE = -2;
 
-        //If pet currently has something of that type in that slot
-        internal static bool hasEquipped = false;
-        //Which thing is currently highlighted?
-        internal static int returned = -1;
+		/// <summary>
+		/// Circle diameter
+		/// </summary>
+		internal const int mainDiameter = 36;
 
-        //Fade in animation when opening the UI
-        internal static float fadeIn = 0;
+		/// <summary>
+		/// Circle radius
+		/// </summary>
+		internal const int mainRadius = mainDiameter / 2;
 
-        /// <summary>
-        /// Spawn position offset to top left corner of that to draw the icons
-        /// </summary>
-        private Vector2 TopLeftCorner
-        {
-            get
-            {
-                return spawnPosition - new Vector2(mainRadius, mainRadius);
-            }
-        }
+		/// <summary>
+		/// Is the UI visible?
+		/// </summary>
+		internal static bool visible = false;
 
-        //Red cross for when to unequip
-        internal static Texture2D redCrossTexture;
+		/// <summary>
+		/// Spawn position, i.e. mouse position at UI start
+		/// </summary>
+		internal static Vector2 spawnPosition = default(Vector2);
 
-        //Holds data about what to draw
-        internal static PetAccessory petAccessory;
+		/// <summary>
+		/// If pet currently has something of that type in that slot
+		/// </summary>
+		internal static bool hasEquipped = false;
 
-        //Initialization
-        public override void OnInitialize()
+		/// <summary>
+		/// Which thing is currently highlighted?
+		/// </summary>
+		internal static int returned = NONE;
+
+		/// <summary>
+		/// Fade in animation when opening the UI
+		/// </summary>
+		internal static float fadeIn = 0;
+
+		/// <summary>
+		/// Red cross for when to unequip
+		/// </summary>
+		internal static Texture2D redCrossTexture;
+
+		/// <summary>
+		/// Holds data about what to draw
+		/// </summary>
+		internal static PetAccessory petAccessory;
+
+		/// <summary>
+		/// Spawn position offset to top left corner of that to draw the icons
+		/// </summary>
+		private Vector2 TopLeftCorner {
+			get {
+				return spawnPosition - new Vector2(mainRadius, mainRadius);
+			}
+		}
+
+		//Initialization
+		public override void OnInitialize()
         {
             redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross");
         }
@@ -104,12 +127,10 @@ namespace AssortedCrazyThings.UI
                 {
                     //set the "returned" new type
                     returned = done;
-                    //In UpdatePetVanityUI(): else if (returned == -2) {nothing happens}
-                    if (hasEquipped && done == petAccessory.Color) returned = -2;
+                    //In UpdatePetVanityUI(): else if (returned == IGNORE) {nothing happens}
+                    if (hasEquipped && done == petAccessory.Color) returned = IGNORE;
                 }
             }
-
-            Texture2D bgTexture = Main.wireUITexture[0];
 
             //Draw held item bg circle
             Rectangle outputRect = new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, mainDiameter, mainDiameter);
@@ -131,7 +152,7 @@ namespace AssortedCrazyThings.UI
             if (middle)
             {
                 //if hovering over the middle, reset color
-                returned = -1;
+                returned = NONE;
                 if (hasEquipped)
                 {
                     //Draw the red cross

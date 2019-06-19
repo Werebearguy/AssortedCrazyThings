@@ -17,6 +17,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Items.Pets;
+using Terraria.Localization;
 
 [assembly: AssemblyVersion("1.3.0.0")]
 namespace AssortedCrazyThings
@@ -311,7 +312,7 @@ namespace AssortedCrazyThings
 
         public override void AddRecipeGroups()
         {
-            RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Lang.misc[37] + " " + "Regular Bottled Slime", new int[]
+            RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
             {
                 ItemType<CuteSlimeBlueNew>(),
                 ItemType<CuteSlimeBlackNew>(),
@@ -414,7 +415,7 @@ namespace AssortedCrazyThings
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-            if (CircleUI.returned != -1 && CircleUI.returned != CircleUI.currentSelected)
+            if (CircleUI.returned != CircleUI.NONE && CircleUI.returned != CircleUI.currentSelected)
             {
                 //if something returned AND if the returned thing isn't the same as the current one
 
@@ -450,7 +451,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            CircleUI.returned = -1;
+            CircleUI.returned = CircleUI.NONE;
             CircleUI.visible = false;
         }
 
@@ -459,7 +460,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void UpdateCircleUI()
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
             bool? left = null;
             if (mPlayer.LeftClickPressed && CircleUIHandler.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
@@ -489,7 +490,7 @@ namespace AssortedCrazyThings
 
                 if (CircleUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
                 {
-                    CircleUI.returned = -1;
+                    CircleUI.returned = CircleUI.NONE;
                     CircleUI.visible = false;
                 }
             }
@@ -521,7 +522,7 @@ namespace AssortedCrazyThings
             {
                 if (mPlayer.LeftClickReleased)
                 {
-                    if (PetVanityUI.returned > -1)
+                    if (PetVanityUI.returned > PetVanityUI.NONE)
                     {
                         //if something returned AND if the returned thing isn't the same as the current one
 
@@ -538,20 +539,20 @@ namespace AssortedCrazyThings
                         PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
                         pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
                     }
-                    else if (PetVanityUI.hasEquipped && PetVanityUI.returned == -1)
+                    else if (PetVanityUI.hasEquipped && PetVanityUI.returned == PetVanityUI.NONE)
                     {
                         //hovered over the middle and had something equipped: take accessory away
                         pPlayer.DelAccessory(PetVanityUI.petAccessory);
                     }
-                    //else if (returned == -2) {nothing happens}
+					//else if (returned == PetVanityUI.IGNORE) {nothing happens}
 
-                    PetVanityUI.returned = -1;
+					PetVanityUI.returned = PetVanityUI.NONE;
                     PetVanityUI.visible = false;
                 }
 
                 if (PetVanityUI.petAccessory.Type != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
                 {
-                    PetVanityUI.returned = -1;
+                    PetVanityUI.returned = PetVanityUI.NONE;
                     PetVanityUI.visible = false;
                 }
             }
@@ -606,6 +607,7 @@ namespace AssortedCrazyThings
                 !Main.HoveringOverAnNPC &&
                 !Main.LocalPlayer.showItemIcon &&
                 Main.LocalPlayer.talkNPC == -1 &&
+                Main.LocalPlayer.itemTime == 0 && Main.LocalPlayer.itemAnimation == 0 &&
                 !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned);
         }
 
