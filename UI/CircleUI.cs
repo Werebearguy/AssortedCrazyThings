@@ -12,23 +12,23 @@ namespace AssortedCrazyThings.UI
     /// UI that is used to select something out of a list of things, opened via item
     /// </summary>
     public class CircleUI : UIState
-	{
-		internal const int NONE = -1;
+    {
+        internal const int NONE = -1;
 
-		/// <summary>
-		/// Circle diameter
-		/// </summary>
-		internal const int mainDiameter = 36;
+        /// <summary>
+        /// Circle diameter
+        /// </summary>
+        internal const int mainDiameter = 36;
 
-		/// <summary>
-		/// Circle radius
-		/// </summary>
-		internal const int mainRadius = mainDiameter / 2;
+        /// <summary>
+        /// Circle radius
+        /// </summary>
+        internal const int mainRadius = mainDiameter / 2;
 
-		/// <summary>
-		/// Is the UI visible?
-		/// </summary>
-		internal static bool visible = false;
+        /// <summary>
+        /// Is the UI visible?
+        /// </summary>
+        internal static bool visible = false;
 
         /// <summary>
         /// Spawn position, i.e. mouse position at UI start
@@ -102,7 +102,7 @@ namespace AssortedCrazyThings.UI
             {
                 double x = outerRadius * Math.Sin(angleSteps * done * Math.PI);
                 double y = outerRadius * -Math.Cos(angleSteps * done * Math.PI);
-                
+
                 Rectangle bgRect = new Rectangle((int)(TopLeftCorner.X + x), (int)(TopLeftCorner.Y + y), mainDiameter, mainDiameter);
                 //Check if mouse is within the circle checked
                 bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
@@ -205,7 +205,7 @@ namespace AssortedCrazyThings.UI
         internal static bool CheckMouseWithinWheel(Vector2 mousePos, Vector2 center, int innerRadius, int pieceCount, int elementNumber)
         {
             //Check if mouse cursor is outside the inner circle
-            bool outsideInner = ((mousePos.X - center.X) * (mousePos.X - center.X) + (mousePos.Y - center.Y) * (mousePos.Y - center.Y)) > innerRadius * innerRadius;
+            bool outsideInner = !CheckMouseWithinCircle(mousePos, innerRadius, center);
 
             double step = 360 / pieceCount;
             //finalOffset *= 180 / Math.PI;
@@ -216,7 +216,7 @@ namespace AssortedCrazyThings.UI
             if (beginAngle < 0) beginAngle = 360 + beginAngle;
 
             //Calculate x,y coords on outer circle
-            double calculatedAngle = Math.Atan2(mousePos.X - center.X, - (mousePos.Y - center.Y));
+            double calculatedAngle = Math.Atan2(mousePos.X - center.X, -(mousePos.Y - center.Y));
             calculatedAngle = calculatedAngle * 180 / Math.PI;
 
             if (calculatedAngle < 0)

@@ -948,7 +948,7 @@ namespace AssortedCrazyThings
             Empower();
         }
 
-		public override void PreUpdate()
+        public override void PreUpdate()
         {
             if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2); //visual only
 

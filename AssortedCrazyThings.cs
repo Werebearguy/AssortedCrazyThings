@@ -399,7 +399,7 @@ namespace AssortedCrazyThings
             {
                 if (triggerType == ItemType<VanitySelector>())
                 {
-                    UIText("No alt costumes found for " + (triggerLeft? "": "light") + " pet", CombatText.DamagedFriendly);
+                    UIText("No alt costumes found for " + (triggerLeft ? "" : "light") + " pet", CombatText.DamagedFriendly);
                     return;
                 }
             }
@@ -460,7 +460,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void UpdateCircleUI()
         {
-			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
             bool? left = null;
             if (mPlayer.LeftClickPressed && CircleUIHandler.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
@@ -507,7 +507,7 @@ namespace AssortedCrazyThings
             if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type, forUI: true))
             {
                 PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
-                if(pPlayer.slimePetIndex != -1 &&
+                if (pPlayer.slimePetIndex != -1 &&
                     Main.projectile[pPlayer.slimePetIndex].active &&
                     Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
                     SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
@@ -544,9 +544,9 @@ namespace AssortedCrazyThings
                         //hovered over the middle and had something equipped: take accessory away
                         pPlayer.DelAccessory(PetVanityUI.petAccessory);
                     }
-					//else if (returned == PetVanityUI.IGNORE) {nothing happens}
+                    //else if (returned == PetVanityUI.IGNORE) {nothing happens}
 
-					PetVanityUI.returned = PetVanityUI.NONE;
+                    PetVanityUI.returned = PetVanityUI.NONE;
                     PetVanityUI.visible = false;
                 }
 
@@ -813,7 +813,7 @@ namespace AssortedCrazyThings
                     }
                     break;
                 default:
-                    ErrorLogger.Log(Name +": Unknown Message type: " + msgType);
+                    ErrorLogger.Log(Name + ": Unknown Message type: " + msgType);
                     break;
             }
         }

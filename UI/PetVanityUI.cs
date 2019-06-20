@@ -10,67 +10,69 @@ using AssortedCrazyThings.Base;
 namespace AssortedCrazyThings.UI
 {
     class PetVanityUI : UIState
-	{
-		internal const int NONE = -1;
+    {
+        internal const int NONE = -1;
 
-		internal const int IGNORE = -2;
+        internal const int IGNORE = -2;
 
-		/// <summary>
-		/// Circle diameter
-		/// </summary>
-		internal const int mainDiameter = 36;
+        /// <summary>
+        /// Circle diameter
+        /// </summary>
+        internal const int mainDiameter = 36;
 
-		/// <summary>
-		/// Circle radius
-		/// </summary>
-		internal const int mainRadius = mainDiameter / 2;
+        /// <summary>
+        /// Circle radius
+        /// </summary>
+        internal const int mainRadius = mainDiameter / 2;
 
-		/// <summary>
-		/// Is the UI visible?
-		/// </summary>
-		internal static bool visible = false;
+        /// <summary>
+        /// Is the UI visible?
+        /// </summary>
+        internal static bool visible = false;
 
-		/// <summary>
-		/// Spawn position, i.e. mouse position at UI start
-		/// </summary>
-		internal static Vector2 spawnPosition = default(Vector2);
+        /// <summary>
+        /// Spawn position, i.e. mouse position at UI start
+        /// </summary>
+        internal static Vector2 spawnPosition = default(Vector2);
 
-		/// <summary>
-		/// If pet currently has something of that type in that slot
-		/// </summary>
-		internal static bool hasEquipped = false;
+        /// <summary>
+        /// If pet currently has something of that type in that slot
+        /// </summary>
+        internal static bool hasEquipped = false;
 
-		/// <summary>
-		/// Which thing is currently highlighted?
-		/// </summary>
-		internal static int returned = NONE;
+        /// <summary>
+        /// Which thing is currently highlighted?
+        /// </summary>
+        internal static int returned = NONE;
 
-		/// <summary>
-		/// Fade in animation when opening the UI
-		/// </summary>
-		internal static float fadeIn = 0;
+        /// <summary>
+        /// Fade in animation when opening the UI
+        /// </summary>
+        internal static float fadeIn = 0;
 
-		/// <summary>
-		/// Red cross for when to unequip
-		/// </summary>
-		internal static Texture2D redCrossTexture;
+        /// <summary>
+        /// Red cross for when to unequip
+        /// </summary>
+        internal static Texture2D redCrossTexture;
 
-		/// <summary>
-		/// Holds data about what to draw
-		/// </summary>
-		internal static PetAccessory petAccessory;
+        /// <summary>
+        /// Holds data about what to draw
+        /// </summary>
+        internal static PetAccessory petAccessory;
 
-		/// <summary>
-		/// Spawn position offset to top left corner of that to draw the icons
-		/// </summary>
-		private Vector2 TopLeftCorner {
-			get {
-				return spawnPosition - new Vector2(mainRadius, mainRadius);
-			}
-		}
+        /// <summary>
+        /// Spawn position offset to top left corner of that to draw the icons
+        /// </summary>
+        private Vector2 TopLeftCorner
+        {
+            get
+            {
+                return spawnPosition - new Vector2(mainRadius, mainRadius);
+            }
+        }
 
-		//Initialization
-		public override void OnInitialize()
+        //Initialization
+        public override void OnInitialize()
         {
             redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross");
         }
@@ -99,7 +101,7 @@ namespace AssortedCrazyThings.UI
             {
                 double x = outerRadius * Math.Sin(angleSteps * done * Math.PI);
                 double y = outerRadius * -Math.Cos(angleSteps * done * Math.PI);
-                
+
 
                 Rectangle bgRect = new Rectangle((int)(TopLeftCorner.X + x), (int)(TopLeftCorner.Y + y), mainDiameter, mainDiameter);
                 //Check if mouse is within the circle checked
