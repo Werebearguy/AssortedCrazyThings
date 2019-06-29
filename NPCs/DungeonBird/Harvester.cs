@@ -1,4 +1,5 @@
 using System;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.VanityArmor;
@@ -166,6 +167,43 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return Color.White * ((255 - npc.alpha)/255f);
         }
 
+        /// <summary>
+        /// To drop the accessories and the souls multiplied by the number of people present during the fight
+        /// </summary>
+        private void DropLoot(int npcTypeNew)
+        {
+            int count = Array.FindAll(npc.playerInteraction, interacted => interacted).Length;
+
+            for (int i = 0; i < count; i++)
+            {
+                if (Main.rand.NextBool(3)) //33% chance
+                {
+                    int[] types = new int[] { mod.ItemType<SigilOfRetreat>(), mod.ItemType<SigilOfEmergency>(), mod.ItemType<SigilOfPainSuppression>() };
+                    int itemType = Main.rand.Next(types);
+                    Item.NewItem(npc.getRect(), itemType);
+                }
+
+                Vector2 randVector = Vector2.One;
+                float randFactor;
+                int index;
+
+                for (int i = 0; i < 15; i++) //spawn souls when dies, 15 total
+                {
+                    randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
+                    randFactor = Main.rand.NextFloat(2f, 8f);
+                    index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, npcTypeNew);
+                    Main.npc[index].SetDefaults(npcTypeNew);
+                    //Main.npc[index].timeLeft = 3600;
+                    Main.npc[index].velocity = randVector * randFactor;
+                    Main.npc[index].ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
+                    }
+                }
+            }
+        }
+
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
@@ -174,31 +212,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
 
-            if (Main.rand.NextBool(3)) //33% chance
-            {
-                int rand = Main.rand.Next(3);
-                switch (rand)
-                {
-                    case 0:
-                        Item.NewItem(npc.getRect(), mod.ItemType<SigilOfRetreat>());
-                        break;
-                    case 1:
-                        Item.NewItem(npc.getRect(), mod.ItemType<SigilOfEmergency>());
-                        break;
-                    case 2:
-                        Item.NewItem(npc.getRect(), mod.ItemType<SigilOfPainSuppression>());
-                        break;
-                }
-            }
-
             //RecipeBrowser fix
             if (npc.Center == new Vector2(1000, 1000))
             {
                 Item.NewItem(npc.getRect(), mod.ItemType<CaughtDungeonSoulFreed>());
             }
-
-            Vector2 randVector = new Vector2(1, 1);
-            float randFactor = 0f;
 
             int npcTypeOld = mod.NPCType<DungeonSoul>();
             int npcTypeNew = mod.NPCType<DungeonSoulFreed>();  //version that doesnt get eaten by harvesters
@@ -206,16 +224,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             int itemTypeOld = mod.ItemType<CaughtDungeonSoul>();
             int itemTypeNew = mod.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
-            for (int i = 0; i < 15; i++) //spawn souls when dies, 15 total
-            {
-                randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
-                randFactor = Main.rand.NextFloat(2f, 8f);
-                int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, npcTypeNew);
-                Main.npc[index].SetDefaults(npcTypeNew);
-                //Main.npc[index].timeLeft = 3600;
-                Main.npc[index].velocity = randVector * randFactor;
-                Main.npc[index].ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
-            }
+            DropLoot(npcTypeNew);
 
             //"convert" NPC souls
             for (short j = 0; j < 200; j++)
@@ -240,7 +249,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
 
             //"convert" Item souls that got dropped for some reason
-            int tempStackCount = 0;
+            int tempStackCount;
             for (int j = 0; j < Main.item.Length; j++)
             {
                 if (Main.item[j].active && Main.item[j].type == itemTypeOld)

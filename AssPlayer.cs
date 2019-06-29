@@ -284,11 +284,12 @@ namespace AssortedCrazyThings
                     {
                         for (short j = 0; j < 200; j++)
                         {
-                            if (Main.npc[j].active && Main.npc[j].lifeMax > 5 && !Main.npc[j].friendly && !Main.npc[j].dontTakeDamage && !Main.npc[j].immortal)
+                            NPC npc = Main.npc[j];
+                            if (npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.dontTakeDamage && !npc.immortal && !npc.SpawnedFromStatue)
                             {
-                                if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) == -1 && EligibleToRecieveSoulBuff(Main.npc[j]))
+                                if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) < 0 && EligibleToRecieveSoulBuff(Main.npc[j]))
                                 {
-                                    Main.npc[j].AddBuff(mod.BuffType("SoulBuff"), 60, true);
+                                    Main.npc[j].AddBuff(mod.BuffType<SoulBuff>(), 60, true);
                                 }
                             }
                         }
