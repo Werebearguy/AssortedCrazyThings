@@ -187,7 +187,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float randFactor;
                 int index;
 
-                for (int i = 0; i < 15; i++) //spawn souls when dies, 15 total
+                for (int j = 0; j < 15; j++) //spawn souls when dies, 15 total
                 {
                     randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
                     randFactor = Main.rand.NextFloat(2f, 8f);

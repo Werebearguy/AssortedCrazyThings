@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
     {
         public const int DefDamage = 26;
         public const float DefKnockback = 4f; //same as slime staff x 2
-        public const float SpikedIncrease = 1.4f;
+        public const float SpikedIncrease = 0.4f;
 
         protected byte TotalNumberOfThese = 16; //16 for default, 13 for assorted, 16 for spiked
 

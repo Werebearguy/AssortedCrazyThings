@@ -717,7 +717,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                                 if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
                                     Main.projectile[i].owner == Main.myPlayer)
                                 {
-                                    ErrorLogger.Log(mod.Name + ": had to change index of slime pet of " + player.name + " because it was -1");
+                                    mod.Logger.Debug("Had to change index of slime pet of " + player.name + " because it was -1");
                                     pPlayer.slimePetIndex = i;
                                     return true;
                                 }

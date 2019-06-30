@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public readonly string ToUnlock;
         public readonly Func<bool> Unlocked;
 
-        public SoulData(int projType, string name, string desc = "", string toUnlock = "", Func<bool> unlocked = null, float dmgModifier = 1f, float kBModifier = 1f)
+        public SoulData(int projType, string name, string desc = "", string toUnlock = "", Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
         {
             ProjType = projType;
             Name = name;
@@ -46,8 +46,8 @@ namespace AssortedCrazyThings.Items.Weapons
             KBModifier = kBModifier;
             ToUnlock = toUnlock;
             Unlocked = unlocked ?? (() => true);
-            string stats = "\nBase Damage: " + (int)(EverhallowedLantern.BaseDmg * DmgModifier)
-             + "\nBase Knockback: " + Math.Round(EverhallowedLantern.BaseKB * KBModifier, 1);
+            string stats = "\nBase Damage: " + (int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f))
+             + "\nBase Knockback: " + Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1);
             Tooltip = Name + stats + "\n" + desc;
         }
     }
@@ -70,7 +70,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         (
                         projType: AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
                         name: "Dungeon Soul",
-                        dmgModifier: 1.1f
+                        dmgModifier: 0.1f
                         );
                 case SoulType.Fright:
                     return new SoulData
@@ -80,8 +80,8 @@ namespace AssortedCrazyThings.Items.Weapons
                         desc: "Inflicts Ichor and Posioned",
                         toUnlock: "Defeat Skeletron Prime",
                         unlocked: () => NPC.downedMechBoss3,
-                        dmgModifier: 1.25f,
-                        kBModifier: 4f
+                        dmgModifier: 0.25f,
+                        kBModifier: 3f
                         );
                 case SoulType.Sight:
                     return new SoulData
@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         desc: "Inflicts Cursed Inferno",
                         toUnlock: "Defeat The Twins",
                         unlocked: () => NPC.downedMechBoss2,
-                        dmgModifier: 0.85f
+                        dmgModifier: -0.15f
                         );
                 case SoulType.Might:
                     return new SoulData
@@ -100,8 +100,8 @@ namespace AssortedCrazyThings.Items.Weapons
                         name: "Soul of Might",
                         toUnlock: "Defeat The Destroyer",
                         unlocked: () => NPC.downedMechBoss1,
-                        dmgModifier: 1.55f,
-                        kBModifier: 8f
+                        dmgModifier: 0.55f,
+                        kBModifier: 7f
                         );
                 default:
                     throw new Exception("No SoulData specified");
@@ -177,12 +177,12 @@ namespace AssortedCrazyThings.Items.Weapons
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
         }
 
-        public override void GetWeaponDamage(Player player, ref int damage)
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             SoulType selected = mPlayer.selectedSoulMinionType;
-            damage = (int)(damage * GetSoulData(selected).DmgModifier);
+            add += GetSoulData(selected).DmgModifier;
         }
 
         public override void GetWeaponKnockback(Player player, ref float knockback)

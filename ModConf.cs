@@ -48,7 +48,7 @@ namespace AssortedCrazyThings
             bool success = ReadConfig();
             if (!success)
             {
-                ErrorLogger.Log(AssUtils.Instance.Name + ": Couldn't load config file, creating new file.");
+                AssUtils.Instance.Logger.Info("Couldn't load config file, creating new file.");
                 CreateConfig();
             }
         }
@@ -65,7 +65,7 @@ namespace AssortedCrazyThings
                     bool canUpdate = false;
                     if (readVersion == 1)
                     {
-                        ErrorLogger.Log(AssUtils.Instance.Name + ": updated Version");
+                        AssUtils.Instance.Logger.Info("Updated Config Version");
                         canUpdate = true;
                         
                         ModConfig.Get(walkingTombstonesField, ref walkingTombstones);

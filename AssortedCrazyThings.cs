@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Terraria;
 using Terraria.Graphics;
 using Terraria.ID;
@@ -19,7 +18,6 @@ using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Items.Pets;
 using Terraria.Localization;
 
-[assembly: AssemblyVersion("1.3.0.0")]
 namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
@@ -813,7 +811,7 @@ namespace AssortedCrazyThings
                     }
                     break;
                 default:
-                    ErrorLogger.Log(Name + ": Unknown Message type: " + msgType);
+                    Logger.Debug("Unknown Message type: " + msgType);
                     break;
             }
         }

@@ -445,7 +445,7 @@ namespace AssortedCrazyThings
                     if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
                     break;
                 default: //shouldn't get there hopefully
-                    ErrorLogger.Log(mod.Name + ": Recieved unspecified PetPlayerChanges Packet " + changes);
+                    mod.Logger.Debug("Recieved unspecified PetPlayerChanges Packet " + changes);
                     break;
             }
             GetFromClonedTypes("in mp");
@@ -477,7 +477,7 @@ namespace AssortedCrazyThings
                     packet.Write((byte)ClonedTypes[index]);
                     break;
                 default: //shouldn't get there hopefully
-                    ErrorLogger.Log(mod.Name + ": Sending unspecified PetPlayerChanges " + changes);
+                    mod.Logger.Debug("Sending unspecified PetPlayerChanges " + changes);
                     break;
             }
 
@@ -502,7 +502,7 @@ namespace AssortedCrazyThings
             if (!petAccessoryRework)
             {
                 petAccessoryRework = true;
-                ErrorLogger.Log(mod.Name + ": Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
+                mod.Logger.Debug("Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
                 slots = 0;
             }
             if (!petVanityRework)

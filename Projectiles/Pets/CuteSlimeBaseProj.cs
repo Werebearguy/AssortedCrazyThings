@@ -149,7 +149,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Texture2D texture = Main.projectileTexture[projectile.type];
                 if (useNoHair) //only if not legacy
                 {
-                    texture = ModLoader.GetTexture(texture.Name + "NoHair");
+                    texture = ModContent.GetTexture(texture.Name + "NoHair");
                 }
                 Rectangle frameLocal = new Rectangle(0, frame2 * texture.Height / 10, texture.Width, texture.Height / 10);
                 SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -211,7 +211,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         continue;
                     }
-                    Texture2D texture = ModLoader.GetTexture(textureString + colorString + drawString);
+                    Texture2D texture = ModContent.GetTexture(textureString + colorString + drawString);
 
                     Rectangle frameLocal = new Rectangle(0, frame2 * (Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]), texture.Width, texture.Height / 10);
 

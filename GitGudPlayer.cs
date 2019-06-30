@@ -263,7 +263,7 @@ namespace AssortedCrazyThings
                 //    gPlayer.pirateInvasionGitgudCounter = value;
                 //    break;
                 default: //shouldn't get there hopefully
-                    if (packet) ErrorLogger.Log(AssUtils.Instance.Name + ": Recieved unspecified GitgudReset Packet " + index);
+                    if (packet) AssUtils.Instance.Logger.Warn("Recieved unspecified GitgudReset Packet " + index);
                     else throw new Exception("Unspecified index in the gitgud array " + index);
                     break;
             }

@@ -151,8 +151,8 @@ namespace AssortedCrazyThings.Items.Weapons
                         desc: "Fires a penetrating laser after a long delay",
                         misc: "Occupies two minion slots",
                         firerate: "Extremely slow",
-                        dmgModifier: 9.091f,
-                        kBModifier: 4f
+                        dmgModifier: 8.091f,
+                        kBModifier: 3f
                         );
                 case DroneType.Missile:
                     return new DroneData
@@ -162,8 +162,8 @@ namespace AssortedCrazyThings.Items.Weapons
                         desc: "Fires a salvo of missiles after a long delay",
                         misc: "Occupies two minion slots",
                         firerate: "Very slow",
-                        dmgModifier: 1.2f,
-                        kBModifier: 1.333334f
+                        dmgModifier: 0.2f,
+                        kBModifier: 0.333334f
                         );
                 case DroneType.Healing:
                     return new DroneData
@@ -259,12 +259,12 @@ namespace AssortedCrazyThings.Items.Weapons
             item.buffType = mod.BuffType<DroneControllerBuff>();
         }
 
-        public override void GetWeaponDamage(Player player, ref int damage)
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
-            damage = (int)(damage * GetDroneData(selected).DmgModifier);
+            add += GetDroneData(selected).DmgModifier;
         }
 
         public override void GetWeaponKnockback(Player player, ref float knockback)
@@ -318,8 +318,8 @@ namespace AssortedCrazyThings.Items.Weapons
 
             DroneData data = GetDroneData(selected);
 
-            int knockbackIndex = -1;
             int damageIndex = -1;
+            int knockbackIndex = -1;
 
             for (int i = 0; i < tooltips.Count; i++)
             {
@@ -342,7 +342,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 }
             }
 
-            if (damageIndex != -1)
+            if (damageIndex > -1)
             {
                 if (!data.Combat)
                 {
@@ -358,7 +358,9 @@ namespace AssortedCrazyThings.Items.Weapons
                 }
                 else
                 {
-                    tooltips.RemoveAt(knockbackIndex);
+                    //here damageIndex one is removed, so find knockbackindex again
+                    knockbackIndex = tooltips.FindIndex(line => line.Name == "Knockback");
+                    if (knockbackIndex > -1) tooltips.RemoveAt(knockbackIndex);
                 }
             }
 
@@ -397,15 +399,15 @@ namespace AssortedCrazyThings.Items.Weapons
         public readonly string Firerate;
         public readonly bool Combat;
 
-        public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 1f, float kBModifier = 1f, bool combat = true)
+        public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 0f, float kBModifier = 0f, bool combat = true)
         {
             ProjType = projType;
             Name = name;
             DmgModifier = dmgModifier;
             KBModifier = kBModifier;
             Firerate = firerate;
-            string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * DmgModifier)
-             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier, 1)) : "";
+            string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * (DmgModifier + 1f))
+             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * (KBModifier + 1f), 1)) : "";
             UITooltip = Name + stats + "\n" + desc + "\n" + misc;
             Combat = combat;
         }

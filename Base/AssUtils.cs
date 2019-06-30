@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Base
         
         public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
-            DrawSkeletronLikeArms(spriteBatch, ModLoader.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
+            DrawSkeletronLikeArms(spriteBatch, ModContent.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace AssortedCrazyThings.Base
 
         public static void DrawTether(SpriteBatch spriteBatch, string texString, Vector2 start, Vector2 end)
         {
-            DrawTether(spriteBatch, ModLoader.GetTexture(texString), start, end);
+            DrawTether(spriteBatch, ModContent.GetTexture(texString), start, end);
         }
 
         //Credit to IDGCaptainRussia
