@@ -22,6 +22,11 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// For the Cute Slime Statue, non-biome ones only
         /// </summary>
+        public static List<int> slimePetRegularNPCs;
+
+        /// <summary>
+        /// All Cute Slime NPCs
+        /// </summary>
         public static List<int> slimePetNPCs;
 
         /// <summary>
@@ -120,6 +125,7 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
         {
+            if (AssUtils.AnyNPCs(slimePetNPCs)) return 0f;
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
             if (ModConf.CuteSlimesPotionOnly)
             {
@@ -167,7 +173,7 @@ namespace AssortedCrazyThings.Base
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
 
-            slimePetNPCs = new List<int>
+            slimePetRegularNPCs = new List<int>
             {
                 AssUtils.Instance.NPCType<CuteSlimeBlack>(),
                 AssUtils.Instance.NPCType<CuteSlimeBlue>(),
@@ -178,6 +184,21 @@ namespace AssortedCrazyThings.Base
                 AssUtils.Instance.NPCType<CuteSlimeRed>(),
                 AssUtils.Instance.NPCType<CuteSlimeYellow>()
             };
+
+            slimePetNPCs = new List<int>
+            {
+                AssUtils.Instance.NPCType<CuteSlimeCorrupt>(),
+                AssUtils.Instance.NPCType<CuteSlimeCrimson>(),
+                AssUtils.Instance.NPCType<CuteSlimeDungeon>(),
+                AssUtils.Instance.NPCType<CuteSlimeIce>(),
+                AssUtils.Instance.NPCType<CuteSlimeIlluminant>(),
+                AssUtils.Instance.NPCType<CuteSlimeJungle>(),
+                AssUtils.Instance.NPCType<CuteSlimeLava>(),
+                AssUtils.Instance.NPCType<CuteSlimeSand>(),
+                AssUtils.Instance.NPCType<CuteSlimeToxic>(),
+                AssUtils.Instance.NPCType<CuteSlimeXmas>()
+            };
+            slimePetNPCs.AddRange(slimePetRegularNPCs);
 
             //start list
             slimePetList.Add(SlimePet.NewSlimePet

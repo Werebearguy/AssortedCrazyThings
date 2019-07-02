@@ -912,10 +912,15 @@ namespace AssortedCrazyThings
             target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
         }
 
-        public override void GetWeaponDamage(Item item, ref int damage)
+        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult)
         {
-            if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
+            if (empoweringBuff && !item.summon && item.damage > 0) add += step; //summon damage gets handled in AssGlobalProj
         }
+
+        //public override void GetWeaponDamage(Item item, ref int damage)
+        //{
+        //    if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
+        //}
 
         public override void GetWeaponCrit(Item item, ref int crit)
         {

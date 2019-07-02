@@ -64,9 +64,9 @@ namespace AssortedCrazyThings.Tiles
         private int CheckSpawns(float x, float y)
         {
             int npcType = -1;
-            if (MechSpawn(x, y, SlimePets.slimePetNPCs.ToArray()))
+            if (MechSpawn(x, y, SlimePets.slimePetRegularNPCs.ToArray()))
             {
-                npcType = Main.rand.Next(SlimePets.slimePetNPCs.ToArray());
+                npcType = Main.rand.Next(SlimePets.slimePetRegularNPCs.ToArray());
             }
             return npcType;
         }

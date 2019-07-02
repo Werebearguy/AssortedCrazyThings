@@ -17,6 +17,7 @@ using Terraria.UI;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Items.Pets;
 using Terraria.Localization;
+using System.Linq;
 
 namespace AssortedCrazyThings
 {

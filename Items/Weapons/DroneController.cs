@@ -233,6 +233,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
                 + "\nRight click to pick from available drones"
                 + "\nHolding the item improves the Drones supportive and offensive abilities");
+            ItemID.Sets.StaffMinionSlotsRequired[item.type] = 2;
         }
 
         public const int BaseDmg = 22;
