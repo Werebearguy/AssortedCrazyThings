@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.raining == true)
+            if (Main.raining)
             {
                 return SpawnCondition.HardmodeCrimsonWater.Chance * 0.2f;
             }
@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            Item.NewItem(npc.getRect(), ItemID.Bladetongue);
+            Item.NewItem(npc.getRect(), ItemID.Bladetongue, prefixGiven: -1);
         }
 
         public override void AI()

@@ -38,9 +38,9 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(2))
-                Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
+                Item.NewItem(npc.getRect(), ItemID.SharkFin);
             if (Main.rand.NextBool(98))
-                Item.NewItem(npc.getRect(), ItemID.SharkToothNecklace, 1);
+                Item.NewItem(npc.getRect(), ItemID.SharkToothNecklace, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

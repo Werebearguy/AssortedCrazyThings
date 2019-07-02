@@ -43,11 +43,11 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(45))
-                Item.NewItem(npc.getRect(), ItemID.DepthMeter, 1);
+                Item.NewItem(npc.getRect(), ItemID.DepthMeter, prefixGiven: -1);
             if (Main.rand.NextBool(48))
-                Item.NewItem(npc.getRect(), ItemID.Compass, 1);
+                Item.NewItem(npc.getRect(), ItemID.Compass, prefixGiven: -1);
             if (Main.rand.NextBool(49))
-                Item.NewItem(npc.getRect(), ItemID.Gradient, 1);
+                Item.NewItem(npc.getRect(), ItemID.Gradient, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

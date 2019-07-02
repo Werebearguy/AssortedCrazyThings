@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextBool(2))
                 Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
             if (Main.rand.NextBool(98))
-                Item.NewItem(npc.getRect(), ItemID.DivingHelmet, 1);
+                Item.NewItem(npc.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

@@ -53,7 +53,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             projectile.height = 30;
             projectile.alpha = 0;
             projectile.minion = true;
-            projectile.minionSlots = 1f;
+            //TODO minionSlots
+            //projectile.minionSlots = 1f;
+            projectile.minionSlots = 2f;
         }
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)

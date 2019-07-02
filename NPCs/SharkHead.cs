@@ -38,9 +38,9 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextBool(2))
                 Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
             if (Main.rand.NextBool(50))
-                Item.NewItem(npc.getRect(), ItemID.Shackle, 1);
+                Item.NewItem(npc.getRect(), ItemID.Shackle, prefixGiven: -1);
             if (Main.rand.NextBool(2500))
-                Item.NewItem(npc.getRect(), ItemID.ZombieArm, 1);
+                Item.NewItem(npc.getRect(), ItemID.ZombieArm, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

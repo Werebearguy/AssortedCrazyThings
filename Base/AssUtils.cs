@@ -445,7 +445,7 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Alternative, static version of npc.DropItemInstanced. Checks the playerCondition delegate before syncing/spawning the item
         /// </summary>
-        public static void DropItemInstanced(NPC npc, Vector2 Position, Vector2 HitboxSize, int itemType, int itemStack = 1, Func<Player, bool> playerCondition = null, bool interactionRequired = true)
+        public static void DropItemInstanced(NPC npc, Vector2 Position, Vector2 HitboxSize, int itemType, int itemStack = 1, Func<NPC, Player, bool> condition = null, bool interactionRequired = true)
         {
             if (itemType > 0)
             {
@@ -457,8 +457,8 @@ namespace AssortedCrazyThings.Base
                     {
                         if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))
                         {
-                            if (playerCondition != null && playerCondition(Main.player[p]) ||
-                                playerCondition == null)
+                            if (condition != null && condition(npc, Main.player[p]) ||
+                                condition == null)
                                 NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
                         }
                     }
@@ -466,8 +466,8 @@ namespace AssortedCrazyThings.Base
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if (playerCondition != null && playerCondition(Main.LocalPlayer) ||
-                        playerCondition == null)
+                    if (condition != null && condition(npc, Main.LocalPlayer) ||
+                        condition == null)
                         Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
                 }
                 //npc.value = 0f;

@@ -37,9 +37,9 @@ namespace AssortedCrazyThings.NPCs
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(50))
-                Item.NewItem(npc.getRect(), ItemID.Shackle, 1);
+                Item.NewItem(npc.getRect(), ItemID.Shackle, prefixGiven: -1);
             if (Main.rand.NextBool(250))
-                Item.NewItem(npc.getRect(), ItemID.FlowerBoots, 1);
+                Item.NewItem(npc.getRect(), ItemID.FlowerBoots, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

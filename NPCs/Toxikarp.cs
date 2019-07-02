@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.hardMode)
+            if (Main.hardMode && !NPC.AnyNPCs(npc.type))
             {
                 if (Main.raining)
                 {
@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            Item.NewItem(npc.getRect(), ItemID.Toxikarp);
+            Item.NewItem(npc.getRect(), ItemID.Toxikarp, prefixGiven: -1);
         }
 
         public override void AI()

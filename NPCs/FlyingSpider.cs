@@ -44,12 +44,12 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-            if (Main.rand.Next(1) == 0 && Main.expertMode)
+            if (Main.expertMode)
                 Item.NewItem(npc.getRect(), ItemID.SpiderFang);
             if (Main.rand.Next(4) < 3)
-                Item.NewItem(npc.getRect(), ItemID.SpiderFang, 1 + Main.rand.Next(3)); // 1, 2, or 3
-            if (Main.rand.Next(100) < 2)
-                Item.NewItem(npc.getRect(), ItemID.PoisonStaff);
+                Item.NewItem(npc.getRect(), ItemID.SpiderFang, Main.rand.Next(1, 4));
+            if (Main.rand.NextBool(50))
+                Item.NewItem(npc.getRect(), ItemID.PoisonStaff, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

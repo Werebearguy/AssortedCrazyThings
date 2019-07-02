@@ -180,7 +180,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     int[] types = new int[] { mod.ItemType<SigilOfRetreat>(), mod.ItemType<SigilOfEmergency>(), mod.ItemType<SigilOfPainSuppression>() };
                     int itemType = Main.rand.Next(types);
-                    Item.NewItem(npc.getRect(), itemType);
+                    Item.NewItem(npc.getRect(), itemType, prefixGiven: -1);
                 }
 
                 Vector2 randVector = Vector2.One;

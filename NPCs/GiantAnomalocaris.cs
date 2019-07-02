@@ -31,14 +31,14 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Ocean.Chance * 0.005f;
+            return SpawnCondition.Ocean.Chance * 0.0075f;
         }
 
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Shrimp);
-            if (Main.rand.Next(200) < 1) // a 1 in 200 chance
-                Item.NewItem(npc.getRect(), mod.ItemType("AnomalousWings"));
+            if (Main.rand.NextBool(100)) // a 1 in 100 chance
+                Item.NewItem(npc.getRect(), mod.ItemType("AnomalousWings"), prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)

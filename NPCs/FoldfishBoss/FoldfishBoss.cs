@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             {
                 Item.NewItem(npc.getRect(), mod.ItemType("OrigamiCrane"));
             }
-            Item.NewItem(npc.getRect(), mod.ItemType("OrigamiHat"));
+            Item.NewItem(npc.getRect(), mod.ItemType("OrigamiHat"), prefixGiven: -1);
         }
 
         public override void AI()

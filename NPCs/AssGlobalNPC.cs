@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<BrainofConfusion>());
             }
 
-            if (Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) != -1 && npc.boss)
+            if (Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1 && npc.boss)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetEaterofWorldsItem>());
             }
@@ -101,7 +101,7 @@ namespace AssortedCrazyThings.NPCs
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetDestroyerItem>());
 
                 AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, mod.ItemType<DroneParts>(),
-                    playerCondition: delegate (Player player)
+                    condition: delegate (NPC n, Player player)
                     {
                         return !DroneController.AllUnlocked(player);
                     });

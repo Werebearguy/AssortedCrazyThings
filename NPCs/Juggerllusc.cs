@@ -54,11 +54,11 @@ namespace AssortedCrazyThings.NPCs
             Item.NewItem(npc.getRect(), ItemID.PurpleMucos);
             if (Main.rand.NextBool(20))
             {
-                Item.NewItem(npc.getRect(), ItemID.Flipper);
+                Item.NewItem(npc.getRect(), ItemID.Flipper, prefixGiven: -1);
             }
             if (Main.rand.NextBool(50))
             {
-                Item.NewItem(npc.getRect(), ItemID.DivingHelmet);
+                Item.NewItem(npc.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
             }
         }
 

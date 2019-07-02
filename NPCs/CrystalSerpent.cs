@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.ZoneHoly)
+            if (spawnInfo.player.ZoneHoly && !NPC.AnyNPCs(npc.type))
             {
                 if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].liquid == 0)
                 {
@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void NPCLoot()
         {
-			Item.NewItem(npc.getRect(), ItemID.CrystalSerpent);
+			Item.NewItem(npc.getRect(), ItemID.CrystalSerpent, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
