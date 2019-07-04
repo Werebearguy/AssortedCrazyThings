@@ -127,7 +127,7 @@ namespace AssortedCrazyThings.Base
         {
             if (AssUtils.AnyNPCs(slimePetNPCs)) return 0f;
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
-            if (ModConf.CuteSlimesPotionOnly)
+            if (AssUtils.AssConfig.CuteSlimesPotionOnly)
             {
                 if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
                 {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using Terraria;
 using Terraria.ID;
@@ -15,7 +16,7 @@ namespace AssortedCrazyThings.Items.Consumables
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (ModConf.CuteSlimesPotionOnly)
+            if (AssUtils.AssConfig.CuteSlimesPotionOnly)
             {
                 tooltips.Add(new TooltipLine(mod, "Tooltip", "Allows you to see Cute Slimes for a short time"));
             }

@@ -17,6 +17,11 @@ namespace AssortedCrazyThings.Base
         public static AssortedCrazyThings Instance { get; set; } //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
         /// <summary>
+        /// The config of the mod
+        /// </summary>
+        public static Config AssConfig { get; set; }
+
+        /// <summary>
         /// Types of modded NPCs which names are ending with Body or Tail
         /// </summary>
         public static int[] isModdedWormBodyOrTail;
@@ -387,24 +392,24 @@ namespace AssortedCrazyThings.Base
                 if (!preCreate(test)) return 1000;
             }
 
-            int num = 1000;
+            int index = 1000;
             for (int i = 0; i < 1000; i++)
             {
                 if (!Main.projectile[i].active)
                 {
-                    num = i;
+                    index = i;
                     break;
                 }
             }
-            if (num == 1000)
+            if (index == 1000)
             {
-                return num;
+                return index;
             }
             int Owner = Main.myPlayer;
             //float ai0 = 0f;
             //float ai1 = 0f;
 
-            Projectile projectile = Main.projectile[num];
+            Projectile projectile = Main.projectile[index];
             projectile.SetDefaults(Type);
             projectile.position.X = X - projectile.width * 0.5f;
             projectile.position.Y = Y - projectile.height * 0.5f;
@@ -413,7 +418,7 @@ namespace AssortedCrazyThings.Base
             projectile.velocity.Y = SpeedY;
             projectile.damage = Damage;
             projectile.knockBack = KnockBack;
-            projectile.identity = num;
+            projectile.identity = index;
             projectile.gfxOffY = 0f;
             projectile.stepSpeed = 1f;
             projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
@@ -422,7 +427,7 @@ namespace AssortedCrazyThings.Base
                 projectile.wet = false;
             }
             projectile.honeyWet = Collision.honey;
-            Main.projectileIdentity[Owner, num] = num;
+            Main.projectileIdentity[Owner, index] = index;
             //projectile.ai[0] = ai0;
             //projectile.ai[1] = ai1;
             if (Type > 0)
@@ -433,13 +438,13 @@ namespace AssortedCrazyThings.Base
                 }
             }
 
-            if (preSync != null) preSync(projectile);
+            preSync?.Invoke(projectile);
 
             if (Main.netMode != 0)
             {
-                NetMessage.SendData(27, -1, -1, null, num);
+                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, index);
             }
-            return num;
+            return index;
         }
 
         /// <summary>
