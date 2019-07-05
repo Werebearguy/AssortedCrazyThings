@@ -2,11 +2,10 @@ using AssortedCrazyThings.Projectiles.Tools;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TerrariaOverhaul;
 
 namespace AssortedCrazyThings.Items.Tools
 {
-    public class ExtendoNetRegular : ModItem
+    public class ExtendoNetRegular : ExtendoNetBase
     {
         public override void SetStaticDefaults()
         {
@@ -16,36 +15,11 @@ namespace AssortedCrazyThings.Items.Tools
 
         public override void SetDefaults()
         {
-            //item.damage = 40;
-            item.useStyle = 5;
-            item.useAnimation = 24; //18
-            item.useTime = 32; //24
-            item.shootSpeed = 3.7f; //3.7f
-            item.knockBack = 6.5f;
-            item.width = 40;
-            item.height = 40;
-            item.scale = 1f;
-            item.rare = -11;
+            base.SetDefaults();
+            item.useAnimation = 24;
+            item.useTime = 32;
             item.value = Item.sellPrice(silver: 45);
-
-            item.melee = true;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.autoReuse = true;
-
-            item.UseSound = SoundID.Item1;
             item.shoot = mod.ProjectileType<ExtendoNetRegularProj>();
-        }
-
-        public void OverhaulInit()
-        {
-            this.SetTag(ItemTags.AllowQuickUse);
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            // Ensures no more than one spear can be thrown out, use this when using autoReuse
-            return player.ownedProjectileCounts[item.shoot] < 1;
         }
 
         public override void AddRecipes()

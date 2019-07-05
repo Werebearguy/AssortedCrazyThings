@@ -237,8 +237,6 @@ namespace AssortedCrazyThings
         {
             AssUtils.Instance = this;
 
-            ModConf.Load();
-
             LoadPets();
 
             LoadSoulBuffBlacklist();
@@ -321,6 +319,12 @@ namespace AssortedCrazyThings
                 ItemType<CuteSlimeRainbowNew>(),
                 ItemType<CuteSlimeRedNew>(),
                 ItemType<CuteSlimeYellowNew>()
+            }));
+
+            RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
+            {
+                ItemID.GoldBar,
+                ItemID.PlatinumBar
             }));
         }
 
