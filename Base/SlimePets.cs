@@ -336,6 +336,7 @@ namespace AssortedCrazyThings.Base
         {
             slimePets = null;
             slimePetList = null;
+            slimePetNPCs = null;
             slimePetNPCsEnumToNames = null;
         }
 

@@ -423,7 +423,7 @@ namespace AssortedCrazyThings
             {
                 ClonedTypes[i] = reader.ReadByte();
             }
-            GetFromClonedTypes("in mp");
+            GetFromClonedTypes();
         }
 
         /// <summary>
@@ -448,7 +448,7 @@ namespace AssortedCrazyThings
                     mod.Logger.Debug("Recieved unspecified PetPlayerChanges Packet " + changes);
                     break;
             }
-            GetFromClonedTypes("in mp");
+            GetFromClonedTypes();
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace AssortedCrazyThings
             else
             {
                 //AssUtils.Print("onenterworld p " + player.whoAmI);
-                GetFromClonedTypes("in sp");
+                GetFromClonedTypes();
             }
             SendClientChangesPacket(PetPlayerChanges.All);
         }
@@ -600,7 +600,6 @@ namespace AssortedCrazyThings
         #endregion
 
         #region CircleUI
-
         /// <summary>
         /// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
         /// </summary>
@@ -617,6 +616,7 @@ namespace AssortedCrazyThings
         {
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
+            //Count: 20
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
@@ -627,9 +627,9 @@ namespace AssortedCrazyThings
                 },
                 uiConf: delegate
                 {
-                    List<Texture2D> textures = new List<Texture2D>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
+                    List<string> textureNames = new List<string>() {
+                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrog",
+                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrogCrown" };
 
                     List<string> tooltips = new List<string>() { "Default", "Crowned" };
 
@@ -637,7 +637,7 @@ namespace AssortedCrazyThings
                     return new CircleUIConf(
                         Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
                         AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
-                        textures, null, tooltips, null);
+                        textureNames, null, tooltips, null);
                 },
                 onUIStart: delegate
                 {
@@ -1118,7 +1118,7 @@ namespace AssortedCrazyThings
         /// Called whenever something is received (MP on reveive, or in Singleplayer/Local client in OnEnterWorld).
         /// Sets the pet type of the corresponding entry of ClonedTypes
         /// </summary>
-        public void GetFromClonedTypes(string mp = "")
+        public void GetFromClonedTypes()
         {
             //AssUtils.Print("set getfromclonedtypes p " + player.whoAmI + " " + mp);
             int index = 0;

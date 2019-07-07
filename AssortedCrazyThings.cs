@@ -62,25 +62,6 @@ namespace AssortedCrazyThings
         public static string GithubUserName { get { return "Werebearguy"; } }
         public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
 
-        private void LoadPets()
-        {
-            if (!Main.dedServ && Main.netMode != 2)
-            {
-                PetAccessory.Load();
-            }
-            SlimePets.Load();
-        }
-
-        private void UnloadPets()
-        {
-            if (!Main.dedServ && Main.netMode != 2)
-            {
-                SlimePets.Unload();
-
-                PetAccessory.Unload();
-            }
-        }
-
         private void LoadSoulBuffBlacklist()
         {
             List<int> tempList = new List<int>
@@ -198,8 +179,27 @@ namespace AssortedCrazyThings
                 HarvesterEdgeUI.texture = null;
                 EnhancedHunterUI.arrowTexture = null;
                 PetVanityUI.redCrossTexture = null;
+                CircleUI.UIConf = null;
                 CircleUIHandler.TriggerListLeft.Clear();
                 CircleUIHandler.TriggerListRight.Clear();
+            }
+        }
+
+        private void LoadPets()
+        {
+            SlimePets.Load();
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                PetAccessory.Load();
+            }
+        }
+
+        private void UnloadPets()
+        {
+            SlimePets.Unload();
+            if (!Main.dedServ && Main.netMode != 2)
+            {
+                PetAccessory.Unload();
             }
         }
 
@@ -256,6 +256,8 @@ namespace AssortedCrazyThings
             DroneController.Unload();
 
             EverhallowedLantern.Unload();
+
+            AssUtils.AssConfig = null;
 
             AssUtils.Instance = null;
         }

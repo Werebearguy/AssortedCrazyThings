@@ -391,7 +391,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             get
             {
-                return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
+                return AssUtils.Instance.Name + "/Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
             }
         }
 

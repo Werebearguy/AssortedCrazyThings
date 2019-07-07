@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.UI
 {
@@ -80,15 +81,15 @@ namespace AssortedCrazyThings.UI
             //uses VanitySelector as the triggerItem
             //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
 
-            List<Texture2D> textures = new List<Texture2D>();
+            List<string> textureNames = new List<string>();
             for (int i = 0; i < tooltips.Count; i++)
             {
-                textures.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+                textureNames.Add(AssUtils.Instance.Name + "/Projectiles/Pets/" + name + "_" + i);
             }
 
             int type = AssUtils.Instance.ProjectileType(name);
 
-            return new CircleUIConf(Main.projFrames[type], type, textures: textures, tooltips: tooltips);
+            return new CircleUIConf(Main.projFrames[type], type, textureNames: textureNames, tooltips: tooltips);
         }
 
         /// <summary>
@@ -112,21 +113,27 @@ namespace AssortedCrazyThings.UI
     /// </summary>
     public class CircleUIConf
     {
-        public List<Texture2D> Textures { get; private set; }
+        public List<string> TextureNames { get; private set; }
         public List<bool> Unlocked { get; private set; } //all true if just selection
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
         public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
         
         public int CircleAmount { get; private set; } //amount of spawned circles
 
-        public int SpritesheetDivider { get; private set; }//divider of spritesheet height (if needed)
+        public int SpritesheetDivider { get; private set; } //divider of spritesheet height (if needed)
 
-        public int AdditionalInfo { get; private set; }//mainly used for passing the projectile type atm
+        public int AdditionalInfo { get; private set; } //mainly used for passing the projectile type atm
 
-        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Texture2D> textures = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
+        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<string> textureNames = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
         {
-            if (textures == null || textures.Count <= 0) throw new Exception("'texturesArg' has to be specified or has to contain at least one element");
-            else CircleAmount = textures.Count;
+            if (textureNames == null || textureNames.Count <= 0) throw new Exception("'textureNames' has to be specified or has to contain at least one element");
+            else CircleAmount = textureNames.Count;
+
+            //Test if textures exist
+            foreach (string texture in textureNames)
+            {
+                if (ModContent.GetTexture(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
+            }
 
             if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
 
@@ -136,12 +143,12 @@ namespace AssortedCrazyThings.UI
 
             if (CircleAmount != unlocked.Count ||
                 CircleAmount != tooltips.Count ||
-                CircleAmount != toUnlock.Count) throw new Exception("Atleast one of the specified lists isn't the same length as textures");
+                CircleAmount != toUnlock.Count) throw new Exception("Atleast one of the specified lists isn't the same length as textureNames");
 
             SpritesheetDivider = spritesheetDivider;
             AdditionalInfo = additionalInfo;
 
-            Textures = new List<Texture2D>(textures);
+            TextureNames = new List<string>(textureNames);
             Unlocked = new List<bool>(unlocked);
             Tooltips = new List<string>(tooltips);
             ToUnlock = new List<string>(toUnlock);

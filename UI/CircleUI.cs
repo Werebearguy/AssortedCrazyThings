@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.UI
 {
@@ -120,8 +121,9 @@ namespace AssortedCrazyThings.UI
                 spriteBatch.Draw(Main.wireUITexture[isMouseWithin ? 1 : 0], bgRect, drawColor);
 
                 //Draw sprites over the icons
-                int width = UIConf.Textures[done].Width;
-                int height = UIConf.Textures[done].Height;
+                Texture2D texture = ModContent.GetTexture(UIConf.TextureNames[done]);
+                int width = texture.Width;
+                int height = texture.Height;
                 if (UIConf.SpritesheetDivider > 0) height /= UIConf.SpritesheetDivider;
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
 
@@ -130,7 +132,7 @@ namespace AssortedCrazyThings.UI
 
                 Rectangle sourceRect = new Rectangle(0, 0, width, height);
 
-                spriteBatch.Draw(UIConf.Textures[done], projRect, sourceRect, drawColor);
+                spriteBatch.Draw(texture, projRect, sourceRect, drawColor);
 
                 if (isMouseWithin)
                 {
@@ -146,8 +148,6 @@ namespace AssortedCrazyThings.UI
                     }
                 }
             }
-
-            Texture2D bgTexture = Main.wireUITexture[0];
 
             //Draw held item bg circle
             Rectangle outputRect = new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, mainDiameter, mainDiameter);

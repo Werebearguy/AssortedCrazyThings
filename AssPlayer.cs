@@ -513,6 +513,7 @@ namespace AssortedCrazyThings
         public override void Initialize()
         {
             //needs to call new List() since Initialize() is called per player in the player select screen
+            //Count: 3
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
@@ -525,7 +526,7 @@ namespace AssortedCrazyThings
                 {
                     List<string> tooltips = new List<string>();
                     List<string> toUnlock = new List<string>();
-                    List<Texture2D> textures = new List<Texture2D>();
+                    List<string> textureNames = new List<string>();
                     List<bool> unlocked = new List<bool>();
 
                     foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
@@ -533,14 +534,14 @@ namespace AssortedCrazyThings
                         if (type != SoulType.None)
                         {
                             SoulData data = EverhallowedLantern.GetSoulData(type);
-                            textures.Add(Main.projectileTexture[data.ProjType]);
+                            textureNames.Add(Main.projectileTexture[data.ProjType].Name);
                             unlocked.Add(data.Unlocked());
                             tooltips.Add(data.Tooltip);
                             toUnlock.Add(data.ToUnlock);
                         }
                     }
 
-                    return new CircleUIConf(8, -1, textures, unlocked, tooltips, toUnlock);
+                    return new CircleUIConf(8, -1, textureNames, unlocked, tooltips, toUnlock);
                 },
                 onUIStart: delegate
                 {
@@ -565,10 +566,10 @@ namespace AssortedCrazyThings
                 },
                 uiConf: delegate
                 {
-                    List<Texture2D> textures = new List<Texture2D>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
+                    List<string> textureNames = new List<string>() {
+                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionPreview",
+                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview",
+                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview" };
                     List<string> tooltips = new List<string>
                     {
                         "Default"
@@ -591,7 +592,7 @@ namespace AssortedCrazyThings
                         NPC.downedPlantBoss, // 2
                     };
 
-                    return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
+                    return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
                 },
                 onUIStart: delegate
                 {
@@ -614,7 +615,7 @@ namespace AssortedCrazyThings
                 {
                     List<string> tooltips = new List<string>();
                     List<string> toUnlock = new List<string>();
-                    List<Texture2D> textures = new List<Texture2D>();
+                    List<string> textureNames = new List<string>();
                     List<bool> unlocked = new List<bool>();
 
                     foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
@@ -622,14 +623,14 @@ namespace AssortedCrazyThings
                         if (type != DroneType.None)
                         {
                             DroneData data = DroneController.GetDroneData(type);
-                            textures.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName));
+                            textureNames.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName).Name);
                             unlocked.Add(droneControllerUnlocked.HasFlag(type));
                             tooltips.Add(data.UITooltip);
                             toUnlock.Add("Craft and use a " + data.Name + " Item");
                         }
                     }
 
-                    return new CircleUIConf(0, -1, textures, unlocked, tooltips, toUnlock);
+                    return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
                 },
                 onUIStart: delegate
                 {
