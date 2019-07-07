@@ -66,10 +66,9 @@ namespace AssortedCrazyThings
         {
             if (!Main.dedServ && Main.netMode != 2)
             {
-                SlimePets.Load();
-
                 PetAccessory.Load();
             }
+            SlimePets.Load();
         }
 
         private void UnloadPets()
