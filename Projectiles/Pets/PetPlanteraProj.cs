@@ -42,7 +42,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             projectile.width = 36;
             projectile.height = 36;
             projectile.friendly = true;
-            projectile.minion = true; //only determines the damage type
+            projectile.minion = false; //only determines the damage type
+            //minion = false to prevent it from being "replaced" after casting other summons and then spawning its tentacles again
             projectile.minionSlots = 0f;
             projectile.penetrate = -1;
             projectile.aiStyle = -1;
@@ -219,7 +220,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
 
             //if something goes wrong, abort mission
-            if (ParentIndex < 0)
+            if (ParentIndex < 0 || (ParentIndex > -1 && Main.projectile[ParentIndex].type != mod.ProjectileType<PetPlanteraProj>()))
             {
                 projectile.Kill();
                 return;

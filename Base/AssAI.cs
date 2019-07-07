@@ -51,16 +51,17 @@ namespace AssortedCrazyThings.Base
         public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false)
         {
             int targetIndex = -1;
-            float distanceFromTarget = 100000f;
+            float distanceFromTarget = 10000000f;
             Vector2 targetCenter = relativeCenter;
+            range *= range;
             for (int k = 0; k < 200; k++)
             {
                 NPC npc = Main.npc[k];
                 if (npc.CanBeChasedBy(projectile.modProjectile))
                 {
                     //Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height)
-                    float between = Vector2.Distance(npc.Center, relativeCenter);
-                    if (((between < range && Vector2.Distance(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
+                    float between = Vector2.DistanceSquared(npc.Center, relativeCenter);
+                    if (((between < range && Vector2.DistanceSquared(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
                         (CheckLineOfSight(relativeCenter, npc.Center) || ignoreTiles))
                     {
                         distanceFromTarget = between;

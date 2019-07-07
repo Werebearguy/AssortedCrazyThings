@@ -270,6 +270,23 @@ namespace AssortedCrazyThings.Base
         }
 
         /// <summary>
+        /// Counts all active projectiles of the given type, and of a given owner if specified
+        /// </summary>
+        public static int CountProjs(int type, int owner = -1)
+        {
+            int count = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type == type &&
+                    (owner < 0 || Main.projectile[i].owner == owner))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        /// <summary>
         /// Checks if given NPC is a worm body or tail
         /// </summary>
         public static bool IsWormBodyOrTail(NPC npc)
