@@ -79,12 +79,6 @@ namespace AssortedCrazyThings
         /// </summary>
         public DroneType selectedDroneControllerMinionType = DroneType.BasicLaser;
 
-        private bool rightClickPrev = false;
-        private bool rightClickPrev2 = false;
-
-        private bool leftClickPrev = false;
-        private bool leftClickPrev2 = false;
-
         public override void ResetEffects()
         {
             everburningCandleBuff = false;
@@ -103,13 +97,13 @@ namespace AssortedCrazyThings
             droneControllerMinion = false;
         }
 
-        public bool RightClickPressed { get { return rightClickPrev && !rightClickPrev2; } }
+        public bool RightClickPressed { get { return PlayerInput.Triggers.JustPressed.MouseRight; } }
 
-        public bool RightClickReleased { get { return !rightClickPrev && rightClickPrev2; } }
+        public bool RightClickReleased { get { return PlayerInput.Triggers.JustReleased.MouseRight; } }
 
-        public bool LeftClickPressed { get { return leftClickPrev && !leftClickPrev2; } }
+        public bool LeftClickPressed { get { return PlayerInput.Triggers.JustPressed.MouseLeft; } }
 
-        public bool LeftClickReleased { get { return !leftClickPrev && leftClickPrev2; } }
+        public bool LeftClickReleased { get { return PlayerInput.Triggers.JustReleased.MouseLeft; } }
 
         public override TagCompound Save()
         {
@@ -145,6 +139,9 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Things that are sent to the server that are needed on-change
+        /// </summary>
         public void SendClientChangesPacket(int toClient = -1,int ignoreClient = -1)
         {
             if (Main.netMode != NetmodeID.SinglePlayer)
@@ -173,6 +170,9 @@ namespace AssortedCrazyThings
             SendClientChangesPacket();
         }
 
+        /// <summary>
+        /// Resets the empowering timer from the Empowering Buff, spawns dust, sends sync
+        /// </summary>
         public void ResetEmpoweringTimer(bool fromServer = false)
         {
             if (empoweringBuff && !player.HasBuff(BuffID.ShadowDodge))
@@ -196,6 +196,10 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Decreases damage based on current shield level from the Shield Drone, spawns dust
+        /// </summary>
+        /// <param name="damage"></param>
         public void DecreaseDroneShield(ref int damage)
         {
             if(shieldDroneReduction > 0)
@@ -215,6 +219,9 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Sets the isTemp on the projectile so it behaves differently
+        /// </summary>
         private void PreSyncSoulTemp(Projectile proj)
         {
             if (proj.modProjectile != null && proj.modProjectile is CompanionDungeonSoulMinionBase)
@@ -253,13 +260,17 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Returns true if NPC isn't in soulbuffblacklist or is a worm body or tail
+        /// </summary>
         private bool EligibleToRecieveSoulBuff(NPC npc)
         {
-            //returns true if isn't in soulbuffblacklist or is a worm body or tail
-            
             return Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) < 0 || AssUtils.IsWormBodyOrTail(npc);
         }
 
+        /// <summary>
+        /// Technically doesn't spawn souls, just applies the buff to the NPCs, that then spawns the soul if it dies
+        /// </summary>
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls)
@@ -298,6 +309,9 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Upon Soul Harvester death, convert all inert souls in inventory
+        /// </summary>
         public void ConvertInertSoulsInventory()
         {
             //this gets called once on server side for all players, and then each player calls it on itself client side
@@ -363,6 +377,9 @@ namespace AssortedCrazyThings
             }
         }
 
+        /// <summary>
+        /// Sets some variables related to the Empowering Buff
+        /// </summary>
         private void Empower()
         {
             if (empoweringBuff)
@@ -437,58 +454,6 @@ namespace AssortedCrazyThings
                 }
             }
             return true;
-        }
-
-        /// <summary>
-        /// Updates the status of right click (one tick delay, used for UI)
-        /// </summary>
-        private void RightClickStatus()
-        {
-            if (Main.mouseRight && !rightClickPrev)
-            {
-                rightClickPrev = true;
-                return;
-            }
-            if (!Main.mouseRight && rightClickPrev)
-            {
-                rightClickPrev = false;
-                return;
-            }
-
-            if (rightClickPrev && !rightClickPrev2)
-            {
-                rightClickPrev2 = true;
-            }
-            if (!rightClickPrev && rightClickPrev2)
-            {
-                rightClickPrev2 = false;
-            }
-        }
-
-        /// <summary>
-        /// Updates the status of left click (one tick delay, used for UI)
-        /// </summary>
-        private void LeftClickStatus()
-        {
-            if (Main.mouseLeft && !leftClickPrev)
-            {
-                leftClickPrev = true;
-                return;
-            }
-            if (!Main.mouseLeft && leftClickPrev)
-            {
-                leftClickPrev = false;
-                return;
-            }
-
-            if (leftClickPrev && !leftClickPrev2)
-            {
-                leftClickPrev2 = true;
-            }
-            if (!leftClickPrev && leftClickPrev2)
-            {
-                leftClickPrev2 = false;
-            }
         }
 
         private void ApplyCandleDebuffs(Entity victim)
@@ -657,6 +622,9 @@ namespace AssortedCrazyThings
         }
         #endregion
 
+        /// <summary>
+        /// Get proper SpriteEffects flags based on player status
+        /// </summary>
         private static SpriteEffects GetSpriteEffects(Player player)
         {
             if (player.gravDir == 1f)
@@ -728,7 +696,7 @@ namespace AssortedCrazyThings
 
         public static readonly PlayerLayer SlimeHandlerKnapsack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
         {
-            if (drawInfo.shadow != 0f)
+            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
             {
                 return;
             }
@@ -752,7 +720,7 @@ namespace AssortedCrazyThings
 
         public static readonly PlayerLayer HarvesterWings = new PlayerLayer("AssortedCrazyThings", "HarvesterWings", PlayerLayer.Wings, delegate (PlayerDrawInfo drawInfo)
         {
-            if (drawInfo.shadow != 0f)
+            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
             {
                 return;
             }
@@ -963,10 +931,6 @@ namespace AssortedCrazyThings
                 player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
 
             SpawnSoulsWhenHarvesterIsAlive();
-
-            RightClickStatus();
-
-            LeftClickStatus();
         }
     }
 }

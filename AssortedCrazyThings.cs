@@ -403,7 +403,7 @@ namespace AssortedCrazyThings
             {
                 if (triggerType == ItemType<VanitySelector>())
                 {
-                    UIText("No alt costumes found for " + (triggerLeft ? "" : "light") + " pet", CombatText.DamagedFriendly);
+                    UIText("No alt costumes found for" + (triggerLeft ? "" : " light") + " pet", CombatText.DamagedFriendly);
                     return;
                 }
             }
