@@ -482,31 +482,8 @@ namespace AssortedCrazyThings
             {
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<EverhallowedLantern>(),
-                condition: delegate
-                {
-                    return true;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>();
-                    List<string> toUnlock = new List<string>();
-                    List<string> textureNames = new List<string>();
-                    List<bool> unlocked = new List<bool>();
-
-                    foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
-                    {
-                        if (type != SoulType.None)
-                        {
-                            SoulData data = EverhallowedLantern.GetSoulData(type);
-                            textureNames.Add(Main.projectileTexture[data.ProjType].Name);
-                            unlocked.Add(data.Unlocked());
-                            tooltips.Add(data.Tooltip);
-                            toUnlock.Add(data.ToUnlock);
-                        }
-                    }
-
-                    return new CircleUIConf(8, -1, textureNames, unlocked, tooltips, toUnlock);
-                },
+                condition: () => true,
+                uiConf: EverhallowedLantern.GetUIConf,
                 onUIStart: delegate
                 {
                     if (Utils.IsPowerOfTwo((int)selectedSoulMinionType))
@@ -524,44 +501,9 @@ namespace AssortedCrazyThings
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<SlimeHandlerKnapsack>(),
-                condition: delegate
-                {
-                    return true;
-                },
-                uiConf: delegate
-                {
-                    List<string> textureNames = new List<string>() {
-                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionPreview",
-                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview",
-                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview" };
-                    List<string> tooltips = new List<string>
-                    {
-                        "Default"
-                        + "\nBase Damage: " + SlimePackMinion.DefDamage
-                        + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
-                        "Assorted"
-                        + "\nBase Damage: " + SlimePackMinion.DefDamage
-                        + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
-                        "Spiked"
-                        + "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * SlimePackMinion.SpikedIncrease)
-                        + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * SlimePackMinion.SpikedIncrease, 1)
-                        + "\nShoots spikes while fighting"
-                    };
-                    List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
-
-                    List<bool> unlocked = new List<bool>()
-                    {
-                        true,                // 0
-                        true,                // 1
-                        NPC.downedPlantBoss, // 2
-                    };
-
-                    return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
-                },
-                onUIStart: delegate
-                {
-                    return selectedSlimePackMinionType;
-                },
+                condition: () => true,
+                uiConf: SlimeHandlerKnapsack.GetUIConf,
+                onUIStart: () => selectedSlimePackMinionType,
                 onUIEnd: delegate
                 {
                     selectedSlimePackMinionType = (byte)CircleUI.returned;
@@ -571,31 +513,8 @@ namespace AssortedCrazyThings
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<DroneController>(),
-                condition: delegate
-                {
-                    return true;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>();
-                    List<string> toUnlock = new List<string>();
-                    List<string> textureNames = new List<string>();
-                    List<bool> unlocked = new List<bool>();
-
-                    foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
-                    {
-                        if (type != DroneType.None)
-                        {
-                            DroneData data = DroneController.GetDroneData(type);
-                            textureNames.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName).Name);
-                            unlocked.Add(droneControllerUnlocked.HasFlag(type));
-                            tooltips.Add(data.UITooltip);
-                            toUnlock.Add("Craft and use a " + data.Name + " Item");
-                        }
-                    }
-
-                    return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
-                },
+                condition: () => true,
+                uiConf: DroneController.GetUIConf,
                 onUIStart: delegate
                 {
                     if (Utils.IsPowerOfTwo((int)selectedDroneControllerMinionType))
@@ -693,7 +612,7 @@ namespace AssortedCrazyThings
             }
         });
 
-        public static readonly PlayerLayer SlimeHandlerKnapsack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
+        public static readonly PlayerLayer SlimeHandlerKnapsackBack = new PlayerLayer("AssortedCrazyThings", "SlimeHandlerKnapsackBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
             {
@@ -813,7 +732,7 @@ namespace AssortedCrazyThings
                 {
                     layers.RemoveAt(wingLayer);
                 }
-                layers.Insert(wingLayer + 1, SlimeHandlerKnapsack);
+                layers.Insert(wingLayer + 1, SlimeHandlerKnapsackBack);
             }
             if (wingLayer != -1)
             {

@@ -1,6 +1,7 @@
 ﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions.Drones;
+using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -199,6 +200,29 @@ namespace AssortedCrazyThings.Items.Weapons
         public static DroneData GetDroneData(DroneType selected)
         {
             return DataList[(int)Math.Log((int)selected, 2)];
+        }
+
+        public static CircleUIConf GetUIConf()
+        {
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            List<string> tooltips = new List<string>();
+            List<string> toUnlock = new List<string>();
+            List<string> textureNames = new List<string>();
+            List<bool> unlocked = new List<bool>();
+
+            foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
+            {
+                if (type != DroneType.None)
+                {
+                    DroneData data = GetDroneData(type);
+                    textureNames.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName).Name);
+                    unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
+                    tooltips.Add(data.UITooltip);
+                    toUnlock.Add("Craft and use a " + data.Name + " Item");
+                }
+            }
+
+            return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
         }
 
         /// <summary>

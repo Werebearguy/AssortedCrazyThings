@@ -1,6 +1,7 @@
 ﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,28 @@ namespace AssortedCrazyThings.Items.Weapons
         public static SoulData GetSoulData(SoulType selected)
         {
             return DataList[(int)Math.Log((int)selected, 2)];
+        }
+
+        public static CircleUIConf GetUIConf()
+        {
+            List<string> tooltips = new List<string>();
+            List<string> toUnlock = new List<string>();
+            List<string> textureNames = new List<string>();
+            List<bool> unlocked = new List<bool>();
+
+            foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
+            {
+                if (type != SoulType.None)
+                {
+                    SoulData data = GetSoulData(type);
+                    textureNames.Add(Main.projectileTexture[data.ProjType].Name);
+                    unlocked.Add(data.Unlocked());
+                    tooltips.Add(data.Tooltip);
+                    toUnlock.Add(data.ToUnlock);
+                }
+            }
+
+            return new CircleUIConf(8, -1, textureNames, unlocked, tooltips, toUnlock);
         }
 
         /// <summary>

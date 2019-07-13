@@ -611,6 +611,150 @@ namespace AssortedCrazyThings
         /// </summary>
         public byte[] ClonedTypes;
 
+        public static CircleUIConf GetLifelikeMechanicalFrogConf()
+        {
+            List<string> textureNames = new List<string>() {
+                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrog",
+                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrogCrown" };
+
+            List<string> tooltips = new List<string>() { "Default", "Crowned" };
+
+            //no need for unlocked + toUnlock
+            return new CircleUIConf(
+                Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
+                AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
+                textureNames, null, tooltips, null);
+        }
+
+        public static CircleUIConf GetDocileDemonEyeConf()
+        {
+            List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
+                "Red Fractured", "Green Fractured", "Purple Fractured",
+                "Red Mechanical", "Green Mechanical", "Purple Mechanical",
+                "Red Laser", "Green Laser", "Purple Laser" };
+
+            return CircleUIHandler.PetConf("DocileDemonEyeProj", tooltips);
+        }
+
+        public static CircleUIConf GetCursedSkullConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Dragon" };
+
+            return CircleUIHandler.PetConf("CursedSkull", tooltips);
+        }
+
+        public static CircleUIConf GetYoungWyvernConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
+
+            return CircleUIHandler.PetConf("YoungWyvern", tooltips);
+        }
+
+        public static CircleUIConf GetPetFishronConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
+
+            return CircleUIHandler.PetConf("PetFishronProj", tooltips);
+        }
+
+        public static CircleUIConf GetPetMoonConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
+
+            return CircleUIHandler.PetConf("PetMoonProj", tooltips);
+        }
+
+        public static CircleUIConf GetYoungHarpyConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
+
+            return CircleUIHandler.PetConf("YoungHarpy", tooltips);
+        }
+
+        public static CircleUIConf GetAbeeminationConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
+
+            return CircleUIHandler.PetConf("AbeeminationProj", tooltips);
+        }
+
+        public static CircleUIConf GetLilWrapsConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
+
+            return CircleUIHandler.PetConf("LilWrapsProj", tooltips);
+        }
+
+        public static CircleUIConf GetVampireBatConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Werebat" };
+
+            return CircleUIHandler.PetConf("VampireBat", tooltips);
+        }
+
+        public static CircleUIConf GetPigronataConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
+
+            return CircleUIHandler.PetConf("Pigronata", tooltips);
+        }
+
+        public static CircleUIConf GetQueenLarvaConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
+
+            return CircleUIHandler.PetConf("QueenLarvaProj", tooltips);
+        }
+
+        public static CircleUIConf GetOceanSlimeConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
+
+            return CircleUIHandler.PetConf("OceanSlimeProj", tooltips);
+        }
+
+        public static CircleUIConf GetMiniAntlionConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Albino" };
+
+            return CircleUIHandler.PetConf("MiniAntlionProj", tooltips);
+        }
+
+        public static CircleUIConf PetGoldfishConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
+
+            return CircleUIHandler.PetConf("PetGoldfishProj", tooltips);
+        }
+
+        public static CircleUIConf GetSkeletronHandConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
+
+            return CircleUIHandler.PetConf("SkeletronHandProj", tooltips);
+        }
+
+        public static CircleUIConf GetSkeletronPrimeHandConf()
+        {
+            List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
+
+            return CircleUIHandler.PetConf("SkeletronPrimeHandProj", tooltips);
+        }
+
+        public static CircleUIConf GetPetCultistConf()
+        {
+            List<string> tooltips = new List<string>() { "Lunar", "Solar" };
+
+            return CircleUIHandler.PetConf("PetCultistProj", tooltips);
+        }
+
+        public static CircleUIConf GetAnimatedTomeConf()
+        {
+            List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow" };
+
+            return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
+        }
+
         public override void Initialize()
         {
             //called before Load()
@@ -620,461 +764,162 @@ namespace AssortedCrazyThings
             {
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return LifelikeMechanicalFrog;
-                },
-                uiConf: delegate
-                {
-                    List<string> textureNames = new List<string>() {
-                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrog",
-                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrogCrown" };
-
-                    List<string> tooltips = new List<string>() { "Default", "Crowned" };
-
-                    //no need for unlocked + toUnlock
-                    return new CircleUIConf(
-                        Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
-                        AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
-                        textureNames, null, tooltips, null);
-                },
-                onUIStart: delegate
-                {
-                    return mechFrogCrown;
-                },
-                onUIEnd: delegate
-                {
-                    mechFrogCrown = (byte)CircleUI.returned;
-                },
+                condition: () => LifelikeMechanicalFrog,
+                uiConf: GetLifelikeMechanicalFrogConf,
+                onUIStart: () => mechFrogCrown,
+                onUIEnd: () => mechFrogCrown = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return DocileDemonEye;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
-                "Red Fractured", "Green Fractured", "Purple Fractured",
-                "Red Mechanical", "Green Mechanical", "Purple Mechanical",
-                "Red Laser", "Green Laser", "Purple Laser" };
-
-                    return CircleUIHandler.PetConf("DocileDemonEyeProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return petEyeType;
-                },
-                onUIEnd: delegate
-                {
-                    petEyeType = (byte)CircleUI.returned;
-                },
+                condition: () => DocileDemonEye,
+                uiConf: GetDocileDemonEyeConf,
+                onUIStart: () => petEyeType,
+                onUIEnd: () => petEyeType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return CursedSkull;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Dragon" };
-
-                    return CircleUIHandler.PetConf("CursedSkull", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return cursedSkullType;
-                },
-                onUIEnd: delegate
-                {
-                    cursedSkullType = (byte)CircleUI.returned;
-                },
+                condition: () => CursedSkull,
+                uiConf: GetCursedSkullConf,
+                onUIStart: () => cursedSkullType,
+                onUIEnd: () => cursedSkullType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return YoungWyvern;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
-
-                    return CircleUIHandler.PetConf("YoungWyvern", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return youngWyvernType;
-                },
-                onUIEnd: delegate
-                {
-                    youngWyvernType = (byte)CircleUI.returned;
-                },
+                condition: () => YoungWyvern,
+                uiConf: GetYoungWyvernConf,
+                onUIStart: () => youngWyvernType,
+                onUIEnd: () => youngWyvernType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return PetFishron;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
-
-                    return CircleUIHandler.PetConf("PetFishronProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return petFishronType;
-                },
-                onUIEnd: delegate
-                {
-                    petFishronType = (byte)CircleUI.returned;
-                },
+                condition: () => PetFishron,
+                uiConf: GetPetFishronConf,
+                onUIStart: () => petFishronType,
+                onUIEnd: () => petFishronType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return PetMoon;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
-
-                    return CircleUIHandler.PetConf("PetMoonProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return petMoonType;
-                },
-                onUIEnd: delegate
-                {
-                    petMoonType = (byte)CircleUI.returned;
-                },
+                condition: () => PetMoon,
+                uiConf: GetPetMoonConf,
+                onUIStart: () => petMoonType,
+                onUIEnd: () => petMoonType = (byte)CircleUI.returned,
                 triggerLeft: false,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return YoungHarpy;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
-
-                    return CircleUIHandler.PetConf("YoungHarpy", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return youngHarpyType;
-                },
-                onUIEnd: delegate
-                {
-                    youngHarpyType = (byte)CircleUI.returned;
-                },
+                condition: () => YoungHarpy,
+                uiConf: GetYoungHarpyConf,
+                onUIStart: () => youngHarpyType,
+                onUIEnd: () => youngHarpyType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return Abeemination;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
-
-                    return CircleUIHandler.PetConf("AbeeminationProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return abeeminationType;
-                },
-                onUIEnd: delegate
-                {
-                    abeeminationType = (byte)CircleUI.returned;
-                },
+                condition: () => Abeemination,
+                uiConf: GetAbeeminationConf,
+                onUIStart: () => abeeminationType,
+                onUIEnd: () => abeeminationType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return LilWraps;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
-
-                    return CircleUIHandler.PetConf("LilWrapsProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return lilWrapsType;
-                },
-                onUIEnd: delegate
-                {
-                    lilWrapsType = (byte)CircleUI.returned;
-                },
+                condition: () => LilWraps,
+                uiConf: GetLilWrapsConf,
+                onUIStart: () => lilWrapsType,
+                onUIEnd: () => lilWrapsType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return VampireBat;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Werebat" };
-
-                    return CircleUIHandler.PetConf("VampireBat", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return vampireBatType;
-                },
-                onUIEnd: delegate
-                {
-                    vampireBatType = (byte)CircleUI.returned;
-                },
+                condition: () => VampireBat,
+                uiConf: GetVampireBatConf,
+                onUIStart: () => vampireBatType,
+                onUIEnd: () => vampireBatType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return Pigronata;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
-
-                    return CircleUIHandler.PetConf("Pigronata", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return pigronataType;
-                },
-                onUIEnd: delegate
-                {
-                    pigronataType = (byte)CircleUI.returned;
-                },
+                condition: () => Pigronata,
+                uiConf: GetPigronataConf,
+                onUIStart: () => pigronataType,
+                onUIEnd: () => pigronataType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return QueenLarva;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
-
-                    return CircleUIHandler.PetConf("QueenLarvaProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return queenLarvaType;
-                },
-                onUIEnd: delegate
-                {
-                    queenLarvaType = (byte)CircleUI.returned;
-                },
+                condition: () => QueenLarva,
+                uiConf: GetQueenLarvaConf,
+                onUIStart: () => queenLarvaType,
+                onUIEnd: () => queenLarvaType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return OceanSlime;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
-
-                    return CircleUIHandler.PetConf("OceanSlimeProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return oceanSlimeType;
-                },
-                onUIEnd: delegate
-                {
-                    oceanSlimeType = (byte)CircleUI.returned;
-                },
+                condition: () => OceanSlime,
+                uiConf: GetOceanSlimeConf,
+                onUIStart: () => oceanSlimeType,
+                onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return MiniAntlion;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Albino" };
-
-                    return CircleUIHandler.PetConf("MiniAntlionProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return miniAntlionType;
-                },
-                onUIEnd: delegate
-                {
-                    miniAntlionType = (byte)CircleUI.returned;
-                },
+                condition: () => MiniAntlion,
+                uiConf: GetMiniAntlionConf,
+                onUIStart: () => miniAntlionType,
+                onUIEnd: () => miniAntlionType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return PetGoldfish;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
-
-                    return CircleUIHandler.PetConf("PetGoldfishProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return petGoldfishType;
-                },
-                onUIEnd: delegate
-                {
-                    petGoldfishType = (byte)CircleUI.returned;
-                },
+                condition: () => PetGoldfish,
+                uiConf: PetGoldfishConf,
+                onUIStart: () => petGoldfishType,
+                onUIEnd: () => petGoldfishType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return SkeletronHand;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
-
-                    return CircleUIHandler.PetConf("SkeletronHandProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return skeletronHandType;
-                },
-                onUIEnd: delegate
-                {
-                    skeletronHandType = (byte)CircleUI.returned;
-                },
+                condition: () => SkeletronHand,
+                uiConf: GetSkeletronHandConf,
+                onUIStart: () => skeletronHandType,
+                onUIEnd: () => skeletronHandType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return SkeletronPrimeHand;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
-
-                    return CircleUIHandler.PetConf("SkeletronPrimeHandProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return skeletronPrimeHandType;
-                },
-                onUIEnd: delegate
-                {
-                    skeletronPrimeHandType = (byte)CircleUI.returned;
-                },
+                condition: () => SkeletronPrimeHand,
+                uiConf: GetSkeletronPrimeHandConf,
+                onUIStart: () => skeletronPrimeHandType,
+                onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return PetCultist;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Lunar", "Solar" };
-
-                    return CircleUIHandler.PetConf("PetCultistProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return petCultistType;
-                },
-                onUIEnd: delegate
-                {
-                    petCultistType = (byte)CircleUI.returned;
-                },
+                condition: () => PetCultist,
+                uiConf: GetPetCultistConf,
+                onUIStart: () => petCultistType,
+                onUIEnd: () => petCultistType = (byte)CircleUI.returned,
                 triggerLeft: false,
                 needsSaving: true
             ),
                 new CircleUIHandler(
                 triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return AnimatedTome;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow" };
-
-                    return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return animatedTomeType;
-                },
-                onUIEnd: delegate
-                {
-                    animatedTomeType = (byte)CircleUI.returned;
-                },
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-                condition: delegate
-                {
-                    return AnimatedTome;
-                },
-                uiConf: delegate
-                {
-                    List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow" };
-
-                    return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
-                },
-                onUIStart: delegate
-                {
-                    return animatedTomeType;
-                },
-                onUIEnd: delegate
-                {
-                    animatedTomeType = (byte)CircleUI.returned;
-                },
+                condition: () => AnimatedTome,
+                uiConf: GetAnimatedTomeConf,
+                onUIStart: () => animatedTomeType,
+                onUIEnd: () => animatedTomeType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
             //ALTERNATE
             //    new CircleUIHandler(
             //    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-            //    condition: delegate
+            //    condition: () =>
             //    {
             //        return ClassName;
             //    },

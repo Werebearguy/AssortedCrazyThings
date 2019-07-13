@@ -1,6 +1,10 @@
-﻿using AssortedCrazyThings.Buffs;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,6 +13,36 @@ namespace AssortedCrazyThings.Items.Weapons
 {
     public class SlimeHandlerKnapsack : MinionItemBase
     {
+        public static CircleUIConf GetUIConf() {
+            List<string> textureNames = new List<string>() {
+                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionPreview",
+                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview",
+                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview" };
+            List<string> tooltips = new List<string>
+                    {
+                        "Default"
+                        + "\nBase Damage: " + SlimePackMinion.DefDamage
+                        + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
+                        "Assorted"
+                        + "\nBase Damage: " + SlimePackMinion.DefDamage
+                        + "\nBase Knockback: " + SlimePackMinion.DefKnockback,
+                        "Spiked"
+                        + "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1))
+                        + "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1)
+                        + "\nShoots spikes while fighting"
+                    };
+            List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
+
+            List<bool> unlocked = new List<bool>()
+                    {
+                        true,                // 0
+                        true,                // 1
+                        NPC.downedPlantBoss, // 2
+                    };
+
+            return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slime Handler Knapsack");
