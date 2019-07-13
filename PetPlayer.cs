@@ -755,11 +755,18 @@ namespace AssortedCrazyThings
             return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
         }
 
+        //ALTERNATE
+        //public static CircleUIConf GetClassNameConf()
+        //{
+        //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
+
+        //    return Temp.PetConf("ClassNameProj", tooltips);
+        //}
+
         public override void Initialize()
         {
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
-            //Count: 20
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
@@ -919,25 +926,10 @@ namespace AssortedCrazyThings
             //ALTERNATE
             //    new CircleUIHandler(
             //    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-            //    condition: () =>
-            //    {
-            //        return ClassName;
-            //    },
-            //    uiConf: delegate
-            //    {
-            //        List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
-
-            //        return Temp.PetConf("ClassNameProj", tooltips);
-            //    },
-            //    onUIStart: delegate
-            //    {
-            //        return classNameType;
-            //    },
-            //    onUIEnd: delegate
-            //    {
-            //        classNameType = (byte)CircleUI.returned;
-            //    },
-            //    triggerLeft: true
+            //    condition: () => ClassName,
+            //    uiConf: GetClassNameConf,
+            //    onUIStart: () => classNameType,
+            //    onUIEnd: () => classNameType = (byte)CircleUI.returned,
             //    needsSaving: true
             //),
             };

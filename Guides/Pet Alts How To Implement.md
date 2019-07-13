@@ -106,33 +106,27 @@ adjust `stupidOffset` accordingly in PreDraw() (example: YoungWyvern.cs)
 
  (4) Register textures, add tooltips in PetPlayer.cs
 
-* At the end of Initialize(), add this:
+* Before Initialize(), add this:
 * "Default" is the \_0 texture, "AltName1" is the \_1 texture etc.
 * It will only register the number of textures specified as tooltips,
 so if you have 10 textures but only name 6 tooltips it will only pick the textures from 0 to 5 (as opposed to 0 to 9)
+```csharp
+public static CircleUIConf GetClassNameConf()
+{
+    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
+
+    return Temp.PetConf("ClassNameProj", tooltips);
+}
+```
+* At the end of Initialize(), add this:
 
 ```csharp
     new CircleUIHandler(
     triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
-    condition: delegate
-    {
-        return ClassName;
-    },
-    uiConf: delegate
-    {
-        List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
-
-        return Temp.PetConf("ClassNameProj", tooltips);
-    },
-    onUIStart: delegate
-    {
-        return classNameType;
-    },
-    onUIEnd: delegate
-    {
-        classNameType = (byte)CircleUI.returned;
-    },
-    triggerLeft: true
+    condition: () => ClassName,
+    uiConf: GetClassNameConf,
+    onUIStart: () => classNameType,
+    onUIEnd: () => classNameType = (byte)CircleUI.returned,
     needsSaving: true
 ),
 ```
@@ -141,5 +135,5 @@ so if you have 10 textures but only name 6 tooltips it will only pick the textur
 
 
 Finally, you can go into PetPlayer.cs and search for "//ALTERNATE" to see if you implemented everything (examples included in each instance):
- * 6 occurences (2 of which are ticked off already if you do it on an existing pet)
+ * 7 occurences (2 of which are ticked off already if you do it on an existing pet)
  

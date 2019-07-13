@@ -477,7 +477,6 @@ namespace AssortedCrazyThings
         public override void Initialize()
         {
             //needs to call new List() since Initialize() is called per player in the player select screen
-            //Count: 3
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
