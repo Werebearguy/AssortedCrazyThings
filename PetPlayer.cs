@@ -760,7 +760,7 @@ namespace AssortedCrazyThings
         //{
         //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
 
-        //    return Temp.PetConf("ClassNameProj", tooltips);
+        //    return CircleUIHandler.PetConf("ClassNameProj", tooltips);
         //}
 
         public override void Initialize()

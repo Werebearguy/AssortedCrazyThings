@@ -115,7 +115,7 @@ public static CircleUIConf GetClassNameConf()
 {
     List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
 
-    return Temp.PetConf("ClassNameProj", tooltips);
+    return CircleUIHandler.PetConf("ClassNameProj", tooltips);
 }
 ```
 * At the end of Initialize(), add this:
