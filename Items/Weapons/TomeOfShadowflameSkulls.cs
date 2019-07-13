@@ -8,16 +8,16 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public override void SetDefaults()
         {
-			item.CloneDefaults(ItemID.BookofSkulls);
+            item.CloneDefaults(ItemID.BookofSkulls);
             item.damage = 50;
-			item.mana = 6;
+            item.mana = 6;
             item.useTime = 35;
             item.shootSpeed = 10f;
-			item.shoot = ProjectileID.ClothiersCurse;
+            item.shoot = ProjectileID.ClothiersCurse;
             item.useAnimation = 35;
             item.value = Item.sellPrice(silver: 10);
             item.rare = -11;
-			item.noUseGraphic = true;
+            item.noUseGraphic = true;
         }
 
         public override void SetStaticDefaults()
@@ -26,14 +26,14 @@ namespace AssortedCrazyThings.Items.Weapons
             Tooltip.SetDefault("Inflicts Shadowflame on enemies");
         }
 
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.SoulofFright, 10);
-			recipe.AddIngredient(ItemID.BookofSkulls, 1);
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.SoulofFright, 10);
+            recipe.AddIngredient(ItemID.BookofSkulls, 1);
             recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
-	}
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

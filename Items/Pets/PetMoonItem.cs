@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items.Pets
                 player.AddBuff(item.buffType, 3600, true);
             }
         }
-        
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

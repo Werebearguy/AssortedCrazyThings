@@ -169,7 +169,7 @@ namespace AssortedCrazyThings.Base
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Hell] = new List<string>() { "Lava" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
-            slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() {"Illuminant" };
+            slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() { "Illuminant" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
             slimePetNPCsEnumToNames[(int)SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
 
@@ -408,7 +408,7 @@ namespace AssortedCrazyThings.Base
         public static SlimePet NewSlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
             bool body = false, bool hat = false, bool carried = false, bool accessory = false)
         {
-            List<bool> isSlotTypeBlacklisted = new List<bool>(){ body, hat, carried, accessory };
+            List<bool> isSlotTypeBlacklisted = new List<bool>() { body, hat, carried, accessory };
 
             return new SlimePet(name, hasNoHair, preAdditionSlot, postAdditionSlot, isSlotTypeBlacklisted);
         }
@@ -416,8 +416,8 @@ namespace AssortedCrazyThings.Base
         public override string ToString()
         {
             return "Name: " + Name
-                +"; Type: " + Type
-                + "; HasNoHair: " + (HasNoHair? "y":"n")
+                + "; Type: " + Type
+                + "; HasNoHair: " + (HasNoHair ? "y" : "n")
                 + "; PreAdditionSlot: " + ((SlotType)PreAdditionSlot).ToString()
                 + "; PostAdditionSlot: " + ((SlotType)PostAdditionSlot).ToString();
         }

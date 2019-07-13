@@ -1,7 +1,7 @@
-using System;
-using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 
@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             maxAccScale = 0.04f; //0.04f default
             stuckTime = 6; //*30 for ticks, *0.5 for seconds
             afterEatTime = 60;
-            eatTime = EatTimeConst -30; // +60
+            eatTime = EatTimeConst - 30; // +60
             idleTime = IdleTimeConst;
             hungerTime = 2040; //AI_Timer //1000
             maxSoulsEaten = 5; //3

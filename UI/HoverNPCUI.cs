@@ -1,12 +1,12 @@
-﻿using Terraria.UI;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Terraria.UI.Chat;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameInput;
-using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Base;
+﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs;
+using AssortedCrazyThings.NPCs.DungeonBird;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.GameInput;
+using Terraria.UI;
+using Terraria.UI.Chat;
 
 namespace AssortedCrazyThings.UI
 {

@@ -88,7 +88,7 @@ namespace AssortedCrazyThings.Items.Weapons
                     }
                     catch (Exception)
                     {
-                        
+
                     }
                 }
             }

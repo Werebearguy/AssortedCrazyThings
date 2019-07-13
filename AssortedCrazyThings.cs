@@ -1,9 +1,11 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.UI;
-using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,12 +14,9 @@ using System.IO;
 using Terraria;
 using Terraria.Graphics;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.Items.Pets;
-using Terraria.Localization;
-using System.Linq;
 
 namespace AssortedCrazyThings
 {

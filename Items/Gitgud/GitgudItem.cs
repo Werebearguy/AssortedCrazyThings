@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Items.Gitgud
                     tooltips.Insert(insertIndex++, new TooltipLine(mod, "Reduced", reduced));
                     if (data.BuffType != -1)
                     {
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "BuffImmune", "Immunity to '" + data.BuffName + "' while " + data.BossName + (data.BossName.Contains(" or ")? " are":" is") + " alive"));
+                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "BuffImmune", "Immunity to '" + data.BuffName + "' while " + data.BossName + (data.BossName.Contains(" or ") ? " are" : " is") + " alive"));
                     }
 
                     if (!(data.Accessory[Main.myPlayer] || Main.LocalPlayer.HasItem(item.type) || Main.LocalPlayer.trashItem.type == item.type))
@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             item.rare = -1;
             item.maxStack = 1;
             item.accessory = true;
-            
+
             //item.width = 32;
             //item.height = 32;
 

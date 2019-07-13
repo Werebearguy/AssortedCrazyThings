@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 texture = 4;
             }
-            
+
             if (projectile.frame != 4) Lighting.AddLight(projectile.Center, lightVector * lightFactor);
 
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetMoonProj_" + texture);

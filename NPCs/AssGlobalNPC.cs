@@ -1,29 +1,29 @@
+using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.Items.Placeable;
+using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.NPCs.DungeonBird;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Items.Pets;
-using AssortedCrazyThings.Items.Placeable;
-using AssortedCrazyThings.Items;
-using Microsoft.Xna.Framework;
-using System;
-using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Items.Weapons;
 
 namespace AssortedCrazyThings.NPCs
 {
-	public class AssGlobalNPC : GlobalNPC
-	{
+    public class AssGlobalNPC : GlobalNPC
+    {
         public bool shouldSoulDrop = false;
         public bool sentWyvernPacket = false;
 
-		public override bool InstancePerEntity
-		{
-			get
-			{
-				return true;
-			}
-		}
+        public override bool InstancePerEntity
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         public override void ResetEffects(NPC npc)
         {

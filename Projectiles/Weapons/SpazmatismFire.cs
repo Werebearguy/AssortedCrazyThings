@@ -13,10 +13,10 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void SetDefaults()
         {
-			projectile.CloneDefaults(ProjectileID.EyeFire);
-			projectile.aiStyle = 23;
-			projectile.friendly = true;
-			projectile.hostile = false;
+            projectile.CloneDefaults(ProjectileID.EyeFire);
+            projectile.aiStyle = 23;
+            projectile.friendly = true;
+            projectile.hostile = false;
             //adding this makes the game select the AI that is meant for the Spazmatism cursed fire ai
             aiType = ProjectileID.EyeFire;
         }

@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         public override void SetDefaults()
         {
-			//projectile.CloneDefaults(ProjectileID.RocketIII);
+            //projectile.CloneDefaults(ProjectileID.RocketIII);
             projectile.width = 14;
             projectile.height = 14;
             projectile.aiStyle = -1;
@@ -97,16 +97,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 gore.velocity.Y += 1f;
                 gore = Main.gore[Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
                 gore.velocity *= scaleFactor10;
-                gore.velocity.X += - 1f;
+                gore.velocity.X += -1f;
                 gore.velocity.Y += 1f;
                 gore = Main.gore[Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
                 gore.velocity *= scaleFactor10;
                 gore.velocity.X += 1f;
-                gore.velocity.Y += - 1f;
+                gore.velocity.Y += -1f;
                 gore = Main.gore[Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
                 gore.velocity *= scaleFactor10;
-                gore.velocity.X += - 1f;
-                gore.velocity.Y += - 1f;
+                gore.velocity.X += -1f;
+                gore.velocity.Y += -1f;
             }
             projectile.position.X = projectile.position.X + projectile.width / 2;
             projectile.position.Y = projectile.position.Y + projectile.height / 2;

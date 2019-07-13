@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Items
             item.consumable = true;
             item.value = Item.sellPrice(silver: 10);
         }
-        
+
         public override bool CanUseItem(Player player)
         {
             return !NPC.AnyNPCs(mod.NPCType("FoldfishBoss"));

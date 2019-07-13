@@ -31,8 +31,8 @@ namespace AssortedCrazyThings.NPCs
             npc.dontTakeDamage = true;
             //aiType = NPCID.DemonEye;
             animationType = NPCID.DemonEye;
-			Main.npcCatchable[mod.NPCType("MeatballsEye")] = true;
-			npc.catchItem = (short)mod.ItemType("MeatballsEye");
+            Main.npcCatchable[mod.NPCType("MeatballsEye")] = true;
+            npc.catchItem = (short)mod.ItemType("MeatballsEye");
         }
 
         public override void AI()

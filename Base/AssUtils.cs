@@ -71,7 +71,7 @@ namespace AssortedCrazyThings.Base
             dust.noLight = true;
             return dust;
         }
-        
+
         public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
             DrawSkeletronLikeArms(spriteBatch, ModContent.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
@@ -115,7 +115,7 @@ namespace AssortedCrazyThings.Base
                 }
                 float rotation = (float)Math.Atan2(y, x) - 1.57f;
                 Color color = Lighting.GetColor((int)drawPos.X / 16, (int)(drawPos.Y / 16f));
-                spriteBatch.Draw(tex, new Vector2(drawPos.X - Main.screenPosition.X, drawPos.Y - Main.screenPosition.Y), tex.Bounds, color, rotation, tex.Bounds.Size()/2, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(tex, new Vector2(drawPos.X - Main.screenPosition.X, drawPos.Y - Main.screenPosition.Y), tex.Bounds, color, rotation, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
                 if (i == 0)
                 {
                     //padding for the second arm piece
@@ -172,7 +172,7 @@ namespace AssortedCrazyThings.Base
                     vector2_4 = mountedCenter - position;
                     Color color2 = Lighting.GetColor((int)position.X / 16, (int)position.Y / 16);
                     color2 = new Color(color2.R, color2.G, color2.B, 255);
-                    spriteBatch.Draw(tex, position - Main.screenPosition, new Rectangle(0, 0, tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, tex.Bounds.Size()/2, 1f, SpriteEffects.None, 0.0f);
+                    spriteBatch.Draw(tex, position - Main.screenPosition, new Rectangle(0, 0, tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0.0f);
                 }
             }
         }

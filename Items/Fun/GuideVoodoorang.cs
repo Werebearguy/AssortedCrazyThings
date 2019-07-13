@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-	public class GuideVoodoorang : ModItem
-	{
+    public class GuideVoodoorang : ModItem
+    {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Guide Voodoorang");
@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Fun
             item.width = 22;
             item.height = 30;
             item.rare = -11;
-            
+
             item.value = Item.sellPrice(silver: 2);
             item.shoot = mod.ProjectileType<GuideVoodoorangProj>();
         }

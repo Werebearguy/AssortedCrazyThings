@@ -1,5 +1,5 @@
-﻿using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Base;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.PetAccessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -133,7 +133,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
             {
                 PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
-                    
+
                 if (petAccessory != null)
                 {
                     if (sPet.PreAdditionSlot == slotNumber) drawPreAddition = false;
@@ -192,13 +192,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
                 PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
-                
+
                 if (petAccessory != null &&
                     (preDraw || !petAccessory.PreDraw) &&
                     !sPet.IsSlotTypeBlacklisted[slotNumber])
                 {
                     string textureString = PetAccessoryFolder + petAccessory.Name;
-                    string colorString = petAccessory.HasAlts? petAccessory.AltTextureSuffixes[petAccessory.Color]: "";
+                    string colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
 
                     string drawString = "_Draw";
 
@@ -218,9 +218,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //get necessary properties and parameters for draw
                     SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
-                    Vector2 stupidOffset = new Vector2(projectile.type == mod.ProjectileType<CuteSlimePinkNewProj>()? -8f: 0f, drawOriginOffsetY + projectile.gfxOffY);
+                    Vector2 stupidOffset = new Vector2(projectile.type == mod.ProjectileType<CuteSlimePinkNewProj>() ? -8f : 0f, drawOriginOffsetY + projectile.gfxOffY);
                     Color color = drawColor * ((255 - petAccessory.Alpha) / 255f);
-                    
+
                     Vector2 originOffset = -petAccessory.Offset;
                     originOffset.X *= Math.Sign(projectile.spriteDirection);
 

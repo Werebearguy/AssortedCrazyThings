@@ -1,11 +1,11 @@
-﻿using Terraria.UI;
-using Terraria;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.PetAccessories;
 using Microsoft.Xna.Framework;
-using Terraria.UI.Chat;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Base;
+using Terraria;
+using Terraria.UI;
+using Terraria.UI.Chat;
 
 namespace AssortedCrazyThings.UI
 {

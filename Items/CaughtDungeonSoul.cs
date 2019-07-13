@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items
         {
             DisplayName.SetDefault("Loose Dungeon Soul");
             Tooltip.SetDefault("'An inert soul caught by a net'"
-                +"\nAwakened in your inventory when " + Harvester.name + " is defeated");
+                + "\nAwakened in your inventory when " + Harvester.name + " is defeated");
             // ticksperframe, frameCount
             //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
             //ItemID.Sets.AnimatesAsSoul[item.type] = true;

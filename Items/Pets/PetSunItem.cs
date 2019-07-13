@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             DisplayName.SetDefault("Bottled Sun");
             Tooltip.SetDefault("Summons a small sun that provides you with constant sunlight"
-                +"\nShows the current time in the buff tip");
+                + "\nShows the current time in the buff tip");
         }
 
         public override void SetDefaults()
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Pets
                 player.AddBuff(item.buffType, 3600, true);
             }
         }
-        
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

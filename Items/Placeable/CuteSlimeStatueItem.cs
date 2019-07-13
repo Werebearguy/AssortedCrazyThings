@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-	public class CuteSlimeStatueItem : ModItem
+    public class CuteSlimeStatueItem : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,20 +13,20 @@ namespace AssortedCrazyThings.Items.Placeable
         }
 
         public override void SetDefaults()
-		{
-			item.width = 28;
-			item.height = 28;
-			item.maxStack = 99;
-			item.useTurn = true;
-			item.autoReuse = true;
-			item.useAnimation = 15;
-			item.useTime = 10;
-			item.useStyle = 1;
-			item.consumable = true;
-			item.rare = -11;
-			item.value = Item.sellPrice(0, 0, 0, 60);
-			item.createTile = mod.TileType<CuteSlimeStatueTile>();
-		}
+        {
+            item.width = 28;
+            item.height = 28;
+            item.maxStack = 99;
+            item.useTurn = true;
+            item.autoReuse = true;
+            item.useAnimation = 15;
+            item.useTime = 10;
+            item.useStyle = 1;
+            item.consumable = true;
+            item.rare = -11;
+            item.value = Item.sellPrice(0, 0, 0, 60);
+            item.createTile = mod.TileType<CuteSlimeStatueTile>();
+        }
 
         public override void AddRecipes()
         {

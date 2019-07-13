@@ -147,7 +147,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
-            
+
             //the one that spawns on hit via SigilOfEmergency
             if (projectile.minionSlots == 0f && projectile.timeLeft < 120)
             {
@@ -157,14 +157,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
             Lighting.AddLight(projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Minions/"+ Name);// Main.projectileTexture[projectile.type];
+            Texture2D image = mod.GetTexture("Projectiles/Minions/" + Name);// Main.projectileTexture[projectile.type];
 
             AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
             if (mPlayer.soulSaviorArmor && projectile.minionSlots == 1f)
             {
                 image = mod.GetTexture("Projectiles/Minions/" + Name + "_Empowered");
             }
-             Rectangle bounds = new Rectangle
+            Rectangle bounds = new Rectangle
             {
                 X = 0,
                 Y = projectile.frame,
@@ -281,7 +281,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     if (projectile.position.X < Main.projectile[i].position.X) projectile.velocity.X = projectile.velocity.X - overlapVelo;
                     else projectile.velocity.X = projectile.velocity.X + overlapVelo;
 
-                    if (projectile.position.Y < Main.projectile[i].position.Y) projectile.velocity.Y = projectile.velocity.Y - overlapVelo; 
+                    if (projectile.position.Y < Main.projectile[i].position.Y) projectile.velocity.Y = projectile.velocity.Y - overlapVelo;
                     else projectile.velocity.Y = projectile.velocity.Y + overlapVelo;
                 }
             }
@@ -334,7 +334,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 //        foundTarget = true;
                 //    }
                 //}
-                int targetIndex = - 1;
+                int targetIndex = -1;
                 if (!foundTarget)
                 {
                     for (int j = 0; j < 200; j++)

@@ -1,5 +1,4 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -39,11 +38,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         {
             if (player.wet || player.honeyWet)
             {
-                    //ascentWhenFalling = 0.85f;
-                    //ascentWhenRising = 0.15f;
-                    //maxCanAscendMultiplier = 1f;
-                    //maxAscentMultiplier = 0.5f;
-                    //constantAscend = 1f;
+                //ascentWhenFalling = 0.85f;
+                //ascentWhenRising = 0.15f;
+                //maxCanAscendMultiplier = 1f;
+                //maxAscentMultiplier = 0.5f;
+                //constantAscend = 1f;
             }
             else
             {

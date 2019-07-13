@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             defveloNoclip = 12f;
 
             dustColor = ItemID.BrightGreenDye;
-            
+
             projectile.idStaticNPCHitCooldown = 14;
         }
 

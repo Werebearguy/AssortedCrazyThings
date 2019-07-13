@@ -1,5 +1,5 @@
-﻿using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Base;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

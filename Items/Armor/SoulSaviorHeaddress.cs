@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.Items.Armor
              * with 7 minion slots and 150% minion damage you deal 105% thorns damage (for example when equipping sigil of emergency
              * and harvester wings)
              */
-             
+
             player.setBonus = "Reflects 10% contact damage per available minion slot"
                 + "\nReflected damage further increased by effects that increase minion damage"
                 + "\nCurrent reflected damage: " + (int)(factor * 100) + "%"

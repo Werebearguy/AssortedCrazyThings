@@ -7,14 +7,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
     //check this file for more info vvvvvvvv
     public class OceanSlimeProj : BabySlimeBase
     {
-		public override string Texture
-		{
-			get
-			{
-				return "AssortedCrazyThings/Projectiles/Pets/OceanSlimeProj_0";
-			}
-		}
-		
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/OceanSlimeProj_0";
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ocean Slime");
@@ -46,22 +46,22 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             return true;
         }
-		
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-			SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-			Texture2D image = mod.GetTexture("Projectiles/Pets/OceanSlimeProj_" + mPlayer.oceanSlimeType);
-			Rectangle bounds = new Rectangle
-			{
-				X = 0,
-				Y = projectile.frame,
-				Width = image.Bounds.Width,
-				Height = image.Bounds.Height / Main.projFrames[projectile.type]
-			};
-			bounds.Y *= bounds.Height;
 
-			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Texture2D image = mod.GetTexture("Projectiles/Pets/OceanSlimeProj_" + mPlayer.oceanSlimeType);
+            Rectangle bounds = new Rectangle
+            {
+                X = 0,
+                Y = projectile.frame,
+                Width = image.Bounds.Width,
+                Height = image.Bounds.Height / Main.projFrames[projectile.type]
+            };
+            bounds.Y *= bounds.Height;
+
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
 
             if (mPlayer.oceanSlimeType == 0)
             {
@@ -70,7 +70,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
-			return false;
-		}
+            return false;
+        }
     }
 }

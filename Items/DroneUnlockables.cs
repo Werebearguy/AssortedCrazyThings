@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using AssortedCrazyThings.Items.Weapons;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items
             item.UseSound = SoundID.Item44;
             item.consumable = true;
         }
-        
+
         public override bool CanUseItem(Player player)
         {
             return !NPC.AnyNPCs(AssWorld.harvesterTypes[0]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[1]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[2]) && player.ZoneDungeon;

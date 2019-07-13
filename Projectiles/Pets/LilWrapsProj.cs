@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -50,33 +50,33 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     if (projectile.velocity.X == 0f)
                     {
-                       frame2 = 0;
-                       frame2Counter = 0;
+                        frame2 = 0;
+                        frame2Counter = 0;
                     }
                     else if (projectile.velocity.X < -0.8f || projectile.velocity.X > 0.8f)
                     {
-                       frame2Counter += (int)Math.Abs(2f * projectile.velocity.X);
-                       frame2Counter++;
+                        frame2Counter += (int)Math.Abs(2f * projectile.velocity.X);
+                        frame2Counter++;
                         if (frame2Counter > 20) //6
                         {
-                           frame2++;
-                           frame2Counter = 0;
+                            frame2++;
+                            frame2Counter = 0;
                         }
                         if (frame2 > 6) //frame 1 to 6 is running
                         {
-                           frame2 = 1;
+                            frame2 = 1;
                         }
                     }
                     else
                     {
-                       frame2 = 0; //frame 0 is idle
-                       frame2Counter = 0;
+                        frame2 = 0; //frame 0 is idle
+                        frame2Counter = 0;
                     }
                 }
                 else if (projectile.velocity.Y != 0f)
                 {
-                   frame2Counter = 0;
-                   frame2 = 7; //frame 7 is jumping
+                    frame2Counter = 0;
+                    frame2 = 7; //frame 7 is jumping
                 }
                 //projectile.velocity.Y += 0.4f;
                 //if (projectile.velocity.Y > 10f)
@@ -92,12 +92,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 if (projectile.velocity.Length() > 3.6f) projectile.velocity *= 0.97f;
                 if (frame2Counter > 4)
                 {
-                   frame2++;
-                   frame2Counter = 0;
+                    frame2++;
+                    frame2Counter = 0;
                 }
-                if (frame2 < 8 ||frame2 > 11)
+                if (frame2 < 8 || frame2 > 11)
                 {
-                   frame2 = 8;
+                    frame2 = 8;
                 }
                 projectile.rotation = projectile.velocity.X * 0.01f;
             }

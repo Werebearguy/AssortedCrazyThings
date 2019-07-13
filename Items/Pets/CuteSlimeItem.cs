@@ -1,8 +1,8 @@
+using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.PetAccessories;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.Base;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 

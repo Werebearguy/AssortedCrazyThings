@@ -2,7 +2,6 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -63,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle drawRect = texture2D34.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
             Color color = projectile.GetAlpha(lightColor);
             Vector2 drawOrigin = drawRect.Size() / 2f;
-            
+
             //alpha5.A /= 2;
 
             Main.spriteBatch.Draw(texture2D34, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);

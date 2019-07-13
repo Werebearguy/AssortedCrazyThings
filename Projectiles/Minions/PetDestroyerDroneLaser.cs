@@ -23,8 +23,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override void SetDefaults()
         {
-			projectile.CloneDefaults(ProjectileID.MiniRetinaLaser);
-			projectile.aiStyle = -1;
+            projectile.CloneDefaults(ProjectileID.MiniRetinaLaser);
+            projectile.aiStyle = -1;
             projectile.penetrate = 1;
             projectile.alpha = 255;
         }

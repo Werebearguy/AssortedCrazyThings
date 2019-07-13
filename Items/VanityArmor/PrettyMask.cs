@@ -5,15 +5,15 @@ namespace AssortedCrazyThings.Items.VanityArmor
 {
     [AutoloadEquip(EquipType.Head)]
     public class PrettyMask : ModItem
-	{
-		public override void SetStaticDefaults()
+    {
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pretty Mask");
-			Tooltip.SetDefault("'Goes well with a red scarf, red gloves, red boots, and your birthday suit'");
+            Tooltip.SetDefault("'Goes well with a red scarf, red gloves, red boots, and your birthday suit'");
         }
-		public override void SetDefaults()
-		{
-			//item.CloneDefaults(ItemID.BallaHat);
+        public override void SetDefaults()
+        {
+            //item.CloneDefaults(ItemID.BallaHat);
             item.width = 26;
             item.height = 26;
             item.rare = -11;

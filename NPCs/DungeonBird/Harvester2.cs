@@ -1,7 +1,7 @@
-using System;
-using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -310,7 +310,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     position += new Vector2(npc.width / 2, -npc.height / 4);
                 }
-    
+
                 Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
                 dust.noLight = true;
                 dust.noGravity = true;

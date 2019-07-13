@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void MorePostDrawBaseSprite(SpriteBatch spriteBatch, Color drawColor, bool useNoHair)
         {
-            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeIlluminantNewProjAddition" + (useNoHair? "NoHair": ""));
+            Texture2D image = mod.GetTexture("Projectiles/Pets/CuteSlimeIlluminantNewProjAddition" + (useNoHair ? "NoHair" : ""));
 
             Rectangle bounds = new Rectangle
             {

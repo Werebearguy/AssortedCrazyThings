@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //frame 0: idle
             //frame 0 to 3: loop back and forth while healing
             Player player = Main.player[projectile.owner];
-            
+
             if (player.statLife < player.statLifeMax2 / 2)
             {
                 Lighting.AddLight(player.Center, Color.White.ToVector3() * 0.5f);
@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 //basically remaps player health from (max / 2) to 0 => 0.1f to 0.9f
                 float complicatedFormula = (((float)(player.statLifeMax2 / 2) - player.statLife) * 0.8f) / ((float)player.statLifeMax2 / 2) + 0.1f;
-                
+
                 if (Main.rand.NextFloat() < complicatedFormula)
                 {
                     spawnOffset = new Vector2(0f, -20f);
@@ -148,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
-            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: (player.statLife < player.statLifeMax2 / 2)? -26f: 2f);
+            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: (player.statLife < player.statLifeMax2 / 2) ? -26f : 2f);
 
             CustomAI();
             CustomDraw();

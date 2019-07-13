@@ -35,36 +35,36 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             return 0f;
         }
 
-		public override void AI()
-		{
+        public override void AI()
+        {
             //modified goldfish AI
             npc.direction = npc.whoAmI % 2;
             npc.spriteDirection = npc.direction;
-			if (npc.velocity.Y == 0f)
-			{
-				if (Main.netMode != 1)
-				{
-					npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
-					npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
-					npc.netUpdate = true;
-				}
-			}
-			npc.velocity.Y = npc.velocity.Y + 0.3f;
-			if (npc.velocity.Y > 10f)
-			{
-				npc.velocity.Y = 10f;
-			}
-			npc.ai[0] = 1f;
+            if (npc.velocity.Y == 0f)
+            {
+                if (Main.netMode != 1)
+                {
+                    npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
+                    npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
+                    npc.netUpdate = true;
+                }
+            }
+            npc.velocity.Y = npc.velocity.Y + 0.3f;
+            if (npc.velocity.Y > 10f)
+            {
+                npc.velocity.Y = 10f;
+            }
+            npc.ai[0] = 1f;
 
-			npc.rotation = npc.velocity.Y * npc.direction * 0.1f;
-			if (npc.rotation < -0.2f)
-			{
-				npc.rotation = -0.2f;
-			}
-			if (npc.rotation > 0.2f)
-			{
-				npc.rotation = 0.2f;
-			}
-		}
+            npc.rotation = npc.velocity.Y * npc.direction * 0.1f;
+            if (npc.rotation < -0.2f)
+            {
+                npc.rotation = -0.2f;
+            }
+            if (npc.rotation > 0.2f)
+            {
+                npc.rotation = 0.2f;
+            }
+        }
     }
 }

@@ -1,21 +1,20 @@
+using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions;
-using AssortedCrazyThings.Base;
+using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameInput;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using AssortedCrazyThings.UI;
-using AssortedCrazyThings.Buffs;
-using System.IO;
-using Terraria.GameInput;
 
 namespace AssortedCrazyThings
 {
@@ -142,7 +141,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Things that are sent to the server that are needed on-change
         /// </summary>
-        public void SendClientChangesPacket(int toClient = -1,int ignoreClient = -1)
+        public void SendClientChangesPacket(int toClient = -1, int ignoreClient = -1)
         {
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
@@ -202,7 +201,7 @@ namespace AssortedCrazyThings
         /// <param name="damage"></param>
         public void DecreaseDroneShield(ref int damage)
         {
-            if(shieldDroneReduction > 0)
+            if (shieldDroneReduction > 0)
             {
                 for (int i = 0; i < shieldDroneReduction / 2; i++)
                 {
@@ -252,7 +251,7 @@ namespace AssortedCrazyThings
                         }
                     }
                 }
-                
+
                 if (!checkIfAlive)
                 {
                     AssUtils.NewProjectile(player.Center.X, player.Center.Y, -player.velocity.X, player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
@@ -708,9 +707,9 @@ namespace AssortedCrazyThings
                 Texture2D texture = mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back");
                 float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
                 float drawY = (int)drawInfo.position.Y + drawPlayer.height - Main.screenPosition.Y;
-                
-                Vector2 stupidOffset = new Vector2(0f, - drawPlayer.bodyFrame.Height / 2);
-                
+
+                Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 2);
+
                 Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
 
                 DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
@@ -763,7 +762,7 @@ namespace AssortedCrazyThings
                 }
             }
         });
-        
+
         public static readonly PlayerLayer SoulSaviorGlowmask = new PlayerLayer("AssortedCrazyThings", "SoulSaviorGlowmask", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
@@ -772,7 +771,7 @@ namespace AssortedCrazyThings
             }
             Player drawPlayer = drawInfo.drawPlayer;
             Mod mod = AssUtils.Instance;
-            
+
             if (drawPlayer.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
             {
                 Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask");

@@ -4,7 +4,7 @@
     {
         public override void MoreSetDefaults()
         {
-            defdistanceFromTarget= 700f;
+            defdistanceFromTarget = 700f;
             defdistancePlayerFarAway = 800f;
             defdistancePlayerFarAwayWhenHasTarget = 1200f;
             defdistanceToEnemyBeforeCanDash = 20f; //20f

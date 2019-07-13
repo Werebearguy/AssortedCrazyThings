@@ -1,5 +1,5 @@
-﻿using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Base;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -249,7 +249,7 @@ namespace AssortedCrazyThings.UI
                 int tempWidth = tex.Width;
                 int tempHeight = tex.Height / Main.npcFrameCount[type[i]];
                 float scaleFactor = (float)64 / ((tempWidth > tempHeight) ? tempWidth : tempHeight);
-                if(scaleFactor > 0.75f) //because when fully zoomed out, the texture isn't actually drawn in 1:1 scale onto the screen
+                if (scaleFactor > 0.75f) //because when fully zoomed out, the texture isn't actually drawn in 1:1 scale onto the screen
                 {
                     scaleFactor = 0.75f; //only scale down, don't scale up
                 }
@@ -257,7 +257,7 @@ namespace AssortedCrazyThings.UI
                 int finalHeight = (int)(tempHeight * scaleFactor);
 
                 //if it's a boss, draw the head texture instead, no scaling
-                if(bossHeadIndex[i] != -1)
+                if (bossHeadIndex[i] != -1)
                 {
                     tex = Main.npcHeadBossTexture[bossHeadIndex[i]];
                     tempWidth = tex.Width;

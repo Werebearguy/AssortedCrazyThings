@@ -1,5 +1,5 @@
-using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.PetAccessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

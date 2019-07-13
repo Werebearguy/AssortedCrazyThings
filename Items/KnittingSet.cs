@@ -4,17 +4,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-	public class KnittingSet : ModItem
-	{
+    public class KnittingSet : ModItem
+    {
         public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Knitting Set");
-			Tooltip.SetDefault("'A set of tools used in crafting cute clothing and accessories'");
-		}
-		public override void SetDefaults()
-		{
-			item.CloneDefaults(ItemID.Silk);
-			item.rare = -11;
+        {
+            DisplayName.SetDefault("Knitting Set");
+            Tooltip.SetDefault("'A set of tools used in crafting cute clothing and accessories'");
+        }
+        public override void SetDefaults()
+        {
+            item.CloneDefaults(ItemID.Silk);
+            item.rare = -11;
             item.value = Item.sellPrice(silver: 35);
         }
 
@@ -26,5 +26,5 @@ namespace AssortedCrazyThings.Items
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-	}
+    }
 }

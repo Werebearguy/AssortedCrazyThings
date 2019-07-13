@@ -144,7 +144,7 @@ namespace AssortedCrazyThings.Base
                 if (Main.rand.Next(3) != 0)
                 {
                     dust.noGravity = true;
-                    dust.velocity.Y += - 3f;
+                    dust.velocity.Y += -3f;
                     dust.noLight = true;
                 }
                 else if (Main.rand.Next(2) != 0)
@@ -152,7 +152,7 @@ namespace AssortedCrazyThings.Base
                     dust.noLight = true;
                 }
                 dust.velocity *= 0.5f;
-                dust.velocity.Y += - 0.9f;
+                dust.velocity.Y += -0.9f;
                 dust.scale += 0.1f + Main.rand.NextFloat() * 0.6f;
                 dust.shader = GameShaders.Armor.GetSecondaryShader(!vanityPet ? player.cLight : player.cPet, player);
             }
@@ -690,7 +690,7 @@ namespace AssortedCrazyThings.Base
             int someDistance = 100;
             Vector2 between = parentCenter - projectile.Center;
 
-            Vector2 desiredCenter = random? new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21)) : Vector2.Zero;
+            Vector2 desiredCenter = random ? new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21)) : Vector2.Zero;
 
             Vector2 offset = new Vector2(60f + offsetX, -60f + offsetY);
 
@@ -754,15 +754,15 @@ namespace AssortedCrazyThings.Base
                 projectile.velocity.X += veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.X < 0f)
                 {
-                    projectile.velocity.X += + veloDelta;
+                    projectile.velocity.X += +veloDelta;
                 }
             }
             if (projectile.velocity.X > between.X)
             {
-                projectile.velocity.X += - veloDelta;
+                projectile.velocity.X += -veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.X > 0f)
                 {
-                    projectile.velocity.X += - veloDelta;
+                    projectile.velocity.X += -veloDelta;
                 }
             }
             if (projectile.velocity.Y < between.Y)
@@ -775,10 +775,10 @@ namespace AssortedCrazyThings.Base
             }
             if (projectile.velocity.Y > between.Y)
             {
-                projectile.velocity.Y += - veloDelta;
+                projectile.velocity.Y += -veloDelta;
                 if (veloDelta > 0.05f && projectile.velocity.Y > 0f)
                 {
-                    projectile.velocity.Y += - veloDelta * 2f;
+                    projectile.velocity.Y += -veloDelta * 2f;
                 }
             }
             projectile.manualDirectionChange = true;
@@ -910,10 +910,10 @@ namespace AssortedCrazyThings.Base
                 }
                 if (projectile.velocity.X > between.X)
                 {
-                    projectile.velocity.X += - veloDelta;
+                    projectile.velocity.X += -veloDelta;
                     if (veloDelta > 0.05f && projectile.velocity.X > 0f)
                     {
-                        projectile.velocity.X += - veloDelta;
+                        projectile.velocity.X += -veloDelta;
                     }
                 }
             }
@@ -929,10 +929,10 @@ namespace AssortedCrazyThings.Base
                 }
                 if (projectile.velocity.Y > between.Y)
                 {
-                    projectile.velocity.Y += - veloDelta;
+                    projectile.velocity.Y += -veloDelta;
                     if (veloDelta > 0.05f && projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y += - veloDelta;
+                        projectile.velocity.Y += -veloDelta;
                     }
                 }
             }
@@ -1114,7 +1114,7 @@ namespace AssortedCrazyThings.Base
                     }
                     if (Math.Abs(projectile.velocity.Y) < 1f)
                     {
-                        projectile.velocity.Y += - 0.1f;
+                        projectile.velocity.Y += -0.1f;
                     }
                     float idleMagnitude = 15f;
                     if (projectile.velocity.Length() > idleMagnitude)
@@ -1211,7 +1211,7 @@ namespace AssortedCrazyThings.Base
     {
         None = 0,
         Head = 1,
-        Body1 = 2, 
+        Body1 = 2,
         Body2 = 3,
         Tail = 4
     }

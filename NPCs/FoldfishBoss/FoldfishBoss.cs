@@ -1,52 +1,52 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.FoldfishBoss
 {
-	[AutoloadBossHead]
-	public class FoldfishBoss : ModNPC
-	{
+    [AutoloadBossHead]
+    public class FoldfishBoss : ModNPC
+    {
         public static float scaleFactor = 1f;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Foldfish");
-			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.KingSlime];
-		}
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Foldfish");
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.KingSlime];
+        }
 
-		public override void SetDefaults()
-		{
+        public override void SetDefaults()
+        {
             //npc.CloneDefaults(NPCID.KingSlime);
-			npc.aiStyle = -1;
-			npc.lifeMax = 4000;
-			npc.damage = 20;
-			npc.defense = 5;
-			npc.knockBackResist = 0f;
-			npc.width = 76;
-			npc.height = 38;
+            npc.aiStyle = -1;
+            npc.lifeMax = 4000;
+            npc.damage = 20;
+            npc.defense = 5;
+            npc.knockBackResist = 0f;
+            npc.width = 76;
+            npc.height = 38;
             npc.scale = scaleFactor;
-			npc.value = Item.buyPrice(0, 1, 0, 0);
+            npc.value = Item.buyPrice(0, 1, 0, 0);
             npc.npcSlots = 15f;
             npc.alpha = 0;
-			npc.boss = true;
-			npc.lavaImmune = true;
-			//npc.noGravity = true;
-			//npc.noTileCollide = true;
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[24] = true;
+            npc.boss = true;
+            npc.lavaImmune = true;
+            //npc.noGravity = true;
+            //npc.noTileCollide = true;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[24] = true;
             npc.buffImmune[BuffID.Confused] = false;
             music = MusicID.Boss1;
             animationType = NPCID.KingSlime;
-		}
+        }
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-		{
-			npc.lifeMax = (int)(npc.lifeMax * 0.625f * bossLifeScale);
-			npc.damage = (int)(npc.damage * 0.6f);
-		}
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.625f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.6f);
+        }
 
         public override void NPCLoot()
         {
@@ -58,7 +58,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
         }
 
         public override void AI()
-		{
+        {
             //type == 50
             //aiStyle == 15
             float num238 = scaleFactor; //1f
@@ -378,9 +378,9 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
-		{
-			scale = 1.5f;
-			return null;
-		}
-	}
+        {
+            scale = 1.5f;
+            return null;
+        }
+    }
 }

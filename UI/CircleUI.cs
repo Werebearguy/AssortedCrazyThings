@@ -1,10 +1,10 @@
-﻿using Terraria.UI;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Terraria.UI.Chat;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Terraria;
 using Terraria.ModLoader;
+using Terraria.UI;
+using Terraria.UI.Chat;
 
 namespace AssortedCrazyThings.UI
 {

@@ -33,16 +33,16 @@ namespace AssortedCrazyThings.Items.Weapons
             item.autoReuse = true;
         }
 
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 5);
-			recipe.AddIngredient(ItemID.SoulofSight, 5);
-			recipe.AddIngredient(ItemID.Flamethrower, 1);
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.HallowedBar, 5);
+            recipe.AddIngredient(ItemID.SoulofSight, 5);
+            recipe.AddIngredient(ItemID.Flamethrower, 1);
             recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
 
         public override bool ConsumeAmmo(Player player)
         {

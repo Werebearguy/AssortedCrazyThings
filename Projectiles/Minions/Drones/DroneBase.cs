@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using AssortedCrazyThings.Base;
-using System;
-using Terraria;
-using Terraria.ModLoader;
+﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Weapons;
-using Terraria.ID;
+using Microsoft.Xna.Framework;
+using System;
 using System.IO;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {

@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         protected byte TotalNumberOfThese = 16; //16 for default, 13 for assorted, 16 for spiked
 
-        protected string SlimeType = ""; 
+        protected string SlimeType = "";
 
         public override string Texture
         {
@@ -75,7 +75,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 projectile.timeLeft = 2;
             }
-            
+
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == projectile.owner)
             {
                 if (!HasTexture)

@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

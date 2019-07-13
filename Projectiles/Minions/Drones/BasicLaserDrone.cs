@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -76,10 +76,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //{
             //    //frameoffset 0
             //}
-            
+
             if (projectile.frame < frameOffset) projectile.frame = frameOffset;
 
-            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f)? frameCounterMaxFar: frameCounterMaxClose))
+            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f) ? frameCounterMaxFar : frameCounterMaxClose))
             {
                 projectile.frameCounter = 0;
                 if (++projectile.frame >= 2 + frameOffset)
@@ -176,7 +176,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         AI_STATE = STATE_TARGET_ACQUIRED;
                     }
 
-                    if(AI_STATE == STATE_TARGET_ACQUIRED)
+                    if (AI_STATE == STATE_TARGET_ACQUIRED)
                     {
                         if (Counter > SearchDelay)
                         {

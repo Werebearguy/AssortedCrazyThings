@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             MoreSetDefaults();
 
-            projectile.minionSlots = projectile.minion? 1f : 0f;
+            projectile.minionSlots = projectile.minion ? 1f : 0f;
         }
 
         public virtual void MoreSetDefaults()
@@ -179,7 +179,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bool flag3 = false;
             bool flag4 = false;
 
-            int num = projectile.minion? 10: 25;
+            int num = projectile.minion ? 10 : 25;
             if (!projectile.minion) projectile.minionPos = 0;
             int num2 = 40 * (projectile.minionPos + 1) * Main.player[projectile.owner].direction;
             if (Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) < projectile.position.X + (projectile.width / 2) - num + num2)

@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void AI()
         {
-            projectile.spriteDirection = ((int)projectile.ai[0] % 2 == 0)? 1: -1;
+            projectile.spriteDirection = ((int)projectile.ai[0] % 2 == 0) ? 1 : -1;
             projectile.rotation -= projectile.spriteDirection * 2.5f * projectile.ai[1];
             projectile.velocity.Y *= 1.005f + (projectile.ai[0] / 1000);
         }

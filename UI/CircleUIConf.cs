@@ -1,5 +1,4 @@
 ﻿using AssortedCrazyThings.Base;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -117,7 +116,7 @@ namespace AssortedCrazyThings.UI
         public List<bool> Unlocked { get; private set; } //all true if just selection
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
         public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
-        
+
         public int CircleAmount { get; private set; } //amount of spawned circles
 
         public int SpritesheetDivider { get; private set; } //divider of spritesheet height (if needed)

@@ -1,4 +1,3 @@
-using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

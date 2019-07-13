@@ -421,7 +421,7 @@ namespace AssortedCrazyThings.Items.Weapons
     /// The type of drone enumerated, so you can check against it via .HasFlag(DroneType.SomeType)
     /// </summary>
     [Flags]
-    public enum DroneType: byte
+    public enum DroneType : byte
     {
         None = 0,
         BasicLaser = 1,

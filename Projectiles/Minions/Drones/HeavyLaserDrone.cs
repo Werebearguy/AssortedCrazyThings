@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
-using System.IO;
-using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -187,7 +187,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             if (AI_STATE == STATE_CHARGE)
             {
                 //offset x = 30 when facing right
-                offsetX = Direction == 1? -80: 20;
+                offsetX = Direction == 1 ? -80 : 20;
                 offsetX += Math.Sign(offsetX) * PosInCharge * projectile.width * 1.5f;
                 offsetY = 10;
                 veloSpeed = 0.5f;
@@ -271,7 +271,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
             #endregion
 
-            Counter += Main.rand.Next(1, AI_STATE != STATE_IDLE? 2: 3);
+            Counter += Main.rand.Next(1, AI_STATE != STATE_IDLE ? 2 : 3);
 
             if (AI_STATE == STATE_CHARGE)
             {
@@ -372,7 +372,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             Direction = (targetCenter.X - player.Center.X > 0f).ToDirectionInt();
             float betweenY = targetCenter.Y - player.Top.Y; //bigger margin upwards
             //Main.NewText("betweenY: " + betweenY);
-            return (Math.Abs(betweenY) < margin && distanceFromTarget < range)? targetIndex : -1;
+            return (Math.Abs(betweenY) < margin && distanceFromTarget < range) ? targetIndex : -1;
         }
 
         /// <summary>

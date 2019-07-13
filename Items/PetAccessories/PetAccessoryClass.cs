@@ -389,7 +389,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //DONT CHANGE UP THE ORDER OF THE COLORS, IT'LL MESS THINGS UP (but not badly)
             //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
-            Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black"}));
+            Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
             Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" })
                  .AddPetVariation("Xmas", 1)
                  );
@@ -409,7 +409,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 );
             Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", offsetY: -14f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
             Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
-                .AddPetVariation(new string[] { "Black", "Corrupt", "Dungeon", "Purple", "Toxic"}, 1)
+                .AddPetVariation(new string[] { "Black", "Corrupt", "Dungeon", "Purple", "Toxic" }, 1)
                 .AddPetVariation("Pink", 2)
                 );
             Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
@@ -418,7 +418,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
             Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond"}));
+            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond" }));
             Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
@@ -567,7 +567,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             for (int i = 0; i < petAccessoryListGlobal.Count; i++)
             {
-                if (petAccessoryListGlobal[i].Type == type && (forUI? petAccessoryListGlobal[i].HasAlts: true)) return true;
+                if (petAccessoryListGlobal[i].Type == type && (forUI ? petAccessoryListGlobal[i].HasAlts : true)) return true;
             }
             return false;
         }
@@ -605,7 +605,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.useStyle = 4;
             item.UseSound = SoundID.Item1;
             item.consumable = false;
-            item.value = Item.sellPrice(silver:30);
+            item.value = Item.sellPrice(silver: 30);
         }
 
         private string Enum2string(SlotType e)

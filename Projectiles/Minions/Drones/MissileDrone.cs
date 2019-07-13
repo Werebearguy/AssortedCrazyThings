@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using AssortedCrazyThings.Base;
+using System.IO;
 using Terraria;
 using Terraria.ID;
-using System.IO;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {

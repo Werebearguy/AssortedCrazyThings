@@ -59,14 +59,14 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
-			if (npc.life <= 0)
-			{
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_01"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_02"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_03"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
-			}
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_01"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_02"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_03"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+            }
 
             for (int i = 0; i < 15; i++)
             {
@@ -79,7 +79,7 @@ namespace AssortedCrazyThings.NPCs
 
         private float Gaussian(float x, float mean, float var = 1f)
         {
-            return (float)((1/Math.Sqrt(Math.PI * 2 * var)) * Math.Exp(-(x - mean) * (x - mean) / (2 * var)));
+            return (float)((1 / Math.Sqrt(Math.PI * 2 * var)) * Math.Exp(-(x - mean) * (x - mean) / (2 * var)));
         }
 
         public override bool PreAI()
@@ -145,5 +145,5 @@ namespace AssortedCrazyThings.NPCs
             drawColor.B = Math.Max(drawColor.B, (byte)100);
             spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
-	}
+    }
 }

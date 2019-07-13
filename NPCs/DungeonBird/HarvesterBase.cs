@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using AssortedCrazyThings.Projectiles.Weapons;
+﻿using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -195,7 +195,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();
-                    if (newDistance < oldDistance && ((restrictedvar? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center - new Vector2(0f, npc.height), 1, npc.height, Main.npc[j].Center, 1, 1)))
+                    if (newDistance < oldDistance && ((restrictedvar ? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center - new Vector2(0f, npc.height), 1, npc.height, Main.npc[j].Center, 1, 1)))
                     {
                         oldDistance = newDistance;
                         closest = j;
@@ -369,7 +369,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Vector2 between = new Vector2(Math.Abs(GetTarget().Center.X - npc.Center.X), GetTarget().Center.Y - npc.Center.Y);
             float bottomY = GetTarget().BottomLeft.Y - npc.BottomLeft.Y;
             bool lockedX = false;
-            if (between.X < GetTarget().width/2/*2f*/ && CanHitLineCombined(npc, GetTarget())/*Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4)*/ && bottomY <= 16f && between.Y > -jumpRange)
+            if (between.X < GetTarget().width / 2/*2f*/ && CanHitLineCombined(npc, GetTarget())/*Collision.CanHit(npc.Center - new Vector2(2f, 2f), 4, 4, GetTarget().Center - new Vector2(2f, 2f), 4, 4)*/ && bottomY <= 16f && between.Y > -jumpRange)
             {
                 //actually only locked when direct LOS and not too high
                 //AssUtils.Print("set lockedX");
@@ -836,7 +836,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
                 TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
-                ((npc.direction == -1)? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type]:true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
+                ((npc.direction == -1) ? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type] : true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
             {
                 npc.netUpdate = true;
                 npc.position.Y += 1f;
@@ -991,10 +991,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //if (IsTargetActive())
             //{
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    AI_Timer++; //count hungerTime up, always
-                }
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                AI_Timer++; //count hungerTime up, always
+            }
             //}
 
             //Attack player

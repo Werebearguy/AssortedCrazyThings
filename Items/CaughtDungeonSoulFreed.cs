@@ -11,8 +11,8 @@ namespace AssortedCrazyThings.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Freed Dungeon Soul");
-			Tooltip.SetDefault("Awakened by defeating the " + Harvester.name);
-			ItemID.Sets.ItemIconPulse[item.type] = true;
+            Tooltip.SetDefault("Awakened by defeating the " + Harvester.name);
+            ItemID.Sets.ItemIconPulse[item.type] = true;
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 

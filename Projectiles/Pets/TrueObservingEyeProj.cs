@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             between.Normalize();
             between *= magnitude;
-            
+
             drawPos += between;
             drawOrigin = image.Bounds.Size() / 2;
             spriteBatch.Draw(image, drawPos, image.Bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);

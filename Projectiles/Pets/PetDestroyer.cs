@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle drawRect = texture2D34.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
             Color color = projectile.GetAlpha(lightColor);
             Vector2 drawOrigin = drawRect.Size() / 2f;
-            
+
             //alpha5.A /= 2;
 
             Main.spriteBatch.Draw(texture2D34, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
@@ -178,16 +178,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 between = parent.Center - projectile.Center;
             float offsetX = (between.X < 0f).ToDirectionInt() * 60f;
             float offsetY = 60;
-            
+
             AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 1f, random: false, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
-            
+
             int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 500f);
 
             if (Main.myPlayer == projectile.owner)
             {
                 //safe random increase so the modulo still goes to 0 properly
                 bool closeToAttackDelay = (AttackCounter % AttackDelay) == AttackDelay - 1;
-                AttackCounter += Main.rand.Next(1, closeToAttackDelay? 2: 3);
+                AttackCounter += Main.rand.Next(1, closeToAttackDelay ? 2 : 3);
                 if (AttackCounter % AttackDelay == 0)
                 {
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
@@ -215,7 +215,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
             }
 
-            if(targetIndex != -1)
+            if (targetIndex != -1)
             {
                 rot = (Main.npc[targetIndex].Center - projectile.Center).ToRotation();
             }

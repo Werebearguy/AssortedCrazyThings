@@ -4,16 +4,16 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.Graphics.Effects;
 
 namespace AssortedCrazyThings
 {
     public class AssWorld : ModWorld
-	{
+    {
         //basically "if they were alive last update"
         public bool lilmegalodonAlive = false;
         public bool megalodonAlive = false;
@@ -200,7 +200,7 @@ namespace AssortedCrazyThings
         }
 
         public override void PostUpdate()
-		{
+        {
             //this code is when I first started modding, terrible stuff
             //those flags are checked for trueness each update
             isLilmegalodonSpawned = false;
@@ -258,7 +258,7 @@ namespace AssortedCrazyThings
                 DisappearMessage("The " + miniocramName + " disappeared... for now");
             }
         }
-        
+
         public override void PreUpdate()
         {
             LimitSoulCount();
@@ -269,6 +269,6 @@ namespace AssortedCrazyThings
             {
                 harvesterIndex = -1;
             }
-        } 
+        }
     }
 }

@@ -7,14 +7,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
     //check this file for more info vvvvvvvv
     public class MiniAntlionProj : BabySlimeBase
     {
-		public override string Texture
-		{
-			get
-			{
-				return "AssortedCrazyThings/Projectiles/Pets/MiniAntlionProj_0";
-			}
-		}
-		
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/MiniAntlionProj_0";
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Baby Antlion");
@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //used to set dimensions (if necessary) //also use to set projectile.minion
             projectile.width = 32;
             projectile.height = 34;
-			projectile.alpha = 0;
+            projectile.alpha = 0;
 
             flyingFrameSpeed = 3;
 
@@ -49,26 +49,26 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             return true;
         }
-		
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-			SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-			Texture2D image = mod.GetTexture("Projectiles/Pets/MiniAntlionProj_" + mPlayer.miniAntlionType);
-			Rectangle bounds = new Rectangle
-			{
-				X = 0,
-				Y = projectile.frame,
-				Width = image.Bounds.Width,
-				Height = image.Bounds.Height / Main.projFrames[projectile.type]
-			};
-			bounds.Y *= bounds.Height;
 
-			Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY + drawOriginOffsetY);
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Texture2D image = mod.GetTexture("Projectiles/Pets/MiniAntlionProj_" + mPlayer.miniAntlionType);
+            Rectangle bounds = new Rectangle
+            {
+                X = 0,
+                Y = projectile.frame,
+                Width = image.Bounds.Width,
+                Height = image.Bounds.Height / Main.projFrames[projectile.type]
+            };
+            bounds.Y *= bounds.Height;
+
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY + drawOriginOffsetY);
 
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
-            
-			return false;
-		}
+
+            return false;
+        }
     }
 }

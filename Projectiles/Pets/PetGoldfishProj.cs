@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -321,7 +320,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             Timer = 0;
             projectile.ai[1] = 0; //reset from ZephyrfishAI();
-            
+
             return true;
         }
 

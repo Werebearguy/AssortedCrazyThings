@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Buffs
         {
             DisplayName.SetDefault("Companion Soul");
             Description.SetDefault("A friendly Dungeon Soul is following you"
-                +"\nPet slot");
+                + "\nPet slot");
             Main.buffNoTimeDisplay[Type] = true;
             Main.vanityPet[Type] = true;
         }

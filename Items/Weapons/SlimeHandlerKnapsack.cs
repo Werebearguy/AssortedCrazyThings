@@ -81,7 +81,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 spawnPos.X = player.Center.X + player.direction * 8f;
                 spawnPos.Y = player.Center.Y;
             }
-            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, - player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
             return false;
         }
 

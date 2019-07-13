@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         {
             DisplayName.SetDefault("Sigil of Last Stand");
             Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
-                + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax/60) + " minutes");
+                + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
         }
 
         public override void SetDefaults()

@@ -82,7 +82,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Invasion name, unused
         /// </summary>
-        public string Invasion { private set; get; } 
+        public string Invasion { private set; get; }
         /// <summary>
         /// Invasion in progress, ignore the lists for damage reduction
         /// </summary>
@@ -233,7 +233,7 @@ namespace AssortedCrazyThings
                 case 6:
                     gPlayer.wallOfFleshGitgudCounter = value;
                     break;
-                    //HARDMODE
+                //HARDMODE
                 case 7:
                     gPlayer.destroyerGitgudCounter = value;
                     break;
@@ -258,7 +258,7 @@ namespace AssortedCrazyThings
                 case 14:
                     gPlayer.moonLordGitgudCounter = value;
                     break;
-                    //INVASIONS
+                //INVASIONS
                 //case 15:
                 //    gPlayer.pirateInvasionGitgudCounter = value;
                 //    break;
@@ -685,25 +685,25 @@ namespace AssortedCrazyThings
     public class GitGudPlayer : ModPlayer
     {
         public Func<BitArray> gitgudAccessories;
-        
+
         public byte kingSlimeGitgudCounter = 0;
         public bool kingSlimeGitgud = false;
-        
+
         public byte eyeOfCthulhuGitgudCounter = 0;
         public bool eyeOfCthulhuGitgud = false;
-        
+
         public byte brainOfCthulhuGitgudCounter = 0;
         public bool brainOfCthulhuGitgud = false;
-        
+
         public byte eaterOfWorldsGitgudCounter = 0;
         public bool eaterOfWorldsGitgud = false;
-        
+
         public byte queenBeeGitgudCounter = 0;
         public bool queenBeeGitgud = false;
-        
+
         public byte skeletronGitgudCounter = 0;
         public bool skeletronGitgud = false;
-        
+
         public byte wallOfFleshGitgudCounter = 0;
         public bool wallOfFleshGitgud = false;
 
@@ -760,7 +760,7 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
-            gitgudAccessories = new Func<BitArray>(()=> new BitArray(new bool[]
+            gitgudAccessories = new Func<BitArray>(() => new BitArray(new bool[]
             {
                 kingSlimeGitgud,
                 eyeOfCthulhuGitgud,
