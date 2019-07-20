@@ -277,18 +277,20 @@ namespace AssortedCrazyThings
         /// </summary>
         public bool ThreeTimesUseTime()
         {
-            if (Math.Abs(lastTime - Main.time) > 35.0) //(usetime + 1) x 3 + 1
+            if (Math.Abs(lastTime - Main.time) > 38.0) //(usetime + 1) x 3 + 1
             {
+                //19
                 resetSlots = false;
                 lastTime = Main.time;
                 return false; //step one
             }
 
             //step two and three have to be done in 35 ticks
-            if (Math.Abs(lastTime - Main.time) <= 35.0)
+            if (Math.Abs(lastTime - Main.time) <= 38.0)
             {
                 if (!resetSlots)
                 {
+                    //38
                     resetSlots = true;
                     return false; //step two
                 }
@@ -297,6 +299,7 @@ namespace AssortedCrazyThings
 
                 if (resetSlots)
                 {
+                    //57
                     resetSlots = false;
                     return true; //step three
                 }

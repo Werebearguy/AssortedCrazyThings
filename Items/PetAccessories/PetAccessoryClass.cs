@@ -20,15 +20,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryToyBreastplate : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight's Breastplate");
-            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
-        }
-    }
-
     public class PetAccessoryBunnyEars : PetAccessoryItem
     {
         public override void SetStaticDefaults()
@@ -47,48 +38,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryHairBow : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Hair Bow");
-            Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
-        }
-    }
-
     public class PetAccessoryMetalHelmet : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Knight's Helmet");
             Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
-        }
-    }
-
-    public class PetAccessorySlimeHead : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Head Slime");
-            Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
-        }
-    }
-
-    public class PetAccessoryWizardHat : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Wizard Hat");
-            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
-        }
-    }
-
-    public class PetAccessoryXmasHat : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Santa Hat");
-            Tooltip.SetDefault("'A festive hat for your cute slime to wear'");
         }
     }
 
@@ -101,12 +56,94 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryHairBow : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Hair Bow");
+            Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
+        }
+    }
+
+    public class PetAccessoryMagicWand : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Magic Wand");
+            Tooltip.SetDefault("'A plush magic wand for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessoryMittens : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Mittens");
+            Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
+        }
+    }
+
+    public class PetAccessorySlimeHead : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Head Slime");
+            Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
+        }
+    }
+
     public class PetAccessoryStaff : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Staff");
             Tooltip.SetDefault("'A plush staff for your cute slime to carry'");
+        }
+    }
+
+    public class PetAccessorySwallowedKey : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Swallowed Key");
+            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
+        }
+
+        protected override bool UseDefaultRecipe { get { return false; } }
+
+        protected override void MoreAddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<PetAccessorySwallowedKey>());
+            recipe.SetResult(ItemID.GoldenKey);
+            recipe.AddRecipe();
+        }
+    }
+
+    public class PetAccessoryTophat : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Top Hat");
+            Tooltip.SetDefault("'A classy top hat for your cute slime to wear on her head'");
+        }
+    }
+
+    public class PetAccessoryToyBreastplate : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Breastplate");
+            Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
+        }
+    }
+
+    public class PetAccessoryToyShield : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Knight's Shield");
+            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
         }
     }
 
@@ -137,40 +174,21 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryMittens : PetAccessoryItem
+    public class PetAccessoryWizardHat : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Mittens");
-            Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
+            DisplayName.SetDefault("Cute Wizard Hat");
+            Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
         }
     }
 
-    public class PetAccessorySwallowedKey : PetAccessoryItem
+    public class PetAccessoryXmasHat : PetAccessoryItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cute Swallowed Key");
-            Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
-        }
-
-        protected override bool UseDefaultRecipe { get { return false; } }
-
-        protected override void MoreAddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<PetAccessorySwallowedKey>());
-            recipe.SetResult(ItemID.GoldenKey);
-            recipe.AddRecipe();
-        }
-    }
-
-    public class PetAccessoryToyShield : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Knight's Shield");
-            Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
+            DisplayName.SetDefault("Cute Santa Hat");
+            Tooltip.SetDefault("'A festive hat for your cute slime to wear'");
         }
     }
 
@@ -414,6 +432,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 );
             Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
             Add(SlotType.Hat, new PetAccessory(id: 7, name: "BunnyEars", preDraw: true, offsetY: -12f));
+            Add(SlotType.Hat, new PetAccessory(id: 8, name: "Tophat", offsetY: -8f));
+
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
@@ -422,6 +442,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Carried, new PetAccessory(id: 6, name: "MagicWand", offsetX: -8f, preDraw: true));
 
             //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
