@@ -11,6 +11,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
     public abstract class CuteSlimeBaseProj : ModProjectile
     {
         private const string PetAccessoryFolder = "AssortedCrazyThings/Items/PetAccessories/";
+        private const string NoHair = "NoHair";
+        private const string Draw = "_Draw";
 
         public const int Projwidth = 28;
         public const int Projheight = 32;
@@ -149,7 +151,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Texture2D texture = Main.projectileTexture[projectile.type];
                 if (useNoHair) //only if not legacy
                 {
-                    texture = ModContent.GetTexture(texture.Name + "NoHair");
+                    texture = ModContent.GetTexture(texture.Name + NoHair);
                 }
                 Rectangle frameLocal = new Rectangle(0, frame2 * texture.Height / 10, texture.Width, texture.Height / 10);
                 SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -162,7 +164,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2, projectile.scale, effect, 0f);
             }
 
-            if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor, useNoHair); //used for xmas  bow, lava horn, princess crown and illuminant afterimage
+            if (drawPostAddition) MorePostDrawBaseSprite(spriteBatch, drawColor, useNoHair); //used for xmas bow, lava horn, princess crown and illuminant afterimage
         }
 
         /// <summary>
@@ -200,7 +202,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     string textureString = PetAccessoryFolder + petAccessory.Name;
                     string colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
 
-                    string drawString = "_Draw";
+                    string drawString = Draw;
 
                     sbyte altTextureNumber = petAccessory.PetVariations[SlimePets.slimePets.IndexOf(projectile.type)];
                     if (altTextureNumber > 0) //change texture if not -1 and not 0

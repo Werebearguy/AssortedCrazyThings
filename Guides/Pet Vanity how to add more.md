@@ -2,6 +2,10 @@
 
 Everything is done in the Items/PetAccessories/PetAccessoryClass.cs file
 
+(0) Troubleshooting
+* If you add and then delete accessories (in the registering part from (2)), you might get an error.
+To fix it, comment the line in PetPlayer.cs called `slots = (uint)tag.GetInt("slots");`, build, enter world, then uncomment it again
+
 (1) Add Item
 
 * add a new class under `//Add new classes here in alphabetic order`

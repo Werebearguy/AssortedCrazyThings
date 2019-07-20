@@ -65,15 +65,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
-    public class PetAccessoryMagicWand : PetAccessoryItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Cute Magic Wand");
-            Tooltip.SetDefault("'A plush magic wand for your cute slime to carry'");
-        }
-    }
-
     public class PetAccessoryMittens : PetAccessoryItem
     {
         public override void SetStaticDefaults()
@@ -438,11 +429,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
             Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond" }));
+            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
             Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 6, name: "MagicWand", offsetX: -8f, preDraw: true));
 
             //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
