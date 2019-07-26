@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Base
                 case SpawnConditionType.Desert:
                     return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneDesert && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Tundra:
-                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneSnow && player.ZoneOverworldHeight/* && !AssUtils.EvilBiome(player)*/;
+                    return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneSnow/* && !AssUtils.EvilBiome(player)*/;
                 case SpawnConditionType.Jungle:
                     return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneJungle/* && !AssUtils.EvilBiome(player)*/;
                 case SpawnConditionType.Underground:

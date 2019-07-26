@@ -200,7 +200,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult)
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 

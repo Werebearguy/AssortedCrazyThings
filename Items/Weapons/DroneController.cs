@@ -153,7 +153,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         misc: "Occupies two minion slots",
                         firerate: "Extremely slow",
                         dmgModifier: 8.091f,
-                        kBModifier: 3f
+                        kBModifier: 4f
                         );
                 case DroneType.Missile:
                     return new DroneData
@@ -164,7 +164,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         misc: "Occupies two minion slots",
                         firerate: "Very slow",
                         dmgModifier: 0.2f,
-                        kBModifier: 0.333334f
+                        kBModifier: 1.333334f
                         );
                 case DroneType.Healing:
                     return new DroneData
@@ -285,7 +285,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.buffType = mod.BuffType<DroneControllerBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult)
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -415,7 +415,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             get
             {
-                return AssUtils.Instance.Name + "/Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
+                return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
             }
         }
 
@@ -425,7 +425,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public readonly string Firerate;
         public readonly bool Combat;
 
-        public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 0f, float kBModifier = 0f, bool combat = true)
+        public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 0f, float kBModifier = 1f, bool combat = true)
         {
             ProjType = projType;
             Name = name;

@@ -798,7 +798,7 @@ namespace AssortedCrazyThings
             target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
         }
 
-        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult)
+        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult, ref float flat)
         {
             if (empoweringBuff && !item.summon && item.damage > 0) add += step; //summon damage gets handled in AssGlobalProj
         }
