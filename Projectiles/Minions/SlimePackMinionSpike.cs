@@ -137,10 +137,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
                 for (int k = projectile.oldPos.Length - 1; k >= 0; k--)
                 {
-                    Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition;
+                    Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f);
+                    Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + stupidOffset;
                     Color color = projectile.GetAlpha(Color.White) * ((projectile.oldPos.Length - k) / (1f * projectile.oldPos.Length));
                     spriteBatch.Draw(image, drawPos, image.Bounds, color, projectile.rotation, image.Bounds.Size() / 2, projectile.scale, effects, 0f);
-                    //Main.NewText(projectile.oldRot[k]);
                 }
             }
         }
