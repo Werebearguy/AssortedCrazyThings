@@ -499,12 +499,13 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Checks if given item is present in the players inventory or equip slots
         /// </summary>
-        public static bool ItemInInventoryOrEquipped(Player player, Item item)
+        public static bool ItemInInventoryOrEquipped(Player player, Item item, bool ignoreVanity = false)
         {
             if (player.HasItem(item.type)) return true;
-            if (item.accessory)
+            if (item.accessory || item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0)
             {
-                for (int i = 0; i < player.armor.Length; i++)
+                int maxLength = ignoreVanity ? 10 : player.armor.Length;
+                for (int i = 0; i < maxLength; i++)
                 {
                     if (player.armor[i].type == item.type) return true;
                 }

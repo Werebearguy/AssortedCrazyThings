@@ -171,9 +171,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public void BabySlimeAI()
         {
-            //projectile.damage = Damage;
-            //Main.NewText(projectile.damage);
-
             bool flag = false;
             bool flag2 = false;
             bool flag3 = false;
@@ -242,21 +239,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 bool flag6 = false;
                 int num46 = -1;
 
-                for (int k = 0; k < 200; k++)
+                if (projectile.minion)
                 {
-                    if (Main.npc[k].CanBeChasedBy(this))
+                    for (int k = 0; k < 200; k++)
                     {
-                        float num48 = Main.npc[k].position.X + (Main.npc[k].width / 2);
-                        float num49 = Main.npc[k].position.Y + (Main.npc[k].height / 2);
-                        float num50 = Math.Abs(Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - num48) + Math.Abs(Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - num49);
-                        if (num50 < num45)
+                        if (Main.npc[k].CanBeChasedBy(this))
                         {
-                            if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height))
+                            float num48 = Main.npc[k].position.X + (Main.npc[k].width / 2);
+                            float num49 = Main.npc[k].position.Y + (Main.npc[k].height / 2);
+                            float num50 = Math.Abs(Main.player[projectile.owner].position.X + (Main.player[projectile.owner].width / 2) - num48) + Math.Abs(Main.player[projectile.owner].position.Y + (Main.player[projectile.owner].height / 2) - num49);
+                            if (num50 < num45)
                             {
-                                num46 = k;
+                                if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height))
+                                {
+                                    num46 = k;
+                                }
+                                flag6 = true;
+                                break;
                             }
-                            flag6 = true;
-                            break;
                         }
                     }
                 }
