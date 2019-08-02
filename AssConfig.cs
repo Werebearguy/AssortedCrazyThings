@@ -1,4 +1,5 @@
 ﻿using AssortedCrazyThings.Base;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
@@ -28,6 +29,16 @@ namespace AssortedCrazyThings
         [Tooltip("Enable/Disable Walking Tombstone spawning")]
         public bool WalkingTombstones;
 
+        [Header("Resulting Behavior")]
+
+        [JsonIgnore]
+        [Label("Cute Slimes Potion Only Status")]
+        public string CuteSlimesPotionOnlyStatus => GetStatus(CuteSlimesPotionOnly);
+
+        [JsonIgnore]
+        [Label("Walking Tombstones Status")]
+        public string WalkingTombstonesStatus => GetStatus(WalkingTombstones);
+
         public override void OnLoaded()
         {
             AssUtils.AssConfig = this;
@@ -37,6 +48,11 @@ namespace AssortedCrazyThings
         {
             message = "Only the host of this world can change the config! Do so in singleplayer.";
             return false;
+        }
+
+        private string GetStatus(bool b)
+        {
+            return b ? "Enabled" : "Disabled";
         }
     }
 }
