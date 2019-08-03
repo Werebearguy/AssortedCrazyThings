@@ -37,9 +37,9 @@ namespace AssortedCrazyThings.Items
 
             if (!player.HasBuff(BuffID.Cursed) && (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff))
             {
-                if (player.HeldItem.active && player.HeldItem.damage >= 0)
+                if (item.active && item.damage >= 0)
                 {
-                    if (player.HeldItem.melee)
+                    if (item.melee)
                     {
                         //TODO do something with auto-fire boomerangs
                         if (item.shoot > 0 && item.shootSpeed > 0)
@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Items
                         }
                     }
 
-                    else if (player.HeldItem.ranged)
+                    else if (item.ranged)
                     {
                         if (player.HasAmmo(item, true))
                         {
@@ -56,12 +56,12 @@ namespace AssortedCrazyThings.Items
                         }
                     }
 
-                    else if (player.HeldItem.magic && player.HeldItem.mana <= player.statMana)
+                    else if (item.magic && item.mana <= player.statMana)
                     {
                         ShootCandleDust(item, mPlayer);
                     }
 
-                    else if (player.HeldItem.thrown)
+                    else if (item.thrown)
                     {
                         ShootCandleDust(item, mPlayer);
                     }

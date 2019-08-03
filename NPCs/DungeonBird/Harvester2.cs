@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -64,6 +65,65 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.timeLeft = NPC.activeTime * 30; //doesnt do jackshit
         }
 
+        public void SpawnDust(int frame)
+        {
+            Rectangle left = new Rectangle();
+            Rectangle right = new Rectangle();
+            switch (frame)
+            {
+                case 13:
+                    left.X = (int)npc.Center.X - 60;
+                    right.X = (int)npc.Center.X + 10;
+                    left.Y = right.Y = (int)npc.Top.Y - 62;
+                    left.Width = right.Width = 48;
+                    left.Height = right.Height = 52;
+                    break;
+                case 14:
+                    left.X = (int)npc.Center.X - 80;
+                    right.X = (int)npc.Center.X + 10;
+                    left.Y = right.Y = (int)npc.Top.Y - 20;
+                    left.Width = right.Width = 60;
+                    left.Height = right.Height = 10;
+                    break;
+                case 15:
+                    left.X = (int)npc.Center.X - 30;
+                    right.X = (int)npc.Center.X - 10;
+                    left.Y = right.Y = (int)npc.Top.Y - 20;
+                    left.Width = right.Width = 30;
+                    left.Height = right.Height = 60;
+                    break;
+                case 16:
+                    left.X = (int)npc.Center.X - 80;
+                    right.X = (int)npc.Center.X + 10;
+                    left.Y = right.Y = (int)npc.Top.Y - 8;
+                    left.Width = right.Width = 60;
+                    left.Height = right.Height = 10;
+                    break;
+                default:
+                    break;
+            }
+
+            if (left.X != 0)
+            {
+                List<Rectangle> list = new List<Rectangle>() { left, right };
+
+                foreach (Rectangle dustBox in list)
+                {
+                    if (Main.rand.NextFloat() < (float)soulsEaten / maxSoulsEaten)
+                    {
+                        Dust dust = Dust.NewDustDirect(dustBox.TopLeft(), dustBox.Width, dustBox.Height, 135, 0f, 0f, 0, default(Color), 1.5f);
+                        dust.noGravity = true;
+                        dust.noLight = true;
+                        dust.velocity *= 0.3f;
+                        if (Main.rand.NextBool(5))
+                        {
+                            dust.fadeIn = 1f;
+                        }
+                    }
+                }
+            }
+        }
+
         public override void FindFrame(int frameHeight)
         {
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
@@ -72,7 +132,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (npc.velocity.X != 0)
                 {
-                    npc.frameCounter += (double)Math.Abs(npc.velocity.X / 1.5);
+                    npc.frameCounter += Math.Abs(npc.velocity.X / 1.5);
                     if (AI_State == STATE_APPROACH && (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f) ||
                         AI_State == STATE_DISTRIBUTE && SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)) //fuck
                     {
@@ -111,6 +171,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         else
                         {
                             npc.frameCounter = 0;
+                            npc.frame.Y = frameHeight * 5;
                         }
                     }
                     else
@@ -134,6 +195,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         else
                         {
                             npc.frameCounter = 0;
+                            npc.frame.Y = frameHeight * 13;
                         }
                     }
                 }
@@ -165,6 +227,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         else
                         {
                             npc.frameCounter = 0;
+                            npc.frame.Y = frameHeight * 13;
                         }
                     }
                 }
@@ -254,6 +317,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.frame.Y = 0;
                 }
             }
+
+            SpawnDust(npc.frame.Y / frameHeight);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

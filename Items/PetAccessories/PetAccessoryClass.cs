@@ -641,7 +641,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             if (PetAccessory.IsItemAPetVanity(item.type))
             {
-                tooltips.Add(new TooltipLine(mod, "slot", Enum2string(PetAccessory.GetAccessoryFromType(item.type).Slot)));
+                tooltips.Add(new TooltipLine(mod, "Slot", Enum2string(PetAccessory.GetAccessoryFromType(item.type).Slot)));
 
                 PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
 
@@ -656,6 +656,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                         }
                     }
+                }
+                else
+                {
+                    tooltips.Add(new TooltipLine(mod, "NoUse", "You have no summoned slime to equip this on")
+                    {
+                        overrideColor = Color.OrangeRed
+                    });
                 }
             }
             else
@@ -771,10 +778,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             }
 
                             //"dust" originating from the center, forming a circle and going outwards
-                            Dust dust;
                             for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
                             {
-                                dust = Dust.NewDustPerfect(Main.projectile[pPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                Dust.NewDustPerfect(Main.projectile[pPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }
                         }
                         else if (player.altFunctionUse != 2)

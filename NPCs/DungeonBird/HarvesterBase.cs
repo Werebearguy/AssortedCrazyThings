@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -240,9 +241,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
 
             int value = (int)(Position.X / 16f) - 1;
-            int value2 = (int)((Position.X + (float)Width) / 16f) + 2;
+            int value2 = (int)((Position.X + Width) / 16f) + 2;
             int value3 = (int)(Position.Y / 16f) - 1;
-            int value4 = (int)((Position.Y + (float)Height) / 16f) + 2;
+            int value4 = (int)((Position.Y + Height) / 16f) + 2;
             value = Utils.Clamp(value, 0, Main.maxTilesX - 1);
             value2 = Utils.Clamp(value2, 0, Main.maxTilesX - 1);
             value3 = Utils.Clamp(value3, 0, Main.maxTilesY - 1);
@@ -254,15 +255,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].active() && Main.tileSolid[Main.tile[i, j].type] && !Main.tileSolidTop[Main.tile[i, j].type])
                     {
                         Vector2 vector = default(Vector2);
-                        vector.X = (float)(i * 16);
-                        vector.Y = (float)(j * 16);
+                        vector.X = i * 16;
+                        vector.Y = j * 16;
                         int num = 16;
                         if (Main.tile[i, j].halfBrick() || Main.tile[i, j].slope() != 0)
                         {
                             vector.Y += 8f;
                             num -= 8;
                         }
-                        if (Position.X + (float)Width > vector.X && Position.X < vector.X + 16f && Position.Y + (float)Height > vector.Y && Position.Y < vector.Y + (float)num)
+                        if (Position.X + Width > vector.X && Position.X < vector.X + 16f && Position.Y + Height > vector.Y && Position.Y < vector.Y + num)
                         {
                             return true;
                         }
@@ -319,7 +320,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //Main.NewText("TICK TOCK " + npc.collideX + " " + npc.collideY);
                         between = new Vector2(Math.Abs(npc.Center.X - AI_X_Timer), Math.Abs(npc.Center.Y - AI_Y));
                         //twice a second, diff is max 39f
-                        if ((between.Y > 100f || between.X > 35f) || (npc.wet && (between.Y > 50f || between.X > 17.5f)))
+                        if (between.Y > 100f || between.X > 35f || (npc.wet && (between.Y > 50f || between.X > 17.5f)))
                         {
                             npc.netUpdate = true;
                             //AssUtils.Print("NOT stuck actually");
@@ -330,7 +331,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             if (between.X <= 35f)
                             {
                                 stuckTimer++;
-                                //AssUtils.Print("stucktimer++ " + stuckTimer);
+                                //Base.AssUtils.Print("stucktimer++ " + stuckTimer + " " + between.X);
                                 npc.netUpdate = true;
                             }
                         }
@@ -338,7 +339,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             if (allowNoclipvar)
                             {
-                                if (!SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height + 2))
+                                if (!SolidCollisionNew(GetTarget().position, GetTarget().width, GetTarget().height))
                                 {
                                     npc.netUpdate = true;
                                     //AssUtils.Print("noclipping");
@@ -470,9 +471,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (npc.velocity.Y == 0f)
             {
-                int num178 = (int)(npc.position.Y + (float)npc.height + 7f) / 16;
+                int num178 = (int)(npc.position.Y + npc.height + 7f) / 16;
                 int num179 = (int)npc.position.X / 16;
-                int num180 = (int)(npc.position.X + (float)npc.width) / 16;
+                int num180 = (int)(npc.position.X + npc.width) / 16;
                 int num28;
                 for (int num181 = num179; num181 <= num180; num181 = num28 + 1)
                 {
@@ -501,8 +502,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
                 Vector2 position2 = npc.position;
                 position2.X += npc.velocity.X;
-                int num183 = (int)((position2.X + (float)(npc.width / 2) + (float)((npc.width / 2 + 1) * num182)) / 16f);
-                int num184 = (int)((position2.Y + (float)npc.height - 1f) / 16f);
+                int num183 = (int)((position2.X + npc.width / 2 + ((npc.width / 2 + 1) * num182)) / 16f);
+                int num184 = (int)((position2.Y + npc.height - 1f) / 16f);
 
                 if (Main.tile[num183, num184] == null)
                 {
@@ -540,8 +541,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Tile tile14 = new Tile();
                     tile13[num183 - num182, num184 - 3] = tile14;
                 }
-                if ((float)(num183 * 16) < position2.X + (float)npc.width &&
-                    (float)(num183 * 16 + 16) > position2.X &&
+                if (num183 * 16 < position2.X + npc.width &&
+                    num183 * 16 + 16 > position2.X &&
                     ((Main.tile[num183, num184].nactive() &&
                     !Main.tile[num183, num184].topSlope() &&
                     !Main.tile[num183, num184 - 1].topSlope() &&
@@ -569,7 +570,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     (!Main.tile[num183 - num182, num184 - 3].nactive() ||
                     !Main.tileSolid[Main.tile[num183 - num182, num184 - 3].type]))
                 {
-                    float num197 = (float)(num184 * 16);
+                    float num197 = num184 * 16;
                     if (Main.tile[num183, num184].halfBrick())
                     {
                         num197 += 8f;
@@ -578,16 +579,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         num197 -= 8f;
                     }
-                    if (num197 < position2.Y + (float)npc.height)
+                    if (num197 < position2.Y + npc.height)
                     {
-                        float num198 = position2.Y + (float)npc.height - num197;
+                        float num198 = position2.Y + npc.height - num197;
                         float num199 = 16.1f;
                         if (num198 <= num199)
                         {
 
                             //go up slopes/halfbricks
-                            npc.gfxOffY += npc.position.Y + (float)npc.height - num197;
-                            npc.position.Y = num197 - (float)npc.height;
+                            npc.gfxOffY += npc.position.Y + npc.height - num197;
+                            npc.position.Y = num197 - npc.height;
                             if (num198 < 9f)
                             {
                                 npc.stepSpeed = 1f;
@@ -606,8 +607,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 int num201;
                 if (1 == 1)
                 {
-                    num200 = (int)((npc.position.X + (float)(npc.width / 2) + (float)(15 * npc.direction)) / 16f);
-                    num201 = (int)((npc.position.Y + (float)npc.height - 15f) / 16f);
+                    num200 = (int)((npc.position.X + npc.width / 2 + 15 * npc.direction) / 16f);
+                    num201 = (int)((npc.position.Y + npc.height - 15f) / 16f);
                     if (Main.tile[num200, num201] == null)
                     {
                         Tile[,] tile15 = Main.tile;
@@ -719,7 +720,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             if (Main.time % 60 == 35)
                             {
-                                npc.velocity.Y = -(float)rndJump - 0.5f;
+                                npc.velocity.Y = -rndJump - 0.5f;
                             }
                         }
                     }
@@ -780,7 +781,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     AI_Timer = 0f; //when literally near the soul
                     closeToSoul = true; //used to prevent the stuck timer to run
                 }
-                npc.direction = (between.X <= 0f) ? -1 : 1;
+                if (Math.Abs(between.X) > 2f) npc.direction = (between.X <= 0f) ? -1 : 1;
             }
 
             //if (npc.velocity.Y == 0f && ((npc.velocity.X > 0f && npc.direction < 0) || (npc.velocity.X < 0f && npc.direction > 0)))
@@ -834,9 +835,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             int tilex = (int)(npc.position.X / 16f);
             int tiley = (int)((npc.position.Y + npc.height + 15f) / 16f);
 
-            if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
-                TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
-                ((npc.direction == -1) ? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type] : true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
+            Point16 point1 = new Point16(tilex, tiley);
+            Point16 point2 = new Point16(tilex + 1, tiley);
+            Point16 point3 = new Point16(tilex + 2, tiley);
+
+            Tile tile1 = Framing.GetTileSafely(point1);
+            Tile tile2 = Framing.GetTileSafely(point2);
+            Tile tile3 = Framing.GetTileSafely(point3);
+
+            bool atleastOneSolidBelow = (!tile1.inActive() && tile1.active() && Main.tileSolid[tile1.type] && !TileID.Sets.Platforms[tile1.type]) ||
+                (!tile2.inActive() && tile2.active() && Main.tileSolid[tile2.type] && !TileID.Sets.Platforms[tile2.type]);
+
+            if (!atleastOneSolidBelow &&
+                ((npc.direction == -1) ? TileID.Sets.Platforms[tile3.type] : true) && (GetTarget().Top.Y - npc.Bottom.Y) > 0f)
             {
                 npc.netUpdate = true;
                 npc.position.Y += 1f;
@@ -1103,8 +1114,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 normBetween.Normalize();
                 normBetween *= factor;
                 npc.velocity = (npc.velocity * (acc - 1) + normBetween) / acc;
-                //concider only the bottom half of the hitbox (plus a small bit below)
-                if (distance < npc.height /*600f*/ && between.Y < 20f && !Collision.SolidCollision(npc.position + new Vector2(-2f, npc.height / 2), npc.width + 4, npc.height / 2 + 4))
+                //concider only the bottom half of the hitbox (minus a small bit below)
+                //Main.NewText(Collision.SolidCollision(npc.position + new Vector2(-2f, npc.height / 2), npc.width + 4, npc.height / 2 + 4));
+                if (distance < npc.height /*600f*/ && between.Y < 20f && !Collision.SolidCollision(npc.position + new Vector2(-0f, npc.height / 2), npc.width + 0, npc.height / 2 - 4))
                 {
                     npc.netUpdate = true;
                     AI_State = STATE_DISTRIBUTE;

@@ -1,4 +1,6 @@
-﻿using AssortedCrazyThings.NPCs.DungeonBird;
+﻿using System.Linq;
+using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs.DungeonBird;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +31,7 @@ namespace AssortedCrazyThings.Items
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(AssWorld.harvesterTypes[0]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[1]) && !NPC.AnyNPCs(AssWorld.harvesterTypes[2]) && player.ZoneDungeon;
+            return !AssUtils.AnyNPCs(AssWorld.harvesterTypes.Take(3).ToArray()) && player.ZoneDungeon;
         }
 
         public override bool UseItem(Player player)
