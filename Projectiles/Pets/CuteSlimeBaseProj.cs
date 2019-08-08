@@ -131,10 +131,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bool drawPreAddition = true;
             bool drawPostAddition = true;
 
+            PetAccessory petAccessory;
             //handle if pre/post additions are drawn based on the slimePet(Pre/Post)AdditionSlot
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
             {
-                PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
 
                 if (petAccessory != null)
                 {
@@ -190,21 +191,35 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
             SlimePet sPet = SlimePets.GetPet(projectile.type);
+            PetAccessory petAccessory;
+
+            string textureString;
+            string colorString;
+            string drawString;
+            sbyte altTextureNumber;
+            Texture2D texture;
+            Rectangle frameLocal;
+            SpriteEffects effect;
+            Vector2 drawOrigin;
+            Vector2 stupidOffset;
+            Color color;
+            Vector2 originOffset;
+            Vector2 drawPos;
 
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
-                PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
 
                 if (petAccessory != null &&
                     (preDraw || !petAccessory.PreDraw) &&
                     !sPet.IsSlotTypeBlacklisted[slotNumber])
                 {
-                    string textureString = PetAccessoryFolder + petAccessory.Name;
-                    string colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
+                    textureString = PetAccessoryFolder + petAccessory.Name;
+                    colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
 
-                    string drawString = Draw;
+                    drawString = Draw;
 
-                    sbyte altTextureNumber = petAccessory.PetVariations[SlimePets.slimePets.IndexOf(projectile.type)];
+                    altTextureNumber = petAccessory.PetVariations[SlimePets.slimePets.IndexOf(projectile.type)];
                     if (altTextureNumber > 0) //change texture if not -1 and not 0
                     {
                         drawString += altTextureNumber;
@@ -213,20 +228,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         continue;
                     }
-                    Texture2D texture = ModContent.GetTexture(textureString + colorString + drawString);
+                    texture = ModContent.GetTexture(textureString + colorString + drawString);
 
-                    Rectangle frameLocal = new Rectangle(0, frame2 * (Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]), texture.Width, texture.Height / 10);
+                    frameLocal = new Rectangle(0, frame2 * (Main.projectileTexture[projectile.type].Height / Main.projFrames[projectile.type]), texture.Width, texture.Height / 10);
 
                     //get necessary properties and parameters for draw
-                    SpriteEffects effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                    Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
-                    Vector2 stupidOffset = new Vector2(projectile.type == mod.ProjectileType<CuteSlimePinkNewProj>() ? -8f : 0f, drawOriginOffsetY + projectile.gfxOffY);
-                    Color color = drawColor * ((255 - petAccessory.Alpha) / 255f);
+                    effect = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                    drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
+                    stupidOffset = new Vector2(projectile.type == mod.ProjectileType<CuteSlimePinkNewProj>() ? -8f : 0f, drawOriginOffsetY + projectile.gfxOffY);
+                    color = drawColor * ((255 - petAccessory.Alpha) / 255f);
 
-                    Vector2 originOffset = -petAccessory.Offset;
+                    originOffset = -petAccessory.Offset;
                     originOffset.X *= Math.Sign(projectile.spriteDirection);
 
-                    Vector2 drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+                    drawPos = projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                     spriteBatch.Draw(texture, drawPos, frameLocal, color, projectile.rotation, frameLocal.Size() / 2 + originOffset, projectile.scale, effect, 0f);
                 }
             }

@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Fun
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("StarForge");
+            DisplayName.SetDefault("Star Forge");
             Tooltip.SetDefault("'An endless supply of the cosmos'");
         }
 
@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Fun
             item.consumable = false;
             item.value = Item.sellPrice(gold: 1);
             item.rare = -11;
-            item.shoot = mod.ProjectileType("proj_star_01");   //The projectile shoot when your weapon using this ammo
+            //item.shoot = mod.ProjectileType("proj_star_01");   //The projectile shoot when your weapon using this ammo
         }
 
         public override void AddRecipes()

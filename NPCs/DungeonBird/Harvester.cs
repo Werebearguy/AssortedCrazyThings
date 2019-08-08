@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     public class Harvester : ModNPC
     {
         public static readonly string name = "Soul Harvester";
-        public static readonly string deathMessage = "The Dungeon Souls have been freed"; //on death
+        public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
 
         public static float sinY = 0;
         public static int talonDamage = 30;
