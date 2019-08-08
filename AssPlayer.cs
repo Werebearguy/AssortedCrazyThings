@@ -599,7 +599,7 @@ namespace AssortedCrazyThings
                 float drawX = (int)drawInfo.position.X + offsetHand.X - Main.screenPosition.X;
                 float drawY = (int)drawInfo.position.Y + offsetHand.Y * drawPlayer.gravDir - Main.screenPosition.Y;
 
-                Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 3); //works without it, but this makes it higher
+                Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 3 + drawPlayer.gfxOffY); //works without it, but this makes it higher
 
                 Vector2 drawOrigin = new Vector2(26f + drawPlayer.direction * 4, 28f + drawPlayer.gravDir * 6f);
 
@@ -635,6 +635,32 @@ namespace AssortedCrazyThings
             }
         });
 
+        public static readonly PlayerLayer ShieldDroneBack = new PlayerLayer("AssortedCrazyThings", "ShieldDroneBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
+        {
+            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            AssPlayer mPlayer = drawPlayer.GetModPlayer<AssPlayer>();
+            Mod mod = AssUtils.Instance;
+
+            Texture2D texture = mod.GetTexture("Projectiles/Minions/Drones/ShieldDrone_Back");
+            float drawX = (int)drawInfo.position.X - Main.screenPosition.X;
+            float drawY = (int)drawInfo.position.Y - Main.screenPosition.Y;
+
+            Vector2 stupidOffset = new Vector2(drawPlayer.width, drawPlayer.height);
+            stupidOffset -= texture.Size() * 0.5f;
+            stupidOffset += new Vector2(10f, 6f);
+
+            Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
+            color *= mPlayer.shieldDroneReduction / 100f;
+
+
+            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, null, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, SpriteEffects.None, 0);
+            Main.playerDrawData.Add(drawData);
+        });
+
         public static readonly PlayerLayer HarvesterWings = new PlayerLayer("AssortedCrazyThings", "HarvesterWings", PlayerLayer.Wings, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
@@ -644,39 +670,36 @@ namespace AssortedCrazyThings
             Player drawPlayer = drawInfo.drawPlayer;
             Mod mod = AssUtils.Instance;
 
-            if (drawPlayer.wings == mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
+            Texture2D texture = mod.GetTexture("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask");
+            float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
+            float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
+
+            Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
+
+            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
             {
-                Texture2D texture = mod.GetTexture("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask");
-                float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
-                float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
+                shader = drawInfo.wingShader
+            };
+            Main.playerDrawData.Add(drawData);
 
-                Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
-
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
+            if (drawPlayer.velocity.Y != 0 && drawPlayer.wingFrame != 0)
+            {
+                if (Main.rand.NextBool(3))
                 {
-                    shader = drawInfo.wingShader
-                };
-                Main.playerDrawData.Add(drawData);
-
-                if (drawPlayer.velocity.Y != 0 && drawPlayer.wingFrame != 0)
-                {
-                    if (Main.rand.NextBool(3))
+                    int dustOffset = 4;
+                    if (drawPlayer.direction == 1)
                     {
-                        int dustOffset = 4;
-                        if (drawPlayer.direction == 1)
-                        {
-                            dustOffset = -40;
-                        }
-                        int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
-                        Main.dust[dustIndex].noGravity = true;
-                        Main.dust[dustIndex].noLight = true;
-                        Main.dust[dustIndex].velocity *= 0.3f;
-                        if (Main.rand.NextBool(5))
-                        {
-                            Main.dust[dustIndex].fadeIn = 1f;
-                        }
-                        Main.dust[dustIndex].shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
+                        dustOffset = -40;
                     }
+                    int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
+                    Main.dust[dustIndex].noGravity = true;
+                    Main.dust[dustIndex].noLight = true;
+                    Main.dust[dustIndex].velocity *= 0.3f;
+                    if (Main.rand.NextBool(5))
+                    {
+                        Main.dust[dustIndex].fadeIn = 1f;
+                    }
+                    Main.dust[dustIndex].shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
                 }
             }
         });
@@ -690,59 +713,68 @@ namespace AssortedCrazyThings
             Player drawPlayer = drawInfo.drawPlayer;
             Mod mod = AssUtils.Instance;
 
-            if (drawPlayer.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
+            Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask");
+            float drawX = (int)drawInfo.position.X - drawPlayer.bodyFrame.Width / 2 + drawPlayer.width / 2 - Main.screenPosition.X;
+            float drawY = (int)drawInfo.position.Y + drawPlayer.height - drawPlayer.bodyFrame.Height + 4f - Main.screenPosition.Y;
+
+            Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
+
+            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
             {
-                Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask");
-                float drawX = (int)drawInfo.position.X - drawPlayer.bodyFrame.Width / 2 + drawPlayer.width / 2 - Main.screenPosition.X;
-                float drawY = (int)drawInfo.position.Y + drawPlayer.height - drawPlayer.bodyFrame.Height + 4f - Main.screenPosition.Y;
+                shader = drawInfo.bodyArmorShader
+            };
+            Main.playerDrawData.Add(drawData);
 
-                Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
-
-                DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
+            //Generate visual dust
+            if (Main.rand.NextFloat() < 0.1f)
+            {
+                Vector2 position = drawPlayer.Center - new Vector2(8f, 0f) + new Vector2(Main.rand.Next(8), Main.rand.Next(8));
+                if (drawPlayer.direction == 1)
                 {
-                    shader = drawInfo.bodyArmorShader
-                };
-                Main.playerDrawData.Add(drawData);
-
-                //Generate visual dust
-                if (Main.rand.NextFloat() < 0.1f)
-                {
-                    Vector2 position = drawPlayer.Center - new Vector2(8f, 0f) + new Vector2(Main.rand.Next(8), Main.rand.Next(8));
-                    if (drawPlayer.direction == 1)
-                    {
-                        position.X += 8f;
-                    }
-                    Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-0.3f, -0.1f)), 100, Color.White, 0.6f);
-                    dust.noGravity = true;
-                    dust.noLight = true;
-                    dust.fadeIn = Main.rand.NextFloat(0.5f, 0.8f);
-
-                    dust.shader = GameShaders.Armor.GetSecondaryShader(drawInfo.bodyArmorShader, drawPlayer);
+                    position.X += 8f;
                 }
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-0.3f, -0.1f)), 100, Color.White, 0.6f);
+                dust.noGravity = true;
+                dust.noLight = true;
+                dust.fadeIn = Main.rand.NextFloat(0.5f, 0.8f);
+
+                dust.shader = GameShaders.Armor.GetSecondaryShader(drawInfo.bodyArmorShader, drawPlayer);
             }
         });
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
+            if (shieldDroneReduction > 0) layers.Insert(0, ShieldDroneBack);
+
             int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
             if (player.inventory[player.selectedItem].type == mod.ItemType<SlimeHandlerKnapsack>())
             {
-                if (player.velocity.Y == 0f)
+                if (wingLayer != -1)
                 {
-                    layers.RemoveAt(wingLayer);
+                    if (player.velocity.Y == 0f)
+                    {
+                        layers.RemoveAt(wingLayer);
+                    }
+                    layers.Insert(wingLayer + 1, SlimeHandlerKnapsackBack);
                 }
-                layers.Insert(wingLayer + 1, SlimeHandlerKnapsackBack);
             }
             if (wingLayer != -1)
             {
-                layers.Insert(wingLayer + 1, HarvesterWings);
+                if (player.wings == mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
+                {
+                    layers.Insert(wingLayer + 1, HarvesterWings);
+                }
             }
-
-            int bodyLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Body"));
-            layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
-
-            int balloonLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("BalloonAcc"));
-            if (player.balloon == mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon)) layers.Insert(balloonLayer + 1, CrazyBundleOfAssortedBalloons);
+            if (player.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
+            {
+                int bodyLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Body"));
+                layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
+            }
+            if (player.balloon == mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon))
+            {
+                int balloonLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("BalloonAcc"));
+                layers.Insert(balloonLayer + 1, CrazyBundleOfAssortedBalloons);
+            }
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
