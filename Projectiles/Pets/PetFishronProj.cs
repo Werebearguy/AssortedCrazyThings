@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
             bounds.Y = projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);

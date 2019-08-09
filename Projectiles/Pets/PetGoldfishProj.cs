@@ -35,6 +35,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private bool Swimming { get { return Main.player[projectile.owner].wet; } }
 
+        /// <summary>
+        /// Player owner direction
+        /// </summary>
         private int Direction { get; set; }
 
         private int Timer { get; set; }
@@ -329,17 +332,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (Main.hasFocus) GetFrame();
 
             lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
-            SpriteEffects effects = SpriteEffects.None;
-            if (projectile.direction != -1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
+            SpriteEffects effects = projectile.direction != -1 ? SpriteEffects.FlipHorizontally: SpriteEffects.None;
             PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
             bounds.Y = frame2 * bounds.Height;
             Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - 2 + projectile.gfxOffY);
             spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);

@@ -1,5 +1,5 @@
 ﻿using AssortedCrazyThings.Buffs;
-using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

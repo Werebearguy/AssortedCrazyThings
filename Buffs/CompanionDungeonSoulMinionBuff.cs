@@ -1,5 +1,5 @@
 ﻿using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
 using Terraria;
 using Terraria.ModLoader;

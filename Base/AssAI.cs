@@ -234,7 +234,6 @@ namespace AssortedCrazyThings.Base
         public static void EyeSpringAI(Projectile projectile, bool flyForever = false)
         {
             Player player = Main.player[projectile.owner];
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (!player.active)
             {
                 projectile.active = false;
@@ -360,7 +359,7 @@ namespace AssortedCrazyThings.Base
                 }
                 else
                 {
-                    Vector2 vector9 = Vector2.Zero;
+                    //Vector2 vector9 = Vector2.Zero;
                     if (projectile.ai[1] != 0f)
                     {
                         flag = false;
@@ -1165,7 +1164,7 @@ namespace AssortedCrazyThings.Base
                     if (parent.active && (parent.type == wormTypes[0] || parent.type == wormTypes[1] || parent.type == wormTypes[2]))
                     {
                         pCenter = parent.Center;
-                        Vector2 velocity2 = parent.velocity;
+                        //Vector2 velocity2 = parent.velocity;
                         parentRotation = parent.rotation;
                         scaleOffset = MathHelper.Clamp(parent.scale, 0f, 50f);
                         if (!projectile.minion) scaleOffset = 1;

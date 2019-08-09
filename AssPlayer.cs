@@ -2,7 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -620,7 +620,7 @@ namespace AssortedCrazyThings
             Player drawPlayer = drawInfo.drawPlayer;
             Mod mod = AssUtils.Instance;
 
-            if ((drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f)/* && (drawPlayer.inventory[drawPlayer.selectedItem].type == mod.ItemType<Items.Weapons.SlimeHandlerKnapsack>())*/)
+            if (drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f)
             {
                 Texture2D texture = mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back");
                 float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;

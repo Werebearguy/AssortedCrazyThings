@@ -36,10 +36,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
             bounds.Y = projectile.frame * bounds.Height;
 
-            float sinY = 0;
+            float sinY;
             sincounter = sincounter > 120 ? 0 : sincounter + 1;
             sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
 

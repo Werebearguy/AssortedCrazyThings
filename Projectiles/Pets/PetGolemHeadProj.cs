@@ -110,8 +110,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         protected override void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
-
             projectile.rotation = 0f;
 
             Counter++;

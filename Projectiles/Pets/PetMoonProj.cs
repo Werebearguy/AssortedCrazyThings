@@ -73,10 +73,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
             bounds.Y = projectile.frame * bounds.Height;
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 18f));
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height - 18f);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
 
             if (!Main.eclipse && projectile.frame != 4) spriteBatch.Draw(image, drawPos, bounds, Color.LightGray, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0f);

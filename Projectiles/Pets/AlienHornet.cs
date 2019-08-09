@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Texture2D texture = mod.GetTexture("Projectiles/Pets/AlienHornet_Glowmask");
             Vector2 drawPos = projectile.position - Main.screenPosition;
             Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height / 4);
-            frame.Y = (int)projectile.frameCounter % 60;
+            frame.Y = projectile.frameCounter % 60;
             if (frame.Y > 24)
             {
                 frame.Y = 24;

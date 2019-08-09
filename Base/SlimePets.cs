@@ -1,5 +1,5 @@
 ﻿using AssortedCrazyThings.Items.PetAccessories;
-using AssortedCrazyThings.NPCs;
+using AssortedCrazyThings.NPCs.CuteSlimes;
 using System;
 using System.Collections.Generic;
 using Terraria;

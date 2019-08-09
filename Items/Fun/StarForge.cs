@@ -19,14 +19,13 @@ namespace AssortedCrazyThings.Items.Fun
             item.consumable = false;
             item.value = Item.sellPrice(gold: 1);
             item.rare = -11;
-            //item.shoot = mod.ProjectileType("proj_star_01");   //The projectile shoot when your weapon using this ammo
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FallenStar, 3996);
-            recipe.AddTile(TileID.CrystalBall);  //WorkBenches, Anvils, MythrilAnvil, Furnaces, DemonAltar, or TinkerersWorkbench
+            recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -58,14 +58,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Vector2 drawPos = projectile.Center + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
-            Texture2D texture2D34 = Main.projectileTexture[projectile.type];
-            Rectangle drawRect = texture2D34.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+            Texture2D texture = Main.projectileTexture[projectile.type];
+            Rectangle drawRect = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
             Color color = projectile.GetAlpha(lightColor);
             Vector2 drawOrigin = drawRect.Size() / 2f;
 
             //alpha5.A /= 2;
 
-            Main.spriteBatch.Draw(texture2D34, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
+            Main.spriteBatch.Draw(texture, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
 
             return false;
         }

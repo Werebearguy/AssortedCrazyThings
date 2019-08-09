@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    //THIS IS THE LEGACY ONE
     public class HealingDroneProj : ModProjectile
     {
         public override void SetStaticDefaults()

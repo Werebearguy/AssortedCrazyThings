@@ -350,35 +350,37 @@ namespace AssortedCrazyThings.Base
             if (showNumber) suffix = " (" + (Main.moonPhase + 1) + ")";
             string prefix = Lang.inter[102].Value + ": "; //can't seem to find "Moon Phase" in the lang files for GameUI
             string value = "";
+            string check = "";
             switch (Main.moonPhase)
             {
                 case 0:
-                    value = Language.GetTextValue("GameUI.FullMoon");
+                    check = "FullMoon";
                     break;
                 case 1:
-                    value = Language.GetTextValue("GameUI.WaningGibbous");
+                    check = "WaningGibbous";
                     break;
                 case 2:
-                    value = Language.GetTextValue("GameUI.ThirdQuarter");
+                    check = "ThirdQuarter";
                     break;
                 case 3:
-                    value = Language.GetTextValue("GameUI.WaningCrescent");
+                    check = "WaningCrescent";
                     break;
                 case 4:
-                    value = Language.GetTextValue("GameUI.NewMoon");
+                    check = "NewMoon";
                     break;
                 case 5:
-                    value = Language.GetTextValue("GameUI.WaxingCrescent");
+                    check = "WaxingCrescent";
                     break;
                 case 6:
-                    value = Language.GetTextValue("GameUI.FirstQuarter");
+                    check = "FirstQuarter";
                     break;
                 case 7:
-                    value = Language.GetTextValue("GameUI.WaxingGibbous");
+                    check = "WaxingGibbous";
                     break;
                 default:
                     break;
             }
+            value = Language.GetTextValue("GameUI." + check);
             if (value != "") return prefix + value + suffix;
             return "";
         }
