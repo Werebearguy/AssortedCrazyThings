@@ -13,20 +13,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// </summary>
     public class ShieldDrone : DroneBase
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
-            }
-        }
-
-        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameLamps = "Projectiles/Minions/Drones/" + "ShieldDrone_Lamps";
+        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "ShieldDrone_Lower";
         private float addRotation; //same
         private const int ShieldDelay = 180;
         private const byte ShieldIncreaseAmount = 10;
+        private float lowerOutPercent = 0f;
 
         private float ShieldCounter
         {
@@ -45,7 +37,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             get
             {
                 AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
-                return mPlayer.shieldDroneReduction < AssPlayer.shieldDroneReductionMax;
+                return mPlayer.shieldDroneReduction < AssPlayer.shieldDroneReductionMax && lowerOutPercent == 1f;
+            }
+        }
+
+        private int Stage
+        {
+            get
+            {
+                AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
+                return mPlayer.shieldDroneReduction / 10;
             }
         }
 
@@ -69,7 +70,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             projectile.CloneDefaults(ProjectileID.DD2PetGhost);
             projectile.aiStyle = -1;
-            projectile.width = 38;
+            projectile.width = 34;
             projectile.height = 30;
             projectile.alpha = 0;
             projectile.minion = true;
@@ -78,41 +79,29 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            //frame 0, 1: full life
-            //frame 2, 3: above half health, healing
-            //frame 4, 5: below half health, healing faster
-            Player player = Main.player[projectile.owner];
+            projectile.frame = Stage;
 
-            int frameOffset = 0; //frame 0, 1
-
-            if (CanShield) //frame 4, 5
+            float intensity = 700f - 25f * projectile.frame;
+            Vector2 lightPos = projectile.Top + new Vector2(0f, sinY);
+            Vector3 lightCol = default;
+            if (projectile.frame == 5)
             {
-                frameOffset = 4;
+                lightCol = new Vector3(124, 251, 34);
             }
-            else if (CanShield) //frame 2, 3
+            else if (projectile.frame > 2)
             {
-                frameOffset = 2;
+                lightCol = new Vector3(200, 150, 0f);
             }
-            else
+            else if (projectile.frame > 0)
             {
-                //frameoffset 0
+                lightCol = new Vector3(153, 63, 66);
             }
-
-            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
-
-            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f) ? frameCounterMaxFar : frameCounterMaxClose))
-            {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= 2 + frameOffset)
-                {
-                    projectile.frame = frameOffset;
-                }
-            }
+            Lighting.AddLight(lightPos, lightCol / intensity);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D image = Main.projectileTexture[projectile.type];
+            Texture2D image = mod.GetTexture(nameLower);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
@@ -121,29 +110,34 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height - 8f + sinY);
+            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + sinY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
+            if (lowerOutPercent > 0f)
+            {
+                Vector2 rotationOffset = new Vector2(0f, -16 + lowerOutPercent * 16);
+                drawPos += rotationOffset;
+                //drawOrigin += rotationOffset;
+
+                //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
+
+                //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
+
+                //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
+                spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
+                drawPos -= rotationOffset;
+                //Main.NewText("xD");
+                //Main.NewText(projectile.rotation);
+                //Main.NewText(addRotation);
+            }
+
+            image = Main.projectileTexture[projectile.type];
             spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            image = mod.GetTexture(nameGlow);
+            image = mod.GetTexture(nameLamps);
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            Vector2 rotationOffset = new Vector2(0f, -2f); //-2f)
-            drawPos += rotationOffset;
-            drawOrigin += rotationOffset;
-
-            //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
-
-            //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
-
-            //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-            image = mod.GetTexture(nameLower);
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
-
-            image = mod.GetTexture(nameLowerGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0f);
 
             return false;
         }
@@ -166,8 +160,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             if (CanShield)
             {
-                Vector2 shootOffset = new Vector2(projectile.width / 2 + projectile.spriteDirection * 4f, (projectile.height - 2f) + sinY);
-                Vector2 shootOrigin = projectile.position + shootOffset;
+                Vector2 shootOffset = new Vector2(0 , sinY);
+                Vector2 shootOrigin = projectile.Center + shootOffset;
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
@@ -178,7 +172,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
-                    rotationAmount -= (float)Math.PI;
+                    rotationAmount -= (float)Math.PI / 2;
                     if (rotationAmount > 2 * Math.PI)
                     {
                         rotationAmount = -rotationAmount;
@@ -214,7 +208,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         ShieldCounter = 0;
                         if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) mPlayer.shieldDroneReduction += ShieldIncreaseAmount;
                         CombatText.NewText(player.getRect(), Color.LightBlue, ShieldIncreaseAmount);
-                        AssUtils.QuickDustLine(16, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 2f);
+                        AssUtils.QuickDustLine(16, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 1.5f);
                     }
                 }
             }
@@ -230,6 +224,22 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //    Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), 1, 1, 222, speedX, speedY, 100, default(Color), 0.8f)];
             //    dust.velocity *= 0.2f;
             //}
+            if (Stage < 5)
+            {
+                if (lowerOutPercent < 1f)
+                {
+                    lowerOutPercent += 0.015f;
+                    if (lowerOutPercent > 1f) lowerOutPercent = 1f;
+                }
+            }
+            else
+            {
+                if (lowerOutPercent > 0f)
+                {
+                    lowerOutPercent -= 0.015f;
+                    if (lowerOutPercent < 0f) lowerOutPercent = 0f;
+                }
+            }
         }
     }
 }

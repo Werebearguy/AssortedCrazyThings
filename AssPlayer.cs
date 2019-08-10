@@ -599,7 +599,7 @@ namespace AssortedCrazyThings
                 float drawX = (int)drawInfo.position.X + offsetHand.X - Main.screenPosition.X;
                 float drawY = (int)drawInfo.position.Y + offsetHand.Y * drawPlayer.gravDir - Main.screenPosition.Y;
 
-                Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 3 + drawPlayer.gfxOffY); //works without it, but this makes it higher
+                Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 3); //works without it, but this makes it higher
 
                 Vector2 drawOrigin = new Vector2(26f + drawPlayer.direction * 4, 28f + drawPlayer.gravDir * 6f);
 
@@ -653,9 +653,9 @@ namespace AssortedCrazyThings
             stupidOffset -= texture.Size() * 0.5f;
             stupidOffset += new Vector2(10f, 6f);
 
-            Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
+            Color color = Color.White;
             color *= mPlayer.shieldDroneReduction / 100f;
-
+            Lighting.AddLight(drawPlayer.Center, color.ToVector3());
 
             DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, null, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, SpriteEffects.None, 0);
             Main.playerDrawData.Add(drawData);

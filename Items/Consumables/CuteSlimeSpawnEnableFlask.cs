@@ -16,19 +16,17 @@ namespace AssortedCrazyThings.Items.Consumables
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            string tooltip = "You will see Cute Slimes more often for a short time";
             if (AssUtils.AssConfig.CuteSlimesPotionOnly)
             {
-                tooltips.Add(new TooltipLine(mod, "Tooltip", "Allows you to see Cute Slimes for a short time"));
+                tooltip = "Allows you to see Cute Slimes for a short time";
             }
-            else
-            {
-                tooltips.Add(new TooltipLine(mod, "Tooltip", "You will see Cute Slimes more often for a short time"));
-            }
+            tooltips.Add(new TooltipLine(mod, "Tooltip", tooltip));
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.Silk);
+            //item.CloneDefaults(ItemID.Silk);
             item.width = 20;
             item.height = 28;
             item.useStyle = ItemUseStyleID.EatingUsing;
