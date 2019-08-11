@@ -46,15 +46,12 @@ namespace AssortedCrazyThings.Tiles
             Main.LocalPlayer.showItemIcon2 = mod.ItemType<VanityDresserItem>();
             if (close)
             {
-                if (Main.LocalPlayer.HeldItem.type == 0)
+                Main.LocalPlayer.showItemIconText = "\nCostume Dresser"
+                     + "\nLeft Click to change your Pet's appearance"
+                     + "\nRight Click to change your Light Pet's appearance";
+                if (Main.LocalPlayer.HeldItem.type != 0)
                 {
-                    Main.LocalPlayer.showItemIconText = "\nLeft Click to change your Pet's appearance"
-                         + "\nRight Click to change your Light Pet's appearance";
-                }
-                else
-                {
-                    Main.LocalPlayer.showItemIconText = "\nCostume Dresser" +
-                        "\nFor this to work properly, don't have any item selected";
+                    Main.LocalPlayer.showItemIconText += "\nFor this to work properly, don't have any item selected";
                 }
             }
         }

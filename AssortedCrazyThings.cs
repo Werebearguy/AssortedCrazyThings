@@ -466,8 +466,6 @@ namespace AssortedCrazyThings
             Player player = Main.LocalPlayer;
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
-            Main.NewText(player.showItemIcon2);
-            Main.NewText(AllowedToOpenUI(ItemType<VanityDresserItem>()));
             int triggerType = player.HeldItem.type;
             bool openWithDresser = player.showItemIcon2 == ItemType<VanityDresserItem>();
             if (openWithDresser)
