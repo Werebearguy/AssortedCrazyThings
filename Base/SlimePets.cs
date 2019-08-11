@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Used in ModNPC.SpawnChance. Short way of specifying a spawn chance
         /// </summary>
-        public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
+        public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1.2f)
         {
             if (AssUtils.AnyNPCs(slimePetNPCs)) return 0f;
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;

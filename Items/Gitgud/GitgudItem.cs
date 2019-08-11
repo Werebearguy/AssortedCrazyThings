@@ -39,7 +39,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public sealed override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.Silk);
             item.value = Item.sellPrice(copper: 1);
             item.rare = -1;
             item.maxStack = 1;

@@ -13,7 +13,9 @@ namespace AssortedCrazyThings.Items
         }
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.Silk);
+            item.maxStack = 999;
+            item.width = 22;
+            item.height = 22;
             item.rare = -11;
             item.value = Item.sellPrice(silver: 35);
         }

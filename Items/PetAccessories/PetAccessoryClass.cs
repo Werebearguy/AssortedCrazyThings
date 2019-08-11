@@ -606,7 +606,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
     {
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.Silk);
             item.width = 28;
             item.height = 30;
             item.maxStack = 1;

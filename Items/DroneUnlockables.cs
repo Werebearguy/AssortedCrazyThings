@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items
     {
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.Silk);
+            item.maxStack = 999;
             item.rare = -11;
             item.width = 26;
             item.height = 24;
