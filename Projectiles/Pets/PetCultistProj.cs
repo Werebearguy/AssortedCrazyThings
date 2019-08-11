@@ -128,7 +128,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     spawnOffset = new Vector2(0f, -20f);
                     spawnPos = projectile.position + spawnOffset;
-                    dust = Main.dust[Dust.NewDust(new Vector2(spawnPos.X, spawnPos.Y), projectile.width, projectile.height, 175, 0f, 0f, 0, default(Color), 1.5f)];
+                    dust = Dust.NewDustDirect(new Vector2(spawnPos.X, spawnPos.Y), projectile.width, projectile.height, 175, 0f, 0f, 0, default(Color), 1.5f);
                     dust.noGravity = true;
                     dust.fadeIn = 1f;
                     dust.velocity = Vector2.Normalize(player.MountedCenter - new Vector2(0f, player.height / 2) - (projectile.Center + spawnOffset)) * (Main.rand.NextFloat() + 5f) + projectile.velocity * 1.5f;

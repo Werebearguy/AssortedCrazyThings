@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Used in ModNPC.SpawnChance. Short way of specifying a spawn chance
         /// </summary>
-        public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1.2f)
+        public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
         {
             if (AssUtils.AnyNPCs(slimePetNPCs)) return 0f;
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.Base
                 if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
                 {
                     //if flag active and potion, spawn normally
-                    return spawnChance;
+                    return spawnChance * 1.2f;
                 }
                 //if flag active and no potion, don't spawn
                 return 0f;
@@ -142,7 +142,7 @@ namespace AssortedCrazyThings.Base
                 if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
                 {
                     //if no flag and potion active, spawn with higher chance
-                    return spawnChance * 3;
+                    return spawnChance * 3 * 1.2f;
                 }
                 //if no flag and no potion, spawn normally
                 return spawnChance;

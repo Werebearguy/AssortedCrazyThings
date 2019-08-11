@@ -221,7 +221,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //{
             //    float speedX = Main.rand.NextFloat(-7, 7);
             //    float speedY = Main.rand.NextFloat(-6, -3);
-            //    Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Center.Y), 1, 1, 222, speedX, speedY, 100, default(Color), 0.8f)];
+            //    Dust dust = Dust.NewDustDirect(new Vector2(projectile.Center.X, projectile.Center.Y), 1, 1, 222, speedX, speedY, 100, default(Color), 0.8f)];
             //    dust.velocity *= 0.2f;
             //}
             if (Stage < 5)

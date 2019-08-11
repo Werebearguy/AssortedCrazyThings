@@ -310,7 +310,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                             //if facing left: + Direction * 48
                             int height = (int)(9 * otherRatio) + 4;
                             Rectangle rect = new Rectangle((int)BarrelPos.X + Direction * (Direction == 1 ? 16 : 48), (int)BarrelPos.Y - height, 32, 2 * height);
-                            Dust d = Main.dust[Dust.NewDust(rect.TopLeft(), rect.Width, rect.Height, dustType)];
+                            Dust d = Dust.NewDustDirect(rect.TopLeft(), rect.Width, rect.Height, dustType);
                             d.noGravity = true;
                             d.velocity.X *= 0.75f;
                             d.velocity.Y *= (d.position.Y > rect.Center().Y).ToDirectionInt(); //y velocity goes "inwards"

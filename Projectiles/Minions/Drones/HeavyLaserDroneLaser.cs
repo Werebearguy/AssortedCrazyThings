@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/Weapons/PocketSand";
+                return "AssortedCrazyThings/Projectiles/BlankProjectile";
             }
         }
 
@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     Vector2 pos = projectile.position;
                     pos -= projectile.velocity * (i * 0.25f); //0.3333
                     int type = 60; //173
-                    Dust dust = Main.dust[Dust.NewDust(pos, projectile.width, projectile.height, type, 0f, 0f, 0, default(Color), 1f)];
+                    Dust dust = Dust.NewDustDirect(pos, projectile.width, projectile.height, type, 0f, 0f, 0, default(Color), 1f);
                     //dust.position = pos;
                     dust.noGravity = true;
                     dust.scale = Main.rand.Next(70, 110) * 0.015f;

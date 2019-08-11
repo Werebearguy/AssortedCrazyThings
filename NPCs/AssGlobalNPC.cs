@@ -268,7 +268,7 @@ namespace AssortedCrazyThings.NPCs
             if (Main.rand.NextFloat() < chance)
             {
                 int type = 15;
-                Dust dust = Main.dust[Dust.NewDust(pos, 4, 4, type, 0f, 0f, 120, color, 2f)];
+                Dust dust = Dust.NewDustDirect(pos, 4, 4, type, 0f, 0f, 120, color, 2f);
                 dust.position = pos;
                 dust.velocity = new Vector2(Main.rand.NextFloat(-7, 7), Main.rand.NextFloat(-7, 7));
                 dust.fadeIn = fadeIn; //3f

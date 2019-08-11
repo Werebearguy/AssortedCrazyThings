@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             projectile.position.Y = projectile.position.Y - projectile.height / 2;
             for (int i = 0; i < 20; i++) //40
             {
-                Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f)];
+                Dust dust = Dust.NewDustDirect(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
                 dust.velocity *= 2f; //3f
                 if (Main.rand.NextBool(2))
                 {
@@ -74,10 +74,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
             for (int i = 0; i < 35; i++) //70
             {
-                Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 3f)];
+                Dust dust = Dust.NewDustDirect(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 3f);
                 dust.noGravity = true;
                 dust.velocity *= 4f; //5f
-                dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 2f)];
+                dust = Dust.NewDustDirect(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 2f);
                 dust.velocity *= 2f;
             }
             for (int i = 0; i < 2; i++) //3
@@ -180,11 +180,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                             xOff = projectile.velocity.X * 0.5f;
                             yOff = projectile.velocity.Y * 0.5f;
                         }
-                        Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X + 3f + xOff, projectile.position.Y + 3f + yOff) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 6, 0f, 0f, 100, default(Color), 1f)];
+                        Dust dust = Dust.NewDustDirect(new Vector2(projectile.position.X + 3f + xOff, projectile.position.Y + 3f + yOff) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 6, 0f, 0f, 100, default(Color), 1f);
                         dust.scale *= 2f + (float)Main.rand.Next(10) * 0.1f;
                         dust.velocity *= 0.2f;
                         dust.noGravity = true;
-                        dust = Main.dust[Dust.NewDust(new Vector2(projectile.position.X + 3f + xOff, projectile.position.Y + 3f + yOff) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 31, 0f, 0f, 100, default(Color), 0.5f)];
+                        dust = Dust.NewDustDirect(new Vector2(projectile.position.X + 3f + xOff, projectile.position.Y + 3f + yOff) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 31, 0f, 0f, 100, default(Color), 0.5f);
                         dust.fadeIn = 1f + (float)Main.rand.Next(5) * 0.1f;
                         dust.velocity *= 0.05f;
                     }

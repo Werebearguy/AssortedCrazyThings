@@ -9,6 +9,14 @@ namespace AssortedCrazyThings.Projectiles.Weapons
     {
         private static readonly int LifeTime = 30;
 
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/BlankProjectile";
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pocket Sand");

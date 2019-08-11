@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         public override void DrawEffects(ref Color drawColor)
         {
             int widthOffset = 12;
-            Main.dust[Dust.NewDust(npc.position + new Vector2(widthOffset, 0), npc.width - 2 * widthOffset, npc.height, 6)].noGravity = true;
+            Dust.NewDustDirect(npc.position + new Vector2(widthOffset, 0), npc.width - 2 * widthOffset, npc.height, 6).noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

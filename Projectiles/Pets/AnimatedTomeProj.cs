@@ -49,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             //if (Main.rand.NextFloat() < 0.1f)
             //{
-            //    Dust dust = Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, 15, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
+            //    Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 15, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
             //    dust.velocity *= 0.2f;
             //    dust.noLight = true; //doesnt work
             //}

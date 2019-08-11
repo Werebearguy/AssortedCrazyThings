@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void Kill(int timeLeft)
         {
-            Dust dust = Main.dust[Dust.NewDust(new Vector2(projectile.Center.X, projectile.Bottom.Y - 2f), 2, 2, 154, 0f, 0f, 38, Color.LightGreen, 1f)];
+            Dust dust = Dust.NewDustDirect(new Vector2(projectile.Center.X, projectile.Bottom.Y - 2f), 2, 2, 154, 0f, 0f, 38, Color.LightGreen, 1f);
             dust.velocity = new Vector2(Main.rand.NextFloat(2) - 1f, Main.rand.NextFloat(2) - 1f);
             dust.scale = 0.95f;
         }

@@ -109,11 +109,11 @@ namespace AssortedCrazyThings.Tiles
 
             if (tile.frameY == 0 && Main.rand.NextBool() && !Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
-                Dust dust = Main.dust[Dust.NewDust(new Vector2((float)(i * 16 + 2), (float)(j * 16 - 4)), 4, 8, 31, 0f, 0f, 100)];
+                Dust dust = Dust.NewDustDirect(new Vector2(i * 16 + 2, j * 16 - 4), 4, 8, 31, 0f, 0f, 100);
                 dust.alpha += Main.rand.Next(100);
                 dust.velocity *= 0.2f;
-                dust.velocity.Y -= (0.5f + (float)Main.rand.Next(10) * 0.1f);
-                dust.fadeIn = 0.5f + (float)Main.rand.Next(10) * 0.1f;
+                dust.velocity.Y -= 0.5f + Main.rand.Next(10) * 0.1f;
+                dust.fadeIn = 0.5f + Main.rand.Next(10) * 0.1f;
             }
 
             return false;
