@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
+using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
@@ -370,11 +371,10 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Called when CircleUI starts
         /// </summary>
-        private void CircleUIStart(bool triggerLeft = true)
+        private void CircleUIStart(int triggerType, bool triggerLeft = true, bool fromDresser = false)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-            int triggerType = Main.LocalPlayer.HeldItem.type;
 
             //combine both lists of the players (split for organization and player load shenanigans)
             List<CircleUIHandler> l = mPlayer.CircleUIList;
@@ -408,7 +408,7 @@ namespace AssortedCrazyThings
             }
 
             //Spawn UI
-            CircleUI.Start(triggerType, triggerLeft);
+            CircleUI.Start(triggerType, triggerLeft, fromDresser);
         }
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace AssortedCrazyThings
                 {
                     if (l[i].Condition())
                     {
-                        if (l[i].TriggerItem == CircleUI.heldItemType)
+                        if (l[i].TriggerItem == CircleUI.triggerItemType)
                         {
                             if (l[i].TriggerLeft == triggerLeft)
                             {
@@ -447,7 +447,7 @@ namespace AssortedCrazyThings
                     }
                 }
                 //extra things that happen
-                if (CircleUI.heldItemType == ItemType<VanitySelector>())
+                if (CircleUI.triggerItemType == ItemType<VanitySelector>())
                 {
                     PoofVisual(CircleUI.UIConf.AdditionalInfo);
                     UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
@@ -463,19 +463,28 @@ namespace AssortedCrazyThings
         /// </summary>
         private void UpdateCircleUI()
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            Player player = Main.LocalPlayer;
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
+            Main.NewText(player.showItemIcon2);
+            Main.NewText(AllowedToOpenUI(ItemType<VanityDresserItem>()));
+            int triggerType = player.HeldItem.type;
+            bool openWithDresser = player.showItemIcon2 == ItemType<VanityDresserItem>();
+            if (openWithDresser)
+            {
+                triggerType = ItemType<VanitySelector>();
+            }
             bool? left = null;
-            if (mPlayer.LeftClickPressed && CircleUIHandler.TriggerListLeft.Contains(Main.LocalPlayer.HeldItem.type))
+            if (mPlayer.LeftClickPressed && (CircleUIHandler.TriggerListLeft.Contains(triggerType) || openWithDresser))
             {
                 left = true;
             }
-            else if (mPlayer.RightClickPressed && CircleUIHandler.TriggerListRight.Contains(Main.LocalPlayer.HeldItem.type))
+            else if (mPlayer.RightClickPressed && (CircleUIHandler.TriggerListRight.Contains(triggerType) || openWithDresser))
             {
                 left = false;
             }
 
-            if (left != null && AllowedToOpenUI()) CircleUIStart((bool)left);
+            if (left != null && AllowedToOpenUI(ItemType<VanityDresserItem>())) CircleUIStart(triggerType, (bool)left, openWithDresser);
 
             if (CircleUI.visible)
             {
@@ -491,7 +500,7 @@ namespace AssortedCrazyThings
 
                 if (left != null && left == CircleUI.openedWithLeft) CircleUIEnd((bool)left);
 
-                if (CircleUI.heldItemType != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
+                if (CircleUI.triggerItemType != triggerType && !CircleUI.triggeredFromDresser) //cancel the UI when you switch items
                 {
                     CircleUI.returned = CircleUI.NONE;
                     CircleUI.visible = false;
@@ -596,7 +605,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Checks if LocalPlayer can open a UI
         /// </summary>
-        private bool AllowedToOpenUI()
+        private bool AllowedToOpenUI(int blacklistTileType = -1)
         {
             return Main.hasFocus &&
                 !Main.gamePaused &&
@@ -608,7 +617,8 @@ namespace AssortedCrazyThings
                 !Main.blockInput &&
                 !Main.mapFullscreen &&
                 !Main.HoveringOverAnNPC &&
-                !Main.LocalPlayer.showItemIcon &&
+                Main.LocalPlayer.showItemIcon2 != -1 &&
+                (!Main.LocalPlayer.showItemIcon || Main.LocalPlayer.showItemIcon2 == blacklistTileType) &&
                 Main.LocalPlayer.talkNPC == -1 &&
                 Main.LocalPlayer.itemTime == 0 && Main.LocalPlayer.itemAnimation == 0 &&
                 !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned);

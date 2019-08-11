@@ -37,9 +37,14 @@ namespace AssortedCrazyThings.UI
         internal static Vector2 spawnPosition = default(Vector2);
 
         /// <summary>
-        /// Held item type
+        /// Trigger item type
         /// </summary>
-        internal static int heldItemType = -1;
+        internal static int triggerItemType = -1;
+
+        /// <summary>
+        /// Trigger item type
+        /// </summary>
+        internal static bool triggeredFromDresser = false;
 
         /// <summary>
         /// Which thing is currently highlighted?
@@ -90,6 +95,8 @@ namespace AssortedCrazyThings.UI
         {
             base.DrawSelf(spriteBatch);
             Main.LocalPlayer.mouseInterface = true;
+            Main.LocalPlayer.showItemIcon2 = 0;
+            Main.LocalPlayer.showItemIconText = "";
 
             //48
             int outerRadius = 48;
@@ -156,14 +163,14 @@ namespace AssortedCrazyThings.UI
 
             spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
 
-            //Draw held item inside circle
-            if (heldItemType != -1)
+            //Draw trigger item inside circle
+            if (triggerItemType != -1)
             {
-                int finalWidth = Main.itemTexture[heldItemType].Width/* / 2*/;
-                int finalHeight = Main.itemTexture[heldItemType].Height/* / 2*/;
+                int finalWidth = Main.itemTexture[triggerItemType].Width/* / 2*/;
+                int finalHeight = Main.itemTexture[triggerItemType].Height/* / 2*/;
                 Rectangle outputItemRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
                 //outputWeaponRect.Inflate(4, 4);
-                spriteBatch.Draw(Main.itemTexture[heldItemType], outputItemRect, Color.White);
+                spriteBatch.Draw(Main.itemTexture[triggerItemType], outputItemRect, Color.White);
             }
 
             if (middle)
@@ -251,12 +258,13 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// Called when the UI is about to appear
         /// </summary>
-        public static void Start(int triggerType, bool triggerLeft)
+        public static void Start(int triggerType, bool triggerLeft, bool fromDresser)
         {
             visible = true;
             spawnPosition = Main.MouseScreen;
-            heldItemType = triggerType;
+            triggerItemType = triggerType;
             openedWithLeft = triggerLeft;
+            triggeredFromDresser = fromDresser;
             fadeIn = 0;
         }
     }
