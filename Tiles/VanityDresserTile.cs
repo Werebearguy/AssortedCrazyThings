@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -19,12 +18,10 @@ namespace AssortedCrazyThings.Tiles
             Main.tileTable[Type] = true;
             Main.tileContainer[Type] = true;
             Main.tileLavaDeath[Type] = true;
-            TileID.Sets.HasOutlines[Type] = true;
+            //TileID.Sets.HasOutlines[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.Origin = new Point16(1, 1);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
-            TileObjectData.newTile.HookCheck = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.FindEmptyChest), -1, 0, true);
-            TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.AfterPlacement_Hook), -1, 0, false);
             TileObjectData.newTile.AnchorInvalidTiles = new[] { 127 };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = false;
@@ -41,17 +38,19 @@ namespace AssortedCrazyThings.Tiles
 
         private void MouseOverCombined(bool close)
         {
-            Main.LocalPlayer.noThrow = 2;
-            Main.LocalPlayer.showItemIcon = true;
-            Main.LocalPlayer.showItemIcon2 = mod.ItemType<VanityDresserItem>();
-            if (close)
+            Player player = Main.LocalPlayer;
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            player.showItemIcon2 = mod.ItemType<VanityDresserItem>();
+            if (close && player.itemAnimation == 0)
             {
-                Main.LocalPlayer.showItemIconText = "\nCostume Dresser"
+                // "\n[c/"+ (Color.Orange * (Main.mouseTextColor / 255f)).Hex3() + ":\nCostume Dresser]" doesnt work cause chat tags are broken with escape characters
+                player.showItemIconText = "\nCostume Dresser"
                      + "\nLeft Click to change your Pet's appearance"
                      + "\nRight Click to change your Light Pet's appearance";
-                if (Main.LocalPlayer.HeldItem.type != 0)
+                if (player.HeldItem.type != 0)
                 {
-                    Main.LocalPlayer.showItemIconText += "\nFor this to work properly, don't have any item selected";
+                    player.showItemIconText += "\nFor this to work properly, don't have any item selected";
                 }
             }
         }

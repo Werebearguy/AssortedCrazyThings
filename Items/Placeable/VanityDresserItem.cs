@@ -1,3 +1,5 @@
+using AssortedCrazyThings.Tiles;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,11 +22,12 @@ namespace AssortedCrazyThings.Items.Placeable
             item.useTurn = true;
             item.autoReuse = true;
             item.useAnimation = 15;
-            item.useTime = 10;
+            item.useTime = 15;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 500;
-            item.createTile = mod.TileType<Tiles.VanityDresserTile>();
+            item.value = Item.sellPrice(silver: 10);
+            item.rare = -11;
+            item.createTile = mod.TileType<VanityDresserTile>();
         }
 
         public override void AddRecipes()
