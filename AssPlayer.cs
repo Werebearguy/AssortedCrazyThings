@@ -3,6 +3,7 @@ using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
+using AssortedCrazyThings.Projectiles.Minions.Drones;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -67,6 +68,7 @@ namespace AssortedCrazyThings
 
         public const byte shieldDroneReductionMax = 50;
         public byte shieldDroneReduction = 0; //percentage * 100
+        public float shieldDroneLerpVisual = 0; //percentage
 
         /// <summary>
         /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
@@ -211,10 +213,8 @@ namespace AssortedCrazyThings
                     dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
                 }
 
-                //TODO testing shield drone
-                //Main.NewText("reduction: " + ((100 - shieldDroneReduction) / 100f));
                 damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
-                if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= 10; //since this is only set clientside by the projectile and synced by packets
+                if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= ShieldDrone.ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
             }
         }
 
@@ -494,7 +494,7 @@ namespace AssortedCrazyThings
                 onUIEnd: delegate
                 {
                     selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-                    AssortedCrazyThings.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
+                    AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
                 },
                 triggerLeft: false
             ),
@@ -506,7 +506,7 @@ namespace AssortedCrazyThings
                 onUIEnd: delegate
                 {
                     selectedSlimePackMinionType = (byte)CircleUI.returned;
-                    AssortedCrazyThings.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
+                    AssUtils.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
                 },
                 triggerLeft: false
             ),
@@ -525,7 +525,7 @@ namespace AssortedCrazyThings
                 onUIEnd: delegate
                 {
                     selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-                    AssortedCrazyThings.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
+                    AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
                 },
                 triggerLeft: false
             )
@@ -654,7 +654,14 @@ namespace AssortedCrazyThings
             stupidOffset += new Vector2(10f, 6f);
 
             Color color = Color.White;
-            color *= mPlayer.shieldDroneReduction / 100f;
+
+            if (mPlayer.shieldDroneLerpVisual < mPlayer.shieldDroneReduction / 100f)
+            {
+                mPlayer.shieldDroneLerpVisual += 0.01f;
+            }
+            if (mPlayer.shieldDroneLerpVisual > mPlayer.shieldDroneReduction / 100f) mPlayer.shieldDroneLerpVisual = mPlayer.shieldDroneReduction / 100f;
+
+            color *= mPlayer.shieldDroneLerpVisual;
             Lighting.AddLight(drawPlayer.Center, color.ToVector3());
 
             DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, null, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, SpriteEffects.None, 0);

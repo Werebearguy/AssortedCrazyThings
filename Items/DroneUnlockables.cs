@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
@@ -27,15 +28,16 @@ namespace AssortedCrazyThings.Items
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            string name = DroneController.GetDroneData(UnlockedType).Name;
+            string tooltip = DroneController.GetDroneData(UnlockedType).Name + " for the Drone Controller";
             if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
             {
-                tooltips.Add(new TooltipLine(mod, "Unlocks", "Unlocks the " + name + " for the Drone Controller"));
+                tooltip = "Unlocks the " + tooltip;
             }
             else
             {
-                tooltips.Add(new TooltipLine(mod, "Unlocks", "Already unlocked " + name + " for the Drone Controller"));
+                tooltip = "Already unlocked " + tooltip;
             }
+            tooltips.Add(new TooltipLine(mod, "Unlocks", tooltip));
         }
 
         public abstract DroneType UnlockedType { get; }
@@ -58,7 +60,7 @@ namespace AssortedCrazyThings.Items
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
             {
                 player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
-                AssortedCrazyThings.UIText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
+                AssUtils.UIText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
             }
             return true;
         }

@@ -361,14 +361,6 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// CombatText replacement, used on LocalPlayer
-        /// </summary>
-        public static void UIText(string str, Color color)
-        {
-            CombatText.NewText(Main.LocalPlayer.getRect(), color, str);
-        }
-
-        /// <summary>
         /// Called when CircleUI starts
         /// </summary>
         private void CircleUIStart(int triggerType, bool triggerLeft = true, bool fromDresser = false)
@@ -402,7 +394,7 @@ namespace AssortedCrazyThings
             {
                 if (triggerType == ItemType<VanitySelector>())
                 {
-                    UIText("No alt costumes found for" + (triggerLeft ? "" : " light") + " pet", CombatText.DamagedFriendly);
+                    AssUtils.UIText("No alt costumes found for" + (triggerLeft ? "" : " light") + " pet", CombatText.DamagedFriendly);
                     return;
                 }
             }
@@ -450,7 +442,7 @@ namespace AssortedCrazyThings
                 if (CircleUI.triggerItemType == ItemType<VanitySelector>())
                 {
                     PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                    UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
+                    AssUtils.UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
                 }
             }
 

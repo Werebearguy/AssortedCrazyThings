@@ -39,6 +39,11 @@ namespace AssortedCrazyThings.Base
             }
         }
 
+        public static void UIText(string str, Color color)
+        {
+            CombatText.NewText(Main.LocalPlayer.getRect(), color, str);
+        }
+
         public static Dust QuickDust(int dustType, Vector2 pos, Color color, Vector2 dustVelo = default(Vector2), int alpha = 0, float scale = 1f)
         {
             Dust dust = Dust.NewDustPerfect(pos, dustType, dustVelo, alpha, color, scale);

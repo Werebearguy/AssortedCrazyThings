@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         private static readonly string nameLower = "Projectiles/Minions/Drones/" + "ShieldDrone_Lower";
         private float addRotation; //same
         private const int ShieldDelay = 180;
-        private const byte ShieldIncreaseAmount = 10;
-        private float lowerOutPercent = 0f;
+        public const byte ShieldIncreaseAmount = 10;
+        private float LowerOutPercent = 0f;
 
         private float ShieldCounter
         {
@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             get
             {
                 AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
-                return mPlayer.shieldDroneReduction < AssPlayer.shieldDroneReductionMax && lowerOutPercent == 1f;
+                return mPlayer.shieldDroneReduction < AssPlayer.shieldDroneReductionMax && LowerOutPercent == 1f;
             }
         }
 
@@ -114,22 +114,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            if (lowerOutPercent > 0f)
+            if (LowerOutPercent > 0f)
             {
-                Vector2 rotationOffset = new Vector2(0f, -16 + lowerOutPercent * 16);
-                drawPos += rotationOffset;
-                //drawOrigin += rotationOffset;
-
-                //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
-
-                //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
+                //Vector2 rotationOffset = new Vector2(0f, -16 + LowerOutPercent * 16);
+                Vector2 rotationOffset = new Vector2(0f, 16 * (LowerOutPercent - 1f));
 
                 //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-                spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
-                drawPos -= rotationOffset;
-                //Main.NewText("xD");
-                //Main.NewText(projectile.rotation);
-                //Main.NewText(addRotation);
+                spriteBatch.Draw(image, drawPos + rotationOffset, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
             }
 
             image = Main.projectileTexture[projectile.type];
@@ -217,27 +208,20 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
             }
 
-            //if (Main.rand.NextFloat() < 0.05f)
-            //{
-            //    float speedX = Main.rand.NextFloat(-7, 7);
-            //    float speedY = Main.rand.NextFloat(-6, -3);
-            //    Dust dust = Dust.NewDustDirect(new Vector2(projectile.Center.X, projectile.Center.Y), 1, 1, 222, speedX, speedY, 100, default(Color), 0.8f)];
-            //    dust.velocity *= 0.2f;
-            //}
             if (Stage < 5)
             {
-                if (lowerOutPercent < 1f)
+                if (LowerOutPercent < 1f)
                 {
-                    lowerOutPercent += 0.015f;
-                    if (lowerOutPercent > 1f) lowerOutPercent = 1f;
+                    LowerOutPercent += 0.015f;
+                    if (LowerOutPercent > 1f) LowerOutPercent = 1f;
                 }
             }
             else
             {
-                if (lowerOutPercent > 0f)
+                if (LowerOutPercent > 0f)
                 {
-                    lowerOutPercent -= 0.015f;
-                    if (lowerOutPercent < 0f) lowerOutPercent = 0f;
+                    LowerOutPercent -= 0.015f;
+                    if (LowerOutPercent < 0f) LowerOutPercent = 0f;
                 }
             }
         }
