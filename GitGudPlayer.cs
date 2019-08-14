@@ -164,7 +164,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Called in Reset and RecvReset. Deletes the item from the inventory, trash slot, mouse item, and accessories
+        /// Called in Reset and RecvChangeCounter. Deletes the item from the inventory, trash slot, mouse item, and accessories
         /// </summary>
         private static void DeleteItemFromInventory(Player player, int index)
         {
@@ -263,7 +263,7 @@ namespace AssortedCrazyThings
                 //    gPlayer.pirateInvasionGitgudCounter = value;
                 //    break;
                 default: //shouldn't get there hopefully
-                    if (packet) AssUtils.Instance.Logger.Warn("Recieved unspecified GitgudReset Packet " + index);
+                    if (packet) AssUtils.Instance.Logger.Warn("Received unspecified GitgudReset Packet " + index);
                     else throw new Exception("Unspecified index in the gitgud array " + index);
                     break;
             }
@@ -559,7 +559,7 @@ namespace AssortedCrazyThings
 
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    GitgudData.SendCounters(whoAmI);
+                    SendCounters(whoAmI);
                 }
             }
         }

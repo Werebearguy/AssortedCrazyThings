@@ -49,8 +49,8 @@ namespace AssortedCrazyThings.Items.Armor
 
             /*
              * HOW IT WORKS: thorns = 1f means that 100% of the damage an NPC does is reflected (absolute) (ONLY CONTACT DAMAGE)
-             * aka if a zombie with 14 damage attacks you in your armor, you recieve 1 damage (since you have 44 defense)  but the 
-             * zombie recieves 14 damage back
+             * aka if a zombie with 14 damage attacks you in your armor, you receive 1 damage (since you have 44 defense)  but the 
+             * zombie receives 14 damage back
              * 
              * the factor is calculated above:
              * it uses maxMinions default, but if slotsMinions is modified by anything (like cheatsheet) it uses that instead

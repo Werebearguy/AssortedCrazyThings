@@ -82,8 +82,6 @@ namespace AssortedCrazyThings.UI
             }
         }
 
-        //TODO add some static var that has the current segment the mouse is in
-
         //Update, unused
         public override void Update(GameTime gameTime)
         {

@@ -447,7 +447,7 @@ namespace AssortedCrazyThings
                     if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
                     break;
                 default: //shouldn't get there hopefully
-                    mod.Logger.Debug("Recieved unspecified PetPlayerChanges Packet " + changes);
+                    mod.Logger.Debug("Received unspecified PetPlayerChanges Packet " + changes);
                     break;
             }
             GetFromClonedTypes();

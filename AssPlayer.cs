@@ -262,7 +262,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Returns true if NPC isn't in soulbuffblacklist or is a worm body or tail
         /// </summary>
-        private bool EligibleToRecieveSoulBuff(NPC npc)
+        private bool EligibleToReceiveSoulBuff(NPC npc)
         {
             return Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) < 0 || AssUtils.IsWormBodyOrTail(npc);
         }
@@ -297,7 +297,7 @@ namespace AssortedCrazyThings
                             NPC npc = Main.npc[j];
                             if (npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.dontTakeDamage && !npc.immortal && !npc.SpawnedFromStatue)
                             {
-                                if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) < 0 && EligibleToRecieveSoulBuff(Main.npc[j]))
+                                if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) < 0 && EligibleToReceiveSoulBuff(Main.npc[j]))
                                 {
                                     Main.npc[j].AddBuff(mod.BuffType<SoulBuff>(), 60, true);
                                 }
