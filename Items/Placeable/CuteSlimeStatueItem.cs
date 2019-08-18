@@ -10,6 +10,7 @@ namespace AssortedCrazyThings.Items.Placeable
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Slime Statue");
+            Tooltip.SetDefault("You can't catch statue spawned creatures");
         }
 
         public override void SetDefaults()
