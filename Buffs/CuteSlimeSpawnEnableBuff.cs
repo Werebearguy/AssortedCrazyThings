@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Buffs
             string canSpawn = "\nCute Slimes that can spawn: ";
             string suffix = "None";
 
-            foreach (SlimePets.SpawnConditionType type in Enum.GetValues(typeof(SlimePets.SpawnConditionType)))
+            foreach (SpawnConditionType type in Enum.GetValues(typeof(SpawnConditionType)))
             {
                 if (SlimePets.CanSpawn(Main.LocalPlayer, type))
                 {

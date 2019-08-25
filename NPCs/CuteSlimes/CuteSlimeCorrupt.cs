@@ -1,49 +1,52 @@
 using AssortedCrazyThings.Base;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeCorrupt : ModNPC
+    public class CuteSlimeCorrupt : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Corrupt Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Corrupt Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 46;
-            npc.height = 52;
+            get
+            {
+                return mod.ItemType("CuteSlimeCorruptNew");
+            }
+        }
+
+        public override SpawnConditionType SpawnCondition
+        {
+            get
+            {
+                return SpawnConditionType.Corruption;
+            }
+        }
+
+        public override bool IsFriendly
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override bool ShouldDropRandomItem
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void MoreSetDefaults()
+        {
             npc.scale = 1.2f;
-            //npc.friendly = true;
-            npc.chaseable = false;
-            npc.damage = 0;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeCorrupt")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeCorruptNew");
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Corruption);
-        }
-
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
         }
     }
 }

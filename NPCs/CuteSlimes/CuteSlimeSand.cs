@@ -1,48 +1,52 @@
 using AssortedCrazyThings.Base;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeSand : ModNPC
+    public class CuteSlimeSand : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Sand Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Sand Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 46;
-            npc.height = 52;
-            //npc.friendly = true;
-            npc.chaseable = false;
-            npc.damage = 0;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 1f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
+            get
+            {
+                return mod.ItemType("CuteSlimeSandNew");
+            }
+        }
+
+        public override bool IsFriendly
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override bool ShouldDropRandomItem
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override SpawnConditionType SpawnCondition
+        {
+            get
+            {
+                return SpawnConditionType.Desert;
+            }
+        }
+
+        public override void MoreSetDefaults()
+        {
             npc.alpha = 45;
-            Main.npcCatchable[mod.NPCType("CuteSlimeSand")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeSandNew");
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Desert);
-        }
-
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
         }
     }
 }

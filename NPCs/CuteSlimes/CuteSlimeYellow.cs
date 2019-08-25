@@ -1,48 +1,31 @@
 using AssortedCrazyThings.Base;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeYellow : ModNPC
+    public class CuteSlimeYellow : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Yellow Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Yellow Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 46;
-            npc.height = 52;
-            //npc.scale = 1.2f;
-            npc.friendly = true;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 1f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeYellow")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeYellowNew");
+            get
+            {
+                return mod.ItemType("CuteSlimeYellowNew");
+            }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override SpawnConditionType SpawnCondition
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Overworld);
-        }
-
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            get
+            {
+                return SpawnConditionType.Overworld;
+            }
         }
     }
 }

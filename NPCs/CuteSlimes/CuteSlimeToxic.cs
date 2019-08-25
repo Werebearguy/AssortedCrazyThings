@@ -1,48 +1,47 @@
 using AssortedCrazyThings.Base;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeToxic : ModNPC
+    public class CuteSlimeToxic : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Toxic Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Toxic Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 32;
-            npc.height = 52;
-            //npc.friendly = true;
-            npc.chaseable = false;
-            npc.damage = 0;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeToxic")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeToxicNew");
+            get
+            {
+                return mod.ItemType("CuteSlimeToxicNew");
+            }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override bool IsFriendly
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Underground);
+            get
+            {
+                return false;
+            }
         }
 
-        public override void NPCLoot()
+        public override bool ShouldDropRandomItem
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            get
+            {
+                return false;
+            }
+        }
+
+        public override SpawnConditionType SpawnCondition
+        {
+            get
+            {
+                return SpawnConditionType.Underground;
+            }
         }
     }
 }

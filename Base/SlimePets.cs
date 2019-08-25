@@ -34,23 +34,6 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static List<List<string>> slimePetNPCsEnumToNames;
 
-
-        public enum SpawnConditionType : byte
-        {
-            None,
-            Overworld,
-            Desert,
-            Tundra,
-            Jungle,
-            Underground,
-            Hell,
-            Corruption,
-            Crimson,
-            Hallow,
-            Dungeon,
-            Xmas
-        }
-
         /// <summary>
         /// Used in CuteSlimeSpawnEnableBuff.ModifyTooltips
         /// Since SpawnCondition is unresponsive, implement the conditions manually
@@ -359,6 +342,22 @@ namespace AssortedCrazyThings.Base
         {
             return slimePetList[slimePets.IndexOf(type)];
         }
+    }
+
+    public enum SpawnConditionType : byte
+    {
+        None,
+        Overworld,
+        Desert,
+        Tundra,
+        Jungle,
+        Underground,
+        Hell,
+        Corruption,
+        Crimson,
+        Hallow,
+        Dungeon,
+        Xmas
     }
 
     /// <summary>

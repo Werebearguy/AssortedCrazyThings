@@ -2,39 +2,61 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeLava : ModNPC
+    public class CuteSlimeLava : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Lava Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Lava Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 54;
-            npc.height = 52;
-            //npc.friendly = true;
-            npc.chaseable = false;
-            npc.damage = 0;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            //npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeLava")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeLavaNew");
+            get
+            {
+                return mod.ItemType("CuteSlimeLavaNew");
+            }
+        }
+
+        public override SpawnConditionType SpawnCondition
+        {
+            get
+            {
+                return SpawnConditionType.Hell;
+            }
+        }
+
+        public override bool IsFriendly
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override bool ShouldDropRandomItem
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override bool ShouldDropGel
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void MoreSetDefaults()
+        {
             npc.lavaImmune = true;
         }
 
@@ -49,16 +71,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             int widthOffset = 12;
             Dust.NewDustDirect(npc.position + new Vector2(widthOffset, 0), npc.width - 2 * widthOffset, npc.height, 6).noGravity = true;
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Hell);
-        }
-
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

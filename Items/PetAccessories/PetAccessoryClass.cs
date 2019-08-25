@@ -656,7 +656,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         }
                     }
                 }
-                else
+                else if (Main.LocalPlayer.HasItem(item.type))
                 {
                     tooltips.Add(new TooltipLine(mod, "NoUse", "You have no summoned slime to equip this on")
                     {

@@ -1,48 +1,39 @@
 using AssortedCrazyThings.Base;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeJungle : ModNPC
+    public class CuteSlimeJungle : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Jungle Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Jungle Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 46;
-            npc.height = 52;
-            //npc.friendly = true;
-            npc.chaseable = false;
-            npc.damage = 0;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeJungle")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeJungleNew");
+            get
+            {
+                return mod.ItemType("CuteSlimeJungleNew");
+            }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override SpawnConditionType SpawnCondition
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Jungle);
+            get
+            {
+                return SpawnConditionType.Jungle;
+            }
         }
 
-        public override void NPCLoot()
+        public override bool IsFriendly
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            get
+            {
+                return false;
+            }
         }
     }
 }

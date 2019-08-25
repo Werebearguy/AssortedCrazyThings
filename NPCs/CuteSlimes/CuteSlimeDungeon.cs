@@ -4,56 +4,74 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeDungeon : ModNPC
+    public class CuteSlimeDungeon : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Dungeon Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Dungeon Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 54;
-            npc.height = 52;
+            get
+            {
+                return mod.ItemType("CuteSlimeDungeonNew");
+            }
+        }
+
+        public override SpawnConditionType SpawnCondition
+        {
+            get
+            {
+                return SpawnConditionType.Dungeon;
+            }
+        }
+
+        public override bool IsFriendly
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override bool ShouldDropRandomItem
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override bool ShouldDropGel
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void MoreSetDefaults()
+        {
             npc.scale = 1.2f;
-            //npc.friendly = true;
-            npc.chaseable = false;
-            npc.damage = 0;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeDungeon")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeDungeonNew");
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override void MoreNPCLoot()
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Dungeon);
+            int type = Main.rand.NextBool(7) ? mod.ItemType<PetAccessorySwallowedKey>() : ItemID.GoldenKey;
+            Item.NewItem(npc.getRect(), type);
         }
 
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
-            if (Main.rand.NextBool(7)) Item.NewItem(npc.getRect(), mod.ItemType<PetAccessorySwallowedKey>());
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = mod.GetTexture("NPCs/CuteSlimes/CuteSlimeDungeonAddition");
-            Vector2 stupidOffset = new Vector2(0f, 2f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            Vector2 stupidOffset = new Vector2(0f, 1f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;

@@ -3,54 +3,52 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeXmas : ModNPC
+    public class CuteSlimeXmas : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Holiday Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Holiday Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 46;
-            npc.height = 52;
-            npc.friendly = true;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeXmas")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeXmasNew");
+            get
+            {
+                return mod.ItemType("CuteSlimeXmasNew");
+            }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override SpawnConditionType SpawnCondition
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Xmas);
+            get
+            {
+                return SpawnConditionType.Xmas;
+            }
         }
 
-        public override void NPCLoot()
+        public override bool ShouldDropRandomItem
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
-            if (Main.rand.Next(5) < 1) // a 2 in 7 chance
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void MoreNPCLoot()
+        {
+            if (Main.rand.NextBool(5)) // a 1 in 5 chance
                 Item.NewItem(npc.getRect(), ItemID.GiantBow);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/CuteSlimeXmasAddition");
+            Texture2D texture = mod.GetTexture("NPCs/CuteSlimes/CuteSlimeXmasAddition");
             Vector2 stupidOffset = new Vector2(0f, 4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);

@@ -1,47 +1,44 @@
 using AssortedCrazyThings.Base;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public class CuteSlimeIce : ModNPC
+    public class CuteSlimeIce : CuteSlimeBaseNPC
     {
-        public override void SetStaticDefaults()
+        public override string IngameName
         {
-            DisplayName.SetDefault("Cute Ice Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            get
+            {
+                return "Cute Ice Slime";
+            }
         }
 
-        public override void SetDefaults()
+        public override int CatchItem
         {
-            npc.width = 46;
-            npc.height = 52;
-            npc.friendly = true;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            Main.npcCatchable[mod.NPCType("CuteSlimeIce")] = true;
-            npc.catchItem = (short)mod.ItemType("CuteSlimeIceNew");
+            get
+            {
+                return mod.ItemType("CuteSlimeIceNew");
+            }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override SpawnConditionType SpawnCondition
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SlimePets.SpawnConditionType.Tundra);
+            get
+            {
+                return SpawnConditionType.Tundra;
+            }
         }
 
-        public override void NPCLoot()
+        public override bool ShouldDropRandomItem
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            get
+            {
+                return false;
+            }
+        }
+
+        public override void MoreSetDefaults()
+        {
+            npc.scale = 0.9f;
         }
     }
 }

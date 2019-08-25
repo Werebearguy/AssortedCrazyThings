@@ -2,6 +2,7 @@
 using System.Linq;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,7 +49,7 @@ namespace AssortedCrazyThings.Items
                 // Can use item
                 tooltips.Add(new TooltipLine(mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
                 {
-                    overrideColor = new Microsoft.Xna.Framework.Color(35, 200, 254)
+                    overrideColor = new Color(35, 200, 254)
                 });
             }
             else
