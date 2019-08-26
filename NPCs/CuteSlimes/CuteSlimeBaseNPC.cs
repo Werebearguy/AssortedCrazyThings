@@ -99,9 +99,9 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
             // Slime AI breaks with big enough height when it jumps against a low ceiling
             // then glitches into the ground
-            if (npc.scale > 1)
+            if (npc.scale > 0.9f)
             {
-                npc.height -= (int)((npc.scale - 1) * npc.height);
+                npc.height -= (int)((npc.scale - 0.9f) * npc.height);
             }
         }
 
@@ -217,7 +217,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                     }
                     else if (choice == 1)
                     {
-                        choice = Main.rand.Next(4);
+                        choice = Main.rand.Next(3); //4
                         if (choice == 0)
                         {
                             choice = 8;
@@ -230,10 +230,10 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                         {
                             choice = 965;
                         }
-                        else
-                        {
-                            choice = 58;
-                        }
+                        //else
+                        //{
+                        //    choice = 58;
+                        //}
                     }
                     else if (choice == 2)
                     {

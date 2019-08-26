@@ -179,7 +179,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Santa Hat");
-            Tooltip.SetDefault("'A festive hat for your cute slime to wear'");
+            Tooltip.SetDefault("'A festive hat for your cute slime to wear on hear head'");
         }
     }
 
