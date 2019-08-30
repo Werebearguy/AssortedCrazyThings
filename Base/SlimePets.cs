@@ -25,11 +25,6 @@ namespace AssortedCrazyThings.Base
         public static List<int> slimePetRegularNPCs;
 
         /// <summary>
-        /// All Cute Slime NPCs
-        /// </summary>
-        public static List<int> slimePetNPCs;
-
-        /// <summary>
         /// For the Jellied Ale bufftip
         /// </summary>
         public static List<List<string>> slimePetNPCsEnumToNames;
@@ -108,7 +103,7 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
         {
-            if (AssUtils.AnyNPCs(slimePetNPCs)) return 0f;
+            if (AssUtils.AnyNPCs(x => x.modNPC != null && x.modNPC is CuteSlimeBaseNPC)) return 0f;
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
             if (AssUtils.AssConfig.CuteSlimesPotionOnly)
             {
@@ -167,21 +162,6 @@ namespace AssortedCrazyThings.Base
                 AssUtils.Instance.NPCType<CuteSlimeRed>(),
                 AssUtils.Instance.NPCType<CuteSlimeYellow>()
             };
-
-            slimePetNPCs = new List<int>
-            {
-                AssUtils.Instance.NPCType<CuteSlimeCorrupt>(),
-                AssUtils.Instance.NPCType<CuteSlimeCrimson>(),
-                AssUtils.Instance.NPCType<CuteSlimeDungeon>(),
-                AssUtils.Instance.NPCType<CuteSlimeIce>(),
-                AssUtils.Instance.NPCType<CuteSlimeIlluminant>(),
-                AssUtils.Instance.NPCType<CuteSlimeJungle>(),
-                AssUtils.Instance.NPCType<CuteSlimeLava>(),
-                AssUtils.Instance.NPCType<CuteSlimeSand>(),
-                AssUtils.Instance.NPCType<CuteSlimeToxic>(),
-                AssUtils.Instance.NPCType<CuteSlimeXmas>()
-            };
-            slimePetNPCs.AddRange(slimePetRegularNPCs);
 
             //start list
             slimePetList.Add(SlimePet.NewSlimePet
@@ -319,7 +299,6 @@ namespace AssortedCrazyThings.Base
         {
             slimePets = null;
             slimePetList = null;
-            slimePetNPCs = null;
             slimePetNPCsEnumToNames = null;
         }
 

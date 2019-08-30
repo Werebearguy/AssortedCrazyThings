@@ -43,6 +43,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         }
 
         public short RandomItem = -1;
+        public int Stack = -1;
 
         public bool DecidedOnRandomItem = false;
 
@@ -50,7 +51,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return RandomItem > -1;
+                return RandomItem > -1 && Stack > 0;
             }
         }
 
@@ -118,52 +119,19 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         public sealed override void NPCLoot()
         {
             if (ShouldDropGel) Item.NewItem(npc.getRect(), ItemID.Gel);
-            if (ShouldDropRandomItem && HasRandomItem && npc.value > 0)
-            {
-                // Copied from vanilla and adjusted
-                int type = RandomItem;
-                if (type > 0)
-                {
-                    int stack = 1;
-                    if (type == 8)
-                    {
-                        stack = Main.rand.Next(5, 11);
-                    }
-                    else if (type == 166)
-                    {
-                        stack = Main.rand.Next(2, 7);
-                    }
-                    else if (type == 965)
-                    {
-                        stack = Main.rand.Next(20, 46);
-                    }
-                    else if ((type >= 11 && type <= 14) || (type >= 699 && type <= 702))
-                    {
-                        stack = Main.rand.Next(3, 9);
-                        if (Main.rand.Next(2) == 0)
-                        {
-                            stack += 5;
-                        }
-                    }
-                    else if (type == 71)
-                    {
-                        stack = Main.rand.Next(50, 100);
-                    }
-                    else if (type == 72)
-                    {
-                        stack = Main.rand.Next(20, 100);
-                    }
-                    else if (type == 73)
-                    {
-                        stack = Main.rand.Next(1, 3);
-                    }
-                    Item.NewItem(npc.getRect(), type, stack);
-                }
-            }
-            MoreNPCLoot();
+            DropRandomItem(npc.getRect());
+            MoreNPCLoot(npc.getRect());
         }
 
-        public virtual void MoreNPCLoot()
+        public void DropRandomItem(Rectangle pos)
+        {
+            if (ShouldDropRandomItem && HasRandomItem && npc.value > 0)
+            {
+                Item.NewItem(pos, RandomItem, Stack);
+            }
+        }
+
+        public virtual void MoreNPCLoot(Rectangle pos)
         {
 
         }
@@ -262,7 +230,41 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                             choice = 73;
                         }
                     }
+                    int stack = 1;
+                    if (choice == 8)
+                    {
+                        stack = Main.rand.Next(5, 11);
+                    }
+                    else if (choice == 166)
+                    {
+                        stack = Main.rand.Next(2, 7);
+                    }
+                    else if (choice == 965)
+                    {
+                        stack = Main.rand.Next(20, 46);
+                    }
+                    else if ((choice >= 11 && choice <= 14) || (choice >= 699 && choice <= 702))
+                    {
+                        stack = Main.rand.Next(3, 9);
+                        if (Main.rand.Next(2) == 0)
+                        {
+                            stack += 5;
+                        }
+                    }
+                    else if (choice == 71)
+                    {
+                        stack = Main.rand.Next(50, 100);
+                    }
+                    else if (choice == 72)
+                    {
+                        stack = Main.rand.Next(20, 100);
+                    }
+                    else if (choice == 73)
+                    {
+                        stack = Main.rand.Next(1, 3);
+                    }
                     RandomItem = (short)choice;
+                    Stack = stack;
                     npc.netUpdate = true;
                 }
             }

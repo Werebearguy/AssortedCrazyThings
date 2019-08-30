@@ -62,10 +62,10 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             npc.scale = 1.2f;
         }
 
-        public override void MoreNPCLoot()
+        public override void MoreNPCLoot(Rectangle pos)
         {
             int type = Main.rand.NextBool(7) ? mod.ItemType<PetAccessorySwallowedKey>() : ItemID.GoldenKey;
-            Item.NewItem(npc.getRect(), type);
+            Item.NewItem(pos, type);
         }
 
         public override bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)

@@ -73,8 +73,8 @@ namespace AssortedCrazyThings.Tiles
         public override void HitWire(int i, int j)
         {
             // Find the coordinates of top left tile square through math
-            int y = j - Main.tile[i, j].frameY / 18;
             int x = i - Main.tile[i, j].frameX / 18;
+            int y = j - Main.tile[i, j].frameY / 18;
 
             Wiring.SkipWire(x, y);
             Wiring.SkipWire(x, y + 1);
@@ -94,7 +94,7 @@ namespace AssortedCrazyThings.Tiles
             // 30 is the time before it can be used again. 
             if (Wiring.CheckMech(x, y, 30) && npcType != -1)
             {
-                npcIndex = NPC.NewNPC(spawnX, spawnY - 12, npcType);
+                npcIndex = NPC.NewNPC(spawnX, spawnY - 8, npcType);
             }
             if (npcIndex >= 0)
             {

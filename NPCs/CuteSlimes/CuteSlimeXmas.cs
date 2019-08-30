@@ -40,10 +40,10 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override void MoreNPCLoot()
+        public override void MoreNPCLoot(Rectangle pos)
         {
             if (Main.rand.NextBool(5)) // a 1 in 5 chance
-                Item.NewItem(npc.getRect(), ItemID.GiantBow);
+                Item.NewItem(pos, ItemID.GiantBow);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

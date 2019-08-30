@@ -236,6 +236,8 @@ namespace AssortedCrazyThings
         {
             AssUtils.Instance = this;
 
+            AssHooks.Load();
+
             LoadPets();
 
             LoadSoulBuffBlacklist();

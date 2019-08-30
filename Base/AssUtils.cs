@@ -255,10 +255,18 @@ namespace AssortedCrazyThings.Base
             return false;
         }
 
-        //unused yet
         public static bool AnyNPCs(List<int> types)
         {
             return AnyNPCs(types.ToArray());
+        }
+
+        public static bool AnyNPCs(Func<NPC, bool> condition)
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && condition(Main.npc[i])) return true;
+            }
+            return false;
         }
 
         /// <summary>
