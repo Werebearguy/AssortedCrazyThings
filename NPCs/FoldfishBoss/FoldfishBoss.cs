@@ -211,10 +211,9 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     {
                         //dust for when before it teleports, change 79 to whatever type
                         //int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 4, npc.velocity.X, npc.velocity.Y, 150, new Color(78, 136, 255, 80), 2f);
-                        int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
-                        Main.dust[num249].noGravity = true;
-                        dust3 = Main.dust[num249];
-                        dust3.velocity *= 0.5f;
+                        Dust dust = Dust.NewDustDirect(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
+                        dust.noGravity = true;
+                        dust.velocity *= 0.5f;
                         num2 = num248;
                     }
                 }
@@ -243,10 +242,9 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                 for (int num250 = 0; num250 < 10; num250 = num2 + 1)
                 {
                     //dust for when after it teleported
-                    int num251 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
-                    Main.dust[num251].noGravity = true;
-                    dust3 = Main.dust[num251];
-                    dust3.velocity *= 2f;
+                    Dust dust = Dust.NewDustDirect(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
+                    dust.noGravity = true;
+                    dust.velocity *= 2f;
                     num2 = num250;
                 }
             }

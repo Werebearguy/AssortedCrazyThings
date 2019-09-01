@@ -47,20 +47,16 @@ namespace AssortedCrazyThings.NPCs
         {
             if (npc.life > 0)
             {
-                int num5;
-                for (int num257 = 0; num257 < 10; num257 = num5 + 1)
+                for (int i = 0; i < 10; i++)
                 {
-                    Dust.NewDust(npc.position, npc.width, npc.height, Main.rand.Next(232, 234), (float)hitDirection, -1f);
-                    num5 = num257;
+                    Dust.NewDust(npc.position, npc.width, npc.height, Main.rand.Next(232, 234), hitDirection, -1f);
                 }
             }
             else
             {
-                int num5;
-                for (int num258 = 0; num258 < 20; num258 = num5 + 1)
+                for (int i = 0; i < 20; i++)
                 {
-                    Dust.NewDust(npc.position, npc.width, npc.height, Main.rand.Next(232, 234), (float)(2 * hitDirection), -2f);
-                    num5 = num258;
+                    Dust.NewDust(npc.position, npc.width, npc.height, Main.rand.Next(232, 234), 2 * hitDirection, -2f);
                 }
             }
         }
@@ -84,8 +80,8 @@ namespace AssortedCrazyThings.NPCs
                 num /= 30;
                 if (Main.rand.Next(300) < num)
                 {
-                    int num2 = Dust.NewDust(npc.position, npc.width, npc.height, 43, 0f, 0f, 254, new Color(255, 255, 0), 0.5f);
-                    Main.dust[num2].velocity *= 0f;
+                    Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, 43, 0f, 0f, 254, new Color(255, 255, 0), 0.5f);
+                    dust.velocity *= 0f;
                 }
             }
         }

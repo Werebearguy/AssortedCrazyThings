@@ -37,9 +37,9 @@ namespace AssortedCrazyThings.Items.Weapons
             //162 for "sparks"
             //169 for just light
             int dustType = 169;
-            int dustid = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, Color.White, 1.25f);
-            Main.dust[dustid].noGravity = true;
-            Main.dust[dustid].velocity *= 2f;
+            Dust dust = Dust.NewDustDirect(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, Color.White, 1.25f);
+            dust.noGravity = true;
+            dust.velocity *= 2f;
         }
 
         public override void AddRecipes()

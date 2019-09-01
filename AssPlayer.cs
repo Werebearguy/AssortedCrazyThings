@@ -698,15 +698,15 @@ namespace AssortedCrazyThings
                     {
                         dustOffset = -40;
                     }
-                    int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
-                    Main.dust[dustIndex].noGravity = true;
-                    Main.dust[dustIndex].noLight = true;
-                    Main.dust[dustIndex].velocity *= 0.3f;
+                    Dust dust = Dust.NewDustDirect(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
+                    dust.noGravity = true;
+                    dust.noLight = true;
+                    dust.velocity *= 0.3f;
                     if (Main.rand.NextBool(5))
                     {
-                        Main.dust[dustIndex].fadeIn = 1f;
+                        dust.fadeIn = 1f;
                     }
-                    Main.dust[dustIndex].shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
+                    dust.shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
                 }
             }
         });

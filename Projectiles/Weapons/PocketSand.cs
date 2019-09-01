@@ -45,12 +45,12 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         private void SpawnSandDust(Color color, Rectangle hitbox, Player player, float velox)
         {
             //the thick no-outline one that spreads
-            int dustid = Dust.NewDust(new Vector2((float)hitbox.X, (float)(hitbox.Y - player.height / 2)), hitbox.Width, hitbox.Height, 102, player.velocity.X * 0.2f + (Main.rand.NextBool() ? velox : -velox), player.velocity.Y * 0.2f, 150, color, 1f);
-            Main.dust[dustid].noGravity = false;
-            Main.dust[dustid].fadeIn = 0.8f;
+            Dust dust = Dust.NewDustDirect(new Vector2((float)hitbox.X, (float)(hitbox.Y - player.height / 2)), hitbox.Width, hitbox.Height, 102, player.velocity.X * 0.2f + (Main.rand.NextBool() ? velox : -velox), player.velocity.Y * 0.2f, 150, color, 1f);
+            dust.noGravity = false;
+            dust.fadeIn = 0.8f;
             //the outline one 
-            int dustid2 = Dust.NewDust(new Vector2((float)hitbox.X, (float)(hitbox.Y - player.height / 2)), hitbox.Width, hitbox.Height, 32, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 200, color, 0.8f);
-            Main.dust[dustid2].noGravity = true;
+            dust = Dust.NewDustDirect(new Vector2((float)hitbox.X, (float)(hitbox.Y - player.height / 2)), hitbox.Width, hitbox.Height, 32, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 200, color, 0.8f);
+            dust.noGravity = true;
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)

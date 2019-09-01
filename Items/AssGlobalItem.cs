@@ -75,12 +75,10 @@ namespace AssortedCrazyThings.Items
             //6 is the default fire particle type
             if (player.HeldItem.damage >= 0)
             {
-                int dustid = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
-                Main.dust[dustid].noGravity = true;
-                Dust dust2 = Main.dust[dustid];
-                dust2.velocity.X = dust2.velocity.X * 2f;
-                Dust dust3 = Main.dust[dustid];
-                dust3.velocity.Y = dust3.velocity.Y * 2f;
+                Dust dust = Dust.NewDustDirect(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, type, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, color, 2f);
+                dust.noGravity = true;
+                dust.velocity.X *= 2f;
+                dust.velocity.Y *= 2f;
             }
         }
 
