@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 npc.lifeMax = 20;
             }
             npc.width = 46;
-            npc.height = 52;
+            npc.height = 32;
             npc.damage = 0;
             npc.rarity = 1;
             npc.HitSound = SoundID.NPCHit1;

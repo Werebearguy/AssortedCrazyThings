@@ -47,6 +47,8 @@ namespace AssortedCrazyThings
         public bool slimePackMinion = false;
         public byte selectedSlimePackMinionType = 0;
 
+        public byte nextMagicSlimeSlingMinion = 0;
+
         //empowering buff stuff
         public bool empoweringBuff = false;
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)

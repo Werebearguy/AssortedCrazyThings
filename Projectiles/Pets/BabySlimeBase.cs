@@ -7,14 +7,18 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    /// <summary>
+    /// localAI[1] freely available
+    /// </summary>
     public abstract class BabySlimeBase : ModProjectile
     {
         public bool shootSpikes = false;
         private static readonly byte shootDelay = 60; //either +1 or +0 every tick, so effectively every 90 ticks
         public byte flyingFrameSpeed = 6;
         public byte walkingFrameSpeed = 20;
+        public float customMinionSlots = 1f;
 
-        public override void SetDefaults()
+        public sealed override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BabySlime);
             projectile.aiStyle = -1; //26
@@ -33,7 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             MoreSetDefaults();
 
-            projectile.minionSlots = projectile.minion ? 1f : 0f;
+            projectile.minionSlots = projectile.minion ? customMinionSlots : 0f;
         }
 
         public virtual void MoreSetDefaults()
@@ -50,6 +54,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             BabySlimeAI();
+            Draw();
         }
 
         public void Draw()
@@ -706,8 +711,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     projectile.direction = -1;
                 }
             }
-
-            Draw();
         }
     }
 }

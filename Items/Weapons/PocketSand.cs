@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.shoot = mod.ProjectileType("PocketSand");
             item.useAnimation = 35;
             item.autoReuse = true;
-            item.value = 0;
             item.rare = -11;
             item.noUseGraphic = true;
             item.value = 0;
