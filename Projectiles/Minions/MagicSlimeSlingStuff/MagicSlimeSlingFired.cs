@@ -56,6 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         public override Color? GetAlpha(Color lightColor)
         {
+            if (Color == default(Color)) return lightColor;
             float average = (lightColor.R + lightColor.G + lightColor.B) / 3;
             return Color * (average * (255 - projectile.alpha) / 65025f) * 0.7f;
         }

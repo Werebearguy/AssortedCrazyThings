@@ -68,8 +68,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             projectile.minion = true;
             customMinionSlots = 0f;
             projectile.timeLeft = TimeLeft;
-            //drawOffsetX = -19;
-            drawOriginOffsetX = 6;
+            drawOffsetX = -19;
+            drawOriginOffsetX = -1;
             drawOriginOffsetY = -9;
         }
 
@@ -96,10 +96,17 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         public override Color? GetAlpha(Color lightColor)
         {
+            if (Color == default(Color)) return lightColor;
             float average = (lightColor.R + lightColor.G + lightColor.B) / 3;
             Color color = Color * PulsatingAlpha * (average / 255f);
             if (color.A > 220) color.A = 220;
             return color;
+        }
+
+        public override void ModifyDamageHitbox(ref Rectangle hitbox)
+        {
+            hitbox.Inflate(6, 6);
+            hitbox.Y -= 6;
         }
 
         public override void PostAI()
@@ -120,26 +127,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 PulsatingCounter--;
                 if (PulsatingCounter <= 0) Increment = true;
             }
-
-            //int dustType = Main.rand.Next(20);
-            //if (dustType == 0)
-            //{
-            //    dustType = mod.DustType<GlitterDust15>();
-            //}
-            //else if (dustType == 1)
-            //{
-            //    dustType = mod.DustType<GlitterDust57>();
-            //}
-            //else if (dustType == 2)
-            //{
-            //    dustType = mod.DustType<GlitterDust58>();
-            //}
-            //else
-            //{
-            //    return;
-            //}
-            //Dust dust = Dust.NewDustDirect(projectile.position + new Vector2(0f, 6f), projectile.width, projectile.height - 2, dustType, 0f, 0f, 100, default(Color), 0.8f);
-            //dust.velocity *= 0.07f;
+            //because projectile.scale breaks it
+            if (projectile.spriteDirection == -1)
+            {
+                drawOriginOffsetX = -1;
+            }
+            else
+            {
+                drawOriginOffsetX = 3;
+            }
         }
     }
 

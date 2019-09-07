@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             item.summon = true;
-            item.damage = 6;
+            item.damage = 5;
             item.useStyle = 1;
             item.useTime = 35;
             item.useAnimation = 35;
