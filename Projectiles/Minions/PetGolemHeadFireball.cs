@@ -33,7 +33,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-            Main.PlaySound(0, projectile.position);
+            //Main.PlaySound(0, projectile.position);
+            //Main.PlaySound(SoundID.Dig, (int)projectile.Center.X, (int)projectile.Center.Y, 0, 0.75f);
             return true;
         }
 

@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             Main.PlaySound(SoundID.NPCKilled, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.NPCDeath1.Style, 0.8f, 0.2f);
             for (int i = 0; i < 15; i++)
             {
-                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 100, Color, 1f);
+                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 200, Color, 1f);
                 dust.velocity *= 0.4f;
             }
 
@@ -87,7 +87,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 {
                     sum += Main.LocalPlayer.ownedProjectileCounts[MagicSlimeSling.Types[i]];
                 }
-                if (sum < 3)
+                if (sum < (2 + Main.LocalPlayer.maxMinions))
                 {
                     int type = MagicSlimeSling.Types[ColorType];
                     Vector2 velo = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-4, -2));

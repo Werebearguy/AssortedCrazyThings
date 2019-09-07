@@ -12,17 +12,18 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public static Color GetColor(byte c)
         {
+            //, 100 Alpha
             switch (c)
             {
                 case 0:
                     //blue
-                    return new Color(0, 80, 255, 100);
+                    return new Color(0, 80, 255);
                 case 1:
                     //green
-                    return new Color(0, 220, 40, 100);
+                    return new Color(0, 220, 40);
                 default:
                     //ed
-                    return new Color(255, 30, 0, 100);
+                    return new Color(255, 30, 0);
             }
         }
 

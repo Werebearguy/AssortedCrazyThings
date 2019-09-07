@@ -7,9 +7,28 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 {
-    //TODO textures
     public abstract class MagicSlimeSlingMinionBase : BabySlimeBase
     {
+        private const int TimeLeft = 360;
+
+        private const int PulsatingLimit = 30;
+
+        private bool Increment = true;
+
+        private bool Spawned = false;
+
+        public byte ColorType = 0;
+
+        public Color Color = default(Color);
+
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Minions/MagicSlimeSlingStuff/MagicSlimeSlingMinion";
+            }
+        }
+
         private int PulsatingCounter
         {
             get
@@ -30,18 +49,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 return 0.7f + ((float)PulsatingCounter / PulsatingLimit) * ((float)projectile.timeLeft / TimeLeft);
             }
         }
-
-        private const int TimeLeft = 360;
-
-        private const int PulsatingLimit = 30;
-
-        private bool Increment = true;
-
-        private bool Spawned = false;
-
-        public byte ColorType = 0;
-
-        public Color Color = default(Color);
 
         public override void SetStaticDefaults()
         {
@@ -81,7 +88,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         {
             for (int i = 0; i < 20; i++)
             {
-                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 100, Color, 1f);
+                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 200, Color, 1f);
                 dust.velocity *= 0.5f;
             }
             Main.PlaySound(SoundID.NPCKilled, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.NPCDeath1.Style, 0.8f, 0.2f);
@@ -89,8 +96,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         public override Color? GetAlpha(Color lightColor)
         {
-            Color color = lightColor * PulsatingAlpha;
-            if (color.A > 200) color.A = 200;
+            float average = (lightColor.R + lightColor.G + lightColor.B) / 3;
+            Color color = Color * PulsatingAlpha * (average / 255f);
+            if (color.A > 220) color.A = 220;
             return color;
         }
 
