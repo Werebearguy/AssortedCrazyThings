@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         protected override void CheckActive()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

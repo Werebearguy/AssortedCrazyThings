@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -27,8 +28,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            if (Main.player[projectile.owner].dead)
+            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            if (projectile.GetOwner().dead)
             {
                 modPlayer.PrinceSlime = false;
             }

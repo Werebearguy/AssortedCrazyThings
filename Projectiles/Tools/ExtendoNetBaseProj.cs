@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -47,7 +48,7 @@ namespace AssortedCrazyThings.Projectiles.Tools
         {
             // Since we access the owner player instance so much, it's useful to create a helper local variable for this
             // Sadly, Projectile/ModProjectile does not have its own
-            Player projOwner = Main.player[projectile.owner];
+            Player projOwner = projectile.GetOwner();
             // Here we set some of the projectile's owner properties, such as held item and itemtime, along with projectile direction and position based on the player
             Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
             projectile.direction = projOwner.direction;

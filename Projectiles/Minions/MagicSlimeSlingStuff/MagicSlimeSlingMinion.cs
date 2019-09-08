@@ -137,6 +137,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             {
                 drawOriginOffsetX = 3;
             }
+            if (projectile.frame == 1) projectile.gfxOffY -= 1;
         }
     }
 

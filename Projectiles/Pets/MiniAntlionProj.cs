@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -38,8 +39,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
-            if (Main.player[projectile.owner].dead)
+            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            if (projectile.GetOwner().dead)
             {
                 modPlayer.MiniAntlion = false;
             }
@@ -52,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Pets/MiniAntlionProj_" + mPlayer.miniAntlionType);
             Rectangle bounds = new Rectangle

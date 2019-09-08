@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -159,7 +160,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/" + Name);// Main.projectileTexture[projectile.type];
 
-            AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
             if (mPlayer.soulSaviorArmor && projectile.minionSlots == 1f)
             {
                 image = mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/" + Name + "_Empowered");
@@ -184,7 +185,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
                 if (dustColor != 0)
                 {
-                    dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
+                    dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), projectile.GetOwner());
                 }
             }
 
@@ -203,7 +204,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
                         if (dustColor != 0)
                         {
-                            dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Main.player[projectile.owner]);
+                            dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), projectile.GetOwner());
                         }
                     }
                 }
@@ -217,7 +218,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
             if (mPlayer.soulSaviorArmor)
             {
                 damage = (int)(1.3f * damage);
@@ -246,7 +247,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             //AI_STATE == 1 : noclipping to player
             //AI_STATE == 2 : target found, dashing (includes delay after dash)
 
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
             if (player.dead)
             {

@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -36,7 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

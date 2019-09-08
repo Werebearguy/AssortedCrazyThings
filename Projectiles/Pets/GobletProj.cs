@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -29,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             player.grinch = false; // Relic from aiType
             return true;
         }
@@ -119,7 +120,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

@@ -24,14 +24,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             player.hornet = false; // Relic from aiType
             return true;
         }
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

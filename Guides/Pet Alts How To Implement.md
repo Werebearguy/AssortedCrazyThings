@@ -45,9 +45,10 @@ public override string Texture
 //you need those usings:
 //using Microsoft.Xna.Framework;
 //using Microsoft.Xna.Framework.Graphics;
+//using AssortecCrazyThings.Base;
 public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 {
-    PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+    PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
     SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
     Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType);
     Rectangle bounds = new Rectangle

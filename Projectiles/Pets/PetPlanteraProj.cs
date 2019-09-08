@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -154,7 +154,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 if (tentacleCount >= 4) break;
             }
-            AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Main.player[projectile.owner].Center, projectile.Center);
+            AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", projectile.GetOwner().Center, projectile.Center);
             return true;
         }
     }
@@ -193,7 +193,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

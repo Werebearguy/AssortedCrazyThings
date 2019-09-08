@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             player.lizard = false;
             return true;
         }
@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         /// </summary>
         private void DrawBaseSprite(SpriteBatch spriteBatch, Color drawColor)
         {
-            PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            PetPlayer pPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             bool useNoHair = false;
@@ -189,7 +189,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         /// </summary>
         private void DrawAccessories(SpriteBatch spriteBatch, Color drawColor, bool preDraw = false)
         {
-            PetPlayer pPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>();
+            PetPlayer pPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             SlimePet sPet = SlimePets.GetPet(projectile.type);
             PetAccessory petAccessory;
 

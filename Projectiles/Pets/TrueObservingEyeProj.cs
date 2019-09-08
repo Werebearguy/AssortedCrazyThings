@@ -49,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             image = mod.GetTexture("Projectiles/Pets/TrueObservingEyeProj_Eye");
 
-            Vector2 between = Main.player[projectile.owner].Center - (projectile.position + stupidOffset);
+            Vector2 between = projectile.GetOwner().Center - (projectile.position + stupidOffset);
             //between.Length(): 94 is "idle", 200 is very fast following
             //28.5f = 200f / 7f
             float magnitude = Utils.Clamp(between.Length() / 28.5f, 1.3f, 7f);
@@ -66,7 +66,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

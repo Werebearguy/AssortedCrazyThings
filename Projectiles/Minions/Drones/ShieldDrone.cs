@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
+                AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
                 return mPlayer.shieldDroneReduction < AssPlayer.shieldDroneReductionMax && LowerOutPercent == 1f;
             }
         }
@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
+                AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
                 return mPlayer.shieldDroneReduction / 10;
             }
         }
@@ -146,7 +146,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             if (CanShield)

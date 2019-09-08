@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,7 +38,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         //ai 1 unused
         public override bool PreAI()
         {
-            AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
 
             bool[] buffs = new bool[] {
             mPlayer.everburningCandleBuff,

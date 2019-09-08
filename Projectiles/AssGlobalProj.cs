@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AssortedCrazyThings.Base;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,7 +19,7 @@ namespace AssortedCrazyThings.Projectiles
         {
             if ((projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.friendly && projectile.damage > 0)
             {
-                AssPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>();
+                AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
                 if (mPlayer.empoweringBuff)
                 {
                     damage += (int)(damage * mPlayer.step * 0.25f);

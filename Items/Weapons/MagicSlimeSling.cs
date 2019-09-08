@@ -64,7 +64,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.mana = 10;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType<MagicSlimeSlingFired>();
-            item.autoReuse = true;
             item.rare = -11;
             item.noUseGraphic = true;
             item.value = Item.sellPrice(silver: 15);

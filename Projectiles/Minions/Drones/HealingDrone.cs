@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return Main.player[projectile.owner].statLife < Main.player[projectile.owner].statLifeMax2;
+                return projectile.GetOwner().statLife < projectile.GetOwner().statLifeMax2;
             }
         }
 
@@ -71,7 +71,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //frame 0, 1: full life
             //frame 2, 3: above half health, healing
             //frame 4, 5: below half health, healing faster
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             Vector2 lightPos = projectile.position + new Vector2(projectile.spriteDirection == 1 ? 0f : projectile.width, projectile.height / 2);
 
@@ -156,7 +156,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             if (CanHeal)
             {

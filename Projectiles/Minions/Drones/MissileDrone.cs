@@ -85,7 +85,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //frame 0, 1: above two thirds health
             //frame 2, 3: above half health, below two thirds health
             //frame 4, 5: below half health, healing
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             int frameOffset = 0; //frame 0, 1
 
@@ -181,7 +181,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             #region Handle State
             if (AI_STATE == STATE_COOLDOWN)

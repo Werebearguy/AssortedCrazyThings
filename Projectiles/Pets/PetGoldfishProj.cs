@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -33,7 +34,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             aiType = ProjectileID.BabyGrinch;
         }
 
-        private bool Swimming { get { return Main.player[projectile.owner].wet; } }
+        private bool Swimming { get { return projectile.GetOwner().wet; } }
 
         /// <summary>
         /// Player owner direction
@@ -129,7 +130,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void SwimmingZephyrfishAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             if (!player.active)
             {
                 projectile.active = false;
@@ -305,7 +306,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -333,7 +334,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
             SpriteEffects effects = projectile.direction != -1 ? SpriteEffects.FlipHorizontally: SpriteEffects.None;
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;

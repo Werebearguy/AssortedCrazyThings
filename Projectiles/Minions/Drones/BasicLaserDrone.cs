@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             int frameOffset = 0; //frame 0, 1
 
@@ -156,7 +156,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             //Main.NewText("State: " + AI_STATE);
             //Main.NewText("Counter: " + Counter);
 
@@ -303,7 +303,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         private int FindClosestTargetBelow(int range = 1000)
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             int targetIndex = -1;
             float distanceFromTarget = 100000f;
             Vector2 targetCenter = projectile.Center;

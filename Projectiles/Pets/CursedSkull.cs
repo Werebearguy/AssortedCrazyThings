@@ -33,14 +33,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             player.zephyrfish = false; // Relic from aiType
             return true;
         }
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             if (projectile.frame >= 3) projectile.frame = 0;
 
-            if (projectile.Center.X - Main.player[projectile.owner].Center.X > 0f)
+            if (projectile.Center.X - projectile.GetOwner().Center.X > 0f)
             {
                 projectile.spriteDirection = 1;
             }
@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Pets/CursedSkull_" + mPlayer.cursedSkullType);
             Rectangle bounds = new Rectangle

@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -66,8 +67,8 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override bool PreAI()
         {
-            AssPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<AssPlayer>(mod);
-            if (Main.player[projectile.owner].dead)
+            AssPlayer modPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
+            if (projectile.GetOwner().dead)
             {
                 modPlayer.slimePackMinion = false;
             }

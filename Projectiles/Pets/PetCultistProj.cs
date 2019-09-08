@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             //frame 0: idle
             //frame 0 to 3: loop back and forth while healing
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             if (player.statLife < player.statLifeMax2 / 2)
             {
@@ -101,7 +101,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             Sincounter = Sincounter >= 240 ? 0 : Sincounter + 1;
             sinY = (float)((Math.Sin((Sincounter / 120f) * 2 * Math.PI) - 1) * 4);
@@ -138,7 +138,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -161,7 +161,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetCultistProj_" + mPlayer.petCultistType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;

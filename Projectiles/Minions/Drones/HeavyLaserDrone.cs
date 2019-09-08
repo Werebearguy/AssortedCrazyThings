@@ -88,7 +88,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //frame 0, 1: above two thirds health
             //frame 2, 3: above half health, below two thirds health
             //frame 4, 5: below half health, healing
-            Player player = Main.player[projectile.owner];
 
             int frameOffset = 0; //frame 0, 1
 
@@ -197,7 +196,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 //150 to 50 is smooth, distance
                 Vector2 pos = new Vector2(offsetX, offsetY) - new Vector2(-30, 20);
                 //veloSpeed = (float)Math.Pow((double)Counter / AttackCooldown, 2) + 0.05f;
-                Vector2 distanceToTargetVector = (pos + Main.player[projectile.owner].Center) - projectile.Center;
+                Vector2 distanceToTargetVector = (pos + projectile.GetOwner().Center) - projectile.Center;
                 float distanceToTarget = distanceToTargetVector.Length();
                 if (Counter == 0) InitialDistance = distanceToTarget;
                 //Main.NewText("proper: " + distanceToTargetVector.Length());
@@ -229,7 +228,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomAI()
         {
-            Player player = Main.player[projectile.owner];
             //Main.NewText("State: " + AI_STATE);
             //Main.NewText("Counter: " + Counter);
 
@@ -347,7 +345,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         private int FindClosestHorizontalTarget()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             int targetIndex = -1;
             float distanceFromTarget = 100000f;
             Vector2 targetCenter = player.Center;

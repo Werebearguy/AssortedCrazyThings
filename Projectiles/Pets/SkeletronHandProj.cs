@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -58,9 +58,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, Main.player[projectile.owner].Center, selfPad: projectile.height / 2, centerPad: -20f, direction: 0);
+            AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", projectile.Center, projectile.GetOwner().Center, selfPad: projectile.height / 2, centerPad: -20f, direction: 0);
 
-            PetPlayer mPlayer = Main.player[projectile.owner].GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
             Texture2D image = mod.GetTexture("Projectiles/Pets/SkeletronHandProj_" + mPlayer.skeletronHandType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
@@ -73,7 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawOrigin = bounds.Size() / 2;
             drawOrigin.Y += projectile.height / 2;
 
-            float betweenX = Main.player[projectile.owner].Center.X - projectile.Center.X;
+            float betweenX = projectile.GetOwner().Center.X - projectile.Center.X;
             SpriteEffects effects = betweenX < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);

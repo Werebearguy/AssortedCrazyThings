@@ -28,14 +28,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             player.eater = false; // Relic from aiType
             return true;
         }
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostAI()
         {
-            Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
+            Vector2 between = projectile.Center - projectile.GetOwner().Center;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
             projectile.spriteDirection = projectile.direction = -(between.X < 0).ToDirectionInt();
         }
@@ -90,14 +90,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             player.zephyrfish = false; // Relic from aiType
             return true;
         }
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {
@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             if (projectile.frame > 1) projectile.frame = 0;
 
-            Vector2 between = projectile.Center - Main.player[projectile.owner].Center;
+            Vector2 between = projectile.Center - projectile.GetOwner().Center;
             projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
             projectile.spriteDirection = projectile.direction = -(between.X < 0).ToDirectionInt();
         }

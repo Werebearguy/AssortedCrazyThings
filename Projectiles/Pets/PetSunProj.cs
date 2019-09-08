@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 texture = 2;
             }
-            else if (Main.player[projectile.owner].head == 12)
+            else if (projectile.GetOwner().head == 12)
             {
                 texture = 1;
             }
@@ -58,7 +58,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
             if (player.dead)
             {

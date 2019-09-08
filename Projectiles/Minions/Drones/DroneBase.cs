@@ -144,7 +144,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected virtual void CheckActive()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
             if (player.dead)
             {
@@ -192,7 +192,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 RandomNumber = (byte)Main.rand.Next(1, 256);
             }
 
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
             offset += DroneController.GetPosition(projectile, MinionPos);
 

@@ -93,7 +93,7 @@ namespace AssortedCrazyThings.Base
         public static void FlickerwickPetAI(Projectile projectile, bool lightPet = true, bool lightDust = true, bool staticDirection = false, bool reverseSide = false, bool vanityPet = false, float veloXToRotationFactor = 1f, float veloSpeed = 1f, float lightFactor = 1f, Vector3 lightColor = default(Vector3), float offsetX = 0f, float offsetY = 0f)
         {
             //veloSpeed not bigger than veloDistanceChange * 0.5f
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             float veloDistanceChange = 2f; //6f
 
             int dir = player.direction;
@@ -233,7 +233,7 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static void EyeSpringAI(Projectile projectile, bool flyForever = false)
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             if (!player.active)
             {
                 projectile.active = false;
@@ -670,7 +670,7 @@ namespace AssortedCrazyThings.Base
             //offsetX/Y
             //offsetting the desired center the pet hovers around
 
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
             if (!player.active)
             {
                 projectile.active = false;
@@ -829,7 +829,7 @@ namespace AssortedCrazyThings.Base
             //sway: 
             //tells by how much increase/decrease the left/right sway radius of the idle pet
 
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             if (!player.active)
             {
@@ -982,7 +982,7 @@ namespace AssortedCrazyThings.Base
         //projectile.scale = 1f + scaleFactor * 0.01f;
         public static void StardustDragonAI(Projectile projectile, int[] wormTypes)
         {
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             if (projectile.minion && (int)Main.time % 120 == 0)
             {

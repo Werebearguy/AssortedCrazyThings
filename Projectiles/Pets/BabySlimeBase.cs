@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using System;
@@ -117,7 +118,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     projectile.frame = 0;
                 }
-                if (projectile.wet && Main.player[projectile.owner].Bottom.Y < projectile.Bottom.Y && JumpTimer == 0f)
+                if (projectile.wet && projectile.GetOwner().Bottom.Y < projectile.Bottom.Y && JumpTimer == 0f)
                 {
                     if (projectile.velocity.Y > -4f)
                     {
@@ -194,7 +195,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bool flag3 = false;
             bool flag4 = false;
 
-            Player player = Main.player[projectile.owner];
+            Player player = projectile.GetOwner();
 
             int initialOffset = projectile.minion ? 10 : 25;
             if (!projectile.minion) projectile.minionPos = 0;

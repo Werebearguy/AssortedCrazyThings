@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -67,7 +68,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             //dont spawn the dust instantly when projectile spawns, give it 1/12th of a second
             if (projectile.timeLeft < LifeTime - 5)
             {
-                SpawnSandDust(Color.White, projectile.Hitbox, Main.player[projectile.owner], (LifeTime - projectile.timeLeft) * 0.1f);
+                SpawnSandDust(Color.White, projectile.Hitbox, projectile.GetOwner(), (LifeTime - projectile.timeLeft) * 0.1f);
             }
         }
     }
