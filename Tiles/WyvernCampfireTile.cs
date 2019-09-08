@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.Items.Placeable;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -105,7 +106,37 @@ namespace AssortedCrazyThings.Tiles
             {
                 animate = Main.tileFrame[Type] * animationFrameHeight;
             }
-            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY + animate, 16, height), Lighting.GetColor(i, j), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            Color color = Lighting.GetColor(i, j);
+            Vector2 pos = new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero;
+            pos.Y += 2;
+            Rectangle frame = new Rectangle(tile.frameX, tile.frameY + animate, 16, height);
+            Main.spriteBatch.Draw(texture, pos, frame, color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+
+            texture = null;
+            Color transparent = Color.Transparent;
+            if (TileID.Sets.HasOutlines[Type] && Collision.InTileBounds(i, j, Main.TileInteractionLX, Main.TileInteractionLY, Main.TileInteractionHX, Main.TileInteractionHY) && Main.SmartInteractTileCoords.Contains(new Point(i, j)))
+            {
+                int average = (int)color.GetAverage();
+                bool selected = false;
+                if (Main.SmartInteractTileCoordsSelected.Contains(new Point(i, j)))
+                {
+                    selected = true;
+                }
+                if (average > 10)
+                {
+                    texture = Main.highlightMaskTexture[Type];
+                    if (selected)
+                    {
+                        transparent = new Color(average, average, average / 3, average);
+                    }
+                    else
+                    {
+                        transparent = new Color(average / 2, average / 2, average / 2, average);
+                    }
+                }
+                if (texture != null) Main.spriteBatch.Draw(texture, pos, frame, transparent, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+
+            }
 
             if (tile.frameY == 0 && Main.rand.NextBool() && !Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
@@ -142,17 +173,19 @@ namespace AssortedCrazyThings.Tiles
                 change = -animationFrameHeight;
             }
 
+            Tile tile;
             for (int l = x; l < x + 3; l++)
             {
                 for (int m = y; m < y + 2; m++)
                 {
-                    if (Main.tile[l, m] == null)
+                    tile = Main.tile[l, m];
+                    if (tile == null)
                     {
-                        Main.tile[l, m] = new Tile();
+                        tile = new Tile();
                     }
-                    if (Main.tile[l, m].active() && Main.tile[l, m].type == Type)
+                    if (tile.active() && tile.type == Type)
                     {
-                        Main.tile[l, m].frameY = (short)(Main.tile[l, m].frameY + change);
+                        tile.frameY = (short)(tile.frameY + change);
                     }
                 }
             }

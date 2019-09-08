@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Dusts
@@ -8,7 +9,6 @@ namespace AssortedCrazyThings.Dusts
     /// </summary>
     public abstract class GlitterDustBase : ModDust
     {
-
         public override void OnSpawn(Dust dust)
         {
             //dust.velocity *= 0.4f;
@@ -27,6 +27,11 @@ namespace AssortedCrazyThings.Dusts
                 dust.active = false;
             }
             return false;
+        }
+
+        public override Color? GetAlpha(Dust dust, Color lightColor)
+        {
+            return Color.White * ((255f - dust.alpha) / 255f);
         }
     }
 

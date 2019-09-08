@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everfrozen Candle");
-            Tooltip.SetDefault("Inflicts frostburn damage on all attacks");
+            Tooltip.SetDefault("Applies frostburn damage to all attacks");
         }
 
         public override void SetDefaults()

@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.Items.Weapons;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using System.IO;
@@ -97,7 +98,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         public override Color? GetAlpha(Color lightColor)
         {
             if (Color == default(Color)) return lightColor;
-            float average = (lightColor.R + lightColor.G + lightColor.B) / 3;
+            float average = lightColor.GetAverage();
             Color color = Color * PulsatingAlpha * (average / 255f);
             if (color.A > 220) color.A = 220;
             return color;

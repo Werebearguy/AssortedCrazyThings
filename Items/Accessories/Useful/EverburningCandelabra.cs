@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everburning Candelabra");
-            Tooltip.SetDefault("Inflicts various forms of fire damage on all attacks");
+            Tooltip.SetDefault("Applies various forms of fire damage to all attacks");
         }
 
         public override void SetDefaults()

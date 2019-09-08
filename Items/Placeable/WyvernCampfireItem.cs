@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Tiles;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
@@ -14,8 +15,8 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 28;
+            item.width = 32;
+            item.height = 18;
             item.maxStack = 99;
             item.useTurn = true;
             item.autoReuse = true;
@@ -28,6 +29,14 @@ namespace AssortedCrazyThings.Items.Placeable
             item.createTile = mod.TileType<WyvernCampfireTile>();
         }
 
-        //TODO wyvern recipe
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.anyWood = true;
+            recipe.AddIngredient(ItemID.Wood, 10);
+            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 5);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

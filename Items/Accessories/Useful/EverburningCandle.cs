@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Everburning Candle");
-            Tooltip.SetDefault("Inflicts fire damage on all attacks");
+            Tooltip.SetDefault("Applies fire damage to all attacks");
         }
 
         public override void SetDefaults()
