@@ -258,7 +258,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 + "\nRight click to pick from available drones"
                 + "\nHolding the item improves the Drones supportive and offensive abilities");
             //TODO remove this later or adjust it dynamically?
-            ItemID.Sets.StaffMinionSlotsRequired[item.type] = 2;
+            ItemID.Sets.StaffMinionSlotsRequired[item.type] = 1;
         }
 
         public const int BaseDmg = 22;

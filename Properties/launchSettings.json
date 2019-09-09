@@ -11,6 +11,12 @@
       "commandLineArgs": "-skipselect",
       "workingDirectory": "$(TerrariaSteamPath)"
     },
+    "TerrariaDebug": {
+      "commandName": "Executable",
+      "executablePath": "$(tMLDebugPath)",
+      "commandLineArgs": "-skipselect",
+      "workingDirectory": "$(TerrariaSteamPath)"
+    },
     "TerrariaServer": {
       "commandName": "Executable",
       "executablePath": "$(tMLServerPath)",
