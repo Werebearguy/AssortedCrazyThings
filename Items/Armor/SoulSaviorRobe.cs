@@ -30,6 +30,12 @@ namespace AssortedCrazyThings.Items.Armor
             player.minionDamage += 0.1f;
         }
 
+        public override void UpdateVanity(Player player, EquipType type)
+        {
+            //This makes it so it won't render the shoes infront of the robe
+            player.shoe = 0;
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
