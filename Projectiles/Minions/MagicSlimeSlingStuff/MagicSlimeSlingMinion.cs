@@ -115,7 +115,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             if (!Spawned)
             {
                 Spawned = true;
-                Main.PlaySound(SoundID.Item9, projectile.Center);
+                Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item9.Style, 0.7f);
             }
 
             if (Increment)
@@ -128,6 +128,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 PulsatingCounter--;
                 if (PulsatingCounter <= 0) Increment = true;
             }
+
             //because projectile.scale breaks it
             if (projectile.spriteDirection == -1)
             {

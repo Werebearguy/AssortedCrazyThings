@@ -883,8 +883,6 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if (wyvernCampfire) player.AddBuff(mod.BuffType<WyvernCampfireBuff>(), 2); //visual only
-
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI &&
                 player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
 

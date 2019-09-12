@@ -1,18 +1,20 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class WyvernCampfireBuff : ModBuff
+    public class WyvernCampfireBuff : GlobalBuff
     {
-        //Just to have visual feedback
+        //Tells you its effects in the regular campfire buff (which the wyvern campfire applies)
         //Logic handled in WyvernCampfireTile.NearbyEffects and AssWorld.ResetNearbyTileEffects
-        //Applied in AssPlayer.PreUpdate
-        public override void SetDefaults()
+        public override void ModifyBuffTip(int type, ref string tip, ref int rare)
         {
-            DisplayName.SetDefault("Wyvern Campfire");
-            Description.SetDefault("You are protected from wyverns");
-            Main.buffNoTimeDisplay[Type] = true;
+            if (type == BuffID.Campfire && Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire)
+            {
+                tip += "\nYou are protected from Wyverns" +
+                    "\nHarpy feathers don't knock you away";
+            }
         }
     }
 }
