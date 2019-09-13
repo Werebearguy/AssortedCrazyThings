@@ -81,7 +81,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 if (AI_STATE == STATE_ATTACK)
                 {
-                    targetIndex = AssAI.FindTarget(projectile, player.Center, range: 400f); //check for player surrounding
+                    targetIndex = AssAI.FindTarget(projectile, player.Center, range: 400f, useSlowLOS: false); //check for player surrounding
                     if (targetIndex == -1)
                     {
                         AI_STATE = STATE_IDLE;

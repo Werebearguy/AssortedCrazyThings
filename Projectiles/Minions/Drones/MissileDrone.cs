@@ -200,7 +200,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 if (Counter > AttackDelay)
                 {
                     Counter = 0;
-                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900);
+                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 900, useSlowLOS: true);
                     if (targetIndex != -1)
                     {
                         Vector2 aboveCheck = new Vector2(0, -16 * 8);
@@ -230,7 +230,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             if (AI_STATE == STATE_FIRING)
             {
-                int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900);
+                int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900, useSlowLOS: true);
 
                 if (targetIndex != -1)
                 {
@@ -243,7 +243,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         {
                             if (!Collision.SolidCollision(ShootOrigin, 1, 1))
                             {
-                                Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), mod.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), mod.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
                                 projectile.velocity.Y += 2f;
                                 projectile.netUpdate = true;
                             }

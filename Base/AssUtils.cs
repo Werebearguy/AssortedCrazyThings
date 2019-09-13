@@ -255,11 +255,19 @@ namespace AssortedCrazyThings.Base
             return false;
         }
 
+        /// <summary>
+        /// Like NPC.AnyNPC, but checks for each type in the passed list.
+        /// If one exists, returns true
+        /// </summary>
         public static bool AnyNPCs(List<int> types)
         {
             return AnyNPCs(types.ToArray());
         }
 
+        /// <summary>
+        /// Like NPC.AnyNPC, but checks for custom condition (active already true).
+        /// If one exists, returns true
+        /// </summary>
         public static bool AnyNPCs(Func<NPC, bool> condition)
         {
             for (int i = 0; i < Main.maxNPCs; i++)

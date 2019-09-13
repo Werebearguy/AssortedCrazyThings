@@ -264,14 +264,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     float range = 700f;
                     for (int k = 0; k < 200; k++)
                     {
-                        if (Main.npc[k].CanBeChasedBy(this))
+                        NPC npc = Main.npc[k];
+                        if (npc.CanBeChasedBy())
                         {
-                            float npcX = Main.npc[k].Center.X;
-                            float npcY = Main.npc[k].Center.Y;
-                            float distance = Math.Abs(player.Center.X - npcX) + Math.Abs(player.Center.Y - npcY);
+                            float distance = Math.Abs(player.Center.X - npc.Center.X) + Math.Abs(player.Center.Y - npc.Center.Y);
                             if (distance < range)
                             {
-                                if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height))
+                                if (Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
                                 {
                                     targetIndex = k;
                                 }
@@ -378,7 +377,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     if (projectile.minion)
                     {
                         NPC ownerMinionAttackTargetNPC2 = projectile.OwnerMinionAttackTargetNPC;
-                        if (ownerMinionAttackTargetNPC2 != null && ownerMinionAttackTargetNPC2.CanBeChasedBy(this))
+                        if (ownerMinionAttackTargetNPC2 != null && ownerMinionAttackTargetNPC2.CanBeChasedBy())
                         {
                             float x = ownerMinionAttackTargetNPC2.Center.X;
                             float y = ownerMinionAttackTargetNPC2.Center.Y;
@@ -404,7 +403,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         {
                             for (int k = 0; k < 200; k++)
                             {
-                                if (Main.npc[k].CanBeChasedBy(this))
+                                if (Main.npc[k].CanBeChasedBy())
                                 {
                                     float npcX = Main.npc[k].Center.X;
                                     float npcY = Main.npc[k].Center.Y;

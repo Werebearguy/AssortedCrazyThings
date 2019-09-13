@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static void TeleportIfTooFar(Projectile projectile, Vector2 desiredCenter, int distance = 2000)
         {
-            if (Vector2.Distance(projectile.Center, desiredCenter) > distance)
+            if (projectile.DistanceSQ(desiredCenter) > distance * distance)
             {
                 projectile.Center = desiredCenter;
                 if (Main.myPlayer == projectile.owner && Main.netMode == NetmodeID.MultiplayerClient) projectile.netUpdate = true;
@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Finds target in range of relativeCenter. Returns index of target
         /// </summary>
-        public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false)
+        public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false, bool useSlowLOS = false)
         {
             int targetIndex = -1;
             float distanceFromTarget = 10000000f;
@@ -57,16 +57,18 @@ namespace AssortedCrazyThings.Base
             for (int k = 0; k < 200; k++)
             {
                 NPC npc = Main.npc[k];
-                if (npc.CanBeChasedBy(projectile.modProjectile))
+                if (npc.CanBeChasedBy())
                 {
                     //Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height)
                     float between = Vector2.DistanceSquared(npc.Center, relativeCenter);
-                    if (((between < range && Vector2.DistanceSquared(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                        (CheckLineOfSight(relativeCenter, npc.Center) || ignoreTiles))
+                    if ((between < range && Vector2.DistanceSquared(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1)
                     {
-                        distanceFromTarget = between;
-                        targetCenter = npc.Center;
-                        targetIndex = k;
+                        if (ignoreTiles || (useSlowLOS ? CheckLineOfSight(relativeCenter, npc.Center) : Collision.CanHitLine(relativeCenter, projectile.width, projectile.height, npc.position, npc.width, npc.height)))
+                        {
+                            distanceFromTarget = between;
+                            targetCenter = npc.Center;
+                            targetIndex = k;
+                        }
                     }
                 }
             }
@@ -1030,12 +1032,12 @@ namespace AssortedCrazyThings.Base
                 TeleportIfTooFar(projectile, desiredCenter);
                 if (projectile.minion)
                 {
-                    float maxProjDistance = 700f;
-                    float maxPlayerDistance = 1000f;
+                    float maxProjDistance = 490000f;
+                    float maxPlayerDistance = 1000000f;
                     NPC ownerMinionAttackTargetNPC5 = projectile.OwnerMinionAttackTargetNPC;
-                    if (ownerMinionAttackTargetNPC5 != null && ownerMinionAttackTargetNPC5.CanBeChasedBy(projectile, false))
+                    if (ownerMinionAttackTargetNPC5 != null && ownerMinionAttackTargetNPC5.CanBeChasedBy())
                     {
-                        float distance1 = projectile.Distance(ownerMinionAttackTargetNPC5.Center);
+                        float distance1 = projectile.DistanceSQ(ownerMinionAttackTargetNPC5.Center);
                         if (distance1 < maxProjDistance * 2f)
                         {
                             targetIndex = ownerMinionAttackTargetNPC5.whoAmI;
@@ -1046,9 +1048,9 @@ namespace AssortedCrazyThings.Base
                         for (int i = 0; i < 200; i++)
                         {
                             NPC nPC14 = Main.npc[i];
-                            if (nPC14.CanBeChasedBy(projectile, false) && player.Distance(nPC14.Center) < maxPlayerDistance)
+                            if (nPC14.CanBeChasedBy() && player.DistanceSQ(nPC14.Center) < maxPlayerDistance)
                             {
-                                float distance2 = projectile.Distance(nPC14.Center);
+                                float distance2 = projectile.DistanceSQ(nPC14.Center);
                                 if (distance2 < maxProjDistance)
                                 {
                                     targetIndex = i;

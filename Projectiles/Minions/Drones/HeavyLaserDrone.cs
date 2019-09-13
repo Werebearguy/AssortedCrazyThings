@@ -354,7 +354,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             for (int k = 0; k < 200; k++)
             {
                 NPC npc = Main.npc[k];
-                if (npc.active && npc.CanBeChasedBy(projectile))
+                if (npc.CanBeChasedBy(projectile))
                 {
                     float between = Vector2.Distance(npc.Center, player.Center);
                     if (((between < range &&

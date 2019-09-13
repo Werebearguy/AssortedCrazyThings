@@ -341,7 +341,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                     for (int j = 0; j < 200; j++)
                     {
                         NPC nPC2 = Main.npc[j];
-                        if (nPC2.active && nPC2.CanBeChasedBy(this))
+                        if (nPC2.CanBeChasedBy())
                         {
                             float between = Vector2.Distance(nPC2.Center, projectile.Center);
                             if (((Vector2.Distance(projectile.Center, targetCenter) > between && between < distanceFromTarget) || !foundTarget) &&
