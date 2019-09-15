@@ -209,14 +209,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (AI_State == 0)
                 {
                     AI_Local_Timer = AI_Local_Timer > offsetYPeriod ? 0 : AI_Local_Timer + 1;
-                    sinY = (float)((Math.Sin((AI_Local_Timer / offsetYPeriod) * 2 * Math.PI) - 1) * 10);
+                    sinY = (float)((Math.Sin((AI_Local_Timer / offsetYPeriod) * MathHelper.TwoPi) - 1) * 10);
                 }
                 else if (AI_State == 1)
                 {
                     if (AI_Local_Timer != 0.25f * offsetYPeriod && AI_Local_Timer != 1.25f * offsetYPeriod) //zero at 1/4 and 5/4 PI
                     {
                         AI_Local_Timer++;
-                        sinY = (float)((Math.Sin((AI_Local_Timer / offsetYPeriod) * 2 * Math.PI) - 1) * 10);
+                        sinY = (float)((Math.Sin((AI_Local_Timer / offsetYPeriod) * MathHelper.TwoPi) - 1) * 10);
                     }
                     else
                     {

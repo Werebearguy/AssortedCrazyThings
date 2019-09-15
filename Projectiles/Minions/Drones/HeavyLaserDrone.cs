@@ -219,11 +219,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 return false;
             }
             return true;
-            //else
-            //{
-            //    Sincounter = Sincounter > 240 ? 0 : Sincounter + 1;
-            //    sinY = (float)((Math.Sin(((Sincounter + MinionPos * 10f) / 120f) * 2 * Math.PI) - 1) * 4);
-            //}
         }
 
         protected override void CustomAI()

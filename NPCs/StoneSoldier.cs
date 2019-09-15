@@ -79,7 +79,7 @@ namespace AssortedCrazyThings.NPCs
 
         private float Gaussian(float x, float mean, float var = 1f)
         {
-            return (float)((1 / Math.Sqrt(Math.PI * 2 * var)) * Math.Exp(-(x - mean) * (x - mean) / (2 * var)));
+            return (float)((1 / Math.Sqrt(MathHelper.TwoPi * var)) * Math.Exp(-(x - mean) * (x - mean) / (2 * var)));
         }
 
         public override bool PreAI()

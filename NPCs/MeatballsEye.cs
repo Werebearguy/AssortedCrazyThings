@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -43,7 +44,7 @@ namespace AssortedCrazyThings.NPCs
                 npc.netUpdate = true;
             }
 
-            npc.rotation = (float)Math.PI / 2;
+            npc.rotation = MathHelper.PiOver2;
             npc.direction = 1;
             npc.velocity.X = 0;
             npc.ai[0]++;

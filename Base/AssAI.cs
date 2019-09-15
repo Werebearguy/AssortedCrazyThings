@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Finds target in range of relativeCenter. Returns index of target
         /// </summary>
-        public static int FindTarget(Projectile projectile, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false, bool useSlowLOS = false)
+        public static int FindTarget(Entity ent, Vector2 relativeCenter, float range = 300f, bool ignoreTiles = false, bool useSlowLOS = false)
         {
             int targetIndex = -1;
             float distanceFromTarget = 10000000f;
@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Base
                     float between = Vector2.DistanceSquared(npc.Center, relativeCenter);
                     if ((between < range && Vector2.DistanceSquared(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1)
                     {
-                        if (ignoreTiles || (useSlowLOS ? CheckLineOfSight(relativeCenter, npc.Center) : Collision.CanHitLine(relativeCenter, projectile.width, projectile.height, npc.position, npc.width, npc.height)))
+                        if (ignoreTiles || (useSlowLOS ? CheckLineOfSight(relativeCenter, npc.Center) : Collision.CanHitLine(ent.position, ent.width, ent.height, npc.position, npc.width, npc.height)))
                         {
                             distanceFromTarget = between;
                             targetCenter = npc.Center;

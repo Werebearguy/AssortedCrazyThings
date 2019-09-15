@@ -172,8 +172,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
-                    rotationAmount -= (float)Math.PI;
-                    if (rotationAmount > 2 * Math.PI)
+                    rotationAmount -= MathHelper.Pi;
+                    if (rotationAmount > MathHelper.TwoPi)
                     {
                         rotationAmount = -rotationAmount;
                     }
@@ -191,7 +191,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 }
                 else
                 {
-                    if (rotationAmount <= projectile.rotation - Math.PI)
+                    if (rotationAmount <= projectile.rotation - MathHelper.Pi)
                     {
                         canShoot = false;
                         rotationAmount = projectile.rotation;

@@ -777,7 +777,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             }
 
                             //"dust" originating from the center, forming a circle and going outwards
-                            for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 6)
+                            for (double angle = 0; angle < MathHelper.TwoPi; angle += Math.PI / 6)
                             {
                                 Dust.NewDustPerfect(Main.projectile[pPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }

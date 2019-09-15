@@ -141,7 +141,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             {
                 Draw();
                 sincounter = sincounter > 120 ? 0 : sincounter + 1;
-                sinY = (float)((Math.Sin((sincounter / 120f) * 2 * Math.PI) - 1) * 10);
+                sinY = (float)((Math.Sin((sincounter / 120f) * MathHelper.TwoPi) - 1) * 10);
             }
 
             lightColor = projectile.GetAlpha(lightColor) * 0.99f; //1f is opaque

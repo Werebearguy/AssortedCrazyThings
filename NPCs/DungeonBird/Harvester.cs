@@ -401,7 +401,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.gfxOffY = npc.height / 2;
             if (Main.netMode != NetmodeID.Server)
             {
-                sinY = (float)((Math.Sin(((Main.time % 120.0) / 120.0) * 2.0 * Math.PI) - 1) * 6);
+                sinY = (float)((Math.Sin(((Main.time % 120.0) / 120.0) * MathHelper.TwoPi) - 1) * 6);
             }
             npc.gfxOffY += sinY;
             return true;

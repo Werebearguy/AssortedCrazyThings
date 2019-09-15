@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Y = projectile.frame * bounds.Height;
 
             sincounter = sincounter > 150 ? 0 : sincounter + 1;
-            float sinY = (float)((Math.Sin((sincounter / 150f) * 2 * Math.PI) - 1) * 2);
+            float sinY = (float)((Math.Sin((sincounter / 150f) * MathHelper.TwoPi) - 1) * 2);
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 20f) + sinY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;

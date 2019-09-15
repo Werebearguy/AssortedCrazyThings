@@ -411,6 +411,12 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public readonly int ProjType;
         public readonly string Name;
+        public readonly float DmgModifier;
+        public readonly float KBModifier;
+        public readonly string UITooltip;
+        public readonly string Firerate;
+        public readonly bool Combat;
+
         public string PreviewTextureName
         {
             get
@@ -418,12 +424,6 @@ namespace AssortedCrazyThings.Items.Weapons
                 return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
             }
         }
-
-        public readonly float DmgModifier;
-        public readonly float KBModifier;
-        public readonly string UITooltip;
-        public readonly string Firerate;
-        public readonly bool Combat;
 
         public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 0f, float kBModifier = 1f, bool combat = true)
         {

@@ -86,7 +86,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Sincounter = Sincounter > 360 ? 0 : Sincounter + 1;
-            sinY = (float)((Math.Sin((Sincounter / 180f) * 2 * Math.PI) - 1) * 4);
+            sinY = (float)((Math.Sin((Sincounter / 180f) * MathHelper.TwoPi) - 1) * 4);
 
             Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + sinY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;

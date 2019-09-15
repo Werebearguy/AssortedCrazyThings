@@ -152,14 +152,26 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             kbModifier = 1.25f;
         }
 
+        private string GetState(byte status)
+        {
+            switch (status)
+            {
+                case STATE_IDLE: return "idle";
+                case STATE_TARGET_FOUND: return "found";
+                case STATE_TARGET_ACQUIRED: return "aquired";
+                case STATE_TARGET_FIRE: return "fire";
+            }
+            return "";
+        }
+
         protected override void CustomAI()
         {
             Player player = projectile.GetOwner();
-            //Main.NewText("State: " + AI_STATE);
+            //Main.NewText("State: " + GetState(AI_STATE));
             //Main.NewText("Counter: " + Counter);
 
             #region Handle State
-            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1000, ignoreTiles: true, useSlowLOS: true);
+            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1000, ignoreTiles: true);
             if (targetIndex != -1)
             {
                 if (AI_STATE == STATE_IDLE) AI_STATE = STATE_TARGET_FOUND;
@@ -222,8 +234,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
-                    rotationAmount -= (float)Math.PI;
-                    if (rotationAmount > 2 * Math.PI)
+                    rotationAmount -= MathHelper.Pi;
+                    if (rotationAmount > MathHelper.TwoPi)
                     {
                         rotationAmount = -rotationAmount;
                     }
@@ -241,7 +253,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 }
                 else
                 {
-                    if (rotationAmount <= projectile.rotation - Math.PI)
+                    if (rotationAmount <= projectile.rotation - MathHelper.Pi)
                     {
                         canShoot = false;
                         rotationAmount = projectile.rotation;
@@ -261,7 +273,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                                 between = target + Target.velocity * 6f - shootOrigin;
                                 between.Normalize();
                                 between *= 6f;
-                                Projectile.NewProjectile(shootOrigin, between, mod.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
+                                Projectile.NewProjectile(shootOrigin, between, mod.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer);
 
                                 //projectile.netUpdate = true;
                             }
