@@ -1,10 +1,13 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Projectiles.Minions;
+using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
@@ -301,6 +304,29 @@ namespace AssortedCrazyThings
             {
                 //5.1f means just after skeletron
                 bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+            }
+
+            Mod summonersAssociation = ModLoader.GetMod("SummonersAssociation");
+            if (summonersAssociation != null && summonersAssociation.Version > new Version(0, 4, 1))
+            {
+                summonersAssociation.Call("AddMinionInfo", ItemType<EverglowLantern>(), BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                {
+                    ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
+                });
+                summonersAssociation.Call("AddMinionInfo", ItemType<EverhallowedLantern>(), BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                {
+                    ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
+                    ProjectileType<CompanionDungeonSoulFrightMinion>(),
+                    ProjectileType<CompanionDungeonSoulMightMinion>(),
+                    ProjectileType<CompanionDungeonSoulSightMinion>()
+                });
+                summonersAssociation.Call("AddMinionInfo", ItemType<SlimeHandlerKnapsack>(), BuffType<SlimePackMinionBuff>(), ProjectileType<SlimePackMinion>());
+                List<int> drones = new List<int>();
+                foreach (var drone in DroneController.DataList)
+                {
+                    drones.Add(drone.ProjType);
+                }
+                summonersAssociation.Call("AddMinionInfo", ItemType<DroneController>(), BuffType<DroneControllerBuff>(), drones);
             }
 
             Mod bossAssist = ModLoader.GetMod("BossAssist");

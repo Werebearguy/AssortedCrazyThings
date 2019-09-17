@@ -39,6 +39,7 @@ namespace AssortedCrazyThings.Tiles
         private void MouseOverCombined(bool close)
         {
             Player player = Main.LocalPlayer;
+            player.mouseInterface = true;
             player.noThrow = 2;
             player.showItemIcon = true;
             player.showItemIcon2 = mod.ItemType<VanityDresserItem>();

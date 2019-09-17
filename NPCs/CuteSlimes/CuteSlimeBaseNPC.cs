@@ -297,10 +297,10 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 //float xOff = -1f;
                 //float yOff = 1f;
                 float xOff = -2f;
-                float yOff = 14f;
+                float yOff = 3f;
                 int frameNumber = npc.frame.Y / (Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type]);
                 //xOff += frameNumber;
-                yOff += frameNumber * 2;
+                yOff += frameNumber * 2; //bobbing
                 if (npc.scale < 0.9 && frameNumber == 2) yOff -= frameNumber * 2;
                 //xOff *= scale;
                 if (npc.scale > 1) yOff -= npc.scale * 3;

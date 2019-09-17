@@ -152,9 +152,11 @@ namespace AssortedCrazyThings.Tiles
 
         public override void MouseOver(int i, int j)
         {
-            Main.LocalPlayer.noThrow = 2;
-            Main.LocalPlayer.showItemIcon = true;
-            Main.LocalPlayer.showItemIcon2 = mod.ItemType<WyvernCampfireItem>();
+            Player player = Main.LocalPlayer;
+            player.mouseInterface = true;
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            player.showItemIcon2 = mod.ItemType<WyvernCampfireItem>();
         }
 
         public override void RightClick(int i, int j)
