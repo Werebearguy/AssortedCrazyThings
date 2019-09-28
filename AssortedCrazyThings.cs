@@ -110,7 +110,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Fills isModdedWormBodyOrTail with types of modded NPCs which names are ending with Body or Tail
+        /// Fills isModdedWormBodyOrTail with types of modded NPCs which names are ending with Body or Tail (indicating they are part of something)
         /// </summary>
         private void LoadWormList()
         {
@@ -232,6 +232,10 @@ namespace AssortedCrazyThings
                 animatedSoulTextures = null;
 
                 sunPetTextures = null;
+
+                PetEaterofWorldsBase.wormTypes = null;
+
+                PetDestroyerBase.wormTypes = null;
             }
         }
 
