@@ -70,7 +70,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         public override void DrawEffects(ref Color drawColor)
         {
             int widthOffset = 12;
-            Dust.NewDustDirect(npc.position + new Vector2(widthOffset, 0), npc.width - 2 * widthOffset, npc.height, 6).noGravity = true;
+            Dust.NewDustDirect(npc.position + new Vector2(widthOffset, -20), npc.width - 2 * widthOffset, npc.height + 20, 6).noGravity = true;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

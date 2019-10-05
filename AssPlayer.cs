@@ -124,6 +124,8 @@ namespace AssortedCrazyThings
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
             droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
         }
+
+        //TODO get rid of this, use manual packets since setting those values happens in a singular place
         public override void clientClone(ModPlayer clientClone)
         {
             AssPlayer clone = clientClone as AssPlayer;

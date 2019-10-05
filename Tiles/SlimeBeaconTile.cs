@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.Tiles
             }
         }
 
-        public override void RightClick(int i, int j)
+        public override bool NewRightClick(int i, int j)
         {
             Main.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -72,6 +72,7 @@ namespace AssortedCrazyThings.Tiles
             {
                 AssWorld.ToggleSlimeRainSky();
             }
+            return true;
         }
 
         public override void MouseOver(int i, int j)
