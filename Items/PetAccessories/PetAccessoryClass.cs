@@ -105,7 +105,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         protected override void MoreAddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<PetAccessorySwallowedKey>());
+            recipe.AddIngredient(ModContent.ItemType<PetAccessorySwallowedKey>());
             recipe.SetResult(ItemID.GoldenKey);
             recipe.AddRecipe();
         }
@@ -642,7 +642,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 tooltips.Add(new TooltipLine(mod, "Slot", Enum2string(PetAccessory.GetAccessoryFromType(item.type).Slot)));
 
-                PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
+                PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
                 if (mPlayer.slimePetIndex != -1 &&
                     Main.projectile[mPlayer.slimePetIndex].active &&
@@ -677,7 +677,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             if (UseDefaultRecipe)
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(mod.ItemType<KnittingSet>());
+                recipe.AddIngredient(ModContent.ItemType<KnittingSet>());
                 recipe.AddTile(TileID.Loom);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
@@ -701,7 +701,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //item not registered
             if (!PetAccessory.IsItemAPetVanity(item.type)) return false;
 
-            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
             //no valid slime pet found
             if (!(pPlayer.slimePetIndex != -1 &&
                 Main.projectile[pPlayer.slimePetIndex].active &&
@@ -718,7 +718,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override bool UseItem(Player player)
         {
-            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {

@@ -145,7 +145,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         protected virtual void CheckActive()
         {
             Player player = projectile.GetOwner();
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>();
             if (player.dead)
             {
                 modPlayer.droneControllerMinion = false;
@@ -214,7 +214,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             dmgModifier = 1f;
             kbModifier = 1f;
-            if (player.HeldItem.type == mod.ItemType<DroneController>())
+            if (player.HeldItem.type == ModContent.ItemType<DroneController>())
             {
                 ModifyDroneControllerHeld(ref dmgModifier, ref kbModifier);
             }

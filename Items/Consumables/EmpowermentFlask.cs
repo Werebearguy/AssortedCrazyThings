@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Consumables
             item.maxStack = 30;
             item.consumable = true;
             item.buffTime = 7200; //two minutes
-            item.buffType = mod.BuffType<EmpoweringBuff>();
+            item.buffType = ModContent.BuffType<EmpoweringBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(silver: 2);
         }
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Items.Consumables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BottledWater, 1);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 3);
             recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);

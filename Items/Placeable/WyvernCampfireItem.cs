@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Placeable
             item.consumable = true;
             item.rare = -11;
             item.value = Item.buyPrice(0, 10, 0, 0);
-            item.createTile = mod.TileType<WyvernCampfireTile>();
+            item.createTile = ModContent.TileType<WyvernCampfireTile>();
         }
 
         public override void AddRecipes()
@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items.Placeable
             ModRecipe recipe = new ModRecipe(mod);
             recipe.anyWood = true;
             recipe.AddIngredient(ItemID.Wood, 10);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 5);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

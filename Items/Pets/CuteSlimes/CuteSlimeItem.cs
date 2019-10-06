@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
         {
             try
             {
-                PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>(mod);
+                PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
                 //checks if: player even has (or had) a slime pet
                 //that pet is currently active
                 //it's owner is the player

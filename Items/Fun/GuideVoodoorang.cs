@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Fun
             item.rare = -11;
 
             item.value = Item.sellPrice(silver: 2);
-            item.shoot = mod.ProjectileType<GuideVoodoorangProj>();
+            item.shoot = ModContent.ProjectileType<GuideVoodoorangProj>();
         }
 
         public override bool CanUseItem(Player player)
@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Items.Fun
                             item.TurnToAir();
                             NetMessage.SendData(21, -1, -1, null, item.whoAmI);
                             byte plr = Player.FindClosest(item.position, item.width, item.height);
-                            Item.NewItem(Main.player[plr].getRect(), mod.ItemType<GuideVoodoorang>());
+                            Item.NewItem(Main.player[plr].getRect(), ModContent.ItemType<GuideVoodoorang>());
                         }
                     }
                 }

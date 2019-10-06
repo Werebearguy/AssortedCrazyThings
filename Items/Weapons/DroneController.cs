@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items.Weapons
         /// </summary>
         public static bool AllUnlocked(Player player)
         {
-            return AllUnlocked(player.GetModPlayer<AssPlayer>(AssUtils.Instance).droneControllerUnlocked);
+            return AllUnlocked(player.GetModPlayer<AssPlayer>().droneControllerUnlocked);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case DroneType.BasicLaser:
                     return new DroneData
                         (
-                        projType: AssUtils.Instance.ProjectileType<BasicLaserDrone>(),
+                        projType: ModContent.ProjectileType<BasicLaserDrone>(),
                         name: "Basic Laser Drone",
                         desc: "Rapidly fires lasers",
                         firerate: "High"
@@ -147,7 +147,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case DroneType.HeavyLaser:
                     return new DroneData
                         (
-                        projType: AssUtils.Instance.ProjectileType<HeavyLaserDrone>(),
+                        projType: ModContent.ProjectileType<HeavyLaserDrone>(),
                         name: "Heavy Laser Drone",
                         desc: "Fires a penetrating laser after a long delay",
                         misc: "Occupies two minion slots",
@@ -158,7 +158,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case DroneType.Missile:
                     return new DroneData
                         (
-                        projType: AssUtils.Instance.ProjectileType<MissileDrone>(),
+                        projType: ModContent.ProjectileType<MissileDrone>(),
                         name: "Missile Drone",
                         desc: "Fires a salvo of missiles after a long delay",
                         misc: "Occupies two minion slots",
@@ -169,7 +169,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case DroneType.Healing:
                     return new DroneData
                         (
-                        projType: AssUtils.Instance.ProjectileType<HealingDrone>(),
+                        projType: ModContent.ProjectileType<HealingDrone>(),
                         name: "Healing Drone",
                         desc: "Heals you when hurt",
                         misc: "Only one can be summoned",
@@ -178,7 +178,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case DroneType.Shield:
                     return new DroneData
                         (
-                        projType: AssUtils.Instance.ProjectileType<ShieldDrone>(),
+                        projType: ModContent.ProjectileType<ShieldDrone>(),
                         name: "Shield Drone",
                         desc: "Creates a damage reducing shield",
                         misc: "Only one can be summoned\nShield resets if drone despawns",
@@ -279,10 +279,10 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<BasicLaserDrone>();
+            item.shoot = ModContent.ProjectileType<BasicLaserDrone>();
             item.shootSpeed = 10f;
             item.knockBack = BaseKB;
-            item.buffType = mod.BuffType<DroneControllerBuff>();
+            item.buffType = ModContent.BuffType<DroneControllerBuff>();
         }
 
         public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
@@ -349,7 +349,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (Main.LocalPlayer.HasItem(mod.ItemType<DroneController>()))
+                if (Main.LocalPlayer.HasItem(ModContent.ItemType<DroneController>()))
                 {
                     if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                     {

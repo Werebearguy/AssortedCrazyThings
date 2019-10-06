@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, mod.ItemType<CuteSlimeStatueItem>());
+            Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<CuteSlimeStatueItem>());
         }
 
         private bool MechSpawn(float x, float y, int[] types)

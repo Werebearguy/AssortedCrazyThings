@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             //tooltip based off of the teleport ability
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
             bool inVanitySlot = false;
 
@@ -151,8 +151,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<SigilOfRetreat>());
-            recipe.AddIngredient(mod.ItemType<SigilOfPainSuppression>());
+            recipe.AddIngredient(ModContent.ItemType<SigilOfRetreat>());
+            recipe.AddIngredient(ModContent.ItemType<SigilOfPainSuppression>());
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.LizardEgg);
-            item.shoot = mod.ProjectileType<CuteSlimePrincessNewProj>();
-            item.buffType = mod.BuffType<CuteSlimePrincessNewBuff>();
+            item.shoot = ModContent.ProjectileType<CuteSlimePrincessNewProj>();
+            item.buffType = ModContent.BuffType<CuteSlimePrincessNewBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 20);
         }
@@ -26,8 +26,8 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<PrinceSlimeItem>());
-            recipe.AddIngredient(mod.ItemType<CuteSlimeBlueNew>());
+            recipe.AddIngredient(ModContent.ItemType<PrinceSlimeItem>());
+            recipe.AddIngredient(ModContent.ItemType<CuteSlimeBlueNew>());
             recipe.AddTile(TileID.Solidifier);
             recipe.SetResult(this);
             recipe.AddRecipe();

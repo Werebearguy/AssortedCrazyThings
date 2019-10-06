@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == mod.ItemType<SoulSaviorPlate>() && legs.type == mod.ItemType<SoulSaviorRobe>();
+            return body.type == ModContent.ItemType<SoulSaviorPlate>() && legs.type == ModContent.ItemType<SoulSaviorRobe>();
         }
 
         public override void UpdateArmorSet(Player player)
@@ -71,9 +71,9 @@ namespace AssortedCrazyThings.Items.Armor
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1);
             recipe.AddIngredient(ItemID.Ectoplasm, 3);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 16);
+            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 16);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

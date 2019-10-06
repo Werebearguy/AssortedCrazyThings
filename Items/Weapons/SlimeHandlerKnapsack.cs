@@ -66,10 +66,10 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<SlimePackMinion>();
+            item.shoot = ModContent.ProjectileType<SlimePackMinion>();
             item.shootSpeed = 10f;
             item.knockBack = SlimePackMinion.DefKnockback;
-            item.buffType = mod.BuffType<SlimePackMinionBuff>();
+            item.buffType = ModContent.BuffType<SlimePackMinionBuff>();
         }
 
         public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
@@ -99,11 +99,11 @@ namespace AssortedCrazyThings.Items.Weapons
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.selectedSlimePackMinionType == 1)
             {
-                type = mod.ProjectileType<SlimePackAssortedMinion>();
+                type = ModContent.ProjectileType<SlimePackAssortedMinion>();
             }
             else if (mPlayer.selectedSlimePackMinionType == 2)
             {
-                type = mod.ProjectileType<SlimePackSpikedMinion>();
+                type = ModContent.ProjectileType<SlimePackSpikedMinion>();
             }
             else
             {

@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>();
             if (DroneController.SumOfSummonedDrones(player) > 0)
             {
                 modPlayer.droneControllerMinion = true;

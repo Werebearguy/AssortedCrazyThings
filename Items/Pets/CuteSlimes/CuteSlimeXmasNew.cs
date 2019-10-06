@@ -2,6 +2,7 @@ using AssortedCrazyThings.Buffs.CuteSlimes;
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
@@ -16,8 +17,8 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.LizardEgg);
-            item.shoot = mod.ProjectileType<CuteSlimeXmasNewProj>();
-            item.buffType = mod.BuffType<CuteSlimeXmasNewBuff>();
+            item.shoot = ModContent.ProjectileType<CuteSlimeXmasNewProj>();
+            item.buffType = ModContent.BuffType<CuteSlimeXmasNewBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }

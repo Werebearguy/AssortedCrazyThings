@@ -18,8 +18,8 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).PetDestroyer = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<PetDestroyerHead>()] <= 0;
+            player.GetModPlayer<PetPlayer>().PetDestroyer = true;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<PetDestroyerHead>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
                 PetDestroyerItem.Spawn(player);

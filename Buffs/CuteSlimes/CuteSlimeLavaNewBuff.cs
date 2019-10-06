@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.CuteSlimes
 {
@@ -13,7 +14,7 @@ namespace AssortedCrazyThings.Buffs.CuteSlimes
         protected override void MoreUpdate(PetPlayer mPlayer)
         {
             mPlayer.CuteSlimeLavaNew = true;
-            projType = mod.ProjectileType<CuteSlimeLavaNewProj>();
+            projType = ModContent.ProjectileType<CuteSlimeLavaNewProj>();
         }
     }
 }

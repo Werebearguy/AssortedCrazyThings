@@ -118,15 +118,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             int dustType = Main.rand.Next(4);
             if (dustType == 0)
             {
-                dustType = mod.DustType<GlitterDust15>();
+                dustType = ModContent.DustType<GlitterDust15>();
             }
             else if (dustType == 1)
             {
-                dustType = mod.DustType<GlitterDust57>();
+                dustType = ModContent.DustType<GlitterDust57>();
             }
             else if(dustType == 2)
             {
-                dustType = mod.DustType<GlitterDust58>();
+                dustType = ModContent.DustType<GlitterDust58>();
             }
             else
             {

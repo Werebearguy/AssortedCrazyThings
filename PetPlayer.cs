@@ -624,8 +624,8 @@ namespace AssortedCrazyThings
 
             //no need for unlocked + toUnlock
             return new CircleUIConf(
-                Main.projFrames[AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>()],
-                AssUtils.Instance.ProjectileType<LifelikeMechanicalFrog>(),
+                Main.projFrames[ModContent.ProjectileType<LifelikeMechanicalFrog>()],
+                ModContent.ProjectileType<LifelikeMechanicalFrog>(),
                 textureNames, null, tooltips, null);
         }
 
@@ -773,7 +773,7 @@ namespace AssortedCrazyThings
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => LifelikeMechanicalFrog,
                 uiConf: GetLifelikeMechanicalFrogConf,
                 onUIStart: () => mechFrogCrown,
@@ -781,7 +781,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => DocileDemonEye,
                 uiConf: GetDocileDemonEyeConf,
                 onUIStart: () => petEyeType,
@@ -789,7 +789,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => CursedSkull,
                 uiConf: GetCursedSkullConf,
                 onUIStart: () => cursedSkullType,
@@ -797,7 +797,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => YoungWyvern,
                 uiConf: GetYoungWyvernConf,
                 onUIStart: () => youngWyvernType,
@@ -805,7 +805,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => PetFishron,
                 uiConf: GetPetFishronConf,
                 onUIStart: () => petFishronType,
@@ -813,7 +813,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => PetMoon,
                 uiConf: GetPetMoonConf,
                 onUIStart: () => petMoonType,
@@ -822,7 +822,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => YoungHarpy,
                 uiConf: GetYoungHarpyConf,
                 onUIStart: () => youngHarpyType,
@@ -830,7 +830,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => Abeemination,
                 uiConf: GetAbeeminationConf,
                 onUIStart: () => abeeminationType,
@@ -838,7 +838,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => LilWraps,
                 uiConf: GetLilWrapsConf,
                 onUIStart: () => lilWrapsType,
@@ -846,7 +846,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => VampireBat,
                 uiConf: GetVampireBatConf,
                 onUIStart: () => vampireBatType,
@@ -854,7 +854,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => Pigronata,
                 uiConf: GetPigronataConf,
                 onUIStart: () => pigronataType,
@@ -862,7 +862,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => QueenLarva,
                 uiConf: GetQueenLarvaConf,
                 onUIStart: () => queenLarvaType,
@@ -870,7 +870,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => OceanSlime,
                 uiConf: GetOceanSlimeConf,
                 onUIStart: () => oceanSlimeType,
@@ -878,7 +878,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => MiniAntlion,
                 uiConf: GetMiniAntlionConf,
                 onUIStart: () => miniAntlionType,
@@ -886,7 +886,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => PetGoldfish,
                 uiConf: PetGoldfishConf,
                 onUIStart: () => petGoldfishType,
@@ -894,7 +894,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => SkeletronHand,
                 uiConf: GetSkeletronHandConf,
                 onUIStart: () => skeletronHandType,
@@ -902,7 +902,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => SkeletronPrimeHand,
                 uiConf: GetSkeletronPrimeHandConf,
                 onUIStart: () => skeletronPrimeHandType,
@@ -910,7 +910,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => PetCultist,
                 uiConf: GetPetCultistConf,
                 onUIStart: () => petCultistType,
@@ -919,7 +919,7 @@ namespace AssortedCrazyThings
                 needsSaving: true
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => AnimatedTome,
                 uiConf: GetAnimatedTomeConf,
                 onUIStart: () => animatedTomeType,
@@ -928,7 +928,7 @@ namespace AssortedCrazyThings
             ),
             //ALTERNATE
             //    new CircleUIHandler(
-            //    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+            //    triggerItem: ModContent.ItemType<VanitySelector>(),
             //    condition: () => ClassName,
             //    uiConf: GetClassNameConf,
             //    onUIStart: () => classNameType,

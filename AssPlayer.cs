@@ -242,7 +242,7 @@ namespace AssortedCrazyThings
             if (tempSoulMinion && player.whoAmI == Main.myPlayer)
             {
                 bool checkIfAlive = false;
-                int spawnedType = Main.hardMode ? mod.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
+                int spawnedType = Main.hardMode ? ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
                 int spawnedDamage = Main.hardMode ? (int)(EverhallowedLantern.BaseDmg * 1.1f * 2f) : ((EverhallowedLantern.BaseDmg / 2 - 1) * 2);
                 for (int i = 0; i < 1000; i++)
                 {
@@ -303,7 +303,7 @@ namespace AssortedCrazyThings
                             {
                                 if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) < 0 && EligibleToReceiveSoulBuff(Main.npc[j]))
                                 {
-                                    Main.npc[j].AddBuff(mod.BuffType<SoulBuff>(), 60, true);
+                                    Main.npc[j].AddBuff(ModContent.BuffType<SoulBuff>(), 60, true);
                                 }
                             }
                         }
@@ -319,8 +319,8 @@ namespace AssortedCrazyThings
         {
             //this gets called once on server side for all players, and then each player calls it on itself client side
             int tempStackCount;
-            int itemTypeOld = mod.ItemType<CaughtDungeonSoul>();
-            int itemTypeNew = mod.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
+            int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
+            int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
             Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item }; //go though player inv
             for (int y = 0; y < inventoryArray.Length; y++)
@@ -484,7 +484,7 @@ namespace AssortedCrazyThings
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<EverhallowedLantern>(),
+                triggerItem: ModContent.ItemType<EverhallowedLantern>(),
                 condition: () => true,
                 uiConf: EverhallowedLantern.GetUIConf,
                 onUIStart: delegate
@@ -503,7 +503,7 @@ namespace AssortedCrazyThings
                 triggerLeft: false
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<SlimeHandlerKnapsack>(),
+                triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
                 condition: () => true,
                 uiConf: SlimeHandlerKnapsack.GetUIConf,
                 onUIStart: () => selectedSlimePackMinionType,
@@ -515,7 +515,7 @@ namespace AssortedCrazyThings
                 triggerLeft: false
             ),
                 new CircleUIHandler(
-                triggerItem: AssUtils.Instance.ItemType<DroneController>(),
+                triggerItem: ModContent.ItemType<DroneController>(),
                 condition: () => true,
                 uiConf: DroneController.GetUIConf,
                 onUIStart: delegate
@@ -758,7 +758,7 @@ namespace AssortedCrazyThings
             if (shieldDroneReduction > 0) layers.Insert(0, ShieldDroneBack);
 
             int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
-            if (player.inventory[player.selectedItem].type == mod.ItemType<SlimeHandlerKnapsack>())
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<SlimeHandlerKnapsack>())
             {
                 if (wingLayer != -1)
                 {

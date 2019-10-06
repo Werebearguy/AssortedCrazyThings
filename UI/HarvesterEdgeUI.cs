@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace AssortedCrazyThings.UI
@@ -26,7 +27,7 @@ namespace AssortedCrazyThings.UI
         {
             texture = AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester2Head");
 
-            typeList = new int[] { AssUtils.Instance.NPCType<Harvester1>(), AssUtils.Instance.NPCType<Harvester2>() };
+            typeList = new int[] { ModContent.NPCType<Harvester1>(), ModContent.NPCType<Harvester2>() };
             drawPos = new List<Vector2>();
             type = new List<int>();
         }

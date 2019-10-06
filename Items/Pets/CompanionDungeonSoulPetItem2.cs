@@ -32,8 +32,8 @@ namespace AssortedCrazyThings.Items.Pets
 
             item.width = 26;
             item.height = 28;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulPetProj2>();
-            item.buffType = mod.BuffType<CompanionDungeonSoulPetBuff2>();
+            item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPetProj2>();
+            item.buffType = ModContent.BuffType<CompanionDungeonSoulPetBuff2>();
             item.rare = -11;
 
             item.value = Item.sellPrice(silver: 50);
@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<CompanionDungeonSoulPetItem>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<CompanionDungeonSoulPetItem>(), 1);
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

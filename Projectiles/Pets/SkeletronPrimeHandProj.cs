@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.SkeletronPrimeHand = false;
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             AssUtils.DrawSkeletronLikeArms(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHand_Arm", projectile.Center, projectile.GetOwner().Center, selfPad: projectile.height / 2, centerPad: -20f, direction: 0);
 
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = mod.GetTexture("Projectiles/Pets/SkeletronPrimeHandProj_" + mPlayer.skeletronPrimeHandType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;

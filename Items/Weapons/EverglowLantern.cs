@@ -33,10 +33,10 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
+            item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
             item.shootSpeed = 10f;
             item.knockBack = EverhallowedLantern.BaseKB;
-            item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
+            item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
         }
 
         public override bool AltFunctionUse(Player player)
@@ -98,7 +98,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MeteoriteBar, 5);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 2);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

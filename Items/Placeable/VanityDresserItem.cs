@@ -27,14 +27,14 @@ namespace AssortedCrazyThings.Items.Placeable
             item.consumable = true;
             item.value = Item.sellPrice(silver: 10);
             item.rare = -11;
-            item.createTile = mod.TileType<VanityDresserTile>();
+            item.createTile = ModContent.TileType<VanityDresserTile>();
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Dresser);
-            recipe.AddIngredient(mod.ItemType<VanitySelector>());
+            recipe.AddIngredient(ModContent.ItemType<VanitySelector>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

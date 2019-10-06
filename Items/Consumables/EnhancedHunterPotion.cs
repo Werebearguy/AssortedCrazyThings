@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Consumables
             item.maxStack = 30;
             item.consumable = true;
             item.buffTime = 18000; //five minutes
-            item.buffType = mod.BuffType<EnhancedHunterBuff>();
+            item.buffType = ModContent.BuffType<EnhancedHunterBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(silver: 3);
         }
@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items.Consumables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.HunterPotion, 1);
             recipe.AddIngredient(ItemID.PixieDust, 1);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 1);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();

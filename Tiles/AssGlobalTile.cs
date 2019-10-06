@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Tiles
             {
                 if (Main.rand.NextBool(10))
                 {
-                    Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType<LegendaryWoodenSword>());
+                    Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<LegendaryWoodenSword>());
                 }
             }
             return true;

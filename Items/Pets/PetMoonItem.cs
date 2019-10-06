@@ -19,8 +19,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType<PetMoonProj>();
-            item.buffType = mod.BuffType<PetMoonBuff>();
+            item.shoot = ModContent.ProjectileType<PetMoonProj>();
+            item.buffType = ModContent.BuffType<PetMoonBuff>();
             item.width = 20;
             item.height = 26;
             item.rare = -11;

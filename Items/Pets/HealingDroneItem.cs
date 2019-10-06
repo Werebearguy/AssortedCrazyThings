@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(item.type, 1);
-            recipe.SetResult(mod.ItemType<DroneUnlockableHealing>());
+            recipe.SetResult(ModContent.ItemType<DroneUnlockableHealing>());
             recipe.AddRecipe();
         }
     }

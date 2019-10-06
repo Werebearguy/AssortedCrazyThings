@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.AnimatedTome = false;
@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Pets/AnimatedTomeProj_" + mPlayer.animatedTomeType);
             Rectangle bounds = new Rectangle

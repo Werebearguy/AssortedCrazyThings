@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).BabyIchorSticker = true;
+            player.GetModPlayer<PetPlayer>().BabyIchorSticker = true;
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("BabyIchorSticker")] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {

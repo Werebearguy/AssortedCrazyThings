@@ -537,7 +537,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                         velo.Y *= 1f + Main.rand.Next(-40, 41) * 0.02f;
                                         velo.Normalize();
                                         velo *= 3f + Main.rand.Next(-40, 41) * 0.01f;
-                                        Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, velo.X, velo.Y, mod.ProjectileType<SlimePackMinionSpike>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
+                                        Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, velo.X, velo.Y, ModContent.ProjectileType<SlimePackMinionSpike>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
                                         ShootTimer = (byte)(PickedTexture * 3);
                                     }
                                 }

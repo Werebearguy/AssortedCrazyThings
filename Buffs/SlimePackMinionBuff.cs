@@ -16,15 +16,15 @@ namespace AssortedCrazyThings.Buffs
 
         private int SumOfSlimePackCounts(Player player)
         {
-            int sum = player.ownedProjectileCounts[mod.ProjectileType<SlimePackMinion>()];
-            sum += player.ownedProjectileCounts[mod.ProjectileType<SlimePackSpikedMinion>()];
-            sum += player.ownedProjectileCounts[mod.ProjectileType<SlimePackAssortedMinion>()];
+            int sum = player.ownedProjectileCounts[ModContent.ProjectileType<SlimePackMinion>()];
+            sum += player.ownedProjectileCounts[ModContent.ProjectileType<SlimePackSpikedMinion>()];
+            sum += player.ownedProjectileCounts[ModContent.ProjectileType<SlimePackAssortedMinion>()];
             return sum;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>();
             if (SumOfSlimePackCounts(player) > 0)
             {
                 modPlayer.slimePackMinion = true;

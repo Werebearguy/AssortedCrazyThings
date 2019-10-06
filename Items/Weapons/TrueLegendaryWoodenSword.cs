@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.height = 50;
             item.rare = -11;
             item.value = Item.sellPrice(0, 2, 25, 0); //2 gold for broken, 25 silver for legendary
-            item.shoot = mod.ProjectileType<TrueLegendaryWoodenSwordProj>();
+            item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();
             item.shootSpeed = 10f; //fairly short range, similar to throwing knife
         }
 
@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<LegendaryWoodenSword>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<LegendaryWoodenSword>(), 1);
             recipe.AddIngredient(ItemID.BrokenHeroSword, 1);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

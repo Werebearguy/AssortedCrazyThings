@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>(mod).eaterOfWorldsGitgud = true;
+            player.GetModPlayer<GitGudPlayer>().eaterOfWorldsGitgud = true;
         }
     }
 }

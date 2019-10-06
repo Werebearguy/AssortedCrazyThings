@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Placeable
             item.consumable = true;
             item.rare = -11;
             item.value = Item.buyPrice(0, 10, 0, 0);
-            item.createTile = mod.TileType<SlimeBeaconTile>();
+            item.createTile = ModContent.TileType<SlimeBeaconTile>();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

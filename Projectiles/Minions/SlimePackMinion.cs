@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override bool PreAI()
         {
-            AssPlayer modPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
+            AssPlayer modPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
             if (projectile.GetOwner().dead)
             {
                 modPlayer.slimePackMinion = false;

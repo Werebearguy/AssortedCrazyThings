@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
@@ -64,7 +65,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void MoreNPCLoot(Rectangle pos)
         {
-            int type = Main.rand.NextBool(7) ? mod.ItemType<PetAccessorySwallowedKey>() : ItemID.GoldenKey;
+            int type = Main.rand.NextBool(7) ? ModContent.ItemType<PetAccessorySwallowedKey>() : ItemID.GoldenKey;
             Item.NewItem(pos, type);
         }
 

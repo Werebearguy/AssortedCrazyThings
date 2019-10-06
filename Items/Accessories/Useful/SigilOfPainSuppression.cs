@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
             bool inVanitySlot = false;
 

@@ -39,9 +39,9 @@ namespace AssortedCrazyThings.Items.Armor
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<DesiccatedLeather>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1);
             recipe.AddIngredient(ItemID.Ectoplasm, 3);
-            recipe.AddIngredient(mod.ItemType<CaughtDungeonSoulFreed>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 12);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddBuff(mod.BuffType<BipolarBuff>(), 60);
+            player.AddBuff(ModContent.BuffType<BipolarBuff>(), 60);
             player.noFallDmg = true;
             player.jumpBoost = true;
             player.doubleJumpCloud = true;
@@ -49,13 +49,13 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<MassiveBundleOfBalloons>());
-            recipe.AddIngredient(mod.ItemType<BipolarCandleInABalloon>());
-            //recipe.AddIngredient(mod.ItemType<StarInABalloon>());
-            recipe.AddIngredient(mod.ItemType<StarWispBalloon>());
-            recipe.AddIngredient(mod.ItemType<Cobballoon>());
-            recipe.AddIngredient(mod.ItemType<EyelloonRetinazer>());
-            recipe.AddIngredient(mod.ItemType<SpazmatismEyelloon>());
+            recipe.AddIngredient(ModContent.ItemType<MassiveBundleOfBalloons>());
+            recipe.AddIngredient(ModContent.ItemType<BipolarCandleInABalloon>());
+            //recipe.AddIngredient(ModContent.ItemType<StarInABalloon>());
+            recipe.AddIngredient(ModContent.ItemType<StarWispBalloon>());
+            recipe.AddIngredient(ModContent.ItemType<Cobballoon>());
+            recipe.AddIngredient(ModContent.ItemType<EyelloonRetinazer>());
+            recipe.AddIngredient(ModContent.ItemType<SpazmatismEyelloon>());
             recipe.AddIngredient(ItemID.PartyBundleOfBalloonsAccessory);
             recipe.AddIngredient(ItemID.PartyBalloonAnimal);
             recipe.AddTile(TileID.TinkerersWorkbench);

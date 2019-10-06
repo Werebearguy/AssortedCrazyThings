@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             if (projectile.GetOwner().dead)
             {
                 modPlayer.MiniAntlion = false;
@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Pets/MiniAntlionProj_" + mPlayer.miniAntlionType);
             Rectangle bounds = new Rectangle

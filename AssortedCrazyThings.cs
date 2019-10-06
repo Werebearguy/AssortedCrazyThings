@@ -101,8 +101,8 @@ namespace AssortedCrazyThings
             //assuming this is called after InitSoulBuffBlacklist
             List<int> tempList = new List<int>(soulBuffBlacklist)
             {
-                NPCType<DungeonSoul>(),
-                NPCType<DungeonSoulFreed>()
+                ModContent.NPCType<DungeonSoul>(),
+                ModContent.NPCType<DungeonSoulFreed>()
             };
 
             soulBuffBlacklist = tempList.ToArray();
@@ -288,18 +288,18 @@ namespace AssortedCrazyThings
 
             PetEaterofWorldsBase.wormTypes = new int[]
             {
-                ProjectileType<PetEaterofWorldsHead>(),
-                ProjectileType<PetEaterofWorldsBody1>(),
-                ProjectileType<PetEaterofWorldsBody2>(),
-                ProjectileType<PetEaterofWorldsTail>()
+                ModContent.ProjectileType<PetEaterofWorldsHead>(),
+                ModContent.ProjectileType<PetEaterofWorldsBody1>(),
+                ModContent.ProjectileType<PetEaterofWorldsBody2>(),
+                ModContent.ProjectileType<PetEaterofWorldsTail>()
             };
 
             PetDestroyerBase.wormTypes = new int[]
             {
-                ProjectileType<PetDestroyerHead>(),
-                ProjectileType<PetDestroyerBody1>(),
-                ProjectileType<PetDestroyerBody2>(),
-                ProjectileType<PetDestroyerTail>()
+                ModContent.ProjectileType<PetDestroyerHead>(),
+                ModContent.ProjectileType<PetDestroyerBody1>(),
+                ModContent.ProjectileType<PetDestroyerBody2>(),
+                ModContent.ProjectileType<PetDestroyerTail>()
             };
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
@@ -307,30 +307,30 @@ namespace AssortedCrazyThings
             if (bossChecklist != null)
             {
                 //5.1f means just after skeletron
-                bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+                bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ModContent.ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
             }
 
             Mod summonersAssociation = ModLoader.GetMod("SummonersAssociation");
             if (summonersAssociation != null && summonersAssociation.Version > new Version(0, 4, 1))
             {
-                summonersAssociation.Call("AddMinionInfo", ItemType<EverglowLantern>(), BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
                 {
-                    ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
+                    ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
                 });
-                summonersAssociation.Call("AddMinionInfo", ItemType<EverhallowedLantern>(), BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverhallowedLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
                 {
-                    ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
-                    ProjectileType<CompanionDungeonSoulFrightMinion>(),
-                    ProjectileType<CompanionDungeonSoulMightMinion>(),
-                    ProjectileType<CompanionDungeonSoulSightMinion>()
+                    ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
+                    ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
+                    ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
+                    ModContent.ProjectileType<CompanionDungeonSoulSightMinion>()
                 });
-                summonersAssociation.Call("AddMinionInfo", ItemType<SlimeHandlerKnapsack>(), BuffType<SlimePackMinionBuff>(), ProjectileType<SlimePackMinion>());
+                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<SlimeHandlerKnapsack>(), ModContent.BuffType<SlimePackMinionBuff>(), ModContent.ProjectileType<SlimePackMinion>());
                 List<int> drones = new List<int>();
                 foreach (var drone in DroneController.DataList)
                 {
                     drones.Add(drone.ProjType);
                 }
-                summonersAssociation.Call("AddMinionInfo", ItemType<DroneController>(), BuffType<DroneControllerBuff>(), drones);
+                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<DroneController>(), ModContent.BuffType<DroneControllerBuff>(), drones);
             }
 
             Mod bossAssist = ModLoader.GetMod("BossAssist");
@@ -344,14 +344,14 @@ namespace AssortedCrazyThings
         {
             RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
             {
-                ItemType<CuteSlimeBlueNew>(),
-                ItemType<CuteSlimeBlackNew>(),
-                ItemType<CuteSlimeGreenNew>(),
-                ItemType<CuteSlimePinkNew>(),
-                ItemType<CuteSlimePurpleNew>(),
-                ItemType<CuteSlimeRainbowNew>(),
-                ItemType<CuteSlimeRedNew>(),
-                ItemType<CuteSlimeYellowNew>()
+                ModContent.ItemType<CuteSlimeBlueNew>(),
+                ModContent.ItemType<CuteSlimeBlackNew>(),
+                ModContent.ItemType<CuteSlimeGreenNew>(),
+                ModContent.ItemType<CuteSlimePinkNew>(),
+                ModContent.ItemType<CuteSlimePurpleNew>(),
+                ModContent.ItemType<CuteSlimeRainbowNew>(),
+                ModContent.ItemType<CuteSlimeRedNew>(),
+                ModContent.ItemType<CuteSlimeYellowNew>()
             }));
 
             RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
@@ -424,7 +424,7 @@ namespace AssortedCrazyThings
             //extra things that happen
             if (!found)
             {
-                if (triggerType == ItemType<VanitySelector>())
+                if (triggerType == ModContent.ItemType<VanitySelector>())
                 {
                     AssUtils.UIText("No alt costumes found for" + (triggerLeft ? "" : " light") + " pet", CombatText.DamagedFriendly);
                     return;
@@ -471,7 +471,7 @@ namespace AssortedCrazyThings
                     }
                 }
                 //extra things that happen
-                if (CircleUI.triggerItemType == ItemType<VanitySelector>())
+                if (CircleUI.triggerItemType == ModContent.ItemType<VanitySelector>())
                 {
                     PoofVisual(CircleUI.UIConf.AdditionalInfo);
                     AssUtils.UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
@@ -491,10 +491,10 @@ namespace AssortedCrazyThings
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             int triggerType = player.HeldItem.type;
-            bool openWithDresser = player.showItemIcon2 == ItemType<VanityDresserItem>();
+            bool openWithDresser = player.showItemIcon2 == ModContent.ItemType<VanityDresserItem>();
             if (openWithDresser)
             {
-                triggerType = ItemType<VanitySelector>();
+                triggerType = ModContent.ItemType<VanitySelector>();
             }
             bool? left = null;
             if (mPlayer.LeftClickPressed && (CircleUIHandler.TriggerListLeft.Contains(triggerType) || openWithDresser))
@@ -506,7 +506,7 @@ namespace AssortedCrazyThings
                 left = false;
             }
 
-            if (left != null && AllowedToOpenUI(ItemType<VanityDresserItem>())) CircleUIStart(triggerType, (bool)left, openWithDresser);
+            if (left != null && AllowedToOpenUI(ModContent.ItemType<VanityDresserItem>())) CircleUIStart(triggerType, (bool)left, openWithDresser);
 
             if (CircleUI.visible)
             {

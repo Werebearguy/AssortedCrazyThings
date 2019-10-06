@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.TinyTwins = false;
@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             for (int i = 0; i < 1000; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<TinyRetinazerProj>() && projectile.owner == Main.projectile[i].owner)
+                if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<TinyRetinazerProj>() && projectile.owner == Main.projectile[i].owner)
                 {
                     AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/TinyTwinsProj_Chain", projectile.Center, Main.projectile[i].Center);
                     break;
@@ -98,7 +98,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.TinyTwins = false;

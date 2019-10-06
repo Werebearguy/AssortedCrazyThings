@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddBuff(mod.BuffType<BipolarBuff>(), 60);
+            player.AddBuff(ModContent.BuffType<BipolarBuff>(), 60);
             player.jumpBoost = true;
             Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.7f, 0.7f, 0.7f);
         }

@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.CuteSlimes
 {
@@ -13,7 +14,7 @@ namespace AssortedCrazyThings.Buffs.CuteSlimes
         protected override void MoreUpdate(PetPlayer mPlayer)
         {
             mPlayer.CuteSlimeRainbowNew = true;
-            projType = mod.ProjectileType<CuteSlimeRainbowNewProj>();
+            projType = ModContent.ProjectileType<CuteSlimeRainbowNewProj>();
         }
     }
 }

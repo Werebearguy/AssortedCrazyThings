@@ -28,13 +28,13 @@ namespace AssortedCrazyThings.NPCs
             npc.aiStyle = 14;
             aiType = NPCID.FlyingSnake;
             animationType = NPCID.FlyingSnake;
-            Main.npcCatchable[mod.NPCType<CuteGastropod>()] = true;
+            Main.npcCatchable[ModContent.NPCType<CuteGastropod>()] = true;
             npc.catchItem = (short)mod.ItemType("CuteGastropod");
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnConditionType.None, customFactor: !NPC.AnyNPCs(mod.NPCType<CuteGastropod>()) ? SpawnCondition.OverworldHallow.Chance * 0.045f : 0f);
+            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnConditionType.None, customFactor: !NPC.AnyNPCs(ModContent.NPCType<CuteGastropod>()) ? SpawnCondition.OverworldHallow.Chance * 0.045f : 0f);
         }
     }
 }

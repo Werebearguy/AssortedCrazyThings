@@ -20,8 +20,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType<PetMoonProj>();
-            item.buffType = mod.BuffType<PetSunMoonBuff>();
+            item.shoot = ModContent.ProjectileType<PetMoonProj>();
+            item.buffType = ModContent.BuffType<PetSunMoonBuff>();
             item.width = 38;
             item.height = 26;
             item.rare = -11;
@@ -39,8 +39,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<PetSunItem>());
-            recipe.AddIngredient(mod.ItemType<PetMoonItem>());
+            recipe.AddIngredient(ModContent.ItemType<PetSunItem>());
+            recipe.AddIngredient(ModContent.ItemType<PetMoonItem>());
             recipe.AddTile(TileID.CrystalBall);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
-            player.GetModPlayer<PetPlayer>(mod).DocileDemonEye = true;
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
+            player.GetModPlayer<PetPlayer>().DocileDemonEye = true;
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("DocileDemonEyeProj")] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {

@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetDestroyer = false;
@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            if (projectile.type != mod.ProjectileType<PetDestroyerHead>())
+            if (projectile.type != ModContent.ProjectileType<PetDestroyerHead>())
             {
                 AssAI.StardustDragonAI(projectile, wormTypes);
             }
@@ -138,7 +138,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetDestroyer = false;
@@ -151,7 +151,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             #region Find Parent
             //set parent when spawned
 
-            int parentType = projectile.identity % 2 == 0 ? mod.ProjectileType<PetDestroyerHead>() : mod.ProjectileType<PetDestroyerTail>();
+            int parentType = projectile.identity % 2 == 0 ? ModContent.ProjectileType<PetDestroyerHead>() : ModContent.ProjectileType<PetDestroyerTail>();
             if (ParentIndex < 0)
             {
                 for (int i = 0; i < 1000; i++)
@@ -197,7 +197,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
-                        Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
                         projectile.netUpdate = true;
                         //decide not to update parent, instead, parent updates itself
                         //parent.netUpdate = true;

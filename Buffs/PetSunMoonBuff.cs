@@ -19,14 +19,14 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).PetSun = true;
-            player.GetModPlayer<PetPlayer>(mod).PetMoon = true;
-            bool moreThanOneSun = player.ownedProjectileCounts[mod.ProjectileType<PetSunProj>()] > 0;
-            bool moreThanOneMoon = player.ownedProjectileCounts[mod.ProjectileType<PetMoonProj>()] > 0;
+            player.GetModPlayer<PetPlayer>().PetSun = true;
+            player.GetModPlayer<PetPlayer>().PetMoon = true;
+            bool moreThanOneSun = player.ownedProjectileCounts[ModContent.ProjectileType<PetSunProj>()] > 0;
+            bool moreThanOneMoon = player.ownedProjectileCounts[ModContent.ProjectileType<PetMoonProj>()] > 0;
             if (player.whoAmI == Main.myPlayer)
             {
-                if (!moreThanOneSun) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, mod.ProjectileType<PetSunProj>(), 0, 0f, player.whoAmI, 0f, 0f);
-                if (!moreThanOneMoon) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, mod.ProjectileType<PetMoonProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                if (!moreThanOneSun) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, ModContent.ProjectileType<PetSunProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                if (!moreThanOneMoon) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, ModContent.ProjectileType<PetMoonProj>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
 

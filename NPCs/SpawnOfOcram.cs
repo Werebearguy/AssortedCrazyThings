@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (NPC.downedGolemBoss && !NPC.AnyNPCs(mod.NPCType<SpawnOfOcram>()))
+            if (NPC.downedGolemBoss && !NPC.AnyNPCs(ModContent.NPCType<SpawnOfOcram>()))
             {
                 return SpawnCondition.OverworldNightMonster.Chance * 0.005f;
             }

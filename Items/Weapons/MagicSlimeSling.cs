@@ -42,9 +42,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public static int[] Types => new int[]
         {
-            AssUtils.Instance.ProjectileType<MagicSlimeSlingMinion1>(),
-            AssUtils.Instance.ProjectileType<MagicSlimeSlingMinion2>(),
-            AssUtils.Instance.ProjectileType<MagicSlimeSlingMinion3>()
+            ModContent.ProjectileType<MagicSlimeSlingMinion1>(),
+            ModContent.ProjectileType<MagicSlimeSlingMinion2>(),
+            ModContent.ProjectileType<MagicSlimeSlingMinion3>()
         };
 
         public override void SetStaticDefaults()
@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item19;
             item.mana = 10;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType<MagicSlimeSlingFired>();
+            item.shoot = ModContent.ProjectileType<MagicSlimeSlingFired>();
             item.rare = -11;
             item.noUseGraphic = true;
             item.value = Item.sellPrice(silver: 15);

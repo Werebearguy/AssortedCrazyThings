@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             if (projectile.GetOwner().dead)
             {
                 modPlayer.ChunkySlime = false;

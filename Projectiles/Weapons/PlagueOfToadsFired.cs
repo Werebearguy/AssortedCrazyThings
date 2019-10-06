@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             if (projectile.active && Main.myPlayer == projectile.owner)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType<PlagueOfToadsCloud>(), projectile.damage, projectile.knockBack, projectile.owner);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, ModContent.ProjectileType<PlagueOfToadsCloud>(), projectile.damage, projectile.knockBack, projectile.owner);
             }
         }
 

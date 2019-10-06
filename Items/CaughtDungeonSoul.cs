@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items
             item.useTime = 10;
             item.consumable = true;
             item.noUseGraphic = true;
-            item.makeNPC = (short)mod.NPCType<DungeonSoul>();
+            item.makeNPC = (short)ModContent.NPCType<DungeonSoul>();
         }
 
         public override bool CanUseItem(Player player)

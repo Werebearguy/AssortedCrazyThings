@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Tools
             item.useAnimation = 24;
             item.useTime = 32;
             item.value = Item.sellPrice(silver: 45);
-            item.shoot = mod.ProjectileType<ExtendoNetRegularProj>();
+            item.shoot = ModContent.ProjectileType<ExtendoNetRegularProj>();
         }
 
         public override void AddRecipes()

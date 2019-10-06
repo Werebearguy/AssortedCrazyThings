@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -243,7 +244,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         {
                             if (!Collision.SolidCollision(ShootOrigin, 1, 1))
                             {
-                                Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), mod.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
+                                Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), ModContent.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
                                 projectile.velocity.Y += 2f;
                                 projectile.netUpdate = true;
                             }

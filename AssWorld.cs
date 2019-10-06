@@ -44,11 +44,11 @@ namespace AssortedCrazyThings
 
         private void InitHarvesterSouls()
         {
-            harvesterTypes[0] = mod.NPCType<Harvester1>();
-            harvesterTypes[1] = mod.NPCType<Harvester2>();
-            harvesterTypes[2] = mod.NPCType<Harvester>();
-            harvesterTypes[3] = harvesterTalonLeft = mod.NPCType<HarvesterTalonLeft>();
-            harvesterTypes[4] = harvesterTalonRight = mod.NPCType<HarvesterTalonRight>();
+            harvesterTypes[0] = ModContent.NPCType<Harvester1>();
+            harvesterTypes[1] = ModContent.NPCType<Harvester2>();
+            harvesterTypes[2] = ModContent.NPCType<Harvester>();
+            harvesterTypes[3] = harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
+            harvesterTypes[4] = harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
             downedHarvester = false;
             droppedHarvesterSpawnItemThisSession = false;
         }
@@ -150,13 +150,13 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 30 == 15 && NPC.CountNPCS(mod.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15
+                if (Main.time % 30 == 15 && NPC.CountNPCS(ModContent.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
                     for (short j = 0; j < 200; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<DungeonSoul>())
+                        if (Main.npc[j].active && Main.npc[j].type == ModContent.NPCType<DungeonSoul>())
                         {
                             if (Main.npc[j].timeLeft < timeleftmin)
                             {

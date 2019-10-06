@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameInput;
+using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -80,12 +81,12 @@ namespace AssortedCrazyThings.UI
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
                         drawColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
-                        if ((Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoul>() ||
-                           Main.npc[k].type == AssUtils.Instance.NPCType<DungeonSoulFreed>()) && Main.npc[k].ai[0] == 0)
+                        if ((Main.npc[k].type == ModContent.NPCType<DungeonSoul>() ||
+                           Main.npc[k].type == ModContent.NPCType<DungeonSoulFreed>()) && Main.npc[k].ai[0] == 0)
                         {
                             ret = "Catch it with a net";
                         }
-                        else if (Main.npc[k].type == AssUtils.Instance.NPCType<Harvester1>())
+                        else if (Main.npc[k].type == ModContent.NPCType<Harvester1>())
                         {
                             //can technically also take life-1
                             //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
@@ -93,12 +94,12 @@ namespace AssortedCrazyThings.UI
 
                             ret = "Souls eaten: " + (Main.npc[k].life - 1) + "/" + 15;
                         }
-                        else if (Main.npc[k].type == AssUtils.Instance.NPCType<Harvester2>())
+                        else if (Main.npc[k].type == ModContent.NPCType<Harvester2>())
                         {
                             ret = "Souls eaten: " + (Main.npc[k].life - 1 + 5) + "/" + 15;
                         }
 
-                        if (Main.npc[k].type == AssUtils.Instance.NPCType<ChunkysEye>() || Main.npc[k].type == AssUtils.Instance.NPCType<MeatballsEye>())
+                        if (Main.npc[k].type == ModContent.NPCType<ChunkysEye>() || Main.npc[k].type == ModContent.NPCType<MeatballsEye>())
                         {
                             drawColor = Color.White * num;
                             ret = "Catch it with a net";

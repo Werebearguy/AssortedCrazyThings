@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items.Consumables
             item.maxStack = 30;
             item.consumable = true;
             item.buffTime = 18000; //five minutes
-            item.buffType = mod.BuffType<CuteSlimeSpawnEnableBuff>();
+            item.buffType = ModContent.BuffType<CuteSlimeSpawnEnableBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 20);
         }

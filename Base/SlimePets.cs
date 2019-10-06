@@ -153,14 +153,14 @@ namespace AssortedCrazyThings.Base
 
             slimePetRegularNPCs = new List<int>
             {
-                AssUtils.Instance.NPCType<CuteSlimeBlack>(),
-                AssUtils.Instance.NPCType<CuteSlimeBlue>(),
-                AssUtils.Instance.NPCType<CuteSlimeGreen>(),
-                AssUtils.Instance.NPCType<CuteSlimePink>(),
-                AssUtils.Instance.NPCType<CuteSlimePurple>(),
-                AssUtils.Instance.NPCType<CuteSlimeRainbow>(),
-                AssUtils.Instance.NPCType<CuteSlimeRed>(),
-                AssUtils.Instance.NPCType<CuteSlimeYellow>()
+                ModContent.NPCType<CuteSlimeBlack>(),
+                ModContent.NPCType<CuteSlimeBlue>(),
+                ModContent.NPCType<CuteSlimeGreen>(),
+                ModContent.NPCType<CuteSlimePink>(),
+                ModContent.NPCType<CuteSlimePurple>(),
+                ModContent.NPCType<CuteSlimeRainbow>(),
+                ModContent.NPCType<CuteSlimeRed>(),
+                ModContent.NPCType<CuteSlimeYellow>()
             };
 
             //start list

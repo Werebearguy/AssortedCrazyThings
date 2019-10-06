@@ -160,7 +160,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/" + Name);// Main.projectileTexture[projectile.type];
 
-            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
             if (mPlayer.soulSaviorArmor && projectile.minionSlots == 1f)
             {
                 image = mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/" + Name + "_Empowered");
@@ -218,7 +218,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
             if (mPlayer.soulSaviorArmor)
             {
                 damage = (int)(1.3f * damage);
@@ -248,7 +248,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             //AI_STATE == 2 : target found, dashing (includes delay after dash)
 
             Player player = projectile.GetOwner();
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (player.dead)
             {
                 mPlayer.soulMinion = false;

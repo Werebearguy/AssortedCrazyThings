@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetEaterofWorlds = false;
@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.timeLeft = 2;
             }
 
-            if (projectile.type != mod.ProjectileType<PetEaterofWorldsHead>())
+            if (projectile.type != ModContent.ProjectileType<PetEaterofWorldsHead>())
             {
                 AssAI.StardustDragonAI(projectile, wormTypes);
             }

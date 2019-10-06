@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             if (projectile.GetOwner().dead)
             {
                 modPlayer.Abeemination = false;
@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = mod.GetTexture("Projectiles/Pets/AbeeminationProj_" + mPlayer.abeeminationType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;

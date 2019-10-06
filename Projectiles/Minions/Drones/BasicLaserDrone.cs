@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -273,7 +274,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                                 between = target + Target.velocity * 6f - shootOrigin;
                                 between.Normalize();
                                 between *= 6f;
-                                Projectile.NewProjectile(shootOrigin, between, mod.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer);
+                                Projectile.NewProjectile(shootOrigin, between, ModContent.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer);
 
                                 //projectile.netUpdate = true;
                             }

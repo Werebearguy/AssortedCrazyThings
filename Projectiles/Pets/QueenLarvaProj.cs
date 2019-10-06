@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = mod.GetTexture("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.QueenLarva = false;

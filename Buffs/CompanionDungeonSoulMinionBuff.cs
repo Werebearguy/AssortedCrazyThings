@@ -27,13 +27,13 @@ namespace AssortedCrazyThings.Buffs
                 }
             }
 
-            sum += player.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
+            sum += player.ownedProjectileCounts[ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
             return sum;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer modPlayer = player.GetModPlayer<AssPlayer>();
             if (SumOfSoulCounts(player) > 0)
             {
                 modPlayer.soulMinion = true;
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Buffs
                     }
                 }
             }
-            ownedCount = Main.LocalPlayer.ownedProjectileCounts[mod.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
+            ownedCount = Main.LocalPlayer.ownedProjectileCounts[ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
             if (ownedCount > 0)
             {
                 tip += "\n" + "Tiny Dungeon Souls: " + ownedCount;

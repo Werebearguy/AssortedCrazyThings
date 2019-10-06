@@ -345,8 +345,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void MoreSetDefaults()
         {
             frameCount = 8.0;
-            Main.npcCatchable[mod.NPCType<DungeonSoul>()] = true;
-            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoul>();
+            Main.npcCatchable[ModContent.NPCType<DungeonSoul>()] = true;
+            npc.catchItem = (short)ModContent.ItemType<CaughtDungeonSoul>();
 
             fadeAwayMax = HarvesterBase.EatTimeConst;
         }
@@ -364,8 +364,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void MoreSetDefaults()
         {
             frameCount = 4.0;
-            Main.npcCatchable[mod.NPCType<DungeonSoulFreed>()] = true;
-            npc.catchItem = (short)mod.ItemType<CaughtDungeonSoulFreed>();
+            Main.npcCatchable[ModContent.NPCType<DungeonSoulFreed>()] = true;
+            npc.catchItem = (short)ModContent.ItemType<CaughtDungeonSoulFreed>();
 
             npc.timeLeft = 3600;
             fadeAwayMax = 3600;

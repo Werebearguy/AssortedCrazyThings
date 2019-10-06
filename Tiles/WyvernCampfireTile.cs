@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType<WyvernCampfireItem>());
+            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<WyvernCampfireItem>());
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -156,7 +156,7 @@ namespace AssortedCrazyThings.Tiles
             player.mouseInterface = true;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = mod.ItemType<WyvernCampfireItem>();
+            player.showItemIcon2 = ModContent.ItemType<WyvernCampfireItem>();
         }
 
         public override bool NewRightClick(int i, int j)

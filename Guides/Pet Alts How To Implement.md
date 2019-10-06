@@ -48,7 +48,7 @@ public override string Texture
 //using AssortecCrazyThings.Base;
 public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 {
-    PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+    PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
     SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
     Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType);
     Rectangle bounds = new Rectangle
@@ -123,7 +123,7 @@ public static CircleUIConf GetClassNameConf()
 
 ```csharp
     new CircleUIHandler(
-    triggerItem: AssUtils.Instance.ItemType<VanitySelector>(),
+    triggerItem: ModContent.ItemType<VanitySelector>(),
     condition: () => ClassName,
     uiConf: GetClassNameConf,
     onUIStart: () => classNameType,

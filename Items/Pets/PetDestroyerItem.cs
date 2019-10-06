@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Pets
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     Projectile proj = Main.projectile[i];
-                    if (proj.active && proj.owner == player.whoAmI && (Array.IndexOf(PetDestroyerBase.wormTypes, proj.type) >= 0 || proj.type == mod.ProjectileType<PetDestroyerProbe>()))
+                    if (proj.active && proj.owner == player.whoAmI && (Array.IndexOf(PetDestroyerBase.wormTypes, proj.type) >= 0 || proj.type == ModContent.ProjectileType<PetDestroyerProbe>()))
                     {
                         proj.Kill();
                     }
@@ -69,8 +69,8 @@ namespace AssortedCrazyThings.Items.Pets
             //Main.projectile[prevIndex].localAI[1] = index;
 
             //spawn probes
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, AssUtils.Instance.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, AssUtils.Instance.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, ((player.whoAmI + 1) * 13) % PetDestroyerProbe.AttackDelay);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, ((player.whoAmI + 1) * 13) % PetDestroyerProbe.AttackDelay);
         }
     }
 }

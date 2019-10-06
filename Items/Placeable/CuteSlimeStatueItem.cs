@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Placeable
             item.consumable = true;
             item.rare = -11;
             item.value = Item.sellPrice(0, 0, 0, 60);
-            item.createTile = mod.TileType<CuteSlimeStatueTile>();
+            item.createTile = ModContent.TileType<CuteSlimeStatueTile>();
         }
 
         public override void AddRecipes()

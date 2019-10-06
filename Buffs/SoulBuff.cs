@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<AssGlobalNPC>(mod).shouldSoulDrop = true;
+            npc.GetGlobalNPC<AssGlobalNPC>().shouldSoulDrop = true;
         }
     }
 }

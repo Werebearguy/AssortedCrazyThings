@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).AnimatedTome = true;
+            player.GetModPlayer<PetPlayer>().AnimatedTome = true;
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("AnimatedTomeProj")] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {

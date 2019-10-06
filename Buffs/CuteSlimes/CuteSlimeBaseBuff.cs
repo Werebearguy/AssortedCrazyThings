@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Buffs.CuteSlimes
 
         public sealed override void Update(Player player, ref int buffIndex)
         {
-            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
 
             player.buffTime[buffIndex] = 18000;
 

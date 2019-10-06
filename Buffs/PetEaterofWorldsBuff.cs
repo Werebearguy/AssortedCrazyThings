@@ -18,8 +18,8 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).PetEaterofWorlds = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<PetEaterofWorldsHead>()] <= 0;
+            player.GetModPlayer<PetPlayer>().PetEaterofWorlds = true;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<PetEaterofWorldsHead>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
                 PetEaterofWorldsItem.Spawn(player);

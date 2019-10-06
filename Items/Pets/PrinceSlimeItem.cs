@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType<PrinceSlimeProj>();
-            item.buffType = mod.BuffType<PrinceSlimeBuff>();
+            item.shoot = ModContent.ProjectileType<PrinceSlimeProj>();
+            item.buffType = ModContent.BuffType<PrinceSlimeBuff>();
             item.rare = -11;
             item.value = Item.sellPrice(copper: 10);
         }

@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         //ai 1 unused
         public override bool PreAI()
         {
-            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
 
             bool[] buffs = new bool[] {
             mPlayer.everburningCandleBuff,

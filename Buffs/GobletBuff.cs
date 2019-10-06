@@ -17,11 +17,11 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).Goblet = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType<GobletProj>()] <= 0;
+            player.GetModPlayer<PetPlayer>().Goblet = true;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<GobletProj>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                int i = Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y, 0f, 0f, mod.ProjectileType<GobletProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                int i = Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y, 0f, 0f, ModContent.ProjectileType<GobletProj>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

@@ -36,71 +36,71 @@ namespace AssortedCrazyThings.NPCs
 
             if (npc.type == NPCID.Antlion || npc.type == NPCID.FlyingAntlion || npc.type == NPCID.WalkingAntlion)
             {
-                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), mod.ItemType<MiniAntlionItem>());
+                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), ModContent.ItemType<MiniAntlionItem>());
             }
 
             if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
-                if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), mod.ItemType<GobletItem>());
+                if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), ModContent.ItemType<GobletItem>());
             }
 
             if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
             {
-                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), mod.ItemType<LilWrapsItem>());
+                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), ModContent.ItemType<LilWrapsItem>());
             }
 
             if (npc.type == NPCID.RainbowSlime)
             {
-                if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<RainbowSlimeItem>());
+                if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), ModContent.ItemType<RainbowSlimeItem>());
             }
 
             if (npc.type == NPCID.IlluminantSlime)
             {
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), mod.ItemType<IlluminantSlimeItem>());
+                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), ModContent.ItemType<IlluminantSlimeItem>());
             }
 
             //Boss pets
 
             if (npc.type == NPCID.KingSlime)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PrinceSlimeItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PrinceSlimeItem>());
             }
 
             if (npc.type == NPCID.EyeofCthulhu)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<ObservingEyeItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<ObservingEyeItem>());
             }
 
             if (npc.type == NPCID.BrainofCthulhu)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<BrainofConfusion>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<BrainofConfusion>());
             }
 
             if (Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1 && npc.boss)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetEaterofWorldsItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetEaterofWorldsItem>());
             }
 
             if (npc.type == NPCID.QueenBee)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<QueenLarvaItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<QueenLarvaItem>());
             }
 
             if (npc.type == NPCID.SkeletronHead)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SkeletronHandItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SkeletronHandItem>());
             }
 
             if (npc.type == NPCID.WallofFlesh)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<WallFragmentItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<WallFragmentItem>());
             }
 
             if (npc.type == NPCID.TheDestroyer)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetDestroyerItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetDestroyerItem>());
 
-                AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, mod.ItemType<DroneParts>(),
+                AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
                     condition: delegate (NPC n, Player player)
                     {
                         return !DroneController.AllUnlocked(player);
@@ -109,46 +109,46 @@ namespace AssortedCrazyThings.NPCs
 
             if (npc.type == NPCID.SkeletronPrime)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SkeletronPrimeHandItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SkeletronPrimeHandItem>());
             }
 
             if (npc.type == NPCID.Retinazer && !NPC.AnyNPCs(NPCID.Spazmatism) || npc.type == NPCID.Spazmatism && !NPC.AnyNPCs(NPCID.Retinazer))
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<TinyTwinsItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<TinyTwinsItem>());
             }
 
             if (npc.type == NPCID.Plantera)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetPlanteraItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetPlanteraItem>());
             }
 
             if (npc.type == NPCID.Golem)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetGolemHeadItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetGolemHeadItem>());
             }
 
             if (npc.type == NPCID.DukeFishron)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetFishronItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetFishronItem>());
             }
 
             if (npc.type == NPCID.CultistBoss)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<PetCultistItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetCultistItem>());
             }
 
             if (npc.type == NPCID.MoonLordCore)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<TrueObservingEyeItem>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<TrueObservingEyeItem>());
             }
 
             //Soul spawn from dead enemies while harvester alive
 
             if (shouldSoulDrop)
             {
-                if (npc.type != mod.NPCType<DungeonSoul>())
+                if (npc.type != ModContent.NPCType<DungeonSoul>())
                 {
-                    int soulType = mod.NPCType<DungeonSoul>();
+                    int soulType = ModContent.NPCType<DungeonSoul>();
 
                     //NewNPC starts looking for the first !active from 0 to 200
                     int soulID = NPC.NewNPC((int)npc.position.X + DungeonSoulBase.wid / 2, (int)npc.position.Y + DungeonSoulBase.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
@@ -168,11 +168,11 @@ namespace AssortedCrazyThings.NPCs
                 if (index != -1)
                 {
                     Player player = Main.player[index];
-                    if (player.ZoneDungeon && !player.HasItem(mod.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
+                    if (player.ZoneDungeon && !player.HasItem(ModContent.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
                     {
                         if (Main.rand.NextBool(200))
                         {
-                            Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<IdolOfDecay>());
                             //To prevent the item dropping more than once in a single game instance if boss is not defeated
                             AssWorld.droppedHarvesterSpawnItemThisSession = true;
                         }
@@ -187,7 +187,7 @@ namespace AssortedCrazyThings.NPCs
         {
             if (type == NPCID.PartyGirl && NPC.downedSlimeKing)
             {
-                shop.item[nextSlot].SetDefaults(mod.ItemType<SlimeBeaconItem>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<SlimeBeaconItem>());
                 nextSlot++;
             }
         }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -43,7 +44,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         protected override void CheckActive()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetGolemHead = false;
@@ -127,7 +128,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - position;
                         velocity.Normalize();
                         velocity *= 7f;
-                        Projectile.NewProjectile(position, velocity, mod.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
+                        Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
                         projectile.netUpdate = true;
                     }
                     else

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace AssortedCrazyThings.UI
@@ -71,8 +72,8 @@ namespace AssortedCrazyThings.UI
                 NPCID.VileSpit,
                 NPCID.WallofFleshEye,
                 NPCID.WaterSphere,
-                AssUtils.Instance.NPCType<Harvester1>(),
-                AssUtils.Instance.NPCType<Harvester2>()
+                ModContent.NPCType<Harvester1>(),
+                ModContent.NPCType<Harvester2>()
             };
 
             Array.Sort(blacklistNPCs);

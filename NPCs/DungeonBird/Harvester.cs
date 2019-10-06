@@ -177,7 +177,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (Main.rand.NextBool(3)) //33% chance
                 {
-                    int[] types = new int[] { mod.ItemType<SigilOfRetreat>(), mod.ItemType<SigilOfEmergency>(), mod.ItemType<SigilOfPainSuppression>() };
+                    int[] types = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
                     int itemType = Main.rand.Next(types);
                     Item.NewItem(npc.getRect(), itemType, prefixGiven: -1);
                 }
@@ -206,22 +206,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
-            if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), mod.ItemType<SoulHarvesterMask>());
-            Item.NewItem(npc.getRect(), mod.ItemType<DesiccatedLeather>());
+            if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SoulHarvesterMask>());
+            Item.NewItem(npc.getRect(), ModContent.ItemType<DesiccatedLeather>());
 
-            if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), mod.ItemType<IdolOfDecay>());
+            if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), ModContent.ItemType<IdolOfDecay>());
 
             //RecipeBrowser fix
             if (npc.Center == new Vector2(1000, 1000))
             {
-                Item.NewItem(npc.getRect(), mod.ItemType<CaughtDungeonSoulFreed>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CaughtDungeonSoulFreed>());
             }
 
-            int npcTypeOld = mod.NPCType<DungeonSoul>();
-            int npcTypeNew = mod.NPCType<DungeonSoulFreed>();  //version that doesnt get eaten by harvesters
+            int npcTypeOld = ModContent.NPCType<DungeonSoul>();
+            int npcTypeNew = ModContent.NPCType<DungeonSoulFreed>();  //version that doesnt get eaten by harvesters
 
-            int itemTypeOld = mod.ItemType<CaughtDungeonSoul>();
-            int itemTypeNew = mod.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
+            int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
+            int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
             DropLoot(npcTypeNew);
 
@@ -273,7 +273,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (Main.player[j].active/* && !Main.player[j].dead*/)
                 {
-                    AssPlayer mPlayer = Main.player[j].GetModPlayer<AssPlayer>(mod);
+                    AssPlayer mPlayer = Main.player[j].GetModPlayer<AssPlayer>();
 
                     if (Main.netMode == NetmodeID.Server)
                     {

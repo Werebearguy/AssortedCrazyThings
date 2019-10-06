@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Tiles
             player.mouseInterface = true;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = mod.ItemType<VanityDresserItem>();
+            player.showItemIcon2 = ModContent.ItemType<VanityDresserItem>();
             if (close && player.itemAnimation == 0)
             {
                 // "\n[c/"+ (Color.Orange * (Main.mouseTextColor / 255f)).Hex3() + ":\nCostume Dresser]" doesnt work cause chat tags are broken with escape characters
@@ -73,7 +73,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 48, 32, mod.ItemType<VanityDresserItem>());
+            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<VanityDresserItem>());
         }
     }
 }

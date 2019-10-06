@@ -192,7 +192,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             for (short j = 0; j < 200; j++)
             {
                 //ignore souls if they are noclipping
-                if (Main.npc[j].active && Main.npc[j].type == mod.NPCType<DungeonSoul>() && !Collision.SolidCollision(Main.npc[j].position, Main.npc[j].width, Main.npc[j].height))
+                if (Main.npc[j].active && Main.npc[j].type == ModContent.NPCType<DungeonSoul>() && !Collision.SolidCollision(Main.npc[j].position, Main.npc[j].width, Main.npc[j].height))
                 {
                     soulPos = Main.npc[j].Center - npc.Center;
                     newDistance = soulPos.Length();
@@ -1138,7 +1138,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     bool intersects = false;
                     for (int k = 0; k < 200; k++)
                     {
-                        if (Main.npc[k].active && Main.npc[k].type == mod.NPCType<DungeonSoul>())
+                        if (Main.npc[k].active && Main.npc[k].type == ModContent.NPCType<DungeonSoul>())
                         {
                             if (npc.getRect().Intersects(Main.npc[k].getRect()))
                             {
@@ -1265,7 +1265,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         private void SpawnBoneShort(Vector2 pos, Vector2 vel, int dmg, float knock)
         {
-            Projectile.NewProjectile(pos, vel, mod.ProjectileType<HarvesterBone>(), dmg, knock, Main.myPlayer);
+            Projectile.NewProjectile(pos, vel, ModContent.ProjectileType<HarvesterBone>(), dmg, knock, Main.myPlayer);
         }
 
         public void Transform(int to)

@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>(mod).LifelikeMechanicalFrog = true;
+            player.GetModPlayer<PetPlayer>().LifelikeMechanicalFrog = true;
             bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("LifelikeMechanicalFrog")] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {

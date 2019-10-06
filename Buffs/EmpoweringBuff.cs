@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Buffs
 
         public override void ModifyBuffTip(ref string tip, ref int rare)
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             string add = "\nIncreased Damage: " + (int)(mPlayer.step * 100) + "%";
             tip = tip + add;
         }

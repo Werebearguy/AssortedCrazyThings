@@ -69,14 +69,14 @@ namespace AssortedCrazyThings.Items.Weapons
                 case SoulType.Dungeon:
                     return new SoulData
                         (
-                        projType: AssUtils.Instance.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
+                        projType: ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
                         name: "Dungeon Soul",
                         dmgModifier: 0.1f
                         );
                 case SoulType.Fright:
                     return new SoulData
                         (
-                        projType: AssUtils.Instance.ProjectileType<CompanionDungeonSoulFrightMinion>(),
+                        projType: ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
                         name: "Soul of Fright",
                         desc: "Inflicts Ichor and Posioned",
                         toUnlock: "Defeat Skeletron Prime",
@@ -87,7 +87,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case SoulType.Sight:
                     return new SoulData
                         (
-                        projType: AssUtils.Instance.ProjectileType<CompanionDungeonSoulSightMinion>(),
+                        projType: ModContent.ProjectileType<CompanionDungeonSoulSightMinion>(),
                         name: "Soul of Sight",
                         desc: "Inflicts Cursed Inferno",
                         toUnlock: "Defeat The Twins",
@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 case SoulType.Might:
                     return new SoulData
                         (
-                        projType: AssUtils.Instance.ProjectileType<CompanionDungeonSoulMightMinion>(),
+                        projType: ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
                         name: "Soul of Might",
                         toUnlock: "Defeat The Destroyer",
                         unlocked: () => NPC.downedMechBoss1,
@@ -195,9 +195,9 @@ namespace AssortedCrazyThings.Items.Weapons
             item.value = Item.sellPrice(0, 0, 95, 0);
             item.rare = -11;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType<CompanionDungeonSoulPostWOFMinion>();
+            item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>();
             item.shootSpeed = 10f;
-            item.buffType = mod.BuffType<CompanionDungeonSoulMinionBuff>();
+            item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
         }
 
         public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
@@ -246,7 +246,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (Main.LocalPlayer.HasItem(mod.ItemType<EverhallowedLantern>()))
+                if (Main.LocalPlayer.HasItem(ModContent.ItemType<EverhallowedLantern>()))
                 {
                     if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                     {
@@ -290,7 +290,7 @@ namespace AssortedCrazyThings.Items.Weapons
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.AddIngredient(ItemID.SoulofLight, 5);
-            recipe.AddIngredient(mod.ItemType<EverglowLantern>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<EverglowLantern>(), 1);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

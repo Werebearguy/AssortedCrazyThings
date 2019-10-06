@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetPlantera = false;
@@ -147,7 +147,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             for (int i = 0; i < 1000; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<PetPlanteraProjTentacle>() && projectile.owner == Main.projectile[i].owner)
+                if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<PetPlanteraProjTentacle>() && projectile.owner == Main.projectile[i].owner)
                 {
                     AssUtils.DrawTether(spriteBatch, "AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Main.projectile[i].Center, projectile.Center);
                     tentacleCount++;
@@ -194,7 +194,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetPlantera = false;
@@ -210,7 +210,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 for (int i = 0; i < 1000; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].type == mod.ProjectileType<PetPlanteraProj>() && projectile.owner == Main.projectile[i].owner)
+                    if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<PetPlanteraProj>() && projectile.owner == Main.projectile[i].owner)
                     {
                         ParentIndex = i;
                         //projectile.netUpdate = true;
@@ -220,7 +220,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
 
             //if something goes wrong, abort mission
-            if (ParentIndex < 0 || (ParentIndex > -1 && Main.projectile[ParentIndex].type != mod.ProjectileType<PetPlanteraProj>()))
+            if (ParentIndex < 0 || (ParentIndex > -1 && Main.projectile[ParentIndex].type != ModContent.ProjectileType<PetPlanteraProj>()))
             {
                 projectile.Kill();
                 return;

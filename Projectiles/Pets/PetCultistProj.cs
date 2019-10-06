@@ -139,7 +139,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void AI()
         {
             Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>(mod);
+            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
                 modPlayer.PetCultist = false;
@@ -161,7 +161,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>(mod);
+            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetCultistProj_" + mPlayer.petCultistType);
             Rectangle bounds = new Rectangle();
             bounds.X = 0;

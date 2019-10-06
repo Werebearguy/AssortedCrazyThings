@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -322,7 +323,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                             velocity.Normalize();
                             velocity *= 10f;
                             projectile.velocity += -velocity * 0.75f; //recoil
-                            Projectile.NewProjectile(BarrelPos, velocity, mod.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(BarrelPos, velocity, ModContent.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
 
                             AI_STATE = STATE_RECOIL;
                             projectile.netUpdate = true;

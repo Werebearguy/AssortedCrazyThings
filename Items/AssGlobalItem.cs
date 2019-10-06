@@ -26,14 +26,14 @@ namespace AssortedCrazyThings.Items
         //{
         //    if (context == "bossBag" && arg == ItemID.DestroyerBossBag)
         //    {
-        //        player.QuickSpawnItem(mod.ItemType<DroneParts>());
+        //        player.QuickSpawnItem(ModContent.ItemType<DroneParts>());
         //    }
         //}
 
         public override bool CanUseItem(Item item, Player player)
         {
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             if (!player.HasBuff(BuffID.Cursed) && (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff))
             {
@@ -92,13 +92,13 @@ namespace AssortedCrazyThings.Items
             Vector2 pos = new Vector2(mPlayer.player.Center.X, mPlayer.player.Center.Y + 8f);
 
             //reduce but not prevent spam from boomerang related weapons or modded damage classes
-            if (mPlayer.player.ownedProjectileCounts[mod.ProjectileType<CandleDustDummy>()] < 2)
-                Projectile.NewProjectile(pos, velo + mPlayer.player.velocity, mod.ProjectileType<CandleDustDummy>(), 0, 0f, mPlayer.player.whoAmI);
+            if (mPlayer.player.ownedProjectileCounts[ModContent.ProjectileType<CandleDustDummy>()] < 2)
+                Projectile.NewProjectile(pos, velo + mPlayer.player.velocity, ModContent.ProjectileType<CandleDustDummy>(), 0, 0f, mPlayer.player.whoAmI);
         }
 
         public override void MeleeEffects(Item item, Player player, Rectangle hitbox)
         {
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>(mod);
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.everburningCandleBuff)
             {
                 Color color = new Color(255, 255, 255);

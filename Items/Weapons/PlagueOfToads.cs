@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Weapons
             //item.damage = 36;
             //item.useStyle = 1;
             //item.shootSpeed = 16f;
-            //item.shoot = mod.ProjectileType<PlagueOfToadsFired>();
+            //item.shoot = ModContent.ProjectileType<PlagueOfToadsFired>();
             //item.width = 26;
             //item.height = 28;
             //item.UseSound = SoundID.Item66;
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.damage = 8;
             item.useStyle = 1;
             item.shootSpeed = 16f;
-            item.shoot = mod.ProjectileType<PlagueOfToadsFired>();
+            item.shoot = ModContent.ProjectileType<PlagueOfToadsFired>();
             item.width = 26;
             item.height = 28;
             item.UseSound = SoundID.Item66;
