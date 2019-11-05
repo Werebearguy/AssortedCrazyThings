@@ -83,16 +83,14 @@ namespace AssortedCrazyThings.Tiles
             Wiring.SkipWire(x + 1, y + 1);
             Wiring.SkipWire(x + 1, y + 2);
 
-
             // We add 16 to x to spawn right between the 2 tiles. We also want to right on the ground in the y direction.
             int spawnX = x * 16 + 16;
             int spawnY = (y + 3) * 16;
 
-            // If you want to make a NPC spawning statue, see below.
             int npcIndex = -1;
             int npcType = CheckSpawns(spawnX, spawnY);
             // 30 is the time before it can be used again. 
-            if (Wiring.CheckMech(x, y, 30) && npcType != -1)
+            if (npcType != -1 && Wiring.CheckMech(x, y, 30))
             {
                 npcIndex = NPC.NewNPC(spawnX, spawnY - 8, npcType);
             }

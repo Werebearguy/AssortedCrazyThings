@@ -47,12 +47,12 @@ namespace AssortedCrazyThings.Tiles
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            Tile tile = Framing.GetTileSafely(i, j);
+            Tile tile = Main.tile[i, j];
             if (tile.frameY == 0)
             {
-                r = 0.5f;
-                g = 0.7f;
-                b = 1.2f;
+                r = 0.54f;
+                g = 0.76f;
+                b = 1.3f;
             }
         }
 
@@ -84,7 +84,7 @@ namespace AssortedCrazyThings.Tiles
         //for the change in HitWire to actually register
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            Tile tile = Framing.GetTileSafely(i, j);
+            Tile tile = Main.tile[i, j];
             Texture2D texture;
             if (Main.canDrawColorTile(i, j))
             {
@@ -181,11 +181,7 @@ namespace AssortedCrazyThings.Tiles
             {
                 for (int m = y; m < y + 2; m++)
                 {
-                    tile = Main.tile[l, m];
-                    if (tile == null)
-                    {
-                        tile = new Tile();
-                    }
+                    tile = Framing.GetTileSafely(l, m);
                     if (tile.active() && tile.type == Type)
                     {
                         tile.frameY = (short)(tile.frameY + change);

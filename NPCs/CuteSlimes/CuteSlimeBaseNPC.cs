@@ -116,6 +116,14 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnCondition);
         }
 
+        public override void OnCatchNPC(Player player, Item item)
+        {
+            // NEW
+            DropRandomItem(player.getRect());
+            MoreNPCLoot(player.getRect());
+            // NEW
+        }
+
         public sealed override void NPCLoot()
         {
             if (ShouldDropGel) Item.NewItem(npc.getRect(), ItemID.Gel);
@@ -297,7 +305,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 //float xOff = -1f;
                 //float yOff = 1f;
                 float xOff = -2f;
-                float yOff = 3f;
+                float yOff = 3f + drawOffsetY;
                 int frameNumber = npc.frame.Y / (Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type]);
                 //xOff += frameNumber;
                 yOff += frameNumber * 2; //bobbing

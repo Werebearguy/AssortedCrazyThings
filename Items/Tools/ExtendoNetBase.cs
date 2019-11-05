@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Tools
             {
                 try
                 {
-                    Assembly TerrariaOverhaul = oMod.GetType().Assembly;
+                    Assembly TerrariaOverhaul = oMod.Code;
                     Type Extensions = TerrariaOverhaul.GetType(oMod.Name + ".Extensions");
                     MethodInfo SetTag = Extensions.GetMethod("SetTag", new Type[] { typeof(ModItem), typeof(int), typeof(bool) });
                     Type ItemTags = TerrariaOverhaul.GetType(oMod.Name + ".ItemTags");

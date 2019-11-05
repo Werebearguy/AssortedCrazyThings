@@ -56,6 +56,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void MoreSetDefaults()
         {
+            drawOffsetY = 1f;
             npc.alpha = 80;
         }
 
@@ -63,7 +64,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             Texture2D texture = mod.GetTexture("NPCs/CuteSlimes/CuteSlimeIlluminantAddition");
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width / 2, npc.height / 2 + npc.gfxOffY + 4f);
+            Vector2 drawOrigin = new Vector2(npc.width / 2, npc.height / 2 + npc.gfxOffY - 5f);
 
             // The higher the k, the older the position
             // Length is implicitely set in TrailCacheLength up there

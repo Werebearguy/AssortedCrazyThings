@@ -57,8 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         public override Color? GetAlpha(Color lightColor)
         {
             if (Color == default(Color)) return lightColor;
-            float average = lightColor.GetAverage();
-            return Color * (average * (255 - projectile.alpha) / 65025f) * 0.7f;
+            return lightColor.MultiplyRGB(Color) * ((255 - projectile.alpha) / 255f) * 0.7f;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -114,7 +113,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 projectile.velocity.Y = 16f;
             }
 
-            //stars
+            //colored sparkles
             int dustType = Main.rand.Next(4);
             if (dustType == 0)
             {
@@ -132,8 +131,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             {
                 return;
             }
-            Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
-            dust.velocity *= 0.1f;
+            // 8f is the shootspeed of the weapon shooting this projectile
+            if (Main.rand.NextFloat() < projectile.velocity.Length() / 7f)
+            {
+                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
+                dust.velocity *= 0.1f;
+            }
         }
     }
 }
