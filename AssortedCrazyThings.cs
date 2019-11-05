@@ -241,8 +241,6 @@ namespace AssortedCrazyThings
 
         public override void Load()
         {
-            AssUtils.Instance = this;
-
             AssHooks.Load();
 
             LoadPets();
@@ -265,10 +263,6 @@ namespace AssortedCrazyThings
             DroneController.Unload();
 
             EverhallowedLantern.Unload();
-
-            AssUtils.AssConfig = null;
-
-            AssUtils.Instance = null;
         }
 
         public override void PostSetupContent()

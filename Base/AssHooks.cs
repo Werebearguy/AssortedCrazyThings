@@ -6,13 +6,13 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Base
 {
     /// <summary>
-    /// contains Hooks that will be loaded in Mod.Load
+    /// contains Hooks that will be loaded in Mod.Load. Currently unused
     /// </summary>
     public static class AssHooks
     {
         public static void Load()
         {
-            On.Terraria.NPC.CatchNPC += NPC_CatchNPC;
+            //On.Terraria.NPC.CatchNPC += NPC_CatchNPC;
         }
 
         /// <summary>
