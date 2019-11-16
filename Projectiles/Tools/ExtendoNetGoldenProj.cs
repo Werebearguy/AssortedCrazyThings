@@ -10,5 +10,10 @@ namespace AssortedCrazyThings.Projectiles.Tools
             extendSpeed = 4f;
             retractSpeed = 3.6f;
         }
+
+        public override bool? CanCutTiles()
+        {
+            return true;
+        }
     }
 }
