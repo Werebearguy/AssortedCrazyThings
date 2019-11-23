@@ -697,11 +697,7 @@ namespace AssortedCrazyThings
             {
                 if (Main.rand.NextBool(3))
                 {
-                    int dustOffset = 4;
-                    if (drawPlayer.direction == 1)
-                    {
-                        dustOffset = -40;
-                    }
+                    int dustOffset = -16 - drawPlayer.direction * 20;
                     Dust dust = Dust.NewDustDirect(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
                     dust.noGravity = true;
                     dust.noLight = true;
@@ -795,11 +791,6 @@ namespace AssortedCrazyThings
             ResetEmpoweringTimer();
 
             SpawnSoulTemp();
-
-            if (wyvernCampfire && proj.type == ProjectileID.HarpyFeather)
-            {
-                player.noKnockback = true;
-            }
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
@@ -846,11 +837,6 @@ namespace AssortedCrazyThings
             if (empoweringBuff && !item.summon && item.damage > 0) add += step; //summon damage gets handled in AssGlobalProj
         }
 
-        //public override void GetWeaponDamage(Item item, ref int damage)
-        //{
-        //    if (empoweringBuff && !item.summon && damage > 0) damage += (int)(damage * step); //summon damage gets handled in AssGlobalProj
-        //}
-
         public override void GetWeaponCrit(Item item, ref int crit)
         {
             if (empoweringBuff) crit += (int)(10 * step);
@@ -870,6 +856,11 @@ namespace AssortedCrazyThings
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (getDefenseDuration != 0) damage = 1;
+
+            if (wyvernCampfire && damageSource.SourceProjectileType == ProjectileID.HarpyFeather)
+            {
+                hitDirection = 0; //this cancels knockback
+            }
 
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
