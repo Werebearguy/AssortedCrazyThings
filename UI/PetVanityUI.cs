@@ -9,6 +9,7 @@ using Terraria.UI.Chat;
 
 namespace AssortedCrazyThings.UI
 {
+    //TODO redo that
     class PetVanityUI : UIState
     {
         internal const int NONE = -1;

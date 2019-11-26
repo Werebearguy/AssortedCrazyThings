@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
+    //TODO make it abstract
     public class SigilOfLastStand : ModItem
     {
         public override void SetStaticDefaults()

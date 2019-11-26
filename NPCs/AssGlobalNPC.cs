@@ -38,65 +38,54 @@ namespace AssortedCrazyThings.NPCs
             {
                 if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), ModContent.ItemType<MiniAntlionItem>());
             }
-
-            if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
+            else if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
                 if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), ModContent.ItemType<GobletItem>());
             }
-
-            if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
+            else if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
             {
                 if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), ModContent.ItemType<LilWrapsItem>());
             }
-
-            if (npc.type == NPCID.RainbowSlime)
+            else if (npc.type == NPCID.RainbowSlime)
             {
                 if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), ModContent.ItemType<RainbowSlimeItem>());
             }
-
-            if (npc.type == NPCID.IlluminantSlime)
+            else if (npc.type == NPCID.IlluminantSlime)
             {
                 if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), ModContent.ItemType<IlluminantSlimeItem>());
             }
 
             //Boss pets
 
-            if (npc.type == NPCID.KingSlime)
+            else if (npc.type == NPCID.KingSlime)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PrinceSlimeItem>());
             }
-
-            if (npc.type == NPCID.EyeofCthulhu)
+            else if (npc.type == NPCID.EyeofCthulhu)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<ObservingEyeItem>());
             }
-
-            if (npc.type == NPCID.BrainofCthulhu)
+            else if (npc.type == NPCID.BrainofCthulhu)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<BrainofConfusion>());
             }
-
-            if (Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1 && npc.boss)
+            else if (npc.boss && Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetEaterofWorldsItem>());
             }
-
-            if (npc.type == NPCID.QueenBee)
+            else if (npc.type == NPCID.QueenBee)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<QueenLarvaItem>());
             }
-
-            if (npc.type == NPCID.SkeletronHead)
+            else if (npc.type == NPCID.SkeletronHead)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SkeletronHandItem>());
             }
-
-            if (npc.type == NPCID.WallofFlesh)
+            else if (npc.type == NPCID.WallofFlesh)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<WallFragmentItem>());
             }
-
-            if (npc.type == NPCID.TheDestroyer)
+            else if (npc.type == NPCID.TheDestroyer)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetDestroyerItem>());
 
@@ -106,38 +95,31 @@ namespace AssortedCrazyThings.NPCs
                         return !DroneController.AllUnlocked(player);
                     });
             }
-
-            if (npc.type == NPCID.SkeletronPrime)
+            else if (npc.type == NPCID.SkeletronPrime)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SkeletronPrimeHandItem>());
             }
-
-            if (npc.type == NPCID.Retinazer && !NPC.AnyNPCs(NPCID.Spazmatism) || npc.type == NPCID.Spazmatism && !NPC.AnyNPCs(NPCID.Retinazer))
+            else if (npc.type == NPCID.Retinazer && !NPC.AnyNPCs(NPCID.Spazmatism) || npc.type == NPCID.Spazmatism && !NPC.AnyNPCs(NPCID.Retinazer))
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<TinyTwinsItem>());
             }
-
-            if (npc.type == NPCID.Plantera)
+            else if (npc.type == NPCID.Plantera)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetPlanteraItem>());
             }
-
-            if (npc.type == NPCID.Golem)
+            else if (npc.type == NPCID.Golem)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetGolemHeadItem>());
             }
-
-            if (npc.type == NPCID.DukeFishron)
+            else if (npc.type == NPCID.DukeFishron)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetFishronItem>());
             }
-
-            if (npc.type == NPCID.CultistBoss)
+            else if (npc.type == NPCID.CultistBoss)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetCultistItem>());
             }
-
-            if (npc.type == NPCID.MoonLordCore)
+            else if (npc.type == NPCID.MoonLordCore)
             {
                 if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<TrueObservingEyeItem>());
             }

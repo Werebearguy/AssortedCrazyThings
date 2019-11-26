@@ -186,7 +186,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 projectile.localAI[1] = value;
             }
         }
-
+        int targetNPC = -1;
 
         public void BabySlimeAI()
         {
@@ -368,7 +368,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     float targetY = projectile.position.Y;
                     float distance = 100000f;
                     float otherDistance = distance;
-                    int targetNPC = -1;
+                    targetNPC = -1;
 
                     //------------------------------------------------------------------------------------
                     //DISABLE MINION TARGETING------------------------------------------------------------
@@ -505,21 +505,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         //---------------------------------------------------------------------
                         //drop through platforms
                         //only drop if targets center y is lower than the minions bottom y, and only if its less than 300 away from the target horizontally
-                        if (Main.npc[targetNPC].Center.Y > projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
-                        {
-                            int tilex = (int)(projectile.position.X / 16f);
-                            int tiley = (int)((projectile.position.Y + projectile.height + 15f) / 16f);
+                        //if (Main.npc[targetNPC].Center.Y > projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
+                        //{
+                        //    int tilex = (int)(projectile.position.X / 16f);
+                        //    int tiley = (int)((projectile.Bottom.Y + 15f) / 16f);
 
-                            if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
-                                TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
-                                ((projectile.direction == -1) ? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type] : true))
-                            {
-                                //AssUtils.Print("drop " + Main.time);
-                                //Main.NewText("drop");
-                                projectile.netUpdate = true;
-                                projectile.position.Y += 1f;
-                            }
-                        }
+                        //    if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
+                        //        TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
+                        //        ((projectile.direction == -1) ? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type] : true))
+                        //    {
+                        //        //AssUtils.Print("drop " + Main.time);
+                        //        //Main.NewText("drop");
+                        //        projectile.netUpdate = true;
+                        //        projectile.position.Y += 1f;
+                        //    }
+                        //}
 
                         if (shootSpikes)
                         {
@@ -711,6 +711,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     projectile.direction = -1;
                 }
             }
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        {
+            if (targetNPC != -1)
+            {
+                NPC target = Main.npc[targetNPC];
+                Vector2 toTarget = projectile.DirectionTo(target.Center);
+                if (target.Center.Y > projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
+                {
+                    fallThrough = true;
+                }
+                else
+                {
+                    fallThrough = false;
+                }
+            }
+            else
+            {
+                fallThrough = false;
+            }
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough);
         }
     }
 }

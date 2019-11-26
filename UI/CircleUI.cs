@@ -8,6 +8,7 @@ using Terraria.UI.Chat;
 
 namespace AssortedCrazyThings.UI
 {
+    //TODO redo that
     //Huge credit to Muzuwi (with permission): https://github.com/Muzuwi/AmmoboxPlus/blob/master/AmmoboxUI.cs
     /// <summary>
     /// UI that is used to select something out of a list of things, opened via item
