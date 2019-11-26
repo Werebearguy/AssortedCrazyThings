@@ -522,9 +522,6 @@
     <Reference Include="Terraria">
       <HintPath>E:\Steam\SteamApps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
-    <Reference Include="TerrariaOverhaul">
-      <HintPath>D:\Visual Studio\References\TerrariaOverhaul.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gores\" />

@@ -1,8 +1,9 @@
 using AssortedCrazyThings.Projectiles.Tools;
+using System;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TerrariaOverhaul;
 
 namespace AssortedCrazyThings.Items.Tools
 {
@@ -42,10 +43,27 @@ namespace AssortedCrazyThings.Items.Tools
             // Ensures no more than one spear can be thrown out, use this when using autoReuse
             return player.ownedProjectileCounts[item.shoot] < 1;
         }
-
         public void OverhaulInit()
         {
-            this.SetTag(ItemTags.AllowQuickUse);
+            Mod oMod = ModLoader.GetMod("TerrariaOverhaul");
+            if (oMod != null)
+            {
+                try
+                {
+                    Assembly TerrariaOverhaul = oMod.Code;
+                    Type Extensions = TerrariaOverhaul.GetType(oMod.Name + ".Extensions");
+                    MethodInfo SetTag = Extensions.GetMethod("SetTag", new Type[] { typeof(ModItem), typeof(int), typeof(bool) });
+                    Type ItemTags = TerrariaOverhaul.GetType(oMod.Name + ".ItemTags");
+                    FieldInfo AllowQuickUse = ItemTags.GetField("AllowQuickUse", BindingFlags.Static | BindingFlags.Public);
+                    object AllowQuickUseValue = AllowQuickUse.GetValue(null);
+                    SetTag.Invoke(null, new object[] { this, AllowQuickUseValue, true });
+                }
+                catch
+                {
+                    ErrorLogger.Log("Failed to register Overhaul Quick Use feature to Extendo Nets");
+                }
+            }
+            //this.SetTag(ItemTags.AllowQuickUse);
         }
 
         public override void AddRecipes()

@@ -1,8 +1,7 @@
 author = Harblesnargits, direwolf420
 version = 1.3.0
-displayName = Assorted Crazy Things
+displayName = Assorted Crazy Things (Overhaul compat)
 hideCode = true
 hideResources = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Wiki\*
-weakReferences = TerrariaOverhaul@3.2.2
 homepage = https://github.com/Werebearguy/AssortedCrazyThings/wiki
