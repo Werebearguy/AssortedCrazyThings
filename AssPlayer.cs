@@ -588,7 +588,7 @@ namespace AssortedCrazyThings
             {
                 Texture2D texture = mod.GetTexture("Items/Accessories/Useful/CrazyBundleOfAssortedBalloons_Balloon_Proper");
 
-                Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
+                Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16) * ((255 - drawPlayer.immuneAlpha) / 255f);
 
                 int frameTimeY = DateTime.Now.Millisecond % 800 / 200;
                 Vector2 offsetHand = Main.OffsetsPlayerOffhand[drawPlayer.bodyFrame.Y / 56];
@@ -632,7 +632,7 @@ namespace AssortedCrazyThings
 
                 Vector2 stupidOffset = new Vector2(0f, -drawPlayer.bodyFrame.Height / 2);
 
-                Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16);
+                Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16) * ((255 - drawPlayer.immuneAlpha) / 255f);
 
                 DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0);
                 Main.playerDrawData.Add(drawData);
@@ -667,6 +667,7 @@ namespace AssortedCrazyThings
 
             color *= mPlayer.shieldDroneLerpVisual;
             Lighting.AddLight(drawPlayer.Center, color.ToVector3());
+            color *= (255 - drawPlayer.immuneAlpha) / 255f;
 
             DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, null, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, SpriteEffects.None, 0);
             Main.playerDrawData.Add(drawData);
@@ -687,7 +688,7 @@ namespace AssortedCrazyThings
 
             Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
 
-            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
+            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White * ((255 - drawPlayer.immuneAlpha) / 255f)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
             {
                 shader = drawInfo.wingShader
             };
@@ -726,7 +727,7 @@ namespace AssortedCrazyThings
 
             Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
 
-            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
+            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White * ((255 - drawPlayer.immuneAlpha) / 255f), drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
             {
                 shader = drawInfo.bodyArmorShader
             };

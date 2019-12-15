@@ -20,6 +20,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 return "Terraria/Projectile_" + ProjectileID.RocketIII;
             }
         }
+
         public int FirstTarget
         {
             get
