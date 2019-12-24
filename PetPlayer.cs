@@ -397,6 +397,7 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
+            if (Main.netMode != NetmodeID.Server) return;
             //from server to clients
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncPlayerVanity);
