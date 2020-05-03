@@ -1,0 +1,3 @@
+I made sprites for the Basic Laser Drone, Heavy Laser Drone, and Missile Drone. I also included a _Lower file for the Basic Laser drone, as well as touched up your Shield Drone to use the same colors as the other drones. As requested, the Healing Drone has brighter metal. I do not know how you will implement any of this, so I'll leave the coding magic to you. If you need any sprites to be altered in any way, let me know.
+
+I have moved the new sprites to a new folder inside the /Projectiles/Minions/Drones folder. This way, nothing breaks when you download this. I'll do this for every update, unless it's a minor change and/or you request not to.
