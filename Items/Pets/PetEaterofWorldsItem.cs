@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Eater of worlds");
+            DisplayName.SetDefault("Cracked Worm Egg");
             Tooltip.SetDefault("Summons a tiny Eater of Worlds to follow you");
         }
 

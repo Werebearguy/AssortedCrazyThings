@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Pets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tiny Destroyer");
+            DisplayName.SetDefault("Destroyer's Core");
             Tooltip.SetDefault("Summons a tiny Destroyer and two tiny Probes to follow you");
         }
 

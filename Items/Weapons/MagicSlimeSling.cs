@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    //TODO textures
     public class MagicSlimeSling : ModItem
     {
         public static Color GetColor(byte c)
