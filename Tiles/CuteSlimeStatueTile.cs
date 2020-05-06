@@ -37,9 +37,10 @@ namespace AssortedCrazyThings.Tiles
             int total = 0;
             int veryClose = 0;
             int fairlyClose = 0;
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && Array.IndexOf(types, Main.npc[i].type) != -1)
+                NPC npc = Main.npc[i];
+                if (npc.active && Array.IndexOf(types, npc.type) != -1)
                 {
                     total++;
                     float distance = new Vector2(x, y).Length();
@@ -73,8 +74,9 @@ namespace AssortedCrazyThings.Tiles
         public override void HitWire(int i, int j)
         {
             // Find the coordinates of top left tile square through math
-            int x = i - Main.tile[i, j].frameX / 18;
-            int y = j - Main.tile[i, j].frameY / 18;
+            Tile tile = Main.tile[i, j];
+            int x = i - tile.frameX / 18;
+            int y = j - tile.frameY / 18;
 
             Wiring.SkipWire(x, y);
             Wiring.SkipWire(x, y + 1);
@@ -96,11 +98,12 @@ namespace AssortedCrazyThings.Tiles
             }
             if (npcIndex >= 0)
             {
-                Main.npc[npcIndex].value = 0f;
-                Main.npc[npcIndex].npcSlots = 0f;
+                NPC npc = Main.npc[npcIndex];
+                npc.value = 0f;
+                npc.npcSlots = 0f;
                 // Prevents Loot if NPCID.Sets.NoEarlymodeLootWhenSpawnedFromStatue and !Main.HardMode or NPCID.Sets.StatueSpawnedDropRarity != -1 and NextFloat() >= NPCID.Sets.StatueSpawnedDropRarity or killed by traps.
                 // Prevents CatchNPC
-                Main.npc[npcIndex].SpawnedFromStatue = true;
+                npc.SpawnedFromStatue = true;
             }
         }
     }

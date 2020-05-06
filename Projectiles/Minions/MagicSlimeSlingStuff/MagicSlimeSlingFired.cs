@@ -113,6 +113,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 projectile.velocity.Y = 16f;
             }
 
+            if (projectile.alpha > 200) return;
+
             //colored sparkles
             int dustType = Main.rand.Next(4);
             if (dustType == 0)

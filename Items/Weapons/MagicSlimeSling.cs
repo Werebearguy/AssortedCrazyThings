@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,7 +33,7 @@ namespace AssortedCrazyThings.Items.Weapons
             if (proj.modProjectile != null && proj.modProjectile is MagicSlimeSlingFired)
             {
                 MagicSlimeSlingFired fired = (MagicSlimeSlingFired)proj.modProjectile;
-                fired.ColorType = Main.player[proj.owner].GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
+                fired.ColorType = proj.GetOwner().GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
                 //Color won't be synced, its assigned in send/recv 
                 fired.Color = GetColor(fired.ColorType);
             }
@@ -55,17 +56,18 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void SetDefaults()
         {
+            item.width = 12;
+            item.height = 24;
             item.summon = true;
             item.damage = 5;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.Stabbing;
             item.useTime = 35;
             item.useAnimation = 35;
             item.UseSound = SoundID.Item19;
             item.mana = 10;
-            item.shootSpeed = 8f;
+            item.shootSpeed = 9f;
             item.shoot = ModContent.ProjectileType<MagicSlimeSlingFired>();
             item.rare = -11;
-            item.noUseGraphic = true;
             item.value = Item.sellPrice(silver: 15);
         }
 
@@ -79,12 +81,23 @@ namespace AssortedCrazyThings.Items.Weapons
             recipe.AddRecipe();
         }
 
+        public override void UseStyle(Player player)
+        {
+            //using shortsword arm position but reset the movement/rotation stuff
+            player.itemLocation.X = player.Center.X;
+            player.itemLocation.Y = player.Center.Y + 6f;
+            player.itemRotation = 0f;
+        }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            float magnitude = new Vector2(speedX, speedY).Length();
+            speedY = -1f;
+            speedX = magnitude * Math.Sign(speedX);
 
             //PreSync uses current mPlayer.nextMagicSlimeSlingMinion
-            AssUtils.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, preSync: PreSync);
+            AssUtils.NewProjectile(position.X, position.Y - 6f, speedX, speedY, type, damage, knockBack, preSync: PreSync);
 
             //switch to next type
             mPlayer.nextMagicSlimeSlingMinion = (byte)((mPlayer.nextMagicSlimeSlingMinion + 1) % MagicSlimeSlingMinionTypes);
