@@ -21,9 +21,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetDefaults()
         {
-            AssAI.StardustDragonSetDefaults(projectile, minion: false);
+            AssAI.StardustDragonSetDefaults(projectile,size: HITBOX_SIZE, minion: false);
             projectile.alpha = 0;
         }
+
+        //default 2
+        public const int NUMBER_OF_BODY_SEGMENTS = 5;
+
+        //default 24
+        public const int HITBOX_SIZE = 24;
+
+        //default 16
+        public const int DISTANCE_BETWEEN_SEGMENTS = 17;
 
         public override void AI()
         {
@@ -40,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (projectile.type != ModContent.ProjectileType<PetEaterofWorldsHead>())
             {
-                AssAI.StardustDragonAI(projectile, wormTypes);
+                AssAI.StardustDragonAI(projectile, wormTypes, DISTANCE_BETWEEN_SEGMENTS);
             }
             else
             {

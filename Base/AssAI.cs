@@ -952,7 +952,7 @@ namespace AssortedCrazyThings.Base
         //ProjectileID.Sets.MinionSacrificable[projectile.type] = false, cause the replacing code for worm minions is complicated
         //damage set in NewProjectile/item
         //scales in size with the amount of segments
-        public static void StardustDragonSetDefaults(Projectile projectile, bool minion = true, WormType wormType = WormType.None)
+        public static void StardustDragonSetDefaults(Projectile projectile, int size = 24, bool minion = true, WormType wormType = WormType.None)
         {
             if (minion)
             {
@@ -968,8 +968,7 @@ namespace AssortedCrazyThings.Base
                 //projectile.hide = true;
                 projectile.netImportant = true;
             }
-            projectile.width = 24;
-            projectile.height = 24;
+            projectile.Size = new Vector2(size);
             projectile.penetrate = -1;
             projectile.timeLeft *= 5;
             projectile.friendly = true;
@@ -982,7 +981,7 @@ namespace AssortedCrazyThings.Base
         //if minion = true:
         //float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
         //projectile.scale = 1f + scaleFactor * 0.01f;
-        public static void StardustDragonAI(Projectile projectile, int[] wormTypes)
+        public static void StardustDragonAI(Projectile projectile, int[] wormTypes, int segmentDistance = 16)
         {
             Player player = projectile.GetOwner();
 
@@ -1045,12 +1044,12 @@ namespace AssortedCrazyThings.Base
                     }
                     if (targetIndex < 0)
                     {
-                        for (int i = 0; i < 200; i++)
+                        for (int i = 0; i < Main.maxNPCs; i++)
                         {
-                            NPC nPC14 = Main.npc[i];
-                            if (nPC14.CanBeChasedBy() && player.DistanceSQ(nPC14.Center) < maxPlayerDistance)
+                            NPC npc = Main.npc[i];
+                            if (npc.CanBeChasedBy() && player.DistanceSQ(npc.Center) < maxPlayerDistance)
                             {
-                                float distance2 = projectile.DistanceSQ(nPC14.Center);
+                                float distance2 = projectile.DistanceSQ(npc.Center);
                                 if (distance2 < maxProjDistance)
                                 {
                                     targetIndex = i;
@@ -1152,7 +1151,7 @@ namespace AssortedCrazyThings.Base
                 }
 
                 Projectile parent = null;
-                for (short i = 0; i < 1000; i++)
+                for (short i = 0; i < Main.maxProjectiles; i++)
                 {
                     Projectile proj = Main.projectile[i];
                     if (proj.active && proj.owner == projectile.owner && proj.identity == (int)projectile.ai[0]/* && proj.type == projectile.type*/)
@@ -1170,7 +1169,7 @@ namespace AssortedCrazyThings.Base
                         parentRotation = parent.rotation;
                         scaleOffset = MathHelper.Clamp(parent.scale, 0f, 50f);
                         if (!projectile.minion) scaleOffset = 1;
-                        positionOffset = 16f;
+                        positionOffset = segmentDistance;
                         parent.localAI[0] = projectile.localAI[0] + 1f;
                         if (parent.type != wormTypes[0])
                         {

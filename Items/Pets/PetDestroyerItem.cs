@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using Terraria;
@@ -18,8 +18,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("PetDestroyerHead");
-            item.buffType = mod.BuffType("PetDestroyerBuff");
+            item.shoot = ModContent.ProjectileType<PetDestroyerHead>();
+            item.buffType = ModContent.BuffType<PetDestroyerBuff>();
             item.rare = -11;
         }
 
@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Pets
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     Projectile proj = Main.projectile[i];
-                    if (proj.active && proj.owner == player.whoAmI && (Array.IndexOf(PetDestroyerBase.wormTypes, proj.type) >= 0 || proj.type == ModContent.ProjectileType<PetDestroyerProbe>()))
+                    if (proj.active && proj.owner == player.whoAmI && (Array.IndexOf(PetDestroyerBase.wormTypes, proj.type) > -1 || proj.type == ModContent.ProjectileType<PetDestroyerProbe>()))
                     {
                         proj.Kill();
                     }
@@ -47,26 +47,24 @@ namespace AssortedCrazyThings.Items.Pets
         public static void Spawn(Player player)
         {
             //prevIndex stuff only needed for when replacing/summoning the minion segments individually
-            int index = Projectile.NewProjectile(player.Center.X, player.Center.Y, player.direction, -player.gravDir, PetDestroyerBase.wormTypes[0], 0, 0f, player.whoAmI, 0f, 0f);
-            index = Projectile.NewProjectile(player.Center.X - 16 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[1], 0, 0f, player.whoAmI, index, 0f);
-            //int prevIndex = index;
-            index = Projectile.NewProjectile(player.Center.X - 32 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[2], 0, 0f, player.whoAmI, index, 0f);
-            //Main.projectile[prevIndex].localAI[1] = index;
-            //prevIndex = index;
-            index = Projectile.NewProjectile(player.Center.X - 48 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[1], 0, 0f, player.whoAmI, index, 0f);
-            //Main.projectile[prevIndex].localAI[1] = index;
-            //prevIndex = index;
-            index = Projectile.NewProjectile(player.Center.X - 64 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[2], 0, 0f, player.whoAmI, index, 0f);
-            //Main.projectile[prevIndex].localAI[1] = index;
-            //prevIndex = index;
-            index = Projectile.NewProjectile(player.Center.X - 72 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[1], 0, 0f, player.whoAmI, index, 0f);
-            //Main.projectile[prevIndex].localAI[1] = index;
-            //prevIndex = index;
-            index = Projectile.NewProjectile(player.Center.X - 88 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[2], 0, 0f, player.whoAmI, index, 0f);
-            //Main.projectile[prevIndex].localAI[1] = index;
-            //prevIndex = index;
-            index = Projectile.NewProjectile(player.Center.X - 104 * player.direction, player.Center.Y, 0f, 0f, PetDestroyerBase.wormTypes[3], 0, 0f, player.whoAmI, index, 0f);
-            //Main.projectile[prevIndex].localAI[1] = index;
+
+            int index = Projectile.NewProjectile(player.Center.X, player.Center.Y, player.direction, -player.gravDir, ModContent.ProjectileType<PetDestroyerHead>(), 0, 0f, player.whoAmI, 0f, 0f);
+            int prevIndex = index;
+            int off = PetDestroyerBase.DISTANCE_BETWEEN_SEGMENTS;
+
+            for (int i = 1; i <= PetDestroyerBase.NUMBER_OF_BODY_SEGMENTS; i++)
+            {
+                index = Projectile.NewProjectile(player.Center.X - off * player.direction, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerBody1>(), 0, 0f, player.whoAmI, index, 0f);
+                Main.projectile[prevIndex].localAI[1] = index;
+                prevIndex = index;
+                off += PetDestroyerBase.DISTANCE_BETWEEN_SEGMENTS;
+                index = Projectile.NewProjectile(player.Center.X - off * player.direction, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerBody2>(), 0, 0f, player.whoAmI, index, 0f);
+                Main.projectile[prevIndex].localAI[1] = index;
+                prevIndex = index;
+                off += PetDestroyerBase.DISTANCE_BETWEEN_SEGMENTS;
+            }
+            index = Projectile.NewProjectile(player.Center.X - off * player.direction, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerTail>(), 0, 0f, player.whoAmI, index, 0f);
+            Main.projectile[prevIndex].localAI[1] = index;
 
             //spawn probes
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, 0f);

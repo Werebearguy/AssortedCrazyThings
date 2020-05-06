@@ -24,9 +24,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetDefaults()
         {
-            AssAI.StardustDragonSetDefaults(projectile, minion: false);
+            AssAI.StardustDragonSetDefaults(projectile, size: HITBOX_SIZE, minion: false);
             projectile.alpha = 0;
         }
+
+        public const int NUMBER_OF_BODY_SEGMENTS = 6;
+
+        //default 24
+        public const int HITBOX_SIZE = 24;
+
+        //default 16
+        public const int DISTANCE_BETWEEN_SEGMENTS = 25;
 
         public override void AI()
         {
@@ -43,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (projectile.type != ModContent.ProjectileType<PetDestroyerHead>())
             {
-                AssAI.StardustDragonAI(projectile, wormTypes);
+                AssAI.StardustDragonAI(projectile, wormTypes, DISTANCE_BETWEEN_SEGMENTS);
             }
             else
             {
@@ -129,10 +137,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            projectile.netImportant = false;
+            projectile.netImportant = true;
             projectile.aiStyle = -1;
-            projectile.width = 16;
-            projectile.height = 16;
+            projectile.width = 20;
+            projectile.height = 18;
         }
 
         public override void AI()
@@ -154,9 +162,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             int parentType = projectile.identity % 2 == 0 ? ModContent.ProjectileType<PetDestroyerHead>() : ModContent.ProjectileType<PetDestroyerTail>();
             if (ParentIndex < 0)
             {
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].type == parentType && projectile.owner == Main.projectile[i].owner)
+                    Projectile p = Main.projectile[i];
+                    if (p.active && p.type == parentType && projectile.owner == p.owner)
                     {
                         ParentIndex = i;
                         //projectile.netUpdate = true;
@@ -194,7 +203,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         if (AttackCounter == AttackDelay) AttackCounter += AttackDelay;
                         Vector2 position = projectile.Center;
-                        Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - projectile.Center;
+                        NPC target = Main.npc[targetIndex];
+                        Vector2 velocity = target.Center + target.velocity * 5f - projectile.Center;
                         velocity.Normalize();
                         velocity *= 7f;
                         Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
@@ -230,19 +240,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            SpriteEffects effects = SpriteEffects.None;
-            if (projectile.spriteDirection != 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
+            SpriteEffects effects = projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetDestroyerProbe");
             Rectangle bounds = image.Bounds;
             bounds.Y = projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - projectile.gfxOffY);
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             image = mod.GetTexture("Projectiles/Pets/PetDestroyerProbe_Glowmask");
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, Color.White, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
             return false;
         }
