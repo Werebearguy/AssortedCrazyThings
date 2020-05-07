@@ -50,12 +50,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-
-            if (AI_STATE == STATE_TARGET_FIRE) //frame 2
+            if (AI_STATE == STATE_TARGET_FIRE)
             {
                 projectile.frame = 2;
             }
-            else if (AI_STATE == STATE_TARGET_FOUND || AI_STATE == STATE_TARGET_ACQUIRED) //frame 1
+            else if (AI_STATE == STATE_TARGET_FOUND || AI_STATE == STATE_TARGET_ACQUIRED)
             {
                 projectile.frame = 1;
             }

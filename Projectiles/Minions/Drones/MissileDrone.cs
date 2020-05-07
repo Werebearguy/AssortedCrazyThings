@@ -13,17 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// </summary>
     public class MissileDrone : DroneBase
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
-            }
-        }
-
-        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "MissileDrone_Glowmask";
 
         public const int AttackCooldown = 180; //120 but incremented by 1.5f
         public const int AttackDelay = 60;
@@ -42,9 +32,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                Vector2 position = projectile.Center;
-                position.X = projectile.position.X + RocketNumber * 12f;
-                position.Y += sinY;
+                Vector2 position = projectile.Top;
+                position.Y += sinY + 2f;
                 return position;
             }
         }
@@ -52,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Missile Drone");
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 4;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
@@ -83,49 +72,24 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            //frame 0, 1: above two thirds health
-            //frame 2, 3: above half health, below two thirds health
-            //frame 4, 5: below half health, healing
-            Player player = projectile.GetOwner();
-
-            int frameOffset = 0; //frame 0, 1
-
-            if (AI_STATE == STATE_FIRING) //frame 4, 5
+            if (AI_STATE == STATE_FIRING)
             {
-                frameOffset = 4;
-            }
-            else if (AI_STATE == STATE_COOLDOWN) //frame 2, 3
-            {
-                frameOffset = 2;
-            }
-            else //AI_STATE == STATE_IDLE
-            {
-                //frameoffset 0
-            }
-
-            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
-
-            if (projectile.velocity.Length() > 6f)
-            {
-                if (++projectile.frameCounter >= frameCounterMaxFar)
+                if (RocketNumber > 0)
                 {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
+                    projectile.frame = 3;
                 }
+                else
+                {
+                    projectile.frame = 2;
+                }
+            }
+            else if (AI_STATE == STATE_COOLDOWN)
+            {
+                projectile.frame = 1;
             }
             else
             {
-                if (++projectile.frameCounter >= frameCounterMaxClose)
-                {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
-                }
+                projectile.frame = 0;
             }
         }
 
@@ -135,7 +99,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
+            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
             bounds.Y = projectile.frame * bounds.Height;
 
             SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -147,23 +111,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             image = mod.GetTexture(nameGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            Vector2 rotationOffset = new Vector2(0f, -2f);
-            drawPos += rotationOffset;
-            drawOrigin += rotationOffset;
-
-            //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
-
-            //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
-
-            //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-            image = mod.GetTexture(nameLower);
-            bounds.Y = 0;
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            image = mod.GetTexture(nameLowerGlow);
-            bounds.Y = 0;
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             return false;
@@ -183,6 +130,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         protected override void CustomAI()
         {
             Player player = projectile.GetOwner();
+            //Main.NewText("##");
+            //Main.NewText(AI_STATE);
 
             #region Handle State
             if (AI_STATE == STATE_COOLDOWN)
@@ -235,16 +184,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (targetIndex != -1)
                 {
-                    projectile.spriteDirection = projectile.direction = -(Main.npc[targetIndex].Center.X - player.Center.X > 0f).ToDirectionInt();
+                    projectile.direction = projectile.spriteDirection = -(Main.npc[targetIndex].Center.X - player.Center.X > 0f).ToDirectionInt();
                     if (RealOwner)
                     {
                         int firerate = AttackDelay / 4;
                         RocketNumber = Counter / firerate;
-                        if (Counter % firerate == 0 && RocketNumber < 3)
+                        if (Counter % firerate == 0 && RocketNumber > 0 && RocketNumber < 4)
                         {
                             if (!Collision.SolidCollision(ShootOrigin, 1, 1))
                             {
-                                Projectile.NewProjectile(ShootOrigin, new Vector2(Main.rand.NextFloat(-1, 1) + RocketNumber - 1, -5), ModContent.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
+                                //Main.NewText(Counter);
+                                Vector2 velocity = new Vector2(Main.rand.NextFloat(-1f, 1f) - projectile.direction * 0.5f, -5);
+                                Projectile.NewProjectile(ShootOrigin, velocity, ModContent.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
                                 projectile.velocity.Y += 2f;
                                 projectile.netUpdate = true;
                             }
