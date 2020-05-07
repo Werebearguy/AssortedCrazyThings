@@ -269,7 +269,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.damage = BaseDmg;
             item.summon = true;
             item.mana = 10;
-            item.width = 24;
+            item.width = 28;
             item.height = 30;
             item.useTime = 36;
             item.useAnimation = 36;

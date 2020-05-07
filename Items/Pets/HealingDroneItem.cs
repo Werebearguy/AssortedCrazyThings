@@ -17,8 +17,6 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("HealingDroneProj");
-            item.buffType = mod.BuffType("HealingDroneBuff");
             item.width = 30;
             item.height = 28;
             item.rare = -11;
@@ -35,6 +33,7 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void AddRecipes()
         {
+            //transformation recipe
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(item.type, 1);
             recipe.SetResult(ModContent.ItemType<DroneUnlockableHealing>());
