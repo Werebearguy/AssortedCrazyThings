@@ -1,7 +1,6 @@
 ﻿using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,17 +12,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// </summary>
     public class BasicLaserDrone : DroneBase
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
-            }
-        }
-
-        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "BasicLaserDrone_Glowmask";
+        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "BasicLaserDrone_Lower";
+        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "BasicLaserDrone_Lower_Glowmask";
 
         private const int AttackDelay = 25;
         private const int SearchDelay = 30;
@@ -41,7 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Basic Laser Drone");
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 3;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
         }
@@ -59,32 +50,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            Player player = projectile.GetOwner();
 
-            int frameOffset = 0; //frame 0, 1
-
-            if (AI_STATE == STATE_TARGET_FIRE) //frame 4, 5
+            if (AI_STATE == STATE_TARGET_FIRE) //frame 2
             {
-                frameOffset = 4;
+                projectile.frame = 2;
             }
-            else if (AI_STATE == STATE_TARGET_FOUND || AI_STATE == STATE_TARGET_ACQUIRED) //frame 2, 3
+            else if (AI_STATE == STATE_TARGET_FOUND || AI_STATE == STATE_TARGET_ACQUIRED) //frame 1
             {
-                frameOffset = 2;
+                projectile.frame = 1;
             }
-            //else
-            //{
-            //    //frameoffset 0
-            //}
-
-            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
-
-            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f) ? frameCounterMaxFar : frameCounterMaxClose))
+            else
             {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= 2 + frameOffset)
-                {
-                    projectile.frame = frameOffset;
-                }
+                projectile.frame = 0;
             }
         }
 
@@ -109,7 +86,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             Vector2 rotationOffset = new Vector2(0f, -2f); //-2f
-            drawPos += rotationOffset;
+            drawPos += rotationOffset + new Vector2(0f, 2f); //lower sprite is offset by 2 because its too low, just a correction
             drawOrigin += rotationOffset;
 
             //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);

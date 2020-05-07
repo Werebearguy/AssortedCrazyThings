@@ -109,12 +109,14 @@ namespace AssortedCrazyThings.Items.Weapons
             return sum;
         }
 
-        public static bool CanSpawn(Player player, DroneType selected)
+        public static bool CanSpawn(Player player, DroneType selected, out bool blocked)
         {
             bool canSpawn = true;
+            blocked = false;
             if (selected == DroneType.Healing || selected == DroneType.Shield)
             {
                 canSpawn = player.ownedProjectileCounts[GetDroneData(selected).ProjType] == 0;
+                if (!canSpawn) blocked = true;
             }
             canSpawn &= player.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(selected);
             return canSpawn;
@@ -218,7 +220,7 @@ namespace AssortedCrazyThings.Items.Weapons
                     textureNames.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName).Name);
                     unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
                     tooltips.Add(data.UITooltip);
-                    toUnlock.Add("Craft and use a " + data.Name + " Item");
+                    toUnlock.Add("Craft and use a '" + data.Name + "' Item");
                 }
             }
 
@@ -308,7 +310,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
                 DroneType selected = mPlayer.selectedDroneControllerMinionType;
 
-                if (!CanSpawn(player, selected))
+                if (!CanSpawn(player, selected, out _))
                 {
                     return false;
                 }
@@ -397,7 +399,8 @@ namespace AssortedCrazyThings.Items.Weapons
                 tooltips.Add(new TooltipLine(mod, "Destroyer", "Defeat the destroyer to unlock more drones"));
             }
 
-            if (!CanSpawn(Main.LocalPlayer, selected))
+            CanSpawn(Main.LocalPlayer, selected, out bool blocked);
+            if (blocked)
             {
                 tooltips.Add(new TooltipLine(mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
             }
@@ -453,8 +456,5 @@ namespace AssortedCrazyThings.Items.Weapons
         Missile = 4,
         Healing = 8,
         Shield = 16
-        //Unused1 = 8,
-        //Unused2 = 16,
-        //Unused3 = 32,
     }
 }
