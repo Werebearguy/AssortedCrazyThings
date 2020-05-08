@@ -362,7 +362,7 @@ namespace AssortedCrazyThings
         {
             int projIndex = -1;
             //find first occurence of a player owned projectile
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active)
                 {
@@ -727,6 +727,7 @@ namespace AssortedCrazyThings
         {
             AssMessageType msgType = (AssMessageType)reader.ReadByte();
             byte playerNumber;
+            byte npcNumber;
             AssPlayer aPlayer;
             PetPlayer petPlayer;
             byte changes;
@@ -815,24 +816,26 @@ namespace AssortedCrazyThings
                     }
                     break;
                 case AssMessageType.WyvernCampfireKill:
-                    //reusing playerNumber as the npc.whoami
-                    playerNumber = reader.ReadByte();
-                    if (Main.npc[playerNumber].type == NPCID.WyvernHead)
+                    npcNumber = reader.ReadByte();
+                    if (npcNumber < 0 || npcNumber >= Main.maxNPCs) break;
+                    NPC npc = Main.npc[npcNumber];
+                    if (npc.type == NPCID.WyvernHead)
                     {
-                        DungeonSoulBase.KillInstantly(Main.npc[playerNumber]);
-                        if (playerNumber < 200)
+                        DungeonSoulBase.KillInstantly(npc);
+                        if (npcNumber < Main.maxNPCs)
                         {
-                            NetMessage.SendData(23, -1, -1, null, playerNumber);
+                            NetMessage.SendData(23, -1, -1, null, npcNumber);
                         }
                     }
                     else
                     {
-                        for (int k = 0; k < 200; k++)
+                        for (int k = 0; k < Main.maxNPCs; k++)
                         {
-                            if (Main.npc[k].active && Main.npc[k].type == NPCID.WyvernHead)
+                            NPC other = Main.npc[k];
+                            if (other.active && other.type == NPCID.WyvernHead)
                             {
-                                DungeonSoulBase.KillInstantly(Main.npc[k]);
-                                if (playerNumber < 200)
+                                DungeonSoulBase.KillInstantly(other);
+                                if (k < Main.maxNPCs)
                                 {
                                     NetMessage.SendData(23, -1, -1, null, k);
                                 }

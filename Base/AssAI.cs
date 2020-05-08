@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Base
             float distanceFromTarget = 10000000f;
             Vector2 targetCenter = relativeCenter;
             range *= range;
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
                 NPC npc = Main.npc[k];
                 if (npc.CanBeChasedBy())

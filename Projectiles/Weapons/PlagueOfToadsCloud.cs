@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                 int cloudCount = 0;
                 int cloudIndex = 0;
                 float cloudAi1 = 0f;
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     //check for both crimson rod and plague of toads cloud
                     if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == projectile.type || Main.projectile[i].type == ProjectileID.BloodCloudRaining) && Main.projectile[i].ai[1] < 3600f)

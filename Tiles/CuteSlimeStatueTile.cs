@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Tiles
                 {
                     total++;
                     float distance = new Vector2(x, y).Length();
-                    if (distance < 200f)
+                    if (distance < 200)
                     {
                         veryClose++;
                     }

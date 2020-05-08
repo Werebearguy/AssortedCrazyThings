@@ -245,7 +245,7 @@ namespace AssortedCrazyThings
                 bool checkIfAlive = false;
                 int spawnedType = Main.hardMode ? ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
                 int spawnedDamage = Main.hardMode ? (int)(EverhallowedLantern.BaseDmg * 1.1f * 2f) : ((EverhallowedLantern.BaseDmg / 2 - 1) * 2);
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == spawnedType)
                     {
@@ -282,9 +282,10 @@ namespace AssortedCrazyThings
             {
                 bool shouldDropSouls = false;
                 int index = 200;
-                for (short j = 0; j < 200; j++)
+                for (short j = 0; j < Main.maxNPCs; j++)
                 {
-                    if (Main.npc[j].active && Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) != -1)
+                    NPC npc = Main.npc[j];
+                    if (npc.active && Array.IndexOf(AssWorld.harvesterTypes, npc.type) != -1)
                     {
                         shouldDropSouls = true;
                         index = j;
@@ -297,7 +298,7 @@ namespace AssortedCrazyThings
                     int distance = (int)(Main.npc[index].Center - player.Center).Length();
                     if (distance < 2880 || player.ZoneDungeon) //one and a half screens or in dungeon
                     {
-                        for (short j = 0; j < 200; j++)
+                        for (short j = 0; j < Main.maxNPCs; j++)
                         {
                             NPC npc = Main.npc[j];
                             if (npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.dontTakeDamage && !npc.immortal && !npc.SpawnedFromStatue)
@@ -427,7 +428,7 @@ namespace AssortedCrazyThings
                     //this part here is from vanilla magic mirror code
                     player.grappling[0] = -1;
                     player.grapCount = 0;
-                    for (int i = 0; i < 1000; i++)
+                    for (int i = 0; i < Main.maxProjectiles; i++)
                     {
                         //Kill all grappling hooks
                         if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].aiStyle == 7)

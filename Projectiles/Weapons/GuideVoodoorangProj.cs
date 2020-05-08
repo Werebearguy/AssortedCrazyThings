@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.AnyNPCs(NPCID.WallofFlesh))
                 {
-                    for (int i = 0; i < 200; i++)
+                    for (int i = 0; i < Main.maxNPCs; i++)
                     {
                         if (Main.npc[i].active && Main.npc[i].type == NPCID.Guide)
                         {

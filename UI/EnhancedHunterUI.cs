@@ -87,7 +87,7 @@ namespace AssortedCrazyThings.UI
             drawRotation.Clear();
             drawLOS.Clear();
             drawColor.Clear();
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
                 NPC npc = Main.npc[k];
 

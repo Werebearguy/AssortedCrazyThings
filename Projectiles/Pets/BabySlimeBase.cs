@@ -262,7 +262,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 if (projectile.minion)
                 {
                     float range = 700f;
-                    for (int k = 0; k < 200; k++)
+                    for (int k = 0; k < Main.maxNPCs; k++)
                     {
                         NPC npc = Main.npc[k];
                         if (npc.CanBeChasedBy())
@@ -401,12 +401,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         }
                         if (targetNPC == -1)
                         {
-                            for (int k = 0; k < 200; k++)
+                            for (int k = 0; k < Main.maxNPCs; k++)
                             {
-                                if (Main.npc[k].CanBeChasedBy())
+                                NPC npc = Main.npc[k];
+                                if (npc.CanBeChasedBy())
                                 {
-                                    float npcX = Main.npc[k].Center.X;
-                                    float npcY = Main.npc[k].Center.Y;
+                                    float npcX = npc.Center.X;
+                                    float npcY = npc.Center.Y;
                                     float between = Math.Abs(projectile.Center.X - npcX) + Math.Abs(projectile.Center.Y - npcY);
                                     if (between < distance)
                                     {
@@ -416,7 +417,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                             targetX = npcX;
                                             targetY = npcY;
                                         }
-                                        if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[k].position, Main.npc[k].width, Main.npc[k].height))
+                                        if (Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
                                         {
                                             distance = between;
                                             targetX = npcX;

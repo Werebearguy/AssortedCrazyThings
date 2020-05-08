@@ -38,14 +38,15 @@ namespace AssortedCrazyThings.Items
             {
                 for (int k = 0; k < 6; k++)
                 {
-                    int num257 = mod.NPCType("FoldfishBaby");
-                    int num258 = NPC.NewNPC((int)player.position.X, (int)player.position.Y, num257);
-                    Main.npc[num258].SetDefaults(num257);
-                    Main.npc[num258].velocity.X = (float)Main.rand.Next(-15, 16) * 0.1f;
-                    Main.npc[num258].velocity.Y = (float)Main.rand.Next(-30, 1) * 0.1f;
-                    if (Main.netMode == NetmodeID.Server && num258 < 200)
+                    int type = mod.NPCType("FoldfishBaby");
+                    int index = NPC.NewNPC((int)player.position.X, (int)player.position.Y, type);
+                    NPC npc = Main.npc[index];
+                    npc.SetDefaults(type);
+                    npc.velocity.X = (float)Main.rand.Next(-15, 16) * 0.1f;
+                    npc.velocity.Y = (float)Main.rand.Next(-30, 1) * 0.1f;
+                    if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
-                        NetMessage.SendData(23, -1, -1, null, num258);
+                        NetMessage.SendData(23, -1, -1, null, index);
                     }
                 }
             }

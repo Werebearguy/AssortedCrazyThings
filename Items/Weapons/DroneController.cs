@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             int slot = 0;
             int min = 1000;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile proj = Main.projectile[i];
                 if (proj.active)

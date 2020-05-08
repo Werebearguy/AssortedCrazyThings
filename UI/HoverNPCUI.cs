@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.UI
 
             float num = Main.mouseTextColor / 255f;
 
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
                 //LoadNPC(Main.npc[k].type); //idk why
                 if (Main.npc[k].active)
@@ -73,33 +73,34 @@ namespace AssortedCrazyThings.UI
 
             float num = Main.mouseTextColor / 255f;
 
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
-                if (Main.npc[k].active)
+                NPC npc = Main.npc[k];
+                if (npc.active)
                 {
-                    Rectangle npcrect = new Rectangle((int)Main.npc[k].Bottom.X - Main.npc[k].frame.Width / 2, (int)Main.npc[k].Bottom.Y - Main.npc[k].frame.Height, Main.npc[k].frame.Width, Main.npc[k].frame.Height);
+                    Rectangle npcrect = new Rectangle((int)npc.Bottom.X - npc.frame.Width / 2, (int)npc.Bottom.Y - npc.frame.Height, npc.frame.Width, npc.frame.Height);
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
                         drawColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
-                        if ((Main.npc[k].type == ModContent.NPCType<DungeonSoul>() ||
-                           Main.npc[k].type == ModContent.NPCType<DungeonSoulFreed>()) && Main.npc[k].ai[0] == 0)
+                        if ((npc.type == ModContent.NPCType<DungeonSoul>() ||
+                           npc.type == ModContent.NPCType<DungeonSoulFreed>()) && npc.ai[0] == 0)
                         {
                             ret = "Catch it with a net";
                         }
-                        else if (Main.npc[k].type == ModContent.NPCType<Harvester1>())
+                        else if (npc.type == ModContent.NPCType<Harvester1>())
                         {
                             //can technically also take life-1
                             //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
                             //ret = "Souls eaten: " + m.soulsEaten + "/" + 15; //m.maxSoulsEaten
 
-                            ret = "Souls eaten: " + (Main.npc[k].life - 1) + "/" + 15;
+                            ret = "Souls eaten: " + (npc.life - 1) + "/" + 15;
                         }
-                        else if (Main.npc[k].type == ModContent.NPCType<Harvester2>())
+                        else if (npc.type == ModContent.NPCType<Harvester2>())
                         {
-                            ret = "Souls eaten: " + (Main.npc[k].life - 1 + 5) + "/" + 15;
+                            ret = "Souls eaten: " + (npc.life - 1 + 5) + "/" + 15;
                         }
 
-                        if (Main.npc[k].type == ModContent.NPCType<ChunkysEye>() || Main.npc[k].type == ModContent.NPCType<MeatballsEye>())
+                        if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
                         {
                             drawColor = Color.White * num;
                             ret = "Catch it with a net";

@@ -189,14 +189,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             float oldDistance = 1000000000f;
             float newDistance;
             //return index of closest soul
-            for (short j = 0; j < 200; j++)
+            for (short j = 0; j < Main.maxNPCs; j++)
             {
                 //ignore souls if they are noclipping
-                if (Main.npc[j].active && Main.npc[j].type == ModContent.NPCType<DungeonSoul>() && !Collision.SolidCollision(Main.npc[j].position, Main.npc[j].width, Main.npc[j].height))
+                NPC other = Main.npc[j];
+                if (other.active && other.type == ModContent.NPCType<DungeonSoul>() && !Collision.SolidCollision(other.position, other.width, other.height))
                 {
-                    soulPos = Main.npc[j].Center - npc.Center;
+                    soulPos = other.Center - npc.Center;
                     newDistance = soulPos.Length();
-                    if (newDistance < oldDistance && ((restrictedvar ? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center - new Vector2(0f, npc.height), 1, npc.height, Main.npc[j].Center, 1, 1)))
+                    if (newDistance < oldDistance && ((restrictedvar ? (soulPos.Y > -jumpRange) : true) || Collision.CanHitLine(npc.Center - new Vector2(0f, npc.height), 1, npc.height, other.Center, 1, 1)))
                     {
                         oldDistance = newDistance;
                         closest = j;
@@ -871,11 +872,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float newDistance;
 
                 //return index of closest player
-                for (short j = 0; j < 255; j++)
+                for (short j = 0; j < Main.maxPlayers; j++)
                 {
-                    if (Main.player[j].active)
+                    Player player = Main.player[j];
+                    if (player.active)
                     {
-                        playerPos = Main.player[j].Center - npc.Center;
+                        playerPos = player.Center - npc.Center;
                         newDistance = playerPos.Length();
                         if (newDistance < oldDistance)
                         {
@@ -883,7 +885,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             closest = j;
                             shouldDecreaseTime = true; //atleast one player is found
                         }
-                        if (allPlayersDead && !Main.player[j].dead) allPlayersDead = false;
+                        if (allPlayersDead && !player.dead) allPlayersDead = false;
                     }
                 }
 
@@ -1136,11 +1138,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                     //if alteast one soul intersects with hitbox
                     bool intersects = false;
-                    for (int k = 0; k < 200; k++)
+                    for (int k = 0; k < Main.maxNPCs; k++)
                     {
-                        if (Main.npc[k].active && Main.npc[k].type == ModContent.NPCType<DungeonSoul>())
+                        NPC npc = Main.npc[k];
+                        if (npc.active && npc.type == ModContent.NPCType<DungeonSoul>())
                         {
-                            if (npc.getRect().Intersects(Main.npc[k].getRect()))
+                            if (base.npc.getRect().Intersects(npc.getRect()))
                             {
                                 intersects = true;
                                 //if (Main.time % 60 == 0) Main.NewText("intersects with " + k);
@@ -1278,7 +1281,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     int index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, to, 150); //150 for index 150 atleast
                                                                                            //(so the claws will likely spawn with lower index and rendered infront)
                     Main.npc[index].SetDefaults(to);
-                    if (Main.netMode == NetmodeID.Server && index < 200)
+                    if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
                         NetMessage.SendData(23, -1, -1, null, index);
                     }

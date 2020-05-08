@@ -274,7 +274,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             float distanceFromTarget = defdistanceFromTarget;
 
             float overlapVelo = 0.04f; //0.05
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 //fix overlap with other minions
                 if (i != projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && Math.Abs(projectile.position.X - Main.projectile[i].position.X) + Math.Abs(projectile.position.Y - Main.projectile[i].position.Y) < projectile.width)
@@ -338,20 +338,20 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                 int targetIndex = -1;
                 if (!foundTarget)
                 {
-                    for (int j = 0; j < 200; j++)
+                    for (int j = 0; j < Main.maxNPCs; j++)
                     {
-                        NPC nPC2 = Main.npc[j];
-                        if (nPC2.CanBeChasedBy())
+                        NPC npc = Main.npc[j];
+                        if (npc.CanBeChasedBy())
                         {
-                            float between = Vector2.Distance(nPC2.Center, projectile.Center);
+                            float between = Vector2.Distance(npc.Center, projectile.Center);
                             if (((Vector2.Distance(projectile.Center, targetCenter) > between && between < distanceFromTarget) || !foundTarget) &&
                                 //EITHER HE CAN SEE IT, OR THE TARGET IS (default case: 14) TILES AWAY BUT THE MINION IS INSIDE A TILE
                                 //makes it so the soul can still attack if it dashed "through tiles"
-                                (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, nPC2.position, nPC2.width, nPC2.height) ||
+                                (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height) ||
                                 (between < defdistanceAttackNoclip/* && Collision.SolidCollision(projectile.position, projectile.width, projectile.height)*/)))
                             {
                                 distanceFromTarget = between;
-                                targetCenter = nPC2.Center;
+                                targetCenter = npc.Center;
                                 targetIndex = j;
                                 foundTarget = true;
                             }

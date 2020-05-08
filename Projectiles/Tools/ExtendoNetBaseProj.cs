@@ -99,11 +99,12 @@ namespace AssortedCrazyThings.Projectiles.Tools
                     projectile.width,
                     projectile.height);
 
-                for (int i = 0; i < 200; i++)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.npc[i].active && Main.npc[i].catchItem > 0)
+                    NPC npc = Main.npc[i];
+                    if (npc.active && npc.catchItem > 0)
                     {
-                        if (hitboxMod.Intersects(Main.npc[i].getRect())/* && (Main.npc[i].noTileCollide || projOwner.CanHit(Main.npc[i]))*/)
+                        if (hitboxMod.Intersects(npc.getRect())/* && (Main.npc[i].noTileCollide || projOwner.CanHit(Main.npc[i]))*/)
                         {
                             NPC.CatchNPC(i, projectile.owner);
                         }

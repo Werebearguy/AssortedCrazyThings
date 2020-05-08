@@ -226,20 +226,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             DropLoot(npcTypeNew);
 
             //"convert" NPC souls
-            for (short j = 0; j < 200; j++)
+            for (short j = 0; j < Main.maxNPCs; j++)
             {
-                if (Main.npc[j].active && Main.npc[j].type == npcTypeOld)
+                NPC other = Main.npc[j];
+                if (other.active && other.type == npcTypeOld)
                 {
-                    Main.npc[j].active = false;
-                    int index = NPC.NewNPC((int)Main.npc[j].position.X, (int)Main.npc[j].position.Y, npcTypeNew);
-                    Main.npc[index].SetDefaults(npcTypeNew);
+                    other.active = false;
+                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew);
+                    NPC npcnew = Main.npc[index];
+                    npcnew.SetDefaults(npcTypeNew);
                     //Main.npc[index].timeLeft = 3600;
-                    Main.npc[index].ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                    npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
 
                     //poof visual
                     for (int i = 0; i < 15; i++)
                     {
-                        Dust dust = Dust.NewDustPerfect(Main.npc[index].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                        Dust dust = Dust.NewDustPerfect(npcnew.Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
                         dust.noLight = true;
                         dust.noGravity = true;
                         dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
@@ -420,11 +422,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        if (index1 < 200)
+                        if (index1 < Main.maxNPCs)
                         {
                             NetMessage.SendData(23, -1, -1, null, index1);
                         }
-                        if (index2 < 200)
+                        if (index2 < Main.maxNPCs)
                         {
                             NetMessage.SendData(23, -1, -1, null, index2);
                         }

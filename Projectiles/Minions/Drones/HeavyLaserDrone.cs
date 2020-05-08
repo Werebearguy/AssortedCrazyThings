@@ -347,7 +347,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             Vector2 targetCenter = player.Center;
             float margin = 200;
             int range = 1000;
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
                 NPC npc = Main.npc[k];
                 if (npc.CanBeChasedBy(projectile))
@@ -376,7 +376,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             int pos = 0;
             int min = 1000;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile proj = Main.projectile[i];
                 if (proj.active && proj.owner == projectile.owner && proj.type == projectile.type)

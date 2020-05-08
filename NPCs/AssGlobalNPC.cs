@@ -269,14 +269,15 @@ namespace AssortedCrazyThings.NPCs
             //14 segments each 42 coordinates apart == 580x580 rect around center of wyvern head
             Rectangle rect = new Rectangle((int)npc.Center.X - 580, (int)npc.Center.Y - 580, 2 * 580, 2 * 580);
             fadeTimerCount++;
-            for (short j = 0; j < 200; j++)
+            for (short j = 0; j < Main.maxNPCs; j++)
             {
-                if (Main.npc[j].active && (Main.npc[j].type > NPCID.WyvernHead && Main.npc[j].type <= NPCID.WyvernTail)/* && NPCID.WyvernHead != Main.npc[j].type*/)
+                NPC other = Main.npc[j];
+                if (other.active && (other.type > NPCID.WyvernHead && other.type <= NPCID.WyvernTail)/* && NPCID.WyvernHead != Main.npc[j].type*/)
                 {
-                    if (rect.Intersects(Main.npc[j].Hitbox))
+                    if (rect.Intersects(other.Hitbox))
                     {
-                        QuickWyvernDust(Main.npc[j].Center, Color.White, (float)(fadeTimerCount / 50f), 0.5f);
-                        Main.npc[j].GetGlobalNPC<AssGlobalNPC>().fadeTimerCount = fadeTimerCount;
+                        QuickWyvernDust(other.Center, Color.White, (float)(fadeTimerCount / 50f), 0.5f);
+                        other.GetGlobalNPC<AssGlobalNPC>().fadeTimerCount = fadeTimerCount;
                     }
                 }
             }

@@ -433,7 +433,7 @@ namespace AssortedCrazyThings.Base
             }
 
             int index = 1000;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (!Main.projectile[i].active)
                 {
@@ -498,7 +498,7 @@ namespace AssortedCrazyThings.Base
                 {
                     int item = Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
                     Main.itemLockoutTime[item] = 54000;
-                    for (int p = 0; p < 255; p++)
+                    for (int p = 0; p < Main.maxPlayers; p++)
                     {
                         if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))
                         {

@@ -107,9 +107,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected int HarvesterTarget()
         {
             int tar = 200;
-            for (short j = 0; j < 200; j++)
+            for (short j = 0; j < Main.maxNPCs; j++)
             {
-                if (Main.npc[j].active && (AssWorld.harvesterTypes[0] == Main.npc[j].type || AssWorld.harvesterTypes[1] == Main.npc[j].type))
+                NPC other = Main.npc[j];
+                if (other.active && (AssWorld.harvesterTypes[0] == Main.npc[j].type || AssWorld.harvesterTypes[1] == Main.npc[j].type))
                 {
                     tar = j;
                     break;

@@ -725,7 +725,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 if (pPlayer.slimePetIndex == -1)
                 {
                     //find first occurence of a player owned cute slime
-                    for (int i = 0; i < 1000; i++)
+                    for (int i = 0; i < Main.maxProjectiles; i++)
                     {
                         if (Main.projectile[i].active)
                         {

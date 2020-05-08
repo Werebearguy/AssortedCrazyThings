@@ -154,29 +154,31 @@ namespace AssortedCrazyThings
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;
-                    for (short j = 0; j < 200; j++)
+                    for (short j = 0; j < Main.maxNPCs; j++)
                     {
-                        if (Main.npc[j].active && Main.npc[j].type == ModContent.NPCType<DungeonSoul>())
+                        NPC npc = Main.npc[j];
+                        if (npc.active && npc.type == ModContent.NPCType<DungeonSoul>())
                         {
-                            if (Main.npc[j].timeLeft < timeleftmin)
+                            if (npc.timeLeft < timeleftmin)
                             {
-                                timeleftmin = Main.npc[j].timeLeft;
+                                timeleftmin = npc.timeLeft;
                                 oldest = j;
                             }
                         }
                     }
-                    if (oldest != 200)
+                    if (oldest != Main.maxNPCs)
                     {
-                        Main.npc[oldest].active = false;
-                        Main.npc[oldest].netUpdate = true;
-                        if (Main.netMode == NetmodeID.Server && oldest < 200)
+                        NPC oldestnpc = Main.npc[oldest];
+                        oldestnpc.active = false;
+                        oldestnpc.netUpdate = true;
+                        if (Main.netMode == NetmodeID.Server && oldest < Main.maxNPCs)
                         {
                             NetMessage.SendData(23, -1, -1, null, oldest);
                         }
                         //poof visual
                         for (int i = 0; i < 15; i++)
                         {
-                            Dust dust = Dust.NewDustPerfect(Main.npc[oldest].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                            Dust dust = Dust.NewDustPerfect(oldestnpc.Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
                             dust.noLight = true;
                             dust.noGravity = true;
                             dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
@@ -206,35 +208,36 @@ namespace AssortedCrazyThings
             isLilmegalodonSpawned = false;
             isMegalodonSpawned = false;
             isMiniocramSpawned = false;
-            for (short j = 0; j < 200; j++)
+            for (short j = 0; j < Main.maxNPCs; j++)
             {
-                if (Main.npc[j].active)
+                NPC npc = Main.npc[j];
+                if (npc.active)
                 {
-                    if (Main.npc[j].TypeName == lilmegalodonName && !isLilmegalodonSpawned)
+                    if (npc.TypeName == lilmegalodonName && !isLilmegalodonSpawned)
                     {
                         isLilmegalodonSpawned = true;
                         //check if it wasnt alive in previous update
                         if (!lilmegalodonAlive)
                         {
-                            AwakeningMessage(lilmegalodonMessage, Main.npc[j].position, 0);
+                            AwakeningMessage(lilmegalodonMessage, npc.position, 0);
                             lilmegalodonAlive = true;
                         }
                     }
-                    if (Main.npc[j].TypeName == megalodonName && !isMegalodonSpawned)
+                    if (npc.TypeName == megalodonName && !isMegalodonSpawned)
                     {
                         isMegalodonSpawned = true;
                         if (!megalodonAlive)
                         {
-                            AwakeningMessage(megalodonMessage, Main.npc[j].position, 0);
+                            AwakeningMessage(megalodonMessage, npc.position, 0);
                             megalodonAlive = true;
                         }
                     }
-                    if (Main.npc[j].TypeName == miniocramName && !isMiniocramSpawned)
+                    if (npc.TypeName == miniocramName && !isMiniocramSpawned)
                     {
                         isMiniocramSpawned = true;
                         if (!miniocramAlive)
                         {
-                            AwakeningMessage(miniocramMessage, Main.npc[j].position, 0);
+                            AwakeningMessage(miniocramMessage, npc.position, 0);
                             miniocramAlive = true;
                         }
                     }

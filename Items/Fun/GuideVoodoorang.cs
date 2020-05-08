@@ -36,15 +36,16 @@ namespace AssortedCrazyThings.Items.Fun
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.AnyNPCs(NPCID.WallofFlesh))
                 {
-                    for (int i = 0; i < 200; i++)
+                    for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        if (Main.npc[i].active && Main.npc[i].type == NPCID.Guide)
+                        NPC npc = Main.npc[i];
+                        if (npc.active && npc.type == NPCID.Guide)
                         {
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendData(28, -1, -1, null, i, 9999f, 10f, 0f - (float)Main.npc[i].direction);
+                                NetMessage.SendData(28, -1, -1, null, i, 9999f, 10f, 0f - (float)npc.direction);
                             }
-                            Main.npc[i].StrikeNPCNoInteraction(9999, 10f, -Main.npc[i].direction);
+                            npc.StrikeNPCNoInteraction(9999, 10f, -npc.direction);
                             NPC.SpawnWOF(item.position);
 
                             //despawns upon wof spawn

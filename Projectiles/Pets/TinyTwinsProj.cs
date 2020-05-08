@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<TinyRetinazerProj>() && projectile.owner == Main.projectile[i].owner)
                 {

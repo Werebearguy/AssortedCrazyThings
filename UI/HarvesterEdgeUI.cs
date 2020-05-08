@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.UI
             type.Clear();
             drawPos.Clear();
             //find first occurence of suitable boss to display
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
                 NPC npc = Main.npc[k];
                 if (npc.active && Array.IndexOf(typeList, npc.type) != -1)

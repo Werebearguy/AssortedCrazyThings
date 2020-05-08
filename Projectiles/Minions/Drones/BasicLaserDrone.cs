@@ -294,7 +294,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             int targetIndex = -1;
             float distanceFromTarget = 100000f;
             Vector2 targetCenter = projectile.Center;
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < Main.maxNPCs; k++)
             {
                 NPC npc = Main.npc[k];
                 if (npc.CanBeChasedBy())

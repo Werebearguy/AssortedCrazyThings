@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Items
             {
                 int i = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, AssWorld.harvesterTypes[0]);
                 AssWorld.AwakeningMessage("Soul Harvester has been Awakened!");
-                if (Main.netMode == NetmodeID.Server && i < 200)
+                if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
                 {
                     NetMessage.SendData(23, -1, -1, null, i);
                 }

@@ -145,7 +145,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             int tentacleCount = 0;
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<PetPlanteraProjTentacle>() && projectile.owner == Main.projectile[i].owner)
                 {
@@ -208,7 +208,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //set parent when spawned
             if (ParentIndex < 0)
             {
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<PetPlanteraProj>() && projectile.owner == Main.projectile[i].owner)
                     {

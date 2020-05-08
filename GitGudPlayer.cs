@@ -367,9 +367,10 @@ namespace AssortedCrazyThings
             //Single and Server only
             if (DataList != null)
             {
-                for (int j = 0; j < 255; j++)
+                for (int j = 0; j < Main.maxPlayers; j++)
                 {
-                    if (Main.player[j].active && npc.playerInteraction[j]) //playerInteraction is only accurate in single and server
+                    Player player = Main.player[j];
+                    if (player.active && npc.playerInteraction[j]) //playerInteraction is only accurate in single and server
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
@@ -393,7 +394,7 @@ namespace AssortedCrazyThings
 
                             if (canReset)
                             {
-                                DeleteItemFromInventory(Main.player[j], i);
+                                DeleteItemFromInventory(player, i);
 
                                 //only send a packet if necessary
                                 if (DataList[i].Counter[j] != 0)
@@ -463,13 +464,14 @@ namespace AssortedCrazyThings
             if (DataList != null)
             {
                 bool[] increasedFor = new bool[DataList.Length];
-                for (int k = 0; k < 200; k++)
+                for (int k = 0; k < Main.maxNPCs; k++)
                 {
-                    if (Main.npc[k].active && Main.npc[k].playerInteraction[whoAmI]) //playerInteraction is only accurate in single and server
+                    NPC npc = Main.npc[k];
+                    if (npc.active && npc.playerInteraction[whoAmI]) //playerInteraction is only accurate in single and server
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
-                            if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, Main.npc[k].type) > -1)
+                            if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, npc.type) > -1)
                             {
                                 //AssUtils.Print("increased counter of " + whoAmI + " from " + DataList[i].Counter[whoAmI] + " to " + (DataList[i].Counter[whoAmI] + 1));
                                 //DataList[i].Counter[whoAmI]++;
