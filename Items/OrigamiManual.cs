@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items
             item.rare = -11;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item44;
             item.consumable = true;
             item.value = Item.sellPrice(silver: 10);
@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Items
                     npc.velocity.Y = (float)Main.rand.Next(-30, 1) * 0.1f;
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
-                        NetMessage.SendData(23, -1, -1, null, index);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
                     }
                 }
             }

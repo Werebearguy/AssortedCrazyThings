@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.NPCs
                 int i = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y - 16, mod.NPCType("MeatballsEye"));
                 if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
                 {
-                    NetMessage.SendData(23, -1, -1, null, i);
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
                 }
             }
         }

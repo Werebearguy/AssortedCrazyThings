@@ -8,6 +8,7 @@ using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.UI
 {
@@ -36,7 +37,7 @@ namespace AssortedCrazyThings.UI
                 if (Main.npc[k].active)
                 {
                     Rectangle npcrect = new Rectangle((int)Main.npc[k].Bottom.X - Main.npc[k].frame.Width / 2, (int)Main.npc[k].Bottom.Y - Main.npc[k].frame.Height, Main.npc[k].frame.Width, Main.npc[k].frame.Height);
-                    if (Main.npc[k].type >= 87 && Main.npc[k].type <= 92) //Wyvern
+                    if (Main.npc[k].type >= NPCID.WyvernHead && Main.npc[k].type <= NPCID.WyvernTail) //Wyvern
                     {
                         npcrect = new Rectangle((int)((double)Main.npc[k].position.X + (double)Main.npc[k].width * 0.5 - 32.0), (int)((double)Main.npc[k].position.Y + (double)Main.npc[k].height * 0.5 - 32.0), 64, 64);
                     }

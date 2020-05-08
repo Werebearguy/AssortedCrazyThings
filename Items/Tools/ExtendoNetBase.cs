@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Tools
     {
         public override void SetDefaults()
         {
-            item.useStyle = 5;
+            item.useStyle = ItemUseStyleID.HoldingOut;
             item.shootSpeed = 3.7f;
             item.width = 40;
             item.height = 40;

@@ -137,7 +137,7 @@ namespace AssortedCrazyThings.NPCs
                     Main.npc[soulID].timeLeft = DungeonSoulBase.SoulActiveTime;
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(23, -1, -1, null, soulID);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, soulID);
                     }
                 }
             }

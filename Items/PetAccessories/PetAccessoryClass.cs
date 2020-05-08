@@ -612,7 +612,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             item.rare = -11;
             item.useAnimation = 16;
             item.useTime = 16;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item1;
             item.consumable = false;
             item.value = Item.sellPrice(silver: 30);

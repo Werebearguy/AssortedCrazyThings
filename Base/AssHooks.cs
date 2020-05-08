@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Base
             if (npc.active && npc.modNPC != null && npc.modNPC is CuteSlimeBaseNPC)
             {
                 CuteSlimeBaseNPC slime = (CuteSlimeBaseNPC)npc.modNPC;
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     npc.active = false;
                     NetMessage.SendData(MessageID.BugCatching, -1, -1, null, i, who, 0f, 0f, 0, 0, 0);

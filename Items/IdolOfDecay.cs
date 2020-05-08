@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items
             item.rare = -11;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.value = Item.sellPrice(silver: 5);
             item.UseSound = SoundID.Item44;
             item.consumable = true;
@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Items
                 AssWorld.AwakeningMessage("Soul Harvester has been Awakened!");
                 if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
                 {
-                    NetMessage.SendData(23, -1, -1, null, i);
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
                 }
             }
             return true;

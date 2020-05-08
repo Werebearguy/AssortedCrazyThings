@@ -119,7 +119,7 @@ namespace AssortedCrazyThings
 
         public static void ToggleSlimeRainSky()
         {
-            if (!Main.slimeRain && Main.netMode != 1)
+            if (!Main.slimeRain && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (!slimeRainSky)
                 {
@@ -138,7 +138,7 @@ namespace AssortedCrazyThings
 
         public static void DisableSlimeRainSky()
         {
-            if (!Main.slimeRain && slimeRainSky && Main.netMode != 1)
+            if (!Main.slimeRain && slimeRainSky && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 SkyManager.Instance.Deactivate("Slime");
                 CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, "Background Deactivated");
@@ -173,7 +173,7 @@ namespace AssortedCrazyThings
                         oldestnpc.netUpdate = true;
                         if (Main.netMode == NetmodeID.Server && oldest < Main.maxNPCs)
                         {
-                            NetMessage.SendData(23, -1, -1, null, oldest);
+                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, oldest);
                         }
                         //poof visual
                         for (int i = 0; i < 15; i++)

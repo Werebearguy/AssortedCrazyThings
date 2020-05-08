@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.Placeable
             item.autoReuse = true;
             item.useAnimation = 15;
             item.useTime = 15;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
             item.value = Item.sellPrice(silver: 10);
             item.rare = -11;

@@ -131,7 +131,7 @@ namespace AssortedCrazyThings
 
         private void LoadUI()
         {
-            if (!Main.dedServ && Main.netMode != 2)
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 CircleUI = new CircleUI();
                 CircleUI.Activate();
@@ -162,7 +162,7 @@ namespace AssortedCrazyThings
 
         private void UnloadUI()
         {
-            if (!Main.dedServ && Main.netMode != 2)
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 CircleUIInterface = null;
                 CircleUI = null;
@@ -191,7 +191,7 @@ namespace AssortedCrazyThings
         private void LoadPets()
         {
             SlimePets.Load();
-            if (!Main.dedServ && Main.netMode != 2)
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 PetAccessory.Load();
             }
@@ -200,7 +200,7 @@ namespace AssortedCrazyThings
         private void UnloadPets()
         {
             SlimePets.Unload();
-            if (!Main.dedServ && Main.netMode != 2)
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 PetAccessory.Unload();
             }
@@ -208,7 +208,7 @@ namespace AssortedCrazyThings
 
         private void LoadMisc()
         {
-            if (!Main.dedServ && Main.netMode != 2)
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 animatedSoulTextures = new Texture2D[2];
 
@@ -227,7 +227,7 @@ namespace AssortedCrazyThings
 
         private void UnloadMisc()
         {
-            if (!Main.dedServ && Main.netMode != 2)
+            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 animatedSoulTextures = null;
 
@@ -824,7 +824,7 @@ namespace AssortedCrazyThings
                         DungeonSoulBase.KillInstantly(npc);
                         if (npcNumber < Main.maxNPCs)
                         {
-                            NetMessage.SendData(23, -1, -1, null, npcNumber);
+                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npcNumber);
                         }
                     }
                     else
@@ -837,7 +837,7 @@ namespace AssortedCrazyThings
                                 DungeonSoulBase.KillInstantly(other);
                                 if (k < Main.maxNPCs)
                                 {
-                                    NetMessage.SendData(23, -1, -1, null, k);
+                                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, k);
                                 }
                                 break;
                             }

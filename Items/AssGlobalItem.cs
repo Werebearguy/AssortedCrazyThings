@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Items
                     if (item.melee)
                     {
                         //TODO do something with auto-fire boomerangs
-                        if (item.shoot > 0 && item.shootSpeed > 0)
+                        if (item.shoot > ProjectileID.None && item.shootSpeed > 0)
                         {
                             ShootCandleDust(item, mPlayer);
                         }

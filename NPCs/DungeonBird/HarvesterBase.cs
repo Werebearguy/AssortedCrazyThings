@@ -918,7 +918,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         {
                             npc.life = 0;
                             npc.active = false;
-                            if (Main.netMode == NetmodeID.Server) NetMessage.SendData(23, -1, -1, null, npc.whoAmI);
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
                         }
                     }
                 }
@@ -1283,7 +1283,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Main.npc[index].SetDefaults(to);
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
-                        NetMessage.SendData(23, -1, -1, null, index);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
                     }
                 }
             }

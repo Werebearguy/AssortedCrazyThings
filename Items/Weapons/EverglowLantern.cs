@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.height = 38;
             item.useTime = 36;
             item.useAnimation = 36;
-            item.useStyle = 4; //4 for life crystal
+            item.useStyle = ItemUseStyleID.HoldingUp; //4 for life crystal
             item.noMelee = true;
             item.value = Item.sellPrice(0, 0, 75, 0);
             item.rare = -11;

@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Items.Fun
             item.CloneDefaults(ItemID.EndlessMusketPouch);
             item.ammo = AmmoID.Rocket;
             item.rare = -11;
-            item.shoot = 0;
+            item.shoot = ProjectileID.None;
             item.damage = 40;
             item.UseSound = SoundID.Item11;
             //item.shoot = ProjectileID.RocketII;

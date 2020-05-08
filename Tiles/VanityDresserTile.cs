@@ -49,7 +49,7 @@ namespace AssortedCrazyThings.Tiles
                 player.showItemIconText = "\nCostume Dresser"
                      + "\nLeft Click to change your Pet's appearance"
                      + "\nRight Click to change your Light Pet's appearance";
-                if (player.HeldItem.type != 0)
+                if (player.HeldItem.type != ItemID.None)
                 {
                     player.showItemIconText += "\nFor this to work properly, don't have any item selected";
                 }

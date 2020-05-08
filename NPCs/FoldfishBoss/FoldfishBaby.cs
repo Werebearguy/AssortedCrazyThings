@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             npc.spriteDirection = npc.direction;
             if (npc.velocity.Y == 0f)
             {
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
                     npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;

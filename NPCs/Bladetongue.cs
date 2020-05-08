@@ -199,7 +199,7 @@ namespace AssortedCrazyThings.NPCs
             {
                 if (npc.velocity.Y == 0f)
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         npc.velocity.Y = (float)Main.rand.Next(-50, -20) * 0.1f;
                         npc.velocity.X = (float)Main.rand.Next(-20, 20) * 0.1f;

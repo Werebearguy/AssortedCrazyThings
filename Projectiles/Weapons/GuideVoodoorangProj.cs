@@ -24,13 +24,13 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-            Main.PlaySound(1, projectile.position); //player hurt sound
+            Main.PlaySound(SoundID.PlayerHit, projectile.position); //player hurt sound
             return true;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Main.PlaySound(1, projectile.position); //player hurt sound
+            Main.PlaySound(SoundID.PlayerHit, projectile.position); //player hurt sound
         }
 
         public override void PostAI()

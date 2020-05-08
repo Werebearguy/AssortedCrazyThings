@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                 Dust dust = Dust.NewDustDirect(projectile.position - Vector2.Normalize(projectile.velocity) * 30f, 50, 50, 169, projectile.velocity.X, projectile.velocity.Y, 100, Color.White, 1.25f);
                 dust.noGravity = true;
             }
-            Main.PlaySound(0, projectile.position);
+            Main.PlaySound(SoundID.Dig, projectile.position);
             return true;
         }
 

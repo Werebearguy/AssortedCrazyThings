@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items
         {
             frame2CounterCount = 8.0;
             animatedTextureSelect = 0;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.autoReuse = true;
             item.useTurn = true;
             item.useAnimation = 15;

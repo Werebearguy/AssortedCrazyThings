@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Weapons
             item.useAmmo = AmmoID.Gel;
             item.useTime = 3; //adjusted from 10 to 3 to match spazmatism speed
             item.useAnimation = 3; //^
-            item.useStyle = 5;
+            item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = Item.sellPrice(gold: 15, silver: 20);
             item.rare = -11;
             item.autoReuse = true;

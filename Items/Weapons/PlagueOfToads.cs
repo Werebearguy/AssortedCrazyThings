@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             item.mana = 20;
             item.damage = 8;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.shootSpeed = 16f;
             item.shoot = ModContent.ProjectileType<PlagueOfToadsFired>();
             item.width = 26;

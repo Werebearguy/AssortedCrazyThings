@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             {
                 npc.ai[3] = (float)npc.lifeMax;
             }
-            if (npc.localAI[3] == 0f && Main.netMode != 1)
+            if (npc.localAI[3] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.ai[0] = -60; //-100f
                 npc.localAI[3] = 1f;
@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                 npc.ai[2] = 0f;
                 npc.ai[0] = 0f;
                 npc.ai[1] = 5f;
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest(faceTarget: false);
                     Point point3 = npc.Center.ToTileCoordinates();
@@ -192,14 +192,14 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                 {
                     //Gore.NewGore(npc.Center + new Vector2(-40f, (0f - (float)npc.height) / 2f), npc.velocity, 734);
                 }
-                if (npc.ai[0] >= 40f && Main.netMode != 1) //60f to 40f
+                if (npc.ai[0] >= 40f && Main.netMode != NetmodeID.MultiplayerClient) //60f to 40f
                 {
                     npc.Bottom = new Vector2(npc.localAI[1], npc.localAI[2]); //teleport to position of player
                     npc.ai[1] = 6f;
                     npc.ai[0] = 0f;
                     npc.netUpdate = true;
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 80f) //120f to 80f, jump frequency, but 80 is the minimum, below and shit fucks up
+                if (Main.netMode == NetmodeID.MultiplayerClient && npc.ai[0] >= 80f) //120f to 80f, jump frequency, but 80 is the minimum, below and shit fucks up
                 {
                     npc.ai[1] = 6f;
                     npc.ai[0] = 0f;
@@ -225,14 +225,14 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                 npc.ai[0] += 1f;
                 num238 = MathHelper.Clamp(npc.ai[0] / 30f, 0f, 1f);
                 num238 = 0.5f + num238 * 0.5f;
-                if (npc.ai[0] >= 30f && Main.netMode != 1)
+                if (npc.ai[0] >= 30f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.ai[1] = 0f;
                     npc.ai[0] = 0f;
                     npc.netUpdate = true;
                     npc.TargetClosest();
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 40f) //60f to 40f, cant remember what that does, maybe the jumping
+                if (Main.netMode == NetmodeID.MultiplayerClient && npc.ai[0] >= 40f) //60f to 40f, cant remember what that does, maybe the jumping
                 {
                     npc.ai[1] = 0f;
                     npc.ai[0] = 0f;
@@ -344,7 +344,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     npc.position.X = npc.position.X - (npc.width / 2);
                     npc.position.Y = npc.position.Y - npc.height;
                 }
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     int num254 = (int)(npc.lifeMax * 0.05);
                     if ((npc.life + num254) < npc.ai[3])
@@ -365,7 +365,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                             Main.npc[num258].ai[1] = 0f;
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendData(23, -1, -1, null, num258);
+                                NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, num258);
                             }
                             num2 = num256;
                         }
