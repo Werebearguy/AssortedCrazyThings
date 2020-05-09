@@ -269,6 +269,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             item.damage = BaseDmg;
+            item.knockBack = BaseKB;
             item.summon = true;
             item.mana = 10;
             item.width = 28;
@@ -283,7 +284,6 @@ namespace AssortedCrazyThings.Items.Weapons
             item.UseSound = SoundID.Item44;
             item.shoot = ModContent.ProjectileType<BasicLaserDrone>();
             item.shootSpeed = 10f;
-            item.knockBack = BaseKB;
             item.buffType = ModContent.BuffType<DroneControllerBuff>();
         }
 
@@ -331,10 +331,10 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HallowedBar, 1);
-            recipe.AddIngredient(ItemID.Switch, 2);
-            recipe.AddIngredient(ItemID.Wire, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
+recipe.AddIngredient(ItemID.HallowedBar, 1);
+recipe.AddIngredient(ItemID.Switch, 2);
+recipe.AddIngredient(ItemID.Wire, 10);
+recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

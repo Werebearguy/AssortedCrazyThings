@@ -17,6 +17,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
+            item.shoot = 0;
+            item.buffType = 0;
             item.width = 30;
             item.height = 28;
             item.rare = -11;
@@ -27,7 +29,7 @@ namespace AssortedCrazyThings.Items.Pets
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                //player.AddBuff(item.buffType, 3600, true);
             }
         }
 
