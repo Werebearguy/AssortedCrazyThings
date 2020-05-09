@@ -1,5 +1,6 @@
 ﻿using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -15,21 +16,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// </summary>
     public class HeavyLaserDrone : DroneBase
     {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Minions/Drones/HealingDrone";
-            }
-        }
-
-        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";
-        private static readonly string nameLower = "Projectiles/Minions/Drones/" + "HealingDrone_Lower";
-        private static readonly string nameLowerGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Lower_Glowmask";
+        private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HeavyLaserDrone_Glowmask";
+        private static readonly string nameOverlay = "Projectiles/Minions/Drones/" + "HeavyLaserDrone_Overlay";
 
         private const int AttackCooldown = 180;
+        private const int RecoilDuration = 60;
         private const int SearchDelay = 90; //60 but incremented 1.5f
         private const int ChargeDelay = 120;
+        private const int AnimationDuration = 32;
+        private const int AnimationFrameTime = 8;
 
         private const byte STATE_COOLDOWN = 0;
         private const byte STATE_IDLE = 1;
@@ -45,16 +40,71 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                Vector2 position = projectile.Center;
+                Vector2 position = projectile.Bottom;
                 position.Y += sinY;
                 return position;
             }
         }
 
+        #region overlay
+        private int ChargeTimer = 0;
+
+        private bool CanOverlay => ChargeTimer >= AnimationDuration && (projectile.frame == 3 || projectile.frame == 7);
+
+        private Color OverlayColor => Color.White * ((ChargeTimer - AnimationDuration) / (float)byte.MaxValue);
+
+        private int GetFrame()
+        {
+            /*
+             *   private const byte STATE_COOLDOWN = 0;
+                 private const byte STATE_IDLE = 1;
+                 private const byte STATE_CHARGE = 2;
+                 private const byte STATE_RECOIL = 3;
+             */
+            
+            if (AI_STATE == STATE_CHARGE)
+            {
+                if (ChargeTimer < AnimationDuration)
+                {
+                    return ChargeTimer / AnimationFrameTime;
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+            else
+            {
+                if (ChargeTimer <= 0)
+                {
+                    return 0;
+                }
+                if (ChargeTimer < AnimationDuration)
+                {
+                    return 4 + ChargeTimer / AnimationFrameTime;
+                }
+                else
+                {
+                    return 7;
+                }
+            }
+        }
+
+        private void IncreaseCharge()
+        {
+            if (ChargeTimer < byte.MaxValue) ChargeTimer++;
+        }
+
+        private void DecreaseCharge()
+        {
+            if (ChargeTimer > 0) ChargeTimer--;
+        }
+        #endregion
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Heavy Laser Drone");
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 8;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
         }
@@ -75,6 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             base.SendExtraAI(writer);
             writer.Write((byte)AI_STATE);
             writer.Write((byte)PosInCharge);
+            writer.Write((byte)ChargeTimer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -82,51 +133,35 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             base.ReceiveExtraAI(reader);
             AI_STATE = reader.ReadByte();
             PosInCharge = reader.ReadByte();
+            ChargeTimer = (int)reader.ReadByte();
         }
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            //frame 0, 1: above two thirds health
-            //frame 2, 3: above half health, below two thirds health
-            //frame 4, 5: below half health, healing
-
-            int frameOffset = 0; //frame 0, 1
-
-            if (AI_STATE == STATE_CHARGE) //frame 4, 5
+            if (AI_STATE == STATE_CHARGE)
             {
-                frameOffset = 4;
-            }
-            else if (AI_STATE == STATE_COOLDOWN) //frame 2, 3
-            {
-                frameOffset = 2;
-            }
-            else
-            {
-                //frameoffset 0
-            }
-
-            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
-
-            if (projectile.velocity.Length() > 6f)
-            {
-                if (++projectile.frameCounter >= frameCounterMaxFar)
+                if (ChargeTimer < AnimationDuration)
                 {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
+                    projectile.frame = ChargeTimer / AnimationFrameTime;
+                }
+                else
+                {
+                    projectile.frame = 3;
                 }
             }
             else
             {
-                if (++projectile.frameCounter >= frameCounterMaxClose)
+                if (ChargeTimer <= 0)
                 {
-                    projectile.frameCounter = 0;
-                    if (++projectile.frame >= 2 + frameOffset)
-                    {
-                        projectile.frame = frameOffset;
-                    }
+                    projectile.frame = 0;
+                }
+                else if (ChargeTimer < AnimationDuration)
+                {
+                    projectile.frame = 4 + ChargeTimer / AnimationFrameTime;
+                }
+                else
+                {
+                    projectile.frame = 7;
                 }
             }
         }
@@ -151,22 +186,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             image = mod.GetTexture(nameGlow);
             spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            Vector2 rotationOffset = new Vector2(0f, -2f);
-            drawPos += rotationOffset;
-            drawOrigin += rotationOffset;
-
-            //AssUtils.ShowDustAtPos(135, projectile.position + stupidOffset);
-
-            //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
-
-            //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-            image = mod.GetTexture(nameLower);
-            bounds.Y = 0;
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
-
-            image = mod.GetTexture(nameLowerGlow);
-            bounds.Y = 0;
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            if (CanOverlay)
+            {
+                image = mod.GetTexture(nameOverlay);
+                spriteBatch.Draw(image, drawPos, image.Bounds, OverlayColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            }
 
             return false;
         }
@@ -207,6 +231,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 //-(Counter - AttackCooldown / 5) -> goes from 36 to 0
                 float accel = Utils.Clamp(-(Counter - 36), 4, 20);
                 projectile.velocity = (projectile.velocity * (accel - 1) + distanceToTargetVector) / accel;
+                projectile.rotation = projectile.velocity.X * 0.05f;
                 return false;
             }
             return true;
@@ -226,6 +251,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             //Main.NewText("State: " + AI_STATE);
             //Main.NewText("Counter: " + Counter);
+            //Main.NewText("Opacity: " + ChargeTimer);
+            //Main.NewText("Color: " + OverlayColor);
 
             #region Handle State
             if (AI_STATE == STATE_COOLDOWN)
@@ -257,7 +284,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
             else if (AI_STATE == STATE_RECOIL)
             {
-                if (Counter > 60)
+                if (Counter > RecoilDuration)
                 {
                     Counter = 0;
                     AI_STATE = STATE_COOLDOWN;
@@ -278,6 +305,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     //if lose target
                     if (RealOwner && targetIndex == -1)
                     {
+                        //Counter = 0;
                         //Main.NewText("Change from charge to idle cuz no target");
                         AI_STATE = STATE_IDLE;
                         projectile.netUpdate = true;
@@ -298,7 +326,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     //spawn dust
                     for (int i = 0; i < 3; i++)
                     {
-                        if (Counter <= ChargeDelay && Main.rand.NextFloat() < ratio)
+                        if (Main.rand.NextFloat() < ratio)
                         {
                             int dustType = 60;
                             //if facing left: + Direction * 48
@@ -326,6 +354,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                             Projectile.NewProjectile(BarrelPos, velocity, ModContent.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
 
                             AI_STATE = STATE_RECOIL;
+                            ChargeTimer = byte.MaxValue;
                             projectile.netUpdate = true;
                         }
                         if (targetIndex == -1)
@@ -337,7 +366,33 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     }
                 }
             }
+
+            if (AI_STATE == STATE_CHARGE)
+            {
+                IncreaseCharge();
+            }
+            else
+            {
+                DecreaseCharge();
+            }
+
+            if (AI_STATE == STATE_RECOIL)
+            {
+                if (overheatSound == null)
+                {
+                    overheatSound = Main.PlaySound(SoundID.Trackable, (int)projectile.position.X, (int)projectile.position.Y, 224, 2f, 0.1f);
+                }
+            }
+            if (overheatSound != null)
+            {
+                if (overheatSound.State == SoundState.Stopped)
+                {
+                    overheatSound = null;
+                }
+            }
         }
+
+        private SoundEffectInstance overheatSound = null;
 
         private int FindClosestHorizontalTarget()
         {
@@ -375,7 +430,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         private int GetChargePosition()
         {
             int pos = 0;
-            int min = 1000;
+            int min = Main.maxProjectiles;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile proj = Main.projectile[i];

@@ -197,7 +197,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     if (ShieldCounter > ShieldDelay)
                     {
                         ShieldCounter = 0;
-                        if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) mPlayer.shieldDroneReduction += ShieldIncreaseAmount;
+                        if (RealOwner) mPlayer.shieldDroneReduction += ShieldIncreaseAmount;
                         CombatText.NewText(player.getRect(), Color.LightBlue, ShieldIncreaseAmount);
                         AssUtils.QuickDustLine(16, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 1.5f);
                     }
