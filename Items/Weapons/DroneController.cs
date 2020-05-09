@@ -331,10 +331,10 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-recipe.AddIngredient(ItemID.HallowedBar, 1);
-recipe.AddIngredient(ItemID.Switch, 2);
-recipe.AddIngredient(ItemID.Wire, 10);
-recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(ItemID.HallowedBar, 1);
+            recipe.AddIngredient(ItemID.Switch, 2);
+            recipe.AddIngredient(ItemID.Wire, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
