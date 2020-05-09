@@ -74,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             //alpha5.A /= 2;
 
-            Main.spriteBatch.Draw(texture, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
+            spriteBatch.Draw(texture, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
 
             return false;
         }

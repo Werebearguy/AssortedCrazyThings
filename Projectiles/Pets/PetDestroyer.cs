@@ -80,7 +80,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             //alpha5.A /= 2;
 
-            Main.spriteBatch.Draw(texture, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
+            spriteBatch.Draw(texture, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
+
+            texture = mod.GetTexture("Projectiles/Pets/" + Name + "_Glowmask");
+            spriteBatch.Draw(texture, drawPos, drawRect, Color.White, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
 
             return false;
         }
@@ -247,10 +250,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Y = projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - projectile.gfxOffY);
             Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            Vector2 origin = bounds.Size() / 2;
+            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, origin, projectile.scale, effects, 0f);
 
             image = mod.GetTexture("Projectiles/Pets/PetDestroyerProbe_Glowmask");
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, origin, projectile.scale, effects, 0f);
 
             return false;
         }
