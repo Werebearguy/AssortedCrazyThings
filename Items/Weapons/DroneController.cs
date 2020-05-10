@@ -349,22 +349,25 @@ namespace AssortedCrazyThings.Items.Weapons
             int damageIndex = -1;
             int knockbackIndex = -1;
 
+            bool hasController = Main.LocalPlayer.HasItem(item.type);
+
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (Main.LocalPlayer.HasItem(ModContent.ItemType<DroneController>()))
+                TooltipLine line = tooltips[i];
+                if (hasController)
                 {
-                    if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
+                    if (line.mod == "Terraria" && line.Name == "ItemName")
                     {
-                        tooltips[i].text += " (" + data.Name + ")";
+                        line.text += " (" + data.Name + ")";
                     }
                 }
 
-                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Damage")
+                if (line.mod == "Terraria" && line.Name == "Damage")
                 {
                     damageIndex = i;
                 }
 
-                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Knockback")
+                if (line.mod == "Terraria" && line.Name == "Knockback")
                 {
                     knockbackIndex = i;
                 }
@@ -394,13 +397,13 @@ namespace AssortedCrazyThings.Items.Weapons
 
             bool allUnlocked = AllUnlocked(mPlayer.droneControllerUnlocked);
 
-            if (!(allUnlocked && Main.LocalPlayer.HasItem(item.type)))
+            if (!(allUnlocked && hasController))
             {
                 tooltips.Add(new TooltipLine(mod, "Destroyer", "Defeat the destroyer to unlock more drones"));
             }
 
             CanSpawn(Main.LocalPlayer, selected, out bool blocked);
-            if (blocked)
+            if (hasController && blocked)
             {
                 tooltips.Add(new TooltipLine(mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
             }

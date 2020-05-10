@@ -51,44 +51,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         private bool CanOverlay => ChargeTimer >= AnimationDuration && (projectile.frame == 3 || projectile.frame == 7);
 
-        private Color OverlayColor => Color.White * ((ChargeTimer - AnimationDuration) / (float)byte.MaxValue);
+        private float OverlayOpacity => (ChargeTimer - AnimationDuration) / (float) byte.MaxValue;
 
-        private int GetFrame()
-        {
-            /*
-             *   private const byte STATE_COOLDOWN = 0;
-                 private const byte STATE_IDLE = 1;
-                 private const byte STATE_CHARGE = 2;
-                 private const byte STATE_RECOIL = 3;
-             */
-            
-            if (AI_STATE == STATE_CHARGE)
-            {
-                if (ChargeTimer < AnimationDuration)
-                {
-                    return ChargeTimer / AnimationFrameTime;
-                }
-                else
-                {
-                    return 3;
-                }
-            }
-            else
-            {
-                if (ChargeTimer <= 0)
-                {
-                    return 0;
-                }
-                if (ChargeTimer < AnimationDuration)
-                {
-                    return 4 + ChargeTimer / AnimationFrameTime;
-                }
-                else
-                {
-                    return 7;
-                }
-            }
-        }
+        private bool playedOverheatSound = false;
+
+        private SoundEffectInstance overheatSound = null;
 
         private void IncreaseCharge()
         {
@@ -189,7 +156,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             if (CanOverlay)
             {
                 image = mod.GetTexture(nameOverlay);
-                spriteBatch.Draw(image, drawPos, image.Bounds, OverlayColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+                spriteBatch.Draw(image, drawPos, image.Bounds, Color.White * OverlayOpacity, projectile.rotation, drawOrigin, 1f, effects, 0f);
             }
 
             return false;
@@ -318,7 +285,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     if (projectile.soundDelay <= 0)
                     {
                         projectile.soundDelay = 20;
-                        Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item15.Style, 0.7f + ratio * 0.5f, -0.1f + ratio * 0.4f);
+                        float volume = FixVolume(0.7f + ratio * 0.5f);
+                        float pitch = -0.1f + ratio * 0.4f;
+                        Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item15.Style, volume, pitch);
                         //Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
                         //Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
                     }
@@ -374,17 +343,41 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             else
             {
                 DecreaseCharge();
+
+                if (CanOverlay && Main.rand.NextFloat() < OverlayOpacity * 0.5f)
+                {
+                    Gore gore = Gore.NewGorePerfect(BarrelPos + new Vector2(Direction == 1 ? -8f : -projectile.width - 4f, Direction == 1 ? -14f : -16f), Vector2.Zero, Main.rand.Next(61, 64));
+                    gore.position.X += Main.rand.NextFloat(8);
+                    gore.scale *= 0.18f;
+                    gore.velocity *= 0.6f;
+                }
             }
 
             if (AI_STATE == STATE_RECOIL)
             {
-                if (overheatSound == null)
+                if (overheatSound == null && !playedOverheatSound)
                 {
-                    overheatSound = Main.PlaySound(SoundID.Trackable, (int)projectile.position.X, (int)projectile.position.Y, 224, 2f, 0.1f);
+                    float volume = FixVolume(1.5f);
+                    overheatSound = Main.PlaySound(SoundID.Trackable, (int)projectile.position.X, (int)projectile.position.Y, 224, volume, 0.1f);
+                    playedOverheatSound = true;
                 }
             }
+            else
+            {
+                playedOverheatSound = false;
+            }
+
             if (overheatSound != null)
             {
+                float f = 0.008f * Main.soundVolume;
+                if (overheatSound.Volume > f)
+                {
+                    overheatSound.Volume -= f;
+                    if (overheatSound.Volume < f)
+                    {
+                        overheatSound.Stop();
+                    }
+                }
                 if (overheatSound.State == SoundState.Stopped)
                 {
                     overheatSound = null;
@@ -392,7 +385,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
         }
 
-        private SoundEffectInstance overheatSound = null;
+        public static float FixVolume(float volume)
+        {
+            return Main.soundVolume * volume > 1 ? Main.soundVolume / volume : volume;
+        }
 
         private int FindClosestHorizontalTarget()
         {

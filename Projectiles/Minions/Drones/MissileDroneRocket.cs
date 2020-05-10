@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             projectile.height = inflationAmount;
             projectile.position.X = projectile.position.X - projectile.width / 2;
             projectile.position.Y = projectile.position.Y - projectile.height / 2;
-            for (int i = 0; i < 20; i++) //40
+            for (int i = 0; i < 10; i++) //40
             {
                 Dust dust = Dust.NewDustDirect(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
                 dust.velocity *= 2f; //3f
@@ -73,7 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     dust.fadeIn = 1f + (float)Main.rand.Next(10) * 0.1f;
                 }
             }
-            for (int i = 0; i < 35; i++) //70
+            for (int i = 0; i < 17; i++) //70
             {
                 Dust dust = Dust.NewDustDirect(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 3f);
                 dust.noGravity = true;
