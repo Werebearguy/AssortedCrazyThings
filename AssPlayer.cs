@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
@@ -674,40 +675,6 @@ namespace AssortedCrazyThings
             }
         });
 
-        public static readonly PlayerLayer ShieldDroneBack = new PlayerLayer("AssortedCrazyThings", "ShieldDroneBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
-        {
-            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
-            {
-                return;
-            }
-            Player drawPlayer = drawInfo.drawPlayer;
-            AssPlayer mPlayer = drawPlayer.GetModPlayer<AssPlayer>();
-            Mod mod = AssUtils.Instance;
-
-            Texture2D texture = mod.GetTexture("Projectiles/Minions/Drones/ShieldDrone_Back");
-            float drawX = (int)drawInfo.position.X - Main.screenPosition.X;
-            float drawY = (int)drawInfo.position.Y - Main.screenPosition.Y;
-
-            Vector2 stupidOffset = new Vector2(drawPlayer.width, drawPlayer.height);
-            stupidOffset -= texture.Size() * 0.5f;
-            stupidOffset += new Vector2(10f, 6f);
-
-            Color color = Color.White;
-
-            if (mPlayer.shieldDroneLerpVisual < mPlayer.shieldDroneReduction / 100f)
-            {
-                mPlayer.shieldDroneLerpVisual += 0.01f;
-            }
-            if (mPlayer.shieldDroneLerpVisual > mPlayer.shieldDroneReduction / 100f) mPlayer.shieldDroneLerpVisual = mPlayer.shieldDroneReduction / 100f;
-
-            color *= mPlayer.shieldDroneLerpVisual;
-            Lighting.AddLight(drawPlayer.Center, color.ToVector3());
-            color *= (255 - drawPlayer.immuneAlpha) / 255f;
-
-            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, null, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, SpriteEffects.None, 0);
-            Main.playerDrawData.Add(drawData);
-        });
-
         public static readonly PlayerLayer HarvesterWings = new PlayerLayer("AssortedCrazyThings", "HarvesterWings", PlayerLayer.Wings, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
@@ -734,7 +701,8 @@ namespace AssortedCrazyThings
                 if (Main.rand.NextBool(3))
                 {
                     int dustOffset = -16 - drawPlayer.direction * 20;
-                    Dust dust = Dust.NewDustDirect(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
+                    int dustIndex = Dust.NewDust(new Vector2(drawPlayer.position.X + (drawPlayer.width / 2) + dustOffset, drawPlayer.position.Y + (drawPlayer.height / 2) - 8f), 30, 26, 135, 0f, 0f, 0, default(Color), 1.5f);
+                    Dust dust = Main.dust[dustIndex];
                     dust.noGravity = true;
                     dust.noLight = true;
                     dust.velocity *= 0.3f;
@@ -743,6 +711,7 @@ namespace AssortedCrazyThings
                         dust.fadeIn = 1f;
                     }
                     dust.shader = GameShaders.Armor.GetSecondaryShader(drawPlayer.cWings, drawPlayer);
+                    Main.playerDrawDust.Add(dustIndex);
                 }
             }
         });
@@ -782,14 +751,13 @@ namespace AssortedCrazyThings
                 dust.fadeIn = Main.rand.NextFloat(0.5f, 0.8f);
 
                 dust.shader = GameShaders.Armor.GetSecondaryShader(drawInfo.bodyArmorShader, drawPlayer);
+                Main.playerDrawDust.Add(dust.dustIndex);
             }
         });
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
-            if (shieldDroneReduction > 0) layers.Insert(0, ShieldDroneBack);
-
-            int wingLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Wings"));
+            int wingLayer = layers.FindIndex(l => l.Name.Equals("Wings"));
             if (player.inventory[player.selectedItem].type == ModContent.ItemType<SlimeHandlerKnapsack>())
             {
                 if (wingLayer != -1)
@@ -810,13 +778,53 @@ namespace AssortedCrazyThings
             }
             if (player.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
             {
-                int bodyLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("Body"));
+                int bodyLayer = layers.FindIndex(l => l.Name.Equals("Body"));
                 layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
             }
             if (player.balloon == mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon))
             {
-                int balloonLayer = layers.FindIndex(PlayerLayer => PlayerLayer.Name.Equals("BalloonAcc"));
+                int balloonLayer = layers.FindIndex(l => l.Name.Equals("BalloonAcc"));
                 layers.Insert(balloonLayer + 1, CrazyBundleOfAssortedBalloons);
+            }
+        }
+
+        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        {
+            if (!drawEffectsCalledOnce)
+            {
+                drawEffectsCalledOnce = true;
+            }
+            else
+            {
+                return;
+            }
+            if (Main.gameMenu) return;
+
+            //Other code
+
+            if (!PlayerLayer.MiscEffectsBack.visible) return;
+            if (shieldDroneReduction > 0)
+            {
+                Color outer = Color.White;
+                Color inner = new Color(0x03, 0xFE, 0xFE);
+
+                float ratio = shieldDroneReduction / 100f;
+                if (shieldDroneLerpVisual < ratio)
+                {
+                    shieldDroneLerpVisual += 0.01f;
+                }
+                if (shieldDroneLerpVisual > ratio) shieldDroneLerpVisual = ratio;
+
+                outer *= shieldDroneLerpVisual;
+                inner *= shieldDroneLerpVisual;
+                Lighting.AddLight(player.Center, inner.ToVector3());
+
+                float alpha = (255 - player.immuneAlpha) / 255f;
+                outer *= alpha;
+                inner *= alpha;
+                Effect shader = ShaderManager.SetupCircleEffect(new Vector2((int)player.Center.X, (int)player.Center.Y + player.gfxOffY), 2 * 16, outer, inner);
+
+                ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
             }
         }
 

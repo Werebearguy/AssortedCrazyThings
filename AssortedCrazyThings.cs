@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
@@ -241,7 +242,7 @@ namespace AssortedCrazyThings
 
         public override void Load()
         {
-            AssHooks.Load();
+            ShaderManager.Load();
 
             LoadPets();
 
@@ -252,6 +253,8 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
+            ShaderManager.Unload();
+
             UnloadPets();
 
             UnloadUI();

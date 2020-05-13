@@ -13,5 +13,6 @@ Credits for help with code:
  * IDGCaptainRussia for *DrawTether*
  * Muzuwi for *CircleUI*
  * jopojelly for *PremultiplyTexture*
+ * hamstar for *CircleShader*
 
 Check the [Wiki](https://github.com/Werebearguy/AssortedCrazyThings/wiki) for content and a changelog.
