@@ -118,10 +118,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void OnCatchNPC(Player player, Item item)
         {
-            // NEW
             DropRandomItem(player.getRect());
             MoreNPCLoot(player.getRect());
-            // NEW
         }
 
         public sealed override void NPCLoot()

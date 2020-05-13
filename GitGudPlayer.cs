@@ -762,6 +762,8 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient && !Main.gameMenu) return;
+
             gitgudAccessories = new Func<BitArray>(() => new BitArray(new bool[]
             {
                 kingSlimeGitgud,
@@ -867,6 +869,8 @@ namespace AssortedCrazyThings
                 moonLordGitgudCounter,
                 //pirateInvasionGitgudCounter,
             });
+
+            //TODO has to send to server!
         }
 
         public override void PostUpdateEquips()

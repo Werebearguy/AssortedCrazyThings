@@ -298,8 +298,9 @@ namespace AssortedCrazyThings.Base
             int count = 0;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type == type &&
-                    (owner < 0 || Main.projectile[i].owner == owner))
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.type == type &&
+                    (owner < 0 || proj.owner == owner))
                 {
                     count++;
                 }
@@ -312,7 +313,7 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static bool IsWormBodyOrTail(NPC npc)
         {
-            return Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.dontCountMe || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsBody/* || npc.realLife != -1*/;
+            return npc.dontCountMe || Array.BinarySearch(isModdedWormBodyOrTail, npc.type) >= 0 || npc.type == NPCID.EaterofWorldsTail || npc.type == NPCID.EaterofWorldsBody/* || npc.realLife != -1*/;
         }
 
         /// <summary>

@@ -72,6 +72,8 @@ namespace AssortedCrazyThings
         public byte shieldDroneReduction = 0; //percentage * 100
         public float shieldDroneLerpVisual = 0; //percentage
 
+        private bool drawEffectsCalledOnce = false;
+
         /// <summary>
         /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
         /// </summary>
@@ -303,9 +305,9 @@ namespace AssortedCrazyThings
                             NPC npc = Main.npc[j];
                             if (npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.dontTakeDamage && !npc.immortal && !npc.SpawnedFromStatue)
                             {
-                                if (Array.IndexOf(AssWorld.harvesterTypes, Main.npc[j].type) < 0 && EligibleToReceiveSoulBuff(Main.npc[j]))
+                                if (Array.IndexOf(AssWorld.harvesterTypes, npc.type) < 0 && EligibleToReceiveSoulBuff(npc))
                                 {
-                                    Main.npc[j].AddBuff(ModContent.BuffType<SoulBuff>(), 60, true);
+                                    npc.AddBuff(ModContent.BuffType<SoulBuff>(), 60, true);
                                 }
                             }
                         }
@@ -482,6 +484,37 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
+            everburningCandleBuff = false;
+            everburningCursedCandleBuff = false;
+            everfrozenCandleBuff = false;
+            everburningShadowflameCandleBuff = false;
+            teleportHome = false;
+            canTeleportHome = false;
+            teleportHomeTimer = 0;
+            getDefense = false;
+            canGetDefense = false;
+            getDefenseDuration = 0;
+            getDefenseTimer = 0;
+            soulMinion = false;
+            tempSoulMinion = false;
+            selectedSoulMinionType = SoulType.Dungeon;
+            slimePackMinion = false;
+            selectedSlimePackMinionType = 0;
+            nextMagicSlimeSlingMinion = 0;
+            empoweringBuff = false;
+            empoweringTimer = 0;
+            step = 0f;
+            enhancedHunterBuff = false;
+            cuteSlimeSpawnEnable = false;
+            soulSaviorArmor = false;
+            wyvernCampfire = false;
+            droneControllerMinion = false;
+            shieldDroneReduction = 0;
+            shieldDroneLerpVisual = 0;
+            drawEffectsCalledOnce = false;
+
+            if (Main.netMode == NetmodeID.MultiplayerClient && !Main.gameMenu) return;
+
             //needs to call new List() since Initialize() is called per player in the player select screen
             CircleUIList = new List<CircleUIHandler>
             {
@@ -879,8 +912,14 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI &&
-                player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
+            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
+            {
+                if (drawEffectsCalledOnce)
+                {
+                    drawEffectsCalledOnce = false;
+                }
+                if (player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
+            }
 
             SpawnSoulsWhenHarvesterIsAlive();
         }

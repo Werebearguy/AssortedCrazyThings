@@ -769,6 +769,8 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient && !Main.gameMenu) return;
+
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
             CircleUIList = new List<CircleUIHandler>
