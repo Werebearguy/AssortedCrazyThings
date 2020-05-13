@@ -8,8 +8,7 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
-    /// Heals the player if below max health
-    /// Heals faster when below 50% health
+    /// Heals the player if below max health. Heals faster when below 50% health
     /// </summary>
     public class HealingDrone : DroneBase
     {
@@ -50,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Healing Drone");
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 3;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
         }
@@ -68,40 +67,24 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            //frame 0, 1: full life
-            //frame 2, 3: above half health, healing
-            //frame 4, 5: below half health, healing faster
             Player player = projectile.GetOwner();
 
             Vector2 lightPos = projectile.position + new Vector2(projectile.spriteDirection == 1 ? 0f : projectile.width, projectile.height / 2);
 
-            int frameOffset = 0; //frame 0, 1
-
-            if (player.statLife < player.statLifeMax2 / 2) //frame 4, 5
+            if (player.statLife < player.statLifeMax2 / 2)
             {
                 Lighting.AddLight(lightPos, new Vector3(153 / 700f, 63 / 700f, 66 / 700f));
-                frameOffset = 4;
+                projectile.frame = 2;
             }
-            else if (CanHeal) //frame 2, 3
+            else if (CanHeal)
             {
                 Lighting.AddLight(lightPos, new Vector3(240 / 700f, 198 / 700f, 0f));
-                frameOffset = 2;
+                projectile.frame = 1;
             }
             else
             {
                 Lighting.AddLight(lightPos, new Vector3(124 / 700f, 251 / 700f, 34 / 700f));
-                //frameoffset 0
-            }
-
-            if (projectile.frame < frameOffset) projectile.frame = frameOffset;
-
-            if (++projectile.frameCounter >= ((projectile.velocity.Length() > 6f) ? frameCounterMaxFar : frameCounterMaxClose))
-            {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= 2 + frameOffset)
-                {
-                    projectile.frame = frameOffset;
-                }
+                projectile.frame = 0;
             }
         }
 
@@ -165,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
-                shootOrigin += Vector2.Normalize(between) * 19f; //roughly tip of turret
+                shootOrigin += Vector2.Normalize(between) * 16f; //roughly tip of turret
                 target += -Vector2.Normalize(between) * 12f; //roughly center of head with a buffer
 
                 float rotationAmount = between.ToRotation();
