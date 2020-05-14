@@ -846,11 +846,14 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            if (!Main.rand.NextBool(5)) return;
             ApplyCandleDebuffs(target);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (!Main.rand.NextBool(5)) return;
+            if (proj.minion && !Main.rand.NextBool(5)) return;
             ApplyCandleDebuffs(target);
         }
 
