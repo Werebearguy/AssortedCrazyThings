@@ -514,8 +514,6 @@ namespace AssortedCrazyThings
             shieldDroneLerpVisual = 0;
             drawEffectsCalledOnce = false;
 
-            if (Main.netMode == NetmodeID.MultiplayerClient && !Main.gameMenu) return;
-
             //needs to call new List() since Initialize() is called per player in the player select screen
             CircleUIList = new List<CircleUIHandler>
             {

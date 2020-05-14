@@ -158,10 +158,6 @@ namespace AssortedCrazyThings
         public bool SoulLightPet2 = false;
         public bool DocileDemonEye = false;
         public bool QueenLarva = false;
-        /// <summary>
-        /// Deprecated
-        /// </summary>
-        public bool HealingDrone = false;
         public bool PetSun = false;
         public bool PetMoon = false;
         public bool WallFragment = false;
@@ -252,7 +248,6 @@ namespace AssortedCrazyThings
             SoulLightPet2 = false;
             DocileDemonEye = false;
             QueenLarva = false;
-            HealingDrone = false;
             PetSun = false;
             PetMoon = false;
             WallFragment = false;
@@ -769,8 +764,6 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient && !Main.gameMenu) return;
-
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
             CircleUIList = new List<CircleUIHandler>

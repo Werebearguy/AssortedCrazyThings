@@ -762,8 +762,6 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient && !Main.gameMenu) return;
-
             gitgudAccessories = new Func<BitArray>(() => new BitArray(new bool[]
             {
                 kingSlimeGitgud,
