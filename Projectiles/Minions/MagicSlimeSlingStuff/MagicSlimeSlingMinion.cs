@@ -1,10 +1,12 @@
 ﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Dusts;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 {
@@ -54,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Slime Sling Minion");
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 2;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
@@ -62,16 +64,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         public override void MoreSetDefaults()
         {
-            projectile.width = 32;
-            projectile.height = 30;
-            projectile.scale = 0.5f;
+            projectile.width = 24;
+            projectile.height = 18;
 
             projectile.minion = true;
             customMinionSlots = 0f;
             projectile.timeLeft = TimeLeft;
-            drawOffsetX = -19;
-            drawOriginOffsetX = -1;
-            drawOriginOffsetY = -9;
+
+            drawOriginOffsetY = 3;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -92,7 +92,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 200, Color, 1f);
                 dust.velocity *= 0.5f;
             }
-            Main.PlaySound(SoundID.NPCKilled, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.NPCDeath1.Style, 0.8f, 0.2f);
+            Main.PlaySound(SoundID.NPCDeath1.SoundId, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.NPCDeath1.Style, 0.7f, 0.2f);
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             if (!Spawned)
             {
                 Spawned = true;
-                Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item9.Style, 0.7f);
+                Main.PlaySound(SoundID.Item9.SoundId, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item9.Style, 0.7f);
             }
 
             if (Increment)
@@ -128,21 +128,44 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 if (PulsatingCounter <= 0) Increment = true;
             }
 
-            //because projectile.scale breaks it
-            if (projectile.spriteDirection == -1)
+            if (projectile.frame > 1)
             {
-                drawOriginOffsetX = -1;
+                projectile.frame = 1;
             }
-            else
+
+            if (projectile.ai[0] != 0)
             {
-                drawOriginOffsetX = 3;
+                int dustType = Main.rand.Next(4);
+                if (dustType == 0)
+                {
+                    dustType = ModContent.DustType<GlitterDust15>();
+                }
+                else if (dustType == 1)
+                {
+                    dustType = ModContent.DustType<GlitterDust57>();
+                }
+                else if (dustType == 2)
+                {
+                    dustType = ModContent.DustType<GlitterDust58>();
+                }
+                else
+                {
+                    return;
+                }
+
+                if (Main.rand.NextFloat() < projectile.velocity.Length() / 7f)
+                {
+                    Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
+                    dust.velocity *= 0.1f;
+                }
             }
-            if (projectile.frame == 1) projectile.gfxOffY -= 1;
         }
     }
 
     //Separate classes so projectile.usesIDStaticNPCImmunity works
     public class MagicSlimeSlingMinion1 : MagicSlimeSlingMinionBase { }
+
     public class MagicSlimeSlingMinion2 : MagicSlimeSlingMinionBase { }
+
     public class MagicSlimeSlingMinion3 : MagicSlimeSlingMinionBase { }
 }
