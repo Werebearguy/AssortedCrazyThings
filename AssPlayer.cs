@@ -4,7 +4,6 @@ using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
-using AssortedCrazyThings.Projectiles.Minions.Drones;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -69,7 +68,8 @@ namespace AssortedCrazyThings
 
         public bool droneControllerMinion = false;
 
-        public const byte shieldDroneReductionMax = 50;
+        public const byte shieldDroneReductionMax = 35;
+        public const byte ShieldIncreaseAmount = 7;
         public byte shieldDroneReduction = 0; //percentage * 100
         public float shieldDroneLerpVisual = 0; //percentage
 
@@ -222,7 +222,7 @@ namespace AssortedCrazyThings
                 }
 
                 damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
-                if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= ShieldDrone.ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
+                if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
             }
         }
 
@@ -859,8 +859,6 @@ namespace AssortedCrazyThings
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
             //ApplyCandleDebuffs(target);
-            target.GetModPlayer<AssPlayer>().DecreaseDroneShield(ref damage);
-
             target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
 
             target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
@@ -869,8 +867,6 @@ namespace AssortedCrazyThings
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
             //ApplyCandleDebuffs(target);
-            target.GetModPlayer<AssPlayer>().DecreaseDroneShield(ref damage);
-
             target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
 
             target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
@@ -900,6 +896,8 @@ namespace AssortedCrazyThings
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (getDefenseDuration != 0) damage = 1;
+
+            DecreaseDroneShield(ref damage);
 
             if (wyvernCampfire && damageSource.SourceProjectileType == ProjectileID.HarpyFeather)
             {

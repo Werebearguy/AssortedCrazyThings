@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "MissileDrone_Glowmask";
 
-        public const int AttackCooldown = 180; //120 but incremented by 1.5f
+        public const int AttackCooldown = 360; //120 but incremented by 1.5f
         public const int AttackDelay = 60;
         public const int AttackDuration = 60;
 

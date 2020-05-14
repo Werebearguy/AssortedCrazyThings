@@ -1,14 +1,12 @@
-using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Items
+namespace AssortedCrazyThings.Items.DroneUnlockables
 {
-    //TODO Recipes for drone unlockables
-    public abstract class DroneUnlockables : ModItem
+    public abstract class DroneUnlockable : ModItem
     {
         public override void SetDefaults()
         {
@@ -19,8 +17,8 @@ namespace AssortedCrazyThings.Items
             item.consumable = true;
             item.maxStack = 1;
             item.UseSound = SoundID.Item4;
-            item.useTime = 40;
-            item.useAnimation = 40;
+            item.useTime = 30;
+            item.useAnimation = 30;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.value = Item.sellPrice(silver: 50);
         }
@@ -60,13 +58,36 @@ namespace AssortedCrazyThings.Items
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
             {
                 player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
-                AssUtils.UIText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
+                Main.NewText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
             }
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            DroneRecipe recipe = new DroneRecipe(mod, UnlockedType);
+            recipe.AddIngredient(ModContent.ItemType<DroneParts>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 
-    public class DroneUnlockableBasic : DroneUnlockables
+    public class DroneRecipe : ModRecipe
+    {
+        public DroneType UnlockedType;
+
+        public DroneRecipe(Mod mod, DroneType unlockedType): base(mod)
+        {
+            UnlockedType = unlockedType;
+        }
+
+        public override bool RecipeAvailable()
+        {
+            return !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType);
+        }
+    }
+
+    public class DroneUnlockableBasicLaserDrone : DroneUnlockable
     {
         public override void SetStaticDefaults()
         {
@@ -82,7 +103,7 @@ namespace AssortedCrazyThings.Items
         }
     }
 
-    public class DroneUnlockableHeavy : DroneUnlockables
+    public class DroneUnlockableHeavyLaserDrone : DroneUnlockable
     {
         public override void SetStaticDefaults()
         {
@@ -98,7 +119,7 @@ namespace AssortedCrazyThings.Items
         }
     }
 
-    public class DroneUnlockableMissile : DroneUnlockables
+    public class DroneUnlockableMissileDrone : DroneUnlockable
     {
         public override void SetStaticDefaults()
         {
@@ -114,7 +135,7 @@ namespace AssortedCrazyThings.Items
         }
     }
 
-    public class DroneUnlockableHealing : DroneUnlockables
+    public class DroneUnlockableHealingDrone : DroneUnlockable
     {
         public override void SetStaticDefaults()
         {
@@ -130,7 +151,7 @@ namespace AssortedCrazyThings.Items
         }
     }
 
-    public class DroneUnlockableShield : DroneUnlockables
+    public class DroneUnlockableShieldDrone : DroneUnlockable
     {
         public override void SetStaticDefaults()
         {

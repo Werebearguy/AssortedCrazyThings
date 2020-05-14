@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.DroneUnlockables;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.Weapons;

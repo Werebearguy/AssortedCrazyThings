@@ -1,15 +1,14 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Items
+namespace AssortedCrazyThings.Items.DroneUnlockables
 {
+    //TODO tooltip, sprite
     public class DroneParts : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone Parts");
-            //TODO tooltip
             Tooltip.SetDefault("'You could make use of this'");
         }
 

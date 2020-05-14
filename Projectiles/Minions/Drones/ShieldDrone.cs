@@ -16,8 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         private static readonly string nameLamps = "Projectiles/Minions/Drones/" + "ShieldDrone_Lamps";
         private static readonly string nameLower = "Projectiles/Minions/Drones/" + "ShieldDrone_Lower";
         private float addRotation; //same
-        private const int ShieldDelay = 180;
-        public const byte ShieldIncreaseAmount = 10;
+        private const int ShieldDelay = 360;
         private float LowerOutPercent = 0f;
 
         private float ShieldCounter
@@ -46,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             get
             {
                 AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
-                return mPlayer.shieldDroneReduction / 10;
+                return mPlayer.shieldDroneReduction / AssPlayer.ShieldIncreaseAmount;
             }
         }
 
@@ -197,13 +196,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     if (ShieldCounter > ShieldDelay)
                     {
                         ShieldCounter = 0;
-                        if (RealOwner) mPlayer.shieldDroneReduction += ShieldIncreaseAmount;
-                        CombatText.NewText(player.getRect(), Color.LightBlue, ShieldIncreaseAmount);
+                        if (RealOwner) mPlayer.shieldDroneReduction += AssPlayer.ShieldIncreaseAmount;
+                        CombatText.NewText(player.getRect(), Color.LightBlue, AssPlayer.ShieldIncreaseAmount);
                         AssUtils.QuickDustLine(16, shootOrigin, target, between.Length() / 3, Color.White, alpha: 120, scale: 1.5f);
                     }
                 }
             }
-            else //if above 50%, addRotation should go down to projectile.rotation
+            else //if fully shielded, addRotation should go down to projectile.rotation
             {
                 addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
             }

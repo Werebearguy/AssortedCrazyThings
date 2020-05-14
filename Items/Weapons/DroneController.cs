@@ -165,8 +165,8 @@ namespace AssortedCrazyThings.Items.Weapons
                         desc: "Fires a salvo of missiles after a long delay",
                         misc: "Occupies two minion slots",
                         firerate: "Very slow",
-                        dmgModifier: 0.2f,
-                        kBModifier: 1.333334f
+                        dmgModifier: 2.19f,
+                        kBModifier: 1.2f
                         );
                 case DroneType.Healing:
                     return new DroneData
@@ -182,7 +182,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         (
                         projType: ModContent.ProjectileType<ShieldDrone>(),
                         name: "Shield Drone",
-                        desc: "Creates a damage reducing shield",
+                        desc: "Creates a damage reducing shield over time",
                         misc: "Only one can be summoned\nShield resets if drone despawns",
                         combat: false
                         );
@@ -274,8 +274,8 @@ namespace AssortedCrazyThings.Items.Weapons
             item.mana = 10;
             item.width = 28;
             item.height = 30;
-            item.useTime = 36;
-            item.useAnimation = 36;
+            item.useTime = 30;
+            item.useAnimation = 30;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.noMelee = true;
             item.noUseGraphic = true;
@@ -399,7 +399,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             if (!(allUnlocked && hasController))
             {
-                tooltips.Add(new TooltipLine(mod, "Destroyer", "Defeat the destroyer to unlock more drones"));
+                tooltips.Add(new TooltipLine(mod, "Destroyer", "Defeat The Destroyer to unlock more drones"));
             }
 
             CanSpawn(Main.LocalPlayer, selected, out bool blocked);
@@ -427,7 +427,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             get
             {
-                return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
+                return "Items/DroneUnlockables/DroneUnlockable" + Name.Replace(" ", "");
             }
         }
 
@@ -439,7 +439,7 @@ namespace AssortedCrazyThings.Items.Weapons
             KBModifier = kBModifier;
             Firerate = firerate;
             string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * (DmgModifier + 1f))
-             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * (KBModifier + 1f), 1)) : "";
+             + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier, 1)) : "";
             UITooltip = Name + stats + "\n" + desc + "\n" + misc;
             Combat = combat;
         }

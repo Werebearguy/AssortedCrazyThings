@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.DroneUnlockables;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,7 +39,7 @@ namespace AssortedCrazyThings.Items.Pets
             //transformation recipe
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(item.type, 1);
-            recipe.SetResult(ModContent.ItemType<DroneUnlockableHealing>());
+            recipe.SetResult(ModContent.ItemType<DroneUnlockableHealingDrone>());
             recipe.AddRecipe();
         }
     }
