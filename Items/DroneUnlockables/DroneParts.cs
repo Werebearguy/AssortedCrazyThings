@@ -3,13 +3,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
 {
-    //TODO tooltip, sprite
     public class DroneParts : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone Parts");
-            Tooltip.SetDefault("'You could make use of this'");
+            Tooltip.SetDefault("'These parts could be repurposed...'");
         }
 
         public override void SetDefaults()
