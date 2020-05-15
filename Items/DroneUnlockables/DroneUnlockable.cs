@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public DroneType UnlockedType;
 
-        public DroneRecipe(Mod mod, DroneType unlockedType): base(mod)
+        public DroneRecipe(Mod mod, DroneType unlockedType) : base(mod)
         {
             UnlockedType = unlockedType;
         }

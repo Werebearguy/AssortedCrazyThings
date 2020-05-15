@@ -1,14 +1,13 @@
-﻿using AssortedCrazyThings.Base;
-using AssortedCrazyThings.NPCs;
+﻿using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameInput;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
-using Terraria.ID;
 
 namespace AssortedCrazyThings.UI
 {

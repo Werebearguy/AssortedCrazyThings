@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Buffs
         {
             if (type == BuffID.Campfire && Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire)
             {
-                tip += "\nWyvern Campfire nearby" + 
+                tip += "\nWyvern Campfire nearby" +
                     "\nYou are protected from Wyverns" +
                     "\nHarpy feathers don't knock you away";
             }

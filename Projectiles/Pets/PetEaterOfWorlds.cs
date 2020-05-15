@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetDefaults()
         {
-            AssAI.StardustDragonSetDefaults(projectile,size: HITBOX_SIZE, minion: false);
+            AssAI.StardustDragonSetDefaults(projectile, size: HITBOX_SIZE, minion: false);
             projectile.alpha = 0;
         }
 

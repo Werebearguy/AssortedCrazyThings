@@ -333,7 +333,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (Main.hasFocus) GetFrame();
 
             lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
-            SpriteEffects effects = projectile.direction != -1 ? SpriteEffects.FlipHorizontally: SpriteEffects.None;
+            SpriteEffects effects = projectile.direction != -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType);
             Rectangle bounds = new Rectangle();

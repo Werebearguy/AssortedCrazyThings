@@ -1,5 +1,4 @@
-﻿using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Dusts;
+﻿using AssortedCrazyThings.Dusts;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;

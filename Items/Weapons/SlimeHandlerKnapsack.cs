@@ -13,7 +13,8 @@ namespace AssortedCrazyThings.Items.Weapons
 {
     public class SlimeHandlerKnapsack : MinionItemBase
     {
-        public static CircleUIConf GetUIConf() {
+        public static CircleUIConf GetUIConf()
+        {
             List<string> textureNames = new List<string>() {
                         AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionPreview",
                         AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview",

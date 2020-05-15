@@ -1,7 +1,6 @@
 ﻿using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 
@@ -150,7 +149,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             if (CanShield)
             {
-                Vector2 shootOffset = new Vector2(0 , sinY);
+                Vector2 shootOffset = new Vector2(0, sinY);
                 Vector2 shootOrigin = projectile.Center + shootOffset;
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 

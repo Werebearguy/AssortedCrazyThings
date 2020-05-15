@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                         {
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f,-Main.npc[i].direction);
+                                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -Main.npc[i].direction);
                             }
                             Main.npc[i].StrikeNPCNoInteraction(9999, 10f, -Main.npc[i].direction);
                             NPC.SpawnWOF(projectile.position);

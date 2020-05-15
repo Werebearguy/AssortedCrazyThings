@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Tiles
 {
     public class VanityDresserTile : ModTile
     {
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;

@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         private bool CanOverlay => ChargeTimer >= AnimationDuration && (projectile.frame == 3 || projectile.frame == 7);
 
-        private float OverlayOpacity => (ChargeTimer - AnimationDuration) / (float) byte.MaxValue;
+        private float OverlayOpacity => (ChargeTimer - AnimationDuration) / (float)byte.MaxValue;
 
         private bool playedOverheatSound = false;
 

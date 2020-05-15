@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using AssortedCrazyThings.Base;
+﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
