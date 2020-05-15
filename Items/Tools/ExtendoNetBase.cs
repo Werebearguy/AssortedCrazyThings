@@ -28,6 +28,7 @@ namespace AssortedCrazyThings.Items.Tools
 
         public void OverhaulInit()
         {
+            //TODO remove this/change/whatever
             Mod oMod = ModLoader.GetMod("TerrariaOverhaul");
             if (oMod != null)
             {
