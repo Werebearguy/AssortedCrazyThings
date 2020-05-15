@@ -427,7 +427,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             get
             {
-                return "Items/DroneUnlockables/DroneUnlockable" + Name.Replace(" ", "");
+                return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
             }
         }
 
