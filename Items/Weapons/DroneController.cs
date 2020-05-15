@@ -220,7 +220,7 @@ namespace AssortedCrazyThings.Items.Weapons
                     textureNames.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName).Name);
                     unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
                     tooltips.Add(data.UITooltip);
-                    toUnlock.Add("Craft and use a '" + data.Name + "' Item");
+                    toUnlock.Add("Craft and use a '" + data.Name + " Components' Item");
                 }
             }
 

@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Basic Laser Drone");
+            DisplayName.SetDefault("Basic Laser Drone Components");
         }
 
         public override DroneType UnlockedType
@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Heavy Laser Drone");
+            DisplayName.SetDefault("Heavy Laser Drone Components");
         }
 
         public override DroneType UnlockedType
@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Missile Drone");
+            DisplayName.SetDefault("Missile Drone Components");
         }
 
         public override DroneType UnlockedType
@@ -139,7 +139,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Healing Drone");
+            DisplayName.SetDefault("Healing Drone Components");
         }
 
         public override DroneType UnlockedType
@@ -155,7 +155,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shield Drone");
+            DisplayName.SetDefault("Shield Drone Components");
         }
 
         public override DroneType UnlockedType
