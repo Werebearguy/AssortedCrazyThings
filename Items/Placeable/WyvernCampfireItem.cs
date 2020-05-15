@@ -25,16 +25,15 @@ namespace AssortedCrazyThings.Items.Placeable
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
             item.rare = -11;
-            item.value = Item.buyPrice(0, 10, 0, 0);
+            item.value = Item.buyPrice(0, 11, 50, 0);
             item.createTile = ModContent.TileType<WyvernCampfireTile>();
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.anyWood = true;
-            recipe.AddIngredient(ItemID.Wood, 10);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 5);
+            recipe.AddIngredient(ItemID.GiantHarpyFeather);
+            recipe.AddRecipeGroup("ACT:AdamantiteTitanium", 12);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

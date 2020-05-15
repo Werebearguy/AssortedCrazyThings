@@ -749,7 +749,7 @@ namespace AssortedCrazyThings
 
         public static CircleUIConf GetAnimatedTomeConf()
         {
-            List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow" };
+            List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow", "Spell" };
 
             return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
         }

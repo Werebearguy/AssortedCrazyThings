@@ -356,6 +356,12 @@ namespace AssortedCrazyThings
                 ItemID.GoldBar,
                 ItemID.PlatinumBar
             }));
+
+            RecipeGroup.RegisterGroup("ACT:AdamantiteTitanium", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.AdamantiteBar), new int[]
+            {
+                ItemID.AdamantiteBar,
+                ItemID.TitaniumBar
+            }));
         }
 
         /// <summary>
