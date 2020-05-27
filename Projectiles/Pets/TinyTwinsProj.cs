@@ -21,7 +21,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
+            projectile.aiStyle = -1;
+            //aiType = ProjectileID.BabyEater;
             projectile.width = 30;
             projectile.height = 30;
         }
@@ -45,6 +46,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 projectile.timeLeft = 2;
             }
+
+            AssAI.BabyEaterAI(projectile, velocityFactor: 1.5f, sway: 0.5f);
+            AssAI.BabyEaterDraw(projectile);
 
             AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
         }
