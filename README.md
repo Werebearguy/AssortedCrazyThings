@@ -15,4 +15,7 @@ Credits for help with code:
  * jopojelly for *PremultiplyTexture*
  * hamstar for *CircleShader*
 
+Credits for sprites:
+ * Jaserd for *Pet Destroyer, Pet Eater of Worlds*
+
 Check the [Wiki](https://github.com/Werebearguy/AssortedCrazyThings/wiki) for content and a changelog.
