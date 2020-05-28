@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public static int GetSlotOfNextDrone(Projectile self)
         {
             int slot = 0;
-            int min = 1000;
+            int min = Main.maxProjectiles;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile proj = Main.projectile[i];
@@ -152,7 +152,6 @@ namespace AssortedCrazyThings.Items.Weapons
                         projType: ModContent.ProjectileType<HeavyLaserDrone>(),
                         name: "Heavy Laser Drone",
                         desc: "Fires a penetrating laser after a long delay",
-                        misc: "Occupies two minion slots",
                         firerate: "Extremely slow",
                         dmgModifier: 8.091f,
                         kBModifier: 4f
@@ -163,7 +162,6 @@ namespace AssortedCrazyThings.Items.Weapons
                         projType: ModContent.ProjectileType<MissileDrone>(),
                         name: "Missile Drone",
                         desc: "Fires a salvo of missiles after a long delay",
-                        misc: "Occupies two minion slots",
                         firerate: "Very slow",
                         dmgModifier: 2.19f,
                         kBModifier: 1.2f
@@ -259,7 +257,6 @@ namespace AssortedCrazyThings.Items.Weapons
             Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
                 + "\nRight click to pick from available drones"
                 + "\nHolding the item improves the Drones supportive and offensive abilities");
-            //TODO remove this later or adjust it dynamically?
             ItemID.Sets.StaffMinionSlotsRequired[item.type] = 1;
         }
 

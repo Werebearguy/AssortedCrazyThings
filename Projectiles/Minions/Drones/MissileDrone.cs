@@ -55,7 +55,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             projectile.height = 30;
             projectile.alpha = 0;
             projectile.minion = true;
-            projectile.minionSlots = 2f;
+            projectile.minionSlots = 1f;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
