@@ -232,11 +232,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (other.active && other.type == npcTypeOld)
                 {
                     other.active = false;
-                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew);
+                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew, ai2: Main.rand.Next(1, DungeonSoulBase.offsetYPeriod));
                     NPC npcnew = Main.npc[index];
-                    npcnew.SetDefaults(npcTypeNew);
+                    //npcnew.SetDefaults(npcTypeNew);
                     //Main.npc[index].timeLeft = 3600;
-                    npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                    //npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
 
                     //poof visual
                     for (int i = 0; i < 15; i++)
@@ -251,31 +251,33 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             //"convert" Item souls that got dropped for some reason
             int tempStackCount;
-            for (int j = 0; j < Main.item.Length; j++)
+            for (int j = 0; j < Main.maxItems; j++)
             {
-                if (Main.item[j].active && Main.item[j].type == itemTypeOld)
+                Item item = Main.item[j];
+                if (item.active && item.type == itemTypeOld)
                 {
-                    tempStackCount = Main.item[j].stack;
-                    Main.item[j].SetDefaults(itemTypeNew);
-                    Main.item[j].stack = tempStackCount;
-                }
+                    tempStackCount = item.stack;
+                    item.SetDefaults(itemTypeNew);
+                    item.stack = tempStackCount;
 
-                //poof visual
-                for (int i = 0; i < 15; i++)
-                {
-                    Dust dust = Dust.NewDustPerfect(Main.item[j].Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
-                    dust.noLight = true;
-                    dust.noGravity = true;
-                    dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
+                    //poof visual
+                    for (int i = 0; i < 15; i++)
+                    {
+                        Dust dust = Dust.NewDustPerfect(item.Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                        dust.noLight = true;
+                        dust.noGravity = true;
+                        dust.fadeIn = Main.rand.NextFloat(0.1f, 0.6f);
+                    }
                 }
             }
 
             //"convert" Item souls in inventory
-            for (int j = 0; j < Main.player.Length; j++)
+            for (int j = 0; j < Main.maxPlayers; j++)
             {
-                if (Main.player[j].active/* && !Main.player[j].dead*/)
+                Player player = Main.player[j];
+                if (player.active/* && !Main.player[j].dead*/)
                 {
-                    AssPlayer mPlayer = Main.player[j].GetModPlayer<AssPlayer>();
+                    AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
                     if (Main.netMode == NetmodeID.Server)
                     {
