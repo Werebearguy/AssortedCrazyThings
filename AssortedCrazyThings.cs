@@ -329,12 +329,6 @@ namespace AssortedCrazyThings
                 }
                 summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<DroneController>(), ModContent.BuffType<DroneControllerBuff>(), drones);
             }
-
-            Mod bossAssist = ModLoader.GetMod("BossAssist");
-            if (bossAssist != null && bossAssist.Version > new Version(0, 2, 2))
-            {
-                BossAssistLoadedWithRadar = true;
-            }
         }
 
         public override void AddRecipeGroups()
