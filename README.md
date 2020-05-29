@@ -5,10 +5,10 @@ Assorted Crazy Things, a mod for Terraria using tModLoader!
 
 This mod contains a huge assortment of various creatures, accessories, and so on.
 
-Small sample of the contents (some of the sprites are outdated):
+Small sample of the contents:
 ![Sample](https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/sample.png)
 
-Credits for help with code:
+Credits for code:
  * Itorius for *CheckLineOfSight*
  * IDGCaptainRussia for *DrawTether*
  * Muzuwi for *CircleUI*
@@ -16,6 +16,6 @@ Credits for help with code:
  * hamstar for *CircleShader*
 
 Credits for sprites:
- * Jaserd for *Pet Destroyer, Pet Eater of Worlds*
+ * Jaserd for *Tiny Destroyer, Tiny Eater of Worlds*
 
 Check the [Wiki](https://github.com/Werebearguy/AssortedCrazyThings/wiki) for content and a changelog.
