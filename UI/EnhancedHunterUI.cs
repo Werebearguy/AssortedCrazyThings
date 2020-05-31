@@ -206,7 +206,6 @@ namespace AssortedCrazyThings.UI
                             int lbossHeadIndex = -1;
                             if (npc.GetBossHeadTextureIndex() >= 0 && npc.GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
                             {
-                                if (AssortedCrazyThings.BossAssistLoadedWithRadar) continue; //Don't add the boss to the list of draws
                                 lbossHeadIndex = npc.GetBossHeadTextureIndex();
                             }
 

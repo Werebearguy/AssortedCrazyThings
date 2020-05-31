@@ -43,9 +43,6 @@ namespace AssortedCrazyThings
         /// </summary>
         public static Vector2 ZoomFactor;
 
-        //Loaded Mods
-        public static bool BossAssistLoadedWithRadar;
-
         //UI stuff
         internal static UserInterface CircleUIInterface;
         internal static CircleUI CircleUI;
