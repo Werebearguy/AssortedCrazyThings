@@ -191,6 +191,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             float offsetX = (between.X < 0f).ToDirectionInt() * 60f;
             float offsetY = 60;
 
+            AssAI.TeleportIfTooFar(projectile, parent.Center);
+
             AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 1f, random: false, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
 
             int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 500f);
