@@ -46,6 +46,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         buffImmune[24] = true;
                     }*/
 
+            npc.boss = true;
             npc.noGravity = true;
             npc.width = 40; //38
             npc.height = 30; //42
@@ -76,8 +77,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 Texture2D texture = mod.GetTexture("NPCs/DungeonBird/HarvesterChain");
                 //Main.chain21Texture
                 Vector2 center = new Vector2(npc.Center.X, npc.Center.Y);
-                float num22 = Main.npc[AssWorld.harvesterIndex].Center.X - center.X;
-                float num23 = Main.npc[AssWorld.harvesterIndex].Center.Y - center.Y;
+                NPC body = Main.npc[AssWorld.harvesterIndex];
+                float num22 = body.Center.X - center.X;
+                float num23 = body.Center.Y - center.Y;
                 num23 -= -Harvester.TalonOffsetY + 20f; //has to result to 7f
 
                 //num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
@@ -103,8 +105,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         num23 *= num24;
                         center.X += num22;
                         center.Y += num23;
-                        num22 = Main.npc[AssWorld.harvesterIndex].Center.X - center.X;
-                        num23 = Main.npc[AssWorld.harvesterIndex].Center.Y - center.Y;
+                        num22 = body.Center.X - center.X;
+                        num23 = body.Center.Y - center.Y;
                         num23 -= -Harvester.TalonOffsetY + 20f; //7f
                         num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
                         num22 = (npc.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
@@ -129,7 +131,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (/*target.whoAmI == Main.myPlayer && */Main.rand.NextFloat() >= 0.5f)
+            if (Main.rand.NextFloat() >= 0.5f)
             {
                 target.AddBuff(BuffID.Slow, 120, false); //2 seconds, 50% chance
             }
@@ -144,8 +146,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else
             {
+                NPC body = Main.npc[AssWorld.harvesterIndex];
+                npc.target = body.target;
+                if (npc.target < 0 || npc.target >= Main.maxPlayers) return;
+                Player target = Main.player[npc.target];
+
                 npc.gfxOffY = Harvester.sinY;
-                npc.spriteDirection = Main.npc[AssWorld.harvesterIndex].spriteDirection;
+                npc.spriteDirection = body.spriteDirection;
 
                 if (npc.alpha > 0)
                 {
@@ -171,13 +178,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         num691 += 3f; //3f
                     }
-                    if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax)
+                    if (body.life < body.lifeMax)
                     {
                         num691 += 8f; //8f
                     }
                     Vector2 vector82 = new Vector2(npc.Center.X, npc.Center.Y);
-                    float betweenSelfAndBodyX = Main.npc[AssWorld.harvesterIndex].Center.X - vector82.X;
-                    float betweenSelfAndBodyY = Main.npc[AssWorld.harvesterIndex].Center.Y - vector82.Y;
+                    float betweenSelfAndBodyX = body.Center.X - vector82.X;
+                    float betweenSelfAndBodyY = body.Center.Y - vector82.Y;
                     betweenSelfAndBodyY -= -Harvester.TalonOffsetY;
                     betweenSelfAndBodyX = ((npc.type != AssWorld.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX));
                     float len = (float)Math.Sqrt((double)(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY));
@@ -188,11 +195,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         npc.velocity.Y = betweenSelfAndBodyY;
                         npc.ai[1] += 1f;
                         //new
-                        if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 2)
+                        if (body.life < body.lifeMax / 2)
                         {
                             npc.ai[1] += 1f;
                         }
-                        if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 4)
+                        if (body.life < body.lifeMax / 4)
                         {
                             npc.ai[1] += 1f;
                         }
@@ -203,14 +210,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             float test = Harvester.Wid / 2; //its for checking which (or both) talons to shoot, so the left one has also range to the right 100 in
 
                             //new
-                            float x = Main.player[npc.target].Center.X - npc.Center.X;
-                            float y = Main.player[npc.target].Center.Y - npc.Center.Y;
+                            float x = target.Center.X - npc.Center.X;
+                            float y = target.Center.Y - npc.Center.Y;
                             float toPlayer = (float)Math.Sqrt((double)(x * x + y * y));
 
-                            if (toPlayer < 500f && npc.BottomLeft.Y < Main.player[npc.target].BottomLeft.Y) //distance where it is allowed to swing at player
+                            if (toPlayer < 500f && npc.BottomLeft.Y < target.BottomLeft.Y) //distance where it is allowed to swing at player
                             {
                                 //end new
-                                if ((npc.type == AssWorld.harvesterTalonLeft && npc.Center.X + test > Main.player[npc.target].Center.X) || (npc.type == AssWorld.harvesterTalonRight && npc.Center.X - test < Main.player[npc.target].Center.X))
+                                if ((npc.type == AssWorld.harvesterTalonLeft && npc.Center.X + test > target.Center.X) || (npc.type == AssWorld.harvesterTalonRight && npc.Center.X - test < target.Center.X))
                                 {
                                     npc.ai[1] = 0f;
                                     npc.ai[0] = 1f;
@@ -227,11 +234,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         //new
                         float retractFactor = 0.5f;
-                        if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 2)
+                        if (body.life < body.lifeMax / 2)
                         {
                             retractFactor += 0.25f;
                         }
-                        if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 4)
+                        if (body.life < body.lifeMax / 4)
                         {
                             retractFactor += 0.25f;
                         }
@@ -250,17 +257,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.collideY = false;
                     float num695 = 12f;
                     //new
-                    if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 2)
+                    if (body.life < body.lifeMax / 2)
                     {
                         num695 += 4f;
                     }
-                    if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax / 4)
+                    if (body.life < body.lifeMax / 4)
                     {
                         num695 += 4f;
                     }
                     Vector2 vector83 = new Vector2(npc.Center.X, npc.Center.Y);
-                    float num696 = Main.player[npc.target].Center.X - vector83.X;
-                    float num697 = Main.player[npc.target].Center.Y - vector83.Y;
+                    float num696 = target.Center.X - vector83.X;
+                    float num697 = target.Center.Y - vector83.Y;
                     float num698 = (float)Math.Sqrt((double)(num696 * num696 + num697 * num697));
                     num698 = num695 / num698;
                     npc.velocity.X = num696 * num698;
@@ -274,35 +281,35 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //talon has 38 width 42 height
                     if (Math.Abs(npc.velocity.X) > Math.Abs(npc.velocity.Y))
                     {
-                        if (npc.velocity.X > 0f && npc.Center.X > Main.player[npc.target].Center.X)
+                        if (npc.velocity.X > 0f && npc.Center.X > target.Center.X)
                         {
                             npc.noTileCollide = false;
                         }
-                        if (npc.velocity.X < 0f && npc.Center.X < Main.player[npc.target].Center.X)
+                        if (npc.velocity.X < 0f && npc.Center.X < target.Center.X)
                         {
                             npc.noTileCollide = false;
                         }
                     }
                     else
                     {
-                        if (npc.velocity.Y > 0f && npc.Center.Y > Main.player[npc.target].Center.Y)
+                        if (npc.velocity.Y > 0f && npc.Center.Y > target.Center.Y)
                         {
                             npc.noTileCollide = false;
                         }
-                        if (npc.velocity.Y < 0f && npc.Center.Y < Main.player[npc.target].Center.Y)
+                        if (npc.velocity.Y < 0f && npc.Center.Y < target.Center.Y)
                         {
                             npc.noTileCollide = false;
                         }
                     }
                     Vector2 vector84 = new Vector2(npc.Center.X, npc.Center.Y);
-                    float num699 = Main.npc[AssWorld.harvesterIndex].Center.X - vector84.X;
-                    float num700 = Main.npc[AssWorld.harvesterIndex].Center.Y - vector84.Y;
-                    num699 += Main.npc[AssWorld.harvesterIndex].velocity.X;
-                    num700 += Main.npc[AssWorld.harvesterIndex].velocity.Y;
+                    float num699 = body.Center.X - vector84.X;
+                    float num700 = body.Center.Y - vector84.Y;
+                    num699 += body.velocity.X;
+                    num700 += body.velocity.Y;
                     num700 -= -Harvester.TalonOffsetY;
                     num699 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX));
                     float num701 = (float)Math.Sqrt((double)(num699 * num699 + num700 * num700));
-                    if (Main.npc[AssWorld.harvesterIndex].life < Main.npc[AssWorld.harvesterIndex].lifeMax)
+                    if (body.life < body.lifeMax)
                     {
                         npc.knockBackResist = 0f;
                         if (num701 > 700f || npc.collideX || npc.collideY || Collision.SolidCollision(npc.position, npc.width, npc.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
@@ -331,8 +338,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     float num703 = 12f;
                     float num704 = 0.4f;
                     Vector2 vector85 = new Vector2(npc.Center.X, npc.Center.Y);
-                    float num705 = Main.player[npc.target].Center.X - vector85.X;
-                    float num706 = Main.player[npc.target].Center.Y - vector85.Y;
+                    float num705 = target.Center.X - vector85.X;
+                    float num706 = target.Center.Y - vector85.Y;
                     float num707 = (float)Math.Sqrt((double)(num705 * num705 + num706 * num706));
                     num707 = num703 / num707;
                     num705 *= num707;

@@ -16,6 +16,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     {
         public static readonly string name = "Soul Harvester";
         public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
+        public static Color deathColor = new Color(35, 200, 254);
 
         public static float sinY = 0;
         public static int talonDamage = 30;
@@ -52,8 +53,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npc.value = Item.buyPrice(0, 10);
             npc.knockBackResist = 0f;
             npc.aiStyle = -1; //91;
-            aiType = -1; //91
-            animationType = -1;
             npc.timeLeft = NPC.activeTime * 30;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -153,12 +152,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Texture2D texture = mod.GetTexture("NPCs/DungeonBird/HarvesterWings");
             SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
+            Vector2 drawOrigin = new Vector2(npc.width >> 1, npc.height >> 1);
 
             Vector2 stupidOffset = new Vector2(0, -29f + npc.gfxOffY);
             Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White * ((255 - npc.alpha) / 255f), npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, npc.frame, npc.GetAlpha(Color.White), npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -197,7 +196,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Main.npc[index].ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
+                        NetMessage.SendData(MessageID.SyncNPC, number: index);
                     }
                 }
             }
@@ -238,7 +237,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //Main.npc[index].timeLeft = 3600;
                     //npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
 
-                    //poof visual
+                    //poof visual works only in singleplayer
                     for (int i = 0; i < 15; i++)
                     {
                         Dust dust = Dust.NewDustPerfect(npcnew.Center, 59, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 1.5f)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
@@ -301,11 +300,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(deathMessage, 35, 200, 254);
+                Main.NewText(deathMessage, deathColor);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), new Color(35, 200, 254));
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), deathColor);
             }
         }
 
@@ -325,6 +324,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         private const int AI_Unused_Slot = 3;
 
         private const float State_Main = 3f;
+        //No additional states here
 
         public float AI_State
         {
@@ -386,15 +386,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public float AI_Local2
+        public bool Initialized
         {
             get
             {
-                return npc.localAI[1];
+                return npc.localAI[1] == 1f;
             }
             set
             {
-                npc.localAI[1] = value;
+                npc.localAI[1] = value ? 1f : 0f;
             }
         }
 
@@ -403,9 +403,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Lighting.AddLight(npc.Center, new Vector3(0.3f, 0.3f, 0.7f));
 
             npc.gfxOffY = npc.height / 2;
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server && !Main.gamePaused && Main.hasFocus)
             {
-                sinY = (float)((Math.Sin(((Main.time % 120.0) / 120.0) * MathHelper.TwoPi) - 1) * 6);
+                double freq = 120.0;
+                sinY = (float)((Math.Sin(((Main.GameUpdateCount % freq) / freq) * MathHelper.TwoPi) - 1) * 6);
             }
             npc.gfxOffY += sinY;
             return true;
@@ -413,7 +414,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void AI()
         {
-            if (AI_Local2 == 0)
+            if (!Initialized)
             {
                 AssWorld.harvesterIndex = npc.whoAmI;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -426,18 +427,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         if (index1 < Main.maxNPCs)
                         {
-                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index1);
+                            NetMessage.SendData(MessageID.SyncNPC, number: index1);
                         }
                         if (index2 < Main.maxNPCs)
                         {
-                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index2);
+                            NetMessage.SendData(MessageID.SyncNPC, number: index2);
                         }
                     }
                 }
                 npc.scale = 1f;
-                npc.netUpdate = true;
-                AI_Local2 = 1;
                 AI_State = State_Main;
+                npc.netUpdate = true;
+                Initialized = true;
             }
 
             if (npc.alpha > 0)
@@ -454,12 +455,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return;
             }
 
-            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
                 npc.TargetClosest();
             }
 
-            if (Main.player[npc.target].dead)
+            Player target = Main.player[npc.target];
+
+            if (target.dead)
             {
                 npc.velocity.Y += 0.04f;
                 if (npc.timeLeft > 10)
@@ -469,99 +472,103 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (AI_State == State_Main)
             {
-                float num630 = 4f;
-                float num631 = 0.05f;
+                float acceleration = 0.05f;
 
-                Vector2 vector77 = new Vector2(npc.position.X + (float)(npc.width / 2) + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + (float)npc.height * 0.8f);
-                Vector2 vector78 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
-                float num632 = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector78.X;
-                float num633 = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - 200f - vector78.Y; //300f
-                float num634 = (float)Math.Sqrt((double)(num632 * num632 + num633 * num633));
+                Vector2 origin = new Vector2(npc.Center.X + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + npc.height * 0.8f);
+                float diffX = target.Center.X - npc.Center.X;
+                float diffY = target.Center.Y - 200f - npc.Center.Y; //300f
+                float length = (float)Math.Sqrt(diffX * diffX + diffY * diffY);
                 AI_Timer += 1f;
 
-                if (!Collision.CanHit(new Vector2(vector77.X, vector77.Y - 30f), 1, 1, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
+                if (!Collision.CanHit(new Vector2(origin.X, origin.Y - 30f), 1, 1, target.position, target.width, target.height))
                 {
-                    num630 = 14f;
-                    num631 = 0.1f;
-                    vector78 = vector77;
-                    num632 = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector78.X;
-                    num633 = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - vector78.Y;
-                    num634 = (float)Math.Sqrt((double)(num632 * num632 + num633 * num633));
-                    num634 = num630 / num634;
+                    acceleration = 0.1f;
+                    diffX = target.Center.X - npc.Center.X;
+                    diffY = target.Center.Y - npc.Center.Y;
 
-
-                    ////WHEN NO DIRECT CAN HIT LINE
-                    if (npc.velocity.X < num632)
+                    //WHEN NO DIRECT CAN HIT LINE
+                    
+                    if (Math.Abs(npc.velocity.X) < 32)
                     {
-                        npc.velocity.X = npc.velocity.X + num631;
-                        if (npc.velocity.X < 0f && num632 > 0f)
+                        if (npc.velocity.X < diffX)
                         {
-                            npc.velocity.X = npc.velocity.X + num631 * 2.5f; //1f all
+                            npc.velocity.X = npc.velocity.X + acceleration;
+                            if (npc.velocity.X < 0f && diffX > 0f)
+                            {
+                                npc.velocity.X = npc.velocity.X + acceleration * 2.5f; //1f all
+                            }
+                        }
+                        else if (npc.velocity.X > diffX)
+                        {
+                            npc.velocity.X = npc.velocity.X - acceleration;
+                            if (npc.velocity.X > 0f && diffX < 0f)
+                            {
+                                npc.velocity.X = npc.velocity.X - acceleration * 2.5f;
+                            }
                         }
                     }
-                    else if (npc.velocity.X > num632)
+                    if (Math.Abs(npc.velocity.Y) < 32)
                     {
-                        npc.velocity.X = npc.velocity.X - num631;
-                        if (npc.velocity.X > 0f && num632 < 0f)
+                        if (npc.velocity.Y < diffY)
                         {
-                            npc.velocity.X = npc.velocity.X - num631 * 2.5f;
+                            npc.velocity.Y = npc.velocity.Y + acceleration;
+                            if (npc.velocity.Y < 0f && diffY > 0f)
+                            {
+                                npc.velocity.Y = npc.velocity.Y + acceleration * 2.5f;
+                            }
                         }
-                    }
-                    if (npc.velocity.Y < num633)
-                    {
-                        npc.velocity.Y = npc.velocity.Y + num631;
-                        if (npc.velocity.Y < 0f && num633 > 0f)
+                        else if (npc.velocity.Y > diffY)
                         {
-                            npc.velocity.Y = npc.velocity.Y + num631 * 2.5f;
-                        }
-                    }
-                    else if (npc.velocity.Y > num633)
-                    {
-                        npc.velocity.Y = npc.velocity.Y - num631;
-                        if (npc.velocity.Y > 0f && num633 < 0f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y - num631 * 2.5f;
+                            npc.velocity.Y = npc.velocity.Y - acceleration;
+                            if (npc.velocity.Y > 0f && diffY < 0f)
+                            {
+                                npc.velocity.Y = npc.velocity.Y - acceleration * 2.5f;
+                            }
                         }
                     }
                 }
-                else if (num634 > 100f)
+                else if (length > 100f)
                 {
                     npc.TargetClosest();
                     npc.spriteDirection = npc.direction;
-                    num634 = num630 / num634;
-                    if (npc.velocity.X < num632)
+                    if (Math.Abs(npc.velocity.X) < 32)
                     {
-                        npc.velocity.X = npc.velocity.X + num631;
-                        if (npc.velocity.X < 0f && num632 > 0f)
+                        if (npc.velocity.X < diffX)
                         {
-                            npc.velocity.X = npc.velocity.X + num631 * 2f; //2f all
+                            npc.velocity.X = npc.velocity.X + acceleration;
+                            if (npc.velocity.X < 0f && diffX > 0f)
+                            {
+                                npc.velocity.X = npc.velocity.X + acceleration * 2f; //2f all
+                            }
+                        }
+                        else if (npc.velocity.X > diffX)
+                        {
+                            npc.velocity.X = npc.velocity.X - acceleration;
+                            if (npc.velocity.X > 0f && diffX < 0f)
+                            {
+                                npc.velocity.X = npc.velocity.X - acceleration * 2f;
+                            }
                         }
                     }
-                    else if (npc.velocity.X > num632)
+                    if (Math.Abs(npc.velocity.Y) < 32)
                     {
-                        npc.velocity.X = npc.velocity.X - num631;
-                        if (npc.velocity.X > 0f && num632 < 0f)
+                        if (npc.velocity.Y < diffY)
                         {
-                            npc.velocity.X = npc.velocity.X - num631 * 2f;
+                            npc.velocity.Y = npc.velocity.Y + acceleration;
+                            if (npc.velocity.Y < 0f && diffY > 0f)
+                            {
+                                npc.velocity.Y = npc.velocity.Y + acceleration * 2f;
+                            }
+                        }
+                        else if (npc.velocity.Y > diffY)
+                        {
+                            npc.velocity.Y = npc.velocity.Y - acceleration;
+                            if (npc.velocity.Y > 0f && diffY < 0f)
+                            {
+                                npc.velocity.Y = npc.velocity.Y - acceleration * 2f;
+                            }
                         }
                     }
-                    if (npc.velocity.Y < num633)
-                    {
-                        npc.velocity.Y = npc.velocity.Y + num631;
-                        if (npc.velocity.Y < 0f && num633 > 0f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y + num631 * 2f;
-                        }
-                    }
-                    else if (npc.velocity.Y > num633)
-                    {
-                        npc.velocity.Y = npc.velocity.Y - num631;
-                        if (npc.velocity.Y > 0f && num633 < 0f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y - num631 * 2f;
-                        }
-                    }
-
                 }
 
                 if (AI_Timer > 120f)
@@ -570,6 +577,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     npc.netUpdate = true;
                 }
             }
+            //additional stages here
         }
 
         public override void PostAI()
@@ -586,7 +594,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 1.5f;
@@ -597,24 +604,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_01"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_03"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_03"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_04"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_04"), 1f);
+                int first = 1;
+                int second = 13 + first;
+                int third = 2 + second;
+                int fourth = 2 + third;
+                int total = fourth;
+                for (int i = 0; i < total; i++)
+                {
+                    string name = "4";
+                    if (i < first) name = "1";
+                    else if (i < second) name = "2";
+                    else if (i < third) name = "3";
+                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_0" + name), 1f);
+                }
             }
         }
     }
