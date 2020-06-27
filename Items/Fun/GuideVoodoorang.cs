@@ -43,16 +43,18 @@ namespace AssortedCrazyThings.Items.Fun
                         {
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, 0f - (float)npc.direction);
+                                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -npc.direction);
                             }
                             npc.StrikeNPCNoInteraction(9999, 10f, -npc.direction);
                             NPC.SpawnWOF(item.position);
 
+                            byte plr = Player.FindClosest(item.position, item.width, item.height);
+                            Item.NewItem(Main.player[plr].getRect(), ModContent.ItemType<GuideVoodoorang>());
+
                             //despawns upon wof spawn
                             item.TurnToAir();
                             NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item.whoAmI);
-                            byte plr = Player.FindClosest(item.position, item.width, item.height);
-                            Item.NewItem(Main.player[plr].getRect(), ModContent.ItemType<GuideVoodoorang>());
+                            return;
                         }
                     }
                 }

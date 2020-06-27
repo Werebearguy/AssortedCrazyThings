@@ -231,11 +231,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (other.active && other.type == npcTypeOld)
                 {
                     other.active = false;
-                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew, ai2: Main.rand.Next(1, DungeonSoulBase.offsetYPeriod));
+                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew);
                     NPC npcnew = Main.npc[index];
-                    //npcnew.SetDefaults(npcTypeNew);
-                    //Main.npc[index].timeLeft = 3600;
-                    //npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                    npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                    npcnew.timeLeft = 3600;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncNPC, number: index);
+                    }
 
                     //poof visual works only in singleplayer
                     for (int i = 0; i < 15; i++)
