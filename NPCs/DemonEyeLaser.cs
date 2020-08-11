@@ -169,9 +169,12 @@ namespace AssortedCrazyThings.NPCs
 
         public override void PostAI()
         {
+            if (!npc.HasValidTarget) return;
+
             Vector2 npcposition = npc.Center;
-            Vector2 distance = new Vector2(Main.player[npc.target].position.X + (Main.player[npc.target].width / 2) - npcposition.X,
-                                           Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - npcposition.Y);
+            Player player = Main.player[npc.target];
+            Vector2 distance = new Vector2(player.position.X + player.width / 2 - npcposition.X,
+                                           player.position.Y + player.height / 2 - npcposition.Y);
             float rot = npc.rotation;
             if (npc.spriteDirection == 1)
             {
@@ -208,7 +211,7 @@ namespace AssortedCrazyThings.NPCs
                 AiShootTimer = 0f;
                 AiShootCount = 0f;
             }
-            if (canShoot && (AiShootTimer > shootDelay) && Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
+            if (canShoot && (AiShootTimer > shootDelay) && Collision.CanHit(npc.position, npc.width, npc.height, player.position, player.width, player.height))
             {
                 AiShootCount++;
                 AiShootTimer = 0f;
