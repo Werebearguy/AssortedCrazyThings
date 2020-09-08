@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.Base
 {
@@ -103,15 +104,19 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
         {
-            if (AssUtils.AnyNPCs(x => x.modNPC != null && x.modNPC is CuteSlimeBaseNPC)) return 0f;
+            //AssUtils.Print("spawn chance at " + (Main.netMode == NetmodeID.Server ? "Server" : "Client"));
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
+            if (AssUtils.AnyNPCs(x => x.modNPC is CuteSlimeBaseNPC)) spawnChance *= 0.5f;
+            //AssUtils.Print(spawnChance);
             if (AssUtils.AssConfig.CuteSlimesPotionOnly)
             {
                 if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
                 {
                     //if flag active and potion, spawn normally
+                    //AssUtils.Print("potiononly and has potion");
                     return spawnChance * 1.2f;
                 }
+                //AssUtils.Print("potiononly and has no potion");
                 //if flag active and no potion, don't spawn
                 return 0f;
             }
@@ -120,8 +125,10 @@ namespace AssortedCrazyThings.Base
                 if (spawnInfo.player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
                 {
                     //if no flag and potion active, spawn with higher chance
+                    //AssUtils.Print("no potiononly and has potion");
                     return spawnChance * 3 * 1.2f;
                 }
+                //AssUtils.Print("no potiononly and has no potion");
                 //if no flag and no potion, spawn normally
                 return spawnChance;
             }
