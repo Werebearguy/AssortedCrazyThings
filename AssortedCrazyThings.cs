@@ -280,6 +280,8 @@ namespace AssortedCrazyThings
 
             EverhallowedLantern.Load();
 
+            SlimePets.PostSetup();
+
             AddToSoulBuffBlacklist();
 
             PetEaterofWorldsBase.wormTypes = new int[]

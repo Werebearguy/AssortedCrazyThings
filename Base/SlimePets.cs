@@ -31,6 +31,11 @@ namespace AssortedCrazyThings.Base
         public static List<List<string>> slimePetNPCsEnumToNames;
 
         /// <summary>
+        /// To increase cute slime spawns when mods are present and its used with Jellied Ale
+        /// </summary>
+        public static float spawnIncreaseBasedOnOtherModNPCs = 0f;
+
+        /// <summary>
         /// Used in CuteSlimeSpawnEnableBuff.ModifyTooltips
         /// Since SpawnCondition is unresponsive, implement the conditions manually
         /// </summary>
@@ -114,7 +119,7 @@ namespace AssortedCrazyThings.Base
                 {
                     //if flag active and potion, spawn normally
                     //AssUtils.Print("potiononly and has potion");
-                    return spawnChance * 1.2f;
+                    return spawnChance * 1.2f * (1f + spawnIncreaseBasedOnOtherModNPCs);
                 }
                 //AssUtils.Print("potiononly and has no potion");
                 //if flag active and no potion, don't spawn
@@ -126,7 +131,7 @@ namespace AssortedCrazyThings.Base
                 {
                     //if no flag and potion active, spawn with higher chance
                     //AssUtils.Print("no potiononly and has potion");
-                    return spawnChance * 3 * 1.2f;
+                    return spawnChance * 3 * 1.2f * (1f + spawnIncreaseBasedOnOtherModNPCs);
                 }
                 //AssUtils.Print("no potiononly and has no potion");
                 //if no flag and no potion, spawn normally
@@ -299,6 +304,25 @@ namespace AssortedCrazyThings.Base
             CreateMap();
         }
 
+        public static void PostSetup()
+        {
+            int actcount = 0;
+            short vanillaCount = NPCID.Count;
+            int moddedCount = NPCLoader.NPCCount;
+            for (int i = vanillaCount; i < moddedCount; i++)
+            {
+                var npc = NPCLoader.GetNPC(i);
+                if (npc.mod == AssUtils.Instance)
+                {
+                    actcount++;
+                }
+            }
+
+            int diff = moddedCount - vanillaCount - actcount;
+
+            spawnIncreaseBasedOnOtherModNPCs = diff / (float)vanillaCount;
+        }
+
         /// <summary>
         /// Called in Mod.Unload
         /// </summary>
@@ -307,6 +331,7 @@ namespace AssortedCrazyThings.Base
             slimePets = null;
             slimePetList = null;
             slimePetNPCsEnumToNames = null;
+            spawnIncreaseBasedOnOtherModNPCs = 0f;
         }
 
         /// <summary>
