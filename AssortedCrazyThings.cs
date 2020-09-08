@@ -2,9 +2,11 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using AssortedCrazyThings.Items.Placeable;
+using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
@@ -301,7 +303,52 @@ namespace AssortedCrazyThings
             if (bossChecklist != null)
             {
                 //5.1f means just after skeletron
-                bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ModContent.ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+                if (bossChecklist.Version >= new Version(1, 0))
+                {
+                    /*
+                     * "AddMiniBoss",
+                     * float progression,
+                     * int/List<int> miniBossNPCIDs,
+                     * Mod mod,
+                     * string minibossName,
+                     * Func<bool> downedMiniBoss,
+                     * int/List<int> SpawnItemIDs,
+                     * int/List<int> CollectionItemIDs,
+                     * int/List<int> LootItemIDs,
+                     * [string spawnInfo],
+                     * [string despawnMessage],
+                     * [string texture],
+                     * [string overrideHeadIconTexture],
+                     * [Func<bool> miniBossAvailable]
+                     */
+
+                    int summonItem = ModContent.ItemType<IdolOfDecay>();
+                    bossChecklist.Call(
+                        "AddMiniBoss",
+                        5.1f,
+                        ModContent.NPCType<Harvester>(),
+                        this,
+                        Harvester.name,
+                        (Func<bool>)(() => AssWorld.downedHarvester),
+                        summonItem,
+                        ModContent.ItemType<SoulHarvesterMask>(),
+                        new List<int>
+                        {
+                            summonItem,
+                            ModContent.ItemType<CaughtDungeonSoulFreed>(),
+                            ModContent.ItemType<SigilOfRetreat>(),
+                            ModContent.ItemType<SigilOfEmergency>(),
+                            ModContent.ItemType<SigilOfPainSuppression>(),
+                        },
+                        $"Use a [i:{summonItem}] in the dungeon after Skeletron has been defeated",
+                        null,
+                        $"{this.Name}/NPCs/DungeonBird/HarvesterPreview"
+                    );
+                }
+                else
+                {
+                    bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ModContent.ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
+                }
             }
 
             Mod summonersAssociation = ModLoader.GetMod("SummonersAssociation");
