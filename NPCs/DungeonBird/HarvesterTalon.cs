@@ -173,11 +173,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
+        public override bool CheckDead()
+        {
+            npc.boss = false; //To get rid of the default death message
+            return base.CheckDead();
+        }
+
         public override void AI()
         {
             if (AssWorld.harvesterIndex < 0)
             {
-                npc.boss = false;
                 npc.StrikeNPCNoInteraction(9999, 0f, 0);
                 npc.netUpdate = true;
             }
