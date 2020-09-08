@@ -16,10 +16,7 @@ namespace AssortedCrazyThings.Tiles
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
-            Main.tileTable[Type] = true;
-            Main.tileContainer[Type] = true;
             Main.tileLavaDeath[Type] = true;
-            //TileID.Sets.HasOutlines[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.Origin = new Point16(1, 1);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
@@ -34,7 +31,6 @@ namespace AssortedCrazyThings.Tiles
             AddMapEntry(new Color(200, 200, 200), name);
             dustType = 11;
             disableSmartCursor = true;
-            adjTiles = new int[] { TileID.Dressers };
         }
 
         private void MouseOverCombined(bool close)
