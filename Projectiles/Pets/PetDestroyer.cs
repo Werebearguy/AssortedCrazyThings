@@ -195,7 +195,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             AssAI.ZephyrfishAI(projectile, parent: parent, velocityFactor: 1f, random: false, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
 
-            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 500f);
+            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 500);
 
             if (Main.myPlayer == projectile.owner)
             {

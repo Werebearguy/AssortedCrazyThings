@@ -119,7 +119,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 if (Main.myPlayer == projectile.owner)
                 {
-                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 600f);
+                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 600);
                     if (targetIndex != -1 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
                     {
                         if (Counter == AttackDelay) Counter += AttackDelay;

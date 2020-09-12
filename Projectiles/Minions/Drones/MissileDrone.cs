@@ -150,7 +150,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 if (Counter > AttackDelay)
                 {
                     Counter = 0;
-                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 900, useSlowLOS: true);
+                    int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900);
                     if (targetIndex != -1)
                     {
                         Vector2 aboveCheck = new Vector2(0, -16 * 8);
@@ -180,7 +180,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             if (AI_STATE == STATE_FIRING)
             {
-                int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900, useSlowLOS: true);
+                int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 900);
 
                 if (targetIndex != -1)
                 {

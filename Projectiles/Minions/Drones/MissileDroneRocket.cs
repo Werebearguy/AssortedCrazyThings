@@ -195,7 +195,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 int targetIndex;
                 if (projectile.ai[0] > 60)
                 {
-                    targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1200f, ignoreTiles: true);
+                    targetIndex = AssAI.FindTarget(projectile, projectile.Center, 1200, ignoreTiles: true);
                     if (targetIndex != -1)
                     {
                         if (FirstTarget == -1) FirstTarget = targetIndex;

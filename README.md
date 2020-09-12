@@ -9,7 +9,6 @@ Small sample of the contents:
 ![Sample](https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/sample.png)
 
 Credits for code:
- * Itorius for *CheckLineOfSight*
  * IDGCaptainRussia for *DrawTether*
  * Muzuwi for *CircleUI*
  * jopojelly for *PremultiplyTexture*

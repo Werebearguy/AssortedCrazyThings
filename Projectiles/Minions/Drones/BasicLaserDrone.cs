@@ -148,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //Main.NewText("Counter: " + Counter);
 
             #region Handle State
-            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, range: 1000, ignoreTiles: true);
+            int targetIndex = AssAI.FindTarget(projectile, projectile.Center, 1000, ignoreTiles: true);
             if (targetIndex != -1)
             {
                 if (AI_STATE == STATE_IDLE) AI_STATE = STATE_TARGET_FOUND;
@@ -302,7 +302,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     float between = Vector2.Distance(npc.Center, projectile.Center);
                     if (((between < range &&
                         Vector2.Distance(player.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-                        projectile.Bottom.Y < npc.Top.Y + 40 && AssAI.CheckLineOfSight(projectile.Center, npc.Center))
+                        projectile.Bottom.Y < npc.Top.Y + 40 && Collision.CanHitLine(projectile.Center, 1, 1, npc.position, npc.width, npc.height))
                     {
                         distanceFromTarget = between;
                         targetCenter = npc.Center;
