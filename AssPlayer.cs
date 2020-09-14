@@ -788,6 +788,7 @@ namespace AssortedCrazyThings
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
+            Player drawPlayer = drawInfo.drawPlayer;
             if (!drawEffectsCalledOnce)
             {
                 drawEffectsCalledOnce = true;
@@ -801,6 +802,7 @@ namespace AssortedCrazyThings
             //Other code
 
             if (!PlayerLayer.MiscEffectsBack.visible) return;
+
             if (shieldDroneReduction > 0)
             {
                 Color outer = Color.White;
@@ -815,12 +817,12 @@ namespace AssortedCrazyThings
 
                 outer *= shieldDroneLerpVisual;
                 inner *= shieldDroneLerpVisual;
-                Lighting.AddLight(player.Center, inner.ToVector3());
+                Lighting.AddLight(drawPlayer.Center, inner.ToVector3());
 
-                float alpha = (255 - player.immuneAlpha) / 255f;
+                float alpha = (255 - drawPlayer.immuneAlpha) / 255f;
                 outer *= alpha;
                 inner *= alpha;
-                Effect shader = ShaderManager.SetupCircleEffect(new Vector2((int)player.Center.X, (int)player.Center.Y + player.gfxOffY), 2 * 16, outer, inner);
+                Effect shader = ShaderManager.SetupCircleEffect(new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY), 2 * 16, outer, inner);
 
                 ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
             }
@@ -919,13 +921,17 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
+            if (Main.netMode != NetmodeID.Server)
             {
                 if (drawEffectsCalledOnce)
                 {
                     drawEffectsCalledOnce = false;
                 }
-                if (player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
+
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    if (player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
+                }
             }
 
             SpawnSoulsWhenHarvesterIsAlive();

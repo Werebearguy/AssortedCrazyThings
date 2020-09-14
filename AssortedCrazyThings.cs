@@ -795,6 +795,7 @@ namespace AssortedCrazyThings
                     break;
                 case AssMessageType.ClientChangesVanity:
                     //client and server
+                    //getmodplayer error
                     playerNumber = reader.ReadByte();
                     petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
                     changes = reader.ReadByte();
@@ -817,6 +818,7 @@ namespace AssortedCrazyThings
                     break;
                 case AssMessageType.ClientChangesAssPlayer:
                     //client and server
+                    //getmodplayer error
                     playerNumber = reader.ReadByte();
                     aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
                     aPlayer.shieldDroneReduction = reader.ReadByte();
@@ -886,7 +888,7 @@ namespace AssortedCrazyThings
                                 DungeonSoulBase.KillInstantly(other);
                                 if (k < Main.maxNPCs)
                                 {
-                                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, k);
+                                    NetMessage.SendData(MessageID.SyncNPC, number: k);
                                 }
                                 break;
                             }
