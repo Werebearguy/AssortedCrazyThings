@@ -140,7 +140,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     npc.frame.Y += frameHeight;
                     npc.frameCounter = 0;
-                    if (npc.frame.Y > 3 * frameHeight)
+                    if (npc.frame.Y >= Main.npcFrameCount[npc.type] * frameHeight)
                     {
                         npc.frame.Y = 0;
                     }
