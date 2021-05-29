@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -104,10 +104,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreAddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            Recipe recipe = CreateRecipe(1);
             recipe.AddIngredient(ModContent.ItemType<PetAccessorySwallowedKey>());
-            recipe.SetResult(ItemID.GoldenKey);
-            recipe.AddRecipe();
+            recipe.ReplaceResult(ItemID.GoldenKey);
+            recipe.Register();
         }
     }
 
@@ -298,7 +298,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             if (id == 0) throw new Exception("Invalid ID '0', start with 1");
             ID = id;
             Name = "PetAccessory" + name;
-            Type = AssUtils.Instance.ItemType(Name);
+            Type = AssUtils.Instance.Find<ModItem>(Name).Type;
             if (Type == 0) throw new Exception("Item called '" + Name + "' doesn't exist, are you sure you spelled it correctly?");
             Color = 0;
 
@@ -321,7 +321,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             AltTextures = new List<Texture2D>(AltTextureSuffixes.Count);
             for (int i = 0; i < AltTextureSuffixes.Count; i++)
             {
-                AltTextures.Add(AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]));
+                AltTextures.Add(AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
             }
 
             //fill list with zeroes
@@ -349,7 +349,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public PetAccessory AddPetVariation(string petName, sbyte number)
         {
-            int type = AssUtils.Instance.ProjectileType("CuteSlime" + petName + "NewProj");
+            int type = AssUtils.Instance.Find<ModProjectile>("CuteSlime" + petName + "NewProj").Type;
             if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("Slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
             PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
             return this;
@@ -606,16 +606,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
     {
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 30;
-            item.maxStack = 1;
-            item.rare = -11;
-            item.useAnimation = 16;
-            item.useTime = 16;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item1;
-            item.consumable = false;
-            item.value = Item.sellPrice(silver: 30);
+            Item.width = 28;
+            Item.height = 30;
+            Item.maxStack = 1;
+            Item.rare = -11;
+            Item.useAnimation = 16;
+            Item.useTime = 16;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item1;
+            Item.consumable = false;
+            Item.value = Item.sellPrice(silver: 30);
         }
 
         private string Enum2string(SlotType e)
@@ -638,9 +638,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (PetAccessory.IsItemAPetVanity(item.type))
+            if (PetAccessory.IsItemAPetVanity(Item.type))
             {
-                tooltips.Add(new TooltipLine(mod, "Slot", Enum2string(PetAccessory.GetAccessoryFromType(item.type).Slot)));
+                tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(PetAccessory.GetAccessoryFromType(Item.type).Slot)));
 
                 PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
@@ -650,15 +650,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 {
                     if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
                     {
-                        if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)PetAccessory.GetAccessoryFromType(item.type).Slot])
+                        if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)PetAccessory.GetAccessoryFromType(Item.type).Slot])
                         {
-                            tooltips.Add(new TooltipLine(mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+                            tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                         }
                     }
                 }
-                else if (Main.LocalPlayer.HasItem(item.type))
+                else if (Main.LocalPlayer.HasItem(Item.type))
                 {
-                    tooltips.Add(new TooltipLine(mod, "NoUse", "You have no summoned slime to equip this on")
+                    tooltips.Add(new TooltipLine(Mod, "NoUse", "You have no summoned slime to equip this on")
                     {
                         overrideColor = Color.OrangeRed
                     });
@@ -666,7 +666,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
             else
             {
-                tooltips.Add(new TooltipLine(mod, "Disabled", "This accessory type is not registered for use by the devs"));
+                tooltips.Add(new TooltipLine(Mod, "Disabled", "This accessory type is not registered for use by the devs"));
             }
         }
 
@@ -674,16 +674,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public sealed override void AddRecipes()
         {
-            if (UseDefaultRecipe)
-            {
-                ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(ModContent.ItemType<KnittingSet>());
-                recipe.AddTile(TileID.Loom);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-            }
-
-            MoreAddRecipes();
         }
 
         protected virtual void MoreAddRecipes()
@@ -699,7 +689,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override bool CanUseItem(Player player)
         {
             //item not registered
-            if (!PetAccessory.IsItemAPetVanity(item.type)) return false;
+            if (!PetAccessory.IsItemAPetVanity(Item.type)) return false;
 
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
             //no valid slime pet found
@@ -711,7 +701,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
             //if a left click and no alts, enable usage
-            else if (!PetAccessory.GetAccessoryFromType(item.type).HasAlts) return true;
+            else if (!PetAccessory.GetAccessoryFromType(Item.type).HasAlts) return true;
             //else disable (if it has alts when left clicked)
             return false;
         }
@@ -729,12 +719,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     {
                         if (Main.projectile[i].active)
                         {
-                            if (Main.projectile[i].modProjectile != null)
+                            if (Main.projectile[i].ModProjectile != null)
                             {
                                 if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
                                     Main.projectile[i].owner == Main.myPlayer)
                                 {
-                                    mod.Logger.Debug("Had to change index of slime pet of " + player.name + " because it was -1");
+                                    Mod.Logger.Debug("Had to change index of slime pet of " + player.name + " because it was -1");
                                     pPlayer.slimePetIndex = i;
                                     return true;
                                 }
@@ -743,7 +733,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     }
                 }
 
-                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(item.type);
+                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Item.type);
 
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use

@@ -46,11 +46,11 @@ public override string Texture
 //using Microsoft.Xna.Framework;
 //using Microsoft.Xna.Framework.Graphics;
 //using AssortecCrazyThings.Base;
-public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+public override bool PreDraw(ref Color lightColor)
 {
     PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
     SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-    Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType);
+    Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType).Value;
     Rectangle bounds = new Rectangle
     {
         X = 0,
@@ -62,7 +62,7 @@ public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 
     Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
 
-    spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+    Main.spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
 
     return false;
 }

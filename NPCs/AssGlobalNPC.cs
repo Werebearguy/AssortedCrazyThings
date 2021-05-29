@@ -10,6 +10,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -31,7 +32,7 @@ namespace AssortedCrazyThings.NPCs
             shouldSoulDrop = false;
         }
 
-        public override void NPCLoot(NPC npc)
+        public override void OnKill(NPC npc)
         {
             //Other pets
 
@@ -187,7 +188,7 @@ namespace AssortedCrazyThings.NPCs
             //npc.HitEffect();
             npc.active = false;
             npc.netUpdate = true;
-            Main.PlaySound(SoundID.NPCDeath16, npc.position); // plays a fizzle sound
+            SoundEngine.PlaySound(SoundID.NPCDeath16, npc.position); // plays a fizzle sound
         }
 
         private bool SlowDown(ref NPC npc)
@@ -310,7 +311,7 @@ namespace AssortedCrazyThings.NPCs
                     if (!sentWyvernPacket && Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         sentWyvernPacket = true;
-                        ModPacket packet = mod.GetPacket();
+                        ModPacket packet = Mod.GetPacket();
                         packet.Write((byte)AssMessageType.WyvernCampfireKill);
                         packet.Write(npc.whoAmI);
                         packet.Send();

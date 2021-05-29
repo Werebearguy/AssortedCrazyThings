@@ -10,26 +10,26 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Baby Crimera");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
+            Projectile.CloneDefaults(ProjectileID.BabyEater);
+            AIType = ProjectileID.BabyEater;
         }
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
-            player.eater = false; // Relic from aiType
+            Player player = Projectile.GetOwner();
+            player.eater = false; // Relic from AIType
             return true;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -37,9 +37,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.BabyCrimera)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
     }
 }

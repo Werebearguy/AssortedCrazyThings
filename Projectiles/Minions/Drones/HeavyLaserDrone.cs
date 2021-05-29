@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +7,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -40,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                Vector2 position = projectile.Bottom;
+                Vector2 position = Projectile.Bottom;
                 position.Y += sinY;
                 return position;
             }
@@ -49,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         #region overlay
         private int ChargeTimer = 0;
 
-        private bool CanOverlay => ChargeTimer >= AnimationDuration && (projectile.frame == 3 || projectile.frame == 7);
+        private bool CanOverlay => ChargeTimer >= AnimationDuration && (Projectile.frame == 3 || Projectile.frame == 7);
 
         private float OverlayOpacity => (ChargeTimer - AnimationDuration) / (float)byte.MaxValue;
 
@@ -71,20 +72,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Heavy Laser Drone");
-            Main.projFrames[projectile.type] = 8;
-            Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 8;
+            Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.DD2PetGhost);
-            projectile.aiStyle = -1;
-            projectile.width = 38;
-            projectile.height = 30;
-            projectile.alpha = 0;
-            projectile.minion = true;
-            projectile.minionSlots = 1f;
+            Projectile.CloneDefaults(ProjectileID.DD2PetGhost);
+            Projectile.aiStyle = -1;
+            Projectile.width = 38;
+            Projectile.height = 30;
+            Projectile.alpha = 0;
+            Projectile.DamageType = DamageClass.Summon;
+            Projectile.minion = true;
+            Projectile.minionSlots = 1f;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -109,54 +111,54 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             {
                 if (ChargeTimer < AnimationDuration)
                 {
-                    projectile.frame = ChargeTimer / AnimationFrameTime;
+                    Projectile.frame = ChargeTimer / AnimationFrameTime;
                 }
                 else
                 {
-                    projectile.frame = 3;
+                    Projectile.frame = 3;
                 }
             }
             else
             {
                 if (ChargeTimer <= 0)
                 {
-                    projectile.frame = 0;
+                    Projectile.frame = 0;
                 }
                 else if (ChargeTimer < AnimationDuration)
                 {
-                    projectile.frame = 4 + ChargeTimer / AnimationFrameTime;
+                    Projectile.frame = 4 + ChargeTimer / AnimationFrameTime;
                 }
                 else
                 {
-                    projectile.frame = 7;
+                    Projectile.frame = 7;
                 }
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D image = Main.projectileTexture[projectile.type];
+            Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
+            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
+            bounds.Y = Projectile.frame * bounds.Height;
 
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 8f) + sinY);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, (Projectile.height - 8f) + sinY);
+            Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            image = mod.GetTexture(nameGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            image = Mod.GetTexture(nameGlow).Value;
+            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             if (CanOverlay)
             {
-                image = mod.GetTexture(nameOverlay);
-                spriteBatch.Draw(image, drawPos, image.Bounds, Color.White * OverlayOpacity, projectile.rotation, drawOrigin, 1f, effects, 0f);
+                image = Mod.GetTexture(nameOverlay).Value;
+                Main.spriteBatch.Draw(image, drawPos, image.Bounds, Color.White * OverlayOpacity, Projectile.rotation, drawOrigin, 1f, effects, 0f);
             }
 
             return false;
@@ -179,7 +181,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             {
                 //offset x = 30 when facing right
                 offsetX = Direction == 1 ? -80 : 20;
-                offsetX += Math.Sign(offsetX) * PosInCharge * projectile.width * 1.5f;
+                offsetX += Math.Sign(offsetX) * PosInCharge * Projectile.width * 1.5f;
                 offsetY = 10;
                 veloSpeed = 0.5f;
             }
@@ -188,7 +190,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 //150 to 50 is smooth, distance
                 Vector2 pos = new Vector2(offsetX, offsetY) - new Vector2(-30, 20);
                 //veloSpeed = (float)Math.Pow((double)Counter / AttackCooldown, 2) + 0.05f;
-                Vector2 distanceToTargetVector = (pos + projectile.GetOwner().Center) - projectile.Center;
+                Vector2 distanceToTargetVector = (pos + Projectile.GetOwner().Center) - Projectile.Center;
                 float distanceToTarget = distanceToTargetVector.Length();
                 if (Counter == 0) InitialDistance = distanceToTarget;
                 //Main.NewText("proper: " + distanceToTargetVector.Length());
@@ -197,8 +199,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 distanceToTargetVector *= magnitude;
                 //-(Counter - AttackCooldown / 5) -> goes from 36 to 0
                 float accel = Utils.Clamp(-(Counter - 36), 4, 20);
-                projectile.velocity = (projectile.velocity * (accel - 1) + distanceToTargetVector) / accel;
-                projectile.rotation = projectile.velocity.X * 0.05f;
+                Projectile.velocity = (Projectile.velocity * (accel - 1) + distanceToTargetVector) / accel;
+                Projectile.rotation = Projectile.velocity.X * 0.05f;
                 return false;
             }
             return true;
@@ -229,7 +231,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     Counter = 0;
                     //Main.NewText("Change from cooldown to idle");
                     AI_STATE = STATE_IDLE;
-                    if (RealOwner) projectile.netUpdate = true;
+                    if (RealOwner) Projectile.netUpdate = true;
                 }
                 //else stay in cooldown and wait for counter to reach 
             }
@@ -244,7 +246,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         PosInCharge = (byte)GetChargePosition();
                         //Main.NewText("Change from idle to charge");
                         AI_STATE = STATE_CHARGE;
-                        if (RealOwner) projectile.netUpdate = true;
+                        if (RealOwner) Projectile.netUpdate = true;
                     }
                     //else stay in idle until target found
                 }
@@ -265,7 +267,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             {
                 int targetIndex = FindClosestHorizontalTarget();
 
-                projectile.spriteDirection = projectile.direction = -Direction;
+                Projectile.spriteDirection = Projectile.direction = -Direction;
 
                 if (Counter <= ChargeDelay)
                 {
@@ -275,19 +277,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                         //Counter = 0;
                         //Main.NewText("Change from charge to idle cuz no target");
                         AI_STATE = STATE_IDLE;
-                        projectile.netUpdate = true;
+                        Projectile.netUpdate = true;
                     }
 
                     float ratio = Counter / (float)ChargeDelay;
                     float otherRatio = 1f - ratio;
 
                     //make sound
-                    if (projectile.soundDelay <= 0)
+                    if (Projectile.soundDelay <= 0)
                     {
-                        projectile.soundDelay = 20;
+                        Projectile.soundDelay = 20;
                         float volume = FixVolume(0.7f + ratio * 0.5f);
                         float pitch = -0.1f + ratio * 0.4f;
-                        Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item15.Style, volume, pitch);
+                        SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.Item15.Style, volume, pitch);
                         //Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
                         //Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
                     }
@@ -319,18 +321,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                             Vector2 velocity = Main.npc[targetIndex].Center - BarrelPos;
                             velocity.Normalize();
                             velocity *= 10f;
-                            projectile.velocity += -velocity * 0.75f; //recoil
-                            Projectile.NewProjectile(BarrelPos, velocity, ModContent.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
+                            Projectile.velocity += -velocity * 0.75f; //recoil
+                            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), BarrelPos, velocity, ModContent.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
 
                             AI_STATE = STATE_RECOIL;
                             ChargeTimer = byte.MaxValue;
-                            projectile.netUpdate = true;
+                            Projectile.netUpdate = true;
                         }
                         if (targetIndex == -1)
                         {
                             //Main.NewText("Change from charge to idle");
                             AI_STATE = STATE_IDLE;
-                            projectile.netUpdate = true;
+                            Projectile.netUpdate = true;
                         }
                     }
                 }
@@ -346,7 +348,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 if (CanOverlay && Main.rand.NextFloat() < OverlayOpacity * 0.5f)
                 {
-                    Gore gore = Gore.NewGorePerfect(BarrelPos + new Vector2(Direction == 1 ? -8f : -projectile.width - 4f, Direction == 1 ? -14f : -16f), Vector2.Zero, Main.rand.Next(61, 64));
+                    Gore gore = Gore.NewGorePerfect(BarrelPos + new Vector2(Direction == 1 ? -8f : -Projectile.width - 4f, Direction == 1 ? -14f : -16f), Vector2.Zero, Main.rand.Next(61, 64));
                     gore.position.X += Main.rand.NextFloat(8);
                     gore.scale *= 0.18f;
                     gore.velocity *= 0.6f;
@@ -358,7 +360,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 if (overheatSound == null && !playedOverheatSound)
                 {
                     float volume = FixVolume(1.5f);
-                    overheatSound = Main.PlaySound(SoundID.Trackable, (int)projectile.position.X, (int)projectile.position.Y, 224, volume, 0.1f);
+                    overheatSound = SoundEngine.PlaySound(SoundID.Trackable, (int)Projectile.position.X, (int)Projectile.position.Y, 224, volume, 0.1f);
                     playedOverheatSound = true;
                 }
             }
@@ -392,7 +394,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         private int FindClosestHorizontalTarget()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             int targetIndex = -1;
             float distanceFromTarget = 100000f;
             Vector2 targetCenter = player.Center;
@@ -401,7 +403,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             for (int k = 0; k < Main.maxNPCs; k++)
             {
                 NPC npc = Main.npc[k];
-                if (npc.CanBeChasedBy(projectile))
+                if (npc.CanBeChasedBy(Projectile))
                 {
                     float between = Vector2.Distance(npc.Center, player.Center);
                     if (((between < range &&
@@ -430,9 +432,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile proj = Main.projectile[i];
-                if (proj.active && proj.owner == projectile.owner && proj.type == projectile.type)
+                if (proj.active && proj.owner == Projectile.owner && proj.type == Projectile.type)
                 {
-                    HeavyLaserDrone h = (HeavyLaserDrone)proj.modProjectile;
+                    HeavyLaserDrone h = (HeavyLaserDrone)proj.ModProjectile;
                     if (h.AI_STATE == STATE_CHARGE)
                     {
                         byte projPos = h.PosInCharge;

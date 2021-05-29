@@ -14,22 +14,17 @@ namespace AssortedCrazyThings.Items.VanityArmor
         public override void SetDefaults()
         {
             //item.CloneDefaults(ItemID.BallaHat);
-            item.width = 26;
-            item.height = 26;
-            item.rare = -11;
-            item.value = 0;
-            item.vanity = true;
-            item.maxStack = 1;
+            Item.width = 26;
+            Item.height = 26;
+            Item.rare = -11;
+            Item.value = 0;
+            Item.vanity = true;
+            Item.maxStack = 1;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Silk, 50);
-            recipe.AddIngredient(ItemID.Feather, 1);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Silk, 50).AddIngredient(ItemID.Feather, 1).AddTile(TileID.Loom).Register();
         }
     }
 }

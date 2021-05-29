@@ -23,8 +23,8 @@ namespace AssortedCrazyThings.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Statue");
             AddMapEntry(new Color(144, 148, 144), name);
-            dustType = 11;
-            disableSmartCursor = true;
+            DustType = 11;
+            //DisableSmartCursor = true;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

@@ -9,24 +9,24 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sharkron Pup");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Piranha];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Piranha];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 54;
-            npc.height = 26;
-            npc.damage = 85;
-            npc.defense = 50;
-            npc.lifeMax = 50;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 1f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Piranha;
-            animationType = NPCID.Piranha;
-            npc.noGravity = true;
+            NPC.width = 54;
+            NPC.height = 26;
+            NPC.damage = 85;
+            NPC.defense = 50;
+            NPC.lifeMax = 50;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 1f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Piranha;
+            AnimationType = NPCID.Piranha;
+            NPC.noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -35,20 +35,20 @@ namespace AssortedCrazyThings.NPCs
             SpawnCondition.Ocean.Chance * 0.005f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(2))
-                Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
+                Item.NewItem(NPC.getRect(), ItemID.SharkFin, 1);
             if (Main.rand.NextBool(98))
-                Item.NewItem(npc.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BlueSharkronPupGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BlueSharkronPupGore_1"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/BlueSharkronPupGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/BlueSharkronPupGore_1").Type, 1f);
             }
         }
     }

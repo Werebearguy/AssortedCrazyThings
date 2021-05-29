@@ -12,28 +12,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Observing Eye");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            aiType = ProjectileID.ZephyrFish;
-            projectile.width = 30;
-            projectile.height = 48;
+            Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            AIType = ProjectileID.ZephyrFish;
+            Projectile.width = 30;
+            Projectile.height = 48;
         }
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
-            player.zephyrfish = false; // Relic from aiType
+            Player player = Projectile.GetOwner();
+            player.zephyrfish = false; // Relic from AIType
             return true;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -41,18 +41,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.ObservingEye)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
 
         public override void PostAI()
         {
-            if (projectile.frame > 1) projectile.frame = 0;
+            if (Projectile.frame > 1) Projectile.frame = 0;
 
-            Vector2 between = projectile.Center - projectile.GetOwner().Center;
-            projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
-            projectile.spriteDirection = projectile.direction = -(between.X < 0).ToDirectionInt();
+            Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
+            Projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
         }
     }
 }

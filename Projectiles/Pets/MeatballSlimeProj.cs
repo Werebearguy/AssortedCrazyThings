@@ -9,32 +9,32 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("MeatballSlimeProj");
-            Main.projFrames[projectile.type] = 6;
-            Main.projPet[projectile.type] = true;
-            drawOffsetX = -6;
-            drawOriginOffsetY = -4;
+            Main.projFrames[Projectile.type] = 6;
+            Main.projPet[Projectile.type] = true;
+            DrawOffsetX = -6;
+            DrawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 34;
-            projectile.height = 30;
-            projectile.alpha = 0;
+            Projectile.width = 34;
+            Projectile.height = 30;
+            Projectile.alpha = 0;
 
-            projectile.minion = false;
+            Projectile.minion = false;
         }
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            if (projectile.GetOwner().dead)
+            PetPlayer modPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            if (Projectile.GetOwner().dead)
             {
                 modPlayer.MeatballSlime = false;
             }
             if (modPlayer.MeatballSlime)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
             return true;
         }

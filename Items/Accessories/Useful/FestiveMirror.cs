@@ -14,11 +14,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 26;
-            item.height = 32;
-            item.value = Item.sellPrice(gold: 3);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 26;
+            Item.height = 32;
+            Item.value = Item.sellPrice(gold: 3);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -30,12 +30,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HandWarmer, 1);
-            recipe.AddIngredient(ItemID.PocketMirror, 1);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.HandWarmer, 1).AddIngredient(ItemID.PocketMirror, 1).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

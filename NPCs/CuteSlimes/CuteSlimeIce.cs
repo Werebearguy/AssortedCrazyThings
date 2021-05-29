@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
@@ -16,7 +17,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return mod.ItemType("CuteSlimeIceNew");
+                return Mod.Find<ModItem>("CuteSlimeIceNew").Type;
             }
         }
 
@@ -38,7 +39,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void MoreSetDefaults()
         {
-            npc.scale = 0.9f;
+            NPC.scale = 0.9f;
         }
     }
 }

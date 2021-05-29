@@ -15,11 +15,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 22;
-            item.height = 28;
-            item.value = Item.sellPrice(gold: 1);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 22;
+            Item.height = 28;
+            Item.value = Item.sellPrice(gold: 1);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

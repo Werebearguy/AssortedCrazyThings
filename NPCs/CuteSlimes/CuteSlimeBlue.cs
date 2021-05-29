@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
@@ -16,7 +17,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return mod.ItemType("CuteSlimeBlueNew");
+                return Mod.Find<ModItem>("CuteSlimeBlueNew").Type;
             }
         }
 

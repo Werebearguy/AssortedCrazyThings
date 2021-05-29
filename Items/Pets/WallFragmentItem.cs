@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
@@ -14,20 +15,20 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.width = 22;
-            item.height = 26;
-            item.shoot = mod.ProjectileType("WallFragmentProj");
-            item.buffType = mod.BuffType("WallFragmentBuff");
-            item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            Item.CloneDefaults(ItemID.ZephyrFish);
+            Item.width = 22;
+            Item.height = 26;
+            Item.shoot = Mod.Find<ModProjectile>("WallFragmentMouth").Type;
+            Item.buffType = Mod.Find<ModBuff>("WallFragmentBuff").Type;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(copper: 10);
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
     }

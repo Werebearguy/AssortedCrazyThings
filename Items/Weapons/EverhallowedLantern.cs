@@ -1,10 +1,13 @@
-﻿using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -125,7 +128,7 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             List<string> tooltips = new List<string>();
             List<string> toUnlock = new List<string>();
-            List<string> textureNames = new List<string>();
+            List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
             List<bool> unlocked = new List<bool>();
 
             foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
@@ -133,14 +136,14 @@ namespace AssortedCrazyThings.Items.Weapons
                 if (type != SoulType.None)
                 {
                     SoulData data = GetSoulData(type);
-                    textureNames.Add(Main.projectileTexture[data.ProjType].Name);
+                    assets.Add(Terraria.GameContent.TextureAssets.Projectile[data.ProjType]);
                     unlocked.Add(data.Unlocked());
                     tooltips.Add(data.Tooltip);
                     toUnlock.Add(data.ToUnlock);
                 }
             }
 
-            return new CircleUIConf(8, -1, textureNames, unlocked, tooltips, toUnlock);
+            return new CircleUIConf(8, -1, assets, unlocked, tooltips, toUnlock);
         }
 
         /// <summary>
@@ -181,33 +184,33 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //Defaults for damage, shoot and knockback dont matter too much here, only for the first summon
             //default to PostWol
-            item.damage = BaseDmg;
-            item.knockBack = BaseKB;
-            item.summon = true;
-            item.mana = 10;
-            item.width = 26;
-            item.height = 40;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.useStyle = ItemUseStyleID.HoldingUp; //4 for life crystal
-            item.noMelee = true;
-            item.value = Item.sellPrice(0, 0, 95, 0);
-            item.rare = -11;
-            item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>();
-            item.shootSpeed = 10f;
-            item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
+            Item.damage = BaseDmg;
+            Item.knockBack = BaseKB;
+            Item.DamageType = DamageClass.Summon;
+            Item.mana = 10;
+            Item.width = 26;
+            Item.height = 40;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.useStyle = ItemUseStyleID.HoldUp; //4 for life crystal
+            Item.noMelee = true;
+            Item.value = Item.sellPrice(0, 0, 95, 0);
+            Item.rare = -11;
+            Item.UseSound = SoundID.Item44;
+            Item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>();
+            Item.shootSpeed = 10f;
+            Item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             SoulType selected = mPlayer.selectedSoulMinionType;
-            add += GetSoulData(selected).DmgModifier;
+            damage += GetSoulData(selected).DmgModifier;
         }
 
-        public override void GetWeaponKnockback(Player player, ref float knockback)
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -215,7 +218,7 @@ namespace AssortedCrazyThings.Items.Weapons
             knockback *= GetSoulData(selected).KBModifier;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             SoulType selected = mPlayer.selectedSoulMinionType;
@@ -224,7 +227,8 @@ namespace AssortedCrazyThings.Items.Weapons
             Vector2 spawnPos = new Vector2(player.Center.X + player.direction * 8f, player.Bottom.Y - 12f);
             Vector2 spawnVelo = new Vector2(player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f);
 
-            Projectile.NewProjectile(spawnPos, spawnVelo, type, damage, knockBack, Main.myPlayer, 0f, 0f);
+            int index = Projectile.NewProjectile(source, spawnPos, spawnVelo, type, damage, knockback, Main.myPlayer, 0f, 0f);
+            Main.projectile[index].originalDamage = damage;
             return false;
         }
 
@@ -241,7 +245,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             SoulData data = GetSoulData(selected);
 
-            TooltipLine line = new TooltipLine(mod, "dummy", "dummy");
+            TooltipLine line = new TooltipLine(Mod, "dummy", "dummy");
 
             for (int i = 0; i < tooltips.Count; i++)
             {
@@ -276,23 +280,17 @@ namespace AssortedCrazyThings.Items.Weapons
                 }
             }
 
-            if (!(allUnlocked && Main.LocalPlayer.HasItem(item.type)))
+            if (!(allUnlocked && Main.LocalPlayer.HasItem(Item.type)))
             {
-                tooltips.Insert(tooltipIndex++, new TooltipLine(mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
+                tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
             }
 
-            tooltips.Insert(tooltipIndex++, new TooltipLine(mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
+            tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SoulofNight, 5);
-            recipe.AddIngredient(ItemID.SoulofLight, 5);
-            recipe.AddIngredient(ModContent.ItemType<EverglowLantern>(), 1);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.SoulofNight, 5).AddIngredient(ItemID.SoulofLight, 5).AddIngredient(ModContent.ItemType<EverglowLantern>(), 1).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

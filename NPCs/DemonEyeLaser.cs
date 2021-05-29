@@ -26,26 +26,26 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mechanical Laser Eye");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.DemonEye];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
         }
 
         public override void SetDefaults()
         {
-            npc.CloneDefaults(NPCID.DemonEye);
-            npc.width = 32;
-            npc.height = 32;
-            npc.damage = 18;
-            npc.defense = 2;
-            npc.lifeMax = 60;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 2;
-            aiType = NPCID.DemonEye;
-            animationType = NPCID.DemonEye;
-            banner = Item.NPCtoBanner(NPCID.DemonEye);
-            bannerItem = Item.BannerToItem(banner);
+            NPC.CloneDefaults(NPCID.DemonEye);
+            NPC.width = 32;
+            NPC.height = 32;
+            NPC.damage = 18;
+            NPC.defense = 2;
+            NPC.lifeMax = 60;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 2;
+            AIType = NPCID.DemonEye;
+            AnimationType = NPCID.DemonEye;
+            Banner = Item.NPCtoBanner(NPCID.DemonEye);
+            BannerItem = Item.BannerToItem(Banner);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -53,28 +53,28 @@ namespace AssortedCrazyThings.NPCs
             return !NPC.downedMechBoss2 ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.025f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(33))
-                Item.NewItem(npc.getRect(), ItemID.Lens, 1);
+                Item.NewItem(NPC.getRect(), ItemID.Lens, 1);
             if (Main.rand.NextBool(100))
-                Item.NewItem(npc.getRect(), ItemID.BlackLens, 1);
+                Item.NewItem(NPC.getRect(), ItemID.BlackLens, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 switch ((int)AiTexture)
                 {
                     case 0:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeGreenGore_0"), 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyeGreenGore_0").Type, 1f);
                         break;
                     case 1:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyePurpleGore_0"), 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyePurpleGore_0").Type, 1f);
                         break;
                     case 2:
-                        Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DemonEyeRedGore_0"), 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyeRedGore_0").Type, 1f);
                         break;
                     default:
                         break;
@@ -86,22 +86,22 @@ namespace AssortedCrazyThings.NPCs
         {
             get
             {
-                return npc.ai[3];
+                return NPC.ai[3];
             }
             set
             {
-                npc.ai[3] = value;
+                NPC.ai[3] = value;
             }
         }
 
         public override bool PreAI()
         {
-            if (AiTexture == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-                npc.localAI[0] = 1;
-                npc.netUpdate = true;
+                NPC.localAI[0] = 1;
+                NPC.netUpdate = true;
             }
 
             return true;
@@ -109,26 +109,25 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/DemonEyeLaser_" + AiTexture);
+            Texture2D texture = Mod.GetTexture("NPCs/DemonEyeLaser_" + AiTexture).Value;
             Vector2 stupidOffset = new Vector2(-4f, 0f); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
             return false;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/DemonEyeLaser_Glowmask");
+            Texture2D texture = Mod.GetTexture("NPCs/DemonEyeLaser_Glowmask").Value;
 
             Vector2 stupidOffset = new Vector2(-4f, 0f);
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            spriteBatch.Draw(texture, drawPos, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }
-
 
         public Vector2 RotToNormal(float rotation)
         {
@@ -147,11 +146,11 @@ namespace AssortedCrazyThings.NPCs
         {
             get
             {
-                return npc.ai[0];
+                return NPC.ai[0];
             }
             set
             {
-                npc.ai[0] = value;
+                NPC.ai[0] = value;
             }
         }
 
@@ -159,24 +158,26 @@ namespace AssortedCrazyThings.NPCs
         {
             get
             {
-                return npc.ai[1];
+                return NPC.ai[1];
             }
             set
             {
-                npc.ai[1] = value;
+                NPC.ai[1] = value;
             }
         }
 
         public override void PostAI()
         {
-            if (!npc.HasValidTarget) return;
+            if (!NPC.HasValidTarget) return;
 
-            Vector2 npcposition = npc.Center;
-            Player player = Main.player[npc.target];
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
+
+            Vector2 npcposition = NPC.Center;
+            Player player = Main.player[NPC.target];
             Vector2 distance = new Vector2(player.position.X + player.width / 2 - npcposition.X,
                                            player.position.Y + player.height / 2 - npcposition.Y);
-            float rot = npc.rotation;
-            if (npc.spriteDirection == 1)
+            float rot = NPC.rotation;
+            if (NPC.spriteDirection == 1)
             {
                 rot += MathHelper.TwoPi / 2;
             }
@@ -211,7 +212,7 @@ namespace AssortedCrazyThings.NPCs
                 AiShootTimer = 0f;
                 AiShootCount = 0f;
             }
-            if (canShoot && (AiShootTimer > shootDelay) && Collision.CanHit(npc.position, npc.width, npc.height, player.position, player.width, player.height))
+            if (canShoot && (AiShootTimer > shootDelay) && Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
             {
                 AiShootCount++;
                 AiShootTimer = 0f;
@@ -231,7 +232,7 @@ namespace AssortedCrazyThings.NPCs
                 distancey *= distancen;
                 npcposition.X += distancex * 5f;
                 npcposition.Y += distancey * 5f;
-                Projectile.NewProjectile(npcposition.X, npcposition.Y, distancex, distancey, type, damage, 0f, Owner: Main.myPlayer);
+                Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), npcposition.X, npcposition.Y, distancex, distancey, type, damage, 0f, Owner: Main.myPlayer);
             }
         }
     }

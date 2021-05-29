@@ -16,11 +16,11 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.LizardEgg);
-            item.shoot = ModContent.ProjectileType<CuteSlimeGreenNewProj>();
-            item.buffType = ModContent.BuffType<CuteSlimeGreenNewBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
+            Item.CloneDefaults(ItemID.LizardEgg);
+            Item.shoot = ModContent.ProjectileType<CuteSlimeGreenNewProj>();
+            Item.buffType = ModContent.BuffType<CuteSlimeGreenNewBuff>();
+            Item.rare = -11;
+            Item.value = Item.sellPrice(copper: 10);
         }
     }
 }

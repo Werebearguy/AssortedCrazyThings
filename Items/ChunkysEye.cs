@@ -11,11 +11,11 @@ namespace AssortedCrazyThings.Items
         }
         public override void SetDefaults()
         {
-            item.maxStack = 999;
-            item.width = 22;
-            item.height = 22;
-            item.value = 1000;
-            item.rare = -11;
+            Item.maxStack = 999;
+            Item.width = 22;
+            Item.height = 22;
+            Item.value = 1000;
+            Item.rare = -11;
         }
     }
 }

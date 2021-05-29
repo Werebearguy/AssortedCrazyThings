@@ -18,17 +18,17 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.height = 28;
-            item.value = Item.sellPrice(gold: 2, silver: 80);
-            item.rare = -11;
-            item.defense = 14;
+            Item.width = 32;
+            Item.height = 28;
+            Item.value = Item.sellPrice(gold: 2, silver: 80);
+            Item.rare = -11;
+            Item.defense = 14;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.maxMinions++;
-            player.minionDamage += 0.1f;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Items.Armor
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             mPlayer.soulSaviorArmor = true;
 
-            float factor = (player.maxMinions / 10f) * player.minionDamage;
+            float factor = (player.maxMinions / 10f) * player.GetDamage(DamageClass.Summon);
 
             player.thorns = factor;
 
@@ -70,13 +70,7 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1);
-            recipe.AddIngredient(ItemID.Ectoplasm, 3);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 16);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1).AddIngredient(ItemID.Ectoplasm, 3).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 16).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

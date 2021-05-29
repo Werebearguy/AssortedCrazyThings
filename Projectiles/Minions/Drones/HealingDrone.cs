@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -21,11 +21,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return projectile.ai[0];
+                return Projectile.ai[0];
             }
             set
             {
-                projectile.ai[0] = value;
+                Projectile.ai[0] = value;
             }
         }
 
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return projectile.GetOwner().statLife < projectile.GetOwner().statLifeMax2;
+                return Projectile.GetOwner().statLife < Projectile.GetOwner().statLifeMax2;
             }
         }
 
@@ -48,64 +48,64 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Healing Drone");
-            Main.projFrames[projectile.type] = 3;
-            Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 3;
+            Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.DD2PetGhost);
-            projectile.aiStyle = -1;
-            projectile.width = 38;
-            projectile.height = 30;
-            projectile.alpha = 0;
-            projectile.minion = true;
-            projectile.minionSlots = 1f;
+            Projectile.CloneDefaults(ProjectileID.DD2PetGhost);
+            Projectile.aiStyle = -1;
+            Projectile.width = 38;
+            Projectile.height = 30;
+            Projectile.alpha = 0;
+            Projectile.minion = true;
+            Projectile.minionSlots = 1f;
         }
 
         protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
 
-            Vector2 lightPos = projectile.position + new Vector2(projectile.spriteDirection == 1 ? 0f : projectile.width, projectile.height / 2);
+            Vector2 lightPos = Projectile.position + new Vector2(Projectile.spriteDirection == 1 ? 0f : Projectile.width, Projectile.height / 2);
 
             if (player.statLife < player.statLifeMax2 / 2)
             {
                 Lighting.AddLight(lightPos, new Vector3(153 / 700f, 63 / 700f, 66 / 700f));
-                projectile.frame = 2;
+                Projectile.frame = 2;
             }
             else if (CanHeal)
             {
                 Lighting.AddLight(lightPos, new Vector3(240 / 700f, 198 / 700f, 0f));
-                projectile.frame = 1;
+                Projectile.frame = 1;
             }
             else
             {
                 Lighting.AddLight(lightPos, new Vector3(124 / 700f, 251 / 700f, 34 / 700f));
-                projectile.frame = 0;
+                Projectile.frame = 0;
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D image = Main.projectileTexture[projectile.type];
+            Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
+            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
+            bounds.Y = Projectile.frame * bounds.Height;
 
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height - 8f + sinY);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 8f + sinY);
+            Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
 
-            image = mod.GetTexture(nameGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            image = Mod.GetTexture(nameGlow).Value;
+            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             Vector2 rotationOffset = new Vector2(0f, -2f); //-2f)
             drawPos += rotationOffset;
@@ -116,11 +116,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
 
             //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-            image = mod.GetTexture(nameLower);
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
+            image = Mod.GetTexture(nameLower).Value;
+            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
 
-            image = mod.GetTexture(nameLowerGlow);
-            spriteBatch.Draw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0f);
+            image = Mod.GetTexture(nameLowerGlow).Value;
+            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0f);
 
             return false;
         }
@@ -132,18 +132,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
         {
-            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: CanHeal ? -16f : 4f); //2f
+            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: CanHeal ? -16f : 4f); //2f
             return false;
         }
 
         protected override void CustomAI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
 
             if (CanHeal)
             {
-                Vector2 shootOffset = new Vector2(projectile.width / 2 + projectile.spriteDirection * 4f, (projectile.height - 2f) + sinY);
-                Vector2 shootOrigin = projectile.position + shootOffset;
+                Vector2 shootOffset = new Vector2(Projectile.width / 2 + Projectile.spriteDirection * 4f, (Projectile.height - 2f) + sinY);
+                Vector2 shootOrigin = Projectile.position + shootOffset;
                 Vector2 target = player.MountedCenter + new Vector2(0f, -5f);
 
                 Vector2 between = target - shootOrigin;
@@ -152,7 +152,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 float rotationAmount = between.ToRotation();
 
-                if (projectile.spriteDirection == 1) //adjust rotation based on direction
+                if (Projectile.spriteDirection == 1) //adjust rotation based on direction
                 {
                     rotationAmount -= MathHelper.Pi;
                     if (rotationAmount > MathHelper.TwoPi)
@@ -163,20 +163,20 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
                 bool canShoot = shootOrigin.Y < target.Y + player.height / 2;
 
-                if (projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka target is too fast for the drone to catch up)
+                if (Projectile.spriteDirection == -1) //reset canShoot properly if rotation is too much (aka target is too fast for the drone to catch up)
                 {
-                    if (rotationAmount <= projectile.rotation)
+                    if (rotationAmount <= Projectile.rotation)
                     {
                         canShoot = false;
-                        rotationAmount = projectile.rotation;
+                        rotationAmount = Projectile.rotation;
                     }
                 }
                 else
                 {
-                    if (rotationAmount <= projectile.rotation - MathHelper.Pi)
+                    if (rotationAmount <= Projectile.rotation - MathHelper.Pi)
                     {
                         canShoot = false;
-                        rotationAmount = projectile.rotation;
+                        rotationAmount = Projectile.rotation;
                     }
                 }
                 addRotation = addRotation.AngleLerp(rotationAmount, 0.1f);
@@ -229,7 +229,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 //    //fix rotation so it doesn't get adjusted anymore
                 //    addRotation = projectile.rotation;
                 //}
-                addRotation = addRotation.AngleLerp(projectile.rotation, 0.1f);
+                addRotation = addRotation.AngleLerp(Projectile.rotation, 0.1f);
             }
         }
     }

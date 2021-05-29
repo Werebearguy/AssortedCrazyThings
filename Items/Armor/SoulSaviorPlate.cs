@@ -17,28 +17,22 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 22;
-            item.value = Item.sellPrice(gold: 3, silver: 70);
-            item.rare = -11;
-            item.defense = 18;
+            Item.width = 28;
+            Item.height = 22;
+            Item.value = Item.sellPrice(gold: 3, silver: 70);
+            Item.rare = -11;
+            Item.defense = 18;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.maxMinions += 2;
-            player.minionDamage += 0.1f;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1);
-            recipe.AddIngredient(ItemID.Ectoplasm, 4);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 24);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1).AddIngredient(ItemID.Ectoplasm, 4).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 24).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

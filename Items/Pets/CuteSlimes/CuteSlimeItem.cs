@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
     public abstract class CuteSlimeItem : ModItem
     {
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
 
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
                     SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))
                 {
                     //checks if this item is infact a pet slime summoning item
-                    if (item.shoot == Main.projectile[pPlayer.slimePetIndex].type)
+                    if (Item.shoot == Main.projectile[pPlayer.slimePetIndex].type)
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {
@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
                                 }
                             }
 
-                            tooltips.Add(new TooltipLine(mod, ((SlotType)slotNumber).ToString(), Enum2String(slotNumber) + tooltip));
+                            tooltips.Add(new TooltipLine(Mod, ((SlotType)slotNumber).ToString(), Enum2String(slotNumber) + tooltip));
                         }
                     }
                 }

@@ -3,6 +3,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
@@ -18,32 +19,26 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<PetMoonProj>();
-            item.buffType = ModContent.BuffType<PetMoonBuff>();
-            item.width = 20;
-            item.height = 26;
-            item.rare = -11;
-            item.value = Item.sellPrice(gold: 7);
+            Item.CloneDefaults(ItemID.ZephyrFish);
+            Item.shoot = ModContent.ProjectileType<PetMoonProj>();
+            Item.buffType = ModContent.BuffType<PetMoonBuff>();
+            Item.width = 20;
+            Item.height = 26;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(gold: 7);
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Bottle);
-            recipe.AddIngredient(ItemID.MoonStone);
-            recipe.AddIngredient(ItemID.Sextant);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Bottle).AddIngredient(ItemID.MoonStone).AddIngredient(ItemID.Sextant).AddTile(TileID.CrystalBall).Register();
         }
     }
 }

@@ -10,28 +10,28 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Horned Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 36;
-            npc.height = 32;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 25;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 175;
-            npc.color = new Color(240, 54, 115, 100);
-            Main.npcCatchable[mod.NPCType("HornedSlime")] = true;
-            npc.catchItem = (short)mod.ItemType("HornedSlimeItem");
-            npc.lavaImmune = true;
+            NPC.width = 36;
+            NPC.height = 32;
+            NPC.damage = 7;
+            NPC.defense = 2;
+            NPC.lifeMax = 25;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 25f;
+            NPC.knockBackResist = 0.25f;
+            NPC.aiStyle = 1;
+            AIType = NPCID.ToxicSludge;
+            AnimationType = NPCID.ToxicSludge;
+            NPC.alpha = 175;
+            NPC.color = new Color(240, 54, 115, 100);
+            Main.npcCatchable[Mod.Find<ModNPC>("HornedSlime").Type] = true;
+            NPC.catchItem = (short)Mod.Find<ModItem>("HornedSlimeItem").Type;
+            NPC.lavaImmune = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -39,9 +39,9 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Underworld.Chance * 0.015f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            Item.NewItem(NPC.getRect(), ItemID.Gel);
         }
     }
 }

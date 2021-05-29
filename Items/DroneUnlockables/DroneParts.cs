@@ -13,11 +13,11 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
         public override void SetDefaults()
         {
-            item.maxStack = 999;
-            item.rare = -11;
-            item.width = 26;
-            item.height = 24;
-            item.value = Item.sellPrice(silver: 50);
+            Item.maxStack = 999;
+            Item.rare = -11;
+            Item.width = 26;
+            Item.height = 24;
+            Item.value = Item.sellPrice(silver: 50);
         }
     }
 }

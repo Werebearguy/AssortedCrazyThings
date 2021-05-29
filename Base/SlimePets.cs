@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.NPCs.CuteSlimes;
 using System;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Base
                 case SpawnConditionType.Crimson:
                     return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt);
                 case SpawnConditionType.Hallow:
-                    return Main.hardMode && !player.ZoneOverworldHeight && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson);
+                    return Main.hardMode && !player.ZoneOverworldHeight && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson);
                 case SpawnConditionType.Dungeon:
                     return player.ZoneDungeon && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
                 case SpawnConditionType.Xmas:
@@ -94,7 +94,7 @@ namespace AssortedCrazyThings.Base
                 case SpawnConditionType.Crimson:
                     return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.025f : SpawnCondition.Corruption.Chance * 0.025f) : 0f;
                 case SpawnConditionType.Hallow:
-                    return Main.hardMode && player.ZoneHoly && !(player.ZoneCorrupt || player.ZoneCrimson) && !player.ZoneOverworldHeight ? 0.015f : 0f;
+                    return Main.hardMode && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson) && !player.ZoneOverworldHeight ? 0.015f : 0f;
                 case SpawnConditionType.Dungeon:
                     return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.DungeonNormal.Chance * 0.025f : 0f;
                 case SpawnConditionType.Xmas:
@@ -111,7 +111,7 @@ namespace AssortedCrazyThings.Base
         {
             //AssUtils.Print("spawn chance at " + (Main.netMode == NetmodeID.Server ? "Server" : "Client"));
             float spawnChance = GetSpawnChance(spawnInfo.player, type) * customFactor;
-            if (AssUtils.AnyNPCs(x => x.modNPC is CuteSlimeBaseNPC)) spawnChance *= 0.5f;
+            if (AssUtils.AnyNPCs(x => x.ModNPC is CuteSlimeBaseNPC)) spawnChance *= 0.5f;
             //AssUtils.Print(spawnChance);
             if (AssUtils.AssConfig.CuteSlimesPotionOnly)
             {
@@ -312,7 +312,7 @@ namespace AssortedCrazyThings.Base
             for (int i = vanillaCount; i < moddedCount; i++)
             {
                 var npc = NPCLoader.GetNPC(i);
-                if (npc.mod == AssUtils.Instance)
+                if (npc.Mod == AssUtils.Instance)
                 {
                     actcount++;
                 }
@@ -386,7 +386,7 @@ namespace AssortedCrazyThings.Base
         public SlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0, List<bool> isSlotTypeBlacklisted = null)
         {
             Name = name;
-            Type = AssUtils.Instance.ProjectileType(name);
+            Type = AssUtils.Instance.Find<ModProjectile>(name).Type;
             if (Type == 0) throw new Exception("Pet projectile called '" + name + "' doesn't exist, are you sure you spelled it correctly?");
             HasNoHair = hasNoHair;
             PreAdditionSlot = preAdditionSlot;

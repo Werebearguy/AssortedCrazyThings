@@ -9,26 +9,26 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slimefish");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Goldfish];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 38;
-            npc.height = 36;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 0f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Goldfish;
-            animationType = NPCID.Goldfish;
-            npc.noGravity = true;
-            Main.npcCatchable[mod.NPCType("Slimefish")] = true;
-            npc.catchItem = ItemID.Slimefish;
+            NPC.width = 38;
+            NPC.height = 36;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0.25f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Goldfish;
+            AnimationType = NPCID.Goldfish;
+            NPC.noGravity = true;
+            Main.npcCatchable[Mod.Find<ModNPC>("Slimefish").Type] = true;
+            NPC.catchItem = ItemID.Slimefish;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -43,9 +43,9 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            Item.NewItem(NPC.getRect(), ItemID.Gel);
         }
     }
 }

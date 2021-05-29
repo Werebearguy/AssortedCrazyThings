@@ -10,47 +10,47 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Meatball's Eye");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.DemonEye];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 38;
-            npc.height = 46;
-            npc.friendly = true;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 60;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = -1;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.dontTakeDamage = true;
-            //aiType = NPCID.DemonEye;
-            animationType = NPCID.DemonEye;
-            Main.npcCatchable[mod.NPCType("MeatballsEye")] = true;
-            npc.catchItem = (short)mod.ItemType("MeatballsEye");
+            NPC.width = 38;
+            NPC.height = 46;
+            NPC.friendly = true;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 60;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = -1;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.dontTakeDamage = true;
+            //AIType = NPCID.DemonEye;
+            AnimationType = NPCID.DemonEye;
+            Main.npcCatchable[Mod.Find<ModNPC>("MeatballsEye").Type] = true;
+            NPC.catchItem = (short)Mod.Find<ModItem>("MeatballsEye").Type;
         }
 
         public override void AI()
         {
-            if (npc.ai[0] == 0)
+            if (NPC.ai[0] == 0)
             {
-                npc.velocity.Y = -0.022f * 2f;
-                npc.netUpdate = true;
+                NPC.velocity.Y = -0.022f * 2f;
+                NPC.netUpdate = true;
             }
 
-            npc.rotation = MathHelper.PiOver2;
-            npc.direction = 1;
-            npc.velocity.X = 0;
-            npc.ai[0]++;
-            npc.velocity.Y -= 0.022f * 1.5f; //0.022f * 2f;
-            if (npc.timeLeft > 80)
+            NPC.rotation = MathHelper.PiOver2;
+            NPC.direction = 1;
+            NPC.velocity.X = 0;
+            NPC.ai[0]++;
+            NPC.velocity.Y -= 0.022f * 1.5f; //0.022f * 2f;
+            if (NPC.timeLeft > 80)
             {
-                npc.timeLeft = 80;
+                NPC.timeLeft = 80;
             }
         }
     }

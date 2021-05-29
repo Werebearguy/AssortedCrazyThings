@@ -5,6 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base
 {
@@ -435,7 +436,7 @@ namespace AssortedCrazyThings.Base
                         {
                             int num114 = (int)(projectile.position.X + projectile.width / 2) / 16;
                             int num115 = (int)(projectile.position.Y + projectile.height) / 16 + 1;
-                            if (WorldGen.SolidTile(num114, num115) || Main.tile[num114, num115].halfBrick() || Main.tile[num114, num115].slope() > 0)
+                            if (WorldGen.SolidTile(num114, num115) || Main.tile[num114, num115].IsHalfBlock || Main.tile[num114, num115].Slope > 0)
                             {
                                 try
                                 {
@@ -944,6 +945,7 @@ namespace AssortedCrazyThings.Base
                 {
                     projectile.minionSlots = 0.5f;
                 }
+                projectile.DamageType = DamageClass.Summon;
                 projectile.minion = true;
                 //projectile.hide = true;
                 projectile.netImportant = true;

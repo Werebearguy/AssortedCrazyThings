@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,42 +23,42 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Queen Bee Larva");
-            Main.projFrames[projectile.type] = 4;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 4;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.DD2PetGhost);
-            projectile.aiStyle = -1;
-            projectile.width = 28;
-            projectile.height = 34;
-            projectile.alpha = 0;
+            Projectile.CloneDefaults(ProjectileID.DD2PetGhost);
+            Projectile.aiStyle = -1;
+            Projectile.width = 28;
+            Projectile.height = 34;
+            Projectile.alpha = 0;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = mod.GetTexture("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType);
+            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            Texture2D image = Mod.GetTexture("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType).Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[projectile.type]);
-            bounds.Y = projectile.frame * bounds.Height;
+            bounds.Height = (image.Bounds.Height / Main.projFrames[Projectile.type]);
+            bounds.Y = Projectile.frame * bounds.Height;
 
             sincounter = sincounter > 150 ? 0 : sincounter + 1;
             float sinY = (float)((Math.Sin((sincounter / 150f) * MathHelper.TwoPi) - 1) * 2);
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, (projectile.height - 20f) + sinY);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, (Projectile.height - 20f) + sinY);
+            Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             return false;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -66,11 +66,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.QueenLarva)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
 
-                AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: 16f, offsetY: 10f);
+                AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: 16f, offsetY: 10f);
 
-                AssAI.FlickerwickPetDraw(projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
+                AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
             }
         }
     }

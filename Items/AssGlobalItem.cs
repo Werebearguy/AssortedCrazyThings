@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Projectiles.Weapons;
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Items
             {
                 if (item.active && item.damage >= 0)
                 {
-                    if (item.melee)
+                    if (item.CountsAsClass<SummonDamageClass>())
                     {
                         //TODO do something with auto-fire boomerangs
                         if (item.shoot > ProjectileID.None && item.shootSpeed > 0)
@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Items
                         }
                     }
 
-                    else if (item.ranged)
+                    else if (item.CountsAsClass<RangedDamageClass>())
                     {
                         if (player.HasAmmo(item, true))
                         {
@@ -56,12 +56,12 @@ namespace AssortedCrazyThings.Items
                         }
                     }
 
-                    else if (item.magic && item.mana <= player.statMana)
+                    else if (item.CountsAsClass<MagicDamageClass>() && item.mana <= player.statMana)
                     {
                         ShootCandleDust(item, mPlayer);
                     }
 
-                    else if (item.thrown)
+                    else if (item.CountsAsClass<ThrowingDamageClass>())
                     {
                         ShootCandleDust(item, mPlayer);
                     }
@@ -84,16 +84,17 @@ namespace AssortedCrazyThings.Items
 
         private void ShootCandleDust(Item item, AssPlayer mPlayer)
         {
-            Vector2 cm = new Vector2(Main.MouseWorld.X - mPlayer.player.Center.X, Main.MouseWorld.Y - mPlayer.player.Center.Y);
+            Player player = mPlayer.Player;
+            Vector2 cm = new Vector2(Main.MouseWorld.X - player.Center.X, Main.MouseWorld.Y - player.Center.Y);
             float rand = Main.rand.NextFloat(0.7f, 1.3f);
             float velox = ((cm.X * item.shootSpeed * rand) / cm.Length());// rand makes it so it has different velocity factor (how far it flies)
             float veloy = ((cm.Y * item.shootSpeed * rand) / cm.Length());
             Vector2 velo = new Vector2(velox, veloy);
-            Vector2 pos = new Vector2(mPlayer.player.Center.X, mPlayer.player.Center.Y + 8f);
+            Vector2 pos = new Vector2(player.Center.X, player.Center.Y + 8f);
 
             //reduce but not prevent spam from boomerang related weapons or modded damage classes
-            if (mPlayer.player.ownedProjectileCounts[ModContent.ProjectileType<CandleDustDummy>()] < 2)
-                Projectile.NewProjectile(pos, velo + mPlayer.player.velocity, ModContent.ProjectileType<CandleDustDummy>(), 0, 0f, mPlayer.player.whoAmI);
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<CandleDustDummy>()] < 2)
+                Projectile.NewProjectile(player.GetProjectileSource_Item(item), pos, velo + player.velocity, ModContent.ProjectileType<CandleDustDummy>(), 0, 0f, player.whoAmI);
         }
 
         public override void MeleeEffects(Item item, Player player, Rectangle hitbox)

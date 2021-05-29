@@ -14,11 +14,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.height = 36;
-            item.value = Item.sellPrice(gold: 13);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 32;
+            Item.height = 36;
+            Item.value = Item.sellPrice(gold: 13);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -31,14 +31,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, "EverburningCandle");
-            recipe.AddIngredient(mod, "EverburningCursedCandle");
-            recipe.AddIngredient(mod, "EverburningShadowflameCandle");
-            recipe.AddIngredient(mod, "EverfrozenCandle");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient<EverburningCandle>().AddIngredient<EverburningCursedCandle>().AddIngredient<EverburningShadowflameCandle>().AddIngredient<EverfrozenCandle>().AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

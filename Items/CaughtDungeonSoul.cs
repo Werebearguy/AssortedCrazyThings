@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -20,21 +20,21 @@ namespace AssortedCrazyThings.Items
             //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
             //ItemID.Sets.AnimatesAsSoul[item.type] = true;
 
-            ItemID.Sets.ItemNoGravity[item.type] = true;
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
         public override void MoreSetDefaults()
         {
             frame2CounterCount = 8.0;
             animatedTextureSelect = 0;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.useAnimation = 15;
-            item.useTime = 10;
-            item.consumable = true;
-            item.noUseGraphic = true;
-            item.makeNPC = (short)ModContent.NPCType<DungeonSoul>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.consumable = true;
+            Item.noUseGraphic = true;
+            Item.makeNPC = (short)ModContent.NPCType<DungeonSoul>();
         }
 
         public override bool CanUseItem(Player player)
@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Items
             if (AssUtils.AnyNPCs(AssWorld.harvesterTypes.Take(3).ToArray()))
             {
                 // Can use item
-                tooltips.Add(new TooltipLine(mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
+                tooltips.Add(new TooltipLine(Mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
                 {
                     overrideColor = new Color(35, 200, 254)
                 });

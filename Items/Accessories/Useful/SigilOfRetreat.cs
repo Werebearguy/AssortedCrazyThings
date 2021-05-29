@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -17,11 +17,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 22;
-            item.height = 20;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 22;
+            Item.height = 20;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -55,11 +55,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
             }
 
-            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, item))
+            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, Item))
             {
                 if (mPlayer.canTeleportHome)
                 {
-                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use"));
+                    tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready to use"));
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                         {
                             timeName = " minute";
                         }
-                        tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
+                        tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                         {
                             timeName = " second";
                         }
-                        tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
+                        tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                     }
                 }
             }

@@ -9,23 +9,23 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Walking Chest");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Crab];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Crab];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 44;
-            npc.height = 34;
-            npc.damage = 0;
-            npc.defense = 10;
-            npc.lifeMax = 40;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 3;
-            aiType = NPCID.Crab;
-            animationType = NPCID.Crab;
+            NPC.width = 44;
+            NPC.height = 34;
+            NPC.damage = 0;
+            NPC.defense = 10;
+            NPC.lifeMax = 40;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 3;
+            AIType = NPCID.Crab;
+            AnimationType = NPCID.Crab;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -33,16 +33,16 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Underground.Chance * 0.025f * 0.083f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Chest);
+            Item.NewItem(NPC.getRect(), ItemID.Chest);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WalkingTombstoneGore_01"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WalkingTombstoneGore_01").Type, 1f);
             }
         }
 
@@ -50,13 +50,13 @@ namespace AssortedCrazyThings.NPCs
         {
             if (Main.dayTime)
             {
-                if (npc.velocity.X > 0 || npc.velocity.X < 0)
+                if (NPC.velocity.X > 0 || NPC.velocity.X < 0)
                 {
-                    npc.velocity.X = 0;
+                    NPC.velocity.X = 0;
                 }
-                if (npc.velocity.Y < 0)
+                if (NPC.velocity.Y < 0)
                 {
-                    npc.velocity.Y = 0;
+                    NPC.velocity.Y = 0;
                 }
             }
         }

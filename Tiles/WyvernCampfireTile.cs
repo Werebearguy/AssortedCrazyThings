@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,6 +8,8 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Tiles
 {
@@ -35,10 +37,10 @@ namespace AssortedCrazyThings.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Wyvern Campfire");
             AddMapEntry(new Color(105, 105, 105), name);
-            dustType = -1;
-            animationFrameHeight = 36;
-            disableSmartCursor = true;
-            adjTiles = new int[] { TileID.Campfire };
+            DustType = -1;
+            AnimationFrameHeight = 36;
+            //DisableSmartCursor = true;
+            AdjTiles = new int[] { TileID.Campfire };
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -59,17 +61,17 @@ namespace AssortedCrazyThings.Tiles
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (closer && Main.tile[i, j].frameY < animationFrameHeight)
+            if (closer && Main.tile[i, j].frameY < AnimationFrameHeight)
             {
                 Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = true;
-                Main.campfire = true;
+                //Main.SceneMetrics.HasCampfire = true;
             }
         }
 
         //you need these four things for the outline to work:
         //_Highlight.png
         //TileID.Sets.HasOutlines[Type] = true;
-        //disableSmartCursor = true;
+        //DisableSmartCursor = true;
         //and this hook
         public override bool HasSmartInteract()
         {
@@ -87,14 +89,14 @@ namespace AssortedCrazyThings.Tiles
         {
             Tile tile = Main.tile[i, j];
             Texture2D texture;
-            if (Main.canDrawColorTile(i, j))
-            {
-                texture = Main.tileAltTexture[Type, (int)tile.color()];
-            }
-            else
-            {
-                texture = Main.tileTexture[Type];
-            }
+            //if (Main.canDrawColorTile(i, j))
+            //{
+            //    texture = Main.tileAltTexture[Type, (int)tile.Color];
+            //}
+            //else
+            //{
+                texture = Terraria.GameContent.TextureAssets.Tile[Type].Value;
+            //}
             Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
             if (Main.drawToScreen)
             {
@@ -102,10 +104,10 @@ namespace AssortedCrazyThings.Tiles
             }
             //int height = 16;
             int height = tile.frameY == 18 ? 18 : 16;
-            int animate = animationFrameHeight * (maxFrames - 1);
-            if (tile.frameY < animationFrameHeight)
+            int animate = AnimationFrameHeight * (maxFrames - 1);
+            if (tile.frameY < AnimationFrameHeight)
             {
-                animate = Main.tileFrame[Type] * animationFrameHeight;
+                animate = Main.tileFrame[Type] * AnimationFrameHeight;
             }
             Color color = Lighting.GetColor(i, j);
             Vector2 pos = new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero;
@@ -125,7 +127,7 @@ namespace AssortedCrazyThings.Tiles
                 }
                 if (average > 10)
                 {
-                    texture = Main.highlightMaskTexture[Type];
+                    texture = TextureAssets.HighlightMask[Type].Value;
                     if (selected)
                     {
                         transparent = new Color(average, average, average / 3, average);
@@ -156,13 +158,13 @@ namespace AssortedCrazyThings.Tiles
             Player player = Main.LocalPlayer;
             player.mouseInterface = true;
             player.noThrow = 2;
-            player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<WyvernCampfireItem>();
+            player.cursorItemIconEnabled = true;
+            player.cursorItemIconID = ModContent.ItemType<WyvernCampfireItem>();
         }
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
-            Main.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
+            SoundEngine.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
             HitWire(i, j);
             return true;
         }
@@ -171,10 +173,10 @@ namespace AssortedCrazyThings.Tiles
         {
             int x = i - Main.tile[i, j].frameX / 18 % 3;
             int y = j - Main.tile[i, j].frameY / 18 % 2;
-            int change = animationFrameHeight;
-            if (Main.tile[x, y].frameY >= animationFrameHeight)
+            int change = AnimationFrameHeight;
+            if (Main.tile[x, y].frameY >= AnimationFrameHeight)
             {
-                change = -animationFrameHeight;
+                change = -AnimationFrameHeight;
             }
 
             Tile tile;
@@ -183,7 +185,7 @@ namespace AssortedCrazyThings.Tiles
                 for (int m = y; m < y + 2; m++)
                 {
                     tile = Framing.GetTileSafely(l, m);
-                    if (tile.active() && tile.type == Type)
+                    if (tile.IsActive && tile.type == Type)
                     {
                         tile.frameY = (short)(tile.frameY + change);
                     }

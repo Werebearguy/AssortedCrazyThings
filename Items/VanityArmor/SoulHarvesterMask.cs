@@ -12,12 +12,12 @@ namespace AssortedCrazyThings.Items.VanityArmor
         public override void SetDefaults()
         {
             //item.CloneDefaults(ItemID.BallaHat);
-            item.width = 30;
-            item.height = 22;
-            item.rare = -11;
-            item.value = 0;
-            item.vanity = true;
-            item.maxStack = 1;
+            Item.width = 30;
+            Item.height = 22;
+            Item.rare = -11;
+            Item.value = 0;
+            Item.vanity = true;
+            Item.maxStack = 1;
         }
     }
 }

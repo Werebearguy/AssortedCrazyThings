@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
@@ -11,52 +12,53 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             get
             {
-                return "Terraria/Projectile_" + ProjectileID.MiniRetinaLaser;
+                return "Terraria/Images/Projectile_" + ProjectileID.MiniRetinaLaser;
             }
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pet Destroyer Laser");
-            ProjectileID.Sets.MinionShot[projectile.type] = true;
+            ProjectileID.Sets.MinionShot[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.MiniRetinaLaser);
-            projectile.aiStyle = -1;
-            projectile.penetrate = 1;
-            projectile.alpha = 255;
+            Projectile.CloneDefaults(ProjectileID.MiniRetinaLaser);
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = 1;
+            Projectile.alpha = 255;
+            Projectile.DamageType = DamageClass.Summon;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-            Main.PlaySound(SoundID.Item10.WithVolume(0.5f), projectile.position);
+            Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
+            SoundEngine.PlaySound(SoundID.Item10.WithVolume(0.5f), Projectile.position);
             return true;
         }
 
         public override void AI()
         {
-            if (projectile.ai[1] == 0f)
+            if (Projectile.ai[1] == 0f)
             {
-                projectile.ai[1] = 1f;
-                Main.PlaySound(SoundID.Item12.WithVolume(0.5f), projectile.position);
+                Projectile.ai[1] = 1f;
+                SoundEngine.PlaySound(SoundID.Item12.WithVolume(0.5f), Projectile.position);
             }
 
-            if (projectile.alpha > 0)
+            if (Projectile.alpha > 0)
             {
-                projectile.alpha -= 15;
+                Projectile.alpha -= 15;
             }
-            if (projectile.alpha < 0)
+            if (Projectile.alpha < 0)
             {
-                projectile.alpha = 0;
+                Projectile.alpha = 0;
             }
-            if (projectile.velocity.Y > 16f)
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
-            projectile.rotation = projectile.velocity.ToRotation() + 1.57f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + 1.57f;
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using AssortedCrazyThings.Projectiles.Weapons;
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,41 +29,36 @@ namespace AssortedCrazyThings.Items.Weapons
             //item.useTime = 22;
             //item.rare = -11;
             //item.noMelee = true;
-            //item.knockBack = 0f;
+            //item.knockback = 0f;
             //item.value = Item.sellPrice(gold: 3, silver: 50);
             //item.magic = true;
 
-            item.mana = 20;
-            item.damage = 8;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.shootSpeed = 16f;
-            item.shoot = ModContent.ProjectileType<PlagueOfToadsFired>();
-            item.width = 26;
-            item.height = 28;
-            item.UseSound = SoundID.Item66;
-            item.useAnimation = 22;
-            item.useTime = 22;
-            item.rare = -11;
-            item.noMelee = true;
-            item.knockBack = 0f;
-            item.value = Item.sellPrice(silver: 25);
-            item.magic = true;
+            Item.mana = 20;
+            Item.damage = 8;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.shootSpeed = 16f;
+            Item.shoot = ModContent.ProjectileType<PlagueOfToadsFired>();
+            Item.width = 26;
+            Item.height = 28;
+            Item.UseSound = SoundID.Item66;
+            Item.useAnimation = 22;
+            Item.useTime = 22;
+            Item.rare = -11;
+            Item.noMelee = true;
+            Item.knockBack = 0f;
+            Item.value = Item.sellPrice(silver: 25);
+            Item.DamageType = DamageClass.Magic;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, Main.myPlayer, Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y);
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y);
             return false;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Frog, 3);
-            recipe.AddIngredient(ItemID.WandofSparking, 1);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Frog, 3).AddIngredient(ItemID.WandofSparking, 1).AddTile(TileID.Anvils).Register();
         }
     }
 }

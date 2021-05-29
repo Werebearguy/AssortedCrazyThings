@@ -15,24 +15,24 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.WoodenBoomerang);
-            item.width = 22;
-            item.height = 30;
-            item.rare = -11;
+            Item.CloneDefaults(ItemID.WoodenBoomerang);
+            Item.width = 22;
+            Item.height = 30;
+            Item.rare = -11;
 
-            item.value = Item.sellPrice(silver: 2);
-            item.shoot = ModContent.ProjectileType<GuideVoodoorangProj>();
+            Item.value = Item.sellPrice(silver: 2);
+            Item.shoot = ModContent.ProjectileType<GuideVoodoorangProj>();
         }
 
         public override bool CanUseItem(Player player)
         {
             // Ensures no more than one boomerang can be thrown out
-            return player.ownedProjectileCounts[item.shoot] < 1;
+            return player.ownedProjectileCounts[Item.shoot] < 1;
         }
 
         public override void PostUpdate()
         {
-            if (item.lavaWet)
+            if (Item.lavaWet)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.AnyNPCs(NPCID.WallofFlesh))
                 {
@@ -46,14 +46,14 @@ namespace AssortedCrazyThings.Items.Fun
                                 NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -npc.direction);
                             }
                             npc.StrikeNPCNoInteraction(9999, 10f, -npc.direction);
-                            NPC.SpawnWOF(item.position);
+                            NPC.SpawnWOF(Item.position);
 
-                            byte plr = Player.FindClosest(item.position, item.width, item.height);
+                            byte plr = Player.FindClosest(Item.position, Item.width, Item.height);
                             Item.NewItem(Main.player[plr].getRect(), ModContent.ItemType<GuideVoodoorang>());
 
                             //despawns upon wof spawn
-                            item.TurnToAir();
-                            NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item.whoAmI);
+                            Item.TurnToAir();
+                            NetMessage.SendData(MessageID.SyncItem, -1, -1, null, Item.whoAmI);
                             return;
                         }
                     }
@@ -63,11 +63,7 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GuideVoodooDoll);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.GuideVoodooDoll).AddTile(TileID.DemonAltar).Register();
         }
     }
 }

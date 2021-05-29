@@ -19,10 +19,10 @@ namespace AssortedCrazyThings.Buffs
             player.buffTime[buffIndex] = 18000;
             PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
             player.GetModPlayer<PetPlayer>().DocileDemonEye = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[mod.ProjectileType("DocileDemonEyeProj")] <= 0;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[Mod.Find<ModProjectile>("DocileDemonEyeProj").Type] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                int i = Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction, -0.5f, mod.ProjectileType("DocileDemonEyeProj"), 0, 0f, player.whoAmI, 0f, 0f);
+                int i = Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 2), player.direction, -0.5f, Mod.Find<ModProjectile>("DocileDemonEyeProj").Type, 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

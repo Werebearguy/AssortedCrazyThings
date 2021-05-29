@@ -3,6 +3,8 @@ using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.UI;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -394,9 +396,9 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.Server) return;
             //from server to clients
-            ModPacket packet = mod.GetPacket();
+            ModPacket packet = Mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncPlayerVanity);
-            packet.Write((byte)player.whoAmI);
+            packet.Write((byte)Player.whoAmI);
             //no "changes" packet
             SendFieldValues(packet);
             packet.Send(toWho, fromWho);
@@ -443,7 +445,7 @@ namespace AssortedCrazyThings
                     if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
                     break;
                 default: //shouldn't get there hopefully
-                    mod.Logger.Debug("Received unspecified PetPlayerChanges Packet " + changes);
+                    Mod.Logger.Debug("Received unspecified PetPlayerChanges Packet " + changes);
                     break;
             }
             GetFromClonedTypes();
@@ -456,9 +458,9 @@ namespace AssortedCrazyThings
         public void SendClientChangesPacketSub(byte changes, int index, int toClient = -1, int ignoreClient = -1)
         {
             //AssUtils.Print("SendClientChangesPacketSub " + changes + " index " + index + " from p " + player.whoAmI + ((Main.netMode == NetmodeID.MultiplayerClient)? " client":" server"));
-            ModPacket packet = mod.GetPacket();
+            ModPacket packet = Mod.GetPacket();
             packet.Write((byte)AssMessageType.ClientChangesVanity);
-            packet.Write((byte)player.whoAmI);
+            packet.Write((byte)Player.whoAmI);
             packet.Write((byte)changes);
             packet.Write((byte)index);
 
@@ -475,7 +477,7 @@ namespace AssortedCrazyThings
                     packet.Write((byte)ClonedTypes[index]);
                     break;
                 default: //shouldn't get there hopefully
-                    mod.Logger.Debug("Sending unspecified PetPlayerChanges " + changes);
+                    Mod.Logger.Debug("Sending unspecified PetPlayerChanges " + changes);
                     break;
             }
 
@@ -500,7 +502,7 @@ namespace AssortedCrazyThings
             if (!petAccessoryRework)
             {
                 petAccessoryRework = true;
-                mod.Logger.Debug("Reset pet vanity slots during update from 1.2.3 to " + mod.Version);
+                Mod.Logger.Debug("Reset pet vanity slots during update from 1.2.3 to " + Mod.Version);
                 slots = 0;
             }
             if (!petVanityRework)
@@ -517,7 +519,7 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if (Main.myPlayer == player.whoAmI) SetClonedTypes();
+            if (Main.myPlayer == Player.whoAmI) SetClonedTypes();
         }
 
         #region Slime Pet Vanity
@@ -612,9 +614,9 @@ namespace AssortedCrazyThings
 
         public static CircleUIConf GetLifelikeMechanicalFrogConf()
         {
-            List<string> textureNames = new List<string>() {
-                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrog",
-                        AssUtils.Instance.Name + "/Projectiles/Pets/LifelikeMechanicalFrogCrown" };
+            List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
 
             List<string> tooltips = new List<string>() { "Default", "Crowned" };
 
@@ -622,7 +624,7 @@ namespace AssortedCrazyThings
             return new CircleUIConf(
                 Main.projFrames[ModContent.ProjectileType<LifelikeMechanicalFrog>()],
                 ModContent.ProjectileType<LifelikeMechanicalFrog>(),
-                textureNames, null, tooltips, null);
+                assets, null, tooltips, null);
         }
 
         public static CircleUIConf GetDocileDemonEyeConf()

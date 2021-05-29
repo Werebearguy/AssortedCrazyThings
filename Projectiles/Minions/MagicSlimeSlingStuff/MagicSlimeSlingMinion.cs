@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Dusts;
+using AssortedCrazyThings.Dusts;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
@@ -6,6 +6,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 {
@@ -35,11 +36,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         {
             get
             {
-                return (int)projectile.localAI[1];
+                return (int)Projectile.localAI[1];
             }
             set
             {
-                projectile.localAI[1] = value;
+                Projectile.localAI[1] = value;
             }
         }
 
@@ -48,29 +49,30 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             get
             {
                 //0.7f to 1f when full TimeLeft, drops down to 0.7f
-                return 0.7f + ((float)PulsatingCounter / PulsatingLimit) * ((float)projectile.timeLeft / TimeLeft);
+                return 0.7f + ((float)PulsatingCounter / PulsatingLimit) * ((float)Projectile.timeLeft / TimeLeft);
             }
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Slime Sling Minion");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
-            ProjectileID.Sets.Homing[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+            ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
         }
 
         public override void MoreSetDefaults()
         {
-            projectile.width = 24;
-            projectile.height = 18;
+            Projectile.width = 24;
+            Projectile.height = 18;
 
-            projectile.minion = true;
+            Projectile.DamageType = DamageClass.Summon;
+            Projectile.minion = true;
             customMinionSlots = 0f;
-            projectile.timeLeft = TimeLeft;
+            Projectile.timeLeft = TimeLeft;
 
-            drawOriginOffsetY = 3;
+            DrawOriginOffsetY = 3;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -88,10 +90,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         {
             for (int i = 0; i < 20; i++)
             {
-                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 200, Color, 1f);
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 4, -Projectile.direction, -2f, 200, Color, 1f);
                 dust.velocity *= 0.5f;
             }
-            Main.PlaySound(SoundID.NPCDeath1.SoundId, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.NPCDeath1.Style, 0.7f, 0.2f);
+            SoundEngine.PlaySound(SoundID.NPCDeath1.SoundId, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.NPCDeath1.Style, 0.7f, 0.2f);
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -113,7 +115,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             if (!Spawned)
             {
                 Spawned = true;
-                Main.PlaySound(SoundID.Item9.SoundId, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.Item9.Style, 0.7f);
+                SoundEngine.PlaySound(SoundID.Item9.SoundId, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.Item9.Style, 0.7f);
             }
 
             if (Increment)
@@ -127,12 +129,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 if (PulsatingCounter <= 0) Increment = true;
             }
 
-            if (projectile.frame > 1)
+            if (Projectile.frame > 1)
             {
-                projectile.frame = 1;
+                Projectile.frame = 1;
             }
 
-            if (projectile.ai[0] != 0)
+            if (Projectile.ai[0] != 0)
             {
                 int dustType = Main.rand.Next(4);
                 if (dustType == 0)
@@ -152,9 +154,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                     return;
                 }
 
-                if (Main.rand.NextFloat() < projectile.velocity.Length() / 7f)
+                if (Main.rand.NextFloat() < Projectile.velocity.Length() / 7f)
                 {
-                    Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
+                    Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
                     dust.velocity *= 0.1f;
                 }
             }

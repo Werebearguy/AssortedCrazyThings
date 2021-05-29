@@ -9,24 +9,24 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sawtooth Shark");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Shark];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 146;
-            npc.height = 74;
-            npc.damage = 45;
-            npc.defense = 2;
-            npc.lifeMax = 400;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Shark;
-            animationType = NPCID.Shark;
-            npc.noGravity = true;
+            NPC.width = 146;
+            NPC.height = 74;
+            NPC.damage = 45;
+            NPC.defense = 2;
+            NPC.lifeMax = 400;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Shark;
+            AnimationType = NPCID.Shark;
+            NPC.noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -34,24 +34,24 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Ocean.Chance * 0.005f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(2))
-                Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
+                Item.NewItem(NPC.getRect(), ItemID.SharkFin, 1);
             if (Main.rand.NextBool(97))
-                Item.NewItem(npc.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
             if (Main.rand.NextBool(98))
-                Item.NewItem(npc.getRect(), ItemID.SawtoothShark, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.SawtoothShark, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SawtoothGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SawtoothGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SawtoothGore_2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SawtoothGore_3"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SawtoothGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SawtoothGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SawtoothGore_2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SawtoothGore_3").Type, 1f);
             }
         }
     }

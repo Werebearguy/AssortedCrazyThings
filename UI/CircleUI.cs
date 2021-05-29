@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -94,8 +96,8 @@ namespace AssortedCrazyThings.UI
         {
             base.DrawSelf(spriteBatch);
             Main.LocalPlayer.mouseInterface = true;
-            Main.LocalPlayer.showItemIcon2 = 0;
-            Main.LocalPlayer.showItemIconText = "";
+            Main.LocalPlayer.cursorItemIconID = 0;
+            Main.LocalPlayer.cursorItemIconText = "";
 
             //48
             int outerRadius = 48;
@@ -124,10 +126,10 @@ namespace AssortedCrazyThings.UI
                 {
                     drawColor = Color.Gray;
                 }
-                spriteBatch.Draw(Main.wireUITexture[isMouseWithin ? 1 : 0], bgRect, drawColor);
+                Main.spriteBatch.Draw(TextureAssets.WireUi[isMouseWithin ? 1 : 0].Value, bgRect, drawColor);
 
                 //Draw sprites over the icons
-                Texture2D texture = ModContent.GetTexture(UIConf.TextureNames[done]);
+                Texture2D texture = UIConf.Assets[done].Value;
                 int width = texture.Width;
                 int height = texture.Height;
                 if (UIConf.SpritesheetDivider > 0) height /= UIConf.SpritesheetDivider;
@@ -138,7 +140,7 @@ namespace AssortedCrazyThings.UI
 
                 Rectangle sourceRect = new Rectangle(0, 0, width, height);
 
-                spriteBatch.Draw(texture, projRect, sourceRect, drawColor);
+                Main.spriteBatch.Draw(texture, projRect, sourceRect, drawColor);
 
                 if (isMouseWithin)
                 {
@@ -160,16 +162,17 @@ namespace AssortedCrazyThings.UI
 
             bool middle = CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
 
-            spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
+            Main.spriteBatch.Draw(TextureAssets.WireUi[middle ? 1 : 0].Value, outputRect, Color.White);
 
             //Draw trigger item inside circle
             if (triggerItemType != -1)
             {
-                int finalWidth = Main.itemTexture[triggerItemType].Width/* / 2*/;
-                int finalHeight = Main.itemTexture[triggerItemType].Height/* / 2*/;
+                Asset<Texture2D> asset = TextureAssets.Item[triggerItemType];
+                int finalWidth = asset.Width()/* / 2*/;
+                int finalHeight = asset.Height()/* / 2*/;
                 Rectangle outputItemRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
                 //outputWeaponRect.Inflate(4, 4);
-                spriteBatch.Draw(Main.itemTexture[triggerItemType], outputItemRect, Color.White);
+                Main.spriteBatch.Draw(asset.Value, outputItemRect, Color.White);
             }
 
             if (middle)
@@ -192,7 +195,7 @@ namespace AssortedCrazyThings.UI
                     //Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
         }

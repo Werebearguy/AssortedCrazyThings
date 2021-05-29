@@ -13,48 +13,48 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Foldfish");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.KingSlime];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.KingSlime];
         }
 
         public override void SetDefaults()
         {
             //npc.CloneDefaults(NPCID.KingSlime);
-            npc.aiStyle = -1;
-            npc.lifeMax = 4000;
-            npc.damage = 20;
-            npc.defense = 5;
-            npc.knockBackResist = 0f;
-            npc.width = 76;
-            npc.height = 38;
-            npc.scale = scaleFactor;
-            npc.value = Item.buyPrice(0, 1, 0, 0);
-            npc.npcSlots = 15f;
-            npc.alpha = 0;
-            npc.boss = true;
-            npc.lavaImmune = true;
+            NPC.aiStyle = -1;
+            NPC.lifeMax = 4000;
+            NPC.damage = 20;
+            NPC.defense = 5;
+            NPC.knockBackResist = 0f;
+            NPC.width = 76;
+            NPC.height = 38;
+            NPC.scale = scaleFactor;
+            NPC.value = Item.buyPrice(0, 1, 0, 0);
+            NPC.npcSlots = 15f;
+            NPC.alpha = 0;
+            NPC.boss = true;
+            NPC.lavaImmune = true;
             //npc.noGravity = true;
             //npc.noTileCollide = true;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.buffImmune[24] = true;
-            npc.buffImmune[BuffID.Confused] = false;
-            music = MusicID.Boss1;
-            animationType = NPCID.KingSlime;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.buffImmune[24] = true;
+            NPC.buffImmune[BuffID.Confused] = false;
+            //music = MusicID.Boss1; //TODO music
+            AnimationType = NPCID.KingSlime;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.625f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.6f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.625f * bossLifeScale);
+            NPC.damage = (int)(NPC.damage * 0.6f);
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(4))
             {
-                Item.NewItem(npc.getRect(), mod.ItemType("OrigamiCrane"));
+                Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("OrigamiCrane").Type);
             }
-            Item.NewItem(npc.getRect(), mod.ItemType("OrigamiHat"), prefixGiven: -1);
+            Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("OrigamiHat").Type, prefixGiven: -1);
         }
 
         public override void AI()
@@ -64,45 +64,45 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             float num238 = scaleFactor; //1f
             bool flag8 = false;
             bool flag9 = false;
-            npc.aiAction = 0;
-            if (npc.ai[3] == 0f && npc.life > 0)
+            NPC.aiAction = 0;
+            if (NPC.ai[3] == 0f && NPC.life > 0)
             {
-                npc.ai[3] = (float)npc.lifeMax;
+                NPC.ai[3] = (float)NPC.lifeMax;
             }
-            if (npc.localAI[3] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
+            if (NPC.localAI[3] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                npc.ai[0] = -60; //-100f
-                npc.localAI[3] = 1f;
-                npc.TargetClosest();
-                npc.netUpdate = true;
+                NPC.ai[0] = -60; //-100f
+                NPC.localAI[3] = 1f;
+                NPC.TargetClosest();
+                NPC.netUpdate = true;
             }
-            if (Main.player[npc.target].dead)
+            if (Main.player[NPC.target].dead)
             {
-                npc.TargetClosest();
-                if (Main.player[npc.target].dead)
+                NPC.TargetClosest();
+                if (Main.player[NPC.target].dead)
                 {
-                    npc.timeLeft = 0;
-                    if (Main.player[npc.target].Center.X < npc.Center.X)
+                    NPC.timeLeft = 0;
+                    if (Main.player[NPC.target].Center.X < NPC.Center.X)
                     {
-                        npc.direction = 1;
+                        NPC.direction = 1;
                     }
                     else
                     {
-                        npc.direction = -1;
+                        NPC.direction = -1;
                     }
                 }
             }
-            if (!Main.player[npc.target].dead && npc.ai[2] >= 300f && npc.ai[1] < 5f && npc.velocity.Y == 0f)
+            if (!Main.player[NPC.target].dead && NPC.ai[2] >= 300f && NPC.ai[1] < 5f && NPC.velocity.Y == 0f)
             {
-                npc.ai[2] = 0f;
-                npc.ai[0] = 0f;
-                npc.ai[1] = 5f;
+                NPC.ai[2] = 0f;
+                NPC.ai[0] = 0f;
+                NPC.ai[1] = 5f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    npc.TargetClosest(faceTarget: false);
-                    Point point3 = npc.Center.ToTileCoordinates();
-                    Point point4 = Main.player[npc.target].Center.ToTileCoordinates();
-                    Vector2 vector29 = Main.player[npc.target].Center - npc.Center;
+                    NPC.TargetClosest(faceTarget: false);
+                    Point point3 = NPC.Center.ToTileCoordinates();
+                    Point point4 = Main.player[NPC.target].Center.ToTileCoordinates();
+                    Vector2 vector29 = Main.player[NPC.target].Center - NPC.Center;
                     int num239 = 10;
                     int num240 = 0;
                     int num241 = 7;
@@ -119,16 +119,16 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                         num242 = num2 + 1;
                         int num243 = Main.rand.Next(point4.X - num239, point4.X + num239 + 1);
                         int num244 = Main.rand.Next(point4.Y - num239, point4.Y + 1);
-                        if ((num244 < point4.Y - num241 || num244 > point4.Y + num241 || num243 < point4.X - num241 || num243 > point4.X + num241) && (num244 < point3.Y - num240 || num244 > point3.Y + num240 || num243 < point3.X - num240 || num243 > point3.X + num240) && !Main.tile[num243, num244].nactive())
+                        if ((num244 < point4.Y - num241 || num244 > point4.Y + num241 || num243 < point4.X - num241 || num243 > point4.X + num241) && (num244 < point3.Y - num240 || num244 > point3.Y + num240 || num243 < point3.X - num240 || num243 > point3.X + num240) && !Main.tile[num243, num244].IsActiveUnactuated)
                         {
                             int num245 = num244;
                             int num246 = 0;
-                            if (!Main.tile[num243, num245].nactive() || !Main.tileSolid[Main.tile[num243, num245].type] || Main.tileSolidTop[Main.tile[num243, num245].type])
+                            if (!Main.tile[num243, num245].IsActiveUnactuated || !Main.tileSolid[Main.tile[num243, num245].type] || Main.tileSolidTop[Main.tile[num243, num245].type])
                             {
                                 while (num246 < 150 && num245 + num246 < Main.maxTilesY)
                                 {
                                     int num247 = num245 + num246;
-                                    if (Main.tile[num243, num247].nactive() && Main.tileSolid[Main.tile[num243, num247].type] && !Main.tileSolidTop[Main.tile[num243, num247].type])
+                                    if (Main.tile[num243, num247].IsActiveUnactuated && Main.tileSolid[Main.tile[num243, num247].type] && !Main.tileSolidTop[Main.tile[num243, num247].type])
                                     {
                                         num2 = num246;
                                         num246 = num2 - 1;
@@ -144,65 +144,65 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                             }
                             num244 += num246;
                             bool flag11 = true;
-                            if (flag11 && Main.tile[num243, num244].lava())
+                            if (flag11 && Main.tile[num243, num244].LiquidType == LiquidID.Lava)
                             {
                                 flag11 = false;
                             }
-                            if (flag11 && !Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
+                            if (flag11 && !Collision.CanHitLine(NPC.Center, 0, 0, Main.player[NPC.target].Center, 0, 0))
                             {
                                 flag11 = false;
                             }
                             if (flag11)
                             {
-                                npc.localAI[1] = num243 * 16 + 8;
-                                npc.localAI[2] = num244 * 16 + 16;
+                                NPC.localAI[1] = num243 * 16 + 8;
+                                NPC.localAI[2] = num244 * 16 + 16;
                                 break;
                             }
                         }
                     }
                     if (num242 >= 100)
                     {
-                        Vector2 bottom = Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Bottom;
-                        npc.localAI[1] = bottom.X;
-                        npc.localAI[2] = bottom.Y;
+                        Vector2 bottom = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)].Bottom;
+                        NPC.localAI[1] = bottom.X;
+                        NPC.localAI[2] = bottom.Y;
                     }
                 }
             }
-            if (!Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
+            if (!Collision.CanHitLine(NPC.Center, 0, 0, Main.player[NPC.target].Center, 0, 0))
             {
-                npc.ai[2] += 1f;
+                NPC.ai[2] += 1f;
             }
-            if (Math.Abs(npc.Top.Y - Main.player[npc.target].Bottom.Y) > 320f)
+            if (Math.Abs(NPC.Top.Y - Main.player[NPC.target].Bottom.Y) > 320f)
             {
-                npc.ai[2] += 1f;
+                NPC.ai[2] += 1f;
             }
             Dust dust3;
-            if (npc.ai[1] == 5f)
+            if (NPC.ai[1] == 5f)
             {
                 flag8 = true;
-                npc.aiAction = 1;
-                npc.ai[0] += 1f;
-                num238 = MathHelper.Clamp((40f - npc.ai[0]) / 40f, 0f, 1f); //60f to 40f
+                NPC.aiAction = 1;
+                NPC.ai[0] += 1f;
+                num238 = MathHelper.Clamp((40f - NPC.ai[0]) / 40f, 0f, 1f); //60f to 40f
                 num238 = 0.5f + num238 * 0.5f; //0.5f
-                if (npc.ai[0] >= 60f)
+                if (NPC.ai[0] >= 60f)
                 {
                     flag9 = true;
                 }
-                if (npc.ai[0] == 60f)
+                if (NPC.ai[0] == 60f)
                 {
                     //Gore.NewGore(npc.Center + new Vector2(-40f, (0f - (float)npc.height) / 2f), npc.velocity, 734);
                 }
-                if (npc.ai[0] >= 40f && Main.netMode != NetmodeID.MultiplayerClient) //60f to 40f
+                if (NPC.ai[0] >= 40f && Main.netMode != NetmodeID.MultiplayerClient) //60f to 40f
                 {
-                    npc.Bottom = new Vector2(npc.localAI[1], npc.localAI[2]); //teleport to position of player
-                    npc.ai[1] = 6f;
-                    npc.ai[0] = 0f;
-                    npc.netUpdate = true;
+                    NPC.Bottom = new Vector2(NPC.localAI[1], NPC.localAI[2]); //teleport to position of player
+                    NPC.ai[1] = 6f;
+                    NPC.ai[0] = 0f;
+                    NPC.netUpdate = true;
                 }
-                if (Main.netMode == NetmodeID.MultiplayerClient && npc.ai[0] >= 80f) //120f to 80f, jump frequency, but 80 is the minimum, below and shit fucks up
+                if (Main.netMode == NetmodeID.MultiplayerClient && NPC.ai[0] >= 80f) //120f to 80f, jump frequency, but 80 is the minimum, below and shit fucks up
                 {
-                    npc.ai[1] = 6f;
-                    npc.ai[0] = 0f;
+                    NPC.ai[1] = 6f;
+                    NPC.ai[0] = 0f;
                 }
                 if (!flag9)
                 {
@@ -211,115 +211,115 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     {
                         //dust for when before it teleports, change 79 to whatever type
                         //int num249 = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 4, npc.velocity.X, npc.velocity.Y, 150, new Color(78, 136, 255, 80), 2f);
-                        Dust dust = Dust.NewDustDirect(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
+                        Dust dust = Dust.NewDustDirect(NPC.position + Vector2.UnitX * -20f, NPC.width + 40, NPC.height, 79, NPC.velocity.X, NPC.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
                         dust.noGravity = true;
                         dust.velocity *= 0.5f;
                         num2 = num248;
                     }
                 }
             }
-            else if (npc.ai[1] == 6f)
+            else if (NPC.ai[1] == 6f)
             {
                 flag8 = true;
-                npc.aiAction = 0;
-                npc.ai[0] += 1f;
-                num238 = MathHelper.Clamp(npc.ai[0] / 30f, 0f, 1f);
+                NPC.aiAction = 0;
+                NPC.ai[0] += 1f;
+                num238 = MathHelper.Clamp(NPC.ai[0] / 30f, 0f, 1f);
                 num238 = 0.5f + num238 * 0.5f;
-                if (npc.ai[0] >= 30f && Main.netMode != NetmodeID.MultiplayerClient)
+                if (NPC.ai[0] >= 30f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    npc.ai[1] = 0f;
-                    npc.ai[0] = 0f;
-                    npc.netUpdate = true;
-                    npc.TargetClosest();
+                    NPC.ai[1] = 0f;
+                    NPC.ai[0] = 0f;
+                    NPC.netUpdate = true;
+                    NPC.TargetClosest();
                 }
-                if (Main.netMode == NetmodeID.MultiplayerClient && npc.ai[0] >= 40f) //60f to 40f, cant remember what that does, maybe the jumping
+                if (Main.netMode == NetmodeID.MultiplayerClient && NPC.ai[0] >= 40f) //60f to 40f, cant remember what that does, maybe the jumping
                 {
-                    npc.ai[1] = 0f;
-                    npc.ai[0] = 0f;
-                    npc.TargetClosest();
+                    NPC.ai[1] = 0f;
+                    NPC.ai[0] = 0f;
+                    NPC.TargetClosest();
                 }
                 int num2;
                 for (int num250 = 0; num250 < 10; num250 = num2 + 1)
                 {
                     //dust for when after it teleported
-                    Dust dust = Dust.NewDustDirect(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, 79, npc.velocity.X, npc.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
+                    Dust dust = Dust.NewDustDirect(NPC.position + Vector2.UnitX * -20f, NPC.width + 40, NPC.height, 79, NPC.velocity.X, NPC.velocity.Y, 150, new Color(255, 255, 255), 1.2f);
                     dust.noGravity = true;
                     dust.velocity *= 2f;
                     num2 = num250;
                 }
             }
-            npc.dontTakeDamage = (npc.hide = flag9);
-            if (npc.velocity.Y == 0f)
+            NPC.dontTakeDamage = (NPC.hide = flag9);
+            if (NPC.velocity.Y == 0f)
             {
-                npc.velocity.X = npc.velocity.X * 0.8f;
-                if (npc.velocity.X > -0.1 && npc.velocity.X < 0.1)
+                NPC.velocity.X = NPC.velocity.X * 0.8f;
+                if (NPC.velocity.X > -0.1 && NPC.velocity.X < 0.1)
                 {
-                    npc.velocity.X = 0f;
+                    NPC.velocity.X = 0f;
                 }
                 if (!flag8)
                 {
-                    npc.ai[0] += 2f;
-                    if (npc.life < npc.lifeMax * 0.8)
+                    NPC.ai[0] += 2f;
+                    if (NPC.life < NPC.lifeMax * 0.8)
                     {
-                        npc.ai[0] += 1f;
+                        NPC.ai[0] += 1f;
                     }
-                    if (npc.life < npc.lifeMax * 0.6)
+                    if (NPC.life < NPC.lifeMax * 0.6)
                     {
-                        npc.ai[0] += 1f;
+                        NPC.ai[0] += 1f;
                     }
-                    if (npc.life < npc.lifeMax * 0.4)
+                    if (NPC.life < NPC.lifeMax * 0.4)
                     {
-                        npc.ai[0] += 2f;
+                        NPC.ai[0] += 2f;
                     }
-                    if (npc.life < npc.lifeMax * 0.2)
+                    if (NPC.life < NPC.lifeMax * 0.2)
                     {
-                        npc.ai[0] += 3f;
+                        NPC.ai[0] += 3f;
                     }
-                    if (npc.life < npc.lifeMax * 0.1)
+                    if (NPC.life < NPC.lifeMax * 0.1)
                     {
-                        npc.ai[0] += 4f;
+                        NPC.ai[0] += 4f;
                     }
-                    if (npc.ai[0] >= 0f)
+                    if (NPC.ai[0] >= 0f)
                     {
-                        npc.netUpdate = true;
-                        npc.TargetClosest();
-                        if (npc.ai[1] == 3f) //jump heights here in velo.Y
+                        NPC.netUpdate = true;
+                        NPC.TargetClosest();
+                        if (NPC.ai[1] == 3f) //jump heights here in velo.Y
                         {
-                            npc.velocity.Y = -10f; //-13f
-                            npc.velocity.X = npc.velocity.X + 3.5f * npc.direction;
-                            npc.ai[0] = -110f; //-200f
-                            npc.ai[1] = 0f;
+                            NPC.velocity.Y = -10f; //-13f
+                            NPC.velocity.X = NPC.velocity.X + 3.5f * NPC.direction;
+                            NPC.ai[0] = -110f; //-200f
+                            NPC.ai[1] = 0f;
                         }
-                        else if (npc.ai[1] == 2f)
+                        else if (NPC.ai[1] == 2f)
                         {
-                            npc.velocity.Y = -6f; //-8f
-                            npc.velocity.X = npc.velocity.X + 4.5f * npc.direction;
-                            npc.ai[0] = -80f; //-120f
-                            npc.ai[1] += 1f;
+                            NPC.velocity.Y = -6f; //-8f
+                            NPC.velocity.X = NPC.velocity.X + 4.5f * NPC.direction;
+                            NPC.ai[0] = -80f; //-120f
+                            NPC.ai[1] += 1f;
                         }
                         else
                         {
-                            npc.velocity.Y = -6f; //-8f
-                            npc.velocity.X = npc.velocity.X + 4f * npc.direction;
-                            npc.ai[0] = -80f; //-120f
-                            npc.ai[1] += 1f;
+                            NPC.velocity.Y = -6f; //-8f
+                            NPC.velocity.X = NPC.velocity.X + 4f * NPC.direction;
+                            NPC.ai[0] = -80f; //-120f
+                            NPC.ai[1] += 1f;
                         }
                     }
-                    else if (npc.ai[0] >= -30f)
+                    else if (NPC.ai[0] >= -30f)
                     {
-                        npc.aiAction = 1;
+                        NPC.aiAction = 1;
                     }
                 }
             }
-            else if (npc.target < Main.maxPlayers && ((npc.direction == 1 && npc.velocity.X < 3f) || (npc.direction == -1 && npc.velocity.X > -3f)))
+            else if (NPC.target < Main.maxPlayers && ((NPC.direction == 1 && NPC.velocity.X < 3f) || (NPC.direction == -1 && NPC.velocity.X > -3f)))
             {
-                if ((npc.direction == -1 && npc.velocity.X < 0.1) || (npc.direction == 1 && npc.velocity.X > -0.1))
+                if ((NPC.direction == -1 && NPC.velocity.X < 0.1) || (NPC.direction == 1 && NPC.velocity.X > -0.1))
                 {
-                    npc.velocity.X = npc.velocity.X + 0.2f * npc.direction;
+                    NPC.velocity.X = NPC.velocity.X + 0.2f * NPC.direction;
                 }
                 else
                 {
-                    npc.velocity.X = npc.velocity.X * 0.93f;
+                    NPC.velocity.X = NPC.velocity.X * 0.93f;
                 }
             }
             //some dust idk
@@ -329,34 +329,34 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
             //Main.dust[num252].noGravity = true;
             //dust3 = Main.dust[num252];
             //dust3.velocity *= 0.5f;
-            if (npc.life > 0)
+            if (NPC.life > 0)
             {
-                float num253 = npc.life / (float)npc.lifeMax; //without npc.scale
+                float num253 = NPC.life / (float)NPC.lifeMax; //without npc.scale
                 num253 = num253 * 0.5f + 0.75f;
                 num253 *= num238;
-                if (num253 != npc.scale)
+                if (num253 != NPC.scale)
                 {
-                    npc.position.X = npc.position.X + (npc.width / 2);
-                    npc.position.Y = npc.position.Y + npc.height;
-                    npc.scale = num253;
-                    npc.width = (int)(76f * npc.scale); //96f those are the hitbox adjusted scales for when the boss takes dammage (it gets smaller)
-                    npc.height = (int)(38f * npc.scale); //92f
-                    npc.position.X = npc.position.X - (npc.width / 2);
-                    npc.position.Y = npc.position.Y - npc.height;
+                    NPC.position.X = NPC.position.X + (NPC.width / 2);
+                    NPC.position.Y = NPC.position.Y + NPC.height;
+                    NPC.scale = num253;
+                    NPC.width = (int)(76f * NPC.scale); //96f those are the hitbox adjusted scales for when the boss takes dammage (it gets smaller)
+                    NPC.height = (int)(38f * NPC.scale); //92f
+                    NPC.position.X = NPC.position.X - (NPC.width / 2);
+                    NPC.position.Y = NPC.position.Y - NPC.height;
                 }
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int num254 = (int)(npc.lifeMax * 0.05);
-                    if ((npc.life + num254) < npc.ai[3])
+                    int num254 = (int)(NPC.lifeMax * 0.05);
+                    if ((NPC.life + num254) < NPC.ai[3])
                     {
-                        npc.ai[3] = npc.life;
+                        NPC.ai[3] = NPC.life;
                         int num255 = Main.rand.Next(1, 4);
                         int num2;
                         for (int num256 = 0; num256 < num255; num256 = num2 + 1) //spawn slimes when hit
                         {
-                            int x = (int)(npc.position.X + Main.rand.Next(npc.width - 16)); //from 32 down to 16
-                            int y = (int)(npc.position.Y + Main.rand.Next(npc.height - 16)); //from 32 down to 16
-                            int num257 = mod.NPCType("FoldfishBaby");
+                            int x = (int)(NPC.position.X + Main.rand.Next(NPC.width - 16)); //from 32 down to 16
+                            int y = (int)(NPC.position.Y + Main.rand.Next(NPC.height - 16)); //from 32 down to 16
+                            int num257 = Mod.Find<ModNPC>("FoldfishBaby").Type;
                             int num258 = NPC.NewNPC(x, y, num257);
                             Main.npc[num258].SetDefaults(num257);
                             Main.npc[num258].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
@@ -372,7 +372,7 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
                     }
                 }
             }
-            npc.spriteDirection = npc.direction;
+            NPC.spriteDirection = NPC.direction;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

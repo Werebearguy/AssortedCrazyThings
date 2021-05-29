@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Dusts;
 using AssortedCrazyThings.Items.Weapons;
 using Microsoft.Xna.Framework;
@@ -6,6 +6,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 {
@@ -16,9 +17,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         private void PreSync(Projectile proj)
         {
-            if (proj.modProjectile != null && proj.modProjectile is MagicSlimeSlingMinionBase)
+            if (proj.ModProjectile != null && proj.ModProjectile is MagicSlimeSlingMinionBase)
             {
-                MagicSlimeSlingMinionBase minion = (MagicSlimeSlingMinionBase)proj.modProjectile;
+                MagicSlimeSlingMinionBase minion = (MagicSlimeSlingMinionBase)proj.ModProjectile;
                 minion.ColorType = ColorType;
                 //ActualColor won't be synced, its assigned in send/recv 
                 minion.Color = MagicSlimeSling.GetColor(minion.ColorType);
@@ -29,35 +30,36 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
         {
             get
             {
-                return "Terraria/Item_" + ItemID.Gel;
+                return "Terraria/Images/Item_" + ItemID.Gel;
             }
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Slime Sling Fired");
-            Main.projFrames[projectile.type] = 1;
+            Main.projFrames[Projectile.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            projectile.netImportant = true;
-            projectile.minion = true;
-            projectile.friendly = true;
-            projectile.minionSlots = 0f;
-            projectile.width = 16;
-            projectile.height = 14;
-            projectile.aiStyle = -1;
-            projectile.penetrate = 1;
-            projectile.tileCollide = true;
-            projectile.timeLeft = 180;
-            projectile.alpha = 255;
+            Projectile.netImportant = true;
+            Projectile.DamageType = DamageClass.Summon;
+            //Projectile.minion = true;
+            Projectile.friendly = true;
+            Projectile.minionSlots = 0f;
+            Projectile.width = 16;
+            Projectile.height = 14;
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = 1;
+            Projectile.tileCollide = true;
+            Projectile.timeLeft = 180;
+            Projectile.alpha = 255;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
             if (Color == default(Color)) return lightColor;
-            return lightColor.MultiplyRGB(Color) * ((255 - projectile.alpha) / 255f) * 0.7f;
+            return lightColor.MultiplyRGB(Color) * ((255 - Projectile.alpha) / 255f) * 0.7f;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -73,47 +75,48 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.NPCKilled, (int)projectile.Center.X, (int)projectile.Center.Y, SoundID.NPCDeath1.Style, 0.8f, 0.2f);
+            SoundEngine.PlaySound(SoundID.NPCKilled, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.NPCDeath1.Style, 0.8f, 0.2f);
             for (int i = 0; i < 15; i++)
             {
-                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 4, -projectile.direction, -2f, 200, Color, 1f);
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 4, -Projectile.direction, -2f, 200, Color, 1f);
                 dust.velocity *= 0.4f;
             }
 
-            if (projectile.active && Main.myPlayer == projectile.owner)
+            if (Projectile.active && Main.myPlayer == Projectile.owner)
             {
                 int sum = 0;
                 for (int i = 0; i < MagicSlimeSling.Types.Length; i++)
                 {
                     sum += Main.LocalPlayer.ownedProjectileCounts[MagicSlimeSling.Types[i]];
                 }
-                if (sum < (2 + Main.LocalPlayer.maxMinions))
+                if (sum < (2 + Projectile.GetOwner().maxMinions))
                 {
                     int type = MagicSlimeSling.Types[ColorType];
                     Vector2 velo = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-4, -2));
-                    velo += -projectile.oldVelocity * 0.4f;
-                    AssUtils.NewProjectile(projectile.Top, velo, type, projectile.damage, projectile.knockBack, preSync: PreSync);
+                    velo += -Projectile.oldVelocity * 0.4f;
+                    int index = AssUtils.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Top, velo, type, Projectile.damage, Projectile.knockBack, preSync: PreSync);
+                    Main.projectile[index].originalDamage = Projectile.originalDamage;
                 }
             }
         }
 
         public override void AI()
         {
-            if (projectile.alpha > 0)
+            if (Projectile.alpha > 0)
             {
-                projectile.alpha -= 15;
-                if (projectile.alpha < 0) projectile.alpha = 0;
+                Projectile.alpha -= 15;
+                if (Projectile.alpha < 0) Projectile.alpha = 0;
             }
 
-            projectile.rotation += projectile.velocity.X * 0.05f;
+            Projectile.rotation += Projectile.velocity.X * 0.05f;
 
-            projectile.velocity.Y += 0.15f;
-            if (projectile.velocity.Y > 16f)
+            Projectile.velocity.Y += 0.15f;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
 
-            if (projectile.alpha > 200) return;
+            if (Projectile.alpha > 200) return;
 
             //colored sparkles
             int dustType = Main.rand.Next(4);
@@ -134,9 +137,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
                 return;
             }
             // 8f is the shootspeed of the weapon shooting this projectile
-            if (Main.rand.NextFloat() < projectile.velocity.Length() / 7f)
+            if (Main.rand.NextFloat() < Projectile.velocity.Length() / 7f)
             {
-                Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
+                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
                 dust.velocity *= 0.1f;
             }
         }

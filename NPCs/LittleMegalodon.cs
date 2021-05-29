@@ -12,47 +12,47 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Shark];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 150;
-            npc.height = 52;
-            npc.damage = 150;
-            npc.defense = 50;
-            npc.lifeMax = 1000;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 10000f;
-            npc.knockBackResist = 0f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Shark;
-            animationType = NPCID.Shark;
-            npc.noGravity = true;
+            NPC.width = 150;
+            NPC.height = 52;
+            NPC.damage = 150;
+            NPC.defense = 50;
+            NPC.lifeMax = 1000;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 10000f;
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Shark;
+            AnimationType = NPCID.Shark;
+            NPC.noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!NPC.AnyNPCs(mod.NPCType(name)))
+            if (!NPC.AnyNPCs(NPC.type))
             {
                 return SpawnCondition.Ocean.Chance * 0.0005f;
             }
             else return 0f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), mod.ItemType("MiniMegalodon"));
+            Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("MiniMegalodon").Type);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/LittleMegalodonGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/LittleMegalodonGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/LittleMegalodonGore_2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/LittleMegalodonGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/LittleMegalodonGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/LittleMegalodonGore_2").Type, 1f);
             }
         }
     }

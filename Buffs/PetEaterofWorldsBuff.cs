@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Buffs
             bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<PetEaterofWorldsHead>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                PetEaterofWorldsItem.Spawn(player);
+                PetEaterofWorldsItem.Spawn(player, buffIndex: buffIndex);
             }
         }
     }

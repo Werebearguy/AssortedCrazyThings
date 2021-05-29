@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,13 +19,13 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.CobaltSword);
-            item.width = 50;
-            item.height = 50;
-            item.rare = -11;
-            item.value = Item.sellPrice(0, 2, 25, 0); //2 gold for broken, 25 silver for legendary
-            item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();
-            item.shootSpeed = 10f; //fairly short range, similar to throwing knife
+            Item.CloneDefaults(ItemID.CobaltSword);
+            Item.width = 50;
+            Item.height = 50;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(0, 2, 25, 0); //2 gold for broken, 25 silver for legendary
+            Item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();
+            Item.shootSpeed = 10f; //fairly short range, similar to throwing knife
         }
 
         //public override void HoldItem(Player player)
@@ -44,17 +45,12 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LegendaryWoodenSword>(), 1);
-            recipe.AddIngredient(ItemID.BrokenHeroSword, 1);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LegendaryWoodenSword>(), 1).AddIngredient(ItemID.BrokenHeroSword, 1).AddTile(TileID.MythrilAnvil).Register();
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectile(player.Center + Vector2.Normalize(new Vector2(speedX, speedY)) * 30f, new Vector2(speedX, speedY), item.shoot, ProjDamage, item.knockBack, Main.myPlayer);
+            Projectile.NewProjectile(source, player.Center + Vector2.Normalize(velocity) * 30f, velocity, type, ProjDamage, knockback, Main.myPlayer);
             return false;
         }
     }

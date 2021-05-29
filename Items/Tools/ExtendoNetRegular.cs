@@ -16,21 +16,15 @@ namespace AssortedCrazyThings.Items.Tools
         public override void SetDefaults()
         {
             base.SetDefaults();
-            item.useAnimation = 24;
-            item.useTime = 32;
-            item.value = Item.sellPrice(silver: 45);
-            item.shoot = ModContent.ProjectileType<ExtendoNetRegularProj>();
+            Item.useAnimation = 24;
+            Item.useTime = 32;
+            Item.value = Item.sellPrice(silver: 45);
+            Item.shoot = ModContent.ProjectileType<ExtendoNetRegularProj>();
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wire, 10);
-            recipe.AddRecipeGroup("IronBar", 10);
-            recipe.AddIngredient(ItemID.BugNet, 1);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wire, 10).AddRecipeGroup("IronBar", 10).AddIngredient(ItemID.BugNet, 1).AddTile(TileID.Anvils).Register();
         }
     }
 }

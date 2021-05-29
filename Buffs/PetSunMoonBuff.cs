@@ -25,8 +25,8 @@ namespace AssortedCrazyThings.Buffs
             bool moreThanOneMoon = player.ownedProjectileCounts[ModContent.ProjectileType<PetMoonProj>()] > 0;
             if (player.whoAmI == Main.myPlayer)
             {
-                if (!moreThanOneSun) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, ModContent.ProjectileType<PetSunProj>(), 0, 0f, player.whoAmI, 0f, 0f);
-                if (!moreThanOneMoon) Projectile.NewProjectile(player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, ModContent.ProjectileType<PetMoonProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                if (!moreThanOneSun) Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, ModContent.ProjectileType<PetSunProj>(), 0, 0f, player.whoAmI, 0f, 0f);
+                if (!moreThanOneMoon) Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, ModContent.ProjectileType<PetMoonProj>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
 

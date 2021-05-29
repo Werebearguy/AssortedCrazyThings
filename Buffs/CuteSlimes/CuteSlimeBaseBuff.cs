@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Buffs.CuteSlimes
                 bool petProjectileNotSpawned = player.ownedProjectileCounts[projType] <= 0;
                 if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
                 {
-                    int i = Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y, 0f, 0f, projType, 0, 0f, player.whoAmI, 0f, 0f);
+                    int i = Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + player.width / 2, player.position.Y, 0f, 0f, projType, 0, 0f, player.whoAmI, 0f, 0f);
                     mPlayer.slimePetIndex = i;
                 }
             }

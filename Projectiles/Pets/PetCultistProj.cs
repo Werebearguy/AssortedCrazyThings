@@ -23,90 +23,90 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             get
             {
-                return projectile.ai[1];
+                return Projectile.ai[1];
             }
             set
             {
-                projectile.ai[1] = value;
+                Projectile.ai[1] = value;
             }
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dwarf Cultist");
-            Main.projFrames[projectile.type] = 4;
-            Main.projPet[projectile.type] = true;
-            ProjectileID.Sets.LightPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 4;
+            Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.LightPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            projectile.aiStyle = -1;
-            projectile.width = 20;
-            projectile.height = 26;
-            projectile.tileCollide = false;
+            Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            Projectile.aiStyle = -1;
+            Projectile.width = 20;
+            Projectile.height = 26;
+            Projectile.tileCollide = false;
         }
 
         private void CustomDraw()
         {
             //frame 0: idle
             //frame 0 to 3: loop back and forth while healing
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
 
             if (player.statLife < player.statLifeMax2 / 2)
             {
                 Lighting.AddLight(player.Center, Color.White.ToVector3() * 0.5f);
-                Lighting.AddLight(projectile.Center, Color.White.ToVector3() * 0.5f);
+                Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.5f);
             }
 
-            if (projectile.velocity.Length() < 6f && player.statLife < player.statLifeMax2 / 2)
+            if (Projectile.velocity.Length() < 6f && player.statLife < player.statLifeMax2 / 2)
             {
-                projectile.frameCounter++;
-                if (projectile.frameCounter <= 30)
+                Projectile.frameCounter++;
+                if (Projectile.frameCounter <= 30)
                 {
-                    projectile.frame = 0;
+                    Projectile.frame = 0;
                 }
-                else if (projectile.frameCounter <= 35)
+                else if (Projectile.frameCounter <= 35)
                 {
-                    projectile.frame = 1;
+                    Projectile.frame = 1;
                 }
-                else if (projectile.frameCounter <= 40)
+                else if (Projectile.frameCounter <= 40)
                 {
-                    projectile.frame = 2;
+                    Projectile.frame = 2;
                 }
-                else if (projectile.frameCounter <= 70)
+                else if (Projectile.frameCounter <= 70)
                 {
-                    projectile.frame = 3;
+                    Projectile.frame = 3;
                 }
-                else if (projectile.frameCounter <= 75)
+                else if (Projectile.frameCounter <= 75)
                 {
-                    projectile.frame = 2;
+                    Projectile.frame = 2;
                 }
-                else if (projectile.frameCounter <= 80)
+                else if (Projectile.frameCounter <= 80)
                 {
-                    projectile.frame = 1;
+                    Projectile.frame = 1;
                 }
                 else
                 {
-                    projectile.frameCounter = 0;
+                    Projectile.frameCounter = 0;
                 }
             }
             else
             {
-                projectile.frameCounter = 0;
-                projectile.frame = 0;
+                Projectile.frameCounter = 0;
+                Projectile.frame = 0;
             }
         }
 
         private void CustomAI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
 
             Sincounter = Sincounter >= 240 ? 0 : Sincounter + 1;
             sinY = (float)((Math.Sin((Sincounter / 120f) * MathHelper.TwoPi) - 1) * 4);
 
-            if (projectile.velocity.Length() < 6f && player.statLife < player.statLifeMax2 / 2)
+            if (Projectile.velocity.Length() < 6f && player.statLife < player.statLifeMax2 / 2)
             {
                 if (Sincounter % 80 == 30)
                 {
@@ -114,8 +114,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     player.statLife += heal;
                     player.HealEffect(heal, false);
                 }
-                Vector2 spawnOffset = new Vector2(projectile.width * 0.5f, -20f + projectile.height * 0.5f);
-                Vector2 spawnPos = projectile.position + spawnOffset;
+                Vector2 spawnOffset = new Vector2(Projectile.width * 0.5f, -20f + Projectile.height * 0.5f);
+                Vector2 spawnPos = Projectile.position + spawnOffset;
 
                 Dust dust = Dust.NewDustPerfect(spawnPos, 175, new Vector2(Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-0.5f, 0.5f)));
                 dust.noGravity = true;
@@ -127,18 +127,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 if (Main.rand.NextFloat() < complicatedFormula)
                 {
                     spawnOffset = new Vector2(0f, -20f);
-                    spawnPos = projectile.position + spawnOffset;
-                    dust = Dust.NewDustDirect(new Vector2(spawnPos.X, spawnPos.Y), projectile.width, projectile.height, 175, 0f, 0f, 0, default(Color), 1.5f);
+                    spawnPos = Projectile.position + spawnOffset;
+                    dust = Dust.NewDustDirect(new Vector2(spawnPos.X, spawnPos.Y), Projectile.width, Projectile.height, 175, 0f, 0f, 0, default(Color), 1.5f);
                     dust.noGravity = true;
                     dust.fadeIn = 1f;
-                    dust.velocity = Vector2.Normalize(player.MountedCenter - new Vector2(0f, player.height / 2) - (projectile.Center + spawnOffset)) * (Main.rand.NextFloat() + 5f) + projectile.velocity * 1.5f;
+                    dust.velocity = Vector2.Normalize(player.MountedCenter - new Vector2(0f, player.height / 2) - (Projectile.Center + spawnOffset)) * (Main.rand.NextFloat() + 5f) + Projectile.velocity * 1.5f;
                 }
             }
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -146,30 +146,30 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.PetCultist)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: (player.statLife < player.statLifeMax2 / 2) ? -26f : 2f);
+            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: (player.statLife < player.statLifeMax2 / 2) ? -26f : 2f);
 
             CustomAI();
             CustomDraw();
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
             SpriteEffects effects = SpriteEffects.None;
-            if (projectile.spriteDirection != 1)
+            if (Projectile.spriteDirection != 1)
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = mod.GetTexture("Projectiles/Pets/PetCultistProj_" + mPlayer.petCultistType);
+            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            Texture2D image = Mod.GetTexture("Projectiles/Pets/PetCultistProj_" + mPlayer.petCultistType).Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
-            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - projectile.gfxOffY + sinY);
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
+            bounds.Y = Projectile.frame * bounds.Height;
+            Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - Projectile.gfxOffY + sinY);
+            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
 
             return false;
         }

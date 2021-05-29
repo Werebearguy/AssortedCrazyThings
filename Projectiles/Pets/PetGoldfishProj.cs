@@ -22,19 +22,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pet Goldfish");
-            Main.projFrames[projectile.type] = 10;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 10;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabyGrinch);
-            projectile.height = 24;
-            projectile.width = 24;
-            aiType = ProjectileID.BabyGrinch;
+            Projectile.CloneDefaults(ProjectileID.BabyGrinch);
+            Projectile.height = 24;
+            Projectile.width = 24;
+            AIType = ProjectileID.BabyGrinch;
         }
 
-        private bool Swimming { get { return projectile.GetOwner().wet; } }
+        private bool Swimming { get { return Projectile.GetOwner().wet; } }
 
         /// <summary>
         /// Player owner direction
@@ -47,11 +47,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             get
             {
-                return (int)projectile.ai[1];
+                return (int)Projectile.ai[1];
             }
             set
             {
-                projectile.ai[1] = value;
+                Projectile.ai[1] = value;
             }
         }
 
@@ -85,7 +85,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     Direction = player.direction;
                     Point16 tilePos = GetTilePosFromIndex(index, player);
-                    if (Framing.GetTileSafely(tilePos.X, tilePos.Y).liquid == 255 && Framing.GetTileSafely(tilePos.X, tilePos.Y - 1).liquid == 255 && Framing.GetTileSafely(tilePos.X - player.direction, tilePos.Y).liquid == 255)
+                    if (Framing.GetTileSafely(tilePos.X, tilePos.Y).LiquidAmount == 255 && Framing.GetTileSafely(tilePos.X, tilePos.Y - 1).LiquidAmount == 255 && Framing.GetTileSafely(tilePos.X - player.direction, tilePos.Y).LiquidAmount == 255)
                     {
                         SavedIndex = index;
                         break;
@@ -130,42 +130,42 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void SwimmingZephyrfishAI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             if (!player.active)
             {
-                projectile.active = false;
+                Projectile.active = false;
                 return;
             }
             Timer++;
 
-            if (projectile.wet)
+            if (Projectile.wet)
             {
-                projectile.tileCollide = true;
+                Projectile.tileCollide = true;
             }
             else
             {
-                projectile.tileCollide = false;
+                Projectile.tileCollide = false;
             }
 
             float num17 = 0.3f;
             int num18 = 100;
-            Vector2 between = player.Center - projectile.Center;
+            Vector2 between = player.Center - Projectile.Center;
 
             between += GetDesiredCenter(player) + new Vector2(Main.rand.Next(-10, 21), Main.rand.Next(-10, 21));
 
             float distance = between.Length();
-            if (distance < num18 && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            if (distance < num18 && player.velocity.Y == 0f && Projectile.position.Y + Projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
             {
-                if (projectile.velocity.Y < -6f)
+                if (Projectile.velocity.Y < -6f)
                 {
-                    projectile.velocity.Y = -6f;
+                    Projectile.velocity.Y = -6f;
                 }
             }
             if (distance < 50f)
             {
-                if (Math.Abs(projectile.velocity.X) > 2f || Math.Abs(projectile.velocity.Y) > 2f)
+                if (Math.Abs(Projectile.velocity.X) > 2f || Math.Abs(Projectile.velocity.Y) > 2f)
                 {
-                    projectile.velocity *= 0.99f;
+                    Projectile.velocity *= 0.99f;
                 }
                 num17 = 0.01f;
             }
@@ -182,52 +182,52 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 between.Normalize();
                 between *= 6f;
             }
-            if (projectile.velocity.X < between.X)
+            if (Projectile.velocity.X < between.X)
             {
-                projectile.velocity.X = projectile.velocity.X + num17;
-                if (num17 > 0.05f && projectile.velocity.X < 0f)
+                Projectile.velocity.X = Projectile.velocity.X + num17;
+                if (num17 > 0.05f && Projectile.velocity.X < 0f)
                 {
-                    projectile.velocity.X = projectile.velocity.X + num17;
+                    Projectile.velocity.X = Projectile.velocity.X + num17;
                 }
             }
-            if (projectile.velocity.X > between.X)
+            if (Projectile.velocity.X > between.X)
             {
-                projectile.velocity.X = projectile.velocity.X - num17;
-                if (num17 > 0.05f && projectile.velocity.X > 0f)
+                Projectile.velocity.X = Projectile.velocity.X - num17;
+                if (num17 > 0.05f && Projectile.velocity.X > 0f)
                 {
-                    projectile.velocity.X = projectile.velocity.X - num17;
+                    Projectile.velocity.X = Projectile.velocity.X - num17;
                 }
             }
-            if (projectile.velocity.Y < between.Y)
+            if (Projectile.velocity.Y < between.Y)
             {
-                projectile.velocity.Y = projectile.velocity.Y + num17;
-                if (num17 > 0.05f && projectile.velocity.Y < 0f)
+                Projectile.velocity.Y = Projectile.velocity.Y + num17;
+                if (num17 > 0.05f && Projectile.velocity.Y < 0f)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y + num17 * 2f;
+                    Projectile.velocity.Y = Projectile.velocity.Y + num17 * 2f;
                 }
             }
-            if (projectile.velocity.Y > between.Y)
+            if (Projectile.velocity.Y > between.Y)
             {
-                projectile.velocity.Y = projectile.velocity.Y - num17;
-                if (num17 > 0.05f && projectile.velocity.Y > 0f)
+                Projectile.velocity.Y = Projectile.velocity.Y - num17;
+                if (num17 > 0.05f && Projectile.velocity.Y > 0f)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y - num17 * 2f;
+                    Projectile.velocity.Y = Projectile.velocity.Y - num17 * 2f;
                 }
             }
 
             //fix, direction gets set automatically by tmodloader based on velocity.X for some reason
-            if (projectile.velocity.X > 0.25f)
+            if (Projectile.velocity.X > 0.25f)
             {
-                projectile.ai[0] = -1;
+                Projectile.ai[0] = -1;
             }
-            else if (projectile.velocity.X < -0.25f)
+            else if (Projectile.velocity.X < -0.25f)
             {
-                projectile.ai[0] = 1;
+                Projectile.ai[0] = 1;
             }
-            projectile.direction = (int)-projectile.ai[0];
-            projectile.spriteDirection = projectile.direction;
+            Projectile.direction = (int)-Projectile.ai[0];
+            Projectile.spriteDirection = Projectile.direction;
 
-            projectile.rotation = projectile.velocity.X * 0.05f;
+            Projectile.rotation = Projectile.velocity.X * 0.05f;
         }
 
         private void GetFrame()
@@ -247,18 +247,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return;
             }
 
-            if (projectile.ai[0] == 0) //not flying
+            if (Projectile.ai[0] == 0) //not flying
             {
-                if (projectile.velocity.Y == 0f)
+                if (Projectile.velocity.Y == 0f)
                 {
-                    if (projectile.velocity.X == 0f)
+                    if (Projectile.velocity.X == 0f)
                     {
                         frame2 = 0;
                         frame2Counter = 0;
                     }
-                    else if (projectile.velocity.X < -0.8f || projectile.velocity.X > 0.8f)
+                    else if (Projectile.velocity.X < -0.8f || Projectile.velocity.X > 0.8f)
                     {
-                        frame2Counter += (int)Math.Abs(2f * projectile.velocity.X);
+                        frame2Counter += (int)Math.Abs(2f * Projectile.velocity.X);
                         frame2Counter++;
                         if (frame2Counter > 20) //6
                         {
@@ -276,7 +276,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         frame2Counter = 0;
                     }
                 }
-                else if (projectile.velocity.Y != 0f)
+                else if (Projectile.velocity.Y != 0f)
                 {
                     frame2Counter = 0;
                     frame2 = 1; //frame 1 is jumping
@@ -284,10 +284,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else //flying
             {
-                if (projectile.velocity.X <= 0) projectile.direction = -1;
-                else projectile.direction = 1;
+                if (Projectile.velocity.X <= 0) Projectile.direction = -1;
+                else Projectile.direction = 1;
                 frame2Counter++;
-                if (projectile.velocity.Length() > 3.6f) projectile.velocity *= 0.97f;
+                if (Projectile.velocity.Length() > 3.6f) Projectile.velocity *= 0.97f;
                 if (frame2Counter > 4)
                 {
                     frame2++;
@@ -297,7 +297,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     frame2 = 6;
                 }
-                projectile.rotation = projectile.velocity.X * 0.02f;
+                Projectile.rotation = Projectile.velocity.X * 0.02f;
             }
         }
 
@@ -306,7 +306,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -314,7 +314,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.PetGoldfish)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
 
             if (Swimming)
@@ -323,26 +323,26 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return false;
             }
             Timer = 0;
-            projectile.ai[1] = 0; //reset from ZephyrfishAI();
+            Projectile.ai[1] = 0; //reset from ZephyrfishAI();
 
             return true;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
             if (Main.hasFocus) GetFrame();
 
-            lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
-            SpriteEffects effects = projectile.direction != -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType);
+            lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
+            SpriteEffects effects = Projectile.direction != -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            Texture2D image = Mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType).Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
+            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
             bounds.Y = frame2 * bounds.Height;
-            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - 2 + projectile.gfxOffY);
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - 2 + Projectile.gfxOffY);
+            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
 
             return false;
         }

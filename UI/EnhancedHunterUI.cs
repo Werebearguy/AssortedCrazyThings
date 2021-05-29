@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -40,7 +41,7 @@ namespace AssortedCrazyThings.UI
             drawRotation = new List<float>();
             drawLOS = new List<bool>();
             drawColor = new List<Color>();
-            arrowTexture = AssUtils.Instance.GetTexture("UI/UIArrow");
+            arrowTexture = AssUtils.Instance.GetTexture("UI/UIArrow").Value;
 
             blacklistNPCs = new int[]
             {
@@ -113,8 +114,8 @@ namespace AssortedCrazyThings.UI
 
                         //independent of resolution, but scales with zoom factor
 
-                        float zoomFactorX = 0.25f * AssortedCrazyThings.ZoomFactor.X;
-                        float zoomFactorY = 0.25f * AssortedCrazyThings.ZoomFactor.Y;
+                        float zoomFactorX = 0.25f * AssUISystem.ZoomFactor.X;
+                        float zoomFactorY = 0.25f * AssUISystem.ZoomFactor.Y;
                         //for some reason with small hitbox NPCs, it starts drawing closer to the player than it should when zoomed in too much
                         if (zoomFactorX > 0.175f) zoomFactorX = 0.175f;
                         if (zoomFactorY > 0.175f) zoomFactorY = 0.175f;
@@ -204,7 +205,7 @@ namespace AssortedCrazyThings.UI
 
                             //get boss head texture if it has one and use that instead of the NPC texture
                             int lbossHeadIndex = -1;
-                            if (npc.GetBossHeadTextureIndex() >= 0 && npc.GetBossHeadTextureIndex() < Main.npcHeadBossTexture.Length)
+                            if (npc.GetBossHeadTextureIndex() >= 0 && npc.GetBossHeadTextureIndex() < TextureAssets.NpcHeadBoss.Length)
                             {
                                 lbossHeadIndex = npc.GetBossHeadTextureIndex();
                             }
@@ -243,7 +244,7 @@ namespace AssortedCrazyThings.UI
             for (int i = 0; i < type.Count; i++)
             {
                 Vector2 ldrawPos = drawPos[i]; //contains npc.Center basically, but for screenpos
-                Texture2D tex = Main.npcTexture[type[i]];
+                Texture2D tex = TextureAssets.Npc[type[i]].Value;
 
                 //scale image down to max 64x64, only one of them needs to be max
                 int tempWidth = tex.Width;
@@ -259,7 +260,7 @@ namespace AssortedCrazyThings.UI
                 //if it's a boss, draw the head texture instead, no scaling
                 if (bossHeadIndex[i] != -1)
                 {
-                    tex = Main.npcHeadBossTexture[bossHeadIndex[i]];
+                    tex = TextureAssets.NpcHeadBoss[bossHeadIndex[i]].Value;
                     tempWidth = tex.Width;
                     tempHeight = tex.Height;
                     finalWidth = tex.Width;
@@ -293,14 +294,14 @@ namespace AssortedCrazyThings.UI
                         Math.Max((byte)(drawColor[i].A * 1.5f), (byte)75));
                 }
                 color *= drawLOS[i] ? 0.75f : 0.5f;
-                spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tempWidth, tempHeight), color);
+                Main.spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tempWidth, tempHeight), color);
 
                 //draw Arrow
                 Vector2 stupidOffset = drawRotation[i].ToRotationVector2() * 24f;
                 Vector2 drawPosArrow = ldrawPos + stupidOffset;
                 color = drawLOS[i] ? Color.Green * 0.75f : Color.Red * 0.75f;
                 color.A = 150;
-                spriteBatch.Draw(arrowTexture, drawPosArrow, null, color, drawRotation[i], arrowTexture.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(arrowTexture, drawPosArrow, null, color, drawRotation[i], arrowTexture.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             }
         }
     }

@@ -17,20 +17,20 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void SetDefaults()
         {
-            item.width = 24;
-            item.height = 14;
-            item.value = Item.sellPrice(gold: 2, silver: 60);
-            item.rare = -11;
-            item.defense = 12;
+            Item.width = 24;
+            Item.height = 14;
+            Item.value = Item.sellPrice(gold: 2, silver: 60);
+            Item.rare = -11;
+            Item.defense = 12;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.maxMinions++;
-            player.minionDamage += 0.1f;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
         }
 
-        public override void UpdateVanity(Player player, EquipType type)
+        public override void UpdateVanity(Player player)
         {
             //This makes it so it won't render the shoes infront of the robe
             player.shoe = 0;
@@ -38,13 +38,7 @@ namespace AssortedCrazyThings.Items.Armor
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1);
-            recipe.AddIngredient(ItemID.Ectoplasm, 3);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 12);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1).AddIngredient(ItemID.Ectoplasm, 3).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 12).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

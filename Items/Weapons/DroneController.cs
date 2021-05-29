@@ -1,11 +1,14 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions.Drones;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -54,9 +57,9 @@ namespace AssortedCrazyThings.Items.Weapons
                 {
                     if (proj.owner == self.owner && proj.identity != self.identity)
                     {
-                        if (proj.modProjectile != null && proj.modProjectile is DroneBase)
+                        if (proj.ModProjectile != null && proj.ModProjectile is DroneBase)
                         {
-                            DroneBase drone = (DroneBase)proj.modProjectile;
+                            DroneBase drone = (DroneBase)proj.ModProjectile;
                             if (drone.IsCombatDrone)
                             {
                                 int minionPos = drone.MinionPos;
@@ -124,9 +127,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
         private static void PreSync(Projectile proj)
         {
-            if (proj.modProjectile != null && proj.modProjectile is DroneBase)
+            if (proj.ModProjectile != null && proj.ModProjectile is DroneBase)
             {
-                DroneBase drone = (DroneBase)proj.modProjectile;
+                DroneBase drone = (DroneBase)proj.ModProjectile;
                 if (drone.IsCombatDrone) drone.MinionPos = GetSlotOfNextDrone(proj);
             }
         }
@@ -207,7 +210,7 @@ namespace AssortedCrazyThings.Items.Weapons
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             List<string> tooltips = new List<string>();
             List<string> toUnlock = new List<string>();
-            List<string> textureNames = new List<string>();
+            List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
             List<bool> unlocked = new List<bool>();
 
             foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
@@ -215,14 +218,14 @@ namespace AssortedCrazyThings.Items.Weapons
                 if (type != DroneType.None)
                 {
                     DroneData data = GetDroneData(type);
-                    textureNames.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName).Name);
+                    assets.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName));
                     unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
                     tooltips.Add(data.UITooltip);
                     toUnlock.Add("Craft and use a '" + data.Name + " Components' Item");
                 }
             }
 
-            return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
+            return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock);
         }
 
         /// <summary>
@@ -242,10 +245,7 @@ namespace AssortedCrazyThings.Items.Weapons
             }
         }
 
-        /// <summary>
-        /// Called in Mod.Unload
-        /// </summary>
-        public static void Unload()
+        public override void Unload()
         {
             DataList = null;
         }
@@ -257,7 +257,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
                 + "\nRight click to pick from available drones"
                 + "\nHolding the item improves the Drones' supportive and offensive abilities");
-            ItemID.Sets.StaffMinionSlotsRequired[item.type] = 1;
+            ItemID.Sets.StaffMinionSlotsRequired[Item.type] = 1;
         }
 
         public const int BaseDmg = 22;
@@ -265,34 +265,34 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void SetDefaults()
         {
-            item.damage = BaseDmg;
-            item.knockBack = BaseKB;
-            item.summon = true;
-            item.mana = 10;
-            item.width = 28;
-            item.height = 30;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.value = Item.sellPrice(0, 0, 75, 0);
-            item.rare = -11;
-            item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<BasicLaserDrone>();
-            item.shootSpeed = 10f;
-            item.buffType = ModContent.BuffType<DroneControllerBuff>();
+            Item.damage = BaseDmg;
+            Item.knockBack = BaseKB;
+            Item.DamageType = DamageClass.Summon;
+            Item.mana = 10;
+            Item.width = 28;
+            Item.height = 30;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.value = Item.sellPrice(0, 0, 75, 0);
+            Item.rare = -11;
+            Item.UseSound = SoundID.Item44;
+            Item.shoot = ModContent.ProjectileType<BasicLaserDrone>();
+            Item.shootSpeed = 10f;
+            Item.buffType = ModContent.BuffType<DroneControllerBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
-            add += GetDroneData(selected).DmgModifier;
+            damage += GetDroneData(selected).DmgModifier;
         }
 
-        public override void GetWeaponKnockback(Player player, ref float knockback)
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -315,25 +315,20 @@ namespace AssortedCrazyThings.Items.Weapons
             return true;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
             type = GetDroneData(selected).ProjType;
 
-            AssUtils.NewProjectile(player.Center.X, player.Center.Y, 0f, player.velocity.Y - 6f, type, damage, knockBack, preSync: PreSync);
+            int index = AssUtils.NewProjectile(source, player.Center.X, player.Center.Y, 0f, player.velocity.Y - 6f, type, damage, knockback, preSync: PreSync);
+            Main.projectile[index].originalDamage = damage;
             return false;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HallowedBar, 1);
-            recipe.AddIngredient(ItemID.Switch, 2);
-            recipe.AddIngredient(ItemID.Wire, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.HallowedBar, 1).AddIngredient(ItemID.Switch, 2).AddIngredient(ItemID.Wire, 10).AddTile(TileID.MythrilAnvil).Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -346,7 +341,7 @@ namespace AssortedCrazyThings.Items.Weapons
             int damageIndex = -1;
             int knockbackIndex = -1;
 
-            bool hasController = Main.LocalPlayer.HasItem(item.type);
+            bool hasController = Main.LocalPlayer.HasItem(Item.type);
 
             for (int i = 0; i < tooltips.Count; i++)
             {
@@ -382,7 +377,7 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 if (data.Combat)
                 {
-                    if (data.Firerate != "") tooltips.Insert(knockbackIndex, new TooltipLine(mod, "Firerate", data.Firerate + " firerate"));
+                    if (data.Firerate != "") tooltips.Insert(knockbackIndex, new TooltipLine(Mod, "Firerate", data.Firerate + " firerate"));
                 }
                 else
                 {
@@ -396,13 +391,13 @@ namespace AssortedCrazyThings.Items.Weapons
 
             if (!(allUnlocked && hasController))
             {
-                tooltips.Add(new TooltipLine(mod, "Destroyer", "Defeat The Destroyer to unlock more drones"));
+                tooltips.Add(new TooltipLine(Mod, "Destroyer", "Defeat The Destroyer to unlock more drones"));
             }
 
             CanSpawn(Main.LocalPlayer, selected, out bool blocked);
             if (hasController && blocked)
             {
-                tooltips.Add(new TooltipLine(mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
+                tooltips.Add(new TooltipLine(Mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
             }
         }
     }

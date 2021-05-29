@@ -10,24 +10,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mini Megalodon");
-            Main.projFrames[projectile.type] = 8;
-            Main.projPet[projectile.type] = true;
-            drawOffsetX = -4;
-            drawOriginOffsetY = -8;
+            Main.projFrames[Projectile.type] = 8;
+            Main.projPet[Projectile.type] = true;
+            DrawOffsetX = -4;
+            DrawOriginOffsetY = -8;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.EyeSpring);
-            projectile.aiStyle = -1;
-            projectile.width = 32;
-            projectile.height = 24;
-            //aiType = ProjectileID.EyeSpring;
+            Projectile.CloneDefaults(ProjectileID.EyeSpring);
+            Projectile.aiStyle = -1;
+            Projectile.width = 32;
+            Projectile.height = 24;
+            //AIType = ProjectileID.EyeSpring;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -35,9 +35,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.MiniMegalodon)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.EyeSpringAI(projectile, flyForever: false);
+            AssAI.EyeSpringAI(Projectile, flyForever: false);
         }
     }
 }

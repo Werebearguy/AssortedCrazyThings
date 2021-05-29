@@ -13,26 +13,26 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Animated Tome");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.GiantBat];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.GiantBat];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 44;
-            npc.height = 32;
-            npc.damage = 13;
-            npc.defense = 2;
-            npc.lifeMax = 16;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 60f;
-            npc.knockBackResist = 0.8f;
-            npc.aiStyle = 14;
-            npc.noGravity = true;
-            aiType = NPCID.GiantBat;
-            animationType = NPCID.GiantBat;
-            Main.npcCatchable[mod.NPCType("AnimatedTome")] = true;
-            npc.catchItem = (short)mod.ItemType("AnimatedTomeItem");
+            NPC.width = 44;
+            NPC.height = 32;
+            NPC.damage = 13;
+            NPC.defense = 2;
+            NPC.lifeMax = 16;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 60f;
+            NPC.knockBackResist = 0.8f;
+            NPC.aiStyle = 14;
+            NPC.noGravity = true;
+            AIType = NPCID.GiantBat;
+            AnimationType = NPCID.GiantBat;
+            Main.npcCatchable[Mod.Find<ModNPC>("AnimatedTome").Type] = true;
+            NPC.catchItem = (short)Mod.Find<ModItem>("AnimatedTomeItem").Type;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -40,28 +40,28 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.DungeonNormal.Chance * 0.01f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Book);
-            if (Main.rand.NextBool(50)) Item.NewItem(npc.getRect(), mod.ItemType("OrigamiManual"));
+            Item.NewItem(NPC.getRect(), ItemID.Book);
+            if (Main.rand.NextBool(50)) Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("OrigamiManual").Type);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            int i = npc.whoAmI % 5; //needs to be fixed per NPC instance
+            int i = NPC.whoAmI % 5; //needs to be fixed per NPC instance
             if (i != 4)
             {
-                Texture2D texture = mod.GetTexture("NPCs/AnimatedTome_" + i);
+                Texture2D texture = Mod.GetTexture("NPCs/AnimatedTome_" + i).Value;
                 Vector2 stupidOffset = new Vector2(0f, 4f);
-                SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-                Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-                spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Npc[NPC.type].Width() * 0.5f, NPC.height * 0.5f);
+                Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+                spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
             }
 
             if (Main.rand.NextFloat() < 0.1f)
             {
-                Dust.NewDust(npc.position, npc.width, npc.height, 15);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
             }
         }
     }

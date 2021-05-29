@@ -10,17 +10,17 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
     {
         public override void SetDefaults()
         {
-            item.maxStack = 999;
-            item.rare = -11;
-            item.width = 26;
-            item.height = 24;
-            item.consumable = true;
-            item.maxStack = 1;
-            item.UseSound = SoundID.Item4;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(silver: 50);
+            Item.maxStack = 999;
+            Item.rare = -11;
+            Item.width = 26;
+            Item.height = 24;
+            Item.consumable = true;
+            Item.maxStack = 1;
+            Item.UseSound = SoundID.Item4;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.sellPrice(silver: 50);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
             {
                 tooltip = "Already unlocked " + tooltip;
             }
-            tooltips.Add(new TooltipLine(mod, "Unlocks", tooltip));
+            tooltips.Add(new TooltipLine(Mod, "Unlocks", tooltip));
         }
 
         public abstract DroneType UnlockedType { get; }
@@ -65,27 +65,24 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
         public override void AddRecipes()
         {
-            DroneRecipe recipe = new DroneRecipe(mod, UnlockedType);
-            recipe.AddIngredient(ModContent.ItemType<DroneParts>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DroneParts>()).Register();
         }
     }
 
-    public class DroneRecipe : ModRecipe
-    {
-        public DroneType UnlockedType;
+    //public class DroneRecipe : ModRecipe
+    //{
+    //    public DroneType UnlockedType;
 
-        public DroneRecipe(Mod mod, DroneType unlockedType) : base(mod)
-        {
-            UnlockedType = unlockedType;
-        }
+    //    public DroneRecipe(Mod mod, DroneType unlockedType) : base(mod)
+    //    {
+    //        UnlockedType = unlockedType;
+    //    }
 
-        public override bool RecipeAvailable()
-        {
-            return !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType);
-        }
-    }
+    //    public override bool RecipeAvailable()
+    //    {
+    //        return !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType);
+    //    }
+    //}
 
     public class DroneUnlockableBasicLaserDrone : DroneUnlockable
     {

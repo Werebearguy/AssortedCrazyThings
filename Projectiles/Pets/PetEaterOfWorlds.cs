@@ -13,16 +13,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tiny Eater of Worlds");
-            Main.projFrames[projectile.type] = 1;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 1;
+            Main.projPet[Projectile.type] = true;
             //ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; //doesn't work for some reason with hide = true
             //ProjectileID.Sets.NeedsUUID[projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            AssAI.StardustDragonSetDefaults(projectile, size: HITBOX_SIZE, minion: false);
-            projectile.alpha = 0;
+            AssAI.StardustDragonSetDefaults(Projectile, size: HITBOX_SIZE, minion: false);
+            Projectile.alpha = 0;
         }
 
         //default 2
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -44,37 +44,37 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.PetEaterofWorlds)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
 
-            if (projectile.type != ModContent.ProjectileType<PetEaterofWorldsHead>())
+            if (Projectile.type != ModContent.ProjectileType<PetEaterofWorldsHead>())
             {
-                AssAI.StardustDragonAI(projectile, wormTypes, DISTANCE_BETWEEN_SEGMENTS);
+                AssAI.StardustDragonAI(Projectile, wormTypes, DISTANCE_BETWEEN_SEGMENTS);
             }
             else
             {
-                AssAI.BabyEaterAI(projectile);
+                AssAI.BabyEaterAI(Projectile);
                 //float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
                 //projectile.scale = 1f + scaleFactor * 0.01f;
 
-                projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
-                projectile.direction = projectile.spriteDirection = (projectile.velocity.X > 0f).ToDirectionInt();
+                Projectile.rotation = Projectile.velocity.ToRotation() + 1.57079637f;
+                Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f).ToDirectionInt();
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 drawPos = projectile.Center + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
-            Texture2D texture = Main.projectileTexture[projectile.type];
-            Rectangle drawRect = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
-            Color color = projectile.GetAlpha(lightColor);
+            Vector2 drawPos = Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
+            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+            Rectangle drawRect = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
+            Color color = Projectile.GetAlpha(lightColor);
             Vector2 drawOrigin = drawRect.Size() / 2f;
 
             //alpha5.A /= 2;
 
-            spriteBatch.Draw(texture, drawPos, drawRect, color, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
+            Main.spriteBatch.Draw(texture, drawPos, drawRect, color, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0f);
 
             return false;
         }

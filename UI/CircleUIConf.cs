@@ -1,4 +1,6 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -80,15 +82,15 @@ namespace AssortedCrazyThings.UI
             //uses VanitySelector as the triggerItem
             //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
 
-            List<string> textureNames = new List<string>();
+            List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
             for (int i = 0; i < tooltips.Count; i++)
             {
-                textureNames.Add(AssUtils.Instance.Name + "/Projectiles/Pets/" + name + "_" + i);
+                assets.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
             }
 
-            int type = AssUtils.Instance.ProjectileType(name);
+            int type = AssUtils.Instance.Find<ModProjectile>(name).Type;
 
-            return new CircleUIConf(Main.projFrames[type], type, textureNames: textureNames, tooltips: tooltips);
+            return new CircleUIConf(Main.projFrames[type], type, assets: assets, tooltips: tooltips);
         }
 
         /// <summary>
@@ -112,7 +114,7 @@ namespace AssortedCrazyThings.UI
     /// </summary>
     public class CircleUIConf
     {
-        public List<string> TextureNames { get; private set; }
+        public List<Asset<Texture2D>> Assets { get; private set; }
         public List<bool> Unlocked { get; private set; } //all true if just selection
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
         public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
@@ -123,16 +125,16 @@ namespace AssortedCrazyThings.UI
 
         public int AdditionalInfo { get; private set; } //mainly used for passing the projectile type atm
 
-        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<string> textureNames = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
+        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Asset<Texture2D>> assets = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
         {
-            if (textureNames == null || textureNames.Count <= 0) throw new Exception("'textureNames' has to be specified or has to contain at least one element");
-            else CircleAmount = textureNames.Count;
+            if (assets == null || assets.Count <= 0) throw new Exception("'textureNames' has to be specified or has to contain at least one element");
+            else CircleAmount = assets.Count;
 
             //Test if textures exist
-            foreach (string texture in textureNames)
-            {
-                if (ModContent.GetTexture(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
-            }
+            //foreach (string texture in textureNames)
+            //{
+            //    if (ModContent.GetTexture(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
+            //}
 
             if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
 
@@ -147,7 +149,7 @@ namespace AssortedCrazyThings.UI
             SpritesheetDivider = spritesheetDivider;
             AdditionalInfo = additionalInfo;
 
-            TextureNames = new List<string>(textureNames);
+            Assets = new List<Asset<Texture2D>>(assets);
             Unlocked = new List<bool>(unlocked);
             Tooltips = new List<string>(tooltips);
             ToUnlock = new List<string>(toUnlock);

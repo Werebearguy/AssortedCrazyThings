@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
@@ -14,28 +15,24 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("EnchantedSword");
-            item.buffType = mod.BuffType("EnchantedSword");
-            item.rare = -11;
+            Item.CloneDefaults(ItemID.ZephyrFish);
+            Item.shoot = Mod.Find<ModProjectile>("EnchantedSword").Type;
+            Item.buffType = Mod.Find<ModBuff>("EnchantedSword").Type;
+            Item.rare = -11;
 
-            item.value = Item.sellPrice(silver: 40);
+            Item.value = Item.sellPrice(silver: 40);
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.EnchantedSword, 1);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.EnchantedSword, 1).AddTile(TileID.DemonAltar).Register();
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
     }

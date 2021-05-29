@@ -9,10 +9,12 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.Audio;
+using Terraria.Chat;
 
 namespace AssortedCrazyThings
 {
-    public class AssWorld : ModWorld
+    public class AssWorld : ModSystem
     {
         //basically "if they were alive last update"
         public bool lilmegalodonAlive = false;
@@ -53,12 +55,12 @@ namespace AssortedCrazyThings
             droppedHarvesterSpawnItemThisSession = false;
         }
 
-        public override void Initialize()
+        public override void OnWorldLoad()
         {
             InitHarvesterSouls();
         }
 
-        public override TagCompound Save()
+        public override TagCompound SaveWorldData()
         {
             var downed = new List<string>();
             if (downedHarvester)
@@ -71,7 +73,7 @@ namespace AssortedCrazyThings
             };
         }
 
-        public override void Load(TagCompound tag)
+        public override void LoadWorldData(TagCompound tag)
         {
             var downed = tag.GetList<string>("downed");
             downedHarvester = downed.Contains("harvester");
@@ -94,14 +96,14 @@ namespace AssortedCrazyThings
         //small methods I made for myself to not make the code cluttered since I have to use these six times
         public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
         {
-            if (soundStyle != -1) Main.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
+            if (soundStyle != -1) SoundEngine.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(message, 175, 75, 255);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 75, 255));
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 75, 255));
             }
         }
 
@@ -113,7 +115,7 @@ namespace AssortedCrazyThings
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
             }
         }
 
@@ -201,7 +203,7 @@ namespace AssortedCrazyThings
             Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = false;
         }
 
-        public override void PostUpdate()
+        public override void PostUpdateWorld()
         {
             //this code is when I first started modding, terrible stuff
             //those flags are checked for trueness each update
@@ -262,7 +264,7 @@ namespace AssortedCrazyThings
             }
         }
 
-        public override void PreUpdate()
+        public override void PreUpdateWorld()
         {
             LimitSoulCount();
 

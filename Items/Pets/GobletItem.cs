@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
@@ -14,18 +15,18 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = mod.ProjectileType("GobletProj");
-            item.buffType = mod.BuffType("GobletBuff");
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 10);
+            Item.CloneDefaults(ItemID.ZephyrFish);
+            Item.shoot = Mod.Find<ModProjectile>("GobletProj").Type;
+            Item.buffType = Mod.Find<ModBuff>("GobletBuff").Type;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(silver: 10);
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
     }

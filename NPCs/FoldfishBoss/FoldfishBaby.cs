@@ -9,25 +9,25 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Foldfish Baby");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Goldfish];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 44;
-            npc.height = 18;
-            npc.damage = 0;
-            npc.defense = 20;
-            npc.lifeMax = 5;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 0f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = -1; //custom
-            aiType = NPCID.Goldfish;
-            animationType = NPCID.Goldfish;
-            npc.noGravity = true;
-            npc.buffImmune[BuffID.Confused] = false;
+            NPC.width = 44;
+            NPC.height = 18;
+            NPC.damage = 0;
+            NPC.defense = 20;
+            NPC.lifeMax = 5;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0.25f;
+            NPC.aiStyle = -1; //custom
+            AIType = NPCID.Goldfish;
+            AnimationType = NPCID.Goldfish;
+            NPC.noGravity = true;
+            NPC.buffImmune[BuffID.Confused] = false;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -38,32 +38,32 @@ namespace AssortedCrazyThings.NPCs.FoldfishBoss
         public override void AI()
         {
             //modified goldfish AI
-            npc.direction = npc.whoAmI % 2;
-            npc.spriteDirection = npc.direction;
-            if (npc.velocity.Y == 0f)
+            NPC.direction = NPC.whoAmI % 2;
+            NPC.spriteDirection = NPC.direction;
+            if (NPC.velocity.Y == 0f)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
-                    npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
-                    npc.netUpdate = true;
+                    NPC.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
+                    NPC.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
+                    NPC.netUpdate = true;
                 }
             }
-            npc.velocity.Y = npc.velocity.Y + 0.3f;
-            if (npc.velocity.Y > 10f)
+            NPC.velocity.Y = NPC.velocity.Y + 0.3f;
+            if (NPC.velocity.Y > 10f)
             {
-                npc.velocity.Y = 10f;
+                NPC.velocity.Y = 10f;
             }
-            npc.ai[0] = 1f;
+            NPC.ai[0] = 1f;
 
-            npc.rotation = npc.velocity.Y * npc.direction * 0.1f;
-            if (npc.rotation < -0.2f)
+            NPC.rotation = NPC.velocity.Y * NPC.direction * 0.1f;
+            if (NPC.rotation < -0.2f)
             {
-                npc.rotation = -0.2f;
+                NPC.rotation = -0.2f;
             }
-            if (npc.rotation > 0.2f)
+            if (NPC.rotation > 0.2f)
             {
-                npc.rotation = 0.2f;
+                NPC.rotation = 0.2f;
             }
         }
     }

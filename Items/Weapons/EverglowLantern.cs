@@ -1,9 +1,10 @@
-﻿using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,22 +22,22 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //Defaults for damage, shoot and knockback dont matter too much here
             //default to PreWol
-            item.damage = EverhallowedLantern.BaseDmg / 2 - 1;
-            item.summon = true;
-            item.mana = 10;
-            item.width = 18;
-            item.height = 38;
-            item.useTime = 36;
-            item.useAnimation = 36;
-            item.useStyle = ItemUseStyleID.HoldingUp; //4 for life crystal
-            item.noMelee = true;
-            item.value = Item.sellPrice(0, 0, 75, 0);
-            item.rare = -11;
-            item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
-            item.shootSpeed = 10f;
-            item.knockBack = EverhallowedLantern.BaseKB;
-            item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
+            Item.damage = EverhallowedLantern.BaseDmg / 2 - 1;
+            Item.DamageType = DamageClass.Summon;
+            Item.mana = 10;
+            Item.width = 18;
+            Item.height = 38;
+            Item.useTime = 36;
+            Item.useAnimation = 36;
+            Item.useStyle = ItemUseStyleID.HoldUp; //4 for life crystal
+            Item.noMelee = true;
+            Item.value = Item.sellPrice(0, 0, 75, 0);
+            Item.rare = -11;
+            Item.UseSound = SoundID.Item44;
+            Item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
+            Item.shootSpeed = 10f;
+            Item.knockBack = EverhallowedLantern.BaseKB;
+            Item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
         }
 
         public override bool AltFunctionUse(Player player)
@@ -44,12 +45,15 @@ namespace AssortedCrazyThings.Items.Weapons
             return false; //true
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             //one that shoots out far 
-            Projectile.NewProjectile(player.Center.X + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
+            int index = Projectile.NewProjectile(source, player.Center.X + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, type, damage, knockback, Main.myPlayer, 0f, 0f);
+            Main.projectile[index].originalDamage = damage;
+
             //one that shoots out less
-            Projectile.NewProjectile(player.Center.X + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
+            index = Projectile.NewProjectile(source, player.Center.X + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, type, damage, knockback, Main.myPlayer, 0f, 0f);
+            Main.projectile[index].originalDamage = damage;
 
             return false;
         }
@@ -96,12 +100,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MeteoriteBar, 5);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.MeteoriteBar, 5).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 2).AddTile(TileID.Anvils).Register();
         }
     }
 }

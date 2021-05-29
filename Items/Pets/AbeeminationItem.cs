@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,28 +18,23 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<AbeeminationProj>();
-            item.buffType = ModContent.BuffType<AbeeminationBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(gold: 2);
+            Item.CloneDefaults(ItemID.ZephyrFish);
+            Item.shoot = ModContent.ProjectileType<AbeeminationProj>();
+            Item.buffType = ModContent.BuffType<AbeeminationBuff>();
+            Item.rare = -11;
+            Item.value = Item.sellPrice(gold: 2);
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Abeemination, 1);
-            recipe.AddIngredient(ItemID.LifeFruit, 1);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Abeemination, 1).AddIngredient(ItemID.LifeFruit, 1).AddTile(TileID.DemonAltar).Register();
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
     }

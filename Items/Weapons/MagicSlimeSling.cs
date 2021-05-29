@@ -3,6 +3,7 @@ using AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,9 +30,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
         private void PreSync(Projectile proj)
         {
-            if (proj.modProjectile != null && proj.modProjectile is MagicSlimeSlingFired)
+            if (proj.ModProjectile != null && proj.ModProjectile is MagicSlimeSlingFired)
             {
-                MagicSlimeSlingFired fired = (MagicSlimeSlingFired)proj.modProjectile;
+                MagicSlimeSlingFired fired = (MagicSlimeSlingFired)proj.ModProjectile;
                 fired.ColorType = proj.GetOwner().GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
                 //Color won't be synced, its assigned in send/recv 
                 fired.Color = GetColor(fired.ColorType);
@@ -55,32 +56,27 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void SetDefaults()
         {
-            item.width = 12;
-            item.height = 24;
-            item.summon = true;
-            item.damage = 5;
-            item.useStyle = ItemUseStyleID.Stabbing;
-            item.useTime = 35;
-            item.useAnimation = 35;
-            item.UseSound = SoundID.Item19;
-            item.mana = 10;
-            item.shootSpeed = 9f;
-            item.shoot = ModContent.ProjectileType<MagicSlimeSlingFired>();
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 15);
+            Item.width = 12;
+            Item.height = 24;
+            Item.DamageType = DamageClass.Summon;
+            Item.damage = 5;
+            Item.useStyle = ItemUseStyleID.Thrust;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
+            Item.UseSound = SoundID.Item19;
+            Item.mana = 10;
+            Item.shootSpeed = 9f;
+            Item.shoot = ModContent.ProjectileType<MagicSlimeSlingFired>();
+            Item.rare = -11;
+            Item.value = Item.sellPrice(silver: 15);
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Gel, 20);
-            recipe.AddIngredient(ItemID.FallenStar, 3);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Gel, 20).AddIngredient(ItemID.FallenStar, 3).AddTile(TileID.WorkBenches).Register();
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             //using shortsword arm position but reset the movement/rotation stuff
             player.itemLocation.X = player.Center.X;
@@ -88,15 +84,16 @@ namespace AssortedCrazyThings.Items.Weapons
             player.itemRotation = 0f;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            float magnitude = new Vector2(speedX, speedY).Length();
-            speedY = -1f;
-            speedX = magnitude * Math.Sign(speedX);
+            float magnitude = velocity.Length();
+            velocity.Y = -1f;
+            velocity.X = magnitude * Math.Sign(velocity.X);
 
             //PreSync uses current mPlayer.nextMagicSlimeSlingMinion
-            AssUtils.NewProjectile(position.X, position.Y - 6f, speedX, speedY, type, damage, knockBack, preSync: PreSync);
+            int index = AssUtils.NewProjectile(source, position.X, position.Y - 6f, velocity.X, velocity.Y, type, damage, knockback, preSync: PreSync);
+            Main.projectile[index].originalDamage = damage;
 
             //switch to next type
             mPlayer.nextMagicSlimeSlingMinion = (byte)((mPlayer.nextMagicSlimeSlingMinion + 1) % MagicSlimeSlingMinionTypes);

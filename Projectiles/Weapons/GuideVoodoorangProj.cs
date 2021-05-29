@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
@@ -14,28 +15,28 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.WoodenBoomerang);
-            projectile.height = 22;
-            projectile.width = 30;
+            Projectile.CloneDefaults(ProjectileID.WoodenBoomerang);
+            Projectile.height = 22;
+            Projectile.width = 30;
         }
 
         public static int type = 0;
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-            Main.PlaySound(SoundID.PlayerHit, projectile.position); //player hurt sound
+            Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
+            SoundEngine.PlaySound(SoundID.PlayerHit, Projectile.position); //player hurt sound
             return true;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Main.PlaySound(SoundID.PlayerHit, projectile.position); //player hurt sound
+            SoundEngine.PlaySound(SoundID.PlayerHit, Projectile.position); //player hurt sound
         }
 
         public override void PostAI()
         {
-            if (projectile.lavaWet)
+            if (Projectile.lavaWet)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.AnyNPCs(NPCID.WallofFlesh))
                 {
@@ -48,9 +49,9 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                                 NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -Main.npc[i].direction);
                             }
                             Main.npc[i].StrikeNPCNoInteraction(9999, 10f, -Main.npc[i].direction);
-                            NPC.SpawnWOF(projectile.position);
+                            NPC.SpawnWOF(Projectile.position);
 
-                            projectile.Kill();
+                            Projectile.Kill();
                             //item itself doesn't get deleted but only works when the guide is in the world anyway
                         }
                     }

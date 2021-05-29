@@ -9,31 +9,31 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sting Slime");
-            Main.projFrames[projectile.type] = 6;
-            Main.projPet[projectile.type] = true;
-            drawOffsetX = -10;
-            drawOriginOffsetY = -4;
+            Main.projFrames[Projectile.type] = 6;
+            Main.projPet[Projectile.type] = true;
+            DrawOffsetX = -10;
+            DrawOriginOffsetY = -4;
         }
 
         public override void MoreSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 32;
-            projectile.height = 30;
+            Projectile.width = 32;
+            Projectile.height = 30;
 
-            projectile.minion = false;
+            Projectile.minion = false;
         }
 
         public override bool PreAI()
         {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            if (projectile.GetOwner().dead)
+            PetPlayer modPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            if (Projectile.GetOwner().dead)
             {
                 modPlayer.StingSlimeBlack = false;
             }
             if (modPlayer.StingSlimeBlack)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
             return true;
         }

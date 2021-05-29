@@ -10,27 +10,27 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Enchanted Sword");
-            Main.projFrames[projectile.type] = 8;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 8;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.TikiSpirit);
-            aiType = ProjectileID.TikiSpirit;
-            projectile.width = 26;
-            projectile.height = 50;
+            Projectile.CloneDefaults(ProjectileID.TikiSpirit);
+            AIType = ProjectileID.TikiSpirit;
+            Projectile.width = 26;
+            Projectile.height = 50;
         }
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             return true;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -38,9 +38,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.EnchantedSword)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
     }
 }

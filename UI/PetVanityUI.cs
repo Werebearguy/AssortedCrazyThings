@@ -2,8 +2,10 @@
 using AssortedCrazyThings.Items.PetAccessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -75,7 +77,7 @@ namespace AssortedCrazyThings.UI
         //Initialization
         public override void OnInitialize()
         {
-            redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross");
+            redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross").Value;
         }
 
         //Update, unused
@@ -114,7 +116,7 @@ namespace AssortedCrazyThings.UI
                 {
                     drawColor = Color.Gray;
                 }
-                spriteBatch.Draw(Main.wireUITexture[isMouseWithin ? 1 : 0], bgRect, drawColor);
+                Main.spriteBatch.Draw(TextureAssets.WireUi[isMouseWithin ? 1 : 0].Value, bgRect, drawColor);
 
                 //Draw sprites over the icons
                 int width = petAccessory.AltTextures[done].Width;
@@ -124,7 +126,7 @@ namespace AssortedCrazyThings.UI
                 drawColor = Color.White;
                 if (hasEquipped && done == petAccessory.Color) drawColor = Color.Gray;
 
-                spriteBatch.Draw(petAccessory.AltTextures[done], projRect, petAccessory.AltTextures[done].Bounds, drawColor);
+                Main.spriteBatch.Draw(petAccessory.AltTextures[done], projRect, petAccessory.AltTextures[done].Bounds, drawColor);
 
                 if (isMouseWithin)
                 {
@@ -140,16 +142,17 @@ namespace AssortedCrazyThings.UI
 
             bool middle = CircleUI.CheckMouseWithinCircle(Main.MouseScreen, mainRadius, spawnPosition);
 
-            spriteBatch.Draw(Main.wireUITexture[middle ? 1 : 0], outputRect, Color.White);
+            Main.spriteBatch.Draw(TextureAssets.WireUi[middle ? 1 : 0].Value, outputRect, Color.White);
 
             //Draw held item inside circle
             if (petAccessory.Type != -1)
             {
-                int finalWidth = Main.itemTexture[petAccessory.Type].Width;
-                int finalHeight = Main.itemTexture[petAccessory.Type].Height;
+                Asset<Texture2D> asset = TextureAssets.Item[petAccessory.Type];
+                int finalWidth = asset.Width();
+                int finalHeight = asset.Height();
                 Rectangle outputWeaponRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
                 //outputWeaponRect.Inflate(4, 4);
-                spriteBatch.Draw(Main.itemTexture[petAccessory.Type], outputWeaponRect, Color.White);
+                Main.spriteBatch.Draw(asset.Value, outputWeaponRect, Color.White);
             }
 
             if (middle)
@@ -162,12 +165,12 @@ namespace AssortedCrazyThings.UI
                     int finalWidth = redCrossTexture.Width;
                     int finalHeight = redCrossTexture.Height;
                     Rectangle outputCrossRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
-                    spriteBatch.Draw(redCrossTexture, outputCrossRect, Color.White);
+                    Main.spriteBatch.Draw(redCrossTexture, outputCrossRect, Color.White);
 
                     //Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, "Unequip", mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, "Unequip", mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
 
@@ -182,7 +185,7 @@ namespace AssortedCrazyThings.UI
                     //Draw the tooltip
                     Color fontColor = Color.White;
                     Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, tooltip, mousePos + new Vector2(16, 16), fontColor, 0, Vector2.Zero, Vector2.One);
                 }
             }
         }

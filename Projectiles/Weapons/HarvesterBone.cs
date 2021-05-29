@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
@@ -13,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             get
             {
-                return "Terraria/Projectile_" + ProjectileID.SkeletonBone;
+                return "Terraria/Images/Projectile_" + ProjectileID.SkeletonBone;
             }
         }
 
@@ -24,13 +25,13 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.SkeletonBone);
+            Projectile.CloneDefaults(ProjectileID.SkeletonBone);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Collision.HitTiles(projectile.position + projectile.velocity, projectile.velocity, projectile.width, projectile.height);
-            Main.PlaySound(SoundID.Dig, projectile.position);
+            Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
+            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
             return true;
         }
 

@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Weapons;
 using Microsoft.Xna.Framework;
 using System;
@@ -35,11 +35,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return (int)projectile.ai[1];
+                return (int)Projectile.ai[1];
             }
             set
             {
-                projectile.ai[1] = value;
+                Projectile.ai[1] = value;
             }
         }
 
@@ -50,11 +50,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return (int)projectile.ai[0];
+                return (int)Projectile.ai[0];
             }
             set
             {
-                projectile.ai[0] = value;
+                Projectile.ai[0] = value;
             }
         }
 
@@ -62,11 +62,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return projectile.localAI[0];
+                return Projectile.localAI[0];
             }
             set
             {
-                projectile.localAI[0] = value;
+                Projectile.localAI[0] = value;
             }
         }
 
@@ -74,11 +74,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return (byte)projectile.localAI[1];
+                return (byte)Projectile.localAI[1];
             }
             set
             {
-                projectile.localAI[1] = value;
+                Projectile.localAI[1] = value;
             }
         }
 
@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return Main.netMode != NetmodeID.Server && projectile.owner == Main.myPlayer;
+                return Main.netMode != NetmodeID.Server && Projectile.owner == Main.myPlayer;
             }
         }
 
@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return (int)(projectile.damage * dmgModifier);
+                return (int)(Projectile.damage * dmgModifier);
             }
         }
 
@@ -111,7 +111,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return projectile.knockBack * kbModifier;
+                return Projectile.knockBack * kbModifier;
             }
         }
 
@@ -144,7 +144,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         protected virtual void CheckActive()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             AssPlayer modPlayer = player.GetModPlayer<AssPlayer>();
             if (player.dead)
             {
@@ -152,7 +152,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
             if (modPlayer.droneControllerMinion)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
         }
 
@@ -192,9 +192,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 RandomNumber = (byte)Main.rand.Next(1, 256);
             }
 
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             Vector2 offset = new Vector2(-30, 20); //to offset FlickerwickPetAI to player.Center
-            offset += DroneController.GetPosition(projectile, MinionPos);
+            offset += DroneController.GetPosition(Projectile, MinionPos);
 
             bool staticDirection = true;
             bool reverseSide = false;
@@ -205,8 +205,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             bool run = ModifyDefaultAI(ref staticDirection, ref reverseSide, ref veloXToRotationFactor, ref veloSpeed, ref offsetX, ref offsetY);
             if (run)
             {
-                AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, staticDirection: staticDirection, reverseSide: reverseSide, veloXToRotationFactor: veloXToRotationFactor, veloSpeed: veloSpeed, offsetX: offsetX, offsetY: offsetY);
-                projectile.direction = projectile.spriteDirection = -player.direction;
+                AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, staticDirection: staticDirection, reverseSide: reverseSide, veloXToRotationFactor: veloXToRotationFactor, veloSpeed: veloSpeed, offsetX: offsetX, offsetY: offsetY);
+                Projectile.direction = Projectile.spriteDirection = -player.direction;
             }
             if (IsCombatDrone) player.numMinions--; //make it so it doesn't affect projectile.minionPos of non-drone minions
 

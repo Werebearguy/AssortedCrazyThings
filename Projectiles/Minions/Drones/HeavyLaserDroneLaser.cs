@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -21,43 +22,44 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Laser Drone Laser");
-            ProjectileID.Sets.MinionShot[projectile.type] = true;
+            ProjectileID.Sets.MinionShot[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 8;
-            projectile.height = 8;
-            projectile.timeLeft = LifeTime;
-            projectile.extraUpdates = LifeTime;
-            projectile.hide = true;
-            projectile.friendly = true;
-            projectile.hostile = false;
-            projectile.alpha = 255; //might not be needed
-            projectile.ranged = false;
-            projectile.penetrate = -1;
-            projectile.aiStyle = -1;
+            Projectile.width = 8;
+            Projectile.height = 8;
+            Projectile.timeLeft = LifeTime;
+            Projectile.extraUpdates = LifeTime;
+            Projectile.hide = true;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.alpha = 255; //might not be needed
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.penetrate = -1;
+            Projectile.aiStyle = -1;
+            Projectile.DamageType = DamageClass.Summon;
 
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 10;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
         }
 
         public override void AI()
         {
-            if (projectile.localAI[0] == 0f)
+            if (Projectile.localAI[0] == 0f)
             {
-                Main.PlaySound(SoundID.Item67, projectile.position); //67, 94
+                SoundEngine.PlaySound(SoundID.Item67, Projectile.position); //67, 94
                 //75 for a weak laser
             }
-            projectile.localAI[0] += 1f;
-            if (projectile.localAI[0] > 3f)
+            Projectile.localAI[0] += 1f;
+            if (Projectile.localAI[0] > 3f)
             {
                 for (int i = 0; i < 4; i++) //3
                 {
-                    Vector2 pos = projectile.position;
-                    pos -= projectile.velocity * (i * 0.25f); //0.3333
+                    Vector2 pos = Projectile.position;
+                    pos -= Projectile.velocity * (i * 0.25f); //0.3333
                     int type = 60; //173
-                    Dust dust = Dust.NewDustDirect(pos, projectile.width, projectile.height, type, 0f, 0f, 0, default(Color), 1f);
+                    Dust dust = Dust.NewDustDirect(pos, Projectile.width, Projectile.height, type, 0f, 0f, 0, default(Color), 1f);
                     //dust.position = pos;
                     dust.noGravity = true;
                     dust.scale = Main.rand.Next(70, 110) * 0.015f;

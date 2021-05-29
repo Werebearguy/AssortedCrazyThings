@@ -17,17 +17,17 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 40;
-            item.height = 28;
-            item.value = Item.sellPrice(gold: 1);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 40;
+            Item.height = 28;
+            Item.value = Item.sellPrice(gold: 1);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.wingTimeMax = 95;
-            player.minionDamage += 0.05f;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
             player.maxMinions++;
         }
 
@@ -48,14 +48,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Bone, 25);
-            recipe.AddIngredient(ItemID.SoulofFlight, 10);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 2);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Bone, 25).AddIngredient(ItemID.SoulofFlight, 10).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 10).AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 2).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

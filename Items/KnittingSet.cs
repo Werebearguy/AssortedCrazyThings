@@ -13,20 +13,16 @@ namespace AssortedCrazyThings.Items
         }
         public override void SetDefaults()
         {
-            item.maxStack = 999;
-            item.width = 22;
-            item.height = 22;
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 35);
+            Item.maxStack = 999;
+            Item.width = 22;
+            Item.height = 22;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(silver: 35);
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Silk, 15);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Silk, 15).AddTile(TileID.Loom).Register();
         }
     }
 }

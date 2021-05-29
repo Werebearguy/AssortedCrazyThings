@@ -12,11 +12,11 @@ namespace AssortedCrazyThings.Items
         }
         public override void SetDefaults()
         {
-            item.maxStack = 999;
-            item.width = 22;
-            item.height = 22;
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 50);
+            Item.maxStack = 999;
+            Item.width = 22;
+            Item.height = 22;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(silver: 50);
         }
     }
 }

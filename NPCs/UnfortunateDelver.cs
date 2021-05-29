@@ -9,24 +9,24 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Unfortunate Delver");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BartenderUnconscious];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BartenderUnconscious];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 28;
-            npc.height = 46;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 50;
-            npc.HitSound = SoundID.NPCHit41;
-            npc.DeathSound = SoundID.NPCDeath52;
-            npc.value = 0f;
-            npc.knockBackResist = 0f;
-            npc.aiStyle = 0;
-            aiType = NPCID.BartenderUnconscious;
-            animationType = NPCID.BartenderUnconscious;
-            npc.friendly = true;
+            NPC.width = 28;
+            NPC.height = 46;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 50;
+            NPC.HitSound = SoundID.NPCHit41;
+            NPC.DeathSound = SoundID.NPCDeath52;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = 0;
+            AIType = NPCID.BartenderUnconscious;
+            AnimationType = NPCID.BartenderUnconscious;
+            NPC.friendly = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -45,18 +45,18 @@ namespace AssortedCrazyThings.NPCs
             return true;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.StoneBlock, 4 + Main.rand.Next(5));
+            Item.NewItem(NPC.getRect(), ItemID.StoneBlock, 4 + Main.rand.Next(5));
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/UnfortunateDelverGore_01"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/UnfortunateDelverGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/UnfortunateDelverGore_03"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/UnfortunateDelverGore_01").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/UnfortunateDelverGore_02").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/UnfortunateDelverGore_03").Type, 1f);
             }
         }
     }

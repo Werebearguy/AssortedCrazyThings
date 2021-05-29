@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,39 +16,39 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Goblet");
-            Main.projFrames[projectile.type] = 12;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 12;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabyGrinch);
-            aiType = ProjectileID.BabyGrinch;
-            projectile.width = 24; //40 for flying
-            projectile.height = 38;
+            Projectile.CloneDefaults(ProjectileID.BabyGrinch);
+            AIType = ProjectileID.BabyGrinch;
+            Projectile.width = 24; //40 for flying
+            Projectile.height = 38;
         }
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
-            player.grinch = false; // Relic from aiType
+            Player player = Projectile.GetOwner();
+            player.grinch = false; // Relic from AIType
             return true;
         }
 
         private void GetFrame()
         {
-            if (projectile.ai[0] == 0) //not flying
+            if (Projectile.ai[0] == 0) //not flying
             {
-                if (projectile.velocity.Y == 0f)
+                if (Projectile.velocity.Y == 0f)
                 {
-                    if (projectile.velocity.X == 0f)
+                    if (Projectile.velocity.X == 0f)
                     {
                         frame2 = 0;
                         frame2Counter = 0;
                     }
-                    else if (projectile.velocity.X < -0.8f || projectile.velocity.X > 0.8f)
+                    else if (Projectile.velocity.X < -0.8f || Projectile.velocity.X > 0.8f)
                     {
-                        frame2Counter += (int)Math.Abs(projectile.velocity.X);
+                        frame2Counter += (int)Math.Abs(Projectile.velocity.X);
                         frame2Counter++;
                         if (frame2Counter > 20) //6
                         {
@@ -66,7 +66,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         frame2Counter = 0;
                     }
                 }
-                else if (projectile.velocity.Y != 0f)
+                else if (Projectile.velocity.Y != 0f)
                 {
                     frame2Counter = 0;
                     frame2 = 7; //frame 7 is jumping
@@ -79,10 +79,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else //flying
             {
-                if (projectile.velocity.X <= 0) projectile.direction = -1;
-                else projectile.direction = 1;
+                if (Projectile.velocity.X <= 0) Projectile.direction = -1;
+                else Projectile.direction = 1;
                 frame2Counter++;
-                if (projectile.velocity.Length() > 3.6f) projectile.velocity *= 0.97f;
+                if (Projectile.velocity.Length() > 3.6f) Projectile.velocity *= 0.97f;
                 if (frame2Counter > 4)
                 {
                     frame2++;
@@ -92,35 +92,35 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     frame2 = 8;
                 }
-                projectile.rotation = projectile.velocity.X * 0.01f;
+                Projectile.rotation = Projectile.velocity.X * 0.01f;
             }
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
             if (Main.hasFocus) GetFrame();
 
-            lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
+            lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
             SpriteEffects effects = SpriteEffects.None;
-            if (projectile.direction != -1)
+            if (Projectile.direction != -1)
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            Texture2D image = Main.projectileTexture[projectile.type];
+            Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
+            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
             bounds.Y = frame2 * bounds.Height;
-            Vector2 stupidOffset = new Vector2(10f, 23f + projectile.gfxOffY);
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+            Vector2 stupidOffset = new Vector2(10f, 23f + Projectile.gfxOffY);
+            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
 
             return false;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -128,7 +128,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.Goblet)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
         }
     }

@@ -150,7 +150,7 @@ namespace AssortedCrazyThings
         public static void Add(string itemName, string displayName, string buffName, int buffType,
             int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, string invasion = "", Func<bool> invasionBool = null)
         {
-            int itemType = AssUtils.Instance.ItemType(itemName);
+            int itemType = AssUtils.Instance.Find<ModItem>(itemName).Type;
             if (itemType == 0) throw new Exception("No gitgud item called '" + itemName + "' found. Did you spell it correctly?");
 
             DataList[DataList.Length - 1] = new GitgudData(displayName, buffName, itemType, buffType, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, invasion, invasionBool);
@@ -831,17 +831,17 @@ namespace AssortedCrazyThings
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            GitgudData.ReduceDamageNPC(player.whoAmI, npc.type, ref damage);
+            GitgudData.ReduceDamageNPC(Player.whoAmI, npc.type, ref damage);
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            GitgudData.ReduceDamageProj(player.whoAmI, proj.type, ref damage);
+            GitgudData.ReduceDamageProj(Player.whoAmI, proj.type, ref damage);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            GitgudData.IncreaseCounters(player.whoAmI);
+            GitgudData.IncreaseCounters(Player.whoAmI);
 
             return true;
         }
@@ -873,8 +873,8 @@ namespace AssortedCrazyThings
 
         public override void PostUpdateEquips()
         {
-            GitgudData.UpdateAccessories(player.whoAmI, gitgudAccessories());
-            GitgudData.ApplyBuffImmune(player);
+            GitgudData.UpdateAccessories(Player.whoAmI, gitgudAccessories());
+            GitgudData.ApplyBuffImmune(Player);
             //AssUtils.Print(GitgudData.DataList.Length);
         }
 

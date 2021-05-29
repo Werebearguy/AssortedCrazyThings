@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,30 +17,24 @@ namespace AssortedCrazyThings.Items.Consumables
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.useAnimation = 17;
-            item.useTime = 17;
-            item.useTurn = true;
-            item.UseSound = SoundID.Item3;
-            item.maxStack = 30;
-            item.consumable = true;
-            item.buffTime = 18000; //five minutes
-            item.buffType = ModContent.BuffType<EnhancedHunterBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 3);
+            Item.width = 20;
+            Item.height = 30;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.useAnimation = 17;
+            Item.useTime = 17;
+            Item.useTurn = true;
+            Item.UseSound = SoundID.Item3;
+            Item.maxStack = 30;
+            Item.consumable = true;
+            Item.buffTime = 18000; //five minutes
+            Item.buffType = ModContent.BuffType<EnhancedHunterBuff>();
+            Item.rare = -11;
+            Item.value = Item.sellPrice(silver: 3);
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HunterPotion, 1);
-            recipe.AddIngredient(ItemID.PixieDust, 1);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 1);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.HunterPotion, 1).AddIngredient(ItemID.PixieDust, 1).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 1).AddTile(TileID.Bottles).Register();
         }
     }
 }

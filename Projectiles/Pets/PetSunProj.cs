@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -20,45 +20,45 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Personal Sun");
-            Main.projFrames[projectile.type] = 1;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 1;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.DD2PetGhost);
-            projectile.aiStyle = -1;
-            projectile.width = 62;
-            projectile.height = 62;
-            projectile.alpha = 0;
+            Projectile.CloneDefaults(ProjectileID.DD2PetGhost);
+            Projectile.aiStyle = -1;
+            Projectile.width = 62;
+            Projectile.height = 62;
+            Projectile.alpha = 0;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            Lighting.AddLight(projectile.Center, Vector3.One);
+            Lighting.AddLight(Projectile.Center, Vector3.One);
 
             int texture = 0;
             if (Main.eclipse) //takes priority
             {
                 texture = 2;
             }
-            else if (projectile.GetOwner().head == 12)
+            else if (Projectile.GetOwner().head == 12)
             {
                 texture = 1;
             }
 
             Texture2D image = AssortedCrazyThings.sunPetTextures[texture];
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height - 28f);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 28f);
+            Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            spriteBatch.Draw(image, drawPos, image.Bounds, Color.White, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(image, drawPos, image.Bounds, Color.White, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             return false;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -66,9 +66,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.PetSun)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
 
-                AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, offsetX: 20f, offsetY: -32f);
+                AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, offsetX: 20f, offsetY: -32f);
             }
         }
     }

@@ -9,24 +9,24 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Whale Shark");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Shark];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 120;
-            npc.height = 74;
-            npc.damage = 0;
-            npc.defense = 4;
-            npc.lifeMax = 1200;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Shark;
-            animationType = NPCID.Shark;
-            npc.noGravity = true;
+            NPC.width = 120;
+            NPC.height = 74;
+            NPC.damage = 0;
+            NPC.defense = 4;
+            NPC.lifeMax = 1200;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Shark;
+            AnimationType = NPCID.Shark;
+            NPC.noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -34,22 +34,22 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Ocean.Chance * 0.005f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(2))
-                Item.NewItem(npc.getRect(), ItemID.SharkFin, 1);
+                Item.NewItem(NPC.getRect(), ItemID.SharkFin, 1);
             if (Main.rand.NextBool(98))
-                Item.NewItem(npc.getRect(), ItemID.WoodenCrate, 1);
+                Item.NewItem(NPC.getRect(), ItemID.WoodenCrate, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WhaleSharkGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WhaleSharkGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WhaleSharkGore_2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WhaleSharkGore_3"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WhaleSharkGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WhaleSharkGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WhaleSharkGore_2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WhaleSharkGore_3").Type, 1f);
             }
         }
     }

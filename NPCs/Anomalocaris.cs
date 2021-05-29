@@ -9,24 +9,24 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Anomalocaris");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Piranha];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Piranha];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 64;
-            npc.height = 18;
-            npc.damage = 30;
-            npc.defense = 1;
-            npc.lifeMax = 50;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Piranha;
-            animationType = NPCID.Piranha;
-            npc.noGravity = true;
+            NPC.width = 64;
+            NPC.height = 18;
+            NPC.damage = 30;
+            NPC.defense = 1;
+            NPC.lifeMax = 50;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Piranha;
+            AnimationType = NPCID.Piranha;
+            NPC.noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -34,22 +34,22 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Ocean.Chance * 0.025f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(2))
-                Item.NewItem(npc.getRect(), ItemID.Shrimp, 1);
+                Item.NewItem(NPC.getRect(), ItemID.Shrimp, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/AnomalocarisGore_2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/AnomalocarisGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/AnomalocarisGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/AnomalocarisGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/AnomalocarisGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/AnomalocarisGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/AnomalocarisGore_2").Type, 1f);
             }
         }
     }

@@ -30,23 +30,23 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Walking Tombstone");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Crab];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Crab];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 36;
-            npc.height = 46;
-            npc.damage = 0;
-            npc.defense = 10;
-            npc.lifeMax = 40;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 3;
-            aiType = NPCID.Crab;
-            animationType = NPCID.Crab;
+            NPC.width = 36;
+            NPC.height = 46;
+            NPC.damage = 0;
+            NPC.defense = 10;
+            NPC.lifeMax = 40;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 75f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 3;
+            AIType = NPCID.Crab;
+            AnimationType = NPCID.Crab;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -55,11 +55,11 @@ namespace AssortedCrazyThings.NPCs
             else return 0f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             int itemid = 0;
 
-            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+            if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
             {
                 AiTexture = Main.rand.Next(5);
             }
@@ -85,24 +85,24 @@ namespace AssortedCrazyThings.NPCs
                     break;
             }
 
-            Item.NewItem(npc.getRect(), itemid);
+            Item.NewItem(NPC.getRect(), itemid);
         }
 
         public override void PostAI()
         {
             if (Main.dayTime)
             {
-                if (npc.velocity.X > 0 || npc.velocity.X < 0)
+                if (NPC.velocity.X > 0 || NPC.velocity.X < 0)
                 {
-                    npc.velocity.X = 0;
+                    NPC.velocity.X = 0;
                 }
-                npc.ai[0] = 1f;
-                npc.direction = 1;
+                NPC.ai[0] = 1f;
+                NPC.direction = 1;
             }
 
-            if (npc.velocity.Y < 0)
+            if (NPC.velocity.Y < 0)
             {
-                npc.velocity.Y = 0;
+                NPC.velocity.Y = 0;
             }
         }
 
@@ -110,22 +110,22 @@ namespace AssortedCrazyThings.NPCs
         {
             get
             {
-                return npc.ai[1];
+                return NPC.ai[1];
             }
             set
             {
-                npc.ai[1] = value;
+                NPC.ai[1] = value;
             }
         }
 
         public override bool PreAI()
         {
-            if (AiTexture == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-                npc.localAI[0] = 1;
-                npc.netUpdate = true;
+                NPC.localAI[0] = 1;
+                NPC.netUpdate = true;
             }
 
             return true;
@@ -133,20 +133,20 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/WalkingTombstoneGolden_" + AiTexture);
-            Vector2 stupidOffset = new Vector2(0f, 4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            Texture2D texture = Mod.GetTexture("NPCs/WalkingTombstoneGolden_" + AiTexture).Value;
+            Vector2 stupidOffset = new Vector2(0f, 4f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
             return false;
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WalkingTombstoneGore_01"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WalkingTombstoneGore_01").Type, 1f);
             }
         }
     }

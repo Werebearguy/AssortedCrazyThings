@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Buffs
             bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<PetDestroyerHead>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                PetDestroyerItem.Spawn(player);
+                PetDestroyerItem.Spawn(player, buffIndex: buffIndex);
             }
         }
     }

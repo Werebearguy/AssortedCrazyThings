@@ -2,18 +2,14 @@
   "profiles": {
     "Terraria": {
       "commandName": "Executable",
-      "executablePath": "$(tMLPath)",
-      "workingDirectory": "$(TerrariaSteamPath)"
-    },
-    "TerrariaFast": {
-      "commandName": "Executable",
-      "executablePath": "$(tMLPath)",
-      "commandLineArgs": "-skipselect",
+      "executablePath": "dotnet",
+      "commandLineArgs": "$(tMLPath) /gldevice:Vulkan",
       "workingDirectory": "$(TerrariaSteamPath)"
     },
     "TerrariaServer": {
       "commandName": "Executable",
-      "executablePath": "$(tMLServerPath)",
+      "executablePath": "dotnet",
+      "commandLineArgs": "$(tMLServerPath)",
       "workingDirectory": "$(TerrariaSteamPath)"
     }
   }

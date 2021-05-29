@@ -14,22 +14,22 @@ namespace AssortedCrazyThings.Items
         private int frame2Counter;
         private int frame2;
 
-        public override bool CloneNewInstances
-        {
-            get
-            {
-                return true;
-            }
-        }
+        //public override bool CloneNewInstances
+        //{
+        //    get
+        //    {
+        //        return true;
+        //    }
+        //}
 
         public override void SetDefaults()
         {
-            item.width = 14;
-            item.height = 24;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(copper: 50);
-            item.rare = -11;
-            item.color = Color.White;
+            Item.width = 14;
+            Item.height = 24;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(copper: 50);
+            Item.rare = -11;
+            Item.color = Color.White;
 
             MoreSetDefaults();
         }
@@ -39,11 +39,11 @@ namespace AssortedCrazyThings.Items
 
         }
 
-        public override void UseStyle(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0 && item.buffType != 0)
+            if (player.whoAmI == Main.myPlayer && player.itemTime == 0 && Item.buffType != 0)
             {
-                player.AddBuff(item.buffType, 3600, true);
+                player.AddBuff(Item.buffType, 3600, true);
             }
         }
 
@@ -77,12 +77,12 @@ namespace AssortedCrazyThings.Items
                 sinY = (float)((Math.Sin((sincounter / 120f) * MathHelper.TwoPi) - 1) * 10);
             }
 
-            lightColor = item.GetAlpha(lightColor) * 0.99f; //1f is opaque
+            lightColor = Item.GetAlpha(lightColor) * 0.99f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
 
-            Lighting.AddLight(item.Center, new Vector3(0.15f, 0.15f, 0.35f));
+            Lighting.AddLight(Item.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect];
@@ -95,9 +95,9 @@ namespace AssortedCrazyThings.Items
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
-            Vector2 stupidOffset = new Vector2(item.width / 2, (item.height - 10f) + sinY);
+            Vector2 stupidOffset = new Vector2(Item.width / 2, (Item.height - 10f) + sinY);
 
-            spriteBatch.Draw(image, item.position - Main.screenPosition + stupidOffset, bounds, lightColor, rotation, bounds.Size() / 2, scale, effects, 0f);
+            Main.spriteBatch.Draw(image, Item.position - Main.screenPosition + stupidOffset, bounds, lightColor, rotation, bounds.Size() / 2, scale, effects, 0f);
         }
     }
 }

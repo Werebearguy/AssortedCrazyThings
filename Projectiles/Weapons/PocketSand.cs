@@ -25,14 +25,14 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.ThrowingKnife);
-            projectile.aiStyle = 2; //6 for powder, 2 for throwing knife
-            projectile.height = 20;
-            projectile.width = 20;
-            projectile.timeLeft = LifeTime;
-            projectile.tileCollide = true;
-            projectile.friendly = true;
-            projectile.hostile = false;
+            Projectile.CloneDefaults(ProjectileID.ThrowingKnife);
+            Projectile.aiStyle = 2; //6 for powder, 2 for throwing knife
+            Projectile.height = 20;
+            Projectile.width = 20;
+            Projectile.timeLeft = LifeTime;
+            Projectile.tileCollide = true;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -57,18 +57,18 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
             //increase hitbox used in colliding with NPCs while projectile life depletes
-            hitbox.Width += (int)((LifeTime - projectile.timeLeft) * 1.5f);
-            hitbox.Height += (int)((LifeTime - projectile.timeLeft) * 1.5f);
-            hitbox.X -= (int)((LifeTime - projectile.timeLeft) * 1.5f / 2f);
-            hitbox.Y -= (int)((LifeTime - projectile.timeLeft) * 1.5f / 2f);
+            hitbox.Width += (int)((LifeTime - Projectile.timeLeft) * 1.5f);
+            hitbox.Height += (int)((LifeTime - Projectile.timeLeft) * 1.5f);
+            hitbox.X -= (int)((LifeTime - Projectile.timeLeft) * 1.5f / 2f);
+            hitbox.Y -= (int)((LifeTime - Projectile.timeLeft) * 1.5f / 2f);
         }
 
         public override void PostAI()
         {
             //dont spawn the dust instantly when projectile spawns, give it 1/12th of a second
-            if (projectile.timeLeft < LifeTime - 5)
+            if (Projectile.timeLeft < LifeTime - 5)
             {
-                SpawnSandDust(Color.White, projectile.Hitbox, projectile.GetOwner(), (LifeTime - projectile.timeLeft) * 0.1f);
+                SpawnSandDust(Color.White, Projectile.Hitbox, Projectile.GetOwner(), (LifeTime - Projectile.timeLeft) * 0.1f);
             }
         }
     }

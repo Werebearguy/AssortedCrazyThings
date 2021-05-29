@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 
 namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
     {
         public override void MoreSetDefaults()
         {
-            projectile.minionSlots = 1f;
+            Projectile.minionSlots = 1f;
             defdistanceFromTarget = 700f;
             defdistancePlayerFarAway = 800f;
             defdistancePlayerFarAwayWhenHasTarget = 1200f;
@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
             dustColor = ItemID.BrightGreenDye;
 
-            projectile.idStaticNPCHitCooldown = 14;
+            Projectile.idStaticNPCHitCooldown = 14;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

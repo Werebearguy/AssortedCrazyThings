@@ -9,22 +9,22 @@ namespace AssortedCrazyThings.Projectiles.Pets
     {
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabyEater);
-            aiType = ProjectileID.BabyEater;
-            projectile.width = 26;
-            projectile.height = 40;
+            Projectile.CloneDefaults(ProjectileID.BabyEater);
+            AIType = ProjectileID.BabyEater;
+            Projectile.width = 26;
+            Projectile.height = 40;
         }
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
-            player.eater = false; // Relic from aiType
+            Player player = Projectile.GetOwner();
+            player.eater = false; // Relic from AIType
             return true;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -32,9 +32,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.WallFragment)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
     }
 
@@ -43,8 +43,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall Eye1");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
         }
 
     }
@@ -54,8 +54,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall Eye2");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
         }
     }
 
@@ -64,8 +64,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall Mouth");
-            Main.projFrames[projectile.type] = 2;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
         }
     }
 }

@@ -29,8 +29,8 @@ namespace AssortedCrazyThings.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Costume Dresser");
             AddMapEntry(new Color(200, 200, 200), name);
-            dustType = 11;
-            disableSmartCursor = true;
+            DustType = 11;
+            //DisableSmartCursor = true;
         }
 
         private void MouseOverCombined(bool close)
@@ -38,17 +38,18 @@ namespace AssortedCrazyThings.Tiles
             Player player = Main.LocalPlayer;
             player.mouseInterface = true;
             player.noThrow = 2;
-            player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<VanityDresserItem>();
+            player.cursorItemIconEnabled = true;
+            player.cursorItemIconID = ModContent.ItemType<VanityDresserItem>();
+            player.GetModPlayer<AssPlayer>().mouseoveredDresser = true;
             if (close && player.itemAnimation == 0)
             {
                 // "\n[c/"+ (Color.Orange * (Main.mouseTextColor / 255f)).Hex3() + ":\nCostume Dresser]" doesnt work cause chat tags are broken with escape characters
-                player.showItemIconText = "\nCostume Dresser"
+                player.cursorItemIconText = "\nCostume Dresser"
                      + "\nLeft Click to change your Pet's appearance"
                      + "\nRight Click to change your Light Pet's appearance";
                 if (player.HeldItem.type != ItemID.None)
                 {
-                    player.showItemIconText += "\nFor this to work properly, don't have any item selected";
+                    player.cursorItemIconText += "\nFor this to work properly, don't have any item selected";
                 }
             }
         }

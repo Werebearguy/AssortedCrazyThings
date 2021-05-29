@@ -1,11 +1,14 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,10 +18,10 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public static CircleUIConf GetUIConf()
         {
-            List<string> textureNames = new List<string>() {
-                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionPreview",
-                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview",
-                        AssUtils.Instance.Name + "/Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview" };
+            List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
+                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
             List<string> tooltips = new List<string>
                     {
                         "Default"
@@ -41,7 +44,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         NPC.downedPlantBoss, // 2
                     };
 
-            return new CircleUIConf(0, -1, textureNames, unlocked, tooltips, toUnlock);
+            return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock);
         }
 
         public override void SetStaticDefaults()
@@ -54,35 +57,26 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             //change damage in SlimePackMinion.cs
-            item.damage = SlimePackMinion.DefDamage;
-            item.summon = true;
-            item.mana = 10;
-            item.width = 24;
-            item.height = 30;
-            item.useTime = 36;
-            item.useAnimation = 36;
-            item.useStyle = ItemUseStyleID.HoldingUp; //4 for life crystal
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.value = Item.sellPrice(0, 0, 75, 0);
-            item.rare = -11;
-            item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<SlimePackMinion>();
-            item.shootSpeed = 10f;
-            item.knockBack = SlimePackMinion.DefKnockback;
-            item.buffType = ModContent.BuffType<SlimePackMinionBuff>();
+            Item.damage = SlimePackMinion.DefDamage;
+            Item.DamageType = DamageClass.Summon;
+            Item.mana = 10;
+            Item.width = 24;
+            Item.height = 30;
+            Item.useTime = 36;
+            Item.useAnimation = 36;
+            Item.useStyle = ItemUseStyleID.HoldUp; //4 for life crystal
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.value = Item.sellPrice(0, 0, 75, 0);
+            Item.rare = -11;
+            Item.UseSound = SoundID.Item44;
+            Item.shoot = ModContent.ProjectileType<SlimePackMinion>();
+            Item.shootSpeed = 10f;
+            Item.knockBack = SlimePackMinion.DefKnockback;
+            Item.buffType = ModContent.BuffType<SlimePackMinionBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
-        {
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            if (mPlayer.selectedSlimePackMinionType == 2)
-            {
-                add += SlimePackMinion.SpikedIncrease;
-            }
-        }
-
-        public override void GetWeaponKnockback(Player player, ref float knockback)
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.selectedSlimePackMinionType == 2)
@@ -95,7 +89,16 @@ namespace AssortedCrazyThings.Items.Weapons
             }
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+        {
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            if (mPlayer.selectedSlimePackMinionType == 2)
+            {
+                damage += SlimePackMinion.SpikedIncrease;
+            }
+        }
+
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.selectedSlimePackMinionType == 1)
@@ -116,20 +119,14 @@ namespace AssortedCrazyThings.Items.Weapons
                 spawnPos.X = player.Center.X + player.direction * 8f;
                 spawnPos.Y = player.Center.Y;
             }
-            Projectile.NewProjectile(spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockBack, Main.myPlayer, 0f, 0f);
+            int index = Projectile.NewProjectile(source, spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockback, Main.myPlayer, 0f, 0f);
+            Main.projectile[index].originalDamage = damage;
             return false;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SlimeCrown, 1);
-            recipe.AddIngredient(ItemID.Gel, 200);
-            recipe.AddIngredient(ItemID.SoulofLight, 5);
-            recipe.AddIngredient(ItemID.SoulofNight, 5);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.SlimeCrown, 1).AddIngredient(ItemID.Gel, 200).AddIngredient(ItemID.SoulofLight, 5).AddIngredient(ItemID.SoulofNight, 5).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

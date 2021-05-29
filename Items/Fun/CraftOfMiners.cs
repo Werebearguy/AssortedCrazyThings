@@ -16,22 +16,18 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.ShroomiteDiggingClaw);
-            item.damage = 13;
-            item.useAnimation = 3;
-            item.useTime = 3;
-            item.value = Item.sellPrice(gold: 5);
-            item.rare = -11;
-            item.noUseGraphic = true;
+            Item.CloneDefaults(ItemID.ShroomiteDiggingClaw);
+            Item.damage = 13;
+            Item.useAnimation = 3;
+            Item.useTime = 3;
+            Item.value = Item.sellPrice(gold: 5);
+            Item.rare = -11;
+            Item.noUseGraphic = true;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ShroomiteDiggingClaw, 5);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.ShroomiteDiggingClaw, 5).AddTile(TileID.CrystalBall).Register();
         }
 
         public override void MeleeEffects(Player player, Rectangle hitbox)

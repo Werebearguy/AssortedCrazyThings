@@ -14,21 +14,16 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 
         public override void SetDefaults()
         {
-            item.width = 18;
-            item.height = 32;
-            item.value = 0;
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 18;
+            Item.height = 32;
+            Item.value = 0;
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Lens, 1);
-            recipe.AddIngredient(ItemID.ShinyRedBalloon, 1);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Lens, 1).AddIngredient(ItemID.ShinyRedBalloon, 1).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

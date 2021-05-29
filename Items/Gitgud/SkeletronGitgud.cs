@@ -11,8 +11,8 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void MoreSetDefaults()
         {
-            item.width = 32;
-            item.height = 32;
+            Item.width = 32;
+            Item.height = 32;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

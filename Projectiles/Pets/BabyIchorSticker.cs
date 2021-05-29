@@ -10,28 +10,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Baby Ichor Sticker");
-            Main.projFrames[projectile.type] = 4;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 4;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabyHornet);
-            aiType = ProjectileID.BabyHornet;
-            projectile.width = 34;
-            projectile.height = 38;
+            Projectile.CloneDefaults(ProjectileID.BabyHornet);
+            AIType = ProjectileID.BabyHornet;
+            Projectile.width = 34;
+            Projectile.height = 38;
         }
 
         public override bool PreAI()
         {
-            Player player = projectile.GetOwner();
-            player.hornet = false; // Relic from aiType
+            Player player = Projectile.GetOwner();
+            player.hornet = false; // Relic from AIType
             return true;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -39,9 +39,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.BabyIchorSticker)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
+            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
     }
 }

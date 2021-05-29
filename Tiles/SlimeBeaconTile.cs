@@ -1,10 +1,11 @@
-﻿using AssortedCrazyThings.Items.Placeable;
+using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Tiles
 {
@@ -23,9 +24,9 @@ namespace AssortedCrazyThings.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Slime Beacon");
             AddMapEntry(new Color(75, 139, 166), name);
-            dustType = 1;
-            animationFrameHeight = 56;
-            disableSmartCursor = true;
+            DustType = 1;
+            AnimationFrameHeight = 56;
+            //DisableSmartCursor = true;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -37,7 +38,7 @@ namespace AssortedCrazyThings.Tiles
         //you need these four things for the outline to work:
         //_Highlight.png
         //TileID.Sets.HasOutlines[Type] = true;
-        //disableSmartCursor = true;
+        //DisableSmartCursor = true;
         //and this hook
         public override bool HasSmartInteract()
         {
@@ -60,9 +61,9 @@ namespace AssortedCrazyThings.Tiles
             }
         }
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
-            Main.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
+            SoundEngine.PlaySound(SoundID.Mech, i * 16, j * 16, 0);
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 CombatText.NewText(Main.LocalPlayer.getRect(), new Color(255, 100, 30, 255), "NOT IN MULTIPLAYER");
@@ -79,8 +80,8 @@ namespace AssortedCrazyThings.Tiles
             Player player = Main.LocalPlayer;
             player.mouseInterface = true;
             player.noThrow = 2;
-            player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<SlimeBeaconItem>();
+            player.cursorItemIconEnabled = true;
+            player.cursorItemIconID = ModContent.ItemType<SlimeBeaconItem>();
         }
     }
 }

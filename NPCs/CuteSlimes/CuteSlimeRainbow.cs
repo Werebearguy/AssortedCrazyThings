@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
@@ -18,7 +19,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return mod.ItemType("CuteSlimeRainbowNew");
+                return Mod.Find<ModItem>("CuteSlimeRainbowNew").Type;
             }
         }
 
@@ -32,13 +33,13 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void MoreSetDefaults()
         {
-            npc.scale = 1.2f;
+            NPC.scale = 1.2f;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
             lightColor = Main.DiscoColor;
-            lightColor *= (255f - npc.alpha) / 255f;
+            lightColor *= (255f - NPC.alpha) / 255f;
             return lightColor;
         }
     }

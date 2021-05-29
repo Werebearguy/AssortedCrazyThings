@@ -13,25 +13,25 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bloated Bait Thief");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Goldfish];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 48;
-            npc.height = 42;
-            npc.damage = 0;
-            npc.defense = 0;
-            npc.lifeMax = 5;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 0f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = -1;
-            aiType = NPCID.Goldfish;
-            animationType = NPCID.Goldfish;
-            npc.noGravity = true;
-            npc.buffImmune[BuffID.Confused] = false;
+            NPC.width = 48;
+            NPC.height = 42;
+            NPC.damage = 0;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 0f;
+            NPC.knockBackResist = 0.25f;
+            NPC.aiStyle = -1;
+            AIType = NPCID.Goldfish;
+            AnimationType = NPCID.Goldfish;
+            NPC.noGravity = true;
+            NPC.buffImmune[BuffID.Confused] = false;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -46,124 +46,124 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Worm, 2 + Main.rand.Next(7));
-            if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), ItemID.GoldWorm);
+            Item.NewItem(NPC.getRect(), ItemID.Worm, 2 + Main.rand.Next(7));
+            if (Main.rand.NextBool(100)) Item.NewItem(NPC.getRect(), ItemID.GoldWorm);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BaitThiefGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BaitThiefGore_0"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/BaitThiefGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/BaitThiefGore_0").Type, 1f);
             }
         }
 
         public override void AI()
         {
             //modified goldfish AI
-            if (npc.direction == 0)
+            if (NPC.direction == 0)
             {
-                npc.TargetClosest();
+                NPC.TargetClosest();
             }
-            if (npc.wet)
+            if (NPC.wet)
             {
                 bool flag12 = false;
-                npc.TargetClosest(faceTarget: false);
-                Vector2 centerpos = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
-                Vector2 playerpos = new Vector2(Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2),
-                                                Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2));
+                NPC.TargetClosest(faceTarget: false);
+                Vector2 centerpos = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+                Vector2 playerpos = new Vector2(Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2),
+                                                Main.player[NPC.target].position.Y + (float)(Main.player[NPC.target].height / 2));
                 float distancex = playerpos.X - centerpos.X; //positive if player on the right
                 float distancey = playerpos.Y - centerpos.Y; //positive if player below
                 float distancen = (float)Math.Sqrt((double)(distancex * distancex + distancey * distancey)); //distance between player and fish
-                if (Main.player[npc.target].wet && distancen < scareRange)
+                if (Main.player[NPC.target].wet && distancen < scareRange)
                 {
-                    if (!Main.player[npc.target].dead)
+                    if (!Main.player[NPC.target].dead)
                     {
                         flag12 = true;
                     }
                 }
                 if (!flag12)
                 {
-                    if (npc.collideX)
+                    if (NPC.collideX)
                     {
-                        npc.velocity.X = npc.velocity.X * -1f;
-                        npc.direction *= -1;
-                        npc.netUpdate = true;
+                        NPC.velocity.X = NPC.velocity.X * -1f;
+                        NPC.direction *= -1;
+                        NPC.netUpdate = true;
                     }
-                    if (npc.collideY)
+                    if (NPC.collideY)
                     {
-                        npc.netUpdate = true;
-                        if (npc.velocity.Y > 0f)
+                        NPC.netUpdate = true;
+                        if (NPC.velocity.Y > 0f)
                         {
-                            npc.velocity.Y = Math.Abs(npc.velocity.Y) * -1f;
-                            npc.directionY = -1;
-                            npc.ai[0] = -1f;
+                            NPC.velocity.Y = Math.Abs(NPC.velocity.Y) * -1f;
+                            NPC.directionY = -1;
+                            NPC.ai[0] = -1f;
                         }
-                        else if (npc.velocity.Y < 0f)
+                        else if (NPC.velocity.Y < 0f)
                         {
-                            npc.velocity.Y = Math.Abs(npc.velocity.Y);
-                            npc.directionY = 1;
-                            npc.ai[0] = 1f;
+                            NPC.velocity.Y = Math.Abs(NPC.velocity.Y);
+                            NPC.directionY = 1;
+                            NPC.ai[0] = 1f;
                         }
                     }
                 }
                 if (flag12) //if target is in water
                 {
-                    npc.TargetClosest(faceTarget: false);
+                    NPC.TargetClosest(faceTarget: false);
                     //face away from the player
-                    npc.direction = (distancex >= 0f) ? -1 : 1;
-                    npc.directionY = (distancey >= 0f) ? -1 : 1;
+                    NPC.direction = (distancex >= 0f) ? -1 : 1;
+                    NPC.directionY = (distancey >= 0f) ? -1 : 1;
 
 
-                    npc.velocity.X = npc.velocity.X + (float)npc.direction * 0.1f;
-                    npc.velocity.Y = npc.velocity.Y + (float)npc.directionY * 0.1f;
+                    NPC.velocity.X = NPC.velocity.X + (float)NPC.direction * 0.1f;
+                    NPC.velocity.Y = NPC.velocity.Y + (float)NPC.directionY * 0.1f;
 
 
-                    if (npc.velocity.X > 3f)
+                    if (NPC.velocity.X > 3f)
                     {
-                        npc.velocity.X = 3f;
+                        NPC.velocity.X = 3f;
                     }
-                    if (npc.velocity.X < -3f)
+                    if (NPC.velocity.X < -3f)
                     {
-                        npc.velocity.X = -3f;
+                        NPC.velocity.X = -3f;
                     }
-                    if (npc.velocity.Y > 2f)
+                    if (NPC.velocity.Y > 2f)
                     {
-                        npc.velocity.Y = 2f;
+                        NPC.velocity.Y = 2f;
                     }
-                    if (npc.velocity.Y < -2f)
+                    if (NPC.velocity.Y < -2f)
                     {
-                        npc.velocity.Y = -2f;
+                        NPC.velocity.Y = -2f;
                     }
                 }
                 else
                 {
-                    npc.velocity.X = npc.velocity.X + (float)npc.direction * 0.1f;
-                    if (npc.velocity.X < -1f || npc.velocity.X > 1f)
+                    NPC.velocity.X = NPC.velocity.X + (float)NPC.direction * 0.1f;
+                    if (NPC.velocity.X < -1f || NPC.velocity.X > 1f)
                     {
-                        npc.velocity.X = npc.velocity.X * 0.95f;
+                        NPC.velocity.X = NPC.velocity.X * 0.95f;
                     }
-                    if (npc.ai[0] == -1f)
+                    if (NPC.ai[0] == -1f)
                     {
-                        npc.velocity.Y = npc.velocity.Y - 0.01f;
-                        if ((double)npc.velocity.Y < -0.3)
+                        NPC.velocity.Y = NPC.velocity.Y - 0.01f;
+                        if ((double)NPC.velocity.Y < -0.3)
                         {
-                            npc.ai[0] = 1f;
+                            NPC.ai[0] = 1f;
                         }
                     }
                     else
                     {
-                        npc.velocity.Y = npc.velocity.Y + 0.01f;
-                        if ((double)npc.velocity.Y > 0.3)
+                        NPC.velocity.Y = NPC.velocity.Y + 0.01f;
+                        if ((double)NPC.velocity.Y > 0.3)
                         {
-                            npc.ai[0] = -1f;
+                            NPC.ai[0] = -1f;
                         }
                     }
-                    int num261 = (int)(npc.position.X + (float)(npc.width / 2)) / 16;
-                    int num262 = (int)(npc.position.Y + (float)(npc.height / 2)) / 16;
+                    int num261 = (int)(NPC.position.X + (float)(NPC.width / 2)) / 16;
+                    int num262 = (int)(NPC.position.Y + (float)(NPC.height / 2)) / 16;
                     if (Main.tile[num261, num262 - 1] == null)
                     {
                         Tile[,] tile3 = Main.tile;
@@ -188,49 +188,49 @@ namespace AssortedCrazyThings.NPCs
                         Tile tile8 = new Tile();
                         tile7[num267, num268] = tile8;
                     }
-                    if (Main.tile[num261, num262 - 1].liquid > 128)
+                    if (Main.tile[num261, num262 - 1].LiquidAmount > 128)
                     {
-                        if (Main.tile[num261, num262 + 1].active())
+                        if (Main.tile[num261, num262 + 1].IsActive)
                         {
-                            npc.ai[0] = -1f;
+                            NPC.ai[0] = -1f;
                         }
-                        else if (Main.tile[num261, num262 + 2].active())
+                        else if (Main.tile[num261, num262 + 2].IsActive)
                         {
-                            npc.ai[0] = -1f;
+                            NPC.ai[0] = -1f;
                         }
                     }
-                    if ((double)npc.velocity.Y > 0.4 || (double)npc.velocity.Y < -0.4)
+                    if ((double)NPC.velocity.Y > 0.4 || (double)NPC.velocity.Y < -0.4)
                     {
-                        npc.velocity.Y = npc.velocity.Y * 0.95f;
+                        NPC.velocity.Y = NPC.velocity.Y * 0.95f;
                     }
                 }
             }
             else //not wet, frantically jump around
             {
-                if (npc.velocity.Y == 0f)
+                if (NPC.velocity.Y == 0f)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        npc.velocity.Y = (float)Main.rand.Next(-50, -20) * 0.1f;
-                        npc.velocity.X = (float)Main.rand.Next(-20, 20) * 0.1f;
-                        npc.netUpdate = true;
+                        NPC.velocity.Y = (float)Main.rand.Next(-50, -20) * 0.1f;
+                        NPC.velocity.X = (float)Main.rand.Next(-20, 20) * 0.1f;
+                        NPC.netUpdate = true;
                     }
                 }
-                npc.velocity.Y = npc.velocity.Y + 0.3f;
-                if (npc.velocity.Y > 10f)
+                NPC.velocity.Y = NPC.velocity.Y + 0.3f;
+                if (NPC.velocity.Y > 10f)
                 {
-                    npc.velocity.Y = 10f;
+                    NPC.velocity.Y = 10f;
                 }
-                npc.ai[0] = 1f;
+                NPC.ai[0] = 1f;
             }
-            npc.rotation = npc.velocity.Y * (float)npc.direction * 0.1f;
-            if (npc.rotation < -0.2f)
+            NPC.rotation = NPC.velocity.Y * (float)NPC.direction * 0.1f;
+            if (NPC.rotation < -0.2f)
             {
-                npc.rotation = -0.2f;
+                NPC.rotation = -0.2f;
             }
-            if (npc.rotation > 0.2f)
+            if (NPC.rotation > 0.2f)
             {
-                npc.rotation = 0.2f;
+                NPC.rotation = 0.2f;
             }
         }
     }

@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -41,7 +40,7 @@ namespace AssortedCrazyThings
 
         //soul minion stuff
         public bool soulMinion = false;
-        public bool tempSoulMinion = false;
+        public Item tempSoulMinion = null;
         public SoulType selectedSoulMinionType = SoulType.Dungeon;
 
         public bool slimePackMinion = false;
@@ -75,6 +74,8 @@ namespace AssortedCrazyThings
 
         private bool drawEffectsCalledOnce = false;
 
+        public bool mouseoveredDresser = false;
+
         /// <summary>
         /// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
         /// </summary>
@@ -94,13 +95,14 @@ namespace AssortedCrazyThings
             teleportHome = false;
             getDefense = false;
             soulMinion = false;
-            tempSoulMinion = false;
+            tempSoulMinion = null;
             slimePackMinion = false;
             empoweringBuff = false;
             enhancedHunterBuff = false;
             cuteSlimeSpawnEnable = false;
             soulSaviorArmor = false;
             droneControllerMinion = false;
+            mouseoveredDresser = false;
         }
 
         public bool RightClickPressed { get { return PlayerInput.Triggers.JustPressed.MouseRight; } }
@@ -154,9 +156,9 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                ModPacket packet = mod.GetPacket();
+                ModPacket packet = Mod.GetPacket();
                 packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
-                packet.Write((byte)player.whoAmI);
+                packet.Write((byte)Player.whoAmI);
                 packet.Write((byte)shieldDroneReduction);
                 packet.Write((byte)droneControllerUnlocked);
                 packet.Send(toClient, ignoreClient);
@@ -167,9 +169,9 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.Server) return;
             //from server to clients
-            ModPacket packet = mod.GetPacket();
+            ModPacket packet = Mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncAssPlayer);
-            packet.Write((byte)player.whoAmI);
+            packet.Write((byte)Player.whoAmI);
             packet.Write((byte)shieldDroneReduction);
             packet.Send(toWho, fromWho);
         }
@@ -184,11 +186,11 @@ namespace AssortedCrazyThings
         /// </summary>
         public void ResetEmpoweringTimer(bool fromServer = false)
         {
-            if (empoweringBuff && !player.HasBuff(BuffID.ShadowDodge))
+            if (empoweringBuff && !Player.HasBuff(BuffID.ShadowDodge))
             {
                 for (int i = 0; i < empoweringTimer; i++)
                 {
-                    Dust dust = Dust.NewDustPerfect(player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                    Dust dust = Dust.NewDustPerfect(Player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
                     dust.noLight = true;
                     dust.noGravity = true;
                     dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
@@ -197,9 +199,9 @@ namespace AssortedCrazyThings
 
                 if (Main.netMode == NetmodeID.MultiplayerClient && !fromServer)
                 {
-                    ModPacket packet = mod.GetPacket();
+                    ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
-                    packet.Write((byte)player.whoAmI);
+                    packet.Write((byte)Player.whoAmI);
                     packet.Send(); //send to server
                 }
             }
@@ -215,14 +217,14 @@ namespace AssortedCrazyThings
             {
                 for (int i = 0; i < shieldDroneReduction / 2; i++)
                 {
-                    Dust dust = Dust.NewDustPerfect(player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+                    Dust dust = Dust.NewDustPerfect(Player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
                     dust.noLight = true;
                     dust.noGravity = true;
                     dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
                 }
 
                 damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
-                if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI) shieldDroneReduction -= ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
+                if (Main.netMode != NetmodeID.Server && Main.myPlayer == Player.whoAmI) shieldDroneReduction -= ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
             }
         }
 
@@ -231,9 +233,9 @@ namespace AssortedCrazyThings
         /// </summary>
         private void PreSyncSoulTemp(Projectile proj)
         {
-            if (proj.modProjectile != null && proj.modProjectile is CompanionDungeonSoulMinionBase)
+            if (proj.ModProjectile != null && proj.ModProjectile is CompanionDungeonSoulMinionBase)
             {
-                CompanionDungeonSoulMinionBase soul = (CompanionDungeonSoulMinionBase)proj.modProjectile;
+                CompanionDungeonSoulMinionBase soul = (CompanionDungeonSoulMinionBase)proj.ModProjectile;
                 soul.isTemp = true;
             }
         }
@@ -243,14 +245,14 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulTemp()
         {
-            if (tempSoulMinion && player.whoAmI == Main.myPlayer)
+            if (tempSoulMinion != null && !tempSoulMinion.IsAir && Player.whoAmI == Main.myPlayer)
             {
                 bool checkIfAlive = false;
                 int spawnedType = Main.hardMode ? ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
                 int spawnedDamage = Main.hardMode ? (int)(EverhallowedLantern.BaseDmg * 1.1f * 2f) : ((EverhallowedLantern.BaseDmg / 2 - 1) * 2);
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == spawnedType)
+                    if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == spawnedType)
                     {
                         if (Main.projectile[i].minionSlots == 0f) //criteria for temp, is set by isTemp
                         {
@@ -262,7 +264,7 @@ namespace AssortedCrazyThings
 
                 if (!checkIfAlive)
                 {
-                    AssUtils.NewProjectile(player.Center.X, player.Center.Y, -player.velocity.X, player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
+                    AssUtils.NewProjectile(Player.GetProjectileSource_Item(tempSoulMinion), Player.Center.X, Player.Center.Y, -Player.velocity.X, Player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
                 }
             }
         }
@@ -298,8 +300,8 @@ namespace AssortedCrazyThings
 
                 if (shouldDropSouls)
                 {
-                    int distance = (int)(Main.npc[index].Center - player.Center).Length();
-                    if (distance < 2880 || player.ZoneDungeon) //one and a half screens or in dungeon
+                    int distance = (int)(Main.npc[index].Center - Player.Center).Length();
+                    if (distance < 2880 || Player.ZoneDungeon) //one and a half screens or in dungeon
                     {
                         for (short j = 0; j < Main.maxNPCs; j++)
                         {
@@ -327,7 +329,7 @@ namespace AssortedCrazyThings
             int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
             int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
-            Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item }; //go though player inv
+            Item[][] inventoryArray = { Player.inventory, Player.bank.item, Player.bank2.item, Player.bank3.item }; //go though player inv
             for (int y = 0; y < inventoryArray.Length; y++)
             {
                 for (int e = 0; e < inventoryArray[y].Length; e++)
@@ -342,11 +344,11 @@ namespace AssortedCrazyThings
             }
 
             //trash slot
-            if (player.trashItem.type == itemTypeOld)
+            if (Player.trashItem.type == itemTypeOld)
             {
-                tempStackCount = player.trashItem.stack;
-                player.trashItem.SetDefaults(itemTypeNew); //override with awakened
-                player.trashItem.stack = tempStackCount;
+                tempStackCount = Player.trashItem.stack;
+                Player.trashItem.SetDefaults(itemTypeNew); //override with awakened
+                Player.trashItem.stack = tempStackCount;
             }
 
             //mouse item
@@ -410,9 +412,9 @@ namespace AssortedCrazyThings
             {
                 if (canGetDefense)
                 {
-                    player.statLife += (int)damage;
-                    player.AddBuff(BuffID.RapidHealing, 600);
-                    CombatText.NewText(player.getRect(), CombatText.HealLife, "Defense increased");
+                    Player.statLife += (int)damage;
+                    Player.AddBuff(BuffID.RapidHealing, 600);
+                    CombatText.NewText(Player.getRect(), CombatText.HealLife, "Defense increased");
 
                     getDefenseTimer = GetDefenseTimerMax;
                     getDefenseDuration = GetDefenseDurationMax;
@@ -426,35 +428,35 @@ namespace AssortedCrazyThings
         {
             if (teleportHome)
             {
-                if (canTeleportHome && player.whoAmI == Main.myPlayer)
+                if (canTeleportHome && Player.whoAmI == Main.myPlayer)
                 {
                     //this part here is from vanilla magic mirror code
-                    player.grappling[0] = -1;
-                    player.grapCount = 0;
+                    Player.grappling[0] = -1;
+                    Player.grapCount = 0;
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
                         //Kill all grappling hooks
-                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].aiStyle == 7)
+                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].aiStyle == 7)
                         {
                             Main.projectile[i].Kill();
                         }
                     }
 
                     //inserted before player.Spawn()
-                    player.statLife += (int)damage;
+                    Player.statLife += (int)damage;
 
-                    player.Spawn();
+                    Player.Spawn(PlayerSpawnContext.RecallFromItem);
                     for (int i = 0; i < 70; i++)
                     {
-                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
+                        Dust.NewDust(Player.position, Player.width, Player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
                     }
                     //end
 
-                    player.AddBuff(BuffID.RapidHealing, 300, false);
+                    Player.AddBuff(BuffID.RapidHealing, 300, false);
 
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, Player.whoAmI);
                     }
 
                     teleportHomeTimer = TeleportHomeTimerMax;
@@ -497,7 +499,7 @@ namespace AssortedCrazyThings
             getDefenseDuration = 0;
             getDefenseTimer = 0;
             soulMinion = false;
-            tempSoulMinion = false;
+            tempSoulMinion = null;
             selectedSoulMinionType = SoulType.Dungeon;
             slimePackMinion = false;
             selectedSlimePackMinionType = 0;
@@ -606,6 +608,8 @@ namespace AssortedCrazyThings
             }
         }
 
+        //TODO 1.4 reimplement PlayerLayers
+        /*
         public static readonly PlayerLayer CrazyBundleOfAssortedBalloons = new PlayerLayer("AssortedCrazyThings", "CrazyBundleOfAssortedBalloons", PlayerLayer.BalloonAcc, delegate (PlayerDrawInfo drawInfo)
         {
             //Since it's supposed to replace the Autoload texture, the regular _Balloon is just blank
@@ -620,7 +624,7 @@ namespace AssortedCrazyThings
             drawInfo.position.Y += (int)mountOffset / 2;
             if (drawPlayer.balloon > 0)
             {
-                Texture2D texture = mod.GetTexture("Items/Accessories/Useful/CrazyBundleOfAssortedBalloons_Balloon_Proper");
+                Texture2D texture = mod.GetTexture("Items/Accessories/Useful/CrazyBundleOfAssortedBalloons_Balloon_Proper").Value;
 
                 Color color = Lighting.GetColor((int)drawPlayer.Center.X / 16, (int)drawPlayer.Center.Y / 16) * ((255 - drawPlayer.immuneAlpha) / 255f);
 
@@ -660,7 +664,7 @@ namespace AssortedCrazyThings
 
             if (drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f)
             {
-                Texture2D texture = mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back");
+                Texture2D texture = mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back").Value;
                 float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
                 float drawY = (int)drawInfo.position.Y + drawPlayer.height - Main.screenPosition.Y;
 
@@ -682,13 +686,13 @@ namespace AssortedCrazyThings
             Player drawPlayer = drawInfo.drawPlayer;
             Mod mod = AssUtils.Instance;
 
-            Texture2D texture = mod.GetTexture("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask");
+            Texture2D texture = mod.GetTexture("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask").Value;
             float drawX = (int)drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X;
             float drawY = (int)drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y;
 
             Vector2 stupidOffset = new Vector2(-9 * drawPlayer.direction + 0 * drawPlayer.direction, 2f * drawPlayer.gravDir + 0 * drawPlayer.gravDir);
 
-            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White * ((255 - drawPlayer.immuneAlpha) / 255f)/* * num51 * (1f - shadow) * 0.5f*/, drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
+            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + stupidOffset, new Rectangle(0, texture.Height / 4 * drawPlayer.wingFrame, texture.Width, texture.Height / 4), Color.White * ((255 - drawPlayer.immuneAlpha) / 255f), drawPlayer.bodyRotation, new Vector2(texture.Width / 2, texture.Height / 8), 1f, GetSpriteEffects(drawPlayer), 0)
             {
                 shader = drawInfo.wingShader
             };
@@ -723,7 +727,7 @@ namespace AssortedCrazyThings
             Player drawPlayer = drawInfo.drawPlayer;
             Mod mod = AssUtils.Instance;
 
-            Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask");
+            Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask").Value;
             float drawX = (int)drawInfo.position.X - drawPlayer.bodyFrame.Width / 2 + drawPlayer.width / 2 - Main.screenPosition.X;
             float drawY = (int)drawInfo.position.Y + drawPlayer.height - drawPlayer.bodyFrame.Height + 4f - Main.screenPosition.Y;
 
@@ -756,11 +760,11 @@ namespace AssortedCrazyThings
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
             int wingLayer = layers.FindIndex(l => l.Name.Equals("Wings"));
-            if (player.inventory[player.selectedItem].type == ModContent.ItemType<SlimeHandlerKnapsack>())
+            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<SlimeHandlerKnapsack>())
             {
                 if (wingLayer != -1)
                 {
-                    if (player.velocity.Y == 0f)
+                    if (Player.velocity.Y == 0f)
                     {
                         layers.RemoveAt(wingLayer);
                     }
@@ -769,24 +773,25 @@ namespace AssortedCrazyThings
             }
             if (wingLayer != -1)
             {
-                if (player.wings == mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
+                if (Player.wings == Mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
                 {
                     layers.Insert(wingLayer + 1, HarvesterWings);
                 }
             }
-            if (player.body == mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
+            if (Player.body == Mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
             {
                 int bodyLayer = layers.FindIndex(l => l.Name.Equals("Body"));
                 layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
             }
-            if (player.balloon == mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon))
+            if (Player.balloon == Mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon))
             {
                 int balloonLayer = layers.FindIndex(l => l.Name.Equals("BalloonAcc"));
                 layers.Insert(balloonLayer + 1, CrazyBundleOfAssortedBalloons);
             }
         }
+        */
 
-        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
             Player drawPlayer = drawInfo.drawPlayer;
             if (!drawEffectsCalledOnce)
@@ -801,7 +806,7 @@ namespace AssortedCrazyThings
 
             //Other code
 
-            if (!PlayerLayer.MiscEffectsBack.visible) return;
+            //if (!PlayerLayer.MiscEffectsBack.visible) return;
 
             if (shieldDroneReduction > 0)
             {
@@ -875,14 +880,14 @@ namespace AssortedCrazyThings
             target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
         }
 
-        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult, ref float flat)
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
         {
-            if (empoweringBuff && !item.summon && item.damage > 0) add += step; //summon damage gets handled in AssGlobalProj
+            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in AssGlobalProj
         }
 
-        public override void GetWeaponCrit(Item item, ref int crit)
+        public override void ModifyWeaponCrit(Item item, ref int crit)
         {
-            if (empoweringBuff) crit += (int)(10 * step);
+            crit += (int)(10 * step);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -928,9 +933,9 @@ namespace AssortedCrazyThings
                     drawEffectsCalledOnce = false;
                 }
 
-                if (Main.myPlayer == player.whoAmI)
+                if (Main.myPlayer == Player.whoAmI)
                 {
-                    if (player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
+                    if (Player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
                 }
             }
 

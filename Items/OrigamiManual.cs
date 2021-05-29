@@ -1,6 +1,7 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace AssortedCrazyThings.Items
 {
@@ -13,32 +14,32 @@ namespace AssortedCrazyThings.Items
 
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 30;
-            item.maxStack = 1;
-            item.rare = -11;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item44;
-            item.consumable = true;
-            item.value = Item.sellPrice(silver: 10);
+            Item.width = 28;
+            Item.height = 30;
+            Item.maxStack = 1;
+            Item.rare = -11;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item44;
+            Item.consumable = true;
+            Item.value = Item.sellPrice(silver: 10);
         }
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(mod.NPCType("FoldfishBoss"));
+            return !NPC.AnyNPCs(Mod.Find<ModNPC>("FoldfishBoss").Type);
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("FoldfishBoss"));
-            Main.PlaySound(SoundID.Roar, player.position, 0);
+            NPC.SpawnOnPlayer(player.whoAmI, Mod.Find<ModNPC>("FoldfishBoss").Type);
+            SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int k = 0; k < 6; k++)
                 {
-                    int type = mod.NPCType("FoldfishBaby");
+                    int type = Mod.Find<ModNPC>("FoldfishBaby").Type;
                     int index = NPC.NewNPC((int)player.position.X, (int)player.position.Y, type);
                     NPC npc = Main.npc[index];
                     npc.SetDefaults(type);

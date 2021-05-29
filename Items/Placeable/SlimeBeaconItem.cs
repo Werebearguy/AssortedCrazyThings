@@ -16,23 +16,23 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 28;
-            item.maxStack = 99;
-            item.useTurn = true;
-            item.autoReuse = true;
-            item.useAnimation = 15;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.consumable = true;
-            item.rare = -11;
-            item.value = Item.buyPrice(0, 10, 0, 0);
-            item.createTile = ModContent.TileType<SlimeBeaconTile>();
+            Item.width = 28;
+            Item.height = 28;
+            Item.maxStack = 99;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.consumable = true;
+            Item.rare = -11;
+            Item.value = Item.buyPrice(0, 10, 0, 0);
+            Item.createTile = ModContent.TileType<SlimeBeaconTile>();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient) tooltips.Add(new TooltipLine(mod, "Multi", "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"));
+            if (Main.netMode == NetmodeID.MultiplayerClient) tooltips.Add(new TooltipLine(Mod, "Multi", "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"));
         }
     }
 }

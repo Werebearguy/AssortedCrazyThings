@@ -12,23 +12,23 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stone Soldier");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ArmedZombie];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ArmedZombie];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 18;
-            npc.height = 40;
-            npc.damage = 30;
-            npc.defense = 16;
-            npc.lifeMax = 50;
-            npc.HitSound = SoundID.NPCHit41;
-            npc.DeathSound = SoundID.NPCDeath52;
-            npc.value = 60f;
-            npc.knockBackResist = 0.35f;
-            npc.aiStyle = 3;
-            aiType = NPCID.ArmedZombie;
-            animationType = NPCID.ArmedZombie;
+            NPC.width = 18;
+            NPC.height = 40;
+            NPC.damage = 30;
+            NPC.defense = 16;
+            NPC.lifeMax = 50;
+            NPC.HitSound = SoundID.NPCHit41;
+            NPC.DeathSound = SoundID.NPCDeath52;
+            NPC.value = 60f;
+            NPC.knockBackResist = 0.35f;
+            NPC.aiStyle = 3;
+            AIType = NPCID.ArmedZombie;
+            AnimationType = NPCID.ArmedZombie;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -38,41 +38,41 @@ namespace AssortedCrazyThings.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            if (Main.hardMode) npc.lifeMax = npc.lifeMax * 2;
+            if (Main.hardMode) NPC.lifeMax = NPC.lifeMax * 2;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+            if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
             {
-                npc.ai[1] = Main.rand.Next(1, 7);
+                NPC.ai[1] = Main.rand.Next(1, 7);
             }
 
-            Item.NewItem(npc.getRect(), ItemID.StoneBlock, Main.rand.Next(10, 31));
-            if (npc.ai[1] <= 1) Item.NewItem(npc.getRect(), ItemID.Amethyst, 1); //sorted by rarity
-            else if (npc.ai[1] <= 2) Item.NewItem(npc.getRect(), ItemID.Topaz, 1);
-            else if (npc.ai[1] <= 3) Item.NewItem(npc.getRect(), ItemID.Sapphire, 1);
-            else if (npc.ai[1] <= 4) Item.NewItem(npc.getRect(), ItemID.Emerald, 1);
-            else if (npc.ai[1] <= 5) Item.NewItem(npc.getRect(), ItemID.Ruby, 1);
-            else if (npc.ai[1] <= 6) Item.NewItem(npc.getRect(), ItemID.Diamond, 1);
+            Item.NewItem(NPC.getRect(), ItemID.StoneBlock, Main.rand.Next(10, 31));
+            if (NPC.ai[1] <= 1) Item.NewItem(NPC.getRect(), ItemID.Amethyst, 1); //sorted by rarity
+            else if (NPC.ai[1] <= 2) Item.NewItem(NPC.getRect(), ItemID.Topaz, 1);
+            else if (NPC.ai[1] <= 3) Item.NewItem(NPC.getRect(), ItemID.Sapphire, 1);
+            else if (NPC.ai[1] <= 4) Item.NewItem(NPC.getRect(), ItemID.Emerald, 1);
+            else if (NPC.ai[1] <= 5) Item.NewItem(NPC.getRect(), ItemID.Ruby, 1);
+            else if (NPC.ai[1] <= 6) Item.NewItem(NPC.getRect(), ItemID.Diamond, 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_01"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_02"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_03"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/StoneSoldierGore_04"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_01").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_02").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_03").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_04").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_04").Type, 1f);
             }
 
             for (int i = 0; i < 15; i++)
             {
                 if (Main.rand.NextFloat() < 0.6f)
                 {
-                    Dust.NewDust(npc.position - new Vector2(-20, 0), (npc.width - 10) / 2, npc.height, 1, 0f, 0f, 50, new Color(255, 255, 255), 1f);
+                    Dust.NewDust(NPC.position - new Vector2(-20, 0), (NPC.width - 10) / 2, NPC.height, 1, 0f, 0f, 50, new Color(255, 255, 255), 1f);
                 }
             }
         }
@@ -84,9 +84,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreAI()
         {
-            if (npc.ai[1] == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (NPC.ai[1] == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                float heightFactor = (float)(npc.position.Y - (16f * Main.rockLayer)) / (float)((Main.maxTilesY - 200 - Main.rockLayer) * 16f) * 6;
+                float heightFactor = (float)(NPC.position.Y - (16f * Main.rockLayer)) / (float)((Main.maxTilesY - 200 - Main.rockLayer) * 16f) * 6;
                 //0f == above rock layer
                 //3f == falfway down a hellavator
                 //6f == hell start
@@ -112,19 +112,19 @@ namespace AssortedCrazyThings.NPCs
                 {
                     if (rand <= arr[j - 1]) //arr[6] is 1 
                     {
-                        npc.ai[1] = j;
+                        NPC.ai[1] = j;
                         break;
                     }
                 }
 
-                npc.localAI[0] = 1;
-                npc.netUpdate = true;
+                NPC.localAI[0] = 1;
+                NPC.netUpdate = true;
             }
 
-            if (npc.ai[1] != 0 && npc.ai[3] == 1)
+            if (NPC.ai[1] != 0 && NPC.ai[3] == 1)
             {
-                if (npc.direction == 1) npc.velocity.X += 0.09f; //0.02
-                else npc.velocity.X -= 0.09f;
+                if (NPC.direction == 1) NPC.velocity.X += 0.09f; //0.02
+                else NPC.velocity.X -= 0.09f;
             }
 
             return true;
@@ -134,16 +134,16 @@ namespace AssortedCrazyThings.NPCs
         {
             //base sprite is 80x66
             //hitbox is 18x40
-            Texture2D texture = mod.GetTexture("NPCs/StoneSoldier_" + npc.ai[1]);
-            Vector2 stupidOffset = new Vector2(0f, -8f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Texture2D texture = Mod.GetTexture("NPCs/StoneSoldier_" + NPC.ai[1]).Value;
+            Vector2 stupidOffset = new Vector2(0f, -8f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
             drawColor = new Color((int)(drawColor.R * 1.2f + 40), (int)(drawColor.G * 1.2f + 40), (int)(drawColor.B * 1.2f + 40));
             drawColor.R = Math.Max(drawColor.R, (byte)100);
             drawColor.G = Math.Max(drawColor.G, (byte)100);
             drawColor.B = Math.Max(drawColor.B, (byte)100);
-            spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }
     }
 }

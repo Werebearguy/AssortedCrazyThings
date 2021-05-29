@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -20,12 +20,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(Harvester.name);
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White * ((255 - npc.alpha) / 255f);
+            return Color.White * ((255 - NPC.alpha) / 255f);
         }
 
         public override void SetDefaults()
@@ -46,23 +46,23 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         buffImmune[24] = true;
                     }*/
 
-            npc.boss = true;
-            npc.noGravity = true;
-            npc.width = 40; //38
-            npc.height = 30; //42
-            npc.aiStyle = -1;
-            npc.damage = Harvester.talonDamage;
-            npc.defense = 28;
-            npc.lifeMax = 1337;
-            npc.scale = 1f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.alpha = 255;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.dontTakeDamage = true;
-            npc.dontCountMe = true;
+            NPC.boss = true;
+            NPC.noGravity = true;
+            NPC.width = 40; //38
+            NPC.height = 30; //42
+            NPC.aiStyle = -1;
+            NPC.damage = Harvester.talonDamage;
+            NPC.defense = 28;
+            NPC.lifeMax = 1337;
+            NPC.scale = 1f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.alpha = 255;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.dontTakeDamage = true;
+            NPC.dontCountMe = true;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -74,9 +74,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AssWorld.harvesterIndex != -1)
             {
-                Texture2D texture = mod.GetTexture("NPCs/DungeonBird/HarvesterChain");
+                Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterChain").Value;
                 //Main.chain21Texture
-                Vector2 center = new Vector2(npc.Center.X, npc.Center.Y);
+                Vector2 center = new Vector2(NPC.Center.X, NPC.Center.Y);
                 NPC body = Main.npc[AssWorld.harvesterIndex];
                 float num22 = body.Center.X - center.X;
                 float num23 = body.Center.Y - center.Y;
@@ -84,11 +84,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 //num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
 
-                num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
-                num22 = (npc.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
+                num22 = ((NPC.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
+                num22 = (NPC.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
 
 
-                SpriteEffects effect = (npc.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                SpriteEffects effect = (NPC.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
                 bool flag6 = true;
                 while (flag6)
@@ -108,8 +108,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         num22 = body.Center.X - center.X;
                         num23 = body.Center.Y - center.Y;
                         num23 -= -Harvester.TalonOffsetY + 20f; //7f
-                        num22 = (npc.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX); //66f, -70f
-                        num22 = (npc.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
+                        num22 = (NPC.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX); //66f, -70f
+                        num22 = (NPC.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
 
                         if (Main.rand.NextBool(8))
                         {
@@ -119,12 +119,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             dust.noGravity = true;
                             dust.fadeIn = Main.rand.NextFloat(0.5f, 1.5f);
                         }
-                        spriteBatch.Draw(texture, center - Main.screenPosition + new Vector2(0f, npc.gfxOffY + npc.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
+                        Main.spriteBatch.Draw(texture, center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
                     }
                 }
 
-                texture = mod.GetTexture("NPCs/DungeonBird/HarvesterTalon");
-                spriteBatch.Draw(texture, npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
+                texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterTalon").Value;
+                spriteBatch.Draw(texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
             }
         }
 
@@ -141,11 +141,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[0];
+                return NPC.ai[0];
             }
             set
             {
-                npc.ai[0] = value;
+                NPC.ai[0] = value;
             }
         }
 
@@ -153,11 +153,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[1];
+                return NPC.ai[1];
             }
             set
             {
-                npc.ai[1] = value;
+                NPC.ai[1] = value;
             }
         }
 
@@ -165,17 +165,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[2];
+                return NPC.ai[2];
             }
             set
             {
-                npc.ai[2] = value;
+                NPC.ai[2] = value;
             }
         }
 
         public override bool CheckDead()
         {
-            npc.boss = false; //To get rid of the default death message
+            NPC.boss = false; //To get rid of the default death message
             return base.CheckDead();
         }
 
@@ -183,40 +183,40 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AssWorld.harvesterIndex < 0)
             {
-                npc.StrikeNPCNoInteraction(9999, 0f, 0);
-                npc.netUpdate = true;
+                NPC.StrikeNPCNoInteraction(9999, 0f, 0);
+                NPC.netUpdate = true;
             }
             else
             {
                 NPC body = Main.npc[AssWorld.harvesterIndex];
-                npc.target = body.target;
-                if (npc.target < 0 || npc.target >= Main.maxPlayers) return;
-                Player target = Main.player[npc.target];
+                NPC.target = body.target;
+                if (NPC.target < 0 || NPC.target >= Main.maxPlayers) return;
+                Player target = Main.player[NPC.target];
 
-                npc.gfxOffY = Harvester.sinY;
-                npc.spriteDirection = body.spriteDirection;
+                NPC.gfxOffY = Harvester.sinY;
+                NPC.spriteDirection = body.spriteDirection;
 
-                if (npc.alpha > 0)
+                if (NPC.alpha > 0)
                 {
-                    npc.alpha -= 5;
-                    if (npc.alpha < 4)
+                    NPC.alpha -= 5;
+                    if (NPC.alpha < 4)
                     {
-                        npc.alpha = 0;
-                        npc.netUpdate = true;
+                        NPC.alpha = 0;
+                        NPC.netUpdate = true;
                     }
-                    npc.scale = 1f;
+                    NPC.scale = 1f;
                     AI_Timer = 0f;
                 }
 
                 if (AI_State == 0f)
                 {
-                    npc.noTileCollide = true;
+                    NPC.noTileCollide = true;
                     float num691 = 14f; //14f
-                    if (npc.life < npc.lifeMax / 2)
+                    if (NPC.life < NPC.lifeMax / 2)
                     {
                         num691 += 3f; //3f
                     }
-                    if (npc.life < npc.lifeMax / 4)
+                    if (NPC.life < NPC.lifeMax / 4)
                     {
                         num691 += 3f; //3f
                     }
@@ -224,17 +224,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         num691 += 8f; //8f
                     }
-                    float betweenSelfAndBodyX = body.Center.X - npc.Center.X;
-                    float betweenSelfAndBodyY = body.Center.Y - npc.Center.Y;
+                    float betweenSelfAndBodyX = body.Center.X - NPC.Center.X;
+                    float betweenSelfAndBodyY = body.Center.Y - NPC.Center.Y;
                     betweenSelfAndBodyY -= -Harvester.TalonOffsetY;
-                    betweenSelfAndBodyX = (npc.type != AssWorld.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX);
+                    betweenSelfAndBodyX = (NPC.type != AssWorld.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX);
                     float len = (float)Math.Sqrt(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY);
                     float somevar = 12f;
                     if (len < somevar + num691)
                     {
                         RetractCounter = 0f;
-                        npc.velocity.X = betweenSelfAndBodyX;
-                        npc.velocity.Y = betweenSelfAndBodyY;
+                        NPC.velocity.X = betweenSelfAndBodyX;
+                        NPC.velocity.Y = betweenSelfAndBodyY;
                         AI_Timer += 1f;
                         //new
                         if (body.life < body.lifeMax / 2)
@@ -247,24 +247,24 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                         if (AI_Timer >= 60f)
                         {
-                            npc.TargetClosest();
-                            target = Main.player[npc.target];
+                            NPC.TargetClosest();
+                            target = Main.player[NPC.target];
                             //test is 100f
                             float test = Harvester.Wid / 2; //its for checking which (or both) talons to shoot, so the left one has also range to the right 100 in
 
                             //new
-                            float x = target.Center.X - npc.Center.X;
-                            float y = target.Center.Y - npc.Center.Y;
+                            float x = target.Center.X - NPC.Center.X;
+                            float y = target.Center.Y - NPC.Center.Y;
                             float toPlayer = (float)Math.Sqrt(x * x + y * y);
 
-                            if (toPlayer < 500f && npc.BottomLeft.Y < target.BottomLeft.Y) //distance where it is allowed to swing at player
+                            if (toPlayer < 500f && NPC.BottomLeft.Y < target.BottomLeft.Y) //distance where it is allowed to swing at player
                             {
                                 //end new
-                                if ((npc.type == AssWorld.harvesterTalonLeft && npc.Center.X + test > target.Center.X) || (npc.type == AssWorld.harvesterTalonRight && npc.Center.X - test < target.Center.X))
+                                if ((NPC.type == AssWorld.harvesterTalonLeft && NPC.Center.X + test > target.Center.X) || (NPC.type == AssWorld.harvesterTalonRight && NPC.Center.X - test < target.Center.X))
                                 {
                                     AI_Timer = 0f;
                                     AI_State = 1f;
-                                    npc.netUpdate = true;
+                                    NPC.netUpdate = true;
                                 }
                                 else
                                 {
@@ -289,16 +289,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //end new
 
                         len = num691 / len;
-                        npc.velocity.X = betweenSelfAndBodyX * len * retractFactor; //both 1f
-                        npc.velocity.Y = betweenSelfAndBodyY * len * retractFactor;
+                        NPC.velocity.X = betweenSelfAndBodyX * len * retractFactor; //both 1f
+                        NPC.velocity.Y = betweenSelfAndBodyY * len * retractFactor;
                     }
                 }
                 else if (AI_State == 1f)
                 {
                     //Punch toward target
-                    npc.noTileCollide = true;
-                    npc.collideX = false;
-                    npc.collideY = false;
+                    NPC.noTileCollide = true;
+                    NPC.collideX = false;
+                    NPC.collideY = false;
                     float speed = 12f;
                     //new
                     if (body.life < body.lifeMax / 2)
@@ -309,12 +309,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         speed += 4f;
                     }
-                    float speedX = target.Center.X - npc.Center.X;
-                    float speedY = target.Center.Y - npc.Center.Y;
+                    float speedX = target.Center.X - NPC.Center.X;
+                    float speedY = target.Center.Y - NPC.Center.Y;
                     float len = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
                     len = speed / len;
-                    npc.velocity.X = speedX * len;
-                    npc.velocity.Y = speedY * len;
+                    NPC.velocity.X = speedX * len;
+                    NPC.velocity.Y = speedY * len;
                     AI_State = 2f;
                 }
                 else if (AI_State == 2f)
@@ -322,55 +322,55 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //fly through air/whatever and check if it hit tiles
                     //fist has  40 width 30 height
                     //talon has 38 width 42 height
-                    if (Math.Abs(npc.velocity.X) > Math.Abs(npc.velocity.Y))
+                    if (Math.Abs(NPC.velocity.X) > Math.Abs(NPC.velocity.Y))
                     {
-                        if (npc.velocity.X > 0f && npc.Center.X > target.Center.X)
+                        if (NPC.velocity.X > 0f && NPC.Center.X > target.Center.X)
                         {
-                            npc.noTileCollide = false;
+                            NPC.noTileCollide = false;
                         }
-                        if (npc.velocity.X < 0f && npc.Center.X < target.Center.X)
+                        if (NPC.velocity.X < 0f && NPC.Center.X < target.Center.X)
                         {
-                            npc.noTileCollide = false;
+                            NPC.noTileCollide = false;
                         }
                     }
                     else
                     {
-                        if (npc.velocity.Y > 0f && npc.Center.Y > target.Center.Y)
+                        if (NPC.velocity.Y > 0f && NPC.Center.Y > target.Center.Y)
                         {
-                            npc.noTileCollide = false;
+                            NPC.noTileCollide = false;
                         }
-                        if (npc.velocity.Y < 0f && npc.Center.Y < target.Center.Y)
+                        if (NPC.velocity.Y < 0f && NPC.Center.Y < target.Center.Y)
                         {
-                            npc.noTileCollide = false;
+                            NPC.noTileCollide = false;
                         }
                     }
-                    Vector2 vector84 = new Vector2(npc.Center.X, npc.Center.Y);
+                    Vector2 vector84 = new Vector2(NPC.Center.X, NPC.Center.Y);
                     float num699 = body.Center.X - vector84.X;
                     float num700 = body.Center.Y - vector84.Y;
                     num699 += body.velocity.X;
                     num700 += body.velocity.Y;
                     num700 -= -Harvester.TalonOffsetY;
-                    num699 = (npc.type != AssWorld.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX);
+                    num699 = (NPC.type != AssWorld.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX);
                     float num701 = (float)Math.Sqrt(num699 * num699 + num700 * num700);
                     if (body.life < body.lifeMax)
                     {
-                        npc.knockBackResist = 0f;
-                        if (num701 > 700f || npc.collideX || npc.collideY || Collision.SolidCollision(npc.position, npc.width, npc.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
+                        NPC.knockBackResist = 0f;
+                        if (num701 > 700f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
                         {
-                            npc.noTileCollide = true;
-                            npc.netUpdate = true;
+                            NPC.noTileCollide = true;
+                            NPC.netUpdate = true;
                             AI_State = 0f;
                         }
                     }
                     else
                     {
-                        bool flag41 = npc.justHit;
+                        bool flag41 = NPC.justHit;
 
-                        if ((num701 > 600f || npc.collideX || npc.collideY || Collision.SolidCollision(npc.position, npc.width, npc.height + 8)) | flag41)
+                        if ((num701 > 600f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) | flag41)
                         {
-                            npc.noTileCollide = true;
+                            NPC.noTileCollide = true;
                             AI_State = 0f;
-                            npc.netUpdate = true;
+                            NPC.netUpdate = true;
                         }
                     }
                 }

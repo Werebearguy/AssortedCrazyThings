@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using System.Linq;
 using Terraria;
@@ -17,16 +17,16 @@ namespace AssortedCrazyThings.Items
 
         public override void SetDefaults()
         {
-            item.width = 38;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = -11;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(silver: 5);
-            item.UseSound = SoundID.Item44;
-            item.consumable = true;
+            Item.width = 38;
+            Item.height = 30;
+            Item.maxStack = 30;
+            Item.rare = -11;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.sellPrice(silver: 5);
+            Item.UseSound = SoundID.Item44;
+            Item.consumable = true;
         }
 
         public override bool CanUseItem(Player player)
@@ -50,12 +50,7 @@ namespace AssortedCrazyThings.Items
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.WaterCandle, 1);
-            recipe.AddIngredient(ItemID.Bone, 50);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.WaterCandle, 1).AddIngredient(ItemID.Bone, 50).AddTile(TileID.DemonAltar).Register();
         }
     }
 }

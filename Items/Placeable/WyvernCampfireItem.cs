@@ -15,27 +15,23 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.height = 18;
-            item.maxStack = 99;
-            item.useTurn = true;
-            item.autoReuse = true;
-            item.useAnimation = 15;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.consumable = true;
-            item.rare = -11;
-            item.value = Item.buyPrice(0, 11, 50, 0);
-            item.createTile = ModContent.TileType<WyvernCampfireTile>();
+            Item.width = 32;
+            Item.height = 18;
+            Item.maxStack = 99;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.consumable = true;
+            Item.rare = -11;
+            Item.value = Item.buyPrice(0, 11, 50, 0);
+            Item.createTile = ModContent.TileType<WyvernCampfireTile>();
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GiantHarpyFeather);
-            recipe.AddRecipeGroup("ACT:AdamantiteTitanium", 12);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.GiantHarpyFeather).AddRecipeGroup("ACT:AdamantiteTitanium", 12).Register();
         }
     }
 }

@@ -9,23 +9,23 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Zombie Florist");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 34;
-            npc.height = 56;
-            npc.damage = 14;
-            npc.defense = 6;
-            npc.lifeMax = 50;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath2;
-            npc.value = 60f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 3;
-            aiType = NPCID.Zombie;
-            animationType = NPCID.Zombie;
+            NPC.width = 34;
+            NPC.height = 56;
+            NPC.damage = 14;
+            NPC.defense = 6;
+            NPC.lifeMax = 50;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.value = 60f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 3;
+            AIType = NPCID.Zombie;
+            AnimationType = NPCID.Zombie;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -34,21 +34,21 @@ namespace AssortedCrazyThings.NPCs
             else return 0f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(50))
-                Item.NewItem(npc.getRect(), ItemID.Shackle, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.Shackle, prefixGiven: -1);
             if (Main.rand.NextBool(250))
-                Item.NewItem(npc.getRect(), ItemID.FlowerBoots, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.FlowerBoots, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ZombieFloristGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ZombieFloristGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ZombieFloristGore_1"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/ZombieFloristGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/ZombieFloristGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/ZombieFloristGore_1").Type, 1f);
             }
         }
     }

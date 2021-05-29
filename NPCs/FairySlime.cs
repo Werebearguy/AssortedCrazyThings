@@ -10,27 +10,27 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fairy Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 34;
-            npc.height = 30;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 25;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 175;
-            npc.color = new Color(213, 196, 197, 100);
-            Main.npcCatchable[mod.NPCType("FairySlime")] = true;
-            npc.catchItem = (short)mod.ItemType("FairySlimeItem");
+            NPC.width = 34;
+            NPC.height = 30;
+            NPC.damage = 7;
+            NPC.defense = 2;
+            NPC.lifeMax = 25;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 25f;
+            NPC.knockBackResist = 0.25f;
+            NPC.aiStyle = 1;
+            AIType = NPCID.ToxicSludge;
+            AnimationType = NPCID.ToxicSludge;
+            NPC.alpha = 175;
+            NPC.color = new Color(213, 196, 197, 100);
+            Main.npcCatchable[Mod.Find<ModNPC>("FairySlime").Type] = true;
+            NPC.catchItem = (short)Mod.Find<ModItem>("FairySlimeItem").Type;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -38,9 +38,9 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.OverworldHallow.Chance * 0.015f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
+            Item.NewItem(NPC.getRect(), ItemID.Gel);
         }
     }
 }

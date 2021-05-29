@@ -14,12 +14,12 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.IronShortsword);
+            Item.CloneDefaults(ItemID.IronShortsword);
             //item.useStyle = ItemUseStyleID.SwingThrow;
-            item.width = 32;
-            item.height = 32;
-            item.rare = -11;
-            item.value = Item.sellPrice(0, 0, 25, 0);
+            Item.width = 32;
+            Item.height = 32;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(0, 0, 25, 0);
         }
 
         public override void AddRecipes()

@@ -21,24 +21,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public sealed override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.BabySlime);
-            projectile.aiStyle = -1; //26
-            //aiType = ProjectileID.BabySlime;
-            projectile.alpha = 50;
+            Projectile.CloneDefaults(ProjectileID.BabySlime);
+            Projectile.aiStyle = -1; //26
+            //AIType = ProjectileID.BabySlime;
+            Projectile.alpha = 50;
 
             //set those in moresetdefaults in the projectile that inherits from this
             //projectile.width = 38;
             //projectile.height = 40;
 
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 10;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
 
             flyingFrameSpeed = 6;
             walkingFrameSpeed = 20;
 
             MoreSetDefaults();
 
-            projectile.minionSlots = projectile.minion ? customMinionSlots : 0f;
+            Projectile.minionSlots = Projectile.minion ? customMinionSlots : 0f;
         }
 
         public virtual void MoreSetDefaults()
@@ -49,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool MinionContactDamage()
         {
-            return projectile.minion ? true : false;
+            return Projectile.minion ? true : false;
         }
 
         public override void AI()
@@ -60,84 +60,84 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public void Draw()
         {
-            if (projectile.ai[0] != 0)
+            if (Projectile.ai[0] != 0)
             {
-                if (projectile.velocity.X > 0.5f)
+                if (Projectile.velocity.X > 0.5f)
                 {
-                    projectile.spriteDirection = -1;
+                    Projectile.spriteDirection = -1;
                 }
-                else if (projectile.velocity.X < -0.5f)
+                else if (Projectile.velocity.X < -0.5f)
                 {
-                    projectile.spriteDirection = 1;
+                    Projectile.spriteDirection = 1;
                 }
 
-                projectile.frameCounter++;
-                if (projectile.frameCounter > flyingFrameSpeed)
+                Projectile.frameCounter++;
+                if (Projectile.frameCounter > flyingFrameSpeed)
                 {
-                    projectile.frame++;
-                    projectile.frameCounter = 0;
+                    Projectile.frame++;
+                    Projectile.frameCounter = 0;
                 }
-                if (projectile.frame < 2 || projectile.frame > 5)
+                if (Projectile.frame < 2 || Projectile.frame > 5)
                 {
-                    projectile.frame = 2;
+                    Projectile.frame = 2;
                 }
-                projectile.rotation = projectile.velocity.X * 0.1f;
+                Projectile.rotation = Projectile.velocity.X * 0.1f;
             }
             else
             {
-                if (projectile.direction == -1)
+                if (Projectile.direction == -1)
                 {
-                    projectile.spriteDirection = 1;
+                    Projectile.spriteDirection = 1;
                 }
-                if (projectile.direction == 1)
+                if (Projectile.direction == 1)
                 {
-                    projectile.spriteDirection = -1;
+                    Projectile.spriteDirection = -1;
                 }
 
-                if (projectile.velocity.Y >= 0f && projectile.velocity.Y <= 0.8f)
+                if (Projectile.velocity.Y >= 0f && Projectile.velocity.Y <= 0.8f)
                 {
-                    if (projectile.velocity.X == 0f)
+                    if (Projectile.velocity.X == 0f)
                     {
-                        projectile.frameCounter++;
+                        Projectile.frameCounter++;
                     }
                     else
                     {
-                        projectile.frameCounter += 3;
+                        Projectile.frameCounter += 3;
                     }
                 }
                 else
                 {
-                    projectile.frameCounter += 5;
+                    Projectile.frameCounter += 5;
                 }
-                if (projectile.frameCounter >= walkingFrameSpeed)
+                if (Projectile.frameCounter >= walkingFrameSpeed)
                 {
-                    projectile.frameCounter -= walkingFrameSpeed;
-                    projectile.frame++;
+                    Projectile.frameCounter -= walkingFrameSpeed;
+                    Projectile.frame++;
                 }
-                if (projectile.frame > 1)
+                if (Projectile.frame > 1)
                 {
-                    projectile.frame = 0;
+                    Projectile.frame = 0;
                 }
-                if (projectile.wet && projectile.GetOwner().Bottom.Y < projectile.Bottom.Y && JumpTimer == 0f)
+                if (Projectile.wet && Projectile.GetOwner().Bottom.Y < Projectile.Bottom.Y && JumpTimer == 0f)
                 {
-                    if (projectile.velocity.Y > -4f)
+                    if (Projectile.velocity.Y > -4f)
                     {
-                        projectile.velocity.Y -= 0.2f;
+                        Projectile.velocity.Y -= 0.2f;
                     }
-                    if (projectile.velocity.Y > 0f)
+                    if (Projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y *= 0.95f;
+                        Projectile.velocity.Y *= 0.95f;
                     }
                 }
                 else
                 {
-                    projectile.velocity.Y += 0.4f;
+                    Projectile.velocity.Y += 0.4f;
                 }
-                if (projectile.velocity.Y > 10f)
+                if (Projectile.velocity.Y > 10f)
                 {
-                    projectile.velocity.Y = 10f;
+                    Projectile.velocity.Y = 10f;
                 }
-                projectile.rotation = 0f;
+                Projectile.rotation = 0f;
             }
         }
 
@@ -167,11 +167,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             get
             {
-                return (int)projectile.localAI[0];
+                return (int)Projectile.localAI[0];
             }
             set
             {
-                projectile.localAI[0] = value;
+                Projectile.localAI[0] = value;
             }
         }
 
@@ -179,11 +179,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             get
             {
-                return (byte)projectile.localAI[1];
+                return (byte)Projectile.localAI[1];
             }
             set
             {
-                projectile.localAI[1] = value;
+                Projectile.localAI[1] = value;
             }
         }
         int targetNPC = -1;
@@ -195,24 +195,24 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bool flag3 = false;
             bool flag4 = false;
 
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
 
-            int initialOffset = projectile.minion ? 10 : 25;
-            if (!projectile.minion) projectile.minionPos = 0;
-            int directionalOffset = 40 * (projectile.minionPos + 1) * player.direction;
-            if (player.Center.X < projectile.Center.X - initialOffset + directionalOffset)
+            int initialOffset = Projectile.minion ? 10 : 25;
+            if (!Projectile.minion) Projectile.minionPos = 0;
+            int directionalOffset = 40 * (Projectile.minionPos + 1) * player.direction;
+            if (player.Center.X < Projectile.Center.X - initialOffset + directionalOffset)
             {
                 left = true;
             }
-            else if (player.Center.X > projectile.Center.X + initialOffset + directionalOffset)
+            else if (player.Center.X > Projectile.Center.X + initialOffset + directionalOffset)
             {
                 right = true;
             }
 
-            if (projectile.ai[1] == 0f)
+            if (Projectile.ai[1] == 0f)
             {
                 int num38 = 500;
-                num38 += 40 * projectile.minionPos;
+                num38 += 40 * Projectile.minionPos;
                 if (JumpTimer > 0)
                 {
                     num38 += 600;
@@ -220,46 +220,46 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 if (player.rocketDelay2 > 0)
                 {
-                    projectile.ai[0] = 1f;
+                    Projectile.ai[0] = 1f;
                 }
 
-                Vector2 center = projectile.Center;
+                Vector2 center = Projectile.Center;
                 float x = player.Center.X - center.X;
                 float y = player.Center.Y - center.Y;
                 float distance = (float)Math.Sqrt(x * x + y * y);
                 if (distance > 2000f)
                 {
-                    projectile.position.X = player.position.X;
-                    projectile.position.Y = player.position.Y;
+                    Projectile.position.X = player.position.X;
+                    Projectile.position.Y = player.position.Y;
                 }
                 else if (distance > num38 || (Math.Abs(y) > 300f && JumpTimer <= 0))
                 {
-                    if (y > 0f && projectile.velocity.Y < 0f)
+                    if (y > 0f && Projectile.velocity.Y < 0f)
                     {
-                        projectile.velocity.Y = 0f;
+                        Projectile.velocity.Y = 0f;
                     }
-                    if (y < 0f && projectile.velocity.Y > 0f)
+                    if (y < 0f && Projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y = 0f;
+                        Projectile.velocity.Y = 0f;
                     }
-                    projectile.ai[0] = 1f;
+                    Projectile.ai[0] = 1f;
                 }
             }
 
-            if (projectile.ai[0] != 0f)
+            if (Projectile.ai[0] != 0f)
             {
                 float veloDelta = 0.2f;
                 int playerRange = 200;
 
-                projectile.tileCollide = false;
-                float desiredVeloX = player.Center.X - projectile.Center.X;
+                Projectile.tileCollide = false;
+                float desiredVeloX = player.Center.X - Projectile.Center.X;
 
                 desiredVeloX -= 40 * player.direction;
 
                 bool foundCloseTarget = false;
                 int targetIndex = -1;
 
-                if (projectile.minion)
+                if (Projectile.minion)
                 {
                     float range = 700f;
                     for (int k = 0; k < Main.maxNPCs; k++)
@@ -270,7 +270,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             float distance = Math.Abs(player.Center.X - npc.Center.X) + Math.Abs(player.Center.Y - npc.Center.Y);
                             if (distance < range)
                             {
-                                if (Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
+                                if (Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
                                 {
                                     targetIndex = k;
                                 }
@@ -283,30 +283,30 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 if (!foundCloseTarget)
                 {
-                    desiredVeloX -= 40 * projectile.minionPos * player.direction;
+                    desiredVeloX -= 40 * Projectile.minionPos * player.direction;
                 }
                 if (foundCloseTarget && targetIndex >= 0)
                 {
-                    projectile.ai[0] = 0f;
+                    Projectile.ai[0] = 0f;
                 }
 
-                float desiredVeloY = player.Center.Y - projectile.Center.Y;
+                float desiredVeloY = player.Center.Y - Projectile.Center.Y;
 
                 float between = (float)Math.Sqrt(desiredVeloX * desiredVeloX + desiredVeloY * desiredVeloY);
                 //float num54 = num52;
 
-                if (between < playerRange && player.velocity.Y == 0f && projectile.position.Y + projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+                if (between < playerRange && player.velocity.Y == 0f && Projectile.position.Y + Projectile.height <= player.position.Y + player.height && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
                 {
-                    projectile.ai[0] = 0f;
-                    if (projectile.velocity.Y < -6f)
+                    Projectile.ai[0] = 0f;
+                    if (Projectile.velocity.Y < -6f)
                     {
-                        projectile.velocity.Y = -6f;
+                        Projectile.velocity.Y = -6f;
                     }
                 }
                 if (between < 60f)
                 {
-                    desiredVeloX = projectile.velocity.X;
-                    desiredVeloY = projectile.velocity.Y;
+                    desiredVeloX = Projectile.velocity.X;
+                    desiredVeloY = Projectile.velocity.Y;
                 }
                 else
                 {
@@ -315,36 +315,36 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     desiredVeloY *= between;
                 }
 
-                if (projectile.velocity.X < desiredVeloX)
+                if (Projectile.velocity.X < desiredVeloX)
                 {
-                    projectile.velocity.X += veloDelta;
-                    if (projectile.velocity.X < 0f)
+                    Projectile.velocity.X += veloDelta;
+                    if (Projectile.velocity.X < 0f)
                     {
-                        projectile.velocity.X += veloDelta * 1.5f;
+                        Projectile.velocity.X += veloDelta * 1.5f;
                     }
                 }
-                if (projectile.velocity.X > desiredVeloX)
+                if (Projectile.velocity.X > desiredVeloX)
                 {
-                    projectile.velocity.X -= veloDelta;
-                    if (projectile.velocity.X > 0f)
+                    Projectile.velocity.X -= veloDelta;
+                    if (Projectile.velocity.X > 0f)
                     {
-                        projectile.velocity.X -= veloDelta * 1.5f;
+                        Projectile.velocity.X -= veloDelta * 1.5f;
                     }
                 }
-                if (projectile.velocity.Y < desiredVeloY)
+                if (Projectile.velocity.Y < desiredVeloY)
                 {
-                    projectile.velocity.Y += veloDelta;
-                    if (projectile.velocity.Y < 0f)
+                    Projectile.velocity.Y += veloDelta;
+                    if (Projectile.velocity.Y < 0f)
                     {
-                        projectile.velocity.Y += veloDelta * 1.5f;
+                        Projectile.velocity.Y += veloDelta * 1.5f;
                     }
                 }
-                if (projectile.velocity.Y > desiredVeloY)
+                if (Projectile.velocity.Y > desiredVeloY)
                 {
-                    projectile.velocity.Y -= veloDelta;
-                    if (projectile.velocity.Y > 0f)
+                    Projectile.velocity.Y -= veloDelta;
+                    if (Projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y -= veloDelta * 1.5f;
+                        Projectile.velocity.Y -= veloDelta * 1.5f;
                     }
                 }
             }
@@ -352,20 +352,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 Vector2 toTarget = Vector2.Zero;
 
-                float offset = 40 * projectile.minionPos;
+                float offset = 40 * Projectile.minionPos;
                 JumpTimer -= 1;
                 if (JumpTimer < 0)
                 {
                     JumpTimer = 0;
                 }
-                if (projectile.ai[1] > 0f)
+                if (Projectile.ai[1] > 0f)
                 {
-                    projectile.ai[1] -= 1f;
+                    Projectile.ai[1] -= 1f;
                 }
                 else
                 {
-                    float targetX = projectile.position.X;
-                    float targetY = projectile.position.Y;
+                    float targetX = Projectile.position.X;
+                    float targetY = Projectile.position.Y;
                     float distance = 100000f;
                     float otherDistance = distance;
                     targetNPC = -1;
@@ -374,14 +374,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     //DISABLE MINION TARGETING------------------------------------------------------------
                     //------------------------------------------------------------------------------------
 
-                    if (projectile.minion)
+                    if (Projectile.minion)
                     {
-                        NPC ownerMinionAttackTargetNPC2 = projectile.OwnerMinionAttackTargetNPC;
+                        NPC ownerMinionAttackTargetNPC2 = Projectile.OwnerMinionAttackTargetNPC;
                         if (ownerMinionAttackTargetNPC2 != null && ownerMinionAttackTargetNPC2.CanBeChasedBy())
                         {
                             float x = ownerMinionAttackTargetNPC2.Center.X;
                             float y = ownerMinionAttackTargetNPC2.Center.Y;
-                            float num94 = Math.Abs(projectile.Center.X - x) + Math.Abs(projectile.Center.Y - y);
+                            float num94 = Math.Abs(Projectile.Center.X - x) + Math.Abs(Projectile.Center.Y - y);
                             if (num94 < distance)
                             {
                                 if (targetNPC == -1 && num94 <= otherDistance)
@@ -390,7 +390,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                     targetX = x;
                                     targetY = y;
                                 }
-                                if (Collision.CanHit(projectile.position, projectile.width, projectile.height, ownerMinionAttackTargetNPC2.position, ownerMinionAttackTargetNPC2.width, ownerMinionAttackTargetNPC2.height))
+                                if (Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, ownerMinionAttackTargetNPC2.position, ownerMinionAttackTargetNPC2.width, ownerMinionAttackTargetNPC2.height))
                                 {
                                     distance = num94;
                                     targetX = x;
@@ -408,7 +408,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 {
                                     float npcX = npc.Center.X;
                                     float npcY = npc.Center.Y;
-                                    float between = Math.Abs(projectile.Center.X - npcX) + Math.Abs(projectile.Center.Y - npcY);
+                                    float between = Math.Abs(Projectile.Center.X - npcX) + Math.Abs(Projectile.Center.Y - npcY);
                                     if (between < distance)
                                     {
                                         if (targetNPC == -1 && between <= otherDistance)
@@ -417,7 +417,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                             targetX = npcX;
                                             targetY = npcY;
                                         }
-                                        if (Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
+                                        if (Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
                                         {
                                             distance = between;
                                             targetX = npcX;
@@ -436,18 +436,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else if (targetNPC >= 0) //has target
                     {
-                        toTarget = new Vector2(targetX, targetY) - projectile.Center;
+                        toTarget = new Vector2(targetX, targetY) - Projectile.Center;
                     }
 
                     float num104 = 300f;
-                    if (projectile.position.Y > Main.worldSurface * 16.0)
+                    if (Projectile.position.Y > Main.worldSurface * 16.0)
                     {
                         num104 = 150f;
                     }
 
                     if (distance < num104 + offset && targetNPC == -1)
                     {
-                        float num105 = targetX - projectile.Center.X;
+                        float num105 = targetX - Projectile.Center.X;
                         if (num105 < -5f)
                         {
                             left = true;
@@ -464,9 +464,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                     if (targetNPC >= 0 && distance < 800f + offset)
                     {
-                        projectile.friendly = true;
+                        Projectile.friendly = true;
                         JumpTimer = 60;
-                        float distanceX = targetX - projectile.Center.X;
+                        float distanceX = targetX - Projectile.Center.X;
                         if (distanceX < -10f)
                         {
                             left = true;
@@ -477,29 +477,29 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             right = true;
                             left = false;
                         }
-                        if (targetY < projectile.Center.Y - 100f && distanceX > -50f && distanceX < 50f && projectile.velocity.Y == 0f)
+                        if (targetY < Projectile.Center.Y - 100f && distanceX > -50f && distanceX < 50f && Projectile.velocity.Y == 0f)
                         {
-                            float distanceAbsY = Math.Abs(targetY - projectile.Center.Y);
+                            float distanceAbsY = Math.Abs(targetY - Projectile.Center.Y);
                             //jumping velocities
                             if (distanceAbsY < 100f) //120f
                             {
-                                projectile.velocity.Y = -10f;
+                                Projectile.velocity.Y = -10f;
                             }
                             else if (distanceAbsY < 210f)
                             {
-                                projectile.velocity.Y = -13f;
+                                Projectile.velocity.Y = -13f;
                             }
                             else if (distanceAbsY < 270f)
                             {
-                                projectile.velocity.Y = -15f;
+                                Projectile.velocity.Y = -15f;
                             }
                             else if (distanceAbsY < 310f)
                             {
-                                projectile.velocity.Y = -17f;
+                                Projectile.velocity.Y = -17f;
                             }
                             else if (distanceAbsY < 380f)
                             {
-                                projectile.velocity.Y = -18f;
+                                Projectile.velocity.Y = -18f;
                             }
                         }
 
@@ -527,9 +527,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             //PickedTexture * 3 makes it so theres a small offset for minion shooting based on their texture, which means that if you have different slimes out,
                             //they don't all shoot in sync
                             if (ShootTimer > (shootDelay + PickedTexture * 3) && distance < 200f &&
-                                Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[targetNPC].position, Main.npc[targetNPC].width, Main.npc[targetNPC].height))
+                                Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, Main.npc[targetNPC].position, Main.npc[targetNPC].width, Main.npc[targetNPC].height))
                             {
-                                if (Main.netMode != NetmodeID.Server && projectile.owner == Main.myPlayer)
+                                if (Main.netMode != NetmodeID.Server && Projectile.owner == Main.myPlayer)
                                 {
                                     for (int k = 0; k < 3; k++)
                                     {
@@ -538,7 +538,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                         velo.Y *= 1f + Main.rand.Next(-40, 41) * 0.02f;
                                         velo.Normalize();
                                         velo *= 3f + Main.rand.Next(-40, 41) * 0.01f;
-                                        Projectile.NewProjectile(projectile.Center.X, projectile.Bottom.Y - 8f, velo.X, velo.Y, ModContent.ProjectileType<SlimePackMinionSpike>(), projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
+                                        Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Bottom.Y - 8f, velo.X, velo.Y, ModContent.ProjectileType<SlimePackMinionSpike>(), Projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
                                         ShootTimer = (byte)(PickedTexture * 3);
                                     }
                                 }
@@ -548,21 +548,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     else
                     {
-                        projectile.friendly = false;
+                        Projectile.friendly = false;
                     }
                 }
 
-                if (projectile.ai[1] != 0f)
+                if (Projectile.ai[1] != 0f)
                 {
                     left = false;
                     right = false;
                 }
                 else if (JumpTimer == 0)
                 {
-                    projectile.direction = player.direction;
+                    Projectile.direction = player.direction;
                 }
 
-                projectile.tileCollide = true;
+                Projectile.tileCollide = true;
 
                 float veloXthreshold = 0.2f;
                 float maxVeloXthreshold = 6f;
@@ -575,39 +575,39 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 if (left)
                 {
-                    if (projectile.velocity.X > -3.5f)
+                    if (Projectile.velocity.X > -3.5f)
                     {
-                        projectile.velocity.X -= veloXthreshold;
+                        Projectile.velocity.X -= veloXthreshold;
                     }
                     else
                     {
-                        projectile.velocity.X -= veloXthreshold * 0.25f;
+                        Projectile.velocity.X -= veloXthreshold * 0.25f;
                     }
                 }
                 else if (right)
                 {
-                    if (projectile.velocity.X < 3.5f)
+                    if (Projectile.velocity.X < 3.5f)
                     {
-                        projectile.velocity.X += veloXthreshold;
+                        Projectile.velocity.X += veloXthreshold;
                     }
                     else
                     {
-                        projectile.velocity.X += veloXthreshold * 0.25f;
+                        Projectile.velocity.X += veloXthreshold * 0.25f;
                     }
                 }
                 else
                 {
-                    projectile.velocity.X *= 0.9f;
-                    if (projectile.velocity.X >= 0f - veloXthreshold && projectile.velocity.X <= veloXthreshold)
+                    Projectile.velocity.X *= 0.9f;
+                    if (Projectile.velocity.X >= 0f - veloXthreshold && Projectile.velocity.X <= veloXthreshold)
                     {
-                        projectile.velocity.X = 0f;
+                        Projectile.velocity.X = 0f;
                     }
                 }
 
                 if (left | right)
                 {
-                    int i = (int)projectile.Center.X / 16;
-                    int j = (int)projectile.Center.Y / 16;
+                    int i = (int)Projectile.Center.X / 16;
+                    int j = (int)Projectile.Center.Y / 16;
                     if (left)
                     {
                         i--;
@@ -616,23 +616,23 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         i++;
                     }
-                    i += (int)projectile.velocity.X;
+                    i += (int)Projectile.velocity.X;
                     if (WorldGen.SolidTile(i, j))
                     {
                         flag4 = true;
                     }
                 }
-                if (player.position.Y + player.height - 8f > projectile.position.Y + projectile.height)
+                if (player.position.Y + player.height - 8f > Projectile.position.Y + Projectile.height)
                 {
                     flag3 = true;
                 }
-                Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY);
-                if (projectile.velocity.Y == 0f)
+                Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
+                if (Projectile.velocity.Y == 0f)
                 {
-                    if (!flag3 && (projectile.velocity.X < 0f || projectile.velocity.X > 0f))
+                    if (!flag3 && (Projectile.velocity.X < 0f || Projectile.velocity.X > 0f))
                     {
-                        int i2 = (int)projectile.Center.X / 16;
-                        int j2 = (int)projectile.Center.Y / 16 + 1;
+                        int i2 = (int)Projectile.Center.X / 16;
+                        int j2 = (int)Projectile.Center.Y / 16 + 1;
                         if (left)
                         {
                             i2--;
@@ -645,14 +645,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     }
                     if (flag4)
                     {
-                        int i = (int)projectile.Center.X / 16;
-                        int j = (int)projectile.Bottom.Y / 16 + 1;
-                        if (WorldGen.SolidTile(i, j) || Main.tile[i, j].halfBrick() || Main.tile[i, j].slope() > 0)
+                        int i = (int)Projectile.Center.X / 16;
+                        int j = (int)Projectile.Bottom.Y / 16 + 1;
+                        if (WorldGen.SolidTile(i, j) || Main.tile[i, j].IsHalfBlock || Main.tile[i, j].Slope > 0)
                         {
                             try
                             {
-                                i = (int)projectile.Center.X / 16;
-                                j = (int)projectile.Center.Y / 16;
+                                i = (int)Projectile.Center.X / 16;
+                                j = (int)Projectile.Center.Y / 16;
                                 if (left)
                                 {
                                     i--;
@@ -661,55 +661,55 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 {
                                     i++;
                                 }
-                                i += (int)projectile.velocity.X;
+                                i += (int)Projectile.velocity.X;
                                 if (!WorldGen.SolidTile(i, j - 1) && !WorldGen.SolidTile(i, j - 2))
                                 {
-                                    projectile.velocity.Y = -5.1f;
+                                    Projectile.velocity.Y = -5.1f;
                                 }
                                 else if (!WorldGen.SolidTile(i, j - 2))
                                 {
-                                    projectile.velocity.Y = -7.1f;
+                                    Projectile.velocity.Y = -7.1f;
                                 }
                                 else if (WorldGen.SolidTile(i, j - 5))
                                 {
-                                    projectile.velocity.Y = -11.1f;
+                                    Projectile.velocity.Y = -11.1f;
                                 }
                                 else if (WorldGen.SolidTile(i, j - 4))
                                 {
-                                    projectile.velocity.Y = -10.1f;
+                                    Projectile.velocity.Y = -10.1f;
                                 }
                                 else
                                 {
-                                    projectile.velocity.Y = -9.1f;
+                                    Projectile.velocity.Y = -9.1f;
                                 }
                             }
                             catch
                             {
-                                projectile.velocity.Y = -9.1f;
+                                Projectile.velocity.Y = -9.1f;
                             }
                         }
                     }
                     else if (left | right)
                     {
-                        projectile.velocity.Y -= 6f;
+                        Projectile.velocity.Y -= 6f;
                     }
                 }
-                if (projectile.velocity.X > maxVeloXthreshold)
+                if (Projectile.velocity.X > maxVeloXthreshold)
                 {
-                    projectile.velocity.X = maxVeloXthreshold;
+                    Projectile.velocity.X = maxVeloXthreshold;
                 }
-                if (projectile.velocity.X < -maxVeloXthreshold)
+                if (Projectile.velocity.X < -maxVeloXthreshold)
                 {
-                    projectile.velocity.X = -maxVeloXthreshold;
+                    Projectile.velocity.X = -maxVeloXthreshold;
                 }
-                if (projectile.velocity.X != 0f) projectile.direction = (projectile.velocity.X > 0f).ToDirectionInt();
-                if (projectile.velocity.X > veloXthreshold && right)
+                if (Projectile.velocity.X != 0f) Projectile.direction = (Projectile.velocity.X > 0f).ToDirectionInt();
+                if (Projectile.velocity.X > veloXthreshold && right)
                 {
-                    projectile.direction = 1;
+                    Projectile.direction = 1;
                 }
-                if (projectile.velocity.X < -veloXthreshold && left)
+                if (Projectile.velocity.X < -veloXthreshold && left)
                 {
-                    projectile.direction = -1;
+                    Projectile.direction = -1;
                 }
             }
         }
@@ -719,8 +719,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (targetNPC != -1)
             {
                 NPC target = Main.npc[targetNPC];
-                Vector2 toTarget = projectile.DirectionTo(target.Center);
-                if (target.Center.Y > projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
+                Vector2 toTarget = Projectile.DirectionTo(target.Center);
+                if (target.Center.Y > Projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
                 {
                     fallThrough = true;
                 }

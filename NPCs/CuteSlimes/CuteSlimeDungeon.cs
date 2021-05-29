@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return mod.ItemType("CuteSlimeDungeonNew");
+                return Mod.Find<ModItem>("CuteSlimeDungeonNew").Type;
             }
         }
 
@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void MoreSetDefaults()
         {
-            npc.scale = 1.2f;
+            NPC.scale = 1.2f;
         }
 
         public override void MoreNPCLoot(Rectangle pos)
@@ -71,13 +71,13 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/CuteSlimes/CuteSlimeDungeonAddition");
-            Vector2 stupidOffset = new Vector2(0f, -12f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Texture2D texture = Mod.GetTexture("NPCs/CuteSlimes/CuteSlimeDungeonAddition").Value;
+            Vector2 stupidOffset = new Vector2(0f, -12f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
             drawColor.A = 255;
-            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 
             return true;
         }

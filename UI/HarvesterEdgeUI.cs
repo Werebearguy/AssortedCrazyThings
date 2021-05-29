@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.UI
 
         public override void OnInitialize()
         {
-            texture = AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester2Head");
+            texture = AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester2Head").Value;
 
             typeList = new int[] { ModContent.NPCType<Harvester1>(), ModContent.NPCType<Harvester2>() };
             drawPos = new List<Vector2>();
@@ -47,8 +47,8 @@ namespace AssortedCrazyThings.UI
 
                     //when to draw the icon, has to be PendingResolutionWidth/Height because ScreenWidth/Height doesn't work in this case
 
-                    float zoomFactorX = 0.25f * AssortedCrazyThings.ZoomFactor.X;
-                    float zoomFactorY = 0.25f * AssortedCrazyThings.ZoomFactor.Y;
+                    float zoomFactorX = 0.25f * AssUISystem.ZoomFactor.X;
+                    float zoomFactorY = 0.25f * AssUISystem.ZoomFactor.Y;
                     //for some reason with small hitbox NPCs, it starts drawing closer to the player than it should when zoomed in too much
                     if (zoomFactorX > 0.175f) zoomFactorX = 0.175f;
                     if (zoomFactorY > 0.175f) zoomFactorY = 0.175f;
@@ -180,9 +180,9 @@ namespace AssortedCrazyThings.UI
                     int finalHeight = tempheight;
                     Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
                     //outputWeaponRect.Inflate(10, 10);
-                    //spriteBatch.Draw(tex, outputWeaponRect, Color.White);
+                    //Main.spriteBatch.Draw(tex, outputWeaponRect, Color.White);
                     Color color = Color.White * 0.78f;
-                    spriteBatch.Draw(texture, outputRect, new Rectangle(0, 0, texture.Width, tempheight), Color.White);
+                    Main.spriteBatch.Draw(texture, outputRect, new Rectangle(0, 0, texture.Width, tempheight), Color.White);
                 }
             }
         }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -77,15 +78,15 @@ namespace AssortedCrazyThings.Base
             return dust;
         }
 
-        public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
+        public static void DrawSkeletronLikeArms(string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
-            DrawSkeletronLikeArms(spriteBatch, ModContent.GetTexture(texString), selfPos, centerPos, selfPad, centerPad, direction);
+            DrawSkeletronLikeArms(ModContent.GetTexture(texString).Value, selfPos, centerPos, selfPad, centerPad, direction);
         }
 
         /// <summary>
         /// Draws two "arms" originating from selfPos, "attached" at centerPos
         /// </summary>
-        public static void DrawSkeletronLikeArms(SpriteBatch spriteBatch, Texture2D tex, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
+        public static void DrawSkeletronLikeArms(Texture2D tex, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)
         {
             //with all float params = 0f, the arm will originate below the selfPos
             //Pos parameters should be Entity.Center
@@ -120,7 +121,7 @@ namespace AssortedCrazyThings.Base
                 }
                 float rotation = (float)Math.Atan2(y, x) - 1.57f;
                 Color color = Lighting.GetColor((int)drawPos.X / 16, (int)(drawPos.Y / 16f));
-                spriteBatch.Draw(tex, new Vector2(drawPos.X - Main.screenPosition.X, drawPos.Y - Main.screenPosition.Y), tex.Bounds, color, rotation, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(tex, new Vector2(drawPos.X - Main.screenPosition.X, drawPos.Y - Main.screenPosition.Y), tex.Bounds, color, rotation, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
                 if (i == 0)
                 {
                     //padding for the second arm piece
@@ -135,16 +136,16 @@ namespace AssortedCrazyThings.Base
             }
         }
 
-        public static void DrawTether(SpriteBatch spriteBatch, string texString, Vector2 start, Vector2 end)
+        public static void DrawTether(string texString, Vector2 start, Vector2 end)
         {
-            DrawTether(spriteBatch, ModContent.GetTexture(texString), start, end);
+            DrawTether(ModContent.GetTexture(texString).Value, start, end);
         }
 
         //Credit to IDGCaptainRussia
         /// <summary>
         /// Draws a "connection" between two points
         /// </summary>
-        public static void DrawTether(SpriteBatch spriteBatch, Texture2D tex, Vector2 start, Vector2 end)
+        public static void DrawTether(Texture2D tex, Vector2 start, Vector2 end)
         {
             Vector2 position = start;
             Vector2 mountedCenter = end;
@@ -177,7 +178,7 @@ namespace AssortedCrazyThings.Base
                     vector2_4 = mountedCenter - position;
                     Color color2 = Lighting.GetColor((int)position.X / 16, (int)position.Y / 16);
                     color2 = new Color(color2.R, color2.G, color2.B, 255);
-                    spriteBatch.Draw(tex, position - Main.screenPosition, new Rectangle(0, 0, tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0.0f);
+                    Main.spriteBatch.Draw(tex, position - Main.screenPosition, new Rectangle(0, 0, tex.Width, (int)Math.Min(num1, num1 + keepgoing)), color2, rotation, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0.0f);
                 }
             }
         }
@@ -321,7 +322,7 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static bool EvilBiome(Player player)
         {
-            return player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly;
+            return player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHallow;
         }
 
         /// <summary>
@@ -413,9 +414,9 @@ namespace AssortedCrazyThings.Base
         /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
         /// Use preSync to set ai[0], ai[1] and other values
         /// </summary>
-        public static int NewProjectile(Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
+        public static int NewProjectile(IProjectileSource source, Vector2 position, Vector2 velocity, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
         {
-            return NewProjectile(position.X, position.Y, velocity.X, velocity.Y, Type, Damage, KnockBack, preCreate, preSync);
+            return NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, Type, Damage, Knockback, preCreate, preSync);
         }
 
         /// <summary>
@@ -424,7 +425,7 @@ namespace AssortedCrazyThings.Base
         /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
         /// Use preSync to set ai[0], ai[1] and other values
         /// </summary>
-        public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
+        public static int NewProjectile(IProjectileSource source, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
         {
             if (preCreate != null)
             {
@@ -458,7 +459,7 @@ namespace AssortedCrazyThings.Base
             projectile.velocity.X = SpeedX;
             projectile.velocity.Y = SpeedY;
             projectile.damage = Damage;
-            projectile.knockBack = KnockBack;
+            projectile.knockBack = Knockback;
             projectile.identity = index;
             projectile.gfxOffY = 0f;
             projectile.stepSpeed = 1f;
@@ -498,7 +499,7 @@ namespace AssortedCrazyThings.Base
                 if (Main.netMode == NetmodeID.Server)
                 {
                     int item = Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
-                    Main.itemLockoutTime[item] = 54000;
+                    Main.timeItemSlotCannotBeReusedFor[item] = 54000;
                     for (int p = 0; p < Main.maxPlayers; p++)
                     {
                         if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))

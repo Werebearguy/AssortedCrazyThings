@@ -10,20 +10,20 @@ namespace AssortedCrazyThings.Items.Tools
     {
         public override void SetDefaults()
         {
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.shootSpeed = 3.7f;
-            item.width = 40;
-            item.height = 40;
-            item.melee = true;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.autoReuse = true;
-            item.UseSound = SoundID.Item1;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.shootSpeed = 3.7f;
+            Item.width = 40;
+            Item.height = 40;
+            Item.DamageType = DamageClass.Melee;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
         }
 
         public override bool CanUseItem(Player player)
         {
-            return player.ownedProjectileCounts[item.shoot] < 1;
+            return player.ownedProjectileCounts[Item.shoot] < 1;
         }
 
         public void OverhaulInit()

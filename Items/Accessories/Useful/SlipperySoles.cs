@@ -14,11 +14,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         }
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 28;
-            item.value = 0;
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 20;
+            Item.height = 28;
+            Item.value = 0;
+            Item.rare = -11;
+            Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -26,12 +26,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.FrozenSlimeBlock, 2);
-            recipe.AddIngredient(ItemID.Leather, 2);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.FrozenSlimeBlock, 2).AddIngredient(ItemID.Leather, 2).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

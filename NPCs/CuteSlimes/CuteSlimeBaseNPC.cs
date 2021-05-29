@@ -58,8 +58,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(IngameName);
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-            Main.npcCatchable[npc.type] = true;
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcCatchable[NPC.type] = true;
             MoreSetStaticDefaults();
         }
 
@@ -72,37 +72,37 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             if (IsFriendly)
             {
-                npc.friendly = true;
-                npc.defense = 0;
-                npc.lifeMax = 5;
+                NPC.friendly = true;
+                NPC.defense = 0;
+                NPC.lifeMax = 5;
             }
             else
             {
-                npc.chaseable = false;
-                npc.defense = 2;
-                npc.lifeMax = 20;
+                NPC.chaseable = false;
+                NPC.defense = 2;
+                NPC.lifeMax = 20;
             }
-            npc.width = 46;
-            npc.height = 32;
-            npc.damage = 0;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.9f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            npc.catchItem = (short)CatchItem;
+            NPC.width = 46;
+            NPC.height = 32;
+            NPC.damage = 0;
+            NPC.rarity = 1;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 25f;
+            NPC.knockBackResist = 0.9f;
+            NPC.aiStyle = 1;
+            AIType = NPCID.ToxicSludge;
+            AnimationType = NPCID.ToxicSludge;
+            NPC.alpha = 75;
+            NPC.catchItem = (short)CatchItem;
 
             MoreSetDefaults();
 
             // Slime AI breaks with big enough height when it jumps against a low ceiling
             // then glitches into the ground
-            if (npc.scale > 0.9f)
+            if (NPC.scale > 0.9f)
             {
-                npc.height -= (int)((npc.scale - 0.9f) * npc.height);
+                NPC.height -= (int)((NPC.scale - 0.9f) * NPC.height);
             }
         }
 
@@ -122,16 +122,16 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             MoreNPCLoot(player.getRect());
         }
 
-        public sealed override void NPCLoot()
+        public sealed override void OnKill()
         {
-            if (ShouldDropGel) Item.NewItem(npc.getRect(), ItemID.Gel);
-            DropRandomItem(npc.getRect());
-            MoreNPCLoot(npc.getRect());
+            if (ShouldDropGel) Item.NewItem(NPC.getRect(), ItemID.Gel);
+            DropRandomItem(NPC.getRect());
+            MoreNPCLoot(NPC.getRect());
         }
 
         public void DropRandomItem(Rectangle pos)
         {
-            if (ShouldDropRandomItem && HasRandomItem && npc.value > 0)
+            if (ShouldDropRandomItem && HasRandomItem && NPC.value > 0)
             {
                 Item.NewItem(pos, RandomItem, Stack);
             }
@@ -154,7 +154,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override bool PreAI()
         {
-            if (ShouldDropRandomItem && !DecidedOnRandomItem && Main.netMode != NetmodeID.MultiplayerClient && npc.value > 0f)
+            if (ShouldDropRandomItem && !DecidedOnRandomItem && Main.netMode != NetmodeID.MultiplayerClient && NPC.value > 0f)
             {
                 // Copied from vanilla and adjusted
                 DecidedOnRandomItem = true;
@@ -271,7 +271,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                     }
                     RandomItem = (short)choice;
                     Stack = stack;
-                    npc.netUpdate = true;
+                    NPC.netUpdate = true;
                 }
             }
             return true;
@@ -284,10 +284,11 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 // Copied from vanilla and adjusted
                 int type = RandomItem;
                 float scale = 1;
-                float someX = 20f * npc.scale;
-                float someY = 16f * npc.scale;
-                float itemWidth = Main.itemTexture[type].Width;
-                float itemHeight = Main.itemTexture[type].Height;
+                float someX = 20f * NPC.scale;
+                float someY = 16f * NPC.scale;
+                ReLogic.Content.Asset<Texture2D> asset = Terraria.GameContent.TextureAssets.Item[type];
+                float itemWidth = asset.Width();
+                float itemHeight = asset.Height();
                 if (itemWidth > someX)
                 {
                     scale *= someX / itemWidth;
@@ -303,16 +304,16 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 //float xOff = -1f;
                 //float yOff = 1f;
                 float xOff = -2f;
-                float yOff = 3f + drawOffsetY;
-                int frameNumber = npc.frame.Y / (Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type]);
+                float yOff = 3f + DrawOffsetY;
+                int frameNumber = NPC.frame.Y / (Terraria.GameContent.TextureAssets.Npc[NPC.type].Height() / Main.npcFrameCount[NPC.type]);
                 //xOff += frameNumber;
                 yOff += frameNumber * 2; //bobbing
-                if (npc.scale < 0.9 && frameNumber == 2) yOff -= frameNumber * 2;
+                if (NPC.scale < 0.9 && frameNumber == 2) yOff -= frameNumber * 2;
                 //xOff *= scale;
-                if (npc.scale > 1) yOff -= npc.scale * 3;
-                if (npc.scale < 0.9) yOff -= npc.scale * 10;
+                if (NPC.scale > 1) yOff -= NPC.scale * 3;
+                if (NPC.scale < 0.9) yOff -= NPC.scale * 10;
                 float rotation = 0f;
-                spriteBatch.Draw(Main.itemTexture[type], new Vector2(npc.Center.X - Main.screenPosition.X + xOff, npc.Center.Y - Main.screenPosition.Y + npc.gfxOffY + yOff), null, drawColor, rotation, Main.itemTexture[type].Size() / 2, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(asset.Value, new Vector2(NPC.Center.X - Main.screenPosition.X + xOff, NPC.Center.Y - Main.screenPosition.Y + NPC.gfxOffY + yOff), null, drawColor, rotation, asset.Size() / 2, scale, SpriteEffects.None, 0f);
 
             }
             return MorePreDraw(spriteBatch, drawColor);

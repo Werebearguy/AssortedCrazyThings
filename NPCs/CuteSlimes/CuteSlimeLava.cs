@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
@@ -19,7 +20,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return mod.ItemType("CuteSlimeLavaNew");
+                return Mod.Find<ModItem>("CuteSlimeLavaNew").Type;
             }
         }
 
@@ -57,7 +58,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public override void MoreSetDefaults()
         {
-            npc.lavaImmune = true;
+            NPC.lavaImmune = true;
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -70,18 +71,18 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         public override void DrawEffects(ref Color drawColor)
         {
             int widthOffset = 12;
-            Dust.NewDustDirect(npc.position + new Vector2(widthOffset, -20), npc.width - 2 * widthOffset, npc.height + 20, 6).noGravity = true;
+            Dust.NewDustDirect(NPC.position + new Vector2(widthOffset, -20), NPC.width - 2 * widthOffset, NPC.height + 20, 6).noGravity = true;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/CuteSlimes/CuteSlimeLavaAddition");
-            Vector2 stupidOffset = new Vector2(0f, -9f * npc.scale + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Texture2D texture = Mod.GetTexture("NPCs/CuteSlimes/CuteSlimeLavaAddition").Value;
+            Vector2 stupidOffset = new Vector2(0f, -9f * NPC.scale + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
             drawColor.A = 255;
-            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }
     }
 }

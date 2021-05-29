@@ -5,25 +5,21 @@ using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
-using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.Projectiles.Pets;
-using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace AssortedCrazyThings
 {
@@ -39,27 +35,6 @@ namespace AssortedCrazyThings
         /// Soul NPC spawn blacklist
         /// </summary>
         public static int[] soulBuffBlacklist;
-
-        /// <summary>
-        /// Zoom level, (for UIs). 0f == fully zoomed out, 1f == fully zoomed in
-        /// </summary>
-        public static Vector2 ZoomFactor;
-
-        //UI stuff
-        internal static UserInterface CircleUIInterface;
-        internal static CircleUI CircleUI;
-
-        internal static UserInterface HoverNPCUIInterface;
-        internal static HoverNPCUI HoverNPCUI;
-
-        internal static UserInterface HarvesterEdgeUIInterface;
-        internal static HarvesterEdgeUI HarvesterEdgeUI;
-
-        internal static UserInterface EnhancedHunterUIInterface;
-        internal static EnhancedHunterUI EnhancedHunterUI;
-
-        internal static UserInterface PetVanityUIInterface;
-        internal static PetVanityUI PetVanityUI;
 
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
@@ -121,71 +96,12 @@ namespace AssortedCrazyThings
                 ModNPC modNPC = NPCLoader.GetNPC(i);
                 if (modNPC != null && (modNPC.GetType().Name.EndsWith("Body") || modNPC.GetType().Name.EndsWith("Tail")))
                 {
-                    tempList.Add(modNPC.npc.type);
+                    tempList.Add(modNPC.NPC.type);
                 }
             }
 
             AssUtils.isModdedWormBodyOrTail = tempList.ToArray();
             Array.Sort(AssUtils.isModdedWormBodyOrTail);
-        }
-
-        private void LoadUI()
-        {
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
-            {
-                CircleUI = new CircleUI();
-                CircleUI.Activate();
-                CircleUIInterface = new UserInterface();
-                CircleUIInterface.SetState(CircleUI);
-
-                HoverNPCUI = new HoverNPCUI();
-                HoverNPCUI.Activate();
-                HoverNPCUIInterface = new UserInterface();
-                HoverNPCUIInterface.SetState(HoverNPCUI);
-
-                HarvesterEdgeUI = new HarvesterEdgeUI();
-                HarvesterEdgeUI.Activate();
-                HarvesterEdgeUIInterface = new UserInterface();
-                HarvesterEdgeUIInterface.SetState(HarvesterEdgeUI);
-
-                EnhancedHunterUI = new EnhancedHunterUI();
-                EnhancedHunterUI.Activate();
-                EnhancedHunterUIInterface = new UserInterface();
-                EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
-
-                PetVanityUI = new PetVanityUI();
-                PetVanityUI.Activate();
-                PetVanityUIInterface = new UserInterface();
-                PetVanityUIInterface.SetState(PetVanityUI);
-            }
-        }
-
-        private void UnloadUI()
-        {
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
-            {
-                CircleUIInterface = null;
-                CircleUI = null;
-
-                HoverNPCUIInterface = null;
-                HoverNPCUI = null;
-
-                HarvesterEdgeUIInterface = null;
-                HarvesterEdgeUI = null;
-
-                EnhancedHunterUIInterface = null;
-                EnhancedHunterUI = null;
-
-                PetVanityUIInterface = null;
-                PetVanityUI = null;
-
-                HarvesterEdgeUI.texture = null;
-                EnhancedHunterUI.arrowTexture = null;
-                PetVanityUI.redCrossTexture = null;
-                CircleUI.UIConf = null;
-                CircleUIHandler.TriggerListLeft.Clear();
-                CircleUIHandler.TriggerListRight.Clear();
-            }
         }
 
         private void LoadPets()
@@ -212,14 +128,14 @@ namespace AssortedCrazyThings
             {
                 animatedSoulTextures = new Texture2D[2];
 
-                animatedSoulTextures[0] = GetTexture("Items/CaughtDungeonSoulAnimated");
-                animatedSoulTextures[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated");
+                animatedSoulTextures[0] = GetTexture("Items/CaughtDungeonSoulAnimated").Value;
+                animatedSoulTextures[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated").Value;
 
                 sunPetTextures = new Texture2D[3];
 
                 for (int i = 0; i < sunPetTextures.Length; i++)
                 {
-                    sunPetTextures[i] = GetTexture("Projectiles/Pets/PetSunProj_" + i);
+                    sunPetTextures[i] = GetTexture("Projectiles/Pets/PetSunProj_" + i).Value;
                     PremultiplyTexture(sunPetTextures[i]);
                 }
             }
@@ -256,13 +172,9 @@ namespace AssortedCrazyThings
 
             UnloadPets();
 
-            UnloadUI();
-
             UnloadMisc();
 
             GitgudData.Unload();
-
-            DroneController.Unload();
 
             EverhallowedLantern.Unload();
         }
@@ -270,8 +182,6 @@ namespace AssortedCrazyThings
         public override void PostSetupContent()
         {
             //for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
-            LoadUI();
-
             LoadWormList();
 
             GitgudData.Load();
@@ -301,8 +211,7 @@ namespace AssortedCrazyThings
             };
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
-            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
-            if (bossChecklist != null)
+            if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
                 //5.1f means just after skeletron
                 if (bossChecklist.Version >= new Version(1, 0))
@@ -353,8 +262,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            Mod summonersAssociation = ModLoader.GetMod("SummonersAssociation");
-            if (summonersAssociation != null && summonersAssociation.Version > new Version(0, 4, 1))
+            if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
             {
                 summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
                 {
@@ -402,374 +310,6 @@ namespace AssortedCrazyThings
                 ItemID.AdamantiteBar,
                 ItemID.TitaniumBar
             }));
-        }
-
-        /// <summary>
-        /// Creates golden dust particles at the projectiles location with that type and LocalPlayer as owner. (Used for pets)
-        /// </summary>
-        private void PoofVisual(int projType)
-        {
-            int projIndex = -1;
-            //find first occurence of a player owned projectile
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                if (Main.projectile[i].active)
-                {
-                    if (Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].type == projType)
-                    {
-                        projIndex = i;
-                        break;
-                    }
-                }
-            }
-
-            if (projIndex != -1)
-            {
-                Dust dust;
-                for (int i = 0; i < 14; i++)
-                {
-                    dust = Dust.NewDustDirect(Main.projectile[projIndex].position, Main.projectile[projIndex].width, Main.projectile[projIndex].height, 204, Main.projectile[projIndex].velocity.X, Main.projectile[projIndex].velocity.Y, 0, new Color(255, 255, 255), 0.8f);
-                    dust.noGravity = true;
-                    dust.noLight = true;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called when CircleUI starts
-        /// </summary>
-        private void CircleUIStart(int triggerType, bool triggerLeft = true, bool fromDresser = false)
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-
-            //combine both lists of the players (split for organization and player load shenanigans)
-            List<CircleUIHandler> l = mPlayer.CircleUIList;
-            l.AddRange(pPlayer.CircleUIList);
-
-            bool found = false;
-            for (int i = 0; i < l.Count; i++)
-            {
-                if (l[i].Condition())
-                {
-                    if (l[i].TriggerItem == triggerType)
-                    {
-                        if (l[i].TriggerLeft == triggerLeft)
-                        {
-                            CircleUI.UIConf = l[i].UIConf();
-                            CircleUI.currentSelected = l[i].OnUIStart();
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            //extra things that happen
-            if (!found)
-            {
-                if (triggerType == ModContent.ItemType<VanitySelector>())
-                {
-                    AssUtils.UIText("No alt costumes found for" + (triggerLeft ? "" : " light") + " pet", CombatText.DamagedFriendly);
-                    return;
-                }
-            }
-
-            //Spawn UI
-            CircleUI.Start(triggerType, triggerLeft, fromDresser);
-        }
-
-        /// <summary>
-        /// Called when CircleUI ends
-        /// </summary>
-        private void CircleUIEnd(bool triggerLeft = true)
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-            if (CircleUI.returned != CircleUI.NONE && CircleUI.returned != CircleUI.currentSelected)
-            {
-                //if something returned AND if the returned thing isn't the same as the current one
-
-                try
-                {
-                    Main.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
-                }
-                catch
-                {
-                    //No idea why but this threw errors one time
-                }
-
-                List<CircleUIHandler> l = mPlayer.CircleUIList;
-                for (int i = 0; i < l.Count; i++)
-                {
-                    if (l[i].Condition())
-                    {
-                        if (l[i].TriggerItem == CircleUI.triggerItemType)
-                        {
-                            if (l[i].TriggerLeft == triggerLeft)
-                            {
-                                l[i].OnUIEnd();
-                                break;
-                            }
-                        }
-                    }
-                }
-                //extra things that happen
-                if (CircleUI.triggerItemType == ModContent.ItemType<VanitySelector>())
-                {
-                    PoofVisual(CircleUI.UIConf.AdditionalInfo);
-                    AssUtils.UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
-                }
-            }
-
-            CircleUI.returned = CircleUI.NONE;
-            CircleUI.visible = false;
-        }
-
-        /// <summary>
-        /// Called in UpdateUI
-        /// </summary>
-        private void UpdateCircleUI()
-        {
-            Player player = Main.LocalPlayer;
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-
-            int triggerType = player.HeldItem.type;
-            bool openWithDresser = player.showItemIcon2 == ModContent.ItemType<VanityDresserItem>();
-            if (openWithDresser)
-            {
-                triggerType = ModContent.ItemType<VanitySelector>();
-            }
-            bool? left = null;
-            if (mPlayer.LeftClickPressed && (CircleUIHandler.TriggerListLeft.Contains(triggerType) || openWithDresser))
-            {
-                left = true;
-            }
-            else if (mPlayer.RightClickPressed && (CircleUIHandler.TriggerListRight.Contains(triggerType) || openWithDresser))
-            {
-                left = false;
-            }
-
-            if (left != null && AllowedToOpenUI(ModContent.ItemType<VanityDresserItem>())) CircleUIStart(triggerType, (bool)left, openWithDresser);
-
-            if (CircleUI.visible)
-            {
-                left = null;
-                if (mPlayer.LeftClickReleased)
-                {
-                    left = true;
-                }
-                else if (mPlayer.RightClickReleased)
-                {
-                    left = false;
-                }
-
-                if (left != null && left == CircleUI.openedWithLeft) CircleUIEnd((bool)left);
-
-                if (CircleUI.triggerItemType != triggerType && !CircleUI.triggeredFromDresser) //cancel the UI when you switch items
-                {
-                    CircleUI.returned = CircleUI.NONE;
-                    CircleUI.visible = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Called in UpdateUI
-        /// </summary>
-        private void UpdatePetVanityUI()
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-
-            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type, forUI: true))
-            {
-                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
-                if (pPlayer.slimePetIndex != -1 &&
-                    Main.projectile[pPlayer.slimePetIndex].active &&
-                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
-                    !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
-                {
-                    //Spawn UI
-                    PetVanityUI.Start(petAccessory);
-                }
-            }
-
-            if (PetVanityUI.visible)
-            {
-                if (mPlayer.LeftClickReleased)
-                {
-                    if (PetVanityUI.returned > PetVanityUI.NONE)
-                    {
-                        //if something returned AND if the returned thing isn't the same as the current one
-
-                        try
-                        {
-                            Main.PlaySound(SoundID.Item1, Main.LocalPlayer.position);
-                        }
-                        catch
-                        {
-                            //No idea why but this threw errors one time
-                        }
-                        //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
-
-                        PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
-                        pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
-                    }
-                    else if (PetVanityUI.hasEquipped && PetVanityUI.returned == PetVanityUI.NONE)
-                    {
-                        //hovered over the middle and had something equipped: take accessory away
-                        pPlayer.DelAccessory(PetVanityUI.petAccessory);
-                    }
-                    //else if (returned == PetVanityUI.IGNORE) {nothing happens}
-
-                    PetVanityUI.returned = PetVanityUI.NONE;
-                    PetVanityUI.visible = false;
-                }
-
-                if (PetVanityUI.petAccessory.Type != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
-                {
-                    PetVanityUI.returned = PetVanityUI.NONE;
-                    PetVanityUI.visible = false;
-                }
-            }
-        }
-
-        private void UpdateHoverNPCUI(GameTime gameTime)
-        {
-            HoverNPCUI.Update(gameTime);
-        }
-
-        private void UpdateEnhancedHunterUI(GameTime gameTime)
-        {
-            if (Main.LocalPlayer.GetModPlayer<AssPlayer>().enhancedHunterBuff)
-            {
-                EnhancedHunterUI.visible = true;
-            }
-            else
-            {
-                EnhancedHunterUI.visible = false;
-            }
-            EnhancedHunterUI.Update(gameTime);
-        }
-
-        private void UpdateHarvesterEdgeUI(GameTime gameTime)
-        {
-            HarvesterEdgeUI.Update(gameTime);
-        }
-
-        public override void UpdateUI(GameTime gameTime)
-        {
-            UpdateCircleUI();
-            UpdateHoverNPCUI(gameTime);
-            UpdateEnhancedHunterUI(gameTime);
-            UpdateHarvesterEdgeUI(gameTime);
-            UpdatePetVanityUI();
-        }
-
-        /// <summary>
-        /// Checks if LocalPlayer can open a UI
-        /// </summary>
-        private bool AllowedToOpenUI(int blacklistTileType = -1)
-        {
-            return Main.hasFocus &&
-                !Main.gamePaused &&
-                !Main.LocalPlayer.dead &&
-                !Main.LocalPlayer.mouseInterface &&
-                !Main.drawingPlayerChat &&
-                !Main.editSign &&
-                !Main.editChest &&
-                !Main.blockInput &&
-                !Main.mapFullscreen &&
-                !Main.HoveringOverAnNPC &&
-                Main.LocalPlayer.showItemIcon2 != -1 &&
-                (!Main.LocalPlayer.showItemIcon || Main.LocalPlayer.showItemIcon2 == blacklistTileType) &&
-                Main.LocalPlayer.talkNPC == -1 &&
-                Main.LocalPlayer.itemTime == 0 && Main.LocalPlayer.itemAnimation == 0 &&
-                !(Main.LocalPlayer.frozen || Main.LocalPlayer.webbed || Main.LocalPlayer.stoned);
-        }
-
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
-            if (inventoryIndex != -1)
-            {
-                if (CircleUI.visible)
-                {
-                    //remove the item icon when using the item while held outside the inventory
-                    int mouseItemIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Item / NPC Head"));
-                    if (mouseItemIndex != -1) layers.RemoveAt(mouseItemIndex);
-                    layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
-                        (
-                        "ACT: Appearance Select",
-                        delegate
-                        {
-                            CircleUIInterface.Draw(Main.spriteBatch, new GameTime());
-                            return true;
-                        },
-                        InterfaceScaleType.UI)
-                    );
-                }
-
-                if (PetVanityUI.visible)
-                {
-                    //remove the item icon when using the item while held outside the inventory
-                    int mouseItemIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Item / NPC Head"));
-                    if (mouseItemIndex != -1) layers.RemoveAt(mouseItemIndex);
-                    layers.Insert(++inventoryIndex, new LegacyGameInterfaceLayer
-                        (
-                        "ACT: Pet Vanity Select",
-                        delegate
-                        {
-                            PetVanityUIInterface.Draw(Main.spriteBatch, new GameTime());
-                            return true;
-                        },
-                        InterfaceScaleType.UI)
-                    );
-                }
-            }
-
-            int mouseOverIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Over"));
-            if (mouseOverIndex != -1)
-            {
-                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: NPC Mouse Over",
-                    delegate
-                    {
-                        HoverNPCUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-
-                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Enhanced Hunter",
-                    delegate
-                    {
-                        if (EnhancedHunterUI.visible) EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-
-                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Harvester Edge",
-                    delegate
-                    {
-                        HarvesterEdgeUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
-        }
-
-        public override void ModifyTransformMatrix(ref SpriteViewMatrix Transform)
-        {
-            ZoomFactor = Transform.Zoom - (Vector2.UnitX + Vector2.UnitY);
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

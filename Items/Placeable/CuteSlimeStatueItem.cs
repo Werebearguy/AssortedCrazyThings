@@ -15,29 +15,23 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 24;
-            item.height = 32;
-            item.maxStack = 99;
-            item.useTurn = true;
-            item.autoReuse = true;
-            item.useAnimation = 15;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.consumable = true;
-            item.rare = -11;
-            item.value = Item.sellPrice(0, 0, 0, 60);
-            item.createTile = ModContent.TileType<CuteSlimeStatueTile>();
+            Item.width = 24;
+            Item.height = 32;
+            Item.maxStack = 99;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.consumable = true;
+            Item.rare = -11;
+            Item.value = Item.sellPrice(0, 0, 0, 60);
+            Item.createTile = ModContent.TileType<CuteSlimeStatueTile>();
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Gel, 200);
-            recipe.AddIngredient(ItemID.StoneBlock, 50);
-            recipe.AddRecipeGroup("ACT:RegularCuteSlimes", 1);
-            recipe.AddTile(TileID.HeavyWorkBench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Gel, 200).AddIngredient(ItemID.StoneBlock, 50).AddRecipeGroup("ACT:RegularCuteSlimes", 1).AddTile(TileID.HeavyWorkBench).Register();
         }
     }
 }

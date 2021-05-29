@@ -14,11 +14,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 24;
-            item.height = 22;
-            item.value = Item.sellPrice(gold: 5);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 24;
+            Item.height = 22;
+            Item.value = Item.sellPrice(gold: 5);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -28,12 +28,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MagmaStone, 1);
-            recipe.AddIngredient(ItemID.CursedFlame, 50);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.MagmaStone, 1).AddIngredient(ItemID.CursedFlame, 50).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

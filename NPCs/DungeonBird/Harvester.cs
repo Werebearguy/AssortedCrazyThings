@@ -8,6 +8,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.Chat;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -33,35 +35,35 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
-            Main.npcFrameCount[npc.type] = 5;
+            Main.npcFrameCount[NPC.type] = 5;
         }
 
         public override void SetDefaults()
         {
             //npc.SetDefaults(NPCID.QueenBee);
-            npc.boss = true;
-            npc.npcSlots = 10f; //takes 10 npc slots , so no other npcs can spawn during the fight
+            NPC.boss = true;
+            NPC.npcSlots = 10f; //takes 10 npc slots , so no other npcs can spawn during the fight
             //actual body hitbox
-            npc.width = Wid; //302 texture //104
-            npc.height = Hei; //176 texture //110
-            npc.damage = 5; //contact damage
-            npc.defense = 8;
-            npc.lifeMax = 1500;
-            npc.scale = 1f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = Item.buyPrice(0, 10);
-            npc.knockBackResist = 0f;
-            npc.aiStyle = -1; //91;
-            npc.timeLeft = NPC.activeTime * 30;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.lavaImmune = true;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.alpha = 255;
-            music = MusicID.Boss5;
+            NPC.width = Wid; //302 texture //104
+            NPC.height = Hei; //176 texture //110
+            NPC.damage = 5; //contact damage
+            NPC.defense = 8;
+            NPC.lifeMax = 1500;
+            NPC.scale = 1f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = Item.buyPrice(0, 10);
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = -1; //91;
+            NPC.timeLeft = NPC.activeTime * 30;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.lavaImmune = true;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.alpha = 255;
+            //music = MusicID.Boss5; //TODO music
 
             //queenbee setdefaults
             //width = 66;
@@ -99,70 +101,70 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void FindFrame(int frameHeight)
         {
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
-            npc.spriteDirection = -npc.direction;
-            npc.frameCounter++;
+            NPC.spriteDirection = -NPC.direction;
+            NPC.frameCounter++;
 
-            if (npc.alpha > 0)
+            if (NPC.alpha > 0)
             {
-                npc.frame.Y = frameHeight * 4;
-                npc.frameCounter = 40.0;
+                NPC.frame.Y = frameHeight * 4;
+                NPC.frameCounter = 40.0;
                 return;
             }
 
             //0 1 2 3 4 | 3 2 1 0
-            if (npc.frameCounter <= 8.0)
+            if (NPC.frameCounter <= 8.0)
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
-            else if (npc.frameCounter <= 16.0)
+            else if (NPC.frameCounter <= 16.0)
             {
-                npc.frame.Y = frameHeight * 1;
+                NPC.frame.Y = frameHeight * 1;
             }
-            else if (npc.frameCounter <= 24.0)
+            else if (NPC.frameCounter <= 24.0)
             {
-                npc.frame.Y = frameHeight * 2;
+                NPC.frame.Y = frameHeight * 2;
             }
-            else if (npc.frameCounter <= 32.0)
+            else if (NPC.frameCounter <= 32.0)
             {
-                npc.frame.Y = frameHeight * 3;
+                NPC.frame.Y = frameHeight * 3;
             }
-            else if (npc.frameCounter <= 40.0)
+            else if (NPC.frameCounter <= 40.0)
             {
-                npc.frame.Y = frameHeight * 4;
+                NPC.frame.Y = frameHeight * 4;
             }
-            else if (npc.frameCounter <= 48.0)
+            else if (NPC.frameCounter <= 48.0)
             {
-                npc.frame.Y = frameHeight * 3;
+                NPC.frame.Y = frameHeight * 3;
             }
-            else if (npc.frameCounter <= 56.0)
+            else if (NPC.frameCounter <= 56.0)
             {
-                npc.frame.Y = frameHeight * 2;
+                NPC.frame.Y = frameHeight * 2;
             }
-            else if (npc.frameCounter <= 64.0)
+            else if (NPC.frameCounter <= 64.0)
             {
-                npc.frame.Y = frameHeight * 1;
+                NPC.frame.Y = frameHeight * 1;
             }
             else
             {
-                npc.frameCounter = 0;
+                NPC.frameCounter = 0;
             }
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/DungeonBird/HarvesterWings");
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width >> 1, npc.height >> 1);
+            Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterWings").Value;
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width >> 1, NPC.height >> 1);
 
-            Vector2 stupidOffset = new Vector2(0, -29f + npc.gfxOffY);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Vector2 stupidOffset = new Vector2(0, -29f + NPC.gfxOffY);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-            spriteBatch.Draw(texture, drawPos, npc.frame, npc.GetAlpha(Color.White), npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(Color.White), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White * ((255 - npc.alpha) / 255f);
+            return Color.White * ((255 - NPC.alpha) / 255f);
         }
 
         /// <summary>
@@ -170,7 +172,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         /// </summary>
         private void DropLoot(int npcTypeNew)
         {
-            int count = Array.FindAll(npc.playerInteraction, interacted => interacted).Length;
+            int count = Array.FindAll(NPC.playerInteraction, interacted => interacted).Length;
 
             for (int i = 0; i < count; i++)
             {
@@ -178,7 +180,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     int[] types = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
                     int itemType = Main.rand.Next(types);
-                    Item.NewItem(npc.getRect(), itemType, prefixGiven: -1);
+                    Item.NewItem(NPC.getRect(), itemType, prefixGiven: -1);
                 }
 
                 Vector2 randVector = Vector2.One;
@@ -189,7 +191,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
                     randFactor = Main.rand.NextFloat(2f, 8f);
-                    index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, npcTypeNew);
+                    index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
                     Main.npc[index].SetDefaults(npcTypeNew);
                     //Main.npc[index].timeLeft = 3600;
                     Main.npc[index].velocity = randVector * randFactor;
@@ -202,18 +204,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
-            if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SoulHarvesterMask>());
-            Item.NewItem(npc.getRect(), ModContent.ItemType<DesiccatedLeather>());
+            Item.NewItem(NPC.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
+            if (Main.rand.NextBool(10)) Item.NewItem(NPC.getRect(), ModContent.ItemType<SoulHarvesterMask>());
+            Item.NewItem(NPC.getRect(), ModContent.ItemType<DesiccatedLeather>());
 
-            if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), ModContent.ItemType<IdolOfDecay>());
+            if (Main.rand.NextBool(4)) Item.NewItem(NPC.getRect(), ModContent.ItemType<IdolOfDecay>());
 
             //RecipeBrowser fix
-            if (npc.Center == new Vector2(1000, 1000))
+            if (NPC.Center == new Vector2(1000, 1000))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<CaughtDungeonSoulFreed>());
+                Item.NewItem(NPC.getRect(), ModContent.ItemType<CaughtDungeonSoulFreed>());
             }
 
             int npcTypeOld = ModContent.NPCType<DungeonSoul>();
@@ -307,7 +309,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), deathColor);
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), deathColor);
             }
         }
 
@@ -315,7 +317,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (Main.netMode == NetmodeID.Server)
             {
-                ModPacket packet = mod.GetPacket();
+                ModPacket packet = Mod.GetPacket();
                 packet.Write((byte)AssMessageType.ConvertInertSoulsInventory);
                 packet.Send();
             }
@@ -333,11 +335,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[AI_State_Slot];
+                return NPC.ai[AI_State_Slot];
             }
             set
             {
-                npc.ai[AI_State_Slot] = value;
+                NPC.ai[AI_State_Slot] = value;
             }
         }
 
@@ -345,11 +347,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[AI_Timer_Slot];
+                return NPC.ai[AI_Timer_Slot];
             }
             set
             {
-                npc.ai[AI_Timer_Slot] = value;
+                NPC.ai[AI_Timer_Slot] = value;
             }
         }
 
@@ -357,11 +359,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[AI_Counter_Slot];
+                return NPC.ai[AI_Counter_Slot];
             }
             set
             {
-                npc.ai[AI_Counter_Slot] = value;
+                NPC.ai[AI_Counter_Slot] = value;
             }
         }
 
@@ -369,11 +371,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.ai[AI_Unused_Slot];
+                return NPC.ai[AI_Unused_Slot];
             }
             set
             {
-                npc.ai[AI_Unused_Slot] = value;
+                NPC.ai[AI_Unused_Slot] = value;
             }
         }
 
@@ -381,11 +383,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.localAI[0];
+                return NPC.localAI[0];
             }
             set
             {
-                npc.localAI[0] = value;
+                NPC.localAI[0] = value;
             }
         }
 
@@ -393,25 +395,25 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             get
             {
-                return npc.localAI[1] == 1f;
+                return NPC.localAI[1] == 1f;
             }
             set
             {
-                npc.localAI[1] = value ? 1f : 0f;
+                NPC.localAI[1] = value ? 1f : 0f;
             }
         }
 
         public override bool PreAI()
         {
-            Lighting.AddLight(npc.Center, new Vector3(0.3f, 0.3f, 0.7f));
+            Lighting.AddLight(NPC.Center, new Vector3(0.3f, 0.3f, 0.7f));
 
-            npc.gfxOffY = npc.height / 2;
+            NPC.gfxOffY = NPC.height / 2;
             if (Main.netMode != NetmodeID.Server && !Main.gamePaused && Main.hasFocus)
             {
                 double freq = 120.0;
                 sinY = (float)((Math.Sin(((Main.GameUpdateCount % freq) / freq) * MathHelper.TwoPi) - 1) * 6);
             }
-            npc.gfxOffY += sinY;
+            NPC.gfxOffY += sinY;
             return true;
         }
 
@@ -419,12 +421,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (!Initialized)
             {
-                AssWorld.harvesterIndex = npc.whoAmI;
+                AssWorld.harvesterIndex = NPC.whoAmI;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
-                    int index1 = NPC.NewNPC((int)npc.Center.X + TalonOffsetLeftX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
-                    int index2 = NPC.NewNPC((int)npc.Center.X + TalonOffsetRightX, (int)npc.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
+                    SoundEngine.PlaySound(SoundID.Roar, (int)NPC.position.X, (int)NPC.position.Y, 0);
+                    int index1 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetLeftX, (int)NPC.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
+                    int index2 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetRightX, (int)NPC.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
 
                     if (Main.netMode == NetmodeID.Server)
                     {
@@ -438,137 +440,137 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                     }
                 }
-                npc.scale = 1f;
+                NPC.scale = 1f;
                 AI_State = State_Main;
-                npc.netUpdate = true;
+                NPC.netUpdate = true;
                 Initialized = true;
             }
 
-            if (npc.alpha > 0)
+            if (NPC.alpha > 0)
             {
-                npc.alpha -= 5;
-                if (npc.alpha < 4)
+                NPC.alpha -= 5;
+                if (NPC.alpha < 4)
                 {
-                    npc.alpha = 0;
+                    NPC.alpha = 0;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        npc.netUpdate = true;
+                        NPC.netUpdate = true;
                     }
                 }
                 return;
             }
 
-            if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            if (NPC.target < 0 || NPC.target >= 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
-                npc.TargetClosest();
+                NPC.TargetClosest();
             }
 
-            Player target = Main.player[npc.target];
+            Player target = Main.player[NPC.target];
 
             if (target.dead)
             {
-                npc.velocity.Y += 0.04f;
-                if (npc.timeLeft > 10)
+                NPC.velocity.Y += 0.04f;
+                if (NPC.timeLeft > 10)
                 {
-                    npc.timeLeft = 10;
+                    NPC.timeLeft = 10;
                 }
             }
             else if (AI_State == State_Main)
             {
                 float acceleration = 0.05f;
 
-                Vector2 origin = new Vector2(npc.Center.X + (float)(Main.rand.Next(20) * npc.direction), npc.position.Y + npc.height * 0.8f);
-                float diffX = target.Center.X - npc.Center.X;
-                float diffY = target.Center.Y - 200f - npc.Center.Y; //300f
+                Vector2 origin = new Vector2(NPC.Center.X + (float)(Main.rand.Next(20) * NPC.direction), NPC.position.Y + NPC.height * 0.8f);
+                float diffX = target.Center.X - NPC.Center.X;
+                float diffY = target.Center.Y - 200f - NPC.Center.Y; //300f
                 float length = (float)Math.Sqrt(diffX * diffX + diffY * diffY);
                 AI_Timer += 1f;
 
                 if (!Collision.CanHit(new Vector2(origin.X, origin.Y - 30f), 1, 1, target.position, target.width, target.height))
                 {
                     acceleration = 0.1f;
-                    diffX = target.Center.X - npc.Center.X;
-                    diffY = target.Center.Y - npc.Center.Y;
+                    diffX = target.Center.X - NPC.Center.X;
+                    diffY = target.Center.Y - NPC.Center.Y;
 
                     //WHEN NO DIRECT CAN HIT LINE
                     
-                    if (Math.Abs(npc.velocity.X) < 32)
+                    if (Math.Abs(NPC.velocity.X) < 32)
                     {
-                        if (npc.velocity.X < diffX)
+                        if (NPC.velocity.X < diffX)
                         {
-                            npc.velocity.X = npc.velocity.X + acceleration;
-                            if (npc.velocity.X < 0f && diffX > 0f)
+                            NPC.velocity.X = NPC.velocity.X + acceleration;
+                            if (NPC.velocity.X < 0f && diffX > 0f)
                             {
-                                npc.velocity.X = npc.velocity.X + acceleration * 2.5f; //1f all
+                                NPC.velocity.X = NPC.velocity.X + acceleration * 2.5f; //1f all
                             }
                         }
-                        else if (npc.velocity.X > diffX)
+                        else if (NPC.velocity.X > diffX)
                         {
-                            npc.velocity.X = npc.velocity.X - acceleration;
-                            if (npc.velocity.X > 0f && diffX < 0f)
+                            NPC.velocity.X = NPC.velocity.X - acceleration;
+                            if (NPC.velocity.X > 0f && diffX < 0f)
                             {
-                                npc.velocity.X = npc.velocity.X - acceleration * 2.5f;
+                                NPC.velocity.X = NPC.velocity.X - acceleration * 2.5f;
                             }
                         }
                     }
-                    if (Math.Abs(npc.velocity.Y) < 32)
+                    if (Math.Abs(NPC.velocity.Y) < 32)
                     {
-                        if (npc.velocity.Y < diffY)
+                        if (NPC.velocity.Y < diffY)
                         {
-                            npc.velocity.Y = npc.velocity.Y + acceleration;
-                            if (npc.velocity.Y < 0f && diffY > 0f)
+                            NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                            if (NPC.velocity.Y < 0f && diffY > 0f)
                             {
-                                npc.velocity.Y = npc.velocity.Y + acceleration * 2.5f;
+                                NPC.velocity.Y = NPC.velocity.Y + acceleration * 2.5f;
                             }
                         }
-                        else if (npc.velocity.Y > diffY)
+                        else if (NPC.velocity.Y > diffY)
                         {
-                            npc.velocity.Y = npc.velocity.Y - acceleration;
-                            if (npc.velocity.Y > 0f && diffY < 0f)
+                            NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                            if (NPC.velocity.Y > 0f && diffY < 0f)
                             {
-                                npc.velocity.Y = npc.velocity.Y - acceleration * 2.5f;
+                                NPC.velocity.Y = NPC.velocity.Y - acceleration * 2.5f;
                             }
                         }
                     }
                 }
                 else if (length > 100f)
                 {
-                    npc.TargetClosest();
-                    npc.spriteDirection = npc.direction;
-                    if (Math.Abs(npc.velocity.X) < 32)
+                    NPC.TargetClosest();
+                    NPC.spriteDirection = NPC.direction;
+                    if (Math.Abs(NPC.velocity.X) < 32)
                     {
-                        if (npc.velocity.X < diffX)
+                        if (NPC.velocity.X < diffX)
                         {
-                            npc.velocity.X = npc.velocity.X + acceleration;
-                            if (npc.velocity.X < 0f && diffX > 0f)
+                            NPC.velocity.X = NPC.velocity.X + acceleration;
+                            if (NPC.velocity.X < 0f && diffX > 0f)
                             {
-                                npc.velocity.X = npc.velocity.X + acceleration * 2f; //2f all
+                                NPC.velocity.X = NPC.velocity.X + acceleration * 2f; //2f all
                             }
                         }
-                        else if (npc.velocity.X > diffX)
+                        else if (NPC.velocity.X > diffX)
                         {
-                            npc.velocity.X = npc.velocity.X - acceleration;
-                            if (npc.velocity.X > 0f && diffX < 0f)
+                            NPC.velocity.X = NPC.velocity.X - acceleration;
+                            if (NPC.velocity.X > 0f && diffX < 0f)
                             {
-                                npc.velocity.X = npc.velocity.X - acceleration * 2f;
+                                NPC.velocity.X = NPC.velocity.X - acceleration * 2f;
                             }
                         }
                     }
-                    if (Math.Abs(npc.velocity.Y) < 32)
+                    if (Math.Abs(NPC.velocity.Y) < 32)
                     {
-                        if (npc.velocity.Y < diffY)
+                        if (NPC.velocity.Y < diffY)
                         {
-                            npc.velocity.Y = npc.velocity.Y + acceleration;
-                            if (npc.velocity.Y < 0f && diffY > 0f)
+                            NPC.velocity.Y = NPC.velocity.Y + acceleration;
+                            if (NPC.velocity.Y < 0f && diffY > 0f)
                             {
-                                npc.velocity.Y = npc.velocity.Y + acceleration * 2f;
+                                NPC.velocity.Y = NPC.velocity.Y + acceleration * 2f;
                             }
                         }
-                        else if (npc.velocity.Y > diffY)
+                        else if (NPC.velocity.Y > diffY)
                         {
-                            npc.velocity.Y = npc.velocity.Y - acceleration;
-                            if (npc.velocity.Y > 0f && diffY < 0f)
+                            NPC.velocity.Y = NPC.velocity.Y - acceleration;
+                            if (NPC.velocity.Y > 0f && diffY < 0f)
                             {
-                                npc.velocity.Y = npc.velocity.Y - acceleration * 2f;
+                                NPC.velocity.Y = NPC.velocity.Y - acceleration * 2f;
                             }
                         }
                     }
@@ -577,7 +579,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (AI_Timer > 120f)
                 {
                     AI_Timer = 0;
-                    npc.netUpdate = true;
+                    NPC.netUpdate = true;
                 }
             }
             //additional stages here
@@ -585,7 +587,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostAI()
         {
-            if (npc.direction == 1)
+            if (NPC.direction == 1)
             {
                 TalonOffsetLeftX = -Wid / 4 + TalonDirectionalOffset;
                 TalonOffsetRightX = Wid / 4 + TalonDirectionalOffset;
@@ -605,7 +607,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 int first = 1;
                 int second = 13 + first;
@@ -618,7 +620,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (i < first) name = "1";
                     else if (i < second) name = "2";
                     else if (i < third) name = "3";
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/SoulHarvesterGore_0" + name), 1f);
+                    Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SoulHarvesterGore_0" + name).Type, 1f);
                 }
             }
         }

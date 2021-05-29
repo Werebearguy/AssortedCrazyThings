@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
-            Main.npcFrameCount[npc.type] = 17;
+            Main.npcFrameCount[NPC.type] = 17;
         }
 
         public override void SetDefaults()
@@ -45,24 +45,24 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             defLifeMax = maxSoulsEaten + 1;
 
 
-            npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
-            npc.chaseable = false;
-            npc.npcSlots = 0.5f;
-            npc.width = DungeonSoulBase.wid;
-            npc.height = DungeonSoulBase.hei; //100 or 98 when flying
-            npc.damage = 0;
-            npc.defense = 11;
-            npc.scale = defScale;
-            npc.lifeMax = defLifeMax;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.aiStyle = -1; //91;
-            aiType = -1; //91
-            npc.alpha = 255;
-            animationType = -1;
-            npc.lavaImmune = true;
-            npc.buffImmune[BuffID.Confused] = false;
-            npc.timeLeft = NPC.activeTime * 30; //doesnt do jackshit
+            NPC.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
+            NPC.chaseable = false;
+            NPC.npcSlots = 0.5f;
+            NPC.width = DungeonSoulBase.wid;
+            NPC.height = DungeonSoulBase.hei; //100 or 98 when flying
+            NPC.damage = 0;
+            NPC.defense = 11;
+            NPC.scale = defScale;
+            NPC.lifeMax = defLifeMax;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.aiStyle = -1; //91;
+            AIType = -1; //91
+            NPC.alpha = 255;
+            AnimationType = -1;
+            NPC.lavaImmune = true;
+            NPC.buffImmune[BuffID.Confused] = false;
+            NPC.timeLeft = NPC.activeTime * 30; //doesnt do jackshit
         }
 
         public void SpawnDust(int frame)
@@ -72,30 +72,30 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             switch (frame)
             {
                 case 13:
-                    left.X = (int)npc.Center.X - 60;
-                    right.X = (int)npc.Center.X + 10;
-                    left.Y = right.Y = (int)npc.Top.Y - 62;
+                    left.X = (int)NPC.Center.X - 60;
+                    right.X = (int)NPC.Center.X + 10;
+                    left.Y = right.Y = (int)NPC.Top.Y - 62;
                     left.Width = right.Width = 48;
                     left.Height = right.Height = 52;
                     break;
                 case 14:
-                    left.X = (int)npc.Center.X - 80;
-                    right.X = (int)npc.Center.X + 10;
-                    left.Y = right.Y = (int)npc.Top.Y - 20;
+                    left.X = (int)NPC.Center.X - 80;
+                    right.X = (int)NPC.Center.X + 10;
+                    left.Y = right.Y = (int)NPC.Top.Y - 20;
                     left.Width = right.Width = 60;
                     left.Height = right.Height = 10;
                     break;
                 case 15:
-                    left.X = (int)npc.Center.X - 30;
-                    right.X = (int)npc.Center.X - 10;
-                    left.Y = right.Y = (int)npc.Top.Y - 20;
+                    left.X = (int)NPC.Center.X - 30;
+                    right.X = (int)NPC.Center.X - 10;
+                    left.Y = right.Y = (int)NPC.Top.Y - 20;
                     left.Width = right.Width = 30;
                     left.Height = right.Height = 60;
                     break;
                 case 16:
-                    left.X = (int)npc.Center.X - 80;
-                    right.X = (int)npc.Center.X + 10;
-                    left.Y = right.Y = (int)npc.Top.Y - 8;
+                    left.X = (int)NPC.Center.X - 80;
+                    right.X = (int)NPC.Center.X + 10;
+                    left.Y = right.Y = (int)NPC.Top.Y - 8;
                     left.Width = right.Width = 60;
                     left.Height = right.Height = 10;
                     break;
@@ -127,261 +127,260 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void FindFrame(int frameHeight)
         {
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
-            npc.spriteDirection = -npc.direction;
+            NPC.spriteDirection = -NPC.direction;
             if (AI_State == STATE_APPROACH || AI_State == STATE_DISTRIBUTE) //5 to 12
             {
-                if (npc.velocity.X != 0)
+                if (NPC.velocity.X != 0)
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X / 1.5);
-                    if (AI_State == STATE_APPROACH && (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f) ||
-                        AI_State == STATE_DISTRIBUTE && SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10)) //fuck
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X / 1.5);
+                    if (AI_State == STATE_APPROACH && (NPC.velocity.Y == 0 || NPC.velocity.Y < 3f && NPC.velocity.Y > 0f) ||
+                        AI_State == STATE_DISTRIBUTE && SolidCollisionNew(NPC.position + new Vector2(-1f, -1f), NPC.width + 2, NPC.height + 10)) //fuck
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = frameHeight * 5;
+                            NPC.frame.Y = frameHeight * 5;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 6;
+                            NPC.frame.Y = frameHeight * 6;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 7;
+                            NPC.frame.Y = frameHeight * 7;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 8;
+                            NPC.frame.Y = frameHeight * 8;
                         }
-                        else if (npc.frameCounter <= 40.0)
+                        else if (NPC.frameCounter <= 40.0)
                         {
-                            npc.frame.Y = frameHeight * 9;
+                            NPC.frame.Y = frameHeight * 9;
                         }
-                        else if (npc.frameCounter <= 48.0)
+                        else if (NPC.frameCounter <= 48.0)
                         {
-                            npc.frame.Y = frameHeight * 10;
+                            NPC.frame.Y = frameHeight * 10;
                         }
-                        else if (npc.frameCounter <= 56.0)
+                        else if (NPC.frameCounter <= 56.0)
                         {
-                            npc.frame.Y = frameHeight * 11;
+                            NPC.frame.Y = frameHeight * 11;
                         }
-                        else if (npc.frameCounter <= 64.0)
+                        else if (NPC.frameCounter <= 64.0)
                         {
-                            npc.frame.Y = frameHeight * 12;
+                            NPC.frame.Y = frameHeight * 12;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
-                            npc.frame.Y = frameHeight * 5;
+                            NPC.frameCounter = 0;
+                            NPC.frame.Y = frameHeight * 5;
                         }
                     }
                     else
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = frameHeight * 13;
+                            NPC.frame.Y = frameHeight * 13;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 14;
+                            NPC.frame.Y = frameHeight * 14;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 15;
+                            NPC.frame.Y = frameHeight * 15;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 16;
+                            NPC.frame.Y = frameHeight * 16;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
-                            npc.frame.Y = frameHeight * 13;
+                            NPC.frameCounter = 0;
+                            NPC.frame.Y = frameHeight * 13;
                         }
                     }
                 }
                 else //if velo.x == 0
                 {
-                    npc.frameCounter += 1;
-                    if (/*npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f*/ SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
+                    NPC.frameCounter += 1;
+                    if (/*npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f*/ SolidCollisionNew(NPC.position + new Vector2(-1f, -1f), NPC.width + 2, NPC.height + 10))
                     {
-                        npc.frame.Y = frameHeight * 5;
+                        NPC.frame.Y = frameHeight * 5;
                     }
                     else
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = frameHeight * 13;
+                            NPC.frame.Y = frameHeight * 13;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 14;
+                            NPC.frame.Y = frameHeight * 14;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 15;
+                            NPC.frame.Y = frameHeight * 15;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 16;
+                            NPC.frame.Y = frameHeight * 16;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
-                            npc.frame.Y = frameHeight * 13;
+                            NPC.frameCounter = 0;
+                            NPC.frame.Y = frameHeight * 13;
                         }
                     }
                 }
             }
             else if (AI_State == STATE_NOCLIP)
             {
-                npc.frameCounter++;
-                if (npc.frameCounter <= 8.0)
+                NPC.frameCounter++;
+                if (NPC.frameCounter <= 8.0)
                 {
-                    npc.frame.Y = frameHeight * 13;
+                    NPC.frame.Y = frameHeight * 13;
                 }
-                else if (npc.frameCounter <= 16.0)
+                else if (NPC.frameCounter <= 16.0)
                 {
-                    npc.frame.Y = frameHeight * 14;
+                    NPC.frame.Y = frameHeight * 14;
                 }
-                else if (npc.frameCounter <= 24.0)
+                else if (NPC.frameCounter <= 24.0)
                 {
-                    npc.frame.Y = frameHeight * 15;
+                    NPC.frame.Y = frameHeight * 15;
                 }
-                else if (npc.frameCounter <= 32.0)
+                else if (NPC.frameCounter <= 32.0)
                 {
-                    npc.frame.Y = frameHeight * 16;
+                    NPC.frame.Y = frameHeight * 16;
                 }
                 else
                 {
-                    npc.frameCounter = 0;
+                    NPC.frameCounter = 0;
                 }
             }
             else if (AI_State == STATE_STOP)
             {
                 if (stopTime == eatTime)
                 {
-                    npc.frameCounter++;
-                    if (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f)
+                    NPC.frameCounter++;
+                    if (NPC.velocity.Y == 0 || NPC.velocity.Y < 3f && NPC.velocity.Y > 0f)
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = 0;
+                            NPC.frame.Y = 0;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 1;
+                            NPC.frame.Y = frameHeight * 1;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 2;
+                            NPC.frame.Y = frameHeight * 2;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 3;
+                            NPC.frame.Y = frameHeight * 3;
                         }
-                        else if (npc.frameCounter <= 40.0)
+                        else if (NPC.frameCounter <= 40.0)
                         {
-                            npc.frame.Y = frameHeight * 4;
+                            NPC.frame.Y = frameHeight * 4;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
+                            NPC.frameCounter = 0;
                         }
                     }
-                    else if (!SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
+                    else if (!SolidCollisionNew(NPC.position + new Vector2(-1f, -1f), NPC.width + 2, NPC.height + 10))
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = frameHeight * 13;
+                            NPC.frame.Y = frameHeight * 13;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 14;
+                            NPC.frame.Y = frameHeight * 14;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 15;
+                            NPC.frame.Y = frameHeight * 15;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 16;
+                            NPC.frame.Y = frameHeight * 16;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
+                            NPC.frameCounter = 0;
                         }
                     }
                 }
                 else //idleTime
                 {
-                    npc.frame.Y = 0;
+                    NPC.frame.Y = 0;
                 }
             }
 
-            SpawnDust(npc.frame.Y / frameHeight);
+            SpawnDust(NPC.frame.Y / frameHeight);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Wings");
-            Vector2 stupidOffset = new Vector2(0f, -26f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Wings").Value;
+            Vector2 stupidOffset = new Vector2(0f, -26f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            spriteBatch.Draw(texture, drawPos, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 
             if (soulsEaten > 0)
             {
                 if (soulsEaten < maxSoulsEaten / 2)
                 {
-                    texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulsmall");
+                    texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Soulsmall").Value;
                 }
                 else if (soulsEaten != maxSoulsEaten - 1)
                 {
-                    texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulpulse");
+                    texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Soulpulse").Value;
                 }
                 else
                 {
-                    texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Soulbig");
+                    texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Soulbig").Value;
                 }
             }
-            spriteBatch.Draw(texture, drawPos, npc.frame, Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+            spriteBatch.Draw(texture, drawPos, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 
             if (AI_State == STATE_STOP && stopTime == eatTime)
             {
-                texture = mod.GetTexture("NPCs/DungeonBird/Harvester2Souleat");
+                texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Souleat").Value;
 
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);
                 drawColor.B = Math.Max(drawColor.B, (byte)200);
-                spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
             }
 
             //Spawn light, add dust
-            Lighting.AddLight(npc.Center, new Vector3(0.25f, 0.25f, 0.5f) * (soulsEaten / (float)maxSoulsEaten));
+            Lighting.AddLight(NPC.Center, new Vector3(0.25f, 0.25f, 0.5f) * (soulsEaten / (float)maxSoulsEaten));
             if (AI_State != STATE_STOP && AI_State != STATE_TRANSFORM && Main.rand.NextFloat() < ((soulsEaten * 0.1f) / maxSoulsEaten))
             {
-                Vector2 position = npc.position;
+                Vector2 position = NPC.position;
 
                 if (AI_State != STATE_NOCLIP)
                 {
-                    if (npc.spriteDirection == -1)
+                    if (NPC.spriteDirection == -1)
                     {
-                        position += new Vector2(npc.width - 2f, 0f);
+                        position += new Vector2(NPC.width - 2f, 0f);
                     }
 
                 }
                 else
                 {
-                    position += new Vector2(npc.width / 2, -npc.height / 4);
+                    position += new Vector2(NPC.width / 2, -NPC.height / 4);
                 }
 
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + npc.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-1.5f, 1.5f) + NPC.velocity.X, Main.rand.NextFloat(-1.3f, 0.3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
                 dust.noLight = true;
                 dust.noGravity = true;
                 dust.fadeIn = Main.rand.NextFloat(0f + soulsEaten / (float)maxSoulsEaten, 1f + soulsEaten / (float)maxSoulsEaten);
             }
-
         }
 
         public override void SendExtraAI(BinaryWriter writer)

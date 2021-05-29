@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
-            Main.npcFrameCount[npc.type] = 9;
+            Main.npcFrameCount[NPC.type] = 9;
         }
 
         public override void SetDefaults()
@@ -43,127 +43,127 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             defLifeMax = maxSoulsEaten + 1;
 
 
-            npc.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
-            npc.chaseable = false;
-            npc.npcSlots = 0.5f;
-            npc.width = DungeonSoulBase.wid;
-            npc.height = DungeonSoulBase.hei;
-            npc.damage = 0;
-            npc.defense = 1;
-            npc.scale = defScale;
-            npc.lifeMax = defLifeMax;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.aiStyle = -1; //91;
-            aiType = -1; //91
-            npc.alpha = 255;
-            animationType = -1;
-            npc.lavaImmune = true;
-            npc.buffImmune[BuffID.Confused] = false;
-            npc.timeLeft = NPC.activeTime * 30; //doesnt do jackshit
+            NPC.dontTakeDamage = true;  //if true, it wont show hp count while mouse over
+            NPC.chaseable = false;
+            NPC.npcSlots = 0.5f;
+            NPC.width = DungeonSoulBase.wid;
+            NPC.height = DungeonSoulBase.hei;
+            NPC.damage = 0;
+            NPC.defense = 1;
+            NPC.scale = defScale;
+            NPC.lifeMax = defLifeMax;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.aiStyle = -1; //91;
+            AIType = -1; //91
+            NPC.alpha = 255;
+            AnimationType = -1;
+            NPC.lavaImmune = true;
+            NPC.buffImmune[BuffID.Confused] = false;
+            NPC.timeLeft = NPC.activeTime * 30; //doesnt do jackshit
         }
 
         public override void FindFrame(int frameHeight)
         {
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
-            npc.spriteDirection = -npc.direction;
-            npc.gfxOffY = 0f;
+            NPC.spriteDirection = -NPC.direction;
+            NPC.gfxOffY = 0f;
             if (AI_State == STATE_APPROACH)
             {
-                npc.frameCounter++;
-                if (npc.velocity.X != 0)
+                NPC.frameCounter++;
+                if (NPC.velocity.X != 0)
                 {
-                    if (npc.velocity.Y == 0)
+                    if (NPC.velocity.Y == 0)
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = frameHeight * 3;
+                            NPC.frame.Y = frameHeight * 3;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 4;
+                            NPC.frame.Y = frameHeight * 4;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 3;
+                            NPC.frame.Y = frameHeight * 3;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 5;
+                            NPC.frame.Y = frameHeight * 5;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
+                            NPC.frameCounter = 0;
                         }
                     }
                     else
                     {
-                        npc.frame.Y = frameHeight * 6;
+                        NPC.frame.Y = frameHeight * 6;
                     }
                 }
                 else
                 {
-                    npc.frame.Y = frameHeight * 3;
+                    NPC.frame.Y = frameHeight * 3;
                 }
             }
             else if (AI_State == STATE_NOCLIP)
             {
-                npc.frameCounter++;
-                if (npc.frameCounter <= 3.0)
+                NPC.frameCounter++;
+                if (NPC.frameCounter <= 3.0)
                 {
-                    npc.frame.Y = frameHeight * 7; //"fly"
+                    NPC.frame.Y = frameHeight * 7; //"fly"
                 }
-                else if (npc.frameCounter <= 6.0)
+                else if (NPC.frameCounter <= 6.0)
                 {
-                    npc.frame.Y = frameHeight * 8;
+                    NPC.frame.Y = frameHeight * 8;
                 }
                 else
                 {
-                    npc.frameCounter = 0;
+                    NPC.frameCounter = 0;
                 }
             }
             else if (AI_State == STATE_TRANSFORM)
             {
-                npc.gfxOffY += 1f;
-                npc.frame.Y = 0;
+                NPC.gfxOffY += 1f;
+                NPC.frame.Y = 0;
             }
             else if (AI_State == STATE_STOP)
             {
-                npc.gfxOffY += 1f;
+                NPC.gfxOffY += 1f;
                 if (stopTime == eatTime)
                 {
-                    npc.frameCounter++;
-                    if (npc.velocity.Y == 0 || npc.velocity.Y < 3f && npc.velocity.Y > 0f)
+                    NPC.frameCounter++;
+                    if (NPC.velocity.Y == 0 || NPC.velocity.Y < 3f && NPC.velocity.Y > 0f)
                     {
-                        if (npc.frameCounter <= 8.0)
+                        if (NPC.frameCounter <= 8.0)
                         {
-                            npc.frame.Y = 0;
+                            NPC.frame.Y = 0;
                         }
-                        else if (npc.frameCounter <= 16.0)
+                        else if (NPC.frameCounter <= 16.0)
                         {
-                            npc.frame.Y = frameHeight * 1;
+                            NPC.frame.Y = frameHeight * 1;
                         }
-                        else if (npc.frameCounter <= 24.0)
+                        else if (NPC.frameCounter <= 24.0)
                         {
-                            npc.frame.Y = frameHeight * 2;
+                            NPC.frame.Y = frameHeight * 2;
                         }
-                        else if (npc.frameCounter <= 32.0)
+                        else if (NPC.frameCounter <= 32.0)
                         {
-                            npc.frame.Y = frameHeight * 1;
+                            NPC.frame.Y = frameHeight * 1;
                         }
                         else
                         {
-                            npc.frameCounter = 0;
+                            NPC.frameCounter = 0;
                         }
                     }
-                    else if (!SolidCollisionNew(npc.position + new Vector2(-1f, -1f), npc.width + 2, npc.height + 10))
+                    else if (!SolidCollisionNew(NPC.position + new Vector2(-1f, -1f), NPC.width + 2, NPC.height + 10))
                     {
-                        npc.frame.Y = frameHeight * 6;
+                        NPC.frame.Y = frameHeight * 6;
                     }
                 }
                 else
                 {
-                    npc.frame.Y = 0;
+                    NPC.frame.Y = 0;
                 }
             }
         }
@@ -172,16 +172,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AI_State == STATE_STOP && stopTime == eatTime)
             {
-                Texture2D texture = mod.GetTexture("NPCs/DungeonBird/Harvester1Souleat");
-                Vector2 stupidOffset = new Vector2(0f, 3f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-                SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-                Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
+                Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/Harvester1Souleat").Value;
+                Vector2 stupidOffset = new Vector2(0f, 3f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+                SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+                Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
 
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);
                 drawColor.B = Math.Max(drawColor.B, (byte)200);
-                spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+               spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
             }
         }
 

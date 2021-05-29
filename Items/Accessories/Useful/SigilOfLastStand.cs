@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -19,11 +19,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 26;
-            item.height = 26;
-            item.value = Item.sellPrice(0, 2, 0, 0);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 26;
+            Item.height = 26;
+            Item.value = Item.sellPrice(0, 2, 0, 0);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -58,11 +58,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
             }
 
-            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, item))
+            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, Item))
             {
                 if (mPlayer.canTeleportHome && mPlayer.canGetDefense)
                 {
-                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use"));
+                    tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready to use"));
                 }
 
                 if (!mPlayer.canGetDefense)
@@ -87,7 +87,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                         {
                             timeName = " minute";
                         }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
+                        tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
                     }
                     else
                     {
@@ -99,7 +99,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                         {
                             timeName = " second";
                         }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
+                        tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
                     }
                 }
 
@@ -125,7 +125,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                         {
                             timeName = " minute";
                         }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
+                        tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
                     }
                     else
                     {
@@ -137,7 +137,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                         {
                             timeName = " second";
                         }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
+                        tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
                     }
                 }
             }
@@ -151,12 +151,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<SigilOfRetreat>());
-            recipe.AddIngredient(ModContent.ItemType<SigilOfPainSuppression>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<SigilOfRetreat>()).AddIngredient(ModContent.ItemType<SigilOfPainSuppression>()).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

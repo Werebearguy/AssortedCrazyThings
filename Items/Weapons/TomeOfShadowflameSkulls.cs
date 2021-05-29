@@ -8,16 +8,16 @@ namespace AssortedCrazyThings.Items.Weapons
     {
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.BookofSkulls);
-            item.damage = 50;
-            item.mana = 6;
-            item.useTime = 35;
-            item.shootSpeed = 10f;
-            item.shoot = ProjectileID.ClothiersCurse;
-            item.useAnimation = 35;
-            item.value = Item.sellPrice(silver: 10);
-            item.rare = -11;
-            item.noUseGraphic = true;
+            Item.CloneDefaults(ItemID.BookofSkulls);
+            Item.damage = 50;
+            Item.mana = 6;
+            Item.useTime = 35;
+            Item.shootSpeed = 10f;
+            Item.shoot = ProjectileID.ClothiersCurse;
+            Item.useAnimation = 35;
+            Item.value = Item.sellPrice(silver: 10);
+            Item.rare = -11;
+            Item.noUseGraphic = true;
         }
 
         public override void SetStaticDefaults()
@@ -28,12 +28,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SoulofFright, 10);
-            recipe.AddIngredient(ItemID.BookofSkulls, 1);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.SoulofFright, 10).AddIngredient(ItemID.BookofSkulls, 1).AddTile(TileID.CrystalBall).Register();
         }
     }
 }

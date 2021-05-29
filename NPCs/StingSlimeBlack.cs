@@ -9,25 +9,25 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sting Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 40;
-            npc.height = 36;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 25;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            Main.npcCatchable[mod.NPCType("StingSlimeBlack")] = true;
-            npc.catchItem = (short)mod.ItemType("StingSlimeBlackItem");
+            NPC.width = 40;
+            NPC.height = 36;
+            NPC.damage = 7;
+            NPC.defense = 2;
+            NPC.lifeMax = 25;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 25f;
+            NPC.knockBackResist = 0.25f;
+            NPC.aiStyle = 1;
+            AIType = NPCID.ToxicSludge;
+            AnimationType = NPCID.ToxicSludge;
+            Main.npcCatchable[Mod.Find<ModNPC>("StingSlimeBlack").Type] = true;
+            NPC.catchItem = (short)Mod.Find<ModItem>("StingSlimeBlackItem").Type;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -35,9 +35,9 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.OverworldDayDesert.Chance * 0.2f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.Stinger);
+            Item.NewItem(NPC.getRect(), ItemID.Stinger);
         }
     }
 }

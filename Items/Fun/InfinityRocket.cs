@@ -14,24 +14,20 @@ namespace AssortedCrazyThings.Items.Fun
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.EndlessMusketPouch);
-            item.ammo = AmmoID.Rocket;
-            item.rare = -11;
-            item.shoot = ProjectileID.None;
-            item.damage = 40;
-            item.UseSound = SoundID.Item11;
+            Item.CloneDefaults(ItemID.EndlessMusketPouch);
+            Item.ammo = AmmoID.Rocket;
+            Item.rare = -11;
+            Item.shoot = ProjectileID.None;
+            Item.damage = 40;
+            Item.UseSound = SoundID.Item11;
             //item.shoot = ProjectileID.RocketII;
-            item.value = Item.sellPrice(gold: 4);
+            Item.value = Item.sellPrice(gold: 4);
 
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.RocketI, 3996);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.RocketI, 3996).AddTile(TileID.CrystalBall).Register();
         }
     }
 }

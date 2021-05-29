@@ -9,23 +9,23 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Deep Salamander");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Salamander];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Salamander];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 56;
-            npc.height = 66;
-            npc.damage = 36;
-            npc.defense = 20;
-            npc.lifeMax = 250;
-            npc.HitSound = SoundID.NPCHit50;
-            npc.DeathSound = SoundID.NPCDeath53;
-            npc.value = 240f;
-            npc.knockBackResist = 0.2f;
-            npc.aiStyle = 3;
-            aiType = NPCID.Salamander;
-            animationType = NPCID.Salamander;
+            NPC.width = 56;
+            NPC.height = 66;
+            NPC.damage = 36;
+            NPC.defense = 20;
+            NPC.lifeMax = 250;
+            NPC.HitSound = SoundID.NPCHit50;
+            NPC.DeathSound = SoundID.NPCDeath53;
+            NPC.value = 240f;
+            NPC.knockBackResist = 0.2f;
+            NPC.aiStyle = 3;
+            AIType = NPCID.Salamander;
+            AnimationType = NPCID.Salamander;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -40,25 +40,25 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (Main.rand.NextBool(45))
-                Item.NewItem(npc.getRect(), ItemID.DepthMeter, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.DepthMeter, prefixGiven: -1);
             if (Main.rand.NextBool(48))
-                Item.NewItem(npc.getRect(), ItemID.Compass, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.Compass, prefixGiven: -1);
             if (Main.rand.NextBool(49))
-                Item.NewItem(npc.getRect(), ItemID.Gradient, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.Gradient, prefixGiven: -1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DeepSalamanderGore_2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DeepSalamanderGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DeepSalamanderGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DeepSalamanderGore_2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DeepSalamanderGore_1"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DeepSalamanderGore_2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DeepSalamanderGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DeepSalamanderGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DeepSalamanderGore_2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DeepSalamanderGore_1").Type, 1f);
             }
         }
 
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.NPCs
             //ai[1] is the internal timer for the attack delay, it naturally starts at 70,
             //and at roughly 30 it shoots the projectile, which takes 30 ticks
             //here the timer is now capped at 40 instead of 70, more than halving the delay
-            if (npc.ai[1] > 40) npc.ai[1] = 40; //attack speed roughly doubled
+            if (NPC.ai[1] > 40) NPC.ai[1] = 40; //attack speed roughly doubled
             //Main.NewText("newline");
             //Main.NewText(npc.ai[0]);
             //Main.NewText(npc.ai[1]);

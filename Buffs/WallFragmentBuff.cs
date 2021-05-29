@@ -21,9 +21,9 @@ namespace AssortedCrazyThings.Buffs
             bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<WallFragmentMouth>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.Center.X, player.position.Y - 6f               , player.direction * 0.75f, -0.5f, ModContent.ProjectileType<WallFragmentEye1>(), 0, 0f, player.whoAmI, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.position.Y + player.height / 2, player.direction, 0f, ModContent.ProjectileType<WallFragmentMouth>(), 0, 0f, player.whoAmI, 0f, 0f);
-                Projectile.NewProjectile(player.Center.X, player.position.Y + player.height +6f, player.direction * 0.75f, 0.5f, ModContent.ProjectileType<WallFragmentEye2>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y - 6f               , player.direction * 0.75f, -0.5f, ModContent.ProjectileType<WallFragmentEye1>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y + player.height / 2, player.direction, 0f, ModContent.ProjectileType<WallFragmentMouth>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y + player.height +6f, player.direction * 0.75f, 0.5f, ModContent.ProjectileType<WallFragmentEye2>(), 0, 0f, player.whoAmI, 0f, 0f);
             }
         }
     }

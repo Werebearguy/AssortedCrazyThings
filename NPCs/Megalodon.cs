@@ -13,29 +13,29 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Shark];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 300;
-            npc.height = 98;
-            npc.damage = 500;
-            npc.defense = 75;
-            npc.lifeMax = 9999;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 10000f;
-            npc.knockBackResist = 0f;
-            npc.aiStyle = 16;
-            aiType = NPCID.Shark;
-            animationType = NPCID.Shark;
-            npc.noGravity = true;
+            NPC.width = 300;
+            NPC.height = 98;
+            NPC.damage = 500;
+            NPC.defense = 75;
+            NPC.lifeMax = 9999;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 10000f;
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = 16;
+            AIType = NPCID.Shark;
+            AnimationType = NPCID.Shark;
+            NPC.noGravity = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.hardMode && !NPC.AnyNPCs(mod.NPCType(name)))
+            if (Main.hardMode && !NPC.AnyNPCs(NPC.type))
             {
                 return SpawnCondition.Ocean.Chance * 0.00001f;
             }
@@ -45,18 +45,18 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), mod.ItemType("SmallMegalodon"));
+            Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("SmallMegalodon").Type);
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MegalodonGore_0"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MegalodonGore_1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MegalodonGore_2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/MegalodonGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/MegalodonGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/MegalodonGore_2").Type, 1f);
             }
         }
 
@@ -69,21 +69,21 @@ namespace AssortedCrazyThings.NPCs
             //and from 3 to 2 in Y direction
             //in vanilla, it was 5 and 3 respectively
             //doing this here needs to be 0.15 less since this is by how much it increases per frame
-            if (npc.velocity.X > 3.85f)
+            if (NPC.velocity.X > 3.85f)
             {
-                npc.velocity.X = 3.85f;
+                NPC.velocity.X = 3.85f;
             }
-            if (npc.velocity.X < -3.85f)
+            if (NPC.velocity.X < -3.85f)
             {
-                npc.velocity.X = -3.85f;
+                NPC.velocity.X = -3.85f;
             }
-            if (npc.velocity.Y > 1.85f)
+            if (NPC.velocity.Y > 1.85f)
             {
-                npc.velocity.Y = 1.85f;
+                NPC.velocity.Y = 1.85f;
             }
-            if (npc.velocity.Y < -1.85f)
+            if (NPC.velocity.Y < -1.85f)
             {
-                npc.velocity.Y = -1.85f;
+                NPC.velocity.Y = -1.85f;
             }
             return true;
         }

@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             get
             {
-                return "Terraria/Projectile_" + ProjectileID.WoodenArrowFriendly;
+                return "Terraria/Images/Projectile_" + ProjectileID.WoodenArrowFriendly;
             }
         }
 
@@ -27,18 +27,18 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
-            projectile.timeLeft = LifeTime;
-            projectile.hide = true;
+            Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
+            Projectile.timeLeft = LifeTime;
+            Projectile.hide = true;
             //projectile.alpha = 255;
-            projectile.tileCollide = false;
+            Projectile.tileCollide = false;
         }
 
         //ai 0 is the timer until the arrow starts dropping (caps at 15)
         //ai 1 unused
         public override bool PreAI()
         {
-            AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
+            AssPlayer mPlayer = Projectile.GetOwner().GetModPlayer<AssPlayer>();
 
             bool[] buffs = new bool[] {
             mPlayer.everburningCandleBuff,
@@ -82,16 +82,16 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
             for (int i = 0; i < randomindex.Length; i++)
             {
-                if (buffs[randomindex[i]] && projectile.ai[0] < 2)
+                if (buffs[randomindex[i]] && Projectile.ai[0] < 2)
                 {
                     for (int k = 0; k < 10 - (int)(buffCount * 1.75f); k++) //spawn less dusts if more buffs active
                     {
                         if (Main.rand.NextFloat() < 0.8f)
                         {
                             float rand = Main.rand.NextFloat(0.7f, 1.3f);
-                            Vector2 cm = projectile.velocity.RotatedByRandom(MathHelper.ToRadians(10));
+                            Vector2 cm = Projectile.velocity.RotatedByRandom(MathHelper.ToRadians(10));
                             Vector2 velo = cm * rand;
-                            Dust dust = Dust.NewDustPerfect(projectile.position, types[randomindex[i]], velo, 100 * (int)(projectile.ai[0] + 1f), colors[randomindex[i]], 2.368421f);
+                            Dust dust = Dust.NewDustPerfect(Projectile.position, types[randomindex[i]], velo, 100 * (int)(Projectile.ai[0] + 1f), colors[randomindex[i]], 2.368421f);
                             dust.noGravity = true;
                             dust.noLight = true;
                         }

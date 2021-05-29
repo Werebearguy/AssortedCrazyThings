@@ -12,44 +12,44 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("True Observing Eye");
-            Main.projFrames[projectile.type] = 4;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 4;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            projectile.aiStyle = -1;
-            projectile.width = 12;
-            projectile.height = 12;
-            projectile.tileCollide = false;
+            Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            Projectile.aiStyle = -1;
+            Projectile.width = 12;
+            Projectile.height = 12;
+            Projectile.tileCollide = false;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D image = Main.projectileTexture[projectile.type];
+            Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
 
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
             bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
+            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
+            bounds.Y = Projectile.frame * bounds.Height;
 
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Vector2 eyeCenter = new Vector2(0f, 12f);
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2);
+            Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            spriteBatch.Draw(image, drawPos, bounds, lightColor, projectile.rotation, drawOrigin - eyeCenter, 1f, effects, 0f);
+            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin - eyeCenter, 1f, effects, 0f);
 
             //Draw Eye
 
-            image = mod.GetTexture("Projectiles/Pets/TrueObservingEyeProj_Eye");
+            image = Mod.GetTexture("Projectiles/Pets/TrueObservingEyeProj_Eye").Value;
 
-            Vector2 between = projectile.GetOwner().Center - (projectile.position + stupidOffset);
+            Vector2 between = Projectile.GetOwner().Center - (Projectile.position + stupidOffset);
             //between.Length(): 94 is "idle", 200 is very fast following
             //28.5f = 200f / 7f
             float magnitude = Utils.Clamp(between.Length() / 28.5f, 1.3f, 7f);
@@ -59,14 +59,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             drawPos += between;
             drawOrigin = image.Bounds.Size() / 2;
-            spriteBatch.Draw(image, drawPos, image.Bounds, lightColor, projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.spriteBatch.Draw(image, drawPos, image.Bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
 
             return false;
         }
 
         public override void AI()
         {
-            Player player = projectile.GetOwner();
+            Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
@@ -74,10 +74,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             if (modPlayer.TrueObservingEye)
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
-            AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
-            AssAI.FlickerwickPetDraw(projectile, 6, 8);
+            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
+            AssAI.FlickerwickPetDraw(Projectile, 6, 8);
         }
     }
 }

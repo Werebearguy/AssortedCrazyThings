@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -14,11 +14,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 22;
-            item.height = 22;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 22;
+            Item.height = 22;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             //4
             if (4 * player.statLife < player.statLifeMax2)
             {
-                player.GetModPlayer<AssPlayer>().tempSoulMinion = true;
+                player.GetModPlayer<AssPlayer>().tempSoulMinion = Item;
             }
             player.maxMinions++;
         }

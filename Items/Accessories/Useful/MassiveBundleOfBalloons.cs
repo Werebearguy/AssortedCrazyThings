@@ -17,38 +17,29 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void SetDefaults()
         {
-            item.width = 46;
-            item.height = 42;
-            item.value = 0;
-            item.rare = -11;
-            item.accessory = true;
+            Item.width = 46;
+            Item.height = 42;
+            Item.value = 0;
+            Item.rare = -11;
+            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.noFallDmg = true;
             player.jumpBoost = true;
-            player.doubleJumpCloud = true;
-            player.doubleJumpSandstorm = true;
-            player.doubleJumpBlizzard = true;
-            player.doubleJumpFart = true;
-            player.doubleJumpSail = true;
-            player.doubleJumpUnicorn = true;
-            player.bee = true;
+            player.hasJumpOption_Cloud = true;
+            player.hasJumpOption_Sandstorm = true;
+            player.hasJumpOption_Blizzard = true;
+            player.hasJumpOption_Fart = true;
+            player.hasJumpOption_Sail = true;
+            player.hasJumpOption_Unicorn = true;
+            player.honeyCombItem = Item;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LuckyHorseshoe, 1);
-            recipe.AddIngredient(ItemID.BundleofBalloons, 1);
-            recipe.AddIngredient(ItemID.HoneyBalloon, 1);
-            recipe.AddIngredient(ItemID.FartInABalloon, 1);
-            recipe.AddIngredient(ItemID.SharkronBalloon, 1);
-            recipe.AddIngredient(mod, "BottledDreams");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.LuckyHorseshoe, 1).AddIngredient(ItemID.BundleofBalloons, 1).AddIngredient(ItemID.HoneyBalloon, 1).AddIngredient(ItemID.FartInABalloon, 1).AddIngredient(ItemID.SharkronBalloon, 1).AddIngredient<BottledDreams>().AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

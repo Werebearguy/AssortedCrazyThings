@@ -2,7 +2,9 @@
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -43,7 +45,7 @@ namespace AssortedCrazyThings.UI
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
                         drawColor = new Color((byte)(255 * num), (byte)(255 * num), (byte)(255 * num), Main.mouseTextColor);
-                        player.showItemIcon = false;
+                        player.cursorItemIconEnabled = false;
                         ret = Main.npc[k].GivenOrTypeName;
                         int num2 = k;
                         if (Main.npc[k].realLife >= 0)
@@ -150,7 +152,7 @@ namespace AssortedCrazyThings.UI
             if (Main.hoverItemName != "") return;
             base.DrawSelf(spriteBatch);
 
-            if (drawString != "") Main.LocalPlayer.showItemIcon = false;
+            if (drawString != "") Main.LocalPlayer.cursorItemIconEnabled = false;
             Vector2 mousePos = new Vector2(Main.mouseX, Main.mouseY);
             mousePos.X += 10;
             mousePos.Y += 10;
@@ -160,7 +162,8 @@ namespace AssortedCrazyThings.UI
                 mousePos.Y += 6;
             }
 
-            Vector2 vector = Main.fontMouseText.MeasureString(drawString);
+            DynamicSpriteFont font = FontAssets.MouseText.Value;
+            Vector2 vector = font.MeasureString(drawString);
 
             if (mousePos.X + vector.X + 4f > Main.screenWidth)
             {
@@ -171,7 +174,7 @@ namespace AssortedCrazyThings.UI
                 mousePos.Y = (int)(Main.screenHeight - vector.Y - 4f);
             }
 
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, Main.fontMouseText, drawString, mousePos + new Vector2(0, 22), drawColor, 0, Vector2.Zero, Vector2.One);
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, drawString, mousePos + new Vector2(0, 22), drawColor, 0, Vector2.Zero, Vector2.One);
         }
     }
 }

@@ -20,23 +20,23 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Juggerllusc");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.SeaSnail];
+            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.SeaSnail];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 112;
-            npc.height = 67;
-            npc.damage = 40;
-            npc.defense = 20;
-            npc.lifeMax = 900;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 640f;
-            npc.knockBackResist = 0f;
-            npc.aiStyle = 3;
-            aiType = NPCID.SeaSnail;
-            animationType = NPCID.SeaSnail;
+            NPC.width = 112;
+            NPC.height = 67;
+            NPC.damage = 40;
+            NPC.defense = 20;
+            NPC.lifeMax = 900;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 640f;
+            NPC.knockBackResist = 0f;
+            NPC.aiStyle = 3;
+            AIType = NPCID.SeaSnail;
+            AnimationType = NPCID.SeaSnail;
         }
 
         public override void OnHitPlayer(Player player, int damage, bool crit)
@@ -49,31 +49,31 @@ namespace AssortedCrazyThings.NPCs
             return NPC.downedBoss1 ? SpawnCondition.Ocean.Chance * 0.005f : 0f;
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem(npc.getRect(), ItemID.PurpleMucos);
+            Item.NewItem(NPC.getRect(), ItemID.PurpleMucos);
             if (Main.rand.NextBool(20))
             {
-                Item.NewItem(npc.getRect(), ItemID.Flipper, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.Flipper, prefixGiven: -1);
             }
             if (Main.rand.NextBool(50))
             {
-                Item.NewItem(npc.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
+                Item.NewItem(NPC.getRect(), ItemID.DivingHelmet, prefixGiven: -1);
             }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             //slightly different approach than in AnimatedTome
-            index = npc.whoAmI % 3;
+            index = NPC.whoAmI % 3;
             if (index != 0)
             {
-                Texture2D texture = mod.GetTexture("NPCs/Juggerllusc_" + index);
+                Texture2D texture = Mod.GetTexture("NPCs/Juggerllusc_" + index).Value;
                 Vector2 stupidOffset = new Vector2(0f, 6f);
-                SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-                Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-                spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
+                SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value.Width * 0.5f, NPC.height * 0.5f);
+                Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+                spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
                 return false;
             }
             return true;
@@ -81,9 +81,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/JuggerlluscGore_" + index), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/JuggerlluscGore_" + index).Type, 1f);
             }
         }
     }
