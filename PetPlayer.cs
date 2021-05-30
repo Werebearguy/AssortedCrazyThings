@@ -127,9 +127,7 @@ namespace AssortedCrazyThings
         public bool CuteSlimeCorruptNew = false;
         public bool CuteSlimeBlueNew = false;
         public bool CuteSlimeBlackNew = false;
-        public bool OrigamiCrane = false;
         public bool MiniMegalodon = false;
-        public bool SmallMegalodon = false;
         public bool CuteSlimeXmas = false;
         public bool YoungHarpy = false;
         public bool CuteGastropod = false;
@@ -217,9 +215,7 @@ namespace AssortedCrazyThings
             CuteSlimeCrimsonNew = false;
             CuteSlimeCorruptNew = false;
             CuteSlimeDungeonNew = false;
-            OrigamiCrane = false;
             MiniMegalodon = false;
-            SmallMegalodon = false;
             CuteSlimeXmas = false;
             YoungHarpy = false;
             CuteGastropod = false;
