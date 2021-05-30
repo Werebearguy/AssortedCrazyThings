@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Allows flight and slow fall" +
             "\nIncreases your max number of minions" +
             "\n5% increased summon damage");
+
+            ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(95, 6.5f, 1.35f);
         }
 
         public override void SetDefaults()
@@ -26,7 +29,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.wingTimeMax = 95;
             player.GetDamage(DamageClass.Summon) += 0.05f;
             player.maxMinions++;
         }
@@ -38,12 +40,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             maxCanAscendMultiplier = 0.4f;
             maxAscentMultiplier = 2f;
             constantAscend = 0.12f;
-        }
-
-        public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
-        {
-            speed = 6.5f;
-            acceleration *= 1.35f;
         }
 
         public override void AddRecipes()

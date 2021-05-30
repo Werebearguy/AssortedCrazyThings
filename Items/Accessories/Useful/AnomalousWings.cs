@@ -1,4 +1,6 @@
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -11,6 +13,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             DisplayName.SetDefault("Anomalous Wings");
             Tooltip.SetDefault("Allows slowfall"
                 + "\nAllows quick travel in water");
+
+            ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 4f, 0.5f);
         }
 
         public override void SetDefaults()
@@ -52,14 +56,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 maxAscentMultiplier = 0.001f;
                 constantAscend = 1f;
             }
-
-        }
-
-        //that thing is straight up not working
-        public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
-        {
-            //speed = 4f;
-            //acceleration *= 0.5f;
         }
     }
 }
