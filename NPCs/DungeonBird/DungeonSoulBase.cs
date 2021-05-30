@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //adjust stats here to match harvester hitbox 1:1, then do findframes in postdraw
             NPC.width = wid; //42 //16
             NPC.height = hei; //52 //24
-            NPC.npcSlots = 0f; //takes 1/10 npc slots out of 200 when alive
+            NPC.npcSlots = 0f;
             NPC.chaseable = false;
             NPC.dontCountMe = true;
             NPC.dontTakeDamageFromHostiles = true;
@@ -140,7 +140,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     NPC.frame.Y += frameHeight;
                     NPC.frameCounter = 0;
-                    if (NPC.frame.Y >= Main.npcFrameCount[NPC.type] * frameHeight)
+                    if (NPC.frame.Y >= 3 * frameHeight)
                     {
                         NPC.frame.Y = 0;
                     }
@@ -247,15 +247,20 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void AI()
         {
-            NPC.scale = 1f;
-            Entity tar = GetTarget();
-            NPC tarnpc = new NPC();
-            if (tar is NPC)
+            --NPC.timeLeft;
+            if (NPC.timeLeft < 0)
             {
-                tarnpc = (NPC)tar;
+                KillInstantly(NPC);
             }
 
             NPC.noTileCollide = false;
+            NPC.scale = 1f;
+
+            Entity tar = GetTarget();
+            if (!(tar is NPC tarnpc))
+            {
+                return;
+            }
 
             if (AI_State == 0)
             {
@@ -306,11 +311,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (AI_State == 1 && NPC.velocity.Y != 0)
             {
                 float betweenX = tarnpc.Center.X - NPC.Center.X;
-                if (betweenX > 2f || betweenX < -2f)
+                if ((betweenX > 2f || betweenX < -2f) && betweenX != 0f)
                 {
                     float factor = 4f; //2f
                     int acc = 4; //4
-                    betweenX = betweenX / Math.Abs(betweenX);
+                    betweenX /= Math.Abs(betweenX);
                     betweenX *= factor;
                     NPC.velocity.X = (NPC.velocity.X * (acc - 1) + betweenX) / acc;
                     NPC.noTileCollide = false;
@@ -324,12 +329,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             else if (AI_State == 1 && (NPC.velocity.Y == 0 || NPC.velocity.Y < 2f && NPC.velocity.Y > 0f))
             {
                 NPC.velocity.X = 0;
-            }
-
-            --NPC.timeLeft;
-            if (NPC.timeLeft < 0)
-            {
-                KillInstantly(NPC);
             }
         }
     }
