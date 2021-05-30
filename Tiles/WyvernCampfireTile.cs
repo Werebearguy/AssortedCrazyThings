@@ -88,16 +88,8 @@ namespace AssortedCrazyThings.Tiles
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
-            Texture2D texture;
-            //if (Main.canDrawColorTile(i, j))
-            //{
-            //    texture = Main.tileAltTexture[Type, (int)tile.Color];
-            //}
-            //else
-            //{
-                texture = Terraria.GameContent.TextureAssets.Tile[Type].Value;
-            //}
-            Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+            Texture2D texture = Main.instance.TilesRenderer.GetTileDrawTexture(tile, i, j);
+            Vector2 zero = new Vector2(Main.offScreenRange);
             if (Main.drawToScreen)
             {
                 zero = Vector2.Zero;
