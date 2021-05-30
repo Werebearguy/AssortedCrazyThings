@@ -1,12 +1,13 @@
+using AssortedCrazyThings.Items.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class LittleMegalodon : ModNPC
+    public class Megalodon : ModNPC
     {
-        public static string name = "Little Megalodon";
+        public static string name = "Megalodon";
         public static string message = "A Megalodon is approaching! Get out of the ocean!";
 
         public override void SetStaticDefaults()
@@ -43,7 +44,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void OnKill()
         {
-            Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("MiniMegalodon").Type);
+            Item.NewItem(NPC.getRect(), ModContent.ItemType<MiniMegalodon>());
         }
 
         public override void HitEffect(int hitDirection, double damage)

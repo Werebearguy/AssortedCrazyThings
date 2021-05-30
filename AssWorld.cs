@@ -23,9 +23,9 @@ namespace AssortedCrazyThings
         bool isMegalodonSpawned;
         bool isMiniocramSpawned;
         //static names, in case you want to change them later
-        public static string megalodonName = LittleMegalodon.name;
+        public static string megalodonName = Megalodon.name;
         public static string miniocramName = SpawnOfOcram.name;
-        public static string megalodonMessage = LittleMegalodon.message;
+        public static string megalodonMessage = Megalodon.message;
         public static string miniocramMessage = SpawnOfOcram.message;
         //the megalodon messages are modified down below in the Disappear message
 
