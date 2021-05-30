@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             stuckTimer = 0;
             rndJump = 0;
             transformServer = false;
-            transformTo = AssWorld.harvesterTypes[1];
+            transformTo = AssortedCrazyThings.harvesterTypes[1];
 
             defLifeMax = maxSoulsEaten + 1;
 

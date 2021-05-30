@@ -17,26 +17,19 @@ namespace AssortedCrazyThings
     public class AssWorld : ModSystem
     {
         //basically "if they were alive last update"
-        public bool lilmegalodonAlive = false;
         public bool megalodonAlive = false;
         public bool miniocramAlive = false;
         //"are they alive this update"
-        bool isLilmegalodonSpawned;
         bool isMegalodonSpawned;
         bool isMiniocramSpawned;
         //static names, in case you want to change them later
-        public static string lilmegalodonName = LittleMegalodon.name;
-        public static string megalodonName = Megalodon.name;
+        public static string megalodonName = LittleMegalodon.name;
         public static string miniocramName = SpawnOfOcram.name;
-        public static string lilmegalodonMessage = Megalodon.message;
-        public static string megalodonMessage = Megalodon.message;
+        public static string megalodonMessage = LittleMegalodon.message;
         public static string miniocramMessage = SpawnOfOcram.message;
         //the megalodon messages are modified down below in the Disappear message
 
         //Soul stuff
-        public static int[] harvesterTypes = new int[5];
-        public static int harvesterTalonLeft;
-        public static int harvesterTalonRight;
         public static int harvesterIndex = -1;
         public static bool downedHarvester;
         //To prevent the item dropping more than once in a single game instance if boss is not defeated
@@ -44,20 +37,10 @@ namespace AssortedCrazyThings
 
         public static bool slimeRainSky = false;
 
-        private void InitHarvesterSouls()
-        {
-            harvesterTypes[0] = ModContent.NPCType<Harvester1>();
-            harvesterTypes[1] = ModContent.NPCType<Harvester2>();
-            harvesterTypes[2] = ModContent.NPCType<Harvester>();
-            harvesterTypes[3] = harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
-            harvesterTypes[4] = harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
-            downedHarvester = false;
-            droppedHarvesterSpawnItemThisSession = false;
-        }
-
         public override void OnWorldLoad()
         {
-            InitHarvesterSouls();
+            downedHarvester = false;
+            droppedHarvesterSpawnItemThisSession = false;
         }
 
         public override TagCompound SaveWorldData()
@@ -97,25 +80,18 @@ namespace AssortedCrazyThings
         public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
         {
             if (soundStyle != -1) SoundEngine.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Main.NewText(message, 175, 75, 255);
-            }
-            else if (Main.netMode == NetmodeID.Server)
-            {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 75, 255));
-            }
+            Message(message, new Color(175, 75, 255));
         }
 
-        public static void DisappearMessage(string message)
+        public static void Message(string message, Color color)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(message, 175, 255, 175);
+                Main.NewText(message, color);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), new Color(175, 255, 175));
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(message), color);
             }
         }
 
@@ -207,7 +183,6 @@ namespace AssortedCrazyThings
         {
             //this code is when I first started modding, terrible stuff
             //those flags are checked for trueness each update
-            isLilmegalodonSpawned = false;
             isMegalodonSpawned = false;
             isMiniocramSpawned = false;
             for (short j = 0; j < Main.maxNPCs; j++)
@@ -215,19 +190,10 @@ namespace AssortedCrazyThings
                 NPC npc = Main.npc[j];
                 if (npc.active)
                 {
-                    if (npc.TypeName == lilmegalodonName && !isLilmegalodonSpawned)
-                    {
-                        isLilmegalodonSpawned = true;
-                        //check if it wasnt alive in previous update
-                        if (!lilmegalodonAlive)
-                        {
-                            AwakeningMessage(lilmegalodonMessage, npc.position, 0);
-                            lilmegalodonAlive = true;
-                        }
-                    }
                     if (npc.TypeName == megalodonName && !isMegalodonSpawned)
                     {
                         isMegalodonSpawned = true;
+                        //check if it wasnt alive in previous update
                         if (!megalodonAlive)
                         {
                             AwakeningMessage(megalodonMessage, npc.position, 0);
@@ -247,20 +213,15 @@ namespace AssortedCrazyThings
             }
             //after this we know that either atleast one miniboss is active or not
             //if alive, but not active, print disappear message
-            if (!isLilmegalodonSpawned && lilmegalodonAlive)
-            {
-                lilmegalodonAlive = false;
-                DisappearMessage("The " + megalodonName + " disappeared... for now");
-            }
             if (!isMegalodonSpawned && megalodonAlive)
             {
                 megalodonAlive = false;
-                DisappearMessage("The " + megalodonName + " disappeared... for now");
+                Message("The " + megalodonName + " disappeared... for now", new Color(175, 255, 175));
             }
             if (!isMiniocramSpawned && miniocramAlive)
             {
                 miniocramAlive = false;
-                DisappearMessage("The " + miniocramName + " disappeared... for now");
+                Message("The " + miniocramName + " disappeared... for now", new Color(175, 255, 175));
             }
         }
 

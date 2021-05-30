@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             if (!npcfrom.Equals(npcto))
             {
                 //type check since souls might despawn and index changes
-                if (npcfrom.active && (AssWorld.harvesterTypes[0] == npcfrom.type || AssWorld.harvesterTypes[1] == npcfrom.type) && npcto.timeLeft > HarvesterBase.EatTimeConst)
+                if (npcfrom.active && (AssortedCrazyThings.harvesterTypes[0] == npcfrom.type || AssortedCrazyThings.harvesterTypes[1] == npcfrom.type) && npcto.timeLeft > HarvesterBase.EatTimeConst)
                 {
                     npcto.timeLeft = HarvesterBase.EatTimeConst;
                     npcto.netUpdate = true;
@@ -110,7 +110,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             for (short j = 0; j < Main.maxNPCs; j++)
             {
                 NPC other = Main.npc[j];
-                if (other.active && (AssWorld.harvesterTypes[0] == Main.npc[j].type || AssWorld.harvesterTypes[1] == Main.npc[j].type))
+                if (other.active && (AssortedCrazyThings.harvesterTypes[0] == Main.npc[j].type || AssortedCrazyThings.harvesterTypes[1] == Main.npc[j].type))
                 {
                     tar = j;
                     break;

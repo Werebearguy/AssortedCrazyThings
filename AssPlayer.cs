@@ -290,7 +290,7 @@ namespace AssortedCrazyThings
                 for (short j = 0; j < Main.maxNPCs; j++)
                 {
                     NPC npc = Main.npc[j];
-                    if (npc.active && Array.IndexOf(AssWorld.harvesterTypes, npc.type) != -1)
+                    if (npc.active && Array.IndexOf(AssortedCrazyThings.harvesterTypes, npc.type) != -1)
                     {
                         shouldDropSouls = true;
                         index = j;
@@ -308,7 +308,7 @@ namespace AssortedCrazyThings
                             NPC npc = Main.npc[j];
                             if (npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.dontTakeDamage && !npc.immortal && !npc.SpawnedFromStatue)
                             {
-                                if (Array.IndexOf(AssWorld.harvesterTypes, npc.type) < 0 && EligibleToReceiveSoulBuff(npc))
+                                if (Array.IndexOf(AssortedCrazyThings.harvesterTypes, npc.type) < 0 && EligibleToReceiveSoulBuff(npc))
                                 {
                                     npc.AddBuff(ModContent.BuffType<SoulBuff>(), 60, true);
                                 }

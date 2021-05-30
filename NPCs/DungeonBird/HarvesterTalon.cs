@@ -82,9 +82,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float num23 = body.Center.Y - center.Y;
                 num23 -= -Harvester.TalonOffsetY + 20f; //has to result to 7f
 
-                //num22 = ((npc.type != AssWorld.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
+                //num22 = ((npc.type != AssortedCrazyThings.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
 
-                num22 = ((NPC.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
+                num22 = ((NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
                 num22 = (NPC.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
 
 
@@ -108,7 +108,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         num22 = body.Center.X - center.X;
                         num23 = body.Center.Y - center.Y;
                         num23 -= -Harvester.TalonOffsetY + 20f; //7f
-                        num22 = (NPC.type != AssWorld.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX); //66f, -70f
+                        num22 = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX); //66f, -70f
                         num22 = (NPC.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
 
                         if (Main.rand.NextBool(8))
@@ -227,7 +227,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     float betweenSelfAndBodyX = body.Center.X - NPC.Center.X;
                     float betweenSelfAndBodyY = body.Center.Y - NPC.Center.Y;
                     betweenSelfAndBodyY -= -Harvester.TalonOffsetY;
-                    betweenSelfAndBodyX = (NPC.type != AssWorld.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX);
+                    betweenSelfAndBodyX = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX);
                     float len = (float)Math.Sqrt(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY);
                     float somevar = 12f;
                     if (len < somevar + num691)
@@ -260,7 +260,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             if (toPlayer < 500f && NPC.BottomLeft.Y < target.BottomLeft.Y) //distance where it is allowed to swing at player
                             {
                                 //end new
-                                if ((NPC.type == AssWorld.harvesterTalonLeft && NPC.Center.X + test > target.Center.X) || (NPC.type == AssWorld.harvesterTalonRight && NPC.Center.X - test < target.Center.X))
+                                if ((NPC.type == AssortedCrazyThings.harvesterTalonLeft && NPC.Center.X + test > target.Center.X) || (NPC.type == AssortedCrazyThings.harvesterTalonRight && NPC.Center.X - test < target.Center.X))
                                 {
                                     AI_Timer = 0f;
                                     AI_State = 1f;
@@ -350,7 +350,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     num699 += body.velocity.X;
                     num700 += body.velocity.Y;
                     num700 -= -Harvester.TalonOffsetY;
-                    num699 = (NPC.type != AssWorld.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX);
+                    num699 = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX);
                     float num701 = (float)Math.Sqrt(num699 * num699 + num700 * num700);
                     if (body.life < body.lifeMax)
                     {

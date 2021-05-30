@@ -425,8 +425,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     SoundEngine.PlaySound(SoundID.Roar, (int)NPC.position.X, (int)NPC.position.Y, 0);
-                    int index1 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetLeftX, (int)NPC.Center.Y + TalonOffsetY, AssWorld.harvesterTalonLeft);
-                    int index2 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetRightX, (int)NPC.Center.Y + TalonOffsetY, AssWorld.harvesterTalonRight);
+                    int index1 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetLeftX, (int)NPC.Center.Y + TalonOffsetY, AssortedCrazyThings.harvesterTalonLeft);
+                    int index2 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetRightX, (int)NPC.Center.Y + TalonOffsetY, AssortedCrazyThings.harvesterTalonRight);
 
                     if (Main.netMode == NetmodeID.Server)
                     {

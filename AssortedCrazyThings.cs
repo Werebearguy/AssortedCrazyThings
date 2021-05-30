@@ -36,6 +36,10 @@ namespace AssortedCrazyThings
         /// </summary>
         public static int[] soulBuffBlacklist;
 
+        public static int[] harvesterTypes;
+        public static int harvesterTalonLeft;
+        public static int harvesterTalonRight;
+
         //Mod Helpers compat
         public static string GithubUserName { get { return "Werebearguy"; } }
         public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
@@ -104,6 +108,21 @@ namespace AssortedCrazyThings
             Array.Sort(AssUtils.isModdedWormBodyOrTail);
         }
 
+        private void LoadHarvesterSouls()
+        {
+            harvesterTypes = new int[5];
+            harvesterTypes[0] = ModContent.NPCType<Harvester1>();
+            harvesterTypes[1] = ModContent.NPCType<Harvester2>();
+            harvesterTypes[2] = ModContent.NPCType<Harvester>();
+            harvesterTypes[3] = harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
+            harvesterTypes[4] = harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
+        }
+
+        private void UnloadHarvesterSouls()
+        {
+            harvesterTypes = null;
+        }
+
         private void LoadPets()
         {
             SlimePets.Load();
@@ -161,6 +180,8 @@ namespace AssortedCrazyThings
 
             LoadPets();
 
+            LoadHarvesterSouls();
+
             LoadSoulBuffBlacklist();
 
             LoadMisc();
@@ -171,6 +192,8 @@ namespace AssortedCrazyThings
             ShaderManager.Unload();
 
             UnloadPets();
+
+            UnloadHarvesterSouls();
 
             UnloadMisc();
 

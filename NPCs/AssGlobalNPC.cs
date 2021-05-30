@@ -152,7 +152,7 @@ namespace AssortedCrazyThings.NPCs
                 if (index != -1)
                 {
                     Player player = Main.player[index];
-                    if (player.ZoneDungeon && !player.HasItem(ModContent.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssWorld.harvesterTypes))
+                    if (player.ZoneDungeon && !player.HasItem(ModContent.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
                     {
                         if (Main.rand.NextBool(200))
                         {

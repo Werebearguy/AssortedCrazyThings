@@ -39,12 +39,12 @@ namespace AssortedCrazyThings.Items
 
         public override bool CanUseItem(Player player)
         {
-            return AssUtils.AnyNPCs(AssWorld.harvesterTypes.Take(3).ToArray());
+            return AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes.Take(3).ToArray());
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (AssUtils.AnyNPCs(AssWorld.harvesterTypes.Take(3).ToArray()))
+            if (AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes.Take(3).ToArray()))
             {
                 // Can use item
                 tooltips.Add(new TooltipLine(Mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
