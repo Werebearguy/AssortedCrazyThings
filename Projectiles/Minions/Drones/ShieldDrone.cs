@@ -122,10 +122,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             }
 
             image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             image = Mod.GetTexture(nameLamps).Value;
-            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
 
             return false;

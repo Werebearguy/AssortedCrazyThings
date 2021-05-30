@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Items
             //IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
-            if (!player.HasBuff(BuffID.Cursed) && (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff))
+            if (!player.CCed && (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff))
             {
                 if (item.active && item.damage >= 0)
                 {

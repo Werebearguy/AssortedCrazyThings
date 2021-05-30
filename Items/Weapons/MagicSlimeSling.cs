@@ -14,25 +14,18 @@ namespace AssortedCrazyThings.Items.Weapons
         public static Color GetColor(byte c)
         {
             //, 100 Alpha
-            switch (c)
+            return c switch
             {
-                case 0:
-                    //blue
-                    return new Color(0, 80, 255);
-                case 1:
-                    //green
-                    return new Color(0, 220, 40);
-                default:
-                    //ed
-                    return new Color(255, 30, 0);
-            }
+                0 => new Color(0, 80, 255),//blue
+                1 => new Color(0, 220, 40),//green
+                _ => new Color(255, 30, 0),//red
+            };
         }
 
         private void PreSync(Projectile proj)
         {
-            if (proj.ModProjectile != null && proj.ModProjectile is MagicSlimeSlingFired)
+            if (proj.ModProjectile is MagicSlimeSlingFired fired)
             {
-                MagicSlimeSlingFired fired = (MagicSlimeSlingFired)proj.ModProjectile;
                 fired.ColorType = proj.GetOwner().GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
                 //Color won't be synced, its assigned in send/recv 
                 fired.Color = GetColor(fired.ColorType);
@@ -76,11 +69,13 @@ namespace AssortedCrazyThings.Items.Weapons
             CreateRecipe(1).AddIngredient(ItemID.Gel, 20).AddIngredient(ItemID.FallenStar, 3).AddTile(TileID.WorkBenches).Register();
         }
 
+        private int YOff => Item.height / 4;
+
         public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             //using shortsword arm position but reset the movement/rotation stuff
             player.itemLocation.X = player.Center.X;
-            player.itemLocation.Y = player.Center.Y + 6f;
+            player.itemLocation.Y = player.Center.Y + YOff;
             player.itemRotation = 0f;
         }
 
@@ -92,7 +87,7 @@ namespace AssortedCrazyThings.Items.Weapons
             velocity.X = magnitude * Math.Sign(velocity.X);
 
             //PreSync uses current mPlayer.nextMagicSlimeSlingMinion
-            int index = AssUtils.NewProjectile(source, position.X, position.Y - 6f, velocity.X, velocity.Y, type, damage, knockback, preSync: PreSync);
+            int index = AssUtils.NewProjectile(source, position.X, position.Y - YOff, velocity.X, velocity.Y, type, damage, knockback, preSync: PreSync);
             Main.projectile[index].originalDamage = damage;
 
             //switch to next type

@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     Projectile.scale = 0.5f;
                 }
 
-                Main.spriteBatch.Draw(image, drawPos, bounds, color, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0f);
+                Main.EntitySpriteDraw(image, drawPos, bounds, color, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
             }
             return false;
         }
@@ -167,13 +167,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
                             Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + stupidOffset;
                             Color color = Projectile.GetAlpha(Color.White) * ((Projectile.oldPos.Length - k) / (1f * Projectile.oldPos.Length)) * ((255 - 80) / 255f);
                             color.A = (byte)(80 * ((Projectile.oldPos.Length - k) / (1f * Projectile.oldPos.Length)));
-                            Main.spriteBatch.Draw(image, drawPos, bounds, color, Projectile.oldRot[k], bounds.Size() / 2, Projectile.scale, effect, 0f);
+                            Main.EntitySpriteDraw(image, drawPos, bounds, color, Projectile.oldRot[k], bounds.Size() / 2, Projectile.scale, effect, 0);
                         }
                     }
                     else if ((PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
                     {
                         Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                        Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0f);
+                        Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
                     }
                 }
             }

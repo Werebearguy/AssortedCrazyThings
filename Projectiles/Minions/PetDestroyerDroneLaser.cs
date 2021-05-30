@@ -54,10 +54,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 Projectile.alpha = 0;
             }
-            if (Projectile.velocity.Y > 16f)
-            {
-                Projectile.velocity.Y = 16f;
-            }
             Projectile.rotation = Projectile.velocity.ToRotation() + 1.57f;
         }
     }

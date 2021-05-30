@@ -102,10 +102,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             image = Mod.GetTexture(nameGlow).Value;
-            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             Vector2 rotationOffset = new Vector2(0f, -2f); //-2f)
             drawPos += rotationOffset;
@@ -117,10 +117,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
             image = Mod.GetTexture(nameLower).Value;
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0);
 
             image = Mod.GetTexture(nameLowerGlow).Value;
-            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0);
 
             return false;
         }

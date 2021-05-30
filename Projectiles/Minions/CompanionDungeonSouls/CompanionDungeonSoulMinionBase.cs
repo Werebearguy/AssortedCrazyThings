@@ -214,7 +214,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 10f + sinY);
 
-            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

@@ -17,9 +17,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
         private void PreSync(Projectile proj)
         {
-            if (proj.ModProjectile != null && proj.ModProjectile is MagicSlimeSlingMinionBase)
+            if (proj.ModProjectile is MagicSlimeSlingMinionBase minion)
             {
-                MagicSlimeSlingMinionBase minion = (MagicSlimeSlingMinionBase)proj.ModProjectile;
                 minion.ColorType = ColorType;
                 //ActualColor won't be synced, its assigned in send/recv 
                 minion.Color = MagicSlimeSling.GetColor(minion.ColorType);
@@ -84,12 +83,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
             if (Projectile.active && Main.myPlayer == Projectile.owner)
             {
+                Player player = Projectile.GetOwner();
                 int sum = 0;
                 for (int i = 0; i < MagicSlimeSling.Types.Length; i++)
                 {
-                    sum += Main.LocalPlayer.ownedProjectileCounts[MagicSlimeSling.Types[i]];
+                    sum += player.ownedProjectileCounts[MagicSlimeSling.Types[i]];
                 }
-                if (sum < (2 + Projectile.GetOwner().maxMinions))
+                if (sum < (2 + player.maxMinions))
                 {
                     int type = MagicSlimeSling.Types[ColorType];
                     Vector2 velo = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-4, -2));

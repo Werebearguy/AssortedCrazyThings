@@ -65,25 +65,27 @@ namespace AssortedCrazyThings.Projectiles.Weapons
             {
                 Projectile.localAI[0] = 0f;
                 int cloudCount = 0;
-                int cloudIndex = 0;
+                int cloudIndex = -1;
                 float cloudAi1 = 0f;
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     //check for both crimson rod and plague of toads cloud
-                    if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.owner && (Main.projectile[i].type == Projectile.type || Main.projectile[i].type == ProjectileID.BloodCloudRaining) && Main.projectile[i].ai[1] < 3600f)
+                    Projectile other = Main.projectile[i];
+                    if (other.active && other.owner == Projectile.owner && (other.type == Projectile.type || other.type == ProjectileID.BloodCloudRaining) && other.ai[1] < 3600f)
                     {
                         cloudCount++;
-                        if (Main.projectile[i].ai[1] > cloudAi1)
+                        if (other.ai[1] > cloudAi1)
                         {
                             cloudIndex = i;
-                            cloudAi1 = Main.projectile[i].ai[1];
+                            cloudAi1 = other.ai[1];
                         }
                     }
                 }
-                if (cloudCount > 1)
+                if (cloudCount > -1)
                 {
-                    Main.projectile[cloudIndex].netUpdate = true;
-                    Main.projectile[cloudIndex].ai[1] = 36000f;
+                    Projectile projectile = Main.projectile[cloudIndex];
+                    projectile.netUpdate = true;
+                    projectile.ai[1] = 36000f;
                 }
             }
         }

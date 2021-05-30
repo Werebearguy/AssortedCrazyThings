@@ -51,51 +51,34 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         private Color ColorFromTexture(byte tex)
         {
-            switch (tex)
+            return tex switch
             {
-                case 0:
-                    return new Color(70, 70, 70);
-                case 1:
-                    return new Color(90, 140, 255);
-                case 2:
-                    return new Color(10, 180, 40);
-                case 3:
-                    return new Color(255, 30, 90);
-                case 4:
-                    return new Color(220, 70, 255);
-                case 5:
-                    return new Color(110, 110, 110);
-                case 6:
-                    return new Color(255, 90, 60);
-                case 7:
-                    return new Color(150, 150, 10);
-                case 8:
-                    return new Color(160, 70, 22);
-                case 9:
-                    return new Color(210, 140, 100);
-                case 10:
-                    return new Color(200, 250, 255);
-                case 11:
-                    return new Color(80, 80, 140);
-                case 12:
-                    return new Color(70, 50, 140);
-                case 13:
-                    return new Color(100, 100, 200);
-                case 14:
-                    return new Color(200, 99, 100);
-                case 15:
-                    return new Color(255, 50, 230);
-                default:
-                    return default(Color);
-            }
+                0 => new Color(70, 70, 70),
+                1 => new Color(90, 140, 255),
+                2 => new Color(10, 180, 40),
+                3 => new Color(255, 30, 90),
+                4 => new Color(220, 70, 255),
+                5 => new Color(110, 110, 110),
+                6 => new Color(255, 90, 60),
+                7 => new Color(150, 150, 10),
+                8 => new Color(160, 70, 22),
+                9 => new Color(210, 140, 100),
+                10 => new Color(200, 250, 255),
+                11 => new Color(80, 80, 140),
+                12 => new Color(70, 50, 140),
+                13 => new Color(100, 100, 200),
+                14 => new Color(200, 99, 100),
+                15 => new Color(255, 50, 230),
+                _ => default(Color),
+            };
         }
 
         public override void PostAI()
         {
             //projectile.ai[1] used as color picker
-            if (Projectile.ai[0] < 2)
+            if (Projectile.ai[0] < 2) //Uses Arrow AI decrement of ai[0] to play a sound
             {
-                SoundEngine.PlaySound(SoundID.Item17, Projectile.position);
+                SoundEngine.PlaySound(SoundID.Item17, Projectile.Center);
             }
 
             if (Main.rand.NextFloat() < 0.2f)
@@ -104,7 +87,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 Dust dust = Dust.NewDustPerfect(Projectile.Center, 16, randVelo, 120, ColorFromTexture((byte)Projectile.ai[1]), 0.7f);
                 dust.fadeIn = 0f;
             }
-
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -126,7 +108,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), Main.DiscoColor * 1.2f);
             }
 
-            Main.spriteBatch.Draw(asset.Value, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(asset.Value, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
             return false;
         }
@@ -143,7 +125,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
                     Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + stupidOffset;
                     Color color = Projectile.GetAlpha(Color.White) * ((Projectile.oldPos.Length - k) / (1f * Projectile.oldPos.Length));
-                    Main.spriteBatch.Draw(image, drawPos, image.Bounds, color, Projectile.rotation, image.Bounds.Size() / 2, Projectile.scale, effects, 0f);
+                    Main.EntitySpriteDraw(image, drawPos, image.Bounds, color, Projectile.rotation, image.Bounds.Size() / 2, Projectile.scale, effects, 0);
                 }
             }
         }
