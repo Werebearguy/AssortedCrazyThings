@@ -128,7 +128,7 @@ namespace AssortedCrazyThings
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 30 == 15 && NPC.CountNPCS(ModContent.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15
+                if (Main.GameUpdateCount % 30 == 15 && NPC.CountNPCS(ModContent.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15
                 {
                     short oldest = 200;
                     int timeleftmin = int.MaxValue;

@@ -283,7 +283,7 @@ namespace AssortedCrazyThings
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls)
-            if (Main.time % 30 == 4)
+            if (Main.GameUpdateCount % 30 == 4)
             {
                 bool shouldDropSouls = false;
                 int index = 200;
@@ -365,7 +365,7 @@ namespace AssortedCrazyThings
             //this code runs even when the accessory is not equipped
             canTeleportHome = teleportHomeTimer <= 0;
 
-            if (!canTeleportHome && Main.time % 60 == 59)
+            if (!canTeleportHome && Main.GameUpdateCount % 60 == 59)
             {
                 teleportHomeTimer--;
             }
@@ -376,7 +376,7 @@ namespace AssortedCrazyThings
             //this code runs even when the accessory is not equipped
             canGetDefense = getDefenseTimer <= 0;
 
-            if (!canGetDefense && Main.time % 60 == 59)
+            if (!canGetDefense && Main.GameUpdateCount % 60 == 59)
             {
                 getDefenseTimer--;
             }
@@ -394,7 +394,7 @@ namespace AssortedCrazyThings
         {
             if (empoweringBuff)
             {
-                if (Main.time % 60 == 0)
+                if (Main.GameUpdateCount % 60 == 0)
                 {
                     if (empoweringTimer < empoweringTimerMax)
                     {

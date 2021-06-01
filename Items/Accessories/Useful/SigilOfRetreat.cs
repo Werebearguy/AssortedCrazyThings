@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 {
                     //create animating "..." effect after the Ready line
                     string dots = "";
-                    int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+                    int dotCount = ((int)Main.GameUpdateCount % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
 
                     for (int i = 0; i < dotCount; i++)
                     {

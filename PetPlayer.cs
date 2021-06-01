@@ -255,12 +255,12 @@ namespace AssortedCrazyThings
         /// </summary>
         public bool ThreeTimesUseTime()
         {
-            double diff = Math.Abs(lastTime - Main.time);
+            uint diff = (uint)Math.Abs(Main.GameUpdateCount - lastTime);
             if (diff > 40.0)
             {
                 //19
                 resetSlots = false;
-                lastTime = Main.time;
+                lastTime = Main.GameUpdateCount;
                 return false; //step one
             }
 
@@ -269,7 +269,7 @@ namespace AssortedCrazyThings
             {
                 if (!resetSlots)
                 {
-                    lastTime = Main.time;
+                    lastTime = Main.GameUpdateCount;
                     resetSlots = true;
                     return false; //step two
                 }
@@ -508,7 +508,7 @@ namespace AssortedCrazyThings
         public int slimePetIndex = -1;
         public uint slotsLast = 0;
         private bool resetSlots = false;
-        private double lastTime = 0.0;
+        private uint lastTime = 0;
 
         private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111
         public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000

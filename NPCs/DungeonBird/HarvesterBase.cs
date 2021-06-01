@@ -309,7 +309,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Vector2 between = new Vector2(0f, GetTarget().Center.Y - NPC.Center.Y);
             //collideY isnt proper when its on ledges/halfbricks
-            if (Main.time % 30 == 0)
+            if (Main.GameUpdateCount % 30 == 0)
             {
                 if ((NPC.collideX || (NPC.collideY || (NPC.velocity.Y == 0 || NPC.velocity.Y < 2f && NPC.velocity.Y > 0f))) &&
                 !closeToSoulvar)
@@ -359,7 +359,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                 }
             }
-            if (Main.time % 30 == 0) //do these always
+            if (Main.GameUpdateCount % 30 == 0) //do these always
             {
                 AI_X_Timer = NPC.Center.X;
                 AI_Y = NPC.Center.Y;
@@ -456,7 +456,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //might scrap it idk
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (Main.time % 60 == 1 && (NPC.velocity.X == 0f || (NPC.velocity.Y > -3f && NPC.velocity.Y < 3f)))
+                if (Main.GameUpdateCount % 60 == 1 && (NPC.velocity.X == 0f || (NPC.velocity.Y > -3f && NPC.velocity.Y < 3f)))
                 {
                     rndJump = (byte)Main.rand.Next(5, 8);
                     //if (rndJump >= 7)
@@ -719,7 +719,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                         if (/*npc.velocity.Y == 0f && */flag3var)
                         {
-                            if (Main.time % 60 == 35)
+                            if (Main.GameUpdateCount % 60 == 35)
                             {
                                 NPC.velocity.Y = -rndJump - 0.5f;
                             }
@@ -762,7 +762,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (true/*&& AI_Timer < (float)aiFighterLimit*/)
             {
-                if (Main.time % 60 == 0)
+                if (Main.GameUpdateCount % 60 == 0)
                 {
                     SelectTarget(restrictedSoulSearch);
                 }
@@ -860,7 +860,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.scale = defScale;
             NPC.lifeMax = defLifeMax;
 
-            if (Main.time % 120 == 2)
+            if (Main.GameUpdateCount % 120 == 2)
             {
                 if (NPC.timeLeft > 750) NPC.timeLeft = 750;
 
@@ -929,7 +929,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.noGravity = false;
             NPC.noTileCollide = false;
 
-            if (Main.time % 30 == 0)
+            if (Main.GameUpdateCount % 30 == 0)
             {
                 for (int k = 0; k < 256; k++)
                 {
@@ -1026,7 +1026,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (AI_State == STATE_DISTRIBUTE/*0*/)
             {
-                if (Main.time % 20 == 0)
+                if (Main.GameUpdateCount % 20 == 0)
                 {
                     SelectTarget(restrictedSoulSearch);
                 }
@@ -1146,7 +1146,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             if (base.NPC.getRect().Intersects(npc.getRect()))
                             {
                                 intersects = true;
-                                //if (Main.time % 60 == 0) Main.NewText("intersects with " + k);
+                                //if (Main.GameUpdateCount % 60 == 0) Main.NewText("intersects with " + k);
                                 break;
                             }
                         }
@@ -1220,7 +1220,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     int randfactor = Main.rand.Next(2, 6);
                     //aitimer: from 0 to transformtime:
                     //rate: from 0 to 0.8 //((AI_X_Timer * 0.8f) / transformTime)
-                    if (Main.time % 8 == 0 && Main.rand.NextFloat() < ((AI_X_Timer * 0.8f) / transformTime))
+                    if (Main.GameUpdateCount % 8 == 0 && Main.rand.NextFloat() < ((AI_X_Timer * 0.8f) / transformTime))
                     {
                         SpawnBoneShort(NPC.Center + new Vector2(0f, -NPC.height / 4), new Vector2(Main.rand.NextFloat(-1f, 1f) * randfactor, -Main.rand.NextFloat() * randfactor), 0, 1.5f);
                     }
