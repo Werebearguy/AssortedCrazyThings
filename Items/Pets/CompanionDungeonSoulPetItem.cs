@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,6 +29,12 @@ namespace AssortedCrazyThings.Items.Pets
             Item.rare = -11;
 
             Item.value = Item.sellPrice(silver: 50);
+        }
+
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            player.AddBuff(Item.buffType, 3600);
+            return false;
         }
 
         //hardmode recipe
