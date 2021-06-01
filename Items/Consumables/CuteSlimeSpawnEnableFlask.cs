@@ -29,14 +29,14 @@ namespace AssortedCrazyThings.Items.Consumables
             //item.CloneDefaults(ItemID.Silk);
             Item.width = 20;
             Item.height = 28;
-            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 17;
             Item.useTime = 17;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
             Item.maxStack = 30;
             Item.consumable = true;
-            Item.buffTime = 18000; //five minutes
+            Item.buffTime = 5 * 60 * 60;
             Item.buffType = ModContent.BuffType<CuteSlimeSpawnEnableBuff>();
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 20);

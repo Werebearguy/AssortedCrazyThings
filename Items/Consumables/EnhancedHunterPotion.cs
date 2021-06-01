@@ -18,15 +18,15 @@ namespace AssortedCrazyThings.Items.Consumables
         public override void SetDefaults()
         {
             Item.width = 20;
-            Item.height = 30;
-            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.height = 28;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 17;
             Item.useTime = 17;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
             Item.maxStack = 30;
             Item.consumable = true;
-            Item.buffTime = 18000; //five minutes
+            Item.buffTime = 5 * 60 * 60;
             Item.buffType = ModContent.BuffType<EnhancedHunterBuff>();
             Item.rare = -11;
             Item.value = Item.sellPrice(silver: 3);

@@ -19,14 +19,14 @@ namespace AssortedCrazyThings.Items.Consumables
         {
             Item.width = 20;
             Item.height = 30;
-            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 17;
             Item.useTime = 17;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
             Item.maxStack = 30;
             Item.consumable = true;
-            Item.buffTime = 7200; //two minutes
+            Item.buffTime = 2 * 60 * 60;
             Item.buffType = ModContent.BuffType<EmpoweringBuff>();
             Item.rare = -11;
             Item.value = Item.sellPrice(silver: 2);
