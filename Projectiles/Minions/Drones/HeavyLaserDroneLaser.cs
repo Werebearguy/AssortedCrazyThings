@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/BlankProjectile";
+                return "AssortedCrazyThings/Empty";
             }
         }
 

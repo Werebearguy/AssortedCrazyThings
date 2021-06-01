@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
         {
             get
             {
-                return "AssortedCrazyThings/Projectiles/BlankProjectile";
+                return "AssortedCrazyThings/Empty";
             }
         }
 
