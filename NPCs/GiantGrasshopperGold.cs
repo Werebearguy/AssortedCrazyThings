@@ -50,13 +50,13 @@ namespace AssortedCrazyThings.NPCs
             }
             else
             {
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_01").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_02").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_02").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_03").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_03").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_03").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/GiantGoldenGrasshopperGore_03").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_01").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_02").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_02").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_03").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_03").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_03").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_03").Type, 1f);
                 for (int i = 0; i < 20; i++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), 2 * hitDirection, -2f);

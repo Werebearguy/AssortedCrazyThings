@@ -72,20 +72,20 @@ namespace AssortedCrazyThings.NPCs
                 switch ((int)AiTexture)
                 {
                     case 0:
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyeGreenGore_1").Type, 1f);
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyeGreenGore_0").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_1").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
                         break;
                     case 1:
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyePurpleGore_1").Type, 1f);
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyePurpleGore_0").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_1").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
                         break;
                     case 2:
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyeGreenGore_1").Type, 1f);
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyeGreenGore_0").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_1").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
                         break;
                     case 3:
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyePurpleGore_1").Type, 1f);
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/DemonEyePurpleGore_0").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_1").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
                         break;
                     default:
                         break;

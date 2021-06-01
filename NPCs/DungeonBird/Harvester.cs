@@ -620,7 +620,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (i < first) name = "1";
                     else if (i < second) name = "2";
                     else if (i < third) name = "3";
-                    Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SoulHarvesterGore_0" + name).Type, 1f);
+                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SoulHarvesterGore_0" + name).Type, 1f);
                 }
             }
         }

@@ -56,8 +56,8 @@ namespace AssortedCrazyThings.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/BaitThiefGore_1").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/BaitThiefGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("BaitThiefGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("BaitThiefGore_0").Type, 1f);
             }
         }
 

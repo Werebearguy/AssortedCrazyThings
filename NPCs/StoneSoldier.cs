@@ -61,11 +61,11 @@ namespace AssortedCrazyThings.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_01").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_02").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_03").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_04").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/StoneSoldierGore_04").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_01").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_02").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_03").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_04").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_04").Type, 1f);
             }
 
             for (int i = 0; i < 15; i++)

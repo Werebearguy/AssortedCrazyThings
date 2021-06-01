@@ -63,9 +63,9 @@ namespace AssortedCrazyThings.NPCs
             {
                 if (NPC.life <= 0)
                 {
-                    Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SpawnOfOcramGore_2").Type, 1f);
-                    Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SpawnOfOcramGore_1").Type, 1f);
-                    Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/SpawnOfOcramGore_0").Type, 1f);
+                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_2").Type, 1f);
+                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_1").Type, 1f);
+                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_0").Type, 1f);
                 }
             }
         }

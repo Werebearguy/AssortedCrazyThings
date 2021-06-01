@@ -69,12 +69,12 @@ namespace AssortedCrazyThings.NPCs
                 switch ((int)AiTexture)//switch ((int)npc.altTexture)
                 {
                     case 0:
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WanderingEyeGreenGore").Type, 1f);
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WanderingEyeGreenGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyeGreenGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyeGreenGore").Type, 1f);
                         break;
                     case 1:
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WanderingEyePurpleGore").Type, 1f);
-                        Gore.NewGore(NPC.position, NPC.velocity, ModContent.Find<ModGore>("AssortedCrazyThings/WanderingEyePurpleGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyePurpleGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyePurpleGore").Type, 1f);
                         break;
                     default:
                         break;
