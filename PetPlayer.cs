@@ -90,6 +90,26 @@ namespace AssortedCrazyThings
         ////name pet texture
         //public byte classNameType = 0;
 
+        public bool CuteSlimeYellow = false;
+        public bool CuteSlimeXmas = false;
+        public bool CuteSlimeToxic = false;
+        public bool CuteSlimeSand = false;
+        public bool CuteSlimeRed = false;
+        public bool CuteSlimeRainbow = false;
+        public bool CuteSlimePurple = false;
+        public bool CuteSlimePrincess = false;
+        public bool CuteSlimePink = false;
+        public bool CuteSlimeLava = false;
+        public bool CuteSlimeJungle = false;
+        public bool CuteSlimeIlluminant = false;
+        public bool CuteSlimeIce = false;
+        public bool CuteSlimeGreen = false;
+        public bool CuteSlimeDungeon = false;
+        public bool CuteSlimeCrimson = false;
+        public bool CuteSlimeCorrupt = false;
+        public bool CuteSlimeBlue = false;
+        public bool CuteSlimeBlack = false;
+
         public bool DrumstickElemental = false;
         public bool MiniAntlion = false;
         public bool LilWraps = false;
@@ -108,26 +128,6 @@ namespace AssortedCrazyThings
         public bool TurtleSlime = false;
         public bool Pigronata = false;
         public bool Abeemination = false;
-        public bool CuteSlimeYellowNew = false;
-        public bool CuteSlimeXmasNew = false;
-        public bool CuteSlimeToxicNew = false;
-        public bool CuteSlimeSandNew = false;
-        public bool CuteSlimeRedNew = false;
-        public bool CuteSlimeRainbowNew = false;
-        public bool CuteSlimePurpleNew = false;
-        public bool CuteSlimePrincessNew = false;
-        public bool CuteSlimePinkNew = false;
-        public bool CuteSlimeLavaNew = false;
-        public bool CuteSlimeJungleNew = false;
-        public bool CuteSlimeIlluminantNew = false;
-        public bool CuteSlimeIceNew = false;
-        public bool CuteSlimeGreenNew = false;
-        public bool CuteSlimeDungeonNew = false;
-        public bool CuteSlimeCrimsonNew = false;
-        public bool CuteSlimeCorruptNew = false;
-        public bool CuteSlimeBlueNew = false;
-        public bool CuteSlimeBlackNew = false;
-        public bool CuteSlimeXmas = false;
         public bool MiniMegalodon = false;
         public bool YoungHarpy = false;
         public bool CuteGastropod = false;
@@ -170,6 +170,27 @@ namespace AssortedCrazyThings
 
         public override void ResetEffects()
         {
+            CuteSlimeYellow = false;
+            CuteSlimeXmas = false;
+            CuteSlimeToxic = false;
+            CuteSlimeSand = false;
+            CuteSlimeRed = false;
+            CuteSlimeRainbow = false;
+            CuteSlimePrincess = false;
+            CuteSlimePurple = false;
+            CuteSlimePink = false;
+            CuteSlimeLava = false;
+            CuteSlimeJungle = false;
+            CuteSlimeIce = false;
+            CuteSlimeIlluminant = false;
+            CuteSlimeGreen = false;
+            CuteSlimeBlue = false;
+            CuteSlimeBlack = false;
+            CuteSlimeCrimson = false;
+            CuteSlimeCorrupt = false;
+            CuteSlimeDungeon = false;
+            CuteSlimeXmas = false;
+
             DrumstickElemental = false;
             MiniAntlion = false;
             LilWraps = false;
@@ -188,26 +209,6 @@ namespace AssortedCrazyThings
             TurtleSlime = false;
             Pigronata = false;
             Abeemination = false;
-            CuteSlimeYellowNew = false;
-            CuteSlimeXmasNew = false;
-            CuteSlimeToxicNew = false;
-            CuteSlimeSandNew = false;
-            CuteSlimeRedNew = false;
-            CuteSlimeRainbowNew = false;
-            CuteSlimePrincessNew = false;
-            CuteSlimePurpleNew = false;
-            CuteSlimePinkNew = false;
-            CuteSlimeLavaNew = false;
-            CuteSlimeJungleNew = false;
-            CuteSlimeIceNew = false;
-            CuteSlimeIlluminantNew = false;
-            CuteSlimeGreenNew = false;
-            CuteSlimeBlueNew = false;
-            CuteSlimeBlackNew = false;
-            CuteSlimeCrimsonNew = false;
-            CuteSlimeCorruptNew = false;
-            CuteSlimeDungeonNew = false;
-            CuteSlimeXmas = false;
             MiniMegalodon = false;
             YoungHarpy = false;
             CuteGastropod = false;
@@ -250,11 +251,12 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Returns true if this has been called the third time after two successful calls within 36 ticks
+        /// Returns true if this has been called the third time after two successful calls within 80 ticks
         /// </summary>
         public bool ThreeTimesUseTime()
         {
-            if (Math.Abs(lastTime - Main.time) > 38.0) //(usetime + 1) x 3 + 1
+            double diff = Math.Abs(lastTime - Main.time);
+            if (diff > 40.0)
             {
                 //19
                 resetSlots = false;
@@ -262,12 +264,12 @@ namespace AssortedCrazyThings
                 return false; //step one
             }
 
-            //step two and three have to be done in 35 ticks
-            if (Math.Abs(lastTime - Main.time) <= 38.0)
+            //step two and three have to be done in 40 ticks each
+            if (diff <= 40.0)
             {
                 if (!resetSlots)
                 {
-                    //38
+                    lastTime = Main.time;
                     resetSlots = true;
                     return false; //step two
                 }
@@ -276,7 +278,6 @@ namespace AssortedCrazyThings
 
                 if (resetSlots)
                 {
-                    //57
                     resetSlots = false;
                     return true; //step three
                 }

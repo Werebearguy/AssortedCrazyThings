@@ -26,12 +26,13 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
                 //it's owner is the player
                 //it's a slime pet
                 if (pPlayer.slimePetIndex != -1 &&
-                    Main.projectile[pPlayer.slimePetIndex].active &&
-                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))
+                    (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
+                    projectile.active &&
+                    projectile.owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(projectile.type))
                 {
                     //checks if this item is infact a pet slime summoning item
-                    if (Item.shoot == Main.projectile[pPlayer.slimePetIndex].type)
+                    if (Item.shoot == projectile.type)
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {
@@ -39,7 +40,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 
                             string tooltip = "";
 
-                            if (SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[slotNumber])
+                            if (SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[slotNumber])
                             {
                                 tooltip = "Blacklisted";
                             }

@@ -312,14 +312,14 @@ namespace AssortedCrazyThings
         {
             RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
             {
-                ModContent.ItemType<CuteSlimeBlueNew>(),
-                ModContent.ItemType<CuteSlimeBlackNew>(),
-                ModContent.ItemType<CuteSlimeGreenNew>(),
-                ModContent.ItemType<CuteSlimePinkNew>(),
-                ModContent.ItemType<CuteSlimePurpleNew>(),
-                ModContent.ItemType<CuteSlimeRainbowNew>(),
-                ModContent.ItemType<CuteSlimeRedNew>(),
-                ModContent.ItemType<CuteSlimeYellowNew>()
+                ModContent.ItemType<CuteSlimeBlueItem>(),
+                ModContent.ItemType<CuteSlimeBlackItem>(),
+                ModContent.ItemType<CuteSlimeGreenItem>(),
+                ModContent.ItemType<CuteSlimePinkItem>(),
+                ModContent.ItemType<CuteSlimePurpleItem>(),
+                ModContent.ItemType<CuteSlimeRainbowItem>(),
+                ModContent.ItemType<CuteSlimeRedItem>(),
+                ModContent.ItemType<CuteSlimeYellowItem>()
             }));
 
             RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]

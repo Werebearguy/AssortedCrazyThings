@@ -349,8 +349,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public PetAccessory AddPetVariation(string petName, sbyte number)
         {
-            int type = AssUtils.Instance.Find<ModProjectile>("CuteSlime" + petName + "NewProj").Type;
-            if (SlimePets.slimePets.IndexOf(type) < 0) throw new Exception("Slime pet of type 'CuteSlime" + petName + "NewProj' not registered in SlimePets.Load()");
+            string name = "CuteSlime" + petName + "Proj";
+            int type = AssUtils.Instance.Find<ModProjectile>(name).Type;
             PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
             return this;
         }
@@ -645,12 +645,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
                 if (mPlayer.slimePetIndex != -1 &&
-                    Main.projectile[mPlayer.slimePetIndex].active &&
-                    Main.projectile[mPlayer.slimePetIndex].owner == Main.myPlayer)
+                    (Main.projectile[mPlayer.slimePetIndex] is Projectile projectile) &&
+                    projectile.active &&
+                    projectile.owner == Main.myPlayer)
                 {
-                    if (SlimePets.slimePets.Contains(Main.projectile[mPlayer.slimePetIndex].type))
+                    if (SlimePets.slimePets.Contains(projectile.type))
                     {
-                        if (SlimePets.GetPet(Main.projectile[mPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(byte)PetAccessory.GetAccessoryFromType(Item.type).Slot])
+                        if (SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(byte)PetAccessory.GetAccessoryFromType(Item.type).Slot])
                         {
                             tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                         }
@@ -670,7 +671,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
         }
 
-        protected virtual bool UseDefaultRecipe { get { return true; } }
+        protected virtual bool UseDefaultRecipe => true;
 
         public sealed override void AddRecipes()
         {
@@ -694,9 +695,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
             //no valid slime pet found
             if (!(pPlayer.slimePetIndex != -1 &&
-                Main.projectile[pPlayer.slimePetIndex].active &&
-                Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))) return false;
+                (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
+                projectile.active &&
+                projectile.owner == Main.myPlayer &&
+                SlimePets.slimePets.Contains(projectile.type))) return false;
 
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
@@ -710,29 +712,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 
+            if (pPlayer.slimePetIndex == -1)
+            {
+                return true;
+            }
+
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                if (pPlayer.slimePetIndex == -1)
-                {
-                    //find first occurence of a player owned cute slime
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active)
-                        {
-                            if (Main.projectile[i].ModProjectile != null)
-                            {
-                                if (SlimePets.slimePets.Contains(Main.projectile[i].type) &&
-                                    Main.projectile[i].owner == Main.myPlayer)
-                                {
-                                    Mod.Logger.Debug("Had to change index of slime pet of " + player.name + " because it was -1");
-                                    pPlayer.slimePetIndex = i;
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-
                 PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Item.type);
 
                 bool shouldReset = false;
@@ -746,9 +732,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 //else normal left click use
 
                 if (pPlayer.slimePetIndex != -1 &&
-                    Main.projectile[pPlayer.slimePetIndex].active &&
-                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type))
+                    (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
+                    projectile.active &&
+                    projectile.owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(projectile.type))
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
@@ -769,12 +756,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
                             //"dust" originating from the center, forming a circle and going outwards
                             for (double angle = 0; angle < MathHelper.TwoPi; angle += Math.PI / 6)
                             {
-                                Dust.NewDustPerfect(Main.projectile[pPlayer.slimePetIndex].Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                Dust.NewDustPerfect(projectile.Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }
                         }
                         else if (player.altFunctionUse != 2)
                         {
-                            if (!SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                            if (!SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                             {
                                 pPlayer.ToggleAccessory(petAccessory);
                             }

@@ -178,91 +178,91 @@ namespace AssortedCrazyThings.Base
             //start list
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeBlackNewProj",
+                name: "CuteSlimeBlackProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeBlueNewProj",
+                name: "CuteSlimeBlueProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeCorruptNewProj",
+                name: "CuteSlimeCorruptProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeCrimsonNewProj",
+                name: "CuteSlimeCrimsonProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeDungeonNewProj",
+                name: "CuteSlimeDungeonProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeGreenNewProj"
+                name: "CuteSlimeGreenProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIceNewProj",
+                name: "CuteSlimeIceProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIlluminantNewProj",
+                name: "CuteSlimeIlluminantProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeLavaNewProj",
+                name: "CuteSlimeLavaProj",
                 hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Hat
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeJungleNewProj",
+                name: "CuteSlimeJungleProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePrincessNewProj",
+                name: "CuteSlimePrincessProj",
                 hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Hat
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePurpleNewProj",
+                name: "CuteSlimePurpleProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePinkNewProj",
+                name: "CuteSlimePinkProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeRainbowNewProj"
+                name: "CuteSlimeRainbowProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeRedNewProj",
+                name: "CuteSlimeRedProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeSandNewProj",
+                name: "CuteSlimeSandProj",
                 hasNoHair: true
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeToxicNewProj"
+                name: "CuteSlimeToxicProj"
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeXmasNewProj",
+                name: "CuteSlimeXmasProj",
                 hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Body,
                 carried: true,
@@ -270,14 +270,14 @@ namespace AssortedCrazyThings.Base
             ));
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeYellowNewProj",
+                name: "CuteSlimeYellowProj",
                 hasNoHair: true
             ));
 
             /*
             slimePetList.Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeColorNewProj",
+                name: "CuteSlimeColorProj",
                 hasNoHair: false,
                 preAdditionSlot: (byte)SlotType.None,
                 postAdditionSlot: (byte)SlotType.None,

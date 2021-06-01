@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
@@ -16,14 +17,63 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public const int Projwidth = 28;
         public const int Projheight = 32;
+        private const short clonedAIType = ProjectileID.PetLizard;
 
         protected int frame2Counter = 0;
         protected int frame2 = 0;
 
-        public override bool PreAI()
+        public abstract ref bool PetBool(Player player);
+
+        public sealed override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 10;
+            Main.projPet[Projectile.type] = true;
+
+            SafeSetStaticDefaults();
+        }
+
+        public virtual void SafeSetStaticDefaults()
+        {
+
+        }
+
+        public sealed override void SetDefaults()
+        {
+            Projectile.CloneDefaults(clonedAIType);
+            Projectile.width = Projwidth;
+            Projectile.height = Projheight;
+            AIType = clonedAIType;
+
+            SafeSetDefaults();
+        }
+
+        public virtual void SafeSetDefaults()
+        {
+
+        }
+
+        public sealed override bool PreAI()
         {
             Player player = Projectile.GetOwner();
             player.lizard = false;
+
+            ref bool petBool = ref PetBool(player);
+            if (player.dead)
+            {
+                petBool = false;
+            }
+            if (petBool)
+            {
+                Projectile.timeLeft = 2;
+            }
+            PetPlayer pPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            pPlayer.slimePetIndex = Projectile.whoAmI;
+
+            return SafePreAI();
+        }
+
+        public virtual bool SafePreAI()
+        {
             return true;
         }
 
@@ -157,7 +207,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 Rectangle frameLocal = new Rectangle(0, frame2 * texture.Height / 10, texture.Width, texture.Height / 10);
                 SpriteEffects effect = Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
-                Vector2 stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkNewProj>() ? -8f : 0f, Projectile.gfxOffY + DrawOriginOffsetY);
+                Vector2 stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkProj>() ? -8f : 0f, Projectile.gfxOffY + DrawOriginOffsetY);
                 Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                 Color color = Projectile.GetAlpha(drawColor);
                 //color = drawColor * ((255f - projectile.alpha) / 255f);
@@ -235,7 +285,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                     //get necessary properties and parameters for draw
                     effect = Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / 10) * 0.5f);
-                    stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkNewProj>() ? -8f : 0f, DrawOriginOffsetY + Projectile.gfxOffY);
+                    stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkProj>() ? -8f : 0f, DrawOriginOffsetY + Projectile.gfxOffY);
                     color = drawColor * ((255 - petAccessory.Alpha) / 255f);
 
                     originOffset = -petAccessory.Offset;
