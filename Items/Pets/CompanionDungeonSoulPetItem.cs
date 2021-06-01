@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,14 +20,12 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
+            Item.DefaultToVanitypet(ModContent.ProjectileType<CompanionDungeonSoulPetProj>(), ModContent.BuffType<CompanionDungeonSoulPetBuff>());
             frame2CounterCount = 8.0;
             animatedTextureSelect = 0;
 
             Item.width = 26;
             Item.height = 28;
-            Item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPetProj>();
-            Item.buffType = ModContent.BuffType<CompanionDungeonSoulPetBuff>();
             Item.rare = -11;
 
             Item.value = Item.sellPrice(silver: 50);

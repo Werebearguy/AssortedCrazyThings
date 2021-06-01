@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Items
 
         public override void SetDefaults()
         {
-            Item.width = 38;
-            Item.height = 30;
+            Item.width = 32;
+            Item.height = 28;
             Item.maxStack = 30;
             Item.rare = -11;
             Item.useAnimation = 45;

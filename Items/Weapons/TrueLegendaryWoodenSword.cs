@@ -20,8 +20,8 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.CobaltSword);
-            Item.width = 50;
-            Item.height = 50;
+            Item.width = 60;
+            Item.height = 60;
             Item.rare = -11;
             Item.value = Item.sellPrice(0, 2, 25, 0); //2 gold for broken, 25 silver for legendary
             Item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();

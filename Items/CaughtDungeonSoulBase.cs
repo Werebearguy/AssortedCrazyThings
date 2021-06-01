@@ -39,14 +39,6 @@ namespace AssortedCrazyThings.Items
 
         }
 
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0 && Item.buffType != 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
-        }
-
         public void Draw()
         {
             frame2Counter++;

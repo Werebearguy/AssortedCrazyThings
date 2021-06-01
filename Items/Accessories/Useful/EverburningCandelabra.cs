@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
         public override void SetDefaults()
         {
             Item.width = 32;
-            Item.height = 36;
+            Item.height = 32;
             Item.value = Item.sellPrice(gold: 13);
             Item.rare = -11;
             Item.accessory = true;
@@ -23,10 +23,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AssPlayer>().everburningCandleBuff = true;
-            player.GetModPlayer<AssPlayer>().everburningShadowflameCandleBuff = true;
-            player.GetModPlayer<AssPlayer>().everfrozenCandleBuff = true;
-            player.GetModPlayer<AssPlayer>().everburningCursedCandleBuff = true;
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            mPlayer.everburningCandleBuff = true;
+            mPlayer.everburningShadowflameCandleBuff = true;
+            mPlayer.everfrozenCandleBuff = true;
+            mPlayer.everburningCursedCandleBuff = true;
         }
 
         public override void AddRecipes()

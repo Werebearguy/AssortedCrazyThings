@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
             //DrawOriginOffsetX = 0;
             //DrawOffsetX = (int)0;
-            DrawOriginOffsetX = -(Projectile.width / 2 - 50f / 2);
+            DrawOriginOffsetX = -(Projectile.width / 2 - 60f / 2);
             DrawOffsetX = (int)-DrawOriginOffsetX * 2;
         }
 
