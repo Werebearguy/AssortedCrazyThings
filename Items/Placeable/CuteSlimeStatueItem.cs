@@ -1,11 +1,10 @@
 using AssortedCrazyThings.Tiles;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-    public class CuteSlimeStatueItem : ModItem
+    public class CuteSlimeStatueItem : PlaceableItem<CuteSlimeStatueTile>
     {
         public override void SetStaticDefaults()
         {
@@ -26,7 +25,7 @@ namespace AssortedCrazyThings.Items.Placeable
             Item.consumable = true;
             Item.rare = -11;
             Item.value = Item.sellPrice(0, 0, 0, 60);
-            Item.createTile = ModContent.TileType<CuteSlimeStatueTile>();
+            Item.createTile = TileType;
         }
 
         public override void AddRecipes()

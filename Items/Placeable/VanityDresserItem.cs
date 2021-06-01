@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-    public class VanityDresserItem : ModItem
+    public class VanityDresserItem : PlaceableItem<VanityDresserTile>
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items.Placeable
             Item.consumable = true;
             Item.value = Item.sellPrice(silver: 10);
             Item.rare = -11;
-            Item.createTile = ModContent.TileType<VanityDresserTile>();
+            Item.createTile = TileType;
         }
 
         public override void AddRecipes()

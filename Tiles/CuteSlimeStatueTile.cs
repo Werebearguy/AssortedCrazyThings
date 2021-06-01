@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-    class CuteSlimeStatueTile : ModTile
+    public class CuteSlimeStatueTile : DroppableTile<CuteSlimeStatueItem>
     {
         public override void SetDefaults()
         {
@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<CuteSlimeStatueItem>());
+            Item.NewItem(i * 16, j * 16, 32, 48, ItemType);
         }
 
         private bool MechSpawn(float x, float y, int[] types)

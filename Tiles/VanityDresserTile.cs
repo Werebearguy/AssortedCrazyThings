@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-    public class VanityDresserTile : ModTile
+    public class VanityDresserTile : DroppableTile<VanityDresserItem>
     {
         public override void SetDefaults()
         {
@@ -71,7 +71,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<VanityDresserItem>());
+            Item.NewItem(i * 16, j * 16, 48, 32, ItemType);
         }
     }
 }

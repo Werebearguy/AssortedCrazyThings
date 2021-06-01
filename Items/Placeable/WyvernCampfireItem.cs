@@ -1,11 +1,10 @@
 using AssortedCrazyThings.Tiles;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-    public class WyvernCampfireItem : ModItem
+    public class WyvernCampfireItem : PlaceableItem<WyvernCampfireTile>
     {
         public override void SetStaticDefaults()
         {
@@ -26,7 +25,7 @@ namespace AssortedCrazyThings.Items.Placeable
             Item.consumable = true;
             Item.rare = -11;
             Item.value = Item.buyPrice(0, 11, 50, 0);
-            Item.createTile = ModContent.TileType<WyvernCampfireTile>();
+            Item.createTile = TileType;
         }
 
         public override void AddRecipes()

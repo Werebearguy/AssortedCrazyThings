@@ -13,7 +13,7 @@ using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Tiles
 {
-    class WyvernCampfireTile : ModTile
+    public class WyvernCampfireTile : DroppableTile<WyvernCampfireItem>
     {
         private const int maxFrames = 8;
 
@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<WyvernCampfireItem>());
+            Item.NewItem(i * 16, j * 16, 32, 32, ItemType);
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -151,7 +151,7 @@ namespace AssortedCrazyThings.Tiles
             player.mouseInterface = true;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<WyvernCampfireItem>();
+            player.cursorItemIconID = ItemType;
         }
 
         public override bool RightClick(int i, int j)

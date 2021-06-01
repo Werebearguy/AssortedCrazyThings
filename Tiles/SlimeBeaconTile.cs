@@ -11,7 +11,7 @@ using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Tiles
 {
-    class SlimeBeaconTile : ModTile
+    public class SlimeBeaconTile : DroppableTile<SlimeBeaconItem>
     {
         public override void SetDefaults()
         {
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<SlimeBeaconItem>());
+            Item.NewItem(i * 16, j * 16, 32, 48, ItemType);
             AssWorld.DisableSlimeRainSky();
         }
 
@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Tiles
             player.mouseInterface = true;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<SlimeBeaconItem>();
+            player.cursorItemIconID = ItemType;
         }
     }
 }
