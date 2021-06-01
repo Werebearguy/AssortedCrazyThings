@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class PocketSand : ModProjectile
+    public class PocketSandProj : ModProjectile
     {
         private static readonly int LifeTime = 30;
 

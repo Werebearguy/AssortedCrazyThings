@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -20,7 +21,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.height = 30;
             //item.damage = 20; //same damage as flamethrower, which is 27
             Item.UseSound = SoundID.Item34;
-            Item.shoot = Mod.Find<ModProjectile>("SpazmatismFire").Type;
+            Item.shoot = ModContent.ProjectileType<SpazmatismFire>();
             Item.shootSpeed = 8f;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Ranged;

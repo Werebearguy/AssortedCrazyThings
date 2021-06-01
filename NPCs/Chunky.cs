@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs
             Item.NewItem(NPC.getRect(), ItemID.RottenChunk);
             if (Main.rand.NextBool(10))
             {
-                int i = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y - 16, Mod.Find<ModNPC>("ChunkysEye").Type);
+                int i = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y - 16, ModContent.NPCType<ChunkysEye>());
                 if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
                 {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);

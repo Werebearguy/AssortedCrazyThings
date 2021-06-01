@@ -10,6 +10,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Slimefish");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -27,13 +28,12 @@ namespace AssortedCrazyThings.NPCs
             AIType = NPCID.Goldfish;
             AnimationType = NPCID.Goldfish;
             NPC.noGravity = true;
-            Main.npcCatchable[Mod.Find<ModNPC>("Slimefish").Type] = true;
             NPC.catchItem = ItemID.Slimefish;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.raining == true)
+            if (Main.raining)
             {
                 return SpawnCondition.TownWaterCritter.Chance * 0.8f;
             }

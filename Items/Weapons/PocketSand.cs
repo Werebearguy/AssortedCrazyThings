@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -20,7 +21,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.damage = 1;
             Item.useTime = 35;
             Item.shootSpeed = 4.5f;
-            Item.shoot = Mod.Find<ModProjectile>("PocketSand").Type;
+            Item.shoot = ModContent.ProjectileType<PocketSandProj>();
             Item.useAnimation = 35;
             Item.autoReuse = true;
             Item.rare = -11;
