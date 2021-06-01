@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Buffs.CuteSlimes;
+using AssortedCrazyThings.Buffs.Pets.CuteSlimes;
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
 using Terraria;
 using Terraria.ID;
@@ -8,19 +8,14 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
     public class CuteSlimeCorruptNew : CuteSlimeItem
     {
+        public override int PetType => ModContent.ProjectileType<CuteSlimeCorruptNewProj>();
+
+        public override int BuffType => ModContent.BuffType<CuteSlimeCorruptNewBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Cute Corrupt Slime");
             Tooltip.SetDefault("Summons a friendly Cute Corrupt Slime to follow you");
-        }
-
-        public override void SetDefaults()
-        {
-            Item.CloneDefaults(ItemID.LizardEgg);
-            Item.shoot = ModContent.ProjectileType<CuteSlimeCorruptNewProj>();
-            Item.buffType = ModContent.BuffType<CuteSlimeCorruptNewBuff>();
-            Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10);
         }
     }
 }

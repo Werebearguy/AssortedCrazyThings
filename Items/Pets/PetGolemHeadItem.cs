@@ -1,14 +1,16 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetGolemHeadItem : ModItem
+    public class PetGolemHeadItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PetGolemHeadProj>();
+
+        public override int BuffType => ModContent.BuffType<PetGolemHeadBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Replica Golem Head");
@@ -16,21 +18,10 @@ namespace AssortedCrazyThings.Items.Pets
                 + "\nShoots bouncing fireballs at nearby enemies");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<PetGolemHeadProj>();
-            Item.buffType = ModContent.BuffType<PetGolemHeadBuff>();
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 10);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
     }
 }

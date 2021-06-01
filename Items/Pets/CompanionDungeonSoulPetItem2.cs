@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class CompanionDungeonSoulPetItem2 : CaughtDungeonSoulBase
+    public class CompanionDungeonSoulPetItem2 : CompanionDungeonSoulPetItem
     {
         public override string Texture
         {
@@ -18,25 +18,16 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Companion Soul");
+            base.SetStaticDefaults();
             Tooltip.SetDefault("Summons a friendly Soul to light your way"
                                + "\nPet slot");
-            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            frame2CounterCount = 8.0;
-            animatedTextureSelect = 0;
-
-            Item.width = 26;
-            Item.height = 28;
+            base.SetDefaults();
             Item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPetProj2>();
             Item.buffType = ModContent.BuffType<CompanionDungeonSoulPetBuff2>();
-            Item.rare = -11;
-
-            Item.value = Item.sellPrice(silver: 50);
         }
 
         //hardmode recipe

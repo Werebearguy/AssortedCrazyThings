@@ -1,35 +1,28 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+using AssortedCrazyThings.Buffs.Pets;
+using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class WallFragmentItem : ModItem
+    public class WallFragmentItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<WallFragmentMouth>();
+
+        public override int BuffType => ModContent.BuffType<WallFragmentBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall Fragment");
             Tooltip.SetDefault("Summons several fragments of the Wall to follow you");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
             Item.width = 22;
             Item.height = 26;
-            Item.shoot = Mod.Find<ModProjectile>("WallFragmentMouth").Type;
-            Item.buffType = Mod.Find<ModBuff>("WallFragmentBuff").Type;
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 10);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
     }
 }

@@ -1,53 +1,38 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetEaterofWorldsItem : ModItem
+    public class PetEaterofWorldsItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PetEaterofWorldsHead>();
+
+        public override int BuffType => ModContent.BuffType<PetEaterofWorldsBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cracked Worm Egg");
             Tooltip.SetDefault("Summons a tiny Eater of Worlds to follow you");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<PetEaterofWorldsHead>();
-            Item.buffType = ModContent.BuffType<PetEaterofWorldsBuff>();
             Item.rare = -11;
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.itemTime == 0)
-            {
-                for (int i = 0; i < Main.maxProjectiles; i++)
-                {
-                    Projectile proj = Main.projectile[i];
-                    if (proj.active && proj.owner == player.whoAmI && Array.IndexOf(PetEaterofWorldsBase.wormTypes, proj.type) > -1)
-                    {
-                        proj.Kill();
-                    }
-                }
-                if (player.whoAmI == Main.myPlayer)
-                {
-                    Spawn(player, item: Item);
-
-                    player.AddBuff(Item.buffType, 3600, true);
-                }
-            }
         }
 
         public static void Spawn(Player player, int buffIndex = -1, Item item = null)
         {
+            if (Main.myPlayer != player.whoAmI)
+            {
+                //Clientside only
+                return;
+            }
+
             IProjectileSource source;
             if (buffIndex > -1)
             {
@@ -60,6 +45,15 @@ namespace AssortedCrazyThings.Items.Pets
             else
             {
                 return;
+            }
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == player.whoAmI && Array.IndexOf(PetEaterofWorldsBase.wormTypes, proj.type) > -1)
+                {
+                    proj.Kill();
+                }
             }
 
             //prevIndex stuff only needed for when replacing/summoning the minion segments individually

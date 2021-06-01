@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.NPCs
             }
             else if (npc.type == NPCID.BrainofCthulhu)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<BrainofConfusion>());
+                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<BrainofConfusionItem>());
             }
             else if (npc.boss && Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
             {

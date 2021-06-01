@@ -8,14 +8,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
-    public abstract class CuteSlimeItem : ModItem
+    public abstract class CuteSlimeItem : SimplePetItemBase
     {
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        public override void SafeSetDefaults()
         {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
+            Item.rare = -11;
+            Item.value = Item.sellPrice(copper: 10);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

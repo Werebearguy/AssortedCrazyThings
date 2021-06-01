@@ -1,0 +1,48 @@
+using AssortedCrazyThings.Projectiles.Pets;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace AssortedCrazyThings.Buffs.Pets
+{
+    public class WallFragmentBuff : SimplePetBuffBase
+    {
+        public override int PetType => ModContent.ProjectileType<WallFragmentMouth>();
+
+        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().WallFragment;
+
+        public override void SafeSetDefaults()
+        {
+            DisplayName.SetDefault("Wall Fragment");
+            Description.SetDefault("Several fragments of the Wall are following you");
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.vanityPet[Type] = true;
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.buffTime[buffIndex] = 18000;
+            PetBool(player) = true;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                int eye1 = ModContent.ProjectileType<WallFragmentEye1>();
+                if (player.ownedProjectileCounts[eye1] <= 0)
+                {
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y - 6f, player.direction * 0.75f, -0.5f, eye1, 0, 0f, player.whoAmI, 0f, 0f);
+                }
+
+                int mouth = ModContent.ProjectileType<WallFragmentMouth>();
+                if (player.ownedProjectileCounts[mouth] <= 0)
+                {
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y + player.height / 2, player.direction, 0f, mouth, 0, 0f, player.whoAmI, 0f, 0f);
+
+                }
+
+                int eye2 = ModContent.ProjectileType<WallFragmentEye2>();
+                if (player.ownedProjectileCounts[eye2] <= 0)
+                {
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y + player.height + 6f, player.direction * 0.75f, 0.5f, eye2, 0, 0f, player.whoAmI, 0f, 0f);
+                }
+            }
+        }
+    }
+}

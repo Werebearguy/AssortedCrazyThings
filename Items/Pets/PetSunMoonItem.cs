@@ -1,14 +1,17 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetSunMoonItem : ModItem
+    public class PetSunMoonItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PetMoonProj>();
+
+        public override int BuffType => ModContent.BuffType<PetSunMoonBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Sun and Moon");
@@ -18,23 +21,12 @@ namespace AssortedCrazyThings.Items.Pets
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<PetMoonProj>();
-            Item.buffType = ModContent.BuffType<PetSunMoonBuff>();
             Item.width = 38;
             Item.height = 26;
             Item.rare = -11;
             Item.value = Item.sellPrice(gold: 16, silver: 20);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
 
         public override void AddRecipes()

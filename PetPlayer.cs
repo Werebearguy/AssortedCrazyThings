@@ -127,21 +127,13 @@ namespace AssortedCrazyThings
         public bool CuteSlimeCorruptNew = false;
         public bool CuteSlimeBlueNew = false;
         public bool CuteSlimeBlackNew = false;
-        public bool MiniMegalodon = false;
         public bool CuteSlimeXmas = false;
+        public bool MiniMegalodon = false;
         public bool YoungHarpy = false;
         public bool CuteGastropod = false;
         public bool YoungWyvern = false;
         public bool BabyIchorSticker = false;
         public bool LifelikeMechanicalFrog = false;
-        public bool CuteSlimeBlue = false;
-        public bool CuteSlimeGreen = false;
-        public bool CuteSlimePink = false;
-        public bool CuteSlimeBlack = false;
-        public bool CuteSlimePurple = false;
-        public bool CuteSlimeRed = false;
-        public bool CuteSlimeYellow = false;
-        public bool CuteSlimeRainbow = false;
         public bool ChunkyandMeatball = false;
         public bool DemonHeart = false;
         public bool BrainofConfusion = false;
@@ -215,21 +207,13 @@ namespace AssortedCrazyThings
             CuteSlimeCrimsonNew = false;
             CuteSlimeCorruptNew = false;
             CuteSlimeDungeonNew = false;
-            MiniMegalodon = false;
             CuteSlimeXmas = false;
+            MiniMegalodon = false;
             YoungHarpy = false;
             CuteGastropod = false;
             YoungWyvern = false;
             BabyIchorSticker = false;
             LifelikeMechanicalFrog = false;
-            CuteSlimeBlue = false;
-            CuteSlimeGreen = false;
-            CuteSlimePink = false;
-            CuteSlimeBlack = false;
-            CuteSlimePurple = false;
-            CuteSlimeRed = false;
-            CuteSlimeYellow = false;
-            CuteSlimeRainbow = false;
             ChunkyandMeatball = false;
             DemonHeart = false;
             BrainofConfusion = false;
@@ -618,8 +602,8 @@ namespace AssortedCrazyThings
 
             //no need for unlocked + toUnlock
             return new CircleUIConf(
-                Main.projFrames[ModContent.ProjectileType<LifelikeMechanicalFrog>()],
-                ModContent.ProjectileType<LifelikeMechanicalFrog>(),
+                Main.projFrames[ModContent.ProjectileType<LifelikeMechanicalFrogProj>()],
+                ModContent.ProjectileType<LifelikeMechanicalFrogProj>(),
                 assets, null, tooltips, null);
         }
 
@@ -637,14 +621,14 @@ namespace AssortedCrazyThings
         {
             List<string> tooltips = new List<string>() { "Default", "Dragon" };
 
-            return CircleUIHandler.PetConf("CursedSkull", tooltips);
+            return CircleUIHandler.PetConf("CursedSkullProj", tooltips);
         }
 
         public static CircleUIConf GetYoungWyvernConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
 
-            return CircleUIHandler.PetConf("YoungWyvern", tooltips);
+            return CircleUIHandler.PetConf("YoungWyvernProj", tooltips);
         }
 
         public static CircleUIConf GetPetFishronConf()
@@ -665,7 +649,7 @@ namespace AssortedCrazyThings
         {
             List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
 
-            return CircleUIHandler.PetConf("YoungHarpy", tooltips);
+            return CircleUIHandler.PetConf("YoungHarpyProj", tooltips);
         }
 
         public static CircleUIConf GetAbeeminationConf()
@@ -686,14 +670,14 @@ namespace AssortedCrazyThings
         {
             List<string> tooltips = new List<string>() { "Default", "Werebat" };
 
-            return CircleUIHandler.PetConf("VampireBat", tooltips);
+            return CircleUIHandler.PetConf("VampireBatProj", tooltips);
         }
 
         public static CircleUIConf GetPigronataConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
 
-            return CircleUIHandler.PetConf("Pigronata", tooltips);
+            return CircleUIHandler.PetConf("PigronataProj", tooltips);
         }
 
         public static CircleUIConf GetQueenLarvaConf()

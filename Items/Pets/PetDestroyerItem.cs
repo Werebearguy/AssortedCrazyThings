@@ -1,53 +1,37 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetDestroyerItem : ModItem
+    public class PetDestroyerItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PetDestroyerHead>();
+
+        public override int BuffType => ModContent.BuffType<PetDestroyerBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Destroyer's Core");
             Tooltip.SetDefault("Summons a tiny Destroyer and two tiny Probes to follow you");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<PetDestroyerHead>();
-            Item.buffType = ModContent.BuffType<PetDestroyerBuff>();
             Item.rare = -11;
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.itemTime == 0)
-            {
-                for (int i = 0; i < Main.maxProjectiles; i++)
-                {
-                    Projectile proj = Main.projectile[i];
-                    if (proj.active && proj.owner == player.whoAmI && (Array.IndexOf(PetDestroyerBase.wormTypes, proj.type) > -1 || proj.type == ModContent.ProjectileType<PetDestroyerProbe>()))
-                    {
-                        proj.Kill();
-                    }
-                }
-                if (player.whoAmI == Main.myPlayer)
-                {
-                    Spawn(player, item: Item);
-
-                    player.AddBuff(Item.buffType, 3600, true);
-                }
-            }
         }
 
         public static void Spawn(Player player, int buffIndex = -1, Item item = null)
         {
+            if (Main.myPlayer != player.whoAmI)
+            {
+                //Clientside only
+                return;
+            }
+
             IProjectileSource source;
             if (buffIndex > -1)
             {
@@ -60,6 +44,16 @@ namespace AssortedCrazyThings.Items.Pets
             else
             {
                 return;
+            }
+
+            int probe = ModContent.ProjectileType<PetDestroyerProbe>();
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == player.whoAmI && (Array.IndexOf(PetDestroyerBase.wormTypes, proj.type) > -1 || proj.type == probe))
+                {
+                    proj.Kill();
+                }
             }
 
             //prevIndex stuff only needed for when replacing/summoning the minion segments individually
@@ -83,8 +77,8 @@ namespace AssortedCrazyThings.Items.Pets
             Main.projectile[prevIndex].localAI[1] = index;
 
             //spawn probes
-            Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetDestroyerProbe>(), 0, 0f, player.whoAmI, 0f, ((player.whoAmI + 1) * 13) % PetDestroyerProbe.AttackDelay);
+            Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, 0f, probe, 0, 0f, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, 0f, probe, 0, 0f, player.whoAmI, 0f, ((player.whoAmI + 1) * 13) % PetDestroyerProbe.AttackDelay);
         }
     }
 }

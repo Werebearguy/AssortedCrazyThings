@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void OnKill()
         {
-            Item.NewItem(NPC.getRect(), ModContent.ItemType<MiniMegalodon>());
+            Item.NewItem(NPC.getRect(), ModContent.ItemType<MiniMegalodonItem>());
         }
 
         public override void HitEffect(int hitDirection, double damage)

@@ -1,12 +1,17 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.Buffs.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PigronataItem : ModItem
+    public class PigronataItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PigronataProj>();
+
+        public override int BuffType => ModContent.BuffType<PigronataBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pigronata");
@@ -14,11 +19,8 @@ namespace AssortedCrazyThings.Items.Pets
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = Mod.Find<ModProjectile>("Pigronata").Type;
-            Item.buffType = Mod.Find<ModBuff>("PigronataBuff").Type;
             Item.rare = -11;
             Item.value = Item.sellPrice(gold: 2, silver: 20);
         }
@@ -26,14 +28,6 @@ namespace AssortedCrazyThings.Items.Pets
         public override void AddRecipes()
         {
             CreateRecipe(1).AddIngredient(ItemID.Pigronata, 1).AddIngredient(ItemID.LifeFruit, 1).AddTile(TileID.DemonAltar).Register();
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
     }
 }

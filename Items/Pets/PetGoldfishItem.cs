@@ -1,14 +1,17 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetGoldfishItem : ModItem
+    public class PetGoldfishItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PetGoldfishProj>();
+
+        public override int BuffType => ModContent.BuffType<PetGoldfishBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Possessed Fish Idol");
@@ -17,21 +20,10 @@ namespace AssortedCrazyThings.Items.Pets
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<PetGoldfishProj>();
-            Item.buffType = ModContent.BuffType<PetGoldfishBuff>();
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 10);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
 
         public override void AddRecipes()

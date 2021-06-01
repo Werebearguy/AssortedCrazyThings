@@ -1,14 +1,17 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetSunItem : ModItem
+    public class PetSunItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<PetSunProj>();
+
+        public override int BuffType => ModContent.BuffType<PetSunBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Sun");
@@ -16,23 +19,12 @@ namespace AssortedCrazyThings.Items.Pets
                 + "\nShows the current time in the buff tip");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<PetSunProj>();
-            Item.buffType = ModContent.BuffType<PetSunBuff>();
             Item.width = 20;
             Item.height = 26;
             Item.rare = -11;
             Item.value = Item.sellPrice(gold: 9, silver: 20);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
 
         public override void AddRecipes()

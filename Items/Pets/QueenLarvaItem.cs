@@ -1,12 +1,16 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.Buffs.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class QueenLarvaItem : ModItem
+    public class QueenLarvaItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<QueenLarvaProj>();
+
+        public override int BuffType => ModContent.BuffType<QueenLarvaBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Queen Larva");
@@ -14,23 +18,12 @@ namespace AssortedCrazyThings.Items.Pets
                 + "\nAppearance can be changed with Costume Suitcase");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = Mod.Find<ModProjectile>("QueenLarvaProj").Type;
-            Item.buffType = Mod.Find<ModBuff>("QueenLarvaBuff").Type;
             Item.width = 28;
             Item.height = 32;
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 10);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
     }
 }

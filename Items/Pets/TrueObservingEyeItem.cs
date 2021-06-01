@@ -1,35 +1,26 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class TrueObservingEyeItem : ModItem
+    public class TrueObservingEyeItem : SimplePetItemBase
     {
+        public override int PetType => ModContent.ProjectileType<TrueObservingEyeProj>();
+
+        public override int BuffType => ModContent.BuffType<TrueObservingEyeBuff>();
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("True Observing Eye");
             Tooltip.SetDefault("Summons a True Eye of Cthulhu to watch after you");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ModContent.ProjectileType<TrueObservingEyeProj>();
-            Item.buffType = ModContent.BuffType<TrueObservingEyeBuff>();
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 10);
-        }
-
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(Item.buffType, 3600, true);
-            }
         }
     }
 }

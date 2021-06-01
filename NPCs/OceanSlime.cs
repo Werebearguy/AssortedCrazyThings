@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -22,6 +23,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Ocean Slime");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -40,8 +42,7 @@ namespace AssortedCrazyThings.NPCs
             AnimationType = NPCID.ToxicSludge;
             NPC.alpha = 175;
             NPC.color = new Color(65, 193, 247, 100);
-            Main.npcCatchable[Mod.Find<ModNPC>("OceanSlime").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("OceanSlimeItem").Type;
+            NPC.catchItem = (short)ModContent.ItemType<OceanSlimeItem>();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
