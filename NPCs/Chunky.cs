@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Chunky");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -26,8 +28,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.aiStyle = 1;
             AIType = NPCID.ToxicSludge;
             AnimationType = NPCID.ToxicSludge;
-            Main.npcCatchable[Mod.Find<ModNPC>("Chunky").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("ChunkyItem").Type;
+            NPC.catchItem = (short)ModContent.ItemType<ChunkyItem>();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

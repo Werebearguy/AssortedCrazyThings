@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -21,7 +22,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             get
             {
-                return Mod.Find<ModItem>("CuteSlimeIlluminantNew").Type;
+                return ModContent.ItemType<CuteSlimeIlluminantItem>();
             }
         }
 

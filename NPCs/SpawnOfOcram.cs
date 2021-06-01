@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -53,7 +54,7 @@ namespace AssortedCrazyThings.NPCs
         {
             {
                 Item.NewItem(NPC.getRect(), ItemID.Emerald);
-                if (Main.rand.NextBool(5)) Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("BabyOcram").Type);
+                if (Main.rand.NextBool(5)) Item.NewItem(NPC.getRect(), ModContent.ItemType<BabyOcramItem>());
             }
         }
 

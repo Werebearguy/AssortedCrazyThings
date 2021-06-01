@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +12,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Cute Gastropod");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -28,8 +30,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.aiStyle = 14;
             AIType = NPCID.FlyingSnake;
             AnimationType = NPCID.FlyingSnake;
-            Main.npcCatchable[ModContent.NPCType<CuteGastropod>()] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("CuteGastropod").Type;
+            NPC.catchItem = (short)ModContent.ItemType<CuteGastropodItem>();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Young Harpy");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -27,8 +29,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.aiStyle = 14;
             AIType = NPCID.FlyingSnake;
             AnimationType = NPCID.FlyingSnake;
-            Main.npcCatchable[Mod.Find<ModNPC>("YoungHarpy").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("YoungHarpy").Type;
+            NPC.catchItem = (short)ModContent.ItemType<YoungHarpyItem>();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

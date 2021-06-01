@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,6 +12,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Joyous Slime");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -30,23 +32,12 @@ namespace AssortedCrazyThings.NPCs
             NPC.friendly = true;
             NPC.alpha = 175;
             NPC.color = new Color(169, 141, 255, 100);
-            Main.npcCatchable[Mod.Find<ModNPC>("JoyousSlime").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("JoyousSlimeItem").Type;
+            NPC.catchItem = (short)ModContent.ItemType<JoyousSlimeItem>();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return SpawnCondition.OverworldDay.Chance * 0.015f;
-        }
-
-        public override bool? CanBeHitByItem(Player player, Item item)
-        {
-            return true;
-        }
-
-        public override bool? CanBeHitByProjectile(Projectile projectile)
-        {
-            return true;
         }
 
         public override void OnKill()

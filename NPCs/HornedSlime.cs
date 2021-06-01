@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,6 +12,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Horned Slime");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -29,8 +31,7 @@ namespace AssortedCrazyThings.NPCs
             AnimationType = NPCID.ToxicSludge;
             NPC.alpha = 175;
             NPC.color = new Color(240, 54, 115, 100);
-            Main.npcCatchable[Mod.Find<ModNPC>("HornedSlime").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("HornedSlimeItem").Type;
+            NPC.catchItem = (short)ModContent.ItemType<HornedSlimeItem>();
             NPC.lavaImmune = true;
         }
 

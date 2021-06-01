@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -14,6 +15,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Animated Tome");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.GiantBat];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -31,8 +33,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.noGravity = true;
             AIType = NPCID.GiantBat;
             AnimationType = NPCID.GiantBat;
-            Main.npcCatchable[Mod.Find<ModNPC>("AnimatedTome").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("AnimatedTomeItem").Type;
+            NPC.catchItem = (short)ModContent.ItemType<AnimatedTomeItem>();
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -43,7 +44,6 @@ namespace AssortedCrazyThings.NPCs
         public override void OnKill()
         {
             Item.NewItem(NPC.getRect(), ItemID.Book);
-            if (Main.rand.NextBool(50)) Item.NewItem(NPC.getRect(), Mod.Find<ModItem>("OrigamiManual").Type);
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

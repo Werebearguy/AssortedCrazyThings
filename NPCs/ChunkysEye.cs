@@ -11,6 +11,7 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Chunky's Eye");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
+            Main.npcCatchable[NPC.type] = true;
         }
 
         public override void SetDefaults()
@@ -31,8 +32,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.dontTakeDamage = true;
             //AIType = NPCID.DemonEye;
             AnimationType = NPCID.DemonEye;
-            Main.npcCatchable[Mod.Find<ModNPC>("ChunkysEye").Type] = true;
-            NPC.catchItem = (short)Mod.Find<ModItem>("ChunkysEye").Type;
+            NPC.catchItem = (short)ModContent.ItemType<Items.ChunkysEye>();
         }
 
         public override void AI()
