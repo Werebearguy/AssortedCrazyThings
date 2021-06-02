@@ -443,10 +443,10 @@ namespace AssortedCrazyThings.Base
                     break;
                 }
             }
+
             if (index == 1000)
-            {
-                return index;
-            }
+                index = Projectile.FindOldestProjectile();
+
             int Owner = Main.myPlayer;
             //float ai0 = 0f;
             //float ai1 = 0f;
@@ -470,6 +470,7 @@ namespace AssortedCrazyThings.Base
             }
             projectile.honeyWet = Collision.honey;
             Main.projectileIdentity[Owner, index] = index;
+            FindBannerToAssociateTo(source, projectile);
             //projectile.ai[0] = ai0;
             //projectile.ai[1] = ai1;
             if (Type > 0)
@@ -484,9 +485,27 @@ namespace AssortedCrazyThings.Base
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, index);
+                NetMessage.SendData(MessageID.SyncProjectile, number: index);
             }
             return index;
+        }
+
+        //Clone from vanilla since it's private
+        private static void FindBannerToAssociateTo(IProjectileSource spawnSource, Projectile next)
+        {
+            ProjectileSource_ProjectileParent projectileSource_ProjectileParent = spawnSource as ProjectileSource_ProjectileParent;
+            if (projectileSource_ProjectileParent != null && projectileSource_ProjectileParent.ParentProjectile != null)
+            {
+                Projectile parentProjectile = projectileSource_ProjectileParent.ParentProjectile;
+                next.bannerIdToRespondTo = parentProjectile.bannerIdToRespondTo;
+                return;
+            }
+
+            ProjectileSource_NPC projectileSource_NPC = spawnSource as ProjectileSource_NPC;
+            if (projectileSource_NPC != null && projectileSource_NPC.NPC != null)
+            {
+                int num = next.bannerIdToRespondTo = Item.NPCtoBanner(projectileSource_NPC.NPC.BannerID());
+            }
         }
 
         /// <summary>
