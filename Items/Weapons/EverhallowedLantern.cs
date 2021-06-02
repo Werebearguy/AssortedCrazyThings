@@ -232,7 +232,7 @@ namespace AssortedCrazyThings.Items.Weapons
             return false;
         }
 
-        public override void HoldItem(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
         {
             player.itemLocation.X = player.Center.X;
             player.itemLocation.Y = player.Bottom.Y + 2f;
