@@ -51,9 +51,9 @@ namespace AssortedCrazyThings.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("LittleMegalodonGore_0").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("LittleMegalodonGore_1").Type, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("LittleMegalodonGore_2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_0").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_2").Type, 1f);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Animated Spell Tome");
-            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.GiantBat];
+            Main.npcFrameCount[NPC.type] = 5;
         }
 
         public override void SetDefaults()
@@ -27,7 +27,20 @@ namespace AssortedCrazyThings.NPCs
             NPC.aiStyle = 14;
             NPC.noGravity = true;
             AIType = NPCID.GiantBat;
-            AnimationType = NPCID.GiantBat;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            if (++NPC.frameCounter >= 8)
+            {
+                NPC.frameCounter = 0;
+
+                NPC.frame.Y += frameHeight;
+                if (NPC.frame.Y >= Main.npcFrameCount[NPC.type] * frameHeight)
+                {
+                    NPC.frame.Y = 0;
+                }
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -63,6 +76,8 @@ namespace AssortedCrazyThings.NPCs
 
         public override void PostAI()
         {
+            NPC.rotation = NPC.velocity.X * 0.06f;
+
             //using Microsoft.Xna.Framework;
             //change the npc. to projectile. if you port this to pets
             Color color = Lighting.GetColor((int)NPC.Center.X / 16, (int)NPC.Center.Y / 16);
