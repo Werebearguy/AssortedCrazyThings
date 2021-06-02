@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,16 +38,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            if (++NPC.frameCounter >= 8)
-            {
-                NPC.frameCounter = 0;
-
-                NPC.frame.Y += frameHeight;
-                if (NPC.frame.Y >= Main.npcFrameCount[NPC.type] * frameHeight)
-                {
-                    NPC.frame.Y = 0;
-                }
-            }
+            NPC.LoopAnimation(frameHeight, 8);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
