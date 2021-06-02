@@ -1187,6 +1187,157 @@ namespace AssortedCrazyThings.Base
         }
 
         #endregion
+
+        public static void ModifiedGoldfishAI(NPC npc, float scareRange, bool faceAway = true)
+        {
+            if (npc.direction == 0)
+            {
+                npc.TargetClosest();
+            }
+            if (npc.wet)
+            {
+                bool hasPlayer = false;
+                npc.TargetClosest(faceTarget: false);
+                Vector2 centerpos = npc.Center;
+                Player player = Main.player[npc.target];
+                Vector2 playerpos = player.Center;
+                float distancex = playerpos.X - centerpos.X;
+                float distancey = playerpos.Y - centerpos.Y;
+                float distSQ = distancex * distancex + distancey * distancey;
+                if (player.wet && distSQ < scareRange * scareRange)
+                {
+                    if (!player.dead)
+                    {
+                        hasPlayer = true;
+                    }
+                }
+                if (!hasPlayer)
+                {
+                    if (npc.collideX)
+                    {
+                        npc.velocity.X *= -1;
+                        npc.direction *= -1;
+                        npc.netUpdate = true;
+                    }
+                    if (npc.collideY)
+                    {
+                        npc.netUpdate = true;
+                        if (npc.velocity.Y > 0f)
+                        {
+                            npc.velocity.Y = Math.Abs(npc.velocity.Y) * -1f;
+                            npc.directionY = -1;
+                            npc.ai[0] = -1f;
+                        }
+                        else if (npc.velocity.Y < 0f)
+                        {
+                            npc.velocity.Y = Math.Abs(npc.velocity.Y);
+                            npc.directionY = 1;
+                            npc.ai[0] = 1f;
+                        }
+                    }
+                }
+                if (hasPlayer) //if target is in water
+                {
+                    npc.TargetClosest(faceTarget: false);
+                    npc.direction = (distancex >= 0f).ToDirectionInt();
+                    npc.directionY = (distancey >= 0f).ToDirectionInt();
+
+                    if (faceAway)
+                    {
+                        npc.direction *= -1;
+                        npc.directionY *= -1;
+                    }
+
+                    npc.velocity.X += npc.direction * 0.1f;
+                    npc.velocity.Y += npc.directionY * 0.1f;
+
+                    if (npc.velocity.X > 3f)
+                    {
+                        npc.velocity.X = 3f;
+                    }
+                    if (npc.velocity.X < -3f)
+                    {
+                        npc.velocity.X = -3f;
+                    }
+                    if (npc.velocity.Y > 2f)
+                    {
+                        npc.velocity.Y = 2f;
+                    }
+                    if (npc.velocity.Y < -2f)
+                    {
+                        npc.velocity.Y = -2f;
+                    }
+                }
+                else
+                {
+                    npc.velocity.X += npc.direction * 0.1f;
+                    if (npc.velocity.X < -1f || npc.velocity.X > 1f)
+                    {
+                        npc.velocity.X *= 0.95f;
+                    }
+                    if (npc.ai[0] == -1f)
+                    {
+                        npc.velocity.Y -= 0.01f;
+                        if (npc.velocity.Y < -0.3f)
+                        {
+                            npc.ai[0] = 1f;
+                        }
+                    }
+                    else
+                    {
+                        npc.velocity.Y += 0.01f;
+                        if (npc.velocity.Y > 0.3f)
+                        {
+                            npc.ai[0] = -1f;
+                        }
+                    }
+                    int tileX = (int)npc.Center.X / 16;
+                    int tileY = (int)npc.Center.Y / 16;
+                    if (Framing.GetTileSafely(tileX, tileY - 1).LiquidAmount > 128)
+                    {
+                        if (Framing.GetTileSafely(tileX, tileY + 1).IsActive)
+                        {
+                            npc.ai[0] = -1f;
+                        }
+                        else if (Framing.GetTileSafely(tileX, tileY + 2).IsActive)
+                        {
+                            npc.ai[0] = -1f;
+                        }
+                    }
+                    if (npc.velocity.Y > 0.4f || npc.velocity.Y < -0.4f)
+                    {
+                        npc.velocity.Y *= 0.95f;
+                    }
+                }
+            }
+            else //not wet, frantically jump around
+            {
+                if (npc.velocity.Y == 0f)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
+                        npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
+                        npc.netUpdate = true;
+                    }
+                }
+                npc.velocity.Y += 0.3f;
+                if (npc.velocity.Y > 10f)
+                {
+                    npc.velocity.Y = 10f;
+                }
+                npc.ai[0] = 1f;
+            }
+            npc.rotation = npc.velocity.Y * npc.direction * 0.1f;
+            if (npc.rotation < -0.2f)
+            {
+                npc.rotation = -0.2f;
+            }
+            if (npc.rotation > 0.2f)
+            {
+                npc.rotation = 0.2f;
+            }
+        }
     }
 
     public enum WormType : byte
