@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Base
 			}
 
 			frameCounter++;
-			if (frameCounter > speed)
+			if (frameCounter >= speed)
 			{
 				frameCounter = 0;
 				frame++;

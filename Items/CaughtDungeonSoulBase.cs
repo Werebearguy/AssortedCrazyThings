@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items
     {
         protected int animatedTextureSelect;
         private int sincounter;
-        protected double frame2CounterCount;
+        protected int frame2CounterCount;
         private int frame2Counter;
         private int frame2;
 
@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Items
             {
                 frame2++;
                 frame2Counter = 0;
-                if (frame2 > 3)
+                if (frame2 >= AssortedCrazyThings.animatedSoulFrameCount)
                 {
                     frame2 = 0;
                 }
@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.Items
                 X = 0,
                 Y = frame2,
                 Width = image.Bounds.Width,
-                Height = (image.Bounds.Height / 4)
+                Height = image.Bounds.Height / AssortedCrazyThings.animatedSoulFrameCount
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 

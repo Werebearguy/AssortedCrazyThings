@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Main.projFrames[Projectile.type] = 8;
+            Main.projFrames[Projectile.type] = 6;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
@@ -118,16 +118,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                 Projectile.rotation = 0;
             }
 
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 4)
-            {
-                Projectile.frame++;
-                Projectile.frameCounter = 0;
-            }
-            if (Projectile.frame >= Main.projFrames[Projectile.type])
-            {
-                Projectile.frame = 0;
-            }
+            Projectile.LoopAnimation(4);
         }
 
         public override bool PreDraw(ref Color lightColor)

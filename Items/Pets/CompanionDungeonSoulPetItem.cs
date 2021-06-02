@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetDefaults()
         {
             Item.DefaultToVanitypet(ModContent.ProjectileType<CompanionDungeonSoulPetProj>(), ModContent.BuffType<CompanionDungeonSoulPetBuff>());
-            frame2CounterCount = 8.0;
+            frame2CounterCount = 6;
             animatedTextureSelect = 0;
 
             Item.width = 26;

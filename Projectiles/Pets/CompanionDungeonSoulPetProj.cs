@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul");
-            Main.projFrames[Projectile.type] = 4;
+            Main.projFrames[Projectile.type] = 6;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.LightPet[Projectile.type] = true;
         }
@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 AssAI.FlickerwickPetAI(Projectile);
 
-                AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
+                AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 7);
             }
         }
     }

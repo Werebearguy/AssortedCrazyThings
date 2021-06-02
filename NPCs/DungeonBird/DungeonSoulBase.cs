@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +13,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
     public abstract class DungeonSoulBase : ModNPC
     {
-        protected double frameCount;
+        protected int frameCount;
         protected float fadeAwayMax;
         public static int SoulActiveTime = NPC.activeTime * 5;
 
@@ -133,54 +134,55 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void FindFrame(int frameHeight)
         {
-            if (AI_State == 0)
-            {
-                NPC.frameCounter++;
-                if (NPC.frameCounter >= frameCount)
-                {
-                    NPC.frame.Y += frameHeight;
-                    NPC.frameCounter = 0;
-                    if (NPC.frame.Y >= 3 * frameHeight)
-                    {
-                        NPC.frame.Y = 0;
-                    }
-                }
-            }
-            else if (AI_State == 1)
-            {
-                if (NPC.velocity.Y > 0) //dropping down
-                {
-                    NPC.frame.Y = frameHeight * 4;
-                }
-                else if ((NPC.velocity.Y == 0 || NPC.velocity.Y < 2f && NPC.velocity.Y > 0f) && NPC.velocity.X == 0)
-                {
-                    NPC.frameCounter++;
-                    if (NPC.frameCounter <= 8.0)
-                    {
-                        NPC.frame.Y = frameHeight * 5;
-                    }
-                    else if (NPC.frameCounter <= 16.0)
-                    {
-                        NPC.frame.Y = frameHeight * 6;
-                    }
-                    else if (NPC.frameCounter <= 24.0)
-                    {
-                        NPC.frame.Y = frameHeight * 7;
-                    }
-                    else if (NPC.frameCounter <= 32.0)
-                    {
-                        NPC.frame.Y = frameHeight * 6;
-                    }
-                    else
-                    {
-                        NPC.frameCounter = 0;
-                    }
-                }
-            }
-            else
-            {
-                NPC.frame.Y = 0;
-            }
+            NPC.LoopAnimation(frameHeight, frameCount);
+            //if (AI_State == 0)
+            //{
+            //    NPC.frameCounter++;
+            //    if (NPC.frameCounter >= frameCount)
+            //    {
+            //        NPC.frame.Y += frameHeight;
+            //        NPC.frameCounter = 0;
+            //        if (NPC.frame.Y >= 6 * frameHeight)
+            //        {
+            //            NPC.frame.Y = 0;
+            //        }
+            //    }
+            //}
+            //else if (AI_State == 1)
+            //{
+            //    if (NPC.velocity.Y > 0) //dropping down
+            //    {
+            //        NPC.frame.Y = frameHeight * 4;
+            //    }
+            //    else if ((NPC.velocity.Y == 0 || NPC.velocity.Y < 2f && NPC.velocity.Y > 0f) && NPC.velocity.X == 0)
+            //    {
+            //        NPC.frameCounter++;
+            //        if (NPC.frameCounter <= 8.0)
+            //        {
+            //            NPC.frame.Y = frameHeight * 5;
+            //        }
+            //        else if (NPC.frameCounter <= 16.0)
+            //        {
+            //            NPC.frame.Y = frameHeight * 6;
+            //        }
+            //        else if (NPC.frameCounter <= 24.0)
+            //        {
+            //            NPC.frame.Y = frameHeight * 7;
+            //        }
+            //        else if (NPC.frameCounter <= 32.0)
+            //        {
+            //            NPC.frame.Y = frameHeight * 6;
+            //        }
+            //        else
+            //        {
+            //            NPC.frameCounter = 0;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    NPC.frame.Y = 0;
+            //}
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -345,7 +347,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void MoreSetDefaults()
         {
-            frameCount = 8.0;
+            frameCount = 6;
             NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoul>();
 
             fadeAwayMax = HarvesterBase.EatTimeConst;
@@ -358,13 +360,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dungeon Soul");
-            Main.npcFrameCount[NPC.type] = 8;
+            Main.npcFrameCount[NPC.type] = 6;
             Main.npcCatchable[NPC.type] = true;
         }
 
         public override void MoreSetDefaults()
         {
-            frameCount = 4.0;
+            frameCount = 4;
             NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoulFreed>();
 
             NPC.timeLeft = 3600;

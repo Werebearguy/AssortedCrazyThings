@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items
 
         public override void MoreSetDefaults()
         {
-            frame2CounterCount = 4.0;
+            frame2CounterCount = 4;
             animatedTextureSelect = 1;
         }
 

@@ -29,6 +29,7 @@ namespace AssortedCrazyThings
         public static Texture2D[] sunPetTextures;
 
         //Soul item animated textures
+        public const int animatedSoulFrameCount = 6;
         public static Texture2D[] animatedSoulTextures;
 
         /// <summary>

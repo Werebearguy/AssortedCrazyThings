@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Items
 
         public override void MoreSetDefaults()
         {
-            frame2CounterCount = 8.0;
+            frame2CounterCount = 6;
             animatedTextureSelect = 0;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.autoReuse = true;

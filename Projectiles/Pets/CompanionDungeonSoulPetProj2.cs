@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             //I didnt change anything regarding ai, so this is a straight up clone of this https://terraria.gamepedia.com/Creeper_Egg
             DisplayName.SetDefault("Companion Soul");
-            Main.projFrames[Projectile.type] = 4;
+            Main.projFrames[Projectile.type] = 6;
             Main.projPet[Projectile.type] = true;
         }
 
@@ -77,7 +77,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 AssAI.FlickerwickPetAI(Projectile, reverseSide: true, vanityPet: true);
 
-                AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
+                AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 7);
             }
         }
     }
