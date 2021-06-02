@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.Base
                     x += -(100 + tex.Height) * direction;
                     y += 100 + tex.Width;
                     magnitude = (float)Math.Sqrt(x * x + y * y);
-                    magnitude = (tex.Height / 2) / magnitude;
+                    magnitude = tex.Height / 2 / magnitude;
                     drawPos.X += x * magnitude;
                     drawPos.Y += y * magnitude;
                 }
@@ -115,7 +115,7 @@ namespace AssortedCrazyThings.Base
                     x += -(30 + tex.Width / 2) * direction;
                     y += 30 + tex.Height / 2;
                     magnitude = (float)Math.Sqrt(x * x + y * y);
-                    magnitude = (tex.Height / 2) / magnitude;
+                    magnitude = tex.Height / 2 / magnitude;
                     drawPos.X += x * magnitude;
                     drawPos.Y += y * magnitude;
                 }

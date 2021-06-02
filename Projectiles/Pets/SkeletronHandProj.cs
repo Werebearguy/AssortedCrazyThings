@@ -58,9 +58,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(ref Color lightColor)
         {
-            AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", Projectile.Center, Projectile.GetOwner().Center, selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
+            Player player = Projectile.GetOwner();
+            AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", Projectile.Center, player.Center + new Vector2(0, player.gfxOffY), selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
 
-            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
             Texture2D image = Mod.GetTexture("Projectiles/Pets/SkeletronHandProj_" + mPlayer.skeletronHandType).Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
@@ -73,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawOrigin = bounds.Size() / 2;
             drawOrigin.Y += Projectile.height / 2;
 
-            float betweenX = Projectile.GetOwner().Center.X - Projectile.Center.X;
+            float betweenX = player.Center.X - Projectile.Center.X;
             SpriteEffects effects = betweenX < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);

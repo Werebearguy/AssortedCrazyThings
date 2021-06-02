@@ -57,9 +57,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(ref Color lightColor)
         {
-            AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHand_Arm", Projectile.Center, Projectile.GetOwner().Center, selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
+            Player player = Projectile.GetOwner();
+            AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHand_Arm", Projectile.Center, player.Center + new Vector2(0, player.gfxOffY), selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
 
-            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
             Texture2D image = Mod.GetTexture("Projectiles/Pets/SkeletronPrimeHandProj_" + mPlayer.skeletronPrimeHandType).Value;
             Rectangle bounds = new Rectangle();
             bounds.X = 0;
