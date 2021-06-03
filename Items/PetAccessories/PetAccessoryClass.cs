@@ -104,9 +104,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override void MoreAddRecipes()
         {
-            Recipe recipe = CreateRecipe(1);
+            Recipe recipe = Mod.CreateRecipe(ItemID.GoldenKey);
             recipe.AddIngredient(ModContent.ItemType<PetAccessorySwallowedKey>());
-            recipe.ReplaceResult(ItemID.GoldenKey);
             recipe.Register();
         }
     }
