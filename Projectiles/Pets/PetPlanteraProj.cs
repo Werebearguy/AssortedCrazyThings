@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         distanceToTargetVector *= 8f;
                         Projectile.velocity = (Projectile.velocity * (16f - 1) + distanceToTargetVector) / 16f;
 
-                        Projectile.rotation = (float)Math.Atan2(distanceToTargetVector.Y, distanceToTargetVector.X) + 1.57f;
+                        Projectile.rotation = distanceToTargetVector.ToRotation() + 1.57f;
                     }
                 }
 
@@ -252,7 +252,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             AssAI.ZephyrfishAI(Projectile, parent: Main.projectile[ParentIndex], velocityFactor: 1.5f + (Projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
             Vector2 between = Main.projectile[ParentIndex].Center - Projectile.Center;
             Projectile.spriteDirection = 1;
-            Projectile.rotation = (float)Math.Atan2(between.Y, between.X);
+            Projectile.rotation = between.ToRotation();
 
             AssAI.ZephyrfishDraw(Projectile, 3 + Main.rand.Next(3));
         }

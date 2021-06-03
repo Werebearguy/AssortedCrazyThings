@@ -157,7 +157,7 @@ namespace AssortedCrazyThings.Base
             vector2t.Normalize();
             position -= vector2t * (num1 * 0.5f);
 
-            float rotation = (float)Math.Atan2(vector2_4.Y, vector2_4.X) - 1.57f;
+            float rotation = vector2_4.ToRotation() - 1.57f;
             bool flag = true;
             if (float.IsNaN(position.X) && float.IsNaN(position.Y))
                 flag = false;

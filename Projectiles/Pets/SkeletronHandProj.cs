@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void PostAI()
         {
             Projectile.rotation = Projectile.velocity.X * -0.08f;
-            //projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f; 
+            //projectile.rotation = projectile.velocity.ToRotation() + 1.57f; 
         }
 
         public override bool PreDraw(ref Color lightColor)

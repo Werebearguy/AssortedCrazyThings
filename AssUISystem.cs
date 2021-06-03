@@ -88,6 +88,7 @@ namespace AssortedCrazyThings
                 PetVanityUI = null;
 
                 HarvesterEdgeUI.texture = null;
+                HarvesterEdgeUI.typeList = null;
                 EnhancedHunterUI.arrowTexture = null;
                 PetVanityUI.redCrossTexture = null;
                 CircleUI.UIConf = null;

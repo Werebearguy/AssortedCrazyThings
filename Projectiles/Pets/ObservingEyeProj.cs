@@ -51,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (Projectile.frame > 1) Projectile.frame = 0;
 
             Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
-            Projectile.rotation = (float)Math.Atan2(between.Y, between.X) + 1.57f;
+            Projectile.rotation = between.ToRotation() + 1.57f;
             Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
         }
     }

@@ -216,7 +216,7 @@ namespace AssortedCrazyThings.UI
                             type.Add(ltype);
                             bossHeadIndex.Add(lbossHeadIndex);
                             drawPos.Add(ldrawPos);
-                            drawRotation.Add((float)Math.Atan2(between.Y, between.X));
+                            drawRotation.Add(between.ToRotation());
                             drawLOS.Add(Collision.CanHitLine(Main.LocalPlayer.position, Main.LocalPlayer.width, Main.LocalPlayer.height, npc.position, npc.width, npc.height));
                         }
                     }

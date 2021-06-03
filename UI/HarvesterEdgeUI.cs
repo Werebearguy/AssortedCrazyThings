@@ -67,7 +67,6 @@ namespace AssortedCrazyThings.UI
                     if (!rectangle.Intersects(npc.getRect()))
                     {
                         Vector2 between = npc.Center - Main.LocalPlayer.Center;
-                        //you can also save a rotation here via Atan2 and then draw an arrow or similar
 
                         if (between.X == 0f) between.X = 0.0001f; //protection against division by zero
                         if (between.Y == 0f) between.Y = 0.0001f; //protection against NaN

@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
                 Dust dust = Dust.NewDustDirect(new Vector2(Projectile.Hitbox.X, Projectile.Hitbox.Y) - Vector2.Normalize(Projectile.velocity) * 40f, Projectile.Hitbox.Width, Projectile.Hitbox.Height, dustType, Projectile.velocity.X, Projectile.velocity.Y, 100, Color.White, 1.25f);
                 dust.noGravity = true;
             }
-            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 0.785f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + 0.785f;
             //projectile.rotation = 0;
         }
     }
