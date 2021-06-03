@@ -25,9 +25,6 @@ namespace AssortedCrazyThings
 {
     class AssortedCrazyThings : Mod
     {
-        //Sun pet textures
-        public static Texture2D[] sunPetTextures;
-
         //Soul item animated textures
         public const int animatedSoulFrameCount = 6;
         public static Texture2D[] animatedSoulTextures;
@@ -150,14 +147,6 @@ namespace AssortedCrazyThings
 
                 animatedSoulTextures[0] = GetTexture("Items/CaughtDungeonSoulAnimated").Value;
                 animatedSoulTextures[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated").Value;
-
-                sunPetTextures = new Texture2D[3];
-
-                for (int i = 0; i < sunPetTextures.Length; i++)
-                {
-                    sunPetTextures[i] = GetTexture("Projectiles/Pets/PetSunProj_" + i).Value;
-                    PremultiplyTexture(sunPetTextures[i]);
-                }
             }
         }
 
@@ -166,8 +155,6 @@ namespace AssortedCrazyThings
             if (!Main.dedServ && Main.netMode != NetmodeID.Server)
             {
                 animatedSoulTextures = null;
-
-                sunPetTextures = null;
 
                 PetEaterofWorldsBase.wormTypes = null;
 

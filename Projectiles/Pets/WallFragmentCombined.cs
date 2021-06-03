@@ -1,12 +1,25 @@
 using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public abstract class WallFragmentProj : ModProjectile
+    public abstract class WallFragmentProjBase : ModProjectile
     {
+        public sealed override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = 2;
+            Main.projPet[Projectile.type] = true;
+        }
+
+        public virtual void SafeSetStaticDefaults()
+        {
+
+        }
+
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.BabyEater);
@@ -36,36 +49,69 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Texture2D image = Mod.GetTexture("Projectiles/Pets/" + Name + "_" + mPlayer.wallFragmentType).Value;
+            Rectangle bounds = new Rectangle
+            {
+                X = 0,
+                Y = Projectile.frame,
+                Width = image.Bounds.Width,
+                Height = image.Bounds.Height / Main.projFrames[Projectile.type]
+            };
+            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2);
+
+            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+
+            return false;
+        }
     }
 
-    public class WallFragmentEye1 : WallFragmentProj
+    public class WallFragmentMouth : WallFragmentProjBase
     {
-        public override void SetStaticDefaults()
+        public override string Texture
         {
-            DisplayName.SetDefault("Wall Eye1");
-            Main.projFrames[Projectile.type] = 2;
-            Main.projPet[Projectile.type] = true;
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/WallFragmentMouth_0"; //temp
+            }
         }
 
-    }
-
-    public class WallFragmentEye2 : WallFragmentProj
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Wall Eye2");
-            Main.projFrames[Projectile.type] = 2;
-            Main.projPet[Projectile.type] = true;
-        }
-    }
-
-    public class WallFragmentMouth : WallFragmentProj
-    {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Wall Mouth");
-            Main.projFrames[Projectile.type] = 2;
-            Main.projPet[Projectile.type] = true;
+        }
+    }
+
+    public class WallFragmentEye1 : WallFragmentProjBase
+    {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/WallFragmentEye1_0"; //temp
+            }
+        }
+
+        public override void SafeSetStaticDefaults()
+        {
+            DisplayName.SetDefault("Wall Eye");
+        }
+    }
+
+    public class WallFragmentEye2 : WallFragmentEye1
+    {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/WallFragmentEye2_0"; //temp
+            }
         }
     }
 }

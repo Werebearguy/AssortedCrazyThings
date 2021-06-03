@@ -32,8 +32,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Projectile.CloneDefaults(ProjectileID.BabyGrinch);
             AIType = ProjectileID.BabyGrinch;
-            Projectile.width = 24; //40 for flying
-            Projectile.height = 38;
+            Projectile.width = 24;
+            Projectile.height = 40;
         }
 
         public override bool PreAI()

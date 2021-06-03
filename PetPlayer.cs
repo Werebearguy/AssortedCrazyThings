@@ -86,6 +86,9 @@ namespace AssortedCrazyThings
         //pet cultist texture
         public byte animatedTomeType = 0;
 
+        //pet wall of flesh texture
+        public byte wallFragmentType = 0;
+
         //ALTERNATE
         ////name pet texture
         //public byte classNameType = 0;
@@ -641,14 +644,14 @@ namespace AssortedCrazyThings
 
         public static CircleUIConf GetPetMoonConf()
         {
-            List<string> tooltips = new List<string>() { "Default", "Orange", "Green" }; //only 0, 1, 2 registered, 3 and 4 are event related
+            List<string> tooltips = new List<string>() { "Default", "Brown", "Ring", "Green", "White", "Green 2", "Pink", "Orange", "Purple", }; //9 10 11 are contextual
 
             return CircleUIHandler.PetConf("PetMoonProj", tooltips);
         }
 
         public static CircleUIConf GetYoungHarpyConf()
         {
-            List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove" };
+            List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove", "Default (Legacy)", "Eagle (Legacy)", "Raven (Legacy)", "Dove (Legacy)" };
 
             return CircleUIHandler.PetConf("YoungHarpyProj", tooltips);
         }
@@ -735,6 +738,13 @@ namespace AssortedCrazyThings
             List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow", "Spell" };
 
             return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
+        }
+
+        public static CircleUIConf GetWallFragmentConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Chinese" };
+
+            return CircleUIHandler.PetConf("WallFragmentMouth", tooltips);
         }
 
         //ALTERNATE
@@ -905,6 +915,14 @@ namespace AssortedCrazyThings
                 onUIEnd: () => animatedTomeType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
+                new CircleUIHandler(
+                triggerItem: ModContent.ItemType<VanitySelector>(),
+                condition: () => WallFragment,
+                uiConf: GetWallFragmentConf,
+                onUIStart: () => wallFragmentType,
+                onUIEnd: () => wallFragmentType = (byte)CircleUI.returned,
+                needsSaving: true
+            ),
             //ALTERNATE
             //    new CircleUIHandler(
             //    triggerItem: ModContent.ItemType<VanitySelector>(),
@@ -959,6 +977,7 @@ namespace AssortedCrazyThings
             skeletronPrimeHandType = ClonedTypes[index++];
             petCultistType = ClonedTypes[index++];
             animatedTomeType = ClonedTypes[index++];
+            wallFragmentType = ClonedTypes[index++];
             //ALTERNATE
             //classNameType = ClonedTypes[index++];
         }
@@ -991,6 +1010,7 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = skeletronPrimeHandType;
                 ClonedTypes[++index] = petCultistType;
                 ClonedTypes[++index] = animatedTomeType;
+                ClonedTypes[++index] = wallFragmentType;
                 //ALTERNATE
                 //ClonedTypes[++index] = classNameType;
             }

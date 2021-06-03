@@ -27,8 +27,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Projectile.CloneDefaults(ProjectileID.ZephyrFish);
             AIType = ProjectileID.ZephyrFish;
-            Projectile.width = 48;
-            Projectile.height = 32;
+            Projectile.width = 54;
+            Projectile.height = 30;
         }
 
         public override bool PreAI()
