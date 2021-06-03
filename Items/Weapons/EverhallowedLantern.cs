@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -131,19 +132,21 @@ namespace AssortedCrazyThings.Items.Weapons
             List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
             List<bool> unlocked = new List<bool>();
 
+            int firstValidProjType = -1;
             foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
             {
                 if (type != SoulType.None)
                 {
                     SoulData data = GetSoulData(type);
-                    assets.Add(Terraria.GameContent.TextureAssets.Projectile[data.ProjType]);
+                    firstValidProjType = data.ProjType;
+                    assets.Add(TextureAssets.Projectile[firstValidProjType]);
                     unlocked.Add(data.Unlocked());
                     tooltips.Add(data.Tooltip);
                     toUnlock.Add(data.ToUnlock);
                 }
             }
 
-            return new CircleUIConf(8, -1, assets, unlocked, tooltips, toUnlock);
+            return new CircleUIConf(firstValidProjType == -1 ? 0 : Main.projFrames[firstValidProjType], -1, assets, unlocked, tooltips, toUnlock);
         }
 
         /// <summary>
@@ -183,7 +186,7 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             //Defaults for damage, shoot and knockback dont matter too much here, only for the first summon
-            //default to PostWol
+            //default to PostWOF
             Item.damage = BaseDmg;
             Item.knockBack = BaseKB;
             Item.DamageType = DamageClass.Summon;

@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             defveloCatchUpIdle = 8f;
             defveloNoclip = 12f;
 
-            dustColor = 0;
+            dustColor = Terraria.ID.ItemID.PinkDye;
         }
     }
 }

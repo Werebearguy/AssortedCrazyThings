@@ -57,15 +57,11 @@ namespace AssortedCrazyThings.Items.Weapons
                 {
                     if (proj.owner == self.owner && proj.identity != self.identity)
                     {
-                        if (proj.ModProjectile != null && proj.ModProjectile is DroneBase)
+                        if (proj.ModProjectile is DroneBase drone && drone.IsCombatDrone)
                         {
-                            DroneBase drone = (DroneBase)proj.ModProjectile;
-                            if (drone.IsCombatDrone)
-                            {
-                                int minionPos = drone.MinionPos;
-                                min = Math.Min(min, minionPos);
-                                if (minionPos > slot) slot = minionPos;
-                            }
+                            int minionPos = drone.MinionPos;
+                            min = Math.Min(min, minionPos);
+                            if (minionPos > slot) slot = minionPos;
                         }
                     }
                 }
@@ -127,10 +123,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
         private static void PreSync(Projectile proj)
         {
-            if (proj.ModProjectile != null && proj.ModProjectile is DroneBase)
+            if (proj.ModProjectile is DroneBase drone && drone.IsCombatDrone)
             {
-                DroneBase drone = (DroneBase)proj.ModProjectile;
-                if (drone.IsCombatDrone) drone.MinionPos = GetSlotOfNextDrone(proj);
+                drone.MinionPos = GetSlotOfNextDrone(proj);
             }
         }
 

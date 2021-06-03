@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,6 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 {
     public abstract class CompanionDungeonSoulMinionBase : ModProjectile
     {
+        private float sinY;
         private int sincounter;
         public int dustColor;
         //more like an initializer (set minionSlots and timeLeft accordingly)
@@ -53,8 +55,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
         public sealed override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Spazmamini);
-            Projectile.width = 18; //14
-            Projectile.height = 28; //24
+            Projectile.width = 14;
+            Projectile.height = 24;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Summon;
@@ -96,17 +98,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             return true;
         }
 
-        //public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        //{
-        //    //if (target.immune[projectile.owner] == 10)
-        //    //{
-        //    //    projectile.usesLocalNPCImmunity = true;
-        //    //    projectile.localNPCImmunity[target.whoAmI] = 10;
-        //    //    target.immune[projectile.owner] = 8; //0
-        //    //    //immunity frame now 8 instead of 10 ticks long
-        //    //}
-        //}
-
         private void Draw()
         {
             if (AI_STATE == STATE_DASH)
@@ -128,14 +119,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
         public override void PostDraw(Color lightColor)
         {
-            float sinY = -10f;
-            if (Main.hasFocus)  //here since we override the AI, we can use the projectiles own frame and frameCounter in Draw()
-            {
-                Draw();
-                sincounter = sincounter > 120 ? 0 : sincounter + 1;
-                sinY = (float)((Math.Sin((sincounter / 120f) * MathHelper.TwoPi) - 1) * 10);
-            }
-
             lightColor = Projectile.GetAlpha(lightColor) * 0.99f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
@@ -147,16 +130,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                 lightColor = Projectile.GetAlpha(lightColor) * (Projectile.timeLeft / 120f);
             }
 
-            Lighting.AddLight(Projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
-
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = Mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/" + Name).Value;// Terraria.GameContent.TextureAssets.Projectile[projectile.type].Value;
+            Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
 
             AssPlayer mPlayer = Projectile.GetOwner().GetModPlayer<AssPlayer>();
-            if (mPlayer.soulSaviorArmor && Projectile.minionSlots == 1f)
-            {
-                image = Mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/" + Name + "_Empowered").Value;
-            }
             Rectangle bounds = new Rectangle
             {
                 X = 0,
@@ -166,46 +143,20 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             };
             bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
 
-            //Generate visual dust
-            if (Main.rand.NextFloat() < 0.02f)
-            {
-                Vector2 position = new Vector2(Projectile.position.X + Projectile.width / 2, Projectile.position.Y + Projectile.height / 2 + sinY);
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, 1f);
-                dust.noGravity = false;
-                dust.noLight = true;
-                dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
-
-                if (dustColor != 0)
-                {
-                    dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Projectile.GetOwner());
-                }
-            }
-
-            //Dust upon spawning
-            if (Projectile.localAI[0] < 60)
-            {
-                Vector2 position = new Vector2(Projectile.position.X + Projectile.width / 2, Projectile.position.Y + Projectile.height / 3 + sinY);
-                for (int i = 0; i < 1; i++)
-                {
-                    if (Main.rand.NextFloat() < (60 - Projectile.localAI[0]) / 360f)
-                    {
-                        Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, (60 - Projectile.localAI[0]) / 60f + 1f);
-                        dust.noGravity = false;
-                        dust.noLight = true;
-                        dust.fadeIn = Main.rand.NextFloat(0.2f);
-
-                        if (dustColor != 0)
-                        {
-                            dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), Projectile.GetOwner());
-                        }
-                    }
-                }
-                Projectile.localAI[0]++;
-            }
-
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 10f + sinY);
+            Vector2 origin = bounds.Size() / 2;
 
-            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
+            if (mPlayer.soulSaviorArmor && Projectile.minionSlots == 1f)
+            {
+                //Texture2D empoweredImage = Mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/CompanionDungeonSoul_Empowered").Value;
+                Texture2D empoweredImage = ModContent.GetTexture(Texture + "_Empowered").Value;
+
+                float addScale = (float)((Math.Sin((sincounter / 240f) * MathHelper.TwoPi) + 0.5f) * 0.1f);
+                Color color = Color.White * (0.1f + 3 * addScale);
+                Main.EntitySpriteDraw(empoweredImage, Projectile.position - Main.screenPosition + stupidOffset, bounds, color, Projectile.rotation, origin, Projectile.scale + 0.1f + addScale, effects, 0);
+            }
+
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -263,18 +214,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                 Projectile.timeLeft = 2;
             }
 
-            float distanceFromTarget = defdistanceFromTarget;
+            float distanceFromTargetSQ = defdistanceFromTarget * defdistanceFromTarget;
 
             float overlapVelo = 0.04f; //0.05
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 //fix overlap with other minions
-                if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].owner == Projectile.owner && Math.Abs(Projectile.position.X - Main.projectile[i].position.X) + Math.Abs(Projectile.position.Y - Main.projectile[i].position.Y) < Projectile.width)
+                Projectile other = Main.projectile[i];
+                if (i != Projectile.whoAmI && other.active && other.owner == Projectile.owner && Math.Abs(Projectile.position.X - other.position.X) + Math.Abs(Projectile.position.Y - other.position.Y) < Projectile.width)
                 {
-                    if (Projectile.position.X < Main.projectile[i].position.X) Projectile.velocity.X = Projectile.velocity.X - overlapVelo;
+                    if (Projectile.position.X < other.position.X) Projectile.velocity.X = Projectile.velocity.X - overlapVelo;
                     else Projectile.velocity.X = Projectile.velocity.X + overlapVelo;
 
-                    if (Projectile.position.Y < Main.projectile[i].position.Y) Projectile.velocity.Y = Projectile.velocity.Y - overlapVelo;
+                    if (Projectile.position.Y < other.position.Y) Projectile.velocity.Y = Projectile.velocity.Y - overlapVelo;
                     else Projectile.velocity.Y = Projectile.velocity.Y + overlapVelo;
                 }
             }
@@ -335,14 +287,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                         NPC npc = Main.npc[j];
                         if (npc.CanBeChasedBy())
                         {
-                            float between = Vector2.Distance(npc.Center, Projectile.Center);
-                            if (((Vector2.Distance(Projectile.Center, targetCenter) > between && between < distanceFromTarget) || !foundTarget) &&
+                            float betweenSQ = Projectile.DistanceSQ(npc.Center);
+                            if (((Projectile.DistanceSQ(targetCenter) > betweenSQ && betweenSQ < distanceFromTargetSQ) || !foundTarget) &&
                                 //EITHER HE CAN SEE IT, OR THE TARGET IS (default case: 14) TILES AWAY BUT THE MINION IS INSIDE A TILE
                                 //makes it so the soul can still attack if it dashed "through tiles"
                                 (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height) ||
-                                (between < defdistanceAttackNoclip/* && Collision.SolidCollision(projectile.position, projectile.width, projectile.height)*/)))
+                                (betweenSQ < defdistanceAttackNoclip/* && Collision.SolidCollision(projectile.position, projectile.width, projectile.height)*/)))
                             {
-                                distanceFromTarget = between;
+                                distanceFromTargetSQ = betweenSQ;
                                 targetCenter = npc.Center;
                                 targetIndex = j;
                                 foundTarget = true;
@@ -437,7 +389,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
                 if (AI_STATE == STATE_MAIN)
                 {
-                    if ((Projectile.ai[1] == 0f & foundTarget) && distanceFromTarget < defstartDashRange) //500f //DASH HERE YEEEEEEE
+                    if ((Projectile.ai[1] == 0f & foundTarget) && distanceFromTargetSQ < defstartDashRange * defstartDashRange) //500f //DASH HERE YEEEEEEE
                     {
                         Projectile.ai[1] = 1f;
                         if (Main.myPlayer == Projectile.owner)
@@ -450,6 +402,48 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
                             Projectile.velocity = value20 * defdashIntensity; //8f
                             Projectile.netUpdate = true;
                         }
+                    }
+                }
+            }
+
+            Draw();
+
+            Lighting.AddLight(Projectile.Center, new Vector3(0.15f, 0.15f, 0.35f));
+
+            sincounter = sincounter > 120 ? 0 : sincounter + 1;
+            sinY = (float)((Math.Sin((sincounter / 120f) * MathHelper.TwoPi) - 1) * 10);
+
+            //Generate visual dust
+            if (Main.rand.NextFloat() < 0.02f)
+            {
+                Vector2 position = new Vector2(Projectile.position.X + Projectile.width / 2, Projectile.position.Y + Projectile.height / 2 + sinY);
+                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, 1f);
+                dust.noGravity = false;
+                dust.noLight = true;
+                dust.fadeIn = Main.rand.NextFloat(0.8f, 1.1f);
+
+                if (dustColor != 0)
+                {
+                    dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), player);
+                }
+            }
+
+            //Dust upon spawning
+            if (Projectile.localAI[0] < 60)
+            {
+                Projectile.localAI[0]++;
+                Vector2 position = new Vector2(Projectile.position.X + Projectile.width / 2, Projectile.position.Y + Projectile.height / 3 + sinY);
+
+                if (Main.rand.NextFloat() < (60 - Projectile.localAI[0]) / 360f)
+                {
+                    Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-1.5f, -1f)), 200, Color.LightGray, (60 - Projectile.localAI[0]) / 60f + 1f);
+                    dust.noGravity = false;
+                    dust.noLight = true;
+                    dust.fadeIn = Main.rand.NextFloat(0.2f);
+
+                    if (dustColor != 0)
+                    {
+                        dust.shader = GameShaders.Armor.GetSecondaryShader((byte)GameShaders.Armor.GetShaderIdFromItemId(dustColor), player);
                     }
                 }
             }

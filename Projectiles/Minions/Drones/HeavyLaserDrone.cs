@@ -432,9 +432,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile proj = Main.projectile[i];
-                if (proj.active && proj.owner == Projectile.owner && proj.type == Projectile.type)
+                if (proj.active && proj.owner == Projectile.owner && proj.ModProjectile is HeavyLaserDrone h)
                 {
-                    HeavyLaserDrone h = (HeavyLaserDrone)proj.ModProjectile;
                     if (h.AI_STATE == STATE_CHARGE)
                     {
                         byte projPos = h.PosInCharge;

@@ -233,9 +233,8 @@ namespace AssortedCrazyThings
         /// </summary>
         private void PreSyncSoulTemp(Projectile proj)
         {
-            if (proj.ModProjectile != null && proj.ModProjectile is CompanionDungeonSoulMinionBase)
+            if (proj.ModProjectile is CompanionDungeonSoulMinionBase soul)
             {
-                CompanionDungeonSoulMinionBase soul = (CompanionDungeonSoulMinionBase)proj.ModProjectile;
                 soul.isTemp = true;
             }
         }
