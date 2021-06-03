@@ -207,53 +207,25 @@ namespace AssortedCrazyThings.Items.PetAccessories
     /// </summary>
     public class PetAccessory
     {
+        private static Dictionary<SlotType, List<PetAccessory>> petAccessoriesByType;
+        private static Dictionary<SlotType, List<int>> petAccessoryIdsByType;
+
+        /// <summary>
+        /// Look-up table where the key is item ID and it returns the corresponding PetAccessory
+        /// </summary>
+        private static Dictionary<int, PetAccessory> petAccessoriesByItem;
+
         /// <summary>
         /// Contains all pet vanity accessories
         /// </summary>
-        public static List<PetAccessory> petAccessoryListGlobal;
-        /// <summary>
-        /// Contains all pet vanity accessories of SlotType.Body
-        /// </summary>
-        public static List<PetAccessory> petAccessoryListB;
-        /// <summary>
-        /// Contains all pet vanity accessories of SlotType.Head
-        /// </summary>
-        public static List<PetAccessory> petAccessoryListH;
-        /// <summary>
-        /// Contains all pet vanity accessories of SlotType.Carried
-        /// </summary>
-        public static List<PetAccessory> petAccessoryListC;
-        /// <summary>
-        /// Contains all pet vanity accessories of SlotType.Accessory
-        /// </summary>
-        public static List<PetAccessory> petAccessoryListA;
-        /// <summary>
-        /// Contains IDs of pet vanity accessories of SlotType.Body
-        /// </summary>
-        public static List<int> petAccessoryIdsB;
-        /// <summary>
-        /// Contains IDs of pet vanity accessories of SlotType.Head
-        /// </summary>
-        public static List<int> petAccessoryIdsH;
-        /// <summary>
-        /// Contains IDs of pet vanity accessories of SlotType.Carried
-        /// </summary>
-        public static List<int> petAccessoryIdsC;
-        /// <summary>
-        /// Contains IDs of pet vanity accessories of SlotType.Accessory
-        /// </summary>
-        public static List<int> petAccessoryIdsA;
-        /// <summary>
-        /// Look-up table where the index is the ID and it returns the corresponding item type
-        /// </summary>
-        public static List<int> petAccessoryTypesGlobal;
+        private static List<PetAccessory> petAccessoryList;
 
         /// <summary>
         /// Unique ID for this accessory (unique in the scope of a single SlotType)
         /// </summary>
-        public byte ID { private set; get; }
+        public byte ID { private set; get; } //The internal ID of the accessory
         public string Name { private set; get; }
-        public int Type { private set; get; }
+        public int Type { private set; get; } //The item type associated with the accessory
         public SlotType Slot { private set; get; }
         private byte _color;
         /// <summary>
@@ -359,11 +331,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static void Load()
         {
-            petAccessoryListGlobal = new List<PetAccessory>();
-            petAccessoryListB = new List<PetAccessory>();
-            petAccessoryListH = new List<PetAccessory>();
-            petAccessoryListC = new List<PetAccessory>();
-            petAccessoryListA = new List<PetAccessory>();
+            petAccessoriesByType = new Dictionary<SlotType, List<PetAccessory>>();
+            petAccessoryIdsByType = new Dictionary<SlotType, List<int>>();
+            petAccessoriesByItem = new Dictionary<int, PetAccessory>();
+
+            petAccessoryList = new List<PetAccessory>();
+
             //-------------------------------------------------------------------
             //------------ADD PET ACCESSORY PROPERTIES HERE----------------------
             //-------------------------------------------------------------------
@@ -447,16 +420,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static void Unload()
         {
-            petAccessoryListGlobal = null;
-            petAccessoryListB = null;
-            petAccessoryListH = null;
-            petAccessoryListC = null;
-            petAccessoryListA = null;
-            petAccessoryIdsB = null;
-            petAccessoryIdsH = null;
-            petAccessoryIdsC = null;
-            petAccessoryIdsA = null;
-            petAccessoryTypesGlobal = null;
+            petAccessoriesByType = null;
+            petAccessoryIdsByType = null;
+            petAccessoriesByItem = null;
+
+            petAccessoryList = null;
         }
 
         /// <summary>
@@ -464,17 +432,18 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static void CreateMaps()
         {
-            petAccessoryIdsB = new List<int>(petAccessoryListB.Count);
-            petAccessoryIdsH = new List<int>(petAccessoryListH.Count);
-            petAccessoryIdsC = new List<int>(petAccessoryListC.Count);
-            petAccessoryIdsA = new List<int>(petAccessoryListA.Count);
-
             foreach (SlotType slotType in Enum.GetValues(typeof(SlotType)))
             {
                 if (slotType != SlotType.None)
                 {
-                    List<PetAccessory> tempAccessoryList = GetAccessoryListFromType(slotType);
-                    List<int> tempIdList = GetIdListFromType(slotType);
+                    List<PetAccessory> tempAccessoryList = petAccessoriesByType[slotType];
+
+                    if (!petAccessoryIdsByType.ContainsKey(slotType))
+                    {
+                        petAccessoryIdsByType[slotType] = new List<int>();
+                    }
+
+                    List<int> tempIdList = petAccessoryIdsByType[slotType];
                     for (int i = 0; i < tempAccessoryList.Count; i++)
                     {
                         tempIdList.Add(tempAccessoryList[i].ID);
@@ -482,53 +451,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
             }
 
-            petAccessoryTypesGlobal = new List<int>(petAccessoryListGlobal.Count); //because types are unique we use only one list
-            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            for (int i = 0; i < petAccessoryList.Count; i++)
             {
-                petAccessoryTypesGlobal.Add(petAccessoryListGlobal[i].Type);
-            }
-        }
-
-        /// <summary>
-        /// Returns the specific list that only contains pet vanity accessories of the specified SlotType
-        /// </summary>
-        private static List<PetAccessory> GetAccessoryListFromType(SlotType slotType)
-        {
-            switch (slotType)
-            {
-                case SlotType.Body:
-                    return petAccessoryListB;
-                case SlotType.Hat:
-                    return petAccessoryListH;
-                case SlotType.Carried:
-                    return petAccessoryListC;
-                case SlotType.Accessory:
-                    return petAccessoryListA;
-                case SlotType.None:
-                default:
-                    //unused
-                    return petAccessoryListGlobal;
-            }
-        }
-
-        /// <summary>
-        /// Returns a list that only contains IDs of pet vanity accessories of the specified SlotType
-        /// </summary>
-        private static List<int> GetIdListFromType(SlotType slotType)
-        {
-            switch (slotType)
-            {
-                case SlotType.Body:
-                    return petAccessoryIdsB;
-                case SlotType.Hat:
-                    return petAccessoryIdsH;
-                case SlotType.Carried:
-                    return petAccessoryIdsC;
-                case SlotType.Accessory:
-                    return petAccessoryIdsA;
-                case SlotType.None:
-                default:
-                    throw new Exception("Invalid slottype " + slotType);
+                PetAccessory petAccessory = petAccessoryList[i];
+                petAccessoriesByItem[petAccessory.Type] = petAccessory;
             }
         }
 
@@ -537,20 +463,28 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static void Add(SlotType slotType, PetAccessory aPetAccessory)
         {
-            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
+            for (int i = 0; i < petAccessoryList.Count; i++)
             {
-                if (petAccessoryListGlobal[i].Name == aPetAccessory.Name) throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
-                if (petAccessoryListGlobal[i].Slot == slotType && petAccessoryListGlobal[i].ID == aPetAccessory.ID)
-                    throw new Exception("ID '" + aPetAccessory.ID + "' in Slot '" + aPetAccessory.Slot.ToString() + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessoryListGlobal[i].Name + "'");
+                PetAccessory petAccessory = petAccessoryList[i];
+                if (petAccessory.Name == aPetAccessory.Name)
+                    throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
+
+                if (petAccessory.Slot == slotType && petAccessory.ID == aPetAccessory.ID)
+                    throw new Exception("ID '" + aPetAccessory.ID + "' in Slot '" + aPetAccessory.Slot.ToString() + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessory.Name + "'");
             }
 
             aPetAccessory.Slot = slotType;
             if (slotType == SlotType.None) throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
 
-            //everything fine
-            GetAccessoryListFromType(slotType).Add(aPetAccessory);
+            if (!petAccessoriesByType.ContainsKey(slotType))
+            {
+                petAccessoriesByType[slotType] = new List<PetAccessory>();
+            }
 
-            petAccessoryListGlobal.Add(aPetAccessory);
+            //everything fine
+            petAccessoriesByType[slotType].Add(aPetAccessory);
+
+            petAccessoryList.Add(aPetAccessory);
         }
 
         /// <summary>
@@ -559,27 +493,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static PetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
         {
-            return GetAccessoryListFromType(slotType)[GetIdListFromType(slotType).IndexOf(id)];
+            return petAccessoriesByType[slotType][petAccessoryIdsByType[slotType].IndexOf(id)];
         }
 
         /// <summary>
-        /// Returns the pet vanity accessory corresponding to the item type
+        /// Returns the pet vanity accessory corresponding to the item type.
         /// </summary>
-        public static PetAccessory GetAccessoryFromType(int type) //since item types are unique, just look up in the global list
+        public static bool TryGetAccessoryFromItemType(int type, out PetAccessory petAccessory) //since item types are unique, just look up in the global list
         {
-            return petAccessoryListGlobal[petAccessoryTypesGlobal.IndexOf(type)];
-        }
-
-        /// <summary>
-        /// Checks if the item is a registered PetVanity, and if it has multiple variants when attempting to open it as a UI
-        /// </summary>
-        public static bool IsItemAPetVanity(int type, bool forUI = false)
-        {
-            for (int i = 0; i < petAccessoryListGlobal.Count; i++)
-            {
-                if (petAccessoryListGlobal[i].Type == type && (forUI ? petAccessoryListGlobal[i].HasAlts : true)) return true;
-            }
-            return false;
+            petAccessoriesByItem.TryGetValue(type, out petAccessory);
+            return petAccessory != null;
         }
 
         public override string ToString()
@@ -637,9 +560,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (PetAccessory.IsItemAPetVanity(Item.type))
+            if (PetAccessory.TryGetAccessoryFromItemType(Item.type, out PetAccessory petAccessory))
             {
-                tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(PetAccessory.GetAccessoryFromType(Item.type).Slot)));
+                tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot)));
 
                 PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
@@ -650,7 +573,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 {
                     if (SlimePets.slimePets.Contains(projectile.type))
                     {
-                        if (SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(byte)PetAccessory.GetAccessoryFromType(Item.type).Slot])
+                        if (SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
                         {
                             tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                         }
@@ -689,7 +612,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override bool CanUseItem(Player player)
         {
             //item not registered
-            if (!PetAccessory.IsItemAPetVanity(Item.type)) return false;
+            if (!PetAccessory.TryGetAccessoryFromItemType(Item.type, out PetAccessory petAccessory)) return false;
 
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
             //no valid slime pet found
@@ -702,7 +625,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
             //if a left click and no alts, enable usage
-            else if (!PetAccessory.GetAccessoryFromType(Item.type).HasAlts) return true;
+            else if (!petAccessory.HasAlts) return true;
             //else disable (if it has alts when left clicked)
             return false;
         }
@@ -716,10 +639,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 return true;
             }
 
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+            if (player.whoAmI == Main.myPlayer && player.itemTime == 0 && PetAccessory.TryGetAccessoryFromItemType(Item.type, out PetAccessory petAccessory))
             {
-                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Item.type);
-
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
                 {

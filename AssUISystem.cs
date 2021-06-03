@@ -271,17 +271,19 @@ namespace AssortedCrazyThings
         /// </summary>
         private void UpdatePetVanityUI()
         {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
+            Player player = Main.LocalPlayer;
+            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+            PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 
-            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.IsItemAPetVanity(Main.LocalPlayer.HeldItem.type, forUI: true))
+            int itemType = player.HeldItem.type;
+            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.TryGetAccessoryFromItemType(itemType, out PetAccessory petAccessory))
             {
-                PetAccessory petAccessory = PetAccessory.GetAccessoryFromType(Main.LocalPlayer.HeldItem.type);
-                if (pPlayer.slimePetIndex != -1 &&
-                    Main.projectile[pPlayer.slimePetIndex].active &&
-                    Main.projectile[pPlayer.slimePetIndex].owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(Main.projectile[pPlayer.slimePetIndex].type) &&
-                    !SlimePets.GetPet(Main.projectile[pPlayer.slimePetIndex].type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                if (petAccessory.HasAlts &&
+                    pPlayer.slimePetIndex != -1 && Main.projectile[pPlayer.slimePetIndex] is Projectile projectile &&
+                    projectile.active &&
+                    projectile.owner == Main.myPlayer &&
+                    SlimePets.slimePets.Contains(projectile.type) &&
+                    !SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                 {
                     //Spawn UI
                     PetVanityUI.Start(petAccessory);
@@ -298,7 +300,7 @@ namespace AssortedCrazyThings
 
                         try
                         {
-                            SoundEngine.PlaySound(SoundID.Item1, Main.LocalPlayer.position);
+                            SoundEngine.PlaySound(SoundID.Item1, player.position);
                         }
                         catch
                         {
@@ -320,7 +322,7 @@ namespace AssortedCrazyThings
                     PetVanityUI.visible = false;
                 }
 
-                if (PetVanityUI.petAccessory.Type != Main.LocalPlayer.HeldItem.type) //cancel the UI when you switch items
+                if (PetVanityUI.petAccessory.Type != itemType) //cancel the UI when you switch items
                 {
                     PetVanityUI.returned = PetVanityUI.NONE;
                     PetVanityUI.visible = false;
