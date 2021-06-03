@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Young Wyvern");
-            Main.projFrames[Projectile.type] = 9;
+            Main.projFrames[Projectile.type] = 12;
             Main.projPet[Projectile.type] = true;
         }
 
@@ -119,7 +119,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             if (!InAir)
             {
                 //DESERT TIGER
-                int lastFrame = 8; //frame #8 is spinning, frame #9 is blank
+                int lastFrame = 8; //frame #8 onwards is flying
 
                 //if (fancy desert tigers)
                 //    lastFrame = 10;
@@ -161,8 +161,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
             else
             {
-                frameCounter = 0;
-                frame = 1;
+                Projectile.spriteDirection = (Projectile.velocity.X <= 0f).ToDirectionInt();
+
+                double counter = frameCounter;
+                AssExtensions.LoopAnimation(ref frame, ref counter, 6, 8, Main.projFrames[Projectile.type] - 1);
+                frameCounter = (int)counter;
             }
 
             Projectile.frame = frame;
