@@ -2,15 +2,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class DemonEyeMechanical : ModNPC
+    public class DemonEyeMechanical : DemonEyeRecolorBase
     {
-        private const int TotalNumberOfThese = 3;
+        public override int TotalNumberOfThese => 3;
 
         /*MG = 0
         * MP = 1
@@ -24,40 +22,9 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Mechanical Eye");
-            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
-        }
-
-        public override void SetDefaults()
-        {
-            NPC.CloneDefaults(NPCID.DemonEye);
-            NPC.width = 32;
-            NPC.height = 32;
-            NPC.damage = 18;
-            NPC.defense = 2;
-            NPC.lifeMax = 60;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.value = 75f;
-            NPC.knockBackResist = 0.5f;
-            NPC.aiStyle = 2;
-            AIType = NPCID.DemonEye;
-            AnimationType = NPCID.DemonEye;
-            Banner = Item.NPCtoBanner(NPCID.DemonEye);
-            BannerItem = Item.BannerToItem(Banner);
-        }
-
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return !NPC.downedMechBoss2 ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.025f;
-        }
-
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Lens, chanceDenominator: 33));
-            npcLoot.Add(ItemDropRule.Common(ItemID.BlackLens, chanceDenominator: 100));
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -87,31 +54,6 @@ namespace AssortedCrazyThings.NPCs
                         break;
                 }
             }
-        }
-
-        public float AiTexture
-        {
-            get
-            {
-                return NPC.ai[3];
-            }
-            set
-            {
-                NPC.ai[3] = value;
-            }
-        }
-
-        public override bool PreAI()
-        {
-            if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                AiTexture = Main.rand.Next(TotalNumberOfThese);
-
-                NPC.localAI[0] = 1;
-                NPC.netUpdate = true;
-            }
-
-            return true;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
