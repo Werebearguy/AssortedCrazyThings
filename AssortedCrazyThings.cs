@@ -106,7 +106,7 @@ namespace AssortedCrazyThings
             Array.Sort(AssUtils.isModdedWormBodyOrTail);
         }
 
-        private void LoadHarvesterSouls()
+        private void LoadHarvesterTypes()
         {
             harvesterTypes = new int[5];
             harvesterTypes[0] = ModContent.NPCType<Harvester1>();
@@ -116,7 +116,7 @@ namespace AssortedCrazyThings
             harvesterTypes[4] = harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
         }
 
-        private void UnloadHarvesterSouls()
+        private void UnloadHarvesterTypes()
         {
             harvesterTypes = null;
         }
@@ -124,19 +124,13 @@ namespace AssortedCrazyThings
         private void LoadPets()
         {
             SlimePets.Load();
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
-            {
-                PetAccessory.Load();
-            }
+            PetAccessory.Load();
         }
 
         private void UnloadPets()
         {
             SlimePets.Unload();
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
-            {
-                PetAccessory.Unload();
-            }
+            PetAccessory.Unload();
         }
 
         private void LoadMisc()
@@ -168,7 +162,7 @@ namespace AssortedCrazyThings
 
             LoadPets();
 
-            LoadHarvesterSouls();
+            LoadHarvesterTypes();
 
             LoadSoulBuffBlacklist();
 
@@ -181,7 +175,7 @@ namespace AssortedCrazyThings
 
             UnloadPets();
 
-            UnloadHarvesterSouls();
+            UnloadHarvesterTypes();
 
             UnloadMisc();
 
