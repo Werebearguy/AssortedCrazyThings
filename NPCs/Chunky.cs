@@ -1,5 +1,7 @@
 using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -37,9 +39,16 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Corruption.Chance * 0.2f;
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
+        }
+
         public override void OnKill()
         {
-            Item.NewItem(NPC.getRect(), ItemID.RottenChunk);
             if (Main.rand.NextBool(10))
             {
                 int i = NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y - 16, ModContent.NPCType<ChunkysEye>());
@@ -48,6 +57,11 @@ namespace AssortedCrazyThings.NPCs
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
                 }
             }
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk));
         }
     }
 }

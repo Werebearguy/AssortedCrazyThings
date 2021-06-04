@@ -21,6 +21,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             DisplayName.SetDefault(Harvester.name);
             Main.npcFrameCount[NPC.type] = 1;
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true //Hides this NPC from the Bestiary
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -1,5 +1,7 @@
 using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -42,9 +44,17 @@ namespace AssortedCrazyThings.NPCs
             else return 0f;
         }
 
-        public override void OnKill()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ModContent.ItemType<MiniMegalodonItem>());
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MiniMegalodonItem>()));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public override void HitEffect(int hitDirection, double damage)

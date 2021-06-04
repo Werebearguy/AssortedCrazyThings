@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -50,34 +53,50 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Ocean.Chance * 0.015f;
         }
 
-        public override void OnKill()
+        //public override void OnKill()
+        //{
+        //    int itemid = 0;
+
+        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+        //    {
+        //        AiTexture = Main.rand.Next(4);
+        //    }
+
+        //    switch ((int)AiTexture)
+        //    {
+        //        case 0:
+        //            itemid = ItemID.Gel;
+        //            break;
+        //        case 1:
+        //            itemid = ItemID.BlackInk;
+        //            break;
+        //        case 2:
+        //            itemid = ItemID.SharkFin;
+        //            break;
+        //        case 3:
+        //            itemid = ItemID.PinkGel;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    Item.NewItem(NPC.getRect(), itemid);
+        //}
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            int itemid = 0;
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.Gel));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.BlackInk));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.SharkFin));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.PinkGel));
+        }
 
-            if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-            {
-                AiTexture = Main.rand.Next(4);
-            }
-
-            switch ((int)AiTexture)
-            {
-                case 0:
-                    itemid = ItemID.Gel;
-                    break;
-                case 1:
-                    itemid = ItemID.BlackInk;
-                    break;
-                case 2:
-                    itemid = ItemID.SharkFin;
-                    break;
-                case 3:
-                    itemid = ItemID.PinkGel;
-                    break;
-                default:
-                    break;
-            }
-
-            Item.NewItem(NPC.getRect(), itemid);
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public float AiTexture

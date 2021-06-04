@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -40,11 +42,18 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.DungeonNormal.Chance * 0.005f;
         }
 
-        public override void OnKill()
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            Item.NewItem(NPC.getRect(), ItemID.SpellTome);
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.SpellTome));
+        }
 
         //golden dust particles on hit and passively spawning sparkles in the next two methods
         //make sure to do "using Microsoft.Xna.Framework;"

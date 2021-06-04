@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -76,12 +78,18 @@ namespace AssortedCrazyThings.NPCs
             return !NPC.downedBoss1 ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.025f;
         }
 
-        public override void OnKill()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.NextBool(33))
-                Item.NewItem(NPC.getRect(), ItemID.Lens, 1);
-            if (Main.rand.NextBool(100))
-                Item.NewItem(NPC.getRect(), ItemID.BlackLens, 1);
+            npcLoot.Add(ItemDropRule.Common(ItemID.Lens, chanceDenominator: 33));
+            npcLoot.Add(ItemDropRule.Common(ItemID.BlackLens, chanceDenominator: 100));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public override void HitEffect(int hitDirection, double damage)

@@ -1,10 +1,13 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    //TODO look into GoldCritterUICollectionInfoProvider
     public class GiantGrasshopperGold : ModNPC
     {
         public override void SetStaticDefaults()
@@ -34,9 +37,17 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.OverworldDaySlime.Chance * 0.001f;
         }
 
-        public override void OnKill()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ItemID.GoldGrasshopper, 1);
+            npcLoot.Add(ItemDropRule.Common(ItemID.GoldGrasshopper));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public override void HitEffect(int hitDirection, double damage)

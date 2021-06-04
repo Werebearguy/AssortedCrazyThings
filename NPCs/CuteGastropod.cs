@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,6 +37,14 @@ namespace AssortedCrazyThings.NPCs
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnConditionType.None, customFactor: !NPC.AnyNPCs(ModContent.NPCType<CuteGastropod>()) ? SpawnCondition.OverworldHallow.Chance * 0.045f : 0f);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
     }
 }

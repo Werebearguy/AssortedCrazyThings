@@ -1,5 +1,7 @@
 using AssortedCrazyThings.Base;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,7 +35,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Main.raining == true)
+            if (Main.raining)
             {
                 return SpawnCondition.TownWaterCritter.Chance * 0.8f;
             }
@@ -43,10 +45,18 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void OnKill()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ItemID.Worm, 2 + Main.rand.Next(7));
-            if (Main.rand.NextBool(100)) Item.NewItem(NPC.getRect(), ItemID.GoldWorm);
+            npcLoot.Add(ItemDropRule.Common(ItemID.GoldWorm, chanceDenominator: 100));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Worm, minimumDropped: 2, maximumDropped: 8));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public override void HitEffect(int hitDirection, double damage)

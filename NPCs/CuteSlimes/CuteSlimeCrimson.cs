@@ -1,3 +1,4 @@
+using Terraria.GameContent.Bestiary;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Terraria.ModLoader;
@@ -30,15 +31,15 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override bool IsFriendly
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            get
-            {
-                return false;
-            }
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
-        public override bool ShouldDropRandomItem
+        public override bool IsFriendly
         {
             get
             {

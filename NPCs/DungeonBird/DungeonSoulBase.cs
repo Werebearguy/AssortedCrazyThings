@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -333,6 +334,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 NPC.velocity.X = 0;
             }
         }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            //Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[AssortedCrazyThings.harvesterTypes[2]], quickUnlock: true);
+        }
     }
 
     //the one the harvester hunts for
@@ -343,6 +350,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             DisplayName.SetDefault("Dungeon Soul");
             Main.npcFrameCount[NPC.type] = 8;
             Main.npcCatchable[NPC.type] = true;
+
+            //Hide inert one, only display the freed one
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true //Hides this NPC from the Bestiary
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
         public override void MoreSetDefaults()
@@ -371,6 +385,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             NPC.timeLeft = 3600;
             fadeAwayMax = 3600;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            base.SetBestiary(database, bestiaryEntry);
+
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public override bool PreAI()

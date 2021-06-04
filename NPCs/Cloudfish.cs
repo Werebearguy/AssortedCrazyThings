@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -72,13 +75,20 @@ namespace AssortedCrazyThings.NPCs
         //    }
         //    return 0;
         //}
-        public override void OnKill()
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ItemID.Cloud, 10 + Main.rand.Next(20));
-            if (Main.rand.NextBool(10))
-                Item.NewItem(NPC.getRect(), ItemID.RainCloud, 10 + Main.rand.Next(20));
-            if (Main.rand.NextBool(15))
-                Item.NewItem(NPC.getRect(), ItemID.SnowCloudBlock, 10 + Main.rand.Next(20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Cloud, minimumDropped: 10, maximumDropped: 20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.RainCloud, chanceDenominator: 10, minimumDropped: 10, maximumDropped: 20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SnowCloudBlock, chanceDenominator: 15, minimumDropped: 10, maximumDropped: 20));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+				new FlavorTextBestiaryInfoElement("This fish inhabits only the highest cloud lakes.")
+            });
         }
 
         public override void AI()

@@ -1,6 +1,9 @@
+using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -45,20 +48,36 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.OverworldDaySlime.Chance * 0.001f;
         }
 
-        public override void OnKill()
+        //public override void OnKill()
+        //{
+        //    /*          public const short StrangePlant1 = 3385;
+        //                public const short StrangePlant2 = 3386;
+        //                public const short StrangePlant3 = 3387;
+        //                public const short StrangePlant4 = 3388;
+        //    */
+
+        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+        //    {
+        //        AiTexture = Main.rand.Next(4);
+        //    }
+
+        //    Item.NewItem(NPC.getRect(), 3385 + (int)AiTexture);
+        //}
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            /*          public const short StrangePlant1 = 3385;
-                        public const short StrangePlant2 = 3386;
-                        public const short StrangePlant3 = 3387;
-                        public const short StrangePlant4 = 3388;
-            */
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.StrangePlant1));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.StrangePlant2));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.StrangePlant3));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.StrangePlant4));
+        }
 
-            if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-            {
-                AiTexture = Main.rand.Next(4);
-            }
-
-            Item.NewItem(NPC.getRect(), 3385 + (int)AiTexture);
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public float AiTexture

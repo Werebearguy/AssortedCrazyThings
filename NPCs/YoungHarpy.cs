@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,6 +36,14 @@ namespace AssortedCrazyThings.NPCs
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return SpawnCondition.Sky.Chance * 0.05f;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
     }
 }

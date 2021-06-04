@@ -1,7 +1,10 @@
+using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -41,20 +44,40 @@ namespace AssortedCrazyThings.NPCs
             if (Main.hardMode) NPC.lifeMax = NPC.lifeMax * 2;
         }
 
-        public override void OnKill()
-        {
-            if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-            {
-                NPC.ai[1] = Main.rand.Next(1, 7);
-            }
+        //public override void OnKill()
+        //{
+        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+        //    {
+        //        NPC.ai[1] = Main.rand.Next(1, 7);
+        //    }
 
-            Item.NewItem(NPC.getRect(), ItemID.StoneBlock, Main.rand.Next(10, 31));
-            if (NPC.ai[1] <= 1) Item.NewItem(NPC.getRect(), ItemID.Amethyst, 1); //sorted by rarity
-            else if (NPC.ai[1] <= 2) Item.NewItem(NPC.getRect(), ItemID.Topaz, 1);
-            else if (NPC.ai[1] <= 3) Item.NewItem(NPC.getRect(), ItemID.Sapphire, 1);
-            else if (NPC.ai[1] <= 4) Item.NewItem(NPC.getRect(), ItemID.Emerald, 1);
-            else if (NPC.ai[1] <= 5) Item.NewItem(NPC.getRect(), ItemID.Ruby, 1);
-            else if (NPC.ai[1] <= 6) Item.NewItem(NPC.getRect(), ItemID.Diamond, 1);
+        //    Item.NewItem(NPC.getRect(), ItemID.StoneBlock, Main.rand.Next(10, 31));
+        //    if (NPC.ai[1] <= 1) Item.NewItem(NPC.getRect(), ItemID.Amethyst, 1); //sorted by rarity
+        //    else if (NPC.ai[1] <= 2) Item.NewItem(NPC.getRect(), ItemID.Topaz, 1);
+        //    else if (NPC.ai[1] <= 3) Item.NewItem(NPC.getRect(), ItemID.Sapphire, 1);
+        //    else if (NPC.ai[1] <= 4) Item.NewItem(NPC.getRect(), ItemID.Emerald, 1);
+        //    else if (NPC.ai[1] <= 5) Item.NewItem(NPC.getRect(), ItemID.Ruby, 1);
+        //    else if (NPC.ai[1] <= 6) Item.NewItem(NPC.getRect(), ItemID.Diamond, 1);
+        //}
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.StoneBlock, minimumDropped: 10, maximumDropped: 30));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.Amethyst));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.Topaz));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.Sapphire));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 4), ItemID.Emerald));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 5), ItemID.Ruby));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 6), ItemID.Diamond));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -134,7 +157,11 @@ namespace AssortedCrazyThings.NPCs
         {
             //base sprite is 80x66
             //hitbox is 18x40
-            Texture2D texture = Mod.GetTexture("NPCs/StoneSoldier_" + NPC.ai[1]).Value;
+            int tex = (int)NPC.ai[1];
+            if (tex <= 0 || tex > 6)
+                return;
+
+            Texture2D texture = Mod.GetTexture("NPCs/StoneSoldier_" + tex).Value;
             Vector2 stupidOffset = new Vector2(0f, -8f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);

@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -40,9 +42,17 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Underworld.Chance * 0.015f;
         }
 
-        public override void OnKill()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ItemID.Gel);
+            npcLoot.Add(ItemDropRule.Common(ItemID.Gel));
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
     }
 }

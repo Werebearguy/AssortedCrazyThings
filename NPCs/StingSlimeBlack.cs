@@ -1,5 +1,7 @@
 using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,9 +38,17 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.OverworldDayDesert.Chance * 0.2f;
         }
 
-        public override void OnKill()
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            Item.NewItem(NPC.getRect(), ItemID.Stinger);
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.Stinger));
         }
     }
 }

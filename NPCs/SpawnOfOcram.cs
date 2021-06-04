@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -50,12 +52,18 @@ namespace AssortedCrazyThings.NPCs
             return 0f;
         }
 
-        public override void OnKill()
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            {
-                Item.NewItem(NPC.getRect(), ItemID.Emerald);
-                if (Main.rand.NextBool(5)) Item.NewItem(NPC.getRect(), ModContent.ItemType<BabyOcramItem>());
-            }
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.Emerald));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BabyOcramItem>(), chanceDenominator: 5));
         }
 
         public override void HitEffect(int hitDirection, double damage)

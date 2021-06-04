@@ -1,9 +1,11 @@
+using Terraria.GameContent.Bestiary;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,15 +37,15 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override bool IsFriendly
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            get
-            {
-                return false;
-            }
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
-        public override bool ShouldDropRandomItem
+        public override bool IsFriendly
         {
             get
             {
@@ -64,10 +66,10 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             NPC.scale = 1.2f;
         }
 
-        public override void MoreNPCLoot(Rectangle pos)
+        public override void MoreModifyNPCLoot(NPCLoot npcLoot)
         {
-            int type = Main.rand.NextBool(7) ? ModContent.ItemType<PetAccessorySwallowedKey>() : ItemID.GoldenKey;
-            Item.NewItem(pos, type);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetAccessorySwallowedKey>(), chanceDenominator: 7)).
+                OnFailedRoll(ItemDropRule.Common(ItemID.GoldenKey));
         }
 
         public override bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)

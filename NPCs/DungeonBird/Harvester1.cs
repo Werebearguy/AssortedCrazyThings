@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
@@ -217,6 +218,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void AI()
         {
             HarvesterAI(allowNoclip: !restrictedSoulSearch);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            base.SetBestiary(database, bestiaryEntry);
+
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
     }
 }

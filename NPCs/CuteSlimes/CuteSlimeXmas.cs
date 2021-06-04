@@ -1,8 +1,10 @@
+using Terraria.GameContent.Bestiary;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -34,18 +36,17 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override bool ShouldDropRandomItem
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            get
-            {
-                return false;
-            }
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
-        public override void MoreNPCLoot(Rectangle pos)
+        public override void MoreModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.NextBool(5)) // a 1 in 5 chance
-                Item.NewItem(pos, ItemID.GiantBow);
+            npcLoot.Add(ItemDropRule.Common(ItemID.GiantBow, chanceDenominator: 5));
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)

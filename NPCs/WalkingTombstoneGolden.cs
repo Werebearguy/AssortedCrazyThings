@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -55,37 +58,54 @@ namespace AssortedCrazyThings.NPCs
             else return 0f;
         }
 
-        public override void OnKill()
+        //public override void OnKill()
+        //{
+        //    int itemid = 0;
+
+        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
+        //    {
+        //        AiTexture = Main.rand.Next(5);
+        //    }
+
+        //    switch ((int)AiTexture)
+        //    {
+        //        case 0:
+        //            itemid = ItemID.RichGravestone2;
+        //            break;
+        //        case 1:
+        //            itemid = ItemID.RichGravestone1;
+        //            break;
+        //        case 2:
+        //            itemid = ItemID.RichGravestone3;
+        //            break;
+        //        case 3:
+        //            itemid = ItemID.RichGravestone4;
+        //            break;
+        //        case 4:
+        //            itemid = ItemID.RichGravestone5;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    Item.NewItem(NPC.getRect(), itemid);
+        //}
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            int itemid = 0;
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
+        }
 
-            if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-            {
-                AiTexture = Main.rand.Next(5);
-            }
-
-            switch ((int)AiTexture)
-            {
-                case 0:
-                    itemid = ItemID.RichGravestone2;
-                    break;
-                case 1:
-                    itemid = ItemID.RichGravestone1;
-                    break;
-                case 2:
-                    itemid = ItemID.RichGravestone3;
-                    break;
-                case 3:
-                    itemid = ItemID.RichGravestone4;
-                    break;
-                case 4:
-                    itemid = ItemID.RichGravestone5;
-                    break;
-                default:
-                    break;
-            }
-
-            Item.NewItem(NPC.getRect(), itemid);
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.RichGravestone2));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.RichGravestone1));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.RichGravestone3));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.RichGravestone4));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.RichGravestone5));
         }
 
         public override void PostAI()

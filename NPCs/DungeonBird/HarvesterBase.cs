@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -1293,6 +1294,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             //HarvesterAI(allowNoclip: true);
             //if (transformServer) Transform(transformTo);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            //Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[AssortedCrazyThings.harvesterTypes[2]], quickUnlock: true);
         }
     }
 

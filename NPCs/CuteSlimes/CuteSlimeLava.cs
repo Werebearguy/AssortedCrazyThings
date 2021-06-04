@@ -1,3 +1,4 @@
+using Terraria.GameContent.Bestiary;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Microsoft.Xna.Framework;
@@ -33,15 +34,15 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override bool IsFriendly
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            get
-            {
-                return false;
-            }
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
         }
 
-        public override bool ShouldDropRandomItem
+        public override bool IsFriendly
         {
             get
             {

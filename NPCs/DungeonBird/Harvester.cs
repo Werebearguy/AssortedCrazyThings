@@ -6,10 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
-using Terraria.Chat;
+using Terraria.GameContent.Bestiary;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -204,8 +203,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
+                new FlavorTextBestiaryInfoElement("Text here.")
+            });
+        }
+
         public override void OnKill()
         {
+            //TODO bestiary drops
             Item.NewItem(NPC.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
             if (Main.rand.NextBool(10)) Item.NewItem(NPC.getRect(), ModContent.ItemType<SoulHarvesterMask>());
             Item.NewItem(NPC.getRect(), ModContent.ItemType<DesiccatedLeather>());
@@ -294,23 +302,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
             }
 
-            if (!AssWorld.downedHarvester)
-            {
-                AssWorld.downedHarvester = true;
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-                }
-            }
+            //if (!AssWorld.downedHarvester)
+            //{
+            //    AssWorld.downedHarvester = true;
+            //    if (Main.netMode == NetmodeID.Server)
+            //    {
+            //        NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+            //    }
+            //}
 
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Main.NewText(deathMessage, deathColor);
-            }
-            else if (Main.netMode == NetmodeID.Server)
-            {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(deathMessage), deathColor);
-            }
+            AssWorld.Message(deathMessage, deathColor);
         }
 
         private void SendConvertInertSoulsInventory()
