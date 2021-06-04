@@ -5,16 +5,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class StingSlimeOrangeItem : SimplePetItemBase
+    [LegacyName("StingSlimeBlackItem", "StingSlimeOrangeItem")]
+    public class StingSlimeItem : SimplePetItemBase
     {
-        public override int PetType => ModContent.ProjectileType<StingSlimeOrangeProj>();
+        public override int PetType => ModContent.ProjectileType<StingSlimeProj>();
 
-        public override int BuffType => ModContent.BuffType<StingSlimeOrangeBuff>();
+        public override int BuffType => ModContent.BuffType<StingSlimeBuff>();
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Sting Slime");
-            Tooltip.SetDefault("Summons a friendly orange Sting Slime to follow you");
+            Tooltip.SetDefault("Summons a friendly black Sting Slime to follow you");
         }
 
         public override void SafeSetDefaults()

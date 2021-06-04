@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    public class StingSlimeOrangeBuff : SimplePetBuffBase
+    public class StingSlimeBuff : SimplePetBuffBase
     {
-        public override int PetType => ModContent.ProjectileType<StingSlimeOrangeProj>();
+        public override int PetType => ModContent.ProjectileType<StingSlimeProj>();
 
-        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().StingSlimeOrange;
+        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().StingSlime;
 
         public override void SafeSetDefaults()
         {

@@ -68,6 +68,9 @@ namespace AssortedCrazyThings
         //ocean slime texture
         public byte oceanSlimeType = 0;
 
+        //sting slime texture
+        public byte stingSlimeType = 0;
+
         //queen larva texture
         public byte miniAntlionType = 0;
 
@@ -126,8 +129,7 @@ namespace AssortedCrazyThings
         public bool JoyousSlime = false;
         public bool MeatballSlime = false;
         public bool OceanSlime = false;
-        public bool StingSlimeBlack = false;
-        public bool StingSlimeOrange = false;
+        public bool StingSlime = false;
         public bool TurtleSlime = false;
         public bool Pigronata = false;
         public bool Abeemination = false;
@@ -207,8 +209,7 @@ namespace AssortedCrazyThings
             JoyousSlime = false;
             MeatballSlime = false;
             OceanSlime = false;
-            StingSlimeBlack = false;
-            StingSlimeOrange = false;
+            StingSlime = false;
             TurtleSlime = false;
             Pigronata = false;
             Abeemination = false;
@@ -698,6 +699,13 @@ namespace AssortedCrazyThings
             return CircleUIHandler.PetConf("OceanSlimeProj", tooltips);
         }
 
+        public static CircleUIConf GetStingSlimeConf()
+        {
+            List<string> tooltips = new List<string>() { "Black", "Orange" };
+
+            return CircleUIHandler.PetConf("StingSlimeProj", tooltips);
+        }
+
         public static CircleUIConf GetMiniAntlionConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Albino" };
@@ -864,6 +872,14 @@ namespace AssortedCrazyThings
                 uiConf: GetOceanSlimeConf,
                 onUIStart: () => oceanSlimeType,
                 onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned,
+                needsSaving: true
+            ),
+                new CircleUIHandler(
+                triggerItem: ModContent.ItemType<VanitySelector>(),
+                condition: () => StingSlime,
+                uiConf: GetStingSlimeConf,
+                onUIStart: () => stingSlimeType,
+                onUIEnd: () => stingSlimeType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
