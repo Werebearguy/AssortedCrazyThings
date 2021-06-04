@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Tiles
             if (closer && Main.tile[i, j].frameY < AnimationFrameHeight)
             {
                 Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = true;
-                //Main.SceneMetrics.HasCampfire = true;
+                Main.SceneMetrics.HasCampfire = true;
             }
         }
 
