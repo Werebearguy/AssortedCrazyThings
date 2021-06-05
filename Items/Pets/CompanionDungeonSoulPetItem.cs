@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Pets
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.DefaultToVanitypet(ModContent.ProjectileType<CompanionDungeonSoulPetProj>(), ModContent.BuffType<CompanionDungeonSoulPetBuff>());
             frame2CounterCount = 6;

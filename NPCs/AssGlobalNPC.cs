@@ -11,6 +11,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
+using AssortedCrazyThings.Items.Pets.CuteSlimes;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -32,98 +34,113 @@ namespace AssortedCrazyThings.NPCs
             shouldSoulDrop = false;
         }
 
-        public override void OnKill(NPC npc)
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             //Other pets
-
             if (npc.type == NPCID.Antlion || npc.type == NPCID.FlyingAntlion || npc.type == NPCID.WalkingAntlion)
             {
-                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), ModContent.ItemType<MiniAntlionItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MiniAntlionItem>(), chanceDenominator: 75));
             }
             else if (npc.type == NPCID.GoblinArcher || npc.type == NPCID.GoblinPeon || npc.type == NPCID.GoblinSorcerer || npc.type == NPCID.GoblinSummoner || npc.type == NPCID.GoblinThief || npc.type == NPCID.GoblinWarrior)
             {
-                if (Main.rand.NextBool(200)) Item.NewItem(npc.getRect(), ModContent.ItemType<GobletItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GobletItem>(), chanceDenominator: 200));
             }
             else if (npc.type == NPCID.DarkMummy || npc.type == NPCID.LightMummy || npc.type == NPCID.Mummy)
             {
-                if (Main.rand.NextBool(75)) Item.NewItem(npc.getRect(), ModContent.ItemType<LilWrapsItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LilWrapsItem>(), chanceDenominator: 75));
             }
             else if (npc.type == NPCID.RainbowSlime)
             {
-                if (Main.rand.NextBool(4)) Item.NewItem(npc.getRect(), ModContent.ItemType<RainbowSlimeItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RainbowSlimeItem>(), chanceDenominator: 4));
             }
             else if (npc.type == NPCID.IlluminantSlime)
             {
-                if (Main.rand.NextBool(100)) Item.NewItem(npc.getRect(), ModContent.ItemType<IlluminantSlimeItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IlluminantSlimeItem>(), chanceDenominator: 100));
             }
 
             //Boss pets
 
             else if (npc.type == NPCID.KingSlime)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PrinceSlimeItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrinceSlimeItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.EyeofCthulhu)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<ObservingEyeItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ObservingEyeItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.BrainofCthulhu)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<BrainofConfusionItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BrainofConfusionItem>(), chanceDenominator: 10));
             }
             else if (npc.boss && Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetEaterofWorldsItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetEaterofWorldsItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.QueenBee)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<QueenLarvaItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<QueenLarvaItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.SkeletronHead)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SkeletronHandItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SkeletronHandItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.WallofFlesh)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<WallFragmentItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WallFragmentItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.TheDestroyer)
             {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetDestroyerItem>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetDestroyerItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.SkeletronPrime)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SkeletronPrimeHandItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
+            {
+                LeadingConditionRule leadingConditionRule = new LeadingConditionRule(new Conditions.MissingTwin());
+                leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TinyTwinsItem>(), chanceDenominator: 10));
+                npcLoot.Add(leadingConditionRule);
+            }
+            else if (npc.type == NPCID.QueenSlimeBoss)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CuteSlimeQueenItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.Plantera)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetPlanteraItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.Golem)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetGolemHeadItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.DukeFishron)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetFishronItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.HallowBoss)
+            {
+                //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetEmpressItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.CultistBoss)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetCultistItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.MoonLordCore)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TrueObservingEyeItem>(), chanceDenominator: 10));
+            }
+        }
 
+        public override void OnKill(NPC npc)
+        {
+            if (npc.type == NPCID.TheDestroyer)
+            {
                 AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
                     condition: delegate (NPC n, Player player)
                     {
                         return !DroneController.AllUnlocked(player);
                     });
-            }
-            else if (npc.type == NPCID.SkeletronPrime)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<SkeletronPrimeHandItem>());
-            }
-            else if (npc.type == NPCID.Retinazer && !NPC.AnyNPCs(NPCID.Spazmatism) || npc.type == NPCID.Spazmatism && !NPC.AnyNPCs(NPCID.Retinazer))
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<TinyTwinsItem>());
-            }
-            else if (npc.type == NPCID.Plantera)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetPlanteraItem>());
-            }
-            else if (npc.type == NPCID.Golem)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetGolemHeadItem>());
-            }
-            else if (npc.type == NPCID.DukeFishron)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetFishronItem>());
-            }
-            else if (npc.type == NPCID.CultistBoss)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<PetCultistItem>());
-            }
-            else if (npc.type == NPCID.MoonLordCore)
-            {
-                if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<TrueObservingEyeItem>());
             }
 
             //Soul spawn from dead enemies while harvester alive

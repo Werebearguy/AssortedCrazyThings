@@ -23,9 +23,10 @@ namespace AssortedCrazyThings.Items.Pets
                                + "\nPet slot");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            base.SetDefaults();
+            base.SafeSetDefaults();
+
             Item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPetProj2>();
             Item.buffType = ModContent.BuffType<CompanionDungeonSoulPetBuff2>();
         }
