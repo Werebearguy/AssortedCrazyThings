@@ -9,15 +9,13 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Pink Slime");
-            DrawOffsetX = -18; //-18
-            //DrawOriginOffsetX = 0;
-            DrawOriginOffsetY = -21;
         }
 
         public override void SafeSetDefaults()
         {
-            Projectile.scale = 0.5f;
+            //Projectile.scale = 0.8f;
             Projectile.alpha = 75;
+            DrawOriginOffsetY = -21;
         }
     }
 }

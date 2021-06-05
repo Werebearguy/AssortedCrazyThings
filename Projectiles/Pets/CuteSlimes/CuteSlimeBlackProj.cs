@@ -9,14 +9,11 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Black Slime");
-            DrawOffsetX = -18; //-20
-            //DrawOriginOffsetX = 0;
-            DrawOriginOffsetY = -18; //-22
         }
 
         public override void SafeSetDefaults()
         {
-            Projectile.scale = 0.9f;
+            //Projectile.scale = 0.9f;
             Projectile.alpha = 75;
         }
     }

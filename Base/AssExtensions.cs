@@ -52,6 +52,34 @@ namespace AssortedCrazyThings.Base
 			}
 		}
 
+		public static void LoopAnimationInt(ref int frame, ref int frameCounter, int speed, int startFrame, int endFrame)
+		{
+			if (startFrame < 0)
+			{
+				startFrame = 0;
+			}
+
+			if (frame < startFrame)
+			{
+				frame = startFrame;
+			}
+			else if (frame > endFrame)
+			{
+				frame = endFrame;
+			}
+
+			frameCounter++;
+			if (frameCounter >= speed)
+			{
+				frameCounter = 0;
+				frame++;
+				if (frame > endFrame)
+				{
+					frame = startFrame;
+				}
+			}
+		}
+
 		/// <summary>
 		/// Loops through all frames in a set speed from top to bottom and repeats
 		/// </summary>
@@ -77,9 +105,7 @@ namespace AssortedCrazyThings.Base
 				endFrame = Main.projFrames[proj.type] - 1;
 			}
 
-			double counter = proj.frameCounter;
-			LoopAnimation(ref proj.frame, ref counter, speed, startFrame, endFrame);
-			proj.frameCounter = (int)counter;
+			LoopAnimationInt(ref proj.frame, ref proj.frameCounter, speed, startFrame, endFrame);
 		}
 
 		/// <summary>

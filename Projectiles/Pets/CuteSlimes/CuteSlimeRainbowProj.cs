@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 {
@@ -11,16 +12,13 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Rainbow Slime");
-            //moved offset to here just like the other slime girls
-            DrawOffsetX = -18; //-18
-            //DrawOriginOffsetX = -0;
-            DrawOriginOffsetY = -14; //-18 //28 //8
         }
 
         public override void SafeSetDefaults()
         {
             Projectile.scale = 1.2f;
             Projectile.alpha = 75;
+            DrawOriginOffsetY = -14;
         }
 
         public override bool MorePreDrawBaseSprite(Color lightColor, bool useNoHair)
@@ -34,8 +32,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Rectangle frameLocal = new Rectangle(0, frame2 * image.Height / 10, image.Width, image.Height / 10);
+            Texture2D image = (useNoHair ? SheetNoHairAssets : SheetAssets)[Projectile.type].Value;
+            Rectangle frameLocal = image.Frame(SheetCountX, SheetCountY, frameX, frameY);
             Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, 6f + DrawOriginOffsetY + 20f + Projectile.gfxOffY); //20f for offset pre-draw, idk how and why
             Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0f);
             return false;

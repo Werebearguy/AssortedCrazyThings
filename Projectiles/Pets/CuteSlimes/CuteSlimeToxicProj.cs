@@ -9,9 +9,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Cute Toxic Slime");
-            DrawOffsetX = -18;
-            //DrawOriginOffsetX = 0;
-            DrawOriginOffsetY = -16; //-20
         }
 
         public override void SafeSetDefaults()

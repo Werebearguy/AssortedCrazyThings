@@ -276,14 +276,14 @@ namespace AssortedCrazyThings
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 
             int itemType = player.HeldItem.type;
-            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.TryGetAccessoryFromItemType(itemType, out PetAccessory petAccessory))
+            if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.TryGetAccessoryFromItem(itemType, out PetAccessory petAccessory))
             {
                 if (petAccessory.HasAlts &&
                     pPlayer.slimePetIndex != -1 && Main.projectile[pPlayer.slimePetIndex] is Projectile projectile &&
                     projectile.active &&
                     projectile.owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(projectile.type) &&
-                    !SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                    SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet) &&
+                    !slimePet.IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                 {
                     //Spawn UI
                     PetVanityUI.Start(petAccessory);

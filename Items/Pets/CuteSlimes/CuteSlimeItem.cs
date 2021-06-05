@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
                     (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
                     projectile.active &&
                     projectile.owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(projectile.type))
+                    SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet))
                 {
                     //checks if this item is infact a pet slime summoning item
                     if (Item.shoot == projectile.type)
@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 
                             string tooltip = "";
 
-                            if (SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[slotNumber])
+                            if (slimePet.IsSlotTypeBlacklisted[slotNumber])
                             {
                                 tooltip = "Blacklisted";
                             }

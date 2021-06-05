@@ -163,9 +163,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 Projectile.spriteDirection = (Projectile.velocity.X <= 0f).ToDirectionInt();
 
-                double counter = frameCounter;
-                AssExtensions.LoopAnimation(ref frame, ref counter, 6, 8, Main.projFrames[Projectile.type] - 1);
-                frameCounter = (int)counter;
+                AssExtensions.LoopAnimationInt(ref frame, ref frameCounter, 6, 8, Main.projFrames[Projectile.type] - 1);
             }
 
             Projectile.frame = frame;

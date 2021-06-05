@@ -259,10 +259,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// For UI only, the _Draw{number} stuff is done manually
         /// </summary>
         public List<Texture2D> AltTextures { private set; get; }
-        /// <summary>
-        /// The number in _Draw{number}
-        /// </summary>
-        public List<sbyte> PetVariations { private set; get; }
 
         public PetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
         {
@@ -294,36 +290,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 AltTextures.Add(AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
             }
-
-            //fill list with zeroes
-            PetVariations = new List<sbyte>(SlimePets.slimePets.Count);
-            for (int i = 0; i < SlimePets.slimePets.Count; i++) PetVariations.Add(0);
-        }
-
-        /// <summary>
-        /// Shorter overload of AddPetVariation that takes a list
-        /// </summary>
-        public PetAccessory AddPetVariation(string[] petNames, sbyte number)
-        {
-            for (int i = 0; i < petNames.Length; i++)
-            {
-                AddPetVariation(petNames[i], number);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a color variation for the current pet vanity accessory.
-        /// -1: Accessory won't be drawn.
-        /// 0 (default): Use default texture.
-        /// 1..127: Use texture specified by _Draw{number}
-        /// </summary>
-        public PetAccessory AddPetVariation(string petName, sbyte number)
-        {
-            string name = "CuteSlime" + petName + "Proj";
-            int type = AssUtils.Instance.Find<ModProjectile>(name).Type;
-            PetVariations[SlimePets.slimePets.IndexOf(type)] = number;
-            return this;
         }
 
         /// <summary>
@@ -371,39 +337,26 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
             Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" })
-                 .AddPetVariation("Xmas", 1)
-                 );
+            Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
 
             //HAT SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
-            Add(SlotType.Hat, new PetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" })
-                .AddPetVariation("Pink", 1)
-                .AddPetVariation("Yellow", 2)
-                .AddPetVariation("Dungeon", 3)
-                );
+            Add(SlotType.Hat, new PetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
             Add(SlotType.Hat, new PetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", offsetY: -2f, useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" })
-                .AddPetVariation("Green", 1)
-                .AddPetVariation("Jungle", 2)
-                .AddPetVariation("Xmas", 3)
-                );
-            Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", offsetY: -14f, alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
-            Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", offsetY: -10f, useNoHair: true)
-                .AddPetVariation(new string[] { "Black", "Corrupt", "Dungeon", "Purple", "Toxic" }, 1)
-                .AddPetVariation("Pink", 2)
-                );
-            Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", offsetY: -4f, useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
-            Add(SlotType.Hat, new PetAccessory(id: 7, name: "BunnyEars", preDraw: true, offsetY: -12f));
-            Add(SlotType.Hat, new PetAccessory(id: 8, name: "Tophat", offsetY: -8f));
+            Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
+            Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", useNoHair: true));
+            Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+            Add(SlotType.Hat, new PetAccessory(id: 7, name: "BunnyEars", preDraw: true));
+            Add(SlotType.Hat, new PetAccessory(id: 8, name: "Tophat"));
 
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
             Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
-            Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", offsetX: -4f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", offsetX: -8f, preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
+            Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
             Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
 
             //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
@@ -499,10 +452,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// <summary>
         /// Returns the pet vanity accessory corresponding to the item type.
         /// </summary>
-        public static bool TryGetAccessoryFromItemType(int type, out PetAccessory petAccessory) //since item types are unique, just look up in the global list
+        public static bool TryGetAccessoryFromItem(int type, out PetAccessory petAccessory) //since item types are unique, just look up in the global list
         {
-            petAccessoriesByItem.TryGetValue(type, out petAccessory);
-            return petAccessory != null;
+            return petAccessoriesByItem.TryGetValue(type, out petAccessory);
         }
 
         public override string ToString()
@@ -560,7 +512,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (PetAccessory.TryGetAccessoryFromItemType(Item.type, out PetAccessory petAccessory))
+            if (PetAccessory.TryGetAccessoryFromItem(Item.type, out PetAccessory petAccessory))
             {
                 tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot)));
 
@@ -571,9 +523,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     projectile.active &&
                     projectile.owner == Main.myPlayer)
                 {
-                    if (SlimePets.slimePets.Contains(projectile.type))
+                    if (SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet))
                     {
-                        if (SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
+                        if (slimePet.IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
                         {
                             tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                         }
@@ -612,7 +564,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override bool CanUseItem(Player player)
         {
             //item not registered
-            if (!PetAccessory.TryGetAccessoryFromItemType(Item.type, out PetAccessory petAccessory)) return false;
+            if (!PetAccessory.TryGetAccessoryFromItem(Item.type, out PetAccessory petAccessory)) return false;
 
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
             //no valid slime pet found
@@ -620,7 +572,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
                 projectile.active &&
                 projectile.owner == Main.myPlayer &&
-                SlimePets.slimePets.Contains(projectile.type))) return false;
+                SlimePets.TryGetPetFromProj(projectile.type, out _))) return false;
 
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
@@ -639,7 +591,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 return true;
             }
 
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0 && PetAccessory.TryGetAccessoryFromItemType(Item.type, out PetAccessory petAccessory))
+            if (player.whoAmI == Main.myPlayer && player.itemTime == 0 && PetAccessory.TryGetAccessoryFromItem(Item.type, out PetAccessory petAccessory))
             {
                 bool shouldReset = false;
                 if (player.altFunctionUse == 2) //right click use
@@ -655,7 +607,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
                     projectile.active &&
                     projectile.owner == Main.myPlayer &&
-                    SlimePets.slimePets.Contains(projectile.type))
+                    SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet))
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
@@ -681,7 +633,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                         }
                         else if (player.altFunctionUse != 2)
                         {
-                            if (!SlimePets.GetPet(projectile.type).IsSlotTypeBlacklisted[(int)petAccessory.Slot])
+                            if (!slimePet.IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                             {
                                 pPlayer.ToggleAccessory(petAccessory);
                             }

@@ -16,9 +16,9 @@ namespace AssortedCrazyThings.Base
         internal static List<SlimePet> slimePetList;
 
         /// <summary>
-        /// slimePets.IndexOf(type) returns the indexed type
+        /// Look-up table where the key is proj ID and it returns the corresponding SlimePet
         /// </summary>
-        public static List<int> slimePets;
+        private static Dictionary<int, SlimePet> slimePetsByProj;
 
         /// <summary>
         /// For the Cute Slime Statue, non-biome ones only
@@ -145,7 +145,7 @@ namespace AssortedCrazyThings.Base
         public static void Load()
         {
             slimePetList = new List<SlimePet>();
-            slimePets = new List<int>(); //slimePets.IndexOf(type) returns the indexed type
+            slimePetsByProj = new Dictionary<int, SlimePet>();
             //in all these lists, insert stuff in alphabetic order please
 
             Array enumArray = Enum.GetValues(typeof(SpawnConditionType));
@@ -176,106 +176,95 @@ namespace AssortedCrazyThings.Base
             };
 
             //start list
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeBlackProj",
-                hasNoHair: true
+                name: "CuteSlimeBlackProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeBlueProj",
-                hasNoHair: true
+                name: "CuteSlimeBlueProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeCorruptProj",
-                hasNoHair: true
+                name: "CuteSlimeCorruptProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeCrimsonProj",
-                hasNoHair: true
+                name: "CuteSlimeCrimsonProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeDungeonProj",
-                hasNoHair: true
+                name: "CuteSlimeDungeonProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeGreenProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIceProj",
-                hasNoHair: true
+                name: "CuteSlimeIceProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIlluminantProj",
-                hasNoHair: true
+                name: "CuteSlimeIlluminantProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeLavaProj",
-                hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Hat
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeJungleProj",
-                hasNoHair: true
+                name: "CuteSlimeJungleProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimePrincessProj",
-                hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Hat
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePurpleProj",
-                hasNoHair: true
+                name: "CuteSlimePurpleProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePinkProj",
-                hasNoHair: true
+                name: "CuteSlimePinkProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
+            (
+                name: "CuteSlimeQueenProj",
+                postAdditionSlot: (byte)SlotType.Hat
+            ));
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeRainbowProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeRedProj",
-                hasNoHair: true
+                name: "CuteSlimeRedProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeSandProj",
-                hasNoHair: true
+                name: "CuteSlimeSandProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeToxicProj"
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeXmasProj",
-                hasNoHair: true,
                 postAdditionSlot: (byte)SlotType.Body,
                 carried: true,
                 accessory: true
             ));
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeYellowProj",
-                hasNoHair: true
+                name: "CuteSlimeYellowProj"
             ));
 
             /*
-            slimePetList.Add(SlimePet.NewSlimePet
+            Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeColorProj",
                 hasNoHair: false,
@@ -304,6 +293,18 @@ namespace AssortedCrazyThings.Base
             CreateMap();
         }
 
+        public static void Add(SlimePet aSlimePet)
+        {
+            for (int i = 0; i < slimePetList.Count; i++)
+            {
+                SlimePet petAccessory = slimePetList[i];
+                if (petAccessory.Name == aSlimePet.Name)
+                    throw new Exception("Added Pet '" + aSlimePet.Name + "' already exists");
+            }
+
+            slimePetList.Add(aSlimePet);
+        }
+
         public static void PostSetup()
         {
             int actcount = 0;
@@ -328,8 +329,8 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static void Unload()
         {
-            slimePets = null;
             slimePetList = null;
+            slimePetsByProj = null;
             slimePetNPCsEnumToNames = null;
             spawnIncreaseBasedOnOtherModNPCs = 0f;
         }
@@ -339,19 +340,19 @@ namespace AssortedCrazyThings.Base
         /// </summary>
         public static void CreateMap()
         {
-            slimePets = new List<int>(slimePetList.Count);
             for (int i = 0; i < slimePetList.Count; i++)
             {
-                slimePets.Add(slimePetList[i].Type);
+                SlimePet slimePet = slimePetList[i];
+                slimePetsByProj[slimePet.Type] = slimePet;
             }
         }
 
         /// <summary>
         /// Used to access the slime pet from just the projectile type
         /// </summary>
-        public static SlimePet GetPet(int type)
+        public static bool TryGetPetFromProj(int type, out SlimePet slimePet)
         {
-            return slimePetList[slimePets.IndexOf(type)];
+            return slimePetsByProj.TryGetValue(type, out slimePet);
         }
     }
 
@@ -378,17 +379,15 @@ namespace AssortedCrazyThings.Base
     {
         public string Name { private set; get; }
         public int Type { private set; get; }
-        public bool HasNoHair { private set; get; }
         public byte PreAdditionSlot { private set; get; }
         public byte PostAdditionSlot { private set; get; }
         public bool[] IsSlotTypeBlacklisted { private set; get; }
 
-        public SlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0, List<bool> isSlotTypeBlacklisted = null)
+        public SlimePet(string name, byte preAdditionSlot = 0, byte postAdditionSlot = 0, List<bool> isSlotTypeBlacklisted = null)
         {
             Name = name;
             Type = AssUtils.Instance.Find<ModProjectile>(name).Type;
             if (Type == 0) throw new Exception("Pet projectile called '" + name + "' doesn't exist, are you sure you spelled it correctly?");
-            HasNoHair = hasNoHair;
             PreAdditionSlot = preAdditionSlot;
             PostAdditionSlot = postAdditionSlot;
 
@@ -399,7 +398,7 @@ namespace AssortedCrazyThings.Base
                 else
                 {
                     IsSlotTypeBlacklisted = new bool[5];
-                    IsSlotTypeBlacklisted[0] = false; //maybe for later
+                    IsSlotTypeBlacklisted[(int)SlotType.None] = false; //maybe for later
                     IsSlotTypeBlacklisted[1] = isSlotTypeBlacklisted[0];
                     IsSlotTypeBlacklisted[2] = isSlotTypeBlacklisted[1];
                     IsSlotTypeBlacklisted[3] = isSlotTypeBlacklisted[2];
@@ -415,19 +414,18 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// "Sort of" constructor, compresses each blacklist field into a list
         /// </summary>
-        public static SlimePet NewSlimePet(string name, bool hasNoHair = false, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
+        public static SlimePet NewSlimePet(string name, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
             bool body = false, bool hat = false, bool carried = false, bool accessory = false)
         {
             List<bool> isSlotTypeBlacklisted = new List<bool>() { body, hat, carried, accessory };
 
-            return new SlimePet(name, hasNoHair, preAdditionSlot, postAdditionSlot, isSlotTypeBlacklisted);
+            return new SlimePet(name, preAdditionSlot, postAdditionSlot, isSlotTypeBlacklisted);
         }
 
         public override string ToString()
         {
             return "Name: " + Name
                 + "; Type: " + Type
-                + "; HasNoHair: " + (HasNoHair ? "y" : "n")
                 + "; PreAdditionSlot: " + ((SlotType)PreAdditionSlot).ToString()
                 + "; PostAdditionSlot: " + ((SlotType)PostAdditionSlot).ToString();
         }
