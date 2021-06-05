@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             frame2CounterCount = 6;
             animatedTextureSelect = 0;

@@ -19,10 +19,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
-                Position = new Vector2(12, 40f),
-                PortraitPositionXOverride = 0,
-                PortraitPositionYOverride = 0,
-                SpriteDirection = 1
+                Hide = true //Only main boss shows
             });
         }
 
@@ -455,16 +452,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void AI()
         {
             HarvesterAI(allowNoclip: !restrictedSoulSearch);
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            base.SetBestiary(database, bestiaryEntry);
-
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-                new FlavorTextBestiaryInfoElement("Text here.")
-            });
         }
     }
 }

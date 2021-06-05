@@ -32,14 +32,6 @@ namespace AssortedCrazyThings.NPCs
             return 0f;
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                new FlavorTextBestiaryInfoElement("Text here.")
-            });
-        }
-
         public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life <= 0)

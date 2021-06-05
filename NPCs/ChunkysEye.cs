@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("A minion of Cthulhu that was trapped in the Corruption. It now seeks its lost little brother.")
             });
         }
     }

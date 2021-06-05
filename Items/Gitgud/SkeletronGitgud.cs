@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             DisplayName.SetDefault("Carton of Soy Milk");
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 32;
             Item.height = 32;

@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Having accidentally gotten impaled by a chunk of obsidian, this slime laments being unable to remove it.")
             });
         }
 
@@ -58,7 +58,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             NPC.lavaImmune = true;
         }

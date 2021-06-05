@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Projectile.width = 24;
             Projectile.height = 18;

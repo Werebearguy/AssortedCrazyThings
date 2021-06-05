@@ -40,11 +40,11 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("The greatest gift is a friend. This slime wants to bring that gift to everyone.")
             });
         }
 
-        public override void MoreModifyNPCLoot(NPCLoot npcLoot)
+        public override void SafeModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.GiantBow, chanceDenominator: 5));
         }

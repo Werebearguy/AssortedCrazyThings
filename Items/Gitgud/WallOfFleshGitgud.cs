@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             DisplayName.SetDefault("Wall of Flesh Voodoo Doll");
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 32;
             Item.height = 32;

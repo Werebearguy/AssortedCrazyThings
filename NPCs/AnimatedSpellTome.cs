@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Master wizards need not look for a specific tome; it will find them when needed.")
             });
         }
 

@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Though it looks like it has an unstable mind, this slime is incredibly calm and collected.")
             });
         }
 
@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             NPC.scale = 1.2f;
         }

@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.NPCs
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Animate stone statues that have wandered from an ancient tomb. Their eyes are valuable.")
             });
         }
 

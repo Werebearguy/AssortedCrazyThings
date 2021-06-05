@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items
         //    }
         //}
 
-        public override void SetDefaults()
+        public sealed override void SetDefaults()
         {
             Item.width = 14;
             Item.height = 24;
@@ -31,10 +31,10 @@ namespace AssortedCrazyThings.Items
             Item.rare = -11;
             Item.color = Color.White;
 
-            MoreSetDefaults();
+            SafeSetDefaults();
         }
 
-        public virtual void MoreSetDefaults()
+        public virtual void SafeSetDefaults()
         {
 
         }

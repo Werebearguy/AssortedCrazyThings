@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.")
             });
         }
 
@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             NPC.scale = 1.2f;
         }

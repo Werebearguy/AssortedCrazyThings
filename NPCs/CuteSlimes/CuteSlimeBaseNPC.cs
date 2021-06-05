@@ -1,10 +1,7 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System.IO;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,10 +37,12 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             DisplayName.SetDefault(IngameName);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
             Main.npcCatchable[NPC.type] = true;
-            MoreSetStaticDefaults();
+            NPCID.Sets.CountsAsCritter[NPC.type] = true;
+
+            SafeSetStaticDefaults();
         }
 
-        public virtual void MoreSetStaticDefaults()
+        public virtual void SafeSetStaticDefaults()
         {
 
         }
@@ -76,7 +75,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             NPC.alpha = 75;
             NPC.catchItem = (short)CatchItem;
 
-            MoreSetDefaults();
+            SafeSetDefaults();
 
             // Slime AI breaks with big enough height when it jumps against a low ceiling
             // then glitches into the ground
@@ -86,7 +85,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public virtual void MoreSetDefaults()
+        public virtual void SafeSetDefaults()
         {
 
         }
@@ -108,20 +107,20 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 npcLoot.Add(ItemDropRule.Common(ItemID.Gel));
             }
 
-            MoreModifyNPCLoot(npcLoot);
+            SafeModifyNPCLoot(npcLoot);
         }
 
-        public virtual void MoreModifyNPCLoot(NPCLoot npcLoot)
+        public virtual void SafeModifyNPCLoot(NPCLoot npcLoot)
         {
 
         }
 
         public sealed override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            return MorePreDraw(spriteBatch, drawColor);
+            return SafePreDraw(spriteBatch, drawColor);
         }
 
-        public virtual bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public virtual bool SafePreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             return true;
         }

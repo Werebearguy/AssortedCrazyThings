@@ -21,6 +21,23 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public static int wid = 34; //24
         public static int hei = 38;
 
+        public sealed override void SetStaticDefaults()
+        {
+            //Hide inert one, only display the freed one
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true //Hides this NPC from the Bestiary
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
+            SafeSetStaticDefaults();
+        }
+
+        public virtual void SafeSetStaticDefaults()
+        {
+
+        }
+
         public override void SetDefaults()
         {
             //adjust stats here to match harvester hitbox 1:1, then do findframes in postdraw
@@ -46,10 +63,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.color = new Color(0, 0, 0, 50);
             NPC.timeLeft = SoulActiveTime;
             NPC.direction = 1;
-            MoreSetDefaults();
+            SafeSetDefaults();
         }
 
-        public virtual void MoreSetDefaults()
+        public virtual void SafeSetDefaults()
         {
 
         }
@@ -334,32 +351,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 NPC.velocity.X = 0;
             }
         }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            //Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[AssortedCrazyThings.harvesterTypes[2]], quickUnlock: true);
-        }
     }
 
     //the one the harvester hunts for
     public class DungeonSoul : DungeonSoulBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Dungeon Soul");
             Main.npcFrameCount[NPC.type] = 8;
             Main.npcCatchable[NPC.type] = true;
-
-            //Hide inert one, only display the freed one
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                Hide = true //Hides this NPC from the Bestiary
-            };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             frameCount = 6;
             NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoul>();
@@ -371,30 +375,20 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     //the one that gets converted into
     public class DungeonSoulFreed : DungeonSoulBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Dungeon Soul");
             Main.npcFrameCount[NPC.type] = 6;
             Main.npcCatchable[NPC.type] = true;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             frameCount = 4;
             NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoulFreed>();
 
             NPC.timeLeft = 3600;
             fadeAwayMax = 3600;
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            base.SetBestiary(database, bestiaryEntry);
-
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-                new FlavorTextBestiaryInfoElement("Text here.")
-            });
         }
 
         public override bool PreAI()

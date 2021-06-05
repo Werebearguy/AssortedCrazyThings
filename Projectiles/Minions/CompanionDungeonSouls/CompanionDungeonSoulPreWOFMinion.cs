@@ -2,7 +2,7 @@
 {
     public class CompanionDungeonSoulPreWOFMinion : CompanionDungeonSoulMinionBase
     {
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             defdistanceFromTarget = 700f;
             defdistancePlayerFarAway = 800f;

@@ -46,10 +46,10 @@ namespace AssortedCrazyThings.Items.Gitgud
             //item.width = 32;
             //item.height = 32;
 
-            MoreSetDefaults();
+            SafeSetDefaults();
         }
 
-        public virtual void MoreSetDefaults()
+        public virtual void SafeSetDefaults()
         {
 
         }

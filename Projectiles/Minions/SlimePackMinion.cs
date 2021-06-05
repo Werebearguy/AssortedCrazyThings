@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
             Projectile.width = 32;
@@ -194,7 +194,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             DrawOriginOffsetY = -2;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
             Projectile.width = 32;
@@ -211,7 +211,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
     public class SlimePackSpikedMinion : SlimePackMinion
     {
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
             Projectile.width = 32;

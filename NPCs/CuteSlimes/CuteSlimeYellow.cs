@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Moving with delicate grace, this slime dances about without missing a step.")
             });
         }
     }

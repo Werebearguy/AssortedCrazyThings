@@ -338,7 +338,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 useNoHair = false;
             }
 
-            bool drawnPreDraw = !drawPreAddition || MorePreDrawBaseSprite(drawColor, useNoHair); //do a pre-draw for rainbow and dungeon
+            bool drawnPreDraw = !drawPreAddition || SafePreDrawBaseSprite(drawColor, useNoHair); //do a pre-draw for rainbow and dungeon
 
             if (drawnPreDraw)
             {
@@ -365,13 +365,13 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 Main.spriteBatch.Draw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effect, 0f);
             }
 
-            if (drawPostAddition) MorePostDrawBaseSprite(drawColor, useNoHair); //used for xmas bow, lava horn, princess crown and illuminant afterimage
+            if (drawPostAddition) SafePostDrawBaseSprite(drawColor, useNoHair); //used for xmas bow, lava horn, princess crown and illuminant afterimage
         }
 
         /// <summary>
         /// Draw the pet specific PreDraw behind the base sprite
         /// </summary>
-        public virtual bool MorePreDrawBaseSprite(Color drawColor, bool useNoHair)
+        public virtual bool SafePreDrawBaseSprite(Color drawColor, bool useNoHair)
         {
             return true;
         }
@@ -379,7 +379,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         /// <summary>
         /// Draw the pet specific PostDraw infront of the base sprite
         /// </summary>
-        public virtual void MorePostDrawBaseSprite(Color drawColor, bool useNoHair)
+        public virtual void SafePostDrawBaseSprite(Color drawColor, bool useNoHair)
         {
 
         }

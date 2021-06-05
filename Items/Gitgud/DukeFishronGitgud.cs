@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             DisplayName.SetDefault("White Hook");
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 12;
             Item.height = 22;

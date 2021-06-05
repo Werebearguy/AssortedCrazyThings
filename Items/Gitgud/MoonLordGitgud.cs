@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             DisplayName.SetDefault("Bright Side of the Moon");
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 30;
             Item.height = 30;

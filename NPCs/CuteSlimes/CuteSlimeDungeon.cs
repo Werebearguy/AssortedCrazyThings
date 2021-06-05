@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.")
             });
         }
 
@@ -61,18 +61,18 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             NPC.scale = 1.2f;
         }
 
-        public override void MoreModifyNPCLoot(NPCLoot npcLoot)
+        public override void SafeModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetAccessorySwallowedKey>(), chanceDenominator: 7)).
                 OnFailedRoll(ItemDropRule.Common(ItemID.GoldenKey));
         }
 
-        public override bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool SafePreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = Mod.GetTexture("NPCs/CuteSlimes/CuteSlimeDungeonAddition").Value;
             Vector2 stupidOffset = new Vector2(0f, -12f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick

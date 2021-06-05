@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("A minion of Cthulhu that was trapped in the Crimson. It hastily seeks out its older brother.")
             });
         }
     }

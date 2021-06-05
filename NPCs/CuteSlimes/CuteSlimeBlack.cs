@@ -35,11 +35,11 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.")
             });
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             NPC.scale = 0.9f;
         }

@@ -74,7 +74,7 @@ namespace AssortedCrazyThings.NPCs
 
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("Thought to be extinct, this ancient predator is as long-lived as its endless hunger.")
             });
         }
 

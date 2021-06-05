@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DrawOriginOffsetY = -4;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             //used to set dimensions (if necessary) //also use to set projectile.minion
             Projectile.width = 34;

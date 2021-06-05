@@ -3,18 +3,21 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public class Harvester1 : HarvesterBase
     {
-        //TODO weird 1 pixel offset between icon and portrait in bestiary
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);
             Main.npcFrameCount[NPC.type] = 9;
+
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true //Only main boss shows
+            });
         }
 
         public override void SetDefaults()
@@ -218,16 +221,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void AI()
         {
             HarvesterAI(allowNoclip: !restrictedSoulSearch);
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            base.SetBestiary(database, bestiaryEntry);
-
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-                new FlavorTextBestiaryInfoElement("Text here.")
-            });
         }
     }
 }

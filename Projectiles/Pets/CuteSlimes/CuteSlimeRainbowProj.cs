@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             DrawOriginOffsetY = -14;
         }
 
-        public override bool MorePreDrawBaseSprite(Color lightColor, bool useNoHair)
+        public override bool SafePreDrawBaseSprite(Color lightColor, bool useNoHair)
         {
             double cX = Projectile.position.X + Projwidth * 2 + DrawOffsetX;
             double cY = Projectile.position.Y + (Projheight - (DrawOriginOffsetY + 20f)) * 2;  //20f for offset pre-draw, idk how and why

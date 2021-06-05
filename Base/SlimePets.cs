@@ -267,7 +267,6 @@ namespace AssortedCrazyThings.Base
             Add(SlimePet.NewSlimePet
             (
                 name: "CuteSlimeColorProj",
-                hasNoHair: false,
                 preAdditionSlot: (byte)SlotType.None,
                 postAdditionSlot: (byte)SlotType.None,
                 body: false,
@@ -279,7 +278,6 @@ namespace AssortedCrazyThings.Base
             
              * TEMPLATE EXPLANATION:
              * name: name of the projectile class
-             * hasNoHair: if true, makes it so it uses the NoHair texture for a Hat accessory if specified
              * preAdditionSlot: SlotType that causes the Addition texture to not be drawn when equipped (used for drawing behind the pet)
              * postAdditionSlot: SlotType that causes the Addition texture to not be drawn when equipped (used for drawing infront of the pet) (Example: Xmas)
              * //Note: don't bother including those two, ask me instead if there is an "Addition" that needs to be drawn
@@ -308,18 +306,13 @@ namespace AssortedCrazyThings.Base
         public static void PostSetup()
         {
             int actcount = 0;
-            short vanillaCount = NPCID.Count;
-            int moddedCount = NPCLoader.NPCCount;
-            for (int i = vanillaCount; i < moddedCount; i++)
+            foreach (var item in AssUtils.Instance.GetContent<ModNPC>())
             {
-                var npc = NPCLoader.GetNPC(i);
-                if (npc.Mod == AssUtils.Instance)
-                {
-                    actcount++;
-                }
+                actcount++;
             }
 
-            int diff = moddedCount - vanillaCount - actcount;
+            int vanillaCount = NPCID.Count;
+            int diff = NPCLoader.NPCCount - vanillaCount - actcount;
 
             spawnIncreaseBasedOnOtherModNPCs = diff / (float)vanillaCount;
         }

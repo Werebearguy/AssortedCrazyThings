@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Gitgud
             DisplayName.SetDefault("Metal Contact Lens");
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 16;
             Item.height = 20;

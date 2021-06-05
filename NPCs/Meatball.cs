@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.")
             });
         }
 

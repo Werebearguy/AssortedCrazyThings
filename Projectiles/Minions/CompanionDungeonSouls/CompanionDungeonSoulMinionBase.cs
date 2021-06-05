@@ -70,10 +70,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
             dustColor = 0;
 
-            MoreSetDefaults();
+            SafeSetDefaults();
         }
 
-        public virtual void MoreSetDefaults()
+        public virtual void SafeSetDefaults()
         {
 
         }

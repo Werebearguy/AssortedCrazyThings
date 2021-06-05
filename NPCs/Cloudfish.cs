@@ -90,7 +90,7 @@ namespace AssortedCrazyThings.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-				new FlavorTextBestiaryInfoElement("This fish inhabits only the highest cloud lakes.")
+				new FlavorTextBestiaryInfoElement("Is it a cloud? Is it a fish? It's both!")
             });
         }
 

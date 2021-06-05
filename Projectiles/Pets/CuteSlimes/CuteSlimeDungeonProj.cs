@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             DrawOriginOffsetY = -14;
         }
 
-        public override bool MorePreDrawBaseSprite(Color lightColor, bool useNoHair)
+        public override bool SafePreDrawBaseSprite(Color lightColor, bool useNoHair)
         {
             var asset = SheetAdditionAssets[Projectile.type];
             if (asset == null)

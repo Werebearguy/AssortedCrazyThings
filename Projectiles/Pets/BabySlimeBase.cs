@@ -36,12 +36,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
             flyingFrameSpeed = 6;
             walkingFrameSpeed = 20;
 
-            MoreSetDefaults();
+            SafeSetDefaults();
 
             Projectile.minionSlots = Projectile.minion ? customMinionSlots : 0f;
         }
 
-        public virtual void MoreSetDefaults()
+        public virtual void SafeSetDefaults()
         {
             //used to set dimensions (if necessary)
             //also used to set projectile.minion

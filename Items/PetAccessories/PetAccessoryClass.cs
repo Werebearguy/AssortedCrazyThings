@@ -102,7 +102,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         protected override bool UseDefaultRecipe { get { return false; } }
 
-        protected override void MoreAddRecipes()
+        protected override void SafeAddRecipes()
         {
             Recipe recipe = Mod.CreateRecipe(ItemID.GoldenKey);
             recipe.AddIngredient(ModContent.ItemType<PetAccessorySwallowedKey>());
@@ -551,7 +551,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
         }
 
-        protected virtual void MoreAddRecipes()
+        protected virtual void SafeAddRecipes()
         {
 
         }

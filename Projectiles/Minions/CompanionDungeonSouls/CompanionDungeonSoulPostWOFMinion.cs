@@ -1,8 +1,10 @@
+using Terraria.ID;
+
 namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 {
     public class CompanionDungeonSoulPostWOFMinion : CompanionDungeonSoulMinionBase
     {
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             Projectile.minionSlots = 1f;
             defdistanceFromTarget = 700f;
@@ -27,7 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             defveloCatchUpIdle = 8f;
             defveloNoclip = 12f;
 
-            dustColor = Terraria.ID.ItemID.PinkDye;
+            dustColor = ItemID.PinkDye;
         }
     }
 }

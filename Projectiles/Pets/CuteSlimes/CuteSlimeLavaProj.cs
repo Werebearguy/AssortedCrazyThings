@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             return drawColor;
         }
 
-        public override void MorePostDrawBaseSprite(Color lightColor, bool useNoHair)
+        public override void SafePostDrawBaseSprite(Color lightColor, bool useNoHair)
         {
             var asset = SheetAdditionAssets[Projectile.type];
             if (asset == null)

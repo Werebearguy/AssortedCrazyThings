@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundHallow,
-                new FlavorTextBestiaryInfoElement("Text here.")
+                new FlavorTextBestiaryInfoElement("The erratic nature of the Hallow has made this slime quite playful.")
             });
         }
 
@@ -51,13 +51,13 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override void MoreSetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             NPCID.Sets.TrailingMode[NPC.type] = 3;
             NPCID.Sets.TrailCacheLength[NPC.type] = 8;
         }
 
-        public override void MoreSetDefaults()
+        public override void SafeSetDefaults()
         {
             DrawOffsetY = 1f;
             NPC.alpha = 80;
