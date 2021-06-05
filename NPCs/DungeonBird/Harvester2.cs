@@ -16,6 +16,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             DisplayName.SetDefault(name);
             Main.npcFrameCount[NPC.type] = 17;
+
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(12, 40f),
+                PortraitPositionXOverride = 0,
+                PortraitPositionYOverride = 0,
+                SpriteDirection = 1
+            });
         }
 
         public override void SetDefaults()
@@ -127,6 +135,32 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void FindFrame(int frameHeight)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                NPC.frameCounter++;
+                if (NPC.frameCounter <= 8.0)
+                {
+                    NPC.frame.Y = frameHeight * 13;
+                }
+                else if (NPC.frameCounter <= 16.0)
+                {
+                    NPC.frame.Y = frameHeight * 14;
+                }
+                else if (NPC.frameCounter <= 24.0)
+                {
+                    NPC.frame.Y = frameHeight * 15;
+                }
+                else if (NPC.frameCounter <= 32.0)
+                {
+                    NPC.frame.Y = frameHeight * 16;
+                }
+                else
+                {
+                    NPC.frameCounter = 0;
+                }
+                return;
+            }
+
             //npc.spriteDirection = npc.velocity.X <= 0f ? 1 : -1; //flipped in the sprite
             NPC.spriteDirection = -NPC.direction;
             if (AI_State == STATE_APPROACH || AI_State == STATE_DISTRIBUTE) //5 to 12

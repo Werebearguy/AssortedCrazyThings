@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public class Harvester1 : HarvesterBase
     {
-
+        //TODO weird 1 pixel offset between icon and portrait in bestiary
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(name);

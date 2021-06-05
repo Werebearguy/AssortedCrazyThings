@@ -19,7 +19,8 @@ namespace AssortedCrazyThings.NPCs
         public override void SetDefaults()
         {
             NPC.width = 38;
-            NPC.height = 52;
+            NPC.height = 42;
+            DrawOffsetY = 4;
             NPC.damage = 0;
             NPC.defense = 0;
             NPC.lifeMax = 20;
@@ -29,6 +30,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
             NPC.aiStyle = 14;
+            NPC.noGravity = true;
             AIType = NPCID.FlyingSnake;
             AnimationType = NPCID.FlyingSnake;
             NPC.catchItem = (short)ModContent.ItemType<CuteGastropodItem>();

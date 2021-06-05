@@ -1,4 +1,6 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -12,6 +14,19 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Giant Grasshopper");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Derpling];
+
+            NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
+            {
+                SpecificallyImmuneTo = new int[1] {
+                    BuffID.Confused
+                }
+            });
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Frame = 0
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
         }
 
         public override void SetDefaults()

@@ -1,7 +1,4 @@
 using AssortedCrazyThings.Base;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -19,6 +16,12 @@ namespace AssortedCrazyThings.NPCs
             DisplayName.SetDefault("Cloudfish");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
             Main.npcCatchable[NPC.type] = true;
+            
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                IsWet = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
         }
 
         public override void SetDefaults()

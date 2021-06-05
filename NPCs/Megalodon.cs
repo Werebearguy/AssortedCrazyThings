@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Items.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -16,6 +17,15 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault(name);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(66, 9f), //Position on the icon
+                PortraitPositionXOverride = 0, //Position on the portrait when clicked on
+                PortraitPositionYOverride = 9f,
+                IsWet = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
         }
 
         public override void SetDefaults()
@@ -35,6 +45,14 @@ namespace AssortedCrazyThings.NPCs
             NPC.noGravity = true;
         }
 
+        public override void FindFrame(int frameHeight)
+        {
+            if (NPC.wet)
+            {
+                NPC.frameCounter -= 0.4;
+            }
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (!NPC.AnyNPCs(NPC.type))
@@ -51,6 +69,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
+            //quickUnlock: true so only 1 kill is required to list everything about it
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type], quickUnlock: true);
+
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
                 new FlavorTextBestiaryInfoElement("Text here.")

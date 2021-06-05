@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,6 +43,18 @@ namespace AssortedCrazyThings.NPCs
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             if (Main.hardMode) NPC.lifeMax = NPC.lifeMax * 2;
+        }
+
+        double bFrameCounter = 0;
+        int bFrameY = 0;
+
+        public override void FindFrame(int frameHeight)
+        {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                AssExtensions.LoopAnimation(ref bFrameY, ref bFrameCounter, 8, 0, Main.npcFrameCount[NPC.type] - 1);
+                NPC.frame.Y = bFrameY * frameHeight;
+            }
         }
 
         //public override void OnKill()

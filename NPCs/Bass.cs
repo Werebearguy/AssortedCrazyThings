@@ -1,6 +1,4 @@
 using AssortedCrazyThings.Base;
-using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -17,6 +15,12 @@ namespace AssortedCrazyThings.NPCs
         {
             DisplayName.SetDefault("Bass");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                IsWet = true
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
         }
 
         public override void SetDefaults()

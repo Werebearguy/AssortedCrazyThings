@@ -17,17 +17,19 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetDefaults()
         {
-            NPC.width = 50;
-            NPC.height = 44;
+            NPC.width = 30;
+            NPC.height = 30;
             NPC.damage = 0;
             NPC.defense = 1;
             NPC.lifeMax = 5;
             NPC.friendly = true;
+            //NPC.dontTakeDamageFromHostiles = true; //TODO concider dontTakeDamageFromHostiles for some catchable NPCs
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
             NPC.aiStyle = 14;
+            NPC.noGravity = true;
             AIType = NPCID.FlyingSnake;
             AnimationType = NPCID.FlyingSnake;
             NPC.catchItem = (short)ModContent.ItemType<YoungHarpyItem>();
