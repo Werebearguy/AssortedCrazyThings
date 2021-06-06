@@ -278,11 +278,7 @@ namespace AssortedCrazyThings
             int itemType = player.HeldItem.type;
             if (mPlayer.LeftClickPressed && AllowedToOpenUI() && PetAccessory.TryGetAccessoryFromItem(itemType, out PetAccessory petAccessory))
             {
-                if (petAccessory.HasAlts &&
-                    pPlayer.slimePetIndex != -1 && Main.projectile[pPlayer.slimePetIndex] is Projectile projectile &&
-                    projectile.active &&
-                    projectile.owner == Main.myPlayer &&
-                    SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet) &&
+                if (petAccessory.HasAlts && pPlayer.HasValidSlimePet(out SlimePet slimePet) &&
                     !slimePet.IsSlotTypeBlacklisted[(int)petAccessory.Slot])
                 {
                     //Spawn UI

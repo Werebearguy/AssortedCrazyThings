@@ -1,13 +1,16 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.SlimeHugs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -506,12 +509,154 @@ namespace AssortedCrazyThings
 
         public override void PreUpdate()
         {
-            if (Main.myPlayer == Player.whoAmI) SetClonedTypes();
+            if (Main.myPlayer == Player.whoAmI)
+            {
+                SetClonedTypes();
+            }
+
+            ValidateSlimePetIndex();
+
+            slimeHugsUpdatedThisTick = false;
+
+            if (!createdSlimeHugs)
+            {
+                createdSlimeHugs = true;
+
+                SlimeHugs.AddRange(Mod.GetContent<SlimeHug>().Select(h => (SlimeHug)h.Clone()));
+                SlimeHugs.Sort((s1, s2) => s1.CompareTo(s2)); //Sort by cooldown, takes priority from high cooldown
+            }
         }
 
-        #region Slime Pet Vanity
+        public bool HasValidSlimePet(out SlimePet slimePet)
+        {
+            slimePet = null;
+            if (slimePetIndex >= 0 && slimePetIndex < Main.maxProjectiles)
+            {
+                if (Main.projectile[slimePetIndex] is Projectile projectile)
+                {
+                    if (projectile.active && projectile.owner == Player.whoAmI && SlimePets.TryGetPetFromProj(projectile.type, out slimePet))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
+        #region Slime Pet Hug
+        public static bool IsHuggable(Player player) => !player.mount.Active && !player.pulley && player.velocity.Y == 0f && player.itemAnimation == 0;
+
+        public bool slimeHugsUpdatedThisTick = false; //Protection against multiple slime pets updating it at the same time
+        public const int HugDelaySuccess = 60 * 60 * 5;
+        public const int HugDelayFail = 60 * 60 * 3;
+        public int slimeHugTimer = -HugDelaySuccess / 2; //Global hug timer
+        public bool IsHugging => slimeHugTimer > 0;
+
+        public List<SlimeHug> SlimeHugs { get; private set; } = new List<SlimeHug>();
+
+        public bool createdSlimeHugs = false;
         public int slimePetIndex = -1;
+        public SlimeHug GetSlimeHug(int type)
+        {
+            if (type == -1) return null;
+            return SlimeHugs.FirstOrDefault(h => h.Type == type);
+        }
+
+        private void ValidateSlimePetIndex()
+        {
+            if (!HasValidSlimePet(out _))
+            {
+                slimePetIndex = -1;
+            }
+        }
+
+        //In player:
+        //1. handle each hug timer in loop separately
+        //2. If conditions met for initiating a hug, choose a hug
+        //2a. If no hug chosen, return
+        //3. If hug chosen but conditions no longer met, fail and return
+        //4. Assign hug type
+
+        //In projectile:
+        //5. Apply "appoach to player" AI, play prehug emote
+        //6. If close enough to player, set hug timer to hug duration
+        //7. Change AI to hugging, cancelling any other AI
+        //8. Decrement slimeHugTimer, cancel when 0
+        //- Active hug is stored on the projectile (set through SetHugType)
+        public void UpdateSlimeHugs(CuteSlimeBaseProj slime)
+        {
+            //This is called from within the current slime pet, as it is intertwined with its AI
+            if (slimePetIndex < 0)
+            {
+                //Bad call, reset timer
+                slimeHugTimer = -HugDelayFail;
+                return;
+            }
+
+            if (slimeHugsUpdatedThisTick)
+            {
+                return;
+            }
+
+            slime.oldHugType = slime.hugType;
+
+            slimeHugsUpdatedThisTick = true;
+
+            if (IsHugging)
+            {
+                //Handle timer during a hug
+                slimeHugTimer--;
+                if (slimeHugTimer == 0)
+                {
+                    //Hug succeeded, set delay
+                    slime.SetHugType(-1);
+                    slimeHugTimer = -HugDelaySuccess;
+                }
+            }
+            else
+            {
+                //slimeHugTimer = 0;
+                if (slimeHugTimer < 0)
+                {
+                    slimeHugTimer++;
+                }
+            }
+
+            SlimeHug newHug = null;
+            foreach (var hug in SlimeHugs)
+            {
+                if (hug.HandleTimer()) //Keep updating timers even if hugs could be possible (slimeHugTimer == 0)
+                {
+                    if (slime.CanChooseHug && slimeHugTimer == 0 &&
+                        IsHuggable(Player) &&
+                        hug.IsAvailable(slime, this))
+                    {
+                        newHug = hug;
+                        break;
+                    }
+                }
+            }
+
+            if (newHug != null) //Atleast one off cooldown
+            {
+                if (slime.hugType != newHug.Type)
+                {
+                    slime.SetHugType(newHug.Type);
+                    newHug.ApplyCooldown();
+                }
+
+                if (!IsHuggable(Player))
+                {
+                    //Cancel sequence prematurely
+                    slime.SetHugType(-1);
+                    slimeHugTimer = -HugDelayFail;
+                    return;
+                }
+            }
+        }
+        #endregion
+
+        #region Slime Pet Vanity
         public uint slotsLast = 0;
         private bool resetSlots = false;
         private uint lastTime = 0;

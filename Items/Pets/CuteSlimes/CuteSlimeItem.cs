@@ -21,16 +21,9 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
             try
             {
                 PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-                //checks if: player even has (or had) a slime pet
-                //that pet is currently active
-                //it's owner is the player
-                //it's a slime pet
-                if (pPlayer.slimePetIndex != -1 &&
-                    (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
-                    projectile.active &&
-                    projectile.owner == Main.myPlayer &&
-                    SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet))
+                if (pPlayer.HasValidSlimePet(out SlimePet slimePet))
                 {
+                    Projectile projectile = Main.projectile[pPlayer.slimePetIndex];
                     //checks if this item is infact a pet slime summoning item
                     if (Item.shoot == projectile.type)
                     {

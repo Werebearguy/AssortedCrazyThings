@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.SlimeHugs;
 using AssortedCrazyThings.Items.PetAccessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -73,7 +75,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         protected int frameX = 0;
         protected int frameY = 0;
 
-        public ushort MiscTimer = 0;
+        public int oldHugType = -1;
+        public int hugType = -1;
 
         public static Dictionary<int, Asset<Texture2D>> SheetAssets { get; private set; }
         public static Dictionary<int, Asset<Texture2D>> SheetNoHairAssets { get; private set; }
@@ -159,6 +162,52 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             return null;
         }
 
+        private void Animation(PetPlayer petPlayer)
+        {
+            if (petPlayer.IsHugging)
+            {
+                frameCounter = 0;
+                frameX = SpikeX;
+                frameY = SpikeYHug;
+                return;
+            }
+
+            frameX = DefaultX;
+
+            //readjusting the animation
+            if (InAir)
+            {
+                AssExtensions.LoopAnimationInt(ref frameY, ref frameCounter, 3, DefaultYFlyStart, DefaultYFlyEnd);
+            }
+            else
+            {
+                if (OnGround)
+                {
+                    if (Idling)
+                    {
+                        //Idle
+                        AssExtensions.LoopAnimationInt(ref frameY, ref frameCounter, 16, DefaultYIdleStart, DefaultYIdleEnd);
+                    }
+                    else if (Math.Abs(Projectile.velocity.X) > 0.1)
+                    {
+                        //Moving
+                        frameCounter += (int)(Math.Abs(Projectile.velocity.X) * 0.25f);
+                        AssExtensions.LoopAnimationInt(ref frameY, ref frameCounter, 6, DefaultYWalkStart, DefaultYWalkEnd);
+                    }
+                    else
+                    {
+                        frameY = DefaultYIdleEnd;
+                        frameCounter = 0;
+                    }
+                }
+                else //jumping/falling
+                {
+                    frameCounter = 0;
+                    frameY = DefaultYAir;
+                }
+            }
+        }
+
         //Clamps frames so they never point to invalid/blank frames
         private void ClampFrames()
         {
@@ -200,12 +249,12 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write((ushort)MiscTimer);
+            writer.Write((byte)hugType);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            MiscTimer = reader.ReadUInt16();
+            hugType = reader.ReadByte();
         }
 
         public sealed override bool PreAI()
@@ -222,14 +271,31 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             {
                 Projectile.timeLeft = 2;
             }
-            PetPlayer pPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+            PetPlayer petPlayer = player.GetModPlayer<PetPlayer>();
 
             if (SlimePets.TryGetPetFromProj(Projectile.type, out _))
             {
-                pPlayer.slimePetIndex = Projectile.whoAmI;
+                petPlayer.slimePetIndex = Projectile.whoAmI;
+
+                petPlayer.UpdateSlimeHugs(this);
             }
 
-            return SafePreAI();
+            Animation(petPlayer);
+
+            ClampFrames();
+
+            HandleHugging(petPlayer);
+
+            bool safe = SafePreAI();
+
+            if (petPlayer.IsHugging && petPlayer.GetSlimeHug(hugType) is SlimeHug hug)
+            {
+                DoHugging(hug, petPlayer);
+
+                return false;
+            }
+
+            return safe;
         }
 
         public virtual bool SafePreAI()
@@ -239,49 +305,93 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public bool InAir => Projectile.ai[0] != 0f;
 
-        //0.1f because vanilla AI sets it to 0.1f when on the ground
-        public bool OnGround => Projectile.velocity.Y == 0.1f;
+        public bool OnGround => Projectile.velocity.Y == 0;
 
-        public override void PostAI()
+        public bool Idling => OnGround && Projectile.velocity.X == 0f;
+
+        public bool CanChooseHug => OnGround;
+            
+        public sealed override void PostAI()
         {
-            frameX = DefaultX;
-
-            //readjusting the animation
-            if (InAir)
+            //DO NOT use the hook (ground logic is messed up with velocity.Y = 0.1f)
+            if (Projectile.velocity.Y != 0.1f)
             {
-                AssExtensions.LoopAnimationInt(ref frameY, ref frameCounter, 3, DefaultYFlyStart, DefaultYFlyEnd);
+                Projectile.rotation = Projectile.velocity.X * 0.01f;
             }
-            else
+        }
+
+        private void DoHugging(SlimeHug hug, PetPlayer petPlayer)
+        {
+            Player player = petPlayer.Player;
+
+            //Turn away from slime
+            player.ChangeDir((player.Center.X > Projectile.Center.X).ToDirectionInt());
+            //Turn slime in same direction as player
+
+            //Lock position
+            Vector2 offset = new Vector2(-player.direction * 16, 0) + hug.GetHugOffset(this, petPlayer);
+            Projectile.velocity = Vector2.Zero;
+            Projectile.Bottom = player.Bottom + offset;
+            Projectile.spriteDirection = -player.direction;
+        }
+
+        private void HandleHugging(PetPlayer petPlayer)
+        {
+            Player player = petPlayer.Player;
+
+            if (petPlayer.GetSlimeHug(hugType) is not SlimeHug hug)
             {
-                if (OnGround)
-                {
-                    if (Projectile.velocity.X == 0f)
-                    {
-                        //Idle
-                        AssExtensions.LoopAnimationInt(ref frameY, ref frameCounter, 16, DefaultYIdleStart, DefaultYIdleEnd);
-                    }
-                    else if (Math.Abs(Projectile.velocity.X) > 0.1)
-                    {
-                        //Moving
-                        frameCounter += (int)(Math.Abs(Projectile.velocity.X) * 0.25f);
-                        AssExtensions.LoopAnimationInt(ref frameY, ref frameCounter, 6, DefaultYWalkStart, DefaultYWalkEnd);
-                    }
-                    else
-                    {
-                        frameY = DefaultYIdleEnd;
-                        frameCounter = 0;
-                    }
-                }
-                else //jumping/falling
-                {
-                    frameCounter = 0;
-                    frameY = DefaultYAir;
-                }
+                return;
             }
 
-            if (!OnGround) Projectile.rotation = Projectile.velocity.X * 0.01f;
+            if (petPlayer.IsHugging && !PetPlayer.IsHuggable(player))
+            {
+                //Cancel sequence prematurely
+                SetHugType(-1);
+                petPlayer.slimeHugTimer = -PetPlayer.HugDelayFail;
+                return;
+            }
 
-            ClampFrames();
+            //Condition changed
+            if (CanChooseHug && hugType != -1)
+            {
+                if (oldHugType == -1)
+                {
+                    int emoteIndex = hug.PreHugEmote;
+                    if (emoteIndex > -1 && Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        EmoteBubble.NewBubble(emoteIndex, new WorldUIAnchor(Projectile), hug.PreHugEmoteDuration);
+                    }
+                }
+
+                float distSQ = Projectile.DistanceSQ(player.Center);
+
+                //Move towards player
+                int dir = (player.Center.X > Projectile.Center.X).ToDirectionInt();
+                Projectile.velocity.X += dir * (distSQ > 40 * 40 ? 0.2f : 0.05f);
+                //Turn towards player
+                Projectile.spriteDirection = dir;
+
+                if (distSQ < 20 * 20)
+                {
+                    if (petPlayer.slimeHugTimer == 0)
+                    {
+                        petPlayer.slimeHugTimer = hug.HugDuration;
+
+                        int emoteIndex = hug.HugEmote;
+                        if (emoteIndex > -1 && Main.netMode != NetmodeID.MultiplayerClient) //TODO test MP
+                        {
+                            EmoteBubble.NewBubble(emoteIndex, new WorldUIAnchor(Projectile), hug.HugEmoteDuration);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void SetHugType(int type)
+        {
+            hugType = type;
+            Projectile.netUpdate = true;
         }
 
         public override bool PreDraw(ref Color drawColor)
@@ -290,7 +400,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
             DrawBaseSprite(drawColor);
 
-            DrawAccessories(drawColor);
+            DrawAccessories(drawColor, preDraw: false);
             return false;
         }
 
@@ -342,12 +452,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
             if (drawnPreDraw)
             {
-                //Draw NoHair if necessary, otherwise regular sprite
-                Texture2D texture = SheetAssets[Projectile.type].Value;
-                if (useNoHair) //only if not legacy
-                {
-                    texture = SheetNoHairAssets[Projectile.type].Value;
-                }
+                Texture2D texture = (useNoHair ? SheetNoHairAssets : SheetAssets)[Projectile.type].Value;
 
                 if (texture == null)
                 {

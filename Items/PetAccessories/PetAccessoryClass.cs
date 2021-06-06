@@ -516,22 +516,17 @@ namespace AssortedCrazyThings.Items.PetAccessories
             {
                 tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot)));
 
-                PetPlayer mPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
+                Player player = Main.LocalPlayer;
+                PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 
-                if (mPlayer.slimePetIndex != -1 &&
-                    (Main.projectile[mPlayer.slimePetIndex] is Projectile projectile) &&
-                    projectile.active &&
-                    projectile.owner == Main.myPlayer)
+                if (pPlayer.HasValidSlimePet(out SlimePet slimePet))
                 {
-                    if (SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet))
+                    if (slimePet.IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
                     {
-                        if (slimePet.IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
-                        {
-                            tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
-                        }
+                        tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
                     }
                 }
-                else if (Main.LocalPlayer.HasItem(Item.type))
+                else if (player.HasItem(Item.type))
                 {
                     tooltips.Add(new TooltipLine(Mod, "NoUse", "You have no summoned slime to equip this on")
                     {
@@ -568,11 +563,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
             //no valid slime pet found
-            if (!(pPlayer.slimePetIndex != -1 &&
-                (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
-                projectile.active &&
-                projectile.owner == Main.myPlayer &&
-                SlimePets.TryGetPetFromProj(projectile.type, out _))) return false;
+            if (!pPlayer.HasValidSlimePet(out _)) return false;
 
             //if a right click, enable usage
             if (player.altFunctionUse == 2) return true;
@@ -586,7 +577,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         {
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 
-            if (pPlayer.slimePetIndex == -1)
+            if (pPlayer.slimePetIndex < 0)
             {
                 return true;
             }
@@ -603,11 +594,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 }
                 //else normal left click use
 
-                if (pPlayer.slimePetIndex != -1 &&
-                    (Main.projectile[pPlayer.slimePetIndex] is Projectile projectile) &&
-                    projectile.active &&
-                    projectile.owner == Main.myPlayer &&
-                    SlimePets.TryGetPetFromProj(projectile.type, out SlimePet slimePet))
+                if (pPlayer.HasValidSlimePet(out SlimePet slimePet))
                 {
                     //only client side
                     if (Main.netMode != NetmodeID.Server)
@@ -625,10 +612,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
                                 pPlayer.slotsLast = 0;
                             }
 
+                            Projectile projectile = Main.projectile[pPlayer.slimePetIndex];
                             //"dust" originating from the center, forming a circle and going outwards
                             for (double angle = 0; angle < MathHelper.TwoPi; angle += Math.PI / 6)
                             {
-                                Dust.NewDustPerfect(projectile.Center - new Vector2(0f, Main.projectile[pPlayer.slimePetIndex].height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
+                                Dust.NewDustPerfect(projectile.Center - new Vector2(0f, projectile.height / 4), 16, new Vector2((float)-Math.Cos(angle), (float)Math.Sin(angle)) * 1.2f, 0, new Color(255, 255, 255), 1.6f);
                             }
                         }
                         else if (player.altFunctionUse != 2)

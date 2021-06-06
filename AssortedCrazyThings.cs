@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.SlimeHugs;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
@@ -131,6 +132,7 @@ namespace AssortedCrazyThings
         {
             SlimePets.Unload();
             PetAccessory.Unload();
+            SlimeHugLoader.Unload();
         }
 
         private void LoadMisc()
