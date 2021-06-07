@@ -29,6 +29,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryBunnySuit : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Bunny Suit");
+            Tooltip.SetDefault("'A bunny(?) costume for your cute slime to wear on her chest'");
+        }
+    }
+
     public class PetAccessoryCrown : PetAccessoryItem
     {
         public override void SetStaticDefaults()
@@ -338,6 +347,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //------------------------------------------------
             Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
             Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(SlotType.Body, new PetAccessory(id: 3, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red"}));
 
             //HAT SLOT ACCESSORIES GO HERE, SEPARATE IDs
             //------------------------------------------------
