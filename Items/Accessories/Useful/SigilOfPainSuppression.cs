@@ -16,14 +16,14 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Drastically increases your defense when you are at critically low health"
                 + "\nHas a cooldown of " + (AssPlayer.GetDefenseTimerMax / 60) + " minutes");
 
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             Item.width = 18;
-            Item.height = 22;
+            Item.height = 26;
             Item.value = Item.sellPrice(0, 1, 0, 0);
             Item.rare = -11;
             Item.accessory = true;

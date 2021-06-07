@@ -17,14 +17,14 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
                 + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
 
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 26;
+            Item.width = 30;
+            Item.height = 30;
             Item.value = Item.sellPrice(0, 2, 0, 0);
             Item.rare = -11;
             Item.accessory = true;

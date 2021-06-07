@@ -13,14 +13,14 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Summons a temporary minion to help you upon reaching critical health" +
                 "\nIncreases your max number of minions");
             
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 22;
-            Item.height = 22;
+            Item.width = 26;
+            Item.height = 28;
             Item.value = Item.sellPrice(0, 1, 0, 0);
             Item.rare = -11;
             Item.accessory = true;

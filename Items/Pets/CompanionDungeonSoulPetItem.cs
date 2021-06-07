@@ -15,6 +15,11 @@ namespace AssortedCrazyThings.Items.Pets
             DisplayName.SetDefault("Companion Soul");
             Tooltip.SetDefault("Summons a friendly Soul to light your way"
                                + "\nLight pet slot");
+
+
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
