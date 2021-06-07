@@ -15,7 +15,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bottled Sting Slime");
-            Tooltip.SetDefault("Summons a friendly black Sting Slime to follow you");
+            Tooltip.SetDefault("Summons a friendly black Sting Slime to follow you"
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SafeSetDefaults()

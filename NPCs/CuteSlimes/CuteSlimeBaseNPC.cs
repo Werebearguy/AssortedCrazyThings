@@ -61,8 +61,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 NPC.defense = 2;
                 NPC.lifeMax = 20;
             }
-            NPC.width = 46;
-            NPC.height = 32;
+            NPC.width = 28;
+            NPC.height = 33;
             NPC.damage = 0;
             NPC.rarity = 1;
             NPC.HitSound = SoundID.NPCHit1;
@@ -79,9 +79,9 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
             // Slime AI breaks with big enough height when it jumps against a low ceiling
             // then glitches into the ground
-            if (NPC.scale > 0.9f)
+            if (NPC.scale > 1f)
             {
-                NPC.height -= (int)((NPC.scale - 0.9f) * NPC.height);
+                NPC.height -= (int)((NPC.scale - 1f) * NPC.height);
             }
         }
 
