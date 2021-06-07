@@ -9,6 +9,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using AssortedCrazyThings.Items.Placeable;
+using AssortedCrazyThings.NPCs.DropRules;
+using AssortedCrazyThings.Items.Consumables;
+using AssortedCrazyThings.Items.Pets;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -35,6 +40,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
             Main.npcFrameCount[NPC.type] = 5;
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(30, 72), //Position on the icon
+                PortraitPositionXOverride = 0, //Position on the portrait when clicked on
+                PortraitPositionYOverride = 40,
+                SpriteDirection = -1,
+                PortraitScale = 0.8f,
+                Frame = 0,
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+
         }
 
         public override void SetDefaults()
@@ -62,6 +79,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.alpha = 255;
+
+            BossBag = ModContent.ItemType<HarvesterTreasureBag>();
             //music = MusicID.Boss5; //TODO music
 
             //queenbee setdefaults
@@ -103,7 +122,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.spriteDirection = -NPC.direction;
             NPC.frameCounter++;
 
-            if (NPC.alpha > 0)
+            if (NPC.alpha > 0 && !NPC.IsABestiaryIconDummy)
             {
                 NPC.frame.Y = frameHeight * 4;
                 NPC.frameCounter = 40.0;
@@ -153,7 +172,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterWings").Value;
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(NPC.width >> 1, NPC.height >> 1);
+            Vector2 drawOrigin = NPC.Size / 2;
 
             Vector2 stupidOffset = new Vector2(0, -29f + NPC.gfxOffY);
             Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
@@ -163,24 +182,28 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override Color? GetAlpha(Color lightColor)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                return Color.White;
+            }
             return Color.White * ((255 - NPC.alpha) / 255f);
         }
 
         /// <summary>
-        /// To drop the accessories and the souls multiplied by the number of people present during the fight
+        /// Spawns souls multiplied by the number of people present during the fight
         /// </summary>
-        private void DropLoot(int npcTypeNew)
+        private void SpawnSouls(int npcTypeNew)
         {
             int count = Array.FindAll(NPC.playerInteraction, interacted => interacted).Length;
 
             for (int i = 0; i < count; i++)
             {
-                if (Main.rand.NextBool(3)) //33% chance
-                {
-                    int[] types = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
-                    int itemType = Main.rand.Next(types);
-                    Item.NewItem(NPC.getRect(), itemType, prefixGiven: -1);
-                }
+                //if (Main.rand.NextBool(3)) //33% chance
+                //{
+                //    int[] types = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
+                //    int itemType = Main.rand.Next(types);
+                //    Item.NewItem(NPC.getRect(), itemType, prefixGiven: -1);
+                //}
 
                 Vector2 randVector = Vector2.One;
                 float randFactor;
@@ -191,13 +214,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
                     randFactor = Main.rand.NextFloat(2f, 8f);
                     index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
-                    Main.npc[index].SetDefaults(npcTypeNew);
-                    //Main.npc[index].timeLeft = 3600;
-                    Main.npc[index].velocity = randVector * randFactor;
-                    Main.npc[index].ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
-                    if (Main.netMode == NetmodeID.Server)
+                    if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
                     {
-                        NetMessage.SendData(MessageID.SyncNPC, number: index);
+                        soul.SetDefaults(npcTypeNew);
+                        //Main.npc[index].timeLeft = 3600;
+                        soul.velocity = randVector * randFactor;
+                        soul.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            NetMessage.SendData(MessageID.SyncNPC, number: index);
+                        }
                     }
                 }
             }
@@ -211,30 +237,60 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             });
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.BossBag(BossBag)); //this requires you to set BossBag in SetDefaults accordingly
+
+            //Relic and trophy are NOT spawned in the bag
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HarvesterRelicItem>()));
+
+            //Master mode pet
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
+
+            //Drop one of three sigils, one random one per player
+            var sigils = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
+            var sigilRule = new OneFromOptionsPerPlayerOnPlayerRule(options: sigils);
+            npcLoot.Add(sigilRule);
+
+            //All our drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
+            LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.Bone, minimumDropped: 40, maximumDropped: 60));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>()));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 10));
+
+            //Finally add the leading rule
+            npcLoot.Add(notExpertRule);
+        }
+
         public override void OnKill()
         {
-            //TODO bestiary drops
-            Item.NewItem(NPC.getRect(), ItemID.Bone, Main.rand.Next(40, 61));
-            if (Main.rand.NextBool(10)) Item.NewItem(NPC.getRect(), ModContent.ItemType<SoulHarvesterMask>());
-            Item.NewItem(NPC.getRect(), ModContent.ItemType<DesiccatedLeather>());
-
-            if (Main.rand.NextBool(4)) Item.NewItem(NPC.getRect(), ModContent.ItemType<IdolOfDecay>());
-
-            //RecipeBrowser fix
-            if (NPC.Center == new Vector2(1000, 1000))
-            {
-                Item.NewItem(NPC.getRect(), ModContent.ItemType<CaughtDungeonSoulFreed>());
-            }
-
             int npcTypeOld = ModContent.NPCType<DungeonSoul>();
             int npcTypeNew = ModContent.NPCType<DungeonSoulFreed>();  //version that doesnt get eaten by harvesters
 
             int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
             int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
-            DropLoot(npcTypeNew);
-
             //"convert" NPC souls
+            ConvertSouls(npcTypeOld, npcTypeNew, itemTypeOld, itemTypeNew);
+
+            SpawnSouls(npcTypeNew);
+
+            //if (!AssWorld.downedHarvester)
+            //{
+            //    AssWorld.downedHarvester = true;
+            //    if (Main.netMode == NetmodeID.Server)
+            //    {
+            //        NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+            //    }
+            //}
+
+            AssWorld.Message(deathMessage, deathColor);
+        }
+
+        private void ConvertSouls(int npcTypeOld, int npcTypeNew, int itemTypeOld, int itemTypeNew)
+        {
             for (short j = 0; j < Main.maxNPCs; j++)
             {
                 NPC other = Main.npc[j];
@@ -301,17 +357,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                 }
             }
-
-            //if (!AssWorld.downedHarvester)
-            //{
-            //    AssWorld.downedHarvester = true;
-            //    if (Main.netMode == NetmodeID.Server)
-            //    {
-            //        NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-            //    }
-            //}
-
-            AssWorld.Message(deathMessage, deathColor);
         }
 
         private void SendConvertInertSoulsInventory()
@@ -332,76 +377,20 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         private const float State_Main = 3f;
         //No additional states here
 
-        public float AI_State
-        {
-            get
-            {
-                return NPC.ai[AI_State_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_State_Slot] = value;
-            }
-        }
+        public ref float AI_State => ref NPC.ai[AI_State_Slot];
 
-        public float AI_Timer
-        {
-            get
-            {
-                return NPC.ai[AI_Timer_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_Timer_Slot] = value;
-            }
-        }
+        public ref float AI_Timer => ref NPC.ai[AI_Timer_Slot];
 
-        public float AI_Counter
-        {
-            get
-            {
-                return NPC.ai[AI_Counter_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_Counter_Slot] = value;
-            }
-        }
+        public ref float AI_Counter => ref NPC.ai[AI_Counter_Slot];
 
-        public float AI_Unused
-        {
-            get
-            {
-                return NPC.ai[AI_Unused_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_Unused_Slot] = value;
-            }
-        }
+        public ref float AI_Unused => ref NPC.ai[AI_Unused_Slot];
 
-        public float AI_Local1
-        {
-            get
-            {
-                return NPC.localAI[0];
-            }
-            set
-            {
-                NPC.localAI[0] = value;
-            }
-        }
+        public ref float AI_Local0 => ref NPC.localAI[0];
 
         public bool Initialized
         {
-            get
-            {
-                return NPC.localAI[1] == 1f;
-            }
-            set
-            {
-                NPC.localAI[1] = value ? 1f : 0f;
-            }
+            get => NPC.localAI[1] == 1f;
+            set => NPC.localAI[1] = value ? 1f : 0f;
         }
 
         public override bool PreAI()

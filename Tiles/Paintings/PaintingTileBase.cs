@@ -1,4 +1,7 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -14,12 +17,13 @@ namespace AssortedCrazyThings.Tiles.Paintings
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;
+			TileID.Sets.FramesOnKillWall[Type] = true;
+
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
-			//TileObjectData.newTile.StyleHorizontal = true;
-			//TileObjectData.newTile.StyleWrapLimit = 36;
 			TileObjectData.addTile(Type);
 			DustType = 7;
-			//DisableSmartCursor = true;
+
+			AddMapEntry(new Color(99, 50, 30), Language.GetText("MapObject.Painting"));
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)

@@ -16,18 +16,12 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void SetDefaults()
         {
+            Item.DefaultToPlacableTile(TileType);
             Item.width = 28;
             Item.height = 28;
             Item.maxStack = 99;
-            Item.useTurn = true;
-            Item.autoReuse = true;
-            Item.useAnimation = 15;
-            Item.useTime = 10;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.consumable = true;
             Item.rare = -11;
             Item.value = Item.buyPrice(0, 10, 0, 0);
-            Item.createTile = TileType;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

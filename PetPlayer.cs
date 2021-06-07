@@ -167,6 +167,7 @@ namespace AssortedCrazyThings
         public bool PetGoldfish = false;
         public bool SkeletronHand = false;
         public bool SkeletronPrimeHand = false;
+        public bool PetHarvester = false;
         public bool PetGolemHead = false;
         public bool TrueObservingEye = false;
         public bool PetCultist = false;
@@ -248,6 +249,7 @@ namespace AssortedCrazyThings
             PetGoldfish = false;
             SkeletronHand = false;
             SkeletronPrimeHand = false;
+            PetHarvester = false;
             PetGolemHead = false;
             TrueObservingEye = false;
             PetCultist = false;
@@ -301,7 +303,6 @@ namespace AssortedCrazyThings
                 {"slots", (int)slots},
                 {"color", (int)color},
                 {"petAccessoryRework", (bool)petAccessoryRework},
-                {"petVanityRework", (bool)petVanityRework}
             };
             var petTypes = new List<byte>(ClonedTypes);
             tag.Add("petTypes", petTypes);
@@ -313,40 +314,12 @@ namespace AssortedCrazyThings
             slots = (uint)tag.GetInt("slots");
             color = (uint)tag.GetInt("color");
             petAccessoryRework = tag.GetBool("petAccessoryRework");
-            petVanityRework = tag.GetBool("petVanityRework");
-            if (!petVanityRework) //transfer to new system
-            {
-                //DON'T TOUCH ANYTHING IN THIS SECTION
-                int index = -1;
-                ClonedTypes[++index] = mechFrogCrown = tag.GetByte("mechFrogCrown");
-                ClonedTypes[++index] = petEyeType = tag.GetByte("petEyeType");
-                ClonedTypes[++index] = cursedSkullType = tag.GetByte("cursedSkullType");
-                ClonedTypes[++index] = youngWyvernType = tag.GetByte("youngWyvernType");
-                ClonedTypes[++index] = petFishronType = tag.GetByte("petFishronType");
-                ClonedTypes[++index] = petMoonType = tag.GetByte("petMoonType");
-                ClonedTypes[++index] = youngHarpyType = tag.GetByte("youngHarpyType");
-                ClonedTypes[++index] = abeeminationType = tag.GetByte("abeeminationType");
-                ClonedTypes[++index] = lilWrapsType = tag.GetByte("lilWrapsType");
-                ClonedTypes[++index] = vampireBatType = tag.GetByte("vampireBatType");
-                ClonedTypes[++index] = pigronataType = tag.GetByte("pigronataType");
-                ClonedTypes[++index] = queenLarvaType = tag.GetByte("queenLarvaType");
-                ClonedTypes[++index] = oceanSlimeType = tag.GetByte("oceanSlimeType");
-                ClonedTypes[++index] = miniAntlionType = tag.GetByte("miniAntlionType");
-                ClonedTypes[++index] = petGoldfishType = tag.GetByte("petGoldfishType");
-                ClonedTypes[++index] = skeletronHandType = tag.GetByte("skeletronHandType");
-                ClonedTypes[++index] = skeletronPrimeHandType = tag.GetByte("skeletronPrimeHandType");
-                ClonedTypes[++index] = petCultistType = tag.GetByte("petCultistType");
-                //every other new type will be 0 (makes sense since this is when the player first updates to the new version)
-                //DON'T TOUCH ANYTHING IN THIS SECTION
-            }
-            else
-            {
-                var petTypeList = tag.GetList<byte>("petTypes");
-                int clonedTypesLength = ClonedTypes.Length;
-                ClonedTypes = new List<byte>(petTypeList).ToArray();
-                //in case new types got added (since this assignment overrides the old ClonedTypes length)
-                Array.Resize(ref ClonedTypes, clonedTypesLength);
-            }
+
+            var petTypeList = tag.GetList<byte>("petTypes");
+            int clonedTypesLength = ClonedTypes.Length;
+            ClonedTypes = new List<byte>(petTypeList).ToArray();
+            //in case new types got added (since this assignment overrides the old ClonedTypes length)
+            Array.Resize(ref ClonedTypes, clonedTypesLength);
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -615,7 +588,6 @@ namespace AssortedCrazyThings
             }
             else
             {
-                //slimeHugTimer = 0;
                 if (slimeHugTimer < 0)
                 {
                     slimeHugTimer++;

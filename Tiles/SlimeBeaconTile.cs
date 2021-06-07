@@ -6,8 +6,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Tiles
 {
@@ -62,37 +60,6 @@ namespace AssortedCrazyThings.Tiles
                 frame = 0;
             }
         }
-
-        //Testing hooks
-        //public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
-        //{
-        //    Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
-        //}
-
-        //public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
-        //{
-        //    Vector2 pos = new Vector2(Main.offScreenRange);
-        //    if (Main.drawToScreen)
-        //    {
-        //        pos = Vector2.Zero;
-        //    }
-
-        //    Tile tile = Main.tile[i, j];
-        //    int type = tile.type;
-
-        //    if (tile.frameX != 0 && tile.frameY != 0)
-        //    {
-        //        return;
-        //    }
-
-        //    pos.X += i * 16 - (int)Main.screenPosition.X;//i*16 world coords left of block
-        //    int yOff = TileObjectData.GetTileData(type, 0)?.DrawYOffset ?? 0;
-        //    pos.Y += j * 16 + yOff - (int)Main.screenPosition.Y; //j*16 world coords top of block
-        //    Texture2D heldItemTexture = TextureAssets.Item[Main.LocalPlayer.HeldItem.type].Value;
-
-        //    Rectangle frame = heldItemTexture.Frame();
-        //    spriteBatch.Draw(heldItemTexture, pos, frame, Color.White, 0f, default(Vector2), 0.75f, SpriteEffects.None, 0f);
-        //}
 
         public override bool RightClick(int i, int j)
         {
