@@ -27,6 +27,9 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 return;
             }
 
+            int intended = Main.CurrentDrawnEntityShader;
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, 0);
+
             SpriteEffects effects = SpriteEffects.None;
             if (Projectile.spriteDirection == -1)
             {
@@ -35,7 +38,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             Texture2D image = asset.Value;
             Rectangle frameLocal = image.Frame(SheetCountX, SheetCountY, frameX, frameY);
             Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, -6f - DrawOriginOffsetY + Projectile.gfxOffY);
-            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0);
+            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, intended);
         }
     }
 }

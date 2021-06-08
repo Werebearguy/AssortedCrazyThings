@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool MinionContactDamage()
         {
-            return Projectile.minion ? true : false;
+            return Projectile.minion;
         }
 
         public override void AI()
@@ -227,13 +227,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Vector2 center = Projectile.Center;
                 float x = player.Center.X - center.X;
                 float y = player.Center.Y - center.Y;
-                float distance = (float)Math.Sqrt(x * x + y * y);
-                if (distance > 2000f)
+                float distanceSQ = x * x + y * y;
+                if (distanceSQ > 2000f * 2000f)
                 {
-                    Projectile.position.X = player.position.X;
-                    Projectile.position.Y = player.position.Y;
+                    Projectile.Center = player.Center;
                 }
-                else if (distance > num38 || (Math.Abs(y) > 300f && JumpTimer <= 0))
+                else if (distanceSQ > num38 * num38 || (Math.Abs(y) > 300f && JumpTimer <= 0))
                 {
                     if (y > 0f && Projectile.velocity.Y < 0f)
                     {

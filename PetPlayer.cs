@@ -542,6 +542,11 @@ namespace AssortedCrazyThings
             return SlimeHugs.FirstOrDefault(h => h.Type == type);
         }
 
+        public static bool CanHandleTimer(CuteSlimeBaseProj slime)
+        {
+            return slime.OnGround;
+        }
+
         private void ValidateSlimePetIndex()
         {
             if (!HasValidSlimePet(out _))
@@ -604,16 +609,18 @@ namespace AssortedCrazyThings
             SlimeHug newHug = null;
             foreach (var hug in SlimeHugs)
             {
-                if (hug.HandleTimer()) //Keep updating timers even if hugs could be possible (slimeHugTimer == 0)
+                if (CanHandleTimer(slime) && hug.HandleTimer())
                 {
-                    if (slime.CanChooseHug && slimeHugTimer == 0 &&
-                        IsHuggable(Player) &&
-                        hug.IsAvailable(slime, this))
+                    if (hug.IsAvailable(slime, this))
                     {
                         newHug = hug;
-                        break;
                     }
                 }
+            }
+
+            if (!slime.CanChooseHug(Player) || slimeHugTimer != 0 || !IsHuggable(Player))
+            {
+                return;
             }
 
             if (newHug != null) //Atleast one off cooldown

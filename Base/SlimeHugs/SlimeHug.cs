@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Base.SlimeHugs
 
         public int CompareTo(SlimeHug other)
         {
-            return -Cooldown.CompareTo(other.Cooldown);
+            return Cooldown.CompareTo(other.Cooldown);
         }
     }
 }

@@ -309,8 +309,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public bool Idling => OnGround && Projectile.velocity.X == 0f;
 
-        public bool CanChooseHug => OnGround;
-            
+        public bool CanChooseHug(Player player) => OnGround && Collision.CanHit(Projectile, player);
+
         public sealed override void PostAI()
         {
             //DO NOT use the hook (ground logic is messed up with velocity.Y = 0.1f)
@@ -352,8 +352,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 return;
             }
 
-            //Condition changed
-            if (CanChooseHug && hugType != -1)
+            if (CanChooseHug(player) && hugType != -1)
             {
                 if (oldHugType == -1)
                 {
@@ -496,7 +495,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         {
             PetPlayer pPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             bool isPet = SlimePets.TryGetPetFromProj(Projectile.type, out SlimePet sPet);
-            PetAccessory petAccessory;
 
             string textureString;
             string colorString;
@@ -509,34 +507,51 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             Vector2 originOffset;
             Vector2 drawPos;
 
+            List<PetAccessory> accessories = new List<PetAccessory>();
+
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
-                petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
+                PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
 
                 if (petAccessory != null && isPet &&
                     (preDraw || !petAccessory.PreDraw) &&
                     !sPet.IsSlotTypeBlacklisted[slotNumber])
                 {
-                    textureString = PetAccessoryFolder + petAccessory.Name;
-                    colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
-
-                    texture = ModContent.GetTexture(textureString + colorString + AccSheet).Value;
-
-                    frameLocal = texture.Frame(SheetCountX, SheetCountY, frameX, frameY);
-
-                    //get necessary properties and parameters for draw
-                    effect = Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                    drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / SheetCountY) * 0.5f);
-                    stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkProj>() ? -8f : 0f, DrawOriginOffsetY + Projectile.gfxOffY);
-                    color = drawColor * ((255 - petAccessory.Alpha) / 255f);
-
-                    originOffset = -petAccessory.Offset;
-                    originOffset.X *= Math.Sign(Projectile.spriteDirection);
-
-                    drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    Main.EntitySpriteDraw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2 + originOffset, Projectile.scale, effect, 0);
+                    accessories.Add(petAccessory);
                 }
             }
+
+            if (accessories.Count == 0)
+            {
+                return;
+            }
+
+            int intended = Main.CurrentDrawnEntityShader;
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, 0);
+
+            foreach (var petAccessory in accessories)
+            {
+                textureString = PetAccessoryFolder + petAccessory.Name;
+                colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
+
+                texture = ModContent.GetTexture(textureString + colorString + AccSheet).Value;
+
+                frameLocal = texture.Frame(SheetCountX, SheetCountY, frameX, frameY);
+
+                //get necessary properties and parameters for draw
+                effect = Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / SheetCountY) * 0.5f);
+                stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkProj>() ? -8f : 0f, DrawOriginOffsetY + Projectile.gfxOffY);
+                color = drawColor * ((255 - petAccessory.Alpha) / 255f);
+
+                originOffset = -petAccessory.Offset;
+                originOffset.X *= Math.Sign(Projectile.spriteDirection);
+
+                drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
+                Main.spriteBatch.Draw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2 + originOffset, Projectile.scale, effect, 0);
+            }
+
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, intended);
         }
     }
 }
