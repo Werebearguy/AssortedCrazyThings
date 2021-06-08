@@ -193,6 +193,15 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
+        public override void SetupTravelShop(int[] shop, ref int nextSlot)
+        {
+            if (Main.rand.NextBool(4))
+            {
+                shop[nextSlot] = ModContent.ItemType<SuspiciousNuggetItem>();
+                nextSlot++;
+            }
+        }
+
         #region Wyvern Campfire
 
         public const short fadeTimer = 254;

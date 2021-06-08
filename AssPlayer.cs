@@ -914,6 +914,23 @@ namespace AssortedCrazyThings
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
+        //private static readonly int[] Junk = new int[] { ItemID.OldShoe, ItemID.Seaweed, ItemID.TinCan };
+
+        //public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType)
+        //{
+        //    if (Array.BinarySearch(Junk, caughtType) > -1)
+        //    {
+        //        return;
+        //    }
+
+        //    if (poolSize >= 300 && liquidType == 0 && ((int)(Player.Center.X / 16) < Main.maxTilesX * 0.08f || (int)(Player.Center.X / 16) > Main.maxTilesX * 0.92f))
+        //    {
+        //        //In ocean
+
+        //        if (Main.rand.NextBool(200 / Player.fishing)
+        //    }
+        //}
+
         public override void PostUpdateBuffs()
         {
             UpdateTeleportHomeWhenLow();

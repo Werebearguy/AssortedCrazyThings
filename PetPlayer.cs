@@ -89,8 +89,11 @@ namespace AssortedCrazyThings
         //pet cultist texture
         public byte petCultistType = 0;
 
-        //pet cultist texture
+        //animated tome texture
         public byte animatedTomeType = 0;
+
+        //pet anomalocaris texture
+        public byte petAnomalocarisType = 0;
 
         //pet wall of flesh texture
         public byte wallFragmentType = 0;
@@ -121,6 +124,7 @@ namespace AssortedCrazyThings
         public bool CuteSlimeBlack = false;
 
         public bool DrumstickElemental = false;
+        public bool SuspiciousNugget = false;
         public bool MiniAntlion = false;
         public bool LilWraps = false;
         public bool PetFishron = false;
@@ -175,6 +179,7 @@ namespace AssortedCrazyThings
         public bool PetEaterofWorlds = false;
         public bool PetDestroyer = false;
         public bool AnimatedTome = false;
+        public bool PetAnomalocaris = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -203,6 +208,7 @@ namespace AssortedCrazyThings
             CuteSlimeXmas = false;
 
             DrumstickElemental = false;
+            SuspiciousNugget = false;
             MiniAntlion = false;
             LilWraps = false;
             PetFishron = false;
@@ -257,6 +263,7 @@ namespace AssortedCrazyThings
             PetEaterofWorlds = false;
             PetDestroyer = false;
             AnimatedTome = false;
+            PetAnomalocaris = false;
             //ALTERNATE
             //ClassName = false;
         }
@@ -867,6 +874,13 @@ namespace AssortedCrazyThings
             return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
         }
 
+        public static CircleUIConf GetAnomalocarisConf()
+        {
+            List<string> tooltips = new List<string>() { "Default", "Default", "Default" }; //TODO
+
+            return CircleUIHandler.PetConf("AnomalocarisProj", tooltips);
+        }
+
         public static CircleUIConf GetWallFragmentConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Chinese" };
@@ -1052,6 +1066,14 @@ namespace AssortedCrazyThings
             ),
                 new CircleUIHandler(
                 triggerItem: ModContent.ItemType<VanitySelector>(),
+                condition: () => PetAnomalocaris,
+                uiConf: GetAnomalocarisConf,
+                onUIStart: () => petAnomalocarisType,
+                onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
+                needsSaving: true
+            ),
+                new CircleUIHandler(
+                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => WallFragment,
                 uiConf: GetWallFragmentConf,
                 onUIStart: () => wallFragmentType,
@@ -1112,6 +1134,7 @@ namespace AssortedCrazyThings
             skeletronPrimeHandType = ClonedTypes[index++];
             petCultistType = ClonedTypes[index++];
             animatedTomeType = ClonedTypes[index++];
+            petAnomalocarisType = ClonedTypes[index++];
             wallFragmentType = ClonedTypes[index++];
             //ALTERNATE
             //classNameType = ClonedTypes[index++];
@@ -1145,6 +1168,7 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = skeletronPrimeHandType;
                 ClonedTypes[++index] = petCultistType;
                 ClonedTypes[++index] = animatedTomeType;
+                ClonedTypes[++index] = petAnomalocarisType;
                 ClonedTypes[++index] = wallFragmentType;
                 //ALTERNATE
                 //ClonedTypes[++index] = classNameType;
