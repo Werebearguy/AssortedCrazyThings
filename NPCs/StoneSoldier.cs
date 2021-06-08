@@ -166,7 +166,7 @@ namespace AssortedCrazyThings.NPCs
             return true;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             //base sprite is 80x66
             //hitbox is 18x40
@@ -178,7 +178,7 @@ namespace AssortedCrazyThings.NPCs
             Vector2 stupidOffset = new Vector2(0f, -8f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
-            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
             drawColor = new Color((int)(drawColor.R * 1.2f + 40), (int)(drawColor.G * 1.2f + 40), (int)(drawColor.B * 1.2f + 40));
             drawColor.R = Math.Max(drawColor.R, (byte)100);
             drawColor.G = Math.Max(drawColor.G, (byte)100);

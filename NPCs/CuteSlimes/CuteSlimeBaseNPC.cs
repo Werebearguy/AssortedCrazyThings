@@ -115,12 +115,12 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         }
 
-        public sealed override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public sealed override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            return SafePreDraw(spriteBatch, drawColor);
+            return SafePreDraw(spriteBatch, screenPos, drawColor);
         }
 
-        public virtual bool SafePreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public virtual bool SafePreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             return true;
         }

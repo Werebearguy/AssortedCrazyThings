@@ -203,17 +203,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //}
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             return false;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            lightColor = NPC.GetAlpha(lightColor) * 0.99f; //1f is opaque
-            lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
-            lightColor.G = Math.Max(lightColor.G, (byte)200);
-            lightColor.B = Math.Max(lightColor.B, (byte)200);
+            drawColor = NPC.GetAlpha(drawColor) * 0.99f; //1f is opaque
+            drawColor.R = Math.Max(drawColor.R, (byte)200); //100 for dark
+            drawColor.G = Math.Max(drawColor.G, (byte)200);
+            drawColor.B = Math.Max(drawColor.B, (byte)200);
 
             Texture2D image = Terraria.GameContent.TextureAssets.Npc[NPC.type].Value;
             Rectangle bounds = new Rectangle
@@ -248,7 +248,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             if (NPC.timeLeft <= fadeAwayMax && (AI_State == 0))
             {
-                lightColor = NPC.GetAlpha(lightColor) * (NPC.timeLeft / (float)fadeAwayMax);
+                drawColor = NPC.GetAlpha(drawColor) * (NPC.timeLeft / (float)fadeAwayMax);
             }
 
             Vector2 stupidOffset = new Vector2(wid / 2, (hei - 10f) + sinY);
@@ -257,12 +257,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if ((NPC.velocity.Y == 0 || NPC.velocity.Y < 2f && NPC.velocity.Y > 0f) && NPC.velocity.X == 0)
                 {
-                    lightColor = Color.White * 0.05f; //draw really weak
+                    drawColor = Color.White * 0.05f; //draw really weak
                 }
             }
             SpriteEffects effects = SpriteEffects.None;
 
-            Main.spriteBatch.Draw(image, NPC.position - Main.screenPosition + stupidOffset, bounds, lightColor, NPC.rotation, bounds.Size() / 2, NPC.scale, effects, 0f);
+            Main.spriteBatch.Draw(image, NPC.position - screenPos + stupidOffset, bounds, drawColor, NPC.rotation, bounds.Size() / 2, NPC.scale, effects, 0f);
         }
 
         public override void AI()
@@ -378,7 +378,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Dungeon Soul");
-            Main.npcFrameCount[NPC.type] = 6;
+            Main.npcFrameCount[NPC.type] = 8;
             Main.npcCatchable[NPC.type] = true;
         }
 

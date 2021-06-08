@@ -71,18 +71,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.dontCountMe = true;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             return false;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (AssWorld.harvesterIndex != -1)
             {
                 Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterChain").Value;
                 //Main.chain21Texture
-                Vector2 center = new Vector2(NPC.Center.X, NPC.Center.Y);
+                Vector2 center = NPC.Center;
                 NPC body = Main.npc[AssWorld.harvesterIndex];
                 float num22 = body.Center.X - center.X;
                 float num23 = body.Center.Y - center.Y;
@@ -125,12 +125,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             dust.noGravity = true;
                             dust.fadeIn = Main.rand.NextFloat(0.5f, 1.5f);
                         }
-                        Main.spriteBatch.Draw(texture, center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
+                        Main.spriteBatch.Draw(texture, center - screenPos + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
                     }
                 }
 
                 texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterTalon").Value;
-                spriteBatch.Draw(texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
+                spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
             }
         }
 

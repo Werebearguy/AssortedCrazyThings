@@ -76,13 +76,13 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             Dust.NewDustDirect(NPC.position + new Vector2(widthOffset, -20), NPC.width - 2 * widthOffset, NPC.height + 20, 6).noGravity = true;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture = Mod.GetTexture("NPCs/CuteSlimes/CuteSlimeLavaAddition").Value;
             Vector2 stupidOffset = new Vector2(0f, -9f * NPC.scale + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
-            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
             drawColor.A = 255;
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }

@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             NPC.alpha = 80;
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture = Mod.GetTexture("NPCs/CuteSlimes/CuteSlimeIlluminantAddition").Value;
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -73,7 +73,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             // Length is implicitely set in TrailCacheLength up there
             for (int k = NPC.oldPos.Length - 1; k >= 0; k--)
             {
-                Vector2 drawPos = NPC.oldPos[k] - Main.screenPosition + drawOrigin;
+                Vector2 drawPos = NPC.oldPos[k] - screenPos + drawOrigin;
                 Color color = NPC.GetAlpha(Color.White) * ((NPC.oldPos.Length - k) / (1f * NPC.oldPos.Length)) * ((255 - NPC.alpha) / 255f) * 0.5f;
                 color.A = (byte)(NPC.alpha * ((NPC.oldPos.Length - k) / NPC.oldPos.Length));
                 spriteBatch.Draw(texture, drawPos, NPC.frame, color, NPC.oldRot[k], NPC.frame.Size() / 2, NPC.scale, effect, 0f);

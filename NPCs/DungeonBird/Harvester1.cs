@@ -172,7 +172,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (AI_State == STATE_STOP && stopTime == eatTime)
             {
@@ -180,7 +180,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 Vector2 stupidOffset = new Vector2(0f, 3f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
                 SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
-                Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+                Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
 
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);

@@ -170,23 +170,24 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterWings").Value;
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = NPC.Size / 2;
 
             Vector2 stupidOffset = new Vector2(0, -29f + NPC.gfxOffY);
-            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
 
             spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(Color.White), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }
 
-        public override Color? GetAlpha(Color lightColor)
+        public override Color? GetAlpha(Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)
             {
-                return Color.White;
+                //This is required because we have NPC.alpha = 255 in SetDefaults, in the bestiary it would look transparent
+                return NPC.GetBestiaryEntryColor();
             }
             return Color.White * ((255 - NPC.alpha) / 255f);
         }

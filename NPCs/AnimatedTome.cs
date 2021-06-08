@@ -81,7 +81,7 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             int i = NPC.whoAmI % 5; //needs to be fixed per NPC instance
             if (i < 4)
@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.NPCs
                 Texture2D texture = Mod.GetTexture("NPCs/AnimatedTome_" + i).Value;
                 Vector2 stupidOffset = new Vector2(0f, 0f); //4f
                 SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                Vector2 drawPos = NPC.Center - Main.screenPosition - Vector2.Zero + stupidOffset;
+                Vector2 drawPos = NPC.Center - screenPos - Vector2.Zero + stupidOffset;
                 spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
             }
         }

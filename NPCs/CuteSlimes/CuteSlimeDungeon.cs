@@ -72,13 +72,13 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 OnFailedRoll(ItemDropRule.Common(ItemID.GoldenKey));
         }
 
-        public override bool SafePreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool SafePreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture = Mod.GetTexture("NPCs/CuteSlimes/CuteSlimeDungeonAddition").Value;
             Vector2 stupidOffset = new Vector2(0f, -12f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
-            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin + stupidOffset;
+            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
             drawColor.A = 255;
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 
