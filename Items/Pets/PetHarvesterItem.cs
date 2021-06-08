@@ -16,15 +16,18 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stubborn Bird Soul");
-            Tooltip.SetDefault("Summons a stubborn bird soul to follow you");
+            Tooltip.SetDefault("Summons a stubborn bird to follow you");
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
         public override void SafeSetDefaults()
         {
-            Item.rare = -13;
+            Item.noUseGraphic = true;
+            Item.rare = ItemRarityID.Master;
             Item.master = true;
             Item.value = Item.sellPrice(0, 5);
         }

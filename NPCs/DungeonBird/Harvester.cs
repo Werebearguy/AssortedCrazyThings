@@ -40,6 +40,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
             Main.npcFrameCount[NPC.type] = 5;
+            
+            NPCID.Sets.BossBestiaryPriority.Add(NPC.type);
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -258,7 +260,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.Bone, minimumDropped: 40, maximumDropped: 60));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>()));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 10));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 7));
 
             //Finally add the leading rule
             npcLoot.Add(notExpertRule);
@@ -266,16 +268,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void OnKill()
         {
-            int npcTypeOld = ModContent.NPCType<DungeonSoul>();
-            int npcTypeNew = ModContent.NPCType<DungeonSoulFreed>();  //version that doesnt get eaten by harvesters
-
-            int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
-            int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
-
-            //"convert" NPC souls
-            ConvertSouls(npcTypeOld, npcTypeNew, itemTypeOld, itemTypeNew);
-
-            SpawnSouls(npcTypeNew);
+            NPC.SetEventFlagCleared(ref AssWorld.downedHarvester, -1);
 
             //if (!AssWorld.downedHarvester)
             //{
@@ -287,6 +280,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             //}
 
             AssWorld.Message(deathMessage, deathColor);
+
+            int npcTypeOld = ModContent.NPCType<DungeonSoul>();
+            int npcTypeNew = ModContent.NPCType<DungeonSoulFreed>();  //version that doesn't get eaten by harvesters
+
+            int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
+            int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
+
+            //"convert" NPC souls
+            ConvertSouls(npcTypeOld, npcTypeNew, itemTypeOld, itemTypeNew);
+
+            SpawnSouls(npcTypeNew);
         }
 
         private void ConvertSouls(int npcTypeOld, int npcTypeNew, int itemTypeOld, int itemTypeNew)
@@ -349,7 +353,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        SendConvertInertSoulsInventory();
+                        SendConvertInertSoulsInventory(j);
                     }
                     else //singleplayer
                     {
@@ -359,13 +363,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        private void SendConvertInertSoulsInventory()
+        private void SendConvertInertSoulsInventory(int toWho)
         {
             if (Main.netMode == NetmodeID.Server)
             {
                 ModPacket packet = Mod.GetPacket();
                 packet.Write((byte)AssMessageType.ConvertInertSoulsInventory);
-                packet.Send();
+                packet.Send(toClient: toWho);
             }
         }
 

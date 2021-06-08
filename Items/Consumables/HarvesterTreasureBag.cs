@@ -34,8 +34,9 @@ namespace AssortedCrazyThings.Items.Consumables
 
         public override void OpenBossBag(Player player)
         {
-            if (Main.tenthAnniversaryWorld)
+            if (Main.tenthAnniversaryWorld) //Because this is a pre-HM boss, we have to include this check
             {
+                //Using a particular secret world grants doubled chance on dev sets (handled inside TryGettingDevArmor) even for pre-HM bosses
                 player.TryGettingDevArmor();
             }
 
@@ -43,7 +44,7 @@ namespace AssortedCrazyThings.Items.Consumables
             player.QuickSpawnItem(ItemID.Bone, Main.rand.Next(40, 61));
             player.QuickSpawnItem(ModContent.ItemType<DesiccatedLeather>());
 
-            if (Main.rand.NextBool())
+            if (Main.rand.NextBool(7))
             {
                 player.QuickSpawnItem(ModContent.ItemType<SoulHarvesterMask>());
             }

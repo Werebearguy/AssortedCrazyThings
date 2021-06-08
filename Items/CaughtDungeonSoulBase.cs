@@ -41,6 +41,11 @@ namespace AssortedCrazyThings.Items
 
         public void Draw()
         {
+            if (frame2CounterCount <= 0)
+            {
+                return;
+            }
+
             frame2Counter++;
             if (frame2Counter >= frame2CounterCount)
             {
@@ -55,12 +60,22 @@ namespace AssortedCrazyThings.Items
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
+            if (frame2CounterCount <= 0)
+            {
+                return true;
+            }
+
             return false;
         }
 
         //draw only in world, not in inventory
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
+            if (frame2CounterCount <= 0)
+            {
+                return;
+            }
+
             float sinY = -10f;
             if (Main.hasFocus)
             {

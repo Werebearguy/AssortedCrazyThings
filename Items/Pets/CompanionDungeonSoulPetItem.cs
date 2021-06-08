@@ -16,7 +16,6 @@ namespace AssortedCrazyThings.Items.Pets
             Tooltip.SetDefault("Summons a friendly Soul to light your way"
                                + "\nLight pet slot");
 
-
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
@@ -26,12 +25,13 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SafeSetDefaults()
         {
             Item.DefaultToVanitypet(ModContent.ProjectileType<CompanionDungeonSoulPetProj>(), ModContent.BuffType<CompanionDungeonSoulPetBuff>());
-            frame2CounterCount = 6;
+            frame2CounterCount = -1;
             animatedTextureSelect = 0;
 
             Item.width = 26;
             Item.height = 28;
             Item.rare = -11;
+            Item.noUseGraphic = true;
 
             Item.value = Item.sellPrice(silver: 50);
         }

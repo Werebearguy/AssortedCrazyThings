@@ -12,8 +12,8 @@ namespace AssortedCrazyThings.Buffs.Pets
 
         public override void SafeSetDefaults()
         {
-            DisplayName.SetDefault("Stubborn Bird Soul");
-            Description.SetDefault("A stubborn bird soul is following you");
+            DisplayName.SetDefault("Stubborn Bird");
+            Description.SetDefault("A stubborn bird is following you");
         }
     }
 }
