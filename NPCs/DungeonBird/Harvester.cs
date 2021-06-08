@@ -172,6 +172,12 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                //Will use a separate texture later
+                return;
+            }
+
             Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterWings").Value;
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = NPC.Size / 2;
