@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    //TODO Unobtainable
+    //TODO Unobtainable, plan is fishing akin to zephyr fish
     public class AnomalocarisItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<AnomalocarisProj>();
@@ -15,7 +15,8 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ornery Shrimp");
-            Tooltip.SetDefault("Summons an Anomalocaris to follow you");
+            Tooltip.SetDefault("Summons an Anomalocaris to follow you"
+                + "\nAppearance can be changed with Costume Suitcase");
         }
 
         public override void SafeSetDefaults()
