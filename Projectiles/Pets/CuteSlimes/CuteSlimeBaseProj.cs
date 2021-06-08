@@ -467,7 +467,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 Color color = Projectile.GetAlpha(drawColor);
                 //color = drawColor * ((255f - projectile.alpha) / 255f);
 
-                Main.spriteBatch.Draw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effect, 0f);
+                Main.EntitySpriteDraw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effect, 0);
             }
 
             if (drawPostAddition) SafePostDrawBaseSprite(drawColor, useNoHair); //used for xmas bow, lava horn, princess crown and illuminant afterimage
@@ -534,7 +534,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                     originOffset.X *= Math.Sign(Projectile.spriteDirection);
 
                     drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                    Main.spriteBatch.Draw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2 + originOffset, Projectile.scale, effect, 0f);
+                    Main.EntitySpriteDraw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2 + originOffset, Projectile.scale, effect, 0);
                 }
             }
         }

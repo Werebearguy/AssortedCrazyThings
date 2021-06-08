@@ -23,8 +23,9 @@ namespace AssortedCrazyThings.Buffs.Pets
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<PetPlayer>().PetSun = true;
-            player.GetModPlayer<PetPlayer>().PetMoon = true;
+            PetPlayer petPlayer = player.GetModPlayer<PetPlayer>();
+            petPlayer.PetSun = true;
+            petPlayer.PetMoon = true;
             if (player.whoAmI == Main.myPlayer)
             {
                 int sun = ModContent.ProjectileType<PetSunProj>();

@@ -32,6 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
+            Projectile.manualDirectionChange = true;
 
             flyingFrameSpeed = 6;
             walkingFrameSpeed = 20;
@@ -347,6 +348,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         Projectile.velocity.Y -= veloDelta * 1.5f;
                     }
                 }
+
+                Projectile.direction = (Projectile.velocity.X > 0).ToDirectionInt();
             }
             else //projectile.ai[0] == 0f
             {

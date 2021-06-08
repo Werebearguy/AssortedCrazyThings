@@ -84,7 +84,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2 + 2f + Projectile.gfxOffY);
 
             //BEWARE, HERE THE COLOR IS Color.White INSTEAD OF lightColor
-            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, Color.White, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, Color.White, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
             return false;
         }

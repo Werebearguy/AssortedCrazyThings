@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin;
                 Color color = Projectile.GetAlpha(Color.White) * ((Projectile.oldPos.Length - k) / (1f * Projectile.oldPos.Length)) * ((255 - Projectile.alpha) / 255f) * 0.5f;
                 color.A = (byte)(Projectile.alpha * ((Projectile.oldPos.Length - k) / Projectile.oldPos.Length));
-                Main.spriteBatch.Draw(image, drawPos, bounds, color, Projectile.oldRot[k], bounds.Size() / 2, Projectile.scale, effect, 0f);
+                Main.EntitySpriteDraw(image, drawPos, bounds, color, Projectile.oldRot[k], bounds.Size() / 2, Projectile.scale, effect, 0);
             }
         }
     }

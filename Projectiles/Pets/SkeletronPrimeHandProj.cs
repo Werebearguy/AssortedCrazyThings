@@ -73,7 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawOrigin = bounds.Size() / 2;
             drawOrigin.Y += Projectile.height / 2;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, SpriteEffects.None, 0);
             return false;
         }
     }

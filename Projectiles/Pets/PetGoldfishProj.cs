@@ -342,7 +342,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
             bounds.Y = frame2 * bounds.Height;
             Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - 2 + Projectile.gfxOffY);
-            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
             return false;
         }

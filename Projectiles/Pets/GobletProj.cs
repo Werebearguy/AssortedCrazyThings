@@ -102,26 +102,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             }
         }
 
-        //public override bool PreDraw(ref Color lightColor)
-        //{
-        //    lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
-        //    SpriteEffects effects = SpriteEffects.None;
-        //    if (Projectile.direction != -1)
-        //    {
-        //        effects = SpriteEffects.FlipHorizontally;
-        //    }
-        //    Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-        //    Rectangle bounds = new Rectangle();
-        //    bounds.X = 0;
-        //    bounds.Width = image.Bounds.Width;
-        //    bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
-        //    bounds.Y = Projectile.frame * bounds.Height;
-        //    Vector2 stupidOffset = new Vector2(10f, 23f + Projectile.gfxOffY);
-        //    Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
-
-        //    return false;
-        //}
-
         public override void AI()
         {
             Player player = Projectile.GetOwner();

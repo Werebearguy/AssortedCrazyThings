@@ -51,16 +51,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, 0f, bounds.Size() / 2, 1f, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, 0f, bounds.Size() / 2, 1f, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             return false;
         }
-
-        //public override bool PreAI()
-        //{
-        //    Player player = projectile.GetOwner();
-        //    player.petFlagDD2Ghost = false; // Relic from AIType
-        //    return true;
-        //}
 
         public override void AI()
         {

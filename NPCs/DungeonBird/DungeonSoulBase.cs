@@ -262,7 +262,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             SpriteEffects effects = SpriteEffects.None;
 
-            Main.spriteBatch.Draw(image, NPC.position - screenPos + stupidOffset, bounds, drawColor, NPC.rotation, bounds.Size() / 2, NPC.scale, effects, 0f);
+            spriteBatch.Draw(image, NPC.position - screenPos + stupidOffset, bounds, drawColor, NPC.rotation, bounds.Size() / 2, NPC.scale, effects, 0f);
         }
 
         public override void AI()

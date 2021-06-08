@@ -43,11 +43,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin - eyeCenter, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin - eyeCenter, 1f, effects, 0);
 
             //Draw Eye
 
-            image = Mod.GetTexture("Projectiles/Pets/TrueObservingEyeProj_Eye").Value;
+            image = ModContent.GetTexture(Texture + "_Eye").Value;
 
             Vector2 between = Projectile.GetOwner().Center - (Projectile.position + stupidOffset);
             //between.Length(): 94 is "idle", 200 is very fast following
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             drawPos += between;
             drawOrigin = image.Bounds.Size() / 2;
-            Main.spriteBatch.Draw(image, drawPos, image.Bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, image.Bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             return false;
         }
@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 Projectile.timeLeft = 2;
             }
-            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
+            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
             AssAI.FlickerwickPetDraw(Projectile, 6, 8);
         }
     }

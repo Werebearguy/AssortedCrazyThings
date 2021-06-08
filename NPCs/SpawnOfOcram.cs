@@ -100,12 +100,12 @@ namespace AssortedCrazyThings.NPCs
             position4.X = position4.X + Terraria.GameContent.TextureAssets.Npc[npc.type].Value.Width * 0.5f; //shadowdodgecount plus
 
             Vector2 drawPos = position4 - screenPos + drawOrigin + new Vector2(0f, npc.gfxOffY);
-            Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[npc.type].Value, drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[npc.type].Value, drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
 
             position4.X = position4.X - Terraria.GameContent.TextureAssets.Npc[npc.type].Value.Width; //shadowdodgecount minus
 
             drawPos = position4 - screenPos + drawOrigin + new Vector2(0f, npc.gfxOffY);
-            Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[npc.type].Value, drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[npc.type].Value, drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
             */
 
             Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value.Width * 0.5f, NPC.height * 0.5f);
@@ -116,7 +116,7 @@ namespace AssortedCrazyThings.NPCs
             {
                 Vector2 drawPos = NPC.oldPos[k] - screenPos + drawOrigin + new Vector2(0f, NPC.gfxOffY);
                 Color color = NPC.GetAlpha(drawColor) * ((float)(NPC.oldPos.Length - k) / (2f * NPC.oldPos.Length));
-                Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value, drawPos, NPC.frame, color, NPC.oldRot[k], drawOrigin, NPC.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value, drawPos, NPC.frame, color, NPC.oldRot[k], drawOrigin, NPC.scale, SpriteEffects.None, 0f);
             }
             return true;
         }

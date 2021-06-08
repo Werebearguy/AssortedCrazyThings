@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, Color.White, 0f, bounds.Size() / 2, 1f, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, 0f, bounds.Size() / 2, 1f, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             return false;
         }
 
@@ -75,7 +75,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 Projectile.timeLeft = 2;
 
-                AssAI.FlickerwickPetAI(Projectile, reverseSide: true, vanityPet: true);
+                AssAI.FlickerwickPetAI(Projectile, reverseSide: true);
 
                 AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 7);
             }

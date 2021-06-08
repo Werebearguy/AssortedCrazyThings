@@ -25,6 +25,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Personal Sun");
             Main.projFrames[Projectile.type] = 1;
             Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.LightPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
@@ -56,9 +57,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
             Texture2D corona = Mod.GetTexture("Projectiles/Pets/PetSunProj_Corona").Value;
-            Main.spriteBatch.Draw(corona, drawPos, image.Bounds, Color.White, coronaRotation, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(corona, drawPos, image.Bounds, Color.White, coronaRotation, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0);
 
-            Main.spriteBatch.Draw(image, drawPos, image.Bounds, Color.White, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(image, drawPos, image.Bounds, Color.White, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0);
             return false;
         }
 

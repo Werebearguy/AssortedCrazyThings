@@ -77,7 +77,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             float betweenX = player.Center.X - Projectile.Center.X;
             SpriteEffects effects = betweenX < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
             return false;
         }
     }

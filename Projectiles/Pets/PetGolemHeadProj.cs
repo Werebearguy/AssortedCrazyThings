@@ -93,8 +93,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
             Vector2 drawOrigin = bounds.Size() / 2;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0f);
-            Main.spriteBatch.Draw(Mod.GetTexture("Projectiles/Pets/" + Name + "_Glowmask").Value, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
+            Main.EntitySpriteDraw(ModContent.GetTexture(Texture + "_Glowmask").Value, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             return false;
         }
@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         protected override bool ModifyDefaultAI(ref bool staticDirection, ref bool reverseSide, ref float veloXToRotationFactor, ref float veloSpeed, ref float offsetX, ref float offsetY)
         {
-            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, staticDirection: true, vanityPet: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
+            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, staticDirection: true, veloSpeed: 0.5f, offsetX: -30f, offsetY: -100f);
             return false;
         }
 

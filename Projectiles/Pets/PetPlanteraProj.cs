@@ -147,9 +147,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<PetPlanteraProjTentacle>() && Projectile.owner == Main.projectile[i].owner)
+                Projectile projectile = Main.projectile[i];
+                if (projectile.active && Projectile.owner == projectile.owner && projectile.type == ModContent.ProjectileType<PetPlanteraProjTentacle>())
                 {
-                    AssUtils.DrawTether("AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Main.projectile[i].Center, Projectile.Center);
+                    AssUtils.DrawTether("AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", projectile.Center, Projectile.Center);
                     tentacleCount++;
                 }
                 if (tentacleCount >= 4) break;

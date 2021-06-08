@@ -22,6 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DisplayName.SetDefault("Personal Moon");
             Main.projFrames[Projectile.type] = 8;
             Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.LightPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
@@ -71,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 18f);
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, Color.LightGray, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.LightGray, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0);
             return false;
         }
 

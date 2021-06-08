@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, (Projectile.height - 20f) + sinY);
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0);
             return false;
         }
 

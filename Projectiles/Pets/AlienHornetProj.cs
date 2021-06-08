@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 frame.Y = 24;
             }
             frame.Y *= Projectile.height;
-            Main.spriteBatch.Draw(texture, drawPos, frame, Color.White * 0.7f, 0f, Vector2.Zero, 1f, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(texture, drawPos, frame, Color.White * 0.7f, 0f, Vector2.Zero, 1f, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
         }
 
         public override bool PreAI()

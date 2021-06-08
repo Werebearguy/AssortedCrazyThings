@@ -148,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 Projectile.timeLeft = 2;
             }
-            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, vanityPet: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: (player.statLife < player.statLifeMax2 / 2) ? -26f : 2f);
+            AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, veloXToRotationFactor: 0.5f, offsetX: 16f, offsetY: (player.statLife < player.statLifeMax2 / 2) ? -26f : 2f);
 
             CustomAI();
             CustomDraw();
@@ -169,7 +169,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
             bounds.Y = Projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - Projectile.gfxOffY + sinY);
-            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
             return false;
         }

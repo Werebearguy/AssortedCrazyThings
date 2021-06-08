@@ -66,10 +66,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             if (mPlayer.oceanSlimeType == 0)
             {
-                lightColor = lightColor * ((255f - Projectile.alpha) / 255f);
+                lightColor *= (255f - Projectile.alpha) / 255f;
             }
 
-            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
             return false;
         }

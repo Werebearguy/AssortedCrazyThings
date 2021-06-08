@@ -118,7 +118,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                 Vector2 rotationOffset = new Vector2(0f, 16 * (LowerOutPercent - 1f));
 
                 //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-                Main.spriteBatch.Draw(image, drawPos + rotationOffset, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0f);
+                Main.EntitySpriteDraw(image, drawPos + rotationOffset, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0);
             }
 
             image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;

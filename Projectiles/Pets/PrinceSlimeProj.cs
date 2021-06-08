@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             drawColor.A = 255;
 
-            Main.spriteBatch.Draw(image, drawPos, bounds, drawColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0f);
+            Main.EntitySpriteDraw(image, drawPos, bounds, drawColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
         }
     }
 }

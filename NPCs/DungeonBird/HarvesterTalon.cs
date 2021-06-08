@@ -125,7 +125,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             dust.noGravity = true;
                             dust.fadeIn = Main.rand.NextFloat(0.5f, 1.5f);
                         }
-                        Main.spriteBatch.Draw(texture, center - screenPos + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
+                        spriteBatch.Draw(texture, center - screenPos + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
                     }
                 }
 

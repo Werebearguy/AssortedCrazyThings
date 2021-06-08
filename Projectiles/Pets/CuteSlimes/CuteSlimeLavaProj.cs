@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             Texture2D image = asset.Value;
             Rectangle frameLocal = image.Frame(SheetCountX, SheetCountY, frameX, frameY);
             Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, -6f - DrawOriginOffsetY + Projectile.gfxOffY);
-            Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0f);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0);
         }
     }
 }

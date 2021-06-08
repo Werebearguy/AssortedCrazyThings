@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -130,7 +128,7 @@ namespace AssortedCrazyThings.Base
                 dust.velocity *= 0.5f;
                 dust.velocity.Y += -0.9f;
                 dust.scale += 0.1f + Main.rand.NextFloat() * 0.6f;
-                dust.shader = GameShaders.Armor.GetSecondaryShader(!vanityPet ? player.cLight : player.cPet, player);
+                dust.shader = GameShaders.Armor.GetSecondaryShader(Main.GetProjectileDesiredShader(projectile.whoAmI), player);
             }
 
             if (lightPet)
@@ -145,20 +143,20 @@ namespace AssortedCrazyThings.Base
             }
 
             Vector2 desiredCenter = player.MountedCenter + desiredCenterRelative;
-            float between = Vector2.Distance(projectile.Center, desiredCenter);
+            Vector2 betweenDirection = desiredCenter - projectile.Center;
+            float betweenSQ = betweenDirection.LengthSquared();
             //if (between > 1000f)
             //{
             //    projectile.Center = player.Center + desiredCenterRelative;
             //}
             TeleportIfTooFar(projectile, desiredCenter, 1000);
-            Vector2 betweenDirection = desiredCenter - projectile.Center;
-            if (between < veloDistanceChange)
+            if (betweenSQ < veloDistanceChange * veloDistanceChange)
             {
                 projectile.velocity *= 0.25f;
             }
             if (betweenDirection != Vector2.Zero)
             {
-                if (betweenDirection.Length() < veloDistanceChange * 0.5f)
+                if (betweenSQ < (veloDistanceChange * 0.5f) * (veloDistanceChange * 0.5f))
                 {
                     projectile.velocity = betweenDirection * veloSpeed;
                 }
@@ -167,7 +165,7 @@ namespace AssortedCrazyThings.Base
                     projectile.velocity = betweenDirection * 0.1f * veloSpeed;
                 }
             }
-            if (projectile.velocity.Length() > 6f)
+            if (projectile.velocity.LengthSquared() > 6f * 6f)
             {
                 float rotationVelo = projectile.velocity.X * 0.08f * veloXToRotationFactor + projectile.velocity.Y * projectile.spriteDirection * 0.02f;
                 if (Math.Abs(projectile.rotation - rotationVelo) >= 3.14159274f)
