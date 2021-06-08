@@ -31,6 +31,7 @@ namespace AssortedCrazyThings.Items.Pets
             Item.width = 26;
             Item.height = 28;
             Item.rare = -11;
+            Item.maxStack = 1;
             Item.noUseGraphic = true;
 
             Item.value = Item.sellPrice(silver: 50);

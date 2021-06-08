@@ -20,8 +20,11 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SafeSetDefaults()
         {
+            Item.width = 32;
+            Item.height = 32;
+
             Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10);
+            Item.value = Item.sellPrice(gold: 3); //Zephyr fish price
         }
     }
 }

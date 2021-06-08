@@ -105,7 +105,7 @@ namespace AssortedCrazyThings.NPCs
             npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.RichGravestone1));
             npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.RichGravestone3));
             npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.RichGravestone4));
-            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.RichGravestone5));
+            npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 4), ItemID.RichGravestone5));
         }
 
         public override void PostAI()

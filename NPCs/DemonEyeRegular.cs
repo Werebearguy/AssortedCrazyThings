@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent.Bestiary;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
@@ -44,19 +43,19 @@ namespace AssortedCrazyThings.NPCs
                 switch ((int)AiTexture)
                 {
                     case 0:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeCataractGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeCataractGore_0").Type, 1f);
                         Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
                         break;
                     case 1:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeCataractGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeCataractGore_1").Type, 1f);
                         Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
                         break;
                     case 2:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeDilatedGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeDilatedGore_0").Type, 1f);
                         Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
                         break;
                     case 3:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeDilatedGore").Type, 1f);
+                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeDilatedGore_1").Type, 1f);
                         Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
                         break;
                     case 4:
