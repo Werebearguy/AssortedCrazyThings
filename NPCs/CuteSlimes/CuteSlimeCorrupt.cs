@@ -39,14 +39,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             });
         }
 
-        public override bool IsFriendly
-        {
-            get
-            {
-                return false;
-            }
-        }
-
         public override void SafeSetDefaults()
         {
             NPC.scale = 1.2f;

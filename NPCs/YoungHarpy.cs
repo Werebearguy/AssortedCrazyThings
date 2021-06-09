@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Items.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -13,6 +14,12 @@ namespace AssortedCrazyThings.NPCs
             DisplayName.SetDefault("Young Harpy");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
             Main.npcCatchable[NPC.type] = true;
+            
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0, 10f)
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
         }
 
         public override void SetDefaults()
@@ -23,7 +30,7 @@ namespace AssortedCrazyThings.NPCs
             NPC.defense = 1;
             NPC.lifeMax = 5;
             NPC.friendly = true;
-            //NPC.dontTakeDamageFromHostiles = true; //TODO concider dontTakeDamageFromHostiles for some catchable NPCs
+            NPC.dontTakeDamageFromHostiles = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = 60f;
@@ -33,6 +40,16 @@ namespace AssortedCrazyThings.NPCs
             AIType = NPCID.FlyingSnake;
             AnimationType = NPCID.FlyingSnake;
             NPC.catchItem = (short)ModContent.ItemType<YoungHarpyItem>();
+        }
+
+        public override bool? CanBeHitByItem(Player player, Item item)
+        {
+            return null; //TODO NPC return true
+        }
+
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+        {
+            return !projectile.minion;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

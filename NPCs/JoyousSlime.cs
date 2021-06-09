@@ -32,9 +32,20 @@ namespace AssortedCrazyThings.NPCs
             AIType = NPCID.ToxicSludge;
             AnimationType = NPCID.ToxicSludge;
             NPC.friendly = true;
+            NPC.dontTakeDamageFromHostiles = true;
             NPC.alpha = 175;
             NPC.color = new Color(169, 141, 255, 100);
             NPC.catchItem = (short)ModContent.ItemType<JoyousSlimeItem>();
+        }
+
+        public override bool? CanBeHitByItem(Player player, Item item)
+        {
+            return null; //TODO NPC return true
+        }
+
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+        {
+            return !projectile.minion;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

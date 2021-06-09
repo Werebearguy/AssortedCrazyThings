@@ -299,13 +299,12 @@ namespace AssortedCrazyThings
 
                 if (shouldDropSouls)
                 {
-                    int distance = (int)(Main.npc[index].Center - Player.Center).Length();
-                    if (distance < 2880 || Player.ZoneDungeon) //one and a half screens or in dungeon
+                    if (Player.ZoneDungeon || Player.DistanceSQ(Main.npc[index].Center) < 2880 * 2880) //one and a half screens or in dungeon
                     {
                         for (short j = 0; j < Main.maxNPCs; j++)
                         {
                             NPC npc = Main.npc[j];
-                            if (npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.dontTakeDamage && !npc.immortal && !npc.SpawnedFromStatue)
+                            if (npc.CanBeChasedBy() && !npc.SpawnedFromStatue)
                             {
                                 if (Array.IndexOf(AssortedCrazyThings.harvesterTypes, npc.type) < 0 && EligibleToReceiveSoulBuff(npc))
                                 {

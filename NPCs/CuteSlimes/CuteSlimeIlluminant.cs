@@ -43,14 +43,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             });
         }
 
-        public override bool IsFriendly
-        {
-            get
-            {
-                return false;
-            }
-        }
-
         public override void SafeSetStaticDefaults()
         {
             NPCID.Sets.TrailingMode[NPC.type] = 3;

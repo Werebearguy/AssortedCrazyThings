@@ -24,7 +24,8 @@ namespace AssortedCrazyThings.NPCs
             NPC.damage = 0;
             NPC.defense = 0;
             NPC.lifeMax = 20;
-            NPC.friendly = false;
+            NPC.friendly = true;
+            NPC.dontTakeDamageFromHostiles = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = 60f;
@@ -34,6 +35,16 @@ namespace AssortedCrazyThings.NPCs
             AIType = NPCID.FlyingSnake;
             AnimationType = NPCID.FlyingSnake;
             NPC.catchItem = (short)ModContent.ItemType<CuteGastropodItem>();
+        }
+
+        public override bool? CanBeHitByItem(Player player, Item item)
+        {
+            return null; //TODO NPC return true
+        }
+
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+        {
+            return !projectile.minion;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

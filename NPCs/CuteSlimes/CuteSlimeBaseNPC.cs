@@ -16,14 +16,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public abstract SpawnConditionType SpawnCondition { get; }
 
-        public virtual bool IsFriendly
-        {
-            get
-            {
-                return true;
-            }
-        }
-
         public virtual bool ShouldDropGel
         {
             get
@@ -49,18 +41,10 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public sealed override void SetDefaults()
         {
-            if (IsFriendly)
-            {
-                NPC.friendly = true;
-                NPC.defense = 0;
-                NPC.lifeMax = 5;
-            }
-            else
-            {
-                NPC.chaseable = false;
-                NPC.defense = 2;
-                NPC.lifeMax = 20;
-            }
+            NPC.friendly = true;
+            NPC.dontTakeDamageFromHostiles = true;
+            NPC.defense = 0;
+            NPC.lifeMax = 5;
             NPC.width = 28;
             NPC.height = 33;
             NPC.damage = 0;
@@ -83,6 +67,16 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             {
                 NPC.height -= (int)((NPC.scale - 1f) * NPC.height);
             }
+        }
+
+        public override bool? CanBeHitByItem(Player player, Item item)
+        {
+            return true;
+        }
+
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+        {
+            return !projectile.minion;
         }
 
         public virtual void SafeSetDefaults()

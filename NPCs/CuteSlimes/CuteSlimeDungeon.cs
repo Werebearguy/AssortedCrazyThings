@@ -45,14 +45,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             });
         }
 
-        public override bool IsFriendly
-        {
-            get
-            {
-                return false;
-            }
-        }
-
         public override bool ShouldDropGel
         {
             get

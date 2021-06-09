@@ -38,13 +38,5 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 new FlavorTextBestiaryInfoElement("Life in the jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.")
             });
         }
-
-        public override bool IsFriendly
-        {
-            get
-            {
-                return false;
-            }
-        }
     }
 }

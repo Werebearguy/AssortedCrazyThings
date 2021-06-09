@@ -23,14 +23,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
-        public override bool IsFriendly
-        {
-            get
-            {
-                return false;
-            }
-        }
-
         public override SpawnConditionType SpawnCondition
         {
             get
