@@ -143,41 +143,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         }
 
 
-        public float AI_State
-        {
-            get
-            {
-                return NPC.ai[0];
-            }
-            set
-            {
-                NPC.ai[0] = value;
-            }
-        }
+        public ref float AI_State => ref NPC.ai[0];
 
-        public float AI_Timer
-        {
-            get
-            {
-                return NPC.ai[1];
-            }
-            set
-            {
-                NPC.ai[1] = value;
-            }
-        }
+        public ref float AI_Timer => ref NPC.ai[1];
 
-        public float RetractCounter
-        {
-            get
-            {
-                return NPC.ai[2];
-            }
-            set
-            {
-                NPC.ai[2] = value;
-            }
-        }
+        public ref float RetractCounter => ref NPC.ai[2];
 
         public override bool CheckDead()
         {
@@ -230,6 +200,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         num691 += 8f; //8f
                     }
+
+                    Vector2 toBody = body.Center - NPC.Center;
+                    toBody.Y -= -Harvester.TalonOffsetY;
+                    toBody.X = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (toBody.X + Harvester.TalonOffsetRightX) : (toBody.X + Harvester.TalonOffsetLeftX);
+
                     float betweenSelfAndBodyX = body.Center.X - NPC.Center.X;
                     float betweenSelfAndBodyY = body.Center.Y - NPC.Center.Y;
                     betweenSelfAndBodyY -= -Harvester.TalonOffsetY;
@@ -315,12 +290,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         speed += 4f;
                     }
-                    float speedX = target.Center.X - NPC.Center.X;
-                    float speedY = target.Center.Y - NPC.Center.Y;
-                    float len = (float)Math.Sqrt(speedX * speedX + speedY * speedY);
-                    len = speed / len;
-                    NPC.velocity.X = speedX * len;
-                    NPC.velocity.Y = speedY * len;
+                    Vector2 toTarget = NPC.DirectionTo(target.Center);
+                    NPC.velocity = toTarget * speed;
                     AI_State = 2f;
                 }
                 else if (AI_State == 2f)
@@ -350,18 +321,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             NPC.noTileCollide = false;
                         }
                     }
-                    Vector2 vector84 = new Vector2(NPC.Center.X, NPC.Center.Y);
-                    float num699 = body.Center.X - vector84.X;
-                    float num700 = body.Center.Y - vector84.Y;
-                    num699 += body.velocity.X;
-                    num700 += body.velocity.Y;
-                    num700 -= -Harvester.TalonOffsetY;
-                    num699 = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (num699 + Harvester.TalonOffsetRightX) : (num699 + Harvester.TalonOffsetLeftX);
-                    float num701 = (float)Math.Sqrt(num699 * num699 + num700 * num700);
+
+                    Vector2 toBody = body.Center + body.velocity - NPC.Center;
+                    toBody.Y -= -Harvester.TalonOffsetY;
+                    toBody.X = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (toBody.X + Harvester.TalonOffsetRightX) : (toBody.X + Harvester.TalonOffsetLeftX);
+                    float distSQ = toBody.LengthSquared();
                     if (body.life < body.lifeMax)
                     {
                         NPC.knockBackResist = 0f;
-                        if (num701 > 700f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
+                        if (distSQ > 700f * 700f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
                         {
                             NPC.noTileCollide = true;
                             NPC.netUpdate = true;
@@ -372,7 +340,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         bool flag41 = NPC.justHit;
 
-                        if ((num701 > 600f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) | flag41)
+                        if ((distSQ > 600f * 600f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) | flag41)
                         {
                             NPC.noTileCollide = true;
                             AI_State = 0f;

@@ -434,9 +434,10 @@ namespace AssortedCrazyThings
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
                         //Kill all grappling hooks
-                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].aiStyle == 7)
+                        Projectile projectile = Main.projectile[i];
+                        if (projectile.active && projectile.owner == Player.whoAmI && projectile.aiStyle == 7)
                         {
-                            Main.projectile[i].Kill();
+                            projectile.Kill();
                         }
                     }
 
@@ -865,17 +866,19 @@ namespace AssortedCrazyThings
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
             //ApplyCandleDebuffs(target);
-            target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
+            AssPlayer assPlayer = target.GetModPlayer<AssPlayer>();
+            assPlayer.ResetEmpoweringTimer();
 
-            target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
+            assPlayer.SpawnSoulTemp();
         }
 
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
             //ApplyCandleDebuffs(target);
-            target.GetModPlayer<AssPlayer>().ResetEmpoweringTimer();
+            AssPlayer assPlayer = target.GetModPlayer<AssPlayer>();
+            assPlayer.ResetEmpoweringTimer();
 
-            target.GetModPlayer<AssPlayer>().SpawnSoulTemp();
+            assPlayer.SpawnSoulTemp();
         }
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)

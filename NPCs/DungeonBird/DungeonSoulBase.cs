@@ -4,17 +4,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     //this class also contains the NPC classes at the very bottom
-
     public abstract class DungeonSoulBase : ModNPC
     {
-        protected int frameCount;
+        protected int frameSpeed;
         protected float fadeAwayMax;
         public static int SoulActiveTime = NPC.activeTime * 5;
 
@@ -23,7 +21,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public sealed override void SetStaticDefaults()
         {
-            //Hide inert one, only display the freed one
+            DisplayName.SetDefault("Dungeon Soul");
+            Main.npcFrameCount[NPC.type] = 6;
+            Main.npcCatchable[NPC.type] = true;
+
+            //Hide both souls
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Hide = true //Hides this NPC from the Bestiary
@@ -152,7 +154,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void FindFrame(int frameHeight)
         {
-            NPC.LoopAnimation(frameHeight, frameCount);
+            NPC.LoopAnimation(frameHeight, frameSpeed);
             //if (AI_State == 0)
             //{
             //    NPC.frameCounter++;
@@ -356,16 +358,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     //the one the harvester hunts for
     public class DungeonSoul : DungeonSoulBase
     {
-        public override void SafeSetStaticDefaults()
-        {
-            DisplayName.SetDefault("Dungeon Soul");
-            Main.npcFrameCount[NPC.type] = 8;
-            Main.npcCatchable[NPC.type] = true;
-        }
-
         public override void SafeSetDefaults()
         {
-            frameCount = 6;
+            frameSpeed = 6;
             NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoul>();
 
             fadeAwayMax = HarvesterBase.EatTimeConst;
@@ -375,16 +370,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     //the one that gets converted into
     public class DungeonSoulFreed : DungeonSoulBase
     {
-        public override void SafeSetStaticDefaults()
-        {
-            DisplayName.SetDefault("Dungeon Soul");
-            Main.npcFrameCount[NPC.type] = 8;
-            Main.npcCatchable[NPC.type] = true;
-        }
-
         public override void SafeSetDefaults()
         {
-            frameCount = 4;
+            frameSpeed = 4;
             NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoulFreed>();
 
             NPC.timeLeft = 3600;

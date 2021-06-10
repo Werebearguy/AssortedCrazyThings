@@ -17,19 +17,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return "AssortedCrazyThings/Projectiles/Pets/PetCultistProj_0"; //temp
             }
         }
+
         private float sinY; //depends on projectile.ai[1], no need to sync
 
-        private float Sincounter
-        {
-            get
-            {
-                return Projectile.ai[1];
-            }
-            set
-            {
-                Projectile.ai[1] = value;
-            }
-        }
+        private ref float Sincounter => ref Projectile.ai[1];
 
         public override void SetStaticDefaults()
         {
@@ -106,7 +97,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Sincounter = Sincounter >= 240 ? 0 : Sincounter + 1;
             sinY = (float)((Math.Sin((Sincounter / 120f) * MathHelper.TwoPi) - 1) * 4);
 
-            if (Projectile.velocity.Length() < 6f && player.statLife < player.statLifeMax2 / 2)
+            if (Projectile.velocity.LengthSquared() < 6f * 6f && player.statLife < player.statLifeMax2 / 2)
             {
                 if (Sincounter % 80 == 30)
                 {
@@ -122,7 +113,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 dust.fadeIn = 1.2f;
 
                 //basically remaps player health from (max / 2) to 0 => 0.1f to 0.9f
-                float complicatedFormula = (((float)(player.statLifeMax2 / 2) - player.statLife) * 0.8f) / ((float)player.statLifeMax2 / 2) + 0.1f;
+                float halfLife = player.statLifeMax2 / 2;
+                float complicatedFormula = ((halfLife - player.statLife) * 0.8f) / (halfLife / 2) + 0.1f;
 
                 if (Main.rand.NextFloat() < complicatedFormula)
                 {

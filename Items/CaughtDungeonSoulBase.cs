@@ -10,6 +10,7 @@ namespace AssortedCrazyThings.Items
     {
         protected int animatedTextureSelect;
         private int sincounter;
+        float sinY = -10f;
         protected int frame2CounterCount;
         private int frame2Counter;
         private int frame2;
@@ -39,7 +40,16 @@ namespace AssortedCrazyThings.Items
 
         }
 
-        public void Draw()
+        public override void PostUpdate()
+        {
+            Animate();
+            sincounter = sincounter > 120 ? 0 : sincounter + 1;
+            sinY = (float)((Math.Sin((sincounter / 120f) * MathHelper.TwoPi) - 1) * 10);
+
+            Lighting.AddLight(Item.Center, new Vector3(0.15f, 0.15f, 0.35f));
+        }
+
+        public void Animate()
         {
             if (frame2CounterCount <= 0)
             {
@@ -76,20 +86,10 @@ namespace AssortedCrazyThings.Items
                 return;
             }
 
-            float sinY = -10f;
-            if (Main.hasFocus)
-            {
-                Draw();
-                sincounter = sincounter > 120 ? 0 : sincounter + 1;
-                sinY = (float)((Math.Sin((sincounter / 120f) * MathHelper.TwoPi) - 1) * 10);
-            }
-
             lightColor = Item.GetAlpha(lightColor) * 0.99f; //1f is opaque
             lightColor.R = Math.Max(lightColor.R, (byte)200); //100 for dark
             lightColor.G = Math.Max(lightColor.G, (byte)200);
             lightColor.B = Math.Max(lightColor.B, (byte)200);
-
-            Lighting.AddLight(Item.Center, new Vector3(0.15f, 0.15f, 0.35f));
 
             SpriteEffects effects = SpriteEffects.None;
             Texture2D image = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect];
