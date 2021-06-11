@@ -30,9 +30,8 @@ namespace AssortedCrazyThings.Items.Armor
             player.GetDamage(DamageClass.Summon) += 0.1f;
         }
 
-        public override void UpdateVanity(Player player)
+        public override void EquipFrameEffects(Player player, EquipType type)
         {
-            //This makes it so it won't render the shoes infront of the robe
             player.shoe = 0;
         }
 
