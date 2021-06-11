@@ -134,6 +134,8 @@ namespace AssortedCrazyThings.UI
                 int height = texture.Height;
                 if (UIConf.SpritesheetDivider > 0) height /= UIConf.SpritesheetDivider;
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
+                projRect.X += (int)UIConf.DrawOffset.X;
+                projRect.Y += (int)UIConf.DrawOffset.Y;
 
                 drawColor = Color.White;
                 if (done == currentSelected || !UIConf.Unlocked[done]) drawColor = Color.Gray;

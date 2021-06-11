@@ -7,22 +7,28 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class LifelikeMechanicalFrogProj : ModProjectile
+    public class DynamiteBunnyProj : ModProjectile
     {
+        public override string Texture
+        {
+            get
+            {
+                return "AssortedCrazyThings/Projectiles/Pets/DynamiteBunnyProj_0"; //temp
+            }
+        }
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lifelike Mechanical Frog");
-            Main.projFrames[Projectile.type] = 8;
+            DisplayName.SetDefault("Dynamite Bunny");
+            Main.projFrames[Projectile.type] = Main.projFrames[ProjectileID.Bunny];
             Main.projPet[Projectile.type] = true;
-            DrawOriginOffsetY = 1;
         }
 
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Bunny);
             AIType = ProjectileID.Bunny;
-            Projectile.width = 18;
-            Projectile.height = 20;
+            DrawOriginOffsetY = -7;
         }
 
         public override bool PreAI()
@@ -38,19 +44,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
             if (player.dead)
             {
-                modPlayer.LifelikeMechanicalFrog = false;
+                modPlayer.DynamiteBunny = false;
             }
-            if (modPlayer.LifelikeMechanicalFrog)
+            if (modPlayer.DynamiteBunny)
             {
                 Projectile.timeLeft = 2;
             }
+            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogProj" + (mPlayer.mechFrogCrown == 1 ? "Crown" : "")).Value;
+            Texture2D image = Mod.GetTexture("Projectiles/Pets/DynamiteBunnyProj_" + mPlayer.dynamiteBunnyType).Value;
             Rectangle bounds = new Rectangle
             {
                 X = 0,

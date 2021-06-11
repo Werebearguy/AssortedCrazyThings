@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         NPC.downedPlantBoss, // 2
                     };
 
-            return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock);
+            return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock, drawOffset: new Vector2(0f, -2f));
         }
 
         public override void SetStaticDefaults()

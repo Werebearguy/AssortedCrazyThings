@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
@@ -77,7 +78,7 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// creates a simplified conf specific for pets
         /// </summary>
-        public static CircleUIConf PetConf(string name, List<string> tooltips)
+        public static CircleUIConf PetConf(string name, List<string> tooltips, Vector2 drawOffset = default)
         {
             //uses VanitySelector as the triggerItem
             //order of tooltips must be the same as the order of textures (0, 1, 2 etc)
@@ -90,7 +91,7 @@ namespace AssortedCrazyThings.UI
 
             int type = AssUtils.Instance.Find<ModProjectile>(name).Type;
 
-            return new CircleUIConf(Main.projFrames[type], type, assets: assets, tooltips: tooltips);
+            return new CircleUIConf(Main.projFrames[type], type, assets: assets, tooltips: tooltips, drawOffset: drawOffset);
         }
 
         /// <summary>
@@ -118,6 +119,7 @@ namespace AssortedCrazyThings.UI
         public List<bool> Unlocked { get; private set; } //all true if just selection
         public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
         public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
+        public Vector2 DrawOffset { get; private set; } //if the preview is off from the selection, offsets it
 
         public int CircleAmount { get; private set; } //amount of spawned circles
 
@@ -125,7 +127,7 @@ namespace AssortedCrazyThings.UI
 
         public int AdditionalInfo { get; private set; } //mainly used for passing the projectile type atm
 
-        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Asset<Texture2D>> assets = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null)
+        public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Asset<Texture2D>> assets = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null, Vector2 drawOffset = default)
         {
             if (assets == null || assets.Count <= 0) throw new Exception("'textureNames' has to be specified or has to contain at least one element");
             else CircleAmount = assets.Count;
@@ -153,6 +155,7 @@ namespace AssortedCrazyThings.UI
             Unlocked = new List<bool>(unlocked);
             Tooltips = new List<string>(tooltips);
             ToUnlock = new List<string>(toUnlock);
+            DrawOffset = drawOffset;
         }
     }
 }

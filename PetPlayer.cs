@@ -5,6 +5,7 @@ using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
 using AssortedCrazyThings.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
@@ -95,6 +96,9 @@ namespace AssortedCrazyThings
         //pet anomalocaris texture
         public byte petAnomalocarisType = 0;
 
+        //dynamite bunny texture
+        public byte dynamiteBunnyType = 0;
+
         //pet wall of flesh texture
         public byte wallFragmentType = 0;
 
@@ -180,6 +184,7 @@ namespace AssortedCrazyThings
         public bool PetDestroyer = false;
         public bool AnimatedTome = false;
         public bool PetAnomalocaris = false;
+        public bool DynamiteBunny = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -264,6 +269,7 @@ namespace AssortedCrazyThings
             PetDestroyer = false;
             AnimatedTome = false;
             PetAnomalocaris = false;
+            DynamiteBunny = false;
             //ALTERNATE
             //ClassName = false;
         }
@@ -733,8 +739,8 @@ namespace AssortedCrazyThings
         public static CircleUIConf GetLifelikeMechanicalFrogConf()
         {
             List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrog"),
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogCrown") };
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogProj"),
+                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogProjCrown") };
 
             List<string> tooltips = new List<string>() { "Default", "Crowned" };
 
@@ -787,14 +793,14 @@ namespace AssortedCrazyThings
         {
             List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove", "Default (Legacy)", "Eagle (Legacy)", "Raven (Legacy)", "Dove (Legacy)" };
 
-            return CircleUIHandler.PetConf("YoungHarpyProj", tooltips);
+            return CircleUIHandler.PetConf("YoungHarpyProj", tooltips, new Vector2(0f, 4f));
         }
 
         public static CircleUIConf GetAbeeminationConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
 
-            return CircleUIHandler.PetConf("AbeeminationProj", tooltips);
+            return CircleUIHandler.PetConf("AbeeminationProj", tooltips, new Vector2(0f, -4f));
         }
 
         public static CircleUIConf GetLilWrapsConf()
@@ -829,14 +835,14 @@ namespace AssortedCrazyThings
         {
             List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
 
-            return CircleUIHandler.PetConf("OceanSlimeProj", tooltips);
+            return CircleUIHandler.PetConf("OceanSlimeProj", tooltips, new Vector2(1f, -4f));
         }
 
         public static CircleUIConf GetStingSlimeConf()
         {
             List<string> tooltips = new List<string>() { "Black", "Orange" };
 
-            return CircleUIHandler.PetConf("StingSlimeProj", tooltips);
+            return CircleUIHandler.PetConf("StingSlimeProj", tooltips, new Vector2(1f, -4f));
         }
 
         public static CircleUIConf GetMiniAntlionConf()
@@ -857,21 +863,21 @@ namespace AssortedCrazyThings
         {
             List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
 
-            return CircleUIHandler.PetConf("SkeletronHandProj", tooltips);
+            return CircleUIHandler.PetConf("SkeletronHandProj", tooltips, new Vector2(2, -4f));
         }
 
         public static CircleUIConf GetSkeletronPrimeHandConf()
         {
             List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
 
-            return CircleUIHandler.PetConf("SkeletronPrimeHandProj", tooltips);
+            return CircleUIHandler.PetConf("SkeletronPrimeHandProj", tooltips, new Vector2(0f, -4f));
         }
 
         public static CircleUIConf GetPetCultistConf()
         {
             List<string> tooltips = new List<string>() { "Lunar", "Solar" };
 
-            return CircleUIHandler.PetConf("PetCultistProj", tooltips);
+            return CircleUIHandler.PetConf("PetCultistProj", tooltips, new Vector2(1f, 0f));
         }
 
         public static CircleUIConf GetAnimatedTomeConf()
@@ -888,12 +894,11 @@ namespace AssortedCrazyThings
             return CircleUIHandler.PetConf("AnomalocarisProj", tooltips);
         }
 
-        //TODO DynamiteBunny
         public static CircleUIConf GetDynamiteBunnyConf()
         {
             List<string> tooltips = new List<string>() { "White", "Corrupt", "Crimtane", "Angora", "Dutch", "Flemish", "Lop", "Silver", "Caerbannog" };
 
-            return CircleUIHandler.PetConf("DynamiteBunnyProj", tooltips);
+            return CircleUIHandler.PetConf("DynamiteBunnyProj", tooltips, new Vector2(0f, -7f));
         }
 
         public static CircleUIConf GetWallFragmentConf()
@@ -1085,6 +1090,14 @@ namespace AssortedCrazyThings
                 uiConf: GetAnomalocarisConf,
                 onUIStart: () => petAnomalocarisType,
                 onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
+                needsSaving: true
+            ),
+                new CircleUIHandler(
+                triggerItem: ModContent.ItemType<VanitySelector>(),
+                condition: () => DynamiteBunny,
+                uiConf: GetDynamiteBunnyConf,
+                onUIStart: () => dynamiteBunnyType,
+                onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned,
                 needsSaving: true
             ),
                 new CircleUIHandler(
