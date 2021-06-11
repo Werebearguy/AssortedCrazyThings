@@ -883,9 +883,17 @@ namespace AssortedCrazyThings
 
         public static CircleUIConf GetAnomalocarisConf()
         {
-            List<string> tooltips = new List<string>() { "Default", "Default", "Default" }; //TODO
+            List<string> tooltips = new List<string>() { "Wild", "Shrimpy", "Snippy" };
 
             return CircleUIHandler.PetConf("AnomalocarisProj", tooltips);
+        }
+
+        //TODO DynamiteBunny
+        public static CircleUIConf GetDynamiteBunnyConf()
+        {
+            List<string> tooltips = new List<string>() { "White", "Corrupt", "Crimtane", "Angora", "Dutch", "Flemish", "Lop", "Silver", "Caerbannog" };
+
+            return CircleUIHandler.PetConf("DynamiteBunnyProj", tooltips);
         }
 
         public static CircleUIConf GetWallFragmentConf()
