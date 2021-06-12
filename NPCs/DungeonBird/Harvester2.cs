@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,13 +13,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     {
         public override void SetStaticDefaults()
         {
+            base.SetStaticDefaults();
             DisplayName.SetDefault(name);
             Main.npcFrameCount[NPC.type] = 17;
-
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                Hide = true //Only main boss shows
-            });
         }
 
         public override void SetDefaults()

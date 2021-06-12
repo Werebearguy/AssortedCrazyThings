@@ -207,18 +207,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             for (int i = 0; i < count; i++)
             {
-                //if (Main.rand.NextBool(3)) //33% chance
-                //{
-                //    int[] types = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
-                //    int itemType = Main.rand.Next(types);
-                //    Item.NewItem(NPC.getRect(), itemType, prefixGiven: -1);
-                //}
-
                 Vector2 randVector = Vector2.One;
                 float randFactor;
                 int index;
 
-                for (int j = 0; j < 15; j++) //spawn souls when dies, 15 total
+                for (int j = 0; j < HarvesterBase.MaxSouls; j++) //spawn souls when dies, 15 total
                 {
                     randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
                     randFactor = Main.rand.NextFloat(2f, 8f);

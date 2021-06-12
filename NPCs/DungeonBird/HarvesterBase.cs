@@ -12,6 +12,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     public abstract class HarvesterBase : ModNPC
     {
+        public const short MaxSouls = 15;
+
         public const short EatTimeConst = 240; //shouldn't be equal to IdleTimeConst + 120####### //180 //+60
         public const short IdleTimeConst = 180;
         public static readonly string message = "You hear a faint cawing come from nearby..."; //used for announcing
@@ -27,6 +29,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         protected const float STATE_NOCLIP = 2f;
         protected const float STATE_STOP = 3f;
         protected const float STATE_TRANSFORM = 4f;
+
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true //Only main boss shows
+            });
+        }
 
         public override Color? GetAlpha(Color lightColor)
         {
@@ -104,65 +114,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public float defScale = 1.0f;
         public int defLifeMax; //should be the same as maxSoulsEaten
 
-        public float AI_State
-        {
-            get
-            {
-                return NPC.ai[AI_State_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_State_Slot] = value;
-            }
-        }
+        public ref float AI_State => ref NPC.ai[AI_State_Slot];
 
-        public float AI_X_Timer
-        {
-            get
-            {
-                return NPC.ai[AI_X_Timer_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_X_Timer_Slot] = value;
-            }
-        }
+        public ref float AI_X_Timer => ref NPC.ai[AI_X_Timer_Slot];
 
-        public float AI_Y
-        {
-            get
-            {
-                return NPC.ai[AI_Y_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_Y_Slot] = value;
-            }
-        }
+        public ref float AI_Y => ref NPC.ai[AI_Y_Slot];
 
-        public float AI_Timer
-        {
-            get
-            {
-                return NPC.ai[AI_Timer_Slot];
-            }
-            set
-            {
-                NPC.ai[AI_Timer_Slot] = value;
-            }
-        }
+        public ref float AI_Timer => ref NPC.ai[AI_Timer_Slot];
 
-        public float AI_Local_Timer
-        {
-            get
-            {
-                return NPC.localAI[0];
-            }
-            set
-            {
-                NPC.localAI[0] = value;
-            }
-        }
+        public ref float AI_Local_Timer => ref NPC.localAI[0];
 
         protected int SelectTarget(bool restricted = false)
         {

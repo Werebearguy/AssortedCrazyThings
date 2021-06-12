@@ -11,13 +11,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     {
         public override void SetStaticDefaults()
         {
+            base.SetStaticDefaults();
             DisplayName.SetDefault(name);
             Main.npcFrameCount[NPC.type] = 9;
-
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                Hide = true //Only main boss shows
-            });
         }
 
         public override void SetDefaults()

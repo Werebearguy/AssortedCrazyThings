@@ -93,13 +93,13 @@ namespace AssortedCrazyThings.UI
                         {
                             //can technically also take life-1
                             //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
-                            //ret = "Souls eaten: " + m.soulsEaten + "/" + 15; //m.maxSoulsEaten
+                            //ret = "Souls eaten: " + m.soulsEaten + "/" + HarvesterBase.MaxSouls; //m.maxSoulsEaten
 
-                            ret = "Souls eaten: " + (npc.life - 1) + "/" + 15;
+                            ret = "Souls eaten: " + (npc.life - 1) + "/" + HarvesterBase.MaxSouls;
                         }
                         else if (npc.type == ModContent.NPCType<Harvester2>())
                         {
-                            ret = "Souls eaten: " + (npc.life - 1 + 5) + "/" + 15;
+                            ret = "Souls eaten: " + (npc.life - 1 + 5) + "/" + HarvesterBase.MaxSouls;
                         }
 
                         if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
