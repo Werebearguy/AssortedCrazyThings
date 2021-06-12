@@ -29,7 +29,10 @@ namespace AssortedCrazyThings.Base.SlimeHugs
             Type = SlimeHugLoader.Register(this);
         }
 
-        internal bool HandleTimer()
+        /// <summary>
+        /// Brings the hug closer to triggering. Returns true if ready
+        /// </summary>
+        internal bool HandleCooldown()
         {
             if (CooldownTimer < Cooldown)
             {
@@ -38,16 +41,25 @@ namespace AssortedCrazyThings.Base.SlimeHugs
             return CooldownTimer == Cooldown;
         }
 
+        /// <summary>
+        /// Resets the cooldown
+        /// </summary>
         internal void ApplyCooldown()
         {
             CooldownTimer = 0;
         }
 
+        /// <summary>
+        /// Allows customizing under which conditions this (ready) hug should be applied
+        /// </summary>
         public virtual bool IsAvailable(CuteSlimeBaseProj slime, PetPlayer petPlayer)
         {
             return true;
         }
 
+        /// <summary>
+        /// Allows customizing where the slime will be positioned during a hug
+        /// </summary>
         public virtual Vector2 GetHugOffset(CuteSlimeBaseProj slime, PetPlayer petPlayer)
         {
             return default;

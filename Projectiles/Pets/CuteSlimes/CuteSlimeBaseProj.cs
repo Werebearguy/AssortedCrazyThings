@@ -288,7 +288,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
             bool safe = SafePreAI();
 
-            if (petPlayer.IsHugging && petPlayer.GetSlimeHug(hugType) is SlimeHug hug)
+            if (petPlayer.IsHugging && petPlayer.TryGetSlimeHug(hugType, out SlimeHug hug))
             {
                 DoHugging(hug, petPlayer);
 
@@ -320,6 +320,9 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             }
         }
 
+        /// <summary>
+        /// Executes the hug while it is ongoing (Excludes moving towards the hug)
+        /// </summary>
         private void DoHugging(SlimeHug hug, PetPlayer petPlayer)
         {
             Player player = petPlayer.Player;
@@ -335,11 +338,14 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             Projectile.spriteDirection = -player.direction;
         }
 
+        /// <summary>
+        /// Handles discovering if a hug is available, and starting/cancelling it
+        /// </summary>
         private void HandleHugging(PetPlayer petPlayer)
         {
             Player player = petPlayer.Player;
 
-            if (petPlayer.GetSlimeHug(hugType) is not SlimeHug hug)
+            if (!petPlayer.TryGetSlimeHug(hugType, out SlimeHug hug))
             {
                 return;
             }

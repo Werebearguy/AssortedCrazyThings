@@ -508,11 +508,15 @@ namespace AssortedCrazyThings
             {
                 createdSlimeHugs = true;
 
-                SlimeHugs.AddRange(Mod.GetContent<SlimeHug>().Select(h => (SlimeHug)h.Clone()));
+                SlimeHugs = new List<SlimeHug>();
+                SlimeHugs.AddRange(Mod.GetContent<SlimeHug>().Select(h => (SlimeHug)h.Clone())); //Fetch every loaded hug, create a new instance of it to use for this player
                 SlimeHugs.Sort((s1, s2) => s1.CompareTo(s2)); //Sort by cooldown, takes priority from high cooldown
             }
         }
 
+        /// <summary>
+        /// Returns true if the player has a cute slime pet spawned
+        /// </summary>
         public bool HasValidSlimePet(out SlimePet slimePet)
         {
             slimePet = null;
@@ -530,8 +534,6 @@ namespace AssortedCrazyThings
         }
 
         #region Slime Pet Hug
-        public static bool IsHuggable(Player player) => !player.mount.Active && !player.pulley && player.velocity.Y == 0f && player.itemAnimation == 0;
-
         public bool slimeHugsUpdatedThisTick = false; //Protection against multiple slime pets updating it at the same time
         public const int HugDelaySuccess = 60 * 60 * 5;
         public const int HugDelayFail = 60 * 60 * 3;
@@ -542,17 +544,38 @@ namespace AssortedCrazyThings
 
         public bool createdSlimeHugs = false;
         public int slimePetIndex = -1;
-        public SlimeHug GetSlimeHug(int type)
+
+        /// <summary>
+        /// Returns true if a slime hug of this type exists and is set to <paramref name="slimeHug"/>
+        /// </summary>
+        public bool TryGetSlimeHug(int type, out SlimeHug slimeHug)
         {
-            if (type == -1) return null;
-            return SlimeHugs.FirstOrDefault(h => h.Type == type);
+            slimeHug = null;
+            if (type == -1) return false;
+            slimeHug = SlimeHugs.FirstOrDefault(h => h.Type == type);
+
+            return slimeHug != null;
         }
 
-        public static bool CanHandleTimer(CuteSlimeBaseProj slime)
+        /// <summary>
+        /// Global condition under which hug cooldowns will be handled
+        /// </summary>
+        public static bool CanHandleCooldown(CuteSlimeBaseProj slime)
         {
             return slime.OnGround;
         }
 
+        /// <summary>
+        /// Check active state of the player for if he is legible to receive a hug
+        /// </summary>
+        public static bool IsHuggable(Player player)
+        {
+            return !player.mount.Active && !player.pulley && player.velocity.Y == 0f && player.itemAnimation == 0;
+        }
+
+        /// <summary>
+        /// Resets the slime pet index if necessary
+        /// </summary>
         private void ValidateSlimePetIndex()
         {
             if (!HasValidSlimePet(out _))
@@ -615,7 +638,7 @@ namespace AssortedCrazyThings
             SlimeHug newHug = null;
             foreach (var hug in SlimeHugs)
             {
-                if (CanHandleTimer(slime) && hug.HandleTimer())
+                if (CanHandleCooldown(slime) && hug.HandleCooldown())
                 {
                     if (hug.IsAvailable(slime, this))
                     {
@@ -624,7 +647,7 @@ namespace AssortedCrazyThings
                 }
             }
 
-            if (!slime.CanChooseHug(Player) || slimeHugTimer != 0 || !IsHuggable(Player))
+            if (slimeHugTimer != 0 || !IsHuggable(Player) || !slime.CanChooseHug(Player))
             {
                 return;
             }
