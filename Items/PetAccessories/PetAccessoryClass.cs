@@ -109,7 +109,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
         }
 
-        protected override bool UseDefaultRecipe { get { return false; } }
+        protected override bool UseDefaultRecipe => false;
 
         protected override void SafeAddRecipes()
         {
@@ -554,6 +554,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
         public sealed override void AddRecipes()
         {
+            if (UseDefaultRecipe)
+            {
+                Recipe recipe = CreateRecipe();
+                recipe.AddIngredient(ModContent.ItemType<KnittingSet>());
+                recipe.AddTile(TileID.Loom);
+                recipe.Register();
+            }
+
+            SafeAddRecipes();
         }
 
         protected virtual void SafeAddRecipes()

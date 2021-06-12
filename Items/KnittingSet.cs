@@ -11,6 +11,7 @@ namespace AssortedCrazyThings.Items
             DisplayName.SetDefault("Knitting Set");
             Tooltip.SetDefault("'A set of tools used in crafting cute clothing and accessories'");
         }
+
         public override void SetDefaults()
         {
             Item.maxStack = 999;
