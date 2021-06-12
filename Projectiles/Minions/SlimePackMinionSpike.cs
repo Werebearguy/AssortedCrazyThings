@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
@@ -91,14 +92,10 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
         public override bool PreDraw(ref Color lightColor)
         {
-            SpriteEffects effects = SpriteEffects.None;
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            ReLogic.Content.Asset<Texture2D> asset = Terraria.GameContent.TextureAssets.Projectile[Projectile.type];
-            bounds.Width = asset.Width();
-            bounds.Height = asset.Height() / Main.projFrames[Projectile.type];
             if (PickedTexture > 15) PickedTexture = 15; //protection against prince slime
-            bounds.Y = PickedTexture * bounds.Height;
+            SpriteEffects effects = SpriteEffects.None;
+            Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: PickedTexture);
             Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
 
             if (PickedTexture == 5)
@@ -108,7 +105,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 lightColor = Lighting.GetColor((int)(cX / 16), (int)(cY / 16), Main.DiscoColor * 1.2f);
             }
 
-            Main.EntitySpriteDraw(asset.Value, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
             return false;
         }

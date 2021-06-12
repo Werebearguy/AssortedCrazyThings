@@ -63,11 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
             Texture2D image = Mod.GetTexture("Projectiles/Pets/SkeletronHandProj_" + mPlayer.skeletronHandType).Value;
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
-            bounds.Y = Projectile.frame * bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height);
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;

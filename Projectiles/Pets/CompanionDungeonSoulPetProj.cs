@@ -33,11 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
-            bounds.Y = Projectile.frame * bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             float sinY;
             sincounter = sincounter > 120 ? 0 : sincounter + 1;

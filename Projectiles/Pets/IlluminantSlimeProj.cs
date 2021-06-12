@@ -47,14 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override void PostDraw(Color drawColor)
         {
             Texture2D image = Mod.GetTexture("Projectiles/Pets/IlluminantSlimeProj_Glowmask").Value;
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = Projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / 6
-            };
-            bounds.Y *= bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2((Projectile.width - DrawOffsetX) * 0.5f - 5, Projectile.height * 0.5f + Projectile.gfxOffY);

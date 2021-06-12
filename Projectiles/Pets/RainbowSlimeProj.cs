@@ -43,14 +43,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(ref Color drawColor)
         {
             Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = Projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / 6
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
             Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f + Projectile.gfxOffY);

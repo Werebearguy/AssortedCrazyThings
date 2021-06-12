@@ -134,15 +134,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
 
             AssPlayer mPlayer = Projectile.GetOwner().GetModPlayer<AssPlayer>();
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = Projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / Main.projFrames[Projectile.type]
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
-
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 10f + sinY);
             Vector2 origin = bounds.Size() / 2;
 

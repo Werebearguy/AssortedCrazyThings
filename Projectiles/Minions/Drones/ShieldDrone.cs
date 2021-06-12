@@ -100,11 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D image = Mod.GetTexture(nameLower).Value;
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
-            bounds.Y = Projectile.frame * bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 

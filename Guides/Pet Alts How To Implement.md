@@ -51,14 +51,7 @@ public override bool PreDraw(ref Color lightColor)
     PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
     SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
     Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType).Value;
-    Rectangle bounds = new Rectangle
-    {
-        X = 0,
-        Y = projectile.frame,
-        Width = image.Bounds.Width,
-        Height = image.Bounds.Height / Main.projFrames[projectile.type]
-    };
-    bounds.Y *= bounds.Height;
+    Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
     Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
 

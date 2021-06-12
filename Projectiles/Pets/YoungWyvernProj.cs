@@ -174,14 +174,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             SpriteEffects effects = Projectile.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Texture2D image = Mod.GetTexture("Projectiles/Pets/YoungWyvernProj_" + mPlayer.youngWyvernType).Value;
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = Projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / Main.projFrames[Projectile.type]
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2 + DrawOffsetX, Projectile.height / 2 + Projectile.gfxOffY + 4f);
 

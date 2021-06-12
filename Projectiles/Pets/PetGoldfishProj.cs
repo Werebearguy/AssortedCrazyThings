@@ -336,11 +336,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             SpriteEffects effects = Projectile.direction != -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = Mod.GetTexture("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType).Value;
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
-            bounds.Y = frame2 * bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: frame2);
             Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - 2 + Projectile.gfxOffY);
             Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 

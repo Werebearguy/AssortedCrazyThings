@@ -40,11 +40,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             Texture2D image = Mod.GetTexture("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType).Value;
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = (image.Bounds.Height / Main.projFrames[Projectile.type]);
-            bounds.Y = Projectile.frame * bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             sincounter = sincounter > 150 ? 0 : sincounter + 1;
             float sinY = (float)((Math.Sin((sincounter / 150f) * MathHelper.TwoPi) - 1) * 2);

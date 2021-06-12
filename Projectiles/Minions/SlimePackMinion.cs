@@ -98,14 +98,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             if (HasTexture)
             {
                 Texture2D image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture).Value;
-                Rectangle bounds = new Rectangle
-                {
-                    X = 0,
-                    Y = Projectile.frame,
-                    Width = image.Bounds.Width,
-                    Height = image.Bounds.Height / 6
-                };
-                bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+                Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
                 Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
                 SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
@@ -144,15 +137,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                 if ((PickedTexture == 15 && SlimeType != "Assorted") || (PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
                 {
                     Texture2D image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask").Value;
-                    Rectangle bounds = new Rectangle
-                    {
-                        X = 0,
-                        Y = Projectile.frame,
-                        Width = image.Bounds.Width,
-                        Height = image.Bounds.Height / 6
-                    };
-                    bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
-
+                    Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
                     SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
                     Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick

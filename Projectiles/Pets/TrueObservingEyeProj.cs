@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,13 +28,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+            Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
 
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[Projectile.type];
-            bounds.Y = Projectile.frame * bounds.Height;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
