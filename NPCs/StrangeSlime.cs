@@ -80,17 +80,7 @@ namespace AssortedCrazyThings.NPCs
             });
         }
 
-        public float AiTexture
-        {
-            get
-            {
-                return NPC.ai[1];
-            }
-            set
-            {
-                NPC.ai[1] = value;
-            }
-        }
+        public ref float AiTexture => ref NPC.ai[1];
 
         public override bool PreAI()
         {

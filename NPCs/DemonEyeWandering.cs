@@ -21,14 +21,6 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        //public override string[] AltTextures
-        //{
-        //    get
-        //    {
-        //        return new[] { "AssortedCrazyThings/NPCs/DemonEyeWandering_1" };
-        //    }
-        //}
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wandering Eye");
@@ -88,42 +80,21 @@ namespace AssortedCrazyThings.NPCs
             }
         }
 
-        public float AiTexture
+        public ref float AiTexture => ref NPC.ai[3];
+
+        public bool DecidedAiTexture
         {
-            get
-            {
-                return NPC.ai[3];
-            }
-            set
-            {
-                NPC.ai[3] = value;
-            }
+            get => NPC.localAI[0] == 1f;
+            set => NPC.localAI[0] = value ? 1f : 0f;
         }
 
         public override bool PreAI()
         {
-            //if (npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            //{
-            //    //npc.altTexture = Main.rand.Next(TotalNumberOfThese);
-            //    //AssUtils.Print("generate texture " + npc.altTexture + " from " + npc.whoAmI);
-            //    //AssUtils.Print("type " + Main.npc[npc.whoAmI].type);
-            //    //AssUtils.Print("extracount " + NPCID.Sets.ExtraTextureCount[npc.type]);
-            //    //AssUtils.Instance.SyncAltTextureNPC(npc);
-
-            //    npc.localAI[0] = 1;
-            //    npc.netUpdate = true;
-            //}
-
-            //if (Main.time % 60 == 0)
-            //{
-            //    AssUtils.Print("TEX " + npc.altTexture);
-            //}
-
-            if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (AiTexture == 0 && !DecidedAiTexture && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-                NPC.localAI[0] = 1;
+                DecidedAiTexture = true;
                 NPC.netUpdate = true;
             }
 

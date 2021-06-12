@@ -88,29 +88,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
-        public float AI_State
-        {
-            get
-            {
-                return NPC.ai[0];
-            }
-            set
-            {
-                NPC.ai[0] = value;
-            }
-        }
+        public ref float AI_State => ref NPC.ai[0];
 
-        public float AI_Local_Timer
-        {
-            get
-            {
-                return NPC.localAI[0];
-            }
-            set
-            {
-                NPC.localAI[0] = value;
-            }
-        }
+        public ref float AI_Local_Timer => ref NPC.localAI[0];
 
         public static void KillInstantly(NPC npc)
         {

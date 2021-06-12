@@ -99,25 +99,21 @@ namespace AssortedCrazyThings.NPCs
             });
         }
 
-        public float AiTexture
+        public ref float AiTexture => ref NPC.ai[1];
+
+        public bool DecidedAiTexture
         {
-            get
-            {
-                return NPC.ai[1];
-            }
-            set
-            {
-                NPC.ai[1] = value;
-            }
+            get => NPC.localAI[0] == 1f;
+            set => NPC.localAI[0] = value ? 1f : 0f;
         }
 
         public override bool PreAI()
         {
-            if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (AiTexture == 0 && !DecidedAiTexture && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-                NPC.localAI[0] = 1;
+                DecidedAiTexture = true;
                 NPC.netUpdate = true;
             }
 

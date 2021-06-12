@@ -205,12 +205,11 @@ namespace AssortedCrazyThings
             CuteSlimeIce = false;
             CuteSlimeIlluminant = false;
             CuteSlimeGreen = false;
-            CuteSlimeBlue = false;
-            CuteSlimeBlack = false;
+            CuteSlimeDungeon = false;
             CuteSlimeCrimson = false;
             CuteSlimeCorrupt = false;
-            CuteSlimeDungeon = false;
-            CuteSlimeXmas = false;
+            CuteSlimeBlue = false;
+            CuteSlimeBlack = false;
 
             DrumstickElemental = false;
             SuspiciousNugget = false;

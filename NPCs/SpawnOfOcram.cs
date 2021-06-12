@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -12,8 +13,8 @@ namespace AssortedCrazyThings.NPCs
 {
     public class SpawnOfOcram : ModNPC
     {
-        public static string name = "Spawn of Ocram";
-        public static string message = "Spawn of Ocram has appeared!";
+        public const string name = "Spawn of Ocram";
+        public const string message = "Spawn of Ocram has appeared!";
 
         public override void SetStaticDefaults()
         {
@@ -108,6 +109,8 @@ namespace AssortedCrazyThings.NPCs
             spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[npc.type].Value, drawPos, new npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
             */
 
+            Texture2D texture = TextureAssets.Npc[NPC.type].Value;
+
             Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value.Width * 0.5f, NPC.height * 0.5f);
             //the higher the k, the older the position
             //Length is implicitely set in TrailCacheLength up there
@@ -116,10 +119,15 @@ namespace AssortedCrazyThings.NPCs
             {
                 Vector2 drawPos = NPC.oldPos[k] - screenPos + drawOrigin + new Vector2(0f, NPC.gfxOffY);
                 Color color = NPC.GetAlpha(drawColor) * ((float)(NPC.oldPos.Length - k) / (2f * NPC.oldPos.Length));
-                spriteBatch.Draw(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value, drawPos, NPC.frame, color, NPC.oldRot[k], drawOrigin, NPC.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, drawPos, NPC.frame, color, NPC.oldRot[k], drawOrigin, NPC.scale, SpriteEffects.None, 0f);
             }
             return true;
         }
+
+        public ref float Timer => ref Timer;
+
+        public ref float AttackTimer => ref NPC.localAI[0];
+
 
         //Adapted from Vanilla, NPC type 94 Corruptor, AI type 5
         public override void AI()
@@ -128,18 +136,30 @@ namespace AssortedCrazyThings.NPCs
             {
                 NPC.TargetClosest();
             }
-            float num = 4.2f;
+            Player player = Main.player[NPC.target];
+
             float num2 = 0.022f;
-            Vector2 vector = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
-            float num4 = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2);
-            float num5 = Main.player[NPC.target].position.Y + (float)(Main.player[NPC.target].height / 2);
-            num4 = (float)((int)(num4 / 8f) * 8);
-            num5 = (float)((int)(num5 / 8f) * 8);
-            vector.X = (float)((int)(vector.X / 8f) * 8);
-            vector.Y = (float)((int)(vector.Y / 8f) * 8);
+            if (player.dead)
+            {
+                NPC.velocity.Y -= num2 * 2f;
+                if (NPC.timeLeft > 10)
+                {
+                    NPC.timeLeft = 10;
+                    return;
+                }
+            }
+
+            float num = 4.2f;
+            Vector2 vector = NPC.Center;
+            float num4 = player.Center.X;
+            float num5 = player.Center.Y;
+            num4 = (int)(num4 / 8f) * 8;
+            num5 = (int)(num5 / 8f) * 8;
+            vector.X = (int)(vector.X / 8f) * 8;
+            vector.Y = (int)(vector.Y / 8f) * 8;
             num4 -= vector.X;
             num5 -= vector.Y;
-            float num6 = (float)Math.Sqrt((double)(num4 * num4 + num5 * num5));
+            float num6 = (float)Math.Sqrt(num4 * num4 + num5 * num5);
             float num7 = num6;
             if (num6 == 0f)
             {
@@ -154,8 +174,8 @@ namespace AssortedCrazyThings.NPCs
             }
             if (num7 > 100f)
             {
-                NPC.ai[0] += 1f;
-                if (NPC.ai[0] > 0f)
+                Timer += 1f;
+                if (Timer > 0f)
                 {
                     NPC.velocity.Y += 0.023f;
                 }
@@ -163,7 +183,7 @@ namespace AssortedCrazyThings.NPCs
                 {
                     NPC.velocity.Y -= 0.023f;
                 }
-                if (NPC.ai[0] < -100f || NPC.ai[0] > 100f)
+                if (Timer < -100f || Timer > 100f)
                 {
                     NPC.velocity.X += 0.023f;
                 }
@@ -171,9 +191,9 @@ namespace AssortedCrazyThings.NPCs
                 {
                     NPC.velocity.X -= 0.023f;
                 }
-                if (NPC.ai[0] > 200f)
+                if (Timer > 200f)
                 {
-                    NPC.ai[0] = -200f;
+                    Timer = -200f;
                 }
             }
             if (num7 < 150f)
@@ -181,11 +201,11 @@ namespace AssortedCrazyThings.NPCs
                 NPC.velocity.X += num4 * 0.007f;
                 NPC.velocity.Y += num5 * 0.007f;
             }
-            if (Main.player[NPC.target].dead)
-            {
-                num4 = (float)NPC.direction * num / 2f;
-                num5 = (0f - num) / 2f;
-            }
+            //if (player.dead)
+            //{
+            //    num4 = NPC.direction * num / 2f;
+            //    num5 = (0f - num) / 2f;
+            //}
             if (NPC.velocity.X < num4)
             {
                 NPC.velocity.X += num2;
@@ -202,7 +222,7 @@ namespace AssortedCrazyThings.NPCs
             {
                 NPC.velocity.Y -= num2;
             }
-            NPC.rotation = (float)Math.Atan2((double)num5, (double)num4) - 1.57f;
+            NPC.rotation = (float)Math.Atan2(num5, num4) - MathHelper.PiOver2;
 
             //doesn't seem to do anything because npc.notilecollide is set to false
             //float num12 = 0.7f;
@@ -244,65 +264,46 @@ namespace AssortedCrazyThings.NPCs
                     NPC.velocity.Y = -2f;
                 }
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient && !Main.player[NPC.target].dead)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !player.dead)
             {
-                //localAI[0] is the timer for the projectile shoot
                 if (NPC.justHit)
                 {
                     //makes it so it doesn't shoot projectiles when it's hit
-                    //npc.localAI[0] = 0f;
+                    //AttackTimer = 0f;
                 }
-                NPC.localAI[0] += 1f;
+                AttackTimer += 1f;
                 float shootDelay = 180f;
-                if (NPC.localAI[0] == shootDelay)
+                if (AttackTimer >= shootDelay)
                 {
-                    int projectileDamage = 21;
-                    int projectileType = 44; //Demon Scythe
-                    int projectileTravelTime = 70;
-                    float num224 = 0.2f;
-                    Vector2 vector27 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
-                    float num225 = Main.player[NPC.target].position.X + (float)Main.player[NPC.target].width * 0.5f - vector27.X + (float)Main.rand.Next(-50, 51);
-                    float num226 = Main.player[NPC.target].position.Y + (float)Main.player[NPC.target].height * 0.5f - vector27.Y + (float)Main.rand.Next(-50, 51);
-                    float num227 = (float)Math.Sqrt((double)(num225 * num225 + num226 * num226));
-                    num227 = num224 / num227;
-                    num225 *= num227;
-                    num226 *= num227;
-                    num225 *= 20;
-                    num226 *= 20;
-                    int leftScythe = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), vector27.X - NPC.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, Main.myPlayer);
-                    Main.projectile[leftScythe].tileCollide = false;
-                    Main.projectile[leftScythe].timeLeft = projectileTravelTime;
+                    AttackTimer = 0f;
 
-                    num225 = Main.player[NPC.target].position.X + (float)Main.player[NPC.target].width * 0.5f - vector27.X + (float)Main.rand.Next(-50, 51);
-                    num226 = Main.player[NPC.target].position.Y + (float)Main.player[NPC.target].height * 0.5f - vector27.Y + (float)Main.rand.Next(-50, 51);
-                    num227 = (float)Math.Sqrt((double)(num225 * num225 + num226 * num226));
-                    num227 = num224 / num227;
-                    num225 *= num227;
-                    num226 *= num227;
-                    num225 *= 20;
-                    num226 *= 20;
-                    int rightScythe = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), vector27.X + NPC.width * 0.5f, vector27.Y, num225, num226, projectileType, projectileDamage, 0f, Main.myPlayer);
-                    Main.projectile[rightScythe].tileCollide = false;
-                    Main.projectile[rightScythe].timeLeft = projectileTravelTime;
+                    int projectileDamage = 21;
+                    int projectileType = ProjectileID.DemonSickle;
+                    int projectileTravelTime = 70;
+                    Vector2 center = NPC.Center;
+
+                    Vector2 randomCenter = center + new Vector2(Main.rand.Next(-50, 51), Main.rand.Next(-50, 51));
+                    Vector2 toPlayer = player.DirectionFrom(randomCenter);
+                    toPlayer *= 4;
+                    int leftSickle = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), center.X - NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+                    Main.projectile[leftSickle].tileCollide = false;
+                    Main.projectile[leftSickle].timeLeft = projectileTravelTime;
+
+                    randomCenter = center + new Vector2(Main.rand.Next(-50, 51), Main.rand.Next(-50, 51));
+                    toPlayer = player.DirectionFrom(randomCenter);
+                    toPlayer *= 4;
+                    int rightSickle = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), center.X + NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+                    Main.projectile[rightSickle].tileCollide = false;
+                    Main.projectile[rightSickle].timeLeft = projectileTravelTime;
 
                     //NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2) + npc.velocity.X), (int)(npc.position.Y + (float)(npc.height / 2) + npc.velocity.Y), 112);
                     //PROJECTILE IS ACTUALLY AN NPC AHAHAHAHAHAHAHAHHAAH
                     //https://terraria.gamepedia.com/Vile_Spit
-
-                    NPC.localAI[0] = 0f;
                 }
             }
             //
             //  Main.dayTime || Main.player[npc.target].dead
             //  vvvvvvvvvvvv
-            if (Main.player[NPC.target].dead)
-            {
-                NPC.velocity.Y -= num2 * 2f;
-                if (NPC.timeLeft > 10)
-                {
-                    NPC.timeLeft = 10;
-                }
-            }
             if (((NPC.velocity.X > 0f && NPC.oldVelocity.X < 0f) || (NPC.velocity.X < 0f && NPC.oldVelocity.X > 0f) || (NPC.velocity.Y > 0f && NPC.oldVelocity.Y < 0f) || (NPC.velocity.Y < 0f && NPC.oldVelocity.Y > 0f)) && !NPC.justHit)
             {
                 NPC.netUpdate = true;

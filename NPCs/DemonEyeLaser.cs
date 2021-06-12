@@ -84,29 +84,9 @@ namespace AssortedCrazyThings.NPCs
             return (float)Math.Atan2(sin, cos);
         }
 
-        public float AiShootTimer
-        {
-            get
-            {
-                return NPC.ai[0];
-            }
-            set
-            {
-                NPC.ai[0] = value;
-            }
-        }
+        public ref float AiShootTimer => ref NPC.ai[0];
 
-        public float AiShootCount
-        {
-            get
-            {
-                return NPC.ai[1];
-            }
-            set
-            {
-                NPC.ai[1] = value;
-            }
-        }
+        public ref float AiShootCount => ref NPC.ai[1];
 
         public override void PostAI()
         {

@@ -48,6 +48,14 @@ namespace AssortedCrazyThings.NPCs
         double bFrameCounter = 0;
         int bFrameY = 0;
 
+        public ref float SpawnedGem => ref SpawnedGem;
+
+        public bool DecidedSpawnedGem
+        {
+            get => NPC.localAI[0] == 1f;
+            set => NPC.localAI[0] = value ? 1f : 0f;
+        }
+
         public override void FindFrame(int frameHeight)
         {
             if (NPC.IsABestiaryIconDummy)
@@ -56,22 +64,6 @@ namespace AssortedCrazyThings.NPCs
                 NPC.frame.Y = bFrameY * frameHeight;
             }
         }
-
-        //public override void OnKill()
-        //{
-        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-        //    {
-        //        NPC.ai[1] = Main.rand.Next(1, 7);
-        //    }
-
-        //    Item.NewItem(NPC.getRect(), ItemID.StoneBlock, Main.rand.Next(10, 31));
-        //    if (NPC.ai[1] <= 1) Item.NewItem(NPC.getRect(), ItemID.Amethyst, 1); //sorted by rarity
-        //    else if (NPC.ai[1] <= 2) Item.NewItem(NPC.getRect(), ItemID.Topaz, 1);
-        //    else if (NPC.ai[1] <= 3) Item.NewItem(NPC.getRect(), ItemID.Sapphire, 1);
-        //    else if (NPC.ai[1] <= 4) Item.NewItem(NPC.getRect(), ItemID.Emerald, 1);
-        //    else if (NPC.ai[1] <= 5) Item.NewItem(NPC.getRect(), ItemID.Ruby, 1);
-        //    else if (NPC.ai[1] <= 6) Item.NewItem(NPC.getRect(), ItemID.Diamond, 1);
-        //}
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
@@ -120,7 +112,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreAI()
         {
-            if (NPC.ai[1] == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (SpawnedGem == 0 && !DecidedSpawnedGem && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 float heightFactor = (float)(NPC.position.Y - (16f * Main.rockLayer)) / (float)((Main.maxTilesY - 200 - Main.rockLayer) * 16f) * 6;
                 //0f == above rock layer
@@ -148,16 +140,16 @@ namespace AssortedCrazyThings.NPCs
                 {
                     if (rand <= arr[j - 1]) //arr[6] is 1 
                     {
-                        NPC.ai[1] = j;
+                        SpawnedGem = j;
                         break;
                     }
                 }
 
-                NPC.localAI[0] = 1;
+                DecidedSpawnedGem = true;
                 NPC.netUpdate = true;
             }
 
-            if (NPC.ai[1] != 0 && NPC.ai[3] == 1)
+            if (SpawnedGem != 0 && NPC.ai[3] == 1)
             {
                 if (NPC.direction == 1) NPC.velocity.X += 0.09f; //0.02
                 else NPC.velocity.X -= 0.09f;
@@ -170,7 +162,7 @@ namespace AssortedCrazyThings.NPCs
         {
             //base sprite is 80x66
             //hitbox is 18x40
-            int tex = (int)NPC.ai[1];
+            int tex = (int)SpawnedGem;
             if (tex <= 0 || tex > 6)
                 return;
 

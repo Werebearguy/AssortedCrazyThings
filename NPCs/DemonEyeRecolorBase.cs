@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -51,17 +49,7 @@ namespace AssortedCrazyThings.NPCs
             npcLoot.Add(ItemDropRule.Common(ItemID.BlackLens, chanceDenominator: 100));
         }
 
-        public float AiTexture
-        {
-            get
-            {
-                return NPC.ai[3];
-            }
-            set
-            {
-                NPC.ai[3] = value;
-            }
-        }
+        public ref float AiTexture => ref NPC.ai[3];
 
         public override bool PreAI()
         {
