@@ -94,6 +94,11 @@ namespace AssortedCrazyThings.UI
             return new CircleUIConf(Main.projFrames[type], type, assets: assets, tooltips: tooltips, drawOffset: drawOffset);
         }
 
+        public static CircleUIConf PetConf(int type, List<string> tooltips, Vector2 drawOffset = default)
+        {
+            return PetConf(ModContent.GetModProjectile(type).Name, tooltips, drawOffset);
+        }
+
         /// <summary>
         /// Add trigger item for the UI to check for when holding the item type
         /// </summary>

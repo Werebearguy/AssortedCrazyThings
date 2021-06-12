@@ -758,154 +758,154 @@ namespace AssortedCrazyThings
                 "Red Mechanical", "Green Mechanical", "Purple Mechanical",
                 "Red Laser", "Green Laser", "Purple Laser" };
 
-            return CircleUIHandler.PetConf("DocileDemonEyeProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<DocileDemonEyeProj>(), tooltips);
         }
 
         public static CircleUIConf GetCursedSkullConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Dragon" };
 
-            return CircleUIHandler.PetConf("CursedSkullProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<CursedSkullProj>(), tooltips);
         }
 
         public static CircleUIConf GetYoungWyvernConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
 
-            return CircleUIHandler.PetConf("YoungWyvernProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<YoungWyvernProj>(), tooltips);
         }
 
         public static CircleUIConf GetPetFishronConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
 
-            return CircleUIHandler.PetConf("PetFishronProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<PetFishronProj>(), tooltips);
         }
 
         public static CircleUIConf GetPetMoonConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Brown", "Ring", "Green", "White", "Green 2", "Pink", "Orange", "Purple", }; //9 10 11 are contextual
 
-            return CircleUIHandler.PetConf("PetMoonProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<PetMoonProj>(), tooltips);
         }
 
         public static CircleUIConf GetYoungHarpyConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove", "Default (Legacy)", "Eagle (Legacy)", "Raven (Legacy)", "Dove (Legacy)" };
 
-            return CircleUIHandler.PetConf("YoungHarpyProj", tooltips, new Vector2(0f, 4f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<YoungHarpyProj>(), tooltips, new Vector2(0f, 4f));
         }
 
         public static CircleUIConf GetAbeeminationConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
 
-            return CircleUIHandler.PetConf("AbeeminationProj", tooltips, new Vector2(0f, -4f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<AbeeminationProj>(), tooltips, new Vector2(0f, -4f));
         }
 
         public static CircleUIConf GetLilWrapsConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
 
-            return CircleUIHandler.PetConf("LilWrapsProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<LilWrapsProj>(), tooltips);
         }
 
         public static CircleUIConf GetVampireBatConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Werebat" };
 
-            return CircleUIHandler.PetConf("VampireBatProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<VampireBatProj>(), tooltips);
         }
 
         public static CircleUIConf GetPigronataConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
 
-            return CircleUIHandler.PetConf("PigronataProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<PigronataProj>(), tooltips);
         }
 
         public static CircleUIConf GetQueenLarvaConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
 
-            return CircleUIHandler.PetConf("QueenLarvaProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<QueenLarvaProj>(), tooltips);
         }
 
         public static CircleUIConf GetOceanSlimeConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
 
-            return CircleUIHandler.PetConf("OceanSlimeProj", tooltips, new Vector2(1f, -4f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<OceanSlimeProj>(), tooltips, new Vector2(1f, -4f));
         }
 
         public static CircleUIConf GetStingSlimeConf()
         {
             List<string> tooltips = new List<string>() { "Black", "Orange" };
 
-            return CircleUIHandler.PetConf("StingSlimeProj", tooltips, new Vector2(1f, -4f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<StingSlimeProj>(), tooltips, new Vector2(1f, -4f));
         }
 
         public static CircleUIConf GetMiniAntlionConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Albino" };
 
-            return CircleUIHandler.PetConf("MiniAntlionProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<MiniAntlionProj>(), tooltips);
         }
 
         public static CircleUIConf PetGoldfishConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
 
-            return CircleUIHandler.PetConf("PetGoldfishProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<PetGoldfishProj>(), tooltips);
         }
 
         public static CircleUIConf GetSkeletronHandConf()
         {
             List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
 
-            return CircleUIHandler.PetConf("SkeletronHandProj", tooltips, new Vector2(2, -4f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<SkeletronHandProj>(), tooltips, new Vector2(2, -4f));
         }
 
         public static CircleUIConf GetSkeletronPrimeHandConf()
         {
             List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
 
-            return CircleUIHandler.PetConf("SkeletronPrimeHandProj", tooltips, new Vector2(0f, -4f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<SkeletronPrimeHandProj>(), tooltips, new Vector2(0f, -4f));
         }
 
         public static CircleUIConf GetPetCultistConf()
         {
             List<string> tooltips = new List<string>() { "Lunar", "Solar" };
 
-            return CircleUIHandler.PetConf("PetCultistProj", tooltips, new Vector2(1f, 0f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<PetCultistProj>(), tooltips, new Vector2(1f, 0f));
         }
 
         public static CircleUIConf GetAnimatedTomeConf()
         {
             List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow", "Spell" };
 
-            return CircleUIHandler.PetConf("AnimatedTomeProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<AnimatedTomeProj>(), tooltips);
         }
 
         public static CircleUIConf GetAnomalocarisConf()
         {
             List<string> tooltips = new List<string>() { "Wild", "Shrimpy", "Snippy" };
 
-            return CircleUIHandler.PetConf("AnomalocarisProj", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<AnomalocarisProj>(), tooltips);
         }
 
         public static CircleUIConf GetDynamiteBunnyConf()
         {
             List<string> tooltips = new List<string>() { "White", "Corrupt", "Crimtane", "Angora", "Dutch", "Flemish", "Lop", "Silver", "Caerbannog" };
 
-            return CircleUIHandler.PetConf("DynamiteBunnyProj", tooltips, new Vector2(0f, -7f));
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<DynamiteBunnyProj>(), tooltips, new Vector2(0f, -7f));
         }
 
         public static CircleUIConf GetWallFragmentConf()
         {
             List<string> tooltips = new List<string>() { "Default", "Chinese" };
 
-            return CircleUIHandler.PetConf("WallFragmentMouth", tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<WallFragmentMouth>(), tooltips);
         }
 
         //ALTERNATE
@@ -913,7 +913,7 @@ namespace AssortedCrazyThings
         //{
         //    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
 
-        //    return CircleUIHandler.PetConf("ClassNameProj", tooltips);
+        //    return CircleUIHandler.PetConf(ModContent.ProjectileType<ClassNameProj>(), tooltips);
         //}
 
         public override void Initialize()

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
 
 namespace AssortedCrazyThings.Base
 {
@@ -178,95 +179,95 @@ namespace AssortedCrazyThings.Base
             //start list
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeBlackProj"
+                type: ModContent.ProjectileType<CuteSlimeBlackProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeBlueProj"
+                type: ModContent.ProjectileType<CuteSlimeBlueProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeCorruptProj"
+                type: ModContent.ProjectileType<CuteSlimeCorruptProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeCrimsonProj"
+                type: ModContent.ProjectileType<CuteSlimeCrimsonProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeDungeonProj"
+                type: ModContent.ProjectileType<CuteSlimeDungeonProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeGreenProj"
+                type: ModContent.ProjectileType<CuteSlimeGreenProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIceProj"
+                type: ModContent.ProjectileType<CuteSlimeIceProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeIlluminantProj"
+                type: ModContent.ProjectileType<CuteSlimeIlluminantProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeLavaProj",
+                type: ModContent.ProjectileType<CuteSlimeLavaProj>(),
                 postAdditionSlot: (byte)SlotType.Hat
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeJungleProj"
+                type: ModContent.ProjectileType<CuteSlimeJungleProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePrincessProj",
+                type: ModContent.ProjectileType<CuteSlimePrincessProj>(),
                 postAdditionSlot: (byte)SlotType.Hat
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePurpleProj"
+                type: ModContent.ProjectileType<CuteSlimePurpleProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimePinkProj"
+                type: ModContent.ProjectileType<CuteSlimePinkProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeQueenProj",
+                type: ModContent.ProjectileType<CuteSlimeQueenProj>(),
                 postAdditionSlot: (byte)SlotType.Hat
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeRainbowProj"
+                type: ModContent.ProjectileType<CuteSlimeRainbowProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeRedProj"
+                type: ModContent.ProjectileType<CuteSlimeRedProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeSandProj"
+                type: ModContent.ProjectileType<CuteSlimeSandProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeToxicProj"
+                type: ModContent.ProjectileType<CuteSlimeToxicProj>()
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeXmasProj",
+                type: ModContent.ProjectileType<CuteSlimeXmasProj>(),
                 postAdditionSlot: (byte)SlotType.Body,
                 carried: true,
                 accessory: true
             ));
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeYellowProj"
+                type: ModContent.ProjectileType<CuteSlimeYellowProj>()
             ));
 
             /*
             Add(SlimePet.NewSlimePet
             (
-                name: "CuteSlimeColorProj",
+                type: ModContent.ProjectileType<CuteSlimeColorProj>(),
                 preAdditionSlot: (byte)SlotType.None,
                 postAdditionSlot: (byte)SlotType.None,
                 body: false,
@@ -413,6 +414,12 @@ namespace AssortedCrazyThings.Base
             List<bool> isSlotTypeBlacklisted = new List<bool>() { body, hat, carried, accessory };
 
             return new SlimePet(name, preAdditionSlot, postAdditionSlot, isSlotTypeBlacklisted);
+        }
+
+        public static SlimePet NewSlimePet(int type, byte preAdditionSlot = 0, byte postAdditionSlot = 0,
+            bool body = false, bool hat = false, bool carried = false, bool accessory = false)
+        {
+            return NewSlimePet(ModContent.GetModProjectile(type).Name, preAdditionSlot, postAdditionSlot, body, hat, carried, accessory);
         }
 
         public override string ToString()
