@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.Base.SwarmDraw.FairySwarmDraw;
 using AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw;
@@ -15,27 +14,12 @@ namespace AssortedCrazyThings.Base.SwarmDraw
     {
         public static SwarmDrawSet NewFairySwarmDrawSet()
         {
-            List<SwarmDrawUnit> units = new List<SwarmDrawUnit>()
-            {
-                new FairySwarmDrawUnit(0),
-                new FairySwarmDrawUnit(1),
-                new FairySwarmDrawUnit(2),
-                new FairySwarmDrawUnit(0),
-                new FairySwarmDrawUnit(1),
-                new FairySwarmDrawUnit(2)
-            };
-            return new SwarmDrawSet(units);
+            return (FairySwarmDrawSet)ModContent.GetInstance<FairySwarmDrawSet>().Clone();
         }
 
         public static SwarmDrawSet NewSwarmofCthulhuDrawSet()
         {
-            List<SwarmDrawUnit> units = new List<SwarmDrawUnit>()
-            {
-                new SwarmofCthulhuDrawUnit(),
-                new SwarmofCthulhuDrawUnit(),
-                new SwarmofCthulhuDrawUnit(),
-            };
-            return new SwarmDrawSet(units);
+            return (SwarmofCthulhuDrawSet)ModContent.GetInstance<SwarmofCthulhuDrawSet>().Clone();
         }
 
         public static void HandleDrawSet(ref SwarmDrawSet set, Func<SwarmDrawSet> gen, bool condition, Vector2 center)
@@ -45,6 +29,11 @@ namespace AssortedCrazyThings.Base.SwarmDraw
                 if (set == null)
                 {
                     set = gen();
+                }
+
+                if (set == null)
+                {
+                    return;
                 }
 
                 if (!set.Active)

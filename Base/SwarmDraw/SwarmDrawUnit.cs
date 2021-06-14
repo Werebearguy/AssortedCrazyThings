@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Base.SwarmDraw
 {
-    public abstract class SwarmDrawUnit
+    public abstract class SwarmDrawUnit : ICloneable
     {
         public Asset<Texture2D> Asset { get; protected set; }
 
@@ -60,12 +60,33 @@ namespace AssortedCrazyThings.Base.SwarmDraw
             Asset = asset;
             FrameCount = frameCount;
             FrameSpeed = frameSpeed;
+
             OldFront = new bool[trailLength];
             OldFrame = new int[trailLength];
             OldPos = new Vector2[trailLength];
             OldDir = new int[trailLength];
             OldRot = new float[trailLength];
+
             TrailAsset = trailAsset ?? Asset;
+        }
+
+        public object Clone()
+        {
+            var clone = (SwarmDrawUnit)MemberwiseClone();
+            int trailLength = OldFront.Length;
+
+            //Need to reinitialize the arrays
+            clone.OldFront = new bool[trailLength];
+            clone.OldFrame = new int[trailLength];
+            clone.OldPos = new Vector2[trailLength];
+            clone.OldDir = new int[trailLength];
+            clone.OldRot = new float[trailLength];
+            Array.Copy(OldFront, clone.OldFront, trailLength);
+            Array.Copy(OldFrame, clone.OldFrame, trailLength);
+            Array.Copy(OldPos, clone.OldPos, trailLength);
+            Array.Copy(OldDir, clone.OldDir, trailLength);
+            Array.Copy(OldRot, clone.OldRot, trailLength);
+            return clone;
         }
 
         public virtual int GetShader(PlayerDrawSet drawInfo)
@@ -104,14 +125,6 @@ namespace AssortedCrazyThings.Base.SwarmDraw
             }
 
             pos = Vector2.Zero;
-            for (int i = 0; i < OldPos.Length; i++)
-            {
-                OldFront[i] = false;
-                OldFrame[i] = 0;
-                OldPos[i] = pos;
-                OldDir[i] = 1;
-                OldRot[i] = 0;
-            }
 
             vel = Main.rand.NextVector2Unit();
             if (Math.Abs(vel.X) < 0.1f || Math.Abs(vel.Y) < 0.1f)
@@ -126,6 +139,15 @@ namespace AssortedCrazyThings.Base.SwarmDraw
             if (!AutoDirection)
             {
                 dir = Main.rand.NextBool().ToDirectionInt();
+            }
+
+            for (int i = 0; i < OldPos.Length; i++)
+            {
+                OldFront[i] = Front;
+                OldFrame[i] = frame;
+                OldPos[i] = pos;
+                OldDir[i] = dir;
+                OldRot[i] = rot;
             }
         }
 
@@ -176,7 +198,7 @@ namespace AssortedCrazyThings.Base.SwarmDraw
         public List<DrawData> ToDrawDatas(PlayerDrawSet drawInfo, bool front)
         {
             var datas = new List<DrawData>();
-            if (front && !Front)
+            if (front != Front)
             {
                 return datas;
             }
@@ -197,9 +219,10 @@ namespace AssortedCrazyThings.Base.SwarmDraw
 
             for (int i = 0; i < OldPos.Length; i++)
             {
-                if (front && !OldFront[i])
+                if (front != OldFront[i])
                 {
-                    //If a front data is needed but this trail part is not front, continue
+                    //If a front data is needed but this trail part is not front,
+                    //Of if a back data is needed but this trail part is front, continue
                     continue;
                 }
 

@@ -5,9 +5,26 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers
 {
-    public abstract class SwarmDrawLayerBase : PlayerDrawLayer
+    /// <summary>
+    /// These layers have to get created manually, they are loaded in SwarmDrawSet
+    /// </summary>
+    [Autoload(false)]
+    public abstract class SwarmDrawLayer : PlayerDrawLayer
     {
-        public abstract bool Front { get; }
+        /// <summary>
+        /// Important to assign Name based on the instance so they won't count as duplicates
+        /// </summary>
+        public override string Name => $"{base.Name}_{(front ? "Front" : "Back")}";
+
+        /// <summary>
+        /// No parameterless constructor needed since Autoload is false
+        /// </summary>
+        public SwarmDrawLayer(bool front)
+        {
+            this.front = front;
+        }
+
+        public bool front;
 
         public abstract SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer);
 
@@ -18,7 +35,7 @@ namespace AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers
 
         public sealed override Position GetDefaultPosition()
         {
-            return Front ? new AfterParent(PlayerDrawLayers.BeetleBuff) : new BeforeParent(PlayerDrawLayers.JimsCloak);
+            return front ? new AfterParent(PlayerDrawLayers.BeetleBuff) : new BeforeParent(PlayerDrawLayers.JimsCloak);
         }
 
         protected sealed override void Draw(ref PlayerDrawSet drawInfo)
@@ -37,11 +54,11 @@ namespace AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers
             }
 
             //First draw the trails
-            var datas = set.TrailToDrawDatas(drawInfo, Front);
+            var datas = set.TrailToDrawDatas(drawInfo, front);
             drawInfo.DrawDataCache.AddRange(datas);
 
             //Then the actual thing
-            datas = set.ToDrawDatas(drawInfo, Front);
+            datas = set.ToDrawDatas(drawInfo, front);
             drawInfo.DrawDataCache.AddRange(datas);
         }
     }
