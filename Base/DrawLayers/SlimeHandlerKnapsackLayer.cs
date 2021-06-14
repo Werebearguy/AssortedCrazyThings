@@ -49,10 +49,10 @@ namespace AssortedCrazyThings.Base.DrawLayers
                 Texture2D texture = knapsackTexture.Value;
 
                 Vector2 offset = new Vector2(0f, 8f);
-                Vector2 position = drawInfo.Position - Main.screenPosition + drawPlayer.bodyPosition + new Vector2(drawInfo.drawPlayer.width / 2, drawInfo.drawPlayer.height - drawInfo.drawPlayer.bodyFrame.Height / 2) + new Vector2(0f, -4f) + offset;
+                Vector2 position = drawInfo.Position - Main.screenPosition + drawPlayer.bodyPosition + new Vector2(drawPlayer.width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height / 2) + new Vector2(0f, -4f) + offset;
                 position = position.Floor();
 
-                DrawData drawData = new DrawData(texture, position, drawInfo.drawPlayer.bodyFrame, drawInfo.colorArmorBody, drawPlayer.bodyRotation, drawInfo.bodyVect, 1f, drawInfo.playerEffect, 0);
+                DrawData drawData = new DrawData(texture, position, drawPlayer.bodyFrame, drawInfo.colorArmorBody, drawPlayer.bodyRotation, drawInfo.bodyVect, 1f, drawInfo.playerEffect, 0);
                 drawInfo.DrawDataCache.Add(drawData);
             }
         }

@@ -185,6 +185,8 @@ namespace AssortedCrazyThings
         public bool AnimatedTome = false;
         public bool PetAnomalocaris = false;
         public bool DynamiteBunny = false;
+        public bool FairySwarm = false;
+        public bool SwarmofCthulhu = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -269,6 +271,8 @@ namespace AssortedCrazyThings
             AnimatedTome = false;
             PetAnomalocaris = false;
             DynamiteBunny = false;
+            FairySwarm = false;
+            SwarmofCthulhu = false;
             //ALTERNATE
             //ClassName = false;
         }

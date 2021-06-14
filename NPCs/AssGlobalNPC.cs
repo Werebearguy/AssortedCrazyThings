@@ -120,7 +120,7 @@ namespace AssortedCrazyThings.NPCs
             }
             else if (npc.type == NPCID.HallowBoss)
             {
-                //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetEmpressItem>(), chanceDenominator: 10));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FairySwarmItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.CultistBoss)
             {
@@ -147,10 +147,9 @@ namespace AssortedCrazyThings.NPCs
 
             if (shouldSoulDrop)
             {
-                if (npc.type != ModContent.NPCType<DungeonSoul>())
+                int soulType = ModContent.NPCType<DungeonSoul>();
+                if (npc.type != soulType)
                 {
-                    int soulType = ModContent.NPCType<DungeonSoul>();
-
                     //NewNPC starts looking for the first !active from 0 to 200
                     int soulID = NPC.NewNPC((int)npc.position.X + DungeonSoulBase.wid / 2, (int)npc.position.Y + DungeonSoulBase.hei / 2, soulType); //Spawn coords are actually the tile where its supposed to spawn on
                     Main.npc[soulID].timeLeft = DungeonSoulBase.SoulActiveTime;
@@ -163,17 +162,18 @@ namespace AssortedCrazyThings.NPCs
 
             //Other
 
-            if (!AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession)
+            if (!AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
             {
                 int index = npc.FindClosestPlayer();
                 if (index != -1)
                 {
                     Player player = Main.player[index];
-                    if (player.ZoneDungeon && !player.HasItem(ModContent.ItemType<IdolOfDecay>()) && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
+                    int idolType = ModContent.ItemType<IdolOfDecay>();
+                    if (player.ZoneDungeon && !player.HasItem(idolType))
                     {
                         if (Main.rand.NextBool(200))
                         {
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<IdolOfDecay>());
+                            Item.NewItem(npc.getRect(), idolType);
                             //To prevent the item dropping more than once in a single game instance if boss is not defeated
                             AssWorld.droppedHarvesterSpawnItemThisSession = true;
                         }
