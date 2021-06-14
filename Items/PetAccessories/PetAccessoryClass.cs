@@ -297,7 +297,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             AltTextures = new List<Texture2D>(AltTextureSuffixes.Count);
             for (int i = 0; i < AltTextureSuffixes.Count; i++)
             {
-                AltTextures.Add(AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
+                AltTextures.Add(Main.dedServ ? null : AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
             }
         }
 
