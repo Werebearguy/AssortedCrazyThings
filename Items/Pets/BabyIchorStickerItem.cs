@@ -22,12 +22,12 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SafeSetDefaults()
         {
             Item.rare = -11;
-            Item.value = Item.sellPrice(gold: 2, silver: 70);
+            Item.value = Item.sellPrice(silver: 45, copper: 30);
         }
 
         public override void AddRecipes()
         {
-            CreateRecipe(1).AddIngredient(ItemID.Ichor, 30).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Vertebrae, 15).AddIngredient(ItemID.Ichor, 5).AddTile(TileID.DemonAltar).Register();
         }
     }
 }

@@ -13,8 +13,8 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Swarm of Cthulhu"); //TODO name, aquisition
-            Tooltip.SetDefault("Summons a Swarm of Cthulhu to follow you");
+            DisplayName.SetDefault("Bottle of Restless Eyes");
+            Tooltip.SetDefault("Summons several eyes to swarm around you");
         }
 
         public override void SafeSetDefaults()

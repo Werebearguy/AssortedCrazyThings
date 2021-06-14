@@ -15,8 +15,8 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fairy Swarm"); //TODO name
-            Tooltip.SetDefault("Summons a Fairy Swarm to follow you");
+            DisplayName.SetDefault("Bottle of Assorted Fairies");
+            Tooltip.SetDefault("Summons several fairies to swarm around you");
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
