@@ -66,7 +66,7 @@ namespace AssortedCrazyThings.NPCs
             }
             else if (npc.type == NPCID.EyeofCthulhu)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ObservingEyeItem>(), chanceDenominator: 10));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SwarmofCthulhuItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.BrainofCthulhu)
             {
@@ -134,6 +134,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void OnKill(NPC npc)
         {
+            //TODO convert this to a drop rule
             if (npc.type == NPCID.TheDestroyer)
             {
                 AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),

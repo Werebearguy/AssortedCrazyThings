@@ -155,14 +155,14 @@ namespace AssortedCrazyThings.Base.SwarmDraw
         {
             Animate();
 
-            AI(center);
-
-            pos += vel;
-
             if (AutoDirection)
             {
                 dir = (vel.X > 0).ToDirectionInt();
             }
+
+            AI(center);
+
+            pos += vel;
 
             if (AutoLayerX)
             {

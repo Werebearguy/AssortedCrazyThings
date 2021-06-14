@@ -171,7 +171,6 @@ namespace AssortedCrazyThings
         public bool PetMoon = false;
         public bool WallFragment = false;
         public bool TinyTwins = false;
-        public bool ObservingEye = false;
         public bool PetGoldfish = false;
         public bool SkeletronHand = false;
         public bool SkeletronPrimeHand = false;
@@ -257,7 +256,6 @@ namespace AssortedCrazyThings
             PetMoon = false;
             WallFragment = false;
             TinyTwins = false;
-            ObservingEye = false;
             PetGoldfish = false;
             SkeletronHand = false;
             SkeletronPrimeHand = false;

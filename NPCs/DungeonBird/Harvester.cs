@@ -270,15 +270,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             NPC.SetEventFlagCleared(ref AssWorld.downedHarvester, -1);
 
-            //if (!AssWorld.downedHarvester)
-            //{
-            //    AssWorld.downedHarvester = true;
-            //    if (Main.netMode == NetmodeID.Server)
-            //    {
-            //        NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-            //    }
-            //}
-
             AssWorld.Message(deathMessage, deathColor);
 
             int npcTypeOld = ModContent.NPCType<DungeonSoul>();

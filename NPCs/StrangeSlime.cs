@@ -48,22 +48,6 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.OverworldDaySlime.Chance * 0.001f;
         }
 
-        //public override void OnKill()
-        //{
-        //    /*          public const short StrangePlant1 = 3385;
-        //                public const short StrangePlant2 = 3386;
-        //                public const short StrangePlant3 = 3387;
-        //                public const short StrangePlant4 = 3388;
-        //    */
-
-        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-        //    {
-        //        AiTexture = Main.rand.Next(4);
-        //    }
-
-        //    Item.NewItem(NPC.getRect(), 3385 + (int)AiTexture);
-        //}
-
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.StrangePlant1));

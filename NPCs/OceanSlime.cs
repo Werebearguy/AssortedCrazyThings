@@ -53,36 +53,6 @@ namespace AssortedCrazyThings.NPCs
             return SpawnCondition.Ocean.Chance * 0.015f;
         }
 
-        //public override void OnKill()
-        //{
-        //    int itemid = 0;
-
-        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-        //    {
-        //        AiTexture = Main.rand.Next(4);
-        //    }
-
-        //    switch ((int)AiTexture)
-        //    {
-        //        case 0:
-        //            itemid = ItemID.Gel;
-        //            break;
-        //        case 1:
-        //            itemid = ItemID.BlackInk;
-        //            break;
-        //        case 2:
-        //            itemid = ItemID.SharkFin;
-        //            break;
-        //        case 3:
-        //            itemid = ItemID.PinkGel;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    Item.NewItem(NPC.getRect(), itemid);
-        //}
-
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.Gel));

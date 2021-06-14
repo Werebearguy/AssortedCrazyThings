@@ -58,39 +58,6 @@ namespace AssortedCrazyThings.NPCs
             else return 0f;
         }
 
-        //public override void OnKill()
-        //{
-        //    int itemid = 0;
-
-        //    if (NPC.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-        //    {
-        //        AiTexture = Main.rand.Next(5);
-        //    }
-
-        //    switch ((int)AiTexture)
-        //    {
-        //        case 0:
-        //            itemid = ItemID.RichGravestone2;
-        //            break;
-        //        case 1:
-        //            itemid = ItemID.RichGravestone1;
-        //            break;
-        //        case 2:
-        //            itemid = ItemID.RichGravestone3;
-        //            break;
-        //        case 3:
-        //            itemid = ItemID.RichGravestone4;
-        //            break;
-        //        case 4:
-        //            itemid = ItemID.RichGravestone5;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    Item.NewItem(NPC.getRect(), itemid);
-        //}
-
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
