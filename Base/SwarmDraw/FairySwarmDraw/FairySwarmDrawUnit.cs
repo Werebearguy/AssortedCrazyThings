@@ -34,6 +34,8 @@ namespace AssortedCrazyThings.Base.SwarmDraw.FairySwarmDraw
         {
             base.OnSpawn();
 
+            Front = TexIndex % 2 == 0;
+
             vel *= 0.8f;
         }
 

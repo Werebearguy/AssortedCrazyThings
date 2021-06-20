@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers;
+﻿using AssortedCrazyThings.Base.DrawLayers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -29,12 +29,12 @@ namespace AssortedCrazyThings.Base.SwarmDraw
 
         public SwarmDrawLayer BackLayer { get; private set; }
 
-        public SwarmDrawSet(List<SwarmDrawUnit> units, SwarmDrawLayer frontLayer, SwarmDrawLayer backLayer)
+        public SwarmDrawSet(string name, List<SwarmDrawUnit> units)
         {
             Units = units;
 
-            FrontLayer = frontLayer;
-            BackLayer = backLayer;
+            FrontLayer = new SwarmDrawLayer(name, true, GetDrawSet);
+            BackLayer = new SwarmDrawLayer(name, false, GetDrawSet);
         }
 
         void ILoadable.Load(Mod mod)
@@ -48,6 +48,8 @@ namespace AssortedCrazyThings.Base.SwarmDraw
             FrontLayer = null;
             BackLayer = null;
         }
+
+        public abstract SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer);
 
         public object Clone()
         {
@@ -110,6 +112,11 @@ namespace AssortedCrazyThings.Base.SwarmDraw
                 data.AddRange(unit.TrailToDrawDatas(drawInfo, front));
             }
             return data;
+        }
+
+        public static T New<T>() where T : SwarmDrawSet
+        {
+            return (T)ModContent.GetInstance<T>().Clone();
         }
     }
 }

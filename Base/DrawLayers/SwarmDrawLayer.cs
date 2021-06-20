@@ -1,36 +1,43 @@
 using AssortedCrazyThings.Base.SwarmDraw;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers
+namespace AssortedCrazyThings.Base.DrawLayers
 {
     /// <summary>
     /// These layers have to get created manually, they are loaded in SwarmDrawSet
     /// </summary>
     [Autoload(false)]
-    public abstract class SwarmDrawLayer : PlayerDrawLayer
+    public sealed class SwarmDrawLayer : PlayerDrawLayer
     {
-        /// <summary>
-        /// Important to assign Name based on the instance so they won't count as duplicates
-        /// </summary>
-        public override string Name => $"{base.Name}_{(front ? "Front" : "Back")}";
+        private readonly string name;
+        public override string Name => name;
 
         /// <summary>
         /// No parameterless constructor needed since Autoload is false
         /// </summary>
-        public SwarmDrawLayer(bool front)
+        public SwarmDrawLayer(string name, bool front, Func<SwarmDrawPlayer, SwarmDrawSet> getDrawSet)
         {
+            //Important to assign name based on the instance so they won't count as duplicates
+            this.name = $"{name}_{(front ? "Front" : "Back")}";
             this.front = front;
+            this.getDrawSet = getDrawSet;
         }
 
         public bool front;
 
-        public abstract SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer);
+        public Func<SwarmDrawPlayer, SwarmDrawSet> getDrawSet;
 
         public sealed override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
         {
-            return GetDrawSet(drawInfo.drawPlayer.GetModPlayer<SwarmDrawPlayer>())?.Active ?? false;
+            if (getDrawSet == null)
+            {
+                return false;
+            }
+
+            return getDrawSet.Invoke(drawInfo.drawPlayer.GetModPlayer<SwarmDrawPlayer>())?.Active ?? false;
         }
 
         public sealed override Position GetDefaultPosition()
@@ -46,7 +53,7 @@ namespace AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers
                 return;
             }
 
-            var set = GetDrawSet(drawPlayer.GetModPlayer<SwarmDrawPlayer>());
+            var set = getDrawSet?.Invoke(drawInfo.drawPlayer.GetModPlayer<SwarmDrawPlayer>());
 
             if (set == null || !set.Active)
             {

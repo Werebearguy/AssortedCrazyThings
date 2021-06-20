@@ -1,11 +1,10 @@
-﻿using AssortedCrazyThings.Base.DrawLayers.SwarmDrawLayers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AssortedCrazyThings.Base.SwarmDraw.FairySwarmDraw
 {
     public class FairySwarmDrawSet : SwarmDrawSet
     {
-        public FairySwarmDrawSet() : base(new List<SwarmDrawUnit>()
+        public FairySwarmDrawSet() : base("FairySwarmDrawSet", new List<SwarmDrawUnit>()
             {
                 new FairySwarmDrawUnit(0),
                 new FairySwarmDrawUnit(1),
@@ -13,9 +12,14 @@ namespace AssortedCrazyThings.Base.SwarmDraw.FairySwarmDraw
                 new FairySwarmDrawUnit(0),
                 new FairySwarmDrawUnit(1),
                 new FairySwarmDrawUnit(2)
-            }, new FairySwarmDrawLayer(true), new FairySwarmDrawLayer(false))
+            })
         {
 
+        }
+
+        public override SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer)
+        {
+            return sdPlayer.fairySwarmDrawSet;
         }
     }
 }
