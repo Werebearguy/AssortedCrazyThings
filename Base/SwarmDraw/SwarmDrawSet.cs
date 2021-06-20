@@ -25,28 +25,31 @@ namespace AssortedCrazyThings.Base.SwarmDraw
 
         public List<SwarmDrawUnit> Units { get; private set; }
 
-        public SwarmDrawLayer FrontLayer { get; private set; }
-
-        public SwarmDrawLayer BackLayer { get; private set; }
+        public List<SwarmDrawLayer> Layers { get; private set; }
 
         public SwarmDrawSet(string name, List<SwarmDrawUnit> units)
         {
             Units = units;
 
-            FrontLayer = new SwarmDrawLayer(name, true, GetDrawSet);
-            BackLayer = new SwarmDrawLayer(name, false, GetDrawSet);
+            Layers = new List<SwarmDrawLayer>()
+            {
+                new SwarmDrawLayer(name, true, GetDrawSet),
+                new SwarmDrawLayer(name, false, GetDrawSet)
+            };
         }
 
         void ILoadable.Load(Mod mod)
         {
-            mod.AddContent(FrontLayer);
-            mod.AddContent(BackLayer);
+            foreach (var layer in Layers)
+            {
+                mod.AddContent(layer);
+            }
         }
 
         void ILoadable.Unload()
         {
-            FrontLayer = null;
-            BackLayer = null;
+            Layers?.Clear();
+            Layers = null;
         }
 
         public abstract SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer);
