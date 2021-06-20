@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class PlagueOfToadsProj : ModProjectile
+    public class PlagueOfToadsProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

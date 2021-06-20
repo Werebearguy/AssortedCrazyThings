@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class FestiveMirror : ModItem
+    public class FestiveMirror : AssItem
     {
         public override void SetStaticDefaults()
         {

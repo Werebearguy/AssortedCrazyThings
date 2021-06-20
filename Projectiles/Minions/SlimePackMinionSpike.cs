@@ -8,7 +8,7 @@ using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-    public class SlimePackMinionSpike : ModProjectile
+    public class SlimePackMinionSpike : AssProjectile
     {
         public override void SetStaticDefaults()
         {

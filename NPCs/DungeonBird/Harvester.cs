@@ -18,7 +18,7 @@ using AssortedCrazyThings.Items.Pets;
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     [AutoloadBossHead]
-    public class Harvester : ModNPC
+    public class Harvester : AssNPC
     {
         public static readonly string name = "Soul Harvester";
         public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death

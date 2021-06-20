@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteGastropodProj : ModProjectile
+    public class CuteGastropodProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public abstract class MinionItemBase : ModItem
+    public abstract class MinionItemBase : AssItem
     {
         public override void UseStyle(Player player, Rectangle heldItemFrame)
         {

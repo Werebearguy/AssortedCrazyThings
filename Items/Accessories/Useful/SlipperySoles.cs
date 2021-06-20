@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     [AutoloadEquip(EquipType.Shoes)]
-    public class SlipperySoles : ModItem
+    public class SlipperySoles : AssItem
     {
         public override void SetStaticDefaults()
         {

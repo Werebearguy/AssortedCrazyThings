@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Armor
 {
     [AutoloadEquip(EquipType.Body)]
-    public class SoulSaviorPlate : ModItem
+    public class SoulSaviorPlate : AssItem
     {
         public override void SetStaticDefaults()
         {

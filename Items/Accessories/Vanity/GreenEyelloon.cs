@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
     [AutoloadEquip(EquipType.Balloon)]
-    public class GreenEyelloon : ModItem
+    public class GreenEyelloon : AssItem
     {
         public override void SetStaticDefaults()
         {

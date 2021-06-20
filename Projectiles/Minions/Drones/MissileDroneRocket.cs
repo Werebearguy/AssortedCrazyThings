@@ -8,7 +8,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
-    public class MissileDroneRocket : ModProjectile
+    public class MissileDroneRocket : AssProjectile
     {
         private bool justCollided = false;
         private bool inflatedHitbox = false;

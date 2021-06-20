@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class StarForge : ModItem
+    public class StarForge : AssItem
     {
         public override void SetStaticDefaults()
         {

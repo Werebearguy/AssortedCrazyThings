@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    public class CuteSlimeSpawnEnableFlask : ModItem
+    public class CuteSlimeSpawnEnableFlask : AssItem
     {
         public override void SetStaticDefaults()
         {

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class SigilOfRetreat : ModItem
+    public class SigilOfRetreat : AssItem
     {
         public override void SetStaticDefaults()
         {

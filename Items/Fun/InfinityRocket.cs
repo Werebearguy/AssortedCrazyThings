@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class InfinityRocket : ModItem
+    public class InfinityRocket : AssItem
     {
         public override void SetStaticDefaults()
         {

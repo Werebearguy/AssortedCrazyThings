@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class VanitySelector : ModItem
+    public class VanitySelector : AssItem
     {
         public override void SetStaticDefaults()
         {

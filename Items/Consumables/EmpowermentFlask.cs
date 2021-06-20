@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    class EmpowermentFlask : ModItem
+    class EmpowermentFlask : AssItem
     {
         public override void SetStaticDefaults()
         {

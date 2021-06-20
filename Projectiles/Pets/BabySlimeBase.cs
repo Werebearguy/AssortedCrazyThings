@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
     /// <summary>
     /// localAI[1] freely available
     /// </summary>
-    public abstract class BabySlimeBase : ModProjectile
+    public abstract class BabySlimeBase : AssProjectile
     {
         public bool shootSpikes = false;
         private static readonly byte shootDelay = 60; //either +1 or +0 every tick, so effectively every 90 ticks

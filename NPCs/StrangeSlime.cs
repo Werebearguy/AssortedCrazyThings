@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class StrangeSlime : ModNPC
+    public class StrangeSlime : AssNPC
     {
         private const int TotalNumberOfThese = 4;
 

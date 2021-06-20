@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class FairySwarmProj : ModProjectile
+    public class FairySwarmProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

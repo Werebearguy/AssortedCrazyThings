@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class TrueLegendaryWoodenSword : ModItem
+    public class TrueLegendaryWoodenSword : AssItem
     {
         public static int ProjDamage = 15;
 

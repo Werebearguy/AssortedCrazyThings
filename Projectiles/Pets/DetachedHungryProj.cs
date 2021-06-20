@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class DetachedHungryProj : ModProjectile
+    public class DetachedHungryProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     [AutoloadEquip(EquipType.Balloon)]
-    public class MassiveBundleOfBalloons : ModItem
+    public class MassiveBundleOfBalloons : AssItem
     {
         public override void SetStaticDefaults()
         {

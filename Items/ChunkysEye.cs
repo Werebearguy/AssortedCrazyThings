@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class ChunkysEye : ModItem
+    public class ChunkysEye : AssItem
     {
         public override void SetStaticDefaults()
         {

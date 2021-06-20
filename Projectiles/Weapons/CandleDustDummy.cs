@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 {
     //used in GlobalItem for creating candle dust
 
-    public class CandleDustDummy : ModProjectile
+    public class CandleDustDummy : AssProjectile
     {
         private static readonly int LifeTime = 10;
 

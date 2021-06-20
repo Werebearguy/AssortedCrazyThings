@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class BreathOfSpazmatism : ModItem
+    public class BreathOfSpazmatism : AssItem
     {
         public override void SetStaticDefaults()
         {

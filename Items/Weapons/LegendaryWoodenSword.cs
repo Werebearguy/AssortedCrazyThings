@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class LegendaryWoodenSword : ModItem
+    public class LegendaryWoodenSword : AssItem
     {
         public override void SetStaticDefaults()
         {

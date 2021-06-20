@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     [AutoloadEquip(EquipType.Shoes)]
-    public class SolesOfFireAndIce : ModItem
+    public class SolesOfFireAndIce : AssItem
     {
         public override void SetStaticDefaults()
         {

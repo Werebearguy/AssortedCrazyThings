@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     //this class also contains the NPC classes at the very bottom
-    public abstract class DungeonSoulBase : ModNPC
+    public abstract class DungeonSoulBase : AssNPC
     {
         protected int frameSpeed;
         protected float fadeAwayMax;

@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Gitgud
     /// <summary>
     /// Serves as a base for all gitgud items
     /// </summary>
-    public abstract class GitgudItem : ModItem
+    public abstract class GitgudItem : AssItem
     {
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

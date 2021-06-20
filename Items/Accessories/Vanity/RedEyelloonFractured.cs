@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
     [AutoloadEquip(EquipType.Balloon)]
-    public class RedEyelloonFractured : ModItem
+    public class RedEyelloonFractured : AssItem
     {
         public override void SetStaticDefaults()
         {

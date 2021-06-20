@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class TinySpazmatismProj : ModProjectile
+    public class TinySpazmatismProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -74,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
-    public class TinyRetinazerProj : ModProjectile
+    public class TinyRetinazerProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

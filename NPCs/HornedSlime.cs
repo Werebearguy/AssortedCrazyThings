@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class HornedSlime : ModNPC
+    public class HornedSlime : AssNPC
     {
         public override void SetStaticDefaults()
         {

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    public class HarvesterTreasureBag : ModItem
+    public class HarvesterTreasureBag : AssItem
     {
         //Sets the associated NPC this treasure bag is dropped from
         public override int BossBagNPC => ModContent.NPCType<Harvester>();

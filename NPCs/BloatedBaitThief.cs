@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class BloatedBaitThief : ModNPC
+    public class BloatedBaitThief : AssNPC
     {
         public override void SetStaticDefaults()
         {

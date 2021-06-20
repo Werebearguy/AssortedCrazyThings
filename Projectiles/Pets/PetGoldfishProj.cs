@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetGoldfishProj : ModProjectile
+    public class PetGoldfishProj : AssProjectile
     {
         public override string Texture
         {

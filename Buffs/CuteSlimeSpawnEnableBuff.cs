@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class CuteSlimeSpawnEnableBuff : ModBuff
+    public class CuteSlimeSpawnEnableBuff : AssBuff
     {
         public override void SetDefaults()
         {

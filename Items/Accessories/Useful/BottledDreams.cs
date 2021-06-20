@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     [AutoloadEquip(EquipType.Waist)]
-    public class BottledDreams : ModItem
+    public class BottledDreams : AssItem
     {
         public override void SetStaticDefaults()
         {

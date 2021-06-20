@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Pets
     /// <summary>
     /// Provided a pet projectile type, and a buff type, handles spawning the pet via using the item
     /// </summary>
-    public abstract class SimplePetItemBase : ModItem
+    public abstract class SimplePetItemBase : AssItem
     {
         public abstract int PetType { get; }
 

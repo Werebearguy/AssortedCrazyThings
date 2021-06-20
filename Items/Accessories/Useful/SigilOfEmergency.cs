@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    class SigilOfEmergency : ModItem
+    class SigilOfEmergency : AssItem
     {
         public override void SetStaticDefaults()
         {

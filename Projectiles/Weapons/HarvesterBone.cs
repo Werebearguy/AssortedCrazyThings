@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 {
     //used in BaseHarvester, same as bone, just applies slow
 
-    public class HarvesterBone : ModProjectile
+    public class HarvesterBone : AssProjectile
     {
         public override string Texture
         {

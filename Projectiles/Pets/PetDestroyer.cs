@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public abstract class PetDestroyerBase : ModProjectile
+    public abstract class PetDestroyerBase : AssProjectile
     {
         public static int[] wormTypes;
 
@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
     public class PetDestroyerTail : PetDestroyerBase { }
 
-    public class PetDestroyerProbe : ModProjectile
+    public class PetDestroyerProbe : AssProjectile
     {
         //since the index might be different between clients, using ai[] for it will break stuff
         public int ParentIndex

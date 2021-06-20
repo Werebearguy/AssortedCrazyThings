@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class LifelikeMechanicalFrogProj : ModProjectile
+    public class LifelikeMechanicalFrogProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

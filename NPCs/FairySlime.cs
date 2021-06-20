@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class FairySlime : ModNPC
+    public class FairySlime : AssNPC
     {
         public override void SetStaticDefaults()
         {

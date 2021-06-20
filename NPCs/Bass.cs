@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class Bass : ModNPC
+    public class Bass : AssNPC
     {
         public float scareRange = 200f;
 

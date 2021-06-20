@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class EmpoweringBuff : ModBuff
+    public class EmpoweringBuff : AssBuff
     {
         public override void SetDefaults()
         {

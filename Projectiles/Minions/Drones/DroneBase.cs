@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// LocalAI[0] & localAI[1] for the bobbing and a random number.
     /// Bobbing (sinY) needs to be implemented manually in some draw hook
     /// </summary>
-    public abstract class DroneBase : ModProjectile
+    public abstract class DroneBase : AssProjectile
     {
 
         /// <summary>

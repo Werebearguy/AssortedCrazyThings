@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class SpazmatismFire : ModProjectile
+    public class SpazmatismFire : AssProjectile
     {
         public override void SetStaticDefaults()
         {

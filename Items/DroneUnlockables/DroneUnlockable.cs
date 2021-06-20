@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
 {
-    public abstract class DroneUnlockable : ModItem
+    public abstract class DroneUnlockable : AssItem
     {
         public override void SetDefaults()
         {

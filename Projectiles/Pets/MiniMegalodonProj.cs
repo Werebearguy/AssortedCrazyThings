@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class MiniMegalodonProj : ModProjectile
+    public class MiniMegalodonProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

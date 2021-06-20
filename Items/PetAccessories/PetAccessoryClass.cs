@@ -486,7 +486,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
     /// Class that all vanity accessories inherit from. Provides the functionality.
     /// Has a default recipe which can be changed
     /// </summary>
-    public abstract class PetAccessoryItem : ModItem
+    public abstract class PetAccessoryItem : AssItem
     {
         public override void SetDefaults()
         {

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class EverburningCursedCandle : ModItem
+    public class EverburningCursedCandle : AssItem
     {
         public override void SetStaticDefaults()
         {

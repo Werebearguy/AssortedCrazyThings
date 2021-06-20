@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class CraftOfMiners : ModItem
+    public class CraftOfMiners : AssItem
     {
         public override void SetStaticDefaults()
         {

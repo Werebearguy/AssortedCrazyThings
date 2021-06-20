@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class SightofRetinazer : ModItem
+    public class SightofRetinazer : AssItem
     {
         public override void SetStaticDefaults()
         {

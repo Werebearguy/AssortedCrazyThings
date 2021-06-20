@@ -6,7 +6,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class GuideVoodoorangProj : ModProjectile
+    public class GuideVoodoorangProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

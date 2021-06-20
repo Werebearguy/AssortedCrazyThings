@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class GiantGrasshopper : ModNPC
+    public class GiantGrasshopper : AssNPC
     {
         public override void SetStaticDefaults()
         {

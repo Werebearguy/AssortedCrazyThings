@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class KnittingSet : ModItem
+    public class KnittingSet : AssItem
     {
         public override void SetStaticDefaults()
         {

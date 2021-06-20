@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class SoulBuff : ModBuff
+    public class SoulBuff : AssBuff
     {
         public override void SetDefaults()
         {

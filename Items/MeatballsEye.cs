@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class MeatballsEye : ModItem
+    public class MeatballsEye : AssItem
     {
         public override void SetStaticDefaults()
         {

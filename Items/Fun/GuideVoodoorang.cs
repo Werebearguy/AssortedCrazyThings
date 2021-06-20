@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class GuideVoodoorang : ModItem
+    public class GuideVoodoorang : AssItem
     {
         public override void SetStaticDefaults()
         {

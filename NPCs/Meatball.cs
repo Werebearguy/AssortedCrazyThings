@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class Meatball : ModNPC
+    public class Meatball : AssNPC
     {
         public override void SetStaticDefaults()
         {
