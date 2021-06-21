@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
+    [Content(ContentType.Boss)]
     public class CaughtDungeonSoul : CaughtDungeonSoulBase
     {
         public override void SetStaticDefaults()
@@ -34,11 +35,6 @@ namespace AssortedCrazyThings.Items
             Item.useTime = 10;
             Item.consumable = true;
             Item.noUseGraphic = true;
-            //TODO remove
-            if (!AConfigurationConfig.Instance.Bosses)
-            {
-                return;
-            }
             Item.makeNPC = (short)ModContent.NPCType<DungeonSoul>();
         }
 

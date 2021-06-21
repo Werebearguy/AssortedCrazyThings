@@ -31,4 +31,10 @@ namespace AssortedCrazyThings
     {
 
     }
+
+    [Autoload(false)]
+    public abstract class AssPlayerLayer : PlayerDrawLayer
+    {
+
+    }
 }

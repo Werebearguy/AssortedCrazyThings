@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    [Autoload]
+    [Content(ContentType.Boss)]
     public class CompanionDungeonSoulMinionBuff : AssBuff
     {
         public override void SetDefaults()

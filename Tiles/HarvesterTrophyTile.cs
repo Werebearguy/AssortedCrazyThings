@@ -7,6 +7,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
+    [Content(ContentType.Boss)]
     public class HarvesterTrophyTile : DroppableTile<HarvesterTrophyItem>
     {
         public override void SetDefaults()

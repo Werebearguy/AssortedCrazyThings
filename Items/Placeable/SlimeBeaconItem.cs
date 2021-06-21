@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
+    [Autoload]
     public class SlimeBeaconItem : PlaceableItem<SlimeBeaconTile>
     {
         public override void SetStaticDefaults()

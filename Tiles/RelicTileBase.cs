@@ -12,6 +12,7 @@ using Terraria.Localization;
 
 namespace AssortedCrazyThings.Tiles
 {
+    [Content(ContentType.Boss)] //Relic on a non-boss is not a thing
     public abstract class RelicTileBase<T> : DroppableTile<T> where T : ModItem
     {
         //Every relic has its own extra floating part, should be 50x50

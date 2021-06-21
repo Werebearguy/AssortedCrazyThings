@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Base.DrawLayers
     /// These layers have to get created manually, they are loaded in SwarmDrawSet
     /// </summary>
     [Autoload(false)]
-    public sealed class SwarmDrawLayer : PlayerDrawLayer
+    public sealed class SwarmDrawLayer : AssPlayerLayer
     {
         private readonly string name;
         public override string Name => name;

@@ -1,9 +1,11 @@
 using AssortedCrazyThings.Tiles;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
+    [Autoload]
     public class CuteSlimeStatueItem : PlaceableItem<CuteSlimeStatueTile>
     {
         public override void SetStaticDefaults()

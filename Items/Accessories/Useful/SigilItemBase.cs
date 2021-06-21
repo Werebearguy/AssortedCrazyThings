@@ -1,14 +1,27 @@
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class SigilOfEmergency : SigilItemBase
+    //TODO extend functionality regarding cooldown tooltips
+    [Content(ContentType.Boss)]
+    public abstract class SigilItemBase : AssItem
     {
-        public override void SafeSetStaticDefaults()
+        public sealed override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sigil of Emergency");
-            Tooltip.SetDefault("Summons a temporary minion to help you upon reaching critical health" +
-                "\nIncreases your max number of minions");
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
+
+            SafeSetStaticDefaults();
+        }
+
+        public virtual void SafeSetStaticDefaults()
+        {
+
         }
 
         public override void SetDefaults()

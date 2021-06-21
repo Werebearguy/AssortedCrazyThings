@@ -233,6 +233,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void PreSyncSoulTemp(Projectile proj)
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             if (proj.ModProjectile is CompanionDungeonSoulMinionBase soul)
             {
                 soul.isTemp = true;
@@ -244,6 +249,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulTemp()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             if (tempSoulMinion != null && !tempSoulMinion.IsAir && Player.whoAmI == Main.myPlayer)
             {
                 bool checkIfAlive = false;
@@ -327,6 +337,11 @@ namespace AssortedCrazyThings
         /// </summary>
         public void ConvertInertSoulsInventory()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             //this gets called once on server side for all players, and then each player calls it on itself client side
             int tempStackCount;
             int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
@@ -524,25 +539,6 @@ namespace AssortedCrazyThings
             CircleUIList = new List<CircleUIHandler>
             {
                 new CircleUIHandler(
-                triggerItem: ModContent.ItemType<EverhallowedLantern>(),
-                condition: () => true,
-                uiConf: EverhallowedLantern.GetUIConf,
-                onUIStart: delegate
-                {
-                    if (Utils.IsPowerOfTwo((int)selectedSoulMinionType))
-                    {
-                        return (int)Math.Log((int)selectedSoulMinionType, 2);
-                    }
-                    return 0;
-                },
-                onUIEnd: delegate
-                {
-                    selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-                    AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
-                },
-                triggerLeft: false
-            ),
-                new CircleUIHandler(
                 triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
                 condition: () => true,
                 uiConf: SlimeHandlerKnapsack.GetUIConf,
@@ -574,6 +570,29 @@ namespace AssortedCrazyThings
                 triggerLeft: false
             )
             };
+
+            if (AConfigurationConfig.Instance.Bosses)
+            {
+                CircleUIList.Add(new CircleUIHandler(
+                triggerItem: ModContent.ItemType<EverhallowedLantern>(),
+                condition: () => true,
+                uiConf: EverhallowedLantern.GetUIConf,
+                onUIStart: delegate
+                {
+                    if (Utils.IsPowerOfTwo((int)selectedSoulMinionType))
+                    {
+                        return (int)Math.Log((int)selectedSoulMinionType, 2);
+                    }
+                    return 0;
+                },
+                onUIEnd: delegate
+                {
+                    selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
+                    AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
+                },
+                triggerLeft: false
+                ));
+            }
 
             // after filling the list, set the trigger list
             for (int i = 0; i < CircleUIList.Count; i++)

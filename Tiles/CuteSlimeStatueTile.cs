@@ -9,6 +9,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
+    [Autoload]
     public class CuteSlimeStatueTile : DroppableTile<CuteSlimeStatueItem>
     {
         public override void SetDefaults()

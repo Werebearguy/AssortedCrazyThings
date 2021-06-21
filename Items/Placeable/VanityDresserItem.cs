@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
+    [Autoload]
     public class VanityDresserItem : PlaceableItem<VanityDresserTile>
     {
         public override void SetStaticDefaults()

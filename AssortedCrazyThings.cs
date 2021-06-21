@@ -148,7 +148,7 @@ namespace AssortedCrazyThings
 
         private void LoadMisc()
         {
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
+            if (!Main.dedServ && AConfigurationConfig.Instance.Bosses)
             {
                 animatedSoulTextures = new Texture2D[2];
 
@@ -159,14 +159,11 @@ namespace AssortedCrazyThings
 
         private void UnloadMisc()
         {
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
-            {
-                animatedSoulTextures = null;
+            animatedSoulTextures = null;
 
-                PetEaterofWorldsBase.wormTypes = null;
+            PetEaterofWorldsBase.wormTypes = null;
 
-                PetDestroyerBase.wormTypes = null;
-            }
+            PetDestroyerBase.wormTypes = null;
         }
 
         public override void Load()
@@ -194,7 +191,7 @@ namespace AssortedCrazyThings
 
             GitgudData.Unload();
 
-            EverhallowedLantern.Unload();
+            EverhallowedLantern.DoUnload();
         }
 
         public override void PostSetupContent()
@@ -206,7 +203,7 @@ namespace AssortedCrazyThings
 
             DroneController.Load();
 
-            EverhallowedLantern.Load();
+            EverhallowedLantern.DoLoad();
 
             SlimePets.PostSetup();
 
@@ -229,7 +226,7 @@ namespace AssortedCrazyThings
             };
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
-            if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
+            if (AConfigurationConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
                 //5.1f means just after skeletron
                 if (bossChecklist.Version >= new Version(1, 0))
@@ -282,17 +279,21 @@ namespace AssortedCrazyThings
 
             if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
             {
-                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                if (AConfigurationConfig.Instance.Bosses)
                 {
-                    ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
-                });
-                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverhallowedLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
-                {
-                    ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
-                    ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
-                    ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
-                    ModContent.ProjectileType<CompanionDungeonSoulSightMinion>()
-                });
+                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                    {
+                        ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
+                    });
+                        summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverhallowedLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                    {
+                        ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
+                        ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
+                        ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
+                        ModContent.ProjectileType<CompanionDungeonSoulSightMinion>()
+                    });
+                }
+
                 summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<SlimeHandlerKnapsack>(), ModContent.BuffType<SlimePackMinionBuff>(), ModContent.ProjectileType<SlimePackMinion>());
                 List<int> drones = new List<int>();
                 foreach (var drone in DroneController.DataList)

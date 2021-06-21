@@ -7,8 +7,12 @@ namespace AssortedCrazyThings
 {
 	public class ConfigurationSystem : ModSystem
     {
+		public static List<string> NonLoadedNames;
+
         public override void OnModLoad()
         {
+			NonLoadedNames = new List<string>();
+
 			AConfigurationConfig config = ModContent.GetInstance<AConfigurationConfig>();
 
 			List<Type> manuallyAddedTypes = new List<Type>();
@@ -25,23 +29,35 @@ namespace AssortedCrazyThings
 				if (typeof(ILoadable).IsAssignableFrom(type))
 				{
 					var autoload = AutoloadAttribute.GetValue(type);
+
 					if (!autoload.NeedsAutoloading) //Only manually add types that have autoloading disabled
 					{
 						var content = ContentAttribute.GetValue(type);
+						ILoadable instance = (ILoadable)Activator.CreateInstance(type);
 
 						//TODO proper filter here
 						//If atleast one flag is matching a true config, autoload it
 						if (config.Bosses && content.ContentType.HasFlag(ContentType.Boss))
 						{
 							manuallyAddedTypes.Add(type);
-							Mod.AddContent((ILoadable)Activator.CreateInstance(type));
-							continue;
+                            Mod.AddContent(instance);
+						}
+                        else
+                        {
+							if (instance is ModType modTypeInstance)
+                            {
+								NonLoadedNames.Add(modTypeInstance.Name);
+							}
 						}
 					}
 				}
 			}
+		}
 
-			int a = 0;
+        public override void Unload()
+        {
+			NonLoadedNames?.Clear();
+			NonLoadedNames = null;
 		}
     }
 

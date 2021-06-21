@@ -13,6 +13,7 @@ using Terraria.GameContent;
 
 namespace AssortedCrazyThings.Tiles
 {
+    [Autoload]
     public class WyvernCampfireTile : DroppableTile<WyvernCampfireItem>
     {
         private const int maxFrames = 8;

@@ -9,6 +9,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Tiles
 {
+    [Autoload]
     public class SlimeBeaconTile : DroppableTile<SlimeBeaconItem>
     {
         public override void SetDefaults()

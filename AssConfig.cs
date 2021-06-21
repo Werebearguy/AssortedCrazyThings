@@ -35,6 +35,8 @@ namespace AssortedCrazyThings
 		public static AConfigurationConfig Instance => ModContent.GetInstance<AConfigurationConfig>();
 
 		[Header("NPCs")]
+
+		[ReloadRequired]
 		[DefaultValue(true)]
 		[Tooltip("Toggle Bosses - This will also disable all their loot and other relevant items and NPCs")]
 		[Label("Bosses")]

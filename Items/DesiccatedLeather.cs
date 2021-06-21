@@ -3,7 +3,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    [Autoload]
+
+    [Content(ContentType.Boss)]
     public class DesiccatedLeather : AssItem
     {
         public override void SetStaticDefaults()

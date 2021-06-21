@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.Boss)]
     public class PetHarvesterItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<PetHarvesterProj>();

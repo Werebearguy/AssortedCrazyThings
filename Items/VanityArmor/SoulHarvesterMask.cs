@@ -4,7 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.VanityArmor
 {
-    [Autoload]
+
+    [Content(ContentType.Boss)]
     [AutoloadEquip(EquipType.Head)]
     public class SoulHarvesterMask : AssItem
     {

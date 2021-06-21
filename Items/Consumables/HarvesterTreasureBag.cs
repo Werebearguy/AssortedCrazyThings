@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
+    //[Content(ContentType.Boss)]
     [Autoload]
     public class HarvesterTreasureBag : AssItem
     {

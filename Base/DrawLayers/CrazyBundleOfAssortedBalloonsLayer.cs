@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.DrawLayers
 {
-    public class CrazyBundleOfAssortedBalloonsLayer : PlayerDrawLayer
+    [Autoload]
+    public class CrazyBundleOfAssortedBalloonsLayer : AssPlayerLayer
     {
         private Asset<Texture2D> balloonTexture;
 

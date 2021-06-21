@@ -56,6 +56,7 @@ namespace AssortedCrazyThings.Items.Weapons
         }
     }
 
+    [Content(ContentType.Boss)]
     public class EverhallowedLantern : MinionItemBase
     {
         public const int BaseDmg = 26;
@@ -152,8 +153,13 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Called in Mod.Load
         /// </summary>
-        public static void Load()
+        public static void DoLoad()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             Array a = Enum.GetValues(typeof(SoulType));
             DataList = new SoulData[a.Length - 1]; //without None
             int i = 0;
@@ -169,7 +175,7 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Called in Mod.Unload
         /// </summary>
-        public static void Unload()
+        public static void DoUnload()
         {
             DataList = null;
         }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
+    [Content(ContentType.Boss)]
     public class CompanionDungeonSoulPetBuff2 : SimplePetBuffBase
     {
         public override string Texture => "AssortedCrazyThings/Buffs/Pets/CompanionDungeonSoulPetBuff";

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Armor
 {
-    [Autoload]
+    [Content(ContentType.Boss)]
     [AutoloadEquip(EquipType.Head)]
     public class SoulSaviorHeaddress : AssItem
     {
