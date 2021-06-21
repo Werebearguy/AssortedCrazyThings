@@ -6,6 +6,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
+    [Autoload]
     public class PetDestroyerDroneLaser : AssProjectile
     {
         public override string Texture

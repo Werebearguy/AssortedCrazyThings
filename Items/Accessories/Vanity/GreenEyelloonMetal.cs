@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
+    [Autoload]
     [AutoloadEquip(EquipType.Balloon)]
     public class GreenEyelloonMetal : AssItem
     {

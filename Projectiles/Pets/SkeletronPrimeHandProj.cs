@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     public class SkeletronPrimeHandProj : AssProjectile
     {
         public override string Texture

@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Tools
 {
+    [Autoload]
     public abstract class ExtendoNetBase : AssItem
     {
         public override void SetDefaults()

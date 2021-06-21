@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
+    [Autoload]
     public abstract class CuteSlimeBaseNPC : AssNPC
     {
         public abstract string IngameName { get; }

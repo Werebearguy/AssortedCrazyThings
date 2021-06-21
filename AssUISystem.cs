@@ -51,10 +51,13 @@ namespace AssortedCrazyThings
                 HoverNPCUIInterface = new UserInterface();
                 HoverNPCUIInterface.SetState(HoverNPCUI);
 
-                HarvesterEdgeUI = new HarvesterEdgeUI();
-                HarvesterEdgeUI.Activate();
-                HarvesterEdgeUIInterface = new UserInterface();
-                HarvesterEdgeUIInterface.SetState(HarvesterEdgeUI);
+                if (AConfigurationConfig.Instance.Bosses)
+                {
+                    HarvesterEdgeUI = new HarvesterEdgeUI();
+                    HarvesterEdgeUI.Activate();
+                    HarvesterEdgeUIInterface = new UserInterface();
+                    HarvesterEdgeUIInterface.SetState(HarvesterEdgeUI);
+                }
 
                 EnhancedHunterUI = new EnhancedHunterUI();
                 EnhancedHunterUI.Activate();
@@ -346,7 +349,7 @@ namespace AssortedCrazyThings
 
         private void UpdateHarvesterEdgeUI(GameTime gameTime)
         {
-            HarvesterEdgeUI.Update(gameTime);
+            HarvesterEdgeUI?.Update(gameTime);
         }
 
         public override void UpdateUI(GameTime gameTime)
@@ -432,28 +435,34 @@ namespace AssortedCrazyThings
                     },
                     InterfaceScaleType.UI)
                 );
-
-                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+                
+                if (EnhancedHunterUI.visible)
+                {
+                    layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
                     (
                     "ACT: Enhanced Hunter",
                     delegate
                     {
-                        if (EnhancedHunterUI.visible) EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
+                        EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },
                     InterfaceScaleType.UI)
                 );
+                }
 
-                layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Harvester Edge",
-                    delegate
-                    {
-                        HarvesterEdgeUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
+                if (HarvesterEdgeUIInterface != null)
+                {
+                    layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+                        (
+                        "ACT: Harvester Edge",
+                        delegate
+                        {
+                            HarvesterEdgeUIInterface.Draw(Main.spriteBatch, new GameTime());
+                            return true;
+                        },
+                        InterfaceScaleType.UI)
+                    );
+                }
             }
         }
 

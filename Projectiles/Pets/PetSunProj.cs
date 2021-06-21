@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     public class PetSunProj : AssProjectile
     {
         private float coronaRotation = 0f;

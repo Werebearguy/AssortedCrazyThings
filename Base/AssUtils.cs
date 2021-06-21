@@ -18,11 +18,6 @@ namespace AssortedCrazyThings.Base
         public static AssortedCrazyThings Instance => ModContent.GetInstance<AssortedCrazyThings>(); //just shorter writing AssUtils.Instance than AssortedCrazyThings.Instance
 
         /// <summary>
-        /// The config of the mod
-        /// </summary>
-        public static Config AssConfig => ModContent.GetInstance<Config>();
-
-        /// <summary>
         /// Types of modded NPCs which names are ending with Body or Tail
         /// </summary>
         public static int[] isModdedWormBodyOrTail;

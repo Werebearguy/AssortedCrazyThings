@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     public class DocileDemonEyeProj : AssProjectile
     {
         public const byte TotalNumberOfThese = 12;

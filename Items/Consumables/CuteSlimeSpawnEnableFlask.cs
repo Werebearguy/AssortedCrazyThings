@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
+    [Autoload]
     public class CuteSlimeSpawnEnableFlask : AssItem
     {
         public override void SetStaticDefaults()
@@ -17,7 +18,7 @@ namespace AssortedCrazyThings.Items.Consumables
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             string tooltip = "You will see Cute Slimes more often for a short time";
-            if (AssUtils.AssConfig.CuteSlimesPotionOnly)
+            if (Config.Instance.CuteSlimesPotionOnly)
             {
                 tooltip = "Allows you to see Cute Slimes for a short time";
             }

@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    class EnhancedHunterPotion : AssItem
+    [Autoload]
+    public class EnhancedHunterPotion : AssItem
     {
         public override void SetStaticDefaults()
         {

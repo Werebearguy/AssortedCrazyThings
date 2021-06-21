@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public class TurtleSlime : AssNPC
     {
         public override void SetStaticDefaults()

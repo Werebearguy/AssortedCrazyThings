@@ -126,6 +126,11 @@ namespace AssortedCrazyThings
 
         private void LimitSoulCount()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (Main.GameUpdateCount % 30 == 15 && NPC.CountNPCS(ModContent.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15

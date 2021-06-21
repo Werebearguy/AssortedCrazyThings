@@ -76,6 +76,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void AddToSoulBuffBlacklist()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             //assuming this is called after InitSoulBuffBlacklist
             List<int> tempList = new List<int>(soulBuffBlacklist)
             {
@@ -110,6 +115,12 @@ namespace AssortedCrazyThings
         private void LoadHarvesterTypes()
         {
             harvesterTypes = new int[5];
+
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             harvesterTypes[0] = ModContent.NPCType<Harvester1>();
             harvesterTypes[1] = ModContent.NPCType<Harvester2>();
             harvesterTypes[2] = ModContent.NPCType<Harvester>();

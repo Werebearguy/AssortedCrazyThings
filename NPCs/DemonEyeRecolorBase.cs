@@ -8,6 +8,7 @@ namespace AssortedCrazyThings.NPCs
     /// <summary>
     /// Hides from bestiary, has default stats, drops, and same texture handle
     /// </summary>
+    [Autoload]
     public abstract class DemonEyeRecolorBase : AssNPC
     {
         public virtual int TotalNumberOfThese => 0;

@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public class StingSlime : AssNPC
     {
         private const int TotalNumberOfThese = 2;

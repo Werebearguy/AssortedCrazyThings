@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public class DemonEyeWandering : AssNPC
     {
         private const int TotalNumberOfThese = 2;

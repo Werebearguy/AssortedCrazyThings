@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
+    [Autoload]
     public class DroneControllerBuff : AssBuff
     {
         public override void SetDefaults()

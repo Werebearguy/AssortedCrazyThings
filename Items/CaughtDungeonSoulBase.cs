@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
+    [Autoload]
     public abstract class CaughtDungeonSoulBase : AssItem
     {
         protected int animatedTextureSelect;

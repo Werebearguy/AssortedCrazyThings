@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     public class ChunkyProj : AssProjectile
     {
         public override void SetStaticDefaults()
@@ -50,6 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
+    [Autoload]
     public class MeatballProj : AssProjectile
     {
         public override void SetStaticDefaults()

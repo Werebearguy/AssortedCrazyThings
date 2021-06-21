@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
+    [Content(ContentType.Boss)]
     public abstract class HarvesterTalon : AssNPC
     {
         public override string Texture

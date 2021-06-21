@@ -281,6 +281,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls)
             if (Main.GameUpdateCount % 30 == 4)
             {

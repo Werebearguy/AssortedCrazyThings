@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.UI
             drawColor = new List<Color>();
             arrowTexture = AssUtils.Instance.GetTexture("UI/UIArrow").Value;
 
-            blacklistNPCs = new int[]
+            List<int> blacklistNPCsList = new List<int>()
             {
                 NPCID.Bee,
                 NPCID.BeeSmall,
@@ -73,9 +73,15 @@ namespace AssortedCrazyThings.UI
                 NPCID.VileSpit,
                 NPCID.WallofFleshEye,
                 NPCID.WaterSphere,
-                ModContent.NPCType<Harvester1>(),
-                ModContent.NPCType<Harvester2>()
             };
+
+            if (AConfigurationConfig.Instance.Bosses)
+            {
+                blacklistNPCsList.Add(ModContent.NPCType<Harvester1>());
+                blacklistNPCsList.Add(ModContent.NPCType<Harvester2>());
+            }
+
+            blacklistNPCs = blacklistNPCsList.ToArray();
 
             Array.Sort(blacklistNPCs);
         }

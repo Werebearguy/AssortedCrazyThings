@@ -34,6 +34,11 @@ namespace AssortedCrazyThings.Items
             Item.useTime = 10;
             Item.consumable = true;
             Item.noUseGraphic = true;
+            //TODO remove
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
             Item.makeNPC = (short)ModContent.NPCType<DungeonSoul>();
         }
 

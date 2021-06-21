@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
+    [Autoload]
     public class LegendaryWoodenSword : AssItem
     {
         public override void SetStaticDefaults()

@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     //this class also contains the NPC classes at the very bottom
+    [Content(ContentType.Boss)]
     public abstract class DungeonSoulBase : AssNPC
     {
         protected int frameSpeed;
@@ -77,6 +78,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public static void SetTimeLeft(NPC npcto, NPC npcfrom)
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             if (!npcfrom.Equals(npcto))
             {
                 //type check since souls might despawn and index changes

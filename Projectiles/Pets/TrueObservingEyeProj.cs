@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     public class TrueObservingEyeProj : AssProjectile
     {
         public override void SetStaticDefaults()

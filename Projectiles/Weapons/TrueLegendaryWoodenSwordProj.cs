@@ -7,6 +7,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
+    [Autoload]
     public class TrueLegendaryWoodenSwordProj : AssProjectile
     {
         public override void SetStaticDefaults()

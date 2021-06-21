@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     public class DrumstickElementalProj : AssProjectile
     {
         public override void SetStaticDefaults()

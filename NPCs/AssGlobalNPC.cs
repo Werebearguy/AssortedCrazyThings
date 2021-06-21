@@ -162,8 +162,7 @@ namespace AssortedCrazyThings.NPCs
             }
 
             //Other
-
-            if (!AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
+            if (AConfigurationConfig.Instance.Bosses && !AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
             {
                 int index = npc.FindClosestPlayer();
                 if (index != -1)

@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public class WalkingTombstoneGolden : AssNPC
     {
         private const int TotalNumberOfThese = 5;
@@ -54,7 +55,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (AssUtils.AssConfig.WalkingTombstones) return SpawnCondition.OverworldNight.Chance * 0.005f * 1f;
+            if (Config.Instance.WalkingTombstones) return SpawnCondition.OverworldNight.Chance * 0.005f * 1f;
             else return 0f;
         }
 

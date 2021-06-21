@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     //cannot be dyed since it counts as a minion and deals damage
+    [Autoload]
     public class PetPlanteraProj : AssProjectile
     {
         public const int ContactDamage = 20;
@@ -160,6 +161,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
+    [Autoload]
     public class PetPlanteraProjTentacle : AssProjectile
     {
         //since the index might be different between clients, using ai[] for it will break stuff

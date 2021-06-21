@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
+    [Autoload]
     public class SigilOfPainSuppression : AssItem
     {
         public override void SetStaticDefaults()

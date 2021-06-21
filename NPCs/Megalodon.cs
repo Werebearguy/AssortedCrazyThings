@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public class Megalodon : AssNPC
     {
         public static string name = "Megalodon";

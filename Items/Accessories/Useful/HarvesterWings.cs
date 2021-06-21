@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
+    [Autoload]
     [AutoloadEquip(EquipType.Wings)]
     public class HarvesterWings : AssItem
     {

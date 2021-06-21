@@ -2,6 +2,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
+    [Autoload]
     public class MeatballsEye : AssItem
     {
         public override void SetStaticDefaults()

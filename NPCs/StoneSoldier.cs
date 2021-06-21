@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public class StoneSoldier : AssNPC
     {
         public override void SetStaticDefaults()

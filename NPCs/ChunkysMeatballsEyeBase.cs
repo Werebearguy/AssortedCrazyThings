@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
+    [Autoload]
     public abstract class ChunkysMeatballsEyeBase : AssNPC
     {
         public override void SetStaticDefaults()

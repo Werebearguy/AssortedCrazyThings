@@ -4,8 +4,11 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
+    [Content(ContentType.Boss)]
     public class SoulBuff : AssBuff
     {
+        public override string Texture => "AssortedCrazyThings/Empty";
+
         public override void SetDefaults()
         {
             //purely on the NPC side, so no name or anything required
