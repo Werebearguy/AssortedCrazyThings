@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public abstract class PetDestroyerBase : AssProjectile
     {
         public static int[] wormTypes;

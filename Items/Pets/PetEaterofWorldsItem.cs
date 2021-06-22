@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class PetEaterofWorldsItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<PetEaterofWorldsHead>();

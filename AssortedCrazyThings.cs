@@ -209,21 +209,24 @@ namespace AssortedCrazyThings
 
             AddToSoulBuffBlacklist();
 
-            PetEaterofWorldsBase.wormTypes = new int[]
+            if (AConfigurationConfig.Instance.DroppedPets)
             {
+                PetEaterofWorldsBase.wormTypes = new int[]
+                {
                 ModContent.ProjectileType<PetEaterofWorldsHead>(),
                 ModContent.ProjectileType<PetEaterofWorldsBody1>(),
                 ModContent.ProjectileType<PetEaterofWorldsBody2>(),
                 ModContent.ProjectileType<PetEaterofWorldsTail>()
-            };
+                };
 
-            PetDestroyerBase.wormTypes = new int[]
-            {
+                PetDestroyerBase.wormTypes = new int[]
+                {
                 ModContent.ProjectileType<PetDestroyerHead>(),
                 ModContent.ProjectileType<PetDestroyerBody1>(),
                 ModContent.ProjectileType<PetDestroyerBody2>(),
                 ModContent.ProjectileType<PetDestroyerTail>()
-            };
+                };
+            }
 
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             if (AConfigurationConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Content(ContentType.HostileNPCs)]
+    [Content(ContentType.HostileNPCs | ContentType.DroppedPets)]
     public class BabyOcramProj : AssProjectile
     {
         public override void SetStaticDefaults()

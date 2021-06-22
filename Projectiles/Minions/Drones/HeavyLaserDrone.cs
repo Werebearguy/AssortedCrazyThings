@@ -15,6 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// Fires a penetrating laser beam horizontally to the player with a very long delay.
     /// Only recognizes enemies at around the y level of the player
     /// </summary>
+    [Autoload]
     public class HeavyLaserDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HeavyLaserDrone_Glowmask";
@@ -282,6 +283,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     //make sound
                     if (Projectile.soundDelay <= 0)
                     {
+                        //TODO find some better sound to use
                         Projectile.soundDelay = 20;
                         float volume = FixVolume(0.7f + ratio * 0.5f);
                         float pitch = -0.1f + ratio * 0.4f;

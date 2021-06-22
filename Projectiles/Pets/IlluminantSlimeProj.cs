@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     //check this file for more info vvvvvvvv
     public class IlluminantSlimeProj : BabySlimeBase
     {

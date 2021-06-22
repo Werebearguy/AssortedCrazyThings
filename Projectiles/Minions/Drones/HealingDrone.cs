@@ -3,12 +3,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
     /// <summary>
     /// Heals the player if below max health. Heals faster when below 50% health
     /// </summary>
+    [Autoload]
     public class HealingDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";

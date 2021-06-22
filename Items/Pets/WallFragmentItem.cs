@@ -5,7 +5,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class WallFragmentItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<WallFragmentMouth>();

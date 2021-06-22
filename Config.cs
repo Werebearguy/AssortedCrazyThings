@@ -34,6 +34,8 @@ namespace AssortedCrazyThings
 	{
 		public static AConfigurationConfig Instance => ModContent.GetInstance<AConfigurationConfig>();
 
+		internal ContentType FilterFlags { private set; get; }
+
 		[Header("NPCs")]
 
 		[ReloadRequired]
@@ -58,10 +60,43 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
+		[Tooltip("Disable pet items that drop from various NPCs")]
+		[Label("Dropped Pets")]
+		public bool DroppedPets { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
 		[Tooltip("Disable items that drop for failing to defeat a vanilla boss within 5 attempts")]
 		[Label("Boss Consolation")]
 		public bool BossConsolation { get; set; }
-	}
+
+        public override void OnChanged()
+        {
+			//Inverted, sets a flag if toggle is false
+			FilterFlags = ContentType.Always;
+
+			if (!Bosses)
+			{
+				FilterFlags |= ContentType.Bosses;
+			}
+			if (!HostileNPCs)
+			{
+				FilterFlags |= ContentType.HostileNPCs;
+			}
+			if (!FriendlyNPCs)
+			{
+				FilterFlags |= ContentType.FriendlyNPCs;
+			}
+			if (!DroppedPets)
+			{
+				FilterFlags |= ContentType.DroppedPets;
+			}
+			if (!BossConsolation)
+			{
+				FilterFlags |= ContentType.BossConsolation;
+			}
+		}
+    }
 
 	public abstract class ServerConfigBase : ModConfig
     {

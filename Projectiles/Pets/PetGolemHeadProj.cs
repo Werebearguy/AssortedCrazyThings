@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Content(ContentType.DroppedPets)]
     public class PetGolemHeadProj : DroneBase
     {
         public const int AttackDelay = 60;

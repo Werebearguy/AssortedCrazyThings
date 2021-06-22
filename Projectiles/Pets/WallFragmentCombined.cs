@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public abstract class WallFragmentProjBase : AssProjectile
     {
         public sealed override void SetStaticDefaults()

@@ -5,7 +5,7 @@ using AssortedCrazyThings.Buffs.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class QueenLarvaItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<QueenLarvaProj>();

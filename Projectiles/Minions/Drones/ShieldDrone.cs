@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
@@ -10,6 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// Creates a damage reducing shield
     /// Checks if its active for the player in AssPlayer.PreUpdate, then resets shield
     /// </summary>
+    [Autoload]
     public class ShieldDrone : DroneBase
     {
         private static readonly string nameLamps = "Projectiles/Minions/Drones/" + "ShieldDrone_Lamps";

@@ -38,10 +38,10 @@ namespace AssortedCrazyThings
 
 				if (content.Ignore) continue; //Skip things tagged as non-autoloadable, yet shouldn't be loaded through here (loaded elsewhere)
 
-				var reason = FindContentFilterReason(content.ContentType);
+                var reasons = FindContentFilterReasons(content.ContentType);
 				var instance = (ILoadable)Activator.CreateInstance(type);
 
-				if (reason == ContentType.Always)
+				if (reasons == ContentType.Always)
 				{
 					//No filters
 					manuallyAddedTypes.Add(type);
@@ -52,50 +52,28 @@ namespace AssortedCrazyThings
 				if (instance is ModType modTypeInstance)
                 {
                     string name = modTypeInstance.Name;
-                    NonLoadedNames.Add(name, reason);
+                    NonLoadedNames.Add(name, reasons);
 
-					if (!NonLoadedNamesByType.ContainsKey(reason))
+					if (!NonLoadedNamesByType.ContainsKey(reasons))
                     {
-						NonLoadedNamesByType[reason] = new List<string>();
+						NonLoadedNamesByType[reasons] = new List<string>();
 					}
 
-                    NonLoadedNamesByType[reason].Add(name);
+                    NonLoadedNamesByType[reasons].Add(name);
 				}
 			}
 		}
 
-        private static ContentType FindContentFilterReason(ContentType contentType)
+        private static ContentType FindContentFilterReasons(ContentType contentType)
         {
-            //If atleast one toggle is false, and the content type matches that toggle, return that content type
-
-            const ContentType always = ContentType.Always;
-            if (contentType == always)
+            if (contentType == ContentType.Always)
             {
 				//Skip checking if this is not filtered anyway
-				return always;
+				return ContentType.Always;
 			}
 
-			var config = AConfigurationConfig.Instance;
-
-			if (!config.Bosses && contentType.HasFlag(ContentType.Bosses))
-            {
-				return ContentType.Bosses;
-			}
-			if (!config.HostileNPCs && contentType.HasFlag(ContentType.HostileNPCs))
-			{
-				return ContentType.HostileNPCs;
-			}
-			if (!config.FriendlyNPCs && contentType.HasFlag(ContentType.FriendlyNPCs))
-			{
-				return ContentType.FriendlyNPCs;
-			}
-			if (!config.BossConsolation && contentType.HasFlag(ContentType.BossConsolation))
-			{
-				return ContentType.BossConsolation;
-			}
-
-			//No filters, ignore
-			return always;
+			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
+			return AConfigurationConfig.Instance.FilterFlags & contentType;
 		}
 
         public override void Unload()
@@ -109,15 +87,34 @@ namespace AssortedCrazyThings
 
 		public static string ContentTypeToString(ContentType contentType)
         {
+			if (!ExactlyOneFlagSet(contentType))
+            {
+				string concat = string.Empty;
+				foreach (ContentType flag in Enum.GetValues(typeof(ContentType)))
+                {
+					if (flag != ContentType.Always && contentType.HasFlag(flag))
+                    {
+						concat += ContentTypeToString(flag) + "/";
+					}
+                }
+				return concat[0..^1];
+			}
+
             return contentType switch
             {
                 ContentType.Always => string.Empty,
                 ContentType.Bosses => "Bosses",
                 ContentType.HostileNPCs => "Hostile NPCs",
                 ContentType.FriendlyNPCs => "Friendly NPCs",
+				ContentType.DroppedPets => "Dropped Pets",
 				ContentType.BossConsolation => "Boss Consolation Items",
 				_ => string.Empty,
             };
+		}
+
+		public static bool ExactlyOneFlagSet(ContentType contentType)
+		{
+			return Enum.IsDefined(typeof(ContentType), contentType);
 		}
 	}
 
@@ -128,7 +125,8 @@ namespace AssortedCrazyThings
 		Bosses = 1 << 1,
 		HostileNPCs = 1 << 2,
 		FriendlyNPCs = 1 << 3,
-		BossConsolation = 1 << 4,
+		DroppedPets = 1 << 4,
+		BossConsolation = 1 << 5,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

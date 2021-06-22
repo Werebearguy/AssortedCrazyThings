@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class QueenLarvaBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<QueenLarvaProj>();

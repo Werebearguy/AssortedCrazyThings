@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class FairySwarmItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<FairySwarmProj>();
