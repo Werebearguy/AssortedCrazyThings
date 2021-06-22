@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     [LegacyName("MiniMegalodon")]
     public class MiniMegalodonItem : SimplePetItemBase
     {

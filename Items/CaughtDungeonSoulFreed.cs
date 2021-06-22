@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items
 {
     //the one actually used in recipes
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class CaughtDungeonSoulFreed : CaughtDungeonSoulBase
     {
         public override void SetStaticDefaults()

@@ -6,16 +6,21 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings
 {
 	public class ConfigurationSystem : ModSystem
-    {
-		public static List<string> NonLoadedNames;
+	{
+		//These assume no ILoadable across the whole mod has a duplicate name (contrary to what tml allows)
+		public static Dictionary<string, ContentType> NonLoadedNames { get; private set; }
+		public static Dictionary<ContentType, List<string>> NonLoadedNamesByType { get; private set; }
 
         public override void OnModLoad()
         {
-			NonLoadedNames = new List<string>();
+			NonLoadedNames = new();
+			NonLoadedNamesByType = new();
 
-			AConfigurationConfig config = ModContent.GetInstance<AConfigurationConfig>();
+			//Debugging only
+			var autoloadedContent = Mod.GetContent().Where(c => c is ModType).ToList();
+			var manuallyAddedTypes = new List<Type>();
 
-			List<Type> manuallyAddedTypes = new List<Type>();
+			var config = AConfigurationConfig.Instance;
 
 			Type modType = Mod.GetType();
 			foreach (Type type in Mod.Code.GetTypes().OrderBy(type => type.FullName, StringComparer.InvariantCulture))
@@ -24,49 +29,102 @@ namespace AssortedCrazyThings
 				if (type == modType) continue;
 				if (type.IsAbstract) continue;
 				if (type.ContainsGenericParameters) continue;
-				if (type.GetConstructor(Array.Empty<Type>()) == null) continue;//don't autoload things with no default constructor
+				if (type.GetConstructor(Array.Empty<Type>()) == null) continue; //Don't autoload things with no default constructor
 
 				if (typeof(ILoadable).IsAssignableFrom(type))
 				{
 					var autoload = AutoloadAttribute.GetValue(type);
 
-					if (!autoload.NeedsAutoloading) //Only manually add types that have autoloading disabled
+					if (autoload.NeedsAutoloading)
 					{
-						var content = ContentAttribute.GetValue(type);
-						ILoadable instance = (ILoadable)Activator.CreateInstance(type);
+						continue; //Skip things that are autoloaded (this code runs after Autoload())
+					}
 
-						//TODO proper filter here
-						//If atleast one flag is matching a true config, autoload it
-						if (config.Bosses && content.ContentType.HasFlag(ContentType.Boss))
-						{
-							manuallyAddedTypes.Add(type);
-                            Mod.AddContent(instance);
-						}
-                        else
+					var content = ContentAttribute.GetValue(type);
+
+					var reason = FindContentFilterReason(config, content.ContentType);
+					var instance = (ILoadable)Activator.CreateInstance(type);
+
+					if (reason == ContentType.Always)
+					{
+						manuallyAddedTypes.Add(type);
+						Mod.AddContent(instance);
+						continue; //Don't do anything
+					}
+
+					if (instance is ModType modTypeInstance)
+                    {
+                        string name = modTypeInstance.Name;
+                        NonLoadedNames.Add(name, reason);
+
+						if (!NonLoadedNamesByType.ContainsKey(reason))
                         {
-							if (instance is ModType modTypeInstance)
-                            {
-								NonLoadedNames.Add(modTypeInstance.Name);
-							}
+							NonLoadedNamesByType[reason] = new List<string>();
 						}
+
+                        NonLoadedNamesByType[reason].Add(name);
 					}
 				}
 			}
+		}
+
+        private static ContentType FindContentFilterReason(AConfigurationConfig config, ContentType contentType)
+        {
+            //If atleast one toggle is false, and the content type matches that toggle, return that content type
+
+            const ContentType always = ContentType.Always;
+            if (contentType == always)
+            {
+				//Skip checking if this is not filtered anyway
+				return always;
+			}
+
+			if (!config.Bosses && contentType.HasFlag(ContentType.Bosses))
+            {
+				return ContentType.Bosses;
+			}
+			if (!config.HostileNPCs && contentType.HasFlag(ContentType.HostileNPCs))
+			{
+				return ContentType.HostileNPCs;
+			}
+			if (!config.FriendlyNPCs && contentType.HasFlag(ContentType.FriendlyNPCs))
+			{
+				return ContentType.FriendlyNPCs;
+			}
+
+			//No filters, ignore
+			return always;
 		}
 
         public override void Unload()
         {
 			NonLoadedNames?.Clear();
 			NonLoadedNames = null;
+
+			NonLoadedNamesByType?.Clear();
+			NonLoadedNamesByType = null;
 		}
-    }
+
+		public static string ContentTypeToString(ContentType contentType)
+        {
+            return contentType switch
+            {
+                ContentType.Always => string.Empty,
+                ContentType.Bosses => "Bosses",
+                ContentType.HostileNPCs => "Hostile NPCs",
+                ContentType.FriendlyNPCs => "Friendly NPCs",
+                _ => string.Empty,
+            };
+		}
+	}
 
 	[Flags]
 	public enum ContentType : byte
     {
 		Always = 0 << 0,
-		NPC = 1 << 0,
-		Boss = 1 << 1,
+		Bosses = 1 << 1,
+		HostileNPCs = 1 << 2,
+		FriendlyNPCs = 1 << 3,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
@@ -77,7 +135,7 @@ namespace AssortedCrazyThings
 		public ContentType ContentType { get; private set; }
 
 		public ContentAttribute(ContentType contentType)
-        {
+		{
 			ContentType = contentType;
 		}
 

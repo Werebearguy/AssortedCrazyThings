@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public abstract class CaughtDungeonSoulBase : AssItem
     {
         protected int animatedTextureSelect;

@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class HarvesterTrophyItem : PlaceableItem<HarvesterTrophyTile>
     {
         public override void SetStaticDefaults()

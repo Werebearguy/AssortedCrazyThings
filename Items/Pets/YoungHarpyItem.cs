@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Autoload]
     [LegacyName("YoungHarpy")]
     public class YoungHarpyItem : SimplePetItemBase
     {

@@ -3,6 +3,7 @@ using Terraria;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     //check this file for more info vvvvvvvv
     public class ChunkySlimeProj : BabySlimeBase
     {

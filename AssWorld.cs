@@ -186,6 +186,16 @@ namespace AssortedCrazyThings
 
         public override void PostUpdateWorld()
         {
+            CheckSpawns();
+        }
+
+        private void CheckSpawns()
+        {
+            if (!AConfigurationConfig.Instance.HostileNPCs)
+            {
+                return;
+            }
+
             //this code is when I first started modding, terrible stuff
             //those flags are checked for trueness each update
             isMegalodonSpawned = false;

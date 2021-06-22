@@ -6,6 +6,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     [LegacyName("ChunkyandMeatball")]
     public class ChunkyandMeatballItem : SimplePetItemBase
     {
@@ -27,7 +28,7 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void AddRecipes()
         {
-            CreateRecipe(1).AddIngredient<ChunkysEye>().AddIngredient<MeatballsEye>().AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient<ChunkysEyeItem>().AddIngredient<MeatballsEyeItem>().AddTile(TileID.DemonAltar).Register();
         }
     }
 }

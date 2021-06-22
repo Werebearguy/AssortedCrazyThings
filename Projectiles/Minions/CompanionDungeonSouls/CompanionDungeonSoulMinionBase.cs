@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public abstract class CompanionDungeonSoulMinionBase : AssProjectile
     {
         private float sinY;

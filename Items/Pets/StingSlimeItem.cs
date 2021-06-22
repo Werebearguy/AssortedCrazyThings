@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     [LegacyName("StingSlimeBlackItem", "StingSlimeOrangeItem")]
     public class StingSlimeItem : SimplePetItemBase
     {

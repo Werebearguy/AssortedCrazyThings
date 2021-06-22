@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     //check this file for more info vvvvvvvv
     public class IlluminantSlimeProj : BabySlimeBase
     {

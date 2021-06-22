@@ -18,7 +18,7 @@ using AssortedCrazyThings.Items.Pets;
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
     [AutoloadBossHead]
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class Harvester : AssNPC
     {
         public static readonly string name = "Soul Harvester";

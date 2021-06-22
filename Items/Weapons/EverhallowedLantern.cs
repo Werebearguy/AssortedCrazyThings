@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Items.Weapons
         }
     }
 
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class EverhallowedLantern : MinionItemBase
     {
         public const int BaseDmg = 26;

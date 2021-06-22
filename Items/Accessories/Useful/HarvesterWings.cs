@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     [AutoloadEquip(EquipType.Wings)]
     public class HarvesterWings : AssItem
     {

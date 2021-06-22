@@ -106,11 +106,15 @@ namespace AssortedCrazyThings.UI
                             }
                         }
 
-                        if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
+                        if (AConfigurationConfig.Instance.HostileNPCs)
                         {
-                            drawColor = Color.White * num;
-                            ret = "Catch it with a net";
+                            if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
+                            {
+                                drawColor = Color.White * num;
+                                ret = "Catch it with a net";
+                            }
                         }
+
                         break;
                     }
                 }

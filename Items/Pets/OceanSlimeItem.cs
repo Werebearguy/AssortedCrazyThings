@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     public class OceanSlimeItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<OceanSlimeProj>();

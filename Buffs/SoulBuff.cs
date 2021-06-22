@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class SoulBuff : AssBuff
     {
         public override string Texture => "AssortedCrazyThings/Empty";

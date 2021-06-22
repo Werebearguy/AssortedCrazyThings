@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     //TODO extend functionality regarding cooldown tooltips
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public abstract class SigilItemBase : AssItem
     {
         public sealed override void SetStaticDefaults()

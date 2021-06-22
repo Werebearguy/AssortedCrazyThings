@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
 
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class PetHarvesterProj : AssProjectile
     {
         public override void SetStaticDefaults()

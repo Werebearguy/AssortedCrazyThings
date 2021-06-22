@@ -7,7 +7,7 @@ using Terraria.Audio;
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
     //used in BaseHarvester, same as bone, just applies slow
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class HarvesterBone : AssProjectile
     {
         public override string Texture

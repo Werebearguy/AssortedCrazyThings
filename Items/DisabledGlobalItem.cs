@@ -42,9 +42,9 @@ namespace AssortedCrazyThings.Items
 
             string itemName = itemNameField.GetValue(unloadedItem) as string;
 
-            if (ConfigurationSystem.NonLoadedNames.Contains(itemName))
+            if (ConfigurationSystem.NonLoadedNames.TryGetValue(itemName, out ContentType type))
             {
-                tooltips.Add(new TooltipLine(Mod, "UnloadedSource", "This item has been unloaded through the config"));
+                tooltips.Add(new TooltipLine(Mod, "UnloadedSource", $"Disabled by the '{ConfigurationSystem.ContentTypeToString(type)}' config setting"));
             }
         }
     }

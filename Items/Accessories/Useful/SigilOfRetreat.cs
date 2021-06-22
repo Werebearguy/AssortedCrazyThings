@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class SigilOfRetreat : SigilItemBase
     {
         public override void SafeSetStaticDefaults()

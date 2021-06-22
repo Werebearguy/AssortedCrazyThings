@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Autoload]
     public class LilWrapsItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<LilWrapsProj>();

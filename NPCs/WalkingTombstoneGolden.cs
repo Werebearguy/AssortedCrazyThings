@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Autoload]
+    [Content(ContentType.HostileNPCs)]
     public class WalkingTombstoneGolden : AssNPC
     {
         private const int TotalNumberOfThese = 5;

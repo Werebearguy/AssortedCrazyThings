@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Armor
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     [AutoloadEquip(EquipType.Body)]
     public class SoulSaviorPlate : AssItem
     {

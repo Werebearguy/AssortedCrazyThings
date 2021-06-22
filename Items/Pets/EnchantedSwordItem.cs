@@ -6,6 +6,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Autoload]
     [LegacyName("EnchantedSword")]
     public class EnchantedSwordItem : SimplePetItemBase
     {

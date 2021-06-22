@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Autoload]
     public class PetCultistItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<PetCultistProj>();

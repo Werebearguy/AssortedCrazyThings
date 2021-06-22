@@ -2,10 +2,12 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     //check this file for more info vvvvvvvv
+    [Autoload]
     public class AbeeminationProj : BabySlimeBase
     {
         public override string Texture

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Autoload]
+    [Content(ContentType.HostileNPCs)]
     public class SpawnOfOcram : AssNPC
     {
         public const string name = "Spawn of Ocram";

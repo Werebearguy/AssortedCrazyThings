@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets.CuteSlimes
 {
-    public class CuteSlimePrincessBuff : SimplePetBuffBase
+    public class CuteSlimePrincessBuff : CuteSlimeBuffBase
     {
         public override int PetType => ModContent.ProjectileType<CuteSlimePrincessProj>();
 

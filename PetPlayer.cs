@@ -1045,22 +1045,6 @@ namespace AssortedCrazyThings
             ),
                 new CircleUIHandler(
                 triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => OceanSlime,
-                uiConf: GetOceanSlimeConf,
-                onUIStart: () => oceanSlimeType,
-                onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => StingSlime,
-                uiConf: GetStingSlimeConf,
-                onUIStart: () => stingSlimeType,
-                onUIEnd: () => stingSlimeType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => MiniAntlion,
                 uiConf: GetMiniAntlionConf,
                 onUIStart: () => miniAntlionType,
@@ -1102,14 +1086,6 @@ namespace AssortedCrazyThings
             ),
                 new CircleUIHandler(
                 triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => AnimatedTome,
-                uiConf: GetAnimatedTomeConf,
-                onUIStart: () => animatedTomeType,
-                onUIEnd: () => animatedTomeType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => PetAnomalocaris,
                 uiConf: GetAnomalocarisConf,
                 onUIStart: () => petAnomalocarisType,
@@ -1143,17 +1119,48 @@ namespace AssortedCrazyThings
             //),
             };
 
-            // after filling the list, set the trigger list
-            for (int i = 0; i < CircleUIList.Count; i++)
+            //TODO figure out a safe way of dynamically loading these without messing up order of saved data
+            if (AConfigurationConfig.Instance.HostileNPCs)
             {
-                CircleUIHandler.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
+                CircleUIList.AddRange(new List<CircleUIHandler>()
+                {
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => OceanSlime,
+                    uiConf: GetOceanSlimeConf,
+                    onUIStart: () => oceanSlimeType,
+                    onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => StingSlime,
+                    uiConf: GetStingSlimeConf,
+                    onUIStart: () => stingSlimeType,
+                    onUIEnd: () => stingSlimeType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => AnimatedTome,
+                    uiConf: GetAnimatedTomeConf,
+                    onUIStart: () => animatedTomeType,
+                    onUIEnd: () => animatedTomeType = (byte)CircleUI.returned,
+                    needsSaving: true
+                )
+                });
             }
 
-            //after filling the list, initialize the cloned list
+            //after filling the list
             int length = 0;
             for (int i = 0; i < CircleUIList.Count; i++)
             {
-                if (CircleUIList[i].NeedsSaving) length++;
+                CircleUIHandler circleUIHandler = CircleUIList[i];
+
+                //set the trigger list
+                circleUIHandler.AddTriggers();
+                //initialize the cloned list
+                if (circleUIHandler.NeedsSaving) length++;
             }
 
             ClonedTypes = new byte[length];
@@ -1179,17 +1186,22 @@ namespace AssortedCrazyThings
             vampireBatType = ClonedTypes[index++];
             pigronataType = ClonedTypes[index++];
             queenLarvaType = ClonedTypes[index++];
-            oceanSlimeType = ClonedTypes[index++];
             miniAntlionType = ClonedTypes[index++];
             petGoldfishType = ClonedTypes[index++];
             skeletronHandType = ClonedTypes[index++];
             skeletronPrimeHandType = ClonedTypes[index++];
             petCultistType = ClonedTypes[index++];
-            animatedTomeType = ClonedTypes[index++];
             petAnomalocarisType = ClonedTypes[index++];
             wallFragmentType = ClonedTypes[index++];
             //ALTERNATE
             //classNameType = ClonedTypes[index++];
+
+            if (AConfigurationConfig.Instance.HostileNPCs)
+            {
+                oceanSlimeType = ClonedTypes[index++];
+                stingSlimeType = ClonedTypes[index++];
+                animatedTomeType = ClonedTypes[index++];
+            }
         }
 
         /// <summary>
@@ -1213,17 +1225,22 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = vampireBatType;
                 ClonedTypes[++index] = pigronataType;
                 ClonedTypes[++index] = queenLarvaType;
-                ClonedTypes[++index] = oceanSlimeType;
                 ClonedTypes[++index] = miniAntlionType;
                 ClonedTypes[++index] = petGoldfishType;
                 ClonedTypes[++index] = skeletronHandType;
                 ClonedTypes[++index] = skeletronPrimeHandType;
                 ClonedTypes[++index] = petCultistType;
-                ClonedTypes[++index] = animatedTomeType;
                 ClonedTypes[++index] = petAnomalocarisType;
                 ClonedTypes[++index] = wallFragmentType;
                 //ALTERNATE
                 //ClonedTypes[++index] = classNameType;
+
+                if (AConfigurationConfig.Instance.HostileNPCs)
+                {
+                    ClonedTypes[++index] = oceanSlimeType;
+                    ClonedTypes[++index] = stingSlimeType;
+                    ClonedTypes[++index] = animatedTomeType;
+                }
             }
         }
 

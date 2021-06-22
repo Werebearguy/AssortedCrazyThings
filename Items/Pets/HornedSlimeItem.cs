@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     public class HornedSlimeItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<HornedSlimeProj>();

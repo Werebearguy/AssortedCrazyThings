@@ -1,8 +1,10 @@
 using AssortedCrazyThings.Base;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Autoload]
     //check this file for more info vvvvvvvv
     public class JoyousSlimeProj : BabySlimeBase
     {

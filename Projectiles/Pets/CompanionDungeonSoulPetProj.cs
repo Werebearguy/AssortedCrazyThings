@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class CompanionDungeonSoulPetProj : AssProjectile
     {
         private int sincounter;

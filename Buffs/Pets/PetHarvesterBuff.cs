@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    [Content(ContentType.Boss)]
+    [Content(ContentType.Bosses)]
     public class PetHarvesterBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<PetHarvesterProj>();

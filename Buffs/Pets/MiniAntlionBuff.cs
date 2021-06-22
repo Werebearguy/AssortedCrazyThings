@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
+    [Autoload]
     public class MiniAntlionBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<MiniAntlionProj>();

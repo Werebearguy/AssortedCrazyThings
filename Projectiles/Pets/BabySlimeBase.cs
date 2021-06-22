@@ -11,7 +11,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
     /// <summary>
     /// localAI[1] freely available
     /// </summary>
-    [Autoload]
     public abstract class BabySlimeBase : AssProjectile
     {
         public bool shootSpikes = false;

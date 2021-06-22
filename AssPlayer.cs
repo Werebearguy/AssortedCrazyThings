@@ -597,7 +597,7 @@ namespace AssortedCrazyThings
             // after filling the list, set the trigger list
             for (int i = 0; i < CircleUIList.Count; i++)
             {
-                CircleUIHandler.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
+                CircleUIList[i].AddTriggers();
             }
         }
         #endregion

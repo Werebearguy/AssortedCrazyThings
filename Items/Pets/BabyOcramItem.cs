@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     [LegacyName("BabyOcram")]
     public class BabyOcramItem : SimplePetItemBase
     {

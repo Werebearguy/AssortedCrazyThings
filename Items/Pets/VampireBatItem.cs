@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Autoload]
     [LegacyName("VampireBat")]
     public class VampireBatItem : SimplePetItemBase
     {

@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     public class MeatballItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<MeatballSlimeProj>();

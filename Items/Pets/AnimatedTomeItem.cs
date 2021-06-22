@@ -5,6 +5,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     public class AnimatedTomeItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<AnimatedTomeProj>();

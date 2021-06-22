@@ -10,6 +10,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 {
+    [Autoload]
     public abstract class MagicSlimeSlingMinionBase : BabySlimeBase
     {
         private const int TimeLeft = 360;

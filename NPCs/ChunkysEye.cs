@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs
         {
             base.SetDefaults();
 
-            NPC.catchItem = (short)ModContent.ItemType<Items.ChunkysEye>();
+            NPC.catchItem = (short)ModContent.ItemType<Items.ChunkysEyeItem>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
