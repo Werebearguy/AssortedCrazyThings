@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using Terraria.ModLoader;
+using Terraria;
 
 namespace AssortedCrazyThings
 {
@@ -33,6 +34,8 @@ namespace AssortedCrazyThings
 				var autoload = AutoloadAttribute.GetValue(type);
 
 				if (autoload.NeedsAutoloading) continue; //Skip things that are autoloaded (this code runs after Autoload())
+
+				if (!LoadSide(autoload.Side)) continue; //Skip things that shouldn't load on a particular side
 
 				var content = ContentAttribute.GetValue(type);
 
@@ -116,6 +119,8 @@ namespace AssortedCrazyThings
 		{
 			return Enum.IsDefined(typeof(ContentType), contentType);
 		}
+
+		internal static bool LoadSide(ModSide side) => side != (Main.dedServ ? ModSide.Client : ModSide.Server);
 	}
 
 	[Flags]

@@ -57,15 +57,18 @@ namespace AssortedCrazyThings.Base.SwarmDraw
                 return;
             }
 
-            HandleDrawSet(ref fairySwarmDrawSet,
-                SwarmDrawSet.New<FairySwarmDrawSet>,
-                Player.ownedProjectileCounts[ModContent.ProjectileType<FairySwarmProj>()] > 0,
-                Player.Center);
+            if (AConfigurationConfig.Instance.DroppedPets)
+            {
+                HandleDrawSet(ref fairySwarmDrawSet,
+                    SwarmDrawSet.New<FairySwarmDrawSet>,
+                    Player.ownedProjectileCounts[ModContent.ProjectileType<FairySwarmProj>()] > 0,
+                    Player.Center);
 
-            HandleDrawSet(ref swarmofCthulhuDrawSet,
-                SwarmDrawSet.New<SwarmofCthulhuDrawSet>,
-                Player.ownedProjectileCounts[ModContent.ProjectileType<SwarmofCthulhuProj>()] > 0,
-                Player.Center);
+                HandleDrawSet(ref swarmofCthulhuDrawSet,
+                    SwarmDrawSet.New<SwarmofCthulhuDrawSet>,
+                    Player.ownedProjectileCounts[ModContent.ProjectileType<SwarmofCthulhuProj>()] > 0,
+                    Player.Center);
+            }
         }
     }
 }

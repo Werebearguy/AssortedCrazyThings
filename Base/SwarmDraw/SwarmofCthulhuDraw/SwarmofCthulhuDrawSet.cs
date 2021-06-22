@@ -2,6 +2,7 @@
 
 namespace AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw
 {
+    [Content(ContentType.DroppedPets)]
     public class SwarmofCthulhuDrawSet : SwarmDrawSet
     {
         public SwarmofCthulhuDrawSet() : base("SwarmofCthulhuDrawSet", new List<SwarmDrawUnit>()
