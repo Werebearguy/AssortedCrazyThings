@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
+    [Autoload]
     public class SlimeHandlerKnapsack : MinionItemBase
     {
         public static CircleUIConf GetUIConf()

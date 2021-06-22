@@ -19,7 +19,8 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-    public class PetPlayer : ModPlayer
+    [Autoload]
+    public class PetPlayer : AssPlayerBase
     {
         /// <summary>
         /// transition from 1.2.3 to 1.3.0 (reset cute slime vanity slots)

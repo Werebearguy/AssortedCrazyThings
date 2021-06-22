@@ -89,6 +89,10 @@ namespace AssortedCrazyThings
 			{
 				return ContentType.FriendlyNPCs;
 			}
+			if (!config.BossConsolation && contentType.HasFlag(ContentType.BossConsolation))
+			{
+				return ContentType.BossConsolation;
+			}
 
 			//No filters, ignore
 			return always;
@@ -111,7 +115,8 @@ namespace AssortedCrazyThings
                 ContentType.Bosses => "Bosses",
                 ContentType.HostileNPCs => "Hostile NPCs",
                 ContentType.FriendlyNPCs => "Friendly NPCs",
-                _ => string.Empty,
+				ContentType.BossConsolation => "Boss Consolation Items",
+				_ => string.Empty,
             };
 		}
 	}
@@ -123,6 +128,7 @@ namespace AssortedCrazyThings
 		Bosses = 1 << 1,
 		HostileNPCs = 1 << 2,
 		FriendlyNPCs = 1 << 3,
+		BossConsolation = 1 << 4,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

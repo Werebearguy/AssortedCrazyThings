@@ -37,4 +37,10 @@ namespace AssortedCrazyThings
     {
 
     }
+
+    [Autoload(false)]
+    public abstract class AssPlayerBase : ModPlayer
+    {
+
+    }
 }

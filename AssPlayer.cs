@@ -18,7 +18,8 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-    public class AssPlayer : ModPlayer
+    [Autoload]
+    public class AssPlayer : AssPlayerBase
     {
         public bool everburningCandleBuff = false;
         public bool everburningCursedCandleBuff = false;

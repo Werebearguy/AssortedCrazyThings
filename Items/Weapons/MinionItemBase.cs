@@ -5,7 +5,6 @@ using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    [Autoload]
     public abstract class MinionItemBase : AssItem
     {
         public sealed override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

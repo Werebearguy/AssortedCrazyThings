@@ -38,21 +38,29 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
-		[Tooltip("Toggle Bosses - This will also disable all their relevant content")]
+		[Tooltip("This will also disable all their relevant content")]
 		[Label("Bosses")]
 		public bool Bosses { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
-		[Tooltip("Toggle Hostile NPCs - This will also disable all their relevant content")]
+		[Tooltip("This will also disable all their relevant content")]
 		[Label("Hostile NPCs")]
 		public bool HostileNPCs { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
-		[Tooltip("Toggle Friendly NPCs - This will also disable all their relevant content")]
+		[Tooltip("This will also disable all their relevant content")]
 		[Label("Friendly NPCs")]
 		public bool FriendlyNPCs { get; set; }
+
+		[Header("Items")]
+
+		[ReloadRequired]
+		[DefaultValue(true)]
+		[Tooltip("Disable items that drop for failing to defeat a vanilla boss within 5 attempts")]
+		[Label("Boss Consolation")]
+		public bool BossConsolation { get; set; }
 	}
 
 	public abstract class ServerConfigBase : ModConfig
