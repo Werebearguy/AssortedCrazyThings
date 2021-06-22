@@ -17,10 +17,8 @@ namespace AssortedCrazyThings
 			NonLoadedNamesByType = new();
 
 			//Debugging only
-			var autoloadedContent = Mod.GetContent().Where(c => c is ModType).ToList();
+			var autoloadedContent = Mod.GetContent().ToList();
 			var manuallyAddedTypes = new List<Type>();
-
-			var config = AConfigurationConfig.Instance;
 
 			Type modType = Mod.GetType();
 			foreach (Type type in Mod.Code.GetTypes().OrderBy(type => type.FullName, StringComparer.InvariantCulture))
@@ -30,45 +28,41 @@ namespace AssortedCrazyThings
 				if (type.IsAbstract) continue;
 				if (type.ContainsGenericParameters) continue;
 				if (type.GetConstructor(Array.Empty<Type>()) == null) continue; //Don't autoload things with no default constructor
+				if (!typeof(ILoadable).IsAssignableFrom(type)) continue; //Don't autoload non-ILoadables
 
-				if (typeof(ILoadable).IsAssignableFrom(type))
+				var autoload = AutoloadAttribute.GetValue(type);
+
+				if (autoload.NeedsAutoloading) continue; //Skip things that are autoloaded (this code runs after Autoload())
+
+				var content = ContentAttribute.GetValue(type);
+
+				var reason = FindContentFilterReason(content.ContentType);
+				var instance = (ILoadable)Activator.CreateInstance(type);
+
+				if (reason == ContentType.Always)
 				{
-					var autoload = AutoloadAttribute.GetValue(type);
+					//No filters
+					manuallyAddedTypes.Add(type);
+					Mod.AddContent(instance);
+					continue; //Don't do anything further
+				}
 
-					if (autoload.NeedsAutoloading)
-					{
-						continue; //Skip things that are autoloaded (this code runs after Autoload())
-					}
+				if (instance is ModType modTypeInstance)
+                {
+                    string name = modTypeInstance.Name;
+                    NonLoadedNames.Add(name, reason);
 
-					var content = ContentAttribute.GetValue(type);
-
-					var reason = FindContentFilterReason(config, content.ContentType);
-					var instance = (ILoadable)Activator.CreateInstance(type);
-
-					if (reason == ContentType.Always)
-					{
-						manuallyAddedTypes.Add(type);
-						Mod.AddContent(instance);
-						continue; //Don't do anything
-					}
-
-					if (instance is ModType modTypeInstance)
+					if (!NonLoadedNamesByType.ContainsKey(reason))
                     {
-                        string name = modTypeInstance.Name;
-                        NonLoadedNames.Add(name, reason);
-
-						if (!NonLoadedNamesByType.ContainsKey(reason))
-                        {
-							NonLoadedNamesByType[reason] = new List<string>();
-						}
-
-                        NonLoadedNamesByType[reason].Add(name);
+						NonLoadedNamesByType[reason] = new List<string>();
 					}
+
+                    NonLoadedNamesByType[reason].Add(name);
 				}
 			}
 		}
 
-        private static ContentType FindContentFilterReason(AConfigurationConfig config, ContentType contentType)
+        private static ContentType FindContentFilterReason(ContentType contentType)
         {
             //If atleast one toggle is false, and the content type matches that toggle, return that content type
 
@@ -78,6 +72,8 @@ namespace AssortedCrazyThings
 				//Skip checking if this is not filtered anyway
 				return always;
 			}
+
+			var config = AConfigurationConfig.Instance;
 
 			if (!config.Bosses && contentType.HasFlag(ContentType.Bosses))
             {
