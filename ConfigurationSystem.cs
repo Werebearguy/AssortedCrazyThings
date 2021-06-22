@@ -36,6 +36,8 @@ namespace AssortedCrazyThings
 
 				var content = ContentAttribute.GetValue(type);
 
+				if (content.Ignore) continue; //Skip things tagged as non-autoloadable, yet shouldn't be loaded through here (loaded elsewhere)
+
 				var reason = FindContentFilterReason(content.ContentType);
 				var instance = (ILoadable)Activator.CreateInstance(type);
 
@@ -130,9 +132,12 @@ namespace AssortedCrazyThings
 
 		public ContentType ContentType { get; private set; }
 
-		public ContentAttribute(ContentType contentType)
+		public bool Ignore { get; private set; }
+
+		public ContentAttribute(ContentType contentType, bool ignore = false)
 		{
 			ContentType = contentType;
+			Ignore = ignore;
 		}
 
 		public static ContentAttribute GetValue(Type type)
@@ -141,7 +146,7 @@ namespace AssortedCrazyThings
 			object[] all = type.GetCustomAttributes(typeof(ContentAttribute), true);
 			//The first should be the most derived attribute.
 			var mostDerived = (ContentAttribute)all.FirstOrDefault();
-			//If there were no declarations, then return null.
+			//If there were no declarations, then return default.
 			return mostDerived ?? Default;
 		}
 	}

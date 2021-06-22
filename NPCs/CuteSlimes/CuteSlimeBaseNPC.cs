@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
+    //Not ContentType.FriendlyNPCs, but separate toggle
     [Autoload]
     public abstract class CuteSlimeBaseNPC : AssNPC
     {

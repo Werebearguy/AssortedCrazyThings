@@ -997,14 +997,6 @@ namespace AssortedCrazyThings
             ),
                 new CircleUIHandler(
                 triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => YoungHarpy,
-                uiConf: GetYoungHarpyConf,
-                onUIStart: () => youngHarpyType,
-                onUIEnd: () => youngHarpyType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
                 condition: () => Abeemination,
                 uiConf: GetAbeeminationConf,
                 onUIStart: () => abeeminationType,
@@ -1151,6 +1143,21 @@ namespace AssortedCrazyThings
                 });
             }
 
+            if (AConfigurationConfig.Instance.FriendlyNPCs)
+            {
+                CircleUIList.AddRange(new List<CircleUIHandler>()
+                {
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => YoungHarpy,
+                    uiConf: GetYoungHarpyConf,
+                    onUIStart: () => youngHarpyType,
+                    onUIEnd: () => youngHarpyType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                });
+            }
+
             //after filling the list
             int length = 0;
             for (int i = 0; i < CircleUIList.Count; i++)
@@ -1180,7 +1187,6 @@ namespace AssortedCrazyThings
             youngWyvernType = ClonedTypes[index++];
             petFishronType = ClonedTypes[index++];
             petMoonType = ClonedTypes[index++];
-            youngHarpyType = ClonedTypes[index++];
             abeeminationType = ClonedTypes[index++];
             lilWrapsType = ClonedTypes[index++];
             vampireBatType = ClonedTypes[index++];
@@ -1202,6 +1208,11 @@ namespace AssortedCrazyThings
                 stingSlimeType = ClonedTypes[index++];
                 animatedTomeType = ClonedTypes[index++];
             }
+
+            if (AConfigurationConfig.Instance.FriendlyNPCs)
+            {
+                youngHarpyType = ClonedTypes[index++];
+            }
         }
 
         /// <summary>
@@ -1219,7 +1230,6 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = youngWyvernType;
                 ClonedTypes[++index] = petFishronType;
                 ClonedTypes[++index] = petMoonType;
-                ClonedTypes[++index] = youngHarpyType;
                 ClonedTypes[++index] = abeeminationType;
                 ClonedTypes[++index] = lilWrapsType;
                 ClonedTypes[++index] = vampireBatType;
@@ -1240,6 +1250,11 @@ namespace AssortedCrazyThings
                     ClonedTypes[++index] = oceanSlimeType;
                     ClonedTypes[++index] = stingSlimeType;
                     ClonedTypes[++index] = animatedTomeType;
+                }
+
+                if (AConfigurationConfig.Instance.FriendlyNPCs)
+                {
+                    ClonedTypes[++index] = youngHarpyType;
                 }
             }
         }

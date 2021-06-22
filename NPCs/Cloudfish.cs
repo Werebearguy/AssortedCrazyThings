@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Autoload]
+    [Content(ContentType.FriendlyNPCs)]
     public class Cloudfish : AssNPC
     {
         public float scareRange = 200f;
