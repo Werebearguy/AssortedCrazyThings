@@ -120,7 +120,11 @@ namespace AssortedCrazyThings
 			return Enum.IsDefined(typeof(ContentType), contentType);
 		}
 
-		internal static bool LoadSide(ModSide side) => side != (Main.dedServ ? ModSide.Client : ModSide.Server);
+		//Copied from tmodloader since it's internal
+		public static bool LoadSide(ModSide side)
+		{
+			return side != (Main.dedServ ? ModSide.Client : ModSide.Server);
+		}
 	}
 
 	[Flags]
