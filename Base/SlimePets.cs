@@ -6,10 +6,11 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
+using AssortedCrazyThings.Base.SlimeHugs;
 
 namespace AssortedCrazyThings.Base
 {
-    public static class SlimePets
+    public class SlimePets : ModSystem
     {
         /// <summary>
         /// Contains every slime pet
@@ -140,10 +141,14 @@ namespace AssortedCrazyThings.Base
             }
         }
 
-        /// <summary>
-        /// Called in Mod.Load
-        /// </summary>
-        public static void Load()
+        public override void OnModLoad()
+        {
+            LoadPets();
+
+            PetAccessory.Load();
+        }
+
+        private static void LoadPets()
         {
             slimePetList = new List<SlimePet>();
             slimePetsByProj = new Dictionary<int, SlimePet>();
@@ -231,11 +236,16 @@ namespace AssortedCrazyThings.Base
             (
                 type: ModContent.ProjectileType<CuteSlimePinkProj>()
             ));
-            Add(SlimePet.NewSlimePet
-            (
-                type: ModContent.ProjectileType<CuteSlimeQueenProj>(),
-                postAdditionSlot: (byte)SlotType.Hat
-            ));
+
+            if (AConfigurationConfig.Instance.DroppedPets)
+            {
+                Add(SlimePet.NewSlimePet
+                (
+                    type: ModContent.ProjectileType<CuteSlimeQueenProj>(),
+                    postAdditionSlot: (byte)SlotType.Hat
+                ));
+            }
+
             Add(SlimePet.NewSlimePet
             (
                 type: ModContent.ProjectileType<CuteSlimeRainbowProj>()
@@ -296,15 +306,15 @@ namespace AssortedCrazyThings.Base
         {
             for (int i = 0; i < slimePetList.Count; i++)
             {
-                SlimePet petAccessory = slimePetList[i];
-                if (petAccessory.Name == aSlimePet.Name)
+                SlimePet slimePet = slimePetList[i];
+                if (slimePet.Name == aSlimePet.Name)
                     throw new Exception("Added Pet '" + aSlimePet.Name + "' already exists");
             }
 
             slimePetList.Add(aSlimePet);
         }
 
-        public static void PostSetup()
+        public override void PostSetupContent()
         {
             int actcount = 0;
             foreach (var item in AssUtils.Instance.GetContent<ModNPC>())
@@ -318,10 +328,16 @@ namespace AssortedCrazyThings.Base
             spawnIncreaseBasedOnOtherModNPCs = diff / (float)vanillaCount;
         }
 
-        /// <summary>
-        /// Called in Mod.Unload
-        /// </summary>
-        public static void Unload()
+        public override void Unload()
+        {
+            UnloadPets();
+
+            PetAccessory.Unload();
+
+            SlimeHugLoader.Unload();
+        }
+
+        private static void UnloadPets()
         {
             slimePetList = null;
             slimePetsByProj = null;

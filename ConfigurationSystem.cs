@@ -3,26 +3,28 @@ using System.Linq;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria;
+using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings
 {
-	public class ConfigurationSystem : ModSystem
+	public static class ConfigurationSystem //Cannot be a ModSystem since that load runs post-mod.Load, we need it as early as possible
 	{
 		//These assume no ILoadable across the whole mod has a duplicate name (contrary to what tml allows)
 		public static Dictionary<string, ContentType> NonLoadedNames { get; private set; }
 		public static Dictionary<ContentType, List<string>> NonLoadedNamesByType { get; private set; }
 
-        public override void OnModLoad()
+        public static void Load()
         {
+			Mod mod = AssUtils.Instance; //Maybe change it to support all loaded mod assemblies
 			NonLoadedNames = new();
 			NonLoadedNamesByType = new();
 
 			//Debugging only
-			var autoloadedContent = Mod.GetContent().ToList();
+			var autoloadedContent = mod.GetContent().ToList();
 			var manuallyAddedTypes = new List<Type>();
 
-			Type modType = Mod.GetType();
-			foreach (Type type in Mod.Code.GetTypes().OrderBy(type => type.FullName, StringComparer.InvariantCulture))
+			Type modType = mod.GetType();
+			foreach (Type type in mod.Code.GetTypes().OrderBy(type => type.FullName, StringComparer.InvariantCulture))
 			{
 				//Mirror autoloading conditions
 				if (type == modType) continue;
@@ -48,7 +50,7 @@ namespace AssortedCrazyThings
 				{
 					//No filters
 					manuallyAddedTypes.Add(type);
-					Mod.AddContent(instance);
+					mod.AddContent(instance);
 					continue; //Don't do anything further
 				}
 
@@ -79,7 +81,7 @@ namespace AssortedCrazyThings
 			return AConfigurationConfig.Instance.FilterFlags & contentType;
 		}
 
-        public override void Unload()
+        public static void Unload()
         {
 			NonLoadedNames?.Clear();
 			NonLoadedNames = null;

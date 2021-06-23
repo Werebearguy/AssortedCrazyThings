@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 {
+    [Content(ContentType.DroppedPets)]
+    [Autoload(false)]
     public class CuteSlimeQueenProj : CuteSlimeBaseProj
     {
         public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeQueen;

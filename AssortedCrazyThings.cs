@@ -133,19 +133,6 @@ namespace AssortedCrazyThings
             harvesterTypes = null;
         }
 
-        private void LoadPets()
-        {
-            SlimePets.Load();
-            PetAccessory.Load();
-        }
-
-        private void UnloadPets()
-        {
-            SlimePets.Unload();
-            PetAccessory.Unload();
-            SlimeHugLoader.Unload();
-        }
-
         private void LoadMisc()
         {
             if (!Main.dedServ && AConfigurationConfig.Instance.Bosses)
@@ -168,9 +155,9 @@ namespace AssortedCrazyThings
 
         public override void Load()
         {
-            ShaderManager.Load();
+            ConfigurationSystem.Load();
 
-            LoadPets();
+            ShaderManager.Load();
 
             LoadHarvesterTypes();
 
@@ -181,9 +168,9 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
-            ShaderManager.Unload();
+            ConfigurationSystem.Unload();
 
-            UnloadPets();
+            ShaderManager.Unload();
 
             UnloadHarvesterTypes();
 
@@ -204,8 +191,6 @@ namespace AssortedCrazyThings
             DroneController.Load();
 
             EverhallowedLantern.DoLoad();
-
-            SlimePets.PostSetup();
 
             AddToSoulBuffBlacklist();
 

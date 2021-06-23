@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
+    [Content(ContentType.DroppedPets)]
+    [Autoload(false)]
     public class CuteSlimeQueenItem : CuteSlimeItem
     {
         public override int PetType => ModContent.ProjectileType<CuteSlimeQueenProj>();
