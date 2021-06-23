@@ -228,7 +228,7 @@ namespace AssortedCrazyThings.Items.Weapons
         /// </summary>
         public static void DoLoad()
         {
-            if (!AConfigurationConfig.Instance.Weapons)
+            if (!ContentConfig.Instance.Weapons)
             {
                 return;
             }

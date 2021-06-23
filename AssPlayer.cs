@@ -235,7 +235,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void PreSyncSoulTemp(Projectile proj)
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -251,7 +251,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulTemp()
         {
-            if (!AConfigurationConfig.Instance.Bosses) //TODO accessories
+            if (!ContentConfig.Instance.Bosses) //TODO accessories
             {
                 return;
             }
@@ -293,7 +293,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -339,7 +339,7 @@ namespace AssortedCrazyThings
         /// </summary>
         public void ConvertInertSoulsInventory()
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -537,7 +537,7 @@ namespace AssortedCrazyThings
             //needs to call new List() since Initialize() is called per player in the player select screen
             CircleUIList = new List<CircleUIHandler>();
 
-            if (AConfigurationConfig.Instance.Weapons)
+            if (ContentConfig.Instance.Weapons)
             {
                 CircleUIList.AddRange(new List<CircleUIHandler>
                 {
@@ -575,7 +575,7 @@ namespace AssortedCrazyThings
                 );
             }
 
-            if (AConfigurationConfig.Instance.Bosses && AConfigurationConfig.Instance.Weapons)
+            if (ContentConfig.Instance.Bosses && ContentConfig.Instance.Weapons)
             {
                 CircleUIList.Add(new CircleUIHandler(
                 triggerItem: ModContent.ItemType<EverhallowedLantern>(),
@@ -871,7 +871,7 @@ namespace AssortedCrazyThings
                     drawEffectsCalledOnce = false;
                 }
 
-                if (Main.myPlayer == Player.whoAmI && AConfigurationConfig.Instance.Weapons)
+                if (Main.myPlayer == Player.whoAmI && ContentConfig.Instance.Weapons)
                 {
                     if (Player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
                 }

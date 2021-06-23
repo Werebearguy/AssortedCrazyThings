@@ -52,7 +52,7 @@ namespace AssortedCrazyThings
                 HoverNPCUIInterface = new UserInterface();
                 HoverNPCUIInterface.SetState(HoverNPCUI);
 
-                if (AConfigurationConfig.Instance.Bosses)
+                if (ContentConfig.Instance.Bosses)
                 {
                     HarvesterEdgeUI = new HarvesterEdgeUI();
                     HarvesterEdgeUI.Activate();
@@ -65,7 +65,7 @@ namespace AssortedCrazyThings
                     EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
                 }
 
-                if (AConfigurationConfig.Instance.CuteSlimes)
+                if (ContentConfig.Instance.CuteSlimes)
                 {
                     PetVanityUI = new PetVanityUI();
                     PetVanityUI.Activate();

@@ -68,7 +68,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void AddToSoulBuffBlacklist()
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -108,7 +108,7 @@ namespace AssortedCrazyThings
         {
             harvesterTypes = new int[5];
 
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -127,7 +127,7 @@ namespace AssortedCrazyThings
 
         private void LoadMisc()
         {
-            if (!Main.dedServ && AConfigurationConfig.Instance.Bosses)
+            if (!Main.dedServ && ContentConfig.Instance.Bosses)
             {
                 animatedSoulTextures = new Texture2D[2];
 
@@ -186,7 +186,7 @@ namespace AssortedCrazyThings
 
             AddToSoulBuffBlacklist();
 
-            if (AConfigurationConfig.Instance.DroppedPets)
+            if (ContentConfig.Instance.DroppedPets)
             {
                 PetEaterofWorldsBase.wormTypes = new int[]
                 {
@@ -208,7 +208,7 @@ namespace AssortedCrazyThings
 
         public override void AddRecipeGroups()
         {
-            if (AConfigurationConfig.Instance.CuteSlimes && AConfigurationConfig.Instance.Placeables)
+            if (ContentConfig.Instance.CuteSlimes && ContentConfig.Instance.Placeables)
             {
                 RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
                 {

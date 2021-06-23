@@ -78,7 +78,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public static void SetTimeLeft(NPC npcto, NPC npcfrom)
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }

@@ -75,7 +75,7 @@ namespace AssortedCrazyThings.UI
                 NPCID.WaterSphere,
             };
 
-            if (AConfigurationConfig.Instance.Bosses)
+            if (ContentConfig.Instance.Bosses)
             {
                 blacklistNPCsList.Add(ModContent.NPCType<Harvester1>());
                 blacklistNPCsList.Add(ModContent.NPCType<Harvester2>());

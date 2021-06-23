@@ -245,14 +245,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npcLoot.Add(ItemDropRule.BossBag(BossBag)); //this requires you to set BossBag in SetDefaults accordingly
 
             //Relic and trophy are NOT spawned in the bag
-            if (AConfigurationConfig.Instance.Placeables)
+            if (ContentConfig.Instance.Placeables)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
                 npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HarvesterRelicItem>()));
             }
 
             //Master mode pet
-            if (AConfigurationConfig.Instance.DroppedPets)
+            if (ContentConfig.Instance.DroppedPets)
             {
                 npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
             }
@@ -268,7 +268,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.Bone, minimumDropped: 40, maximumDropped: 60));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>()));
 
-            if (AConfigurationConfig.Instance.VanityArmor)
+            if (ContentConfig.Instance.VanityArmor)
             {
                 notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 7));
             }

@@ -74,7 +74,7 @@ namespace AssortedCrazyThings
         private static ContentType FindContentFilterReasons(ContentType contentType)
         {
 			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
-			return AConfigurationConfig.Instance.FilterFlags & contentType;
+			return ContentConfig.Instance.FilterFlags & contentType;
 		}
 
         public static void Unload()
@@ -139,9 +139,9 @@ namespace AssortedCrazyThings
     {
 		Always = 0 << 0,
 		Bosses = 1 << 1,
-		HostileNPCs = 1 << 2,
-		FriendlyNPCs = 1 << 3,
-		CuteSlimes = 1 << 4,
+		CuteSlimes = 1 << 2,
+		HostileNPCs = 1 << 3,
+		FriendlyNPCs = 1 << 4,
 		DroppedPets = 1 << 5,
 		OtherPets = 1 << 6,
 		Weapons = 1 << 7,
@@ -154,6 +154,7 @@ namespace AssortedCrazyThings
 		BossConsolation = 1 << 14,
 	}
 
+	//TODO optional "needs all" filter for vanityselector and queen/princess slime
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 	public sealed class ContentAttribute : Attribute
 	{

@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Base.ModSupport
         public override void PostSetupContent()
         {
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
-            if (AConfigurationConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
+            if (ContentConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
                 //5.1f means just after skeletron
                 if (bossChecklist.Version >= new Version(1, 0))
@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Base.ModSupport
                     int summonItem = ModContent.ItemType<IdolOfDecay>();
 
                     List<int> collection = new List<int>();
-                    if (AConfigurationConfig.Instance.Placeables)
+                    if (ContentConfig.Instance.Placeables)
                     {
                         collection.AddRange(new List<int>
                         {
@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Base.ModSupport
                         });
                     }
 
-                    if (AConfigurationConfig.Instance.VanityArmor)
+                    if (ContentConfig.Instance.VanityArmor)
                     {
                         collection.AddRange(new List<int>
                         {
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Base.ModSupport
                         ModContent.ItemType<CaughtDungeonSoulFreed>(),
                     };
 
-                    if (AConfigurationConfig.Instance.Accessories)
+                    if (ContentConfig.Instance.Accessories)
                     {
                         loot.AddRange(new List<int>
                         {
@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 
             if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
             {
-                if (AConfigurationConfig.Instance.Bosses && AConfigurationConfig.Instance.Weapons)
+                if (ContentConfig.Instance.Bosses && ContentConfig.Instance.Weapons)
                 {
                     summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
                     {
@@ -116,7 +116,7 @@ namespace AssortedCrazyThings.Base.ModSupport
                     });
                 }
 
-                if (AConfigurationConfig.Instance.Weapons)
+                if (ContentConfig.Instance.Weapons)
                 {
                     summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<SlimeHandlerKnapsack>(), ModContent.BuffType<SlimePackMinionBuff>(), ModContent.ProjectileType<SlimePackMinion>());
                     List<int> drones = new List<int>();

@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.NPCs
     {
         public override void OnKill(NPC npc)
         {
-            if (AConfigurationConfig.Instance.Weapons)
+            if (ContentConfig.Instance.Weapons)
             {
                 //TODO convert this to a drop rule
                 if (npc.type == NPCID.TheDestroyer)
@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (AConfigurationConfig.Instance.Placeables && type == NPCID.PartyGirl && NPC.downedSlimeKing)
+            if (ContentConfig.Instance.Placeables && type == NPCID.PartyGirl && NPC.downedSlimeKing)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<SlimeBeaconItem>());
                 nextSlot++;
@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
         {
-            if (AConfigurationConfig.Instance.OtherPets && Main.rand.NextBool(4))
+            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(4))
             {
                 shop[nextSlot] = ModContent.ItemType<SuspiciousNuggetItem>();
                 nextSlot++;

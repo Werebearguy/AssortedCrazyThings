@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Base.SwarmDraw
                 return;
             }
 
-            if (AConfigurationConfig.Instance.DroppedPets)
+            if (ContentConfig.Instance.DroppedPets)
             {
                 HandleDrawSet(ref fairySwarmDrawSet,
                     SwarmDrawSet.New<FairySwarmDrawSet>,

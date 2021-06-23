@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Items.Consumables
             player.QuickSpawnItem(ItemID.Bone, Main.rand.Next(40, 61));
             player.QuickSpawnItem(ModContent.ItemType<DesiccatedLeather>());
 
-            if (AConfigurationConfig.Instance.VanityArmor && Main.rand.NextBool(7))
+            if (ContentConfig.Instance.VanityArmor && Main.rand.NextBool(7))
             {
                 player.QuickSpawnItem(ModContent.ItemType<SoulHarvesterMask>());
             }

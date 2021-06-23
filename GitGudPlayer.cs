@@ -576,7 +576,7 @@ namespace AssortedCrazyThings
         /// </summary>
         public static void Load()
         {
-            if (!AConfigurationConfig.Instance.BossConsolation)
+            if (!ContentConfig.Instance.BossConsolation)
             {
                 return;
             }

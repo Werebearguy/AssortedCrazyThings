@@ -502,7 +502,7 @@ namespace AssortedCrazyThings
                 SetClonedTypes();
             }
 
-            if (AConfigurationConfig.Instance.CuteSlimes)
+            if (ContentConfig.Instance.CuteSlimes)
             {
                 ValidateSlimePetIndex();
 
@@ -526,7 +526,7 @@ namespace AssortedCrazyThings
         {
             slimePet = null;
 
-            if (!AConfigurationConfig.Instance.CuteSlimes)
+            if (!ContentConfig.Instance.CuteSlimes)
             {
                 return false;
             }
@@ -610,7 +610,7 @@ namespace AssortedCrazyThings
         //- Active hug is stored on the projectile (set through SetHugType)
         public void UpdateSlimeHugs(CuteSlimeBaseProj slime)
         {
-            if (!AConfigurationConfig.Instance.CuteSlimes)
+            if (!ContentConfig.Instance.CuteSlimes)
             {
                 return;
             }
@@ -962,7 +962,7 @@ namespace AssortedCrazyThings
 
             CircleUIList = new List<CircleUIHandler>();
 
-            if (AConfigurationConfig.Instance.OtherPets)
+            if (ContentConfig.Instance.OtherPets)
             {
                 CircleUIList.AddRange(new List<CircleUIHandler>
                 {
@@ -1133,7 +1133,7 @@ namespace AssortedCrazyThings
             }
 
             //TODO figure out a safe way of dynamically loading these without messing up order of saved data
-            if (AConfigurationConfig.Instance.HostileNPCs)
+            if (ContentConfig.Instance.HostileNPCs)
             {
                 CircleUIList.AddRange(new List<CircleUIHandler>()
                 {
@@ -1164,7 +1164,7 @@ namespace AssortedCrazyThings
                 });
             }
 
-            if (AConfigurationConfig.Instance.FriendlyNPCs)
+            if (ContentConfig.Instance.FriendlyNPCs)
             {
                 CircleUIList.AddRange(new List<CircleUIHandler>()
                 {
@@ -1203,7 +1203,7 @@ namespace AssortedCrazyThings
             //AssUtils.Print("set getfromclonedtypes p " + player.whoAmI + " " + mp);
             int index = 0;
 
-            if (AConfigurationConfig.Instance.OtherPets)
+            if (ContentConfig.Instance.OtherPets)
             {
                 mechFrogCrown = ClonedTypes[index++];
                 petEyeType = ClonedTypes[index++];
@@ -1227,14 +1227,14 @@ namespace AssortedCrazyThings
                 //classNameType = ClonedTypes[index++];
             }
 
-            if (AConfigurationConfig.Instance.HostileNPCs)
+            if (ContentConfig.Instance.HostileNPCs)
             {
                 oceanSlimeType = ClonedTypes[index++];
                 stingSlimeType = ClonedTypes[index++];
                 animatedTomeType = ClonedTypes[index++];
             }
 
-            if (AConfigurationConfig.Instance.FriendlyNPCs)
+            if (ContentConfig.Instance.FriendlyNPCs)
             {
                 youngHarpyType = ClonedTypes[index++];
             }
@@ -1249,7 +1249,7 @@ namespace AssortedCrazyThings
             if (enteredWorld)
             {
                 int index = -1;
-                if (AConfigurationConfig.Instance.OtherPets)
+                if (ContentConfig.Instance.OtherPets)
                 {
                     ClonedTypes[++index] = mechFrogCrown;
                     ClonedTypes[++index] = petEyeType;
@@ -1273,14 +1273,14 @@ namespace AssortedCrazyThings
                     //ClonedTypes[++index] = classNameType;
                 }
 
-                if (AConfigurationConfig.Instance.HostileNPCs)
+                if (ContentConfig.Instance.HostileNPCs)
                 {
                     ClonedTypes[++index] = oceanSlimeType;
                     ClonedTypes[++index] = stingSlimeType;
                     ClonedTypes[++index] = animatedTomeType;
                 }
 
-                if (AConfigurationConfig.Instance.FriendlyNPCs)
+                if (ContentConfig.Instance.FriendlyNPCs)
                 {
                     ClonedTypes[++index] = youngHarpyType;
                 }

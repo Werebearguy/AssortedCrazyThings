@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,7 +6,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -56,8 +54,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Config.Instance.WalkingTombstones) return SpawnCondition.OverworldNight.Chance * 0.005f * 1f;
-            else return 0f;
+            return spawnInfo.player.ZoneGraveyard ? 0.15f : 0f; //TODO adjust
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -79,7 +76,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void PostAI()
         {
-            if (Main.dayTime)
+            if (NPC.HasValidTarget && Main.player[NPC.target] is Player player && !player.ZoneGraveyard)
             {
                 if (NPC.velocity.X > 0 || NPC.velocity.X < 0)
                 {
@@ -87,6 +84,7 @@ namespace AssortedCrazyThings.NPCs
                 }
                 NPC.ai[0] = 1f;
                 NPC.direction = 1;
+                NPC.frameCounter = 0;
             }
 
             if (NPC.velocity.Y < 0)

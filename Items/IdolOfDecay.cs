@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.Items
 
         public override bool UseItem(Player player)
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return true;
             }

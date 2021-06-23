@@ -85,7 +85,7 @@ namespace AssortedCrazyThings.UI
                     {
                         drawColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
 
-                        if (AConfigurationConfig.Instance.Bosses)
+                        if (ContentConfig.Instance.Bosses)
                         {
                             if ((npc.type == ModContent.NPCType<DungeonSoul>() ||
                                npc.type == ModContent.NPCType<DungeonSoulFreed>()) && npc.ai[0] == 0)
@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.UI
                             }
                         }
 
-                        if (AConfigurationConfig.Instance.HostileNPCs)
+                        if (ContentConfig.Instance.HostileNPCs)
                         {
                             if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
                             {

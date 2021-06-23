@@ -127,7 +127,7 @@ namespace AssortedCrazyThings
 
         private void LimitSoulCount()
         {
-            if (!AConfigurationConfig.Instance.Bosses)
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -192,7 +192,7 @@ namespace AssortedCrazyThings
 
         private void CheckSpawns()
         {
-            if (!AConfigurationConfig.Instance.HostileNPCs)
+            if (!ContentConfig.Instance.HostileNPCs)
             {
                 return;
             }
