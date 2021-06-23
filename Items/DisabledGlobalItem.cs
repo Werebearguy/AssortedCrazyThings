@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Terraria;
-using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 
@@ -23,28 +22,12 @@ namespace AssortedCrazyThings.Items
                 return;
             }
 
-            FieldInfo modNameField = typeof(UnloadedItem).GetField("modName", BindingFlags.Instance | BindingFlags.NonPublic);
-            if (modNameField == null)
+            if (unloadedItem.ModName != Mod.Name)
             {
                 return;
             }
 
-            string modName = modNameField.GetValue(unloadedItem) as string;
-
-            if (modName != Mod.Name)
-            {
-                return;
-            }
-
-            FieldInfo itemNameField = typeof(UnloadedItem).GetField("itemName", BindingFlags.Instance | BindingFlags.NonPublic);
-            if (itemNameField == null)
-            {
-                return;
-            }
-
-            string itemName = itemNameField.GetValue(unloadedItem) as string;
-
-            if (ConfigurationSystem.NonLoadedNames.TryGetValue(itemName, out ContentType type))
+            if (ConfigurationSystem.NonLoadedNames.TryGetValue(unloadedItem.ItemName, out ContentType type))
             {
                 tooltips.Add(new TooltipLine(Mod, "UnloadedSource", $"Disabled by the '{ConfigurationSystem.ContentTypeToString(type)}' config setting"));
             }

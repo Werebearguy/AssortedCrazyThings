@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using AssortedCrazyThings.Projectiles.Pets.CuteSlimes;
 using AssortedCrazyThings.Base.SlimeHugs;
+using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.Base
 {
