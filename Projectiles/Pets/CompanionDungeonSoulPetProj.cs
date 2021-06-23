@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     //TODO make inheritance
-    [Content(ContentType.Bosses)]
+    [Content(ContentType.Bosses | ContentType.OtherPets)]
     public class CompanionDungeonSoulPetProj : SimplePetProjBase
     {
         private int sincounter;
