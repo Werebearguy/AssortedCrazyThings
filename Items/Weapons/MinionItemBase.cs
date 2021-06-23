@@ -1,10 +1,13 @@
 using Terraria;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
+    /// <summary>
+    /// Item that applies a buff and spawns a single projectile on use
+    /// </summary>
+    [Content(ContentType.Weapons)]
     public abstract class MinionItemBase : AssItem
     {
         public sealed override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

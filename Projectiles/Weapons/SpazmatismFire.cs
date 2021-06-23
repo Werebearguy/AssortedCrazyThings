@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class SpazmatismFire : AssProjectile
     {
         public override void SetStaticDefaults()

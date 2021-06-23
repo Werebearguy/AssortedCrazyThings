@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class PocketSand : AssItem
     {
         public override void SetStaticDefaults()

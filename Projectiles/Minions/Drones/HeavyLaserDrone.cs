@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// Fires a penetrating laser beam horizontally to the player with a very long delay.
     /// Only recognizes enemies at around the y level of the player
     /// </summary>
-    [Autoload]
     public class HeavyLaserDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HeavyLaserDrone_Glowmask";

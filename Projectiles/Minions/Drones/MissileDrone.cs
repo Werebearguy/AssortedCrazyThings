@@ -11,7 +11,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// <summary>
     /// Fires a salvo of homing rockets with a long delay
     /// </summary>
-    [Autoload]
     public class MissileDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "MissileDrone_Glowmask";

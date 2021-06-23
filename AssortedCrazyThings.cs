@@ -188,7 +188,7 @@ namespace AssortedCrazyThings
 
             GitgudData.Load();
 
-            DroneController.Load();
+            DroneController.DoLoad();
 
             EverhallowedLantern.DoLoad();
 
@@ -267,7 +267,7 @@ namespace AssortedCrazyThings
 
             if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
             {
-                if (AConfigurationConfig.Instance.Bosses)
+                if (AConfigurationConfig.Instance.Bosses && AConfigurationConfig.Instance.Weapons)
                 {
                     summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
                     {

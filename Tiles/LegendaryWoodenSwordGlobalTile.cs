@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Tiles
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     class LegendaryWoodenSwordGlobalTile : AssGlobalTile
     {
         public override bool Drop(int i, int j, int type)

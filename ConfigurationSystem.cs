@@ -128,7 +128,7 @@ namespace AssortedCrazyThings
 	}
 
 	[Flags]
-	public enum ContentType : byte
+	public enum ContentType : short
     {
 		Always = 0 << 0,
 		Bosses = 1 << 1,
@@ -137,7 +137,8 @@ namespace AssortedCrazyThings
 		CuteSlimes = 1 << 4,
 		DroppedPets = 1 << 5,
 		OtherPets = 1 << 6,
-		BossConsolation = 1 << 7,
+		Weapons = 1 << 7,
+		BossConsolation = 1 << 8,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    [Content(ContentType.Bosses)]
+    [Content(ContentType.Bosses | ContentType.Weapons)]
     public class EverglowLantern : MinionItemBase
     {
         public override void SetStaticDefaults()

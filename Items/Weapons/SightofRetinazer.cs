@@ -1,11 +1,10 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class SightofRetinazer : AssItem
     {
         public override void SetStaticDefaults()

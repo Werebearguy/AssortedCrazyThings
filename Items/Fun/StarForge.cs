@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class StarForge : AssItem
     {
         public override void SetStaticDefaults()

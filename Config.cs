@@ -78,6 +78,12 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
+		[Tooltip("Disable items that deal damage (Pacifist path)")]
+		[Label("Weapons")]
+		public bool Weapons { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
 		[Tooltip("Disable items that drop for failing to defeat a vanilla boss within 5 attempts")]
 		[Label("Boss Consolation")]
 		public bool BossConsolation { get; set; }
@@ -110,6 +116,10 @@ namespace AssortedCrazyThings
 			if (!OtherPets)
 			{
 				FilterFlags |= ContentType.OtherPets;
+			}
+			if (!Weapons)
+			{
+				FilterFlags |= ContentType.Weapons;
 			}
 			if (!BossConsolation)
 			{

@@ -1,9 +1,8 @@
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class DroneParts : AssItem
     {
         public override void SetStaticDefaults()

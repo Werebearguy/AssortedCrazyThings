@@ -14,14 +14,17 @@ namespace AssortedCrazyThings.NPCs
     {
         public override void OnKill(NPC npc)
         {
-            //TODO convert this to a drop rule
-            if (npc.type == NPCID.TheDestroyer)
+            if (AConfigurationConfig.Instance.Weapons)
             {
-                AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
+                //TODO convert this to a drop rule
+                if (npc.type == NPCID.TheDestroyer)
+                {
+                    AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
                     condition: delegate (NPC n, Player player)
                     {
                         return !DroneController.AllUnlocked(player);
                     });
+                }
             }
 
             GitgudData.Reset(npc);

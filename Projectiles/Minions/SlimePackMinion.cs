@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     //check this file for more info vvvvvvvv
     public class SlimePackMinion : BabySlimeBase
     {

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.DrawLayers
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class SlimeHandlerKnapsackLayer : AssPlayerLayer
     {
         private Asset<Texture2D> knapsackTexture;

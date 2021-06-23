@@ -14,7 +14,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    [Autoload]
     public class DroneController : MinionItemBase
     {
         #region Static Methods
@@ -227,8 +226,13 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Called in Mod.Load
         /// </summary>
-        public static void Load()
+        public static void DoLoad()
         {
+            if (!AConfigurationConfig.Instance.Weapons)
+            {
+                return;
+            }
+
             Array a = Enum.GetValues(typeof(DroneType));
             DataList = new DroneData[a.Length - 1]; //without None
             int i = 0;

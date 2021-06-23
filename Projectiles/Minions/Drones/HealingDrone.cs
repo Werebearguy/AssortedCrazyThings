@@ -10,7 +10,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// <summary>
     /// Heals the player if below max health. Heals faster when below 50% health
     /// </summary>
-    [Autoload]
     public class HealingDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "HealingDrone_Glowmask";

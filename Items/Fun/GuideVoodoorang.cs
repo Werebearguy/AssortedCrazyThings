@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class GuideVoodoorang : AssItem
     {
         public override void SetStaticDefaults()
@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Items.Fun
                         {
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -npc.direction);
+                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, i, 9999f, 10f, -npc.direction);
                             }
                             npc.StrikeNPCNoInteraction(9999, 10f, -npc.direction);
                             NPC.SpawnWOF(Item.position);
@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Items.Fun
 
                             //despawns upon wof spawn
                             Item.TurnToAir();
-                            NetMessage.SendData(MessageID.SyncItem, -1, -1, null, Item.whoAmI);
+                            NetMessage.SendData(MessageID.SyncItem, number: Item.whoAmI);
                             return;
                         }
                     }

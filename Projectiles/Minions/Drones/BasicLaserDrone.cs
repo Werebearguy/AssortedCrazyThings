@@ -10,7 +10,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
     /// <summary>
     /// Fires a weak laser rapidly
     /// </summary>
-    [Autoload]
     public class BasicLaserDrone : DroneBase
     {
         private static readonly string nameGlow = "Projectiles/Minions/Drones/" + "BasicLaserDrone_Glowmask";

@@ -2,11 +2,10 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class PocketSandProj : AssProjectile
     {
         private static readonly int LifeTime = 30;
