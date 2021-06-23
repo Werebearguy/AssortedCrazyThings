@@ -10,6 +10,8 @@ using AssortedCrazyThings.Base.SlimeHugs;
 
 namespace AssortedCrazyThings.Base
 {
+    [Content(ContentType.CuteSlimes)]
+    [Autoload(false)]
     public class SlimePets : ModSystem
     {
         /// <summary>

@@ -5,7 +5,7 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.FriendlyNPCs)]
+    [Content(ContentType.CuteSlimes)]
     [LegacyName("CuteGastropod")]
     public class CuteGastropodItem : SimplePetItemBase
     {

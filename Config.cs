@@ -52,9 +52,15 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
-		[Tooltip("This will also disable all their relevant content")]
+		[Tooltip("This will also disable all their relevant content - This does not disable Cute Slimes!")]
 		[Label("Friendly NPCs")]
 		public bool FriendlyNPCs { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(false)]
+		[Tooltip("Disable all cute slime related content")]
+		[Label("Cute Slimes")]
+		public bool CuteSlimes { get; set; }
 
 		[Header("Items")]
 
@@ -90,6 +96,10 @@ namespace AssortedCrazyThings
 			if (!DroppedPets)
 			{
 				FilterFlags |= ContentType.DroppedPets;
+			}
+			if (!CuteSlimes)
+			{
+				FilterFlags |= ContentType.CuteSlimes;
 			}
 			if (!BossConsolation)
 			{

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Content(ContentType.FriendlyNPCs)]
+    [Content(ContentType.CuteSlimes)]
     public class CuteGastropod : AssNPC
     {
         public override void SetStaticDefaults()

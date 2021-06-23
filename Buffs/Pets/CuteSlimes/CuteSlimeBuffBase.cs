@@ -1,8 +1,6 @@
-using Terraria.ModLoader;
-
 namespace AssortedCrazyThings.Buffs.Pets.CuteSlimes
 {
-    [Autoload]
+    [Content(ContentType.CuteSlimes)]
     public abstract class CuteSlimeBuffBase : SimplePetBuffBase
     {
 

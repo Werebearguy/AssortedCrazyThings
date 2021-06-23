@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
-    [Autoload]
+    [Content(ContentType.CuteSlimes)]
     public abstract class CuteSlimeItem : SimplePetItemBase
     {
         public override void SafeSetDefaults()

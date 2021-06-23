@@ -502,17 +502,20 @@ namespace AssortedCrazyThings
                 SetClonedTypes();
             }
 
-            ValidateSlimePetIndex();
-
-            slimeHugsUpdatedThisTick = false;
-
-            if (!createdSlimeHugs)
+            if (AConfigurationConfig.Instance.CuteSlimes)
             {
-                createdSlimeHugs = true;
+                ValidateSlimePetIndex();
 
-                SlimeHugs = new List<SlimeHug>();
-                SlimeHugs.AddRange(Mod.GetContent<SlimeHug>().Select(h => (SlimeHug)h.Clone())); //Fetch every loaded hug, create a new instance of it to use for this player
-                SlimeHugs.Sort((s1, s2) => s1.CompareTo(s2)); //Sort by cooldown, takes priority from high cooldown
+                slimeHugsUpdatedThisTick = false;
+
+                if (!createdSlimeHugs)
+                {
+                    createdSlimeHugs = true;
+
+                    SlimeHugs = new List<SlimeHug>();
+                    SlimeHugs.AddRange(Mod.GetContent<SlimeHug>().Select(h => (SlimeHug)h.Clone())); //Fetch every loaded hug, create a new instance of it to use for this player
+                    SlimeHugs.Sort((s1, s2) => s1.CompareTo(s2)); //Sort by cooldown, takes priority from high cooldown
+                }
             }
         }
 
@@ -522,6 +525,12 @@ namespace AssortedCrazyThings
         public bool HasValidSlimePet(out SlimePet slimePet)
         {
             slimePet = null;
+
+            if (!AConfigurationConfig.Instance.CuteSlimes)
+            {
+                return false;
+            }
+
             if (slimePetIndex >= 0 && slimePetIndex < Main.maxProjectiles)
             {
                 if (Main.projectile[slimePetIndex] is Projectile projectile)
@@ -601,6 +610,11 @@ namespace AssortedCrazyThings
         //- Active hug is stored on the projectile (set through SetHugType)
         public void UpdateSlimeHugs(CuteSlimeBaseProj slime)
         {
+            if (!AConfigurationConfig.Instance.CuteSlimes)
+            {
+                return;
+            }
+
             //This is called from within the current slime pet, as it is intertwined with its AI
             if (slimePetIndex < 0)
             {

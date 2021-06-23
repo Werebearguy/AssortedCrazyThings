@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using System.Collections.Generic;
 using Terraria;
@@ -7,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    [Autoload]
+    [Content(ContentType.CuteSlimes)]
     public class CuteSlimeSpawnEnableFlask : AssItem
     {
         public override void SetStaticDefaults()

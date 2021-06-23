@@ -64,10 +64,13 @@ namespace AssortedCrazyThings
                 EnhancedHunterUIInterface = new UserInterface();
                 EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
 
-                PetVanityUI = new PetVanityUI();
-                PetVanityUI.Activate();
-                PetVanityUIInterface = new UserInterface();
-                PetVanityUIInterface.SetState(PetVanityUI);
+                if (AConfigurationConfig.Instance.CuteSlimes)
+                {
+                    PetVanityUI = new PetVanityUI();
+                    PetVanityUI.Activate();
+                    PetVanityUIInterface = new UserInterface();
+                    PetVanityUIInterface.SetState(PetVanityUI);
+                }
             }
         }
 
@@ -180,7 +183,6 @@ namespace AssortedCrazyThings
         private void CircleUIEnd(bool triggerLeft = true)
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
             if (CircleUI.returned != CircleUI.NONE && CircleUI.returned != CircleUI.currentSelected)
             {
                 //if something returned AND if the returned thing isn't the same as the current one
@@ -289,43 +291,45 @@ namespace AssortedCrazyThings
                 }
             }
 
-            if (PetVanityUI.visible)
+            if (!PetVanityUI.visible)
             {
-                if (mPlayer.LeftClickReleased)
+                return;
+            }
+
+            if (mPlayer.LeftClickReleased)
+            {
+                if (PetVanityUI.returned > PetVanityUI.NONE)
                 {
-                    if (PetVanityUI.returned > PetVanityUI.NONE)
+                    //if something returned AND if the returned thing isn't the same as the current one
+
+                    try
                     {
-                        //if something returned AND if the returned thing isn't the same as the current one
-
-                        try
-                        {
-                            SoundEngine.PlaySound(SoundID.Item1, player.position);
-                        }
-                        catch
-                        {
-                            //No idea why but this threw errors one time
-                        }
-                        //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
-
-                        PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
-                        pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
+                        SoundEngine.PlaySound(SoundID.Item1, player.position);
                     }
-                    else if (PetVanityUI.hasEquipped && PetVanityUI.returned == PetVanityUI.NONE)
+                    catch
                     {
-                        //hovered over the middle and had something equipped: take accessory away
-                        pPlayer.DelAccessory(PetVanityUI.petAccessory);
+                        //No idea why but this threw errors one time
                     }
-                    //else if (returned == PetVanityUI.IGNORE) {nothing happens}
+                    //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
 
-                    PetVanityUI.returned = PetVanityUI.NONE;
-                    PetVanityUI.visible = false;
+                    PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
+                    pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
                 }
-
-                if (PetVanityUI.petAccessory.Type != itemType) //cancel the UI when you switch items
+                else if (PetVanityUI.hasEquipped && PetVanityUI.returned == PetVanityUI.NONE)
                 {
-                    PetVanityUI.returned = PetVanityUI.NONE;
-                    PetVanityUI.visible = false;
+                    //hovered over the middle and had something equipped: take accessory away
+                    pPlayer.DelAccessory(PetVanityUI.petAccessory);
                 }
+                //else if (returned == PetVanityUI.IGNORE) {nothing happens}
+
+                PetVanityUI.returned = PetVanityUI.NONE;
+                PetVanityUI.visible = false;
+            }
+
+            if (PetVanityUI.petAccessory.Type != itemType) //cancel the UI when you switch items
+            {
+                PetVanityUI.returned = PetVanityUI.NONE;
+                PetVanityUI.visible = false;
             }
         }
 
@@ -404,7 +408,7 @@ namespace AssortedCrazyThings
                     );
                 }
 
-                if (PetVanityUI.visible)
+                if (PetVanityUI.visible && PetVanityUIInterface != null)
                 {
                     //remove the item icon when using the item while held outside the inventory
                     int mouseItemIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Item / NPC Head"));
