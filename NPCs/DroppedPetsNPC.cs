@@ -9,6 +9,7 @@ using AssortedCrazyThings.Items.Pets.CuteSlimes;
 namespace AssortedCrazyThings.NPCs
 {
     [Content(ContentType.DroppedPets)]
+    [Autoload(false)]
     public class DroppedPetsNPC : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
