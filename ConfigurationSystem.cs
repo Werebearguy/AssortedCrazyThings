@@ -112,6 +112,7 @@ namespace AssortedCrazyThings
 				ContentType.OtherPets => "Other Pets",
 				ContentType.Weapons => "Weapons",
 				ContentType.Tools => "Tools",
+				ContentType.Placeables => "Placeables",
 				ContentType.BossConsolation => "Boss Consolation Items",
 				_ => string.Empty,
             };
@@ -141,7 +142,8 @@ namespace AssortedCrazyThings
 		OtherPets = 1 << 6,
 		Weapons = 1 << 7,
 		Tools = 1 << 8,
-		BossConsolation = 1 << 9,
+		Placeables = 1 << 9,
+		BossConsolation = 1 << 10,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

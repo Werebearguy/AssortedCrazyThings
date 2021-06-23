@@ -294,7 +294,7 @@ namespace AssortedCrazyThings
 
         public override void AddRecipeGroups()
         {
-            if (AConfigurationConfig.Instance.CuteSlimes)
+            if (AConfigurationConfig.Instance.CuteSlimes && AConfigurationConfig.Instance.Placeables)
             {
                 RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
                 {

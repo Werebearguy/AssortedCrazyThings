@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-    [Autoload]
     public class WyvernCampfireItem : PlaceableItem<WyvernCampfireTile>
     {
         public override void SetStaticDefaults()

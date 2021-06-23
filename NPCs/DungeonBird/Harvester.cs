@@ -245,11 +245,17 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npcLoot.Add(ItemDropRule.BossBag(BossBag)); //this requires you to set BossBag in SetDefaults accordingly
 
             //Relic and trophy are NOT spawned in the bag
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HarvesterRelicItem>()));
+            if (AConfigurationConfig.Instance.Placeables)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
+                npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HarvesterRelicItem>()));
+            }
 
             //Master mode pet
-            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
+            if (AConfigurationConfig.Instance.DroppedPets)
+            {
+                npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
+            }
 
             //Drop one of three sigils, one random one per player
             var sigils = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };

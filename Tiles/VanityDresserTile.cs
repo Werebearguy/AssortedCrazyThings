@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-    [Autoload]
+    [Content(ContentType.Placeables)]
     public class VanityDresserTile : DroppableTile<VanityDresserItem>
     {
         public override void SetDefaults()

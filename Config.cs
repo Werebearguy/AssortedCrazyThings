@@ -90,6 +90,12 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
+		[Tooltip("Disable items that place things in the world")]
+		[Label("Placeables")]
+		public bool Placeables { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
 		[Tooltip("Disable items that drop for failing to defeat a vanilla boss within 5 attempts")]
 		[Label("Boss Consolation")]
 		public bool BossConsolation { get; set; }
@@ -130,6 +136,10 @@ namespace AssortedCrazyThings
 			if (!Tools)
 			{
 				FilterFlags |= ContentType.Tools;
+			}
+			if (!Placeables)
+			{
+				FilterFlags |= ContentType.Placeables;
 			}
 			if (!BossConsolation)
 			{
