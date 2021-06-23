@@ -23,10 +23,5 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
         {
             Item.value = Item.sellPrice(copper: 20);
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe(1).AddIngredient(ModContent.ItemType<PrinceSlimeItem>()).AddIngredient(ModContent.ItemType<CuteSlimeBlueItem>()).AddTile(TileID.Solidifier).Register();
-        }
     }
 }

@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
-using AssortedCrazyThings.Items.Pets.CuteSlimes;
 
 namespace AssortedCrazyThings.NPCs
 {
@@ -77,10 +76,6 @@ namespace AssortedCrazyThings.NPCs
                 LeadingConditionRule leadingConditionRule = new LeadingConditionRule(new Conditions.MissingTwin());
                 leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TinyTwinsItem>(), chanceDenominator: 10));
                 npcLoot.Add(leadingConditionRule);
-            }
-            else if (npc.type == NPCID.QueenSlimeBoss)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CuteSlimeQueenItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.Plantera)
             {

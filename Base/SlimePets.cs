@@ -237,16 +237,11 @@ namespace AssortedCrazyThings.Base
             (
                 type: ModContent.ProjectileType<CuteSlimePinkProj>()
             ));
-
-            if (AConfigurationConfig.Instance.DroppedPets)
-            {
-                Add(SlimePet.NewSlimePet
-                (
-                    type: ModContent.ProjectileType<CuteSlimeQueenProj>(),
-                    postAdditionSlot: (byte)SlotType.Hat
-                ));
-            }
-
+            Add(SlimePet.NewSlimePet
+            (
+                type: ModContent.ProjectileType<CuteSlimeQueenProj>(),
+                postAdditionSlot: (byte)SlotType.Hat
+            ));
             Add(SlimePet.NewSlimePet
             (
                 type: ModContent.ProjectileType<CuteSlimeRainbowProj>()
