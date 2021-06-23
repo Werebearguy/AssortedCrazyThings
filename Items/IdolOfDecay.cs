@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    [Autoload]
+    [Content(ContentType.Bosses)]
     public class IdolOfDecay : AssItem
     {
         public override void SetStaticDefaults()

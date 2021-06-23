@@ -43,4 +43,42 @@ namespace AssortedCrazyThings
     {
 
     }
+
+    [Autoload(false)]
+    public abstract class AssSystem : ModSystem
+    {
+
+    }
+
+    //ModGore, ModDust
+
+    [Autoload(false)]
+    public abstract class AssGlobalNPC : GlobalNPC
+    {
+
+    }
+
+    [Autoload(false)]
+    public abstract class AssGlobalBuff : GlobalBuff
+    {
+
+    }
+
+    [Autoload(false)]
+    public abstract class AssGlobalProjectile : GlobalProjectile
+    {
+
+    }
+
+    [Autoload(false)]
+    public abstract class AssGlobalItem : GlobalItem
+    {
+
+    }
+
+    [Autoload(false)]
+    public abstract class AssGlobalTile : GlobalTile
+    {
+
+    }
 }

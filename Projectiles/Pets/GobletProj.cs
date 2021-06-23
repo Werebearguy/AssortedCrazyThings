@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     [Content(ContentType.DroppedPets)]
-    public class GobletProj : AssProjectile
+    public class GobletProj : SimplePetProjBase
     {
         private int frame2Counter = 0;
         private int frame2 = 0;

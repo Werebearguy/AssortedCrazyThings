@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     public class DynamiteBunnyItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<DynamiteBunnyProj>();

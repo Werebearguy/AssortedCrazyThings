@@ -5,8 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
-    public class EnchantedSwordProj : AssProjectile
+    public class EnchantedSwordProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

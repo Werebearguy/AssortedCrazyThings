@@ -8,7 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Tools
     [Autoload]
     abstract public class ExtendoNetBaseProj : AssProjectile
     {
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("EXTENDO!");

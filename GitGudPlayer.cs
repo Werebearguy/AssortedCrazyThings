@@ -364,7 +364,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Called in AssGlobalNPC.NPCLoot. Sends all participating players a reset packet
+        /// Called in GeneralGlobalNPC.NPCLoot. Sends all participating players a reset packet
         /// </summary>
         public static void Reset(NPC npc)
         {

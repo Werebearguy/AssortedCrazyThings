@@ -19,6 +19,7 @@ using Terraria.ModLoader.IO;
 namespace AssortedCrazyThings
 {
     [Autoload]
+    //[LegacyName("AssPlayer")] Maybe rename later
     public class AssPlayer : AssPlayerBase
     {
         public bool everburningCandleBuff = false;
@@ -136,7 +137,7 @@ namespace AssortedCrazyThings
         {
             AssPlayer clone = clientClone as AssPlayer;
             clone.shieldDroneReduction = shieldDroneReduction;
-            //Needs syncing because spawning drone parts depends on this serverside (See AssGlobalNPC.NPCLoot)
+            //Needs syncing because spawning drone parts depends on this serverside (See GeneralGlobalNPC.NPCLoot)
             clone.droneControllerUnlocked = droneControllerUnlocked;
         }
 
@@ -800,7 +801,7 @@ namespace AssortedCrazyThings
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
         {
-            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in AssGlobalProj
+            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in EmpoweringBuffGlobalProjectile
         }
 
         public override void ModifyWeaponCrit(Item item, ref int crit)

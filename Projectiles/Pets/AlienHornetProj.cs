@@ -7,8 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
-    public class AlienHornetProj : AssProjectile
+    public class AlienHornetProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

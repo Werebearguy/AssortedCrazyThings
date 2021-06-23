@@ -5,7 +5,7 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     [Content(ContentType.CuteSlimes)]
-    public class CuteGastropodProj : AssProjectile
+    public class CuteGastropodProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

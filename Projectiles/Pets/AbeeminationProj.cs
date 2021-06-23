@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+    [Content(ContentType.OtherPets)]
     //check this file for more info vvvvvvvv
-    [Autoload]
     public class AbeeminationProj : BabySlimeBase
     {
         public override string Texture

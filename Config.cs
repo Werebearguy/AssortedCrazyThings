@@ -47,13 +47,13 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[Tooltip("This will also disable all their relevant content")]
-		[Label("Hostile NPCs")]
+		[Label("Hostile")]
 		public bool HostileNPCs { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[Tooltip("This will also disable all their relevant content - This does not disable Cute Slimes!")]
-		[Label("Friendly NPCs")]
+		[Label("Friendly")]
 		public bool FriendlyNPCs { get; set; }
 
 		[ReloadRequired]
@@ -69,6 +69,12 @@ namespace AssortedCrazyThings
 		[Tooltip("Disable pet items that drop from various NPCs")]
 		[Label("Dropped Pets")]
 		public bool DroppedPets { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
+		[Tooltip("Disable pet items that are obtained though other means (crafted, purchased) - This does not disable Cute Slimes!")]
+		[Label("Other Pets")]
+		public bool OtherPets { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
@@ -93,13 +99,17 @@ namespace AssortedCrazyThings
 			{
 				FilterFlags |= ContentType.FriendlyNPCs;
 			}
+			if (!CuteSlimes)
+			{
+				FilterFlags |= ContentType.CuteSlimes;
+			}
 			if (!DroppedPets)
 			{
 				FilterFlags |= ContentType.DroppedPets;
 			}
-			if (!CuteSlimes)
+			if (!OtherPets)
 			{
-				FilterFlags |= ContentType.CuteSlimes;
+				FilterFlags |= ContentType.OtherPets;
 			}
 			if (!BossConsolation)
 			{

@@ -6,7 +6,6 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     [LegacyName("AlienHornet")]
     public class AlienHornetItem : SimplePetItemBase
     {

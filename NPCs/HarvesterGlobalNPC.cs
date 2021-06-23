@@ -1,9 +1,5 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
-using AssortedCrazyThings.Items.DroneUnlockables;
-using AssortedCrazyThings.Items.Pets;
-using AssortedCrazyThings.Items.Placeable;
-using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class AssGlobalNPC : GlobalNPC
+    [Content(ContentType.Bosses)]
+    public class HarvesterGlobalNPC : AssGlobalNPC
     {
         public bool shouldSoulDrop = false;
 
@@ -24,18 +21,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void OnKill(NPC npc)
         {
-            //TODO convert this to a drop rule
-            if (npc.type == NPCID.TheDestroyer)
-            {
-                AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
-                    condition: delegate (NPC n, Player player)
-                    {
-                        return !DroneController.AllUnlocked(player);
-                    });
-            }
-
             //Soul spawn from dead enemies while harvester alive
-
             if (shouldSoulDrop)
             {
                 int soulType = ModContent.NPCType<DungeonSoul>();
@@ -52,7 +38,7 @@ namespace AssortedCrazyThings.NPCs
             }
 
             //Other
-            if (AConfigurationConfig.Instance.Bosses && !AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
+            if (!AssWorld.downedHarvester && !AssWorld.droppedHarvesterSpawnItemThisSession && !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes))
             {
                 int index = npc.FindClosestPlayer();
                 if (index != -1)
@@ -69,26 +55,6 @@ namespace AssortedCrazyThings.NPCs
                         }
                     }
                 }
-            }
-
-            GitgudData.Reset(npc);
-        }
-
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
-        {
-            if (type == NPCID.PartyGirl && NPC.downedSlimeKing)
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<SlimeBeaconItem>());
-                nextSlot++;
-            }
-        }
-
-        public override void SetupTravelShop(int[] shop, ref int nextSlot)
-        {
-            if (Main.rand.NextBool(4))
-            {
-                shop[nextSlot] = ModContent.ItemType<SuspiciousNuggetItem>();
-                nextSlot++;
             }
         }
     }

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    [Autoload]
+    [Content(ContentType.Bosses)]
     public class EnhancedHunterBuff : AssBuff
     {
         public override void SetDefaults()

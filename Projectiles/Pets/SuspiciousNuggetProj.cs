@@ -6,8 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
-    public class SuspiciousNuggetProj : AssProjectile
+    public class SuspiciousNuggetProj : SimplePetProjBase
     {
         private int frame2Counter = 0;
         private int frame2 = 0;

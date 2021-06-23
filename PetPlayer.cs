@@ -959,172 +959,178 @@ namespace AssortedCrazyThings
         {
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
-            CircleUIList = new List<CircleUIHandler>
+
+            CircleUIList = new List<CircleUIHandler>();
+
+            if (AConfigurationConfig.Instance.OtherPets)
             {
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => LifelikeMechanicalFrog,
-                uiConf: GetLifelikeMechanicalFrogConf,
-                onUIStart: () => mechFrogCrown,
-                onUIEnd: () => mechFrogCrown = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => DocileDemonEye,
-                uiConf: GetDocileDemonEyeConf,
-                onUIStart: () => petEyeType,
-                onUIEnd: () => petEyeType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => CursedSkull,
-                uiConf: GetCursedSkullConf,
-                onUIStart: () => cursedSkullType,
-                onUIEnd: () => cursedSkullType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => YoungWyvern,
-                uiConf: GetYoungWyvernConf,
-                onUIStart: () => youngWyvernType,
-                onUIEnd: () => youngWyvernType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => PetFishron,
-                uiConf: GetPetFishronConf,
-                onUIStart: () => petFishronType,
-                onUIEnd: () => petFishronType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => PetMoon,
-                uiConf: GetPetMoonConf,
-                onUIStart: () => petMoonType,
-                onUIEnd: () => petMoonType = (byte)CircleUI.returned,
-                triggerLeft: false,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => Abeemination,
-                uiConf: GetAbeeminationConf,
-                onUIStart: () => abeeminationType,
-                onUIEnd: () => abeeminationType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => LilWraps,
-                uiConf: GetLilWrapsConf,
-                onUIStart: () => lilWrapsType,
-                onUIEnd: () => lilWrapsType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => VampireBat,
-                uiConf: GetVampireBatConf,
-                onUIStart: () => vampireBatType,
-                onUIEnd: () => vampireBatType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => Pigronata,
-                uiConf: GetPigronataConf,
-                onUIStart: () => pigronataType,
-                onUIEnd: () => pigronataType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => QueenLarva,
-                uiConf: GetQueenLarvaConf,
-                onUIStart: () => queenLarvaType,
-                onUIEnd: () => queenLarvaType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => MiniAntlion,
-                uiConf: GetMiniAntlionConf,
-                onUIStart: () => miniAntlionType,
-                onUIEnd: () => miniAntlionType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => PetGoldfish,
-                uiConf: PetGoldfishConf,
-                onUIStart: () => petGoldfishType,
-                onUIEnd: () => petGoldfishType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => SkeletronHand,
-                uiConf: GetSkeletronHandConf,
-                onUIStart: () => skeletronHandType,
-                onUIEnd: () => skeletronHandType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => SkeletronPrimeHand,
-                uiConf: GetSkeletronPrimeHandConf,
-                onUIStart: () => skeletronPrimeHandType,
-                onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => PetCultist,
-                uiConf: GetPetCultistConf,
-                onUIStart: () => petCultistType,
-                onUIEnd: () => petCultistType = (byte)CircleUI.returned,
-                triggerLeft: false,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => PetAnomalocaris,
-                uiConf: GetAnomalocarisConf,
-                onUIStart: () => petAnomalocarisType,
-                onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => DynamiteBunny,
-                uiConf: GetDynamiteBunnyConf,
-                onUIStart: () => dynamiteBunnyType,
-                onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<VanitySelector>(),
-                condition: () => WallFragment,
-                uiConf: GetWallFragmentConf,
-                onUIStart: () => wallFragmentType,
-                onUIEnd: () => wallFragmentType = (byte)CircleUI.returned,
-                needsSaving: true
-            ),
-            //ALTERNATE
-            //    new CircleUIHandler(
-            //    triggerItem: ModContent.ItemType<VanitySelector>(),
-            //    condition: () => ClassName,
-            //    uiConf: GetClassNameConf,
-            //    onUIStart: () => classNameType,
-            //    onUIEnd: () => classNameType = (byte)CircleUI.returned,
-            //    needsSaving: true
-            //),
-            };
+                CircleUIList.AddRange(new List<CircleUIHandler>
+                {
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => LifelikeMechanicalFrog,
+                    uiConf: GetLifelikeMechanicalFrogConf,
+                    onUIStart: () => mechFrogCrown,
+                    onUIEnd: () => mechFrogCrown = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => DocileDemonEye,
+                    uiConf: GetDocileDemonEyeConf,
+                    onUIStart: () => petEyeType,
+                    onUIEnd: () => petEyeType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => CursedSkull,
+                    uiConf: GetCursedSkullConf,
+                    onUIStart: () => cursedSkullType,
+                    onUIEnd: () => cursedSkullType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => YoungWyvern,
+                    uiConf: GetYoungWyvernConf,
+                    onUIStart: () => youngWyvernType,
+                    onUIEnd: () => youngWyvernType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetFishron,
+                    uiConf: GetPetFishronConf,
+                    onUIStart: () => petFishronType,
+                    onUIEnd: () => petFishronType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetMoon,
+                    uiConf: GetPetMoonConf,
+                    onUIStart: () => petMoonType,
+                    onUIEnd: () => petMoonType = (byte)CircleUI.returned,
+                    triggerLeft: false,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => Abeemination,
+                    uiConf: GetAbeeminationConf,
+                    onUIStart: () => abeeminationType,
+                    onUIEnd: () => abeeminationType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => LilWraps,
+                    uiConf: GetLilWrapsConf,
+                    onUIStart: () => lilWrapsType,
+                    onUIEnd: () => lilWrapsType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => VampireBat,
+                    uiConf: GetVampireBatConf,
+                    onUIStart: () => vampireBatType,
+                    onUIEnd: () => vampireBatType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => Pigronata,
+                    uiConf: GetPigronataConf,
+                    onUIStart: () => pigronataType,
+                    onUIEnd: () => pigronataType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => QueenLarva,
+                    uiConf: GetQueenLarvaConf,
+                    onUIStart: () => queenLarvaType,
+                    onUIEnd: () => queenLarvaType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => MiniAntlion,
+                    uiConf: GetMiniAntlionConf,
+                    onUIStart: () => miniAntlionType,
+                    onUIEnd: () => miniAntlionType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetGoldfish,
+                    uiConf: PetGoldfishConf,
+                    onUIStart: () => petGoldfishType,
+                    onUIEnd: () => petGoldfishType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => SkeletronHand,
+                    uiConf: GetSkeletronHandConf,
+                    onUIStart: () => skeletronHandType,
+                    onUIEnd: () => skeletronHandType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => SkeletronPrimeHand,
+                    uiConf: GetSkeletronPrimeHandConf,
+                    onUIStart: () => skeletronPrimeHandType,
+                    onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetCultist,
+                    uiConf: GetPetCultistConf,
+                    onUIStart: () => petCultistType,
+                    onUIEnd: () => petCultistType = (byte)CircleUI.returned,
+                    triggerLeft: false,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetAnomalocaris,
+                    uiConf: GetAnomalocarisConf,
+                    onUIStart: () => petAnomalocarisType,
+                    onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => DynamiteBunny,
+                    uiConf: GetDynamiteBunnyConf,
+                    onUIStart: () => dynamiteBunnyType,
+                    onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => WallFragment,
+                    uiConf: GetWallFragmentConf,
+                    onUIStart: () => wallFragmentType,
+                    onUIEnd: () => wallFragmentType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                //ALTERNATE
+                //    new CircleUIHandler(
+                //    triggerItem: ModContent.ItemType<VanitySelector>(),
+                //    condition: () => ClassName,
+                //    uiConf: GetClassNameConf,
+                //    onUIStart: () => classNameType,
+                //    onUIEnd: () => classNameType = (byte)CircleUI.returned,
+                //    needsSaving: true
+                //),
+                });
+            }
 
             //TODO figure out a safe way of dynamically loading these without messing up order of saved data
             if (AConfigurationConfig.Instance.HostileNPCs)
@@ -1196,26 +1202,30 @@ namespace AssortedCrazyThings
         {
             //AssUtils.Print("set getfromclonedtypes p " + player.whoAmI + " " + mp);
             int index = 0;
-            mechFrogCrown = ClonedTypes[index++];
-            petEyeType = ClonedTypes[index++];
-            cursedSkullType = ClonedTypes[index++];
-            youngWyvernType = ClonedTypes[index++];
-            petFishronType = ClonedTypes[index++];
-            petMoonType = ClonedTypes[index++];
-            abeeminationType = ClonedTypes[index++];
-            lilWrapsType = ClonedTypes[index++];
-            vampireBatType = ClonedTypes[index++];
-            pigronataType = ClonedTypes[index++];
-            queenLarvaType = ClonedTypes[index++];
-            miniAntlionType = ClonedTypes[index++];
-            petGoldfishType = ClonedTypes[index++];
-            skeletronHandType = ClonedTypes[index++];
-            skeletronPrimeHandType = ClonedTypes[index++];
-            petCultistType = ClonedTypes[index++];
-            petAnomalocarisType = ClonedTypes[index++];
-            wallFragmentType = ClonedTypes[index++];
-            //ALTERNATE
-            //classNameType = ClonedTypes[index++];
+
+            if (AConfigurationConfig.Instance.OtherPets)
+            {
+                mechFrogCrown = ClonedTypes[index++];
+                petEyeType = ClonedTypes[index++];
+                cursedSkullType = ClonedTypes[index++];
+                youngWyvernType = ClonedTypes[index++];
+                petFishronType = ClonedTypes[index++];
+                petMoonType = ClonedTypes[index++];
+                abeeminationType = ClonedTypes[index++];
+                lilWrapsType = ClonedTypes[index++];
+                vampireBatType = ClonedTypes[index++];
+                pigronataType = ClonedTypes[index++];
+                queenLarvaType = ClonedTypes[index++];
+                miniAntlionType = ClonedTypes[index++];
+                petGoldfishType = ClonedTypes[index++];
+                skeletronHandType = ClonedTypes[index++];
+                skeletronPrimeHandType = ClonedTypes[index++];
+                petCultistType = ClonedTypes[index++];
+                petAnomalocarisType = ClonedTypes[index++];
+                wallFragmentType = ClonedTypes[index++];
+                //ALTERNATE
+                //classNameType = ClonedTypes[index++];
+            }
 
             if (AConfigurationConfig.Instance.HostileNPCs)
             {
@@ -1239,26 +1249,29 @@ namespace AssortedCrazyThings
             if (enteredWorld)
             {
                 int index = -1;
-                ClonedTypes[++index] = mechFrogCrown;
-                ClonedTypes[++index] = petEyeType;
-                ClonedTypes[++index] = cursedSkullType;
-                ClonedTypes[++index] = youngWyvernType;
-                ClonedTypes[++index] = petFishronType;
-                ClonedTypes[++index] = petMoonType;
-                ClonedTypes[++index] = abeeminationType;
-                ClonedTypes[++index] = lilWrapsType;
-                ClonedTypes[++index] = vampireBatType;
-                ClonedTypes[++index] = pigronataType;
-                ClonedTypes[++index] = queenLarvaType;
-                ClonedTypes[++index] = miniAntlionType;
-                ClonedTypes[++index] = petGoldfishType;
-                ClonedTypes[++index] = skeletronHandType;
-                ClonedTypes[++index] = skeletronPrimeHandType;
-                ClonedTypes[++index] = petCultistType;
-                ClonedTypes[++index] = petAnomalocarisType;
-                ClonedTypes[++index] = wallFragmentType;
-                //ALTERNATE
-                //ClonedTypes[++index] = classNameType;
+                if (AConfigurationConfig.Instance.OtherPets)
+                {
+                    ClonedTypes[++index] = mechFrogCrown;
+                    ClonedTypes[++index] = petEyeType;
+                    ClonedTypes[++index] = cursedSkullType;
+                    ClonedTypes[++index] = youngWyvernType;
+                    ClonedTypes[++index] = petFishronType;
+                    ClonedTypes[++index] = petMoonType;
+                    ClonedTypes[++index] = abeeminationType;
+                    ClonedTypes[++index] = lilWrapsType;
+                    ClonedTypes[++index] = vampireBatType;
+                    ClonedTypes[++index] = pigronataType;
+                    ClonedTypes[++index] = queenLarvaType;
+                    ClonedTypes[++index] = miniAntlionType;
+                    ClonedTypes[++index] = petGoldfishType;
+                    ClonedTypes[++index] = skeletronHandType;
+                    ClonedTypes[++index] = skeletronPrimeHandType;
+                    ClonedTypes[++index] = petCultistType;
+                    ClonedTypes[++index] = petAnomalocarisType;
+                    ClonedTypes[++index] = wallFragmentType;
+                    //ALTERNATE
+                    //ClonedTypes[++index] = classNameType;
+                }
 
                 if (AConfigurationConfig.Instance.HostileNPCs)
                 {

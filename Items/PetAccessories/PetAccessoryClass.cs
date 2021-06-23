@@ -464,7 +464,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static bool TryGetAccessoryFromItem(int type, out PetAccessory petAccessory) //since item types are unique, just look up in the global list
         {
-            if (AConfigurationConfig.Instance.CuteSlimes)
+            if (!AConfigurationConfig.Instance.CuteSlimes)
             {
                 petAccessory = null;
                 return false;

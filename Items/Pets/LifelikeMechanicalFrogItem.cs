@@ -6,7 +6,6 @@ using AssortedCrazyThings.Projectiles.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     [LegacyName("LifelikeMechanicalFrog")]
     public class LifelikeMechanicalFrogItem : SimplePetItemBase
     {

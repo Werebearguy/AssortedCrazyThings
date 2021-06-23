@@ -6,7 +6,9 @@ using Terraria.ModLoader.Default;
 
 namespace AssortedCrazyThings.Items
 {
-    public class DisabledGlobalItem : GlobalItem
+    //Responsible for showing why an item was unloaded/disabled
+    [Autoload]
+    public class DisabledGlobalItem : AssGlobalItem
     {
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {

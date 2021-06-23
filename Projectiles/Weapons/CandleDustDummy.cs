@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    //used in GlobalItem for creating candle dust
+    //used in EverburningGlobalItem for creating candle dust
     //TODO figure out dust spam with sling
     [Autoload]
     public class CandleDustDummy : AssProjectile

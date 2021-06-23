@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     [LegacyName("DetachedHungry")]
     public class DetachedHungryItem : SimplePetItemBase
     {

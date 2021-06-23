@@ -5,8 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
-    public class BrainofConfusionProj : AssProjectile
+    public class BrainofConfusionProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

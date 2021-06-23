@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    [Autoload]
     public class PetMoonBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<PetMoonProj>();

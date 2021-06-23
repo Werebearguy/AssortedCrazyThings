@@ -7,7 +7,8 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class WyvernCampfireNPC : GlobalNPC
+    [Autoload]
+    public class WyvernCampfireGlobalNPC : AssGlobalNPC
     {
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {
@@ -18,7 +19,6 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool InstancePerEntity => true;
 
-        #region Wyvern Campfire
 
         public const short fadeTimer = 254;
         public short fadeTimerCount = 0;
@@ -121,7 +121,7 @@ namespace AssortedCrazyThings.NPCs
                     if (rect.Intersects(other.Hitbox))
                     {
                         QuickWyvernDust(other.Center, Color.White, (float)(fadeTimerCount / 50f), 0.5f);
-                        other.GetGlobalNPC<WyvernCampfireNPC>().fadeTimerCount = fadeTimerCount;
+                        other.GetGlobalNPC<WyvernCampfireGlobalNPC>().fadeTimerCount = fadeTimerCount;
                     }
                 }
             }
@@ -183,6 +183,5 @@ namespace AssortedCrazyThings.NPCs
             }
             return true;
         }
-        #endregion
     }
 }

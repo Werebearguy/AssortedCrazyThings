@@ -6,7 +6,6 @@ using AssortedCrazyThings.Buffs.Pets;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     public class PigronataItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<PigronataProj>();

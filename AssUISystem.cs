@@ -14,7 +14,8 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings
 {
-    public class AssUISystem : ModSystem
+    [Autoload]
+    public class AssUISystem : AssSystem
     {
         /// <summary>
         /// Zoom level, (for UIs). 0f == fully zoomed out, 1f == fully zoomed in
@@ -57,12 +58,12 @@ namespace AssortedCrazyThings
                     HarvesterEdgeUI.Activate();
                     HarvesterEdgeUIInterface = new UserInterface();
                     HarvesterEdgeUIInterface.SetState(HarvesterEdgeUI);
-                }
 
-                EnhancedHunterUI = new EnhancedHunterUI();
-                EnhancedHunterUI.Activate();
-                EnhancedHunterUIInterface = new UserInterface();
-                EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
+                    EnhancedHunterUI = new EnhancedHunterUI();
+                    EnhancedHunterUI.Activate();
+                    EnhancedHunterUIInterface = new UserInterface();
+                    EnhancedHunterUIInterface.SetState(EnhancedHunterUI);
+                }
 
                 if (AConfigurationConfig.Instance.CuteSlimes)
                 {
@@ -348,7 +349,7 @@ namespace AssortedCrazyThings
             {
                 EnhancedHunterUI.visible = false;
             }
-            EnhancedHunterUI.Update(gameTime);
+            EnhancedHunterUI?.Update(gameTime);
         }
 
         private void UpdateHarvesterEdgeUI(GameTime gameTime)
@@ -439,19 +440,22 @@ namespace AssortedCrazyThings
                     },
                     InterfaceScaleType.UI)
                 );
-                
-                if (EnhancedHunterUI.visible)
+
+                if (EnhancedHunterUIInterface != null)
                 {
-                    layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-                    (
-                    "ACT: Enhanced Hunter",
-                    delegate
+                    if (EnhancedHunterUI.visible)
                     {
-                        EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
+                        layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+                        (
+                        "ACT: Enhanced Hunter",
+                        delegate
+                        {
+                            EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
+                            return true;
+                        },
+                        InterfaceScaleType.UI)
+                    );
+                    }
                 }
 
                 if (HarvesterEdgeUIInterface != null)

@@ -6,8 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    //[Content(ContentType.Boss)]
-    [Autoload]
+    [Content(ContentType.Bosses)]
     public class HarvesterTreasureBag : AssItem
     {
         //Sets the associated NPC this treasure bag is dropped from

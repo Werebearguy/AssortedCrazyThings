@@ -14,7 +14,8 @@ using Terraria.Chat;
 
 namespace AssortedCrazyThings
 {
-    public class AssWorld : ModSystem
+    [Autoload]
+    public class AssWorld : AssSystem
     {
         //basically "if they were alive last update"
         public bool megalodonAlive = false;

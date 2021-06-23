@@ -7,7 +7,7 @@ using AssortedCrazyThings.Base;
 
 namespace AssortedCrazyThings
 {
-	public static class ConfigurationSystem //Cannot be a ModSystem since that load runs post-mod.Load, we need it as early as possible
+	public static class ConfigurationSystem //Cannot be a ModSystem since that load runs post-mod.Load, we need it as early as possible (but after Autoload has taken place, so ILoadable.Load won't work either)
 	{
 		//These assume no ILoadable across the whole mod has a duplicate name (contrary to what tml allows)
 		public static Dictionary<string, ContentType> NonLoadedNames { get; private set; }
@@ -67,16 +67,12 @@ namespace AssortedCrazyThings
                     NonLoadedNamesByType[reasons].Add(name);
 				}
 			}
+
+			int b = 0;
 		}
 
         private static ContentType FindContentFilterReasons(ContentType contentType)
         {
-            if (contentType == ContentType.Always)
-            {
-				//Skip checking if this is not filtered anyway
-				return ContentType.Always;
-			}
-
 			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
 			return AConfigurationConfig.Instance.FilterFlags & contentType;
 		}
@@ -111,8 +107,9 @@ namespace AssortedCrazyThings
                 ContentType.Bosses => "Bosses",
                 ContentType.HostileNPCs => "Hostile NPCs",
                 ContentType.FriendlyNPCs => "Friendly NPCs",
-				ContentType.DroppedPets => "Dropped Pets",
 				ContentType.CuteSlimes => "Cute Slimes",
+				ContentType.DroppedPets => "Dropped Pets",
+				ContentType.OtherPets => "Other Pets",
 				ContentType.BossConsolation => "Boss Consolation Items",
 				_ => string.Empty,
             };
@@ -137,9 +134,10 @@ namespace AssortedCrazyThings
 		Bosses = 1 << 1,
 		HostileNPCs = 1 << 2,
 		FriendlyNPCs = 1 << 3,
-		DroppedPets = 1 << 4,
-		CuteSlimes = 1 << 5,
-		BossConsolation = 1 << 6,
+		CuteSlimes = 1 << 4,
+		DroppedPets = 1 << 5,
+		OtherPets = 1 << 6,
+		BossConsolation = 1 << 7,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

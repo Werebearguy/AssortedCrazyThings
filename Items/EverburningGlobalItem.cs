@@ -6,19 +6,14 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class AssGlobalItem : GlobalItem
+    [Autoload]
+    public class EverburningGlobalItem : AssGlobalItem
     {
-        public override bool InstancePerEntity
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public override bool InstancePerEntity => false;
 
         public override GlobalItem Clone(Item item, Item itemClone)
         {
-            AssGlobalItem myClone = (AssGlobalItem)base.Clone(item, itemClone);
+            EverburningGlobalItem myClone = (EverburningGlobalItem)base.Clone(item, itemClone);
             return myClone;
         }
 

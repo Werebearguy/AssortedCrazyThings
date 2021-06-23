@@ -8,8 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Autoload]
-    public class YoungWyvernProj : AssProjectile
+    public class YoungWyvernProj : SimplePetProjBase
     {
         public int frame = 0;
         public int frameCounter = 0;

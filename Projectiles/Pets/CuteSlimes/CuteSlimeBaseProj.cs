@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 {
     [Content(ContentType.CuteSlimes)]
-    public abstract class CuteSlimeBaseProj : AssProjectile
+    public abstract class CuteSlimeBaseProj : SimplePetProjBase
     {
         private const string PetAccessoryFolder = "AssortedCrazyThings/Items/PetAccessories/";
         public const string Sheet = "_Sheet";

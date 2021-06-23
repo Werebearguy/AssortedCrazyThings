@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     public class SuspiciousNuggetItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<SuspiciousNuggetProj>();

@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Autoload]
     [LegacyName("BrainofConfusion")]
     public class BrainofConfusionItem : SimplePetItemBase
     {
