@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Tools
 {
-    [Autoload]
+    [Content(ContentType.Tools)]
     abstract public class ExtendoNetBaseProj : AssProjectile
     {
         public override void SetStaticDefaults()

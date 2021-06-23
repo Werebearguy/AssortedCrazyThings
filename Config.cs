@@ -58,7 +58,7 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(false)]
-		[Tooltip("Disable all cute slime related content")]
+		[Tooltip("Disable all Cute Slime related content")]
 		[Label("Cute Slimes")]
 		public bool CuteSlimes { get; set; }
 
@@ -72,7 +72,7 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
-		[Tooltip("Disable pet items that are obtained though other means (crafted, purchased) - This does not disable Cute Slimes!")]
+		[Tooltip("Disable pet items that are obtained though other means (crafted, purchased) - This does not include Cute Slimes or pets caught through NPCs!")]
 		[Label("Other Pets")]
 		public bool OtherPets { get; set; }
 
@@ -81,6 +81,12 @@ namespace AssortedCrazyThings
 		[Tooltip("Disable items that deal damage (Pacifist path)")]
 		[Label("Weapons")]
 		public bool Weapons { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
+		[Tooltip("Disable items that are useful tools")]
+		[Label("Tools")]
+		public bool Tools { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
@@ -120,6 +126,10 @@ namespace AssortedCrazyThings
 			if (!Weapons)
 			{
 				FilterFlags |= ContentType.Weapons;
+			}
+			if (!Tools)
+			{
+				FilterFlags |= ContentType.Tools;
 			}
 			if (!BossConsolation)
 			{

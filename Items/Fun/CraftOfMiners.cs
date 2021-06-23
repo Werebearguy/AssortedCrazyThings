@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    [Content(ContentType.Weapons)]
+    [Content(ContentType.Weapons | ContentType.Tools)]
     public class CraftOfMiners : AssItem
     {
         public override void SetStaticDefaults()
