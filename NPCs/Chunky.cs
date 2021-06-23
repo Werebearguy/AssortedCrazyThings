@@ -7,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class Chunky : ModNPC
+    [Content(ContentType.HostileNPCs)]
+    public class Chunky : AssNPC
     {
         public override void SetStaticDefaults()
         {

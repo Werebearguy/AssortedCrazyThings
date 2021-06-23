@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class MiniMegalodonProj : ModProjectile
+    [Content(ContentType.HostileNPCs | ContentType.DroppedPets)]
+    public class MiniMegalodonProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

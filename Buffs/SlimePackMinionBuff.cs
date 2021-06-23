@@ -4,7 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class SlimePackMinionBuff : ModBuff
+    [Content(ContentType.Weapons)]
+    public class SlimePackMinionBuff : AssBuff
     {
         public override void SetDefaults()
         {

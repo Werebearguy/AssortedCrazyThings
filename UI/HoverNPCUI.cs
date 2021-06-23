@@ -84,29 +84,37 @@ namespace AssortedCrazyThings.UI
                     if (rectangle.Intersects(npcrect)) //mouse cursor inside hitbox
                     {
                         drawColor = new Color((byte)(35 * num), (byte)(200f * num), (byte)(254f * num), Main.mouseTextColor);
-                        if ((npc.type == ModContent.NPCType<DungeonSoul>() ||
-                           npc.type == ModContent.NPCType<DungeonSoulFreed>()) && npc.ai[0] == 0)
-                        {
-                            ret = "Catch it with a net";
-                        }
-                        else if (npc.type == ModContent.NPCType<Harvester1>())
-                        {
-                            //can technically also take life-1
-                            //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
-                            //ret = "Souls eaten: " + m.soulsEaten + "/" + HarvesterBase.MaxSouls; //m.maxSoulsEaten
 
-                            ret = "Souls eaten: " + (npc.life - 1) + "/" + HarvesterBase.MaxSouls;
-                        }
-                        else if (npc.type == ModContent.NPCType<Harvester2>())
+                        if (AConfigurationConfig.Instance.Bosses)
                         {
-                            ret = "Souls eaten: " + (npc.life - 1 + 5) + "/" + HarvesterBase.MaxSouls;
+                            if ((npc.type == ModContent.NPCType<DungeonSoul>() ||
+                               npc.type == ModContent.NPCType<DungeonSoulFreed>()) && npc.ai[0] == 0)
+                            {
+                                ret = "Catch it with a net";
+                            }
+                            else if (npc.type == ModContent.NPCType<Harvester1>())
+                            {
+                                //can technically also take life-1
+                                //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
+                                //ret = "Souls eaten: " + m.soulsEaten + "/" + HarvesterBase.MaxSouls; //m.maxSoulsEaten
+
+                                ret = "Souls eaten: " + (npc.life - 1) + "/" + HarvesterBase.MaxSouls;
+                            }
+                            else if (npc.type == ModContent.NPCType<Harvester2>())
+                            {
+                                ret = "Souls eaten: " + (npc.life - 1 + 5) + "/" + HarvesterBase.MaxSouls;
+                            }
                         }
 
-                        if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
+                        if (AConfigurationConfig.Instance.HostileNPCs)
                         {
-                            drawColor = Color.White * num;
-                            ret = "Catch it with a net";
+                            if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
+                            {
+                                drawColor = Color.White * num;
+                                ret = "Catch it with a net";
+                            }
                         }
+
                         break;
                     }
                 }

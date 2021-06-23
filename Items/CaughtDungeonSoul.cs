@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
+    [Content(ContentType.Bosses)]
     public class CaughtDungeonSoul : CaughtDungeonSoulBase
     {
         public override void SetStaticDefaults()

@@ -6,6 +6,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.SlimeHugs
 {
+    [Content(ContentType.CuteSlimes)]
+    [Autoload(false)]
     public abstract class SlimeHug : ModType, ICloneable, IComparable<SlimeHug>
     {
         public virtual int HugDuration => 120;

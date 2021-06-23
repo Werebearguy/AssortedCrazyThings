@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class TorturedSoulProj : ModProjectile
+    public class TorturedSoulProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

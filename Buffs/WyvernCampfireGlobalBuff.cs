@@ -4,7 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class WyvernCampfireBuff : GlobalBuff
+    [Autoload]
+    public class WyvernCampfireGlobalBuff : AssGlobalBuff
     {
         //Tells you its effects in the regular campfire buff (which the wyvern campfire applies)
         //Logic handled in WyvernCampfireTile.NearbyEffects and AssWorld.ResetNearbyTileEffects

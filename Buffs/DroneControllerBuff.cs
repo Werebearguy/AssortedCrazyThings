@@ -1,11 +1,11 @@
 ﻿using AssortedCrazyThings.Items.Weapons;
 using System;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class DroneControllerBuff : ModBuff
+    [Content(ContentType.Weapons)]
+    public class DroneControllerBuff : AssBuff
     {
         public override void SetDefaults()
         {

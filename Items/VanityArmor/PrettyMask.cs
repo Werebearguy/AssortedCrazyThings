@@ -3,8 +3,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.VanityArmor
 {
+    [Content(ContentType.VanityArmor)]
     [AutoloadEquip(EquipType.Head)]
-    public class PrettyMask : ModItem
+    public class PrettyMask : AssItem
     {
         public override void SetStaticDefaults()
         {

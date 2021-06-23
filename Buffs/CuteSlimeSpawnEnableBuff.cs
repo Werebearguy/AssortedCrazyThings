@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class CuteSlimeSpawnEnableBuff : ModBuff
+    [Content(ContentType.CuteSlimes)]
+    public class CuteSlimeSpawnEnableBuff : AssBuff
     {
         public override void SetDefaults()
         {

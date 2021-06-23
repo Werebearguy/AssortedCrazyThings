@@ -14,7 +14,8 @@ using Terraria.Chat;
 
 namespace AssortedCrazyThings
 {
-    public class AssWorld : ModSystem
+    [Autoload]
+    public class AssWorld : AssSystem
     {
         //basically "if they were alive last update"
         public bool megalodonAlive = false;
@@ -126,6 +127,11 @@ namespace AssortedCrazyThings
 
         private void LimitSoulCount()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (Main.GameUpdateCount % 30 == 15 && NPC.CountNPCS(ModContent.NPCType<DungeonSoul>()) > 10) //limit soul count in the world to 15
@@ -181,6 +187,16 @@ namespace AssortedCrazyThings
 
         public override void PostUpdateWorld()
         {
+            CheckSpawns();
+        }
+
+        private void CheckSpawns()
+        {
+            if (!AConfigurationConfig.Instance.HostileNPCs)
+            {
+                return;
+            }
+
             //this code is when I first started modding, terrible stuff
             //those flags are checked for trueness each update
             isMegalodonSpawned = false;

@@ -1,10 +1,10 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class InfinityRocket : ModItem
+    [Content(ContentType.Weapons)]
+    public class InfinityRocket : AssItem
     {
         public override void SetStaticDefaults()
         {

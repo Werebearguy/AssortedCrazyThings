@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.FriendlyNPCs)]
     public class FairySlimeItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<FairySlimeProj>();

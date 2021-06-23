@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class CraftOfMiners : ModItem
+    [Content(ContentType.Weapons | ContentType.Tools)]
+    public class CraftOfMiners : AssItem
     {
         public override void SetStaticDefaults()
         {

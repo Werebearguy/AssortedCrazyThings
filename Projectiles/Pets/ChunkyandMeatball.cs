@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class ChunkyProj : ModProjectile
+    [Content(ContentType.HostileNPCs)]
+    public class ChunkyProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {
@@ -50,7 +51,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
-    public class MeatballProj : ModProjectile
+    [Content(ContentType.HostileNPCs)]
+    public class MeatballProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

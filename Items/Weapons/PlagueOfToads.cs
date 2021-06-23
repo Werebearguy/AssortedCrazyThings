@@ -7,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class PlagueOfToads : ModItem
+    [Content(ContentType.Weapons)]
+    public class PlagueOfToads : AssItem
     {
         public override void SetStaticDefaults()
         {

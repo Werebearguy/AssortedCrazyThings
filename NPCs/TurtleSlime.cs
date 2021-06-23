@@ -7,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class TurtleSlime : ModNPC
+    [Content(ContentType.HostileNPCs)]
+    public class TurtleSlime : AssNPC
     {
         public override void SetStaticDefaults()
         {

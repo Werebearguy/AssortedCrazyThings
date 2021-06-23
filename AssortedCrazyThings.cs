@@ -1,16 +1,8 @@
 using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Base.SlimeHugs;
-using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Effects;
-using AssortedCrazyThings.Items;
-using AssortedCrazyThings.Items.Accessories.Useful;
-using AssortedCrazyThings.Items.PetAccessories;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
-using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles.Minions;
-using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -76,6 +68,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void AddToSoulBuffBlacklist()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             //assuming this is called after InitSoulBuffBlacklist
             List<int> tempList = new List<int>(soulBuffBlacklist)
             {
@@ -110,6 +107,12 @@ namespace AssortedCrazyThings
         private void LoadHarvesterTypes()
         {
             harvesterTypes = new int[5];
+
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             harvesterTypes[0] = ModContent.NPCType<Harvester1>();
             harvesterTypes[1] = ModContent.NPCType<Harvester2>();
             harvesterTypes[2] = ModContent.NPCType<Harvester>();
@@ -122,22 +125,9 @@ namespace AssortedCrazyThings
             harvesterTypes = null;
         }
 
-        private void LoadPets()
-        {
-            SlimePets.Load();
-            PetAccessory.Load();
-        }
-
-        private void UnloadPets()
-        {
-            SlimePets.Unload();
-            PetAccessory.Unload();
-            SlimeHugLoader.Unload();
-        }
-
         private void LoadMisc()
         {
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
+            if (!Main.dedServ && AConfigurationConfig.Instance.Bosses)
             {
                 animatedSoulTextures = new Texture2D[2];
 
@@ -148,21 +138,18 @@ namespace AssortedCrazyThings
 
         private void UnloadMisc()
         {
-            if (!Main.dedServ && Main.netMode != NetmodeID.Server)
-            {
-                animatedSoulTextures = null;
+            animatedSoulTextures = null;
 
-                PetEaterofWorldsBase.wormTypes = null;
+            PetEaterofWorldsBase.wormTypes = null;
 
-                PetDestroyerBase.wormTypes = null;
-            }
+            PetDestroyerBase.wormTypes = null;
         }
 
         public override void Load()
         {
-            ShaderManager.Load();
+            ConfigurationSystem.Load();
 
-            LoadPets();
+            ShaderManager.Load();
 
             LoadHarvesterTypes();
 
@@ -173,9 +160,9 @@ namespace AssortedCrazyThings
 
         public override void Unload()
         {
-            ShaderManager.Unload();
+            ConfigurationSystem.Unload();
 
-            UnloadPets();
+            ShaderManager.Unload();
 
             UnloadHarvesterTypes();
 
@@ -183,7 +170,7 @@ namespace AssortedCrazyThings
 
             GitgudData.Unload();
 
-            EverhallowedLantern.Unload();
+            EverhallowedLantern.DoUnload();
         }
 
         public override void PostSetupContent()
@@ -193,109 +180,38 @@ namespace AssortedCrazyThings
 
             GitgudData.Load();
 
-            DroneController.Load();
+            DroneController.DoLoad();
 
-            EverhallowedLantern.Load();
-
-            SlimePets.PostSetup();
+            EverhallowedLantern.DoLoad();
 
             AddToSoulBuffBlacklist();
 
-            PetEaterofWorldsBase.wormTypes = new int[]
+            if (AConfigurationConfig.Instance.DroppedPets)
             {
+                PetEaterofWorldsBase.wormTypes = new int[]
+                {
                 ModContent.ProjectileType<PetEaterofWorldsHead>(),
                 ModContent.ProjectileType<PetEaterofWorldsBody1>(),
                 ModContent.ProjectileType<PetEaterofWorldsBody2>(),
                 ModContent.ProjectileType<PetEaterofWorldsTail>()
-            };
+                };
 
-            PetDestroyerBase.wormTypes = new int[]
-            {
+                PetDestroyerBase.wormTypes = new int[]
+                {
                 ModContent.ProjectileType<PetDestroyerHead>(),
                 ModContent.ProjectileType<PetDestroyerBody1>(),
                 ModContent.ProjectileType<PetDestroyerBody2>(),
                 ModContent.ProjectileType<PetDestroyerTail>()
-            };
-
-            //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
-            if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
-            {
-                //5.1f means just after skeletron
-                if (bossChecklist.Version >= new Version(1, 0))
-                {
-                    /*
-                     * "AddMiniBoss",
-                     * float progression,
-                     * int/List<int> miniBossNPCIDs,
-                     * Mod mod,
-                     * string minibossName,
-                     * Func<bool> downedMiniBoss,
-                     * int/List<int> SpawnItemIDs,
-                     * int/List<int> CollectionItemIDs,
-                     * int/List<int> LootItemIDs,
-                     * [string spawnInfo],
-                     * [string despawnMessage],
-                     * [string texture],
-                     * [string overrideHeadIconTexture],
-                     * [Func<bool> miniBossAvailable]
-                     */
-
-                    int summonItem = ModContent.ItemType<IdolOfDecay>();
-                    bossChecklist.Call(
-                        "AddMiniBoss",
-                        5.1f,
-                        ModContent.NPCType<Harvester>(),
-                        this,
-                        Harvester.name,
-                        (Func<bool>)(() => AssWorld.downedHarvester),
-                        summonItem,
-                        ModContent.ItemType<SoulHarvesterMask>(),
-                        new List<int>
-                        {
-                            summonItem,
-                            ModContent.ItemType<CaughtDungeonSoulFreed>(),
-                            ModContent.ItemType<SigilOfRetreat>(),
-                            ModContent.ItemType<SigilOfEmergency>(),
-                            ModContent.ItemType<SigilOfPainSuppression>(),
-                        },
-                        $"Use a [i:{summonItem}] in the dungeon after Skeletron has been defeated",
-                        null,
-                        $"{this.Name}/NPCs/DungeonBird/HarvesterPreview"
-                    );
-                }
-                else
-                {
-                    bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ModContent.ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
-                }
-            }
-
-            if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
-            {
-                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
-                {
-                    ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
-                });
-                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverhallowedLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
-                {
-                    ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
-                    ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
-                    ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
-                    ModContent.ProjectileType<CompanionDungeonSoulSightMinion>()
-                });
-                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<SlimeHandlerKnapsack>(), ModContent.BuffType<SlimePackMinionBuff>(), ModContent.ProjectileType<SlimePackMinion>());
-                List<int> drones = new List<int>();
-                foreach (var drone in DroneController.DataList)
-                {
-                    drones.Add(drone.ProjType);
-                }
-                summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<DroneController>(), ModContent.BuffType<DroneControllerBuff>(), drones);
+                };
             }
         }
 
         public override void AddRecipeGroups()
         {
-            RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
+            if (AConfigurationConfig.Instance.CuteSlimes && AConfigurationConfig.Instance.Placeables)
             {
+                RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
+                {
                 ModContent.ItemType<CuteSlimeBlueItem>(),
                 ModContent.ItemType<CuteSlimeBlackItem>(),
                 ModContent.ItemType<CuteSlimeGreenItem>(),
@@ -304,7 +220,8 @@ namespace AssortedCrazyThings
                 ModContent.ItemType<CuteSlimeRainbowItem>(),
                 ModContent.ItemType<CuteSlimeRedItem>(),
                 ModContent.ItemType<CuteSlimeYellowItem>()
-            }));
+                }));
+            }
 
             RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
             {

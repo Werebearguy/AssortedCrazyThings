@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
+    [Content(ContentType.DroppedPets)]
     public class GobletBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<GobletProj>();

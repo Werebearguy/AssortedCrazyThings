@@ -6,7 +6,8 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
-    public class HeavyLaserDroneLaser : ModProjectile
+    [Autoload]
+    public class HeavyLaserDroneLaser : AssProjectile
     {
         //shot with magnitude 6
         private static readonly int LifeTime = 100;

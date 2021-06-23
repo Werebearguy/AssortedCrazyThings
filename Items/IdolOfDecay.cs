@@ -7,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class IdolOfDecay : ModItem
+    [Content(ContentType.Bosses)]
+    public class IdolOfDecay : AssItem
     {
         public override void SetStaticDefaults()
         {
@@ -36,6 +37,11 @@ namespace AssortedCrazyThings.Items
 
         public override bool UseItem(Player player)
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return true;
+            }
+
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int i = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, AssortedCrazyThings.harvesterTypes[0]);

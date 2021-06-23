@@ -4,6 +4,7 @@ using Terraria;
 
 namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 {
+    [Content(ContentType.CuteSlimes)]
     public class CuteSlimeQueenProj : CuteSlimeBaseProj
     {
         public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeQueen;

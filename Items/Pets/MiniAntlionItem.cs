@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.DroppedPets)]
     public class MiniAntlionItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<MiniAntlionProj>();

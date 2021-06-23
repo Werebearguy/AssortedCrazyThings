@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class SwarmofCthulhuProj : ModProjectile
+    [Content(ContentType.DroppedPets)]
+    public class SwarmofCthulhuProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.DrawLayers
 {
-    public class HarvesterWingsLayer : PlayerDrawLayer
+    [Content(ContentType.Bosses)]
+    public class HarvesterWingsLayer : AssPlayerLayer
     {
         private Asset<Texture2D> wingTexture;
 

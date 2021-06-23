@@ -226,8 +226,13 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Called in Mod.Load
         /// </summary>
-        public static void Load()
+        public static void DoLoad()
         {
+            if (!AConfigurationConfig.Instance.Weapons)
+            {
+                return;
+            }
+
             Array a = Enum.GetValues(typeof(DroneType));
             DataList = new DroneData[a.Length - 1]; //without None
             int i = 0;
@@ -310,10 +315,8 @@ namespace AssortedCrazyThings.Items.Weapons
             return true;
         }
 
-        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            player.AddBuff(Item.buffType, 2);
-
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
             type = GetDroneData(selected).ProjType;

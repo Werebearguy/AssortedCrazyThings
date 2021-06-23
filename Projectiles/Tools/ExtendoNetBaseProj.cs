@@ -5,9 +5,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Tools
 {
-    abstract public class ExtendoNetBaseProj : ModProjectile
+    [Content(ContentType.Tools)]
+    abstract public class ExtendoNetBaseProj : AssProjectile
     {
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("EXTENDO!");

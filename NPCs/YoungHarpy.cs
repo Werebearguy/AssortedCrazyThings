@@ -7,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class YoungHarpy : ModNPC
+    [Content(ContentType.FriendlyNPCs)]
+    public class YoungHarpy : AssNPC
     {
         public override void SetStaticDefaults()
         {

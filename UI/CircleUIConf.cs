@@ -102,15 +102,13 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// Add trigger item for the UI to check for when holding the item type
         /// </summary>
-        public static void AddItemAsTrigger(int triggerItemType, bool triggerLeft = true)
+        public void AddTriggers()
         {
-            if (triggerLeft)
+            int triggerItemType = TriggerItem;
+            var list = TriggerLeft ? TriggerListLeft : TriggerListRight;
+            if (!list.Contains(triggerItemType))
             {
-                if (!TriggerListLeft.Contains(triggerItemType)) TriggerListLeft.Add(triggerItemType);
-            }
-            else
-            {
-                if (!TriggerListRight.Contains(triggerItemType)) TriggerListRight.Add(triggerItemType);
+                list.Add(triggerItemType);
             }
         }
     }

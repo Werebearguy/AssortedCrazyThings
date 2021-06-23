@@ -5,20 +5,19 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     [AutoloadEquip(EquipType.Shoes)]
-    public class SlipperySoles : ModItem
+    public class SlipperySoles : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slippery Soles");
             Tooltip.SetDefault("You slip and slide on all blocks");
         }
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 20;
             Item.height = 28;
             Item.value = 0;
             Item.rare = -11;
-            Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

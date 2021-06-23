@@ -5,15 +5,10 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles
 {
-    public class AssGlobalProj : GlobalProjectile
+    [Autoload]
+    public class EmpoweringBuffGlobalProjectile : AssGlobalProjectile
     {
-        public override bool InstancePerEntity
-        {
-            get
-            {
-                return true;
-            }
-        }
+        //public override bool InstancePerEntity => false;
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {

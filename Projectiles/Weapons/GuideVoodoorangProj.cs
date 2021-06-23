@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class GuideVoodoorangProj : ModProjectile
+    [Content(ContentType.Weapons)]
+    public class GuideVoodoorangProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

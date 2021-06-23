@@ -6,7 +6,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Tools
 {
-    public abstract class ExtendoNetBase : ModItem
+    [Content(ContentType.Tools)]
+    public abstract class ExtendoNetBase : AssItem
     {
         public override void SetDefaults()
         {

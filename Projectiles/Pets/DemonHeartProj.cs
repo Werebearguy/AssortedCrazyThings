@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class DemonHeartProj : ModProjectile
+    public class DemonHeartProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

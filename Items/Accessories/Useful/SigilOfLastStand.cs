@@ -2,34 +2,26 @@ using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    //TODO make it abstract
-    public class SigilOfLastStand : ModItem
+    public class SigilOfLastStand : SigilItemBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Last Stand");
             Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
                 + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
-
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-
-            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 30;
             Item.height = 30;
             Item.value = Item.sellPrice(0, 2, 0, 0);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

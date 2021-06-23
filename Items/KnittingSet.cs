@@ -1,10 +1,10 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class KnittingSet : ModItem
+    [Content(ContentType.CuteSlimes)]
+    public class KnittingSet : AssItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items
             Item.width = 22;
             Item.height = 22;
             Item.rare = -11;
-            Item.value = Item.sellPrice(silver: 35);
+            Item.value = Item.sellPrice(silver: 30);
         }
 
         public override void AddRecipes()

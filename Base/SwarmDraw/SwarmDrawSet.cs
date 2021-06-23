@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Base.SwarmDraw
     /// The PlayerDrawLayers added here have to NOT be autoloaded, they'll get added through ILoadable.Load automatically.
     /// Those instances are fetched on the SwarmDrawPlayer and cloned (so players don't share data between eachother)
     /// </summary>
-    [Autoload(true, Side = ModSide.Client)]
+    [Autoload(false, Side = ModSide.Client)]
     public abstract class SwarmDrawSet : ILoadable, ICloneable
     {
         private bool firstTick = true;

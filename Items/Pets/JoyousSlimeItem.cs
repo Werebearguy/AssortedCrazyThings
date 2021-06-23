@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.FriendlyNPCs)]
     public class JoyousSlimeItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<JoyousSlimeProj>();

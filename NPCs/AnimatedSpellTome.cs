@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class AnimatedSpellTome : ModNPC
+    [Content(ContentType.HostileNPCs)]
+    public class AnimatedSpellTome : AssNPC
     {
         public override void SetStaticDefaults()
         {

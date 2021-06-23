@@ -282,6 +282,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
                     //make sound
                     if (Projectile.soundDelay <= 0)
                     {
+                        //TODO find some better sound to use
                         Projectile.soundDelay = 20;
                         float volume = FixVolume(0.7f + ratio * 0.5f);
                         float pitch = -0.1f + ratio * 0.4f;

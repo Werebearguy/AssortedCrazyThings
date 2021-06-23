@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class JoyousSlime : ModNPC
+    [Content(ContentType.FriendlyNPCs)]
+    public class JoyousSlime : AssNPC
     {
         public override void SetStaticDefaults()
         {

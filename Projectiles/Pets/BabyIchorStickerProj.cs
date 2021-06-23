@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class BabyIchorStickerProj : ModProjectile
+    public class BabyIchorStickerProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

@@ -4,6 +4,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
+    [Content(ContentType.Placeables | ContentType.CuteSlimes)]
     public class CuteSlimeStatueItem : PlaceableItem<CuteSlimeStatueTile>
     {
         public override void SetStaticDefaults()

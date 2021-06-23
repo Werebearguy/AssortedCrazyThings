@@ -1,13 +1,12 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class TrueLegendaryWoodenSwordProj : ModProjectile
+    [Content(ContentType.Weapons)]
+    public class TrueLegendaryWoodenSwordProj : AssProjectile
     {
         public override void SetStaticDefaults()
         {

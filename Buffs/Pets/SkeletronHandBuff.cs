@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
+    [Content(ContentType.DroppedPets)]
     public class SkeletronHandBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<SkeletronHandProj>();

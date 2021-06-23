@@ -1,12 +1,12 @@
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
     /// <summary>
     /// Base class for simple pet buffs with one projectile. Defaults to a regular pet (not light pet)
     /// </summary>
-    public abstract class SimplePetBuffBase : ModBuff
+    [Content(ContentType.OtherPets)] //Give it to the base class, as it covers most pets
+    public abstract class SimplePetBuffBase : AssBuff
     {
         public abstract ref bool PetBool(Player player);
 

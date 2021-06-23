@@ -12,7 +12,8 @@ namespace AssortedCrazyThings.NPCs
 {
     //this version of "retexture" is old and not recommended, refer to DemonEyeFractured or similar
 
-    public class AnimatedTome : ModNPC
+    [Content(ContentType.HostileNPCs)]
+    public class AnimatedTome : AssNPC
     {
         public override void SetStaticDefaults()
         {

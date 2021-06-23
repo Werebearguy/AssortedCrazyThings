@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetSunProj : ModProjectile
+    public class PetSunProj : SimplePetProjBase
     {
         private float coronaRotation = 0f;
         private const float coronaRotationSpeed = 0.008f;

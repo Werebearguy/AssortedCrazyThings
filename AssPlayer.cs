@@ -18,7 +18,9 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-    public class AssPlayer : ModPlayer
+    [Autoload]
+    //[LegacyName("AssPlayer")] Maybe rename later
+    public class AssPlayer : AssPlayerBase
     {
         public bool everburningCandleBuff = false;
         public bool everburningCursedCandleBuff = false;
@@ -135,7 +137,7 @@ namespace AssortedCrazyThings
         {
             AssPlayer clone = clientClone as AssPlayer;
             clone.shieldDroneReduction = shieldDroneReduction;
-            //Needs syncing because spawning drone parts depends on this serverside (See AssGlobalNPC.NPCLoot)
+            //Needs syncing because spawning drone parts depends on this serverside (See GeneralGlobalNPC.NPCLoot)
             clone.droneControllerUnlocked = droneControllerUnlocked;
         }
 
@@ -233,6 +235,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void PreSyncSoulTemp(Projectile proj)
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             if (proj.ModProjectile is CompanionDungeonSoulMinionBase soul)
             {
                 soul.isTemp = true;
@@ -244,6 +251,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulTemp()
         {
+            if (!AConfigurationConfig.Instance.Bosses) //TODO accessories
+            {
+                return;
+            }
+
             if (tempSoulMinion != null && !tempSoulMinion.IsAir && Player.whoAmI == Main.myPlayer)
             {
                 bool checkIfAlive = false;
@@ -281,6 +293,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulsWhenHarvesterIsAlive()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls)
             if (Main.GameUpdateCount % 30 == 4)
             {
@@ -322,6 +339,11 @@ namespace AssortedCrazyThings
         /// </summary>
         public void ConvertInertSoulsInventory()
         {
+            if (!AConfigurationConfig.Instance.Bosses)
+            {
+                return;
+            }
+
             //this gets called once on server side for all players, and then each player calls it on itself client side
             int tempStackCount;
             int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
@@ -453,10 +475,7 @@ namespace AssortedCrazyThings
 
                     Player.AddBuff(BuffID.RapidHealing, 300, false);
 
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, Player.whoAmI);
-                    }
+                    NetMessage.SendData(MessageID.PlayerControls, number: Player.whoAmI);
 
                     teleportHomeTimer = TeleportHomeTimerMax;
                     return false;
@@ -467,12 +486,12 @@ namespace AssortedCrazyThings
 
         private void ApplyCandleDebuffs(Entity victim)
         {
-            if (victim is NPC)
+            if (victim is NPC npc)
             {
-                if (everburningCandleBuff) ((NPC)victim).AddBuff(BuffID.OnFire, 120);
-                if (everburningCursedCandleBuff) ((NPC)victim).AddBuff(BuffID.CursedInferno, 120);
-                if (everfrozenCandleBuff) ((NPC)victim).AddBuff(BuffID.Frostburn, 120);
-                if (everburningShadowflameCandleBuff) ((NPC)victim).AddBuff(BuffID.ShadowFlame, 60);
+                if (everburningCandleBuff) npc.AddBuff(BuffID.OnFire, 120);
+                if (everburningCursedCandleBuff) npc.AddBuff(BuffID.CursedInferno, 120);
+                if (everfrozenCandleBuff) npc.AddBuff(BuffID.Frostburn, 120);
+                if (everburningShadowflameCandleBuff) npc.AddBuff(BuffID.ShadowFlame, 60);
             }
             //else if (victim is Player)
         }
@@ -516,9 +535,49 @@ namespace AssortedCrazyThings
             drawEffectsCalledOnce = false;
 
             //needs to call new List() since Initialize() is called per player in the player select screen
-            CircleUIList = new List<CircleUIHandler>
+            CircleUIList = new List<CircleUIHandler>();
+
+            if (AConfigurationConfig.Instance.Weapons)
             {
-                new CircleUIHandler(
+                CircleUIList.AddRange(new List<CircleUIHandler>
+                {
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
+                    condition: () => true,
+                    uiConf: SlimeHandlerKnapsack.GetUIConf,
+                    onUIStart: () => selectedSlimePackMinionType,
+                    onUIEnd: delegate
+                    {
+                        selectedSlimePackMinionType = (byte)CircleUI.returned;
+                        AssUtils.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
+                    },
+                    triggerLeft: false
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<DroneController>(),
+                    condition: () => true,
+                    uiConf: DroneController.GetUIConf,
+                    onUIStart: delegate
+                    {
+                        if (Utils.IsPowerOfTwo((int)selectedDroneControllerMinionType))
+                        {
+                            return (int)Math.Log((int)selectedDroneControllerMinionType, 2);
+                        }
+                        return 0;
+                    },
+                    onUIEnd: delegate
+                    {
+                        selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
+                        AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
+                    },
+                    triggerLeft: false
+                )}
+                );
+            }
+
+            if (AConfigurationConfig.Instance.Bosses && AConfigurationConfig.Instance.Weapons)
+            {
+                CircleUIList.Add(new CircleUIHandler(
                 triggerItem: ModContent.ItemType<EverhallowedLantern>(),
                 condition: () => true,
                 uiConf: EverhallowedLantern.GetUIConf,
@@ -536,44 +595,13 @@ namespace AssortedCrazyThings
                     AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
                 },
                 triggerLeft: false
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
-                condition: () => true,
-                uiConf: SlimeHandlerKnapsack.GetUIConf,
-                onUIStart: () => selectedSlimePackMinionType,
-                onUIEnd: delegate
-                {
-                    selectedSlimePackMinionType = (byte)CircleUI.returned;
-                    AssUtils.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
-                },
-                triggerLeft: false
-            ),
-                new CircleUIHandler(
-                triggerItem: ModContent.ItemType<DroneController>(),
-                condition: () => true,
-                uiConf: DroneController.GetUIConf,
-                onUIStart: delegate
-                {
-                    if (Utils.IsPowerOfTwo((int)selectedDroneControllerMinionType))
-                    {
-                        return (int)Math.Log((int)selectedDroneControllerMinionType, 2);
-                    }
-                    return 0;
-                },
-                onUIEnd: delegate
-                {
-                    selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-                    AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
-                },
-                triggerLeft: false
-            )
-            };
+                ));
+            }
 
             // after filling the list, set the trigger list
             for (int i = 0; i < CircleUIList.Count; i++)
             {
-                CircleUIHandler.AddItemAsTrigger(CircleUIList[i].TriggerItem, CircleUIList[i].TriggerLeft);
+                CircleUIList[i].AddTriggers();
             }
         }
         #endregion
@@ -775,7 +803,7 @@ namespace AssortedCrazyThings
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
         {
-            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in AssGlobalProj
+            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in EmpoweringBuffGlobalProjectile
         }
 
         public override void ModifyWeaponCrit(Item item, ref int crit)
@@ -843,7 +871,7 @@ namespace AssortedCrazyThings
                     drawEffectsCalledOnce = false;
                 }
 
-                if (Main.myPlayer == Player.whoAmI)
+                if (Main.myPlayer == Player.whoAmI && AConfigurationConfig.Instance.Weapons)
                 {
                     if (Player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
                 }

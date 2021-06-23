@@ -4,7 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class TomeOfShadowflameSkulls : ModItem
+    [Content(ContentType.Weapons)]
+    public class TomeOfShadowflameSkulls : AssItem
     {
         public override void SetDefaults()
         {

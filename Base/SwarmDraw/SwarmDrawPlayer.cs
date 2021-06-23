@@ -10,7 +10,8 @@ using System;
 namespace AssortedCrazyThings.Base.SwarmDraw
 {
     //TODO unhardcode this when both a better tml loader comes along and more swarm draw sets exist
-    public class SwarmDrawPlayer : ModPlayer
+    [Autoload]
+    public class SwarmDrawPlayer : AssPlayerBase
     {
         public static void HandleDrawSet(ref SwarmDrawSet set, Func<SwarmDrawSet> gen, bool condition, Vector2 center)
         {
@@ -56,15 +57,18 @@ namespace AssortedCrazyThings.Base.SwarmDraw
                 return;
             }
 
-            HandleDrawSet(ref fairySwarmDrawSet,
-                SwarmDrawSet.New<FairySwarmDrawSet>,
-                Player.ownedProjectileCounts[ModContent.ProjectileType<FairySwarmProj>()] > 0,
-                Player.Center);
+            if (AConfigurationConfig.Instance.DroppedPets)
+            {
+                HandleDrawSet(ref fairySwarmDrawSet,
+                    SwarmDrawSet.New<FairySwarmDrawSet>,
+                    Player.ownedProjectileCounts[ModContent.ProjectileType<FairySwarmProj>()] > 0,
+                    Player.Center);
 
-            HandleDrawSet(ref swarmofCthulhuDrawSet,
-                SwarmDrawSet.New<SwarmofCthulhuDrawSet>,
-                Player.ownedProjectileCounts[ModContent.ProjectileType<SwarmofCthulhuProj>()] > 0,
-                Player.Center);
+                HandleDrawSet(ref swarmofCthulhuDrawSet,
+                    SwarmDrawSet.New<SwarmofCthulhuDrawSet>,
+                    Player.ownedProjectileCounts[ModContent.ProjectileType<SwarmofCthulhuProj>()] > 0,
+                    Player.Center);
+            }
         }
     }
 }

@@ -10,7 +10,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
-    public abstract class HarvesterBase : ModNPC
+    [Content(ContentType.Bosses)]
+    public abstract class HarvesterBase : AssNPC
     {
         public const short MaxSouls = 15;
 

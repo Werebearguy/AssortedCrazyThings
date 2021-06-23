@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public abstract class ChunkysMeatballsEyeBase : ModNPC
+    [Content(ContentType.HostileNPCs)] //Tied to chunky/meatball which is hostile
+    public abstract class ChunkysMeatballsEyeBase : AssNPC
     {
         public override void SetStaticDefaults()
         {

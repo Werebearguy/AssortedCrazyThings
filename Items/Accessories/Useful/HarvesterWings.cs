@@ -5,8 +5,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
+    [Content(ContentType.Bosses)]
     [AutoloadEquip(EquipType.Wings)]
-    public class HarvesterWings : ModItem
+    public class HarvesterWings : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -18,13 +19,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(95, 6.5f, 1.35f);
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 40;
             Item.height = 28;
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

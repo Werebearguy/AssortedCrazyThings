@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class AnimatedTomeProj : ModProjectile
+    public class AnimatedTomeProj : SimplePetProjBase
     {
         public override string Texture
         {

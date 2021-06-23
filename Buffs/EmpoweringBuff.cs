@@ -1,9 +1,9 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
-    public class EmpoweringBuff : ModBuff
+    [Content(ContentType.Bosses)]
+    public class EmpoweringBuff : AssBuff
     {
         public override void SetDefaults()
         {
@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Buffs
         {
             AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
             string add = "\nIncreased Damage: " + (int)(mPlayer.step * 100) + "%";
-            tip = tip + add;
+            tip += add;
         }
 
         public override void Update(Player player, ref int buffIndex)

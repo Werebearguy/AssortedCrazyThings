@@ -6,7 +6,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public abstract class PetEaterofWorldsBase : ModProjectile
+    [Content(ContentType.DroppedPets)]
+    public abstract class PetEaterofWorldsBase : SimplePetProjBase
     {
         public static int[] wormTypes;
 

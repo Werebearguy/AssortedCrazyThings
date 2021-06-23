@@ -464,6 +464,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static bool TryGetAccessoryFromItem(int type, out PetAccessory petAccessory) //since item types are unique, just look up in the global list
         {
+            if (!AConfigurationConfig.Instance.CuteSlimes)
+            {
+                petAccessory = null;
+                return false;
+            }
+
             return petAccessoriesByItem.TryGetValue(type, out petAccessory);
         }
 
@@ -486,7 +492,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
     /// Class that all vanity accessories inherit from. Provides the functionality.
     /// Has a default recipe which can be changed
     /// </summary>
-    public abstract class PetAccessoryItem : ModItem
+    [Content(ContentType.CuteSlimes)]
+    public abstract class PetAccessoryItem : AssItem
     {
         public override void SetDefaults()
         {

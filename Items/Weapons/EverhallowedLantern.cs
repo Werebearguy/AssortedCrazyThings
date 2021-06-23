@@ -56,6 +56,7 @@ namespace AssortedCrazyThings.Items.Weapons
         }
     }
 
+    [Content(ContentType.Bosses | ContentType.Weapons)]
     public class EverhallowedLantern : MinionItemBase
     {
         public const int BaseDmg = 26;
@@ -152,8 +153,13 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Called in Mod.Load
         /// </summary>
-        public static void Load()
+        public static void DoLoad()
         {
+            if (!AConfigurationConfig.Instance.Bosses || !AConfigurationConfig.Instance.Weapons)
+            {
+                return;
+            }
+
             Array a = Enum.GetValues(typeof(SoulType));
             DataList = new SoulData[a.Length - 1]; //without None
             int i = 0;
@@ -169,7 +175,7 @@ namespace AssortedCrazyThings.Items.Weapons
         /// <summary>
         /// Called in Mod.Unload
         /// </summary>
-        public static void Unload()
+        public static void DoUnload()
         {
             DataList = null;
         }
@@ -221,10 +227,8 @@ namespace AssortedCrazyThings.Items.Weapons
             knockback *= GetSoulData(selected).KBModifier;
         }
 
-        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            player.AddBuff(Item.buffType, 2);
-
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             SoulType selected = mPlayer.selectedSoulMinionType;
             type = GetSoulData(selected).ProjType;

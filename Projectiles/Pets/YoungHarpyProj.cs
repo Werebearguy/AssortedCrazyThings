@@ -7,7 +7,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class YoungHarpyProj : ModProjectile
+    [Content(ContentType.FriendlyNPCs)]
+    public class YoungHarpyProj : SimplePetProjBase
     {
         public override string Texture
         {

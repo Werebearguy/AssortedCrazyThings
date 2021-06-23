@@ -38,7 +38,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Holds the data of all Gitgud Accessories, and a list of counters per player
         /// </summary>
-        public static GitgudData[] DataList;
+        public static GitgudData[] DataList; //Left as null if disabled via config
         /// <summary>
         /// Name for the delete message
         /// </summary>
@@ -272,16 +272,20 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Used in GitgudItem.ModifyTooltips
         /// </summary>
-        public static int GetIndexFromItemType(int type)
+        public static bool GetDataFromItemType(int type, out GitgudData data)
         {
+            data = null;
             if (DataList != null)
             {
                 for (int i = 0; i < DataList.Length; i++)
                 {
-                    if (DataList[i].ItemType == type) return i;
+                    if (DataList[i].ItemType == type)
+                    {
+                        data = DataList[i];
+                    }
                 }
             }
-            return -1;
+            return data != null;
         }
 
         /// <summary>
@@ -360,7 +364,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Called in AssGlobalNPC.NPCLoot. Sends all participating players a reset packet
+        /// Called in GeneralGlobalNPC.NPCLoot. Sends all participating players a reset packet
         /// </summary>
         public static void Reset(NPC npc)
         {
@@ -572,6 +576,11 @@ namespace AssortedCrazyThings
         /// </summary>
         public static void Load()
         {
+            if (!AConfigurationConfig.Instance.BossConsolation)
+            {
+                return;
+            }
+
             DataList = new GitgudData[1];
 
             RegisterItems();
@@ -684,7 +693,8 @@ namespace AssortedCrazyThings
         }
     }
 
-    public class GitGudPlayer : ModPlayer
+    [Content(ContentType.BossConsolation)]
+    public class GitGudPlayer : AssPlayerBase
     {
         public Func<BitArray> gitgudAccessories;
 

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
+    [Content(ContentType.HostileNPCs | ContentType.DroppedPets)]
     public class BabyOcramBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<BabyOcramProj>();

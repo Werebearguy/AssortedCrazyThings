@@ -6,7 +6,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
 {
-    public class HarvesterTreasureBag : ModItem
+    [Content(ContentType.Bosses)]
+    public class HarvesterTreasureBag : AssItem
     {
         //Sets the associated NPC this treasure bag is dropped from
         public override int BossBagNPC => ModContent.NPCType<Harvester>();
@@ -44,7 +45,7 @@ namespace AssortedCrazyThings.Items.Consumables
             player.QuickSpawnItem(ItemID.Bone, Main.rand.Next(40, 61));
             player.QuickSpawnItem(ModContent.ItemType<DesiccatedLeather>());
 
-            if (Main.rand.NextBool(7))
+            if (AConfigurationConfig.Instance.VanityArmor && Main.rand.NextBool(7))
             {
                 player.QuickSpawnItem(ModContent.ItemType<SoulHarvesterMask>());
             }

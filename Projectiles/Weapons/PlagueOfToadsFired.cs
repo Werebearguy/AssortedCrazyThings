@@ -4,7 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
-    public class PlagueOfToadsFired : ModProjectile
+    [Content(ContentType.Weapons)]
+    public class PlagueOfToadsFired : AssProjectile
     {
         public override string Texture
         {

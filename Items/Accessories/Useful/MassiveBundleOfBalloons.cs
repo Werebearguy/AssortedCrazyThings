@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     [AutoloadEquip(EquipType.Balloon)]
-    public class MassiveBundleOfBalloons : ModItem
+    public class MassiveBundleOfBalloons : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -15,13 +15,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 + "\nReleases bees when damaged");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 46;
             Item.height = 42;
             Item.value = 0;
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

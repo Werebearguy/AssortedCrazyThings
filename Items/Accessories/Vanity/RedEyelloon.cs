@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
     [AutoloadEquip(EquipType.Balloon)]
-    public class RedEyelloon : ModItem
+    public class RedEyelloon : VanityAccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -12,13 +12,12 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
             Tooltip.SetDefault("'A Demon Eye balloon, for your Demon Eye needs!'");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 18;
             Item.height = 32;
             Item.value = 0;
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void AddRecipes()

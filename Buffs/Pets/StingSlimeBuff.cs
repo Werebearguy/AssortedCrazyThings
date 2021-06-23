@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
+    [Content(ContentType.HostileNPCs)]
     public class StingSlimeBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<StingSlimeProj>();

@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class Megalodon : ModNPC
+    [Content(ContentType.HostileNPCs)]
+    public class Megalodon : AssNPC
     {
         public static string name = "Megalodon";
         public static string message = "A Megalodon is approaching! Get out of the ocean!";

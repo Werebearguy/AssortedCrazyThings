@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+    [Content(ContentType.DroppedPets)]
     public class PetDestroyerItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<PetDestroyerHead>();

@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetCultistProj : ModProjectile
+    [Content(ContentType.DroppedPets)]
+    public class PetCultistProj : SimplePetProjBase
     {
         public override string Texture
         {

@@ -1,11 +1,11 @@
 using AssortedCrazyThings.Base;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class CuteGastropodProj : ModProjectile
+    [Content(ContentType.CuteSlimes)]
+    public class CuteGastropodProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()
         {

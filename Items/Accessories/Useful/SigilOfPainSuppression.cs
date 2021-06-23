@@ -2,33 +2,25 @@ using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class SigilOfPainSuppression : ModItem
+    public class SigilOfPainSuppression : SigilItemBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Sigil of Pain Suppression");
             Tooltip.SetDefault("Drastically increases your defense when you are at critically low health"
                 + "\nHas a cooldown of " + (AssPlayer.GetDefenseTimerMax / 60) + " minutes");
-
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-
-            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 18;
             Item.height = 26;
             Item.value = Item.sellPrice(0, 1, 0, 0);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
