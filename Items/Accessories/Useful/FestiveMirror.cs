@@ -4,8 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
-    public class FestiveMirror : AssItem
+    public class FestiveMirror : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -13,13 +12,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Provides immunity to Chilled, Frozen, and Stoned");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 26;
             Item.height = 32;
             Item.value = Item.sellPrice(gold: 3);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

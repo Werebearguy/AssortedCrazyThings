@@ -16,13 +16,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 30;
             Item.height = 30;
             Item.value = Item.sellPrice(0, 2, 0, 0);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

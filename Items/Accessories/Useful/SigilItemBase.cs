@@ -1,13 +1,12 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     //TODO extend functionality regarding cooldown tooltips
-    [Content(ContentType.Bosses)]
-    public abstract class SigilItemBase : AssItem
+    [Content(ContentType.Bosses | ContentType.Accessories)]
+    public abstract class SigilItemBase : AccessoryBase
     {
         public sealed override void SetStaticDefaults()
         {
@@ -24,13 +23,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 26;
             Item.height = 28;
             Item.value = Item.sellPrice(0, 1, 0, 0);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

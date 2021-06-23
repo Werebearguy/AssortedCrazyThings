@@ -4,9 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
     [AutoloadEquip(EquipType.Shoes)]
-    public class SolesOfFireAndIce : AssItem
+    public class SolesOfFireAndIce : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -14,13 +13,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Allows you to walk on water, lava, and thin ice");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 20;
             Item.height = 28;
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -11,13 +11,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 "\nIncreases your max number of minions");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 26;
             Item.height = 28;
             Item.value = Item.sellPrice(0, 1, 0, 0);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

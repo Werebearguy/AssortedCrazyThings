@@ -115,6 +115,8 @@ namespace AssortedCrazyThings
 				ContentType.Placeables => "Placeables",
 				ContentType.Armor => "Armor",
 				ContentType.VanityArmor => "Vanity Armor",
+				ContentType.Accessories => "Accessories",
+				ContentType.VanityAccessories => "Vanity Accessories",
 				ContentType.BossConsolation => "Boss Consolation Items",
 				_ => string.Empty,
             };
@@ -147,7 +149,9 @@ namespace AssortedCrazyThings
 		Placeables = 1 << 9,
 		Armor = 1 << 10,
 		VanityArmor = 1 << 11,
-		BossConsolation = 1 << 12,
+		Accessories = 1 << 12,
+		VanityAccessories = 1 << 13,
+		BossConsolation = 1 << 14,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

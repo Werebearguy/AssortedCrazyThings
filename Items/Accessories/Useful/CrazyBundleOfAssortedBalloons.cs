@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items.Accessories.Vanity;
 using Terraria;
 using Terraria.ID;
@@ -6,9 +5,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
     [AutoloadEquip(EquipType.Balloon)]
-    public class CrazyBundleOfAssortedBalloons : AssItem
+    public class CrazyBundleOfAssortedBalloons : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -16,13 +14,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("It's got all kinds of effects");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 46;
             Item.height = 42;
             Item.value = 0;
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

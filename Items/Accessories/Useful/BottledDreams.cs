@@ -4,9 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
     [AutoloadEquip(EquipType.Waist)]
-    public class BottledDreams : AssItem
+    public class BottledDreams : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -14,13 +13,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Allows the holder to double jump");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 20;
             Item.height = 26;
             Item.value = Item.sellPrice(silver: 10);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

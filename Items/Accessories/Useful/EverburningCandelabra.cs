@@ -4,8 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
-    public class EverburningCandelabra : AssItem
+    public class EverburningCandelabra : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -13,13 +12,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Applies various forms of fire damage to all attacks");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 32;
             Item.height = 32;
             Item.value = Item.sellPrice(gold: 13);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

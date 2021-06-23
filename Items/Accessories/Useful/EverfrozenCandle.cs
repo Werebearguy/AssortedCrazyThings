@@ -4,8 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
-    public class EverfrozenCandle : AssItem
+    public class EverfrozenCandle : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -13,13 +12,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
             Tooltip.SetDefault("Applies frostburn damage to all attacks");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 24;
             Item.height = 22;
             Item.value = Item.sellPrice(gold: 2);
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

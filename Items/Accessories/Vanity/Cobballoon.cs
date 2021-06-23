@@ -3,9 +3,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
-    [Autoload]
     [AutoloadEquip(EquipType.Balloon)]
-    public class Cobballoon : AssItem
+    public class Cobballoon : VanityAccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -13,13 +12,12 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
             Tooltip.SetDefault("'A clump of stones that manages to float, much to your confusion'");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 18;
             Item.height = 32;
             Item.value = 0;
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void AddRecipes()

@@ -4,9 +4,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [Autoload]
     [AutoloadEquip(EquipType.Balloon)]
-    public class StarWispBalloon : AssItem
+    public class StarWispBalloon : AccessoryBase
     {
         public override void SetStaticDefaults()
         {
@@ -15,13 +14,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                                "\nGlows in the dark");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             Item.width = 18;
             Item.height = 32;
             Item.value = 0;
             Item.rare = -11;
-            Item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
