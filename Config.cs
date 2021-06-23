@@ -96,6 +96,18 @@ namespace AssortedCrazyThings
 
 		[ReloadRequired]
 		[DefaultValue(true)]
+		[Tooltip("Disable armor (not vanity)")]
+		[Label("Armor")]
+		public bool Armor { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
+		[Tooltip("Disable vanity armor")]
+		[Label("Vanity")]
+		public bool VanityArmor { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(true)]
 		[Tooltip("Disable items that drop for failing to defeat a vanilla boss within 5 attempts")]
 		[Label("Boss Consolation")]
 		public bool BossConsolation { get; set; }
@@ -140,6 +152,14 @@ namespace AssortedCrazyThings
 			if (!Placeables)
 			{
 				FilterFlags |= ContentType.Placeables;
+			}
+			if (!Armor)
+			{
+				FilterFlags |= ContentType.Armor;
+			}
+			if (!VanityArmor)
+			{
+				FilterFlags |= ContentType.VanityArmor;
 			}
 			if (!BossConsolation)
 			{

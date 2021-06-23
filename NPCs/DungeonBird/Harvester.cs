@@ -267,7 +267,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
             notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.Bone, minimumDropped: 40, maximumDropped: 60));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>()));
-            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 7));
+
+            if (AConfigurationConfig.Instance.VanityArmor)
+            {
+                notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 7));
+            }
 
             //Finally add the leading rule
             npcLoot.Add(notExpertRule);

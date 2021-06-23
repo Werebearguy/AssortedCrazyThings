@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.VanityArmor
 {
-    [Autoload]
+    [Content(ContentType.VanityArmor)]
     [AutoloadEquip(EquipType.Head)]
     public class PrettyMask : AssItem
     {
