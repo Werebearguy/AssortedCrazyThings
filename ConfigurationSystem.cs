@@ -13,6 +13,9 @@ namespace AssortedCrazyThings
 		public static Dictionary<string, ContentType> NonLoadedNames { get; private set; }
 		public static Dictionary<ContentType, List<string>> NonLoadedNamesByType { get; private set; }
 
+		/// <summary>
+		/// For use on generic content that should be always loaded except when everything is disabled
+		/// </summary>
         public const ContentType AllFlags = 
             ContentType.Bosses |
             ContentType.CuteSlimes |
