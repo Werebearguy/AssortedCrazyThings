@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
 {
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.Placeables | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
     public class VanityDresserItem : PlaceableItem<VanityDresserTile>
     {
         public override void SetStaticDefaults()

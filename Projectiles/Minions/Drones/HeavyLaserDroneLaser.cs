@@ -6,7 +6,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.Drones
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class HeavyLaserDroneLaser : AssProjectile
     {
         //shot with magnitude 6

@@ -6,7 +6,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class PetGolemHeadFireball : AssProjectile
     {
         public override string Texture

@@ -1,11 +1,10 @@
 ﻿using AssortedCrazyThings.Base;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles
 {
-    [Autoload]
+    [Content(ContentType.Bosses)]
     public class EmpoweringBuffGlobalProjectile : AssGlobalProjectile
     {
         //public override bool InstancePerEntity => false;

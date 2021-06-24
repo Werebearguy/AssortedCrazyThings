@@ -1,10 +1,10 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    [Autoload] //Always available, has no clear ties to any content per say
+    //Needs Placeables as it's an ingredient for VanityDresserItem
+    [Content(ContentType.Placeables | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
     public class VanitySelector : AssItem
     {
         public override void SetStaticDefaults()

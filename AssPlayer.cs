@@ -18,7 +18,7 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-    [Autoload]
+    [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     //[LegacyName("AssPlayer")] Maybe rename later
     public class AssPlayer : AssPlayerBase
     {

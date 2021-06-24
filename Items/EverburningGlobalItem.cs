@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    [Autoload]
+    [Content(ContentType.Accessories)]
     public class EverburningGlobalItem : AssGlobalItem
     {
         public override bool InstancePerEntity => false;

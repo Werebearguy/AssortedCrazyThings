@@ -10,7 +10,7 @@ using System;
 namespace AssortedCrazyThings.Base.SwarmDraw
 {
     //TODO unhardcode this when both a better tml loader comes along and more swarm draw sets exist
-    [Autoload]
+    [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class SwarmDrawPlayer : AssPlayerBase
     {
         public static void HandleDrawSet(ref SwarmDrawSet set, Func<SwarmDrawSet> gen, bool condition, Vector2 center)

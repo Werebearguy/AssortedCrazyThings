@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -75,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         }
     }
 
-    [Autoload]
+    [Content(ContentType.DroppedPets)]
     public class TinyRetinazerProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()

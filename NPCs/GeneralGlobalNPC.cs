@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Autoload]
+    [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class GeneralGlobalNPC : AssGlobalNPC
     {
         public override void OnKill(NPC npc)

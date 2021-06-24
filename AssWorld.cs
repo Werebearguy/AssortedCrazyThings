@@ -14,7 +14,7 @@ using Terraria.Chat;
 
 namespace AssortedCrazyThings
 {
-    [Autoload]
+    [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class AssWorld : AssSystem
     {
         //basically "if they were alive last update"

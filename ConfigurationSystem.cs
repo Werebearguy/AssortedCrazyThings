@@ -13,7 +13,23 @@ namespace AssortedCrazyThings
 		public static Dictionary<string, ContentType> NonLoadedNames { get; private set; }
 		public static Dictionary<ContentType, List<string>> NonLoadedNamesByType { get; private set; }
 
-        public static void Load()
+        public const ContentType AllFlags = 
+            ContentType.Bosses |
+            ContentType.CuteSlimes |
+            ContentType.HostileNPCs |
+            ContentType.FriendlyNPCs |
+            ContentType.DroppedPets |
+            ContentType.OtherPets |
+            ContentType.Weapons |
+            ContentType.Tools |
+            ContentType.Placeables |
+            ContentType.Armor |
+            ContentType.VanityArmor |
+            ContentType.Accessories |
+            ContentType.VanityAccessories |
+            ContentType.BossConsolation;
+
+		public static void Load()
         {
 			Mod mod = AssUtils.Instance; //Maybe change it to support all loaded mod assemblies
 			NonLoadedNames = new();
@@ -21,6 +37,7 @@ namespace AssortedCrazyThings
 
 			//Debugging only
 			var autoloadedContent = mod.GetContent().ToList();
+			//SimpleModGore gets loaded. Maybe disable gore loading?
 			var manuallyAddedTypes = new List<Type>();
 
 			Type modType = mod.GetType();
@@ -43,7 +60,7 @@ namespace AssortedCrazyThings
 
 				if (content.Ignore) continue; //Skip things tagged as non-autoloadable, yet shouldn't be loaded through here (loaded elsewhere)
 
-                var reasons = FindContentFilterReasons(content.ContentType);
+                var reasons = FindContentFilterReasons(content);
 				var instance = (ILoadable)Activator.CreateInstance(type);
 
 				if (reasons == ContentType.Always)
@@ -71,10 +88,18 @@ namespace AssortedCrazyThings
 			int b = 0;
 		}
 
-        private static ContentType FindContentFilterReasons(ContentType contentType)
+        private static ContentType FindContentFilterReasons(ContentAttribute content)
         {
 			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
-			return ContentConfig.Instance.FilterFlags & contentType;
+			var flags = ContentConfig.Instance.FilterFlags & content.ContentType;
+
+			if (content.NeedsAllToFilter && flags != content.ContentType)
+            {
+				//If the content needs a full match
+				return ContentType.Always;
+            }
+
+			return flags;
 		}
 
         public static void Unload()
@@ -105,9 +130,9 @@ namespace AssortedCrazyThings
             {
                 ContentType.Always => string.Empty,
                 ContentType.Bosses => "Bosses",
-                ContentType.HostileNPCs => "Hostile NPCs",
-                ContentType.FriendlyNPCs => "Friendly NPCs",
 				ContentType.CuteSlimes => "Cute Slimes",
+				ContentType.HostileNPCs => "Hostile NPCs",
+                ContentType.FriendlyNPCs => "Friendly NPCs",
 				ContentType.DroppedPets => "Dropped Pets",
 				ContentType.OtherPets => "Other Pets",
 				ContentType.Weapons => "Weapons",
@@ -154,7 +179,6 @@ namespace AssortedCrazyThings
 		BossConsolation = 1 << 14,
 	}
 
-	//TODO optional "needs all" filter for vanityselector and queen/princess slime
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 	public sealed class ContentAttribute : Attribute
 	{
@@ -162,11 +186,14 @@ namespace AssortedCrazyThings
 
 		public ContentType ContentType { get; private set; }
 
+		public bool NeedsAllToFilter { get; private set; }
+
 		public bool Ignore { get; private set; }
 
-		public ContentAttribute(ContentType contentType, bool ignore = false)
+		public ContentAttribute(ContentType contentType, bool needsAllToFilter = false, bool ignore = false)
 		{
 			ContentType = contentType;
+			NeedsAllToFilter = needsAllToFilter;
 			Ignore = ignore;
 		}
 

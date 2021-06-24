@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 {
     //used in EverburningGlobalItem for creating candle dust
     //TODO figure out dust spam with sling
-    [Autoload]
+    [Content(ContentType.Accessories)]
     public class CandleDustDummy : AssProjectile
     {
         private static readonly int LifeTime = 10;

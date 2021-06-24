@@ -14,7 +14,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings
 {
-    [Autoload]
+    [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class AssUISystem : AssSystem
     {
         /// <summary>

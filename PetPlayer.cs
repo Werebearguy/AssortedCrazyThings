@@ -19,7 +19,7 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-    [Autoload]
+    [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class PetPlayer : AssPlayerBase
     {
         /// <summary>
@@ -1000,14 +1000,6 @@ namespace AssortedCrazyThings
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
-                    condition: () => PetFishron,
-                    uiConf: GetPetFishronConf,
-                    onUIStart: () => petFishronType,
-                    onUIEnd: () => petFishronType = (byte)CircleUI.returned,
-                    needsSaving: true
-                ),
-                    new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => PetMoon,
                     uiConf: GetPetMoonConf,
                     onUIStart: () => petMoonType,
@@ -1021,14 +1013,6 @@ namespace AssortedCrazyThings
                     uiConf: GetAbeeminationConf,
                     onUIStart: () => abeeminationType,
                     onUIEnd: () => abeeminationType = (byte)CircleUI.returned,
-                    needsSaving: true
-                ),
-                    new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
-                    condition: () => LilWraps,
-                    uiConf: GetLilWrapsConf,
-                    onUIStart: () => lilWrapsType,
-                    onUIEnd: () => lilWrapsType = (byte)CircleUI.returned,
                     needsSaving: true
                 ),
                     new CircleUIHandler(
@@ -1049,6 +1033,46 @@ namespace AssortedCrazyThings
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetGoldfish,
+                    uiConf: PetGoldfishConf,
+                    onUIStart: () => petGoldfishType,
+                    onUIEnd: () => petGoldfishType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => PetAnomalocaris,
+                    uiConf: GetAnomalocarisConf,
+                    onUIStart: () => petAnomalocarisType,
+                    onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => DynamiteBunny,
+                    uiConf: GetDynamiteBunnyConf,
+                    onUIStart: () => dynamiteBunnyType,
+                    onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                //ALTERNATE
+                //    new CircleUIHandler(
+                //    triggerItem: ModContent.ItemType<VanitySelector>(),
+                //    condition: () => ClassName,
+                //    uiConf: GetClassNameConf,
+                //    onUIStart: () => classNameType,
+                //    onUIEnd: () => classNameType = (byte)CircleUI.returned,
+                //    needsSaving: true
+                //),
+                });
+            }
+
+            if (ContentConfig.Instance.DroppedPets)
+            {
+                CircleUIList.AddRange(new List<CircleUIHandler>()
+                {
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => QueenLarva,
                     uiConf: GetQueenLarvaConf,
                     onUIStart: () => queenLarvaType,
@@ -1065,10 +1089,18 @@ namespace AssortedCrazyThings
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
-                    condition: () => PetGoldfish,
-                    uiConf: PetGoldfishConf,
-                    onUIStart: () => petGoldfishType,
-                    onUIEnd: () => petGoldfishType = (byte)CircleUI.returned,
+                    condition: () => LilWraps,
+                    uiConf: GetLilWrapsConf,
+                    onUIStart: () => lilWrapsType,
+                    onUIEnd: () => lilWrapsType = (byte)CircleUI.returned,
+                    needsSaving: true
+                ),
+                    new CircleUIHandler(
+                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    condition: () => WallFragment,
+                    uiConf: GetWallFragmentConf,
+                    onUIStart: () => wallFragmentType,
+                    onUIEnd: () => wallFragmentType = (byte)CircleUI.returned,
                     needsSaving: true
                 ),
                     new CircleUIHandler(
@@ -1098,37 +1130,12 @@ namespace AssortedCrazyThings
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
-                    condition: () => PetAnomalocaris,
-                    uiConf: GetAnomalocarisConf,
-                    onUIStart: () => petAnomalocarisType,
-                    onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
+                    condition: () => PetFishron,
+                    uiConf: GetPetFishronConf,
+                    onUIStart: () => petFishronType,
+                    onUIEnd: () => petFishronType = (byte)CircleUI.returned,
                     needsSaving: true
-                ),
-                    new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
-                    condition: () => DynamiteBunny,
-                    uiConf: GetDynamiteBunnyConf,
-                    onUIStart: () => dynamiteBunnyType,
-                    onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned,
-                    needsSaving: true
-                ),
-                    new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
-                    condition: () => WallFragment,
-                    uiConf: GetWallFragmentConf,
-                    onUIStart: () => wallFragmentType,
-                    onUIEnd: () => wallFragmentType = (byte)CircleUI.returned,
-                    needsSaving: true
-                ),
-                //ALTERNATE
-                //    new CircleUIHandler(
-                //    triggerItem: ModContent.ItemType<VanitySelector>(),
-                //    condition: () => ClassName,
-                //    uiConf: GetClassNameConf,
-                //    onUIStart: () => classNameType,
-                //    onUIEnd: () => classNameType = (byte)CircleUI.returned,
-                //    needsSaving: true
-                //),
+                )
                 });
             }
 

@@ -10,7 +10,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 {
-    [Autoload]
+    [Content(ContentType.Weapons)]
     public class MagicSlimeSlingFired : AssProjectile
     {
         public byte ColorType = 0;
