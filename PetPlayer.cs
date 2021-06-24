@@ -27,81 +27,36 @@ namespace AssortedCrazyThings
         /// </summary>
         private bool petAccessoryRework = false;
 
-        /// <summary>
-        /// transition from 1.3.0 to "CURRENT VERSION" (simplified pet type handling)
-        /// </summary>
-        private bool petVanityRework = false;
-
         private bool enteredWorld = false;
 
-        //docile demon eye texture
-        public byte petEyeType = 0; //texture type, not ID
+        private const int altTextureCountLoaded = 24; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
 
-        //mech frog texture
-        public byte mechFrogCrown = 0;
-
-        //cursed skull texture
+        //Alt texture types
+        public byte mechFrogType = 0;
+        public byte petEyeType = 0;
         public byte cursedSkullType = 0;
-
-        //young wyvern texture
         public byte youngWyvernType = 0;
-
-        //young wyvern texture
         public byte petFishronType = 0;
-
-        //moon pet texture
         public byte petMoonType = 0;
-
-        //young harpy texture
-        public byte youngHarpyType = 0;
-
-        //abeeminiation texture
         public byte abeeminationType = 0;
-
-        //lil wraps texture
         public byte lilWrapsType = 0;
-
-        //vampire bat texture
         public byte vampireBatType = 0;
-
-        //vampire bat texture
         public byte pigronataType = 0;
-
-        //queen larva texture
         public byte queenLarvaType = 0;
-
-        //ocean slime texture
-        public byte oceanSlimeType = 0;
-
-        //sting slime texture
-        public byte stingSlimeType = 0;
-
-        //queen larva texture
         public byte miniAntlionType = 0;
-
-        //pet goldfish texture
         public byte petGoldfishType = 0;
-
-        //skeletron hand texture
         public byte skeletronHandType = 0;
-
-        //skeletron prime hand texture
         public byte skeletronPrimeHandType = 0;
-
-        //pet cultist texture
         public byte petCultistType = 0;
+        public byte petAnomalocarisType = 0;
+        public byte dynamiteBunnyType = 0;
+        public byte wallFragmentType = 0;
 
-        //animated tome texture
+        public byte oceanSlimeType = 0;
+        public byte stingSlimeType = 0;
         public byte animatedTomeType = 0;
 
-        //pet anomalocaris texture
-        public byte petAnomalocarisType = 0;
-
-        //dynamite bunny texture
-        public byte dynamiteBunnyType = 0;
-
-        //pet wall of flesh texture
-        public byte wallFragmentType = 0;
+        public byte youngHarpyType = 0;
 
         //ALTERNATE
         ////name pet texture
@@ -319,8 +274,38 @@ namespace AssortedCrazyThings
                 {"color", (int)color},
                 {"petAccessoryRework", (bool)petAccessoryRework},
             };
-            var petTypes = new List<byte>(ClonedTypes);
-            tag.Add("petTypes", petTypes);
+
+            TagCompound petTags = new TagCompound
+            {
+                { "mechFrogType", mechFrogType },
+                { "petEyeType", petEyeType },
+                { "cursedSkullType", cursedSkullType },
+                { "youngWyvernType", youngWyvernType },
+                { "petFishronType", petFishronType },
+                { "petMoonType", petMoonType },
+                { "abeeminationType", abeeminationType },
+                { "lilWrapsType", lilWrapsType },
+                { "vampireBatType", vampireBatType },
+                { "pigronataType", pigronataType },
+                { "queenLarvaType", queenLarvaType },
+                { "miniAntlionType", miniAntlionType },
+                { "petGoldfishType", petGoldfishType },
+                { "skeletronHandType", skeletronHandType },
+                { "skeletronPrimeHandType", skeletronPrimeHandType },
+                { "petCultistType", petCultistType },
+                { "petAnomalocarisType", petAnomalocarisType },
+                { "dynamiteBunnyType", dynamiteBunnyType },
+                { "wallFragmentType", wallFragmentType },
+
+                { "oceanSlimeType", oceanSlimeType },
+                { "stingSlimeType", stingSlimeType },
+                { "animatedTomeType", animatedTomeType },
+
+                { "youngHarpyType", youngHarpyType }
+            };
+
+        tag.Add("petTags", petTags);
+
             return tag;
         }
 
@@ -330,11 +315,37 @@ namespace AssortedCrazyThings
             color = (uint)tag.GetInt("color");
             petAccessoryRework = tag.GetBool("petAccessoryRework");
 
-            var petTypeList = tag.GetList<byte>("petTypes");
-            int clonedTypesLength = ClonedTypes.Length;
-            ClonedTypes = new List<byte>(petTypeList).ToArray();
-            //in case new types got added (since this assignment overrides the old ClonedTypes length)
-            Array.Resize(ref ClonedTypes, clonedTypesLength);
+            const string key = "petTags";
+            if (tag.ContainsKey(key))
+            {
+                var petTags = tag.Get<TagCompound>(key);
+
+                mechFrogType = petTags.GetByte("mechFrogType");
+                petEyeType = petTags.GetByte("petEyeType");
+                cursedSkullType = petTags.GetByte("cursedSkullType");
+                youngWyvernType = petTags.GetByte("youngWyvernType");
+                petFishronType = petTags.GetByte("petFishronType");
+                petMoonType = petTags.GetByte("petMoonType");
+                abeeminationType = petTags.GetByte("abeeminationType");
+                lilWrapsType = petTags.GetByte("lilWrapsType");
+                vampireBatType = petTags.GetByte("vampireBatType");
+                pigronataType = petTags.GetByte("pigronataType");
+                queenLarvaType = petTags.GetByte("queenLarvaType");
+                miniAntlionType = petTags.GetByte("miniAntlionType");
+                petGoldfishType = petTags.GetByte("petGoldfishType");
+                skeletronHandType = petTags.GetByte("skeletronHandType");
+                skeletronPrimeHandType = petTags.GetByte("skeletronPrimeHandType");
+                petCultistType = petTags.GetByte("petCultistType");
+                petAnomalocarisType = petTags.GetByte("petAnomalocarisType");
+                dynamiteBunnyType = petTags.GetByte("dynamiteBunnyType");
+                wallFragmentType = petTags.GetByte("wallFragmentType");
+
+                oceanSlimeType = petTags.GetByte("oceanSlimeType");
+                stingSlimeType = petTags.GetByte("stingSlimeType");
+                animatedTomeType = petTags.GetByte("animatedTomeType");
+
+                youngHarpyType = petTags.GetByte("youngHarpyType");
+            }
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -483,15 +494,7 @@ namespace AssortedCrazyThings
                 Mod.Logger.Debug("Reset pet vanity slots during update from 1.2.3 to " + Mod.Version);
                 slots = 0;
             }
-            if (!petVanityRework)
-            {
-                petVanityRework = true;
-            }
-            else
-            {
-                //AssUtils.Print("onenterworld p " + player.whoAmI);
-                GetFromClonedTypes();
-            }
+
             SendClientChangesPacket(PetPlayerChanges.All);
         }
 
@@ -957,6 +960,34 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
+            ClonedTypes = new byte[altTextureCountLoaded];
+
+            mechFrogType = 0;
+            petEyeType = 0;
+            cursedSkullType = 0;
+            youngWyvernType = 0;
+            petFishronType = 0;
+            petMoonType = 0;
+            abeeminationType = 0;
+            lilWrapsType = 0;
+            vampireBatType = 0;
+            pigronataType = 0;
+            queenLarvaType = 0;
+            miniAntlionType = 0;
+            petGoldfishType = 0;
+            skeletronHandType = 0;
+            skeletronPrimeHandType = 0;
+            petCultistType = 0;
+            petAnomalocarisType = 0;
+            dynamiteBunnyType = 0;
+            wallFragmentType = 0;
+
+            oceanSlimeType = 0;
+            stingSlimeType = 0;
+            animatedTomeType = 0;
+
+            youngHarpyType = 0;
+
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
 
@@ -970,33 +1001,29 @@ namespace AssortedCrazyThings
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => LifelikeMechanicalFrog,
                     uiConf: GetLifelikeMechanicalFrogConf,
-                    onUIStart: () => mechFrogCrown,
-                    onUIEnd: () => mechFrogCrown = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIStart: () => mechFrogType,
+                    onUIEnd: () => mechFrogType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => DocileDemonEye,
                     uiConf: GetDocileDemonEyeConf,
                     onUIStart: () => petEyeType,
-                    onUIEnd: () => petEyeType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => petEyeType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => CursedSkull,
                     uiConf: GetCursedSkullConf,
                     onUIStart: () => cursedSkullType,
-                    onUIEnd: () => cursedSkullType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => cursedSkullType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => YoungWyvern,
                     uiConf: GetYoungWyvernConf,
                     onUIStart: () => youngWyvernType,
-                    onUIEnd: () => youngWyvernType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => youngWyvernType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
@@ -1004,56 +1031,49 @@ namespace AssortedCrazyThings
                     uiConf: GetPetMoonConf,
                     onUIStart: () => petMoonType,
                     onUIEnd: () => petMoonType = (byte)CircleUI.returned,
-                    triggerLeft: false,
-                    needsSaving: true
+                    triggerLeft: false
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => Abeemination,
                     uiConf: GetAbeeminationConf,
                     onUIStart: () => abeeminationType,
-                    onUIEnd: () => abeeminationType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => abeeminationType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => VampireBat,
                     uiConf: GetVampireBatConf,
                     onUIStart: () => vampireBatType,
-                    onUIEnd: () => vampireBatType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => vampireBatType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => Pigronata,
                     uiConf: GetPigronataConf,
                     onUIStart: () => pigronataType,
-                    onUIEnd: () => pigronataType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => pigronataType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => PetGoldfish,
                     uiConf: PetGoldfishConf,
                     onUIStart: () => petGoldfishType,
-                    onUIEnd: () => petGoldfishType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => petGoldfishType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => PetAnomalocaris,
                     uiConf: GetAnomalocarisConf,
                     onUIStart: () => petAnomalocarisType,
-                    onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => DynamiteBunny,
                     uiConf: GetDynamiteBunnyConf,
                     onUIStart: () => dynamiteBunnyType,
-                    onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned
                 ),
                 //ALTERNATE
                 //    new CircleUIHandler(
@@ -1076,48 +1096,42 @@ namespace AssortedCrazyThings
                     condition: () => QueenLarva,
                     uiConf: GetQueenLarvaConf,
                     onUIStart: () => queenLarvaType,
-                    onUIEnd: () => queenLarvaType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => queenLarvaType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => MiniAntlion,
                     uiConf: GetMiniAntlionConf,
                     onUIStart: () => miniAntlionType,
-                    onUIEnd: () => miniAntlionType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => miniAntlionType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => LilWraps,
                     uiConf: GetLilWrapsConf,
                     onUIStart: () => lilWrapsType,
-                    onUIEnd: () => lilWrapsType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => lilWrapsType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => WallFragment,
                     uiConf: GetWallFragmentConf,
                     onUIStart: () => wallFragmentType,
-                    onUIEnd: () => wallFragmentType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => wallFragmentType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => SkeletronHand,
                     uiConf: GetSkeletronHandConf,
                     onUIStart: () => skeletronHandType,
-                    onUIEnd: () => skeletronHandType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => skeletronHandType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => SkeletronPrimeHand,
                     uiConf: GetSkeletronPrimeHandConf,
                     onUIStart: () => skeletronPrimeHandType,
-                    onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
@@ -1125,21 +1139,18 @@ namespace AssortedCrazyThings
                     uiConf: GetPetCultistConf,
                     onUIStart: () => petCultistType,
                     onUIEnd: () => petCultistType = (byte)CircleUI.returned,
-                    triggerLeft: false,
-                    needsSaving: true
+                    triggerLeft: false
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => PetFishron,
                     uiConf: GetPetFishronConf,
                     onUIStart: () => petFishronType,
-                    onUIEnd: () => petFishronType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => petFishronType = (byte)CircleUI.returned
                 )
                 });
             }
 
-            //TODO figure out a safe way of dynamically loading these without messing up order of saved data
             if (ContentConfig.Instance.HostileNPCs)
             {
                 CircleUIList.AddRange(new List<CircleUIHandler>()
@@ -1149,24 +1160,21 @@ namespace AssortedCrazyThings
                     condition: () => OceanSlime,
                     uiConf: GetOceanSlimeConf,
                     onUIStart: () => oceanSlimeType,
-                    onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => StingSlime,
                     uiConf: GetStingSlimeConf,
                     onUIStart: () => stingSlimeType,
-                    onUIEnd: () => stingSlimeType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => stingSlimeType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
                     triggerItem: ModContent.ItemType<VanitySelector>(),
                     condition: () => AnimatedTome,
                     uiConf: GetAnimatedTomeConf,
                     onUIStart: () => animatedTomeType,
-                    onUIEnd: () => animatedTomeType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => animatedTomeType = (byte)CircleUI.returned
                 )
                 });
             }
@@ -1180,25 +1188,19 @@ namespace AssortedCrazyThings
                     condition: () => YoungHarpy,
                     uiConf: GetYoungHarpyConf,
                     onUIStart: () => youngHarpyType,
-                    onUIEnd: () => youngHarpyType = (byte)CircleUI.returned,
-                    needsSaving: true
+                    onUIEnd: () => youngHarpyType = (byte)CircleUI.returned
                 ),
                 });
             }
 
             //after filling the list
-            int length = 0;
             for (int i = 0; i < CircleUIList.Count; i++)
             {
                 CircleUIHandler circleUIHandler = CircleUIList[i];
 
                 //set the trigger list
                 circleUIHandler.AddTriggers();
-                //initialize the cloned list
-                if (circleUIHandler.NeedsSaving) length++;
             }
-
-            ClonedTypes = new byte[length];
         }
 
         /// <summary>
@@ -1210,41 +1212,33 @@ namespace AssortedCrazyThings
             //AssUtils.Print("set getfromclonedtypes p " + player.whoAmI + " " + mp);
             int index = 0;
 
-            if (ContentConfig.Instance.OtherPets)
-            {
-                mechFrogCrown = ClonedTypes[index++];
-                petEyeType = ClonedTypes[index++];
-                cursedSkullType = ClonedTypes[index++];
-                youngWyvernType = ClonedTypes[index++];
-                petFishronType = ClonedTypes[index++];
-                petMoonType = ClonedTypes[index++];
-                abeeminationType = ClonedTypes[index++];
-                lilWrapsType = ClonedTypes[index++];
-                vampireBatType = ClonedTypes[index++];
-                pigronataType = ClonedTypes[index++];
-                queenLarvaType = ClonedTypes[index++];
-                miniAntlionType = ClonedTypes[index++];
-                petGoldfishType = ClonedTypes[index++];
-                skeletronHandType = ClonedTypes[index++];
-                skeletronPrimeHandType = ClonedTypes[index++];
-                petCultistType = ClonedTypes[index++];
-                petAnomalocarisType = ClonedTypes[index++];
-                wallFragmentType = ClonedTypes[index++];
-                //ALTERNATE
-                //classNameType = ClonedTypes[index++];
-            }
+            mechFrogType = ClonedTypes[index++];
+            petEyeType = ClonedTypes[index++];
+            cursedSkullType = ClonedTypes[index++];
+            youngWyvernType = ClonedTypes[index++];
+            petFishronType = ClonedTypes[index++];
+            petMoonType = ClonedTypes[index++];
+            abeeminationType = ClonedTypes[index++];
+            lilWrapsType = ClonedTypes[index++];
+            vampireBatType = ClonedTypes[index++];
+            pigronataType = ClonedTypes[index++];
+            queenLarvaType = ClonedTypes[index++];
+            miniAntlionType = ClonedTypes[index++];
+            petGoldfishType = ClonedTypes[index++];
+            skeletronHandType = ClonedTypes[index++];
+            skeletronPrimeHandType = ClonedTypes[index++];
+            petCultistType = ClonedTypes[index++];
+            petAnomalocarisType = ClonedTypes[index++];
+            wallFragmentType = ClonedTypes[index++];
+            dynamiteBunnyType = ClonedTypes[index++];
+            //ALTERNATE
+            //classNameType = ClonedTypes[index++];
 
-            if (ContentConfig.Instance.HostileNPCs)
-            {
-                oceanSlimeType = ClonedTypes[index++];
-                stingSlimeType = ClonedTypes[index++];
-                animatedTomeType = ClonedTypes[index++];
-            }
+            oceanSlimeType = ClonedTypes[index++];
+            stingSlimeType = ClonedTypes[index++];
+            animatedTomeType = ClonedTypes[index++];
 
-            if (ContentConfig.Instance.FriendlyNPCs)
-            {
-                youngHarpyType = ClonedTypes[index++];
-            }
+            youngHarpyType = ClonedTypes[index++];
         }
 
         /// <summary>
@@ -1256,41 +1250,33 @@ namespace AssortedCrazyThings
             if (enteredWorld)
             {
                 int index = -1;
-                if (ContentConfig.Instance.OtherPets)
-                {
-                    ClonedTypes[++index] = mechFrogCrown;
-                    ClonedTypes[++index] = petEyeType;
-                    ClonedTypes[++index] = cursedSkullType;
-                    ClonedTypes[++index] = youngWyvernType;
-                    ClonedTypes[++index] = petFishronType;
-                    ClonedTypes[++index] = petMoonType;
-                    ClonedTypes[++index] = abeeminationType;
-                    ClonedTypes[++index] = lilWrapsType;
-                    ClonedTypes[++index] = vampireBatType;
-                    ClonedTypes[++index] = pigronataType;
-                    ClonedTypes[++index] = queenLarvaType;
-                    ClonedTypes[++index] = miniAntlionType;
-                    ClonedTypes[++index] = petGoldfishType;
-                    ClonedTypes[++index] = skeletronHandType;
-                    ClonedTypes[++index] = skeletronPrimeHandType;
-                    ClonedTypes[++index] = petCultistType;
-                    ClonedTypes[++index] = petAnomalocarisType;
-                    ClonedTypes[++index] = wallFragmentType;
-                    //ALTERNATE
-                    //ClonedTypes[++index] = classNameType;
-                }
+                ClonedTypes[++index] = mechFrogType;
+                ClonedTypes[++index] = petEyeType;
+                ClonedTypes[++index] = cursedSkullType;
+                ClonedTypes[++index] = youngWyvernType;
+                ClonedTypes[++index] = petFishronType;
+                ClonedTypes[++index] = petMoonType;
+                ClonedTypes[++index] = abeeminationType;
+                ClonedTypes[++index] = lilWrapsType;
+                ClonedTypes[++index] = vampireBatType;
+                ClonedTypes[++index] = pigronataType;
+                ClonedTypes[++index] = queenLarvaType;
+                ClonedTypes[++index] = miniAntlionType;
+                ClonedTypes[++index] = petGoldfishType;
+                ClonedTypes[++index] = skeletronHandType;
+                ClonedTypes[++index] = skeletronPrimeHandType;
+                ClonedTypes[++index] = petCultistType;
+                ClonedTypes[++index] = petAnomalocarisType;
+                ClonedTypes[++index] = wallFragmentType;
+                ClonedTypes[++index] = dynamiteBunnyType;
 
-                if (ContentConfig.Instance.HostileNPCs)
-                {
-                    ClonedTypes[++index] = oceanSlimeType;
-                    ClonedTypes[++index] = stingSlimeType;
-                    ClonedTypes[++index] = animatedTomeType;
-                }
+                ClonedTypes[++index] = oceanSlimeType;
+                ClonedTypes[++index] = stingSlimeType;
+                ClonedTypes[++index] = animatedTomeType;
 
-                if (ContentConfig.Instance.FriendlyNPCs)
-                {
-                    ClonedTypes[++index] = youngHarpyType;
-                }
+                ClonedTypes[++index] = youngHarpyType;
+                //ALTERNATE
+                //ClonedTypes[++index] = classNameType;
             }
         }
 

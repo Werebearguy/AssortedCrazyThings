@@ -59,12 +59,7 @@ namespace AssortedCrazyThings.UI
         /// </summary>
         public bool TriggerLeft { get; private set; }
 
-        /// <summary>
-        /// If it needs saving (has to be added manually to related hooks for saving/loading)
-        /// </summary>
-        public bool NeedsSaving { get; private set; }
-
-        public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true, bool needsSaving = false)
+        public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true)
         {
             TriggerItem = triggerItem;
             Condition = condition;
@@ -72,7 +67,6 @@ namespace AssortedCrazyThings.UI
             OnUIStart = onUIStart;
             OnUIEnd = onUIEnd;
             TriggerLeft = triggerLeft;
-            NeedsSaving = needsSaving;
         }
 
         /// <summary>
