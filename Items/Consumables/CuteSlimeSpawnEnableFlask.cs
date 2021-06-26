@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Buffs;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -12,6 +13,12 @@ namespace AssortedCrazyThings.Items.Consumables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jellied Ale");
+
+            ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
+                new Color(13, 106, 137),
+                new Color(10, 176, 230),
+                new Color(146, 229, 255)
+            };
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -1,5 +1,8 @@
 using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -41,6 +44,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Projectile.timeLeft = 2;
             }
             AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            Main.instance.LoadProjectile(Projectile.type);
+
+            Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
+            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+
+            Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2 + Projectile.gfxOffY);
+
+            Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
+            Vector2 origin = bounds.Size() / 2;
+
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
+
+            image = ModContent.GetTexture(GlowTexture).Value;
+            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
+
+            return false;
         }
     }
 }

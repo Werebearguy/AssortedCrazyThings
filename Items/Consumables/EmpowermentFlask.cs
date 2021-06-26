@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,6 +15,12 @@ namespace AssortedCrazyThings.Items.Consumables
             Tooltip.SetDefault("Incrementally increases damage dealt over time"
                 + "\nBonus resets upon taking damage"
                 + "\n(Summon damage only increases marginally)");
+
+            ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
+                new Color(13, 106, 137),
+                new Color(10, 176, 230),
+                new Color(146, 229, 255)
+            };
         }
 
         public override void SetDefaults()
