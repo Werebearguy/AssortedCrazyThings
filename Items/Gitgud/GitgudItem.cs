@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -18,7 +19,7 @@ namespace AssortedCrazyThings.Items.Gitgud
                 int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
                 if (insertIndex == -1) insertIndex = tooltips.Count;
                 tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Desc", "Consolation Prize"));
-                string reduced = "" + (data.Reduction * 100) + "% reduced damage taken " + (data.Invasion != "" ? "during " + data.Invasion : "from " + data.BossName);
+                string reduced = "" + Math.Round(data.Reduction * 100) + "% reduced damage taken " + (data.Invasion != "" ? "during " + data.Invasion : "from " + data.BossName);
                 tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Reduced", reduced));
                 if (data.BuffType != -1)
                 {
