@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Buffs.Pets.CuteSlimes
         public override void SafeSetDefaults()
         {
             DisplayName.SetDefault("Cute Red Slime");
-            Description.SetDefault("A cute red slime girl is following you");
+            Description.SetDefault("A cute red slime is following you");
         }
     }
 }
