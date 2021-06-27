@@ -1,14 +1,12 @@
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-    [LegacyName("GreenThumb")]
-    public class PlanteraGitgud : GitgudItem
+    public class QueenSlimeGitgud : GitgudItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Green Thumb");
+            DisplayName.SetDefault("Sparkling Cupcake");
         }
 
         public override void SafeSetDefaults()
@@ -19,7 +17,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>().planteraGitgud = true;
+            player.GetModPlayer<GitGudPlayer>().queenSlimeGitgud = true;
         }
     }
 }

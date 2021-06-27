@@ -98,6 +98,7 @@ namespace AssortedCrazyThings
         /// </summary>
         public byte[] Counter { private set; get; }
 
+        //TODO remove displayName, remove itemName from Add, func for valid counter increment check (eow, twins)
         public GitgudData(string displayName, string buffName, int itemType, int buffType,
             int[] bossTypeList, int[] nPCTypeList, int[] projTypeList, byte counterMax, float reduction, string invasion, Func<bool> invasionBool)
         {
@@ -129,7 +130,7 @@ namespace AssortedCrazyThings
 
             NPCTypeList = AssUtils.ConcatArray(nPCTypeList, bossTypeList);
             ProjTypeList = projTypeList;
-            CounterMax = counterMax;
+            CounterMax = 2;
             Reduction = reduction;
             Invasion = invasion;
             InvasionBool = invasionBool ?? (() => false);
@@ -169,7 +170,7 @@ namespace AssortedCrazyThings
         private static void DeleteItemFromInventory(Player player, int index)
         {
             int itemType = DataList[index].ItemType;
-            string itemName = DataList[index].ItemName;
+            string itemName = Lang.GetItemNameValue(itemType);
 
             bool deleted = false;
 
@@ -235,31 +236,37 @@ namespace AssortedCrazyThings
                     break;
                 //HARDMODE
                 case 7:
-                    gPlayer.destroyerGitgudCounter = value;
+                    gPlayer.queenSlimeGitgudCounter = value;
                     break;
                 case 8:
-                    gPlayer.twinsGitgudCounter = value;
+                    gPlayer.destroyerGitgudCounter = value;
                     break;
                 case 9:
-                    gPlayer.skeletronPrimeGitgudCounter = value;
+                    gPlayer.twinsGitgudCounter = value;
                     break;
                 case 10:
-                    gPlayer.planteraGitgudCounter = value;
+                    gPlayer.skeletronPrimeGitgudCounter = value;
                     break;
                 case 11:
-                    gPlayer.golemGitgudCounter = value;
+                    gPlayer.planteraGitgudCounter = value;
                     break;
                 case 12:
-                    gPlayer.dukeFishronGitgudCounter = value;
+                    gPlayer.empressOfLightGitgudCounter = value;
                     break;
                 case 13:
-                    gPlayer.lunaticCultistGitgudCounter = value;
+                    gPlayer.golemGitgudCounter = value;
                     break;
                 case 14:
+                    gPlayer.dukeFishronGitgudCounter = value;
+                    break;
+                case 15:
+                    gPlayer.lunaticCultistGitgudCounter = value;
+                    break;
+                case 16:
                     gPlayer.moonLordGitgudCounter = value;
                     break;
                 //INVASIONS
-                //case 15:
+                //case 17:
                 //    gPlayer.pirateInvasionGitgudCounter = value;
                 //    break;
                 default: //shouldn't get there hopefully
@@ -384,7 +391,7 @@ namespace AssortedCrazyThings
                             {
                                 canReset &= npc.boss;
                             }
-                            if (i == 8) //Twins
+                            if (i == 9) //Twins
                             {
                                 if (npc.type == NPCID.Retinazer)
                                 {
@@ -637,6 +644,11 @@ namespace AssortedCrazyThings
                 projTypeList: new int[] { ProjectileID.EyeLaser });
 
             //HARDMODE
+            Add("QueenSlimeGitgud", "Sparkling Cupcake",
+                "", -1,
+                NPCID.QueenSlimeBoss,
+                nPCTypeList: new int[] { NPCID.QueenSlimeMinionBlue, NPCID.QueenSlimeMinionPink, NPCID.QueenSlimeMinionPurple },
+                projTypeList: new int[] { ProjectileID.QueenSlimeGelAttack, ProjectileID.QueenSlimeSmash, ProjectileID.QueenSlimeMinionBlueSpike, ProjectileID.QueenSlimeMinionPinkBall });
             Add("DestroyerGitgud", "Metal Dreamcatcher",
                 "", -1,
                 NPCID.TheDestroyer,
@@ -645,17 +657,22 @@ namespace AssortedCrazyThings
             Add("TwinsGitgud", "Metal Contact Lens",
                 "Cursed Inferno", BuffID.CursedInferno,
                 new int[] { NPCID.Retinazer, NPCID.Spazmatism },
-                projTypeList: new int[] { ProjectileID.EyeLaser, ProjectileID.CursedFlameHostile, ProjectileID.EyeFire, });
+                projTypeList: new int[] { ProjectileID.EyeLaser, ProjectileID.CursedFlameHostile, ProjectileID.EyeFire });
             Add("SkeletronPrimeGitgud", "Clock Set Ten Years Ahead",
                 "", -1,
                 NPCID.SkeletronPrime,
                 nPCTypeList: new int[] { NPCID.PrimeCannon, NPCID.PrimeLaser, NPCID.PrimeSaw, NPCID.PrimeVice, },
                 projTypeList: new int[] { ProjectileID.DeathLaser, ProjectileID.BombSkeletronPrime, });
-            Add("GreenThumb", "Green Thumb",
+            Add("PlanteraGitgud", "Green Thumb",
                 "Poisoned", BuffID.Poisoned,
                 NPCID.Plantera,
                 nPCTypeList: new int[] { NPCID.PlanterasHook, NPCID.PlanterasTentacle },
                 projTypeList: new int[] { ProjectileID.ThornBall, ProjectileID.SeedPlantera, ProjectileID.PoisonSeedPlantera });
+            Add("EmpressOfLightGitgud", "Well-Worn Boots of Stomping",
+                "", -1,
+                NPCID.HallowBoss,
+                //TODO confirm 872, 873, 919, 923, 924 minus HallowBossDeathAurora (874) spawn
+                projTypeList: new int[] { ProjectileID.HallowBossLastingRainbow, ProjectileID.HallowBossRainbowStreak, ProjectileID.FairyQueenLance, ProjectileID.FairyQueenSunDance, ProjectileID.FairyQueenHymn, });
             Add("GolemGitgud", "Rechargeable Solar Battery",
                 "On Fire!", BuffID.OnFire,
                 NPCID.Golem,
@@ -721,6 +738,9 @@ namespace AssortedCrazyThings
 
         //HARDMODE
 
+        public byte queenSlimeGitgudCounter = 0;
+        public bool queenSlimeGitgud = false;
+
         public byte destroyerGitgudCounter = 0;
         public bool destroyerGitgud = false;
 
@@ -732,6 +752,9 @@ namespace AssortedCrazyThings
 
         public byte planteraGitgudCounter = 0;
         public bool planteraGitgud = false;
+
+        public byte empressOfLightGitgudCounter = 0;
+        public bool empressOfLightGitgud = false;
 
         public byte golemGitgudCounter = 0;
         public bool golemGitgud = false;
@@ -759,10 +782,12 @@ namespace AssortedCrazyThings
             queenBeeGitgud = false;
             skeletronGitgud = false;
             wallOfFleshGitgud = false;
+            queenSlimeGitgud = false;
             destroyerGitgud = false;
             twinsGitgud = false;
             skeletronPrimeGitgud = false;
             planteraGitgud = false;
+            empressOfLightGitgud = false;
             golemGitgud = false;
             dukeFishronGitgud = false;
             lunaticCultistGitgud = false;
@@ -781,10 +806,12 @@ namespace AssortedCrazyThings
                 queenBeeGitgud,
                 skeletronGitgud,
                 wallOfFleshGitgud,
+                queenSlimeGitgud,
                 destroyerGitgud,
                 twinsGitgud,
                 skeletronPrimeGitgud,
                 planteraGitgud,
+                empressOfLightGitgud,
                 golemGitgud,
                 dukeFishronGitgud,
                 lunaticCultistGitgud,
@@ -807,10 +834,12 @@ namespace AssortedCrazyThings
                 {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
                 {"skeletronGitgudCounter", (byte)skeletronGitgudCounter},
                 {"wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter},
+                {"queenSlimeGitgudCounter", (byte)queenSlimeGitgudCounter},
                 {"destroyerGitgudCounter", (byte)destroyerGitgudCounter},
                 {"twinsGitgudCounter", (byte)twinsGitgudCounter},
                 {"skeletronPrimeGitgudCounter", (byte)skeletronPrimeGitgudCounter},
                 {"planteraGitgudCounter", (byte)planteraGitgudCounter},
+                {"empressOfLightGitgudCounter", (byte)empressOfLightGitgudCounter},
                 {"golemGitgudCounter", (byte)golemGitgudCounter},
                 {"dukeFishronGitgudCounter", (byte)dukeFishronGitgudCounter},
                 {"lunaticCultistGitgudCounter", (byte)lunaticCultistGitgudCounter},
@@ -828,10 +857,12 @@ namespace AssortedCrazyThings
             queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
             skeletronGitgudCounter = tag.GetByte("skeletronGitgudCounter");
             wallOfFleshGitgudCounter = tag.GetByte("wallOfFleshGitgudCounter");
+            queenSlimeGitgudCounter = tag.GetByte("queenSlimeGitgudCounter");
             destroyerGitgudCounter = tag.GetByte("destroyerGitgudCounter");
             twinsGitgudCounter = tag.GetByte("twinsGitgudCounter");
             skeletronPrimeGitgudCounter = tag.GetByte("skeletronPrimeGitgudCounter");
             planteraGitgudCounter = tag.GetByte("planteraGitgudCounter");
+            empressOfLightGitgudCounter = tag.GetByte("empressOfLightGitgudCounter");
             golemGitgudCounter = tag.GetByte("golemGitgudCounter");
             dukeFishronGitgudCounter = tag.GetByte("dukeFishronGitgudCounter");
             lunaticCultistGitgudCounter = tag.GetByte("lunaticCultistGitgudCounter");
@@ -867,10 +898,12 @@ namespace AssortedCrazyThings
                 queenBeeGitgudCounter,
                 skeletronGitgudCounter,
                 wallOfFleshGitgudCounter,
+                queenSlimeGitgudCounter,
                 destroyerGitgudCounter,
                 twinsGitgudCounter,
                 skeletronPrimeGitgudCounter,
                 planteraGitgudCounter,
+                empressOfLightGitgudCounter,
                 golemGitgudCounter,
                 dukeFishronGitgudCounter,
                 lunaticCultistGitgudCounter,

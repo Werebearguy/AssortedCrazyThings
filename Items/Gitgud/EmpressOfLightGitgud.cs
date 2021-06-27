@@ -1,25 +1,23 @@
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-    [LegacyName("GreenThumb")]
-    public class PlanteraGitgud : GitgudItem
+    public class EmpressOfLightGitgud : GitgudItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Green Thumb");
+            DisplayName.SetDefault("Well-Worn Boots of Stomping");
         }
 
         public override void SafeSetDefaults()
         {
-            Item.width = 32;
-            Item.height = 32;
+            Item.width = 30;
+            Item.height = 24;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GitGudPlayer>().planteraGitgud = true;
+            player.GetModPlayer<GitGudPlayer>().empressOfLightGitgud = true;
         }
     }
 }
