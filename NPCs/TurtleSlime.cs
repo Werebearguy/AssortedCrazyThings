@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Items.Pets;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -51,6 +53,18 @@ namespace AssortedCrazyThings.NPCs
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel));
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Texture2D texture = ModContent.GetTexture(Texture + "_Glowmask").Value;
+            Vector2 stupidOffset = new Vector2(0f, 4f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
+            Color fullColor = drawColor;
+            fullColor.A = 255;
+            spriteBatch.Draw(texture, drawPos, NPC.frame, fullColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
         }
     }
 }
