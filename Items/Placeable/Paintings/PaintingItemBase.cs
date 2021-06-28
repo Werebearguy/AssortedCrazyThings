@@ -27,18 +27,12 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 
 		public sealed override void SetDefaults()
 		{
+			Item.DefaultToPlacableTile(TileType);
 			Item.value = Item.buyPrice(gold: 1);
 			Item.width = 32;
 			Item.height = 32;
 			Item.maxStack = 999;
-			Item.useTurn = true;
-			Item.autoReuse = true;
-			Item.useAnimation = 15;
-			Item.useTime = 10;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.consumable = true;
 			Item.rare = ItemRarityID.Blue;
-			Item.createTile = TileType;
 		}
 	}
 }
