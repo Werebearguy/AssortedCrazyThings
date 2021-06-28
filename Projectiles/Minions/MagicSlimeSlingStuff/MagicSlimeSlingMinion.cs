@@ -54,11 +54,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             }
         }
 
-        public override void SetStaticDefaults()
+        public override bool UseJumpingFrame => false;
+
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Slime Sling Minion");
             Main.projFrames[Projectile.type] = 2;
-            Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
         }
@@ -74,6 +75,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             Projectile.timeLeft = TimeLeft;
 
             DrawOriginOffsetY = 3;
+            DrawOffsetX = 0;
         }
 
         public override void SendExtraAI(BinaryWriter writer)

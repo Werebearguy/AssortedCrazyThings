@@ -11,20 +11,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
     //check this file for more info vvvvvvvv
     public class IlluminantSlimeProj : BabySlimeBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Illuminant Slime");
-            Main.projFrames[Projectile.type] = 6;
-            Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
-            DrawOffsetX = -10;
-            DrawOriginOffsetY = -4;
         }
 
         public override void SafeSetDefaults()
         {
-            //used to set dimensions (if necessary) //also use to set projectile.minion
             Projectile.width = 32;
             Projectile.height = 30;
             Projectile.alpha = 80;

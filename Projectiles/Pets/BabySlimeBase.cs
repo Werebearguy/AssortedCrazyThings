@@ -19,6 +19,23 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public byte walkingFrameSpeed = 20;
         public float customMinionSlots = 1f;
 
+        public virtual bool UseJumpingFrame => true;
+
+        public bool InAir => Projectile.ai[0] != 0f;
+
+        public sealed override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = UseJumpingFrame ? 7 : 6;
+            Main.projPet[Projectile.type] = true;
+
+            SafeSetStaticDefaults();
+        }
+
+        public virtual void SafeSetStaticDefaults()
+        {
+
+        }
+
         public sealed override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.BabySlime);
@@ -36,6 +53,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             flyingFrameSpeed = 6;
             walkingFrameSpeed = 20;
+
+            DrawOffsetX = -14;
+            DrawOriginOffsetY = -2;
 
             SafeSetDefaults();
 
@@ -61,8 +81,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public void Draw()
         {
-            if (Projectile.ai[0] != 0)
+            if (InAir)
             {
+                int flyingFrameStart = UseJumpingFrame ? 3 : 2;
+                int flyingFrameEnd = Main.projFrames[Projectile.type] - 1;
+
                 if (Projectile.velocity.X > 0.5f)
                 {
                     Projectile.spriteDirection = -1;
@@ -78,9 +101,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     Projectile.frame++;
                     Projectile.frameCounter = 0;
                 }
-                if (Projectile.frame < 2 || Projectile.frame > 5)
+                if (Projectile.frame < flyingFrameStart || Projectile.frame > flyingFrameEnd)
                 {
-                    Projectile.frame = 2;
+                    Projectile.frame = flyingFrameStart;
                 }
                 Projectile.rotation = Projectile.velocity.X * 0.1f;
             }
@@ -93,6 +116,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 if (Projectile.direction == 1)
                 {
                     Projectile.spriteDirection = -1;
+                }
+
+                int walkingFrameEnd = 1;
+
+                if (UseJumpingFrame && Projectile.velocity.Y != 0.4f) //Standing on the ground: Y == 0.4f as per AI
+                {
+                    walkingFrameEnd++;
+                    Projectile.frameCounter = 0;
+                    Projectile.frame = 2;
                 }
 
                 if (Projectile.velocity.Y >= 0f && Projectile.velocity.Y <= 0.8f)
@@ -110,34 +142,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     Projectile.frameCounter += 5;
                 }
+
                 if (Projectile.frameCounter >= walkingFrameSpeed)
                 {
                     Projectile.frameCounter -= walkingFrameSpeed;
                     Projectile.frame++;
                 }
-                if (Projectile.frame > 1)
+
+                if (Projectile.frame > walkingFrameEnd)
                 {
                     Projectile.frame = 0;
                 }
-                if (Projectile.wet && Projectile.GetOwner().Bottom.Y < Projectile.Bottom.Y && JumpTimer == 0f)
-                {
-                    if (Projectile.velocity.Y > -4f)
-                    {
-                        Projectile.velocity.Y -= 0.2f;
-                    }
-                    if (Projectile.velocity.Y > 0f)
-                    {
-                        Projectile.velocity.Y *= 0.95f;
-                    }
-                }
-                else
-                {
-                    Projectile.velocity.Y += 0.4f;
-                }
-                if (Projectile.velocity.Y > 10f)
-                {
-                    Projectile.velocity.Y = 10f;
-                }
+
                 Projectile.rotation = 0f;
             }
         }
@@ -246,7 +262,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
             }
 
-            if (Projectile.ai[0] != 0f)
+            if (InAir)
             {
                 float veloDelta = 0.2f;
                 int playerRange = 200;
@@ -350,10 +366,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 Projectile.direction = (Projectile.velocity.X > 0).ToDirectionInt();
             }
-            else //projectile.ai[0] == 0f
+            else
             {
-                Vector2 toTarget = Vector2.Zero;
-
                 float offset = 40 * Projectile.minionPos;
                 JumpTimer -= 1;
                 if (JumpTimer < 0)
@@ -436,10 +450,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     {
                         distance = otherDistance;
                     }
-                    else if (targetNPC >= 0) //has target
-                    {
-                        toTarget = new Vector2(targetX, targetY) - Projectile.Center;
-                    }
 
                     float num104 = 300f;
                     if (Projectile.position.Y > Main.worldSurface * 16.0)
@@ -504,25 +514,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
                                 Projectile.velocity.Y = -18f;
                             }
                         }
-
-                        //---------------------------------------------------------------------
-                        //drop through platforms
-                        //only drop if targets center y is lower than the minions bottom y, and only if its less than 300 away from the target horizontally
-                        //if (Main.npc[targetNPC].Center.Y > projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
-                        //{
-                        //    int tilex = (int)(projectile.position.X / 16f);
-                        //    int tiley = (int)((projectile.Bottom.Y + 15f) / 16f);
-
-                        //    if (TileID.Sets.Platforms[Framing.GetTileSafely(tilex, tiley).type] &&
-                        //        TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 1, tiley).type] &&
-                        //        ((projectile.direction == -1) ? TileID.Sets.Platforms[Framing.GetTileSafely(tilex + 2, tiley).type] : true))
-                        //    {
-                        //        //AssUtils.Print("drop " + Main.time);
-                        //        //Main.NewText("drop");
-                        //        projectile.netUpdate = true;
-                        //        projectile.position.Y += 1f;
-                        //    }
-                        //}
 
                         if (shootSpikes)
                         {
@@ -713,6 +704,26 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 {
                     Projectile.direction = -1;
                 }
+
+                if (Projectile.wet && Projectile.GetOwner().Bottom.Y < Projectile.Bottom.Y && JumpTimer == 0f)
+                {
+                    if (Projectile.velocity.Y > -4f)
+                    {
+                        Projectile.velocity.Y -= 0.2f;
+                    }
+                    if (Projectile.velocity.Y > 0f)
+                    {
+                        Projectile.velocity.Y *= 0.95f;
+                    }
+                }
+                else
+                {
+                    Projectile.velocity.Y += 0.4f;
+                }
+                if (Projectile.velocity.Y > 10f)
+                {
+                    Projectile.velocity.Y = 10f;
+                }
             }
         }
 
@@ -722,14 +733,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 NPC target = Main.npc[targetNPC];
                 Vector2 toTarget = Projectile.DirectionTo(target.Center);
-                if (target.Center.Y > Projectile.Bottom.Y && Math.Abs(toTarget.X) < 300)
-                {
-                    fallThrough = true;
-                }
-                else
-                {
-                    fallThrough = false;
-                }
+                fallThrough = target.Center.Y > Projectile.Bottom.Y && Math.Abs(toTarget.X) < 300;
             }
             else
             {

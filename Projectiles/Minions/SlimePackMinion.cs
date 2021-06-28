@@ -29,22 +29,17 @@ namespace AssortedCrazyThings.Projectiles.Minions
             }
         }
 
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Slime Pack Minion");
-            Main.projFrames[Projectile.type] = 6;
-            Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
-            DrawOffsetX = -10;
-            DrawOriginOffsetY = -2;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
         }
 
         public override void SafeSetDefaults()
         {
-            //used to set dimensions (if necessary) //also use to set projectile.minion
             Projectile.width = 32;
             Projectile.height = 30;
 
@@ -100,7 +95,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 Texture2D image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture).Value;
                 Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
-                Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
+                Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY - DrawOriginOffsetY); //gfxoffY is for when the projectile is on a slope or half brick
                 SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
                 Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
@@ -141,7 +136,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
                     SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
-                    Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY); //gfxoffY is for when the projectile is on a slope or half brick
+                    Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY - DrawOriginOffsetY); //gfxoffY is for when the projectile is on a slope or half brick
 
                     if (PickedTexture == 15 && SlimeType != "Assorted") //illuminant slime
                     {
@@ -159,7 +154,16 @@ namespace AssortedCrazyThings.Projectiles.Minions
                     else if ((PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
                     {
                         Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
-                        Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
+                        Color fullColor = lightColor;
+                        fullColor.A = 255;
+                        Main.EntitySpriteDraw(image, drawPos, bounds, fullColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
+
+                        if (PickedTexture == 10)
+                        {
+                            //Turtle
+                            image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask2").Value;
+                            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
+                        }
                     }
                 }
             }
@@ -168,16 +172,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
     public class SlimePackAssortedMinion : SlimePackMinion
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
-            //could've left it out but removed the trailing cache thing
             DisplayName.SetDefault("Slime Pack Minion");
-            Main.projFrames[Projectile.type] = 6;
-            Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
-            DrawOffsetX = -10;
-            DrawOriginOffsetY = -2;
+
+            //No trailing
         }
 
         public override void SafeSetDefaults()
