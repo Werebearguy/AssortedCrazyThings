@@ -21,8 +21,6 @@ namespace AssortedCrazyThings.Items.Pets
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-
-            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
         public override void SafeSetDefaults()
