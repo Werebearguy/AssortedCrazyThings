@@ -29,11 +29,11 @@ namespace AssortedCrazyThings.Buffs.Pets
                 bool meatballNotSpawned = player.ownedProjectileCounts[meatball] <= 0;
                 if (chunkyNotSpawned)
                 {
-                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 2), 0f, 0f, chunky, 0, 0f, player.whoAmI);
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.Top.Y - 6f, player.direction * 0.75f, -0.5f, chunky, 0, 0f, player.whoAmI);
                 }
                 if (meatballNotSpawned)
                 {
-                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y, 0f, 0f, meatball, 0, 0f, player.whoAmI);
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.Bottom.Y + 6f, player.direction * 0.75f, 0.5f, meatball, 0, 0f, player.whoAmI);
                 }
             }
         }

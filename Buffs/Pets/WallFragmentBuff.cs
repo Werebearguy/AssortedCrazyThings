@@ -28,20 +28,20 @@ namespace AssortedCrazyThings.Buffs.Pets
                 int eye1 = ModContent.ProjectileType<WallFragmentEye1>();
                 if (player.ownedProjectileCounts[eye1] <= 0)
                 {
-                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y - 6f, player.direction * 0.75f, -0.5f, eye1, 0, 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.Top.Y - 6f, player.direction * 0.75f, -0.5f, eye1, 0, 0f, player.whoAmI, 0f, 0f);
                 }
 
                 int mouth = ModContent.ProjectileType<WallFragmentMouth>();
                 if (player.ownedProjectileCounts[mouth] <= 0)
                 {
-                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y + player.height / 2, player.direction, 0f, mouth, 0, 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.Center.Y, player.direction, 0f, mouth, 0, 0f, player.whoAmI, 0f, 0f);
 
                 }
 
                 int eye2 = ModContent.ProjectileType<WallFragmentEye2>();
                 if (player.ownedProjectileCounts[eye2] <= 0)
                 {
-                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.position.Y + player.height + 6f, player.direction * 0.75f, 0.5f, eye2, 0, 0f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center.X, player.Bottom.Y + 6f, player.direction * 0.75f, 0.5f, eye2, 0, 0f, player.whoAmI, 0f, 0f);
                 }
             }
         }

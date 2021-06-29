@@ -20,7 +20,6 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SafeSetDefaults()
         {
-            Item.CloneDefaults(ItemID.ZephyrFish);
             Item.rare = -11;
             Item.value = Item.sellPrice(silver: 7, copper: 50);
         }
