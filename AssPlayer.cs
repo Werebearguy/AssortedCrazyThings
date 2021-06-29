@@ -251,7 +251,7 @@ namespace AssortedCrazyThings
         /// </summary>
         private void SpawnSoulTemp()
         {
-            if (!ContentConfig.Instance.Bosses) //TODO accessories
+            if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
@@ -575,7 +575,7 @@ namespace AssortedCrazyThings
                 );
             }
 
-            if (ContentConfig.Instance.Bosses && ContentConfig.Instance.Weapons)
+            if (ContentConfig.Instance.Bosses)
             {
                 CircleUIList.Add(new CircleUIHandler(
                 triggerItem: ModContent.ItemType<EverhallowedLantern>(),

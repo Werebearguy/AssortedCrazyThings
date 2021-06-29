@@ -5,7 +5,7 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
     //TODO extend functionality regarding cooldown tooltips
-    [Content(ContentType.Bosses | ContentType.Accessories)]
+    [Content(ContentType.Bosses)]
     public abstract class SigilItemBase : AccessoryBase
     {
         public sealed override void SetStaticDefaults()

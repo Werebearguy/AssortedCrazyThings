@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 
             if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
             {
-                if (ContentConfig.Instance.Bosses && ContentConfig.Instance.Weapons)
+                if (ContentConfig.Instance.Bosses)
                 {
                     summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
                     {

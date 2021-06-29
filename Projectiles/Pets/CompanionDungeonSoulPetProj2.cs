@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Content(ContentType.Bosses | ContentType.OtherPets)]
+    [Content(ContentType.Bosses)]
     public class CompanionDungeonSoulPetProj2 : SimplePetProjBase
     {
         public override string Texture

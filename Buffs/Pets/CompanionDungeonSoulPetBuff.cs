@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    [Content(ContentType.Bosses | ContentType.OtherPets)]
+    [Content(ContentType.Bosses)]
     public class CompanionDungeonSoulPetBuff : SimplePetBuffBase
     {
         public override int PetType => ModContent.ProjectileType<CompanionDungeonSoulPetProj>();

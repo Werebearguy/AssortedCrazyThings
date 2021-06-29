@@ -245,17 +245,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             npcLoot.Add(ItemDropRule.BossBag(BossBag)); //this requires you to set BossBag in SetDefaults accordingly
 
             //Relic and trophy are NOT spawned in the bag
-            if (ContentConfig.Instance.Placeables)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
-                npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HarvesterRelicItem>()));
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HarvesterRelicItem>()));
 
-            //Master mode pet
-            if (ContentConfig.Instance.DroppedPets)
-            {
-                npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
-            }
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
 
             //Drop one of three sigils, one random one per player
             var sigils = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
@@ -268,10 +261,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.Bone, minimumDropped: 40, maximumDropped: 60));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>()));
 
-            if (ContentConfig.Instance.VanityArmor)
-            {
-                notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 7));
-            }
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), chanceDenominator: 7));
 
             //Finally add the leading rule
             npcLoot.Add(notExpertRule);

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.Bosses | ContentType.OtherPets)]
+    [Content(ContentType.Bosses)]
     public class CompanionDungeonSoulPetItem : CaughtDungeonSoulBase
     {
         public override void SetStaticDefaults()
