@@ -14,7 +14,7 @@ namespace AssortedCrazyThings
 		internal ContentType FilterFlags { private set; get; }
 
 		[Header("The following toggles let you control content added by this mod" +
-			"\n\nNPCs")]
+			"\n\nSpecial - Toggles which take priority over other relevant config options")]
 
 		[ReloadRequired]
 		[DefaultValue(true)]
@@ -30,17 +30,19 @@ namespace AssortedCrazyThings
 		[Label("Cute Slimes")]
 		public bool CuteSlimes { get; set; }
 
+		[Header("NPCs")]
+
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(227, 160, 147)]
-		[Tooltip("Harmful entities - This includes pets obtained by catching, and does not disable bosses!")]
+		[Tooltip("Harmful entities - This includes pets obtained by catching")]
 		[Label("Hostile")]
 		public bool HostileNPCs { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(227, 160, 147)]
-		[Tooltip("Harmless entities - This does not disable cute slimes!")]
+		[Tooltip("Harmless entities")]
 		[Label("Friendly")]
 		public bool FriendlyNPCs { get; set; }
 
@@ -56,14 +58,14 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Pets that are crafted or sold - This does not include cute slimes or NPCs caught as pets!")]
+		[Tooltip("Pets that are crafted or sold - This does not include NPCs caught as pets!")]
 		[Label("Other Pets")]
 		public bool OtherPets { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Items that deal damage (Pacifist path)")]
+		[Tooltip("Items that deal damage")]
 		[Label("Weapons")]
 		public bool Weapons { get; set; }
 
