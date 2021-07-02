@@ -18,6 +18,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public byte flyingFrameSpeed = 6;
         public byte walkingFrameSpeed = 20;
         public float customMinionSlots = 1f;
+        public bool alignFront = false;
 
         public virtual bool UseJumpingFrame => true;
 
@@ -216,7 +217,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             int initialOffset = Projectile.minion ? 10 : 25;
             if (!Projectile.minion) Projectile.minionPos = 0;
-            int directionalOffset = 40 * (Projectile.minionPos + 1) * player.direction;
+            int directionalOffset = 40 * (Projectile.minionPos + 1) * player.direction * -alignFront.ToDirectionInt();
             if (player.Center.X < Projectile.Center.X - initialOffset + directionalOffset)
             {
                 left = true;
