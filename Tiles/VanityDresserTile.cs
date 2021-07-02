@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Tiles
             name.SetDefault("Costume Dresser");
             AddMapEntry(new Color(200, 200, 200), name);
             DustType = 11;
-            //DisableSmartCursor = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
         }
 
         private void MouseOverCombined(bool close)

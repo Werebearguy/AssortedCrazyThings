@@ -25,7 +25,6 @@ namespace AssortedCrazyThings.Tiles
             name.SetDefault("Statue");
             AddMapEntry(new Color(144, 148, 144), name);
             DustType = 11;
-            //DisableSmartCursor = true;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

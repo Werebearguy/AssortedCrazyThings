@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.Tiles
             Main.tileWaterDeath[Type] = true;
             Main.tileLavaDeath[Type] = true;
             TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.WaterDeath = true;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
@@ -40,7 +41,6 @@ namespace AssortedCrazyThings.Tiles
             AddMapEntry(new Color(105, 105, 105), name);
             DustType = -1;
             AnimationFrameHeight = 36;
-            //DisableSmartCursor = true;
             AdjTiles = new int[] { TileID.Campfire };
         }
 
@@ -72,7 +72,7 @@ namespace AssortedCrazyThings.Tiles
         //you need these four things for the outline to work:
         //_Highlight.png
         //TileID.Sets.HasOutlines[Type] = true;
-        //DisableSmartCursor = true;
+        //TileID.Sets.DisableSmartCursor[Type] = true;
         //and this hook
         public override bool HasSmartInteract()
         {

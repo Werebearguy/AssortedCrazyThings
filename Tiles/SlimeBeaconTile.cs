@@ -17,6 +17,7 @@ namespace AssortedCrazyThings.Tiles
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;
             TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(1, 2);
@@ -27,7 +28,6 @@ namespace AssortedCrazyThings.Tiles
             AddMapEntry(new Color(75, 139, 166), name);
             DustType = 1;
             AnimationFrameHeight = 56;
-            //DisableSmartCursor = true;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Tiles
         //you need these four things for the outline to work:
         //_Highlight.png
         //TileID.Sets.HasOutlines[Type] = true;
-        //DisableSmartCursor = true;
+        //TileID.Sets.DisableSmartCursor[Type] = true;
         //and this hook
         public override bool HasSmartInteract()
         {
