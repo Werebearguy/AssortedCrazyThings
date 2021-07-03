@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -71,6 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Projectile.width = 20;
             Projectile.height = 18;
+            Projectile.hide = true;
 
             DrawOriginOffsetY = 0;
             DrawOffsetX = -20;
@@ -100,6 +102,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 alignFront = !alignFront;
             }
+        }
+
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {
+            (alignFront ? overPlayers : behindProjectiles).Add(index);
         }
     }
 

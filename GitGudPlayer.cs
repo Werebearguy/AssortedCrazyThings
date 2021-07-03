@@ -187,7 +187,7 @@ namespace AssortedCrazyThings
 
             bool deleted = false;
 
-            Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.armor }; //go though player inv
+            Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.bank4.item, player.armor }; //go though player inv
             for (int y = 0; y < inventoryArray.Length; y++)
             {
                 for (int e = 0; e < inventoryArray[y].Length; e++)
@@ -214,7 +214,10 @@ namespace AssortedCrazyThings
                 deleted = true;
             }
 
-            if (deleted) Main.NewText("You won't be needing the " + itemName + " anymore...", new Color(255, 175, 0));
+            if (deleted && Main.myPlayer == player.whoAmI)
+            {
+                Main.NewText("You won't be needing the " + itemName + " anymore...", new Color(255, 175, 0));
+            }
         }
 
         /// <summary>
