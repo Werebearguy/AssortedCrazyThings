@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 
         public abstract int PetType { get; }
 
-        public sealed override void SetDefaults()
+        public sealed override void SetStaticDefaults()
         {
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;

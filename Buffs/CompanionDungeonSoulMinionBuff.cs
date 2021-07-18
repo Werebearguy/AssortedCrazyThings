@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Buffs
     [Content(ContentType.Bosses)]
     public class CompanionDungeonSoulMinionBuff : AssBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Companion Soul Minion");
             Description.SetDefault("A friendly Soul is fighting for you");

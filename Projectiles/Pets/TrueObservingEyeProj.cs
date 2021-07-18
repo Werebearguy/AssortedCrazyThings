@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             //Draw Eye
 
-            image = ModContent.GetTexture(Texture + "_Eye").Value;
+            image = ModContent.Request<Texture2D>(Texture + "_Eye").Value;
 
             Vector2 between = Projectile.GetOwner().Center - (Projectile.position + stupidOffset);
             //between.Length(): 94 is "idle", 200 is very fast following

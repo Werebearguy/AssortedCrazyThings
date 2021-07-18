@@ -80,7 +80,7 @@ namespace AssortedCrazyThings.UI
             List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
             for (int i = 0; i < tooltips.Count; i++)
             {
-                assets.Add(AssUtils.Instance.GetTexture("Projectiles/Pets/" + name + "_" + i));
+                assets.Add(AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Pets/" + name + "_" + i));
             }
 
             int type = AssUtils.Instance.Find<ModProjectile>(name).Type;
@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.UI
             //Test if textures exist
             //foreach (string texture in textureNames)
             //{
-            //    if (ModContent.GetTexture(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
+            //    if (ModContent.Request<Texture2D>(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
             //}
 
             if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);

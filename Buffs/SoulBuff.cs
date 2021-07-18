@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs
     {
         public override string Texture => "AssortedCrazyThings/Empty";
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             //purely on the NPC side, so no name or texture required
             Main.buffNoTimeDisplay[Type] = true;

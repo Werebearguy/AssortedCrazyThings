@@ -17,13 +17,12 @@ namespace AssortedCrazyThings.Base.DrawLayers
         {
             if (!Main.dedServ)
             {
-                wingTexture = Mod.GetTexture("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask");
+                wingTexture = Mod.Assets.Request<Texture2D>("Items/Accessories/Useful/HarvesterWings_Wings_Glowmask");
             }
         }
 
         public override void Unload()
         {
-            wingTexture?.Dispose();
             wingTexture = null;
         }
 

@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 drawOrigin = bounds.Size() / 2;
 
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
-            Main.EntitySpriteDraw(ModContent.GetTexture(Texture + "_Glowmask").Value, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glowmask").Value, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             return false;
         }

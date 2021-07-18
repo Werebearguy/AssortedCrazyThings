@@ -101,7 +101,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
-            image = Mod.GetTexture(nameGlow).Value;
+            image = Mod.Assets.Request<Texture2D>(nameGlow).Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             Vector2 rotationOffset = new Vector2(0f, -2f); //-2f)
@@ -113,10 +113,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             //AssUtils.ShowDustAtPos(136, projectile.position + stupidOffset - drawOrigin);
 
             //rotation origin is (projectile.position + stupidOffset) - drawOrigin; //not including Main.screenPosition
-            image = Mod.GetTexture(nameLower).Value;
+            image = Mod.Assets.Request<Texture2D>(nameLower).Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, addRotation, drawOrigin, 1f, effects, 0);
 
-            image = Mod.GetTexture(nameLowerGlow).Value;
+            image = Mod.Assets.Request<Texture2D>(nameLowerGlow).Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, addRotation, drawOrigin, 1f, effects, 0);
 
             return false;

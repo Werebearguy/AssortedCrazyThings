@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.UI
             drawRotation = new List<float>();
             drawLOS = new List<bool>();
             drawColor = new List<Color>();
-            arrowTexture = AssUtils.Instance.GetTexture("UI/UIArrow").Value;
+            arrowTexture = AssUtils.Instance.Assets.Request<Texture2D>("UI/UIArrow").Value;
 
             List<int> blacklistNPCsList = new List<int>()
             {

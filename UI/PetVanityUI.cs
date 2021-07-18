@@ -77,7 +77,7 @@ namespace AssortedCrazyThings.UI
         //Initialization
         public override void OnInitialize()
         {
-            redCrossTexture = AssUtils.Instance.GetTexture("UI/UIRedCross").Value;
+            redCrossTexture = AssUtils.Instance.Assets.Request<Texture2D>("UI/UIRedCross").Value;
         }
 
         //Update, unused

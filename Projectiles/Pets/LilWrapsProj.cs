@@ -130,7 +130,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 effects = SpriteEffects.FlipHorizontally;
             }
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/LilWrapsProj_" + mPlayer.lilWrapsType).Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/LilWrapsProj_" + mPlayer.lilWrapsType).Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: frame2);
             Vector2 stupidOffset = new Vector2(10f, 23f + Projectile.gfxOffY);
             Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);

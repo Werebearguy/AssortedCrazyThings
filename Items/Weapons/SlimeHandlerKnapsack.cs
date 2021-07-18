@@ -19,9 +19,9 @@ namespace AssortedCrazyThings.Items.Weapons
         public static CircleUIConf GetUIConf()
         {
             List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
-                        AssUtils.Instance.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
+                        AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
+                        AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
+                        AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
             List<string> tooltips = new List<string>
                     {
                         "Default"

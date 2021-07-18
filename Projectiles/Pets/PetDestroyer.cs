@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Main.EntitySpriteDraw(texture, drawPos, drawRect, color, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 
-            texture = Mod.GetTexture("Projectiles/Pets/" + Name + "_Glowmask").Value;
+            texture = Mod.Assets.Request<Texture2D>("Projectiles/Pets/" + Name + "_Glowmask").Value;
             Main.EntitySpriteDraw(texture, drawPos, drawRect, Color.White, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 
             return false;
@@ -248,7 +248,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             SpriteEffects effects = Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/PetDestroyerProbe").Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetDestroyerProbe").Value;
             Rectangle bounds = image.Bounds;
             bounds.Y = Projectile.frame * bounds.Height;
             Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - Projectile.gfxOffY);
@@ -256,7 +256,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 origin = bounds.Size() / 2;
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            image = Mod.GetTexture("Projectiles/Pets/PetDestroyerProbe_Glowmask").Value;
+            image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetDestroyerProbe_Glowmask").Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
             return false;

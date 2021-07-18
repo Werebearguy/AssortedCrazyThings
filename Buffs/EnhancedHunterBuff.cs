@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Buffs
     [Content(ContentType.Bosses)]
     public class EnhancedHunterBuff : AssBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Enhanced Hunter");
             Description.SetDefault("Shows the location of enemies outside your vision range");

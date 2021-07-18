@@ -108,16 +108,12 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
         public override void Unload()
         {
-            DisposeContentsInDict(SheetAssets);
             SheetAssets = null;
 
-            DisposeContentsInDict(SheetNoHairAssets);
             SheetNoHairAssets = null;
 
-            DisposeContentsInDict(SheetAdditionAssets);
             SheetAdditionAssets = null;
 
-            DisposeContentsInDict(SheetAdditionNoHairAssets);
             SheetAdditionNoHairAssets = null;
         }
 
@@ -128,15 +124,21 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
             if (!Main.dedServ)
             {
+                if (Texture.Contains("Xmas"))
+                {
+                    int a = 0;
+                }
                 string sheetName = Texture + Sheet;
 
                 //All of them have these
-                SheetAssets[Projectile.type] = ModContent.GetTexture(sheetName);
+                SheetAssets[Projectile.type] = ModContent.Request<Texture2D>(sheetName);
 
-                SheetNoHairAssets[Projectile.type] = ModContent.GetTexture(sheetName + NoHair);
+                SheetNoHairAssets[Projectile.type] = ModContent.Request<Texture2D>(sheetName + NoHair);
 
                 //Only some have these
                 SheetAdditionAssets[Projectile.type] = GetTextureMaybeNull(sheetName + Addition);
+
+                var b = Mod.RootContentSource.GetExtension("Projectiles/Pets/CuteSlimes/CuteSlimeXmasProj_SheetAddition");
 
                 SheetAdditionNoHairAssets[Projectile.type] = GetTextureMaybeNull(sheetName + Addition + NoHair);
             }
@@ -144,23 +146,16 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             SafeSetStaticDefaults();
         }
 
-        private static void DisposeContentsInDict<T>(Dictionary<int, T> dict) where T: IDisposable
-        {
-            if (dict == null)
-                return;
-
-            foreach (var item in dict)
-            {
-                item.Value?.Dispose();
-            }
-        }
-
         private static Asset<Texture2D> GetTextureMaybeNull(string name)
         {
-            if (ModContent.TextureExists(name))
-                return ModContent.GetTexture(name);
+            ModContent.RequestIfExists(name, out Asset<Texture2D> asset);
 
-            return null;
+            if (asset != null)
+            {
+                int a = 0;
+            }
+
+            return asset;
         }
 
         private void Animation(PetPlayer petPlayer)
@@ -541,7 +536,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 textureString = PetAccessoryFolder + petAccessory.Name;
                 colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
 
-                texture = ModContent.GetTexture(textureString + colorString + AccSheet).Value;
+                texture = ModContent.Request<Texture2D>(textureString + colorString + AccSheet).Value;
 
                 frameLocal = texture.Frame(SheetCountX, SheetCountY, frameX, frameY);
 

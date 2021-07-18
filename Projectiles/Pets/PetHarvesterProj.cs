@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            image = ModContent.GetTexture(GlowTexture).Value;
+            image = ModContent.Request<Texture2D>(GlowTexture).Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
             return false;

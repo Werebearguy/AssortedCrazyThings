@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/AnomalocarisProj_" + mPlayer.petAnomalocarisType).Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/AnomalocarisProj_" + mPlayer.petAnomalocarisType).Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2 + 2f + Projectile.gfxOffY);

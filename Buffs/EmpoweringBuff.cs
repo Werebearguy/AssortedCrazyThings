@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Buffs
     [Content(ContentType.Bosses)]
     public class EmpoweringBuff : AssBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Empowering");
             Description.SetDefault("You get stronger the longer you don't receive damage");

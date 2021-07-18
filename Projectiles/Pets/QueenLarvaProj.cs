@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         public override bool PreDraw(ref Color lightColor)
         {
             PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType).Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType).Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             sincounter = sincounter > 150 ? 0 : sincounter + 1;

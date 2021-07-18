@@ -81,7 +81,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (AssWorld.harvesterIndex != -1)
             {
-                Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterChain").Value;
+                Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterChain").Value;
                 //Main.chain21Texture
                 Vector2 center = NPC.Center;
                 NPC body = Main.npc[AssWorld.harvesterIndex];
@@ -130,7 +130,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                 }
 
-                texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterTalon").Value;
+                texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterTalon").Value;
                 spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
             }
         }

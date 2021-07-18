@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Effects
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                CircleEffect = AssUtils.Instance.GetEffect("Effects/CircleShader/Circle").Value;
+                CircleEffect = AssUtils.Instance.Assets.Request<Effect>("Effects/CircleShader/Circle").Value;
             }
         }
 

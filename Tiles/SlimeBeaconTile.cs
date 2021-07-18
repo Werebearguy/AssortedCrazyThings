@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Tiles
     [Content(ContentType.Placeables)]
     public class SlimeBeaconTile : DroppableTile<SlimeBeaconItem>
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;

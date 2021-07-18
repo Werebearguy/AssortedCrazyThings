@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(Color drawColor)
         {
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/TurtleSlimeProj_Glowmask").Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/TurtleSlimeProj_Glowmask").Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             Vector2 stupidOffset = new Vector2(0, Projectile.gfxOffY - DrawOriginOffsetY); //gfxoffY is for when the npc is on a slope or half brick
@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Vector2 origin = bounds.Size() / 2;
             Main.EntitySpriteDraw(image, drawPos, bounds, fullColor, Projectile.rotation, origin, Projectile.scale, effect, 0);
 
-            image = Mod.GetTexture("Projectiles/Pets/TurtleSlimeProj_Glowmask2").Value;
+            image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/TurtleSlimeProj_Glowmask2").Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, drawColor, Projectile.rotation, origin, Projectile.scale, effect, 0);
         }
     }

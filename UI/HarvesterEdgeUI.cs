@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.UI
 
         public override void OnInitialize()
         {
-            texture = AssUtils.Instance.GetTexture("NPCs/DungeonBird/Harvester2Head").Value;
+            texture = AssUtils.Instance.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Head").Value;
 
             typeList = new int[] { ModContent.NPCType<Harvester1>(), ModContent.NPCType<Harvester2>() };
             drawPos = new List<Vector2>();

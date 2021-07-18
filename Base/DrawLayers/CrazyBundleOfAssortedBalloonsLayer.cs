@@ -17,13 +17,12 @@ namespace AssortedCrazyThings.Base.DrawLayers
         {
             if (!Main.dedServ)
             {
-                balloonTexture = Mod.GetTexture("Items/Accessories/Useful/CrazyBundleOfAssortedBalloons_Balloon_Proper");
+                balloonTexture = Mod.Assets.Request<Texture2D>("Items/Accessories/Useful/CrazyBundleOfAssortedBalloons_Balloon_Proper");
             }
         }
 
         public override void Unload()
         {
-            balloonTexture?.Dispose();
             balloonTexture = null;
         }
 

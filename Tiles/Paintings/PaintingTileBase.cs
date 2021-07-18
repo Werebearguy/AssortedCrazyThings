@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Tiles.Paintings
 	public abstract class PaintingTileBase<T> : DroppableTile<T> where T : ModItem
 	{
 		//TODO style classes based on dimension
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;

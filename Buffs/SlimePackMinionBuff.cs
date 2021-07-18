@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Buffs
     [Content(ContentType.Weapons)]
     public class SlimePackMinionBuff : AssBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slime");
             Description.SetDefault("A friendly Slime from your Knapsack is fighting for you");

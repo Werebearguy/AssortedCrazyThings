@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Tiles
     [Content(ContentType.Placeables | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
     public class VanityDresserTile : DroppableTile<VanityDresserItem>
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;

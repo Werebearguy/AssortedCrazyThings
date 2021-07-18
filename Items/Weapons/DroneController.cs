@@ -213,7 +213,7 @@ namespace AssortedCrazyThings.Items.Weapons
                 if (type != DroneType.None)
                 {
                     DroneData data = GetDroneData(type);
-                    assets.Add(AssUtils.Instance.GetTexture(data.PreviewTextureName));
+                    assets.Add(AssUtils.Instance.Assets.Request<Texture2D>(data.PreviewTextureName));
                     unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
                     tooltips.Add(data.UITooltip);
                     toUnlock.Add("Craft and use a '" + data.Name + " Components' Item");

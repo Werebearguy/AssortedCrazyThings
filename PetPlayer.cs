@@ -783,8 +783,8 @@ namespace AssortedCrazyThings
         public static CircleUIConf GetLifelikeMechanicalFrogConf()
         {
             List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogProj"),
-                        AssUtils.Instance.GetTexture("Projectiles/Pets/LifelikeMechanicalFrogProjCrown") };
+                        AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Pets/LifelikeMechanicalFrogProj"),
+                        AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Pets/LifelikeMechanicalFrogProjCrown") };
 
             List<string> tooltips = new List<string>() { "Default", "Crowned" };
 

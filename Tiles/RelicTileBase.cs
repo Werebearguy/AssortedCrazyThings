@@ -26,16 +26,15 @@ namespace AssortedCrazyThings.Tiles
         public override void Unload()
         {
             //Unload the special texture displayed on the pedestal
-            ExtraAsset?.Dispose();
             ExtraAsset = null;
         }
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
             {
                 //Cache the special texture displayed on the pedestal
-                ExtraAsset = ModContent.GetTexture(Extra);
+                ExtraAsset = ModContent.Request<Texture2D>(Extra);
             }
 
             Main.tileShine[Type] = 400; //Responsible for golden particles

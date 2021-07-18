@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void PostDraw(Color drawColor)
         {
-            Texture2D texture = Mod.GetTexture("Projectiles/Pets/AlienHornetProj_Glowmask").Value;
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/Pets/AlienHornetProj_Glowmask").Value;
             Vector2 drawPos = Projectile.position - Main.screenPosition;
             Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height / 4);
             frame.Y = Projectile.frameCounter % 60;

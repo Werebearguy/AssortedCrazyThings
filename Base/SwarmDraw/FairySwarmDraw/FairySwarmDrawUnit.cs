@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Base.SwarmDraw.FairySwarmDraw
         public int TexIndex { get; private set; }
 
         public FairySwarmDrawUnit(int index) :
-            base(ModContent.GetTexture(name + index), 4, 5, 16, ModContent.GetTexture(name + index + "_Glow"))
+            base(ModContent.Request<Texture2D>(name + index), 4, 5, 16, ModContent.Request<Texture2D>(name + index + "_Glow"))
         {
             TexIndex = index;
         }

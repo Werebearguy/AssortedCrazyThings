@@ -115,7 +115,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             if (PickedTexture == 15)
             {
-                Texture2D image = Mod.GetTexture("Projectiles/Minions/SlimePackMinionSpike_Glowmask").Value;
+                Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinionSpike_Glowmask").Value;
                 SpriteEffects effects = SpriteEffects.None;
 
                 for (int k = Projectile.oldPos.Length - 1; k >= 0; k--)

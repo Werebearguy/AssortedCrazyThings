@@ -126,7 +126,7 @@ namespace AssortedCrazyThings.NPCs
             return true;
         }
 
-        public ref float Timer => ref Timer;
+        public ref float Timer => ref NPC.ai[0];
 
         public ref float AttackTimer => ref NPC.localAI[0];
 

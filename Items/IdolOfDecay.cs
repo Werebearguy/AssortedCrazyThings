@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Items
             return !AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes.Take(3).ToArray()) && player.ZoneDungeon;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (!ContentConfig.Instance.Bosses)
             {

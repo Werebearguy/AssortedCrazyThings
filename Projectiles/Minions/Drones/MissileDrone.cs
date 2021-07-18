@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
-            image = Mod.GetTexture(nameGlow).Value;
+            image = Mod.Assets.Request<Texture2D>(nameGlow).Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
             return false;

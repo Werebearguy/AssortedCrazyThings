@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Buffs
     [Content(ContentType.Weapons)]
     public class DroneControllerBuff : AssBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drone Controller");
             Description.SetDefault("Command a swarm of drones");

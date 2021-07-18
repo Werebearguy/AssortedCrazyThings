@@ -324,7 +324,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Wings").Value;
+            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Wings").Value;
             Vector2 stupidOffset = new Vector2(0f, -26f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
@@ -335,22 +335,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (soulsEaten < maxSoulsEaten / 2)
                 {
-                    texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Soulsmall").Value;
+                    texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Soulsmall").Value;
                 }
                 else if (soulsEaten != maxSoulsEaten - 1)
                 {
-                    texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Soulpulse").Value;
+                    texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Soulpulse").Value;
                 }
                 else
                 {
-                    texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Soulbig").Value;
+                    texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Soulbig").Value;
                 }
             }
             spriteBatch.Draw(texture, drawPos, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 
             if (AI_State == STATE_STOP && stopTime == eatTime)
             {
-                texture = Mod.GetTexture("NPCs/DungeonBird/Harvester2Souleat").Value;
+                texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Souleat").Value;
 
                 drawColor.R = Math.Max(drawColor.R, (byte)200);
                 drawColor.G = Math.Max(drawColor.G, (byte)200);

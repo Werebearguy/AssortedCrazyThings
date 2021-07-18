@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Tiles
     {
         private const int maxFrames = 8;
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;

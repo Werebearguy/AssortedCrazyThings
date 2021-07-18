@@ -51,12 +51,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 texture = 1;
             }
 
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/PetSunProj_" + texture).Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetSunProj_" + texture).Value;
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 28f);
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            Texture2D corona = Mod.GetTexture("Projectiles/Pets/PetSunProj_Corona").Value;
+            Texture2D corona = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetSunProj_Corona").Value;
             Main.EntitySpriteDraw(corona, drawPos, image.Bounds, Color.White, coronaRotation, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0);
 
             Main.EntitySpriteDraw(image, drawPos, image.Bounds, Color.White, 0f, image.Bounds.Size() / 2, 1f, SpriteEffects.None, 0);

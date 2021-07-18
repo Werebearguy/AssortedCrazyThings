@@ -88,7 +88,7 @@ namespace AssortedCrazyThings.NPCs
             int i = NPC.whoAmI % 5; //needs to be fixed per NPC instance
             if (i < 4)
             {
-                Texture2D texture = Mod.GetTexture("NPCs/AnimatedTome_" + i).Value;
+                Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/AnimatedTome_" + i).Value;
                 Vector2 stupidOffset = new Vector2(0f, 0f); //4f
                 SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Vector2 drawPos = NPC.Center - screenPos - Vector2.Zero + stupidOffset;

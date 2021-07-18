@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
             return false;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
             {

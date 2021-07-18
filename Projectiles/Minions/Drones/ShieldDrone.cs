@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D image = Mod.GetTexture(nameLower).Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>(nameLower).Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -121,7 +121,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             image = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
-            image = Mod.GetTexture(nameLamps).Value;
+            image = Mod.Assets.Request<Texture2D>(nameLamps).Value;
             Main.EntitySpriteDraw(image, drawPos, bounds, Color.White, Projectile.rotation, drawOrigin, 1f, effects, 0);
 
 

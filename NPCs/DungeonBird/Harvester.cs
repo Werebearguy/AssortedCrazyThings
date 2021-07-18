@@ -179,7 +179,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return;
             }
 
-            Texture2D texture = Mod.GetTexture("NPCs/DungeonBird/HarvesterWings").Value;
+            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterWings").Value;
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = NPC.Size / 2;
 

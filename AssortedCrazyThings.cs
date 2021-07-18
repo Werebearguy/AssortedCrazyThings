@@ -131,8 +131,8 @@ namespace AssortedCrazyThings
             {
                 animatedSoulTextures = new Texture2D[2];
 
-                animatedSoulTextures[0] = GetTexture("Items/CaughtDungeonSoulAnimated").Value;
-                animatedSoulTextures[1] = GetTexture("Items/CaughtDungeonSoulFreedAnimated").Value;
+                animatedSoulTextures[0] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulAnimated").Value;
+                animatedSoulTextures[1] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulFreedAnimated").Value;
             }
         }
 

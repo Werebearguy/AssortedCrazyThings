@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.NPCs
         double bFrameCounter = 0;
         int bFrameY = 0;
 
-        public ref float SpawnedGem => ref SpawnedGem;
+        public ref float SpawnedGem => ref NPC.ai[1];
 
         public bool DecidedSpawnedGem
         {
@@ -168,7 +168,7 @@ namespace AssortedCrazyThings.NPCs
             if (tex <= 0 || tex > 6)
                 return;
 
-            Texture2D texture = Mod.GetTexture("NPCs/StoneSoldier_" + tex).Value;
+            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/StoneSoldier_" + tex).Value;
             Vector2 stupidOffset = new Vector2(0f, -8f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,7 +12,7 @@ namespace AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw
         private const string name = "AssortedCrazyThings/Base/SwarmDraw/SwarmofCthulhuDraw/SwarmofCthulhu";
 
         public SwarmofCthulhuDrawUnit() :
-            base(ModContent.GetTexture(name), 4, 6, 0, null)
+            base(ModContent.Request<Texture2D>(name), 4, 6, 0, null)
         {
 
         }

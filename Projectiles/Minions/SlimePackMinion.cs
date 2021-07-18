@@ -93,7 +93,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             //Rainbow is _5, Illuminant is _15
             if (HasTexture)
             {
-                Texture2D image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture).Value;
+                Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture).Value;
                 Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
                 Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY - DrawOriginOffsetY); //gfxoffY is for when the projectile is on a slope or half brick
                 SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -132,7 +132,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
             {
                 if ((PickedTexture == 15 && SlimeType != "Assorted") || (PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
                 {
-                    Texture2D image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask").Value;
+                    Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask").Value;
                     Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
                     SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                     Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
@@ -161,7 +161,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
                         if (PickedTexture == 10)
                         {
                             //Turtle
-                            image = Mod.GetTexture("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask2").Value;
+                            image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask2").Value;
                             Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
                         }
                     }

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Gores
 {
 	public class PaperGore : ModGore
 	{
-		public override void SetupContent()
+		public override void SetStaticDefaults()
 		{
 			GoreID.Sets.DisappearSpeedAlpha[Type] = 10;
 			GoreID.Sets.DisappearSpeed[Type] = 6;

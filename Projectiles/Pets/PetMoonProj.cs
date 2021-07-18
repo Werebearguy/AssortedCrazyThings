@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 texture = 11;
             }
 
-            Texture2D image = Mod.GetTexture("Projectiles/Pets/PetMoonProj_" + texture).Value;
+            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetMoonProj_" + texture).Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 18f);

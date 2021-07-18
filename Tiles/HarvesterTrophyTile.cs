@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Tiles
     [Content(ContentType.Bosses)]
     public class HarvesterTrophyTile : DroppableTile<HarvesterTrophyItem>
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;

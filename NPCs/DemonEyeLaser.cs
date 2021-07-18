@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Texture2D texture = Mod.GetTexture("NPCs/DemonEyeLaser_" + AiTexture).Value;
+            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DemonEyeLaser_" + AiTexture).Value;
             Vector2 stupidOffset = new Vector2(-4f, 0f); //gfxoffY is for when the npc is on a slope or half brick
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Texture2D texture = Mod.GetTexture("NPCs/DemonEyeLaser_Glowmask").Value;
+            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DemonEyeLaser_Glowmask").Value;
 
             Vector2 stupidOffset = new Vector2(-4f, 0f);
             SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

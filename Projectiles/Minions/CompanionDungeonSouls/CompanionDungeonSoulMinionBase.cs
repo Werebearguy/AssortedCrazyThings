@@ -141,8 +141,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
             if (mPlayer.soulSaviorArmor && Projectile.minionSlots == 1f)
             {
-                //Texture2D empoweredImage = Mod.GetTexture("Projectiles/Minions/CompanionDungeonSouls/CompanionDungeonSoul_Empowered").Value;
-                Texture2D empoweredImage = ModContent.GetTexture(Texture + "_Empowered").Value;
+                //Texture2D empoweredImage = Mod.Assets.Request<Texture2D>("Projectiles/Minions/CompanionDungeonSouls/CompanionDungeonSoul_Empowered").Value;
+                Texture2D empoweredImage = ModContent.Request<Texture2D>(Texture + "_Empowered").Value;
 
                 float addScale = (float)((Math.Sin((sincounter / 240f) * MathHelper.TwoPi) + 0.5f) * 0.1f);
                 Color color = Color.White * (0.1f + 3 * addScale);

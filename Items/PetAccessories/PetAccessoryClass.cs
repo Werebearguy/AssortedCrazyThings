@@ -297,7 +297,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             AltTextures = new List<Texture2D>(AltTextureSuffixes.Count);
             for (int i = 0; i < AltTextureSuffixes.Count; i++)
             {
-                AltTextures.Add(Main.dedServ ? null : AssUtils.Instance.GetTexture("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
+                AltTextures.Add(Main.dedServ ? null : AssUtils.Instance.Assets.Request<Texture2D>("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
             }
         }
 
@@ -599,7 +599,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             return false;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 

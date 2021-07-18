@@ -17,13 +17,12 @@ namespace AssortedCrazyThings.Base.DrawLayers
         {
             if (!Main.dedServ)
             {
-                knapsackTexture = Mod.GetTexture("Items/Weapons/SlimeHandlerKnapsack_Back");
+                knapsackTexture = Mod.Assets.Request<Texture2D>("Items/Weapons/SlimeHandlerKnapsack_Back");
             }
         }
 
         public override void Unload()
         {
-            knapsackTexture?.Dispose();
             knapsackTexture = null;
         }
 
