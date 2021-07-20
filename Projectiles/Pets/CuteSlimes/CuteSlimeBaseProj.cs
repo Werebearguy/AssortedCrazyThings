@@ -124,10 +124,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
             if (!Main.dedServ)
             {
-                if (Texture.Contains("Xmas"))
-                {
-                    int a = 0;
-                }
                 string sheetName = Texture + Sheet;
 
                 //All of them have these
@@ -138,8 +134,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 //Only some have these
                 SheetAdditionAssets[Projectile.type] = GetTextureMaybeNull(sheetName + Addition);
 
-                var b = Mod.RootContentSource.GetExtension("Projectiles/Pets/CuteSlimes/CuteSlimeXmasProj_SheetAddition");
-
                 SheetAdditionNoHairAssets[Projectile.type] = GetTextureMaybeNull(sheetName + Addition + NoHair);
             }
 
@@ -149,11 +143,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
         private static Asset<Texture2D> GetTextureMaybeNull(string name)
         {
             ModContent.RequestIfExists(name, out Asset<Texture2D> asset);
-
-            if (asset != null)
-            {
-                int a = 0;
-            }
 
             return asset;
         }
