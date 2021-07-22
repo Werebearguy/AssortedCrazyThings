@@ -102,12 +102,10 @@ namespace AssortedCrazyThings.Base.ModSupport
             {
                 if (ContentConfig.Instance.Bosses)
                 {
-                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
-                    {
-                        ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>(),
-                    });
+                    int soulBuff = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
+                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverglowLantern>(), soulBuff, ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>());
 
-                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverhallowedLantern>(), ModContent.BuffType<CompanionDungeonSoulMinionBuff>(), new List<int>
+                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<EverhallowedLantern>(), soulBuff, new List<int>
                     {
                         ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
                         ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
@@ -118,7 +116,15 @@ namespace AssortedCrazyThings.Base.ModSupport
 
                 if (ContentConfig.Instance.Weapons)
                 {
-                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<SlimeHandlerKnapsack>(), ModContent.BuffType<SlimePackMinionBuff>(), ModContent.ProjectileType<SlimePackMinion>());
+                    List<int> slimes = new List<int>()
+                    {
+                        ModContent.ProjectileType<SlimePackMinion>(),
+                        ModContent.ProjectileType<SlimePackSpikedMinion>(),
+                        ModContent.ProjectileType<SlimePackAssortedMinion>(),
+                    };
+        
+                    summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<SlimeHandlerKnapsack>(), ModContent.BuffType<SlimePackMinionBuff>(), slimes);
+
                     List<int> drones = new List<int>();
                     foreach (var drone in DroneController.DataList)
                     {
