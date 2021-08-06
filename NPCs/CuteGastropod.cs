@@ -56,6 +56,9 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
+            //quickUnlock: true so only 1 kill is required to list everything about it
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type], quickUnlock: true);
+
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
                 new FlavorTextBestiaryInfoElement("This hallowed variant of slime has taken on a more friendly appearance after meeting a special person.")
