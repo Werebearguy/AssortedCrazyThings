@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.UI
         /// <summary>
         /// Red cross for when to unequip
         /// </summary>
-        internal static Texture2D redCrossTexture;
+        internal static Asset<Texture2D> redCrossTexture;
 
         /// <summary>
         /// Holds data about what to draw
@@ -77,7 +77,7 @@ namespace AssortedCrazyThings.UI
         //Initialization
         public override void OnInitialize()
         {
-            redCrossTexture = AssUtils.Instance.Assets.Request<Texture2D>("UI/UIRedCross").Value;
+            redCrossTexture = AssUtils.Instance.Assets.Request<Texture2D>("UI/UIRedCross");
         }
 
         //Update, unused
@@ -119,14 +119,15 @@ namespace AssortedCrazyThings.UI
                 Main.spriteBatch.Draw(TextureAssets.WireUi[isMouseWithin ? 1 : 0].Value, bgRect, drawColor);
 
                 //Draw sprites over the icons
-                int width = petAccessory.AltTextures[done].Width;
-                int height = petAccessory.AltTextures[done].Height;
+                Texture2D tex = petAccessory.AltTextures[done].Value;
+                int width = tex.Width;
+                int height = tex.Height;
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
 
                 drawColor = Color.White;
                 if (hasEquipped && done == petAccessory.Color) drawColor = Color.Gray;
 
-                Main.spriteBatch.Draw(petAccessory.AltTextures[done], projRect, petAccessory.AltTextures[done].Bounds, drawColor);
+                Main.spriteBatch.Draw(tex, projRect, tex.Bounds, drawColor);
 
                 if (isMouseWithin)
                 {
@@ -162,10 +163,11 @@ namespace AssortedCrazyThings.UI
                 if (hasEquipped)
                 {
                     //Draw the red cross
-                    int finalWidth = redCrossTexture.Width;
-                    int finalHeight = redCrossTexture.Height;
+                    Texture2D redCrossTex = redCrossTexture.Value;
+                    int finalWidth = redCrossTex.Width;
+                    int finalHeight = redCrossTex.Height;
                     Rectangle outputCrossRect = new Rectangle((int)spawnPosition.X - (finalWidth / 2), (int)spawnPosition.Y - (finalHeight / 2), finalWidth, finalHeight);
-                    Main.spriteBatch.Draw(redCrossTexture, outputCrossRect, Color.White);
+                    Main.spriteBatch.Draw(redCrossTex, outputCrossRect, Color.White);
 
                     //Draw the tooltip
                     Color fontColor = Color.White;

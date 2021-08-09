@@ -2,6 +2,7 @@
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -29,7 +30,7 @@ namespace AssortedCrazyThings.UI
 
         internal static List<Color> drawColor;
 
-        internal static Texture2D arrowTexture; //<- = null in Mod.Unload()
+        internal static Asset<Texture2D> arrowTexture; //<- = null in Mod.Unload()
 
         internal static int[] blacklistNPCs;
 
@@ -41,7 +42,7 @@ namespace AssortedCrazyThings.UI
             drawRotation = new List<float>();
             drawLOS = new List<bool>();
             drawColor = new List<Color>();
-            arrowTexture = AssUtils.Instance.Assets.Request<Texture2D>("UI/UIArrow").Value;
+            arrowTexture = AssUtils.Instance.Assets.Request<Texture2D>("UI/UIArrow");
 
             List<int> blacklistNPCsList = new List<int>()
             {
@@ -307,7 +308,7 @@ namespace AssortedCrazyThings.UI
                 Vector2 drawPosArrow = ldrawPos + stupidOffset;
                 color = drawLOS[i] ? Color.Green * 0.75f : Color.Red * 0.75f;
                 color.A = 150;
-                Main.spriteBatch.Draw(arrowTexture, drawPosArrow, null, color, drawRotation[i], arrowTexture.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(arrowTexture.Value, drawPosArrow, null, color, drawRotation[i], arrowTexture.Frame().Size() / 2, 1f, SpriteEffects.None, 0f);
             }
         }
     }

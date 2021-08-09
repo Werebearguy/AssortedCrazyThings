@@ -2,6 +2,7 @@
 using AssortedCrazyThings.NPCs.DungeonBird;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -17,7 +18,7 @@ namespace AssortedCrazyThings.UI
 
         internal static List<Vector2> drawPos;
 
-        internal static Texture2D texture; //<- = null in Mod.Unload()
+        internal static Asset<Texture2D> texture; //<- = null in Mod.Unload()
 
         internal static int[] typeList;
 
@@ -25,7 +26,7 @@ namespace AssortedCrazyThings.UI
 
         public override void OnInitialize()
         {
-            texture = AssUtils.Instance.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Head").Value;
+            texture = AssUtils.Instance.Assets.Request<Texture2D>("NPCs/DungeonBird/Harvester2Head");
 
             typeList = new int[] { ModContent.NPCType<Harvester1>(), ModContent.NPCType<Harvester2>() };
             drawPos = new List<Vector2>();
@@ -163,25 +164,26 @@ namespace AssortedCrazyThings.UI
 
             if (visible)
             {
+                var tex = texture.Value;
                 for (int i = 0; i < type.Count; i++)
                 {
                     int ltype = type[i];
                     Vector2 ldrawPos = drawPos[i];
 
-                    int tempheight = texture.Height/* / Main.npcFrameCount[ltype]*/;
+                    int tempheight = tex.Height/* / Main.npcFrameCount[ltype]*/;
                     //adjust pos if outside of screen, more padding
-                    if (ldrawPos.X >= Main.screenWidth - texture.Width) ldrawPos.X = Main.screenWidth - texture.Width;
-                    if (ldrawPos.X <= texture.Width) ldrawPos.X = texture.Width;
+                    if (ldrawPos.X >= Main.screenWidth - tex.Width) ldrawPos.X = Main.screenWidth - tex.Width;
+                    if (ldrawPos.X <= tex.Width) ldrawPos.X = tex.Width;
                     if (ldrawPos.Y >= Main.screenHeight - tempheight) ldrawPos.Y = Main.screenHeight - tempheight;
                     if (ldrawPos.Y <= tempheight) ldrawPos.Y = tempheight;
 
-                    int finalWidth = texture.Width;
+                    int finalWidth = tex.Width;
                     int finalHeight = tempheight;
                     Rectangle outputRect = new Rectangle((int)ldrawPos.X - (finalWidth / 2), (int)ldrawPos.Y - (finalHeight / 2), finalWidth, finalHeight);
                     //outputWeaponRect.Inflate(10, 10);
                     //Main.spriteBatch.Draw(tex, outputWeaponRect, Color.White);
                     Color color = Color.White * 0.78f;
-                    Main.spriteBatch.Draw(texture, outputRect, new Rectangle(0, 0, texture.Width, tempheight), Color.White);
+                    Main.spriteBatch.Draw(tex, outputRect, new Rectangle(0, 0, tex.Width, tempheight), Color.White);
                 }
             }
         }

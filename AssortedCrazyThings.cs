@@ -6,6 +6,7 @@ using AssortedCrazyThings.NPCs.DungeonBird;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +21,7 @@ namespace AssortedCrazyThings
     {
         //Soul item animated textures
         public const int animatedSoulFrameCount = 6;
-        public static Texture2D[] animatedSoulTextures;
+        public static Asset<Texture2D>[] animatedSoulTextures;
 
         /// <summary>
         /// Soul NPC spawn blacklist
@@ -129,10 +130,10 @@ namespace AssortedCrazyThings
         {
             if (!Main.dedServ && ContentConfig.Instance.Bosses)
             {
-                animatedSoulTextures = new Texture2D[2];
+                animatedSoulTextures = new Asset<Texture2D>[2];
 
-                animatedSoulTextures[0] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulAnimated").Value;
-                animatedSoulTextures[1] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulFreedAnimated").Value;
+                animatedSoulTextures[0] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulAnimated");
+                animatedSoulTextures[1] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulFreedAnimated");
             }
         }
 

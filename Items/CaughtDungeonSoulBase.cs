@@ -93,7 +93,7 @@ namespace AssortedCrazyThings.Items
             lightColor.B = Math.Max(lightColor.B, (byte)200);
 
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect];
+            Texture2D image = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect].Value;
             Rectangle bounds = new Rectangle
             {
                 X = 0,

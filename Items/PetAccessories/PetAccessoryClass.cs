@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -267,7 +268,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// <summary>
         /// For UI only, the _Draw{number} stuff is done manually
         /// </summary>
-        public List<Texture2D> AltTextures { private set; get; }
+        public List<Asset<Texture2D>> AltTextures { private set; get; }
 
         public PetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
         {
@@ -294,10 +295,10 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 HasAlts = false;
             }
             //add icons for UI
-            AltTextures = new List<Texture2D>(AltTextureSuffixes.Count);
+            AltTextures = new List<Asset<Texture2D>>(AltTextureSuffixes.Count);
             for (int i = 0; i < AltTextureSuffixes.Count; i++)
             {
-                AltTextures.Add(Main.dedServ ? null : AssUtils.Instance.Assets.Request<Texture2D>("Items/PetAccessories/" + Name + AltTextureSuffixes[i]).Value);
+                AltTextures.Add(Main.dedServ ? null : AssUtils.Instance.Assets.Request<Texture2D>("Items/PetAccessories/" + Name + AltTextureSuffixes[i]));
             }
         }
 
