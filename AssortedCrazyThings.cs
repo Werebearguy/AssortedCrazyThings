@@ -209,28 +209,35 @@ namespace AssortedCrazyThings
 
         public override void AddRecipeGroups()
         {
+            string any = Language.GetTextValue("LegacyMisc.37") + " ";
             if (ContentConfig.Instance.CuteSlimes && ContentConfig.Instance.Placeables)
             {
-                RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Regular Bottled Slime", new int[]
+                RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => any + "Regular Bottled Slime", new int[]
                 {
-                ModContent.ItemType<CuteSlimeBlueItem>(),
-                ModContent.ItemType<CuteSlimeBlackItem>(),
-                ModContent.ItemType<CuteSlimeGreenItem>(),
-                ModContent.ItemType<CuteSlimePinkItem>(),
-                ModContent.ItemType<CuteSlimePurpleItem>(),
-                ModContent.ItemType<CuteSlimeRainbowItem>(),
-                ModContent.ItemType<CuteSlimeRedItem>(),
-                ModContent.ItemType<CuteSlimeYellowItem>()
+                    ModContent.ItemType<CuteSlimeBlueItem>(),
+                    ModContent.ItemType<CuteSlimeBlackItem>(),
+                    ModContent.ItemType<CuteSlimeGreenItem>(),
+                    ModContent.ItemType<CuteSlimePinkItem>(),
+                    ModContent.ItemType<CuteSlimePurpleItem>(),
+                    ModContent.ItemType<CuteSlimeRainbowItem>(),
+                    ModContent.ItemType<CuteSlimeRedItem>(),
+                    ModContent.ItemType<CuteSlimeYellowItem>()
                 }));
             }
 
-            RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
+            RecipeGroup.RegisterGroup("ACT:EvilWood", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.Ebonwood), new int[]
+            {
+                    ItemID.Ebonwood,
+                    ItemID.Shadewood
+            }));
+
+            RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
             {
                 ItemID.GoldBar,
                 ItemID.PlatinumBar
             }));
 
-            RecipeGroup.RegisterGroup("ACT:AdamantiteTitanium", new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.AdamantiteBar), new int[]
+            RecipeGroup.RegisterGroup("ACT:AdamantiteTitanium", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.AdamantiteBar), new int[]
             {
                 ItemID.AdamantiteBar,
                 ItemID.TitaniumBar

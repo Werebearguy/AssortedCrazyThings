@@ -1,5 +1,4 @@
 using AssortedCrazyThings.Projectiles.Weapons;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,8 +31,21 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.noUseGraphic = true;
 
             Item.rare = -11;
-            Item.value = Item.sellPrice(0, 0, 25, 0);
+            Item.value = Item.sellPrice(0, 0, 0, 10); //Woods have no sell value, just make this 10 copper cause why not
             Item.shoot = ModContent.ProjectileType<LegendaryWoodenSwordProj>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Wood, 10)
+                .AddIngredient(ItemID.BorealWood, 10)
+                .AddIngredient(ItemID.PalmWood, 10)
+                .AddIngredient(ItemID.RichMahogany, 10)
+                .AddIngredient(ItemID.Wood, 10)
+                .AddRecipeGroup("ACT:EvilWood", 10)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
     }
 }
