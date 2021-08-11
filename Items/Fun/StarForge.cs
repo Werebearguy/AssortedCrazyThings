@@ -17,13 +17,16 @@ namespace AssortedCrazyThings.Items.Fun
             Item.CloneDefaults(ItemID.FallenStar);
             Item.maxStack = 1;
             Item.consumable = false;
-            Item.value = Item.sellPrice(gold: 1);
+            Item.value = Item.sellPrice(0, 25, 0, 0);
             Item.rare = -11;
         }
 
         public override void AddRecipes()
         {
-            CreateRecipe(1).AddIngredient(ItemID.FallenStar, 3996).AddTile(TileID.CrystalBall).Register();
+            CreateRecipe(1).
+                AddIngredient(ItemID.FallenStar, 500)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }
