@@ -32,6 +32,11 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (NPC.life <= 0)
             {
                 /*CG = 0

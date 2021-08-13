@@ -71,13 +71,16 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (Main.netMode == NetmodeID.Server)
             {
-                if (NPC.life <= 0)
-                {
-                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_2").Type, 1f);
-                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_1").Type, 1f);
-                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_0").Type, 1f);
-                }
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_0").Type, 1f);
             }
         }
 

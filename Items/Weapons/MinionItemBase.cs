@@ -4,8 +4,9 @@ using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
+    //TODO figure out the custom damage scaling on spawn
     /// <summary>
-    /// Item that applies a buff and spawns a single projectile on use
+    /// Item that applies a buff. Does not spawn a projectile on use by default
     /// </summary>
     [Content(ContentType.Weapons)]
     public abstract class MinionItemBase : AssItem
@@ -19,7 +20,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
         public virtual bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            return true;
+            return false;
         }
     }
 }

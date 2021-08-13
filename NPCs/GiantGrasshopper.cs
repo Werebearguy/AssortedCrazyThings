@@ -67,6 +67,11 @@ namespace AssortedCrazyThings.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (NPC.life <= 0)
             {
                 Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_01").Type, 1f);

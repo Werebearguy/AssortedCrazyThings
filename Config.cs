@@ -42,7 +42,7 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(227, 160, 147)]
-		[Tooltip("Harmless entities")]
+		[Tooltip("Harmless entities - This includes pets obtained by catching")]
 		[Label("Friendly")]
 		public bool FriendlyNPCs { get; set; }
 
@@ -65,7 +65,7 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Items that deal damage")]
+		[Tooltip("Items that deal damage - Includes ammunition")]
 		[Label("Weapons")]
 		public bool Weapons { get; set; }
 
@@ -79,7 +79,7 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Placeable decorative tiles and objects")]
+		[Tooltip("Placeable decorative tiles and objects")] //TODO break up functional
 		[Label("Placeables")]
 		public bool Placeables { get; set; }
 

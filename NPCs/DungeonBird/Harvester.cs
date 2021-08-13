@@ -593,6 +593,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
             if (NPC.life <= 0)
             {
                 int first = 1;
