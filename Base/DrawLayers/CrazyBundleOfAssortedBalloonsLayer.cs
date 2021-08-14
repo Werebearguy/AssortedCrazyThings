@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Accessories.Useful;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -26,9 +27,15 @@ namespace AssortedCrazyThings.Base.DrawLayers
             balloonTexture = null;
         }
 
-        public override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
-            return drawInfo.drawPlayer.balloon == Mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon);
+            Player drawPlayer = drawInfo.drawPlayer;
+            if (drawInfo.shadow != 0f || drawPlayer.dead)
+            {
+                return false;
+            }
+
+            return drawPlayer.balloon == Mod.GetEquipSlot(nameof(CrazyBundleOfAssortedBalloons), EquipType.Balloon);
         }
 
         public override Position GetDefaultPosition()
@@ -40,10 +47,6 @@ namespace AssortedCrazyThings.Base.DrawLayers
         {
             //Since it's supposed to replace the Autoload texture, the regular _Balloon is just blank
             Player drawPlayer = drawInfo.drawPlayer;
-            if (drawInfo.shadow != 0f || drawPlayer.dead)
-            {
-                return;
-            }
 
             int frameY = (Main.hasFocus && (!Main.ingameOptionsWindow || !Main.autoPause)) ? (DateTime.Now.Millisecond % 800 / 200) : 0;
             Vector2 handOffset = Main.OffsetsPlayerOffhand[drawPlayer.bodyFrame.Y / 56];

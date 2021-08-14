@@ -30,14 +30,15 @@ namespace AssortedCrazyThings.Base.DrawLayers
 
         public Func<SwarmDrawPlayer, SwarmDrawSet> getDrawSet;
 
-        public sealed override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
+        public sealed override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
-            if (getDrawSet == null)
+            Player drawPlayer = drawInfo.drawPlayer;
+            if (getDrawSet == null || drawInfo.shadow != 0f || drawPlayer.dead)
             {
                 return false;
-            }
+            } 
 
-            return getDrawSet.Invoke(drawInfo.drawPlayer.GetModPlayer<SwarmDrawPlayer>())?.Active ?? false;
+            return getDrawSet.Invoke(drawPlayer.GetModPlayer<SwarmDrawPlayer>())?.Active ?? false;
         }
 
         public sealed override Position GetDefaultPosition()
@@ -48,10 +49,6 @@ namespace AssortedCrazyThings.Base.DrawLayers
         protected sealed override void Draw(ref PlayerDrawSet drawInfo)
         {
             Player drawPlayer = drawInfo.drawPlayer;
-            if (drawInfo.shadow != 0f || drawPlayer.dead)
-            {
-                return;
-            }
 
             var set = getDrawSet?.Invoke(drawInfo.drawPlayer.GetModPlayer<SwarmDrawPlayer>());
 

@@ -26,9 +26,15 @@ namespace AssortedCrazyThings.Base.DrawLayers
             knapsackTexture = null;
         }
 
-        public override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
-            return drawInfo.drawPlayer.HeldItem?.type == ModContent.ItemType<SlimeHandlerKnapsack>();
+            Player drawPlayer = drawInfo.drawPlayer;
+            if (drawInfo.shadow != 0f || drawPlayer.dead)
+            {
+                return false;
+            }
+
+            return (drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f) && drawInfo.drawPlayer.HeldItem?.type == ModContent.ItemType<SlimeHandlerKnapsack>();
         }
 
         public override Position GetDefaultPosition()
@@ -39,22 +45,15 @@ namespace AssortedCrazyThings.Base.DrawLayers
         protected override void Draw(ref PlayerDrawSet drawInfo)
         {
             Player drawPlayer = drawInfo.drawPlayer;
-            if (drawInfo.shadow != 0f || drawPlayer.dead)
-            {
-                return;
-            }
 
-            if (drawPlayer.wings == 0 || drawPlayer.velocity.Y == 0f)
-            {
-                Texture2D texture = knapsackTexture.Value;
+            Texture2D texture = knapsackTexture.Value;
 
-                Vector2 offset = new Vector2(0f, 8f);
-                Vector2 position = drawInfo.Position - Main.screenPosition + drawPlayer.bodyPosition + new Vector2(drawPlayer.width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height / 2) + new Vector2(0f, -4f) + offset;
-                position = position.Floor();
+            Vector2 offset = new Vector2(0f, 8f);
+            Vector2 position = drawInfo.Position - Main.screenPosition + drawPlayer.bodyPosition + new Vector2(drawPlayer.width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height / 2) + new Vector2(0f, -4f) + offset;
+            position = position.Floor();
 
-                DrawData drawData = new DrawData(texture, position, drawPlayer.bodyFrame, drawInfo.colorArmorBody, drawPlayer.bodyRotation, drawInfo.bodyVect, 1f, drawInfo.playerEffect, 0);
-                drawInfo.DrawDataCache.Add(drawData);
-            }
+            DrawData drawData = new DrawData(texture, position, drawPlayer.bodyFrame, drawInfo.colorArmorBody, drawPlayer.bodyRotation, drawInfo.bodyVect, 1f, drawInfo.playerEffect, 0);
+            drawInfo.DrawDataCache.Add(drawData);
         }
     }
 }

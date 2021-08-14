@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Accessories.Useful;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -26,9 +27,15 @@ namespace AssortedCrazyThings.Base.DrawLayers
             wingTexture = null;
         }
 
-        public override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
-            return drawInfo.drawPlayer.wings == Mod.GetEquipSlot("HarvesterWings", EquipType.Wings);
+            Player drawPlayer = drawInfo.drawPlayer;
+            if (drawPlayer.dead)
+            {
+                return false;
+            }
+
+            return drawInfo.drawPlayer.wings == Mod.GetEquipSlot(nameof(HarvesterWings), EquipType.Wings);
         }
 
         public override Position GetDefaultPosition()
@@ -39,10 +46,6 @@ namespace AssortedCrazyThings.Base.DrawLayers
         protected override void Draw(ref PlayerDrawSet drawInfo)
         {
             Player drawPlayer = drawInfo.drawPlayer;
-            if (drawInfo.shadow != 0f || drawPlayer.dead)
-            {
-                return;
-            }
 
             Asset<Texture2D> asset = wingTexture;
             Texture2D texture = asset.Value;
