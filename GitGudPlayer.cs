@@ -28,6 +28,9 @@ using Terraria.ModLoader.IO;
  *      Register the item and its properties in RegisterItems()
  * 
  */
+//TODO get rid of Counter[], will not properly work in MP when players join/leave. should be stored player-only
+//TODO unhardcode kingSlimeGitgudCounter etc
+//TODO move into gitgud namespace
 
 namespace AssortedCrazyThings
 {
@@ -39,7 +42,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Holds the data of all Gitgud Accessories, and a list of counters per player
         /// </summary>
-        public static GitgudData[] DataList; //Left as null if disabled via config
+        private static GitgudData[] DataList; //Left as null if disabled via config
         /// <summary>
         /// Name for the delete message
         /// </summary>
@@ -432,11 +435,12 @@ namespace AssortedCrazyThings
             {
                 for (int i = 0; i < DataList.Length; i++)
                 {
-                    if (DataList[i].Counter[player.whoAmI] >= DataList[i].CounterMax)
+                    GitgudData data = DataList[i];
+                    if (data.Counter[player.whoAmI] >= data.CounterMax)
                     {
                         //DataList[i].Counter[player.whoAmI] = 0;
                         SetCounter(player.whoAmI, i, 0);
-                        if (!player.HasItem(DataList[i].ItemType) && !DataList[i].Accessory[player.whoAmI])
+                        if (!player.HasItem(data.ItemType) && !data.Accessory[player.whoAmI])
                         {
                             int spawnX = Main.spawnTileX - 1;
                             int spawnY = Main.spawnTileY - 1;
@@ -445,7 +449,7 @@ namespace AssortedCrazyThings
                                 spawnX = player.SpawnX;
                                 spawnY = player.SpawnY;
                             }
-                            Item.NewItem(new Vector2(spawnX, spawnY) * 16, DataList[i].ItemType);
+                            Item.NewItem(new Vector2(spawnX, spawnY) * 16, data.ItemType);
                         }
                     }
                 }
@@ -461,9 +465,10 @@ namespace AssortedCrazyThings
             {
                 for (int i = 0; i < DataList.Length; i++)
                 {
-                    if (DataList[i].Accessory[player.whoAmI] && DataList[i].BuffType != -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList))
+                    GitgudData data = DataList[i];
+                    if (data.Accessory[player.whoAmI] && data.BuffType != -1 && AssUtils.AnyNPCs(data.BossTypeList))
                     {
-                        player.buffImmune[DataList[i].BuffType] = true;
+                        player.buffImmune[data.BuffType] = true;
                     }
                 }
             }
@@ -484,12 +489,14 @@ namespace AssortedCrazyThings
                     {
                         for (int i = 0; i < DataList.Length; i++)
                         {
-                            if (!increasedFor[i] && Array.BinarySearch(DataList[i].BossTypeList, npc.type) > -1)
+                            GitgudData data = DataList[i];
+                            if (!increasedFor[i] && Array.BinarySearch(data.BossTypeList, npc.type) > -1)
                             {
                                 //AssUtils.Print("increased counter of " + whoAmI + " from " + DataList[i].Counter[whoAmI] + " to " + (DataList[i].Counter[whoAmI] + 1));
                                 //DataList[i].Counter[whoAmI]++;
-                                SetCounter(whoAmI, i, (byte)(DataList[i].Counter[whoAmI] + 1));
-                                SendChangeCounter(whoAmI, i, (byte)(DataList[i].Counter[whoAmI] + 1));
+                                byte value = (byte)(data.Counter[whoAmI] + 1);
+                                SetCounter(whoAmI, i, value);
+                                SendChangeCounter(whoAmI, i, value);
                                 increasedFor[i] = true;
                             }
                         }
@@ -507,13 +514,14 @@ namespace AssortedCrazyThings
             {
                 for (int i = 0; i < DataList.Length; i++)
                 {
-                    if (DataList[i].Accessory[whoAmI])
+                    GitgudData data = DataList[i];
+                    if (data.Accessory[whoAmI])
                     {
                         //only reduce damage if accessory worn and (either an invasion is going on or a boss alive)
-                        if (DataList[i].InvasionBool() ||
-                            (Array.BinarySearch(DataList[i].NPCTypeList, npcType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)))
+                        if (data.InvasionBool() ||
+                            (Array.BinarySearch(data.NPCTypeList, npcType) > -1 && AssUtils.AnyNPCs(data.BossTypeList)))
                         {
-                            damage = (int)(damage * (1 - DataList[i].Reduction));
+                            damage = (int)(damage * (1 - data.Reduction));
                             return;
                         }
                     }
@@ -530,13 +538,14 @@ namespace AssortedCrazyThings
             {
                 for (int i = 0; i < DataList.Length; i++)
                 {
-                    if (DataList[i].Accessory[whoAmI])
+                    GitgudData data = DataList[i];
+                    if (data.Accessory[whoAmI])
                     {
                         //only reduce damage if accessory worn and (either an invasion is going on or a boss alive)
-                        if (DataList[i].InvasionBool() ||
-                            (Array.BinarySearch(DataList[i].ProjTypeList, projType) > -1 && AssUtils.AnyNPCs(DataList[i].BossTypeList)))
+                        if (data.InvasionBool() ||
+                            (Array.BinarySearch(data.ProjTypeList, projType) > -1 && AssUtils.AnyNPCs(data.BossTypeList)))
                         {
-                            damage = (int)(damage * (1 - DataList[i].Reduction));
+                            damage = (int)(damage * (1 - data.Reduction));
                             return;
                         }
                     }
