@@ -426,10 +426,10 @@ namespace AssortedCrazyThings.Base
             {
                 Projectile test = new Projectile();
                 test.SetDefaults(Type);
-                if (!preCreate(test)) return 1000;
+                if (!preCreate(test)) return Main.maxProjectiles;
             }
 
-            int index = 1000;
+            int index = Main.maxProjectiles;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (!Main.projectile[i].active)
@@ -439,7 +439,7 @@ namespace AssortedCrazyThings.Base
                 }
             }
 
-            if (index == 1000)
+            if (index == Main.maxProjectiles)
                 index = Projectile.FindOldestProjectile();
 
             int Owner = Main.myPlayer;

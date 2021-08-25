@@ -231,13 +231,14 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             SoulType selected = mPlayer.selectedSoulMinionType;
-            type = GetSoulData(selected).ProjType;
+            SoulData soulData = GetSoulData(selected);
+            type = soulData.ProjType;
 
             Vector2 spawnPos = new Vector2(player.Center.X + player.direction * 8f, player.Bottom.Y - 12f);
             Vector2 spawnVelo = new Vector2(player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f);
 
             int index = Projectile.NewProjectile(source, spawnPos, spawnVelo, type, damage, knockback, Main.myPlayer, 0f, 0f);
-            Main.projectile[index].originalDamage = damage;
+            Main.projectile[index].originalDamage = (int)(Item.damage * (1f + soulData.DmgModifier));
             return false;
         }
 

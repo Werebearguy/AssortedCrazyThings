@@ -50,11 +50,11 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             //one that shoots out far 
             int index = Projectile.NewProjectile(source, player.Center.X + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, type, damage, knockback, Main.myPlayer, 0f, 0f);
-            Main.projectile[index].originalDamage = damage;
+            Main.projectile[index].originalDamage = Item.damage;
 
             //one that shoots out less
             index = Projectile.NewProjectile(source, player.Center.X + player.direction * 8f, player.Bottom.Y - 10f, player.velocity.X + player.direction * 1, player.velocity.Y - 1 / 2f, type, damage, knockback, Main.myPlayer, 0f, 0f);
-            Main.projectile[index].originalDamage = damage;
+            Main.projectile[index].originalDamage = Item.damage;
 
             return false;
         }

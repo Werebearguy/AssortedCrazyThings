@@ -319,10 +319,11 @@ namespace AssortedCrazyThings.Items.Weapons
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             DroneType selected = mPlayer.selectedDroneControllerMinionType;
-            type = GetDroneData(selected).ProjType;
+            DroneData droneData = GetDroneData(selected);
+            type = droneData.ProjType;
 
             int index = AssUtils.NewProjectile(source, player.Center.X, player.Center.Y, 0f, player.velocity.Y - 6f, type, damage, knockback, preSync: PreSync);
-            Main.projectile[index].originalDamage = damage;
+            Main.projectile[index].originalDamage = (int)(Item.damage * (1f + droneData.DmgModifier));
             return false;
         }
 

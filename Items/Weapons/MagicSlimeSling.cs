@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
             //PreSync uses current mPlayer.nextMagicSlimeSlingMinion
             int index = AssUtils.NewProjectile(source, position.X, position.Y - YOff, velocity.X, velocity.Y, type, damage, knockback, preSync: PreSync);
-            Main.projectile[index].originalDamage = damage;
+            Main.projectile[index].originalDamage = Item.damage;
 
             //switch to next type
             mPlayer.nextMagicSlimeSlingMinion = (byte)((mPlayer.nextMagicSlimeSlingMinion + 1) % MagicSlimeSlingMinionTypes);

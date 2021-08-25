@@ -83,10 +83,6 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 knockback *= 1f + SlimePackMinion.SpikedIncrease;
             }
-            else
-            {
-                //default
-            }
         }
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
@@ -101,11 +97,12 @@ namespace AssortedCrazyThings.Items.Weapons
         public override bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            if (mPlayer.selectedSlimePackMinionType == 1)
+            byte selected = mPlayer.selectedSlimePackMinionType;
+            if (selected == 1)
             {
                 type = ModContent.ProjectileType<SlimePackAssortedMinion>();
             }
-            else if (mPlayer.selectedSlimePackMinionType == 2)
+            else if (selected == 2)
             {
                 type = ModContent.ProjectileType<SlimePackSpikedMinion>();
             }
@@ -120,7 +117,14 @@ namespace AssortedCrazyThings.Items.Weapons
                 spawnPos.Y = player.Center.Y;
             }
             int index = Projectile.NewProjectile(source, spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockback, Main.myPlayer, 0f, 0f);
-            Main.projectile[index].originalDamage = damage;
+
+            int ogDamage = Item.damage;
+            if (selected == 2)
+            {
+                ogDamage = (int)(ogDamage * (1f + SlimePackMinion.SpikedIncrease));
+            }
+
+            Main.projectile[index].originalDamage = ogDamage;
             return false;
         }
 
