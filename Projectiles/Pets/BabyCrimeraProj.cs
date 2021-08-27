@@ -1,7 +1,6 @@
 using AssortedCrazyThings.Base;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -18,6 +17,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Projectile.CloneDefaults(ProjectileID.BabyEater);
             AIType = ProjectileID.BabyEater;
+
+            Projectile.width = 34;
+            Projectile.height = 34;
         }
 
         public override bool PreAI()

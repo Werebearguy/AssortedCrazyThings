@@ -1,7 +1,6 @@
 using AssortedCrazyThings.Base;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -18,8 +17,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Projectile.CloneDefaults(ProjectileID.BabyHornet);
             AIType = ProjectileID.BabyHornet;
-            Projectile.width = 34;
-            Projectile.height = 38;
+            Projectile.width = 38;
+            Projectile.height = 44;
         }
 
         public override bool PreAI()
@@ -42,6 +41,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Projectile.timeLeft = 2;
             }
             AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+
+            if (Projectile.frameCounter % 2 == Main.GameUpdateCount % 2)
+            {
+                //Make it animate 50% slower by skipping every second increase
+                Projectile.frameCounter--;
+            }
         }
     }
 }
