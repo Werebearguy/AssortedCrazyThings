@@ -8,6 +8,10 @@ using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
+    //TODO look into
+    //NPCID.Sets.GoldCrittersCollection
+    //NPCID.Sets.NormalGoldCritterBestiaryPriority
+    //bestiaryEntry.UIInfoProvider = new GoldCritterUICollectionInfoProvider
     public class GiantGrasshopperGold : GiantGrasshopper
     {
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -64,7 +68,7 @@ namespace AssortedCrazyThings.NPCs
         public override void PostAI()
         {
             //using Microsoft.Xna.Framework;
-            //change the npc. to projectile. if you port this to pets
+            //change the NPC. to Projectile. if you port this to pets
             Color color = Lighting.GetColor((int)NPC.Center.X / 16, (int)NPC.Center.Y / 16);
             if (color.R > 20 || color.B > 20 || color.G > 20)
             {

@@ -442,7 +442,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             }
         }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             fallThrough = true;
             return false; //true
