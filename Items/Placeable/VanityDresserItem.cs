@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Items.Placeable
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlacableTile(TileType);
+            Item.DefaultToPlaceableTile(TileType);
             Item.width = 34;
             Item.height = 26;
             Item.maxStack = 99;
