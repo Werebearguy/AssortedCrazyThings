@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Items.Weapons
             CreateRecipe(1).AddIngredient(ItemID.HallowedBar, 5).AddIngredient(ItemID.SoulofSight, 5).AddIngredient(ItemID.Flamethrower, 1).AddTile(TileID.MythrilAnvil).Register();
         }
 
-        public override bool ConsumeAmmo(Player player)
+        public override bool CanConsumeAmmo(Player player)
         {
             return Main.rand.NextFloat() >= .80f; //80% chance not to consume ammo (since its so fast)
         }

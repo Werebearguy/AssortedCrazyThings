@@ -44,7 +44,7 @@ namespace AssortedCrazyThings
             droppedHarvesterSpawnItemThisSession = false;
         }
 
-        public override TagCompound SaveWorldData()
+        public override void SaveWorldData(TagCompound tag)
         {
             var downed = new List<string>();
             if (downedHarvester)
@@ -52,9 +52,7 @@ namespace AssortedCrazyThings
                 downed.Add("harvester");
             }
 
-            return new TagCompound {
-                {"downed", downed}
-            };
+            tag.Add("downed", downed);
         }
 
         public override void LoadWorldData(TagCompound tag)

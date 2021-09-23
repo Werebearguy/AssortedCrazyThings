@@ -269,13 +269,11 @@ namespace AssortedCrazyThings
             return false;
         }
 
-        public override TagCompound Save()
+        public override void SaveData(TagCompound tag)
         {
-            TagCompound tag = new TagCompound {
-                {"slots", (int)slots},
-                {"color", (int)color},
-                {"petAccessoryRework", (bool)petAccessoryRework},
-            };
+            tag.Add("slots", (int)slots);
+            tag.Add("color", (int)color);
+            tag.Add("petAccessoryRework", (bool)petAccessoryRework);
 
             TagCompound petTags = new TagCompound
             {
@@ -306,12 +304,10 @@ namespace AssortedCrazyThings
                 { "youngHarpyType", youngHarpyType }
             };
 
-        tag.Add("petTags", petTags);
-
-            return tag;
+            tag.Add("petTags", petTags);
         }
 
-        public override void Load(TagCompound tag)
+        public override void LoadData(TagCompound tag)
         {
             slots = (uint)tag.GetInt("slots");
             color = (uint)tag.GetInt("color");

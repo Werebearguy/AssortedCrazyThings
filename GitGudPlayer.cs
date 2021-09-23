@@ -848,32 +848,29 @@ namespace AssortedCrazyThings
 
         //no need for syncplayer because the server handles the item drop stuff
 
-        public override TagCompound Save()
+        public override void SaveData(TagCompound tag)
         {
-            return new TagCompound
-            {
-                {"kingSlimeGitgudCounter", (byte)kingSlimeGitgudCounter},
-                {"eyeOfCthulhuGitgudCounter", (byte)eyeOfCthulhuGitgudCounter},
-                {"brainOfCthulhuGitgudCounter", (byte)brainOfCthulhuGitgudCounter},
-                {"eaterOfWorldsGitgudCounter", (byte)eaterOfWorldsGitgudCounter},
-                {"queenBeeGitgudCounter", (byte)queenBeeGitgudCounter},
-                {"skeletronGitgudCounter", (byte)skeletronGitgudCounter},
-                {"wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter},
-                {"queenSlimeGitgudCounter", (byte)queenSlimeGitgudCounter},
-                {"destroyerGitgudCounter", (byte)destroyerGitgudCounter},
-                {"twinsGitgudCounter", (byte)twinsGitgudCounter},
-                {"skeletronPrimeGitgudCounter", (byte)skeletronPrimeGitgudCounter},
-                {"planteraGitgudCounter", (byte)planteraGitgudCounter},
-                {"empressOfLightGitgudCounter", (byte)empressOfLightGitgudCounter},
-                {"golemGitgudCounter", (byte)golemGitgudCounter},
-                {"dukeFishronGitgudCounter", (byte)dukeFishronGitgudCounter},
-                {"lunaticCultistGitgudCounter", (byte)lunaticCultistGitgudCounter},
-                {"moonLordGitgudCounter", (byte)moonLordGitgudCounter},
-                //{"pirateInvasionGitgudCounter", (byte)pirateInvasionGitgudCounter},
-            };
+            tag.Add("kingSlimeGitgudCounter", (byte)kingSlimeGitgudCounter);
+            tag.Add("eyeOfCthulhuGitgudCounter", (byte)eyeOfCthulhuGitgudCounter);
+            tag.Add("brainOfCthulhuGitgudCounter", (byte)brainOfCthulhuGitgudCounter);
+            tag.Add("eaterOfWorldsGitgudCounter", (byte)eaterOfWorldsGitgudCounter);
+            tag.Add("queenBeeGitgudCounter", (byte)queenBeeGitgudCounter);
+            tag.Add("skeletronGitgudCounter", (byte)skeletronGitgudCounter);
+            tag.Add("wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter);
+            tag.Add("queenSlimeGitgudCounter", (byte)queenSlimeGitgudCounter);
+            tag.Add("destroyerGitgudCounter", (byte)destroyerGitgudCounter);
+            tag.Add("twinsGitgudCounter", (byte)twinsGitgudCounter);
+            tag.Add("skeletronPrimeGitgudCounter", (byte)skeletronPrimeGitgudCounter);
+            tag.Add("planteraGitgudCounter", (byte)planteraGitgudCounter);
+            tag.Add("empressOfLightGitgudCounter", (byte)empressOfLightGitgudCounter);
+            tag.Add("golemGitgudCounter", (byte)golemGitgudCounter);
+            tag.Add("dukeFishronGitgudCounter", (byte)dukeFishronGitgudCounter);
+            tag.Add("lunaticCultistGitgudCounter", (byte)lunaticCultistGitgudCounter);
+            tag.Add("moonLordGitgudCounter", (byte)moonLordGitgudCounter);
+            //tag.Add("pirateInvasionGitgudCounter", (byte)pirateInvasionGitgudCounter);
         }
 
-        public override void Load(TagCompound tag)
+        public override void LoadData(TagCompound tag)
         {
             kingSlimeGitgudCounter = tag.GetByte("kingSlimeGitgudCounter");
             eyeOfCthulhuGitgudCounter = tag.GetByte("eyeOfCthulhuGitgudCounter");

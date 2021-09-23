@@ -115,17 +115,14 @@ namespace AssortedCrazyThings
 
         public bool LeftClickReleased { get { return PlayerInput.Triggers.JustReleased.MouseLeft; } }
 
-        public override TagCompound Save()
+        public override void SaveData(TagCompound tag)
         {
-            return new TagCompound
-            {
-                {"teleportHomeWhenLowTimer", (int)teleportHomeTimer},
-                {"getDefenseTimer", (int)getDefenseTimer},
-                {"droneControllerUnlocked", (byte)droneControllerUnlocked}
-            };
+            tag.Add("teleportHomeWhenLowTimer", (int)teleportHomeTimer);
+            tag.Add("getDefenseTimer", (int)getDefenseTimer);
+            tag.Add("droneControllerUnlocked", (byte)droneControllerUnlocked);
         }
 
-        public override void Load(TagCompound tag)
+        public override void LoadData(TagCompound tag)
         {
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
