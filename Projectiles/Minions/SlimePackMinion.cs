@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             DisplayName.SetDefault("Slime Pack Minion");
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
         }
@@ -176,7 +176,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
         {
             DisplayName.SetDefault("Slime Pack Minion");
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 
             //No trailing
         }

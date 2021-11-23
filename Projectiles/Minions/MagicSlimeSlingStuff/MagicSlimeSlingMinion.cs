@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
             DisplayName.SetDefault("Magic Slime Sling Minion");
             Main.projFrames[Projectile.type] = 2;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
         public override void SafeSetDefaults()

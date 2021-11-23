@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
             Main.projFrames[Projectile.type] = 6;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
         public sealed override void SetDefaults()

@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
             Main.projFrames[Projectile.type] = 4;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
         public override void SetDefaults()
