@@ -824,7 +824,7 @@ namespace AssortedCrazyThings
 
         public static CircleUIConf GetPetMoonConf()
         {
-            List<string> tooltips = new List<string>() { "Default", "Brown", "Ring", "Green", "White", "Green 2", "Pink", "Orange", "Purple", }; //9 10 11 are contextual
+            List<string> tooltips = new List<string>() { "Default", "Yellow", "Ringed", "Mythril", "Bright Blue", "Green", "Pink", "Orange", "Purple", }; //9 10 11 are contextual
 
             return CircleUIHandler.PetConf(ModContent.ProjectileType<PetMoonProj>(), tooltips);
         }
