@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Projectiles.Weapons;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -1240,9 +1240,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, to, 150); //150 for index 150 atleast
-                                                                                           //(so the claws will likely spawn with lower index and rendered infront)
-                    Main.npc[index].SetDefaults(to);
+                    int index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, to);
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
                         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);

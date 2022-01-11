@@ -282,7 +282,11 @@ namespace AssortedCrazyThings
         /// </summary>
         private bool EligibleToReceiveSoulBuff(NPC npc)
         {
-            return Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) < 0 || AssUtils.IsWormBodyOrTail(npc);
+            if (Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) >= 0)
+            {
+                return false;
+            }
+            return AssUtils.IsWormBodyOrTail(npc);
         }
 
         /// <summary>

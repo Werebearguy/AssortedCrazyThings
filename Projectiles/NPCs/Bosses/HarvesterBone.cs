@@ -1,10 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 
-namespace AssortedCrazyThings.Projectiles.Weapons
+namespace AssortedCrazyThings.Projectiles.NPCs.Bosses
 {
     //used in BaseHarvester, same as bone, just applies slow
     [Content(ContentType.Bosses)]

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -93,17 +94,11 @@ namespace AssortedCrazyThings.Items
             lightColor.B = Math.Max(lightColor.B, (byte)200);
 
             SpriteEffects effects = SpriteEffects.None;
-            Texture2D image = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect].Value;
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = frame2,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / AssortedCrazyThings.animatedSoulFrameCount
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+            Asset<Texture2D> asset = AssortedCrazyThings.animatedSoulTextures[animatedTextureSelect];
+            Texture2D image = asset.Value;
+            Rectangle bounds = image.Frame(1, AssortedCrazyThings.animatedSoulFrameCount, frameY: frame2);
 
-            Vector2 stupidOffset = new Vector2(Item.width / 2, (Item.height - 10f) + sinY);
+            Vector2 stupidOffset = new Vector2(Item.width / 2, Item.height - 10f + sinY);
 
             Main.spriteBatch.Draw(image, Item.position - Main.screenPosition + stupidOffset, bounds, lightColor, rotation, bounds.Size() / 2, scale, effects, 0f);
         }

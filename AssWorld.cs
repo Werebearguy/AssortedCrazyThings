@@ -31,7 +31,6 @@ namespace AssortedCrazyThings
         //the megalodon messages are modified down below in the Disappear message
 
         //Soul stuff
-        public static int harvesterIndex = -1;
         public static bool downedHarvester;
         //To prevent the item dropping more than once in a single game instance if boss is not defeated
         public static bool droppedHarvesterSpawnItemThisSession;
@@ -244,11 +243,6 @@ namespace AssortedCrazyThings
             LimitSoulCount();
 
             UpdateEmpoweringFactor();
-
-            if (harvesterIndex >= 0 && !Main.npc[harvesterIndex].active)
-            {
-                harvesterIndex = -1;
-            }
         }
     }
 }

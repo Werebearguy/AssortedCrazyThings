@@ -78,7 +78,8 @@ namespace AssortedCrazyThings
             List<int> tempList = new List<int>(soulBuffBlacklist)
             {
                 ModContent.NPCType<DungeonSoul>(),
-                ModContent.NPCType<DungeonSoulFreed>()
+                ModContent.NPCType<DungeonSoulFreed>(),
+                ModContent.NPCType<DungeonSoulRevive>()
             };
 
             soulBuffBlacklist = tempList.ToArray();

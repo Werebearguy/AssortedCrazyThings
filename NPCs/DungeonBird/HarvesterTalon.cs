@@ -1,7 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,6 +21,25 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
         }
 
+        /// <summary>
+        /// Used for offset/directional calculations
+        /// </summary>
+        public virtual bool RightTalon => false;
+
+        public const int ChainFrameCount = 6;
+        public const int ChainFrameSpeed = 6;
+        public static Asset<Texture2D> ChainAsset;
+
+        public override void Load()
+        {
+            ChainAsset = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterChain");
+        }
+
+        public override void Unload()
+        {
+            ChainAsset = null;
+        }
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(Harvester.name);
@@ -27,12 +49,27 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 Hide = true //Hides this NPC from the Bestiary
             };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+            NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+
+            NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = new int[]
+                {
+                    BuffID.Poisoned,
+                    BuffID.OnFire
+                }
+            };
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White * ((255 - NPC.alpha) / 255f);
+            if (!HasParent)
+            {
+                return base.GetAlpha(lightColor);
+            }
+
+            NPC body = Main.npc[ParentWhoAmI];
+            return body.GetAlpha(lightColor);
         }
 
         public override void SetDefaults()
@@ -53,10 +90,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         buffImmune[24] = true;
                     }*/
 
-            NPC.boss = true;
+            NPC.boss = true; //TODO Why is it true?
             NPC.noGravity = true;
-            NPC.width = 40; //38
-            NPC.height = 30; //42
+            NPC.noTileCollide = true;
+            NPC.width = 40; //38 //latest 40
+            NPC.height = 42; //42//latest 30
             NPC.aiStyle = -1;
             NPC.damage = Harvester.talonDamage;
             NPC.defense = 28;
@@ -65,11 +103,21 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.alpha = 255;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.Confused] = true;
             NPC.dontTakeDamage = true;
             NPC.dontCountMe = true;
+            NPC.SpawnWithHigherTime(30);
+        }
+
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            //float bossAdjustment = 1f;
+            //if (Main.GameModeInfo.IsMasterMode)
+            //{
+            //    bossAdjustment = 0.85f;
+            //}
+            //NPC.lifeMax = (int)(NPC.lifeMax * 1.3f * bossLifeScale * bossAdjustment);
+            NPC.lifeMax = 1337;
+            NPC.damage = (int)(NPC.damage * 1.1f);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -79,70 +127,89 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (AssWorld.harvesterIndex != -1)
+            if (!HasParent)
             {
-                Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterChain").Value;
-                //Main.chain21Texture
-                Vector2 center = NPC.Center;
-                NPC body = Main.npc[AssWorld.harvesterIndex];
-                float num22 = body.Center.X - center.X;
-                float num23 = body.Center.Y - center.Y;
-                num23 -= -Harvester.TalonOffsetY + 20f; //has to result to 7f
-
-                //num22 = ((npc.type != AssortedCrazyThings.harvesterTalonLeft) ? (num22 + aaaHarvester3.TalonOffsetRightX - 12f) : (num22 + aaaHarvester3.TalonOffsetLeftX + 14f)); //66f, -70f
-
-                num22 = ((NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX)); //66f, -70f
-                num22 = (NPC.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
-
-
-                SpriteEffects effect = (NPC.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-
-                bool flag6 = true;
-                while (flag6)
-                {
-                    float num24 = (float)Math.Sqrt(num22 * num22 + num23 * num23);
-                    if (num24 < 38f) //16
-                    {
-                        flag6 = false;
-                    }
-                    else
-                    {
-                        num24 = 38f / num24; //16
-                        num22 *= num24;
-                        num23 *= num24;
-                        center.X += num22;
-                        center.Y += num23;
-                        num22 = body.Center.X - center.X;
-                        num23 = body.Center.Y - center.Y;
-                        num23 -= -Harvester.TalonOffsetY + 20f; //7f
-                        num22 = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (num22 + Harvester.TalonOffsetRightX) : (num22 + Harvester.TalonOffsetLeftX); //66f, -70f
-                        num22 = (NPC.spriteDirection == 1) ? num22 + (Harvester.TalonDirectionalOffset + 6) : num22 - (Harvester.TalonDirectionalOffset + 6);
-
-                        if (Main.rand.NextBool(8))
-                        {
-                            Dust dust;
-                            dust = Dust.NewDustPerfect(new Vector2(center.X, center.Y), 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
-                            dust.noLight = true;
-                            dust.noGravity = true;
-                            dust.fadeIn = Main.rand.NextFloat(0.5f, 1.5f);
-                        }
-                        spriteBatch.Draw(texture, center - screenPos + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
-                    }
-                }
-
-                texture = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterTalon").Value;
-                spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, texture.Size() / 2, 1f, effect, 0f);
+                return;
             }
+
+            NPC body = Main.npc[ParentWhoAmI];
+            Harvester harvester = null;
+
+            if (body.ModNPC is Harvester h)
+            {
+                harvester = h;
+                if (h.AI_State != Harvester.State_Bombing)
+                {
+                    return;
+                }
+            }
+
+            if (harvester == null)
+            {
+                return;
+            }
+
+            Vector2 center = NPC.Center;
+            float x = body.Center.X - center.X;
+            float y = body.Center.Y - center.Y;
+            y -= -harvester.talonOffsetY + 20f; //has to result to 7f
+
+            x += GetOffset(harvester); //66f, -70f
+            x += NPC.spriteDirection * (Harvester.talonDirectionalOffset + 6);
+
+            SpriteEffects effect = (NPC.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            Texture2D texture = ChainAsset.Value;
+            bool keepDrawing = true;
+            int step = 0;
+            while (keepDrawing)
+            {
+                step++;
+                float len = (float)Math.Sqrt(x * x + y * y);
+                float between = 38f;
+                if (len < between) //16
+                {
+                    keepDrawing = false;
+                }
+                else
+                {
+                    len = between / len; //16
+                    x *= len;
+                    y *= len;
+                    center.X += x;
+                    center.Y += y;
+                    x = body.Center.X - center.X;
+                    y = body.Center.Y - center.Y;
+                    y -= -harvester.talonOffsetY + 20f;
+                    x += GetOffset(harvester);
+                    x += NPC.spriteDirection * (Harvester.talonDirectionalOffset + 0);
+
+                    if (Main.rand.NextBool(8))
+                    {
+                        Dust dust = Dust.NewDustPerfect(center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), 26, new Color(255, 255, 255), Main.rand.NextFloat(1f, 1.6f));
+                        dust.noLight = true;
+                        dust.noGravity = true;
+                        dust.fadeIn = Main.rand.NextFloat(0.5f, 1.5f);
+                    }
+
+                    int frameY = (((int)NPC.frameCounter / ChainFrameSpeed) + step) % ChainFrameCount;
+                    Rectangle frame = texture.Frame(1, ChainFrameCount, frameY: frameY);
+                    spriteBatch.Draw(texture, center - screenPos + new Vector2(0f, NPC.gfxOffY + NPC.height / 2), frame, Color.White * NPC.Opacity, 0f, frame.Size() / 2, 1f, effect, 0f);
+                }
+            }
+
+            texture = TextureAssets.Npc[NPC.type].Value;
+            spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY), NPC.frame, NPC.GetAlpha(drawColor), 0f, texture.Size() / 2, 1f, effect, 0f);
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.rand.NextFloat() >= 0.5f)
-            {
-                target.AddBuff(BuffID.Slow, 120, false); //2 seconds, 50% chance
-            }
+            target.AddBuff(BuffID.Slow, 120, false); //2 seconds, 100% chance
         }
 
+        public const float State_Seek_Retract = 0f;
+        public const float State_Punch = 1f;
+        public const float State_Punching = 2f;
 
         public ref float AI_State => ref NPC.ai[0];
 
@@ -150,216 +217,280 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public ref float RetractCounter => ref NPC.ai[2];
 
+        public int ParentWhoAmI
+        {
+            get => (int)NPC.ai[3] - 1;
+            set => NPC.ai[3] = value + 1;
+        }
+
+        public bool HasParent => ParentWhoAmI >= 0 && ParentWhoAmI < Main.maxNPCs;
+
+        public bool Idle
+        {
+            get => NPC.localAI[0] == 0f;
+            set => NPC.localAI[0] = value ? 0f : 1f;
+        }
+
         public override bool CheckDead()
         {
             NPC.boss = false; //To get rid of the default death message
             return base.CheckDead();
         }
 
+        public override void FindFrame(int frameHeight)
+        {
+            //Used just for chain anim
+            NPC.frameCounter++;
+        }
+
         public override void AI()
         {
-            if (AssWorld.harvesterIndex < 0)
+            if (!HasParent)
             {
                 NPC.StrikeNPCNoInteraction(9999, 0f, 0);
                 NPC.netUpdate = true;
+                return;
             }
-            else
+
+            NPC body = Main.npc[ParentWhoAmI];
+            if (!body.active || body.type != AssortedCrazyThings.harvesterTypes[2])
             {
-                NPC body = Main.npc[AssWorld.harvesterIndex];
-                NPC.target = body.target;
-                if (NPC.target < 0 || NPC.target >= Main.maxPlayers) return;
-                Player target = Main.player[NPC.target];
+                NPC.StrikeNPCNoInteraction(9999, 0f, 0);
+                NPC.netUpdate = true;
+                return;
+            }
 
-                NPC.gfxOffY = Harvester.sinY;
-                NPC.spriteDirection = body.spriteDirection;
+            Harvester harvester = body.ModNPC as Harvester;
 
-                if (NPC.alpha > 0)
+            NPC.target = body.target;
+            if (NPC.target < 0 || NPC.target >= Main.maxPlayers) return;
+            Player target = Main.player[NPC.target];
+
+            NPC.gfxOffY = body.gfxOffY;
+            NPC.spriteDirection = body.spriteDirection;
+            NPC.direction = body.direction;
+            NPC.alpha = body.alpha;
+
+            //TODO has unused tile collision code and manual retract detection (fallback)
+
+            if (NPC.alpha > 0)
+            {
+                //NPC.alpha -= 5;
+                //if (NPC.alpha < 4)
+                //{
+                //    NPC.alpha = 0;
+                //    NPC.netUpdate = true;
+                //}
+                NPC.scale = 1f;
+                AI_Timer = 0f;
+            }
+
+            if (AI_State != State_Seek_Retract)
+            {
+                Idle = false;
+            }
+
+            if (AI_State == State_Seek_Retract)
+            {
+                //NPC.noTileCollide = true;
+
+                if (NPC.Hitbox.Intersects(body.Hitbox))
                 {
-                    NPC.alpha -= 5;
-                    if (NPC.alpha < 4)
-                    {
-                        NPC.alpha = 0;
-                        NPC.netUpdate = true;
-                    }
-                    NPC.scale = 1f;
-                    AI_Timer = 0f;
+                    //If in idle/retract state, and fully retracted (aka colliding with body hitbox), fix position, so that direction changes wont have the talons move left/right
+                    NPC.Center = body.Center + new Vector2(GetOffset(harvester), harvester.talonOffsetY);
+                    NPC.velocity *= 0f;
+                    NPC.netOffset = body.netOffset;
+                    Idle = true;
+                    return;
                 }
 
-                if (AI_State == 0f)
+                float speed = 18f; //14f
+                if (NPC.life < NPC.lifeMax / 2)
                 {
-                    NPC.noTileCollide = true;
-                    float num691 = 14f; //14f
-                    if (NPC.life < NPC.lifeMax / 2)
-                    {
-                        num691 += 3f; //3f
-                    }
-                    if (NPC.life < NPC.lifeMax / 4)
-                    {
-                        num691 += 3f; //3f
-                    }
-                    if (body.life < body.lifeMax)
-                    {
-                        num691 += 8f; //8f
-                    }
-
-                    Vector2 toBody = body.Center - NPC.Center;
-                    toBody.Y -= -Harvester.TalonOffsetY;
-                    toBody.X = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (toBody.X + Harvester.TalonOffsetRightX) : (toBody.X + Harvester.TalonOffsetLeftX);
-
-                    float betweenSelfAndBodyX = body.Center.X - NPC.Center.X;
-                    float betweenSelfAndBodyY = body.Center.Y - NPC.Center.Y;
-                    betweenSelfAndBodyY -= -Harvester.TalonOffsetY;
-                    betweenSelfAndBodyX = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (betweenSelfAndBodyX + Harvester.TalonOffsetRightX) : (betweenSelfAndBodyX + Harvester.TalonOffsetLeftX);
-                    float len = (float)Math.Sqrt(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY);
-                    float somevar = 12f;
-                    if (len < somevar + num691)
-                    {
-                        RetractCounter = 0f;
-                        NPC.velocity.X = betweenSelfAndBodyX;
-                        NPC.velocity.Y = betweenSelfAndBodyY;
-                        AI_Timer += 1f;
-                        //new
-                        if (body.life < body.lifeMax / 2)
-                        {
-                            AI_Timer += 1f;
-                        }
-                        if (body.life < body.lifeMax / 4)
-                        {
-                            AI_Timer += 1f;
-                        }
-                        if (AI_Timer >= 60f)
-                        {
-                            NPC.TargetClosest();
-                            target = Main.player[NPC.target];
-                            //test is 100f
-                            float test = Harvester.Wid / 2; //its for checking which (or both) talons to shoot, so the left one has also range to the right 100 in
-
-                            //new
-                            float x = target.Center.X - NPC.Center.X;
-                            float y = target.Center.Y - NPC.Center.Y;
-                            float toPlayer = (float)Math.Sqrt(x * x + y * y);
-
-                            if (toPlayer < 500f && NPC.BottomLeft.Y < target.BottomLeft.Y) //distance where it is allowed to swing at player
-                            {
-                                //end new
-                                if ((NPC.type == AssortedCrazyThings.harvesterTalonLeft && NPC.Center.X + test > target.Center.X) || (NPC.type == AssortedCrazyThings.harvesterTalonRight && NPC.Center.X - test < target.Center.X))
-                                {
-                                    AI_Timer = 0f;
-                                    AI_State = 1f;
-                                    NPC.netUpdate = true;
-                                }
-                                else
-                                {
-                                    AI_Timer = 0f;
-                                }
-                            }
-                        }
-                    }
-                    else //retract
-                    {
-                        //new
-                        RetractCounter += 1f;
-                        float retractFactor = 0.5f + RetractCounter / 100f;
-                        if (body.life < body.lifeMax / 2)
-                        {
-                            retractFactor += 0.25f;
-                        }
-                        if (body.life < body.lifeMax / 4)
-                        {
-                            retractFactor += 0.25f;
-                        }
-                        //end new
-
-                        len = num691 / len;
-                        NPC.velocity.X = betweenSelfAndBodyX * len * retractFactor; //both 1f
-                        NPC.velocity.Y = betweenSelfAndBodyY * len * retractFactor;
-                    }
+                    speed += 3f; //3f
                 }
-                else if (AI_State == 1f)
+                if (NPC.life < NPC.lifeMax / 4)
                 {
-                    //Punch toward target
-                    NPC.noTileCollide = true;
-                    NPC.collideX = false;
-                    NPC.collideY = false;
-                    float speed = 12f;
+                    speed += 3f; //3f
+                }
+                if (body.life < body.lifeMax)
+                {
+                    speed += 8f; //8f
+                }
+
+                Vector2 toBody = body.Center - NPC.Center;
+                toBody.Y += harvester.talonOffsetY;
+                toBody.X += GetOffset(harvester);
+
+                float betweenSelfAndBodyX = body.Center.X - NPC.Center.X;
+                float betweenSelfAndBodyY = body.Center.Y - NPC.Center.Y;
+                betweenSelfAndBodyY -= -harvester.talonOffsetY;
+                betweenSelfAndBodyX += GetOffset(harvester);
+                float len = (float)Math.Sqrt(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY);
+                float somevar = 12f;
+                if (len < somevar + speed && harvester.AI_State == Harvester.State_Bombing)
+                {
+                    RetractCounter = 0f;
+                    NPC.velocity.X = betweenSelfAndBodyX;
+                    NPC.velocity.Y = betweenSelfAndBodyY;
+                    //Handled by harvester
+                    /*
+                    AI_Timer += 1f;
                     //new
                     if (body.life < body.lifeMax / 2)
                     {
-                        speed += 4f;
+                        AI_Timer += 1f;
                     }
                     if (body.life < body.lifeMax / 4)
                     {
-                        speed += 4f;
+                        AI_Timer += 1f;
                     }
-                    Vector2 toTarget = NPC.DirectionTo(target.Center);
-                    NPC.velocity = toTarget * speed;
-                    AI_State = 2f;
+                    if (AI_Timer >= 60f)
+                    {
+                        NPC.TargetClosest();
+                        target = Main.player[NPC.target];
+                        //test is 100f
+                        float test = Harvester.Wid / 2; //its for checking which (or both) talons to shoot, so the left one has also range to the right 100 in
+
+                        //new
+                        float x = target.Center.X - NPC.Center.X;
+                        float y = target.Center.Y - NPC.Center.Y;
+                        float toPlayer = (float)Math.Sqrt(x * x + y * y);
+
+                        if (toPlayer < 500f && NPC.BottomLeft.Y < target.BottomLeft.Y) //distance where it is allowed to swing at player
+                        {
+                            //end new
+                            if ((!RightTalon && NPC.Center.X + test > target.Center.X) || (RightTalon && NPC.Center.X - test < target.Center.X))
+                            {
+                                AI_Timer = 0f;
+                                AI_State = State_Punch;
+                                NPC.netUpdate = true;
+                            }
+                            else
+                            {
+                                AI_Timer = 0f;
+                            }
+                        }
+                    }
+                    */
                 }
-                else if (AI_State == 2f)
+                else //retract
                 {
-                    //fly through air/whatever and check if it hit tiles
-                    //fist has  40 width 30 height
-                    //talon has 38 width 42 height
-                    if (Math.Abs(NPC.velocity.X) > Math.Abs(NPC.velocity.Y))
+                    //new
+                    RetractCounter += 1f;
+                    float retractFactor = 0.5f + RetractCounter / 100f;
+                    if (body.life < body.lifeMax / 2)
                     {
-                        if (NPC.velocity.X > 0f && NPC.Center.X > target.Center.X)
-                        {
-                            NPC.noTileCollide = false;
-                        }
-                        if (NPC.velocity.X < 0f && NPC.Center.X < target.Center.X)
-                        {
-                            NPC.noTileCollide = false;
-                        }
+                        retractFactor += 0.25f;
                     }
-                    else
+                    if (body.life < body.lifeMax / 4)
                     {
-                        if (NPC.velocity.Y > 0f && NPC.Center.Y > target.Center.Y)
-                        {
-                            NPC.noTileCollide = false;
-                        }
-                        if (NPC.velocity.Y < 0f && NPC.Center.Y < target.Center.Y)
-                        {
-                            NPC.noTileCollide = false;
-                        }
+                        retractFactor += 0.25f;
                     }
 
-                    Vector2 toBody = body.Center + body.velocity - NPC.Center;
-                    toBody.Y -= -Harvester.TalonOffsetY;
-                    toBody.X = (NPC.type != AssortedCrazyThings.harvesterTalonLeft) ? (toBody.X + Harvester.TalonOffsetRightX) : (toBody.X + Harvester.TalonOffsetLeftX);
-                    float distSQ = toBody.LengthSquared();
-                    if (body.life < body.lifeMax)
-                    {
-                        NPC.knockBackResist = 0f;
-                        if (distSQ > 700f * 700f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) //if collides with tiles or far away, go back to 0 and do the retreat code
-                        {
-                            NPC.noTileCollide = true;
-                            NPC.netUpdate = true;
-                            AI_State = 0f;
-                        }
-                    }
-                    else
-                    {
-                        bool flag41 = NPC.justHit;
+                    //Also scale retract speed with velocity
+                    float velo = body.velocity.Length();
 
-                        if ((distSQ > 600f * 600f || NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)) | flag41)
-                        {
-                            NPC.noTileCollide = true;
-                            AI_State = 0f;
-                            NPC.netUpdate = true;
-                        }
+                    retractFactor += velo / 80f;
+
+                    //end new
+
+                    if (len > speed)
+                    {
+                        len = speed / len;
+                    }
+                    NPC.velocity.X = betweenSelfAndBodyX * len * retractFactor; //both 1f
+                    NPC.velocity.Y = betweenSelfAndBodyY * len * retractFactor;
+                }
+            }
+            else if (AI_State == State_Punch)
+            {
+                //Punch toward moving direction diagonally
+                //NPC.noTileCollide = true;
+                NPC.collideX = false;
+                NPC.collideY = false;
+                float speed = 17f;
+                //new
+                if (body.life <= body.lifeMax / 2)
+                {
+                    speed += 2f;
+                }
+                if (body.life <= body.lifeMax / 4)
+                {
+                    speed += 4f;
+                }
+                Vector2 directionTo = new Vector2(NPC.direction, 1f); //1/1 ratio
+                directionTo.Normalize();
+
+                NPC.velocity = directionTo * speed;
+                AI_State = State_Punching;
+            }
+            else if (AI_State == State_Punching)
+            {
+                //fly through air/whatever and check if it hit tiles
+                //fist has  40 width 30 height
+                //talon has 38 width 42 height
+                //if (Math.Abs(NPC.velocity.X) > Math.Abs(NPC.velocity.Y))
+                //{
+                //    if (NPC.velocity.X > 0f && NPC.Center.X > target.Center.X)
+                //    {
+                //        NPC.noTileCollide = false;
+                //    }
+                //    if (NPC.velocity.X < 0f && NPC.Center.X < target.Center.X)
+                //    {
+                //        NPC.noTileCollide = false;
+                //    }
+                //}
+                //else
+                //{
+                //    if (NPC.velocity.Y > 0f && NPC.Center.Y > target.Center.Y)
+                //    {
+                //        NPC.noTileCollide = false;
+                //    }
+                //    if (NPC.velocity.Y < 0f && NPC.Center.Y < target.Center.Y)
+                //    {
+                //        NPC.noTileCollide = false;
+                //    }
+                //}
+
+                Vector2 toBody = body.Center + body.velocity - NPC.Center;
+                toBody.Y += harvester.talonOffsetY;
+                toBody.X += GetOffset(harvester);
+                float distSQ = toBody.LengthSquared();
+                if (body.life < body.lifeMax)
+                {
+                    NPC.knockBackResist = 0f;
+                    if (distSQ > 700f * 700f /*|| NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)*/) //if collides with tiles or far away, go back to 0 and do the retreat code
+                    {
+                        //NPC.noTileCollide = true;
+                        NPC.netUpdate = true;
+                        AI_State = State_Seek_Retract;
+                    }
+                }
+                else
+                {
+                    if ((distSQ > 600f * 600f /*|| NPC.collideX || NPC.collideY || Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 8)*/) | NPC.justHit)
+                    {
+                        //NPC.noTileCollide = true;
+                        NPC.netUpdate = true;
+                        AI_State = State_Seek_Retract;
                     }
                 }
             }
+        }
+
+        private float GetOffset(Harvester harvester)
+        {
+            return RightTalon ? harvester.talonOffsetRightX : harvester.talonOffsetLeftX;
         }
     }
 
     public class HarvesterTalonLeft : HarvesterTalon
     {
-
     }
 
     public class HarvesterTalonRight : HarvesterTalon
     {
-
+        public override bool RightTalon => true;
     }
 }
