@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
@@ -833,22 +834,28 @@ namespace AssortedCrazyThings
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
-        //private static readonly int[] Junk = new int[] { ItemID.OldShoe, ItemID.Seaweed, ItemID.TinCan };
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            bool inWater = !attempt.inHoney && !attempt.inLava;
 
-        //public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType)
-        //{
-        //    if (Array.BinarySearch(Junk, caughtType) > -1)
-        //    {
-        //        return;
-        //    }
+            if (attempt.waterTilesCount < attempt.waterNeededToFish)
+            {
+                return;
+            }
 
-        //    if (poolSize >= 300 && liquidType == 0 && ((int)(Player.Center.X / 16) < Main.maxTilesX * 0.08f || (int)(Player.Center.X / 16) > Main.maxTilesX * 0.92f))
-        //    {
-        //        //In ocean
-
-        //        if (Main.rand.NextBool(200 / Player.fishing)
-        //    }
-        //}
+            if (ContentConfig.Instance.OtherPets)
+            {
+                //Match Zephyr Fish conditions
+                if (attempt.legendary && !attempt.crate && inWater)
+                {
+                    if (((int)(Player.Center.X / 16) < Main.maxTilesX * 0.08f || (int)(Player.Center.X / 16) > Main.maxTilesX * 0.92f) /*&& Main.rand.Next(1) == 0*/) //10 times more likely than zephyr fish makes it about as rare as reaver shark
+                    {
+                        itemDrop = ModContent.ItemType<AnomalocarisItem>();
+                        return;
+                    }
+                }
+            }
+        }
 
         public override void PostUpdateBuffs()
         {

@@ -24,6 +24,6 @@ namespace AssortedCrazyThings.Items.Pets
             Item.value = Item.sellPrice(silver: 40); //TODO value
         }
 
-        //TODO obtain
+        //TODO obtain (grab bag?)
     }
 }

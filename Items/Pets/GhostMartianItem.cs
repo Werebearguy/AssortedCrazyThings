@@ -1,11 +1,11 @@
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.DroppedPets)]
     public class GhostMartianItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<GhostMartianProj>();
@@ -25,6 +25,13 @@ namespace AssortedCrazyThings.Items.Pets
             Item.value = Item.sellPrice(copper: 10);
         }
 
-        //TODO obtain: Drop from Martian Madness when player is in a Graveyard biome, or any biome during Halloween.
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.MartianConduitPlating, 25)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
     }
 }

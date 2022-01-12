@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
+using Terraria.Enums;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
@@ -19,10 +20,7 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SafeSetDefaults()
         {
-            Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10); //TODO value
+            Item.SetShopValues(ItemRarityColor.Orange3, Item.buyPrice(1)); //Same as other travelling merchant pets
         }
-
-        //TODO obtain travelling merchant
     }
 }

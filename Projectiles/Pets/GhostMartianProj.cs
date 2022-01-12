@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Content(ContentType.DroppedPets)]
     public class GhostMartianProj : SimplePetProjBase
     {
         public override void SetStaticDefaults()

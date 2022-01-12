@@ -41,9 +41,15 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
         {
-            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(4))
+            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(10))
             {
                 shop[nextSlot] = ModContent.ItemType<SuspiciousNuggetItem>();
+                nextSlot++;
+            }
+
+            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(10))
+            {
+                shop[nextSlot] = ModContent.ItemType<StrangeRobotItem>();
                 nextSlot++;
             }
         }

@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
@@ -20,9 +21,15 @@ namespace AssortedCrazyThings.Items.Pets
         public override void SafeSetDefaults()
         {
             Item.rare = -11;
-            Item.value = Item.sellPrice(silver: 10); //TODO value
+            Item.value = Item.sellPrice(0, 0, 1, 20); //two statues
         }
 
-        //TODO obtain Craft '1' Statue + '1' Statue at a Bookcase
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.AlphabetStatue1, 2)
+                .AddTile(TileID.Bookcases)
+                .Register();
+        }
     }
 }
