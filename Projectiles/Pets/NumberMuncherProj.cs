@@ -84,8 +84,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void GetFrame()
         {
-            Main.NewText(Projectile.velocity.X);
-
             if (!InAir) //not flying
             {
                 if (Projectile.velocity.Y == 0f)
