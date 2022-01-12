@@ -84,18 +84,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void GetFrame()
         {
+            Main.NewText(Projectile.velocity.X);
+
             if (!InAir) //not flying
             {
                 if (Projectile.velocity.Y == 0f)
                 {
+                    float xAbs = Math.Abs(Projectile.velocity.X);
                     if (Projectile.velocity.X == 0f)
                     {
                         frame2 = 0;
                         frame2Counter = 0;
                     }
-                    else if (Projectile.velocity.X < -0.5f || Projectile.velocity.X > 0.5f)
+                    else if (xAbs > 0.5f)
                     {
-                        frame2Counter += (int)Math.Abs(Projectile.velocity.X);
+                        frame2Counter += (int)xAbs;
                         frame2Counter++;
                         if (frame2Counter > 20) //6
                         {
@@ -110,7 +113,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     else
                     {
                         frame2 = 0; //frame 0 is idle
-                        frame2Counter = 0;
+                        frame2Counter = 10;
                     }
                 }
                 else if (Projectile.velocity.Y != 0f)

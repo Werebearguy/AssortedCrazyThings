@@ -51,6 +51,7 @@ namespace AssortedCrazyThings
         public byte petAnomalocarisType = 0;
         public byte dynamiteBunnyType = 0;
         public byte wallFragmentType = 0;
+        public byte metroidPetType = 0;
 
         public byte oceanSlimeType = 0;
         public byte stingSlimeType = 0;
@@ -147,6 +148,7 @@ namespace AssortedCrazyThings
         public bool GhostMartian = false;
         public bool NumberMuncher = false;
         public bool StrangeRobot = false;
+        public bool MetroidPet = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -237,6 +239,7 @@ namespace AssortedCrazyThings
             GhostMartian = false;
             NumberMuncher = false;
             StrangeRobot = false;
+            MetroidPet = false;
             //ALTERNATE
             //ClassName = false;
         }
@@ -304,6 +307,7 @@ namespace AssortedCrazyThings
                 { "petAnomalocarisType", petAnomalocarisType },
                 { "dynamiteBunnyType", dynamiteBunnyType },
                 { "wallFragmentType", wallFragmentType },
+                { "metroidPetType", metroidPetType },
 
                 { "oceanSlimeType", oceanSlimeType },
                 { "stingSlimeType", stingSlimeType },
@@ -345,6 +349,7 @@ namespace AssortedCrazyThings
                 petAnomalocarisType = petTags.GetByte("petAnomalocarisType");
                 dynamiteBunnyType = petTags.GetByte("dynamiteBunnyType");
                 wallFragmentType = petTags.GetByte("wallFragmentType");
+                metroidPetType = petTags.GetByte("metroidPetType");
 
                 oceanSlimeType = petTags.GetByte("oceanSlimeType");
                 stingSlimeType = petTags.GetByte("stingSlimeType");
@@ -895,9 +900,9 @@ namespace AssortedCrazyThings
 
         public static CircleUIConf GetMiniAntlionConf()
         {
-            List<string> tooltips = new List<string>() { "Default", "Albino" };
+            List<string> tooltips = new List<string>() { "Default", "Albino", "Larval" };
 
-            return CircleUIHandler.PetConf(ModContent.ProjectileType<MiniAntlionProj>(), tooltips);
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<MiniAntlionProj>(), tooltips, new Vector2(0f, -4f));
         }
 
         public static CircleUIConf PetGoldfishConf()
@@ -956,6 +961,13 @@ namespace AssortedCrazyThings
             return CircleUIHandler.PetConf(ModContent.ProjectileType<WallFragmentMouth>(), tooltips);
         }
 
+        public static CircleUIConf GetMetroidPetConf()
+        {
+            List<string> tooltips = new List<string>() { "Metroid", "Failed Clone", "Convergent", "Irradiated", "Corrupted", "The Baby" };
+
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<MetroidPetProj>(), tooltips, new Vector2(0f, -2f));
+        }
+
         //ALTERNATE
         //public static CircleUIConf GetClassNameConf()
         //{
@@ -987,6 +999,7 @@ namespace AssortedCrazyThings
             petAnomalocarisType = 0;
             dynamiteBunnyType = 0;
             wallFragmentType = 0;
+            metroidPetType = 0;
 
             oceanSlimeType = 0;
             stingSlimeType = 0;
@@ -1095,52 +1108,60 @@ namespace AssortedCrazyThings
 
             if (ContentConfig.Instance.DroppedPets)
             {
+                int vanitySelector = ModContent.ItemType<VanitySelector>();
                 CircleUIList.AddRange(new List<CircleUIHandler>()
                 {
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => QueenLarva,
                     uiConf: GetQueenLarvaConf,
                     onUIStart: () => queenLarvaType,
                     onUIEnd: () => queenLarvaType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => MiniAntlion,
                     uiConf: GetMiniAntlionConf,
                     onUIStart: () => miniAntlionType,
                     onUIEnd: () => miniAntlionType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => LilWraps,
                     uiConf: GetLilWrapsConf,
                     onUIStart: () => lilWrapsType,
                     onUIEnd: () => lilWrapsType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => WallFragment,
                     uiConf: GetWallFragmentConf,
                     onUIStart: () => wallFragmentType,
                     onUIEnd: () => wallFragmentType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
+                    condition: () => MetroidPet,
+                    uiConf: GetMetroidPetConf,
+                    onUIStart: () => metroidPetType,
+                    onUIEnd: () => metroidPetType = (byte)CircleUI.returned
+                ),
+                    new CircleUIHandler(
+                    triggerItem: vanitySelector,
                     condition: () => SkeletronHand,
                     uiConf: GetSkeletronHandConf,
                     onUIStart: () => skeletronHandType,
                     onUIEnd: () => skeletronHandType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => SkeletronPrimeHand,
                     uiConf: GetSkeletronPrimeHandConf,
                     onUIStart: () => skeletronPrimeHandType,
                     onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => PetCultist,
                     uiConf: GetPetCultistConf,
                     onUIStart: () => petCultistType,
@@ -1148,7 +1169,7 @@ namespace AssortedCrazyThings
                     triggerLeft: false
                 ),
                     new CircleUIHandler(
-                    triggerItem: ModContent.ItemType<VanitySelector>(),
+                    triggerItem: vanitySelector,
                     condition: () => PetFishron,
                     uiConf: GetPetFishronConf,
                     onUIStart: () => petFishronType,
@@ -1235,8 +1256,9 @@ namespace AssortedCrazyThings
             skeletronPrimeHandType = ClonedTypes[index++];
             petCultistType = ClonedTypes[index++];
             petAnomalocarisType = ClonedTypes[index++];
-            wallFragmentType = ClonedTypes[index++];
             dynamiteBunnyType = ClonedTypes[index++];
+            wallFragmentType = ClonedTypes[index++];
+            metroidPetType = ClonedTypes[index++];
             //ALTERNATE
             //classNameType = ClonedTypes[index++];
 
@@ -1273,8 +1295,9 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = skeletronPrimeHandType;
                 ClonedTypes[++index] = petCultistType;
                 ClonedTypes[++index] = petAnomalocarisType;
-                ClonedTypes[++index] = wallFragmentType;
                 ClonedTypes[++index] = dynamiteBunnyType;
+                ClonedTypes[++index] = wallFragmentType;
+                ClonedTypes[++index] = metroidPetType;
 
                 ClonedTypes[++index] = oceanSlimeType;
                 ClonedTypes[++index] = stingSlimeType;
