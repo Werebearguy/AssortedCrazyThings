@@ -4,13 +4,12 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Content(ContentType.HostileNPCs)]
     //check this file for more info vvvvvvvv
-    public class MeatballSlimeProj : BabySlimeBase
+    public class FailureSlimeProj : BabySlimeBase
     {
         public override void SafeSetStaticDefaults()
         {
-            DisplayName.SetDefault("Meatball Slime");
+            DisplayName.SetDefault("Failure Slime");
         }
 
         public override void SafeSetDefaults()
@@ -27,9 +26,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             PetPlayer modPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
             if (Projectile.GetOwner().dead)
             {
-                modPlayer.MeatballSlime = false;
+                modPlayer.FailureSlime = false;
             }
-            if (modPlayer.MeatballSlime)
+            if (modPlayer.FailureSlime)
             {
                 Projectile.timeLeft = 2;
             }

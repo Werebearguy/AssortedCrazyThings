@@ -143,6 +143,10 @@ namespace AssortedCrazyThings
         public bool FairySwarm = false;
         public bool SwarmofCthulhu = false;
         public bool PetQueenSlime = false;
+        public bool FailureSlime = false;
+        public bool GhostMartian = false;
+        public bool NumberMuncher = false;
+        public bool StrangeRobot = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -229,6 +233,10 @@ namespace AssortedCrazyThings
             FairySwarm = false;
             SwarmofCthulhu = false;
             PetQueenSlime = false;
+            FailureSlime = false;
+            GhostMartian = false;
+            NumberMuncher = false;
+            StrangeRobot = false;
             //ALTERNATE
             //ClassName = false;
         }

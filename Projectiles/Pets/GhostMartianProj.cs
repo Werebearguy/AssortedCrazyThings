@@ -3,27 +3,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
     [Content(ContentType.DroppedPets)]
-    public class QueenLarvaProj : SimplePetProjBase
+    public class GhostMartianProj : SimplePetProjBase
     {
-        private int sincounter;
-
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/QueenLarvaProj_0"; //temp
-            }
-        }
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Queen Bee Larva");
+            DisplayName.SetDefault("Ghost Martian");
             Main.projFrames[Projectile.type] = 4;
             Main.projPet[Projectile.type] = true;
         }
@@ -32,23 +23,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Projectile.CloneDefaults(ProjectileID.DD2PetGhost);
             Projectile.aiStyle = -1;
-            Projectile.width = 28;
-            Projectile.height = 34;
-            Projectile.alpha = 0;
+            Projectile.width = 22;
+            Projectile.height = 42;
+            Projectile.alpha = 70;
         }
+
+        private const int sincounterMax = 130;
+        private int sincounter;
 
         public override bool PreDraw(ref Color lightColor)
         {
-            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType).Value;
+            Texture2D image = TextureAssets.Projectile[Type].Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-            float sinY = (float)((Math.Sin((sincounter / 150f) * MathHelper.TwoPi) - 1) * 2);
+            float sinY = (float)((Math.Sin(((float)sincounter / sincounterMax) * MathHelper.TwoPi) - 1) * 2);
 
-            Vector2 stupidOffset = new Vector2(Projectile.width / 2, (Projectile.height - 20f) + sinY);
+            Vector2 stupidOffset = new Vector2(image.Width / 2, Projectile.height / 2 + sinY);
             Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, 0f, bounds.Size() / 2, 1f, Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
         }
 
@@ -57,17 +50,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
 
-            sincounter = sincounter > 150 ? 0 : sincounter + 1;
+            sincounter = sincounter > sincounterMax ? 0 : sincounter + 1;
 
             if (player.dead)
             {
-                modPlayer.QueenLarva = false;
+                modPlayer.GhostMartian = false;
             }
-            if (modPlayer.QueenLarva)
+            if (modPlayer.GhostMartian)
             {
                 Projectile.timeLeft = 2;
 
-                AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: 16f, offsetY: 10f);
+                AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: -6f, offsetY: 6f);
+
+                Projectile.spriteDirection = (player.Center.X <= Projectile.Center.X).ToDirectionInt();
 
                 AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
             }
