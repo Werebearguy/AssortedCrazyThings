@@ -70,11 +70,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 Projectile.rotation -= Projectile.spriteDirection * MathHelper.PiOver2;
 
                 //Propulsion dust
-                Vector2 dustOrigin = Projectile.Center - Projectile.velocity.SafeNormalize(Vector2.Zero) * 12;
-                Dust dust = Dust.NewDustDirect(dustOrigin - Vector2.One * 4f, 8, 8, 16, -Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 50, default(Color), 1.7f);
-                dust.velocity.X *= 0.2f;
-                dust.velocity.Y *= 0.2f;
-                dust.noGravity = true;
+                float dustChance = Math.Clamp(Math.Abs(Projectile.velocity.Length()) / 5f, 0.3f, 0.9f);
+                if (Main.rand.NextFloat() < dustChance)
+                {
+                    Vector2 dustOrigin = Projectile.Center - Projectile.velocity.SafeNormalize(Vector2.Zero) * 12;
+                    Dust dust = Dust.NewDustDirect(dustOrigin - Vector2.One * 4f, 8, 8, DustID.Cloud, -Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 50, default(Color), 1.7f);
+                    dust.velocity.X *= 0.2f;
+                    dust.velocity.Y *= 0.2f;
+                    dust.noGravity = true;
+                }
             }
         }
 

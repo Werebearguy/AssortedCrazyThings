@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,22 +15,41 @@ namespace AssortedCrazyThings.Projectiles.Pets
         private int frame2Counter = 0;
         private int frame2 = 0;
 
-        private static Asset<Texture2D> eyesAsset;
+        private int faceFrame = 0;
+        private int faceFrameCounter = 0;
+        private const int faceFrameSpeed = 6;
+        private const int faceFrameCount = 4;
+
+        private int bobbingCounter = 0;
+        private const int bobbingCounterMax = 2;
+        private bool bobbing = false;
+        private const float bobAmonut = 1f; //Code bobbing, 1f is half a terraria pixel
+
+        /// <summary>
+        /// Only has <see cref="faceFrameCount"/> frames
+        /// </summary>
+        private static Asset<Texture2D> faceAsset;
         private static Asset<Texture2D> fireAsset;
+        private static Asset<Texture2D> rearAsset;
+        private static Asset<Texture2D> frontAsset;
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                eyesAsset = ModContent.Request<Texture2D>(Texture + "_Eyes");
+                faceAsset = ModContent.Request<Texture2D>(Texture + "_Face");
                 fireAsset = ModContent.Request<Texture2D>(Texture + "_Fire");
+                rearAsset = ModContent.Request<Texture2D>(Texture + "_RearWheel");
+                frontAsset = ModContent.Request<Texture2D>(Texture + "_FrontWheel");
             }
         }
 
         public override void Unload()
         {
-            eyesAsset = null;
+            faceAsset = null;
             fireAsset = null;
+            rearAsset = null;
+            frontAsset = null;
         }
 
         public override void SetStaticDefaults()
@@ -48,22 +68,53 @@ namespace AssortedCrazyThings.Projectiles.Pets
             DrawOriginOffsetY = 4;
         }
 
-        public override void PostDraw(Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D image = eyesAsset.Value;
+            Texture2D image = fireAsset.Value; //Use a sprite with all 5 frames
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
             Vector2 stupidOffset = new Vector2(0, Projectile.gfxOffY);
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(image.Width / 2, Projectile.height / 2);
+            Vector2 drawOrigin = new Vector2(bounds.Width / 2, Projectile.height / 2);
             Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
             Vector2 origin = bounds.Size() / 2 - new Vector2(0, DrawOriginOffsetY); //PROPER WAY OF USING DrawOriginOffsetY I THINK
             float rotation = Projectile.rotation;
             float scale = Projectile.scale;
-            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White * Projectile.Opacity, rotation, origin, (float)scale, effects, 0);
+            Color white = Color.White * Projectile.Opacity;
 
-            image = fireAsset.Value;
-            Main.EntitySpriteDraw(image, drawPos, bounds, Color.White * Projectile.Opacity, rotation, origin, (float)scale, effects, 0);
+            bool flying = Projectile.frame == 3 || Projectile.frame == 4;
+            if (flying)
+            {
+                //Fire
+                Main.EntitySpriteDraw(image, drawPos, bounds, white, rotation, origin, scale, effects, 0);
+            }
+
+            //Rear
+            image = rearAsset.Value;
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, rotation, origin, scale, effects, 0);
+
+            //Body
+            image = TextureAssets.Projectile[Type].Value;
+            Vector2 bodyDrawPos = drawPos;
+            bodyDrawPos.Y += bobbing ? -bobAmonut : 0f;
+            Main.EntitySpriteDraw(image, bodyDrawPos, bounds, lightColor, rotation, origin, scale, effects, 0);
+
+            //Front
+            image = frontAsset.Value;
+            Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, rotation, origin, scale, effects, 0);
+
+            //Face
+            image = faceAsset.Value;
+            Rectangle faceBounds = bounds;
+            faceBounds.Y = faceBounds.Height * faceFrame;
+            if (flying)
+            {
+                faceBounds.Y += 2;
+            }
+
+            Main.EntitySpriteDraw(image, bodyDrawPos, faceBounds, white, rotation, origin, scale, effects, 0);
+
+            return false;
         }
 
         public override bool PreAI()
@@ -80,6 +131,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         private void GetFrame()
         {
+            faceFrameCounter++;
+            if (faceFrameCounter >= faceFrameSpeed)
+            {
+                faceFrameCounter = 0;
+                faceFrame++;
+                if (faceFrame >= faceFrameCount)
+                {
+                    faceFrame = 0;
+                }
+            }
+
             if (!InAir) //not flying
             {
                 if (Projectile.velocity.Y == 0f)
@@ -95,12 +157,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         frame2Counter++;
                         if (frame2Counter > 12) //6
                         {
+                            bobbingCounter++;
+                            if (bobbingCounter >= bobbingCounterMax)
+                            {
+                                bobbingCounter = 0;
+                                bobbing = !bobbing;
+                            }
                             frame2++;
                             frame2Counter = 0;
                         }
-                        if (frame2 > 2) //frame 1 to 2 is running
+                        if (frame2 > 1) //frame 0 to 1 is running
                         {
-                            frame2 = 1;
+                            frame2 = 0;
                         }
                     }
                     else
@@ -111,16 +179,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 }
                 else if (Projectile.velocity.Y != 0f)
                 {
-                    frame2Counter++;
-                    if (frame2Counter > 6) //6
-                    {
-                        frame2++;
-                        frame2Counter = 0;
-                    }
-                    if (frame2 > 2) //frame 1 to 2 is jumping aswell
-                    {
-                        frame2 = 1;
-                    }
+                    frame2 = 2; //frame 2 is jumping
+                    frame2Counter = 0;
                 }
             }
             else //flying
