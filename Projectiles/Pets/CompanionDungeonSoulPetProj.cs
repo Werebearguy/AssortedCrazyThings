@@ -51,7 +51,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Projectile.alpha = 0;
         }
 
-        //draw it with 78% "brightness" (like the NPC and item version of that soul), plus that "up/down" motion
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
@@ -136,7 +135,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return 0;
             }
 
-            if (ownerIdleTimer > 30 * 60)
+            if (ownerIdleTimer > 15 * 60)
             {
                 return 5;
             }

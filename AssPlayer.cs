@@ -47,7 +47,7 @@ namespace AssortedCrazyThings
         public bool HasBossSlainTimer => lastSlainBossTimerSeconds != -1;
 
         public bool needsNearbyEnemyNumber = false;
-        public int nearbyEnemyNumber = 0; //Impl of vanilla player.accThirdEyeNumber which works for all clients
+        public int nearbyEnemyNumber = 0; //Impl of vanilla player.accThirdEyeNumber which works for all clients, shorter range
         public int nearbyEnemyTimer = 0;
 
         //soul minion stuff
@@ -314,7 +314,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Technically doesn't spawn souls, just applies the buff to the NPCs, that then spawns the soul if it dies
         /// </summary>
-        private void SpawnSoulsWhenHarvesterIsAlive()
+        private void GiveSoulBuffToEnemiesWhenHarvesterIsAlive()
         {
             if (!ContentConfig.Instance.Bosses)
             {
@@ -765,9 +765,9 @@ namespace AssortedCrazyThings
             }
         }
 
-        public void UpdateCompanionSoulNearbyEnemies()
+        public void UpdateNearbyEnemies()
         {
-            float distSQ = 1000 * 1000;
+            float distSQ = 600 * 600;
             if (nearbyEnemyTimer == 0)
             {
                 nearbyEnemyNumber = 0;
@@ -962,9 +962,9 @@ namespace AssortedCrazyThings
                 }
             }
 
-            UpdateCompanionSoulNearbyEnemies();
+            UpdateNearbyEnemies();
 
-            SpawnSoulsWhenHarvesterIsAlive();
+            GiveSoulBuffToEnemiesWhenHarvesterIsAlive();
         }
     }
 }
