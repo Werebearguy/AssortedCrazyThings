@@ -63,9 +63,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Projectile.CloneDefaults(ProjectileID.BabyGrinch);
             Projectile.width = 32;
-            Projectile.height = 42;
+            Projectile.height = 38;
             AIType = ProjectileID.BabyGrinch;
-            DrawOriginOffsetY = 4;
+            DrawOriginOffsetY = 2;
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -83,6 +83,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Color white = Color.White * Projectile.Opacity;
 
             bool flying = Projectile.frame == 3 || Projectile.frame == 4;
+            bool jumping = Projectile.frame == 2;
             if (flying)
             {
                 //Fire
@@ -96,7 +97,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //Body
             image = TextureAssets.Projectile[Type].Value;
             Vector2 bodyDrawPos = drawPos;
-            bodyDrawPos.Y += bobbing ? -bobAmonut : 0f;
+            if (!flying)
+            {
+                bodyDrawPos.Y += bobbing ? -bobAmonut : 0f;
+            }
             Main.EntitySpriteDraw(image, bodyDrawPos, bounds, lightColor, rotation, origin, scale, effects, 0);
 
             //Front
@@ -107,7 +111,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             image = faceAsset.Value;
             Rectangle faceBounds = bounds;
             faceBounds.Y = faceBounds.Height * faceFrame;
-            if (flying)
+            if (flying || jumping)
             {
                 faceBounds.Y += 2;
             }
