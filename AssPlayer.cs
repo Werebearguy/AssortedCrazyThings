@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -40,6 +41,14 @@ namespace AssortedCrazyThings
         private const short GetDefenseDurationMax = 600; //in ticks //10 ingame seconds
         public short getDefenseDuration = 0;
         public short getDefenseTimer = 0; //gets saved when you relog so you can't cheese it
+
+        private int lastSlainBossTimerSeconds = -1; //-1: never slain a boss, otherwise starts at 0 and counts
+        private int lastSlainBossTimerInternal = 0; //Used for incrementing the seconds timer
+        public bool HasBossSlainTimer => lastSlainBossTimerSeconds != -1;
+
+        public bool needsNearbyEnemyNumber = false;
+        public int nearbyEnemyNumber = 0; //Impl of vanilla player.accThirdEyeNumber which works for all clients
+        public int nearbyEnemyTimer = 0;
 
         //soul minion stuff
         public bool soulMinion = false;
@@ -106,6 +115,8 @@ namespace AssortedCrazyThings
             soulSaviorArmor = false;
             droneControllerMinion = false;
             mouseoveredDresser = false;
+
+            needsNearbyEnemyNumber = false;
         }
 
         public bool RightClickPressed { get { return PlayerInput.Triggers.JustPressed.MouseRight; } }
@@ -120,6 +131,7 @@ namespace AssortedCrazyThings
         {
             tag.Add("teleportHomeWhenLowTimer", (int)teleportHomeTimer);
             tag.Add("getDefenseTimer", (int)getDefenseTimer);
+            tag.Add("lastSlainBossTimerSeconds", (int)lastSlainBossTimerSeconds);
             tag.Add("droneControllerUnlocked", (byte)droneControllerUnlocked);
         }
 
@@ -127,6 +139,11 @@ namespace AssortedCrazyThings
         {
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
+            string timerKey = "lastSlainBossTimerSeconds";
+            if (tag.ContainsKey(timerKey))
+            {
+                lastSlainBossTimerSeconds = tag.GetInt("lastSlainBossTimerSeconds");
+            }
             droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
         }
 
@@ -167,13 +184,21 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            if (Main.netMode != NetmodeID.Server) return;
-            //from server to clients
             ModPacket packet = Mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncAssPlayer);
             packet.Write((byte)Player.whoAmI);
+
+            //Actual data here
             packet.Write((byte)shieldDroneReduction);
+            packet.WriteVarInt(lastSlainBossTimerSeconds);
+
             packet.Send(toWho, fromWho);
+        }
+
+        public void ReceiveSyncPlayer(BinaryReader reader)
+        {
+            shieldDroneReduction = reader.ReadByte();
+            lastSlainBossTimerSeconds = reader.ReadVarInt();
         }
 
         public override void OnEnterWorld(Player player)
@@ -514,6 +539,7 @@ namespace AssortedCrazyThings
             canGetDefense = false;
             getDefenseDuration = 0;
             getDefenseTimer = 0;
+            lastSlainBossTimerSeconds = -1;
             soulMinion = false;
             tempSoulMinion = null;
             selectedSoulMinionType = SoulType.Dungeon;
@@ -708,6 +734,59 @@ namespace AssortedCrazyThings
         }
         */
 
+        public void ResetSlainBossTimer()
+        {
+            lastSlainBossTimerSeconds = 0;
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)AssMessageType.SlainBossTimerReset);
+                packet.Send(Player.whoAmI);
+            }
+        }
+
+        public bool HasSlainBossSecondsAgo(int timeInSeconds)
+        {
+            return HasBossSlainTimer && lastSlainBossTimerSeconds < timeInSeconds;
+        }
+
+        public void UpdateSlainBossTimer()
+        {
+            if (HasBossSlainTimer)
+            {
+                lastSlainBossTimerInternal++;
+                if (lastSlainBossTimerInternal >= 60)
+                {
+                    lastSlainBossTimerInternal = 0;
+
+                    lastSlainBossTimerSeconds++;
+                }
+            }
+        }
+
+        public void UpdateCompanionSoulNearbyEnemies()
+        {
+            float distSQ = 1000 * 1000;
+            if (nearbyEnemyTimer == 0)
+            {
+                nearbyEnemyNumber = 0;
+                nearbyEnemyTimer = 15;
+                for (int l = 0; l < Main.maxNPCs; l++)
+                {
+                    NPC npc = Main.npc[l];
+                    if (npc.active && !npc.friendly && npc.damage > 0 && npc.lifeMax > 5 && !npc.dontCountMe && (npc.Center - Player.Center).LengthSquared() < distSQ)
+                    {
+                        nearbyEnemyNumber++;
+                    }
+                }
+            }
+            else
+            {
+                nearbyEnemyTimer--;
+            }
+        }
+
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
             Player drawPlayer = drawInfo.drawPlayer;
@@ -864,6 +943,8 @@ namespace AssortedCrazyThings
             UpdateGetDefenseWhenLow();
 
             Empower();
+
+            UpdateSlainBossTimer();
         }
 
         public override void PreUpdate()
@@ -880,6 +961,8 @@ namespace AssortedCrazyThings
                     if (Player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
                 }
             }
+
+            UpdateCompanionSoulNearbyEnemies();
 
             SpawnSoulsWhenHarvesterIsAlive();
         }

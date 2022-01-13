@@ -28,6 +28,26 @@ namespace AssortedCrazyThings.NPCs
             }
 
             GitgudData.Reset(npc);
+
+            if (npc.boss)
+            {
+                for (int i = 0; i < npc.playerInteraction.Length; i++)
+                {
+                    if (!npc.playerInteraction[i])
+                    {
+                        continue;
+                    }
+
+                    Player player = Main.player[i];
+
+                    if (!player.active)
+                    {
+                        continue;
+                    }
+
+                    player.GetModPlayer<AssPlayer>().ResetSlainBossTimer();
+                }
+            }
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)

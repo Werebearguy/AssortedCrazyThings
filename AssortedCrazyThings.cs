@@ -281,12 +281,9 @@ namespace AssortedCrazyThings
                     }
                     break;
                 case AssMessageType.SyncAssPlayer:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        playerNumber = reader.ReadByte();
-                        aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                        aPlayer.shieldDroneReduction = reader.ReadByte();
-                    }
+                    playerNumber = reader.ReadByte();
+                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                    aPlayer.ReceiveSyncPlayer(reader);
                     break;
                 case AssMessageType.ClientChangesAssPlayer:
                     //client and server
@@ -367,6 +364,12 @@ namespace AssortedCrazyThings
                         }
                     }
                     break;
+                case AssMessageType.SlainBossTimerReset:
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        Main.LocalPlayer.GetModPlayer<AssPlayer>().ResetSlainBossTimer();
+                    }
+                    break;
                 default:
                     Logger.Debug("Unknown Message type: " + msgType);
                     break;
@@ -399,7 +402,8 @@ namespace AssortedCrazyThings
         GitgudLoadCounters,
         GitgudChangeCounters,
         ResetEmpoweringTimerpvp,
-        WyvernCampfireKill
+        WyvernCampfireKill,
+        SlainBossTimerReset
     }
 
     public enum PetPlayerChanges : byte
