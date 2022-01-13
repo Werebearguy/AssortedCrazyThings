@@ -29,7 +29,7 @@ namespace AssortedCrazyThings
 
         private bool enteredWorld = false;
 
-        private const int altTextureCountLoaded = 24; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
+        private const int altTextureCountLoaded = 25; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
 
         //Alt texture types
         public byte mechFrogType = 0;
@@ -52,6 +52,7 @@ namespace AssortedCrazyThings
         public byte dynamiteBunnyType = 0;
         public byte wallFragmentType = 0;
         public byte metroidPetType = 0;
+        public byte cuteLamiaPetType = 0;
 
         public byte oceanSlimeType = 0;
         public byte stingSlimeType = 0;
@@ -149,6 +150,7 @@ namespace AssortedCrazyThings
         public bool NumberMuncher = false;
         public bool StrangeRobot = false;
         public bool MetroidPet = false;
+        public bool CuteLamiaPet = false;
         //ALTERNATE
         //public bool ClassName = false;
 
@@ -240,6 +242,7 @@ namespace AssortedCrazyThings
             NumberMuncher = false;
             StrangeRobot = false;
             MetroidPet = false;
+            CuteLamiaPet = false;
             //ALTERNATE
             //ClassName = false;
         }
@@ -308,6 +311,7 @@ namespace AssortedCrazyThings
                 { "dynamiteBunnyType", dynamiteBunnyType },
                 { "wallFragmentType", wallFragmentType },
                 { "metroidPetType", metroidPetType },
+                { "cuteLamiaPetType", cuteLamiaPetType },
 
                 { "oceanSlimeType", oceanSlimeType },
                 { "stingSlimeType", stingSlimeType },
@@ -350,6 +354,7 @@ namespace AssortedCrazyThings
                 dynamiteBunnyType = petTags.GetByte("dynamiteBunnyType");
                 wallFragmentType = petTags.GetByte("wallFragmentType");
                 metroidPetType = petTags.GetByte("metroidPetType");
+                cuteLamiaPetType = petTags.GetByte("cuteLamiaPetType");
 
                 oceanSlimeType = petTags.GetByte("oceanSlimeType");
                 stingSlimeType = petTags.GetByte("stingSlimeType");
@@ -968,6 +973,13 @@ namespace AssortedCrazyThings
             return CircleUIHandler.PetConf(ModContent.ProjectileType<MetroidPetProj>(), tooltips, new Vector2(0f, -2f));
         }
 
+        public static CircleUIConf GetCuteLamiaPetConf()
+        {
+            List<string> tooltips = new List<string>() { "Dark", "Light", "Dropkick" };
+
+            return CircleUIHandler.PetConf(ModContent.ProjectileType<CuteLamiaPetProj>(), tooltips, new Vector2(0f, 0f));
+        }
+
         //ALTERNATE
         //public static CircleUIConf GetClassNameConf()
         //{
@@ -1000,6 +1012,7 @@ namespace AssortedCrazyThings
             dynamiteBunnyType = 0;
             wallFragmentType = 0;
             metroidPetType = 0;
+            cuteLamiaPetType = 0;
 
             oceanSlimeType = 0;
             stingSlimeType = 0;
@@ -1148,6 +1161,13 @@ namespace AssortedCrazyThings
                 ),
                     new CircleUIHandler(
                     triggerItem: vanitySelector,
+                    condition: () => CuteLamiaPet,
+                    uiConf: GetCuteLamiaPetConf,
+                    onUIStart: () => cuteLamiaPetType,
+                    onUIEnd: () => cuteLamiaPetType = (byte)CircleUI.returned
+                ),
+                    new CircleUIHandler(
+                    triggerItem: vanitySelector,
                     condition: () => SkeletronHand,
                     uiConf: GetSkeletronHandConf,
                     onUIStart: () => skeletronHandType,
@@ -1259,6 +1279,7 @@ namespace AssortedCrazyThings
             dynamiteBunnyType = ClonedTypes[index++];
             wallFragmentType = ClonedTypes[index++];
             metroidPetType = ClonedTypes[index++];
+            cuteLamiaPetType = ClonedTypes[index++];
             //ALTERNATE
             //classNameType = ClonedTypes[index++];
 
@@ -1298,6 +1319,7 @@ namespace AssortedCrazyThings
                 ClonedTypes[++index] = dynamiteBunnyType;
                 ClonedTypes[++index] = wallFragmentType;
                 ClonedTypes[++index] = metroidPetType;
+                ClonedTypes[++index] = cuteLamiaPetType;
 
                 ClonedTypes[++index] = oceanSlimeType;
                 ClonedTypes[++index] = stingSlimeType;

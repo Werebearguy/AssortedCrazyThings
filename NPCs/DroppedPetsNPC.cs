@@ -25,6 +25,10 @@ namespace AssortedCrazyThings.NPCs
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LilWrapsItem>(), chanceDenominator: 75));
             }
+            else if (npc.type == NPCID.DesertLamiaDark || npc.type == NPCID.DesertLamiaLight)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CuteLamiaPetItem>(), chanceDenominator: 75));
+            }
             else if (npc.type == NPCID.RainbowSlime)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RainbowSlimeItem>(), chanceDenominator: 4));
