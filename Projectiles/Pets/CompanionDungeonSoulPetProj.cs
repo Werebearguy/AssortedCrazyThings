@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
             //3: 25% health
             //2: enemies nearby (60 tile radius)
             //0: idle for long (2 minutes)
-            //5: idle for short (30 seconds)
+            //5: idle for short (15 seconds)
             //4: idle boss slain (1 minute ago)
             //1: idle regular
 
