@@ -8,7 +8,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace AssortedCrazyThings.NPCs
 {
     [Content(ContentType.DroppedPets)]
-    public class DroppedPetsNPC : AssGlobalNPC
+    public class DroppedPetsGlobalNPC : AssGlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -92,6 +92,10 @@ namespace AssortedCrazyThings.NPCs
             else if (npc.type == NPCID.Golem)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetGolemHeadItem>(), chanceDenominator: 10));
+            }
+            else if (npc.type == NPCID.DD2Betsy)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MetroidPetItem>(), chanceDenominator: 10));
             }
             else if (npc.type == NPCID.DukeFishron)
             {
