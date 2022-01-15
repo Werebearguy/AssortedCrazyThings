@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lifelike Mechanical Frog");
+            DisplayName.SetDefault("Number Muncher");
             Main.projFrames[Projectile.type] = 10;
             Main.projPet[Projectile.type] = true;
         }
@@ -24,9 +24,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Projectile.CloneDefaults(ProjectileID.BabyGrinch);
             AIType = ProjectileID.BabyGrinch;
             Projectile.width = 20;
-            Projectile.height = 28;
+            Projectile.height = 22;
 
-            DrawOriginOffsetY = 4;
+            DrawOriginOffsetY = -2;
         }
 
         public override bool PreAI()
@@ -103,9 +103,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             frame2++;
                             frame2Counter = 0;
                         }
-                        if (frame2 > 8) //frame 1 to 8 is running
+                        if (frame2 > 9) //frame 2 to 9 is running
                         {
-                            frame2 = 1;
+                            frame2 = 2;
                         }
                     }
                     else
@@ -117,14 +117,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 else if (Projectile.velocity.Y != 0f)
                 {
                     frame2Counter = 0;
-                    frame2 = 9; //frame 9 is jumping
+                    frame2 = 1; //frame 1 is jumping
                 }
             }
             else //flying
             {
-                if (frame2 != 9)
+                if (frame2 != 1)
                 {
-                    frame2 = 9; //flying frame 9
+                    frame2 = 1; //flying frame 1
                 }
             }
         }
