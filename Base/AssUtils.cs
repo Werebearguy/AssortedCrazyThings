@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -550,6 +551,47 @@ namespace AssortedCrazyThings.Base
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Draws the _Highlight texture of this tile if it exists and can be drawn
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <param name="type"></param>
+        /// <param name="color">Color the tile is drawn with</param>
+        /// <param name="pos"></param>
+        /// <param name="frame"></param>
+        public static void DrawTileHightlight(SpriteBatch spriteBatch, int i, int j, int type, Color color, Vector2 pos, Rectangle frame)
+        {
+            if (TileID.Sets.HasOutlines[type] && Collision.InTileBounds(i, j, Main.TileInteractionLX, Main.TileInteractionLY, Main.TileInteractionHX, Main.TileInteractionHY) && Main.SmartInteractTileCoords.Contains(new Point(i, j)))
+            {
+                int average = (int)color.GetAverage();
+                bool selected = false;
+                if (Main.SmartInteractTileCoordsSelected.Contains(new Point(i, j)))
+                {
+                    selected = true;
+                }
+                if (average > 10)
+                {
+                    Texture2D outlineTexture = TextureAssets.HighlightMask[type].Value;
+                    Color outlineColor;
+                    if (selected)
+                    {
+                        outlineColor = new Color(average, average, average / 3, average);
+                    }
+                    else
+                    {
+                        outlineColor = new Color(average / 2, average / 2, average / 2, average);
+                    }
+
+                    if (outlineTexture != null)
+                    {
+                        spriteBatch.Draw(outlineTexture, pos, frame, outlineColor, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                    }
+                }
+            }
         }
     }
 }

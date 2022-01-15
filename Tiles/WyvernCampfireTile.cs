@@ -85,7 +85,6 @@ namespace AssortedCrazyThings.Tiles
             frameCounter = Main.tileFrameCounter[TileID.Campfire];
         }
 
-        //for the change in HitWire to actually register
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
@@ -106,33 +105,9 @@ namespace AssortedCrazyThings.Tiles
             Vector2 pos = new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero;
             pos.Y += 2;
             Rectangle frame = new Rectangle(tile.frameX, tile.frameY + animate, 16, height);
-            Main.spriteBatch.Draw(texture, pos, frame, color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, pos, frame, color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 
-            texture = null;
-            Color transparent = Color.Transparent;
-            if (TileID.Sets.HasOutlines[Type] && Collision.InTileBounds(i, j, Main.TileInteractionLX, Main.TileInteractionLY, Main.TileInteractionHX, Main.TileInteractionHY) && Main.SmartInteractTileCoords.Contains(new Point(i, j)))
-            {
-                int average = (int)color.GetAverage();
-                bool selected = false;
-                if (Main.SmartInteractTileCoordsSelected.Contains(new Point(i, j)))
-                {
-                    selected = true;
-                }
-                if (average > 10)
-                {
-                    texture = TextureAssets.HighlightMask[Type].Value;
-                    if (selected)
-                    {
-                        transparent = new Color(average, average, average / 3, average);
-                    }
-                    else
-                    {
-                        transparent = new Color(average / 2, average / 2, average / 2, average);
-                    }
-                }
-                if (texture != null) Main.spriteBatch.Draw(texture, pos, frame, transparent, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-
-            }
+            AssUtils.DrawTileHightlight(spriteBatch, i, j, Type, color, pos, frame);
 
             if (tile.frameY == 0 && Main.rand.NextBool() && !Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
