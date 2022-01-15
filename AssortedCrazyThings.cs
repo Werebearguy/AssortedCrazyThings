@@ -242,6 +242,12 @@ namespace AssortedCrazyThings
                 ItemID.AdamantiteBar,
                 ItemID.TitaniumBar
             }));
+
+            RecipeGroup.RegisterGroup("ACT:DemoniteCrimtane", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.DemoniteBar), new int[]
+            {
+                ItemID.DemoniteBar,
+                ItemID.CrimtaneBar
+            }));
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
