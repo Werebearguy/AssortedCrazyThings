@@ -138,7 +138,7 @@ namespace AssortedCrazyThings.Tiles
                 spriteBatch.Draw(pulseAsset.Value, pos, frame, pulseColor, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
 
-            AssUtils.DrawTileHightlight(spriteBatch, i, j, Type, color, pos, frame);
+            AssUtils.DrawTileHighlight(spriteBatch, i, j, Type, color, pos, frame);
 
             return false;
         }

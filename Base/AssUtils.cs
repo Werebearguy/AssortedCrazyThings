@@ -563,7 +563,7 @@ namespace AssortedCrazyThings.Base
         /// <param name="color">Color the tile is drawn with</param>
         /// <param name="pos"></param>
         /// <param name="frame"></param>
-        public static void DrawTileHightlight(SpriteBatch spriteBatch, int i, int j, int type, Color color, Vector2 pos, Rectangle frame)
+        public static void DrawTileHighlight(SpriteBatch spriteBatch, int i, int j, int type, Color color, Vector2 pos, Rectangle frame)
         {
             if (TileID.Sets.HasOutlines[type] && Collision.InTileBounds(i, j, Main.TileInteractionLX, Main.TileInteractionLY, Main.TileInteractionHX, Main.TileInteractionHY) && Main.SmartInteractTileCoords.Contains(new Point(i, j)))
             {

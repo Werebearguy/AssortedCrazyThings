@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Tiles
             Rectangle frame = new Rectangle(tile.frameX, tile.frameY + animate, 16, height);
             spriteBatch.Draw(texture, pos, frame, color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 
-            AssUtils.DrawTileHightlight(spriteBatch, i, j, Type, color, pos, frame);
+            AssUtils.DrawTileHighlight(spriteBatch, i, j, Type, color, pos, frame);
 
             if (tile.frameY == 0 && Main.rand.NextBool() && !Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
