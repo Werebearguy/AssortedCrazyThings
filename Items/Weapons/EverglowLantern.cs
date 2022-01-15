@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.damage = EverhallowedLantern.BaseDmg / 2 - 1;
             Item.DamageType = DamageClass.Summon;
             Item.mana = 10;
-            Item.width = 18;
+            Item.width = 22;
             Item.height = 38;
             Item.useTime = 36;
             Item.useAnimation = 36;
