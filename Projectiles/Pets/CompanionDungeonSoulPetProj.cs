@@ -83,12 +83,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             sincounter = sincounter > 120 ? 0 : sincounter + 1;
 
-            ownerIdleTimer++;
-            if (player.velocity.X != player.oldVelocity.X)
-            {
-                ownerIdleTimer = 0;
-            }
-
             ref bool petBool = ref GetBool(modPlayer);
             if (player.dead)
             {
@@ -102,11 +96,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
                 AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 7);
 
+                Projectile.direction = Projectile.spriteDirection = -player.direction;
+
                 Projectile.rotation = 0f;
             }
         }
-
-        private int ownerIdleTimer = 0;
 
         private int GetFaceFrame(Player player)
         {
@@ -130,12 +124,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 return 2;
             }
 
-            if (ownerIdleTimer > 120 * 60)
+            if (player.afkCounter > 120 * 60)
             {
                 return 0;
             }
 
-            if (ownerIdleTimer > 15 * 60)
+            if (player.afkCounter > 15 * 60)
             {
                 return 5;
             }
