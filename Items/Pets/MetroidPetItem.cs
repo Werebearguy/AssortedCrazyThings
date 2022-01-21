@@ -23,7 +23,5 @@ namespace AssortedCrazyThings.Items.Pets
             Item.rare = -11;
             Item.value = Item.sellPrice(copper: 10);
         }
-
-        //TODO drop from betsy
     }
 }
