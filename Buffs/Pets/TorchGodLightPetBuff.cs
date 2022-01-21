@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
@@ -16,6 +17,21 @@ namespace AssortedCrazyThings.Buffs.Pets
             Description.SetDefault("Your torch placement has been deemed unnecessary. I will do it correctly.");
             Main.vanityPet[Type] = false;
             Main.lightPet[Type] = true;
+        }
+
+        public override void ModifyBuffTip(ref string tip, ref int rare)
+        {
+            base.ModifyBuffTip(ref tip, ref rare);
+
+            if (!Main.SmartCursorEnabled)
+            {
+                tip += "\nEnable 'Smart Cursor' to automatically place torches";
+            }
+
+            if (!Main.LocalPlayer.HasItem(ItemID.Torch))
+            {
+                tip += "\nNo normal torches found to place";
+            }
         }
     }
 }
