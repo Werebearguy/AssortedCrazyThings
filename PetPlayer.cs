@@ -1022,6 +1022,8 @@ namespace AssortedCrazyThings
 
             youngHarpyType = 0;
 
+            SlimeHugs = new List<SlimeHug>();
+
             //called before Load()
             //needs to call new List() since Initialize() is called per player in the player select screen
 

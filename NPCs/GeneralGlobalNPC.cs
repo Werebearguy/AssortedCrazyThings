@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.NPCs
                         continue;
                     }
 
-                    player.GetModPlayer<AssPlayer>().ResetSlainBossTimer();
+                    player.GetModPlayer<AssPlayer>().SlainBoss(npc.type);
                 }
             }
         }

@@ -22,8 +22,11 @@ namespace AssortedCrazyThings
 {
     [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     //[LegacyName("AssPlayer")] Maybe rename later
-    public class AssPlayer : AssPlayerBase
+    public sealed class AssPlayer : AssPlayerBase
     {
+        public delegate void SlainBossDelegate(Player player, int type);
+        public static event SlainBossDelegate OnSlainBoss; //Runs on all sides
+
         public bool everburningCandleBuff = false;
         public bool everburningCursedCandleBuff = false;
         public bool everfrozenCandleBuff = false;
@@ -44,6 +47,7 @@ namespace AssortedCrazyThings
 
         private int lastSlainBossTimerSeconds = -1; //-1: never slain a boss, otherwise starts at 0 and counts
         private int lastSlainBossTimerInternal = 0; //Used for incrementing the seconds timer
+        private int lastSlainBossType = 0; //Does not save
         public bool HasBossSlainTimer => lastSlainBossTimerSeconds != -1;
 
         public bool needsNearbyEnemyNumber = false;
@@ -65,7 +69,7 @@ namespace AssortedCrazyThings
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
-        public float step = 0f;
+        public float empoweringStep = 0f;
 
         //enhanced hunter potion stuff
         public bool enhancedHunterBuff = false;
@@ -191,6 +195,7 @@ namespace AssortedCrazyThings
             //Actual data here
             packet.Write((byte)shieldDroneReduction);
             packet.WriteVarInt(lastSlainBossTimerSeconds);
+            packet.WriteVarInt(lastSlainBossType);
 
             packet.Send(toWho, fromWho);
         }
@@ -199,6 +204,7 @@ namespace AssortedCrazyThings
         {
             shieldDroneReduction = reader.ReadByte();
             lastSlainBossTimerSeconds = reader.ReadVarInt();
+            lastSlainBossType = reader.ReadVarInt();
         }
 
         public override void OnEnterWorld(Player player)
@@ -442,11 +448,15 @@ namespace AssortedCrazyThings
                     if (empoweringTimer < empoweringTimerMax)
                     {
                         empoweringTimer++;
-                        step = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
+                        empoweringStep = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
                     }
                 }
             }
-            else empoweringTimer = 0;
+            else
+            {
+                empoweringStep = 0f;
+                empoweringTimer = 0;
+            }
         }
 
         private bool GetDefense(double damage)
@@ -528,32 +538,18 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
-            everburningCandleBuff = false;
-            everburningCursedCandleBuff = false;
-            everfrozenCandleBuff = false;
-            everburningShadowflameCandleBuff = false;
             teleportHome = false;
-            canTeleportHome = false;
             teleportHomeTimer = 0;
             getDefense = false;
-            canGetDefense = false;
             getDefenseDuration = 0;
             getDefenseTimer = 0;
             lastSlainBossTimerSeconds = -1;
-            soulMinion = false;
             tempSoulMinion = null;
             selectedSoulMinionType = SoulType.Dungeon;
-            slimePackMinion = false;
             selectedSlimePackMinionType = 0;
             nextMagicSlimeSlingMinion = 0;
-            empoweringBuff = false;
             empoweringTimer = 0;
-            step = 0f;
-            enhancedHunterBuff = false;
-            cuteSlimeSpawnEnable = false;
-            soulSaviorArmor = false;
-            wyvernCampfire = false;
-            droneControllerMinion = false;
+            empoweringStep = 0f;
             shieldDroneReduction = 0;
             shieldDroneLerpVisual = 0;
             drawEffectsCalledOnce = false;
@@ -734,14 +730,18 @@ namespace AssortedCrazyThings
         }
         */
 
-        public void ResetSlainBossTimer()
+        public void SlainBoss(int type)
         {
             lastSlainBossTimerSeconds = 0;
+            lastSlainBossType = type;
+
+            OnSlainBoss?.Invoke(Player, type);
 
             if (Main.netMode == NetmodeID.Server)
             {
                 ModPacket packet = Mod.GetPacket();
-                packet.Write((byte)AssMessageType.SlainBossTimerReset);
+                packet.Write((byte)AssMessageType.SlainBoss);
+                packet.WriteVarInt(lastSlainBossType);
                 packet.Send(Player.whoAmI);
             }
         }
@@ -880,12 +880,12 @@ namespace AssortedCrazyThings
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
         {
-            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in EmpoweringBuffGlobalProjectile
+            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += empoweringStep; //summon damage gets handled in EmpoweringBuffGlobalProjectile
         }
 
         public override void ModifyWeaponCrit(Item item, ref int crit)
         {
-            crit += (int)(10 * step);
+            crit += (int)(10 * empoweringStep);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)

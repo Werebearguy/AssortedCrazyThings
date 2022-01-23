@@ -181,7 +181,7 @@ namespace AssortedCrazyThings.Items.Weapons
         }
         #endregion
 
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Everhallowed Lantern");
             //"Summons a Soul to fight for you" is changed for the appropriate type in ModifyTooltips

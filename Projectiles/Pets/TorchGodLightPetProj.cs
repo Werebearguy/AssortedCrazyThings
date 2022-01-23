@@ -242,28 +242,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
                             continue;
                         }
 
-                        Tile tile2 = Framing.GetTileSafely(i - 1, j);
-                        Tile tile3 = Framing.GetTileSafely(i + 1, j);
-                        Tile tile4 = Framing.GetTileSafely(i, j + 1);
+                        Tile tileLeft = Framing.GetTileSafely(i - 1, j);
+                        Tile tileRight = Framing.GetTileSafely(i + 1, j);
+                        Tile tileBottom = Framing.GetTileSafely(i, j + 1); //Does not place ontop of platforms (just like vanilla smart cursor)
 
                         if ((!notWaterTorch || tile.LiquidAmount <= 0) &&
                             (tile.wall > 0 ||
-                                (tile2.IsActive && (tile2.Slope == 0 || (int)tile2.Slope % 2 != 1) &&
+                                (tileLeft.IsActive && (tileLeft.Slope == 0 || (int)tileLeft.Slope % 2 != 1) &&
                                     (
-                                        (Main.tileSolid[tile2.type] && !Main.tileNoAttach[tile2.type] && !Main.tileSolidTop[tile2.type] && !TileID.Sets.NotReallySolid[tile2.type])
-                                        || TileID.Sets.IsBeam[tile2.type] ||
-                                        (WorldGen.IsTreeType(tile2.type) && WorldGen.IsTreeType(Framing.GetTileSafely(i - 1, j - 1).type) && WorldGen.IsTreeType(Framing.GetTileSafely(i - 1, j + 1).type))
+                                        (Main.tileSolid[tileLeft.type] && !Main.tileNoAttach[tileLeft.type] && !Main.tileSolidTop[tileLeft.type] && !TileID.Sets.NotReallySolid[tileLeft.type])
+                                        || TileID.Sets.IsBeam[tileLeft.type] ||
+                                        (WorldGen.IsTreeType(tileLeft.type) && WorldGen.IsTreeType(Framing.GetTileSafely(i - 1, j - 1).type) && WorldGen.IsTreeType(Framing.GetTileSafely(i - 1, j + 1).type))
                                     )
                                 ) || 
-                                (tile3.IsActive && (tile3.Slope == 0 || (int)tile3.Slope % 2 != 0) &&
+                                (tileRight.IsActive && (tileRight.Slope == 0 || (int)tileRight.Slope % 2 != 0) &&
                                     (
-                                        (Main.tileSolid[tile3.type] && !Main.tileNoAttach[tile3.type] && !Main.tileSolidTop[tile3.type] && !TileID.Sets.NotReallySolid[tile3.type])
-                                        || TileID.Sets.IsBeam[tile3.type] ||
-                                        (WorldGen.IsTreeType(tile3.type) && WorldGen.IsTreeType(Framing.GetTileSafely(i + 1, j - 1).type) && WorldGen.IsTreeType(Framing.GetTileSafely(i + 1, j + 1).type))
+                                        (Main.tileSolid[tileRight.type] && !Main.tileNoAttach[tileRight.type] && !Main.tileSolidTop[tileRight.type] && !TileID.Sets.NotReallySolid[tileRight.type])
+                                        || TileID.Sets.IsBeam[tileRight.type] ||
+                                        (WorldGen.IsTreeType(tileRight.type) && WorldGen.IsTreeType(Framing.GetTileSafely(i + 1, j - 1).type) && WorldGen.IsTreeType(Framing.GetTileSafely(i + 1, j + 1).type))
                                     )
                                 ) ||
-                                (tile4.IsActive && Main.tileSolid[tile4.type] && !Main.tileNoAttach[tile4.type] && (!Main.tileSolidTop[tile4.type] || (TileID.Sets.Platforms[tile4.type] && tile4.Slope == 0))
-                                && !TileID.Sets.NotReallySolid[tile4.type] && !tile4.IsHalfBlock && tile4.Slope == 0)
+                                (tileBottom.IsActive && Main.tileSolid[tileBottom.type] && !Main.tileNoAttach[tileBottom.type] && (!Main.tileSolidTop[tileBottom.type] || (TileID.Sets.Platforms[tileBottom.type] && tileBottom.Slope == 0))
+                                && !TileID.Sets.NotReallySolid[tileBottom.type] && !tileBottom.IsHalfBlock && tileBottom.Slope == 0)
                             )
                             && !TileID.Sets.Torch[tile.type])
                         {

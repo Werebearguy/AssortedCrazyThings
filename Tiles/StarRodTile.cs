@@ -340,7 +340,7 @@ namespace AssortedCrazyThings.Tiles
     }
 
     [Content(ContentType.Placeables)]
-    public class StarRodModPlayer : AssPlayer
+    public class StarRodModPlayer : AssPlayerBase
     {
         public bool starRodTileNearby = false; //Reset in ModSystem, clientside
 

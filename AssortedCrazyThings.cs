@@ -14,6 +14,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
@@ -370,10 +371,11 @@ namespace AssortedCrazyThings
                         }
                     }
                     break;
-                case AssMessageType.SlainBossTimerReset:
+                case AssMessageType.SlainBoss:
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        Main.LocalPlayer.GetModPlayer<AssPlayer>().ResetSlainBossTimer();
+                        int type = reader.ReadVarInt();
+                        Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
                     }
                     break;
                 default:
@@ -409,7 +411,7 @@ namespace AssortedCrazyThings
         GitgudChangeCounters,
         ResetEmpoweringTimerpvp,
         WyvernCampfireKill,
-        SlainBossTimerReset
+        SlainBoss
     }
 
     public enum PetPlayerChanges : byte

@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Weapons
     [Content(ContentType.Bosses)]
     public class EverglowLantern : MinionItemBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Everglow Lantern");
             Tooltip.SetDefault("Summons two freed Dungeon Souls at a time to fight for you\nEach Dungeon Soul occupies only half a minion slot");
