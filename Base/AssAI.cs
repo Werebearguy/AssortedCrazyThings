@@ -15,13 +15,15 @@ namespace AssortedCrazyThings.Base
         /// <summary>
         /// Makes the projectile teleport if it is too far away from the player
         /// </summary>
-        public static void TeleportIfTooFar(Projectile projectile, Vector2 desiredCenter, int distance = 2000)
+        public static bool TeleportIfTooFar(Projectile projectile, Vector2 desiredCenter, int distance = 2000)
         {
             if (projectile.DistanceSQ(desiredCenter) > distance * distance)
             {
                 projectile.Center = desiredCenter;
                 if (Main.myPlayer == projectile.owner && Main.netMode == NetmodeID.MultiplayerClient) projectile.netUpdate = true;
+                return true;
             }
+            return false;
         }
 
         /// <summary>
@@ -52,6 +54,37 @@ namespace AssortedCrazyThings.Base
                 }
             }
             return distanceFromTarget < range ? targetIndex : -1;
+        }
+
+        /// <summary>
+		/// Utility for minion AI that handles a custom stuck timer for when the X coordinate doesn't change for a given duration.
+		/// </summary>
+		/// <param name="projectile">The projectile</param>
+		/// <param name="restingX">The X coordinate of the idle location (to not increment the timer when near that)</param>
+		/// <param name="stuckTimer">The timer</param>
+		/// <param name="stuckTimerMax">The maximum duration</param>
+		/// <returns>Returns true if the timer overflows</returns>
+		public static bool HandleStuck(this Projectile projectile, float restingX, ref int stuckTimer, int stuckTimerMax)
+        {
+            if (projectile.position.X == projectile.oldPosition.X && Math.Abs(projectile.Center.X - restingX) >= 50)
+            {
+                stuckTimer++;
+
+                if (stuckTimer >= stuckTimerMax)
+                {
+                    stuckTimer = 0;
+                    return true;
+                }
+            }
+            else
+            {
+                if (stuckTimer >= 2)
+                {
+                    stuckTimer -= 2;
+                }
+            }
+
+            return false;
         }
 
         #region Flickerwick
@@ -1328,6 +1361,1058 @@ namespace AssortedCrazyThings.Base
             {
                 npc.rotation = 0.2f;
             }
+        }
+
+        //TODO turn into usable method later
+        public static void PirateAI(Projectile Projectile)
+        {
+            //	//Pirate AI related:
+            //public int State
+            //{
+            //	get => (int)Projectile.ai[0];
+            //	set => Projectile.ai[0] = value;
+            //}
+
+            //public int Timer
+            //{
+            //	get => (int)Projectile.ai[1];
+            //	set => Projectile.ai[1] = value;
+            //}
+
+            //public bool Idle => State == 0;
+
+            //public bool Flying
+            //{
+            //	get => State == 1;
+            //	set => State = value ? 1 : 0;
+            //}
+
+            //public bool Attacking
+            //{
+            //	get => State == 2;
+            //	set => State = value ? 2 : 0;
+            //}
+            int Timer = 0;
+            bool Idle = true;
+            bool Flying = false;
+            bool Attacking = false;
+            ////End Pirate AI
+
+            Player player = Main.player[Projectile.owner];
+
+            int startAttackRange = 800;
+            float awayFromPlayerDistMax = 500f;
+            float awayFromPlayerDistYMax = 300f;
+
+            Vector2 destination = player.Center;
+            destination.X -= (15 + player.width / 2) * player.direction;
+            destination.X -= Projectile.minionPos * 25 * player.direction;
+
+            Projectile.shouldFallThrough = player.Bottom.Y - 12f > Projectile.Bottom.Y;
+            Projectile.friendly = false;
+            int timerReset = 0;
+            int attackFrameCount = 3;
+            int nextTimerValue = 5 * attackFrameCount;
+            int attackTarget = -1;
+
+            bool defaultstate = Idle;
+
+            static bool CustomEliminationCheck_Pirates(Entity otherEntity, int currentTarget) => true;
+
+            if (defaultstate)
+                Projectile.Minion_FindTargetInRange(startAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody: true, CustomEliminationCheck_Pirates);
+
+            if (Flying)
+            {
+                Projectile.tileCollide = false;
+                float velChange = 0.2f;
+                float toPlayerSpeed = 10f;
+                int maxLen = 200;
+                if (toPlayerSpeed < Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y))
+                    toPlayerSpeed = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+
+                Vector2 toPlayer = player.Center - Projectile.Center;
+                float len = toPlayer.Length();
+
+                AssAI.TeleportIfTooFar(Projectile, player.Center);
+
+                if (len < maxLen && player.velocity.Y == 0f && Projectile.Bottom.Y <= player.Bottom.Y && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+                {
+                    //Reset back from flying
+                    Flying = false;
+                    Projectile.netUpdate = true;
+                    if (Projectile.velocity.Y < -6f)
+                        Projectile.velocity.Y = -6f;
+                }
+
+                if (!(len < 60f))
+                {
+                    toPlayer.Normalize();
+                    toPlayer *= toPlayerSpeed;
+                    if (Projectile.velocity.X < toPlayer.X)
+                    {
+                        Projectile.velocity.X += velChange;
+                        if (Projectile.velocity.X < 0f)
+                            Projectile.velocity.X += velChange * 1.5f;
+                    }
+
+                    if (Projectile.velocity.X > toPlayer.X)
+                    {
+                        Projectile.velocity.X -= velChange;
+                        if (Projectile.velocity.X > 0f)
+                            Projectile.velocity.X -= velChange * 1.5f;
+                    }
+
+                    if (Projectile.velocity.Y < toPlayer.Y)
+                    {
+                        Projectile.velocity.Y += velChange;
+                        if (Projectile.velocity.Y < 0f)
+                            Projectile.velocity.Y += velChange * 1.5f;
+                    }
+
+                    if (Projectile.velocity.Y > toPlayer.Y)
+                    {
+                        Projectile.velocity.Y -= velChange;
+                        if (Projectile.velocity.Y > 0f)
+                            Projectile.velocity.Y -= velChange * 1.5f;
+                    }
+                }
+
+                if (Projectile.velocity.X != 0f)
+                    Projectile.spriteDirection = -Math.Sign(Projectile.velocity.X);
+            }
+
+            if (Attacking && Timer < 0)
+            {
+                Projectile.friendly = false;
+                Timer += 1;
+                if (nextTimerValue >= 0)
+                {
+                    Timer = 0;
+                    Attacking = false;
+                    Projectile.netUpdate = true;
+                    return;
+                }
+            }
+            else if (Attacking)
+            {
+                //Attacking animation
+                Projectile.spriteDirection = -Projectile.direction;
+                Projectile.rotation = 0f;
+
+                Projectile.friendly = true;
+                int startAttackFrame = 12;
+                bool hasJumpingAttackFrames = true;
+                int attackFrameNumber = (int)((float)nextTimerValue - Timer) / (nextTimerValue / attackFrameCount);
+                Projectile.frame = startAttackFrame + attackFrameNumber;
+                if (hasJumpingAttackFrames && Projectile.velocity.Y != 0f)
+                    Projectile.frame += attackFrameCount;
+
+                Projectile.velocity.Y += 0.4f;
+                if (Projectile.velocity.Y > 10f)
+                    Projectile.velocity.Y = 10f;
+
+                Timer -= 1;
+                if (Timer <= 0f)
+                {
+                    if (timerReset <= 0)
+                    {
+                        Timer = 0;
+                        Attacking = false;
+                        Projectile.netUpdate = true;
+                        return;
+                    }
+
+                    Timer = -timerReset;
+                }
+            }
+
+            if (attackTarget >= 0)
+            {
+                float maxDistance = startAttackRange;
+                float toTargetMaxDist = 20f;
+
+                NPC npc = Main.npc[attackTarget];
+                Vector2 targetCenter = npc.Center;
+                destination = targetCenter;
+                if (Projectile.IsInRangeOfMeOrMyOwner(npc, maxDistance, out float _, out float _, out bool _))
+                {
+                    Projectile.shouldFallThrough = npc.Center.Y > Projectile.Bottom.Y;
+
+                    bool flag11 = Projectile.velocity.Y == 0f;
+                    if (Projectile.wet && Projectile.velocity.Y > 0f && !Projectile.shouldFallThrough)
+                        flag11 = true;
+
+                    if (targetCenter.Y < Projectile.Center.Y - 30f && flag11)
+                    {
+                        float num25 = (targetCenter.Y - Projectile.Center.Y) * -1f;
+                        float num26 = 0.4f;
+                        float velY = (float)Math.Sqrt(num25 * 2f * num26);
+                        if (velY > 26f)
+                            velY = 26f;
+
+                        Projectile.velocity.Y = -velY;
+                    }
+
+                    if (Vector2.Distance(Projectile.Center, destination) < toTargetMaxDist)
+                    {
+                        float len = Projectile.velocity.Length();
+                        if (len > 10f)
+                            Projectile.velocity /= len / 10f;
+
+                        Attacking = true;
+                        Timer = nextTimerValue;
+                        Projectile.netUpdate = true;
+                        Projectile.direction = (targetCenter.X - Projectile.Center.X > 0f).ToDirectionInt();
+                    }
+                }
+            }
+
+            if (Idle && attackTarget < 0)
+            {
+                if (player.rocketDelay2 > 0)
+                {
+                    Flying = true;
+                    Projectile.netUpdate = true;
+                }
+
+                Vector2 toPlayer = player.Center - Projectile.Center;
+                if (toPlayer.Length() > 2000f)
+                {
+                    Projectile.Center = player.Center;
+                }
+                else if (toPlayer.Length() > awayFromPlayerDistMax || Math.Abs(toPlayer.Y) > awayFromPlayerDistYMax)
+                {
+                    Flying = true;
+                    Projectile.netUpdate = true;
+                    if (Projectile.velocity.Y > 0f && toPlayer.Y < 0f)
+                        Projectile.velocity.Y = 0f;
+
+                    if (Projectile.velocity.Y < 0f && toPlayer.Y > 0f)
+                        Projectile.velocity.Y = 0f;
+                }
+            }
+
+            if (Idle)
+            {
+                if (attackTarget < 0)
+                {
+                    if (Projectile.Distance(player.Center) > 60f && Projectile.Distance(destination) > 60f && Math.Sign(destination.X - player.Center.X) != Math.Sign(Projectile.Center.X - player.Center.X))
+                        destination = player.Center;
+
+                    Rectangle rect = Utils.CenteredRectangle(destination, Projectile.Size);
+                    for (int i = 0; i < 20; i++)
+                    {
+                        if (Collision.SolidCollision(rect.TopLeft(), rect.Width, rect.Height))
+                            break;
+
+                        rect.Y += 16;
+                        destination.Y += 16f;
+                    }
+
+                    Vector2 position = player.Center - Projectile.Size / 2f;
+                    Vector2 postCollision = Collision.TileCollision(position, destination - player.Center, Projectile.width, Projectile.height);
+                    destination = position + postCollision;
+                    if (Projectile.Distance(destination) < 32f)
+                    {
+                        float distPlayerToDestination = player.Distance(destination);
+                        if (player.Distance(Projectile.Center) < distPlayerToDestination)
+                            destination = Projectile.Center;
+                    }
+
+                    Vector2 fromDestToPlayer = player.Center - destination;
+                    if (fromDestToPlayer.Length() > awayFromPlayerDistMax || Math.Abs(fromDestToPlayer.Y) > awayFromPlayerDistYMax)
+                    {
+                        Rectangle rect2 = Utils.CenteredRectangle(player.Center, Projectile.Size);
+                        Vector2 fromPlayerToDest = destination - player.Center;
+                        Vector2 topLeft = rect2.TopLeft();
+                        for (float i = 0f; i < 1f; i += 0.05f)
+                        {
+                            Vector2 newTopLeft = rect2.TopLeft() + fromPlayerToDest * i;
+                            if (Collision.SolidCollision(rect2.TopLeft() + fromPlayerToDest * i, rect2.Width, rect2.Height))
+                                break;
+
+                            topLeft = newTopLeft;
+                        }
+
+                        destination = topLeft + Projectile.Size / 2f;
+                    }
+                }
+
+                Projectile.tileCollide = true;
+                float velXChange = 0.5f; //0.5f
+                float velXChangeMargin = 4f; //4f
+                float velXChangeMax = 4f; //4f
+                float velXChangeSmall = 0.1f;
+
+                if (attackTarget != -1)
+                {
+                    velXChange = 0.4f; //1f
+                    velXChangeMargin = 5f; //8f
+                    velXChangeMax = 5f; //8f
+                }
+
+                if (velXChangeMax < Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y))
+                {
+                    velXChangeMax = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+                    velXChange = 0.7f;
+                }
+
+                int xOff = 0;
+                bool canJumpOverTiles = false;
+                float toDestinationX = destination.X - Projectile.Center.X;
+                Vector2 toDestination = destination - Projectile.Center;
+                if (Math.Abs(toDestinationX) > 5f)
+                {
+                    if (toDestinationX < 0f)
+                    {
+                        xOff = -1;
+                        if (Projectile.velocity.X > -velXChangeMargin)
+                            Projectile.velocity.X -= velXChange;
+                        else
+                            Projectile.velocity.X -= velXChangeSmall;
+                    }
+                    else
+                    {
+                        xOff = 1;
+                        if (Projectile.velocity.X < velXChangeMargin)
+                            Projectile.velocity.X += velXChange;
+                        else
+                            Projectile.velocity.X += velXChangeSmall;
+                    }
+                }
+                else
+                {
+                    Projectile.velocity.X *= 0.9f;
+                    if (Math.Abs(Projectile.velocity.X) < velXChange * 2f)
+                        Projectile.velocity.X = 0f;
+                }
+
+                bool tryJumping = Math.Abs(toDestination.X) >= 64f || (toDestination.Y <= -48f && Math.Abs(toDestination.X) >= 8f);
+                if (xOff != 0 && tryJumping)
+                {
+                    int x = (int)Projectile.Center.X / 16;
+                    int y = (int)Projectile.position.Y / 16;
+                    x += xOff;
+                    x += (int)Projectile.velocity.X;
+                    for (int j = y; j < y + Projectile.height / 16 + 1; j++)
+                    {
+                        if (WorldGen.SolidTile(x, j))
+                            canJumpOverTiles = true;
+                    }
+                }
+
+                Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
+                float nextVelocityY = Utils.GetLerpValue(0f, 100f, toDestination.Y, clamped: true) * Utils.GetLerpValue(-2f, -6f, Projectile.velocity.Y, clamped: true);
+                if (Projectile.velocity.Y == 0f && canJumpOverTiles)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        int num42 = (int)(Projectile.Center.X) / 16;
+                        if (k == 0)
+                            num42 = (int)Projectile.position.X / 16;
+
+                        if (k == 2)
+                            num42 = (int)(Projectile.Right.X) / 16;
+
+                        int num43 = (int)(Projectile.Bottom.Y) / 16;
+                        if (!WorldGen.SolidTile(num42, num43) && !Main.tile[num42, num43].IsHalfBlock && Main.tile[num42, num43].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[num42, num43].type] || !Main.tile[num42, num43].IsActive || Main.tile[num42, num43].IsActuated))
+                            continue;
+
+                        try
+                        {
+                            num42 = (int)(Projectile.Center.X) / 16;
+                            num43 = (int)(Projectile.Center.Y) / 16;
+                            num42 += xOff;
+                            num42 += (int)Projectile.velocity.X;
+                            if (!WorldGen.SolidTile(num42, num43 - 1) && !WorldGen.SolidTile(num42, num43 - 2))
+                                Projectile.velocity.Y = -5.1f;
+                            else if (!WorldGen.SolidTile(num42, num43 - 2))
+                                Projectile.velocity.Y = -7.1f;
+                            else if (WorldGen.SolidTile(num42, num43 - 5))
+                                Projectile.velocity.Y = -11.1f;
+                            else if (WorldGen.SolidTile(num42, num43 - 4))
+                                Projectile.velocity.Y = -10.1f;
+                            else
+                                Projectile.velocity.Y = -9.1f;
+                        }
+                        catch
+                        {
+                            Projectile.velocity.Y = -9.1f;
+                        }
+                    }
+
+                    if (destination.Y - Projectile.Center.Y < -48f)
+                    {
+                        float height = destination.Y - Projectile.Center.Y;
+                        height *= -1f;
+                        if (height < 60f)
+                            Projectile.velocity.Y = -6f;
+                        else if (height < 80f)
+                            Projectile.velocity.Y = -7f;
+                        else if (height < 100f)
+                            Projectile.velocity.Y = -8f;
+                        else if (height < 120f)
+                            Projectile.velocity.Y = -9f;
+                        else if (height < 140f)
+                            Projectile.velocity.Y = -10f;
+                        else if (height < 160f)
+                            Projectile.velocity.Y = -11f;
+                        else if (height < 190f)
+                            Projectile.velocity.Y = -12f;
+                        else if (height < 210f)
+                            Projectile.velocity.Y = -13f;
+                        else if (height < 270f)
+                            Projectile.velocity.Y = -14f;
+                        else if (height < 310f)
+                            Projectile.velocity.Y = -15f;
+                        else
+                            Projectile.velocity.Y = -16f;
+                    }
+
+                    if (Projectile.wet && nextVelocityY == 0f)
+                        Projectile.velocity.Y *= 2f;
+                }
+
+                if (Projectile.velocity.X > velXChangeMax)
+                    Projectile.velocity.X = velXChangeMax;
+
+                if (Projectile.velocity.X < -velXChangeMax)
+                    Projectile.velocity.X = -velXChangeMax;
+
+                if (Projectile.velocity.X < 0f)
+                    Projectile.direction = -1;
+
+                if (Projectile.velocity.X > 0f)
+                    Projectile.direction = 1;
+
+                if (Projectile.velocity.X == 0f)
+                    Projectile.direction = (player.Center.X > Projectile.Center.X).ToDirectionInt();
+
+                if (Projectile.velocity.X > velXChange && xOff == 1)
+                    Projectile.direction = 1;
+
+                if (Projectile.velocity.X < -velXChange && xOff == -1)
+                    Projectile.direction = -1;
+
+                Projectile.spriteDirection = -Projectile.direction;
+
+                Projectile.velocity.Y += 0.4f + nextVelocityY * 1f;
+                if (Projectile.velocity.Y > 10f)
+                {
+                    Projectile.velocity.Y = 10f;
+                }
+            }
+
+            #region default animations
+            /*
+            if (Flying)
+            {
+                //Flying animation
+                if (pirate)
+                {
+                    Projectile.frameCounter++;
+                    if (Projectile.frameCounter > 3)
+                    {
+                        Projectile.frame++;
+                        Projectile.frameCounter = 0;
+                    }
+
+                    if ((Projectile.frame < 10) | (Projectile.frame > 13))
+                        Projectile.frame = 10;
+
+                    Projectile.rotation = Projectile.velocity.X * 0.1f;
+                }
+            }
+            else
+            {
+                Projectile.rotation = 0f;
+                if (Projectile.velocity.Y == 0f)
+                {
+                    if (Projectile.velocity.X == 0f)
+                    {
+                        Projectile.frame = 0;
+                        Projectile.frameCounter = 0;
+                    }
+                    else if (Math.Abs(Projectile.velocity.X) >= 0.5f)
+                    {
+                        Projectile.frameCounter += (int)Math.Abs(Projectile.velocity.X);
+                        Projectile.frameCounter++;
+                        if (Projectile.frameCounter > 10)
+                        {
+                            Projectile.frame++;
+                            Projectile.frameCounter = 0;
+                        }
+
+                        if (Projectile.frame >= 4)
+                            Projectile.frame = 0;
+                    }
+                    else
+                    {
+                        Projectile.frame = 0;
+                        Projectile.frameCounter = 0;
+                    }
+                }
+                else if (Projectile.velocity.Y != 0f)
+                {
+                    Projectile.frameCounter = 0;
+                    Projectile.frame = 14;
+                }
+            }
+            */
+            #endregion
+        }
+
+        //TODO turn into usable method later
+        public static void VampFrogAI(Projectile Projectile)
+        {
+            //	//VampFrog AI related:
+            //public int State
+            //{
+            //	get => (int)Projectile.ai[0];
+            //	set => Projectile.ai[0] = value;
+            //}
+
+            //public int Timer
+            //{
+            //	get => (int)Projectile.ai[1];
+            //	set => Projectile.ai[1] = value;
+            //}
+
+            //public bool Idle => State == 0;
+
+            //public bool Flying
+            //{
+            //	get => State == 1;
+            //	set => State = value ? 1 : 0;
+            //}
+
+            //public bool Attacking
+            //{
+            //	get => State == 2;
+            //	set => State = value ? 2 : 0;
+            //}
+            int Timer = 0;
+            bool Idle = true;
+            bool Flying = false;
+            bool Attacking = false;
+            ////End VampFrog AI
+
+            Player player = Main.player[Projectile.owner];
+
+            int startAttackRange = 800;
+            float awayFromPlayerDistMax = 500f;
+            float awayFromPlayerDistYMax = 300f;
+
+            Vector2 destination = player.Center;
+            destination.X -= (35 + player.width / 2) * player.direction;
+            destination.X -= Projectile.minionPos * 40 * player.direction;
+
+            Projectile.shouldFallThrough = player.Bottom.Y - 12f > Projectile.Bottom.Y;
+            Projectile.friendly = false;
+            int timerReset = 0;
+            int attackFrameCount = 4;
+            int nextTimerValue = 5 * attackFrameCount;
+            int attackTarget = -1;
+
+            Projectile.friendly = true;
+            timerReset = 60;
+
+            bool defaultstate = Idle;
+
+            static bool CustomEliminationCheck_Pirates(Entity otherEntity, int currentTarget) => true;
+
+            if (defaultstate)
+                Projectile.Minion_FindTargetInRange(startAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody: true, CustomEliminationCheck_Pirates);
+
+            if (Flying)
+            {
+                Projectile.tileCollide = false;
+                float velChange = 0.2f;
+                float toPlayerSpeed = 10f;
+                int maxLen = 200;
+                if (toPlayerSpeed < Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y))
+                    toPlayerSpeed = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+
+                Vector2 toPlayer = player.Center - Projectile.Center;
+                float len = toPlayer.Length();
+
+                AssAI.TeleportIfTooFar(Projectile, player.Center);
+
+                if (len < maxLen && player.velocity.Y == 0f && Projectile.Bottom.Y <= player.Bottom.Y && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+                {
+                    //Reset back from flying
+                    Flying = false;
+                    Projectile.netUpdate = true;
+                    if (Projectile.velocity.Y < -6f)
+                        Projectile.velocity.Y = -6f;
+                }
+
+                if (!(len < 60f))
+                {
+                    toPlayer.Normalize();
+                    toPlayer *= toPlayerSpeed;
+                    if (Projectile.velocity.X < toPlayer.X)
+                    {
+                        Projectile.velocity.X += velChange;
+                        if (Projectile.velocity.X < 0f)
+                            Projectile.velocity.X += velChange * 1.5f;
+                    }
+
+                    if (Projectile.velocity.X > toPlayer.X)
+                    {
+                        Projectile.velocity.X -= velChange;
+                        if (Projectile.velocity.X > 0f)
+                            Projectile.velocity.X -= velChange * 1.5f;
+                    }
+
+                    if (Projectile.velocity.Y < toPlayer.Y)
+                    {
+                        Projectile.velocity.Y += velChange;
+                        if (Projectile.velocity.Y < 0f)
+                            Projectile.velocity.Y += velChange * 1.5f;
+                    }
+
+                    if (Projectile.velocity.Y > toPlayer.Y)
+                    {
+                        Projectile.velocity.Y -= velChange;
+                        if (Projectile.velocity.Y > 0f)
+                            Projectile.velocity.Y -= velChange * 1.5f;
+                    }
+                }
+
+                if (Projectile.velocity.X != 0f)
+                    Projectile.spriteDirection = -Math.Sign(Projectile.velocity.X);
+            }
+
+            if (Attacking && Timer < 0)
+            {
+                Projectile.friendly = false;
+                Timer += 1;
+                if (nextTimerValue >= 0)
+                {
+                    Timer = 0;
+                    Attacking = false;
+                    Projectile.netUpdate = true;
+                    return;
+                }
+            }
+            else if (Attacking)
+            {
+                //Attacking animation
+                Projectile.spriteDirection = -Projectile.direction;
+                Projectile.rotation = 0f;
+
+                float num22 = ((float)nextTimerValue - Timer) / (float)nextTimerValue;
+                if ((double)num22 > 0.25 && (double)num22 < 0.75)
+                    Projectile.friendly = true;
+
+                int num23 = (int)(num22 * 5f);
+                if (num23 > 2)
+                    num23 = 4 - num23;
+
+                if (Projectile.velocity.Y != 0f)
+                    Projectile.frame = 21 + num23;
+                else
+                    Projectile.frame = 18 + num23;
+
+                if (Projectile.velocity.Y == 0f)
+                    Projectile.velocity.X *= 0.8f;
+
+                Projectile.velocity.Y += 0.4f;
+                if (Projectile.velocity.Y > 10f)
+                    Projectile.velocity.Y = 10f;
+
+                Timer -= 1;
+                if (Timer <= 0f)
+                {
+                    if (timerReset <= 0)
+                    {
+                        Timer = 0;
+                        Attacking = false;
+                        Projectile.netUpdate = true;
+                        return;
+                    }
+
+                    Timer = -timerReset;
+                }
+            }
+
+            if (attackTarget >= 0)
+            {
+                float maxDistance = startAttackRange;
+                float toTargetMaxDist = 50f;
+
+                NPC npc = Main.npc[attackTarget];
+                Vector2 targetCenter = npc.Center;
+                destination = targetCenter;
+                if (Projectile.IsInRangeOfMeOrMyOwner(npc, maxDistance, out float _, out float _, out bool _))
+                {
+                    Projectile.shouldFallThrough = npc.Center.Y > Projectile.Bottom.Y;
+
+                    bool flag11 = Projectile.velocity.Y == 0f;
+                    if (Projectile.wet && Projectile.velocity.Y > 0f && !Projectile.shouldFallThrough)
+                        flag11 = true;
+
+                    if (targetCenter.Y < Projectile.Center.Y - 30f && flag11)
+                    {
+                        float num25 = (targetCenter.Y - Projectile.Center.Y) * -1f;
+                        float num26 = 0.4f;
+                        float velY = (float)Math.Sqrt(num25 * 2f * num26);
+                        if (velY > 26f)
+                            velY = 26f;
+
+                        Projectile.velocity.Y = -velY;
+                    }
+
+                    if (Vector2.Distance(Projectile.Center, destination) < toTargetMaxDist)
+                    {
+                        float len = Projectile.velocity.Length();
+                        if (len > 10f)
+                            Projectile.velocity /= len / 10f;
+
+                        Attacking = true;
+                        Timer = nextTimerValue;
+                        Projectile.netUpdate = true;
+                        Projectile.direction = (targetCenter.X - Projectile.Center.X > 0f).ToDirectionInt();
+                    }
+                }
+
+                int dir = 1;
+                if (targetCenter.X - Projectile.Center.X < 0f)
+                    dir = -1;
+
+                destination.X += 20 * -dir;
+            }
+
+            if (Idle && attackTarget < 0)
+            {
+                if (player.rocketDelay2 > 0)
+                {
+                    Flying = true;
+                    Projectile.netUpdate = true;
+                }
+
+                Vector2 toPlayer = player.Center - Projectile.Center;
+                if (toPlayer.Length() > 2000f)
+                {
+                    Projectile.Center = player.Center;
+                }
+                else if (toPlayer.Length() > awayFromPlayerDistMax || Math.Abs(toPlayer.Y) > awayFromPlayerDistYMax)
+                {
+                    Flying = true;
+                    Projectile.netUpdate = true;
+                    if (Projectile.velocity.Y > 0f && toPlayer.Y < 0f)
+                        Projectile.velocity.Y = 0f;
+
+                    if (Projectile.velocity.Y < 0f && toPlayer.Y > 0f)
+                        Projectile.velocity.Y = 0f;
+                }
+            }
+
+            if (Idle)
+            {
+                if (attackTarget < 0)
+                {
+                    if (Projectile.Distance(player.Center) > 60f && Projectile.Distance(destination) > 60f && Math.Sign(destination.X - player.Center.X) != Math.Sign(Projectile.Center.X - player.Center.X))
+                        destination = player.Center;
+
+                    Rectangle rect = Utils.CenteredRectangle(destination, Projectile.Size);
+                    for (int i = 0; i < 20; i++)
+                    {
+                        if (Collision.SolidCollision(rect.TopLeft(), rect.Width, rect.Height))
+                            break;
+
+                        rect.Y += 16;
+                        destination.Y += 16f;
+                    }
+
+                    Vector2 position = player.Center - Projectile.Size / 2f;
+                    Vector2 postCollision = Collision.TileCollision(position, destination - player.Center, Projectile.width, Projectile.height);
+                    destination = position + postCollision;
+                    if (Projectile.Distance(destination) < 32f)
+                    {
+                        float distPlayerToDestination = player.Distance(destination);
+                        if (player.Distance(Projectile.Center) < distPlayerToDestination)
+                            destination = Projectile.Center;
+                    }
+
+                    Vector2 fromDestToPlayer = player.Center - destination;
+                    if (fromDestToPlayer.Length() > awayFromPlayerDistMax || Math.Abs(fromDestToPlayer.Y) > awayFromPlayerDistYMax)
+                    {
+                        Rectangle rect2 = Utils.CenteredRectangle(player.Center, Projectile.Size);
+                        Vector2 fromPlayerToDest = destination - player.Center;
+                        Vector2 topLeft = rect2.TopLeft();
+                        for (float i = 0f; i < 1f; i += 0.05f)
+                        {
+                            Vector2 newTopLeft = rect2.TopLeft() + fromPlayerToDest * i;
+                            if (Collision.SolidCollision(rect2.TopLeft() + fromPlayerToDest * i, rect2.Width, rect2.Height))
+                                break;
+
+                            topLeft = newTopLeft;
+                        }
+
+                        destination = topLeft + Projectile.Size / 2f;
+                    }
+                }
+
+                Projectile.tileCollide = true;
+                float velXChange = 0.5f; //0.5f
+                float velXChangeMargin = 4f; //4f
+                float velXChangeMax = 4f; //4f
+                float velXChangeSmall = 0.1f;
+
+                if (attackTarget != -1)
+                {
+                    velXChange = 0.7f;
+                    velXChangeMargin = 6f;
+                    velXChangeMax = 6f;
+                }
+
+                if (velXChangeMax < Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y))
+                {
+                    velXChangeMax = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+                    velXChange = 0.7f;
+                }
+
+                int xOff = 0;
+                bool canJumpOverTiles = false;
+                float toDestinationX = destination.X - Projectile.Center.X;
+                Vector2 toDestination = destination - Projectile.Center;
+                if (Math.Abs(toDestinationX) > 5f)
+                {
+                    if (toDestinationX < 0f)
+                    {
+                        xOff = -1;
+                        if (Projectile.velocity.X > -velXChangeMargin)
+                            Projectile.velocity.X -= velXChange;
+                        else
+                            Projectile.velocity.X -= velXChangeSmall;
+                    }
+                    else
+                    {
+                        xOff = 1;
+                        if (Projectile.velocity.X < velXChangeMargin)
+                            Projectile.velocity.X += velXChange;
+                        else
+                            Projectile.velocity.X += velXChangeSmall;
+                    }
+
+                    bool shouldJumpOverTiles = true;
+
+                    if (attackTarget == -1)
+                        shouldJumpOverTiles = false;
+
+                    if (shouldJumpOverTiles)
+                        canJumpOverTiles = true;
+                }
+                else
+                {
+                    Projectile.velocity.X *= 0.9f;
+                    if (Math.Abs(Projectile.velocity.X) < velXChange * 2f)
+                        Projectile.velocity.X = 0f;
+                }
+
+                bool tryJumping = Math.Abs(toDestination.X) >= 64f || (toDestination.Y <= -48f && Math.Abs(toDestination.X) >= 8f);
+                if (xOff != 0 && tryJumping)
+                {
+                    int x = (int)Projectile.Center.X / 16;
+                    int y = (int)Projectile.position.Y / 16;
+                    x += xOff;
+                    x += (int)Projectile.velocity.X;
+                    for (int j = y; j < y + Projectile.height / 16 + 1; j++)
+                    {
+                        if (WorldGen.SolidTile(x, j))
+                            canJumpOverTiles = true;
+                    }
+                }
+
+                Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
+                float nextVelocityY = Utils.GetLerpValue(0f, 100f, toDestination.Y, clamped: true) * Utils.GetLerpValue(-2f, -6f, Projectile.velocity.Y, clamped: true);
+                if (Projectile.velocity.Y == 0f && canJumpOverTiles)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        int num42 = (int)(Projectile.Center.X) / 16;
+                        if (k == 0)
+                            num42 = (int)Projectile.position.X / 16;
+
+                        if (k == 2)
+                            num42 = (int)(Projectile.Right.X) / 16;
+
+                        int num43 = (int)(Projectile.Bottom.Y) / 16;
+                        if (!WorldGen.SolidTile(num42, num43) && !Main.tile[num42, num43].IsHalfBlock && Main.tile[num42, num43].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[num42, num43].type] || !Main.tile[num42, num43].IsActive || Main.tile[num42, num43].IsActuated))
+                            continue;
+
+                        try
+                        {
+                            num42 = (int)(Projectile.Center.X) / 16;
+                            num43 = (int)(Projectile.Center.Y) / 16;
+                            num42 += xOff;
+                            num42 += (int)Projectile.velocity.X;
+                            if (!WorldGen.SolidTile(num42, num43 - 1) && !WorldGen.SolidTile(num42, num43 - 2))
+                                Projectile.velocity.Y = -5.1f;
+                            else if (!WorldGen.SolidTile(num42, num43 - 2))
+                                Projectile.velocity.Y = -7.1f;
+                            else if (WorldGen.SolidTile(num42, num43 - 5))
+                                Projectile.velocity.Y = -11.1f;
+                            else if (WorldGen.SolidTile(num42, num43 - 4))
+                                Projectile.velocity.Y = -10.1f;
+                            else
+                                Projectile.velocity.Y = -9.1f;
+                        }
+                        catch
+                        {
+                            Projectile.velocity.Y = -9.1f;
+                        }
+                    }
+
+                    if (destination.Y - Projectile.Center.Y < -48f)
+                    {
+                        float height = destination.Y - Projectile.Center.Y;
+                        height *= -1f;
+                        if (height < 60f)
+                            Projectile.velocity.Y = -6f;
+                        else if (height < 80f)
+                            Projectile.velocity.Y = -7f;
+                        else if (height < 100f)
+                            Projectile.velocity.Y = -8f;
+                        else if (height < 120f)
+                            Projectile.velocity.Y = -9f;
+                        else if (height < 140f)
+                            Projectile.velocity.Y = -10f;
+                        else if (height < 160f)
+                            Projectile.velocity.Y = -11f;
+                        else if (height < 190f)
+                            Projectile.velocity.Y = -12f;
+                        else if (height < 210f)
+                            Projectile.velocity.Y = -13f;
+                        else if (height < 270f)
+                            Projectile.velocity.Y = -14f;
+                        else if (height < 310f)
+                            Projectile.velocity.Y = -15f;
+                        else
+                            Projectile.velocity.Y = -16f;
+                    }
+
+                    if (Projectile.wet && nextVelocityY == 0f)
+                        Projectile.velocity.Y *= 2f;
+                }
+
+                if (Projectile.velocity.X > velXChangeMax)
+                    Projectile.velocity.X = velXChangeMax;
+
+                if (Projectile.velocity.X < -velXChangeMax)
+                    Projectile.velocity.X = -velXChangeMax;
+
+                if (Projectile.velocity.X < 0f)
+                    Projectile.direction = -1;
+
+                if (Projectile.velocity.X > 0f)
+                    Projectile.direction = 1;
+
+                if (Projectile.velocity.X == 0f)
+                    Projectile.direction = (player.Center.X > Projectile.Center.X).ToDirectionInt();
+
+                if (Projectile.velocity.X > velXChange && xOff == 1)
+                    Projectile.direction = 1;
+
+                if (Projectile.velocity.X < -velXChange && xOff == -1)
+                    Projectile.direction = -1;
+
+                Projectile.spriteDirection = -Projectile.direction;
+
+                Projectile.velocity.Y += 0.4f + nextVelocityY * 1f;
+                if (Projectile.velocity.Y > 10f)
+                {
+                    Projectile.velocity.Y = 10f;
+                }
+            }
+
+            #region default animations
+            /*
+            if (Flying)
+            {
+                //Flying animation
+                int frameSpeed = 3;
+                if (++Projectile.frameCounter >= frameSpeed * 4)
+                    Projectile.frameCounter = 0;
+
+                Projectile.frame = 14 + Projectile.frameCounter / frameSpeed;
+                Projectile.rotation = Projectile.velocity.X * 0.15f;
+            }
+            else
+            {
+                Projectile.rotation = 0f;
+                if (Projectile.velocity.Y == 0f)
+                {
+                    if (Projectile.velocity.X == 0f)
+                    {
+                        int frameSpeed = 4;
+                        if (++Projectile.frameCounter >= 7 * frameSpeed && Main.rand.Next(50) == 0)
+                            Projectile.frameCounter = 0;
+
+                        int nextFrame = Projectile.frameCounter / frameSpeed;
+                        if (nextFrame >= 4)
+                            nextFrame = 6 - nextFrame;
+
+                        if (nextFrame < 0)
+                            nextFrame = 0;
+
+                        Projectile.frame = 1 + nextFrame;
+                    }
+                    else if (Math.Abs(Projectile.velocity.X) >= 0.5f)
+                    {
+                        Projectile.frameCounter += (int)Math.Abs(Projectile.velocity.X);
+                        Projectile.frameCounter++;
+                        int num47 = 15;
+                        int num48 = 8;
+                        if (Projectile.frameCounter >= num48 * num47)
+                            Projectile.frameCounter = 0;
+
+                        int num49 = Projectile.frameCounter / num47;
+                        Projectile.frame = num49 + 5;
+                    }
+                    else
+                    {
+                        Projectile.frame = 0;
+                        Projectile.frameCounter = 0;
+                    }
+                }
+                else if (Projectile.velocity.Y != 0f)
+                {
+                    if (Projectile.velocity.Y < 0f)
+                    {
+                        if (Projectile.frame > 9 || Projectile.frame < 5)
+                        {
+                            Projectile.frame = 5;
+                            Projectile.frameCounter = 0;
+                        }
+
+                        if (++Projectile.frameCounter >= 1 && Projectile.frame < 9)
+                        {
+                            Projectile.frame++;
+                            Projectile.frameCounter = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (Projectile.frame > 13 || Projectile.frame < 9)
+                        {
+                            Projectile.frame = 9;
+                            Projectile.frameCounter = 0;
+                        }
+
+                        if (++Projectile.frameCounter >= 2 && Projectile.frame < 11)
+                        {
+                            Projectile.frame++;
+                            Projectile.frameCounter = 0;
+                        }
+                    }
+                }
+            }
+            */
+            #endregion
         }
     }
 

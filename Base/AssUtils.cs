@@ -593,5 +593,50 @@ namespace AssortedCrazyThings.Base
                 }
             }
         }
+
+        /// <summary>
+        /// Modify the velocity (that has the direction from position to targetPos) of something that is affected by gravity in a way that it will still reach targetPos
+        /// <br>Note: This might increase the length of velocity depending on how much correction was needed, use offsetCap to limit it.</br>
+        /// </summary>
+        /// <param name="position">Starting location</param>
+        /// <param name="targetPos">Target location</param>
+        /// <param name="gravity">Gravity applied to velocity.Y</param>
+        /// <param name="velocity">Starting velocity</param>
+        /// <param name="ticksWithoutGravity">Amount of initial ticks that velocity should NOT be updated by gravity</param>
+        /// <param name="terminalCap">Terminal velocity.Y</param>
+        /// <param name="factor">Multiplier for final correction to velocity. 1f == perfect, 0f == none</param>
+        public static void ModifyVelocityForGravity(Vector2 position, Vector2 targetPos, in float gravity, ref Vector2 velocity, int ticksWithoutGravity = 0, float terminalCap = 16f, float factor = 1f, float offsetCap = 2.5f)
+        {
+            //Need to make the velocity + gravity hit targetPos.Y
+            //Keep horizontal velocity, correct vertical velocity to account for gravity
+
+            Vector2 toTarget = targetPos - position;
+            int ticksToReachX = (int)(toTarget.X / velocity.X); //"Simulated time" it takes to reach target
+
+            float traversedDistanceY = 0;
+            float traversedDistanceYNoGravity = 0;
+            float velocityYWithGravity = velocity.Y;
+            for (int i = 0; i < ticksToReachX; i++)
+            {
+                if (i >= ticksWithoutGravity)
+                {
+                    velocityYWithGravity += gravity;
+                    if (velocityYWithGravity > terminalCap)
+                    {
+                        velocityYWithGravity = terminalCap;
+                    }
+                }
+                traversedDistanceY += velocityYWithGravity;
+                traversedDistanceYNoGravity += velocity.Y;
+            }
+
+            float offsetY = traversedDistanceY - traversedDistanceYNoGravity;
+
+            float velocityYOffset = offsetY / ticksToReachX;
+
+            velocityYOffset = Math.Min(velocityYOffset, offsetCap);
+
+            velocity.Y -= factor * velocityYOffset;
+        }
     }
 }
