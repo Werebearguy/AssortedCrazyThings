@@ -2,7 +2,7 @@
 
 namespace AssortedCrazyThings
 {
-    //TODO work out some kinda system that detects classes which base is a tml class, and error on mod load
+    //Add all the tml base classes used here to ConfigurationSystem.GetInvalidTypes
     [Autoload(false)]
     public abstract class AssItem : ModItem
     {
