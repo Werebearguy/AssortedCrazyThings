@@ -102,7 +102,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
             //Custom draw to just center on the hitbox
             var tier = GoblinUnderlingSystem.GetCurrentTier();
             int texIndex = tier.texIndex;
-            Texture2D texture = GoblinUnderlingSystem.bodyAssets[texIndex].Value;
+            Texture2D texture;
+            if (Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor)
+            {
+                texture = GoblinUnderlingSystem.bodyAssets[0].Value;
+            }
+            else
+            {
+                texture = GoblinUnderlingSystem.bodyAssets[texIndex].Value;
+            }
 			Rectangle sourceRect = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
 			Vector2 drawOrigin = sourceRect.Size() / 2f;
 
@@ -1053,12 +1061,22 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 				//Propulsion dust
 				float dustChance = Math.Clamp(Math.Abs(Projectile.velocity.Length()) / 3f, 0.5f, 1f);
 				if (Main.rand.NextFloat() < dustChance)
-				{
-					Vector2 dustOrigin = Projectile.Bottom - Projectile.velocity.SafeNormalize(Vector2.Zero) * 2;
-					Dust dust = Dust.NewDustDirect(dustOrigin - Vector2.One * 4f, 8, 8, DustID.Cloud, -Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 50, default(Color), 1.7f);
-					dust.velocity.X *= 0.2f;
-					dust.velocity.Y *= 0.2f;
-					dust.noGravity = true;
+                {
+                    int dirOffset = 0;
+                    if (Projectile.direction == -1)
+                    {
+                        dirOffset = -4;
+                    }
+                    Vector2 dustOrigin = Projectile.Bottom + new Vector2(dirOffset, -4) - Projectile.velocity.SafeNormalize(Vector2.Zero) * 2;
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Vector2 bootOffset = new Vector2((i == 0).ToDirectionInt() * 5, 0);
+                        Dust dust = Dust.NewDustDirect(dustOrigin - Vector2.One * 2f + bootOffset, 4, 4, DustID.Cloud, -Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 50, default(Color), 1.3f);
+                        dust.velocity.X *= 0.2f;
+                        dust.velocity.Y *= 0.2f;
+                        dust.noGravity = true;
+                    }
 				}
 			}
 			else

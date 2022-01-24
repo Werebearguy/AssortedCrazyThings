@@ -6,7 +6,7 @@ using Terraria.ModLoader.Config;
 
 namespace AssortedCrazyThings
 {
-	[Label("Content Config")]
+	[Label("Content Config (Server)")]
 	public class ContentConfig : ServerConfigBase
 	{
 		public static ContentConfig Instance => ModContent.GetInstance<ContentConfig>();
@@ -224,5 +224,26 @@ namespace AssortedCrazyThings
 			}
 			return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);
 		}
+	}
+
+	[Label("Client Config")]
+	public class ClientConfig : ModConfig
+	{
+		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
+
+		public override ConfigScope Mode => ConfigScope.ClientSide;
+
+		[Header("Satchel of Goodies minion")]
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Auto-summon")]
+		[Tooltip("Enable if Satchel of Goodies minion should be summoned automatically on spawn (if you have it in your inventory)")]
+		public bool SatchelofGoodiesAutosummon { get; set; }
+
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Armor progression")]
+		[Tooltip("Enable if Satchel of Goodies minion should visually upgrade it's armor")]
+		public bool SatchelofGoodiesVisibleArmor { get; set; }
 	}
 }
