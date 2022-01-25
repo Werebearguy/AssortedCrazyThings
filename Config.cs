@@ -79,7 +79,7 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Placeable decorative tiles and objects")] //TODO break up functional
+		[Tooltip("Placeable decorative tiles and objects")] //TODO after paintings are obtainable, break up functional
 		[Label("Placeables")]
 		public bool Placeables { get; set; }
 
@@ -233,17 +233,17 @@ namespace AssortedCrazyThings
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		[Header("Satchel of Goodies minion")]
+		[Header("Satchel of Goodies - Minion Options")]
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]
 		[Label("Auto-summon")]
-		[Tooltip("Enable if Satchel of Goodies minion should be summoned automatically on spawn (if you have it in your inventory)")]
+		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
 		public bool SatchelofGoodiesAutosummon { get; set; }
 
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]
 		[Label("Armor progression")]
-		[Tooltip("Enable if Satchel of Goodies minion should visually upgrade it's armor")]
+		[Tooltip("Enable to show armor progression")]
 		public bool SatchelofGoodiesVisibleArmor { get; set; }
 	}
 }
