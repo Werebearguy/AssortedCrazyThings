@@ -84,6 +84,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
     }
 
+    public class PetAccessoryPartyHat : PetAccessoryItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cute Party Hat");
+            Tooltip.SetDefault("'A party hat for your cute slime to wear on her head'");
+        }
+    }
+
     public class PetAccessorySlimeHead : PetAccessoryItem
     {
         public override void SetStaticDefaults()
@@ -275,8 +284,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             if (id == 0) throw new Exception("Invalid ID '0', start with 1");
             ID = id;
             Name = "PetAccessory" + name;
-            Type = AssUtils.Instance.Find<ModItem>(Name).Type;
-            if (Type == 0) throw new Exception("Item called '" + Name + "' doesn't exist, are you sure you spelled it correctly?");
+            if (!AssUtils.Instance.TryFind(Name, out ModItem modItem))
+            {
+                throw new Exception($"Item called '{Name}' doesn't exist, are you sure you spelled it correctly?");
+            }
+            Type = modItem.Type;
             Color = 0;
 
             Offset = new Vector2(offsetX, offsetY);
@@ -360,6 +372,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
             Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
             Add(SlotType.Hat, new PetAccessory(id: 7, name: "BunnyEars", preDraw: true));
             Add(SlotType.Hat, new PetAccessory(id: 8, name: "Tophat"));
+            Add(SlotType.Hat, new PetAccessory(id: 9, name: "PartyHat"));
 
 
             //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
@@ -427,18 +440,20 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// </summary>
         public static void Add(SlotType slotType, PetAccessory aPetAccessory)
         {
+            if (slotType == SlotType.None)
+                throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
+
+            aPetAccessory.Slot = slotType;
+
             for (int i = 0; i < petAccessoryList.Count; i++)
             {
                 PetAccessory petAccessory = petAccessoryList[i];
                 if (petAccessory.Name == aPetAccessory.Name)
-                    throw new Exception("Added Accessory '" + aPetAccessory.Name + "' already exists");
+                    throw new Exception($"Added Accessory '{aPetAccessory.Name}' already exists");
 
-                if (petAccessory.Slot == slotType && petAccessory.ID == aPetAccessory.ID)
-                    throw new Exception("ID '" + aPetAccessory.ID + "' in Slot '" + aPetAccessory.Slot.ToString() + "' for '" + aPetAccessory.Name + "' already registered for '" + petAccessory.Name + "'");
+                if (petAccessory.IsSameAs(aPetAccessory))
+                    throw new Exception($"ID '{aPetAccessory.ID}' in Slot '{aPetAccessory.Slot.ToString()}' for '{aPetAccessory.Name}' already registered for '{petAccessory.Name}'");
             }
-
-            aPetAccessory.Slot = slotType;
-            if (slotType == SlotType.None) throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
 
             if (!petAccessoriesByType.ContainsKey(slotType))
             {
@@ -472,6 +487,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             }
 
             return petAccessoriesByItem.TryGetValue(type, out petAccessory);
+        }
+
+        public bool IsSameAs(PetAccessory other)
+        {
+            return ID == other.ID && Slot == other.Slot;
         }
 
         public override string ToString()
