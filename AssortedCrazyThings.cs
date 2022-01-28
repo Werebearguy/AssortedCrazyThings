@@ -264,13 +264,10 @@ namespace AssortedCrazyThings
             switch (msgType)
             {
                 case AssMessageType.SyncPlayerVanity:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        playerNumber = reader.ReadByte();
-                        petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-                        //no "changes" packet
-                        petPlayer.RecvSyncPlayerVanitySub(reader);
-                    }
+                    playerNumber = reader.ReadByte();
+                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+                    //no "changes" packet
+                    petPlayer.RecvSyncPlayerVanitySub(reader);
                     break;
                 case AssMessageType.ClientChangesVanity:
                     //client and server

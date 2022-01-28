@@ -30,9 +30,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
                     {
                         for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
                         {
-                            PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
-
-                            string tooltip = "";
+                            string tooltip;
 
                             if (slimePet.IsSlotTypeBlacklisted[slotNumber])
                             {
@@ -40,13 +38,13 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
                             }
                             else
                             {
-                                if (petAccessory != null)
+                                if (pPlayer.TryGetAccessoryInSlot(slotNumber, out PetAccessory petAccessory))
                                 {
                                     //type = PetAccessory.Items[accessory - 1];
                                     Item itemTemp = new Item();
                                     itemTemp.SetDefaults(petAccessory.Type);
                                     tooltip = itemTemp.Name.StartsWith("Cute ") ? itemTemp.Name.Substring(5) : itemTemp.Name;
-                                    tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureSuffixes[petAccessory.Color] + ")" : "";
+                                    tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureSuffixes[petAccessory.AltTextureIndex] + ")" : "";
                                 }
                                 else
                                 {

@@ -147,7 +147,7 @@ namespace AssortedCrazyThings.Base
         {
             LoadPets();
 
-            PetAccessory.Load();
+            PetAccessory.RegisterAccessories();
         }
 
         private static void LoadPets()
@@ -329,7 +329,7 @@ namespace AssortedCrazyThings.Base
         {
             UnloadPets();
 
-            PetAccessory.Unload();
+            PetAccessory.UnloadAccessories();
 
             SlimeHugLoader.Unload();
         }

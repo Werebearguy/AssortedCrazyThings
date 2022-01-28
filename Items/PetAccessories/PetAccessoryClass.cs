@@ -224,7 +224,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
     /// <summary>
     /// Contains data about all pet vanity accessories
     /// </summary>
-    public class PetAccessory
+    [Autoload(false)]
+    public class PetAccessory : ModType
     {
         private static Dictionary<SlotType, List<PetAccessory>> petAccessoriesByType;
         private static Dictionary<SlotType, List<int>> petAccessoryIdsByType;
@@ -243,53 +244,61 @@ namespace AssortedCrazyThings.Items.PetAccessories
         /// Unique ID for this accessory (unique in the scope of a single SlotType)
         /// </summary>
         public byte ID { private set; get; } //The internal ID of the accessory
-        public string Name { private set; get; }
+
+        private readonly string _name;
+        public override string Name => _name; //The item name associated with the accessory
+
         public int Type { private set; get; } //The item type associated with the accessory
+
         public SlotType Slot { private set; get; }
-        private byte _color;
+
+        private byte _altTextureIndex;
         /// <summary>
         /// Index for AltTextureSuffixes. No private setter, since it is set directly when used
         /// </summary>
-        public byte Color
+        public byte AltTextureIndex
         {
-            set
-            {
-                _color = value;
-            }
-            get
-            {
-                return Utils.Clamp(_color, (byte)0, (byte)(AltTextureSuffixes.Count - 1));
-            }
+            set => _altTextureIndex = value;
+            get => Utils.Clamp(_altTextureIndex, (byte)0, (byte)(AltTextureSuffixes.Count - 1));
         }
+
         public Vector2 Offset { private set; get; }
         public bool PreDraw { private set; get; }
         public byte Alpha { private set; get; }
+        public float Opacity => (255 - Alpha) / 255f;
         public bool UseNoHair { private set; get; }
 
         /// <summary>
         /// For deciding if it has a UI or not
         /// </summary>
-        public bool HasAlts { private set; get; }
+        public bool HasAlts => AltTextureSuffixes.Count > 0;
+
         /// <summary>
         /// For UI tooltips
         /// </summary>
         public List<string> AltTextureSuffixes { private set; get; }
+
         /// <summary>
         /// For UI only, the _Draw{number} stuff is done manually
         /// </summary>
         public List<Asset<Texture2D>> AltTextures { private set; get; }
 
-        public PetAccessory(byte id, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
+        public PetAccessory(SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
         {
-            if (id == 0) throw new Exception("Invalid ID '0', start with 1");
-            ID = id;
-            Name = "PetAccessory" + name;
+            _name = "PetAccessory" + name;
             if (!AssUtils.Instance.TryFind(Name, out ModItem modItem))
             {
                 throw new Exception($"Item called '{Name}' doesn't exist, are you sure you spelled it correctly?");
             }
+
+            if (slot == SlotType.None)
+            {
+                throw new Exception($"Pet Accessory '{Name}' cannot have {nameof(SlotType.None)} as the slot!");
+            }
+            Slot = slot;
             Type = modItem.Type;
-            Color = 0;
+
+            AltTextureIndex = 0;
 
             Offset = new Vector2(offsetX, offsetY);
             PreDraw = preDraw;
@@ -297,14 +306,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
             UseNoHair = useNoHair;
 
             AltTextureSuffixes = new List<string>();
-            if (altTextures != null)
+            if (altTextures != null && altTextures.Count > 0)
             {
                 AltTextureSuffixes.AddRange(altTextures);
-                HasAlts = true;
-            }
-            else
-            {
-                HasAlts = false;
             }
             //add icons for UI
             AltTextures = new List<Asset<Texture2D>>(AltTextureSuffixes.Count);
@@ -315,9 +319,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
         /// <summary>
-        /// Called in Mod.Load
+        /// Has to be static so we can decide when to load it (has to be after content from this mod finished loading)
         /// </summary>
-        public static void Load()
+        public static void RegisterAccessories()
         {
             petAccessoriesByType = new Dictionary<SlotType, List<PetAccessory>>();
             petAccessoryIdsByType = new Dictionary<SlotType, List<int>>();
@@ -330,11 +334,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
             //-------------------------------------------------------------------
             /*
              * How to:
-             * - call Add() with the appropriate parameters in its appropriate place (by slots)
-             * - watch out for brackets, they're finnicky here
-             * - the first parameter of Add() is always the SlotType, the second one is a 'PetAccessory' object, which has the following parameters:
-             *   * id: set that to the next highest ID thats specified in the other Add() calls for that particular SlotType
-             *   * name: the name of the class without the 'PetAccessory' infront, to save space
+             * - call Add() with the appropriate parameters
+             * - The first object is the mod instance this PetAccessory belongs to. In our case, our mod.
+             * - The second object is a PetAccessory, which has the following parameters:
+             *   * slot: the SlotType associated with it, 
+             *   * name: the name of the item class without the 'PetAccessory' infront, to save space
              *   * offsetX/Y: self explanatory, remember, negative X is left, negative Y is up
              *   * preDraw: decides if that accessory should be drawn "behind" the actual slime (false means it will draw infront)
              *   * alpha: says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
@@ -345,57 +349,47 @@ namespace AssortedCrazyThings.Items.PetAccessories
              *     
              * - after you've done that, add a `_Draw` texture with the same name as the item you add, now the item should work
              *
-             * 
-             * - if you want to add alternative textures based on the pet they are on (Suffixed with _Draw<identifyingNumber>), call AddPetVariation()
-             * on the PetAccessory object (watch the brackets) and assign each pet a texture to use
-             * (-1 is "not rendered", 0 is "default, > 0 is "use _Draw<identifyingNumber> texture")
-             * you can leave the other pet types out if you only need to adjust the texture of one pet
-             * 
              * - if you want to remove certain accessories from being usable for the system, comment the Add() call out with //
              */
-            //START WITH ID: 1
+            Mod mod = AssUtils.Instance;
 
-            //DONT CHANGE UP THE ORDER OF THE COLORS, IT'LL MESS THINGS UP (but not badly)
-            //BODY SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            //BODY SLOT ACCESSORIES GO HERE
             //------------------------------------------------
-            Add(SlotType.Body, new PetAccessory(id: 1, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Body, new PetAccessory(id: 2, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Body, new PetAccessory(id: 3, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red"}));
+            Add(mod, new PetAccessory(SlotType.Body, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(mod, new PetAccessory(SlotType.Body, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Body, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red"}));
 
-            //HAT SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            //HAT SLOT ACCESSORIES GO HERE
             //------------------------------------------------
-            Add(SlotType.Hat, new PetAccessory(id: 1, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
-            Add(SlotType.Hat, new PetAccessory(id: 2, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Hat, new PetAccessory(id: 3, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Hat, new PetAccessory(id: 4, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
-            Add(SlotType.Hat, new PetAccessory(id: 5, name: "WizardHat", useNoHair: true));
-            Add(SlotType.Hat, new PetAccessory(id: 6, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
-            Add(SlotType.Hat, new PetAccessory(id: 7, name: "BunnyEars", preDraw: true));
-            Add(SlotType.Hat, new PetAccessory(id: 8, name: "Tophat"));
-            Add(SlotType.Hat, new PetAccessory(id: 9, name: "PartyHat"));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "WizardHat", useNoHair: true));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "BunnyEars", preDraw: true));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "Tophat"));
+            Add(mod, new PetAccessory(SlotType.Hat, name: "PartyHat"));
 
 
-            //CARRIED SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            //CARRIED SLOT ACCESSORIES GO HERE
             //------------------------------------------------
-            Add(SlotType.Carried, new PetAccessory(id: 1, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 2, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
-            Add(SlotType.Carried, new PetAccessory(id: 3, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 4, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-            Add(SlotType.Carried, new PetAccessory(id: 5, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Carried, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Carried, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
+            Add(mod, new PetAccessory(SlotType.Carried, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Carried, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Carried, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
 
-            //ACCESSORY SLOT ACCESSORIES GO HERE, SEPARATE IDs
+            //ACCESSORY SLOT ACCESSORIES GO HERE
             //------------------------------------------------
-            Add(SlotType.Accessory, new PetAccessory(id: 1, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-            Add(SlotType.Accessory, new PetAccessory(id: 2, name: "SwallowedKey", preDraw: true));
-            Add(SlotType.Accessory, new PetAccessory(id: 3, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
+            Add(mod, new PetAccessory(SlotType.Accessory, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+            Add(mod, new PetAccessory(SlotType.Accessory, name: "SwallowedKey", preDraw: true));
+            Add(mod, new PetAccessory(SlotType.Accessory, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
 
             CreateMaps();
         }
 
-        /// <summary>
-        /// Called in Mod.Unload
-        /// </summary>
-        public static void Unload()
+        public static void UnloadAccessories()
         {
             petAccessoriesByType = null;
             petAccessoryIdsByType = null;
@@ -405,7 +399,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
         /// <summary>
-        /// Called in Load, creates a map of pet vanity accessory -> ID for each SlotType
+        /// Called after <see cref="RegisterAccessories"/>, creates a map of pet vanity accessory -> ID for each SlotType
         /// </summary>
         public static void CreateMaps()
         {
@@ -436,38 +430,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
         }
 
         /// <summary>
-        /// Add a new pet vanity accessory to the list
+        /// Add a new pet vanity accessory to the game
         /// </summary>
-        public static void Add(SlotType slotType, PetAccessory aPetAccessory)
+        public static void Add(Mod mod, PetAccessory aPetAccessory)
         {
-            if (slotType == SlotType.None)
-                throw new Exception("There has to be a slot specified as the first argument in 'Add()'");
-
-            aPetAccessory.Slot = slotType;
-
-            for (int i = 0; i < petAccessoryList.Count; i++)
-            {
-                PetAccessory petAccessory = petAccessoryList[i];
-                if (petAccessory.Name == aPetAccessory.Name)
-                    throw new Exception($"Added Accessory '{aPetAccessory.Name}' already exists");
-
-                if (petAccessory.IsSameAs(aPetAccessory))
-                    throw new Exception($"ID '{aPetAccessory.ID}' in Slot '{aPetAccessory.Slot.ToString()}' for '{aPetAccessory.Name}' already registered for '{petAccessory.Name}'");
-            }
-
-            if (!petAccessoriesByType.ContainsKey(slotType))
-            {
-                petAccessoriesByType[slotType] = new List<PetAccessory>();
-            }
-
-            //everything fine
-            petAccessoriesByType[slotType].Add(aPetAccessory);
-
-            petAccessoryList.Add(aPetAccessory);
+            mod.AddContent(aPetAccessory); //Makes ModContent.GetInstance and .Mod work
         }
 
         /// <summary>
-        /// Called in PetPlayer.GetAccessoryInSlot.
+        /// Called in <see cref="PetPlayer.GetAccessoryInSlot"/>.
         /// Used to retreive the pet vanity accessory in the current slot of that current ID
         /// </summary>
         public static PetAccessory GetAccessoryFromID(SlotType slotType, byte id) //if something has the id, it always has the slottype available
@@ -497,7 +468,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
         public override string ToString()
         {
             return "ID: " + ID
-                + "; Col: " + Color
+                + "; Col: " + AltTextureIndex
                 + "; Slo: " + Slot
                 + "; Nam: " + Name
                 + "; Typ: " + Type
@@ -507,6 +478,27 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 + "; NoH: " + (UseNoHair ? "y" : "n")
                 + "; Alt: " + (HasAlts ? "y" : "n");
         }
+
+        protected sealed override void Register()
+        {
+            SlotType slotType = this.Slot;
+
+            if (!petAccessoriesByType.ContainsKey(slotType))
+            {
+                petAccessoriesByType[slotType] = new List<PetAccessory>();
+            }
+
+            //everything fine
+            List<PetAccessory> petAccessories = petAccessoriesByType[slotType];
+            petAccessoriesByType[slotType].Add(this);
+            this.ID = (byte)petAccessories.Count; //Assign ID post-adding (so 0 represents "no accessory")
+
+            petAccessoryList.Add(this);
+
+            ModTypeLookup<PetAccessory>.Register(this); //Makes ModType related ModContent methods work
+        }
+
+        public sealed override void SetupContent() => SetStaticDefaults();
     }
 
     /// <summary>
@@ -648,15 +640,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
                     {
                         if (shouldReset && player.altFunctionUse == 2)
                         {
-                            if (pPlayer.slots != 0)
+                            if (pPlayer.HasPetAccessories)
                             {
-                                pPlayer.slotsLast = pPlayer.slots;
-                                pPlayer.slots = 0;
+                                Array.Copy(pPlayer.petAccessoriesBySlots, pPlayer.lastPetAccessoriesBySlots, pPlayer.petAccessoriesBySlots.Length);
+                                pPlayer.petAccessoriesBySlots = new (byte, byte)[pPlayer.petAccessoriesBySlots.Length];
                             }
                             else
                             {
-                                pPlayer.slots = pPlayer.slotsLast;
-                                pPlayer.slotsLast = 0;
+                                Array.Copy(pPlayer.lastPetAccessoriesBySlots, pPlayer.petAccessoriesBySlots, pPlayer.lastPetAccessoriesBySlots.Length);
+                                pPlayer.lastPetAccessoriesBySlots = new (byte, byte)[pPlayer.lastPetAccessoriesBySlots.Length];
                             }
 
                             Projectile projectile = Main.projectile[pPlayer.slimePetIndex];

@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Base.SlimeHugs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
@@ -22,11 +23,6 @@ namespace AssortedCrazyThings
     [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class PetPlayer : AssPlayerBase
     {
-        /// <summary>
-        /// transition from 1.2.3 to 1.3.0 (reset cute slime vanity slots)
-        /// </summary>
-        private bool petAccessoryRework = false;
-
         private bool enteredWorld = false;
 
         private const int altTextureCountLoaded = 25; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
@@ -258,7 +254,7 @@ namespace AssortedCrazyThings
             if (diff > 40.0)
             {
                 //19
-                resetSlots = false;
+                resetPetAccessories = false;
                 lastTime = Main.GameUpdateCount;
                 return false; //step one
             }
@@ -266,18 +262,18 @@ namespace AssortedCrazyThings
             //step two and three have to be done in 40 ticks each
             if (diff <= 40.0)
             {
-                if (!resetSlots)
+                if (!resetPetAccessories)
                 {
                     lastTime = Main.GameUpdateCount;
-                    resetSlots = true;
+                    resetPetAccessories = true;
                     return false; //step two
                 }
 
                 //if program gets to here, it is about to return true
 
-                if (resetSlots)
+                if (resetPetAccessories)
                 {
-                    resetSlots = false;
+                    resetPetAccessories = false;
                     return true; //step three
                 }
             }
@@ -287,11 +283,9 @@ namespace AssortedCrazyThings
 
         public override void SaveData(TagCompound tag)
         {
-            tag.Add("slots", (int)slots);
-            tag.Add("color", (int)color);
-            tag.Add("petAccessoryRework", (bool)petAccessoryRework);
+            SavePetAccessories(tag);
 
-            TagCompound petTags = new TagCompound
+            TagCompound petTags = new()
             {
                 { "mechFrogType", mechFrogType },
                 { "petEyeType", petEyeType },
@@ -325,16 +319,52 @@ namespace AssortedCrazyThings
             tag.Add("petTags", petTags);
         }
 
+        private void SavePetAccessories(TagCompound tag)
+        {
+            var petAccessoryIdentities = new List<PetAccessoryIdentity>();
+
+            for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+            {
+                var (id, altTextureIndex) = petAccessoriesBySlots[i];
+                var modName = string.Empty;
+                var name = string.Empty;
+                var index = (byte)0;
+                if (id > 0)
+                {
+                    var petAccessory = PetAccessory.GetAccessoryFromID((SlotType)(i + 1), id);
+
+                    modName = petAccessory.Mod.Name;
+                    name = petAccessory.Name;
+                    index = altTextureIndex;
+                }
+
+                petAccessoryIdentities.Add(new PetAccessoryIdentity(modName, name, index));
+            }
+
+            if (petAccessoryIdentities.Count > 0)
+            {
+                tag.Add("petAccessoryIdentities", petAccessoryIdentities);
+            }
+
+            if (unloadedPetAccessoryIdentities.Count > 0)
+            {
+                tag.Add("unloadedPetAccessoryIdentities", unloadedPetAccessoryIdentities);
+            }
+        }
+
         public override void LoadData(TagCompound tag)
         {
-            slots = (uint)tag.GetInt("slots");
-            color = (uint)tag.GetInt("color");
-            petAccessoryRework = tag.GetBool("petAccessoryRework");
-
-            const string key = "petTags";
-            if (tag.ContainsKey(key))
+            string mainKey = "petAccessoryIdentities";
+            string secondaryKey = "unloadedPetAccessoryIdentities";
+            if (tag.ContainsKey(mainKey) || tag.ContainsKey(secondaryKey))
             {
-                var petTags = tag.Get<TagCompound>(key);
+                LoadPetAccessories(tag, tag.GetList<PetAccessoryIdentity>(mainKey).ToList(), tag.GetList<PetAccessoryIdentity>(secondaryKey).ToList());
+            }
+
+            mainKey = "petTags";
+            if (tag.ContainsKey(mainKey))
+            {
+                var petTags = tag.Get<TagCompound>(mainKey);
 
                 mechFrogType = petTags.GetByte("mechFrogType");
                 petEyeType = petTags.GetByte("petEyeType");
@@ -366,11 +396,64 @@ namespace AssortedCrazyThings
             }
         }
 
+        private void LoadPetAccessories(TagCompound tag, List<PetAccessoryIdentity> petAccessories, List<PetAccessoryIdentity> unloadedPetAccessories)
+        {
+            //Keep same size as the loaded list
+            var emptyPetAccessory = new PetAccessoryIdentity(string.Empty, string.Empty, 0);
+            unloadedPetAccessoryIdentities = new();
+            for (int i = 0; i < petAccessories.Count; i++)
+            {
+                unloadedPetAccessoryIdentities.Add(emptyPetAccessory);
+            }
+
+            for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+            {
+                var loadedPetAccessory = petAccessories[i];
+                (string modName, string name, byte index) = loadedPetAccessory;
+
+                bool hasUnloaded = unloadedPetAccessories.Count > 0;
+
+                if (modName != string.Empty && name != string.Empty)
+                {
+                    //Prioritize handling existing one
+                    if (ModContent.TryFind(modName, name, out PetAccessory petAccessory))
+                    {
+                        var id = petAccessory.ID;
+                        petAccessoriesBySlots[i] = (id, index);
+                    }
+                    else
+                    {
+                        unloadedPetAccessoryIdentities[i] = loadedPetAccessory;
+                    }
+                }
+                else if (hasUnloaded)
+                {
+                    var unloadedPetAccessory = unloadedPetAccessories[i];
+                    (string unloadedModName, string unloadedName, byte unloadedIndex) = unloadedPetAccessory;
+
+                    if (unloadedModName != string.Empty && unloadedName != string.Empty)
+                    {
+                        //Fall back to unloaded one
+                        if (ModContent.TryFind(unloadedModName, unloadedName, out PetAccessory petAccessory))
+                        {
+                            var id = petAccessory.ID;
+                            petAccessoriesBySlots[i] = (id, unloadedIndex);
+                        }
+                        else
+                        {
+                            unloadedPetAccessoryIdentities[i] = unloadedPetAccessory;
+                        }
+                    }
+                }
+            }
+        }
+
         public override void clientClone(ModPlayer clientClone)
         {
             PetPlayer clone = clientClone as PetPlayer;
-            clone.slots = slots;
-            clone.color = color;
+
+            Array.Copy(petAccessoriesBySlots, clone.petAccessoriesBySlots, petAccessoriesBySlots.Length);
+            Array.Copy(lastPetAccessoriesBySlots, clone.lastPetAccessoriesBySlots, lastPetAccessoriesBySlots.Length);
             Array.Copy(ClonedTypes, clone.ClonedTypes, ClonedTypes.Length);
         }
 
@@ -379,7 +462,18 @@ namespace AssortedCrazyThings
             PetPlayer clone = clientPlayer as PetPlayer;
             PetPlayerChanges changes = PetPlayerChanges.None;
             int index = 255;
-            if (clone.slots != slots || clone.color != color)
+
+            bool slotChanges = false;
+            for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+            {
+                if (clone.petAccessoriesBySlots[i] != petAccessoriesBySlots[i])
+                {
+                    slotChanges = true;
+                    break;
+                }
+            }
+
+            if (slotChanges)
             {
                 changes = PetPlayerChanges.Slots;
             }
@@ -401,8 +495,6 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            if (Main.netMode != NetmodeID.Server) return;
-            //from server to clients
             ModPacket packet = Mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncPlayerVanity);
             packet.Write((byte)Player.whoAmI);
@@ -413,8 +505,12 @@ namespace AssortedCrazyThings
 
         private void SendFieldValues(ModPacket packet)
         {
-            packet.Write((uint)slots);
-            packet.Write((uint)color);
+            for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+            {
+                var (id, altTextureIndex) = petAccessoriesBySlots[i];
+                packet.Write((byte)id);
+                packet.Write((byte)altTextureIndex);
+            }
 
             for (int i = 0; i < ClonedTypes.Length; i++)
             {
@@ -424,8 +520,13 @@ namespace AssortedCrazyThings
 
         public void RecvSyncPlayerVanitySub(BinaryReader reader)
         {
-            slots = reader.ReadUInt32();
-            color = reader.ReadUInt32();
+            for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+            {
+                byte id = reader.ReadByte();
+                byte altTextureIndex = reader.ReadByte();
+                petAccessoriesBySlots[i] = (id, altTextureIndex);
+            }
+
             for (int i = 0; i < ClonedTypes.Length; i++)
             {
                 ClonedTypes[i] = reader.ReadByte();
@@ -445,11 +546,16 @@ namespace AssortedCrazyThings
                     RecvSyncPlayerVanitySub(reader);
                     break;
                 case (byte)PetPlayerChanges.Slots:
-                    slots = reader.ReadUInt32();
-                    color = reader.ReadUInt32();
+                    for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+                    {
+                        byte id = reader.ReadByte();
+                        byte altTextureIndex = reader.ReadByte();
+                        petAccessoriesBySlots[i] = (id, altTextureIndex);
+                    }
                     break;
                 case (byte)PetPlayerChanges.PetTypes:
-                    if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = reader.ReadByte();
+                    byte type = reader.ReadByte();
+                    if (index >= 0 && index < ClonedTypes.Length) ClonedTypes[index] = type;
                     break;
                 default: //shouldn't get there hopefully
                     Mod.Logger.Debug("Received unspecified PetPlayerChanges Packet " + changes);
@@ -459,7 +565,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Sends the player fields either to clients or to the server. Called in OnEnterWorld (to the server), and in Mod.HandlePacket()
+        /// Sends the player fields either to clients or to the server. Called in Mod.HandlePacket()
         /// (forwarding data from the server to other players)
         /// </summary>
         public void SendClientChangesPacketSub(byte changes, int index, int toClient = -1, int ignoreClient = -1)
@@ -477,8 +583,12 @@ namespace AssortedCrazyThings
                     SendFieldValues(packet);
                     break;
                 case (byte)PetPlayerChanges.Slots:
-                    packet.Write((uint)slots);
-                    packet.Write((uint)color);
+                    for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+                    {
+                        var (id, altTextureIndex) = petAccessoriesBySlots[i];
+                        packet.Write((byte)id);
+                        packet.Write((byte)altTextureIndex);
+                    }
                     break;
                 case (byte)PetPlayerChanges.PetTypes:
                     packet.Write((byte)ClonedTypes[index]);
@@ -493,7 +603,7 @@ namespace AssortedCrazyThings
 
         /// <summary>
         /// Cliendside method to send the chances specified to the server.
-        /// Called in OnEnterWorld() and in SendClientChanges()
+        /// Called in SendClientChanges()
         /// </summary>
         private void SendClientChangesPacket(PetPlayerChanges changes, int index = 255)
         {
@@ -506,14 +616,6 @@ namespace AssortedCrazyThings
         public override void OnEnterWorld(Player player)
         {
             enteredWorld = true;
-            if (!petAccessoryRework)
-            {
-                petAccessoryRework = true;
-                Mod.Logger.Debug("Reset pet vanity slots during update from 1.2.3 to " + Mod.Version);
-                slots = 0;
-            }
-
-            SendClientChangesPacket(PetPlayerChanges.All);
         }
 
         public override void PreUpdate()
@@ -709,39 +811,50 @@ namespace AssortedCrazyThings
         #endregion
 
         #region Slime Pet Vanity
-        public uint slotsLast = 0;
-        private bool resetSlots = false;
+        private bool resetPetAccessories = false;
         private uint lastTime = 0;
 
-        private const uint mask = 255;//0000 0000|0000 0000|0000 0000|1111 1111
-        public uint slots = 0;        //0000 0000|0000 0000|0000 0000|0000 0000
-        public uint color = 0;        //0000 0000|0000 0000|0000 0000|0000 0000
-                                      //slot4    |slot3    |slot2    |slot1     
+        public (byte id, byte altTextureIndex)[] petAccessoriesBySlots;
+        public (byte id, byte altTextureIndex)[] lastPetAccessoriesBySlots;
+
+        public List<PetAccessoryIdentity> unloadedPetAccessoryIdentities;
+
+        public bool HasPetAccessories
+        {
+            get
+            {
+                for (int i = 0; i < petAccessoriesBySlots.Length; i++)
+                {
+                    if (petAccessoriesBySlots[i].id > 0)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
 
         /// <summary>
         /// Adds the pet vanity accessory to the current pet
         /// </summary>
         public bool AddAccessory(PetAccessory petAccessory)
         {
-            //id is between 0 and 255
             byte slotNumber = (byte)(petAccessory.Slot - 1);
 
-            //returns false if accessory was already equipped   //for slotNumber = 1:
-            uint setmask = mask << (slotNumber * 8);            //0000 0000|0000 0000|1111 1111|0000 0000
-            uint clearmask = ~setmask; //setmask but inverted   //1111 1111|1111 1111|0000 0000|1111 1111
+            //id is between 0 and 255
+            byte id = petAccessory.ID;
+            byte altTextureIndex = petAccessory.AltTextureIndex;
 
-            uint id = (uint)petAccessory.ID << (slotNumber * 8);
-            uint col = (uint)petAccessory.Color << (slotNumber * 8);
-            uint tempslots = slots & setmask;
-            uint tempcolor = color & setmask;
-            if (id == tempslots && col == tempcolor) return false;
+            (byte currentID, byte currentAltTextureIndex) = petAccessoriesBySlots[slotNumber];
 
-            //if accessory not the same as the applied one: override/set
-            slots &= clearmask; //delete only current slot
-            slots |= id; //set current slot id
+            //returns false if accessory was already equipped
+            if (id == currentID && altTextureIndex == currentAltTextureIndex)
+            {
+                return false;
+            }
 
-            color &= clearmask; //delete only current slot
-            color |= col; //set current slot color
+            //else sets new
+            petAccessoriesBySlots[slotNumber] = (id, altTextureIndex);
 
             return true;
         }
@@ -752,10 +865,7 @@ namespace AssortedCrazyThings
         public void DelAccessory(PetAccessory petAccessory)
         {
             byte slotNumber = (byte)(petAccessory.Slot - 1);
-            uint setmask = mask << (slotNumber * 8);
-            uint clearmask = ~setmask; //setmask but inverted
-            slots &= clearmask; //delete only current slot
-            color &= clearmask; //delete only current slot color
+            petAccessoriesBySlots[slotNumber] = (0, 0);
         }
 
         /// <summary>
@@ -770,16 +880,23 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Returns the pet vanity accessory equipped in the specified SlotType of the current pet
         /// </summary>
-        public PetAccessory GetAccessoryInSlot(byte slotNumber)
+        public bool TryGetAccessoryInSlot(byte slotNumber, out PetAccessory petAccessory)
         {
+            petAccessory = null;
             byte slot = slotNumber;
             slotNumber -= 1;
-            byte id = (byte)((slots >> (slotNumber * 8)) & mask); //(byte) only takes the rightmost byte
-            byte col = (byte)((color >> (slotNumber * 8)) & mask);
-            if (id == 0) return null;
-            PetAccessory petAccessory = PetAccessory.GetAccessoryFromID((SlotType)slot, id);
-            petAccessory.Color = col;
-            return petAccessory;
+
+            (byte id, byte altTextureIndex) = petAccessoriesBySlots[slotNumber];
+
+            if (id == 0)
+            {
+                return false;
+            }
+
+            petAccessory = PetAccessory.GetAccessoryFromID((SlotType)slot, id);
+            petAccessory.AltTextureIndex = altTextureIndex;
+
+            return petAccessory != null;
         }
         #endregion
 
@@ -791,7 +908,7 @@ namespace AssortedCrazyThings
 
         /// <summary>
         /// Contains a list of pet type fields (assigned during Load() and every tick in PreUpdate(),
-        /// and read from in OnEnterWorld(), and in Multiplayer whenever data is received).
+        /// and read from in in Multiplayer whenever data is received).
         /// Simplifies the saving/loading of tags
         /// </summary>
         public byte[] ClonedTypes;
@@ -1021,6 +1138,11 @@ namespace AssortedCrazyThings
             animatedTomeType = 0;
 
             youngHarpyType = 0;
+
+            petAccessoriesBySlots = new (byte, byte)[4]; //C# initializes the array as (0,0)
+            lastPetAccessoriesBySlots = new (byte, byte)[4];
+
+            unloadedPetAccessoryIdentities = new List<PetAccessoryIdentity>();
 
             SlimeHugs = new List<SlimeHug>();
 
@@ -1255,7 +1377,7 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Called whenever something is received (MP on reveive, or in Singleplayer/Local client in OnEnterWorld).
+        /// Called whenever something is received.
         /// Sets the pet type of the corresponding entry of ClonedTypes
         /// </summary>
         public void GetFromClonedTypes()
