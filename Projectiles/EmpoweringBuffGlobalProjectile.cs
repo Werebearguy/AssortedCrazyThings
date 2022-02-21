@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles
                 AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
                 if (mPlayer.empoweringBuff)
                 {
-                    damage += (int)(damage * mPlayer.step * 0.25f);
+                    damage += (int)(damage * mPlayer.empoweringStep * 0.25f);
                 }
             }
         }

@@ -13,10 +13,12 @@ namespace AssortedCrazyThings
 		public static Dictionary<string, ContentType> NonLoadedNames { get; private set; }
 		public static Dictionary<ContentType, List<string>> NonLoadedNamesByType { get; private set; }
 
+		private static Type[] InvalidTypes { get; set; }
+
 		/// <summary>
 		/// For use on generic content that should be always loaded except when everything is disabled
 		/// </summary>
-        public const ContentType AllFlags = 
+		public const ContentType AllFlags = 
             ContentType.Bosses |
             ContentType.CuteSlimes |
             ContentType.HostileNPCs |
@@ -38,6 +40,8 @@ namespace AssortedCrazyThings
 			NonLoadedNames = new();
 			NonLoadedNamesByType = new();
 
+			InvalidTypes = GetInvalidTypes();
+
 			//Debugging only
 			var autoloadedContent = mod.GetContent().ToList();
 			//SimpleModGore gets loaded. Maybe disable gore loading?
@@ -55,6 +59,8 @@ namespace AssortedCrazyThings
 
 				var autoload = AutoloadAttribute.GetValue(type);
 
+				CheckInvalidInheritance(type);
+
 				if (autoload.NeedsAutoloading) continue; //Skip things that are autoloaded (this code runs after Autoload())
 
 				if (!LoadSide(autoload.Side)) continue; //Skip things that shouldn't load on a particular side
@@ -63,7 +69,7 @@ namespace AssortedCrazyThings
 
 				if (content.Ignore) continue; //Skip things tagged as non-autoloadable, yet shouldn't be loaded through here (loaded elsewhere)
 
-                var reasons = FindContentFilterReasons(content);
+				var reasons = FindContentFilterReasons(content);
 				var instance = (ILoadable)Activator.CreateInstance(type);
 
 				if (reasons == ContentType.Always)
@@ -91,6 +97,42 @@ namespace AssortedCrazyThings
 			int b = 0;
 		}
 
+		private static Type[] GetInvalidTypes()
+        {
+			return new Type[]
+			{
+				typeof(ModItem),
+				typeof(ModProjectile),
+				typeof(ModBuff),
+				typeof(ModNPC),
+				typeof(ModTile),
+				typeof(PlayerDrawLayer),
+				typeof(ModPlayer),
+				typeof(ModSystem),
+				typeof(GlobalNPC),
+				typeof(GlobalBuff),
+				typeof(GlobalProjectile),
+				typeof(GlobalItem),
+				typeof(GlobalTile),
+			};
+		}
+
+		private static void CheckInvalidInheritance(Type type)
+        {
+			//Detect misuse of tml types that have an existing Ass base class
+			if (!typeof(ILoadable).IsAssignableFrom(type))
+            {
+				return;
+            }
+
+			var baseType = type.BaseType;
+
+			if (baseType != null && Array.IndexOf(InvalidTypes, baseType) > -1)
+            {
+				throw new Exception($"{type} inherits from {baseType}, which is not permitted. Use the base classes in ConfigurationBaseClasses.cs");
+			}
+        }
+
         private static ContentType FindContentFilterReasons(ContentAttribute content)
         {
 			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
@@ -112,6 +154,8 @@ namespace AssortedCrazyThings
 
 			NonLoadedNamesByType?.Clear();
 			NonLoadedNamesByType = null;
+
+			InvalidTypes = null;
 		}
 
 		public static string ContentTypeToString(ContentType contentType)

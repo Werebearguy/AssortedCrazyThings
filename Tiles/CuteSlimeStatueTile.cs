@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -17,10 +18,19 @@ namespace AssortedCrazyThings.Tiles
             Main.tileFrameImportant[Type] = true;
             Main.tileObsidianKill[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
+            TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
+            //TileObjectData.newTile.StyleWrapLimit = 2;
+            //TileObjectData.newTile.StyleMultiplier = 2;
+            TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(1, 2);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
+            
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // allows to place it facing the same way as the player
+            TileObjectData.addAlternate(1); // facing right will use the second texture style
             TileObjectData.addTile(Type);
+
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Statue");
             AddMapEntry(new Color(144, 148, 144), name);
@@ -75,8 +85,8 @@ namespace AssortedCrazyThings.Tiles
         {
             // Find the coordinates of top left tile square through math
             Tile tile = Main.tile[i, j];
-            int x = i - tile.frameX / 18;
-            int y = j - tile.frameY / 18;
+            int x = i - tile.TileFrameX / 18 % 36;
+            int y = j - tile.TileFrameY / 18;
 
             Wiring.SkipWire(x, y);
             Wiring.SkipWire(x, y + 1);

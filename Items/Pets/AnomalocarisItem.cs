@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    //TODO Unobtainable, plan is fishing akin to zephyr fish
     public class AnomalocarisItem : SimplePetItemBase
     {
         public override int PetType => ModContent.ProjectileType<AnomalocarisProj>();

@@ -112,7 +112,7 @@ namespace AssortedCrazyThings.UI
 
                 //Actually draw the bg circle
                 Color drawColor = Color.White;
-                if (hasEquipped && done == petAccessory.Color)
+                if (hasEquipped && done == petAccessory.AltTextureIndex)
                 {
                     drawColor = Color.Gray;
                 }
@@ -125,7 +125,7 @@ namespace AssortedCrazyThings.UI
                 Rectangle projRect = new Rectangle((int)(spawnPosition.X + x) - (width / 2), (int)(spawnPosition.Y + y) - (height / 2), width, height);
 
                 drawColor = Color.White;
-                if (hasEquipped && done == petAccessory.Color) drawColor = Color.Gray;
+                if (hasEquipped && done == petAccessory.AltTextureIndex) drawColor = Color.Gray;
 
                 Main.spriteBatch.Draw(tex, projRect, tex.Bounds, drawColor);
 
@@ -134,7 +134,7 @@ namespace AssortedCrazyThings.UI
                     //set the "returned" new type
                     returned = done;
                     //In UpdatePetVanityUI(): else if (returned == IGNORE) {nothing happens}
-                    if (hasEquipped && done == petAccessory.Color) returned = IGNORE;
+                    if (hasEquipped && done == petAccessory.AltTextureIndex) returned = IGNORE;
                 }
             }
 
@@ -201,7 +201,7 @@ namespace AssortedCrazyThings.UI
             spawnPosition = Main.MouseScreen;
             petAccessory = pAccessory;
             PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
-            PetAccessory equipped = pPlayer.GetAccessoryInSlot((byte)petAccessory.Slot);
+            pPlayer.TryGetAccessoryInSlot((byte)petAccessory.Slot, out PetAccessory equipped);
             hasEquipped = equipped != null && equipped.Type == petAccessory.Type;
             fadeIn = 0;
         }

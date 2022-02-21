@@ -13,6 +13,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
     /// </summary>
     public abstract class BabySlimeBase : AssProjectile
     {
+        public const int StuckTimerMax = 3 * 60;
+        public int stuckTimer = 0;
+
         public bool shootSpikes = false;
         private static readonly byte shootDelay = 60; //either +1 or +0 every tick, so effectively every 90 ticks
         public byte flyingFrameSpeed = 6;
@@ -227,6 +230,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
                 right = true;
             }
 
+            int totalOffset = initialOffset + directionalOffset;
+            if (Projectile.HandleStuck(player.Center.X + totalOffset, ref stuckTimer, StuckTimerMax))
+            {
+                Projectile.ai[0] = 1f;
+                Projectile.tileCollide = false;
+            }
+
             if (Projectile.ai[1] == 0f)
             {
                 int num38 = 500;
@@ -236,7 +246,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     num38 += 600;
                 }
 
-                if (player.rocketDelay2 > 0)
+                if (player.rocketDelay2 > 0 && player.wings != 45)
                 {
                     Projectile.ai[0] = 1f;
                 }
@@ -520,10 +530,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
                         {
                             //PickedTexture * 3 makes it so theres a small offset for minion shooting based on their texture, which means that if you have different slimes out,
                             //they don't all shoot in sync
-                            if (ShootTimer > (shootDelay + PickedTexture * 3) && distance < 200f &&
-                                Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, Main.npc[targetNPC].position, Main.npc[targetNPC].width, Main.npc[targetNPC].height))
+                            if (Projectile.owner == Main.myPlayer)
                             {
-                                if (Main.netMode != NetmodeID.Server && Projectile.owner == Main.myPlayer)
+                                NPC npc = Main.npc[targetNPC];
+                                if (ShootTimer > (shootDelay + PickedTexture * 3) && distance < 200f &&
+                                    Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
                                 {
                                     for (int k = 0; k < 3; k++)
                                     {

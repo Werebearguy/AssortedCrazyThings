@@ -403,9 +403,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             //check if it wears a "useNoHair" hat, then if it does, change the texture to that,
             //otherwise use default one
             bool useNoHair = false;
-            PetAccessory petAccessoryHat = pPlayer.GetAccessoryInSlot((byte)SlotType.Hat);
 
-            if (petAccessoryHat != null &&
+            if (pPlayer.TryGetAccessoryInSlot((byte)SlotType.Hat, out PetAccessory petAccessoryHat) &&
                 petAccessoryHat.UseNoHair) //if it has a NoHair tex
             {
                 useNoHair = true;
@@ -416,13 +415,10 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
             if (SlimePets.TryGetPetFromProj(Projectile.type, out SlimePet sPet))
             {
-                PetAccessory petAccessory;
                 //handle if pre/post additions are drawn based on the slimePet(Pre/Post)AdditionSlot
                 for (byte slotNumber = 1; slotNumber < 5; slotNumber++)
                 {
-                    petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
-
-                    if (petAccessory != null)
+                    if (pPlayer.TryGetAccessoryInSlot(slotNumber, out _))
                     {
                         if (sPet.PreAdditionSlot == slotNumber)
                             drawPreAddition = false;
@@ -455,7 +451,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 Vector2 stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkProj>() ? -8f : 0f, Projectile.gfxOffY + DrawOriginOffsetY);
                 Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
                 Color color = Projectile.GetAlpha(drawColor);
-                //color = drawColor * ((255f - projectile.alpha) / 255f);
 
                 Main.EntitySpriteDraw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effect, 0);
             }
@@ -488,7 +483,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             bool isPet = SlimePets.TryGetPetFromProj(Projectile.type, out SlimePet sPet);
 
             string textureString;
-            string colorString;
+            string altTextureString;
             Texture2D texture;
             Rectangle frameLocal;
             SpriteEffects effect;
@@ -498,15 +493,13 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             Vector2 originOffset;
             Vector2 drawPos;
 
-            List<PetAccessory> accessories = new List<PetAccessory>();
+            List<PetAccessory> accessories = new();
 
             for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
             {
-                PetAccessory petAccessory = pPlayer.GetAccessoryInSlot(slotNumber);
-
-                if (petAccessory != null && isPet &&
-                    (preDraw || !petAccessory.PreDraw) &&
-                    !sPet.IsSlotTypeBlacklisted[slotNumber])
+                if (isPet && pPlayer.TryGetAccessoryInSlot(slotNumber, out PetAccessory petAccessory) &&
+                    !sPet.IsSlotTypeBlacklisted[slotNumber] &&
+                    (preDraw == petAccessory.PreDraw))
                 {
                     accessories.Add(petAccessory);
                 }
@@ -523,9 +516,9 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
             foreach (var petAccessory in accessories)
             {
                 textureString = PetAccessoryFolder + petAccessory.Name;
-                colorString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.Color] : "";
+                altTextureString = petAccessory.HasAlts ? petAccessory.AltTextureSuffixes[petAccessory.AltTextureIndex] : "";
 
-                texture = ModContent.Request<Texture2D>(textureString + colorString + AccSheet).Value;
+                texture = ModContent.Request<Texture2D>(textureString + altTextureString + AccSheet).Value;
 
                 frameLocal = texture.Frame(SheetCountX, SheetCountY, frameX, frameY);
 
@@ -533,7 +526,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
                 effect = Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 drawOrigin = new Vector2(Projwidth * 0.5f, (texture.Height / SheetCountY) * 0.5f);
                 stupidOffset = new Vector2(Projectile.type == ModContent.ProjectileType<CuteSlimePinkProj>() ? -8f : 0f, DrawOriginOffsetY + Projectile.gfxOffY);
-                color = drawColor * ((255 - petAccessory.Alpha) / 255f);
+                color = drawColor * petAccessory.Opacity;
 
                 originOffset = -petAccessory.Offset;
                 originOffset.X *= Math.Sign(Projectile.spriteDirection);

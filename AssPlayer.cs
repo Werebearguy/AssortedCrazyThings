@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
@@ -9,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -20,8 +22,11 @@ namespace AssortedCrazyThings
 {
     [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     //[LegacyName("AssPlayer")] Maybe rename later
-    public class AssPlayer : AssPlayerBase
+    public sealed class AssPlayer : AssPlayerBase
     {
+        public delegate void SlainBossDelegate(Player player, int type);
+        public static event SlainBossDelegate OnSlainBoss; //Runs on all sides
+
         public bool everburningCandleBuff = false;
         public bool everburningCursedCandleBuff = false;
         public bool everfrozenCandleBuff = false;
@@ -40,6 +45,15 @@ namespace AssortedCrazyThings
         public short getDefenseDuration = 0;
         public short getDefenseTimer = 0; //gets saved when you relog so you can't cheese it
 
+        private int lastSlainBossTimerSeconds = -1; //-1: never slain a boss, otherwise starts at 0 and counts
+        private int lastSlainBossTimerInternal = 0; //Used for incrementing the seconds timer
+        private int lastSlainBossType = 0; //Does not save
+        public bool HasBossSlainTimer => lastSlainBossTimerSeconds != -1;
+
+        public bool needsNearbyEnemyNumber = false;
+        public int nearbyEnemyNumber = 0; //Impl of vanilla player.accThirdEyeNumber which works for all clients, shorter range
+        public int nearbyEnemyTimer = 0;
+
         //soul minion stuff
         public bool soulMinion = false;
         public Item tempSoulMinion = null;
@@ -55,7 +69,7 @@ namespace AssortedCrazyThings
         private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
         private short empoweringTimer = 0;
         public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
-        public float step = 0f;
+        public float empoweringStep = 0f;
 
         //enhanced hunter potion stuff
         public bool enhancedHunterBuff = false;
@@ -105,6 +119,8 @@ namespace AssortedCrazyThings
             soulSaviorArmor = false;
             droneControllerMinion = false;
             mouseoveredDresser = false;
+
+            needsNearbyEnemyNumber = false;
         }
 
         public bool RightClickPressed { get { return PlayerInput.Triggers.JustPressed.MouseRight; } }
@@ -119,6 +135,7 @@ namespace AssortedCrazyThings
         {
             tag.Add("teleportHomeWhenLowTimer", (int)teleportHomeTimer);
             tag.Add("getDefenseTimer", (int)getDefenseTimer);
+            tag.Add("lastSlainBossTimerSeconds", (int)lastSlainBossTimerSeconds);
             tag.Add("droneControllerUnlocked", (byte)droneControllerUnlocked);
         }
 
@@ -126,6 +143,11 @@ namespace AssortedCrazyThings
         {
             teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
             getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
+            string timerKey = "lastSlainBossTimerSeconds";
+            if (tag.ContainsKey(timerKey))
+            {
+                lastSlainBossTimerSeconds = tag.GetInt("lastSlainBossTimerSeconds");
+            }
             droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
         }
 
@@ -166,13 +188,23 @@ namespace AssortedCrazyThings
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            if (Main.netMode != NetmodeID.Server) return;
-            //from server to clients
             ModPacket packet = Mod.GetPacket();
             packet.Write((byte)AssMessageType.SyncAssPlayer);
             packet.Write((byte)Player.whoAmI);
+
+            //Actual data here
             packet.Write((byte)shieldDroneReduction);
+            packet.WriteVarInt(lastSlainBossTimerSeconds);
+            packet.WriteVarInt(lastSlainBossType);
+
             packet.Send(toWho, fromWho);
+        }
+
+        public void ReceiveSyncPlayer(BinaryReader reader)
+        {
+            shieldDroneReduction = reader.ReadByte();
+            lastSlainBossTimerSeconds = reader.ReadVarInt();
+            lastSlainBossType = reader.ReadVarInt();
         }
 
         public override void OnEnterWorld(Player player)
@@ -292,7 +324,7 @@ namespace AssortedCrazyThings
         /// <summary>
         /// Technically doesn't spawn souls, just applies the buff to the NPCs, that then spawns the soul if it dies
         /// </summary>
-        private void SpawnSoulsWhenHarvesterIsAlive()
+        private void GiveSoulBuffToEnemiesWhenHarvesterIsAlive()
         {
             if (!ContentConfig.Instance.Bosses)
             {
@@ -420,11 +452,15 @@ namespace AssortedCrazyThings
                     if (empoweringTimer < empoweringTimerMax)
                     {
                         empoweringTimer++;
-                        step = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
+                        empoweringStep = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
                     }
                 }
             }
-            else empoweringTimer = 0;
+            else
+            {
+                empoweringStep = 0f;
+                empoweringTimer = 0;
+            }
         }
 
         private bool GetDefense(double damage)
@@ -506,31 +542,18 @@ namespace AssortedCrazyThings
 
         public override void Initialize()
         {
-            everburningCandleBuff = false;
-            everburningCursedCandleBuff = false;
-            everfrozenCandleBuff = false;
-            everburningShadowflameCandleBuff = false;
             teleportHome = false;
-            canTeleportHome = false;
             teleportHomeTimer = 0;
             getDefense = false;
-            canGetDefense = false;
             getDefenseDuration = 0;
             getDefenseTimer = 0;
-            soulMinion = false;
+            lastSlainBossTimerSeconds = -1;
             tempSoulMinion = null;
             selectedSoulMinionType = SoulType.Dungeon;
-            slimePackMinion = false;
             selectedSlimePackMinionType = 0;
             nextMagicSlimeSlingMinion = 0;
-            empoweringBuff = false;
             empoweringTimer = 0;
-            step = 0f;
-            enhancedHunterBuff = false;
-            cuteSlimeSpawnEnable = false;
-            soulSaviorArmor = false;
-            wyvernCampfire = false;
-            droneControllerMinion = false;
+            empoweringStep = 0f;
             shieldDroneReduction = 0;
             shieldDroneLerpVisual = 0;
             drawEffectsCalledOnce = false;
@@ -711,6 +734,63 @@ namespace AssortedCrazyThings
         }
         */
 
+        public void SlainBoss(int type)
+        {
+            lastSlainBossTimerSeconds = 0;
+            lastSlainBossType = type;
+
+            OnSlainBoss?.Invoke(Player, type);
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)AssMessageType.SlainBoss);
+                packet.WriteVarInt(lastSlainBossType);
+                packet.Send(Player.whoAmI);
+            }
+        }
+
+        public bool HasSlainBossSecondsAgo(int timeInSeconds)
+        {
+            return HasBossSlainTimer && lastSlainBossTimerSeconds < timeInSeconds;
+        }
+
+        public void UpdateSlainBossTimer()
+        {
+            if (HasBossSlainTimer)
+            {
+                lastSlainBossTimerInternal++;
+                if (lastSlainBossTimerInternal >= 60)
+                {
+                    lastSlainBossTimerInternal = 0;
+
+                    lastSlainBossTimerSeconds++;
+                }
+            }
+        }
+
+        public void UpdateNearbyEnemies()
+        {
+            float distSQ = 600 * 600;
+            if (nearbyEnemyTimer == 0)
+            {
+                nearbyEnemyNumber = 0;
+                nearbyEnemyTimer = 15;
+                for (int l = 0; l < Main.maxNPCs; l++)
+                {
+                    NPC npc = Main.npc[l];
+                    if (npc.active && !npc.friendly && npc.damage > 0 && npc.lifeMax > 5 && !npc.dontCountMe && (npc.Center - Player.Center).LengthSquared() < distSQ)
+                    {
+                        nearbyEnemyNumber++;
+                    }
+                }
+            }
+            else
+            {
+                nearbyEnemyTimer--;
+            }
+        }
+
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
             Player drawPlayer = drawInfo.drawPlayer;
@@ -804,12 +884,12 @@ namespace AssortedCrazyThings
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
         {
-            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += step; //summon damage gets handled in EmpoweringBuffGlobalProjectile
+            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += empoweringStep; //summon damage gets handled in EmpoweringBuffGlobalProjectile
         }
 
         public override void ModifyWeaponCrit(Item item, ref int crit)
         {
-            crit += (int)(10 * step);
+            crit += (int)(10 * empoweringStep);
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -837,22 +917,28 @@ namespace AssortedCrazyThings
             return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
-        //private static readonly int[] Junk = new int[] { ItemID.OldShoe, ItemID.Seaweed, ItemID.TinCan };
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            bool inWater = !attempt.inHoney && !attempt.inLava;
 
-        //public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType)
-        //{
-        //    if (Array.BinarySearch(Junk, caughtType) > -1)
-        //    {
-        //        return;
-        //    }
+            if (attempt.waterTilesCount < attempt.waterNeededToFish)
+            {
+                return;
+            }
 
-        //    if (poolSize >= 300 && liquidType == 0 && ((int)(Player.Center.X / 16) < Main.maxTilesX * 0.08f || (int)(Player.Center.X / 16) > Main.maxTilesX * 0.92f))
-        //    {
-        //        //In ocean
-
-        //        if (Main.rand.NextBool(200 / Player.fishing)
-        //    }
-        //}
+            if (ContentConfig.Instance.OtherPets)
+            {
+                //Match Zephyr Fish conditions
+                if (attempt.legendary && !attempt.crate && inWater)
+                {
+                    if (((int)(Player.Center.X / 16) < Main.maxTilesX * 0.08f || (int)(Player.Center.X / 16) > Main.maxTilesX * 0.92f) /*&& Main.rand.Next(1) == 0*/) //10 times more likely than zephyr fish makes it about as rare as reaver shark
+                    {
+                        itemDrop = ModContent.ItemType<AnomalocarisItem>();
+                        return;
+                    }
+                }
+            }
+        }
 
         public override void PostUpdateBuffs()
         {
@@ -861,6 +947,8 @@ namespace AssortedCrazyThings
             UpdateGetDefenseWhenLow();
 
             Empower();
+
+            UpdateSlainBossTimer();
         }
 
         public override void PreUpdate()
@@ -878,7 +966,9 @@ namespace AssortedCrazyThings
                 }
             }
 
-            SpawnSoulsWhenHarvesterIsAlive();
+            UpdateNearbyEnemies();
+
+            GiveSoulBuffToEnemiesWhenHarvesterIsAlive();
         }
     }
 }

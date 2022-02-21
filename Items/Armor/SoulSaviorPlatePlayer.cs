@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Armor
 {
     [Content(ContentType.Bosses)]
-    public class SoulSaviorPlatePlayer : ModPlayer
+    public class SoulSaviorPlatePlayer : AssPlayerBase
     {
         public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
         {

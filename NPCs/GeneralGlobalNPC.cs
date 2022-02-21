@@ -28,6 +28,26 @@ namespace AssortedCrazyThings.NPCs
             }
 
             GitgudData.Reset(npc);
+
+            if (npc.boss)
+            {
+                for (int i = 0; i < npc.playerInteraction.Length; i++)
+                {
+                    if (!npc.playerInteraction[i])
+                    {
+                        continue;
+                    }
+
+                    Player player = Main.player[i];
+
+                    if (!player.active)
+                    {
+                        continue;
+                    }
+
+                    player.GetModPlayer<AssPlayer>().SlainBoss(npc.type);
+                }
+            }
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
@@ -41,9 +61,15 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
         {
-            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(4))
+            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(10))
             {
                 shop[nextSlot] = ModContent.ItemType<SuspiciousNuggetItem>();
+                nextSlot++;
+            }
+
+            if (ContentConfig.Instance.OtherPets && Main.rand.NextBool(10))
+            {
+                shop[nextSlot] = ModContent.ItemType<StrangeRobotItem>();
                 nextSlot++;
             }
         }

@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Terraria;
 
 namespace AssortedCrazyThings.Buffs.Pets
@@ -30,7 +31,7 @@ namespace AssortedCrazyThings.Buffs.Pets
         public override void Update(Player player, ref int buffIndex)
         {
             //This only works for simple one-projectile pets
-            player.BuffHandle_SpawnPetIfNeededAndSetTime(buffIndex, ref PetBool(player), PetType);
+            player.AssSpawnPetIfNeededAndSetTime(buffIndex, ref PetBool(player), PetType);
         }
     }
 }

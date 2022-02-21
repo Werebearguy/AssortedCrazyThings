@@ -313,7 +313,7 @@ namespace AssortedCrazyThings
                     }
                     //UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
 
-                    PetVanityUI.petAccessory.Color = (byte)PetVanityUI.returned;
+                    PetVanityUI.petAccessory.AltTextureIndex = (byte)PetVanityUI.returned;
                     pPlayer.ToggleAccessory(PetVanityUI.petAccessory);
                 }
                 else if (PetVanityUI.hasEquipped && PetVanityUI.returned == PetVanityUI.NONE)

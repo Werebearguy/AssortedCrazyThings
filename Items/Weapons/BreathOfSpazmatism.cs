@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Projectiles.Weapons;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,9 +18,9 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.Flamethrower);
-            Item.width = 58;
-            Item.height = 30;
-            //item.damage = 20; //same damage as flamethrower, which is 27
+            Item.width = 72;
+            Item.height = 38;
+            //item.damage = 20; //same damage as flamethrower, which is 35
             Item.UseSound = SoundID.Item34;
             Item.shoot = ModContent.ProjectileType<SpazmatismFire>();
             Item.shootSpeed = 8f;
@@ -32,6 +33,11 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.value = Item.sellPrice(gold: 15, silver: 20);
             Item.rare = -11;
             Item.autoReuse = true;
+        }
+
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-0, 0);
         }
 
         public override void AddRecipes()

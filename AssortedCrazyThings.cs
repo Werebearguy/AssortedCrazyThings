@@ -14,6 +14,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
@@ -243,6 +244,12 @@ namespace AssortedCrazyThings
                 ItemID.AdamantiteBar,
                 ItemID.TitaniumBar
             }));
+
+            RecipeGroup.RegisterGroup("ACT:DemoniteCrimtane", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.DemoniteBar), new int[]
+            {
+                ItemID.DemoniteBar,
+                ItemID.CrimtaneBar
+            }));
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -258,13 +265,10 @@ namespace AssortedCrazyThings
             switch (msgType)
             {
                 case AssMessageType.SyncPlayerVanity:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        playerNumber = reader.ReadByte();
-                        petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-                        //no "changes" packet
-                        petPlayer.RecvSyncPlayerVanitySub(reader);
-                    }
+                    playerNumber = reader.ReadByte();
+                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+                    //no "changes" packet
+                    petPlayer.RecvSyncPlayerVanitySub(reader);
                     break;
                 case AssMessageType.ClientChangesVanity:
                     //client and server
@@ -282,12 +286,9 @@ namespace AssortedCrazyThings
                     }
                     break;
                 case AssMessageType.SyncAssPlayer:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        playerNumber = reader.ReadByte();
-                        aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                        aPlayer.shieldDroneReduction = reader.ReadByte();
-                    }
+                    playerNumber = reader.ReadByte();
+                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+                    aPlayer.ReceiveSyncPlayer(reader);
                     break;
                 case AssMessageType.ClientChangesAssPlayer:
                     //client and server
@@ -368,6 +369,13 @@ namespace AssortedCrazyThings
                         }
                     }
                     break;
+                case AssMessageType.SlainBoss:
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        int type = reader.ReadVarInt();
+                        Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
+                    }
+                    break;
                 default:
                     Logger.Debug("Unknown Message type: " + msgType);
                     break;
@@ -400,7 +408,8 @@ namespace AssortedCrazyThings
         GitgudLoadCounters,
         GitgudChangeCounters,
         ResetEmpoweringTimerpvp,
-        WyvernCampfireKill
+        WyvernCampfireKill,
+        SlainBoss
     }
 
     public enum PetPlayerChanges : byte

@@ -251,13 +251,12 @@ namespace AssortedCrazyThings.Items.Weapons
         }
         #endregion
 
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Drone Controller");
             Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
                 + "\nRight click to pick from available drones"
                 + "\nHolding the item improves the Drones' supportive and offensive abilities");
-            ItemID.Sets.StaffMinionSlotsRequired[Item.type] = 1;
         }
 
         public const int BaseDmg = 22;

@@ -24,114 +24,149 @@ namespace AssortedCrazyThings.Base
             return Main.player[proj.owner];
         }
 
-		public static void LoopAnimation(ref int frame, ref double frameCounter, int speed, int startFrame, int endFrame)
+        /// <summary>
+        /// Copy of vanilla code for spawning a single pet and setting buffTime. Gives random velocity at spawn
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="buffIndex"></param>
+        /// <param name="petBool"></param>
+        /// <param name="petProjID"></param>
+        /// <param name="buffTimeToGive"></param>
+        public static void AssSpawnPetIfNeededAndSetTime(this Player player, int buffIndex, ref bool petBool, int petProjID, int buffTimeToGive = 18000)
         {
-			if (startFrame < 0)
-			{
-				startFrame = 0;
-			}
+            player.buffTime[buffIndex] = buffTimeToGive;
+            player.AssSpawnPetIfNeeded(ref petBool, petProjID, buffIndex);
+        }
 
-			if (frame < startFrame)
-			{
-				frame = startFrame;
-			}
+        /// <summary>
+        /// Copy of vanilla code for spawning a single pet. Gives random velocity at spawn
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="petBool"></param>
+        /// <param name="petProjID"></param>
+        /// <param name="buffIndex"></param>
+        public static void AssSpawnPetIfNeeded(this Player player, ref bool petBool, int petProjID, int buffIndex)
+        {
+            petBool = true;
+            if (player.ownedProjectileCounts[petProjID] > 0)
+            {
+                return;
+            }
+
+            if (player.whoAmI == Main.myPlayer)
+            {
+                Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2), petProjID, 0, 0f, player.whoAmI);
+            }
+        }
+
+        public static void LoopAnimation(ref int frame, ref double frameCounter, int speed, int startFrame, int endFrame)
+        {
+            if (startFrame < 0)
+            {
+                startFrame = 0;
+            }
+
+            if (frame < startFrame)
+            {
+                frame = startFrame;
+            }
             else if (frame > endFrame)
             {
-				frame = endFrame;
-			}
+                frame = endFrame;
+            }
 
-			frameCounter++;
-			if (frameCounter >= speed)
-			{
-				frameCounter = 0;
-				frame++;
-				if (frame > endFrame)
-				{
-					frame = startFrame;
-				}
-			}
-		}
+            frameCounter++;
+            if (frameCounter >= speed)
+            {
+                frameCounter = 0;
+                frame++;
+                if (frame > endFrame)
+                {
+                    frame = startFrame;
+                }
+            }
+        }
 
-		public static void LoopAnimationInt(ref int frame, ref int frameCounter, int speed, int startFrame, int endFrame)
-		{
-			if (startFrame < 0)
-			{
-				startFrame = 0;
-			}
+        public static void LoopAnimationInt(ref int frame, ref int frameCounter, int speed, int startFrame, int endFrame)
+        {
+            if (startFrame < 0)
+            {
+                startFrame = 0;
+            }
 
-			if (frame < startFrame)
-			{
-				frame = startFrame;
-			}
-			else if (frame > endFrame)
-			{
-				frame = endFrame;
-			}
+            if (frame < startFrame)
+            {
+                frame = startFrame;
+            }
+            else if (frame > endFrame)
+            {
+                frame = endFrame;
+            }
 
-			frameCounter++;
-			if (frameCounter >= speed)
-			{
-				frameCounter = 0;
-				frame++;
-				if (frame > endFrame)
-				{
-					frame = startFrame;
-				}
-			}
-		}
+            frameCounter++;
+            if (frameCounter >= speed)
+            {
+                frameCounter = 0;
+                frame++;
+                if (frame > endFrame)
+                {
+                    frame = startFrame;
+                }
+            }
+        }
 
-		/// <summary>
-		/// Loops through all frames in a set speed from top to bottom and repeats
-		/// </summary>
-		public static void LoopAnimation(this NPC npc, int frameHeight, int speed, int startFrame = 0, int endFrame = -1)
-		{
-			if (endFrame == -1)
-			{
-				endFrame = Main.npcFrameCount[npc.type] - 1;
-			}
+        /// <summary>
+        /// Loops through all frames in a set speed from top to bottom and repeats
+        /// </summary>
+        public static void LoopAnimation(this NPC npc, int frameHeight, int speed, int startFrame = 0, int endFrame = -1)
+        {
+            if (endFrame == -1)
+            {
+                endFrame = Main.npcFrameCount[npc.type] - 1;
+            }
 
-			int frame = npc.frame.Y / frameHeight;
-			LoopAnimation(ref frame, ref npc.frameCounter, speed, startFrame, endFrame);
-			npc.frame.Y = frame * frameHeight;
-		}
+            int frame = npc.frame.Y / frameHeight;
+            LoopAnimation(ref frame, ref npc.frameCounter, speed, startFrame, endFrame);
+            npc.frame.Y = frame * frameHeight;
+        }
 
-		/// <summary>
-		/// Loops through all frames in a set speed from top to bottom and repeats
-		/// </summary>
-		public static void LoopAnimation(this Projectile proj, int speed, int startFrame = 0, int endFrame = -1)
-		{
-			if (endFrame == -1)
-			{
-				endFrame = Main.projFrames[proj.type] - 1;
-			}
+        /// <summary>
+        /// Loops through all frames in a set speed from top to bottom and repeats
+        /// </summary>
+        public static void LoopAnimation(this Projectile proj, int speed, int startFrame = 0, int endFrame = -1)
+        {
+            if (endFrame == -1)
+            {
+                endFrame = Main.projFrames[proj.type] - 1;
+            }
 
-			LoopAnimationInt(ref proj.frame, ref proj.frameCounter, speed, startFrame, endFrame);
-		}
+            LoopAnimationInt(ref proj.frame, ref proj.frameCounter, speed, startFrame, endFrame);
+        }
 
-		/// <summary>
-		/// Same as LoopAnimation, but stops at the last frame. Returns true if still animating
-		/// </summary>
-		public static bool WaterfallAnimation(this NPC npc, int frameHeight, int speed, int startFrame = 0, int endFrame = -1)
-		{
-			//If no endFrame specified: take last frame on the sheet, otherwise, endFrame
-			bool lastFrame = (endFrame == -1 && npc.frame.Y * frameHeight >= Main.npcFrameCount[npc.type] - 1) || (endFrame != -1);
+        /// <summary>
+        /// Same as LoopAnimation, but stops at the last frame. Returns true if still animating
+        /// </summary>
+        public static bool WaterfallAnimation(this NPC npc, int frameHeight, int speed, int startFrame = 0, int endFrame = -1)
+        {
+            //If no endFrame specified: take last frame on the sheet, otherwise, endFrame
+            bool lastFrame = (endFrame == -1 && npc.frame.Y * frameHeight >= Main.npcFrameCount[npc.type] - 1) || (endFrame != -1);
 
-			bool stillAnimating = !lastFrame;
-			if (stillAnimating) npc.LoopAnimation(frameHeight, speed, startFrame, endFrame);
-			return stillAnimating;
-		}
+            bool stillAnimating = !lastFrame;
+            if (stillAnimating) npc.LoopAnimation(frameHeight, speed, startFrame, endFrame);
+            return stillAnimating;
+        }
 
-		/// <summary>
-		/// Same as LoopAnimation, but stops at the last frame. Returns true if still animating
-		/// </summary>
-		public static bool WaterfallAnimation(this Projectile proj, int speed, int startFrame = 0, int endFrame = -1)
-		{
-			//If no endFrame specified: take last frame on the sheet, otherwise, endFrame
-			bool lastFrame = (endFrame == -1 && proj.frame >= Main.projFrames[proj.type] - 1) || (endFrame != -1);
+        /// <summary>
+        /// Same as LoopAnimation, but stops at the last frame. Returns true if still animating
+        /// </summary>
+        public static bool WaterfallAnimation(this Projectile proj, int speed, int startFrame = 0, int endFrame = -1)
+        {
+            //If no endFrame specified: take last frame on the sheet, otherwise, endFrame
+            bool lastFrame = (endFrame == -1 && proj.frame >= Main.projFrames[proj.type] - 1) || (endFrame != -1);
 
-			bool stillAnimating = !lastFrame;
-			if (stillAnimating) proj.LoopAnimation(speed, startFrame, endFrame);
-			return stillAnimating;
-		}
-	}
+            bool stillAnimating = !lastFrame;
+            if (stillAnimating) proj.LoopAnimation(speed, startFrame, endFrame);
+            return stillAnimating;
+        }
+    }
 }

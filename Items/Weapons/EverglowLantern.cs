@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Weapons
     [Content(ContentType.Bosses)]
     public class EverglowLantern : MinionItemBase
     {
-        public override void SetStaticDefaults()
+        public override void SafeSetStaticDefaults()
         {
             DisplayName.SetDefault("Everglow Lantern");
             Tooltip.SetDefault("Summons two freed Dungeon Souls at a time to fight for you\nEach Dungeon Soul occupies only half a minion slot");
@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.damage = EverhallowedLantern.BaseDmg / 2 - 1;
             Item.DamageType = DamageClass.Summon;
             Item.mana = 10;
-            Item.width = 18;
+            Item.width = 22;
             Item.height = 38;
             Item.useTime = 36;
             Item.useAnimation = 36;

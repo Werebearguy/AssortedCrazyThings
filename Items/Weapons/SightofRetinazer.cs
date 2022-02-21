@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,8 +16,8 @@ namespace AssortedCrazyThings.Items.Weapons
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.LaserRifle);
-            Item.width = 56;
-            Item.height = 26;
+            Item.width = 62;
+            Item.height = 32;
             Item.damage = 40;
             Item.mana = 0;
             Item.shoot = ProjectileID.MiniRetinaLaser;
@@ -28,6 +29,11 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = -11;
             Item.autoReuse = true;
+        }
+
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(0, 0);
         }
 
         public override void AddRecipes()

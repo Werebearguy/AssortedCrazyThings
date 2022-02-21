@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
     {
         public override void SafeSetStaticDefaults()
         {
-            DisplayName.SetDefault("MeatballSlimeProj");
+            DisplayName.SetDefault("Meatball Slime");
         }
 
         public override void SafeSetDefaults()

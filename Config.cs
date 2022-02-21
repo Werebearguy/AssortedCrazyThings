@@ -6,7 +6,7 @@ using Terraria.ModLoader.Config;
 
 namespace AssortedCrazyThings
 {
-	[Label("Content Config")]
+	[Label("Content Config (Server)")]
 	public class ContentConfig : ServerConfigBase
 	{
 		public static ContentConfig Instance => ModContent.GetInstance<ContentConfig>();
@@ -79,7 +79,7 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Placeable decorative tiles and objects")] //TODO break up functional
+		[Tooltip("Placeable decorative tiles and objects")] //TODO after paintings are obtainable, break up functional
 		[Label("Placeables")]
 		public bool Placeables { get; set; }
 
@@ -224,5 +224,26 @@ namespace AssortedCrazyThings
 			}
 			return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);
 		}
+	}
+
+	[Label("Client Config")]
+	public class ClientConfig : ModConfig
+	{
+		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
+
+		public override ConfigScope Mode => ConfigScope.ClientSide;
+
+		[Header("Satchel of Goodies - Minion Options")]
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Auto-summon")]
+		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
+		public bool SatchelofGoodiesAutosummon { get; set; }
+
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Armor progression")]
+		[Tooltip("Enable to show armor progression")]
+		public bool SatchelofGoodiesVisibleArmor { get; set; }
 	}
 }

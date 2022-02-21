@@ -43,7 +43,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
             Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/QueenLarvaProj_" + mPlayer.queenLarvaType).Value;
             Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-            sincounter = sincounter > 150 ? 0 : sincounter + 1;
             float sinY = (float)((Math.Sin((sincounter / 150f) * MathHelper.TwoPi) - 1) * 2);
 
             Vector2 stupidOffset = new Vector2(Projectile.width / 2, (Projectile.height - 20f) + sinY);
@@ -57,6 +56,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             Player player = Projectile.GetOwner();
             PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+
+            sincounter = sincounter > 150 ? 0 : sincounter + 1;
+
             if (player.dead)
             {
                 modPlayer.QueenLarva = false;

@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
+using Terraria.Enums;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
@@ -19,8 +20,7 @@ namespace AssortedCrazyThings.Items.Pets
 
         public override void SafeSetDefaults()
         {
-            Item.rare = -11;
-            Item.value = Item.buyPrice(platinum: 50);
+            Item.SetShopValues(ItemRarityColor.Orange3, Item.buyPrice(50)); //10 times more expensive then cube
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AssortedCrazyThings
 {
+    //Add all the tml base classes used here to ConfigurationSystem.GetInvalidTypes
     [Autoload(false)]
     public abstract class AssItem : ModItem
     {

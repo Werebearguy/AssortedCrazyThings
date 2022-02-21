@@ -108,12 +108,12 @@ namespace AssortedCrazyThings.Tiles
             //Take the tile, check if it actually exists and is ours
             Point p = new Point(i, j);
             Tile tile = Main.tile[p.X, p.Y];
-            if (tile != null && tile.IsActive && tile.frameX % (18 * 3) == 0 && tile.frameX % (18 * 4) == 0)
+            if (tile != null && tile.HasTile && tile.TileFrameX % (18 * 3) == 0 && tile.TileFrameX % (18 * 4) == 0)
             {
                 //Get the initial draw parameters
                 Texture2D texture = ExtraAsset.Value;
 
-                int frameY = tile.frameX / (18 * 3);
+                int frameY = tile.TileFrameX / (18 * 3);
                 int horizontalFrames = 1;
                 int verticalFrames = 1; //Increase this number to match the amount of frames you have on your extra sheet
                 Rectangle frame = texture.Frame(horizontalFrames, verticalFrames, 0, frameY);
@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.Tiles
 
                 Color color = Lighting.GetColor(p.X, p.Y);
 
-                bool direction = tile.frameY / (18 * 4) != 0; //This is related to the alternate tile data we registered before
+                bool direction = tile.TileFrameY / (18 * 4) != 0; //This is related to the alternate tile data we registered before
                 SpriteEffects effects = direction ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
                 //Some math magic to make it smoothly move up and down over time
