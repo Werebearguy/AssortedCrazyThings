@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             Tile tile = Main.tile[i, j];
-            if (tile.frameY == 0)
+            if (tile.TileFrameY == 0)
             {
                 r = 0.54f;
                 g = 0.76f;
@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (closer && Main.tile[i, j].frameY < AnimationFrameHeight)
+            if (closer && Main.tile[i, j].TileFrameY < AnimationFrameHeight)
             {
                 Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = true;
                 Main.SceneMetrics.HasCampfire = true;
@@ -95,21 +95,21 @@ namespace AssortedCrazyThings.Tiles
                 zero = Vector2.Zero;
             }
             //int height = 16;
-            int height = tile.frameY == 18 ? 18 : 16;
+            int height = tile.TileFrameY == 18 ? 18 : 16;
             int animate = AnimationFrameHeight * (maxFrames - 1);
-            if (tile.frameY < AnimationFrameHeight)
+            if (tile.TileFrameY < AnimationFrameHeight)
             {
                 animate = Main.tileFrame[Type] * AnimationFrameHeight;
             }
             Color color = Lighting.GetColor(i, j);
             Vector2 pos = new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero;
             pos.Y += 2;
-            Rectangle frame = new Rectangle(tile.frameX, tile.frameY + animate, 16, height);
+            Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY + animate, 16, height);
             spriteBatch.Draw(texture, pos, frame, color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 
             AssUtils.DrawTileHighlight(spriteBatch, i, j, Type, color, pos, frame);
 
-            if (tile.frameY == 0 && Main.rand.NextBool() && !Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
+            if (tile.TileFrameY == 0 && Main.rand.NextBool() && !Main.gamePaused && Main.instance.IsActive && (!Lighting.UpdateEveryFrame || Main.rand.NextBool(4)))
             {
                 Dust dust = Dust.NewDustDirect(new Vector2(i * 16 + 2, j * 16 - 4), 4, 8, 31, 0f, 0f, 100);
                 dust.alpha += Main.rand.Next(100);
@@ -139,10 +139,10 @@ namespace AssortedCrazyThings.Tiles
 
         public override void HitWire(int i, int j)
         {
-            int x = i - Main.tile[i, j].frameX / 18 % 3;
-            int y = j - Main.tile[i, j].frameY / 18 % 2;
+            int x = i - Main.tile[i, j].TileFrameX / 18 % 3;
+            int y = j - Main.tile[i, j].TileFrameY / 18 % 2;
             int change = AnimationFrameHeight;
-            if (Main.tile[x, y].frameY >= AnimationFrameHeight)
+            if (Main.tile[x, y].TileFrameY >= AnimationFrameHeight)
             {
                 change = -AnimationFrameHeight;
             }
@@ -153,9 +153,9 @@ namespace AssortedCrazyThings.Tiles
                 for (int m = y; m < y + 2; m++)
                 {
                     tile = Framing.GetTileSafely(l, m);
-                    if (tile.IsActive && tile.type == Type)
+                    if (tile.HasTile && tile.TileType == Type)
                     {
-                        tile.frameY = (short)(tile.frameY + change);
+                        tile.TileFrameY = (short)(tile.TileFrameY + change);
                     }
                 }
             }

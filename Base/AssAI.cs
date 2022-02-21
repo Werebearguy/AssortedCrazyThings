@@ -1319,11 +1319,11 @@ namespace AssortedCrazyThings.Base
                     int tileY = (int)npc.Center.Y / 16;
                     if (Framing.GetTileSafely(tileX, tileY - 1).LiquidAmount > 128)
                     {
-                        if (Framing.GetTileSafely(tileX, tileY + 1).IsActive)
+                        if (Framing.GetTileSafely(tileX, tileY + 1).HasTile)
                         {
                             npc.ai[0] = -1f;
                         }
-                        else if (Framing.GetTileSafely(tileX, tileY + 2).IsActive)
+                        else if (Framing.GetTileSafely(tileX, tileY + 2).HasTile)
                         {
                             npc.ai[0] = -1f;
                         }
@@ -1716,7 +1716,7 @@ namespace AssortedCrazyThings.Base
                             num42 = (int)(Projectile.Right.X) / 16;
 
                         int num43 = (int)(Projectile.Bottom.Y) / 16;
-                        if (!WorldGen.SolidTile(num42, num43) && !Main.tile[num42, num43].IsHalfBlock && Main.tile[num42, num43].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[num42, num43].type] || !Main.tile[num42, num43].IsActive || Main.tile[num42, num43].IsActuated))
+                        if (!WorldGen.SolidTile(num42, num43) && !Main.tile[num42, num43].IsHalfBlock && Main.tile[num42, num43].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[num42, num43].TileType] || !Main.tile[num42, num43].HasTile || Main.tile[num42, num43].IsActuated))
                             continue;
 
                         try
@@ -2241,7 +2241,7 @@ namespace AssortedCrazyThings.Base
                             num42 = (int)(Projectile.Right.X) / 16;
 
                         int num43 = (int)(Projectile.Bottom.Y) / 16;
-                        if (!WorldGen.SolidTile(num42, num43) && !Main.tile[num42, num43].IsHalfBlock && Main.tile[num42, num43].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[num42, num43].type] || !Main.tile[num42, num43].IsActive || Main.tile[num42, num43].IsActuated))
+                        if (!WorldGen.SolidTile(num42, num43) && !Main.tile[num42, num43].IsHalfBlock && Main.tile[num42, num43].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[num42, num43].TileType] || !Main.tile[num42, num43].HasTile || Main.tile[num42, num43].IsActuated))
                             continue;
 
                         try

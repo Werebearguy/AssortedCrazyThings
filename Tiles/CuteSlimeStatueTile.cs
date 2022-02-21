@@ -85,8 +85,8 @@ namespace AssortedCrazyThings.Tiles
         {
             // Find the coordinates of top left tile square through math
             Tile tile = Main.tile[i, j];
-            int x = i - tile.frameX / 18 % 36;
-            int y = j - tile.frameY / 18;
+            int x = i - tile.TileFrameX / 18 % 36;
+            int y = j - tile.TileFrameY / 18;
 
             Wiring.SkipWire(x, y);
             Wiring.SkipWire(x, y + 1);

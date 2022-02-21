@@ -215,13 +215,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 for (int j = value3; j < value4; j++)
                 {
-                    if (Main.tile[i, j] != null && !Main.tile[i, j].IsActuated && Main.tile[i, j].IsActive && Main.tileSolid[Main.tile[i, j].type] && !Main.tileSolidTop[Main.tile[i, j].type])
+                    Tile tile = Main.tile[i, j];
+                    if (tile != null && !tile.IsActuated && tile.HasTile && Main.tileSolid[tile.TileType] && !Main.tileSolidTop[tile.TileType])
                     {
                         Vector2 vector = default(Vector2);
                         vector.X = i * 16;
                         vector.Y = j * 16;
                         int num = 16;
-                        if (Main.tile[i, j].IsHalfBlock || Main.tile[i, j].Slope != 0)
+                        if (tile.IsHalfBlock || tile.Slope != 0)
                         {
                             vector.Y += 8f;
                             num -= 8;
@@ -444,7 +445,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         return;
                     }
-                    if (Main.tile[num181, num178].IsActiveUnactuated && Main.tileSolid[Main.tile[num181, num178].type])
+                    if (Main.tile[num181, num178].HasUnactuatedTile && Main.tileSolid[Main.tile[num181, num178].TileType])
                     {
                         flag22 = true;
                         break;
@@ -468,70 +469,34 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 int num183 = (int)((position2.X + NPC.width / 2 + ((NPC.width / 2 + 1) * num182)) / 16f);
                 int num184 = (int)((position2.Y + NPC.height - 1f) / 16f);
 
-                if (Main.tile[num183, num184] == null)
-                {
-                    Tile[,] tile3 = Main.tile;
-                    Tile tile4 = new Tile();
-                    tile3[num183, num184] = tile4;
-                }
-                if (Main.tile[num183, num184 - 1] == null)
-                {
-                    Tile[,] tile5 = Main.tile;
-                    Tile tile6 = new Tile();
-                    tile5[num183, num184 - 1] = tile6;
-                }
-                if (Main.tile[num183, num184 - 2] == null)
-                {
-                    Tile[,] tile7 = Main.tile;
-                    Tile tile8 = new Tile();
-                    tile7[num183, num184 - 2] = tile8;
-                }
-                if (Main.tile[num183, num184 - 3] == null)
-                {
-                    Tile[,] tile9 = Main.tile;
-                    Tile tile10 = new Tile();
-                    tile9[num183, num184 - 3] = tile10;
-                }
-                if (Main.tile[num183, num184 + 1] == null)
-                {
-                    Tile[,] tile11 = Main.tile;
-                    Tile tile12 = new Tile();
-                    tile11[num183, num184 + 1] = tile12;
-                }
-                if (Main.tile[num183 - num182, num184 - 3] == null)
-                {
-                    Tile[,] tile13 = Main.tile;
-                    Tile tile14 = new Tile();
-                    tile13[num183 - num182, num184 - 3] = tile14;
-                }
                 if (num183 * 16 < position2.X + NPC.width &&
                     num183 * 16 + 16 > position2.X &&
-                    ((Main.tile[num183, num184].IsActiveUnactuated &&
+                    ((Main.tile[num183, num184].HasUnactuatedTile &&
                     !Main.tile[num183, num184].topSlope() &&
                     !Main.tile[num183, num184 - 1].topSlope() &&
-                    Main.tileSolid[Main.tile[num183, num184].type] &&
-                    !Main.tileSolidTop[Main.tile[num183, num184].type]) ||
+                    Main.tileSolid[Main.tile[num183, num184].TileType] &&
+                    !Main.tileSolidTop[Main.tile[num183, num184].TileType]) ||
                     (Main.tile[num183, num184 - 1].IsHalfBlock &&
-                    Main.tile[num183, num184 - 1].IsActiveUnactuated)) &&
+                    Main.tile[num183, num184 - 1].HasUnactuatedTile)) &&
 
-                    (!Main.tile[num183, num184 - 1].IsActiveUnactuated ||
-                    !Main.tileSolid[Main.tile[num183, num184 - 1].type] ||
-                    Main.tileSolidTop[Main.tile[num183, num184 - 1].type] ||
+                    (!Main.tile[num183, num184 - 1].HasUnactuatedTile ||
+                    !Main.tileSolid[Main.tile[num183, num184 - 1].TileType] ||
+                    Main.tileSolidTop[Main.tile[num183, num184 - 1].TileType] ||
                     (Main.tile[num183, num184 - 1].IsHalfBlock &&
-                    (!Main.tile[num183, num184 - 4].IsActiveUnactuated ||
-                    !Main.tileSolid[Main.tile[num183, num184 - 4].type] ||
-                    Main.tileSolidTop[Main.tile[num183, num184 - 4].type]))) &&
+                    (!Main.tile[num183, num184 - 4].HasUnactuatedTile ||
+                    !Main.tileSolid[Main.tile[num183, num184 - 4].TileType] ||
+                    Main.tileSolidTop[Main.tile[num183, num184 - 4].TileType]))) &&
 
-                    (!Main.tile[num183, num184 - 2].IsActiveUnactuated ||
-                    !Main.tileSolid[Main.tile[num183, num184 - 2].type] ||
-                    Main.tileSolidTop[Main.tile[num183, num184 - 2].type]) &&
+                    (!Main.tile[num183, num184 - 2].HasUnactuatedTile ||
+                    !Main.tileSolid[Main.tile[num183, num184 - 2].TileType] ||
+                    Main.tileSolidTop[Main.tile[num183, num184 - 2].TileType]) &&
 
-                    (!Main.tile[num183, num184 - 3].IsActiveUnactuated ||
-                    !Main.tileSolid[Main.tile[num183, num184 - 3].type] ||
-                    Main.tileSolidTop[Main.tile[num183, num184 - 3].type]) &&
+                    (!Main.tile[num183, num184 - 3].HasUnactuatedTile ||
+                    !Main.tileSolid[Main.tile[num183, num184 - 3].TileType] ||
+                    Main.tileSolidTop[Main.tile[num183, num184 - 3].TileType]) &&
 
-                    (!Main.tile[num183 - num182, num184 - 3].IsActiveUnactuated ||
-                    !Main.tileSolid[Main.tile[num183 - num182, num184 - 3].type]))
+                    (!Main.tile[num183 - num182, num184 - 3].HasUnactuatedTile ||
+                    !Main.tileSolid[Main.tile[num183 - num182, num184 - 3].TileType]))
                 {
                     float num197 = num184 * 16;
                     if (Main.tile[num183, num184].IsHalfBlock)
@@ -572,54 +537,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     num200 = (int)((NPC.position.X + NPC.width / 2 + 15 * NPC.direction) / 16f);
                     num201 = (int)((NPC.position.Y + NPC.height - 15f) / 16f);
-                    if (Main.tile[num200, num201] == null)
-                    {
-                        Tile[,] tile15 = Main.tile;
-                        Tile tile16 = new Tile();
-                        tile15[num200, num201] = tile16;
-                    }
-                    if (Main.tile[num200, num201 - 1] == null)
-                    {
-                        Tile[,] tile17 = Main.tile;
-                        Tile tile18 = new Tile();
-                        tile17[num200, num201 - 1] = tile18;
-                    }
-                    if (Main.tile[num200, num201 - 2] == null)
-                    {
-                        Tile[,] tile19 = Main.tile;
-                        Tile tile20 = new Tile();
-                        tile19[num200, num201 - 2] = tile20;
-                    }
-                    if (Main.tile[num200, num201 - 3] == null)
-                    {
-                        Tile[,] tile21 = Main.tile;
-                        Tile tile22 = new Tile();
-                        tile21[num200, num201 - 3] = tile22;
-                    }
-                    if (Main.tile[num200, num201 + 1] == null)
-                    {
-                        Tile[,] tile23 = Main.tile;
-                        Tile tile24 = new Tile();
-                        tile23[num200, num201 + 1] = tile24;
-                    }
-                    if (Main.tile[num200 + NPC.direction, num201 - 1] == null)
-                    {
-                        Tile[,] tile25 = Main.tile;
-                        Tile tile26 = new Tile();
-                        tile25[num200 + NPC.direction, num201 - 1] = tile26;
-                    }
-                    if (Main.tile[num200 + NPC.direction, num201 + 1] == null)
-                    {
-                        Tile[,] tile27 = Main.tile;
-                        Tile tile28 = new Tile();
-                        tile27[num200 + NPC.direction, num201 + 1] = tile28;
-                    }
-                    if (Main.tile[num200 - NPC.direction, num201 + 1] == null)
-                    {
-                        Tile[,] tile29 = Main.tile;
-                        Tile tile30 = new Tile();
-                        tile29[num200 - NPC.direction, num201 + 1] = tile30;
-                    }
                     //Main.tile[num200, num201 + 1].IsHalfBlock;
                 }
 
@@ -627,16 +544,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 //int num200 = (int)((npc.position.X + (float)(npc.width / 2) + (float)(15 * npc.direction)) / 16f);
                 //int num201 = (int)((npc.position.Y + (float)npc.height - 15f) / 16f);
-                if (!(Main.tile[num200, num201 - 1].IsActiveUnactuated && (TileLoader.IsClosedDoor(Main.tile[num200, num201 - 1]) || Main.tile[num200, num201 - 1].type == 388)))
+                if (!(Main.tile[num200, num201 - 1].HasUnactuatedTile && (TileLoader.IsClosedDoor(Main.tile[num200, num201 - 1]) || Main.tile[num200, num201 - 1].TileType == 388)))
                 {
                     //Main.NewText("" + num200 + " " + num201);
                     if ((NPC.velocity.X < 0f && NPC.direction == -1) || (NPC.velocity.X > 0f && NPC.direction == 1)) //spritedir instead of dir before
                     {
                         //if (1 == 2)
                         //{
-                        //    if (npc.height >= 32 && Main.tile[num200, num201 - 2].IsActiveUnactuated && Main.tileSolid[Main.tile[num200, num201 - 2].type])
+                        //    if (npc.height >= 32 && Main.tile[num200, num201 - 2].HasUnactuatedTile && Main.tileSolid[Main.tile[num200, num201 - 2].TileType])
                         //    {
-                        //        if (Main.tile[num200, num201 - 3].IsActiveUnactuated && Main.tileSolid[Main.tile[num200, num201 - 3].type])
+                        //        if (Main.tile[num200, num201 - 3].HasUnactuatedTile && Main.tileSolid[Main.tile[num200, num201 - 3].TileType])
                         //        {
                         //            Main.NewText("1111");
                         //            npc.velocity.Y = -8f;
@@ -649,19 +566,19 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //            npc.netUpdate = true;
                         //        }
                         //    }
-                        //    else if (Main.tile[num200, num201 - 1].IsActiveUnactuated && Main.tileSolid[Main.tile[num200, num201 - 1].type])
+                        //    else if (Main.tile[num200, num201 - 1].HasUnactuatedTile && Main.tileSolid[Main.tile[num200, num201 - 1].TileType])
                         //    {
                         //        Main.NewText("3333");
                         //        npc.velocity.Y = -6f;
                         //        npc.netUpdate = true;
                         //    }
-                        //    else if (npc.position.Y + (float)npc.height - (float)(num201 * 16) > 20f && Main.tile[num200, num201].IsActiveUnactuated && !Main.tile[num200, num201].topSlope() && Main.tileSolid[Main.tile[num200, num201].type])
+                        //    else if (npc.position.Y + (float)npc.height - (float)(num201 * 16) > 20f && Main.tile[num200, num201].HasUnactuatedTile && !Main.tile[num200, num201].topSlope() && Main.tileSolid[Main.tile[num200, num201].TileType])
                         //    {
                         //        Main.NewText("4444");
                         //        npc.velocity.Y = -5f;
                         //        npc.netUpdate = true;
                         //    }
-                        //    else if (npc.directionY < 0 && (!Main.tile[num200, num201 + 1].IsActiveUnactuated || !Main.tileSolid[Main.tile[num200, num201 + 1].type]) && (!Main.tile[num200 + npc.direction, num201 + 1].IsActiveUnactuated || !Main.tileSolid[Main.tile[num200 + npc.direction, num201 + 1].type]))
+                        //    else if (npc.directionY < 0 && (!Main.tile[num200, num201 + 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num200, num201 + 1].TileType]) && (!Main.tile[num200 + npc.direction, num201 + 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num200 + npc.direction, num201 + 1].TileType]))
                         //    {
                         //        //this is for when player stands on an elevation and it just jumped aswell
                         //        Main.NewText("5555");
@@ -806,11 +723,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Tile tile2 = Framing.GetTileSafely(point2);
             Tile tile3 = Framing.GetTileSafely(point3);
 
-            bool atleastOneSolidBelow = (!tile1.IsActuated && tile1.IsActive && Main.tileSolid[tile1.type] && !TileID.Sets.Platforms[tile1.type]) ||
-                (!tile2.IsActuated && tile2.IsActive && Main.tileSolid[tile2.type] && !TileID.Sets.Platforms[tile2.type]);
+            bool atleastOneSolidBelow = (!tile1.IsActuated && tile1.HasTile && Main.tileSolid[tile1.TileType] && !TileID.Sets.Platforms[tile1.TileType]) ||
+                (!tile2.IsActuated && tile2.HasTile && Main.tileSolid[tile2.TileType] && !TileID.Sets.Platforms[tile2.TileType]);
 
             if (!atleastOneSolidBelow &&
-                ((NPC.direction == -1) ? TileID.Sets.Platforms[tile3.type] : true) && (GetTarget().Top.Y - NPC.Bottom.Y) > 0f)
+                ((NPC.direction == -1) ? TileID.Sets.Platforms[tile3.TileType] : true) && (GetTarget().Top.Y - NPC.Bottom.Y) > 0f)
             {
                 NPC.netUpdate = true;
                 NPC.position.Y += 1f;
@@ -1009,22 +926,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         int num200 = (int)((NPC.position.X + (float)(NPC.width / 2) + (float)(15 * NPC.direction)) / 16f);
                         int num201 = (int)((NPC.position.Y + (float)NPC.height - 15f) / 16f);
-                        if (Main.tile[num200 + NPC.direction, num201 + 1] == null)
-                        {
-                            Tile[,] tile27 = Main.tile;
-                            int num214 = num200 + NPC.direction;
-                            int num215 = num201 + 1;
-                            Tile tile28 = new Tile();
-                            tile27[num214, num215] = tile28;
-                        }
-                        if (Main.tile[num200 - NPC.direction, num201 + 1] == null)
-                        {
-                            Tile[,] tile29 = Main.tile;
-                            int num216 = num200 - NPC.direction;
-                            int num217 = num201 + 1;
-                            Tile tile30 = new Tile();
-                            tile29[num216, num217] = tile30;
-                        }
                         //Main.tile[num200, num201 + 1].IsHalfBlock;
                     }
 

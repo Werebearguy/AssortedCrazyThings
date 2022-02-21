@@ -85,7 +85,7 @@ namespace AssortedCrazyThings.Tiles
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
         {
             Tile tile = Main.tile[i, j];
-            tileFrameY = (short)(tile.frameY % TotalHeight);
+            tileFrameY = (short)(tile.TileFrameY % TotalHeight);
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -101,8 +101,8 @@ namespace AssortedCrazyThings.Tiles
             int width = 16;
             int height = 16;
             int offsetY = 2;
-            short frameX = tile.frameX;
-            short frameY = tile.frameY;
+            short frameX = tile.TileFrameX;
+            short frameY = tile.TileFrameY;
 
             TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref frameX, ref frameY);
 
@@ -152,8 +152,8 @@ namespace AssortedCrazyThings.Tiles
 
         public override void HitWire(int i, int j)
         {
-            int x = i - Main.tile[i, j].frameX / 18 % Width;
-            int y = j - Main.tile[i, j].frameY / 18 % Height;
+            int x = i - Main.tile[i, j].TileFrameX / 18 % Width;
+            int y = j - Main.tile[i, j].TileFrameY / 18 % Height;
             int change = TotalHeight; //frameY stores the state
             if (!IsEnabled(x, y))
             {
@@ -166,9 +166,9 @@ namespace AssortedCrazyThings.Tiles
                 for (int m = y; m < y + Height; m++)
                 {
                     tile = Framing.GetTileSafely(l, m);
-                    if (tile.IsActive && tile.type == Type)
+                    if (tile.HasTile && tile.TileType == Type)
                     {
-                        tile.frameY = (short)(tile.frameY + change);
+                        tile.TileFrameY = (short)(tile.TileFrameY + change);
                     }
                 }
             }
@@ -217,7 +217,7 @@ namespace AssortedCrazyThings.Tiles
         /// </summary>
         private static bool IsEnabled(int i, int j)
         {
-            return Main.tile[i, j].frameY < TotalHeight;
+            return Main.tile[i, j].TileFrameY < TotalHeight;
         }
     }
 

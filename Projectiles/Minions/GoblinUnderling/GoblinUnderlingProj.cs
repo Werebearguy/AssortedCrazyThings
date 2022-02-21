@@ -910,7 +910,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
                         }
 
                         int y = (int)(Projectile.Bottom.Y) / 16;
-                        if (!WorldGen.SolidTile(x, y) && !Main.tile[x, y].IsHalfBlock && Main.tile[x, y].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[x, y].type] || !Main.tile[x, y].IsActive || Main.tile[x, y].IsActuated))
+                        if (!WorldGen.SolidTile(x, y) && !Main.tile[x, y].IsHalfBlock && Main.tile[x, y].Slope <= 0 && (!TileID.Sets.Platforms[Main.tile[x, y].TileType] || !Main.tile[x, y].HasTile || Main.tile[x, y].IsActuated))
                         {
                             continue;
                         }
