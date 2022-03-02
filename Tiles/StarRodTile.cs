@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, TotalWidth, TotalHeight, ItemType);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, TotalWidth, TotalHeight, ItemType);
         }
 
         //you need these four things for the outline to work:

@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Items.Weapons
             return false; //true
         }
 
-        public override bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             //one that shoots out far 
             int index = Projectile.NewProjectile(source, player.Center.X + player.direction * 8f, player.Bottom.Y - 12f, player.velocity.X + player.direction * 1.5f, player.velocity.Y - 1f, type, damage, knockback, Main.myPlayer, 0f, 0f);

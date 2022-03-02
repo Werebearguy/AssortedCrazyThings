@@ -449,7 +449,7 @@ namespace AssortedCrazyThings
                                 spawnX = player.SpawnX;
                                 spawnY = player.SpawnY;
                             }
-                            Item.NewItem(new Vector2(spawnX, spawnY) * 16, data.ItemType);
+                            Item.NewItem(new EntitySource_WorldEvent(), new Vector2(spawnX, spawnY) * 16, data.ItemType);
                         }
                     }
                 }

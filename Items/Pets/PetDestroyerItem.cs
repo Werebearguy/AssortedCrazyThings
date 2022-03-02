@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Pets
                 return;
             }
 
-            IProjectileSource source;
+            IEntitySource source;
             if (buffIndex > -1)
             {
                 source = player.GetProjectileSource_Buff(buffIndex);

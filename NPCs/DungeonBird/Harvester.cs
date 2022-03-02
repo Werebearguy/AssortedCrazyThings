@@ -83,7 +83,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.alpha = 255;
 
-            BossBag = ModContent.ItemType<HarvesterTreasureBag>();
             //music = MusicID.Boss5; //TODO music
 
             //queenbee setdefaults
@@ -216,7 +215,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
                     randFactor = Main.rand.NextFloat(2f, 8f);
-                    index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
+                    index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
                     if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
                     {
                         soul.SetDefaults(npcTypeNew);
@@ -242,7 +241,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.BossBag(BossBag)); //this requires you to set BossBag in SetDefaults accordingly
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<HarvesterTreasureBag>()));
 
             //Relic and trophy are NOT spawned in the bag
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
@@ -293,7 +292,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (other.active && other.type == npcTypeOld)
                 {
                     other.active = false;
-                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew);
+                    int index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)other.position.X, (int)other.position.Y, npcTypeNew);
                     NPC npcnew = Main.npc[index];
                     npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
                     npcnew.timeLeft = 3600;
@@ -411,8 +410,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     SoundEngine.PlaySound(SoundID.Roar, (int)NPC.position.X, (int)NPC.position.Y, 0);
-                    int index1 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetLeftX, (int)NPC.Center.Y + TalonOffsetY, AssortedCrazyThings.harvesterTalonLeft);
-                    int index2 = NPC.NewNPC((int)NPC.Center.X + TalonOffsetRightX, (int)NPC.Center.Y + TalonOffsetY, AssortedCrazyThings.harvesterTalonRight);
+                    int index1 = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X + TalonOffsetLeftX, (int)NPC.Center.Y + TalonOffsetY, AssortedCrazyThings.harvesterTalonLeft);
+                    int index2 = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X + TalonOffsetRightX, (int)NPC.Center.Y + TalonOffsetY, AssortedCrazyThings.harvesterTalonRight);
 
                     if (Main.netMode == NetmodeID.Server)
                     {

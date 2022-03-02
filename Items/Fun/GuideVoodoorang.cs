@@ -50,7 +50,8 @@ namespace AssortedCrazyThings.Items.Fun
                             NPC.SpawnWOF(Item.position);
 
                             byte plr = Player.FindClosest(Item.position, Item.width, Item.height);
-                            Item.NewItem(Main.player[plr].getRect(), ModContent.ItemType<GuideVoodoorang>());
+                            Player player = Main.player[plr];
+                            Item.NewItem(player.GetItemSource_Misc(-1), player.getRect(), ModContent.ItemType<GuideVoodoorang>());
 
                             //despawns upon wof spawn
                             Item.TurnToAir();
