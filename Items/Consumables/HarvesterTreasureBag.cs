@@ -41,13 +41,14 @@ namespace AssortedCrazyThings.Items.Consumables
 
         public override void OpenBossBag(Player player)
         {
+            var source = player.GetItemSource_OpenItem(Type);
             //We have to replicate the expert drops from Harvester here via QuickSpawnItem
-            player.QuickSpawnItem(ItemID.Bone, Main.rand.Next(40, 61));
-            player.QuickSpawnItem(ModContent.ItemType<DesiccatedLeather>());
+            player.QuickSpawnItem(source, ItemID.Bone, Main.rand.Next(40, 61));
+            player.QuickSpawnItem(source, ModContent.ItemType<DesiccatedLeather>());
 
             if (ContentConfig.Instance.VanityArmor && Main.rand.NextBool(7))
             {
-                player.QuickSpawnItem(ModContent.ItemType<SoulHarvesterMask>());
+                player.QuickSpawnItem(source, ModContent.ItemType<SoulHarvesterMask>());
             }
         }
 

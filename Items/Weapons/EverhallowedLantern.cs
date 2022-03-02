@@ -227,7 +227,7 @@ namespace AssortedCrazyThings.Items.Weapons
             knockback *= GetSoulData(selected).KBModifier;
         }
 
-        public override bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             SoulType selected = mPlayer.selectedSoulMinionType;

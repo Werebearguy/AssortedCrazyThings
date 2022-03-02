@@ -1131,7 +1131,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         private void SpawnBoneShort(Vector2 pos, Vector2 vel, int dmg, float knock)
         {
-            Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), pos, vel, ModContent.ProjectileType<HarvesterBone>(), dmg, knock, Main.myPlayer);
+            Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, vel, ModContent.ProjectileType<HarvesterBone>(), dmg, knock, Main.myPlayer);
         }
 
         public void Transform(int to)
@@ -1141,7 +1141,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, to);
+                    int index = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, to);
                     if (Main.netMode == NetmodeID.Server && index < Main.maxNPCs)
                     {
                         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);

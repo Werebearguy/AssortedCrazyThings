@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Buffs.Pets
             if (player.whoAmI == Main.myPlayer)
             {
                 int air = ModContent.ProjectileType<PetQueenSlimeAirProj>();
-                IProjectileSource spawnSource = player.GetProjectileSource_Buff(buffIndex);
+                var spawnSource = player.GetProjectileSource_Buff(buffIndex);
                 if (player.ownedProjectileCounts[air] <= 0)
                 {
                     Projectile.NewProjectile(spawnSource, player.Center.X, player.Center.Y, 0, -0.5f, air, 0, 0f, player.whoAmI);

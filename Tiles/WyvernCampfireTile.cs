@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 32, ItemType);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ItemType);
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

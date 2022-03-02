@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Items.Weapons
                         {
                             if (Condition(player, itemType))
                             {
-                                int item = Item.NewItem(player.Center, itemType, noBroadcast: true);
+                                int item = Item.NewItem(new EntitySource_WorldEvent(), player.Center, itemType, noBroadcast: true);
                                 itemIndex = item;
                                 NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
                                 Main.item[item].active = false;
@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Items.Weapons
                     Player player = Main.LocalPlayer;
                     if (Condition(player, itemType))
                     {
-                        Item.NewItem(player.Center, itemType);
+                        Item.NewItem(new EntitySource_WorldEvent(), player.Center, itemType);
                     }
                 }
             }
@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Items.Weapons
             knockback *= GoblinUnderlingSystem.GetCurrentTier().knockbackMult;
         }
 
-        public override bool SafeShoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             if (player.ownedProjectileCounts[type] > 0)
             {

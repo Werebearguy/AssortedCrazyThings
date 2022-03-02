@@ -131,7 +131,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.alpha = 255;
             NPC.SpawnWithHigherTime(30);
 
-            BossBag = ModContent.ItemType<HarvesterTreasureBag>();
             //music = MusicID.Boss1; //TODO music
         }
 
@@ -322,7 +321,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 for (int j = 0; j < HarvesterBase.MaxSouls; j++) //spawn souls when dies, 15 total
                 {
-                    index = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
+                    index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
                     if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
                     {
                         soul.SetDefaults(npcTypeNew);
@@ -350,7 +349,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.BossBag(BossBag)); //this requires you to set BossBag in SetDefaults accordingly
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<HarvesterTreasureBag>()));
 
             //Relic and trophy are NOT spawned in the bag
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarvesterTrophyItem>(), chanceDenominator: 10));
@@ -441,7 +440,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 if (other.active && other.type == npcTypeOld)
                 {
                     other.active = false;
-                    int index = NPC.NewNPC((int)other.position.X, (int)other.position.Y, npcTypeNew);
+                    int index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)other.position.X, (int)other.position.Y, npcTypeNew);
                     NPC npcnew = Main.npc[index];
                     npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
                     npcnew.timeLeft = 3600;
@@ -696,9 +695,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         ((int)(NPC.Center.X + talonOffsetRightX), AssortedCrazyThings.harvesterTalonRight)
                     };
 
+                    var source = NPC.GetSpawnSourceForNPCFromNPCAI();
                     foreach (var (x, type) in talonTypes)
                     {
-                        int index = NPC.NewNPC(x, y, type);
+                        int index = NPC.NewNPC(source, x, y, type);
                         if (index < Main.maxNPCs && Main.npc[index] is NPC talonNPC && talonNPC.ModNPC is HarvesterTalon talon)
                         {
                             talon.ParentWhoAmI = NPC.whoAmI;

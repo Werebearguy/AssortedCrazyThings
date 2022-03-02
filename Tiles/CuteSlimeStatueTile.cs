@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, ItemType);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ItemType);
         }
 
         private bool MechSpawn(float x, float y, int[] types)
@@ -104,7 +104,7 @@ namespace AssortedCrazyThings.Tiles
             // 30 is the time before it can be used again. 
             if (npcType != -1 && Wiring.CheckMech(x, y, 30))
             {
-                npcIndex = NPC.NewNPC(spawnX, spawnY - 8, npcType);
+                npcIndex = NPC.NewNPC(Wiring.GetNPCSource(i, j), spawnX, spawnY - 8, npcType);
             }
             if (npcIndex >= 0)
             {

@@ -160,7 +160,7 @@ namespace AssortedCrazyThings.NPCs
                 distancey *= distancen;
                 npcposition.X += distancex * 5f;
                 npcposition.Y += distancey * 5f;
-                Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), npcposition.X, npcposition.Y, distancex, distancey, type, damage, 0f, Owner: Main.myPlayer);
+                Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), npcposition.X, npcposition.Y, distancex, distancey, type, damage, 0f, Owner: Main.myPlayer);
             }
         }
     }

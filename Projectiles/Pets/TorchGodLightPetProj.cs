@@ -168,7 +168,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                CanPlaceTorches = Main.SmartCursorEnabled;
+                CanPlaceTorches = Main.SmartCursorIsUsed;
                 Projectile.netUpdate = true;
             }
 

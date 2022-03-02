@@ -410,7 +410,7 @@ namespace AssortedCrazyThings.Base
         /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
         /// Use preSync to set ai[0], ai[1] and other values
         /// </summary>
-        public static int NewProjectile(IProjectileSource source, Vector2 position, Vector2 velocity, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
+        public static int NewProjectile(IEntitySource source, Vector2 position, Vector2 velocity, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
         {
             return NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, Type, Damage, Knockback, preCreate, preSync);
         }
@@ -421,7 +421,7 @@ namespace AssortedCrazyThings.Base
         /// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
         /// Use preSync to set ai[0], ai[1] and other values
         /// </summary>
-        public static int NewProjectile(IProjectileSource source, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
+        public static int NewProjectile(IEntitySource source, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
         {
             if (preCreate != null)
             {
@@ -487,20 +487,25 @@ namespace AssortedCrazyThings.Base
         }
 
         //Clone from vanilla since it's private
-        private static void FindBannerToAssociateTo(IProjectileSource spawnSource, Projectile next)
+        private static void FindBannerToAssociateTo(IEntitySource spawnSource, Projectile next)
         {
-            ProjectileSource_ProjectileParent projectileSource_ProjectileParent = spawnSource as ProjectileSource_ProjectileParent;
-            if (projectileSource_ProjectileParent != null && projectileSource_ProjectileParent.ParentProjectile != null)
+            EntitySource_Parent entitySource_Parent = spawnSource as EntitySource_Parent;
+            if (entitySource_Parent == null)
             {
-                Projectile parentProjectile = projectileSource_ProjectileParent.ParentProjectile;
-                next.bannerIdToRespondTo = parentProjectile.bannerIdToRespondTo;
                 return;
             }
 
-            ProjectileSource_NPC projectileSource_NPC = spawnSource as ProjectileSource_NPC;
-            if (projectileSource_NPC != null && projectileSource_NPC.NPC != null)
+            Projectile projectile = entitySource_Parent.Entity as Projectile;
+            if (projectile != null)
             {
-                int num = next.bannerIdToRespondTo = Item.NPCtoBanner(projectileSource_NPC.NPC.BannerID());
+                next.bannerIdToRespondTo = projectile.bannerIdToRespondTo;
+                return;
+            }
+
+            NPC nPC = entitySource_Parent.Entity as NPC;
+            if (nPC != null)
+            {
+                next.bannerIdToRespondTo = Item.NPCtoBanner(nPC.BannerID());
             }
         }
 
@@ -513,7 +518,7 @@ namespace AssortedCrazyThings.Base
             {
                 if (Main.netMode == NetmodeID.Server)
                 {
-                    int item = Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
+                    int item = Item.NewItem(npc.GetItemSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
                     Main.timeItemSlotCannotBeReusedFor[item] = 54000;
                     for (int p = 0; p < Main.maxPlayers; p++)
                     {
@@ -530,7 +535,7 @@ namespace AssortedCrazyThings.Base
                 {
                     if (condition != null && condition(npc, Main.LocalPlayer) ||
                         condition == null)
-                        Item.NewItem((int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
+                        Item.NewItem(npc.GetItemSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
                 }
                 //npc.value = 0f;
             }

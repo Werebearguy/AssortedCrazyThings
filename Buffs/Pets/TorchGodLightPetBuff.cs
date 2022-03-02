@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Buffs.Pets
         {
             base.ModifyBuffTip(ref tip, ref rare);
 
-            if (!Main.SmartCursorEnabled)
+            if (!Main.SmartCursorIsUsed)
             {
                 tip += "\nEnable 'Smart Cursor' to automatically place torches";
             }

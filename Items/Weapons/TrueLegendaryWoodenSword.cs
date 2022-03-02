@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Items.Weapons
             CreateRecipe(1).AddIngredient(ModContent.ItemType<LegendaryWoodenSword>(), 1).AddIngredient(ItemID.BrokenHeroSword, 1).AddTile(TileID.MythrilAnvil).Register();
         }
 
-        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Projectile.NewProjectile(source, player.Center + Vector2.Normalize(velocity) * 30f, velocity, type, ProjDamage, knockback, Main.myPlayer);
             return false;

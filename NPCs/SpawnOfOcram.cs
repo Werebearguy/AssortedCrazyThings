@@ -290,14 +290,14 @@ namespace AssortedCrazyThings.NPCs
                     Vector2 randomCenter = center + new Vector2(Main.rand.Next(-50, 51), Main.rand.Next(-50, 51));
                     Vector2 toPlayer = player.DirectionFrom(randomCenter);
                     toPlayer *= 4;
-                    int leftSickle = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), center.X - NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+                    int leftSickle = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), center.X - NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
                     Main.projectile[leftSickle].tileCollide = false;
                     Main.projectile[leftSickle].timeLeft = projectileTravelTime;
 
                     randomCenter = center + new Vector2(Main.rand.Next(-50, 51), Main.rand.Next(-50, 51));
                     toPlayer = player.DirectionFrom(randomCenter);
                     toPlayer *= 4;
-                    int rightSickle = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), center.X + NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+                    int rightSickle = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), center.X + NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
                     Main.projectile[rightSickle].tileCollide = false;
                     Main.projectile[rightSickle].timeLeft = projectileTravelTime;
 
