@@ -904,7 +904,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         Vector2 toPlayer = target.DirectionFrom(pos);
                         int damage = (int)(NPC.damage * 0.75f);
                         damage = NPC.GetAttackDamage_ForProjectiles(damage, damage * 0.9f);
-                        Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer);
                     }
                 }
 
@@ -1219,7 +1219,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         int spawnX = (int)NPC.Center.X + NPC.spriteDirection * -6;
                         int spawnY = (int)NPC.Center.Y + 18;
 
-                        int index = NPC.NewNPC(spawnX, spawnY, ModContent.NPCType<DungeonSoulRevive>());
+                        int index = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), spawnX, spawnY, ModContent.NPCType<DungeonSoulRevive>());
                         if (index < Main.maxNPCs && Main.npc[index] is NPC reviveSoulNPC && reviveSoulNPC.ModNPC is DungeonSoulRevive reviveSoul)
                         {
                             reviveSoulNPC.velocity = Vector2.Normalize(Main.rand.NextVector2Circular(NPC.width / 2, NPC.height / 2)) * Main.rand.NextFloat(12f, 16f);
