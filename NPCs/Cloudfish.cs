@@ -47,16 +47,18 @@ namespace AssortedCrazyThings.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.ZoneSkyHeight)
+            if (spawnInfo.Player.ZoneSkyHeight)
             {
-                if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].LiquidAmount == 0)
+                int x = spawnInfo.SpawnTileX;
+                int y = spawnInfo.SpawnTileY;
+                if (Main.tile[x, y].LiquidAmount == 0)
                 {
                     return 0f;
                 }
                 else if (
-                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY) &&
-                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1) &&
-                   !WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2))
+                   !WorldGen.SolidTile(x, y) &&
+                   !WorldGen.SolidTile(x, y + 1) &&
+                   !WorldGen.SolidTile(x, y + 2))
                 {
                     return SpawnCondition.Sky.Chance * 4f; //0.05f before, 100f now because water check
                 }

@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Items
                 // Can use item
                 tooltips.Add(new TooltipLine(Mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
                 {
-                    overrideColor = new Color(35, 200, 254)
+                    OverrideColor = new Color(35, 200, 254)
                 });
             }
             else
