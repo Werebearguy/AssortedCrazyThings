@@ -560,7 +560,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
                 {
                     tooltips.Add(new TooltipLine(Mod, "NoUse", "You have no summoned slime to equip this on")
                     {
-                        overrideColor = Color.OrangeRed
+                        OverrideColor = Color.OrangeRed
                     });
                 }
             }

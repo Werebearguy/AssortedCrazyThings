@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.GameContent.ObjectInteractions;
 
 namespace AssortedCrazyThings.Tiles
 {
@@ -74,7 +75,7 @@ namespace AssortedCrazyThings.Tiles
         //TileID.Sets.HasOutlines[Type] = true;
         //TileID.Sets.DisableSmartCursor[Type] = true;
         //and this hook
-        public override bool HasSmartInteract()
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
         {
             return true;
         }

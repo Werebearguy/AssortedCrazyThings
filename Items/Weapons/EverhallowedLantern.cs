@@ -261,13 +261,13 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 if (Main.LocalPlayer.HasItem(ModContent.ItemType<EverhallowedLantern>()))
                 {
-                    if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
                     {
-                        tooltips[i].text += " (" + data.Name + ")";
+                        tooltips[i].Text += " (" + data.Name + ")";
                     }
                 }
 
-                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Tooltip0")
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Tooltip0")
                 {
                     line = tooltips[i];
                 }

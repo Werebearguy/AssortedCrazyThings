@@ -348,18 +348,18 @@ namespace AssortedCrazyThings.Items.Weapons
                 TooltipLine line = tooltips[i];
                 if (hasController)
                 {
-                    if (line.mod == "Terraria" && line.Name == "ItemName")
+                    if (line.Mod == "Terraria" && line.Name == "ItemName")
                     {
-                        line.text += " (" + data.Name + ")";
+                        line.Text += " (" + data.Name + ")";
                     }
                 }
 
-                if (line.mod == "Terraria" && line.Name == "Damage")
+                if (line.Mod == "Terraria" && line.Name == "Damage")
                 {
                     damageIndex = i;
                 }
 
-                if (line.mod == "Terraria" && line.Name == "Knockback")
+                if (line.Mod == "Terraria" && line.Name == "Knockback")
                 {
                     knockbackIndex = i;
                 }
