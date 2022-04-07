@@ -382,34 +382,37 @@ namespace AssortedCrazyThings
             int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
             int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 
-            Item[][] inventoryArray = { Player.inventory, Player.bank.item, Player.bank2.item, Player.bank3.item }; //go though player inv
+            Item[][] inventoryArray = { Player.inventory, Player.bank.item, Player.bank2.item, Player.bank3.item, Player.bank4.item }; //go though player inv
             for (int y = 0; y < inventoryArray.Length; y++)
             {
                 for (int e = 0; e < inventoryArray[y].Length; e++)
                 {
-                    if (inventoryArray[y][e].type == itemTypeOld) //find inert soul
+                    Item item = inventoryArray[y][e];
+                    if (item.type == itemTypeOld) //find inert soul
                     {
-                        tempStackCount = inventoryArray[y][e].stack;
-                        inventoryArray[y][e].SetDefaults(itemTypeNew); //override with awakened
-                        inventoryArray[y][e].stack = tempStackCount;
+                        tempStackCount = item.stack;
+                        item.SetDefaults(itemTypeNew); //override with awakened
+                        item.stack = tempStackCount;
                     }
                 }
             }
 
             //trash slot
-            if (Player.trashItem.type == itemTypeOld)
+            Item trashItem = Player.trashItem;
+            if (trashItem.type == itemTypeOld)
             {
-                tempStackCount = Player.trashItem.stack;
-                Player.trashItem.SetDefaults(itemTypeNew); //override with awakened
-                Player.trashItem.stack = tempStackCount;
+                tempStackCount = trashItem.stack;
+                trashItem.SetDefaults(itemTypeNew);
+                trashItem.stack = tempStackCount;
             }
 
             //mouse item
-            if (Main.netMode != NetmodeID.Server && Main.mouseItem.type == itemTypeOld)
+            Item mouseItem = Main.mouseItem;
+            if (Main.netMode != NetmodeID.Server && mouseItem.type == itemTypeOld)
             {
-                tempStackCount = Main.mouseItem.stack;
-                Main.mouseItem.SetDefaults(itemTypeNew); //override with awakened
-                Main.mouseItem.stack = tempStackCount;
+                tempStackCount = mouseItem.stack;
+                mouseItem.SetDefaults(itemTypeNew);
+                mouseItem.stack = tempStackCount;
             }
         }
 
