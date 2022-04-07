@@ -22,7 +22,6 @@ using Terraria.ModLoader.IO;
 using AssortedCrazyThings.Projectiles.NPCs.Bosses;
 using Terraria.GameContent;
 using System.Collections.Generic;
-using AssortedCrazyThings.Dusts;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -33,7 +32,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public static readonly string name = "Soul Harvester";
         public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
         public static Color deathColor = new Color(35, 200, 254);
-        public const int FrameCountHorizontal = 5;
+        public const int FrameCountHorizontal = 4;
         public const int FrameCountVertical = 5;
         public const int FrameWidth = 314; //Old sprite 470
         public const int FrameHeight = 196; //Old sprite 254
@@ -233,7 +232,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return;
             }
 
-            if (AI_Animation != Animation_Swoop && AI_Animation != Animation_Weakened)
+            if (AI_Animation != Animation_Swoop)
             {
                 NPC.LoopAnimation(FrameHeight, 6, endFrame: lastFrame);
             }
@@ -415,7 +414,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
 
                     SetState(State_Weakened);
-                    AI_Animation = Animation_Weakened;
+                    //AI_Animation = Animation_Weakened;
                     SetFrame(0);
 
                     for (int i = 0; i < NPC.maxBuffs; i++)
@@ -545,7 +544,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return animation switch
             {
                 Animation_Swoop => 2,
-                Animation_Weakened => 2,
+                //Animation_Weakened => 2,
                 _ => FrameCountVertical - 1
             };
         }
@@ -557,27 +556,26 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public const float State_Weakened = 4f; //Can enter from any state, special conditions (ontop of basic life <= 1)
         public const float State_Weakened_SeekSpace = 5f;
 
-        public const int Swoop_post_time = 90;
+        public const int Swoop_Post_Time = 90;
 
         //Substates:
-        public const int Swoop_seekStart = 0;//Second half the "U"
-        public const int Swoop_swooping = 1; //First half the "U"
+        public const int Swoop_SeekStart = 0;//Second half the "U"
+        public const int Swoop_Swooping = 1; //First half the "U"
 
-        public const int Swooping_distance = 500;
-        public const int Swooping_height = 280;
+        public const int Swooping_Distance = 500;
+        public const int Swooping_Height = 280;
         public const int Swoop_Count = 3;
         public const int Revive_Count = 3;
         public const int SpawnedSouls_Count = 15;
         //TODO needs dynamic method based on revive count
 
-        public const int Bombing_distance = Swooping_distance + 300;
-        public const int Bombing_height = 200;
+        public const int Bombing_Distance = Swooping_Distance + 300;
+        public const int Bombing_Height = 200;
 
         public const int Animation_NoHorizontal = 0;
         public const int Animation_Flight = 1;
         public const int Animation_Swoop = 2;
         public const int Animation_Bombing = 3;
-        public const int Animation_Weakened = 4;
 
         public ref float AI_State => ref NPC.ai[0];
 
@@ -628,7 +626,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public bool StateToDisplayMeleeIndicator => AI_State == State_Swoop && AI_Timer < 0 || VulnerableToMelee;
 
-        public bool VulnerableToMelee => AI_State == State_Swoop && AI_SubState == Swoop_swooping;
+        public bool VulnerableToMelee => AI_State == State_Swoop && AI_SubState == Swoop_Swooping;
 
         //Not synced, should be clientside
         public bool displayMeleeIndicator = false;
@@ -753,7 +751,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 HarvesterTalon talon = talons[i];
                 if (talon.AI_State == HarvesterTalon.State_Punching)
                 {
-                    if (talon.NPC.Top.Y > NPC.Center.Y + Bombing_height)
+                    if (talon.NPC.Top.Y > NPC.Center.Y + Bombing_Height)
                     {
                         //Main.NewText("manually retract talon " + i);
                         talon.AI_State = HarvesterTalon.State_Seek_Retract;
@@ -933,7 +931,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 int count = Math.Abs(AI_Counter);
                 bool keepSwooping = count <= Swoop_Count;
 
-                if (AI_SubState == Swoop_seekStart)
+                if (AI_SubState == Swoop_SeekStart)
                 {
                     float speed = 10;
                     const float minInertia = 6;
@@ -942,7 +940,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (AI_Counter != 0 && AI_Animation == Animation_Swoop)
                     {
                         float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.4f, 1);
-                        float swoopPostTime = Swoop_post_time * lifeRatioClamped;
+                        float swoopPostTime = Swoop_Post_Time * lifeRatioClamped;
 
                         //This means a swoop has already taken place, and the "post-swoop" frame should be displayed for a while
                         AI_Timer++;
@@ -966,9 +964,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     Vector2 toPlayer = target.DirectionFrom(NPC.Bottom); //Talons should hit center of player
                     bool leftOfPlayer = toPlayer.X > 0;
 
-                    int targetY = keepSwooping ? Swooping_height : Bombing_height;
+                    int targetY = keepSwooping ? Swooping_Height : Bombing_Height;
 
-                    Vector2 start = new Vector2(Swooping_distance, -targetY);
+                    Vector2 start = new Vector2(Swooping_Distance, -targetY);
                     if (AI_Counter == 0)
                     {
                         //First swoop
@@ -1033,7 +1031,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         AI_Timer--;
                         float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.4f, 1);
-                        float swoopPostTime = Swoop_post_time * lifeRatioClamped;
+                        float swoopPostTime = Swoop_Post_Time * lifeRatioClamped;
                         if (AI_Timer < -swoopPostTime)
                         {
                             AI_Timer = 0;
@@ -1041,7 +1039,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                             if (keepSwooping)
                             {
                                 //This does keep whatever animation was previously happening, but changes it on swoop
-                                SetState(subState: Swoop_swooping);
+                                SetState(subState: Swoop_Swooping);
                                 NPC.direction = leftOfPlayer.ToDirectionInt();
                                 AI_Animation = Animation_Swoop;
                                 SetFrame(0);
@@ -1056,7 +1054,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                     }
                 }
-                else if (AI_SubState == Swoop_swooping)
+                else if (AI_SubState == Swoop_Swooping)
                 {
                     if (AI_Timer == 0)
                     {
@@ -1072,7 +1070,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     //Go down towards straight line smoothly, fast at first (to create half of "u" shape)
                     //Number from 0 (start) to 1 (end, reached swoop location)
 
-                    float xProgress = AI_Timer / Swooping_distance;
+                    float xProgress = AI_Timer / Swooping_Distance;
                     float yProgress = EaseOutLinear(xProgress, 1f);
 
                     //Used on VELOCITY, meaning this is a parabola position wise
@@ -1094,7 +1092,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                     if (xProgress >= 0.95f)
                     {
-                        //Abount to hit player/finish swoop down
+                        //About to hit player/finish swoop down
                         SetFrame(1);
                     }
 
@@ -1112,7 +1110,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                         if (keepSwooping)
                         {
-                            SetState(subState: Swoop_seekStart);
+                            SetState(subState: Swoop_SeekStart);
                         }
                         else
                         {
@@ -1153,7 +1151,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //Keep constant speed towards direction (not player)
                 float xDir = NPC.direction * xSpeed;
 
-                float xProgress = AI_Timer / Bombing_distance;
+                float xProgress = AI_Timer / Bombing_Distance;
 
                 //Adjust Y level to keep same level to targeted player if not reached player yet
                 Vector2 targetCenter = target.Center;
@@ -1161,7 +1159,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float yDir = NPC.velocity.Y;
                 if (NPC.direction * toTarget.X > 0)
                 {
-                    targetCenter += new Vector2(0, -Bombing_height);
+                    targetCenter += new Vector2(0, -Bombing_Height);
                     toTarget = targetCenter - NPC.Center;
                     int ySpeed = 20;
                     if (toTarget.LengthSquared() > ySpeed * ySpeed)
@@ -1172,7 +1170,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     yDir = (NPC.velocity.Y * (inertia - 1) + toTarget.Y) / inertia;
                 }
 
-                if (toTarget.Y > Bombing_height)
+                if (toTarget.Y > Bombing_Height)
                 {
                     //player below targeted bombing line, move directly with player to catch up
                     //yDir *= 1;
@@ -1199,6 +1197,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
             else if (AI_State == State_Weakened)
             {
+                //TODO REWORK THIS
                 NPC.velocity *= 0.98f;
 
                 float len = NPC.velocity.Length();
@@ -1397,7 +1396,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         private void HandleMeleeIndicator(Player target)
         {
-            return;
+            return; //TODO disabled for now
 
             if (Main.myPlayer == target.whoAmI)
             {
