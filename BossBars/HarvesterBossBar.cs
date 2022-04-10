@@ -33,6 +33,7 @@ namespace AssortedCrazyThings.BossBars
 
             bossHeadIndex = npc.GetBossHeadTextureIndex();
             lifePercent = Utils.Clamp(npc.life / (float)npc.lifeMax, 0f, 1f);
+            shieldPercent = 0f;
 
             if (npc.ModNPC is Harvester harvester)
             {
@@ -43,8 +44,9 @@ namespace AssortedCrazyThings.BossBars
 
                 lifePercent = 0f;
 
-                //TODO shield
-                //shieldPercent = Utils.Clamp(harvester.RemainingShields, 0f, 1f);
+                var stats = harvester.GetAIStats();
+                shieldPercent = Utils.Clamp(harvester.ReviveProgress / Harvester.Revive_Duration, 0f, 1f);
+                shieldPercent = Utils.Remap(shieldPercent, 0f, 1f, Harvester.Revive_MinHP, stats.MaxHP);
             }
 
             return true;

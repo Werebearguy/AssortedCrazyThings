@@ -9,6 +9,8 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses
     [Content(ContentType.Bosses)]
     public class HarvesterFracturedSoul : AssProjectile
     {
+        public float MaxSpeed => Projectile.ai[0];
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fractured Soul");
@@ -22,6 +24,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses
             Projectile.alpha = 255;
             Projectile.hostile = true;
             Projectile.tileCollide = false;
+            Projectile.timeLeft = 240;
 
             Projectile.width = 16;
             Projectile.height = 16;
@@ -75,7 +78,12 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses
                 Projectile.velocity *= speed;
             }
 
-            if (Projectile.velocity.Length() < 18f)
+            float maxSpeed = MaxSpeed;
+            if (maxSpeed <= 0)
+            {
+                maxSpeed = 18;
+            }
+            if (Projectile.velocity.Length() < maxSpeed)
             {
                 Projectile.velocity *= 1.02f;
             }

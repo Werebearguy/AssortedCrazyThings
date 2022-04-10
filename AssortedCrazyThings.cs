@@ -80,7 +80,6 @@ namespace AssortedCrazyThings
             {
                 ModContent.NPCType<DungeonSoul>(),
                 ModContent.NPCType<DungeonSoulFreed>(),
-                ModContent.NPCType<DungeonSoulRevive>()
             };
 
             soulBuffBlacklist = tempList.ToArray();

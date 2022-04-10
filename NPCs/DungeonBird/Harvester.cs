@@ -22,6 +22,7 @@ using Terraria.ModLoader.IO;
 using AssortedCrazyThings.Projectiles.NPCs.Bosses;
 using Terraria.GameContent;
 using System.Collections.Generic;
+using AssortedCrazyThings.BossBars;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -29,6 +30,26 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
     [Content(ContentType.Bosses)]
     public class Harvester : AssNPC
     {
+        public class AIStats
+        {
+            public float MaxHP { get; init; }
+
+            public int FireballInterval { get; init; } = 50;
+
+            public int FireballDuration { get; init; } = 300;
+
+            public float FireballSpeed { get; init; } = 18;
+
+            public bool AlwaysShootFireballs { get; init; }
+
+            public int SwoopWaitTime { get; init; } = 80;
+
+            public AIStats()
+            {
+
+            }
+        }
+
         public static readonly string name = "Soul Harvester";
         public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
         public static Color deathColor = new Color(35, 200, 254);
@@ -37,7 +58,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public const int FrameWidth = 314; //Old sprite 470
         public const int FrameHeight = 196; //Old sprite 254
 
-        public readonly static int talonDamage = 22;
+        public readonly static int talonDamage = 24;
         public readonly static int wid = 96;
         public readonly static int hei = 96;
 
@@ -54,6 +75,18 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public static Asset<Texture2D> WingsAsset { get; private set; }
         public static Asset<Texture2D> MeleeIndicatorAsset { get; private set; }
 
+        public static Dictionary<int, AIStats> reviveToAIStats { get; private set; }
+
+        public AIStats GetAIStats()
+        {
+            if (reviveToAIStats.TryGetValue(RevivesDone, out AIStats stats))
+            {
+                return stats;
+            }
+
+            return reviveToAIStats[0];
+        }
+
         public override void Load()
         {
             if (!Main.dedServ)
@@ -65,6 +98,29 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 Main.instance.LoadItem(warriorEmblem);
                 MeleeIndicatorAsset = TextureAssets.Item[warriorEmblem];
             }
+
+            reviveToAIStats = new Dictionary<int, AIStats>()
+            {
+                [0] = new AIStats
+                {
+                    MaxHP = 1f,
+                },
+                [1] = new AIStats
+                {
+                    MaxHP = 0.6f,
+                    FireballDuration = 600,
+                    FireballSpeed = 15,
+                    FireballInterval = 35,
+                },
+                [2] = new AIStats
+                {
+                    MaxHP = 0.3f,
+                    FireballDuration = 0,
+                    FireballInterval = 60,
+                    SwoopWaitTime = 34,
+                    AlwaysShootFireballs = true,
+                },
+            };
         }
 
         public override void Unload()
@@ -72,6 +128,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             SheetAsset = null;
             WingsAsset = null;
             MeleeIndicatorAsset = null;
+
+            reviveToAIStats = null;
         }
 
         public override void SetStaticDefaults()
@@ -117,7 +175,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.height = hei;
             NPC.damage = talonDamage; //just a dummy value, it deals no contact damage. Used for projectile spawns
             NPC.defense = 15;
-            NPC.lifeMax = 2000;
+            NPC.lifeMax = 1750;
             NPC.scale = 1f;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
@@ -130,6 +188,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.alpha = 255;
             NPC.SpawnWithHigherTime(30);
 
+            NPC.BossBar = ModContent.GetInstance<HarvesterBossBar>();
+
+            DrawOffsetY = 36; //By default, hitbox aligns with bottom center of the frame. This pushes it up
             //music = MusicID.Boss1; //TODO music
         }
 
@@ -148,10 +209,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             writer.WriteVarInt(AI_Counter);
             writer.Write(activeTalonIndex);
-            writer.Write(revivesDone);
+            writer.Write(RevivesDone);
 
             BitsByte flags = new BitsByte();
-            flags[0] = allowSpeedAdjustment;
+            flags[0] = allowAnimationSpeedAdjustment;
             writer.Write(flags);
         }
 
@@ -159,10 +220,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             AI_Counter = reader.ReadVarInt();
             activeTalonIndex = reader.ReadByte();
-            revivesDone = reader.ReadByte();
+            RevivesDone = reader.ReadByte();
 
             BitsByte flags = reader.ReadByte();
-            allowSpeedAdjustment = flags[0];
+            allowAnimationSpeedAdjustment = flags[0];
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
@@ -240,12 +301,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.IsABestiaryIconDummy)
-            {
-                //Will use a separate texture later
-                return false;
-            }
-
             drawColor = NPC.GetAlpha(drawColor);
 
             //Vanilla draw code
@@ -265,6 +320,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             asset = WingsAsset;
             texture = asset.Value;
             spriteBatch.Draw(texture, drawPosition + halfSizeOff - textureOff - screenPos, NPC.frame, NPC.GetAlpha(Color.White), NPC.rotation, halfSize, NPC.scale, effects, 0f);
+
+            if (fadingAuraTimer > 0 && fadingAuraTimerMax > 0)
+            {
+                asset = SheetAsset;
+                texture = asset.Value;
+                float scale = fadingAuraTimer / (float)fadingAuraTimerMax;
+                float scaleInverse = 1f - scale;
+                spriteBatch.Draw(texture, drawPosition + halfSizeOff - textureOff - screenPos, NPC.frame, drawColor * scale * fadingAuraAlphaIntensity, NPC.rotation, halfSize, NPC.scale + scaleInverse * fadingAuraScaleIntensity, effects, 0f);
+            }
 
             //TODO figure out a better way to display it
             /*
@@ -393,16 +457,16 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override bool CheckDead()
         {
-            if (revivesDone < Revive_Count)
+            if (RevivesDone < Revive_Count)
             {
                 //Main.NewText(Main.GameUpdateCount + " checkdead false " + (revivesDone < Revive_Count));
                 NPC.life = NPC.lifeMax;
-                NPC.defense = 999;
+                NPC.defense = Revive_Defense;
 
                 if (AI_State != State_Weakened)
                 {
                     NPC.dontTakeDamage = true; //Set for one tick to prevent damage in same tick from applying
-                    revivesDone++;
+                    RevivesDone++;
                     //Main.NewText("revive #" + revivesDone);
 
                     if (Main.netMode != NetmodeID.Server)
@@ -550,13 +614,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         }
 
         public const float State_KeepCurrent = -1f;
-        public const float State_Main = 0f; //Basic flying, homing attack. Generates attacks after it
+        public const float State_Fireball = 0f; //Basic flying, homing attack. Generates attacks after it
         public const float State_Swoop = 2f;
         public const float State_Bombing = 3f;
-        public const float State_Weakened = 4f; //Can enter from any state, special conditions (ontop of basic life <= 1)
-        public const float State_Weakened_SeekSpace = 5f;
-
-        public const int Swoop_Post_Time = 90;
+        public const float State_Weakened = 4f; //Can enter from any state, special conditions
 
         //Substates:
         public const int Swoop_SeekStart = 0;//Second half the "U"
@@ -565,9 +626,10 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         public const int Swooping_Distance = 500;
         public const int Swooping_Height = 280;
         public const int Swoop_Count = 3;
-        public const int Revive_Count = 3;
-        public const int SpawnedSouls_Count = 15;
-        //TODO needs dynamic method based on revive count
+        public const int Revive_Count = 2;
+        public const float Revive_MinHP = 0.1f;
+        public const int Revive_Duration = 180;
+        public const int Revive_Defense = 999;
 
         public const int Bombing_Distance = Swooping_Distance + 300;
         public const int Bombing_Height = 200;
@@ -612,27 +674,52 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         //Synced
         //0: no revives yet
         //1: first revive initiated/ongoing
-        //2: second revive initiated/ongoing
-        //3: final possible revive initiated/ongoing
-        private byte revivesDone = 0;
+        //...
+        //Revive_Count: final possible revive initiated/ongoing
+        public byte RevivesDone { get; private set; }
 
-        public int ReviveSoulsProgress
-        {
-            get => AI_Counter;
-            set => AI_Counter = value;
-        }
+        public ref float ReviveProgress => ref AI_Timer; 
 
-        public bool IsReviving => AI_State == State_Weakened || AI_State == State_Weakened_SeekSpace;
+        public bool IsReviving => AI_State == State_Weakened;
 
         public bool StateToDisplayMeleeIndicator => AI_State == State_Swoop && AI_Timer < 0 || VulnerableToMelee;
 
         public bool VulnerableToMelee => AI_State == State_Swoop && AI_SubState == Swoop_Swooping;
 
-        //Not synced, should be clientside
-        public bool displayMeleeIndicator = false;
-        public bool displayedMeleeIndicatorOnce = false;
+        //Not synced, serverside
+        public int FireballTimer { get; private set; }
 
-        public bool allowSpeedAdjustment = true;
+        //Not synced, should be clientside
+        private bool displayMeleeIndicator = false;
+        private bool displayedMeleeIndicatorOnce = false;
+
+        private bool allowAnimationSpeedAdjustment = true;
+
+        private float fadingAuraAlphaIntensity = 0f;
+        private float fadingAuraScaleIntensity = 0f;
+        private int fadingAuraTimerMax = 0;
+        private int fadingAuraTimer = 0;
+
+        private void SetFadingAura(int alphaTimer, float alphaIntensity = 0.8f, float scaleIntensity = 0.5f)
+        {
+            fadingAuraTimerMax = fadingAuraTimer = alphaTimer;
+            fadingAuraAlphaIntensity = alphaIntensity;
+            fadingAuraScaleIntensity = scaleIntensity;
+        }
+
+        private void HandleFadingAura()
+        {
+            if (fadingAuraTimer > 0)
+            {
+                fadingAuraTimer--;
+            }
+            else
+            {
+                fadingAuraTimerMax = 0;
+                fadingAuraAlphaIntensity = 0f;
+                fadingAuraScaleIntensity = 0f;
+            }
+        }
 
         public override void AI()
         {
@@ -650,18 +737,36 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 NPC.TargetClosest();
             }
 
+            HandleMeleeIndicator(target);
+
+            HandleAnimation();
+
+            HandleReviveVisuals();
+
+            HandleFadingAura();
+
+            HandleReviveTrigger();
+
+            List<HarvesterTalon> talons = GetTalons();
+
+            MonitorExtendedTalons(talons);
+
             NPC.chaseable = !IsReviving;
             NPC.dontTakeDamage = IsReviving;
             NPC.scale = 1f;
 
-            if (!IsReviving && NPC.defense == 999)
+            if (!IsReviving && NPC.defense == Revive_Defense)
             {
+                //Restore defense after revived
                 NPC.defense = NPC.defDefense;
             }
 
             if (target.dead && !IsReviving)
             {
-                NPC.velocity.Y += 0.04f;
+                AI_Animation = Animation_Flight;
+                SetState(State_Fireball);
+                NPC.velocity.Y += 0.06f;
+                NPC.velocity.X *= 0.97f;
                 if (NPC.timeLeft > 10)
                 {
                     NPC.timeLeft = 10;
@@ -669,7 +774,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 return;
             }
 
-            DrawOffsetY = 36; //By default, hitbox aligns with bottom center of the frame. This pushes it up
             NPC.rotation = NPC.velocity.X * 0.02f;
 
             int diff = 38; //Distance offset between two talons
@@ -709,10 +813,9 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 }
 
                 AI_Timer = 0;
-                //SetState(State_Swoop);
-                NPC.TargetClosest(false);
+                NPC.TargetClosest();
 
-                SetState(State_Main);
+                SetState(State_Fireball);
                 Initialized = true;
             }
 
@@ -725,22 +828,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 {
                     AI_Intro = 255;
                     NPC.alpha = 0;
+                    SetFadingAura(20, 0.8f, 0.5f);
                     NPC.netUpdate = true;
                 }
                 return;
             }
 
-            List<HarvesterTalon> talons = GetTalons();
-
             HandleAI(target, talons);
-
-            MonitorExtendedTalons(talons);
-
-            HandleMeleeIndicator(target);
-
-            HandleAnimation();
-
-            HandleReviveSoulsVisuals();
         }
 
         private void MonitorExtendedTalons(List<HarvesterTalon> talons)
@@ -785,13 +879,34 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         private void HandleAI(Player target, List<HarvesterTalon> talons)
         {
             float lifeRatio = NPC.life / (float)NPC.lifeMax;
+            var aiStats = GetAIStats();
 
-            if (AI_State == State_Main)
+            if (AI_State == State_Fireball || aiStats.AlwaysShootFireballs)
+            {
+                //Generate souls in a half circle above the boss and have them home to whatever the nearest player to them is
+                FireballTimer++;
+                if (FireballTimer % aiStats.FireballInterval == 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        Vector2 random = (-Vector2.UnitY).RotatedByRandom(MathHelper.PiOver2) * 160;
+                        Vector2 pos = NPC.Center + random;
+                        Vector2 toPlayer = target.DirectionFrom(pos);
+                        int damage = (int)(NPC.damage * 0.70f);
+                        damage = NPC.GetAttackDamage_ForProjectiles(damage, damage * 0.33f); //To compensate expert mode NPC damage + projectile damage increase
+                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer, aiStats.FireballSpeed);
+                    }
+                }
+            }
+
+            if (AI_State == State_Fireball)
             {
                 if (AI_Animation != Animation_Flight && AI_Animation != Animation_NoHorizontal)
                 {
                     AI_Animation = Animation_Flight;
                 }
+
+                AI_Timer++;
 
                 float acceleration = 0.05f;
 
@@ -850,7 +965,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 else if (length > 100f)
                 {
                     NPC.TargetClosest();
-                    NPC.spriteDirection = NPC.direction;
                     if (Math.Abs(NPC.velocity.X) < 32)
                     {
                         if (NPC.velocity.X < diffX)
@@ -891,23 +1005,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
                 }
 
-                //Generate souls in a half circle above the boss and have them home to whatever the nearest player to them is
-                AI_Timer++;
-                if (AI_Timer % 50 == 0)
+                float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.666f, 1);
+                float timeToNextState = aiStats.FireballDuration * lifeRatioClamped;
+
+                if (Main.expertMode && RevivesDone == Revive_Count) //Final revive
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        Vector2 random = (-Vector2.UnitY).RotatedByRandom(MathHelper.PiOver2) * 160;
-                        Vector2 pos = NPC.Center + random;
-                        Vector2 toPlayer = target.DirectionFrom(pos);
-                        int damage = (int)(NPC.damage * 0.75f);
-                        damage = NPC.GetAttackDamage_ForProjectiles(damage, damage * 0.9f);
-                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer);
-                    }
+                    timeToNextState = 0;
                 }
 
-                float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.666f, 1);
-                float timeToNextState = 300 * lifeRatioClamped;
                 if (AI_Timer > timeToNextState)
                 {
                     AI_Timer = 0;
@@ -936,11 +1041,11 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     float speed = 10;
                     const float minInertia = 6;
                     float inertia = minInertia;
+                    float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.6f, 1);
 
                     if (AI_Counter != 0 && AI_Animation == Animation_Swoop)
                     {
-                        float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.4f, 1);
-                        float swoopPostTime = Swoop_Post_Time * lifeRatioClamped;
+                        float swoopPostTime = aiStats.SwoopWaitTime * lifeRatioClamped;
 
                         //This means a swoop has already taken place, and the "post-swoop" frame should be displayed for a while
                         AI_Timer++;
@@ -972,7 +1077,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         //First swoop
                         //Initial start is "right of player" meaning initial dir should be "left towards player"
                         AI_Counter = -1;
-                        if (leftOfPlayer)
+                        if (!leftOfPlayer)
                         {
                             //Flip both if NPC is "left of player"
                             start.X *= -1;
@@ -1030,8 +1135,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     if (AI_Timer < 0)
                     {
                         AI_Timer--;
-                        float lifeRatioClamped = Utils.Remap(lifeRatio, 0, 1, 0.4f, 1);
-                        float swoopPostTime = Swoop_Post_Time * lifeRatioClamped;
+                        float swoopPostTime = aiStats.SwoopWaitTime * lifeRatioClamped;
                         if (AI_Timer < -swoopPostTime)
                         {
                             AI_Timer = 0;
@@ -1114,7 +1218,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                         }
                         else
                         {
-                            SetState(State_Main);
+                            SetState(State_Fireball);
 
                             //Go into the state that picks an attack
                         }
@@ -1139,6 +1243,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 //This gets entered
                 if (AI_Timer == 0)
                 {
+                    SetFadingAura(20, 1.4f, 0.5f);
                     SoundEngine.PlaySound(SoundID.Roar, (int)target.Center.X, (int)target.Center.Y, 0, pitchOffset: 0f);
                 }
 
@@ -1185,135 +1290,80 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
                 if (xProgress >= 1)
                 {
-                    AI_Timer = 0;
-                    //AI_Animation = Animation_Flight;
-                    //SetState(State_Swoop);
-                    //NPC.TargetClosest(false);
-
-                    SetState(State_Main);
+                    NPC.TargetClosest(true);
+                    SetState(State_Fireball);
                 }
 
                 HandleTalonBombing(target, talons);
             }
             else if (AI_State == State_Weakened)
             {
-                //TODO REWORK THIS
+                if (AI_Animation != Animation_Flight && AI_Animation != Animation_NoHorizontal)
+                {
+                    AI_Animation = Animation_Flight;
+                }
+
                 NPC.velocity *= 0.98f;
 
                 float len = NPC.velocity.Length();
-                if (len <= 1)
+                if (len <= 0.5f)
                 {
-                    SetFrame(1);
-                }
-                else if (len <= 0.5f)
-                {
-                    SetFrame(2);
+                    NPC.velocity *= 0;
                 }
 
                 int period = 15;
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (Main.netMode != NetmodeID.Server)
                 {
-                    if (AI_Timer % period == 0 && AI_Timer < period * SpawnedSouls_Count)
+                    if (ReviveProgress % (3 * period) == 0)
                     {
-                        int spawnX = (int)NPC.Center.X + NPC.spriteDirection * -6;
-                        int spawnY = (int)NPC.Center.Y + 18;
+                        SetFadingAura(20, 0.3f + 0.5f * (ReviveProgress / Revive_Duration));
+                        SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
+                        overlayColor = new Color(195, 247, 255) * 0.5f;
+                        overlayColor.A = 255;
 
-                        int index = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), spawnX, spawnY, ModContent.NPCType<DungeonSoulRevive>());
-                        if (index < Main.maxNPCs && Main.npc[index] is NPC reviveSoulNPC && reviveSoulNPC.ModNPC is DungeonSoulRevive reviveSoul)
+                        Vector2 dustOffset = new Vector2(0, (NPC.height + NPC.width) / 2 * 0.5f);
+                        Vector2 center = NPC.Center;
+                        float amount = 0.5f + 0.5f * (ReviveProgress / Revive_Duration);
+                        for (int i = 0; i < 30 * amount; i++)
                         {
-                            reviveSoulNPC.velocity = Vector2.Normalize(Main.rand.NextVector2Circular(NPC.width / 2, NPC.height / 2)) * Main.rand.NextFloat(12f, 16f);
-                            reviveSoul.ParentWhoAmI = NPC.whoAmI;
-                            soulWhoAmIs.Add(index);
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                NetMessage.SendData(MessageID.SyncNPC, number: index);
-                            }
+                            Vector2 dustOffset2 = dustOffset.RotatedByRandom(MathHelper.TwoPi) * Main.rand.NextFloat(0.1f, 1f);
+                            Dust dust = Dust.NewDustPerfect(center + dustOffset2, 59, newColor: Color.White, Scale: 2.1f);
+                            dust.noLight = true;
+                            dust.noGravity = true;
+                            dust.fadeIn = Main.rand.NextFloat(0.2f, 0.8f);
+                            dust.velocity = Utils.SafeNormalize(dust.position - center, Vector2.Zero) * 3;
                         }
                     }
                 }
 
-                if (Main.netMode != NetmodeID.Server)
+                ReviveProgress++;
+
+                if (ReviveProgress >= Revive_Duration)
                 {
-                    if (AI_Timer % (3 * period) == 0 && AI_Timer < period * SpawnedSouls_Count)
-                    {
-                        SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
-                    }
-                }
+                    NPC.TargetClosest();
 
-                AI_Timer++;
+                    NPC.life = (int)(NPC.lifeMax * aiStats.MaxHP);
 
-                if (AI_Timer >= period * SpawnedSouls_Count)
-                {
-                    CheckReviveSouls();
-                }
-
-                if (Main.netMode != NetmodeID.MultiplayerClient && ReviveSoulsRequired == 0)
-                {
-                    //Because of the ReviveSoulsRequired using serverside only list, this can only run on the server properly
-                    NPC.TargetClosest(false);
-
+                    SetFadingAura(20, 0.8f, 0.5f);
                     SoundEngine.PlaySound(SoundID.Roar, (int)NPC.Center.X, (int)NPC.Center.Y, 0);
                     AI_Animation = Animation_NoHorizontal;
-                    SetState(State_Main);
+                    SetState(State_Fireball);
                 }
             }
         }
 
-        private List<int> soulWhoAmIs = new List<int>(); //To keep track of souls that died/despawned/gave health
-        public int ReviveSoulsRequired => soulWhoAmIs.Count; //To keep track of souls that are still alive
-
-        private void CheckReviveSouls()
-        {
-            int soulType = ModContent.NPCType<DungeonSoulRevive>();
-            for (int i = soulWhoAmIs.Count - 1; i >= 0; i--)
-            {
-                var index = soulWhoAmIs[i];
-                if (index >= Main.maxNPCs)
-                {
-                    continue;
-                }
-
-                NPC reviveSoulNPC = Main.npc[index];
-
-                if (reviveSoulNPC.active && reviveSoulNPC.type == soulType && reviveSoulNPC.ModNPC is DungeonSoulRevive reviveSoul && reviveSoul.ParentWhoAmI == NPC.whoAmI)
-                {
-                    //Owned soul, don't remove
-                    continue;
-                }
-
-                //Main.NewText("remove soul " + index + " at index " + i);
-                soulWhoAmIs.RemoveAt(i);
-            }
-        }
-
-        private void SetReviveLife()
-        {
-            //NPC.life = 1 + (int)(NPC.lifeMax * (ReviveSoulsProgress / (float)SpawnedSouls_Count));
-            if (NPC.life > NPC.lifeMax)
-            {
-                NPC.life = NPC.lifeMax;
-            }
-        }
-
-        public void IncrementReviveSoulsProgress()
-        {
-            if (AI_State != State_Weakened)
-            {
-                return;
-            }
-
-            ReviveSoulsProgress++;
-            NPC.netUpdate = true;
-
-            if (Main.netMode != NetmodeID.Server)
-            {
-                overlayColor = Color.Red * (0.5f + 0.5f * ReviveSoulsProgress / (float)SpawnedSouls_Count);
-            }
-        }
-
-        private void HandleReviveSoulsVisuals()
+        private void HandleReviveVisuals()
         {
             overlayColor = Color.Lerp(overlayColor, Color.White, 0.1f);
+        }
+
+        private void HandleReviveTrigger()
+        {
+            if (RevivesDone < Revive_Count && NPC.life < NPC.lifeMax * Revive_MinHP)
+            {
+                NPC.life = 0;
+                NPC.checkDead();
+            }
         }
 
         private void HandleTalonBombing(Player target, List<HarvesterTalon> talons)
@@ -1439,7 +1489,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             else
             {
             */
-            if (allowSpeedAdjustment)
+            if (allowAnimationSpeedAdjustment)
             {
                 //"Global" animation rule
                 float speedX = Math.Abs(NPC.velocity.X);

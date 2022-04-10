@@ -247,7 +247,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
         {
             if (!HasParent)
             {
-                NPC.StrikeNPCNoInteraction(9999, 0f, 0);
+                NPC.life = 0;
+                NPC.active = false;
                 NPC.netUpdate = true;
                 return;
             }
@@ -255,7 +256,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC body = Main.npc[ParentWhoAmI];
             if (!body.active || body.type != AssortedCrazyThings.harvesterTypes[2])
             {
-                NPC.StrikeNPCNoInteraction(9999, 0f, 0);
+                NPC.life = 0;
+                NPC.active = false;
                 NPC.netUpdate = true;
                 return;
             }
