@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Projectiles.NPCs.Bosses;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
+    //TODO remove
     [Content(ContentType.Bosses)]
     public abstract class HarvesterBase : AssNPC
     {

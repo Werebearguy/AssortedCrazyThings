@@ -13,14 +13,14 @@ namespace AssortedCrazyThings.Base
     public static class AssAI
     {
         /// <summary>
-        /// Makes the projectile teleport if it is too far away from the player
+        /// Makes the projectile teleport if it is too far away from the given location
         /// </summary>
         public static bool TeleportIfTooFar(Projectile projectile, Vector2 desiredCenter, int distance = 2000)
         {
             if (projectile.DistanceSQ(desiredCenter) > distance * distance)
             {
                 projectile.Center = desiredCenter;
-                if (Main.myPlayer == projectile.owner && Main.netMode == NetmodeID.MultiplayerClient) projectile.netUpdate = true;
+                if (Main.myPlayer == projectile.owner) projectile.netUpdate = true;
                 return true;
             }
             return false;
@@ -659,7 +659,7 @@ namespace AssortedCrazyThings.Base
         }
 
         /// <summary>
-        /// Stays around a certain offset position around the parent.
+        /// Stays around a certain offset position around the parent. Does not use ai/localai
         /// </summary>
         public static void ZephyrfishAI(Projectile projectile, Entity parent = null, float velocityFactor = 1f, float sway = 1f, bool random = true, byte swapSides = 0, float offsetX = 0f, float offsetY = 0f)
         {
@@ -711,12 +711,6 @@ namespace AssortedCrazyThings.Base
 
             //desiredCenter += new Vector2(60f * -player.direction, -60f);
             between += desiredCenter + offset;
-
-            ////added in manually since its kinda useful
-            //if (Vector2.Distance(projectile.Center, parentCenter) > 2000f)
-            //{
-            //    projectile.Center = parentCenter + desiredCenter + offset;
-            //}
 
             TeleportIfTooFar(projectile, parentCenter + desiredCenter + offset);
 

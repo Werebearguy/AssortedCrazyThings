@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.Audio;
 using AssortedCrazyThings.Base;
 
-namespace AssortedCrazyThings.Projectiles.NPCs.Bosses
+namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 {
     [Content(ContentType.Bosses)]
     public class HarvesterFracturedSoul : AssProjectile

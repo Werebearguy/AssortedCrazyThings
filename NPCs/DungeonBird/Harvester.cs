@@ -19,7 +19,7 @@ using ReLogic.Content;
 using Terraria.DataStructures;
 using System.IO;
 using Terraria.ModLoader.IO;
-using AssortedCrazyThings.Projectiles.NPCs.Bosses;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
 using Terraria.GameContent;
 using System.Collections.Generic;
 using AssortedCrazyThings.BossBars;
