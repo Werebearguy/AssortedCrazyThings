@@ -44,7 +44,8 @@ namespace AssortedCrazyThings.Items.Armor
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             mPlayer.soulSaviorArmor = true;
 
-            float factor = (player.maxMinions / 10f) * player.GetDamage(DamageClass.Summon);
+            StatModifier summoner = player.GetDamage(DamageClass.Summon);
+            float factor = summoner.ApplyTo(player.maxMinions / 10f);
 
             player.thorns = factor;
 

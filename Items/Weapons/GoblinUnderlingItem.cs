@@ -95,13 +95,13 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.buffType = ModContent.BuffType<GoblinUnderlingBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             //This is purely done for the tooltip
             damage *= GoblinUnderlingSystem.GetCurrentTier().damageMult;
         }
 
-        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
         {
             //This is purely done for the tooltip
             knockback *= GoblinUnderlingSystem.GetCurrentTier().knockbackMult;

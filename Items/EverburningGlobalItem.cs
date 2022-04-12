@@ -24,9 +24,9 @@ namespace AssortedCrazyThings.Items
 
             if (!player.CCed && (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff))
             {
-                if (item.active && item.damage >= 0)
+                if (item.damage >= 0)
                 {
-                    if (item.CountsAsClass<SummonDamageClass>())
+                    if (item.CountsAsClass(DamageClass.Summon))
                     {
                         //TODO do something with auto-fire boomerangs
                         if (item.shoot > ProjectileID.None && item.shootSpeed > 0)
@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Items
                         }
                     }
 
-                    else if (item.CountsAsClass<RangedDamageClass>())
+                    else if (item.CountsAsClass(DamageClass.Ranged))
                     {
                         if (player.HasAmmo(item, true))
                         {
@@ -43,12 +43,12 @@ namespace AssortedCrazyThings.Items
                         }
                     }
 
-                    else if (item.CountsAsClass<MagicDamageClass>() && item.mana <= player.statMana)
+                    else if (item.CountsAsClass(DamageClass.Magic) && item.mana <= player.statMana)
                     {
                         ShootCandleDust(item, mPlayer);
                     }
 
-                    else if (item.CountsAsClass<ThrowingDamageClass>())
+                    else if (item.CountsAsClass(DamageClass.Throwing))
                     {
                         ShootCandleDust(item, mPlayer);
                     }
