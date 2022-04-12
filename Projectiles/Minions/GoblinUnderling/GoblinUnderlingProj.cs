@@ -280,13 +280,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
             //Copied scaling from vanilla, but summoner is adjusted by our scaling
             int originalDamage = Projectile.originalDamage;
-            StatModifier summoner = player.GetDamage<SummonDamageClass>();
+            StatModifier summoner = player.GetDamage(DamageClass.Summon);
 
             StatModifier tieredSummoner = summoner.CombineWith(new StatModifier(1f, tier.damageMult)); //Modification
 
-            StatModifier allDamage = player.GetDamage<GenericDamageClass>();
+            StatModifier allDamage = player.GetDamage(DamageClass.Generic);
 
-            Projectile.damage = (int)(originalDamage * (float)allDamage.CombineWith(tieredSummoner));
+            Projectile.damage = (int)allDamage.CombineWith(tieredSummoner).ApplyTo(originalDamage);
         }
 
         private Vector2 GetIdleLocation(Player player)

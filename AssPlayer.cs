@@ -878,14 +878,14 @@ namespace AssortedCrazyThings
             assPlayer.SpawnSoulTemp();
         }
 
-        public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
         {
-            if (empoweringBuff && !item.CountsAsClass<SummonDamageClass>() && item.damage > 0) damage += empoweringStep; //summon damage gets handled in EmpoweringBuffGlobalProjectile
+            if (empoweringBuff && !item.CountsAsClass(DamageClass.Summon) && item.damage > 0) damage += empoweringStep; //summon damage gets handled in EmpoweringBuffGlobalProjectile
         }
 
-        public override void ModifyWeaponCrit(Item item, ref int crit)
+        public override void ModifyWeaponCrit(Item item, ref float crit)
         {
-            crit += (int)(10 * empoweringStep);
+            crit += 10 * empoweringStep;
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)

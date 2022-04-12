@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.buffType = ModContent.BuffType<SlimePackMinionBuff>();
         }
 
-        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.selectedSlimePackMinionType == 2)
@@ -85,7 +85,7 @@ namespace AssortedCrazyThings.Items.Weapons
             }
         }
 
-        public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
             if (mPlayer.selectedSlimePackMinionType == 2)

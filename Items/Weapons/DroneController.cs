@@ -283,7 +283,7 @@ namespace AssortedCrazyThings.Items.Weapons
             Item.buffType = ModContent.BuffType<DroneControllerBuff>();
         }
 
-        public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -291,7 +291,7 @@ namespace AssortedCrazyThings.Items.Weapons
             damage += GetDroneData(selected).DmgModifier;
         }
 
-        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
+        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
         {
             AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
