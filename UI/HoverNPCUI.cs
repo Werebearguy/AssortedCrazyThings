@@ -87,22 +87,10 @@ namespace AssortedCrazyThings.UI
 
                         if (ContentConfig.Instance.Bosses)
                         {
-                            if ((npc.type == ModContent.NPCType<DungeonSoul>() ||
-                               npc.type == ModContent.NPCType<DungeonSoulFreed>()) && npc.ai[0] == 0)
+                            if (npc.type == ModContent.NPCType<DungeonSoul>() ||
+                               npc.type == ModContent.NPCType<DungeonSoulFreed>())
                             {
                                 ret = "Catch it with a net";
-                            }
-                            else if (npc.type == ModContent.NPCType<Harvester1>())
-                            {
-                                //can technically also take life-1
-                                //HarvesterBase m = (HarvesterBase)Main.npc[k].modNPC;
-                                //ret = "Souls eaten: " + m.soulsEaten + "/" + HarvesterBase.MaxSouls; //m.maxSoulsEaten
-
-                                ret = "Souls eaten: " + (npc.life - 1) + "/" + HarvesterBase.MaxSouls;
-                            }
-                            else if (npc.type == ModContent.NPCType<Harvester2>())
-                            {
-                                ret = "Souls eaten: " + (npc.life - 1 + 5) + "/" + HarvesterBase.MaxSouls;
                             }
                         }
 
@@ -182,7 +170,7 @@ namespace AssortedCrazyThings.UI
                 mousePos.Y = (int)(Main.screenHeight - vector.Y - 4f);
             }
 
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, drawString, mousePos + new Vector2(0, 22), drawColor, 0, Vector2.Zero, Vector2.One);
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, drawString, mousePos + new Vector2(2, 24), drawColor, 0, Vector2.Zero, Vector2.One);
         }
     }
 }

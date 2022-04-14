@@ -18,6 +18,7 @@ namespace AssortedCrazyThings.Base.ModSupport
     {
         public override void PostSetupContent()
         {
+            //TODO new 1.4 BC calls
             //https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
             if (ContentConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
@@ -78,7 +79,7 @@ namespace AssortedCrazyThings.Base.ModSupport
                         summonItem,
                         collection,
                         loot,
-                        $"Use a [i:{summonItem}] in the dungeon after Skeletron has been defeated",
+                        $"Enter the dungeon for the first time, or use a [i:{summonItem}] in the dungeon",
                         null,
                         $"{this.Name}/NPCs/DungeonBird/HarvesterPreview"
                     );

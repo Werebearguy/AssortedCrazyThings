@@ -134,7 +134,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
             Vector2 position = player.Center;
             position.X += Main.rand.NextFloat(-1980, 1980) / 2;
-            position.Y += 200; //TODO 1000
+            position.Y += 1000;
 
             return AssUtils.NewProjectile(new EntitySource_WorldEvent(), position, Vector2.Zero, ModContent.ProjectileType<BabyHarvesterProj>(), 0, 0,
                 preSync: (Projectile proj) => (proj.ModProjectile as BabyHarvesterProj).AssignPlayerOwner(player.whoAmI));
@@ -303,19 +303,19 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 [1] = new TierData
                 {
                     FrameSpeed = 3,
-                    SoulsToNextTier = 3, //TODO 1
+                    SoulsToNextTier = 1,
                     TransformationFrameCount = 7,
                 },
                 [2] = new TierData
                 {
                     FrameSpeed = 4,
-                    SoulsToNextTier = 3, //TODO 5
+                    SoulsToNextTier = 5,
                     TransformationFrameCount = 9,
                 },
                 [3] = new TierData
                 {
                     FrameSpeed = 4,
-                    SoulsToNextTier = 3, //TODO 10
+                    SoulsToNextTier = 10,
                     TransformationFrameCount = 10,
                 },
                 [4] = new TierData //Dummy tier, used to detect last tier switch into main form
@@ -624,7 +624,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        int type = ModContent.NPCType<Harvester>();
+                        int type = AssortedCrazyThings.harvester;
                         if (!NPC.AnyNPCs(type))
                         {
                             int yOffset = 62; //Manually adjusted
@@ -687,6 +687,18 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
         public override bool? CanCutTiles()
         {
             return false;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 135, 0f, 0f, 100);
+                Dust dust = Main.dust[d];
+                dust.noGravity = true;
+                dust.velocity *= 1.5f;
+                dust.scale = 1.3f;
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)

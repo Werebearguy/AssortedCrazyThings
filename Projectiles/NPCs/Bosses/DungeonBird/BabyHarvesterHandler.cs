@@ -1,5 +1,9 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,6 +24,69 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             TrySpawnBabyHarvester();
 
             ValidateBabyHarvester();
+
+            TryGiveSoulBuffToEnemies();
+        }
+
+        /// <summary>
+        /// Returns true if NPC isn't in soulbuffblacklist or is a worm body or tail
+        /// </summary>
+        private static bool EligibleToReceiveSoulBuff(NPC npc)
+        {
+            if (Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) >= 0)
+            {
+                return false;
+            }
+            return !AssUtils.IsWormBodyOrTail(npc);
+        }
+
+        private static void TryGiveSoulBuffToEnemies()
+        {
+            if (TryFindBabyHarvester(out Projectile proj, out _) &&
+                proj.ModProjectile is BabyHarvesterProj babyHarvester && babyHarvester.HasValidPlayerOwner)
+            {
+                GiveSoulBuffToNearbyNPCs(babyHarvester.Player, proj.Center);
+            }
+            else
+            {
+                int index = NPC.FindFirstNPC(AssortedCrazyThings.harvester);
+                if (index <= -1)
+                {
+                    return;
+                }
+                else
+                {
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        Player player = Main.player[i];
+
+                        if (player.active && !player.dead)
+                        {
+                            GiveSoulBuffToNearbyNPCs(player, Main.npc[index].Center);
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void GiveSoulBuffToNearbyNPCs(Player player, Vector2 position)
+        {
+            if (ValidPlayer(player) || player.DistanceSQ(position) < 2880 * 2880) //one and a half screens or in suitable location
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.CanBeChasedBy() && !npc.SpawnedFromStatue &&
+                        npc.type != AssortedCrazyThings.harvester && npc.DistanceSQ(player.Center) < 2880 * 2880 &&
+                        !npc.GetGlobalNPC<HarvesterGlobalNPC>().shouldSoulDrop)
+                    {
+                        if (EligibleToReceiveSoulBuff(npc))
+                        {
+                            npc.AddBuff(ModContent.BuffType<SoulBuff>(), 60, true);
+                        }
+                    }
+                }
+            }
         }
 
         public static bool TryFindBabyHarvester(out Projectile proj, out int index, bool fromCache = true)
@@ -55,9 +122,9 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             return proj.ModProjectile is BabyHarvesterProj;
         }
 
-        private static bool ValidPlayer(Player player)
+        public static bool ValidPlayer(Player player)
         {
-            return player.ZoneSkyHeight; //TODO change to Dungeon
+            return player.ZoneDungeon;
         }
 
         private static void TrySpawnBabyHarvester()
@@ -85,8 +152,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 return;
             }
 
-            //TODO add back after testing
-            if (/*AssWorld.downedHarvester || */NPC.AnyNPCs(ModContent.NPCType<Harvester>()))
+            if (AssWorld.downedHarvester || NPC.AnyNPCs(AssortedCrazyThings.harvester))
             {
                 //Do not spawn another one if harvester is already slain or alive
                 return;
@@ -101,6 +167,8 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 {
                     //AssUtils.Print(Main.time + " spawning harvester");
                     BabyHarvesterProj.Spawn(player);
+                    AssWorld.Message("You hear a faint cawing from the dungeon.", Harvester.deathColor);
+
                     break;
                 }
             }

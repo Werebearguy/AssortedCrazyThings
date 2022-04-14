@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System.ComponentModel;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -128,6 +129,11 @@ namespace AssortedCrazyThings
 		[Tooltip("Affects the way Cute Slimes spawn and how the Jellied Ale works")]
 		public bool CuteSlimesPotionOnly { get; set; }
 
+		[Header("Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left")]
+		[Label("Hint")]
+		[JsonIgnore]
+		public bool Hint => true;
+
 		public override void OnChanged()
         {
 			//Inverted, sets a flag if toggle is false
@@ -245,5 +251,10 @@ namespace AssortedCrazyThings
 		[Label("Armor progression")]
 		[Tooltip("Enable to show armor progression")]
 		public bool SatchelofGoodiesVisibleArmor { get; set; }
+
+		[Header("Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right")]
+		[Label("Hint")]
+		[JsonIgnore]
+		public bool Hint => true;
 	}
 }

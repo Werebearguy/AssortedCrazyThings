@@ -139,6 +139,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             
             NPCID.Sets.BossBestiaryPriority.Add(NPC.type);
             NPCID.Sets.SpawnFromLastEmptySlot[NPC.type] = true;
+            NPCID.Sets.MPAllowedEnemies[NPC.type] = true; //Allows NPC.SpawnOnPlayer to work
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -392,7 +393,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float randFactor;
                 int index;
 
-                for (int j = 0; j < HarvesterBase.MaxSouls; j++) //spawn souls when dies, 15 total
+                for (int j = 0; j < 15; j++) //spawn souls when dies, 15 total
                 {
                     index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
                     if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
@@ -422,6 +423,8 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IdolOfDecay>()));
+
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<HarvesterTreasureBag>()));
 
             //Relic and trophy are NOT spawned in the bag

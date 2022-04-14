@@ -254,7 +254,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             }
 
             NPC body = Main.npc[ParentWhoAmI];
-            if (!body.active || body.type != AssortedCrazyThings.harvesterTypes[2])
+            if (!body.active || body.type != AssortedCrazyThings.harvester)
             {
                 NPC.life = 0;
                 NPC.active = false;

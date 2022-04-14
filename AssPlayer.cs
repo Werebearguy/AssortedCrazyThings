@@ -310,64 +310,6 @@ namespace AssortedCrazyThings
         }
 
         /// <summary>
-        /// Returns true if NPC isn't in soulbuffblacklist or is a worm body or tail
-        /// </summary>
-        private bool EligibleToReceiveSoulBuff(NPC npc)
-        {
-            if (Array.BinarySearch(AssortedCrazyThings.soulBuffBlacklist, npc.type) >= 0)
-            {
-                return false;
-            }
-            return AssUtils.IsWormBodyOrTail(npc);
-        }
-
-        /// <summary>
-        /// Technically doesn't spawn souls, just applies the buff to the NPCs, that then spawns the soul if it dies
-        /// </summary>
-        private void GiveSoulBuffToEnemiesWhenHarvesterIsAlive()
-        {
-            if (!ContentConfig.Instance.Bosses)
-            {
-                return;
-            }
-
-            //ALWAYS GENERATE SOULS WHEN ONE IS ALIVE (otherwise he will never eat stuff when you aren't infront of dungeon walls)
-            if (Main.GameUpdateCount % 30 == 4)
-            {
-                bool shouldDropSouls = false;
-                int index = 200;
-                for (short j = 0; j < Main.maxNPCs; j++)
-                {
-                    NPC npc = Main.npc[j];
-                    if (npc.active && Array.IndexOf(AssortedCrazyThings.harvesterTypes, npc.type) != -1)
-                    {
-                        shouldDropSouls = true;
-                        index = j;
-                        break;
-                    }
-                }
-
-                if (shouldDropSouls)
-                {
-                    if (Player.ZoneDungeon || Player.DistanceSQ(Main.npc[index].Center) < 2880 * 2880) //one and a half screens or in dungeon
-                    {
-                        for (short j = 0; j < Main.maxNPCs; j++)
-                        {
-                            NPC npc = Main.npc[j];
-                            if (npc.CanBeChasedBy() && !npc.SpawnedFromStatue)
-                            {
-                                if (Array.IndexOf(AssortedCrazyThings.harvesterTypes, npc.type) < 0 && EligibleToReceiveSoulBuff(npc))
-                                {
-                                    npc.AddBuff(ModContent.BuffType<SoulBuff>(), 60, true);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Upon Soul Harvester death, convert all inert souls in inventory
         /// </summary>
         public void ConvertInertSoulsInventory()
@@ -970,8 +912,6 @@ namespace AssortedCrazyThings
             }
 
             UpdateNearbyEnemies();
-
-            GiveSoulBuffToEnemiesWhenHarvesterIsAlive();
         }
     }
 }

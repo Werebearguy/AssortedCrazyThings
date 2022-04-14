@@ -67,7 +67,9 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
         private void Movement(BabyHarvesterProj babyHarvester)
         {
             Projectile other = babyHarvester.Projectile;
-            Vector2 toHarvester = other.Center - Projectile.Center;
+            Vector2 otherCenter = other.Center;
+            otherCenter.X += other.direction * 10;
+            Vector2 toHarvester = otherCenter - Projectile.Center;
 
             if (Projectile.localAI[0] == 0f)
             {
@@ -98,7 +100,9 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 }
             }
 
-            if (Projectile.Hitbox.Intersects(other.Hitbox))
+            var hitbox = other.Hitbox;
+            hitbox.Inflate(0, -6);
+            if (Projectile.Hitbox.Intersects(hitbox))
             {
                 if (Main.myPlayer == Projectile.owner)
                 {

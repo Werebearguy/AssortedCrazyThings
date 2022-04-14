@@ -29,8 +29,17 @@ namespace AssortedCrazyThings
         /// </summary>
         public static int[] soulBuffBlacklist;
 
-        public static int[] harvesterTypes;
+        /// <summary>
+        /// The cached type of the Harvester boss, 0 if not loaded
+        /// </summary>
+        public static int harvester;
+        /// <summary>
+        /// The cached type of the left talon of the Harvester boss, 0 if not loaded
+        /// </summary>
         public static int harvesterTalonLeft;
+        /// <summary>
+        /// The cached type of the right talon of the Harvester boss, 0 if not loaded
+        /// </summary>
         public static int harvesterTalonRight;
 
         //Mod Helpers compat
@@ -108,23 +117,14 @@ namespace AssortedCrazyThings
 
         private void LoadHarvesterTypes()
         {
-            harvesterTypes = new int[5];
-
             if (!ContentConfig.Instance.Bosses)
             {
                 return;
             }
 
-            harvesterTypes[0] = ModContent.NPCType<Harvester1>();
-            harvesterTypes[1] = ModContent.NPCType<Harvester2>();
-            harvesterTypes[2] = ModContent.NPCType<Harvester>();
-            harvesterTypes[3] = harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
-            harvesterTypes[4] = harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
-        }
-
-        private void UnloadHarvesterTypes()
-        {
-            harvesterTypes = null;
+            harvester = ModContent.NPCType<Harvester>();
+            harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
+            harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
         }
 
         private void LoadMisc()
@@ -165,8 +165,6 @@ namespace AssortedCrazyThings
             ConfigurationSystem.Unload();
 
             ShaderManager.Unload();
-
-            UnloadHarvesterTypes();
 
             UnloadMisc();
 
