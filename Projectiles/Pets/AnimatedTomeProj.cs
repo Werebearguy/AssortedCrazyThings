@@ -44,6 +44,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
             {
                 Projectile.timeLeft = 2;
             }
+
+            if (!player.active)
+            {
+                Projectile.active = false;
+                return;
+            }
+
             AssAI.ZephyrfishAI(Projectile);
             AssAI.ZephyrfishDraw(Projectile);
         }

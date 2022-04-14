@@ -677,14 +677,8 @@ namespace AssortedCrazyThings.Base
             //offsetX/Y
             //offsetting the desired center the pet hovers around
 
-            Player player = projectile.GetOwner();
-            if (!player.active)
-            {
-                projectile.active = false;
-                return;
-            }
+            if (parent == null) parent = projectile.GetOwner();
 
-            if (parent == null) parent = player;
             Vector2 parentCenter = parent.Center;
             if (parent is Player)
             {
@@ -830,14 +824,14 @@ namespace AssortedCrazyThings.Base
             //sway: 
             //tells by how much increase/decrease the left/right sway radius of the idle pet
 
-            Player player = projectile.GetOwner();
+            if (parent == null) parent = projectile.GetOwner();
 
-            if (!player.active)
+            if (!parent.active)
             {
                 projectile.active = false;
                 return;
             }
-            if (parent == null) parent = player;
+
             Vector2 parentCenter = parent.Center;
             if (parent is Player)
             {

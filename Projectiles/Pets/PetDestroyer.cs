@@ -194,6 +194,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
             AssAI.TeleportIfTooFar(Projectile, parent.Center);
 
+            if (!parent.active)
+            {
+                Projectile.active = false;
+                return;
+            }
+
             AssAI.ZephyrfishAI(Projectile, parent: parent, velocityFactor: 1f, random: false, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
 
             int targetIndex = AssAI.FindTarget(Projectile, Projectile.Center, 500);
