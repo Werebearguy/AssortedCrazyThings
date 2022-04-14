@@ -362,7 +362,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		private static void UpdateMessageCooldowns()
 		{
 			float reduceAmount = ClientConfig.Instance.SatchelofGoodiesChatterFreq / 100f;
-			Main.NewText(reduceAmount);
 
 			if (globalCooldown > 0)
 			{
