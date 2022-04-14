@@ -44,22 +44,16 @@ namespace AssortedCrazyThings.Base.ModSupport
                     int summonItem = ModContent.ItemType<IdolOfDecay>();
 
                     List<int> collection = new List<int>();
-                    if (ContentConfig.Instance.Placeables)
+                    collection.AddRange(new List<int>
                     {
-                        collection.AddRange(new List<int>
-                        {
-                            ModContent.ItemType<HarvesterRelicItem>(),
-                            ModContent.ItemType<HarvesterTrophyItem>()
-                        });
-                    }
+                        ModContent.ItemType<HarvesterRelicItem>(),
+                        ModContent.ItemType<HarvesterTrophyItem>()
+                    });
 
-                    if (ContentConfig.Instance.VanityArmor)
+                    collection.AddRange(new List<int>
                     {
-                        collection.AddRange(new List<int>
-                        {
-                            ModContent.ItemType<SoulHarvesterMask>()
-                        });
-                    }
+                        ModContent.ItemType<SoulHarvesterMask>()
+                    });
 
                     List<int> loot = new List<int>
                     {
@@ -67,20 +61,17 @@ namespace AssortedCrazyThings.Base.ModSupport
                         ModContent.ItemType<CaughtDungeonSoulFreed>(),
                     };
 
-                    if (ContentConfig.Instance.Accessories)
+                    loot.AddRange(new List<int>
                     {
-                        loot.AddRange(new List<int>
-                        {
-                            ModContent.ItemType<SigilOfRetreat>(),
-                            ModContent.ItemType<SigilOfEmergency>(),
-                            ModContent.ItemType<SigilOfPainSuppression>()
-                        });
-                    }
+                        ModContent.ItemType<SigilOfRetreat>(),
+                        ModContent.ItemType<SigilOfEmergency>(),
+                        ModContent.ItemType<SigilOfPainSuppression>()
+                    });
 
                     bossChecklist.Call(
                         "AddMiniBoss",
                         5.1f,
-                        ModContent.NPCType<Harvester>(),
+                        AssortedCrazyThings.harvester,
                         this,
                         Harvester.name,
                         (Func<bool>)(() => AssWorld.downedHarvester),
