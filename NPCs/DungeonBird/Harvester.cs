@@ -192,7 +192,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             NPC.BossBar = ModContent.GetInstance<HarvesterBossBar>();
 
             DrawOffsetY = 36; //By default, hitbox aligns with bottom center of the frame. This pushes it up
-            //music = MusicID.Boss1; //TODO music
+            Music = MusicID.Boss1;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
