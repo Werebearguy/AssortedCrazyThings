@@ -51,9 +51,11 @@ namespace AssortedCrazyThings.NPCs
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BrainofConfusionItem>(), chanceDenominator: 10));
             }
-            else if (npc.boss && Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
+            else if (Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PetEaterofWorldsItem>(), chanceDenominator: 10));
+                LeadingConditionRule leadingConditionRule = new(new Conditions.LegacyHack_IsABoss());
+                leadingConditionRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<PetEaterofWorldsItem>(), chanceDenominator: 10));
+                npcLoot.Add(leadingConditionRule);
             }
             else if (npc.type == NPCID.QueenBee)
             {

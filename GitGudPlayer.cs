@@ -126,7 +126,6 @@ namespace AssortedCrazyThings
                     }
                 }
             }
-            npc.active = false;
 
             if (nPCTypeList == null) nPCTypeList = new int[1];
             if (projTypeList == null) projTypeList = new int[1];

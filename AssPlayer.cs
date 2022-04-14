@@ -483,18 +483,7 @@ namespace AssortedCrazyThings
             {
                 if (canTeleportHome && Player.whoAmI == Main.myPlayer)
                 {
-                    //this part here is from vanilla magic mirror code
-                    Player.grappling[0] = -1;
-                    Player.grapCount = 0;
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        //Kill all grappling hooks
-                        Projectile projectile = Main.projectile[i];
-                        if (projectile.active && projectile.owner == Player.whoAmI && projectile.aiStyle == 7)
-                        {
-                            projectile.Kill();
-                        }
-                    }
+                    Player.RemoveAllGrapplingHooks();
 
                     //inserted before player.Spawn()
                     Player.statLife += (int)damage;
@@ -654,81 +643,6 @@ namespace AssortedCrazyThings
                 }
             }
         }
-
-        //TODO 1.4 reimplement PlayerLayers
-        /*
-        public static readonly PlayerLayer SoulSaviorGlowmask = new PlayerLayer("AssortedCrazyThings", "SoulSaviorGlowmask", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
-        {
-            if (drawInfo.shadow != 0f || drawInfo.drawPlayer.dead)
-            {
-                return;
-            }
-            Player drawPlayer = drawInfo.drawPlayer;
-            Mod mod = AssUtils.Instance;
-
-            Texture2D texture = mod.GetTexture("Items/Armor/SoulSaviorPlate_Glowmask").Value;
-            float drawX = (int)drawInfo.position.X - drawPlayer.bodyFrame.Width / 2 + drawPlayer.width / 2 - Main.screenPosition.X;
-            float drawY = (int)drawInfo.position.Y + drawPlayer.height - drawPlayer.bodyFrame.Height + 4f - Main.screenPosition.Y;
-
-            Vector2 stupidOffset = new Vector2(drawPlayer.bodyFrame.Width / 2, drawPlayer.bodyFrame.Height / 2);
-
-            DrawData drawData = new DrawData(texture, new Vector2(drawX, drawY) + drawPlayer.bodyPosition + stupidOffset, drawPlayer.bodyFrame, Color.White * ((255 - drawPlayer.immuneAlpha) / 255f), drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, GetSpriteEffects(drawPlayer), 0)
-            {
-                shader = drawInfo.bodyArmorShader
-            };
-            Main.playerDrawData.Add(drawData);
-
-            //Generate visual dust
-            if (Main.rand.NextFloat() < 0.1f)
-            {
-                Vector2 position = drawPlayer.Center - new Vector2(8f, 0f) + new Vector2(Main.rand.Next(8), Main.rand.Next(8));
-                if (drawPlayer.direction == 1)
-                {
-                    position.X += 8f;
-                }
-                Dust dust = Dust.NewDustPerfect(position, 135, new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), Main.rand.NextFloat(-0.3f, -0.1f)), 100, Color.White, 0.6f);
-                dust.noGravity = true;
-                dust.noLight = true;
-                dust.fadeIn = Main.rand.NextFloat(0.5f, 0.8f);
-
-                dust.shader = GameShaders.Armor.GetSecondaryShader(drawInfo.bodyArmorShader, drawPlayer);
-                Main.playerDrawDust.Add(dust.dustIndex);
-            }
-        });
-
-        public override void ModifyDrawLayers(List<PlayerLayer> layers)
-        {
-            int wingLayer = layers.FindIndex(l => l.Name.Equals("Wings"));
-            if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<SlimeHandlerKnapsack>())
-            {
-                if (wingLayer != -1)
-                {
-                    if (Player.velocity.Y == 0f)
-                    {
-                        layers.RemoveAt(wingLayer);
-                    }
-                    layers.Insert(wingLayer + 1, SlimeHandlerKnapsackBack);
-                }
-            }
-            if (wingLayer != -1)
-            {
-                if (Player.wings == Mod.GetEquipSlot("HarvesterWings", EquipType.Wings))
-                {
-                    layers.Insert(wingLayer + 1, HarvesterWings);
-                }
-            }
-            if (Player.body == Mod.GetEquipSlot("SoulSaviorPlate", EquipType.Body))
-            {
-                int bodyLayer = layers.FindIndex(l => l.Name.Equals("Body"));
-                layers.Insert(bodyLayer + 1, SoulSaviorGlowmask);
-            }
-            if (Player.balloon == Mod.GetEquipSlot("CrazyBundleOfAssortedBalloons", EquipType.Balloon))
-            {
-                int balloonLayer = layers.FindIndex(l => l.Name.Equals("BalloonAcc"));
-                layers.Insert(balloonLayer + 1, CrazyBundleOfAssortedBalloons);
-            }
-        }
-        */
 
         public void SlainBoss(int type)
         {
