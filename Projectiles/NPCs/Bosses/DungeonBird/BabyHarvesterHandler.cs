@@ -1,14 +1,11 @@
 using AssortedCrazyThings.Base;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using AssortedCrazyThings.NPCs.DungeonBird;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 {
-    //TODO test in MP
     [Content(ContentType.Bosses)]
     public class BabyHarvesterHandler : AssSystem
     {
@@ -17,8 +14,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
         public override void PostUpdateProjectiles()
         {
-            int whoAmICache;
-            TryFindBabyHarvester(out _, out whoAmICache, fromCache: false);
+            TryFindBabyHarvester(out _, out int whoAmICache, fromCache: false);
             WhoAmICache = whoAmICache;
 
             TrySpawnBabyHarvester();
@@ -80,12 +76,19 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
                     if (proj.active && ValidProjectile(proj) && i != WhoAmICache)
                     {
-                        AssUtils.Print("deleted a duplicate");
+                        //AssUtils.Print("deleted a duplicate");
                         proj.Kill();
                     }
                 }
 
                 //Do not spawn
+                return;
+            }
+
+            //TODO add back after testing
+            if (/*AssWorld.downedHarvester || */NPC.AnyNPCs(ModContent.NPCType<Harvester>()))
+            {
+                //Do not spawn another one if harvester is already slain or alive
                 return;
             }
 
@@ -96,7 +99,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
                 if (player.active && !player.dead && ValidPlayer(player))
                 {
-                    AssUtils.Print("spawning harvester");
+                    //AssUtils.Print(Main.time + " spawning harvester");
                     BabyHarvesterProj.Spawn(player);
                     break;
                 }
@@ -120,13 +123,14 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 return;
             }
 
-            //If current player dead or not in dungeon anymore
-            if (!babyHarvester.Player.dead && ValidPlayer(babyHarvester.Player))
+            //If current player dead or not suitable anymore
+            Player playerowner = babyHarvester.Player;
+            if (!playerowner.dead && ValidPlayer(playerowner))
             {
                 return;
             }
 
-            //Find new player in dungeon, reassign player
+            //Find new suitable player, reassign owner
             bool found = false;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -134,7 +138,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
                 if (player.active && !player.dead && ValidPlayer(player))
                 {
-                    AssUtils.Print($"assign new player to harvester from {babyHarvester.PlayerOwner} to {i}");
+                    //AssUtils.Print($"{Main.time} assign new player to harvester from {babyHarvester.PlayerOwner} to {i}");
                     babyHarvester.AssignPlayerOwner(i);
                     found = true;
                     break;
@@ -144,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             //If not found, despawn
             if (!found)
             {
-                AssUtils.Print("despawning harvester");
+                //AssUtils.Print("despawning harvester");
                 proj.Kill();
             }
         }

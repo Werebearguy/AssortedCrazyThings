@@ -87,9 +87,12 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.DungeonBird
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if (TryGetBabyHarvester(out _))
+            if (TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
             {
-                player.buffTime[buffIndex] = 2;
+                if (babyHarvester.PlayerOwner == player.whoAmI)
+                {
+                    player.buffTime[buffIndex] = 2;
+                }
             }
         }
 

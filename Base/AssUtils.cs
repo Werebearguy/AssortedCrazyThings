@@ -444,8 +444,8 @@ namespace AssortedCrazyThings.Base
                 index = Projectile.FindOldestProjectile();
 
             int Owner = Main.myPlayer;
-            //float ai0 = 0f;
-            //float ai1 = 0f;
+            float ai0 = 0f;
+            float ai1 = 0f;
 
             Projectile projectile = Main.projectile[index];
             projectile.SetDefaults(Type);
@@ -467,8 +467,9 @@ namespace AssortedCrazyThings.Base
             projectile.honeyWet = Collision.honey;
             Main.projectileIdentity[Owner, index] = index;
             FindBannerToAssociateTo(source, projectile);
-            //projectile.ai[0] = ai0;
-            //projectile.ai[1] = ai1;
+            HandlePlayerStatModifiers(source, projectile);
+            projectile.ai[0] = ai0;
+            projectile.ai[1] = ai1;
             if (Type > 0)
             {
                 if (ProjectileID.Sets.NeedsUUID[Type])
@@ -484,6 +485,21 @@ namespace AssortedCrazyThings.Base
                 NetMessage.SendData(MessageID.SyncProjectile, number: index);
             }
             return index;
+        }
+
+        /// <summary>
+        /// If you need immediate sync, usually necessary outside of Projectile.AI (as netUpdate is set to false before it's invoked)
+        /// </summary>
+        /// <param name="projectile"></param>
+        public static void NetSync(this Projectile projectile)
+        {
+            if (Main.myPlayer == projectile.owner)
+            {
+                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, projectile.whoAmI);
+                projectile.netSpam = 0;
+                projectile.netUpdate = false;
+                projectile.netUpdate2 = false;
+            }
         }
 
         //Clone from vanilla since it's private
@@ -506,6 +522,16 @@ namespace AssortedCrazyThings.Base
             if (nPC != null)
             {
                 next.bannerIdToRespondTo = Item.NPCtoBanner(nPC.BannerID());
+            }
+        }
+
+        //Clone from tml since it's private, may need updates, keep an eye out
+        private static void HandlePlayerStatModifiers(IEntitySource spawnSource, Projectile projectile)
+        {
+            if (spawnSource is EntitySource_ItemUse itemUseSource && itemUseSource.Entity is Player player)
+            {
+                projectile.CritChance += player.GetWeaponCrit(itemUseSource.Item);
+                projectile.ArmorPenetration += player.GetWeaponArmorPenetration(itemUseSource.Item);
             }
         }
 

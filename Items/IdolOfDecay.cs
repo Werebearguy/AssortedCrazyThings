@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -37,15 +38,10 @@ namespace AssortedCrazyThings.Items
 
         public override bool? UseItem(Player player)
         {
-            if (!ContentConfig.Instance.Bosses)
-            {
-                return true;
-            }
-
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int i = NPC.NewNPC(NPC.GetBossSpawnSource(player.whoAmI), (int)player.Center.X, (int)player.Center.Y, AssortedCrazyThings.harvesterTypes[0]);
-                AssWorld.AwakeningMessage("Soul Harvester has been Awakened!");
+                int i = NPC.NewNPC(new EntitySource_BossSpawn(player), (int)player.Center.X, (int)player.Center.Y, AssortedCrazyThings.harvesterTypes[0]);
+                AssWorld.AwakeningMessage(Harvester.name + " has been awakened!");
                 if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
                 {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);

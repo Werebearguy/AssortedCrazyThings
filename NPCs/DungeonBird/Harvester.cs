@@ -315,11 +315,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             Vector2 halfSizeOff = halfSize * NPC.scale;
             Vector2 textureOff = new Vector2(asset.Width() * NPC.scale / FrameCountHorizontal / 2f, asset.Height() * NPC.scale / (float)FrameCountVertical);
             Vector2 drawPosition = new Vector2(NPC.Center.X, NPC.Bottom.Y + drawOffsetY + someNumModdedNPCsArentUsing + NPC.gfxOffY + 4f);
-            spriteBatch.Draw(texture, drawPosition + halfSizeOff - textureOff - screenPos, NPC.frame, drawColor, NPC.rotation, halfSize, NPC.scale, effects, 0f);
+            Vector2 finalDrawPos = drawPosition + halfSizeOff - textureOff - screenPos;
+            spriteBatch.Draw(texture, finalDrawPos, NPC.frame, drawColor, NPC.rotation, halfSize, NPC.scale, effects, 0f);
 
             asset = WingsAsset;
             texture = asset.Value;
-            spriteBatch.Draw(texture, drawPosition + halfSizeOff - textureOff - screenPos, NPC.frame, NPC.GetAlpha(Color.White), NPC.rotation, halfSize, NPC.scale, effects, 0f);
+            Color glowmaskColor = NPC.GetAlpha(Color.White);
+            spriteBatch.Draw(texture, finalDrawPos, NPC.frame, glowmaskColor, NPC.rotation, halfSize, NPC.scale, effects, 0f);
 
             if (fadingAuraTimer > 0 && fadingAuraTimerMax > 0)
             {
@@ -327,7 +329,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 texture = asset.Value;
                 float scale = fadingAuraTimer / (float)fadingAuraTimerMax;
                 float scaleInverse = 1f - scale;
-                spriteBatch.Draw(texture, drawPosition + halfSizeOff - textureOff - screenPos, NPC.frame, drawColor * scale * fadingAuraAlphaIntensity, NPC.rotation, halfSize, NPC.scale + scaleInverse * fadingAuraScaleIntensity, effects, 0f);
+                Color auraColor = drawColor * scale * fadingAuraAlphaIntensity;
+                Color auraWingColor = glowmaskColor * scale * fadingAuraAlphaIntensity;
+                float auraScale = NPC.scale + scaleInverse * fadingAuraScaleIntensity;
+
+                spriteBatch.Draw(texture, finalDrawPos, NPC.frame, auraColor, NPC.rotation, halfSize, auraScale, effects, 0f);
+
+                asset = WingsAsset;
+                texture = asset.Value;
+                spriteBatch.Draw(texture, finalDrawPos, NPC.frame, auraWingColor, NPC.rotation, halfSize, auraScale, effects, 0f);
             }
 
             //TODO figure out a better way to display it
@@ -478,7 +488,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     }
 
                     SetState(State_Weakened);
-                    //AI_Animation = Animation_Weakened;
                     SetFrame(0);
 
                     for (int i = 0; i < NPC.maxBuffs; i++)
@@ -608,13 +617,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
             return animation switch
             {
                 Animation_Swoop => 2,
-                //Animation_Weakened => 2,
                 _ => FrameCountVertical - 1
             };
         }
 
         public const float State_KeepCurrent = -1f;
-        public const float State_Fireball = 0f; //Basic flying, homing attack. Generates attacks after it
+        public const float State_Fireball = 0f; //Basic flying, homing attack
+        public const float State_SpawnedByBaby = 1f; //Special state set on spawn
         public const float State_Swoop = 2f;
         public const float State_Bombing = 3f;
         public const float State_Weakened = 4f; //Can enter from any state, special conditions
@@ -815,12 +824,15 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 AI_Timer = 0;
                 NPC.TargetClosest();
 
-                SetState(State_Fireball);
+                if (AI_State != State_SpawnedByBaby)
+                {
+                    SetState(State_Fireball);
+                }
                 Initialized = true;
             }
 
-            //TODO Not needed later with transformation, but will be needed for new summon item to summon directly without prev steps
-            if (AI_Intro < 255)
+            //Spawned through summon item/cheated in
+            if (AI_State != State_SpawnedByBaby && AI_Intro < 255)
             {
                 AI_Intro += 5;
                 NPC.alpha -= 5;
@@ -832,6 +844,21 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     NPC.netUpdate = true;
                 }
                 return;
+            }
+            else
+            {
+                AI_Intro = 255;
+                NPC.alpha = 0;
+            }
+
+            //Spawned by baby, which shows the transformation before spawning
+            if (AI_State == State_SpawnedByBaby)
+            {
+                AI_Intro = 255;
+                NPC.alpha = 0;
+                SetFadingAura(20, 0.8f, 0.5f);
+                SetState(State_Fireball);
+                NPC.netUpdate = true;
             }
 
             HandleAI(target, talons);
@@ -1318,7 +1345,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                     {
                         SetFadingAura(20, 0.3f + 0.5f * (ReviveProgress / Revive_Duration));
                         SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
-                        overlayColor = new Color(195, 247, 255) * 0.5f;
+                        overlayColor = new Color(195, 247, 255) * 0.4f;
                         overlayColor.A = 255;
 
                         Vector2 dustOffset = new Vector2(0, (NPC.height + NPC.width) / 2 * 0.5f);
@@ -1477,18 +1504,6 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         private void HandleAnimation()
         {
-            /*
-            if (AI_State == State_Bombing)
-            {
-                AI_Animation = Animation_Bombing;
-            }
-            else if (AI_State == State_Weakened)
-            {
-                AI_Animation = Animation_Weakened;
-            }
-            else
-            {
-            */
             if (allowAnimationSpeedAdjustment)
             {
                 //"Global" animation rule
