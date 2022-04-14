@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -198,8 +199,53 @@ namespace AssortedCrazyThings
 		}
     }
 
+	[Label("Client Config")]
+	public class ClientConfig : ModConfig
+	{
+		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
+
+		public override ConfigScope Mode => ConfigScope.ClientSide;
+
+		[Header("Satchel of Goodies - Minion Options")]
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Auto-summon")]
+		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
+		public bool SatchelofGoodiesAutosummon { get; set; }
+
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Armor progression")]
+		[Tooltip("Enable to show armor progression")]
+		public bool SatchelofGoodiesVisibleArmor { get; set; }
+
+		public const int SatchelofGoodiesChatterFreq_Min = 0;
+		public const int SatchelofGoodiesChatterFreq_Max = 200;
+		[DefaultValue(100)]
+		[BackgroundColor(125, 217, 124)]
+		[Slider]
+		[Increment(5)]
+		[Range(SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max)]
+		[Label("Dialogue frequency")]
+		[Tooltip("Control how often this minion will display dialogue (in percent). 0 for off")]
+		public int SatchelofGoodiesChatterFreq { get; set; }
+
+        internal bool SatchelofGoodiesDialogueDisabled => SatchelofGoodiesChatterFreq == 0;
+
+		[Header("Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right")]
+		[Label("Hint")]
+		[JsonIgnore]
+		public bool Hint => true;
+
+		[OnDeserialized]
+		internal void OnDeserializedMethod(StreamingContext context)
+		{
+			SatchelofGoodiesChatterFreq = Utils.Clamp(SatchelofGoodiesChatterFreq, SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max);
+		}
+	}
+
 	public abstract class ServerConfigBase : ModConfig
-    {
+	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
 		public static bool IsPlayerLocalServerOwner(int whoAmI)
@@ -230,31 +276,5 @@ namespace AssortedCrazyThings
 			}
 			return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);
 		}
-	}
-
-	[Label("Client Config")]
-	public class ClientConfig : ModConfig
-	{
-		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
-
-		public override ConfigScope Mode => ConfigScope.ClientSide;
-
-		[Header("Satchel of Goodies - Minion Options")]
-		[DefaultValue(true)]
-		[BackgroundColor(125, 217, 124)]
-		[Label("Auto-summon")]
-		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
-		public bool SatchelofGoodiesAutosummon { get; set; }
-
-		[DefaultValue(true)]
-		[BackgroundColor(125, 217, 124)]
-		[Label("Armor progression")]
-		[Tooltip("Enable to show armor progression")]
-		public bool SatchelofGoodiesVisibleArmor { get; set; }
-
-		[Header("Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right")]
-		[Label("Hint")]
-		[JsonIgnore]
-		public bool Hint => true;
 	}
 }

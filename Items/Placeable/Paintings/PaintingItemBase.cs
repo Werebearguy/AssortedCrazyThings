@@ -9,6 +9,8 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 	/// </summary>
 	public abstract class PaintingItemBase<T> : PlaceableItem<T> where T : ModTile
 	{
+		public virtual (int item, int amount) RecipeIngredient => (0, 0);
+
 		/// <summary>
 		/// Name of the painting
 		/// </summary>
@@ -34,5 +36,20 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 			Item.maxStack = 999;
 			Item.rare = ItemRarityID.Blue;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+			var recipe = CreateRecipe()
+				.AddIngredient(ItemID.TatteredCloth, 2)
+				.AddRecipeGroup(RecipeGroupID.Wood)
+				.AddTile(TileID.Sawmill);
+
+			if (RecipeIngredient.item > 0 && RecipeIngredient.amount > 0)
+            {
+				recipe.AddIngredient(RecipeIngredient.item, RecipeIngredient.amount);
+			}
+
+			recipe.Register();
+        }
+    }
 }
