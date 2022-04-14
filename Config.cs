@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -211,6 +212,25 @@ namespace AssortedCrazyThings
 		[Label("Armor progression")]
 		[Tooltip("Enable to show armor progression")]
 		public bool SatchelofGoodiesVisibleArmor { get; set; }
+
+		public const int SatchelofGoodiesChatterFreq_Min = 0;
+		public const int SatchelofGoodiesChatterFreq_Max = 200;
+		[DefaultValue(100)]
+		[BackgroundColor(125, 217, 124)]
+		[Slider]
+		[Increment(5)]
+		[Range(SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max)]
+		[Label("Dialogue frequency")]
+		[Tooltip("Control how often this minion will display dialogue (in percent). 0 for off")]
+		public int SatchelofGoodiesChatterFreq { get; set; }
+
+		internal bool SatchelofGoodiesDialogueDisabled => SatchelofGoodiesChatterFreq == 0;
+
+		[OnDeserialized]
+		internal void OnDeserializedMethod(StreamingContext context)
+		{
+			SatchelofGoodiesChatterFreq = Utils.Clamp(SatchelofGoodiesChatterFreq, SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max);
+		}
 	}
 
 	public abstract class ServerConfigBase : ModConfig

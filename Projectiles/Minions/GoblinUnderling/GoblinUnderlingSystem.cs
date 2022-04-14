@@ -37,9 +37,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		private static byte variation;
 
 		private const int GlobalCooldownMax = 5 * 60;
-		private static int globalCooldown; //So that messages can't be spawned at the same time (unrealistic)
+		private static float globalCooldown; //So that messages can't be spawned at the same time (unrealistic)
 
-		private static int[] messageCooldownsByType;
+		private static float[] messageCooldownsByType;
 
 		private static Dictionary<GoblinUnderlingMessageSource, List<string>> sourceToMessages; //Must have all entries registered
 		private static Dictionary<GoblinUnderlingMessageSource, Func<int>> sourceToCooldowns; //Anything not registered gets a one second default cooldown
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
         private static void LoadMessages()
         {
-            messageCooldownsByType = new int[(int)GoblinUnderlingMessageSource.Count];
+            messageCooldownsByType = new float[(int)GoblinUnderlingMessageSource.Count];
 
             sourceToMessages = new Dictionary<GoblinUnderlingMessageSource, List<string>>();
             sourceToCooldowns = new Dictionary<GoblinUnderlingMessageSource, Func<int>>();
@@ -361,16 +361,27 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		private static void UpdateMessageCooldowns()
 		{
+			float reduceAmount = ClientConfig.Instance.SatchelofGoodiesChatterFreq / 100f;
+			Main.NewText(reduceAmount);
+
 			if (globalCooldown > 0)
 			{
-				globalCooldown--;
+				globalCooldown -= reduceAmount;
+				if (globalCooldown < 0)
+                {
+					globalCooldown = 0;
+				}
 			}
 
 			for (int i = 0; i < messageCooldownsByType.Length; i++)
 			{
 				if (messageCooldownsByType[i] > 0)
 				{
-					messageCooldownsByType[i]--;
+					messageCooldownsByType[i] -= reduceAmount;
+					if (messageCooldownsByType[i] < 0)
+					{
+						messageCooldownsByType[i] = 0;
+					}
 				}
 			}
 		}
@@ -435,6 +446,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			{
 				return;
 			}
+
+			if (ClientConfig.Instance.SatchelofGoodiesDialogueDisabled)
+            {
+				return;
+            }
 
 			PutMessageTypeOnCooldown(GoblinUnderlingMessageSource.Idle); //Always give idle message a cooldown
 
