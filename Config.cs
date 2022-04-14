@@ -192,8 +192,29 @@ namespace AssortedCrazyThings
 		}
     }
 
+	[Label("Client Config")]
+	public class ClientConfig : ModConfig
+	{
+		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
+
+		public override ConfigScope Mode => ConfigScope.ClientSide;
+
+		[Header("Satchel of Goodies - Minion Options")]
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Auto-summon")]
+		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
+		public bool SatchelofGoodiesAutosummon { get; set; }
+
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		[Label("Armor progression")]
+		[Tooltip("Enable to show armor progression")]
+		public bool SatchelofGoodiesVisibleArmor { get; set; }
+	}
+
 	public abstract class ServerConfigBase : ModConfig
-    {
+	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
 		public static bool IsPlayerLocalServerOwner(int whoAmI)
@@ -224,26 +245,5 @@ namespace AssortedCrazyThings
 			}
 			return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);
 		}
-	}
-
-	[Label("Client Config")]
-	public class ClientConfig : ModConfig
-	{
-		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
-
-		public override ConfigScope Mode => ConfigScope.ClientSide;
-
-		[Header("Satchel of Goodies - Minion Options")]
-		[DefaultValue(true)]
-		[BackgroundColor(125, 217, 124)]
-		[Label("Auto-summon")]
-		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
-		public bool SatchelofGoodiesAutosummon { get; set; }
-
-		[DefaultValue(true)]
-		[BackgroundColor(125, 217, 124)]
-		[Label("Armor progression")]
-		[Tooltip("Enable to show armor progression")]
-		public bool SatchelofGoodiesVisibleArmor { get; set; }
 	}
 }
