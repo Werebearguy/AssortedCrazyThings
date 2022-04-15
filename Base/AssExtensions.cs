@@ -39,6 +39,47 @@ namespace AssortedCrazyThings.Base
         }
 
         /// <summary>
+        /// Player.HasItem + checks all banks
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool HasItemWithBanks(this Player player, int type)
+        {
+            if (player.HasItem(type)) return true;
+
+            Item[][] inventoryArray = { player.bank.item, player.bank2.item, player.bank3.item, player.bank4.item };
+            for (int i = 0; i < inventoryArray.Length; i++)
+            {
+                Item[] inventory = inventoryArray[i];
+                for (int j = 0; j < Main.InventorySlotsTotal; j++)
+                {
+                    Item item = inventory[j];
+                    if (type == item.type && item.stack > 0) return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if given item is present in the players inventory or equip slots
+        /// </summary>
+        public static bool ItemInInventoryOrEquipped(this Player player, Item item, bool ignoreVanity = false)
+        {
+            if (player.HasItem(item.type)) return true;
+            if (item.accessory || item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0)
+            {
+                int maxLength = ignoreVanity ? 10 : player.armor.Length;
+                for (int i = 0; i < maxLength; i++)
+                {
+                    if (player.armor[i].type == item.type) return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Copy of vanilla code for spawning a single pet. Gives random velocity at spawn
         /// </summary>
         /// <param name="player"></param>

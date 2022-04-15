@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Weapons
             {
                 int itemType = ModContent.ItemType<GoblinUnderlingItem>();
 
-                static bool Condition(Player player, int itemType) => !player.HasItem(itemType);
+                static bool Condition(Player player, int itemType) => !player.HasItemWithBanks(itemType);
 
                 if (Main.netMode == NetmodeID.Server)
                 {

@@ -55,7 +55,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
                 }
             }
 
-            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, Item))
+            if (Main.LocalPlayer.ItemInInventoryOrEquipped(Item))
             {
                 if (mPlayer.canTeleportHome)
                 {
