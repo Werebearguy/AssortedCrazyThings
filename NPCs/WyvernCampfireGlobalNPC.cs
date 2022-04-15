@@ -7,7 +7,7 @@ using Terraria.Audio;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class WyvernCampfireGlobalNPC : AssGlobalNPC
     {
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)

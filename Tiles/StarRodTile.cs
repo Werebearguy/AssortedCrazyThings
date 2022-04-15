@@ -17,7 +17,7 @@ using Terraria.GameContent.ObjectInteractions;
 namespace AssortedCrazyThings.Tiles
 {
     //Classes handling player nearby state below
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class StarRodTile : DroppableTile<StarRodItem>
     {
         public const int Height = 4;
@@ -222,7 +222,7 @@ namespace AssortedCrazyThings.Tiles
         }
     }
 
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class StarRodModSystem : AssSystem
     {
         public override void ResetNearbyTileEffects()
@@ -232,7 +232,7 @@ namespace AssortedCrazyThings.Tiles
     }
 
     //Responsible for x-axis repositioning spawned falling star spawners towards a suitable location
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class StarRodGlobalProjectile : AssGlobalProjectile
     {
         public const float DetectionDistX = 1920 * 5; //5 screens in either direction
@@ -340,7 +340,7 @@ namespace AssortedCrazyThings.Tiles
         //}
     }
 
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class StarRodModPlayer : AssPlayerBase
     {
         public bool starRodTileNearby = false; //Reset in ModSystem, clientside

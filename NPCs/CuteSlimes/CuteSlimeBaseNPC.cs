@@ -18,13 +18,9 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
         public abstract SpawnConditionType SpawnCondition { get; }
 
-        public virtual bool ShouldDropGel
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public abstract Color DustColor { get; }
+
+        public virtual bool ShouldDropGel => true;
 
         public override void SetStaticDefaults()
         {
@@ -81,6 +77,25 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             return !projectile.minion;
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Color color = DustColor;
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+                }
+            }
+        }
+
         public virtual void SafeSetDefaults()
         {
 
@@ -89,11 +104,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnCondition);
-        }
-
-        public override void OnCatchNPC(Player player, Item item)
-        {
-            //DropRandomItem(player.getRect());
         }
 
         public sealed override void ModifyNPCLoot(NPCLoot npcLoot)

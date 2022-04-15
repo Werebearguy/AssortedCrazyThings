@@ -35,6 +35,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
+        public override Color DustColor => new Color(202, 59, 231, 100);
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {

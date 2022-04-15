@@ -10,7 +10,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-    [Content(ContentType.Placeables | ContentType.CuteSlimes)]
+    [Content(ContentType.PlaceablesFunctional | ContentType.CuteSlimes)]
     public class CuteSlimeStatueTile : DroppableTile<CuteSlimeStatueItem>
     {
         public override void SetStaticDefaults()

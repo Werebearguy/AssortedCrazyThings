@@ -46,8 +46,29 @@ namespace AssortedCrazyThings.NPCs
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Lens, chanceDenominator: 33));
-            npcLoot.Add(ItemDropRule.Common(ItemID.BlackLens, chanceDenominator: 100));
+            var vanillaDrops = Main.ItemDropsDB.GetRulesForNPCID(NPCID.DemonEye, false); // false is important here
+            foreach (var dropRule in vanillaDrops)
+            {
+                npcLoot.Add(dropRule);
+            }
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
+                }
+            }
         }
 
         public ref float AiTexture => ref NPC.ai[3];

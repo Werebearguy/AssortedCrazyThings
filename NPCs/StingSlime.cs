@@ -47,6 +47,29 @@ namespace AssortedCrazyThings.NPCs
             NPC.catchItem = (short)ModContent.ItemType<StingSlimeItem>();
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Color color = AiTexture switch
+            {
+                0 => new Color(152, 140, 166, 100),
+                _ => new Color(234, 173, 83, 100),
+            };
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 40; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+                }
+            }
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return SpawnCondition.OverworldDayDesert.Chance * 0.3f;

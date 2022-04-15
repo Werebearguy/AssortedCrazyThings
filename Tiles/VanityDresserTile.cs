@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-    [Content(ContentType.Placeables | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+    [Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
     public class VanityDresserTile : DroppableTile<VanityDresserItem>
     {
         public override void SetStaticDefaults()

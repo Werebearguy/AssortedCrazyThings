@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Items.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -33,6 +34,24 @@ namespace AssortedCrazyThings.NPCs
             AIType = NPCID.ToxicSludge;
             AnimationType = NPCID.ToxicSludge;
             NPC.catchItem = (short)ModContent.ItemType<ChunkyItem>();
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, hitDirection, -1f);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 40; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, 2 * hitDirection, -2f);
+                }
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

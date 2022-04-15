@@ -49,8 +49,17 @@ namespace AssortedCrazyThings.NPCs
             NPC.aiStyle = 2;
             AIType = NPCID.WanderingEye;
             AnimationType = NPCID.WanderingEye;
-            Banner = Item.NPCtoBanner(NPCID.DemonEye);
+            Banner = Item.NPCtoBanner(NPCID.WanderingEye);
             BannerItem = Item.BannerToItem(Banner);
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            var vanillaDrops = Main.ItemDropsDB.GetRulesForNPCID(NPCID.WanderingEye, false); // false is important here
+            foreach (var dropRule in vanillaDrops)
+            {
+                npcLoot.Add(dropRule);
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -69,8 +78,20 @@ namespace AssortedCrazyThings.NPCs
                 return;
             }
 
-            if (NPC.life <= 0)
+            if (NPC.life > 0)
             {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
+                }
+
                 switch ((int)AiTexture)//switch ((int)npc.altTexture)
                 {
                     case 0:

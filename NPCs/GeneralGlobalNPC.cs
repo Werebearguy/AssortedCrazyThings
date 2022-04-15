@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.NPCs
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (ContentConfig.Instance.Placeables && type == NPCID.PartyGirl && NPC.downedSlimeKing)
+            if (ContentConfig.Instance.PlaceablesFunctional && type == NPCID.PartyGirl && NPC.downedSlimeKing)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<SlimeBeaconItem>());
                 nextSlot++;

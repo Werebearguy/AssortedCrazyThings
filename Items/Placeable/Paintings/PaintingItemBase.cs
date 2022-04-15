@@ -7,6 +7,7 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 	/// <summary>
 	/// Base class for all painting items
 	/// </summary>
+	[Content(ContentType.PlaceablesDecorative)]
 	public abstract class PaintingItemBase<T> : PlaceableItem<T> where T : ModTile
 	{
 		public virtual (int item, int amount) RecipeIngredient => (0, 0);

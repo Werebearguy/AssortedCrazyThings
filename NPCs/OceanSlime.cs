@@ -45,9 +45,32 @@ namespace AssortedCrazyThings.NPCs
             NPC.aiStyle = 1;
             AIType = NPCID.ToxicSludge;
             AnimationType = NPCID.ToxicSludge;
-            NPC.alpha = 175;
-            NPC.color = new Color(65, 193, 247, 100);
             NPC.catchItem = (short)ModContent.ItemType<OceanSlimeItem>();
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Color color = AiTexture switch
+            {
+                1 => new Color(217, 216, 255, 100),
+                2 => new Color(98, 148, 143, 100),
+                3 => new Color(254, 180, 246, 100),
+                _ => new Color(65, 193, 247, 100),
+            };
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 40; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+                }
+            }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

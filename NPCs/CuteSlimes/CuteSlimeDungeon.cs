@@ -37,6 +37,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             }
         }
 
+        public override Color DustColor => new Color(137, 129, 193, 100);
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
@@ -45,13 +47,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
             });
         }
 
-        public override bool ShouldDropGel
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public override bool ShouldDropGel => true;
 
         public override void SafeSetDefaults()
         {

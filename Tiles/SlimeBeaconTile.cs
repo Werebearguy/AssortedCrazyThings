@@ -10,7 +10,7 @@ using Terraria.GameContent.ObjectInteractions;
 
 namespace AssortedCrazyThings.Tiles
 {
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class SlimeBeaconTile : DroppableTile<SlimeBeaconItem>
     {
         public override void SetStaticDefaults()

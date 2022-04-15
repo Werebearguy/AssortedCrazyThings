@@ -35,6 +35,24 @@ namespace AssortedCrazyThings.NPCs
             NPC.catchItem = (short)ModContent.ItemType<MeatballItem>();
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
+                }
+            }
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (Main.hardMode) return SpawnCondition.Crimson.Chance * 0.04f;
