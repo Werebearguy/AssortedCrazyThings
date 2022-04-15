@@ -3,7 +3,9 @@ using AssortedCrazyThings.Items.DroneUnlockables;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.NPCs.DropConditions;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,11 +14,24 @@ namespace AssortedCrazyThings.NPCs
     [Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
     public class GeneralGlobalNPC : AssGlobalNPC
     {
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (ContentConfig.Instance.Weapons)
+            {
+                //TODO convert this to a proper drop rule, see OnKill
+                if (npc.type == NPCID.TheDestroyer)
+                {
+                    LeadingConditionRule neverDropsRule = new LeadingConditionRule(new NotAllDronePartsUnlockedCondition());
+                    neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DroneParts>()));
+                    npcLoot.Add(neverDropsRule);
+                }
+            }
+        }
+
         public override void OnKill(NPC npc)
         {
             if (ContentConfig.Instance.Weapons)
             {
-                //TODO convert this to a drop rule
                 if (npc.type == NPCID.TheDestroyer)
                 {
                     AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
