@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Base
             for (int i = 0; i < inventoryArray.Length; i++)
             {
                 Item[] inventory = inventoryArray[i];
-                for (int j = 0; j < Main.InventorySlotsTotal; j++)
+                for (int j = 0; j < inventory.Length; j++)
                 {
                     Item item = inventory[j];
                     if (type == item.type && item.stack > 0) return true;
