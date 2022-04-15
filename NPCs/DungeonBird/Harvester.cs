@@ -23,6 +23,7 @@ using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
 using Terraria.GameContent;
 using System.Collections.Generic;
 using AssortedCrazyThings.BossBars;
+using AssortedCrazyThings.NPCs.DropConditions;
 
 namespace AssortedCrazyThings.NPCs.DungeonBird
 {
@@ -52,6 +53,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public static readonly string name = "Soul Harvester";
         public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
+        public const int SpawnedSoulCount = 15;
         public static Color deathColor = new Color(35, 200, 254);
         public const int FrameCountHorizontal = 4;
         public const int FrameCountVertical = 5;
@@ -393,7 +395,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
                 float randFactor;
                 int index;
 
-                for (int j = 0; j < 15; j++) //spawn souls when dies, 15 total
+                for (int j = 0; j < SpawnedSoulCount; j++) //spawn souls when dies
                 {
                     index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
                     if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
@@ -423,7 +425,14 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IdolOfDecay>()));
+            int idolOfDecay = ModContent.ItemType<IdolOfDecay>();
+            LeadingConditionRule noHasItemWithBankRule = new LeadingConditionRule(new NoHasItemWithBankCondition(idolOfDecay));
+            noHasItemWithBankRule.OnSuccess(ItemDropRule.Common(idolOfDecay));
+            npcLoot.Add(noHasItemWithBankRule);
+
+            LeadingConditionRule neverDropsRule = new LeadingConditionRule(new Conditions.NeverTrue());
+            neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CaughtDungeonSoulFreed>(), 1, SpawnedSoulCount, SpawnedSoulCount));
+            npcLoot.Add(neverDropsRule);
 
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<HarvesterTreasureBag>()));
 
