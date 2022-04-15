@@ -2,6 +2,7 @@ using Terraria.GameContent.Bestiary;
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
@@ -30,6 +31,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
                 return SpawnConditionType.Desert;
             }
         }
+
+        public override Color DustColor => new Color(244, 227, 117, 100);
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
