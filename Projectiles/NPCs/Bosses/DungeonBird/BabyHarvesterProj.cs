@@ -140,6 +140,111 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 preSync: (Projectile proj) => (proj.ModProjectile as BabyHarvesterProj).AssignPlayerOwner(player.whoAmI));
         }
 
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                SheetAssets = new Dictionary<int, Asset<Texture2D>>();
+                WingAssets = new Dictionary<int, Asset<Texture2D>>();
+                TransformationAssets = new Dictionary<int, Asset<Texture2D>>();
+                TransformationWingAssets = new Dictionary<int, Asset<Texture2D>>();
+
+                for (int i = 1; i <= MaxTier; i++)
+                {
+                    SheetAssets.Add(i, ModContent.Request<Texture2D>(Texture + i + "_Sheet"));
+                }
+
+                //1 has no wing glowmask
+                for (int i = 2; i <= MaxTier; i++)
+                {
+                    WingAssets.Add(i, ModContent.Request<Texture2D>(Texture + i + "_Sheet_Wings"));
+                }
+
+                for (int i = 1; i <= MaxTier; i++)
+                {
+                    TransformationAssets.Add(i, ModContent.Request<Texture2D>(Texture + "_Transformation" + i));
+                    TransformationWingAssets.Add(i, ModContent.Request<Texture2D>(Texture + "_Transformation" + i + "_Glowmask"));
+                }
+            }
+
+            TierDatas = new Dictionary<int, TierData>()
+            {
+                [1] = new TierData
+                {
+                    FrameSpeed = 3,
+                    SoulsToNextTier = 1,
+                    TransformationFrameCount = 7,
+                },
+                [2] = new TierData
+                {
+                    FrameSpeed = 4,
+                    SoulsToNextTier = 5,
+                    TransformationFrameCount = 9,
+                },
+                [3] = new TierData
+                {
+                    FrameSpeed = 4,
+                    SoulsToNextTier = 10,
+                    TransformationFrameCount = 10,
+                },
+                [4] = new TierData //Dummy tier, used to detect last tier switch into main form
+                {
+                    SoulsToNextTier = 999
+                },
+            };
+
+            SoulsEatenToTier = new Dictionary<int, int>();
+            TierToSoulsEaten = new Dictionary<int, int>();
+            int soulsAccumulated = 0;
+            foreach (var data in TierDatas)
+            {
+                soulsAccumulated += data.Value.SoulsToNextTier;
+                SoulsEatenToTier.Add(soulsAccumulated, data.Key);
+                TierToSoulsEaten.Add(data.Key, soulsAccumulated);
+            }
+        }
+
+        public override void Unload()
+        {
+            SheetAssets = null;
+            WingAssets = null;
+            TransformationAssets = null;
+            TransformationWingAssets = null;
+
+            TierDatas = null;
+            SoulsEatenToTier = null;
+            TierToSoulsEaten = null;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Baby Bird");
+            Main.projFrames[Projectile.type] = 5;
+
+            ProjectileID.Sets.DontAttachHideToAlpha[Projectile.type] = true;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+            Projectile.hide = true;
+            Projectile.aiStyle = -1;
+            Projectile.width = 32;
+            Projectile.height = 32;
+            Projectile.netImportant = true;
+            Projectile.timeLeft = int.MaxValue / 2;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((byte)PlayerOwner);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            PlayerOwner = reader.ReadByte();
+        }
+
         public void AssignPlayerOwner(int newPlayer)
         {
             bool sync = HasValidPlayerOwner;
@@ -257,7 +362,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 Vector2 dustCenter = Projectile.Center + new Vector2(offset.X * i, offset.Y).RotatedBy(Projectile.rotation);
                 Rectangle dustBox = Utils.CenteredRectangle(dustCenter, size);
 
-                if (Main.rand.NextFloat() <  0.5f * (float)SoulsEaten / maxSoulsEaten)
+                if (Main.rand.NextFloat() < 0.5f * (float)SoulsEaten / maxSoulsEaten)
                 {
                     Dust dust = Dust.NewDustDirect(dustBox.TopLeft(), dustBox.Width, dustBox.Height, 135, 0f, 0f, 0, default(Color), 1.5f);
                     dust.noGravity = true;
@@ -271,109 +376,28 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             }
         }
 
-        public override void Load()
+        private int SoulTargetClosest(float maxDistance = 1000f)
         {
-            if (!Main.dedServ)
+            short closest = Main.maxNPCs;
+            Vector2 toSoul;
+            float oldDistance = maxDistance;
+            float newDistance;
+            for (short j = 0; j < Main.maxNPCs; j++)
             {
-                SheetAssets = new Dictionary<int, Asset<Texture2D>>();
-                WingAssets = new Dictionary<int, Asset<Texture2D>>();
-                TransformationAssets = new Dictionary<int, Asset<Texture2D>>();
-                TransformationWingAssets = new Dictionary<int, Asset<Texture2D>>();
-
-                for (int i = 1; i <= MaxTier; i++)
+                //ignore souls if they are noclipping
+                NPC other = Main.npc[j];
+                if (other.active && other.type == ModContent.NPCType<DungeonSoul>())
                 {
-                    SheetAssets.Add(i, ModContent.Request<Texture2D>(Texture + i + "_Sheet"));
-                }
-
-                //1 has no wing glowmask
-                for (int i = 2; i <= MaxTier; i++)
-                {
-                    WingAssets.Add(i, ModContent.Request<Texture2D>(Texture + i + "_Sheet_Wings"));
-                }
-
-                for (int i = 1; i <= MaxTier; i++)
-                {
-                    TransformationAssets.Add(i, ModContent.Request<Texture2D>(Texture + "_Transformation" + i));
-                    TransformationWingAssets.Add(i, ModContent.Request<Texture2D>(Texture + "_Transformation" + i + "_Glowmask"));
+                    toSoul = other.Center - Projectile.Center;
+                    newDistance = toSoul.Length();
+                    if (newDistance < oldDistance)
+                    {
+                        oldDistance = newDistance;
+                        closest = j;
+                    }
                 }
             }
-
-            TierDatas = new Dictionary<int, TierData>()
-            {
-                [1] = new TierData
-                {
-                    FrameSpeed = 3,
-                    SoulsToNextTier = 1,
-                    TransformationFrameCount = 7,
-                },
-                [2] = new TierData
-                {
-                    FrameSpeed = 4,
-                    SoulsToNextTier = 5,
-                    TransformationFrameCount = 9,
-                },
-                [3] = new TierData
-                {
-                    FrameSpeed = 4,
-                    SoulsToNextTier = 10,
-                    TransformationFrameCount = 10,
-                },
-                [4] = new TierData //Dummy tier, used to detect last tier switch into main form
-                {
-                    SoulsToNextTier = 999
-                },
-            };
-
-            SoulsEatenToTier = new Dictionary<int, int>();
-            TierToSoulsEaten = new Dictionary<int, int>();
-            int soulsAccumulated = 0;
-            foreach (var data in TierDatas)
-            {
-                soulsAccumulated += data.Value.SoulsToNextTier;
-                SoulsEatenToTier.Add(soulsAccumulated, data.Key);
-                TierToSoulsEaten.Add(data.Key, soulsAccumulated);
-            }
-        }
-
-        public override void Unload()
-        {
-            SheetAssets = null;
-            WingAssets = null;
-            TransformationAssets = null;
-            TransformationWingAssets = null;
-
-            TierDatas = null;
-            SoulsEatenToTier = null;
-            TierToSoulsEaten = null;
-        }
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Baby Bird");
-            Main.projFrames[Projectile.type] = 5;
-
-            ProjectileID.Sets.DontAttachHideToAlpha[Projectile.type] = true;
-        }
-
-        public override void SetDefaults()
-        {
-            Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            Projectile.hide = true;
-            Projectile.aiStyle = -1;
-            Projectile.width = 32;
-            Projectile.height = 32;
-            Projectile.netImportant = true;
-            Projectile.timeLeft = int.MaxValue / 2;
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write((byte)PlayerOwner);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            PlayerOwner = reader.ReadByte();
+            return closest;
         }
 
         public override void AI()
@@ -388,6 +412,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             if (!Player.active)
             {
                 //Wait for revalidation (player disconnecting causes position of the player to be reset to 0,0, despawning the projectiles because its oob)
+                //If no other suitable player is found, it gets despawned by the handler
                 return;
             }
 
@@ -448,30 +473,6 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 }
                 AssAI.ZephyrfishDraw(Projectile, frameSpeed);
             }
-        }
-
-        private int SoulTargetClosest(float maxDistance = 1000f)
-        {
-            short closest = Main.maxNPCs;
-            Vector2 toSoul;
-            float oldDistance = maxDistance;
-            float newDistance;
-            for (short j = 0; j < Main.maxNPCs; j++)
-            {
-                //ignore souls if they are noclipping
-                NPC other = Main.npc[j];
-                if (other.active && other.type == ModContent.NPCType<DungeonSoul>())
-                {
-                    toSoul = other.Center - Projectile.Center;
-                    newDistance = toSoul.Length();
-                    if (newDistance < oldDistance)
-                    {
-                        oldDistance = newDistance;
-                        closest = j;
-                    }
-                }
-            }
-            return closest;
         }
 
         private void RegularAI()
