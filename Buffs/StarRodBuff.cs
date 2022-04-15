@@ -4,7 +4,7 @@ using Terraria;
 namespace AssortedCrazyThings.Buffs
 {
     //Not just visual (like campfires), server needs to know it exists
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class StarRodBuff : AssBuff
     {
         public override void SetStaticDefaults()

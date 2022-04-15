@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Base.ModSupport
                     int summonItem = ModContent.ItemType<IdolOfDecay>();
 
                     List<int> collection = new List<int>();
-                    if (ContentConfig.Instance.Placeables)
+                    if (ContentConfig.Instance.PlaceablesFunctional)
                     {
                         collection.AddRange(new List<int>
                         {

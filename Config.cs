@@ -80,11 +80,18 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Placeable decorative tiles and objects")] //TODO after paintings are obtainable, break up functional
-		[Label("Placeables")]
-		public bool Placeables { get; set; }
+		[Tooltip("Placeable functional tiles and objects")]
+		[Label("Placeables (functional)")]
+		public bool PlaceablesFunctional { get; set; }
 
-		[ReloadRequired]
+        [ReloadRequired]
+        [DefaultValue(true)]
+        [BackgroundColor(194, 147, 227)]
+        [Tooltip("Placeable decorative tiles and objects")]
+        [Label("Placeables (decorative)")]
+        public bool PlaceablesDecorative { get; set; }
+
+        [ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
 		[Tooltip("Armor with stats")]
@@ -166,9 +173,13 @@ namespace AssortedCrazyThings
 			{
 				FilterFlags |= ContentType.Tools;
 			}
-			if (!Placeables)
+			if (!PlaceablesFunctional)
 			{
-				FilterFlags |= ContentType.Placeables;
+				FilterFlags |= ContentType.PlaceablesFunctional;
+			}
+			if (!PlaceablesDecorative)
+			{
+				FilterFlags |= ContentType.PlaceablesDecorative;
 			}
 			if (!Armor)
 			{

@@ -27,8 +27,9 @@ namespace AssortedCrazyThings
             ContentType.OtherPets |
             ContentType.Weapons |
             ContentType.Tools |
-            ContentType.Placeables |
-            ContentType.Armor |
+            ContentType.PlaceablesFunctional |
+			ContentType.PlaceablesDecorative |
+			ContentType.Armor |
             ContentType.VanityArmor |
             ContentType.Accessories |
             ContentType.VanityAccessories |
@@ -184,7 +185,8 @@ namespace AssortedCrazyThings
 				ContentType.OtherPets => "Other Pets",
 				ContentType.Weapons => "Weapons",
 				ContentType.Tools => "Tools",
-				ContentType.Placeables => "Placeables",
+				ContentType.PlaceablesFunctional => "Placeables (functional)",
+				ContentType.PlaceablesDecorative => "Placeables (decorative)",
 				ContentType.Armor => "Armor",
 				ContentType.VanityArmor => "Vanity Armor",
 				ContentType.Accessories => "Accessories",
@@ -207,7 +209,7 @@ namespace AssortedCrazyThings
 	}
 
 	[Flags]
-	public enum ContentType : short
+	public enum ContentType : int
     {
 		Always = 0 << 0,
 		Bosses = 1 << 1,
@@ -218,12 +220,13 @@ namespace AssortedCrazyThings
 		OtherPets = 1 << 6,
 		Weapons = 1 << 7,
 		Tools = 1 << 8,
-		Placeables = 1 << 9,
-		Armor = 1 << 10,
-		VanityArmor = 1 << 11,
-		Accessories = 1 << 12,
-		VanityAccessories = 1 << 13,
-		BossConsolation = 1 << 14,
+		PlaceablesFunctional = 1 << 9,
+		PlaceablesDecorative = 1 << 10,
+		Armor = 1 << 11,
+		VanityArmor = 1 << 12,
+		Accessories = 1 << 13,
+		VanityAccessories = 1 << 14,
+		BossConsolation = 1 << 15,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

@@ -14,7 +14,7 @@ using Terraria.GameContent.ObjectInteractions;
 
 namespace AssortedCrazyThings.Tiles
 {
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class WyvernCampfireTile : DroppableTile<WyvernCampfireItem>
     {
         private const int maxFrames = 8;

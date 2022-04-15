@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Buffs
 {
-    [Content(ContentType.Placeables)]
+    [Content(ContentType.PlaceablesFunctional)]
     public class WyvernCampfireGlobalBuff : AssGlobalBuff
     {
         //Tells you its effects in the regular campfire buff (which the wyvern campfire applies)

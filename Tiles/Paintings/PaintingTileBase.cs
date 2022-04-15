@@ -11,6 +11,7 @@ namespace AssortedCrazyThings.Tiles.Paintings
 	/// <summary>
 	/// Base class for all painting tiles
 	/// </summary>
+	[Content(ContentType.PlaceablesDecorative)]
 	public abstract class PaintingTileBase<T> : DroppableTile<T> where T : ModItem
 	{
 		//TODO style classes based on dimension
