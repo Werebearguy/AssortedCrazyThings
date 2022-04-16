@@ -19,7 +19,12 @@ namespace AssortedCrazyThings.Items
 
 		public override bool CanUseItem(Item item, Player player)
 		{
-			//IS ACTUALLY CALLED EVERY TICK WHENEVER YOU USE THE ITEM ON THE SERVER; BUT ONLY ONCE ON THE CLIENT
+			if (Main.myPlayer != player.whoAmI)
+			{
+				return true;
+			}
+
+			//Spawn dust only clientside
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
 			if (!player.CCed && (mPlayer.everburningCandleBuff || mPlayer.everfrozenCandleBuff || mPlayer.everburningShadowflameCandleBuff || mPlayer.everburningCursedCandleBuff))
