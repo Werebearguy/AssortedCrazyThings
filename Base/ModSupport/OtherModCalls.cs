@@ -19,49 +19,65 @@ namespace AssortedCrazyThings.Base.ModSupport
 		public override void PostSetupContent()
 		{
 			//https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
-			if (ContentConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
+			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
 			{
-				//5.1f means just after skeletron
-				if (bossChecklist.Version >= new Version(1, 3, 1))
+				if (ContentConfig.Instance.Bosses)
 				{
-					List<int> collection = new List<int>()
+					//5.1f means just after skeletron
+					if (bossChecklist.Version >= new Version(1, 3, 1)) //Calls were overhauled for 1.4
 					{
-						ModContent.ItemType<HarvesterRelicItem>(),
-						ModContent.ItemType<PetHarvesterItem>(),
-						ModContent.ItemType<HarvesterTrophyItem>(),
-						ModContent.ItemType<SoulHarvesterMask>()
-					};
+						List<int> collection = new List<int>()
+						{
+							ModContent.ItemType<HarvesterRelicItem>(),
+							ModContent.ItemType<PetHarvesterItem>(),
+							ModContent.ItemType<HarvesterTrophyItem>(),
+							ModContent.ItemType<SoulHarvesterMask>()
+						};
 
-					int summonItem = ModContent.ItemType<IdolOfDecay>();
+						int summonItem = ModContent.ItemType<IdolOfDecay>();
 
-					//TODO harvester, include 15 x ModContent.ItemType<CaughtDungeonSoulFreed>() in loot but dont spawn it
+						//TODO harvester, include 15 x ModContent.ItemType<CaughtDungeonSoulFreed>() in loot but dont spawn it
 
-					/*
-                     * "AddBoss",
-                        args[1] as Mod, // Mod
-						args[2] as string, // Boss Name
-						InterpretObjectAsListOfInt(args[3]), // IDs
-						Convert.ToSingle(args[4]), // Prog
-						args[5] as Func<bool>, // Downed
-						args[6] as Func<bool>, // Available
-						InterpretObjectAsListOfInt(args[7]), // Collection
-						InterpretObjectAsListOfInt(args[8]), // Spawn Items
-						args[9] as string, // Spawn Info
-						InterpretObjectAsStringFunction(args[10]), // Despawn message
-						args[11] as Action<SpriteBatch, Rectangle, Color> // Custom Drawing
-                     */
-					bossChecklist.Call(
-						"AddBoss",
-						Mod,
-						Harvester.name,
-						AssortedCrazyThings.harvester,
-						5.1f,
-						(Func<bool>)(() => AssWorld.downedHarvester),
-						(Func<bool>)(() => true),
-						collection,
-						summonItem,
-						$"Enter the dungeon for the first time, or use a [i:{summonItem}] in the dungeon"
-					);
+						/*
+						 * "AddBoss",
+							args[1] as Mod, // Mod
+							args[2] as string, // Boss Name
+							InterpretObjectAsListOfInt(args[3]), // IDs
+							Convert.ToSingle(args[4]), // Prog
+							args[5] as Func<bool>, // Downed
+							args[6] as Func<bool>, // Available
+							InterpretObjectAsListOfInt(args[7]), // Collection
+							InterpretObjectAsListOfInt(args[8]), // Spawn Items
+							args[9] as string, // Spawn Info
+							InterpretObjectAsStringFunction(args[10]), // Despawn message
+							args[11] as Action<SpriteBatch, Rectangle, Color> // Custom Drawing
+						 */
+						bossChecklist.Call(
+							"AddBoss",
+							Mod,
+							Harvester.name,
+							AssortedCrazyThings.harvester,
+							5.1f,
+							(Func<bool>)(() => AssWorld.downedHarvester),
+							(Func<bool>)(() => true),
+							collection,
+							summonItem,
+							$"Enter the dungeon for the first time, or use a [i:{summonItem}] in the dungeon"
+						);
+					}
+				}
+
+				if (ContentConfig.Instance.Weapons)
+				{
+					if (bossChecklist.Version >= new Version(1, 3, 2)) //"AddToBossLoot" was added
+					{
+						List<int> goblinInvasion = new List<int>()
+						{
+							ModContent.ItemType<GoblinUnderlingItem>()
+						};
+
+						bossChecklist.Call("AddToBossLoot", "Terraria GoblinArmy", goblinInvasion);
+					}
 				}
 			}
 
