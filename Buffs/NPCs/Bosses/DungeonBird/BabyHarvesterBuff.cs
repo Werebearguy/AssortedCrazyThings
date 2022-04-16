@@ -62,9 +62,13 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.DungeonBird
             {
                 toReplaceWith = "I'm not sure it should keep eating...";
             }
-
             tip = tip.Replace(dummy, toReplaceWith);
-            tip += $"\nThe bird has absorbed {babyHarvester.SoulsEaten} souls";
+
+            var numSouls = babyHarvester.SoulsEaten;
+            if (numSouls > 0)
+            {
+                tip += $"\nThe bird has absorbed {babyHarvester.SoulsEaten} souls";
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams)

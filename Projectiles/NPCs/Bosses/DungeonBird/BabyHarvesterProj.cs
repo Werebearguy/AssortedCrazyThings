@@ -627,7 +627,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                         }
                     }
 
-                    offset = new Vector2(-60, 60);
+                    offset = new Vector2(-60, 40);
                     veloFactor = 1f;
                     sway = 1.3f;
 
