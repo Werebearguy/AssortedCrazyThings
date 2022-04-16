@@ -11,7 +11,7 @@ Everything is done in the Items/PetAccessories/PetAccessoryClass.cs file
 ```
 public class PetAccessoryThing : PetAccessoryItem
 {
-    public override void SetStaticDefaults()
+    public override void SafeSetStaticDefaults()
     {
         DisplayName.SetDefault("Cute Thing");
         Tooltip.SetDefault("'A thing for your cute slime to wear on a certain body part'");

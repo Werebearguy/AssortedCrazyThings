@@ -8,14 +8,11 @@
 >For pets that don't have alt textures yet, do everything from scratch besides the declaration of
 >the `public bool ClassName = false;` thing that you should already have
 
-* "ClassName" excludes the "Proj" suffix, it will be mentioned in the guide when you need to add it
-* if the projectile doesn't have "Proj" in its name, you don't need to include it manually, but for things like
-classNameType, there should be no "Proj" in it
+* for things like classNameType, there should be no "Proj" in it
 * in PetPlayer.cs: `public bool ClassName = false;` and `ClassName = false;` in ResetEffects()
 * in each step after the second, the place where you need to add stuff is marked via `//ALTERNATE`,
 please don't remove the commented out sample code, instead, add your stuff between the existing code and the sample code
-* Example 1: `ClassName == YoungWyvern` (no Proj), `classNameType == youngWyvernType`
-* Example 2: `ClassName == PetFishronProj`, `classNameType == petFishronType`
+* Example: `ClassName == PetFishronProj`, `classNameType == petFishronType`
 
 ***
 
@@ -48,14 +45,14 @@ public override string Texture
 //using AssortecCrazyThings.Base;
 public override bool PreDraw(ref Color lightColor)
 {
-    PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-    SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-    Texture2D image = mod.GetTexture("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType).Value;
+    PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+    SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+    Texture2D image =  Mod.Assets.Request<Texture2D>("Projectiles/Pets/ClassNameProj_" + mPlayer.classNameType).Value;
     Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
     Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
 
-    Main.spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+    Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
     return false;
 }
@@ -75,7 +72,13 @@ public byte classNameType = 0;
 
 [...]
 
-public void GetFromClonedTypes(string mp = "")
+public override void Initialize()
+{
+    [..all the other pet types..]
+    classNameType = 0;
+}
+
+public void GetFromClonedTypes()
 {
     [..all the other pet types..]
     classNameType = ClonedTypes[index++];
@@ -92,7 +95,7 @@ public void SetClonedTypes()
 
 * At this point, the pet will render with its _0 texture selected.
 Check with Modder's Toolkit if the hitbox aligns with the texture, if not,
-adjust `stupidOffset` accordingly in PreDraw() (example: YoungWyvern.cs)
+adjust `stupidOffset` accordingly in PreDraw() (example: YoungWyvernProj.cs)
 
 
 ***
