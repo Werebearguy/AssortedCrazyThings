@@ -20,15 +20,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mini Fishron");
-			Main.projFrames[Projectile.type] = 4;
+			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-			AIType = ProjectileID.ZephyrFish;
-			Projectile.width = 54;
+			Projectile.aiStyle = -1;
+			Projectile.width = 48;
 			Projectile.height = 30;
 		}
 
@@ -51,7 +51,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
-			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+
+			if (!player.active)
+			{
+				Projectile.active = false;
+				return;
+			}
+
+			AssAI.ZephyrfishAI(Projectile);
+			AssAI.ZephyrfishDraw(Projectile);
 		}
 
 		public override bool PreDraw(ref Color lightColor)
