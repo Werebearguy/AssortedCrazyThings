@@ -5,23 +5,23 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.DroppedPets)]
-    public class IlluminantSlimeItem : SimplePetItemBase
-    {
-        public override int PetType => ModContent.ProjectileType<IlluminantSlimeProj>();
+	[Content(ContentType.DroppedPets)]
+	public class IlluminantSlimeItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<IlluminantSlimeProj>();
 
-        public override int BuffType => ModContent.BuffType<IlluminantSlimeBuff>();
+		public override int BuffType => ModContent.BuffType<IlluminantSlimeBuff>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bottled Illuminant Slime");
-            Tooltip.SetDefault("Summons a friendly Illuminant Slime to follow you");
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottled Illuminant Slime");
+			Tooltip.SetDefault("Summons a friendly Illuminant Slime to follow you");
+		}
 
-        public override void SafeSetDefaults()
-        {
-            Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10);
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			Item.rare = -11;
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

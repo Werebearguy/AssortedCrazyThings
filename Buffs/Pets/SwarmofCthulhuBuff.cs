@@ -4,17 +4,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    [Content(ContentType.DroppedPets)]
-    public class SwarmofCthulhuBuff : SimplePetBuffBase
-    {
-        public override int PetType => ModContent.ProjectileType<SwarmofCthulhuProj>();
+	[Content(ContentType.DroppedPets)]
+	public class SwarmofCthulhuBuff : SimplePetBuffBase
+	{
+		public override int PetType => ModContent.ProjectileType<SwarmofCthulhuProj>();
 
-        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().SwarmofCthulhu;
+		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().SwarmofCthulhu;
 
-        public override void SafeSetDefaults()
-        {
-            DisplayName.SetDefault("Swarm of Cthulhu");
-            Description.SetDefault("A Swarm of Cthulhu is following you");
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			DisplayName.SetDefault("Swarm of Cthulhu");
+			Description.SetDefault("A Swarm of Cthulhu is following you");
+		}
+	}
 }

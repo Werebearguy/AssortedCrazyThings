@@ -5,19 +5,19 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.SlimeHugs
 {
-    public class SlimeHugAle : SlimeHug
-    {
-        protected override int Cooldown => 60 * 60 * 2;
-        
-        public override int HugEmote => EmoteID.EmotionLove;
+	public class SlimeHugAle : SlimeHug
+	{
+		protected override int Cooldown => 60 * 60 * 2;
 
-        public override int PreHugEmoteDuration => 40;
+		public override int HugEmote => EmoteID.EmotionLove;
 
-        public override int PreHugEmote => EmoteID.ItemAle;
+		public override int PreHugEmoteDuration => 40;
 
-        public override bool IsAvailable(CuteSlimeBaseProj slime, PetPlayer petPlayer)
-        {
-            return petPlayer.Player.HeldItem.type == ModContent.ItemType<CuteSlimeSpawnEnableFlask>();
-        }
-    }
+		public override int PreHugEmote => EmoteID.ItemAle;
+
+		public override bool IsAvailable(CuteSlimeBaseProj slime, PetPlayer petPlayer)
+		{
+			return petPlayer.Player.HeldItem.type == ModContent.ItemType<CuteSlimeSpawnEnableFlask>();
+		}
+	}
 }

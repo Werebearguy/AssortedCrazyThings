@@ -5,23 +5,23 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.DroppedPets)]
-    public class TinyTwinsItem : SimplePetItemBase
-    {
-        public override int PetType => ModContent.ProjectileType<TinySpazmatismProj>();
+	[Content(ContentType.DroppedPets)]
+	public class TinyTwinsItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<TinySpazmatismProj>();
 
-        public override int BuffType => ModContent.BuffType<TinyTwinsBuff>();
+		public override int BuffType => ModContent.BuffType<TinyTwinsBuff>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Tiny Twins");
-            Tooltip.SetDefault("Summons a tiny pair of The Twins to follow you");
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Tiny Twins");
+			Tooltip.SetDefault("Summons a tiny pair of The Twins to follow you");
+		}
 
-        public override void SafeSetDefaults()
-        {
-            Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10);
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			Item.rare = -11;
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

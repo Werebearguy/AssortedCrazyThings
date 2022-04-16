@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.DroppedPets)]
-    public class MiniAntlionItem : SimplePetItemBase
-    {
-        public override int PetType => ModContent.ProjectileType<MiniAntlionProj>();
+	[Content(ContentType.DroppedPets)]
+	public class MiniAntlionItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<MiniAntlionProj>();
 
-        public override int BuffType => ModContent.BuffType<MiniAntlionBuff>();
+		public override int BuffType => ModContent.BuffType<MiniAntlionBuff>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Antlion Egg");
-            Tooltip.SetDefault("Summons a friendly Baby Antlion to follow you"
-                + "\nAppearance can be changed with Costume Suitcase");
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Antlion Egg");
+			Tooltip.SetDefault("Summons a friendly Baby Antlion to follow you"
+				+ "\nAppearance can be changed with Costume Suitcase");
+		}
 
-        public override void SafeSetDefaults()
-        {
-            Item.rare = -11;
-            Item.value = Item.sellPrice(silver: 10);
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			Item.rare = -11;
+			Item.value = Item.sellPrice(silver: 10);
+		}
+	}
 }

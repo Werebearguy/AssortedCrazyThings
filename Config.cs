@@ -85,14 +85,14 @@ namespace AssortedCrazyThings
 		[Label("Placeables (functional)")]
 		public bool PlaceablesFunctional { get; set; }
 
-        [ReloadRequired]
-        [DefaultValue(true)]
-        [BackgroundColor(194, 147, 227)]
-        [Tooltip("Placeable decorative tiles and objects")]
-        [Label("Placeables (decorative)")]
-        public bool PlaceablesDecorative { get; set; }
+		[ReloadRequired]
+		[DefaultValue(true)]
+		[BackgroundColor(194, 147, 227)]
+		[Tooltip("Placeable decorative tiles and objects")]
+		[Label("Placeables (decorative)")]
+		public bool PlaceablesDecorative { get; set; }
 
-        [ReloadRequired]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
 		[Tooltip("Armor with stats")]
@@ -143,7 +143,7 @@ namespace AssortedCrazyThings
 		public bool Hint => true;
 
 		public override void OnChanged()
-        {
+		{
 			//Inverted, sets a flag if toggle is false
 			FilterFlags = ContentType.Always;
 
@@ -208,7 +208,7 @@ namespace AssortedCrazyThings
 				FilterFlags |= ContentType.BossConsolation;
 			}
 		}
-    }
+	}
 
 	[Label("Client Config")]
 	public class ClientConfig : ModConfig
@@ -241,7 +241,7 @@ namespace AssortedCrazyThings
 		[Tooltip("Control how often this minion will display dialogue (in percent). 0 for off")]
 		public int SatchelofGoodiesChatterFreq { get; set; }
 
-        internal bool SatchelofGoodiesDialogueDisabled => SatchelofGoodiesChatterFreq == 0;
+		internal bool SatchelofGoodiesDialogueDisabled => SatchelofGoodiesChatterFreq == 0;
 
 		[Header("Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right")]
 		[Label("Hint")]

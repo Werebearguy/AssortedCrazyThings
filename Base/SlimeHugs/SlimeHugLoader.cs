@@ -3,21 +3,21 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.SlimeHugs
 {
-    public static class SlimeHugLoader /*: Loader<SlimeHug>*/
-    {
+	public static class SlimeHugLoader /*: Loader<SlimeHug>*/
+	{
 		private static List<SlimeHug> list;
 
 		internal static List<SlimeHug> List
-        {
-            get
-            {
+		{
+			get
+			{
 				if (list == null)
-                {
+				{
 					list = new List<SlimeHug>();
-                }
+				}
 				return list;
-            }
-        }
+			}
+		}
 
 		public static int Register(SlimeHug obj)
 		{
@@ -43,5 +43,5 @@ namespace AssortedCrazyThings.Base.SlimeHugs
 		{
 			List.Clear();
 		}
-    }
+	}
 }

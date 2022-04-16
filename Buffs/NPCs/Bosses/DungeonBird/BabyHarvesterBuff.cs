@@ -1,120 +1,120 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
-using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.NPCs.Bosses.DungeonBird
 {
-    [Content(ContentType.Bosses)]
-    public class BabyHarvesterBuff : AssBuff
-    {
-        public const int FrameCount = 3;
+	[Content(ContentType.Bosses)]
+	public class BabyHarvesterBuff : AssBuff
+	{
+		public const int FrameCount = 3;
 
-        private static Asset<Texture2D> sheetAsset;
+		private static Asset<Texture2D> sheetAsset;
 
-        private const string dummy = "REPLACEME";
+		private const string dummy = "REPLACEME";
 
-        public override void SetStaticDefaults()
-        {
-            Main.buffNoSave[Type] = true;
-            Main.buffNoTimeDisplay[Type] = true;
+		public override void SetStaticDefaults()
+		{
+			Main.buffNoSave[Type] = true;
+			Main.buffNoTimeDisplay[Type] = true;
 
-            Main.debuff[Type] = true;
-            BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
+			Main.debuff[Type] = true;
+			BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
 
-            DisplayName.SetDefault("Ominous Bird");
-            Description.SetDefault(dummy);
+			DisplayName.SetDefault("Ominous Bird");
+			Description.SetDefault(dummy);
 
-            if (!Main.dedServ)
-            {
-                sheetAsset = ModContent.Request<Texture2D>(Texture + "_Sheet");
-            }
-        }
-        
-        public override void Unload()
-        {
-            sheetAsset = null;
-        }
+			if (!Main.dedServ)
+			{
+				sheetAsset = ModContent.Request<Texture2D>(Texture + "_Sheet");
+			}
+		}
 
-        public override void ModifyBuffTip(ref string tip, ref int rare)
-        {
-            if (!TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
-            {
-                tip = tip.Replace(dummy, "");
-                return;
-            }
+		public override void Unload()
+		{
+			sheetAsset = null;
+		}
 
-            int tier = babyHarvester.Tier;
-            string toReplaceWith;
-            if (tier == 1)
-            {
-                toReplaceWith = "What's this bird doing?";
-            }
-            else if (tier == 2)
-            {
-                toReplaceWith = "I wonder if it will keep growing";
-            }
-            else
-            {
-                toReplaceWith = "I'm not sure it should keep eating...";
-            }
-            tip = tip.Replace(dummy, toReplaceWith);
+		public override void ModifyBuffTip(ref string tip, ref int rare)
+		{
+			if (!TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
+			{
+				tip = tip.Replace(dummy, "");
+				return;
+			}
 
-            var numSouls = babyHarvester.SoulsEaten;
-            if (numSouls > 0)
-            {
-                tip += $"\nThe bird has absorbed {babyHarvester.SoulsEaten} souls";
-            }
-        }
+			int tier = babyHarvester.Tier;
+			string toReplaceWith;
+			if (tier == 1)
+			{
+				toReplaceWith = "What's this bird doing?";
+			}
+			else if (tier == 2)
+			{
+				toReplaceWith = "I wonder if it will keep growing";
+			}
+			else
+			{
+				toReplaceWith = "I'm not sure it should keep eating...";
+			}
+			tip = tip.Replace(dummy, toReplaceWith);
 
-        public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams)
-        {
-            if (!TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
-            {
-                return false;
-            }
+			var numSouls = babyHarvester.SoulsEaten;
+			if (numSouls > 0)
+			{
+				tip += $"\nThe bird has absorbed {babyHarvester.SoulsEaten} souls";
+			}
+		}
 
-            Texture2D ourTexture = sheetAsset.Value;
+		public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams)
+		{
+			if (!TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
+			{
+				return false;
+			}
 
-            int frameY = babyHarvester.Tier - 1;
-            Rectangle ourSourceRectangle = ourTexture.Frame(verticalFrames: FrameCount, frameY: frameY);
+			Texture2D ourTexture = sheetAsset.Value;
 
-            drawParams.Texture = ourTexture;
-            drawParams.SourceRectangle = ourSourceRectangle;
+			int frameY = babyHarvester.Tier - 1;
+			Rectangle ourSourceRectangle = ourTexture.Frame(verticalFrames: FrameCount, frameY: frameY);
 
-            return true;
-        }
+			drawParams.Texture = ourTexture;
+			drawParams.SourceRectangle = ourSourceRectangle;
 
-        public override void Update(Player player, ref int buffIndex)
-        {
-            if (TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
-            {
-                if (babyHarvester.PlayerOwner == player.whoAmI)
-                {
-                    player.buffTime[buffIndex] = 2;
-                }
-            }
-        }
+			return true;
+		}
 
-        private static bool TryGetBabyHarvester(out BabyHarvesterProj babyHarvester)
-        {
-            babyHarvester = null;
-            if (!BabyHarvesterHandler.TryFindBabyHarvester(out Projectile proj, out _))
-            {
-                return false;
-            }
+		public override void Update(Player player, ref int buffIndex)
+		{
+			if (TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
+			{
+				if (babyHarvester.PlayerOwner == player.whoAmI)
+				{
+					player.buffTime[buffIndex] = 2;
+				}
+			}
+		}
 
-            if (!(proj.ModProjectile is BabyHarvesterProj babyHarvester2 && babyHarvester2.HasValidPlayerOwner))
-            {
-                return false;
-            }
+		private static bool TryGetBabyHarvester(out BabyHarvesterProj babyHarvester)
+		{
+			babyHarvester = null;
+			if (!BabyHarvesterHandler.TryFindBabyHarvester(out Projectile proj, out _))
+			{
+				return false;
+			}
 
-            babyHarvester = babyHarvester2;
-            return true;
-        }
-    }
+			if (!(proj.ModProjectile is BabyHarvesterProj babyHarvester2 && babyHarvester2.HasValidPlayerOwner))
+			{
+				return false;
+			}
+
+			babyHarvester = babyHarvester2;
+			return true;
+		}
+	}
 }

@@ -10,5 +10,5 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 		public override string PaintingAuthor => "C. Paigner";
 
 		public override (int item, int amount) RecipeIngredient => (ItemID.Gel, 1);
-    }
+	}
 }

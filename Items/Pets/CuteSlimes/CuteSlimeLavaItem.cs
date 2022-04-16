@@ -4,17 +4,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 {
-    [LegacyName("CuteSlimeLavaNew")]
-    public class CuteSlimeLavaItem : CuteSlimeItem
-    {
-        public override int PetType => ModContent.ProjectileType<CuteSlimeLavaProj>();
+	[LegacyName("CuteSlimeLavaNew")]
+	public class CuteSlimeLavaItem : CuteSlimeItem
+	{
+		public override int PetType => ModContent.ProjectileType<CuteSlimeLavaProj>();
 
-        public override int BuffType => ModContent.BuffType<CuteSlimeLavaBuff>();
+		public override int BuffType => ModContent.BuffType<CuteSlimeLavaBuff>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bottled Cute Lava Slime");
-            Tooltip.SetDefault("Summons a friendly Cute Lava Slime to follow you");
-        }
-    }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottled Cute Lava Slime");
+			Tooltip.SetDefault("Summons a friendly Cute Lava Slime to follow you");
+		}
+	}
 }

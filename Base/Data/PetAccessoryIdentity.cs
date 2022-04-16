@@ -3,12 +3,12 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings.Base.Data
 {
-    public class PetAccessoryIdentity : ModTypeIdentity, TagSerializable
-    {
+	public class PetAccessoryIdentity : ModTypeIdentity, TagSerializable
+	{
 		public byte AltTextureIndex { get; set; }
 
-        public PetAccessoryIdentity(string modName, string name, byte altTextureIndex) : base(modName, name)
-        {
+		public PetAccessoryIdentity(string modName, string name, byte altTextureIndex) : base(modName, name)
+		{
 			AltTextureIndex = altTextureIndex;
 		}
 

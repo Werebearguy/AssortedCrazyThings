@@ -18,402 +18,402 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-    class AssortedCrazyThings : Mod
-    {
-        //Soul item animated textures
-        public const int animatedSoulFrameCount = 6;
-        public static Asset<Texture2D>[] animatedSoulTextures;
+	class AssortedCrazyThings : Mod
+	{
+		//Soul item animated textures
+		public const int animatedSoulFrameCount = 6;
+		public static Asset<Texture2D>[] animatedSoulTextures;
 
-        /// <summary>
-        /// Soul NPC spawn blacklist
-        /// </summary>
-        public static int[] soulBuffBlacklist;
+		/// <summary>
+		/// Soul NPC spawn blacklist
+		/// </summary>
+		public static int[] soulBuffBlacklist;
 
-        /// <summary>
-        /// The cached type of the Harvester boss, 0 if not loaded
-        /// </summary>
-        public static int harvester;
-        /// <summary>
-        /// The cached type of the left talon of the Harvester boss, 0 if not loaded
-        /// </summary>
-        public static int harvesterTalonLeft;
-        /// <summary>
-        /// The cached type of the right talon of the Harvester boss, 0 if not loaded
-        /// </summary>
-        public static int harvesterTalonRight;
+		/// <summary>
+		/// The cached type of the Harvester boss, 0 if not loaded
+		/// </summary>
+		public static int harvester;
+		/// <summary>
+		/// The cached type of the left talon of the Harvester boss, 0 if not loaded
+		/// </summary>
+		public static int harvesterTalonLeft;
+		/// <summary>
+		/// The cached type of the right talon of the Harvester boss, 0 if not loaded
+		/// </summary>
+		public static int harvesterTalonRight;
 
-        //Mod Helpers compat
-        public static string GithubUserName { get { return "Werebearguy"; } }
-        public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
+		//Mod Helpers compat
+		public static string GithubUserName { get { return "Werebearguy"; } }
+		public static string GithubProjectName { get { return "AssortedCrazyThings"; } }
 
-        private void LoadSoulBuffBlacklist()
-        {
-            List<int> tempList = new List<int>
-            {
-                NPCID.Bee,
-                NPCID.BeeSmall,
-                NPCID.BlueSlime,
-                NPCID.BlazingWheel,
-                NPCID.EaterofWorldsHead,
-                NPCID.EaterofWorldsBody,
-                NPCID.EaterofWorldsTail,
-                NPCID.Creeper,
-                NPCID.GolemFistLeft,
-                NPCID.GolemFistRight,
-                NPCID.PlanterasHook,
-                NPCID.PlanterasTentacle,
-                NPCID.Probe,
-                NPCID.ServantofCthulhu,
-                NPCID.SlimeSpiked,
-                NPCID.SpikeBall,
-                NPCID.TheHungry,
-                NPCID.TheHungryII,
-            };
+		private void LoadSoulBuffBlacklist()
+		{
+			List<int> tempList = new List<int>
+			{
+				NPCID.Bee,
+				NPCID.BeeSmall,
+				NPCID.BlueSlime,
+				NPCID.BlazingWheel,
+				NPCID.EaterofWorldsHead,
+				NPCID.EaterofWorldsBody,
+				NPCID.EaterofWorldsTail,
+				NPCID.Creeper,
+				NPCID.GolemFistLeft,
+				NPCID.GolemFistRight,
+				NPCID.PlanterasHook,
+				NPCID.PlanterasTentacle,
+				NPCID.Probe,
+				NPCID.ServantofCthulhu,
+				NPCID.SlimeSpiked,
+				NPCID.SpikeBall,
+				NPCID.TheHungry,
+				NPCID.TheHungryII,
+			};
 
-            soulBuffBlacklist = tempList.ToArray();
-        }
+			soulBuffBlacklist = tempList.ToArray();
+		}
 
-        /// <summary>
-        /// Assuming this is called after InitSoulBuffBlacklist.
-        /// Adds NPC types to soulBuffBlacklist manually
-        /// </summary>
-        private void AddToSoulBuffBlacklist()
-        {
-            if (!ContentConfig.Instance.Bosses)
-            {
-                return;
-            }
+		/// <summary>
+		/// Assuming this is called after InitSoulBuffBlacklist.
+		/// Adds NPC types to soulBuffBlacklist manually
+		/// </summary>
+		private void AddToSoulBuffBlacklist()
+		{
+			if (!ContentConfig.Instance.Bosses)
+			{
+				return;
+			}
 
-            //assuming this is called after InitSoulBuffBlacklist
-            List<int> tempList = new List<int>(soulBuffBlacklist)
-            {
-                ModContent.NPCType<DungeonSoul>(),
-                ModContent.NPCType<DungeonSoulFreed>(),
-            };
+			//assuming this is called after InitSoulBuffBlacklist
+			List<int> tempList = new List<int>(soulBuffBlacklist)
+			{
+				ModContent.NPCType<DungeonSoul>(),
+				ModContent.NPCType<DungeonSoulFreed>(),
+			};
 
-            soulBuffBlacklist = tempList.ToArray();
-            Array.Sort(soulBuffBlacklist);
-        }
+			soulBuffBlacklist = tempList.ToArray();
+			Array.Sort(soulBuffBlacklist);
+		}
 
-        /// <summary>
-        /// Fills isModdedWormBodyOrTail with types of modded NPCs which names are ending with Body or Tail (indicating they are part of something)
-        /// </summary>
-        private void LoadWormList()
-        {
-            List<int> tempList = new List<int>();
+		/// <summary>
+		/// Fills isModdedWormBodyOrTail with types of modded NPCs which names are ending with Body or Tail (indicating they are part of something)
+		/// </summary>
+		private void LoadWormList()
+		{
+			List<int> tempList = new List<int>();
 
-            for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++)
-            {
-                ModNPC modNPC = NPCLoader.GetNPC(i);
-                if (modNPC != null && (modNPC.GetType().Name.EndsWith("Body") || modNPC.GetType().Name.EndsWith("Tail")))
-                {
-                    tempList.Add(modNPC.NPC.type);
-                }
-            }
+			for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++)
+			{
+				ModNPC modNPC = NPCLoader.GetNPC(i);
+				if (modNPC != null && (modNPC.GetType().Name.EndsWith("Body") || modNPC.GetType().Name.EndsWith("Tail")))
+				{
+					tempList.Add(modNPC.NPC.type);
+				}
+			}
 
-            AssUtils.isModdedWormBodyOrTail = tempList.ToArray();
-            Array.Sort(AssUtils.isModdedWormBodyOrTail);
-        }
+			AssUtils.isModdedWormBodyOrTail = tempList.ToArray();
+			Array.Sort(AssUtils.isModdedWormBodyOrTail);
+		}
 
-        private void LoadHarvesterTypes()
-        {
-            if (!ContentConfig.Instance.Bosses)
-            {
-                return;
-            }
+		private void LoadHarvesterTypes()
+		{
+			if (!ContentConfig.Instance.Bosses)
+			{
+				return;
+			}
 
-            harvester = ModContent.NPCType<Harvester>();
-            harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
-            harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
-        }
+			harvester = ModContent.NPCType<Harvester>();
+			harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
+			harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
+		}
 
-        private void LoadMisc()
-        {
-            if (!Main.dedServ && ContentConfig.Instance.Bosses)
-            {
-                animatedSoulTextures = new Asset<Texture2D>[2];
+		private void LoadMisc()
+		{
+			if (!Main.dedServ && ContentConfig.Instance.Bosses)
+			{
+				animatedSoulTextures = new Asset<Texture2D>[2];
 
-                animatedSoulTextures[0] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulAnimated");
-                animatedSoulTextures[1] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulFreedAnimated");
-            }
-        }
+				animatedSoulTextures[0] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulAnimated");
+				animatedSoulTextures[1] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulFreedAnimated");
+			}
+		}
 
-        private void UnloadMisc()
-        {
-            animatedSoulTextures = null;
+		private void UnloadMisc()
+		{
+			animatedSoulTextures = null;
 
-            PetEaterofWorldsBase.wormTypes = null;
+			PetEaterofWorldsBase.wormTypes = null;
 
-            PetDestroyerBase.wormTypes = null;
-        }
+			PetDestroyerBase.wormTypes = null;
+		}
 
-        public override void Load()
-        {
-            ConfigurationSystem.Load();
+		public override void Load()
+		{
+			ConfigurationSystem.Load();
 
-            ShaderManager.Load();
+			ShaderManager.Load();
 
-            LoadHarvesterTypes();
+			LoadHarvesterTypes();
 
-            LoadSoulBuffBlacklist();
+			LoadSoulBuffBlacklist();
 
-            LoadMisc();
-        }
+			LoadMisc();
+		}
 
-        public override void Unload()
-        {
-            ConfigurationSystem.Unload();
+		public override void Unload()
+		{
+			ConfigurationSystem.Unload();
 
-            ShaderManager.Unload();
+			ShaderManager.Unload();
 
-            UnloadMisc();
+			UnloadMisc();
 
-            GitgudData.Unload();
+			GitgudData.Unload();
 
-            EverhallowedLantern.DoUnload();
-        }
+			EverhallowedLantern.DoUnload();
+		}
 
-        public override void PostSetupContent()
-        {
-            //for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
-            LoadWormList();
+		public override void PostSetupContent()
+		{
+			//for things that have to be called after Load() because of Main.projFrames[projectile.type] calls (and similar)
+			LoadWormList();
 
-            GitgudData.Load();
+			GitgudData.Load();
 
-            DroneController.DoLoad();
+			DroneController.DoLoad();
 
-            EverhallowedLantern.DoLoad();
+			EverhallowedLantern.DoLoad();
 
-            AddToSoulBuffBlacklist();
+			AddToSoulBuffBlacklist();
 
-            if (ContentConfig.Instance.DroppedPets)
-            {
-                PetEaterofWorldsBase.wormTypes = new int[]
-                {
-                ModContent.ProjectileType<PetEaterofWorldsHead>(),
-                ModContent.ProjectileType<PetEaterofWorldsBody1>(),
-                ModContent.ProjectileType<PetEaterofWorldsBody2>(),
-                ModContent.ProjectileType<PetEaterofWorldsTail>()
-                };
+			if (ContentConfig.Instance.DroppedPets)
+			{
+				PetEaterofWorldsBase.wormTypes = new int[]
+				{
+				ModContent.ProjectileType<PetEaterofWorldsHead>(),
+				ModContent.ProjectileType<PetEaterofWorldsBody1>(),
+				ModContent.ProjectileType<PetEaterofWorldsBody2>(),
+				ModContent.ProjectileType<PetEaterofWorldsTail>()
+				};
 
-                PetDestroyerBase.wormTypes = new int[]
-                {
-                ModContent.ProjectileType<PetDestroyerHead>(),
-                ModContent.ProjectileType<PetDestroyerBody1>(),
-                ModContent.ProjectileType<PetDestroyerBody2>(),
-                ModContent.ProjectileType<PetDestroyerTail>()
-                };
-            }
-        }
+				PetDestroyerBase.wormTypes = new int[]
+				{
+				ModContent.ProjectileType<PetDestroyerHead>(),
+				ModContent.ProjectileType<PetDestroyerBody1>(),
+				ModContent.ProjectileType<PetDestroyerBody2>(),
+				ModContent.ProjectileType<PetDestroyerTail>()
+				};
+			}
+		}
 
-        public override void AddRecipeGroups()
-        {
-            string any = Language.GetTextValue("LegacyMisc.37") + " ";
-            if (ContentConfig.Instance.CuteSlimes && ContentConfig.Instance.PlaceablesFunctional)
-            {
-                RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => any + "Regular Bottled Slime", new int[]
-                {
-                    ModContent.ItemType<CuteSlimeBlueItem>(),
-                    ModContent.ItemType<CuteSlimeBlackItem>(),
-                    ModContent.ItemType<CuteSlimeGreenItem>(),
-                    ModContent.ItemType<CuteSlimePinkItem>(),
-                    ModContent.ItemType<CuteSlimePurpleItem>(),
-                    ModContent.ItemType<CuteSlimeRainbowItem>(),
-                    ModContent.ItemType<CuteSlimeRedItem>(),
-                    ModContent.ItemType<CuteSlimeYellowItem>()
-                }));
-            }
+		public override void AddRecipeGroups()
+		{
+			string any = Language.GetTextValue("LegacyMisc.37") + " ";
+			if (ContentConfig.Instance.CuteSlimes && ContentConfig.Instance.PlaceablesFunctional)
+			{
+				RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => any + "Regular Bottled Slime", new int[]
+				{
+					ModContent.ItemType<CuteSlimeBlueItem>(),
+					ModContent.ItemType<CuteSlimeBlackItem>(),
+					ModContent.ItemType<CuteSlimeGreenItem>(),
+					ModContent.ItemType<CuteSlimePinkItem>(),
+					ModContent.ItemType<CuteSlimePurpleItem>(),
+					ModContent.ItemType<CuteSlimeRainbowItem>(),
+					ModContent.ItemType<CuteSlimeRedItem>(),
+					ModContent.ItemType<CuteSlimeYellowItem>()
+				}));
+			}
 
-            RecipeGroup.RegisterGroup("ACT:EvilWood", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.Ebonwood), new int[]
-            {
-                    ItemID.Ebonwood,
-                    ItemID.Shadewood
-            }));
+			RecipeGroup.RegisterGroup("ACT:EvilWood", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.Ebonwood), new int[]
+			{
+					ItemID.Ebonwood,
+					ItemID.Shadewood
+			}));
 
-            RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
-            {
-                ItemID.GoldBar,
-                ItemID.PlatinumBar
-            }));
+			RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
+			{
+				ItemID.GoldBar,
+				ItemID.PlatinumBar
+			}));
 
-            RecipeGroup.RegisterGroup("ACT:AdamantiteTitanium", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.AdamantiteBar), new int[]
-            {
-                ItemID.AdamantiteBar,
-                ItemID.TitaniumBar
-            }));
+			RecipeGroup.RegisterGroup("ACT:AdamantiteTitanium", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.AdamantiteBar), new int[]
+			{
+				ItemID.AdamantiteBar,
+				ItemID.TitaniumBar
+			}));
 
-            RecipeGroup.RegisterGroup("ACT:DemoniteCrimtane", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.DemoniteBar), new int[]
-            {
-                ItemID.DemoniteBar,
-                ItemID.CrimtaneBar
-            }));
-        }
+			RecipeGroup.RegisterGroup("ACT:DemoniteCrimtane", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.DemoniteBar), new int[]
+			{
+				ItemID.DemoniteBar,
+				ItemID.CrimtaneBar
+			}));
+		}
 
-        public override void HandlePacket(BinaryReader reader, int whoAmI)
-        {
-            AssMessageType msgType = (AssMessageType)reader.ReadByte();
-            byte playerNumber;
-            byte npcNumber;
-            AssPlayer aPlayer;
-            PetPlayer petPlayer;
-            byte changes;
-            byte index;
+		public override void HandlePacket(BinaryReader reader, int whoAmI)
+		{
+			AssMessageType msgType = (AssMessageType)reader.ReadByte();
+			byte playerNumber;
+			byte npcNumber;
+			AssPlayer aPlayer;
+			PetPlayer petPlayer;
+			byte changes;
+			byte index;
 
-            switch (msgType)
-            {
-                case AssMessageType.SyncPlayerVanity:
-                    playerNumber = reader.ReadByte();
-                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-                    //no "changes" packet
-                    petPlayer.RecvSyncPlayerVanitySub(reader);
-                    break;
-                case AssMessageType.ClientChangesVanity:
-                    //client and server
-                    //getmodplayer error
-                    playerNumber = reader.ReadByte();
-                    petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-                    changes = reader.ReadByte();
-                    index = reader.ReadByte();
-                    petPlayer.RecvClientChangesPacketSub(reader, changes, index);
+			switch (msgType)
+			{
+				case AssMessageType.SyncPlayerVanity:
+					playerNumber = reader.ReadByte();
+					petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+					//no "changes" packet
+					petPlayer.RecvSyncPlayerVanitySub(reader);
+					break;
+				case AssMessageType.ClientChangesVanity:
+					//client and server
+					//getmodplayer error
+					playerNumber = reader.ReadByte();
+					petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
+					changes = reader.ReadByte();
+					index = reader.ReadByte();
+					petPlayer.RecvClientChangesPacketSub(reader, changes, index);
 
-                    //server transmits to others
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        petPlayer.SendClientChangesPacketSub(changes, index, toClient: -1, ignoreClient: playerNumber);
-                    }
-                    break;
-                case AssMessageType.SyncAssPlayer:
-                    playerNumber = reader.ReadByte();
-                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                    aPlayer.ReceiveSyncPlayer(reader);
-                    break;
-                case AssMessageType.ClientChangesAssPlayer:
-                    //client and server
-                    //getmodplayer error
-                    playerNumber = reader.ReadByte();
-                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                    aPlayer.shieldDroneReduction = reader.ReadByte();
-                    aPlayer.droneControllerUnlocked = (DroneType)reader.ReadByte();
+					//server transmits to others
+					if (Main.netMode == NetmodeID.Server)
+					{
+						petPlayer.SendClientChangesPacketSub(changes, index, toClient: -1, ignoreClient: playerNumber);
+					}
+					break;
+				case AssMessageType.SyncAssPlayer:
+					playerNumber = reader.ReadByte();
+					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+					aPlayer.ReceiveSyncPlayer(reader);
+					break;
+				case AssMessageType.ClientChangesAssPlayer:
+					//client and server
+					//getmodplayer error
+					playerNumber = reader.ReadByte();
+					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+					aPlayer.shieldDroneReduction = reader.ReadByte();
+					aPlayer.droneControllerUnlocked = (DroneType)reader.ReadByte();
 
-                    //server transmits to others
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        aPlayer.SendClientChangesPacket(toClient: -1, ignoreClient: playerNumber);
-                    }
-                    break;
-                case AssMessageType.ConvertInertSoulsInventory:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        //convert souls in local inventory
-                        aPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-                        aPlayer.ConvertInertSoulsInventory();
-                    }
-                    break;
-                case AssMessageType.GitgudLoadCounters:
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        GitgudData.RecvCounters(reader);
-                    }
-                    break;
-                case AssMessageType.GitgudChangeCounters:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        //GitgudData.RecvReset(Main.myPlayer, reader);
-                        GitgudData.RecvChangeCounter(reader);
-                    }
-                    break;
-                case AssMessageType.ResetEmpoweringTimerpvp:
-                    //client and server
-                    playerNumber = reader.ReadByte();
-                    aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-                    aPlayer.ResetEmpoweringTimer(fromServer: true);
+					//server transmits to others
+					if (Main.netMode == NetmodeID.Server)
+					{
+						aPlayer.SendClientChangesPacket(toClient: -1, ignoreClient: playerNumber);
+					}
+					break;
+				case AssMessageType.ConvertInertSoulsInventory:
+					if (Main.netMode == NetmodeID.MultiplayerClient)
+					{
+						//convert souls in local inventory
+						aPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+						aPlayer.ConvertInertSoulsInventory();
+					}
+					break;
+				case AssMessageType.GitgudLoadCounters:
+					if (Main.netMode == NetmodeID.Server)
+					{
+						GitgudData.RecvCounters(reader);
+					}
+					break;
+				case AssMessageType.GitgudChangeCounters:
+					if (Main.netMode == NetmodeID.MultiplayerClient)
+					{
+						//GitgudData.RecvReset(Main.myPlayer, reader);
+						GitgudData.RecvChangeCounter(reader);
+					}
+					break;
+				case AssMessageType.ResetEmpoweringTimerpvp:
+					//client and server
+					playerNumber = reader.ReadByte();
+					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
+					aPlayer.ResetEmpoweringTimer(fromServer: true);
 
-                    //server transmits to others
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        ModPacket packet = GetPacket();
-                        packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
-                        packet.Write((byte)playerNumber);
-                        packet.Send(playerNumber); //send to client
-                    }
-                    break;
-                case AssMessageType.WyvernCampfireKill:
-                    npcNumber = reader.ReadByte();
-                    if (npcNumber < 0 || npcNumber >= Main.maxNPCs) break;
-                    NPC npc = Main.npc[npcNumber];
-                    if (npc.type == NPCID.WyvernHead)
-                    {
-                        DungeonSoulBase.KillInstantly(npc);
-                        if (npcNumber < Main.maxNPCs)
-                        {
-                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npcNumber);
-                        }
-                    }
-                    else
-                    {
-                        for (int k = 0; k < Main.maxNPCs; k++)
-                        {
-                            NPC other = Main.npc[k];
-                            if (other.active && other.type == NPCID.WyvernHead)
-                            {
-                                DungeonSoulBase.KillInstantly(other);
-                                if (k < Main.maxNPCs)
-                                {
-                                    NetMessage.SendData(MessageID.SyncNPC, number: k);
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                case AssMessageType.SlainBoss:
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        int type = reader.ReadVarInt();
-                        Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
-                    }
-                    break;
-                default:
-                    Logger.Debug("Unknown Message type: " + msgType);
-                    break;
-            }
-        }
+					//server transmits to others
+					if (Main.netMode == NetmodeID.Server)
+					{
+						ModPacket packet = GetPacket();
+						packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
+						packet.Write((byte)playerNumber);
+						packet.Send(playerNumber); //send to client
+					}
+					break;
+				case AssMessageType.WyvernCampfireKill:
+					npcNumber = reader.ReadByte();
+					if (npcNumber < 0 || npcNumber >= Main.maxNPCs) break;
+					NPC npc = Main.npc[npcNumber];
+					if (npc.type == NPCID.WyvernHead)
+					{
+						DungeonSoulBase.KillInstantly(npc);
+						if (npcNumber < Main.maxNPCs)
+						{
+							NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npcNumber);
+						}
+					}
+					else
+					{
+						for (int k = 0; k < Main.maxNPCs; k++)
+						{
+							NPC other = Main.npc[k];
+							if (other.active && other.type == NPCID.WyvernHead)
+							{
+								DungeonSoulBase.KillInstantly(other);
+								if (k < Main.maxNPCs)
+								{
+									NetMessage.SendData(MessageID.SyncNPC, number: k);
+								}
+								break;
+							}
+						}
+					}
+					break;
+				case AssMessageType.SlainBoss:
+					if (Main.netMode == NetmodeID.MultiplayerClient)
+					{
+						int type = reader.ReadVarInt();
+						Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
+					}
+					break;
+				default:
+					Logger.Debug("Unknown Message type: " + msgType);
+					break;
+			}
+		}
 
-        //Credit to jopojelly
-        /// <summary>
-        /// Makes alpha on .png textures actually properly rendered
-        /// </summary>
-        public static void PremultiplyTexture(Texture2D texture)
-        {
-            Color[] buffer = new Color[texture.Width * texture.Height];
-            texture.GetData(buffer);
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                buffer[i] = Color.FromNonPremultiplied(buffer[i].R, buffer[i].G, buffer[i].B, buffer[i].A);
-            }
-            texture.SetData(buffer);
-        }
-    }
+		//Credit to jopojelly
+		/// <summary>
+		/// Makes alpha on .png textures actually properly rendered
+		/// </summary>
+		public static void PremultiplyTexture(Texture2D texture)
+		{
+			Color[] buffer = new Color[texture.Width * texture.Height];
+			texture.GetData(buffer);
+			for (int i = 0; i < buffer.Length; i++)
+			{
+				buffer[i] = Color.FromNonPremultiplied(buffer[i].R, buffer[i].G, buffer[i].B, buffer[i].A);
+			}
+			texture.SetData(buffer);
+		}
+	}
 
-    public enum AssMessageType : byte
-    {
-        ClientChangesVanity,
-        SyncPlayerVanity,
-        ClientChangesAssPlayer,
-        SyncAssPlayer,
-        ConvertInertSoulsInventory,
-        GitgudLoadCounters,
-        GitgudChangeCounters,
-        ResetEmpoweringTimerpvp,
-        WyvernCampfireKill,
-        SlainBoss
-    }
+	public enum AssMessageType : byte
+	{
+		ClientChangesVanity,
+		SyncPlayerVanity,
+		ClientChangesAssPlayer,
+		SyncAssPlayer,
+		ConvertInertSoulsInventory,
+		GitgudLoadCounters,
+		GitgudChangeCounters,
+		ResetEmpoweringTimerpvp,
+		WyvernCampfireKill,
+		SlainBoss
+	}
 
-    public enum PetPlayerChanges : byte
-    {
-        None,
-        All,
-        Slots,
-        PetTypes
-    }
+	public enum PetPlayerChanges : byte
+	{
+		None,
+		All,
+		Slots,
+		PetTypes
+	}
 }

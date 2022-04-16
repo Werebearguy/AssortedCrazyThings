@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets.CuteSlimes
 {
-    public class CuteSlimeCrimsonBuff : CuteSlimeBuffBase
-    {
-        public override int PetType => ModContent.ProjectileType<CuteSlimeCrimsonProj>();
+	public class CuteSlimeCrimsonBuff : CuteSlimeBuffBase
+	{
+		public override int PetType => ModContent.ProjectileType<CuteSlimeCrimsonProj>();
 
-        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeCrimson;
+		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeCrimson;
 
-        public override void SafeSetDefaults()
-        {
-            DisplayName.SetDefault("Cute Crimson Slime");
-            Description.SetDefault("A cute crimson slime is following you");
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			DisplayName.SetDefault("Cute Crimson Slime");
+			Description.SetDefault("A cute crimson slime is following you");
+		}
+	}
 }

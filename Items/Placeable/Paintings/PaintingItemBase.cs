@@ -38,19 +38,19 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 			Item.rare = ItemRarityID.Blue;
 		}
 
-        public override void AddRecipes()
-        {
+		public override void AddRecipes()
+		{
 			var recipe = CreateRecipe()
 				.AddIngredient(ItemID.TatteredCloth, 2)
 				.AddRecipeGroup(RecipeGroupID.Wood)
 				.AddTile(TileID.Sawmill);
 
 			if (RecipeIngredient.item > 0 && RecipeIngredient.amount > 0)
-            {
+			{
 				recipe.AddIngredient(RecipeIngredient.item, RecipeIngredient.amount);
 			}
 
 			recipe.Register();
-        }
-    }
+		}
+	}
 }

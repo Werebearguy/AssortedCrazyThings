@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.HostileNPCs)]
-    public class OceanSlimeItem : SimplePetItemBase
-    {
-        public override int PetType => ModContent.ProjectileType<OceanSlimeProj>();
+	[Content(ContentType.HostileNPCs)]
+	public class OceanSlimeItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<OceanSlimeProj>();
 
-        public override int BuffType => ModContent.BuffType<OceanSlimeBuff>();
+		public override int BuffType => ModContent.BuffType<OceanSlimeBuff>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bottled Ocean Slime");
-            Tooltip.SetDefault("Summons a friendly Ocean Slime to follow you"
-                + "\nAppearance can be changed with Costume Suitcase");
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottled Ocean Slime");
+			Tooltip.SetDefault("Summons a friendly Ocean Slime to follow you"
+				+ "\nAppearance can be changed with Costume Suitcase");
+		}
 
-        public override void SafeSetDefaults()
-        {
-            Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10);
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			Item.rare = -11;
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

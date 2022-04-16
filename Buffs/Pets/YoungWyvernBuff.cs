@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    public class YoungWyvernBuff : SimplePetBuffBase
-    {
-        public override int PetType => ModContent.ProjectileType<YoungWyvernProj>();
+	public class YoungWyvernBuff : SimplePetBuffBase
+	{
+		public override int PetType => ModContent.ProjectileType<YoungWyvernProj>();
 
-        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().YoungWyvern;
+		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().YoungWyvern;
 
-        public override void SafeSetDefaults()
-        {
-            DisplayName.SetDefault("Young Wyvern");
-            Description.SetDefault("A young Wyvern is following you");
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			DisplayName.SetDefault("Young Wyvern");
+			Description.SetDefault("A young Wyvern is following you");
+		}
+	}
 }

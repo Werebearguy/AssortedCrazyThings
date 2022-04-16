@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    public class AlienHornetBuff : SimplePetBuffBase
-    {
-        public override int PetType => ModContent.ProjectileType<AlienHornetProj>();
+	public class AlienHornetBuff : SimplePetBuffBase
+	{
+		public override int PetType => ModContent.ProjectileType<AlienHornetProj>();
 
-        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().AlienHornet;
+		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().AlienHornet;
 
-        public override void SafeSetDefaults()
-        {
-            DisplayName.SetDefault("Alien Hornet");
-            Description.SetDefault("An Alien Hornet is following you");
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			DisplayName.SetDefault("Alien Hornet");
+			Description.SetDefault("An Alien Hornet is following you");
+		}
+	}
 }

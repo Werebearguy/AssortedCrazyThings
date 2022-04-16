@@ -7,67 +7,67 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    [Content(ContentType.DroppedPets)]
-    public class PetFishronProj : SimplePetProjBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/PetFishronProj_0"; //temp
-            }
-        }
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Mini Fishron");
-            Main.projFrames[Projectile.type] = 4;
-            Main.projPet[Projectile.type] = true;
-        }
+	[Content(ContentType.DroppedPets)]
+	public class PetFishronProj : SimplePetProjBase
+	{
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/Projectiles/Pets/PetFishronProj_0"; //temp
+			}
+		}
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Mini Fishron");
+			Main.projFrames[Projectile.type] = 4;
+			Main.projPet[Projectile.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            AIType = ProjectileID.ZephyrFish;
-            Projectile.width = 54;
-            Projectile.height = 30;
-        }
+		public override void SetDefaults()
+		{
+			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+			AIType = ProjectileID.ZephyrFish;
+			Projectile.width = 54;
+			Projectile.height = 30;
+		}
 
-        public override bool PreAI()
-        {
-            Player player = Projectile.GetOwner();
-            player.zephyrfish = false; // Relic from AIType
-            return true;
-        }
+		public override bool PreAI()
+		{
+			Player player = Projectile.GetOwner();
+			player.zephyrfish = false; // Relic from AIType
+			return true;
+		}
 
-        public override void AI()
-        {
-            Player player = Projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
-            if (player.dead)
-            {
-                modPlayer.PetFishron = false;
-            }
-            if (modPlayer.PetFishron)
-            {
-                Projectile.timeLeft = 2;
-            }
-            AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
-        }
+		public override void AI()
+		{
+			Player player = Projectile.GetOwner();
+			PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+			if (player.dead)
+			{
+				modPlayer.PetFishron = false;
+			}
+			if (modPlayer.PetFishron)
+			{
+				Projectile.timeLeft = 2;
+			}
+			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+		}
 
-        public override bool PreDraw(ref Color lightColor)
-        {
-            SpriteEffects effects = SpriteEffects.None;
-            if (Projectile.spriteDirection != 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetFishronProj_" + mPlayer.petFishronType).Value;
-            Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
-            Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - Projectile.gfxOffY);
-            Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
+		public override bool PreDraw(ref Color lightColor)
+		{
+			SpriteEffects effects = SpriteEffects.None;
+			if (Projectile.spriteDirection != 1)
+			{
+				effects = SpriteEffects.FlipHorizontally;
+			}
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetFishronProj_" + mPlayer.petFishronType).Value;
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+			Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - Projectile.gfxOffY);
+			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
-            return false;
-        }
-    }
+			return false;
+		}
+	}
 }

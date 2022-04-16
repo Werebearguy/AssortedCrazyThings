@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.Handlers.UnreplaceableMinionWith0SlotsHandler
 {

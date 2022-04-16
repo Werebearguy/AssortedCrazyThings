@@ -4,7 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace AssortedCrazyThings.NPCs.DropRules
 {
-    class OneFromOptionsPerPlayerOnPlayerRule : IItemDropRule
+	class OneFromOptionsPerPlayerOnPlayerRule : IItemDropRule
 	{
 		public int[] dropIds;
 		public int chanceDenominator;

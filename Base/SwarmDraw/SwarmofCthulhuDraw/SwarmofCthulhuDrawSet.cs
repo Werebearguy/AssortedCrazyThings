@@ -2,22 +2,22 @@
 
 namespace AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw
 {
-    [Content(ContentType.DroppedPets)]
-    public class SwarmofCthulhuDrawSet : SwarmDrawSet
-    {
-        public SwarmofCthulhuDrawSet() : base("SwarmofCthulhuDrawSet", new List<SwarmDrawUnit>()
-            {
-                new SwarmofCthulhuDrawUnit(),
-                new SwarmofCthulhuDrawUnit(),
-                new SwarmofCthulhuDrawUnit(),
-            })
-        {
+	[Content(ContentType.DroppedPets)]
+	public class SwarmofCthulhuDrawSet : SwarmDrawSet
+	{
+		public SwarmofCthulhuDrawSet() : base("SwarmofCthulhuDrawSet", new List<SwarmDrawUnit>()
+			{
+				new SwarmofCthulhuDrawUnit(),
+				new SwarmofCthulhuDrawUnit(),
+				new SwarmofCthulhuDrawUnit(),
+			})
+		{
 
-        }
+		}
 
-        public override SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer)
-        {
-            return sdPlayer.swarmofCthulhuDrawSet;
-        }
-    }
+		public override SwarmDrawSet GetDrawSet(SwarmDrawPlayer sdPlayer)
+		{
+			return sdPlayer.swarmofCthulhuDrawSet;
+		}
+	}
 }

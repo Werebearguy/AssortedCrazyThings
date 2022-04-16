@@ -7,7 +7,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-    /* This class holds three retextures of DemonEye, that only differ by their texture and their gore
+	/* This class holds three retextures of DemonEye, that only differ by their texture and their gore
      * First off, you need to declare the total number of retextures that you intend to use for this particular class
      * (private const int TotalNumberOfThese)
      * Then for organizations sake you "name" them by their number so you can see in the code what texture is what number
@@ -31,62 +31,62 @@ namespace AssortedCrazyThings.NPCs
      * (Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DemonEyeFractured_" + AiTexture).Value)
      */
 
-    public class DemonEyeFractured : DemonEyeRecolorBase
-    {
-        public override int TotalNumberOfThese => 3;
+	public class DemonEyeFractured : DemonEyeRecolorBase
+	{
+		public override int TotalNumberOfThese => 3;
 
-        /*FG = 0
+		/*FG = 0
         * FP = 1
         * FR = 2
         */
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/NPCs/DemonEyeFractured_0"; //use fixed texture
-            }
-        }
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/NPCs/DemonEyeFractured_0"; //use fixed texture
+			}
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return !NPC.downedBoss1 ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.025f;
-        }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return !NPC.downedBoss1 ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.025f;
+		}
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (Main.netMode == NetmodeID.Server)
-            {
-                return;
-            }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
 
-            if (NPC.life <= 0)
-            {
-                switch ((int)AiTexture)
-                {
-                    case 0:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
-                        break;
-                    case 1:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
-                        break;
-                    case 2:
-                        Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeRedGore_0").Type, 1f);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+			if (NPC.life <= 0)
+			{
+				switch ((int)AiTexture)
+				{
+					case 0:
+						Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
+						break;
+					case 1:
+						Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
+						break;
+					case 2:
+						Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeRedGore_0").Type, 1f);
+						break;
+					default:
+						break;
+				}
+			}
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DemonEyeFractured_" + AiTexture).Value;
-            Vector2 stupidOffset = new Vector2(0f, NPC.height / 3); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
-            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
-            return false;
-        }
-    }
+		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+		{
+			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/DemonEyeFractured_" + AiTexture).Value;
+			Vector2 stupidOffset = new Vector2(0f, NPC.height / 3); //gfxoffY is for when the npc is on a slope or half brick
+			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+			Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
+			spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			return false;
+		}
+	}
 }

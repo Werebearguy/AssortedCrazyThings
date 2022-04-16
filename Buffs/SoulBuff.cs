@@ -3,20 +3,20 @@ using Terraria;
 
 namespace AssortedCrazyThings.Buffs
 {
-    [Content(ContentType.Bosses)]
-    public class SoulBuff : AssBuff
-    {
-        public override string Texture => "AssortedCrazyThings/Empty";
+	[Content(ContentType.Bosses)]
+	public class SoulBuff : AssBuff
+	{
+		public override string Texture => "AssortedCrazyThings/Empty";
 
-        public override void SetStaticDefaults()
-        {
-            //purely on the NPC side, so no name or texture required
-            Main.buffNoTimeDisplay[Type] = true;
-        }
+		public override void SetStaticDefaults()
+		{
+			//purely on the NPC side, so no name or texture required
+			Main.buffNoTimeDisplay[Type] = true;
+		}
 
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.GetGlobalNPC<HarvesterGlobalNPC>().shouldSoulDrop = true;
-        }
-    }
+		public override void Update(NPC npc, ref int buffIndex)
+		{
+			npc.GetGlobalNPC<HarvesterGlobalNPC>().shouldSoulDrop = true;
+		}
+	}
 }

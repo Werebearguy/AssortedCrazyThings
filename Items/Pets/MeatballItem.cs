@@ -5,23 +5,23 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    [Content(ContentType.HostileNPCs)]
-    public class MeatballItem : SimplePetItemBase
-    {
-        public override int PetType => ModContent.ProjectileType<MeatballSlimeProj>();
+	[Content(ContentType.HostileNPCs)]
+	public class MeatballItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<MeatballSlimeProj>();
 
-        public override int BuffType => ModContent.BuffType<MeatballSlimeBuff>();
+		public override int BuffType => ModContent.BuffType<MeatballSlimeBuff>();
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bottled Meatball");
-            Tooltip.SetDefault("Summons Meatball to follow you");
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottled Meatball");
+			Tooltip.SetDefault("Summons Meatball to follow you");
+		}
 
-        public override void SafeSetDefaults()
-        {
-            Item.rare = -11;
-            Item.value = Item.sellPrice(copper: 10);
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			Item.rare = -11;
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

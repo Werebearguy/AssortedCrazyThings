@@ -9,13 +9,13 @@ namespace AssortedCrazyThings.Gores
 {
 	public class PaperScrapGore : ModGore
 	{
-        public override void SetStaticDefaults()
-        {
+		public override void SetStaticDefaults()
+		{
 			GoreID.Sets.DisappearSpeedAlpha[Type] = 10;
 			GoreID.Sets.DisappearSpeed[Type] = 7;
 		}
 
-        public override void OnSpawn(Gore gore)
+		public override void OnSpawn(Gore gore)
 		{
 			gore.velocity += new Vector2(Main.rand.NextFloat() - 0.5f, Main.rand.NextFloat() * MathHelper.TwoPi);
 			gore.Frame = new SpriteFrame(1, 8, 0, (byte)Main.rand.Next(8));
@@ -23,8 +23,8 @@ namespace AssortedCrazyThings.Gores
 			//UpdateType = 910;
 		}
 
-        public override bool Update(Gore gore)
-        {
+		public override bool Update(Gore gore)
+		{
 			if (++gore.frameCounter >= 8 && gore.velocity.Y > 0.2f)
 			{
 				gore.frameCounter = 0;
@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Gores
 			Gore_UpdateLeaf(gore, 0.2f);
 
 			return false;
-        }
+		}
 
 		public static void Gore_UpdateLeaf(Gore gore, float windFactor = 1f, bool disappearOnPositiveY = true)
 		{
@@ -99,7 +99,7 @@ namespace AssortedCrazyThings.Gores
 				{
 					gore.velocity.Y = 0.1f;
 					if (disappearOnPositiveY)
-                    {
+					{
 						gore.timeLeft = 0;
 						gore.alpha += 20;
 					}

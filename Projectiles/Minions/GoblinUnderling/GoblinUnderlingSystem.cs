@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		public static Asset<Texture2D>[] weaponAssets;
 
 		public static GoblinUnderlingTier GetCurrentTier()
-        {
+		{
 			return tiers[CurrentTierIndex];
 		}
 
@@ -65,30 +65,30 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			}
 		}
 
-        private static void LoadMessages()
-        {
-            messageCooldownsByType = new float[(int)GoblinUnderlingMessageSource.Count];
+		private static void LoadMessages()
+		{
+			messageCooldownsByType = new float[(int)GoblinUnderlingMessageSource.Count];
 
-            sourceToMessages = new Dictionary<GoblinUnderlingMessageSource, List<string>>();
-            sourceToCooldowns = new Dictionary<GoblinUnderlingMessageSource, Func<int>>();
+			sourceToMessages = new Dictionary<GoblinUnderlingMessageSource, List<string>>();
+			sourceToCooldowns = new Dictionary<GoblinUnderlingMessageSource, Func<int>>();
 
-            RegisterMessage(GoblinUnderlingMessageSource.Idle, new List<string>()
-            {
-                "I'm bored, boss!",
-                "I like hangin' out, boss!",
-                "Dis armor's too heavy...",
-                "You're a good boss, boss!",
-                "I look up to you, boss! Not because I'm short...well, mostly because I'm short!",
-                " Dat cloud looks like you, boss!",
-                "Da last boss I had was mean. You're nice!",
-                "Boss, what's your favorite food? I like those curved yellow things!",
-                "I got lotsa extra inventory space when I wear armor!",
-                "I don't like slimes. Dey get inside my armor, and it's sticky!",
-                "Boss, look! If I lay down, I can hide in da grass!",
+			RegisterMessage(GoblinUnderlingMessageSource.Idle, new List<string>()
+			{
+				"I'm bored, boss!",
+				"I like hangin' out, boss!",
+				"Dis armor's too heavy...",
+				"You're a good boss, boss!",
+				"I look up to you, boss! Not because I'm short...well, mostly because I'm short!",
+				" Dat cloud looks like you, boss!",
+				"Da last boss I had was mean. You're nice!",
+				"Boss, what's your favorite food? I like those curved yellow things!",
+				"I got lotsa extra inventory space when I wear armor!",
+				"I don't like slimes. Dey get inside my armor, and it's sticky!",
+				"Boss, look! If I lay down, I can hide in da grass!",
 				"Dose otha' goblins are dumb. Dey should follow you too!",
 				"Do you like me, boss?",
 			},
-            cooldown: () => Main.rand.Next(20, 40) * 60);
+			cooldown: () => Main.rand.Next(20, 40) * 60);
 
 			RegisterMessage(GoblinUnderlingMessageSource.FirstSummon, new List<string>()
 			{
@@ -97,89 +97,89 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 			//Always put that one on cooldown, as some bosses have fancy summoning ways where for example core and then parts spawn, all having boss
 			RegisterMessage(GoblinUnderlingMessageSource.BossSpawnGeneric, new List<string>()
-            {
-                "Uh oh!", "Dat's a biggun!",
-                "Boss, dat one's big!",
-                "I ain't afraid of nothin!",
-                "Boss, we got trouble!",
-            },
-            cooldown: () => 10 * 60);
+			{
+				"Uh oh!", "Dat's a biggun!",
+				"Boss, dat one's big!",
+				"I ain't afraid of nothin!",
+				"Boss, we got trouble!",
+			},
+			cooldown: () => 10 * 60);
 
-            RegisterMessage(GoblinUnderlingMessageSource.MoonlordSpawn, new List<string>()
-            {
-                "We got dis, boss! Don't give up!",
-            });
+			RegisterMessage(GoblinUnderlingMessageSource.MoonlordSpawn, new List<string>()
+			{
+				"We got dis, boss! Don't give up!",
+			});
 
-            RegisterMessage(GoblinUnderlingMessageSource.BetsySpawn, new List<string>()
-            {
-                "Dat one's big! Dat means it has big guts!",
-            });
+			RegisterMessage(GoblinUnderlingMessageSource.BetsySpawn, new List<string>()
+			{
+				"Dat one's big! Dat means it has big guts!",
+			});
 
-            //Always put that one on cooldown, as some bosses have fancy defeat ways
-            RegisterMessage(GoblinUnderlingMessageSource.BossDefeatGeneric, new List<string>()
-            {
-                "We did it, boss!",
-                "I knew you could do it!",
-                "Easy. Next!",
-            },
-            cooldown: () => 10 * 60);
+			//Always put that one on cooldown, as some bosses have fancy defeat ways
+			RegisterMessage(GoblinUnderlingMessageSource.BossDefeatGeneric, new List<string>()
+			{
+				"We did it, boss!",
+				"I knew you could do it!",
+				"Easy. Next!",
+			},
+			cooldown: () => 10 * 60);
 
-            RegisterMessage(GoblinUnderlingMessageSource.MoonlordDefeat, new List<string>()
-            {
-                "Dat one was tough, but we're tougher!",
-                "I don't wanna see no more squid after dis...",
-                "Boss, you da best!",
-            });
+			RegisterMessage(GoblinUnderlingMessageSource.MoonlordDefeat, new List<string>()
+			{
+				"Dat one was tough, but we're tougher!",
+				"I don't wanna see no more squid after dis...",
+				"Boss, you da best!",
+			});
 
-            RegisterMessage(GoblinUnderlingMessageSource.Attacking, new List<string>()
-            {
-                "Gotcha!",
-                "I got dis one, boss!",
-                "I'm a goblin! If you beat me, you get 1 exp and 2 gold!",
-                "No one touches boss!",
-            },
-            cooldown: () => 30 * 60);
+			RegisterMessage(GoblinUnderlingMessageSource.Attacking, new List<string>()
+			{
+				"Gotcha!",
+				"I got dis one, boss!",
+				"I'm a goblin! If you beat me, you get 1 exp and 2 gold!",
+				"No one touches boss!",
+			},
+			cooldown: () => 30 * 60);
 
-            RegisterMessage(GoblinUnderlingMessageSource.PlayerHurt, new List<string>()
-            {
-                "Don't hurt the boss!",
-                "You'll pay for dat!",
-                "You good, boss?!",
-            },
-            cooldown: () => 60 * 60);
+			RegisterMessage(GoblinUnderlingMessageSource.PlayerHurt, new List<string>()
+			{
+				"Don't hurt the boss!",
+				"You'll pay for dat!",
+				"You good, boss?!",
+			},
+			cooldown: () => 60 * 60);
 
-            RegisterMessage(GoblinUnderlingMessageSource.OOAStarts, new List<string>()
-            {
-                "Dey'd be smart to join you, boss!",
-                "Let's beat deez chumps!",
-            });
+			RegisterMessage(GoblinUnderlingMessageSource.OOAStarts, new List<string>()
+			{
+				"Dey'd be smart to join you, boss!",
+				"Let's beat deez chumps!",
+			});
 
-            RegisterMessage(GoblinUnderlingMessageSource.OOANewWave, new List<string>()
-            {
-                "Boss, more chumps are coming!",
-                "More baddies!",
-                "Protect the shiny gem!",
-                "I won't let dem pass, boss!",
-                "Where do dey come from?!",
-            });
+			RegisterMessage(GoblinUnderlingMessageSource.OOANewWave, new List<string>()
+			{
+				"Boss, more chumps are coming!",
+				"More baddies!",
+				"Protect the shiny gem!",
+				"I won't let dem pass, boss!",
+				"Where do dey come from?!",
+			});
 
-            RegisterMessage(GoblinUnderlingMessageSource.OnValhallaArmorEquipped, new List<string>()
-            {
-                "Lookin' spiffy, boss!",
-            },
-            cooldown: () => 10 * 60);
+			RegisterMessage(GoblinUnderlingMessageSource.OnValhallaArmorEquipped, new List<string>()
+			{
+				"Lookin' spiffy, boss!",
+			},
+			cooldown: () => 10 * 60);
 
-            SpawnedNPCSystem.OnSpawnedNPC += OnSpawnedBoss;
+			SpawnedNPCSystem.OnSpawnedNPC += OnSpawnedBoss;
 
-            AssPlayer.OnSlainBoss += OnSlainBoss;
+			AssPlayer.OnSlainBoss += OnSlainBoss;
 
-            On.Terraria.Main.ReportInvasionProgress += OnOOAStarts;
+			On.Terraria.Main.ReportInvasionProgress += OnOOAStarts;
 
-            //MP handled in HijackGetData
-            On.Terraria.GameContent.Events.DD2Event.SetEnemySpawningOnHold += OnOOANewWave_SP;
-        }
+			//MP handled in HijackGetData
+			On.Terraria.GameContent.Events.DD2Event.SetEnemySpawningOnHold += OnOOANewWave_SP;
+		}
 
-        private static void OnOOANewWave_SP(On.Terraria.GameContent.Events.DD2Event.orig_SetEnemySpawningOnHold orig, int forHowLong)
+		private static void OnOOANewWave_SP(On.Terraria.GameContent.Events.DD2Event.orig_SetEnemySpawningOnHold orig, int forHowLong)
 		{
 			orig(forHowLong);
 
@@ -240,27 +240,27 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		//Has to be after tiers are assigned
 		private static void LoadTextures()
-        {
-            if (!Main.dedServ)
-            {
-                bodyAssets = new Asset<Texture2D>[TierCount];
-                weaponAssets = new Asset<Texture2D>[TierCount];
+		{
+			if (!Main.dedServ)
+			{
+				bodyAssets = new Asset<Texture2D>[TierCount];
+				weaponAssets = new Asset<Texture2D>[TierCount];
 
-                string body = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingProj_";
-                string weapon = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingWeapon_";
-                foreach (var tier in tiers)
-                {
-                    int index = tier.texIndex;
-                    bodyAssets[index] = ModContent.Request<Texture2D>(body + index);
-                    weaponAssets[index] = ModContent.Request<Texture2D>(weapon + index);
-                }
-            }
-        }
+				string body = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingProj_";
+				string weapon = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingWeapon_";
+				foreach (var tier in tiers)
+				{
+					int index = tier.texIndex;
+					bodyAssets[index] = ModContent.Request<Texture2D>(body + index);
+					weaponAssets[index] = ModContent.Request<Texture2D>(weapon + index);
+				}
+			}
+		}
 
-        private static void LoadTiers()
-        {
-            tiers = new List<GoblinUnderlingTier>
-            {
+		private static void LoadTiers()
+		{
+			tiers = new List<GoblinUnderlingTier>
+			{
 				//Baseline values in Item/AI code                                                                                         //dmg    kb    ap  sp     m  hb  ran   ransp
                 /*Baseline*/ new GoblinUnderlingTier(0, () => true                 , ModContent.ProjectileType<GoblinUnderlingDart_0>()   , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f ),
                 /*EoC*/      new GoblinUnderlingTier(1, () => NPC.downedBoss1      , ModContent.ProjectileType<GoblinUnderlingDart_1>()   , 1.25f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f ),
@@ -268,8 +268,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
                 /*Skeletron*/new GoblinUnderlingTier(3, () => NPC.downedBoss3      , ModContent.ProjectileType<GoblinUnderlingDart_3>()   , 1.75f, 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f),
                 /*Mechboss*/ new GoblinUnderlingTier(4, () => NPC.downedMechBossAny, ModContent.ProjectileType<GoblinUnderlingDart_4>()   , 3f   , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f),
                 /*Plantera*/ new GoblinUnderlingTier(5, () => NPC.downedPlantBoss  , ModContent.ProjectileType<GoblinUnderlingTerraBeam>(), 3.5f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f , true),
-            };
-        }
+			};
+		}
 
 		private static void OnSlainBoss(Player player, int type)
 		{
@@ -367,7 +367,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			{
 				globalCooldown -= reduceAmount;
 				if (globalCooldown < 0)
-                {
+				{
 					globalCooldown = 0;
 				}
 			}
@@ -389,19 +389,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		{
 			CurrentTierIndex = 0;
 			for (int i = TierCount - 1; i >= 0; i--)
-            {
+			{
 				//Start from last tier, prioritize
 				var tier = tiers[i];
 				if (tier.condition())
-                {
+				{
 					CurrentTierIndex = i;
 					break;
-                }
+				}
 			}
 		}
 
 		public static void OnEnterWorld(Player player)
-        {
+		{
 			if (player.whoAmI != Main.myPlayer)
 			{
 				return;
@@ -447,9 +447,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			}
 
 			if (ClientConfig.Instance.SatchelofGoodiesDialogueDisabled)
-            {
+			{
 				return;
-            }
+			}
 
 			PutMessageTypeOnCooldown(GoblinUnderlingMessageSource.Idle); //Always give idle message a cooldown
 
@@ -551,28 +551,28 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			DetermineCurrentTier();
 		}
 
-        public override bool HijackGetData(ref byte messageType, ref BinaryReader reader, int playerNumber)
-        {
-            bool ret = base.HijackGetData(ref messageType, ref reader, playerNumber);
+		public override bool HijackGetData(ref byte messageType, ref BinaryReader reader, int playerNumber)
+		{
+			bool ret = base.HijackGetData(ref messageType, ref reader, playerNumber);
 
-            //MP client handle for OOANewWave
-            if (messageType == MessageID.CrystalInvasionSendWaitTime)
-            {
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    int forHowLong = reader.ReadInt32();
+			//MP client handle for OOANewWave
+			if (messageType == MessageID.CrystalInvasionSendWaitTime)
+			{
+				if (Main.netMode == NetmodeID.MultiplayerClient)
+				{
+					int forHowLong = reader.ReadInt32();
 
-                    if (forHowLong == 1800)
-                    {
-                        foreach (var proj in GetLocalGoblinUnderlings())
-                        {
-                            TryCreate(proj, GoblinUnderlingMessageSource.OOANewWave);
-                        }
-                    }
-                }
-            }
+					if (forHowLong == 1800)
+					{
+						foreach (var proj in GetLocalGoblinUnderlings())
+						{
+							TryCreate(proj, GoblinUnderlingMessageSource.OOANewWave);
+						}
+					}
+				}
+			}
 
-            return ret;
-        }
-    }
+			return ret;
+		}
+	}
 }

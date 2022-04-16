@@ -10,108 +10,108 @@ using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-    [Content(ContentType.HostileNPCs)]
-    public class StingSlime : AssNPC
-    {
-        private const int TotalNumberOfThese = 2;
+	[Content(ContentType.HostileNPCs)]
+	public class StingSlime : AssNPC
+	{
+		private const int TotalNumberOfThese = 2;
 
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/NPCs/StingSlime_0"; //use fixed texture
-            }
-        }
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/NPCs/StingSlime_0"; //use fixed texture
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Sting Slime");
-            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-            Main.npcCatchable[NPC.type] = true;
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Sting Slime");
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+			Main.npcCatchable[NPC.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            NPC.width = 40;
-            NPC.height = 36;
-            NPC.damage = 7;
-            NPC.defense = 2;
-            NPC.lifeMax = 25;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.value = 25f;
-            NPC.knockBackResist = 0.25f;
-            NPC.aiStyle = 1;
-            AIType = NPCID.ToxicSludge;
-            AnimationType = NPCID.ToxicSludge;
-            NPC.catchItem = (short)ModContent.ItemType<StingSlimeItem>();
-        }
+		public override void SetDefaults()
+		{
+			NPC.width = 40;
+			NPC.height = 36;
+			NPC.damage = 7;
+			NPC.defense = 2;
+			NPC.lifeMax = 25;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 25f;
+			NPC.knockBackResist = 0.25f;
+			NPC.aiStyle = 1;
+			AIType = NPCID.ToxicSludge;
+			AnimationType = NPCID.ToxicSludge;
+			NPC.catchItem = (short)ModContent.ItemType<StingSlimeItem>();
+		}
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            Color color = AiTexture switch
-            {
-                0 => new Color(152, 140, 166, 100),
-                _ => new Color(234, 173, 83, 100),
-            };
-            if (NPC.life > 0)
-            {
-                for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 40; i++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
-                }
-            }
-        }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			Color color = AiTexture switch
+			{
+				0 => new Color(152, 140, 166, 100),
+				_ => new Color(234, 173, 83, 100),
+			};
+			if (NPC.life > 0)
+			{
+				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 40; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+				}
+			}
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SpawnCondition.OverworldDayDesert.Chance * 0.3f;
-        }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return SpawnCondition.OverworldDayDesert.Chance * 0.3f;
+		}
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-                new FlavorTextBestiaryInfoElement("Bounce like a slime, sting like a scorpion.")
-            });
-        }
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+				new FlavorTextBestiaryInfoElement("Bounce like a slime, sting like a scorpion.")
+			});
+		}
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Stinger));
-        }
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.Common(ItemID.Stinger));
+		}
 
-        public ref float AiTexture => ref NPC.ai[1];
+		public ref float AiTexture => ref NPC.ai[1];
 
-        public override bool PreAI()
-        {
-            if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                AiTexture = Main.rand.Next(TotalNumberOfThese);
+		public override bool PreAI()
+		{
+			if (AiTexture == 0 && NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+			{
+				AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-                NPC.localAI[0] = 1;
-                NPC.netUpdate = true;
-            }
+				NPC.localAI[0] = 1;
+				NPC.netUpdate = true;
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/StingSlime_" + AiTexture).Value;
-            Vector2 stupidOffset = new Vector2(0f, 4f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
-            Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
-            return false;
-        }
-    }
+		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+		{
+			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/StingSlime_" + AiTexture).Value;
+			Vector2 stupidOffset = new Vector2(0f, 4f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+			Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
+			spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			return false;
+		}
+	}
 }

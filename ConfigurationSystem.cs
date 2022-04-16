@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using AssortedCrazyThings.Base;
+using System;
 using System.Collections.Generic;
-using Terraria.ModLoader;
+using System.Linq;
 using Terraria;
-using AssortedCrazyThings.Base;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
@@ -18,25 +18,25 @@ namespace AssortedCrazyThings
 		/// <summary>
 		/// For use on generic content that should be always loaded except when everything is disabled
 		/// </summary>
-		public const ContentType AllFlags = 
-            ContentType.Bosses |
-            ContentType.CuteSlimes |
-            ContentType.HostileNPCs |
-            ContentType.FriendlyNPCs |
-            ContentType.DroppedPets |
-            ContentType.OtherPets |
-            ContentType.Weapons |
-            ContentType.Tools |
-            ContentType.PlaceablesFunctional |
+		public const ContentType AllFlags =
+			ContentType.Bosses |
+			ContentType.CuteSlimes |
+			ContentType.HostileNPCs |
+			ContentType.FriendlyNPCs |
+			ContentType.DroppedPets |
+			ContentType.OtherPets |
+			ContentType.Weapons |
+			ContentType.Tools |
+			ContentType.PlaceablesFunctional |
 			ContentType.PlaceablesDecorative |
 			ContentType.Armor |
-            ContentType.VanityArmor |
-            ContentType.Accessories |
-            ContentType.VanityAccessories |
-            ContentType.BossConsolation;
+			ContentType.VanityArmor |
+			ContentType.Accessories |
+			ContentType.VanityAccessories |
+			ContentType.BossConsolation;
 
 		public static void Load()
-        {
+		{
 			Mod mod = AssUtils.Instance; //Maybe change it to support all loaded mod assemblies
 			NonLoadedNames = new();
 			NonLoadedNamesByType = new();
@@ -82,16 +82,16 @@ namespace AssortedCrazyThings
 				}
 
 				if (instance is ModType modTypeInstance)
-                {
-                    string name = modTypeInstance.Name;
-                    NonLoadedNames.Add(name, reasons);
+				{
+					string name = modTypeInstance.Name;
+					NonLoadedNames.Add(name, reasons);
 
 					if (!NonLoadedNamesByType.ContainsKey(reasons))
-                    {
+					{
 						NonLoadedNamesByType[reasons] = new List<string>();
 					}
 
-                    NonLoadedNamesByType[reasons].Add(name);
+					NonLoadedNamesByType[reasons].Add(name);
 				}
 			}
 
@@ -99,7 +99,7 @@ namespace AssortedCrazyThings
 		}
 
 		private static Type[] GetInvalidTypes()
-        {
+		{
 			return new Type[]
 			{
 				typeof(ModItem),
@@ -119,37 +119,37 @@ namespace AssortedCrazyThings
 		}
 
 		private static void CheckInvalidInheritance(Type type)
-        {
+		{
 			//Detect misuse of tml types that have an existing Ass base class
 			if (!typeof(ILoadable).IsAssignableFrom(type))
-            {
+			{
 				return;
-            }
+			}
 
 			var baseType = type.BaseType;
 
 			if (baseType != null && Array.IndexOf(InvalidTypes, baseType) > -1)
-            {
+			{
 				throw new Exception($"{type} inherits from {baseType}, which is not permitted. Use the base classes in ConfigurationBaseClasses.cs");
 			}
-        }
+		}
 
-        private static ContentType FindContentFilterReasons(ContentAttribute content)
-        {
+		private static ContentType FindContentFilterReasons(ContentAttribute content)
+		{
 			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
 			var flags = ContentConfig.Instance.FilterFlags & content.ContentType;
 
 			if (content.NeedsAllToFilter && flags != content.ContentType)
-            {
+			{
 				//If the content needs a full match
 				return ContentType.Always;
-            }
+			}
 
 			return flags;
 		}
 
-        public static void Unload()
-        {
+		public static void Unload()
+		{
 			NonLoadedNames?.Clear();
 			NonLoadedNames = null;
 
@@ -160,27 +160,27 @@ namespace AssortedCrazyThings
 		}
 
 		public static string ContentTypeToString(ContentType contentType)
-        {
+		{
 			if (!ExactlyOneFlagSet(contentType))
-            {
+			{
 				string concat = string.Empty;
 				foreach (ContentType flag in Enum.GetValues(typeof(ContentType)))
-                {
+				{
 					if (flag != ContentType.Always && contentType.HasFlag(flag))
-                    {
+					{
 						concat += ContentTypeToString(flag) + "/";
 					}
-                }
+				}
 				return concat[0..^1];
 			}
 
-            return contentType switch
-            {
-                ContentType.Always => string.Empty,
-                ContentType.Bosses => "Bosses",
+			return contentType switch
+			{
+				ContentType.Always => string.Empty,
+				ContentType.Bosses => "Bosses",
 				ContentType.CuteSlimes => "Cute Slimes",
 				ContentType.HostileNPCs => "Hostile NPCs",
-                ContentType.FriendlyNPCs => "Friendly NPCs",
+				ContentType.FriendlyNPCs => "Friendly NPCs",
 				ContentType.DroppedPets => "Dropped Pets",
 				ContentType.OtherPets => "Other Pets",
 				ContentType.Weapons => "Weapons",
@@ -193,7 +193,7 @@ namespace AssortedCrazyThings
 				ContentType.VanityAccessories => "Vanity Accessories",
 				ContentType.BossConsolation => "Boss Consolation Items",
 				_ => string.Empty,
-            };
+			};
 		}
 
 		public static bool ExactlyOneFlagSet(ContentType contentType)
@@ -210,7 +210,7 @@ namespace AssortedCrazyThings
 
 	[Flags]
 	public enum ContentType : int
-    {
+	{
 		Always = 0 << 0,
 		Bosses = 1 << 1,
 		CuteSlimes = 1 << 2,

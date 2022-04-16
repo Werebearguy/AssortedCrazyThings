@@ -18,9 +18,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			}
 
 			if (damage < target.statLifeMax2 * 0.2f)
-            {
+			{
 				return;
-            }
+			}
 
 			foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
 			{

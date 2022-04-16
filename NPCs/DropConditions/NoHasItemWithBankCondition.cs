@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.NPCs.DropConditions
 		private int itemType;
 
 		public NoHasItemWithBankCondition(int itemType)
-        {
+		{
 			this.itemType = itemType;
 		}
 

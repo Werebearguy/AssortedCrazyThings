@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-    [Content(ContentType.DroppedPets)]
-    public class PetGolemHeadBuff : SimplePetBuffBase
-    {
-        public override int PetType => ModContent.ProjectileType<PetGolemHeadProj>();
+	[Content(ContentType.DroppedPets)]
+	public class PetGolemHeadBuff : SimplePetBuffBase
+	{
+		public override int PetType => ModContent.ProjectileType<PetGolemHeadProj>();
 
-        public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetGolemHead;
+		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetGolemHead;
 
-        public override void SafeSetDefaults()
-        {
-            DisplayName.SetDefault("Replica Golem Head");
-            Description.SetDefault("A Replica Golem Head watches over you");
-        }
-    }
+		public override void SafeSetDefaults()
+		{
+			DisplayName.SetDefault("Replica Golem Head");
+			Description.SetDefault("A Replica Golem Head watches over you");
+		}
+	}
 }
 
