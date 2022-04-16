@@ -10,6 +10,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -114,6 +115,13 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
         private float fadingAuraScaleIntensity = 0f;
         private int fadingAuraTimerMax = 0;
         private int fadingAuraTimer = 0;
+
+        private bool drawBehind = true;
+        private bool firstEmote = false;
+        private int hungryEmoteTimer = 0;
+        private int hungryEmoteTimerMax = 400;
+
+        private int oldSoulTarget = Main.maxNPCs;
 
         public static Dictionary<int, Asset<Texture2D>> SheetAssets;
         public static Dictionary<int, Asset<Texture2D>> WingAssets;
@@ -376,6 +384,21 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             }
         }
 
+        private void HandleLeavingCondition()
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int time = 100;
+                if (BabyHarvesterHandler.IsTurningInvalidPlayer(Player, out int timeLeft))
+                {
+                    if (timeLeft % time == time - 1) //So it triggers at the start, and not close at the end
+                    {
+                        EmoteBubble.NewBubble(EmoteID.EmotionCry, new WorldUIAnchor(Projectile), time);
+                    }
+                }
+            }
+        }
+
         private int SoulTargetClosest(float maxDistance = 1000f)
         {
             short closest = Main.maxNPCs;
@@ -433,6 +456,8 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
             HandleWingDust();
 
+            HandleLeavingCondition();
+
             //Main.NewText("t: " + Tier);
             //Main.NewText("c: " + CurrentTrafoTier);
 
@@ -477,6 +502,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
         private void RegularAI()
         {
+            drawBehind = true;
             int soulTarget = Main.maxNPCs;
             if (Timer <= Time_PreSoulEat)
             {
@@ -485,6 +511,18 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             }
             if (soulTarget != Main.maxNPCs)
             {
+                if (soulTarget != oldSoulTarget)
+                {
+                    if (Tier == 1)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            EmoteBubble.NewBubble(EmoteID.ItemBugNet, new WorldUIAnchor(Projectile), 120);
+                        }
+                    }
+                }
+                oldSoulTarget = soulTarget;
+
                 NPC soul = Main.npc[soulTarget];
 
                 Vector2 toSoul = soul.Center - Projectile.Center;
@@ -523,7 +561,14 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 else
                 {
                     //Next to soul
-                    Timer++;
+                    if (Tier == 1)
+                    {
+                        Timer += 0.2f;
+                    }
+                    else
+                    {
+                        Timer++;
+                    }
                     Projectile.velocity *= 0.8f;
                     Projectile.rotation *= 0.8f;
 
@@ -556,9 +601,70 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             else if (Timer == 0)
             {
                 Vector2 offset = Vector2.Zero;
-                float veloFactor = 1f;
+                float veloFactor = 0.9f;
                 float sway = 1f;
                 bool random = true;
+
+                if (Tier == 1)
+                {
+                    if (!firstEmote)
+                    {
+                        firstEmote = true;
+
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            EmoteBubble.NewBubble(EmoteID.BossSkeletron, new WorldUIAnchor(Projectile), 240);
+                        }
+                    }
+
+                    hungryEmoteTimer++;
+                    if (hungryEmoteTimer > hungryEmoteTimerMax)
+                    {
+                        hungryEmoteTimer = 0;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            EmoteBubble.NewBubble(EmoteID.EmotionAlert, new WorldUIAnchor(Projectile), 120);
+                        }
+                    }
+
+                    offset = new Vector2(-60, 60);
+                    veloFactor = 1f;
+                    sway = 1.3f;
+
+                    drawBehind = Projectile.direction == 1;
+
+                    //if something: drawBehind = false
+                    float rot = Projectile.velocity.ToRotation();
+                    if (Projectile.direction == 1)
+                    {
+                        rot = MathHelper.Pi - Math.Abs(rot);
+                    }
+                    //The above normalizes rot to number always around 0
+                    float thres = MathHelper.PiOver4 / 2;
+
+                    //attempt to "flatten" velocity, prefer moving horizontally
+                    Rectangle flattenRect = Player.Hitbox;
+                    flattenRect.Inflate(0, 20);
+                    if (Projectile.Hitbox.Intersects(flattenRect) && rot > thres)
+                    {
+                        float by = 1 / 50f;
+                        by *= Projectile.direction * Math.Sign(rot);
+                        if (Projectile.direction == 1)
+                        {
+                            by *= -1;
+                        }
+                        Projectile.velocity = Projectile.velocity.RotatedBy(by);
+
+                        //Always keep min speed
+                        float minSpeed = 2.4f;
+                        if (Projectile.velocity.LengthSquared() < minSpeed * minSpeed)
+                        {
+                            Projectile.velocity = Utils.SafeNormalize(Projectile.velocity, Vector2.UnitY);
+                            Projectile.velocity *= minSpeed;
+                        }
+                    }
+                }
+
                 AssAI.ZephyrfishAI(Projectile, Player, veloFactor, sway, random, offsetX: offset.X, offsetY: offset.Y);
                 Projectile.spriteDirection = -Projectile.spriteDirection;
             }
@@ -709,7 +815,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
-            behindNPCs.Add(index);
+            (drawBehind ? behindNPCs : overPlayers).Add(index);
         }
 
         public override bool PreDraw(ref Color lightColor)

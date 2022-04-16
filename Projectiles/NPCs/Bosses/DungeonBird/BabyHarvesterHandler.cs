@@ -56,13 +56,14 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
                 }
                 else
                 {
+                    var harvesterCenter = Main.npc[index].Center;
                     for (int i = 0; i < Main.maxPlayers; i++)
                     {
                         Player player = Main.player[i];
 
                         if (player.active && !player.dead)
                         {
-                            GiveSoulBuffToNearbyNPCs(player, Main.npc[index].Center);
+                            GiveSoulBuffToNearbyNPCs(player, harvesterCenter);
                         }
                     }
                 }
@@ -71,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 
         private static void GiveSoulBuffToNearbyNPCs(Player player, Vector2 position)
         {
-            if (ValidPlayer(player) || player.DistanceSQ(position) < 2880 * 2880) //one and a half screens or in suitable location
+            if (!IsTurningInvalidPlayer(player, out _) && (ValidPlayer(player) || player.DistanceSQ(position) < 2880 * 2880)) //one and a half screens or in suitable location
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
@@ -122,9 +123,20 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
             return proj.ModProjectile is BabyHarvesterProj;
         }
 
+        /// <summary>
+        /// This handles spawning/despawning, utilizing a delayed condition check to handle edge cases
+        /// </summary>
         public static bool ValidPlayer(Player player)
         {
-            return player.ZoneDungeon;
+            return player.GetModPlayer<BabyHarvesterPlayer>().Valid;
+        }
+
+        /// <summary>
+        /// True if the condition is about to turn false
+        /// </summary>
+        public static bool IsTurningInvalidPlayer(Player player, out int timeLeft)
+        {
+            return player.GetModPlayer<BabyHarvesterPlayer>().IsTurningInvalid(out timeLeft);
         }
 
         private static void TrySpawnBabyHarvester()
