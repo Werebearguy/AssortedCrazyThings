@@ -30,7 +30,6 @@ namespace AssortedCrazyThings
         internal static HoverNPCUI HoverNPCUI;
 
         internal static UserInterface HarvesterEdgeUIInterface;
-        internal static HarvesterEdgeUI HarvesterEdgeUI;
 
         internal static UserInterface EnhancedHunterUIInterface;
         internal static EnhancedHunterUI EnhancedHunterUI;
@@ -54,11 +53,6 @@ namespace AssortedCrazyThings
 
                 if (ContentConfig.Instance.Bosses)
                 {
-                    HarvesterEdgeUI = new HarvesterEdgeUI();
-                    HarvesterEdgeUI.Activate();
-                    HarvesterEdgeUIInterface = new UserInterface();
-                    HarvesterEdgeUIInterface.SetState(HarvesterEdgeUI);
-
                     EnhancedHunterUI = new EnhancedHunterUI();
                     EnhancedHunterUI.Activate();
                     EnhancedHunterUIInterface = new UserInterface();
@@ -86,7 +80,6 @@ namespace AssortedCrazyThings
                 HoverNPCUI = null;
 
                 HarvesterEdgeUIInterface = null;
-                HarvesterEdgeUI = null;
 
                 EnhancedHunterUIInterface = null;
                 EnhancedHunterUI = null;
@@ -94,8 +87,6 @@ namespace AssortedCrazyThings
                 PetVanityUIInterface = null;
                 PetVanityUI = null;
 
-                HarvesterEdgeUI.texture = null;
-                HarvesterEdgeUI.typeList = null;
                 EnhancedHunterUI.arrowTexture = null;
                 PetVanityUI.redCrossTexture = null;
                 CircleUI.UIConf = null;
@@ -352,17 +343,11 @@ namespace AssortedCrazyThings
             EnhancedHunterUI?.Update(gameTime);
         }
 
-        private void UpdateHarvesterEdgeUI(GameTime gameTime)
-        {
-            HarvesterEdgeUI?.Update(gameTime);
-        }
-
         public override void UpdateUI(GameTime gameTime)
         {
             UpdateCircleUI();
             UpdateHoverNPCUI(gameTime);
             UpdateEnhancedHunterUI(gameTime);
-            UpdateHarvesterEdgeUI(gameTime);
             UpdatePetVanityUI();
         }
 

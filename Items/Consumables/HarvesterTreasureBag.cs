@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Consumables
     public class HarvesterTreasureBag : AssItem
     {
         //Sets the associated NPC this treasure bag is dropped from
-        public override int BossBagNPC => ModContent.NPCType<Harvester>();
+        public override int BossBagNPC => AssortedCrazyThings.harvester;
 
         public override void SetStaticDefaults()
         {

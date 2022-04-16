@@ -251,9 +251,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
                     break;
             }
 
+            Projectile parent = Main.projectile[ParentIndex];
+            if (!parent.active)
+            {
+                Projectile.active = false;
+                return;
+            }
+
             //velocityFactor: 1.5f + (projectile.whoAmI % 4) * 0.8f so all tentacles don't share the same movement 
-            AssAI.ZephyrfishAI(Projectile, parent: Main.projectile[ParentIndex], velocityFactor: 1.5f + (Projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
-            Vector2 between = Main.projectile[ParentIndex].Center - Projectile.Center;
+            AssAI.ZephyrfishAI(Projectile, parent: parent, velocityFactor: 1.5f + (Projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
+            Vector2 between = parent.Center - Projectile.Center;
             Projectile.spriteDirection = 1;
             Projectile.rotation = between.ToRotation();
 

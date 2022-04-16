@@ -1,6 +1,6 @@
 ﻿using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items;
-using AssortedCrazyThings.Items.Accessories.Useful;
+using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.Items.Weapons;
@@ -22,79 +22,46 @@ namespace AssortedCrazyThings.Base.ModSupport
             if (ContentConfig.Instance.Bosses && ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
                 //5.1f means just after skeletron
-                if (bossChecklist.Version >= new Version(1, 0))
+                if (bossChecklist.Version >= new Version(1, 3, 1))
                 {
-                    /*
-                     * "AddMiniBoss",
-                     * float progression,
-                     * int/List<int> miniBossNPCIDs,
-                     * Mod mod,
-                     * string minibossName,
-                     * Func<bool> downedMiniBoss,
-                     * int/List<int> SpawnItemIDs,
-                     * int/List<int> CollectionItemIDs,
-                     * int/List<int> LootItemIDs,
-                     * [string spawnInfo],
-                     * [string despawnMessage],
-                     * [string texture],
-                     * [string overrideHeadIconTexture],
-                     * [Func<bool> miniBossAvailable]
-                     */
+                    List<int> collection = new List<int>()
+                    {
+                        ModContent.ItemType<HarvesterRelicItem>(),
+                        ModContent.ItemType<PetHarvesterItem>(),
+                        ModContent.ItemType<HarvesterTrophyItem>(),
+                        ModContent.ItemType<SoulHarvesterMask>()
+                    };
 
                     int summonItem = ModContent.ItemType<IdolOfDecay>();
 
-                    List<int> collection = new List<int>();
-                    if (ContentConfig.Instance.PlaceablesFunctional)
-                    {
-                        collection.AddRange(new List<int>
-                        {
-                            ModContent.ItemType<HarvesterRelicItem>(),
-                            ModContent.ItemType<HarvesterTrophyItem>()
-                        });
-                    }
+                    //TODO harvester, include 15 x ModContent.ItemType<CaughtDungeonSoulFreed>() in loot but dont spawn it
 
-                    if (ContentConfig.Instance.VanityArmor)
-                    {
-                        collection.AddRange(new List<int>
-                        {
-                            ModContent.ItemType<SoulHarvesterMask>()
-                        });
-                    }
-
-                    List<int> loot = new List<int>
-                    {
-                        summonItem,
-                        ModContent.ItemType<CaughtDungeonSoulFreed>(),
-                    };
-
-                    if (ContentConfig.Instance.Accessories)
-                    {
-                        loot.AddRange(new List<int>
-                        {
-                            ModContent.ItemType<SigilOfRetreat>(),
-                            ModContent.ItemType<SigilOfEmergency>(),
-                            ModContent.ItemType<SigilOfPainSuppression>()
-                        });
-                    }
-
+                    /*
+                     * "AddBoss",
+                        args[1] as Mod, // Mod
+						args[2] as string, // Boss Name
+						InterpretObjectAsListOfInt(args[3]), // IDs
+						Convert.ToSingle(args[4]), // Prog
+						args[5] as Func<bool>, // Downed
+						args[6] as Func<bool>, // Available
+						InterpretObjectAsListOfInt(args[7]), // Collection
+						InterpretObjectAsListOfInt(args[8]), // Spawn Items
+						args[9] as string, // Spawn Info
+						InterpretObjectAsStringFunction(args[10]), // Despawn message
+						args[11] as Action<SpriteBatch, Rectangle, Color> // Custom Drawing
+                     */
                     bossChecklist.Call(
-                        "AddMiniBoss",
-                        5.1f,
-                        ModContent.NPCType<Harvester>(),
-                        this,
+                        "AddBoss",
+                        Mod,
                         Harvester.name,
+                        AssortedCrazyThings.harvester,
+                        5.1f,
                         (Func<bool>)(() => AssWorld.downedHarvester),
-                        summonItem,
+                        (Func<bool>)(() => true),
                         collection,
-                        loot,
-                        $"Use a [i:{summonItem}] in the dungeon after Skeletron has been defeated",
-                        null,
-                        $"{this.Name}/NPCs/DungeonBird/HarvesterPreview"
+                        summonItem,
+                        $"Enter the dungeon for the first time, or use a [i:{summonItem}] in the dungeon"
                     );
-                }
-                else
-                {
-                    bossChecklist.Call("AddMiniBossWithInfo", Harvester.name, 5.1f, (Func<bool>)(() => AssWorld.downedHarvester), "Use a [i:" + ModContent.ItemType<IdolOfDecay>() + "] in the dungeon after Skeletron has been defeated");
                 }
             }
 

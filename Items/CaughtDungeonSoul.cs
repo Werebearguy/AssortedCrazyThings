@@ -1,8 +1,7 @@
-using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,8 +17,8 @@ namespace AssortedCrazyThings.Items
             Tooltip.SetDefault("'An inert soul caught by a net'"
                 + "\nAwakened in your inventory when " + Harvester.name + " is defeated");
             // ticksperframe, frameCount
-            //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
-            //ItemID.Sets.AnimatesAsSoul[item.type] = true;
+            //Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            //ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
@@ -38,14 +37,19 @@ namespace AssortedCrazyThings.Items
             Item.makeNPC = (short)ModContent.NPCType<DungeonSoul>();
         }
 
+        public static bool CanUseCondition()
+        {
+            return BabyHarvesterHandler.TryFindBabyHarvester(out _, out _);
+        }
+
         public override bool CanUseItem(Player player)
         {
-            return AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes.Take(3).ToArray());
+            return CanUseCondition();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (AssUtils.AnyNPCs(AssortedCrazyThings.harvesterTypes.Take(3).ToArray()))
+            if (CanUseCondition())
             {
                 // Can use item
                 tooltips.Add(new TooltipLine(Mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
