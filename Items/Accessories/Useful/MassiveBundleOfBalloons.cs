@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class MassiveBundleOfBalloons : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Massive Bundle of Balloons");
 			Tooltip.SetDefault("Allows you to jump six more times"
@@ -19,8 +19,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			Item.width = 46;
 			Item.height = 42;
-			Item.value = 0;
-			Item.rare = -11;
+			Item.value = Item.sellPrice(0, 3 + 2 + 3 + 3, 54 + 10, 0); //Horseshoe 54s, bundle 3g, honey 2g, fart 3g, sharkron 3g, dreams 10s
+			Item.rare = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

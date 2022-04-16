@@ -4,7 +4,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class QueenBeeGitgud : GitgudItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Honey Thimble");
 		}

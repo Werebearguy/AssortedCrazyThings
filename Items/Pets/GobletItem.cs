@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<GobletBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Goblet Battle Standard");
 			Tooltip.SetDefault("Summons a tiny goblin to follow you");
@@ -20,7 +20,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(silver: 10);
 		}
 	}

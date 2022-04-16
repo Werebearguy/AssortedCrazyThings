@@ -4,7 +4,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class MoonLordGitgud : GitgudItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bright Side of the Moon");
 		}

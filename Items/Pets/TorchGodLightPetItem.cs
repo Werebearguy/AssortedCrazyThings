@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<TorchGodLightPetBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Godly Torch");
 			Tooltip.SetDefault("Summons a godly torch to follow you\n" +
@@ -21,7 +21,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(gold: 2);
 		}
 

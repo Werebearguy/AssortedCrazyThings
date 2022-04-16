@@ -13,6 +13,8 @@ namespace AssortedCrazyThings.Items.Placeable
 			DisplayName.SetDefault("Costume Dresser");
 			Tooltip.SetDefault("Left Click to change your Pet's appearance"
 				 + "\nRight Click to change your Light Pet's appearance");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -21,7 +23,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			Item.width = 34;
 			Item.height = 26;
 			Item.maxStack = 99;
-			Item.rare = -11;
+			Item.rare = 1;
 			Item.value = Item.sellPrice(silver: 10);
 		}
 

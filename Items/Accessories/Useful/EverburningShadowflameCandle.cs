@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class EverburningShadowflameCandle : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Everburning Shadowflame Candle");
 			Tooltip.SetDefault("Applies shadowflame damage to all attacks");
@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 24;
 			Item.height = 22;
 			Item.value = Item.sellPrice(0, 1, 41, 0);
-			Item.rare = -11;
+			Item.rare = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

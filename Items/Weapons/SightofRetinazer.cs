@@ -5,10 +5,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class SightofRetinazer : AssItem
+	public class SightofRetinazer : WeaponItemBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sight of Retinazer");
 		}
@@ -27,7 +26,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.useAnimation = 10;
 			Item.useTime = 10;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.rare = -11;
+			Item.rare = 4;
 			Item.autoReuse = true;
 		}
 

@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class CrazyBundleOfAssortedBalloons : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Crazy Bundle of Assorted Balloons");
 			Tooltip.SetDefault("It's got all kinds of effects");
@@ -18,8 +18,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			Item.width = 46;
 			Item.height = 42;
-			Item.value = 0;
-			Item.rare = -11;
+			Item.value = Item.sellPrice(0, 3 + 2 + 3 + 3, 54 + 10, 0) + //bundle price, starwisp 5g5s, Eyelloons 2x81s, party ballons 40s, balloon animal 40s
+				Item.sellPrice(0, 5, 5, 0) +
+				2 * Item.sellPrice(0, 0, 81, 0) +
+				Item.sellPrice(0, 0, 40, 0) +
+				Item.sellPrice(0, 0, 40, 0);
+			Item.rare = 8;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetGoldfishBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Possessed Fish Idol");
 			Tooltip.SetDefault("Summons a goldfish that follows you"
@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(copper: 10);
 		}
 

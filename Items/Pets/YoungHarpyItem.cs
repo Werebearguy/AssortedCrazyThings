@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<YoungHarpyBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Clump of Down Feathers");
 			Tooltip.SetDefault("Summons a friendly Harpy to follow you"
@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(copper: 10);
 		}
 	}

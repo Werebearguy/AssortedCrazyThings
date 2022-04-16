@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetDestroyerBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Destroyer's Core");
 			Tooltip.SetDefault("Summons a tiny Destroyer and two tiny Probes to follow you");
@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
+
 		}
 
 		public static void Spawn(Player player, int buffIndex = -1, Item item = null)

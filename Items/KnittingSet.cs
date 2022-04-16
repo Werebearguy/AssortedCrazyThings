@@ -10,6 +10,8 @@ namespace AssortedCrazyThings.Items
 		{
 			DisplayName.SetDefault("Knitting Set");
 			Tooltip.SetDefault("'A set of tools used in crafting cute clothing and accessories'");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
 		}
 
 		public override void SetDefaults()
@@ -17,7 +19,7 @@ namespace AssortedCrazyThings.Items
 			Item.maxStack = 999;
 			Item.width = 22;
 			Item.height = 22;
-			Item.rare = -11;
+			Item.rare = 1;
 			Item.value = Item.sellPrice(silver: 30);
 		}
 

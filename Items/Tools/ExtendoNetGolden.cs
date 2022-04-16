@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Tools
 {
 	public class ExtendoNetGolden : ExtendoNetBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Golden Extendo-Net");
 			Tooltip.SetDefault("'Catches those REALLY hard to reach critters'");
@@ -19,6 +19,7 @@ namespace AssortedCrazyThings.Items.Tools
 			Item.useAnimation = 18;
 			Item.useTime = 24;
 			Item.value = Item.sellPrice(gold: 5, silver: 90);
+			Item.rare = 2;
 			Item.shoot = ModContent.ProjectileType<ExtendoNetGoldenProj>();
 		}
 

@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class EverburningCandelabra : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Everburning Candelabra");
 			Tooltip.SetDefault("Applies various forms of fire damage to all attacks");
@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 32;
 			Item.height = 32;
 			Item.value = Item.sellPrice(gold: 13);
-			Item.rare = -11;
+			Item.rare = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

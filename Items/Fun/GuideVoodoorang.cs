@@ -12,6 +12,8 @@ namespace AssortedCrazyThings.Items.Fun
 		{
 			DisplayName.SetDefault("Guide Voodoorang");
 			Tooltip.SetDefault("'Why are you like this?'");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -19,7 +21,7 @@ namespace AssortedCrazyThings.Items.Fun
 			Item.CloneDefaults(ItemID.WoodenBoomerang);
 			Item.width = 22;
 			Item.height = 30;
-			Item.rare = -11;
+			Item.rare = 3;
 
 			Item.value = Item.sellPrice(silver: 2);
 			Item.shoot = ModContent.ProjectileType<GuideVoodoorangProj>();

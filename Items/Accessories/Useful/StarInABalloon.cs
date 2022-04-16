@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class StarInABalloon : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Star in a Balloon");
 			Tooltip.SetDefault("Increased mana regeneration and jump height");
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 18;
 			Item.height = 32;
 			Item.value = Item.sellPrice(silver: 5);
-			Item.rare = -11;
+			Item.rare = 2;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

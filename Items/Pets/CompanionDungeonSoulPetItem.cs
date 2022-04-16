@@ -21,6 +21,8 @@ namespace AssortedCrazyThings.Items.Pets
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SafeSetDefaults()
@@ -31,10 +33,10 @@ namespace AssortedCrazyThings.Items.Pets
 
 			Item.width = 26;
 			Item.height = 28;
-			Item.rare = -11;
 			Item.maxStack = 1;
 			Item.noUseGraphic = true;
 
+			Item.rare = 3;
 			Item.value = Item.sellPrice(silver: 50);
 		}
 

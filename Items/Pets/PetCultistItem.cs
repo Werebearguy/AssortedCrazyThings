@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetCultistBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tiny Ominous Coin");
 			Tooltip.SetDefault("Summons a tiny cultist to follow you and heal when injured");
@@ -20,7 +20,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(copper: 10);
 		}
 	}

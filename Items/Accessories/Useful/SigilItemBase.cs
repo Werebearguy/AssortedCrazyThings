@@ -8,17 +8,17 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[Content(ContentType.Bosses)]
 	public abstract class SigilItemBase : AccessoryBase
 	{
-		public sealed override void SetStaticDefaults()
+		public sealed override void SafeSetStaticDefaults()
 		{
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 
-			SafeSetStaticDefaults();
+			EvenSaferSetStaticDefaults();
 		}
 
-		public virtual void SafeSetStaticDefaults()
+		public virtual void EvenSaferSetStaticDefaults()
 		{
 
 		}
@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 26;
 			Item.height = 28;
 			Item.value = Item.sellPrice(0, 1, 0, 0);
-			Item.rare = -11;
+			Item.rare = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

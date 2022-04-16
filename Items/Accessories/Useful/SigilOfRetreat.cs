@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class SigilOfRetreat : SigilItemBase
 	{
-		public override void SafeSetStaticDefaults()
+		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sigil of Retreat");
 			Tooltip.SetDefault("Teleports you home when health is dangerously low"
@@ -17,10 +17,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void SafeSetDefaults()
 		{
+			base.SafeSetDefaults();
+
 			Item.width = 26;
 			Item.height = 24;
 			Item.value = Item.sellPrice(0, 1, 0, 0);
-			Item.rare = -11;
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)

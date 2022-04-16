@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryBowtie : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Bowtie");
 			Tooltip.SetDefault("'A soft bowtie for your cute slime to wear on her chest'");
@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryBunnyEars : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Bunny Ears");
 			Tooltip.SetDefault("'A pair of Easter bunny ears for your cute slime to wear on her head'");
@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryBunnySuit : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Bunny Suit");
 			Tooltip.SetDefault("'A bunny(?) costume for your cute slime to wear on her chest'");
@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryCrown : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Crown");
 			Tooltip.SetDefault("'A regal crown for your cute slime to wear on her head'");
@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryMetalHelmet : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Knight's Helmet");
 			Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryKitchenKnife : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Kitchen Knife");
 			Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
@@ -68,7 +68,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryHairBow : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Hair Bow");
 			Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
@@ -77,7 +77,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryMittens : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Mittens");
 			Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
@@ -86,7 +86,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryPartyHat : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Party Hat");
 			Tooltip.SetDefault("'A party hat for your cute slime to wear on her head'");
@@ -95,7 +95,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessorySlimeHead : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Head Slime");
 			Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
@@ -104,7 +104,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryStaff : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Staff");
 			Tooltip.SetDefault("'A plush staff for your cute slime to carry'");
@@ -113,7 +113,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessorySwallowedKey : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Swallowed Key");
 			Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
@@ -131,7 +131,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryTophat : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Top Hat");
 			Tooltip.SetDefault("'A classy top hat for your cute slime to wear on her head'");
@@ -140,7 +140,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryToyBreastplate : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Knight's Breastplate");
 			Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
@@ -149,7 +149,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryToyShield : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Knight's Shield");
 			Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
@@ -158,7 +158,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryToyMace : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Paladin's Mace");
 			Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
@@ -167,7 +167,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryToySpear : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Spartan's Spear");
 			Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
@@ -176,7 +176,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryToySword : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Knight's Sword");
 			Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
@@ -185,7 +185,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryWizardHat : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Wizard Hat");
 			Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
@@ -194,7 +194,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryXmasHat : PetAccessoryItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Santa Hat");
 			Tooltip.SetDefault("'A festive hat for your cute slime to wear on hear head'");
@@ -508,12 +508,24 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	[Content(ContentType.CuteSlimes)]
 	public abstract class PetAccessoryItem : AssItem
 	{
+		public sealed override void SetStaticDefaults()
+		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; //All accessories have 1
+
+			SafeSetStaticDefaults();
+		}
+
+		public virtual void SafeSetStaticDefaults()
+		{
+
+		}
+
 		public override void SetDefaults()
 		{
 			Item.width = 28;
 			Item.height = 30;
 			Item.maxStack = 1;
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.useAnimation = 16;
 			Item.useTime = 16;
 			Item.useStyle = ItemUseStyleID.HoldUp;

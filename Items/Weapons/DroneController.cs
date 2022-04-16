@@ -251,7 +251,7 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 		#endregion
 
-		public override void SafeSetStaticDefaults()
+		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Drone Controller");
 			Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
@@ -276,7 +276,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.noMelee = true;
 			Item.noUseGraphic = true;
 			Item.value = Item.sellPrice(0, 0, 75, 0);
-			Item.rare = -11;
+			Item.rare = 4;
 			Item.UseSound = SoundID.Item44;
 			Item.shoot = ModContent.ProjectileType<BasicLaserDrone>();
 			Item.shootSpeed = 10f;

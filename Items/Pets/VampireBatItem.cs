@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<VampireBatBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Fixed Bat Wing");
 			Tooltip.SetDefault("Summons a friendly vampire that flies with you"
@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(silver: 20);
 		}
 

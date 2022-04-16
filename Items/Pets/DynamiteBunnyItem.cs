@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DynamiteBunnyBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Dynamite Carrot");
 			Tooltip.SetDefault("Summons a Dynamite Bunny to follow you"
@@ -24,7 +24,6 @@ namespace AssortedCrazyThings.Items.Pets
 			Item.width = 14;
 			Item.height = 32;
 
-			Item.rare = -11;
 			Item.value = Item.sellPrice(silver: 4);
 		}
 

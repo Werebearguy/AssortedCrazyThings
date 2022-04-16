@@ -9,8 +9,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class MagicSlimeSling : AssItem
+	public class MagicSlimeSling : WeaponItemBase
 	{
 		public static Color GetColor(byte c)
 		{
@@ -42,7 +41,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			ModContent.ProjectileType<MagicSlimeSlingMinion3>()
 		};
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Magic Slime Sling");
 			Tooltip.SetDefault("Shoots magic gel that turns into slime minions on hit");
@@ -61,7 +60,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.mana = 10;
 			Item.shootSpeed = 9f;
 			Item.shoot = ModContent.ProjectileType<MagicSlimeSlingFired>();
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.value = Item.sellPrice(silver: 15);
 		}
 

@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			}
 		}
 
-		public override void SafeSetStaticDefaults()
+		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Satchel of Goodies");
 			Tooltip.SetDefault("Summons a Goblin Underling to fight for you"
@@ -87,7 +87,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.noMelee = true;
 			Item.value = Item.sellPrice(0, 0, 50, 0);
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.UseSound = SoundID.Item44;
 			Item.shoot = ModContent.ProjectileType<GoblinUnderlingProj>();
 			Item.shootSpeed = 0f;

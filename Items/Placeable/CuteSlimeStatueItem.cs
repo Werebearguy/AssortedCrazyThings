@@ -12,6 +12,8 @@ namespace AssortedCrazyThings.Items.Placeable
 		{
 			DisplayName.SetDefault("Cute Slime Statue");
 			Tooltip.SetDefault("You can't catch statue spawned creatures");
+			
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -20,7 +22,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			Item.width = 24;
 			Item.height = 32;
 			Item.maxStack = 99;
-			Item.rare = -11;
+			Item.rare = 0;
 			Item.value = Item.sellPrice(0, 0, 0, 60);
 		}
 

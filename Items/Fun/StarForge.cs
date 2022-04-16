@@ -10,6 +10,8 @@ namespace AssortedCrazyThings.Items.Fun
 		{
 			DisplayName.SetDefault("Star Forge");
 			Tooltip.SetDefault("'An endless supply of the cosmos'");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -18,7 +20,7 @@ namespace AssortedCrazyThings.Items.Fun
 			Item.maxStack = 1;
 			Item.consumable = false;
 			Item.value = Item.sellPrice(0, 25, 0, 0);
-			Item.rare = -11;
+			Item.rare = 8;
 		}
 
 		public override void AddRecipes()

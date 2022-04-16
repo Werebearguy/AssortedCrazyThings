@@ -7,12 +7,11 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class TrueLegendaryWoodenSword : AssItem
+	public class TrueLegendaryWoodenSword : WeaponItemBase
 	{
 		public int ProjDamage = 28; //Default fallback
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("True Legendary Wooden Sword");
 			Tooltip.SetDefault("'Truly Legendary'");
@@ -24,7 +23,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			ProjDamage = (int)(Item.damage * 0.8f);
 			Item.width = 58;
 			Item.height = 58;
-			Item.rare = -11;
+			Item.rare = 7;
 			Item.value = Item.sellPrice(0, 2, 0, 10); //2 gold for broken, 10 copper for legendary
 			Item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();
 			Item.shootSpeed = 10f; //fairly short range, similar to throwing knife

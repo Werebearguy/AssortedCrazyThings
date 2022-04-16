@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class SigilOfLastStand : SigilItemBase
 	{
-		public override void SafeSetStaticDefaults()
+		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sigil of Last Stand");
 			Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
@@ -18,10 +18,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void SafeSetDefaults()
 		{
+			base.SafeSetDefaults();
+
 			Item.width = 30;
 			Item.height = 30;
 			Item.value = Item.sellPrice(0, 2, 0, 0);
-			Item.rare = -11;
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)

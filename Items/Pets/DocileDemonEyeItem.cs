@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DocileDemonEyeBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Docile Demon Eye");
 			Tooltip.SetDefault("Summons a docile Demon Eye to follow you"
@@ -24,7 +24,6 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			Item.width = 34;
 			Item.height = 22;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(silver: 10);
 		}
 

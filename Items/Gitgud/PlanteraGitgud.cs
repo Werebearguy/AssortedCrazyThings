@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	[LegacyName("GreenThumb")]
 	public class PlanteraGitgud : GitgudItem
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Green Thumb");
 		}

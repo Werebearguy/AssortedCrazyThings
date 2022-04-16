@@ -14,9 +14,22 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public abstract int BuffType { get; }
 
+		public sealed override void SetStaticDefaults()
+		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; //All pet items have 1
+
+			SafeSetStaticDefaults();
+		}
+
+		public virtual void SafeSetStaticDefaults()
+		{
+
+		}
+
 		public sealed override void SetDefaults()
 		{
 			Item.DefaultToVanitypet(PetType, BuffType);
+			Item.rare = 1;
 			Item.value = 0;
 
 			SafeSetDefaults();

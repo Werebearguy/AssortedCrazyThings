@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Waist)]
 	public class BottledDreams : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Dreams");
 			Tooltip.SetDefault("Allows the holder to double jump");
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 20;
 			Item.height = 26;
 			Item.value = Item.sellPrice(silver: 10);
-			Item.rare = -11;
+			Item.rare = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

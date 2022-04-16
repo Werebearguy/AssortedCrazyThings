@@ -19,6 +19,8 @@ namespace AssortedCrazyThings.Items
 			// ticksperframe, frameCount
 			//Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 15;
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

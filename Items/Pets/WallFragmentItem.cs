@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<WallFragmentBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall Fragment");
 			Tooltip.SetDefault("Summons several fragments of the Wall to follow you");
@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			Item.width = 22;
 			Item.height = 26;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(copper: 10);
 		}
 	}

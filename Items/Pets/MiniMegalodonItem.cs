@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<MiniMegalodonBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Small Megalodon Tooth");
 			Tooltip.SetDefault("Summons a friendly Mini Megalodon that follows you");
@@ -21,7 +21,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
 			Item.value = Item.sellPrice(silver: 10);
 		}
 	}

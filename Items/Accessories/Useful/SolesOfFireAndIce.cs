@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Shoes)]
 	public class SolesOfFireAndIce : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Soles of Fire and Ice");
 			Tooltip.SetDefault("Allows you to walk on water, lava, and thin ice");
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 20;
 			Item.height = 28;
 			Item.value = Item.sellPrice(gold: 10);
-			Item.rare = -11;
+			Item.rare = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

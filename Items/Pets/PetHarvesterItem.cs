@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetHarvesterBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Stubborn Bird Soul");
 			Tooltip.SetDefault("Summons a stubborn bird to follow you");

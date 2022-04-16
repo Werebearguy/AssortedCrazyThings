@@ -21,6 +21,8 @@ namespace AssortedCrazyThings.Items.Consumables
 
 			ItemID.Sets.BossBag[Type] = true; //This set is one that every boss bag should have, it, for example, lets our boss bag drop dev armor..
 			ItemID.Sets.PreHardmodeLikeBossBag[Type] = true; //..But this set ensures that dev armor will only be dropped on special world seeds, since that's the behavior of pre-hardmode boss bags.
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}
 
 		public override void SetDefaults()
@@ -29,7 +31,7 @@ namespace AssortedCrazyThings.Items.Consumables
 			Item.consumable = true;
 			Item.width = 24;
 			Item.height = 24;
-			Item.rare = ItemRarityID.Purple;
+			Item.rare = ItemRarityID.Expert;
 			Item.expert = true;
 		}
 
@@ -45,7 +47,7 @@ namespace AssortedCrazyThings.Items.Consumables
 			player.QuickSpawnItem(source, ItemID.Bone, Main.rand.Next(40, 61));
 			player.QuickSpawnItem(source, ModContent.ItemType<DesiccatedLeather>());
 
-			if (ContentConfig.Instance.VanityArmor && Main.rand.NextBool(7))
+			if (Main.rand.NextBool(7))
 			{
 				player.QuickSpawnItem(source, ModContent.ItemType<SoulHarvesterMask>());
 			}

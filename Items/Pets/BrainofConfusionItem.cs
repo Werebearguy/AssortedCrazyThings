@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<BrainofConfusionBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Brain of Confusion");
 			Tooltip.SetDefault("Summons a Brain of Confusion to follow aimlessly behind you");
@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
+
 		}
 	}
 }

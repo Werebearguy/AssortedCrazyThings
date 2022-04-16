@@ -34,6 +34,18 @@ namespace AssortedCrazyThings.Items.Gitgud
 			}
 		}
 
+		public sealed override void SetStaticDefaults()
+		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+			SafeSetStaticDefaults();
+		}
+
+		public virtual void SafeSetStaticDefaults()
+		{
+
+		}
+
 		public sealed override void SetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 1);

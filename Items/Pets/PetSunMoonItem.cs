@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetSunMoonBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Sun and Moon");
 			Tooltip.SetDefault("Summons a small sun and moon that provide you with constant light"
@@ -25,7 +25,6 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			Item.width = 38;
 			Item.height = 26;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(gold: 16, silver: 20);
 		}
 

@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 
 		public override int BuffType => ModContent.BuffType<CuteSlimeCrimsonBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Cute Crimson Slime");
 			Tooltip.SetDefault("Summons a friendly Cute Crimson Slime to follow you");

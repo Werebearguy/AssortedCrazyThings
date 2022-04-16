@@ -10,6 +10,8 @@ namespace AssortedCrazyThings.Items.Placeable
 		{
 			DisplayName.SetDefault("Wyvern Campfire");
 			Tooltip.SetDefault("'Makes Wyverns go poof!'");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -18,7 +20,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			Item.width = 32;
 			Item.height = 18;
 			Item.maxStack = 99;
-			Item.rare = -11;
+			Item.rare = 5;
 			Item.value = Item.buyPrice(0, 11, 50, 0);
 		}
 

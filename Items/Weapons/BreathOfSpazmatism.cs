@@ -6,10 +6,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class BreathOfSpazmatism : AssItem
+	public class BreathOfSpazmatism : WeaponItemBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Breath of Spazmatism");
 			Tooltip.SetDefault("Uses gel to fire a stream of cursed flames");
@@ -31,7 +30,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.useAnimation = 3; //^
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.value = Item.sellPrice(gold: 15, silver: 20);
-			Item.rare = -11;
+			Item.rare = 4;
 			Item.autoReuse = true;
 		}
 

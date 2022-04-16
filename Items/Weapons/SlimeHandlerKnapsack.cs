@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock, drawOffset: new Vector2(0f, -2f));
 		}
 
-		public override void SafeSetStaticDefaults()
+		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Slime Handler Knapsack");
 			Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you"
@@ -68,7 +68,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.noMelee = true;
 			Item.noUseGraphic = true;
 			Item.value = Item.sellPrice(0, 0, 75, 0);
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.UseSound = SoundID.Item44;
 			Item.shoot = ModContent.ProjectileType<SlimePackMinion>();
 			Item.shootSpeed = 10f;

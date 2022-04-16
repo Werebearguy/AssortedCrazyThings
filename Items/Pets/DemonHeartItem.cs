@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DemonHeartBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Demon Heart");
 			Tooltip.SetDefault("Summons a friendly Demon Heart to follow you");
@@ -21,8 +21,9 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
+			Item.rare = ItemRarityID.Expert;
 			Item.value = Item.sellPrice(gold: 2);
+			Item.expert = true;
 		}
 
 		public override void AddRecipes()

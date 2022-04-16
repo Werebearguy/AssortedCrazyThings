@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items
 {
-	//Needs Placeables as it's an ingredient for VanityDresserItem
+	//Needs PlaceablesFunctional as it's an ingredient for VanityDresserItem
 	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
 	public class VanitySelector : AssItem
 	{
@@ -12,6 +12,8 @@ namespace AssortedCrazyThings.Items
 			DisplayName.SetDefault("Costume Suitcase");
 			Tooltip.SetDefault("Left Click to change your Pet's appearance"
 				 + "\nRight Click to change your Light Pet's appearance");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -19,7 +21,7 @@ namespace AssortedCrazyThings.Items
 			Item.width = 32;
 			Item.height = 32;
 			Item.maxStack = 1;
-			Item.rare = -11;
+			Item.rare = 1;
 			Item.useAnimation = 16;
 			Item.useTime = 16;
 			Item.UseSound = SoundID.Item1;

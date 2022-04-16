@@ -19,6 +19,8 @@ namespace AssortedCrazyThings.Items.Consumables
 				new Color(10, 176, 230),
 				new Color(146, 229, 255)
 			};
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -45,7 +47,7 @@ namespace AssortedCrazyThings.Items.Consumables
 			Item.consumable = true;
 			Item.buffTime = 5 * 60 * 60;
 			Item.buffType = ModContent.BuffType<CuteSlimeSpawnEnableBuff>();
-			Item.rare = -11;
+			Item.rare = 0;
 			Item.value = Item.sellPrice(copper: 20);
 		}
 

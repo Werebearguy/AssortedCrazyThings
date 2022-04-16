@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items
 			Item.height = 24;
 			Item.maxStack = 999;
 			Item.value = Item.sellPrice(copper: 50);
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.color = Color.White;
 
 			SafeSetDefaults();

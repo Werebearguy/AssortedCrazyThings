@@ -7,7 +7,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class WispInABalloon : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wisp in a Balloon");
 			Tooltip.SetDefault("Glows in the dark and increases jump height");
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 18;
 			Item.height = 32;
 			Item.value = Item.sellPrice(gold: 5);
-			Item.rare = -11;
+			Item.rare = 8;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

@@ -9,19 +9,17 @@ namespace AssortedCrazyThings.Items.Weapons
 	/// <summary>
 	/// Item that applies a buff. Does not spawn a projectile on use by default
 	/// </summary>
-	[Content(ContentType.Weapons)]
-	public abstract class MinionItemBase : AssItem
+	public abstract class MinionItemBase : WeaponItemBase
 	{
-		public sealed override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Type] = true;
 
-			SafeSetStaticDefaults();
+			EvenSaferSetStaticDefaults();
 		}
 
-
-		public virtual void SafeSetStaticDefaults()
+		public virtual void EvenSaferSetStaticDefaults()
 		{
 
 		}

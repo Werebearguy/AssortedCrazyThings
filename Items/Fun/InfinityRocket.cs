@@ -10,19 +10,20 @@ namespace AssortedCrazyThings.Items.Fun
 		{
 			DisplayName.SetDefault("Infinity Rocket");
 			Tooltip.SetDefault("'It seriously never ends!'");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.EndlessMusketPouch);
 			Item.ammo = AmmoID.Rocket;
-			Item.rare = -11;
+			Item.rare = 8;
 			Item.shoot = ProjectileID.None;
 			Item.damage = 40;
 			Item.UseSound = SoundID.Item11;
 			//item.shoot = ProjectileID.RocketII;
 			Item.value = Item.sellPrice(gold: 4);
-
 		}
 
 		public override void AddRecipes()

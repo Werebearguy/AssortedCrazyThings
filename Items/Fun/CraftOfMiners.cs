@@ -12,6 +12,8 @@ namespace AssortedCrazyThings.Items.Fun
 			DisplayName.SetDefault("Craft of Miners");
 			Tooltip.SetDefault("'Use those fists of yours to tear through any blocks in your way'"
 				+ "\n[c/44942e:'Dedicated to Anonymous']");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -21,7 +23,7 @@ namespace AssortedCrazyThings.Items.Fun
 			Item.useAnimation = 3;
 			Item.useTime = 3;
 			Item.value = Item.sellPrice(gold: 5);
-			Item.rare = -11;
+			Item.rare = 9;
 			Item.noUseGraphic = true;
 		}
 

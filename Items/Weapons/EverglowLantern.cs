@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.useStyle = ItemUseStyleID.HoldUp; //4 for life crystal
 			Item.noMelee = true;
 			Item.value = Item.sellPrice(0, 0, 75, 0);
-			Item.rare = -11;
+			Item.rare = 3;
 			Item.UseSound = SoundID.Item44;
 			Item.shoot = ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
 			Item.shootSpeed = 10f;

@@ -7,10 +7,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class PocketSand : AssItem
+	public class PocketSand : WeaponItemBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Pocket Sand");
 			Tooltip.SetDefault("'Throw a clump of sand at an enemy to confuse it'");
@@ -25,7 +24,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.shoot = ModContent.ProjectileType<PocketSandProj>();
 			Item.useAnimation = 35;
 			Item.autoReuse = true;
-			Item.rare = -11;
+			Item.rare = 0;
 			Item.noUseGraphic = true;
 			Item.value = 0;
 		}

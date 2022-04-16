@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<LilWrapsBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Gilded Coffin");
 			Tooltip.SetDefault("Summons Lil' Wraps to follow you"
@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			Item.width = 20;
 			Item.height = 26;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(silver: 10);
 		}
 	}

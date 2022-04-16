@@ -5,10 +5,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class LegendaryWoodenSword : AssItem
+	public class LegendaryWoodenSword : WeaponItemBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Legendary Wooden Sword");
 		}
@@ -30,7 +29,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.noMelee = true;
 			Item.noUseGraphic = true;
 
-			Item.rare = -11;
+			Item.rare = 1;
 			Item.value = Item.sellPrice(0, 0, 0, 10); //Woods have no sell value, just make this 10 copper cause why not
 			Item.shoot = ModContent.ProjectileType<LegendaryWoodenSwordProj>();
 		}

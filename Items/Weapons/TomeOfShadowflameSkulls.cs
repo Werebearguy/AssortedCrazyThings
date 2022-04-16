@@ -3,9 +3,14 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class TomeOfShadowflameSkulls : AssItem
+	public class TomeOfShadowflameSkulls : WeaponItemBase
 	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Tome of Shadowflame Skulls");
+			Tooltip.SetDefault("Inflicts Shadowflame on enemies");
+		}
+
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.BookofSkulls);
@@ -16,14 +21,8 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.shoot = ProjectileID.ClothiersCurse;
 			Item.useAnimation = 35;
 			Item.value = Item.sellPrice(silver: 10);
-			Item.rare = -11;
+			Item.rare = 4;
 			Item.noUseGraphic = true;
-		}
-
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tome of Shadowflame Skulls");
-			Tooltip.SetDefault("Inflicts Shadowflame on enemies");
 		}
 
 		public override void AddRecipes()

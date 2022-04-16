@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<QueenLarvaBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Queen Larva");
 			Tooltip.SetDefault("Summons a Queen Bee Larva to follow you"
@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			Item.width = 28;
 			Item.height = 32;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(copper: 10);
 		}
 	}

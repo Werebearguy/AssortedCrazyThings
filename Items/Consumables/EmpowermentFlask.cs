@@ -21,6 +21,8 @@ namespace AssortedCrazyThings.Items.Consumables
 				new Color(10, 176, 230),
 				new Color(146, 229, 255)
 			};
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 		}
 
 		public override void SetDefaults()
@@ -36,7 +38,7 @@ namespace AssortedCrazyThings.Items.Consumables
 			Item.consumable = true;
 			Item.buffTime = 2 * 60 * 60;
 			Item.buffType = ModContent.BuffType<EmpoweringBuff>();
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.value = Item.sellPrice(silver: 2);
 		}
 

@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetEaterofWorldsBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cracked Worm Egg");
 			Tooltip.SetDefault("Summons a tiny Eater of Worlds to follow you");
@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
+
 		}
 
 		public static void Spawn(Player player, int buffIndex = -1, Item item = null)

@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class SigilOfPainSuppression : SigilItemBase
 	{
-		public override void SafeSetStaticDefaults()
+		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sigil of Pain Suppression");
 			Tooltip.SetDefault("Drastically increases your defense when you are at critically low health"
@@ -17,10 +17,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void SafeSetDefaults()
 		{
+			base.SafeSetDefaults();
+
 			Item.width = 18;
 			Item.height = 26;
 			Item.value = Item.sellPrice(0, 1, 0, 0);
-			Item.rare = -11;
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)

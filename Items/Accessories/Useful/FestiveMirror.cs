@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class FestiveMirror : AccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Festive Mirror");
 			Tooltip.SetDefault("Provides immunity to Chilled, Frozen, and Stoned");
@@ -16,14 +16,14 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 26;
 			Item.height = 32;
 			Item.value = Item.sellPrice(gold: 3);
-			Item.rare = -11;
+			Item.rare = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.buffImmune[BuffID.Chilled] = true;       //Immunity to Chilled debuff.
-			player.buffImmune[BuffID.Frozen] = true;        //Immunity to Frozen debuff.
-			player.buffImmune[BuffID.Stoned] = true;        //Immunity to Stoned debuff.
+			player.buffImmune[BuffID.Chilled] = true;
+			player.buffImmune[BuffID.Frozen] = true;
+			player.buffImmune[BuffID.Stoned] = true;
 		}
 
 		public override void AddRecipes()

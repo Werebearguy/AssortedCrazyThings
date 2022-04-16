@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<SuspiciousNuggetBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Suspicious Nugget");
 			Tooltip.SetDefault("Summons a Suspicious Nugget to follow you");

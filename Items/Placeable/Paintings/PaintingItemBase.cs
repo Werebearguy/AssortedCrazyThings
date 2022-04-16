@@ -26,16 +26,18 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 		{
 			DisplayName.SetDefault(PaintingName);
 			Tooltip.SetDefault($"'{PaintingAuthor}'");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public sealed override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType);
-			Item.value = Item.buyPrice(gold: 1);
+			Item.value = Item.sellPrice(0, 0, 50, 0);
 			Item.width = 32;
 			Item.height = 32;
 			Item.maxStack = 999;
-			Item.rare = ItemRarityID.Blue;
+			Item.rare = 2;
 		}
 
 		public override void AddRecipes()

@@ -14,6 +14,8 @@ namespace AssortedCrazyThings.Items.Armor
 			DisplayName.SetDefault("Soul Savior Breastplate");
 			Tooltip.SetDefault("Increases minion damage by 10%"
 				+ "\nIncreases your max number of minions by 2");
+
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -21,7 +23,7 @@ namespace AssortedCrazyThings.Items.Armor
 			Item.width = 28;
 			Item.height = 22;
 			Item.value = Item.sellPrice(gold: 3, silver: 70);
-			Item.rare = -11;
+			Item.rare = 3;
 			Item.defense = 18;
 		}
 

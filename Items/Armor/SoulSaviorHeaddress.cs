@@ -15,6 +15,8 @@ namespace AssortedCrazyThings.Items.Armor
 			DisplayName.SetDefault("Soul Savior Headdress");
 			Tooltip.SetDefault("Increases minion damage by 10%"
 				+ "\nIncreases your max number of minions");
+			
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -22,7 +24,7 @@ namespace AssortedCrazyThings.Items.Armor
 			Item.width = 32;
 			Item.height = 28;
 			Item.value = Item.sellPrice(gold: 2, silver: 80);
-			Item.rare = -11;
+			Item.rare = 3;
 			Item.defense = 14;
 		}
 

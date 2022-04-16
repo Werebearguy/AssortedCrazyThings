@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		//Mirror of wing type 43, item ID 4754 (Grox The Great's Wings)
 		public const int NumFrames = 7;
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Harvester Wings");
 			Tooltip.SetDefault("Allows flight and slow fall" +
@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 30;
 			Item.height = 32;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.rare = -11;
+			Item.rare = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

@@ -7,10 +7,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	[Content(ContentType.Weapons)]
-	public class PlagueOfToads : AssItem
+	public class PlagueOfToads : WeaponItemBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plague of Toads");
 			Tooltip.SetDefault("Summons a cloud to rain toads on your foes");
@@ -44,7 +43,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.UseSound = SoundID.Item66;
 			Item.useAnimation = 22;
 			Item.useTime = 22;
-			Item.rare = -11;
+			Item.rare = 2;
 			Item.noMelee = true;
 			Item.knockBack = 0f;
 			Item.value = Item.sellPrice(silver: 25);

@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,7 +7,7 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 	[AutoloadEquip(EquipType.Balloon)]
 	public class PurpleEyelloonMetalFractured : VanityAccessoryBase
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Purple Metal Toothy Eye-lloon");
 			Tooltip.SetDefault("'A Demon Eye balloon, for your Demon Eye needs!'");
@@ -16,8 +17,8 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 		{
 			Item.width = 18;
 			Item.height = 32;
-			Item.value = 0;
-			Item.rare = -11;
+			Item.value = Item.sellPrice(0, 0, 1, 0);
+			Item.rare = 1;
 		}
 
 		public override void AddRecipes()

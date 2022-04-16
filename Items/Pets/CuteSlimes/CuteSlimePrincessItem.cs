@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 
 		public override int BuffType => ModContent.BuffType<CuteSlimePrincessBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Cute Princess Slime");
 			Tooltip.SetDefault("Summons a friendly Cute Princess Slime to follow you");
@@ -20,6 +20,8 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 
 		public override void SafeSetDefaults()
 		{
+			base.SafeSetDefaults();
+
 			Item.value = Item.sellPrice(copper: 20);
 		}
 	}

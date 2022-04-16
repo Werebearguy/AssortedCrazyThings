@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<FairySwarmBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottle of Assorted Fairies");
 			Tooltip.SetDefault("Summons several fairies to swarm around you");
@@ -26,7 +26,6 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SafeSetDefaults()
 		{
 			Item.noUseGraphic = true;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(copper: 10);
 		}
 	}

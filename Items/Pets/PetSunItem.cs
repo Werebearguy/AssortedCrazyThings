@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetSunBuff>();
 
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bottled Sun");
 			Tooltip.SetDefault("Summons a small sun that provides you with constant sunlight"
@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			Item.width = 20;
 			Item.height = 26;
-			Item.rare = -11;
 			Item.value = Item.sellPrice(gold: 9, silver: 20);
 		}
 

@@ -9,10 +9,22 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	[Content(ContentType.Weapons)]
 	public abstract class DroneUnlockable : AssItem
 	{
+		public sealed override void SetStaticDefaults()
+		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+			SafeSetStaticDefaults();
+		}
+
+		public virtual void SafeSetStaticDefaults()
+		{
+
+		}
+
 		public override void SetDefaults()
 		{
 			Item.maxStack = 999;
-			Item.rare = -11;
+			Item.rare = 4;
 			Item.width = 26;
 			Item.height = 24;
 			Item.consumable = true;
@@ -70,6 +82,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		}
 	}
 
+	//TODO reimplement
 	//public class DroneRecipe : ModRecipe
 	//{
 	//    public DroneType UnlockedType;
@@ -87,81 +100,51 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
 	public class DroneUnlockableBasicLaserDrone : DroneUnlockable
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Basic Laser Drone Components");
 		}
 
-		public override DroneType UnlockedType
-		{
-			get
-			{
-				return DroneType.BasicLaser;
-			}
-		}
+		public override DroneType UnlockedType => DroneType.BasicLaser;
 	}
 
 	public class DroneUnlockableHeavyLaserDrone : DroneUnlockable
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Heavy Laser Drone Components");
 		}
 
-		public override DroneType UnlockedType
-		{
-			get
-			{
-				return DroneType.HeavyLaser;
-			}
-		}
+		public override DroneType UnlockedType => DroneType.HeavyLaser;
 	}
 
 	public class DroneUnlockableMissileDrone : DroneUnlockable
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Missile Drone Components");
 		}
 
-		public override DroneType UnlockedType
-		{
-			get
-			{
-				return DroneType.Missile;
-			}
-		}
+		public override DroneType UnlockedType => DroneType.Missile;
 	}
 
 	public class DroneUnlockableHealingDrone : DroneUnlockable
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Healing Drone Components");
 		}
 
-		public override DroneType UnlockedType
-		{
-			get
-			{
-				return DroneType.Healing;
-			}
-		}
+		public override DroneType UnlockedType => DroneType.Healing;
 	}
 
 	public class DroneUnlockableShieldDrone : DroneUnlockable
 	{
-		public override void SetStaticDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shield Drone Components");
 		}
 
-		public override DroneType UnlockedType
-		{
-			get
-			{
-				return DroneType.Shield;
-			}
-		}
+		public override DroneType UnlockedType => DroneType.Shield;
 	}
 }

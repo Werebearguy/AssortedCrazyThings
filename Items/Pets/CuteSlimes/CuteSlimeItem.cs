@@ -13,7 +13,8 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 	{
 		public override void SafeSetDefaults()
 		{
-			Item.rare = -11;
+			base.SafeSetDefaults();
+
 			Item.value = Item.sellPrice(copper: 10);
 		}
 
