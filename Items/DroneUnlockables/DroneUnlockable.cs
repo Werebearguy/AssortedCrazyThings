@@ -6,164 +6,145 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
 {
-    public abstract class DroneUnlockable : ModItem
-    {
-        public override void SetDefaults()
-        {
-            item.maxStack = 999;
-            item.rare = -11;
-            item.width = 26;
-            item.height = 24;
-            item.consumable = true;
-            item.maxStack = 1;
-            item.UseSound = SoundID.Item4;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(silver: 50);
-        }
+	[Content(ContentType.Weapons)]
+	public abstract class DroneUnlockable : AssItem
+	{
+		public sealed override void SetStaticDefaults()
+		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-            string tooltip = DroneController.GetDroneData(UnlockedType).Name + " for the Drone Controller";
-            if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
-            {
-                tooltip = "Unlocks the " + tooltip;
-            }
-            else
-            {
-                tooltip = "Already unlocked " + tooltip;
-            }
-            tooltips.Add(new TooltipLine(mod, "Unlocks", tooltip));
-        }
+			SafeSetStaticDefaults();
+		}
 
-        public abstract DroneType UnlockedType { get; }
+		public virtual void SafeSetStaticDefaults()
+		{
 
-        public override bool CanUseItem(Player player)
-        {
-            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
-            {
-                AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-                if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+		}
 
-        public override bool UseItem(Player player)
-        {
-            if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
-            {
-                player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
-                Main.NewText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
-            }
-            return true;
-        }
+		public override void SetDefaults()
+		{
+			Item.maxStack = 999;
+			Item.rare = 4;
+			Item.width = 26;
+			Item.height = 24;
+			Item.consumable = true;
+			Item.maxStack = 1;
+			Item.UseSound = SoundID.Item4;
+			Item.useTime = 30;
+			Item.useAnimation = 30;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.value = Item.sellPrice(silver: 50);
+		}
 
-        public override void AddRecipes()
-        {
-            DroneRecipe recipe = new DroneRecipe(mod, UnlockedType);
-            recipe.AddIngredient(ModContent.ItemType<DroneParts>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+			string tooltip = DroneController.GetDroneData(UnlockedType).Name + " for the Drone Controller";
+			if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
+			{
+				tooltip = "Unlocks the " + tooltip;
+			}
+			else
+			{
+				tooltip = "Already unlocked " + tooltip;
+			}
+			tooltips.Add(new TooltipLine(Mod, "Unlocks", tooltip));
+		}
 
-    public class DroneRecipe : ModRecipe
-    {
-        public DroneType UnlockedType;
+		public abstract DroneType UnlockedType { get; }
 
-        public DroneRecipe(Mod mod, DroneType unlockedType) : base(mod)
-        {
-            UnlockedType = unlockedType;
-        }
+		public override bool CanUseItem(Player player)
+		{
+			if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
+			{
+				AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+				if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 
-        public override bool RecipeAvailable()
-        {
-            return !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType);
-        }
-    }
+		public override bool? UseItem(Player player)
+		{
+			if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
+			{
+				player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
+				Main.NewText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
+			}
+			return true;
+		}
 
-    public class DroneUnlockableBasicLaserDrone : DroneUnlockable
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Basic Laser Drone Components");
-        }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<DroneParts>()).Register();
+		}
+	}
 
-        public override DroneType UnlockedType
-        {
-            get
-            {
-                return DroneType.BasicLaser;
-            }
-        }
-    }
+	//TODO reimplement
+	//public class DroneRecipe : ModRecipe
+	//{
+	//    public DroneType UnlockedType;
 
-    public class DroneUnlockableHeavyLaserDrone : DroneUnlockable
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Heavy Laser Drone Components");
-        }
+	//    public DroneRecipe(Mod mod, DroneType unlockedType) : base(mod)
+	//    {
+	//        UnlockedType = unlockedType;
+	//    }
 
-        public override DroneType UnlockedType
-        {
-            get
-            {
-                return DroneType.HeavyLaser;
-            }
-        }
-    }
+	//    public override bool RecipeAvailable()
+	//    {
+	//        return !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType);
+	//    }
+	//}
 
-    public class DroneUnlockableMissileDrone : DroneUnlockable
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Missile Drone Components");
-        }
+	public class DroneUnlockableBasicLaserDrone : DroneUnlockable
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Basic Laser Drone Components");
+		}
 
-        public override DroneType UnlockedType
-        {
-            get
-            {
-                return DroneType.Missile;
-            }
-        }
-    }
+		public override DroneType UnlockedType => DroneType.BasicLaser;
+	}
 
-    public class DroneUnlockableHealingDrone : DroneUnlockable
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Healing Drone Components");
-        }
+	public class DroneUnlockableHeavyLaserDrone : DroneUnlockable
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Heavy Laser Drone Components");
+		}
 
-        public override DroneType UnlockedType
-        {
-            get
-            {
-                return DroneType.Healing;
-            }
-        }
-    }
+		public override DroneType UnlockedType => DroneType.HeavyLaser;
+	}
 
-    public class DroneUnlockableShieldDrone : DroneUnlockable
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Shield Drone Components");
-        }
+	public class DroneUnlockableMissileDrone : DroneUnlockable
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Missile Drone Components");
+		}
 
-        public override DroneType UnlockedType
-        {
-            get
-            {
-                return DroneType.Shield;
-            }
-        }
-    }
+		public override DroneType UnlockedType => DroneType.Missile;
+	}
+
+	public class DroneUnlockableHealingDrone : DroneUnlockable
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Healing Drone Components");
+		}
+
+		public override DroneType UnlockedType => DroneType.Healing;
+	}
+
+	public class DroneUnlockableShieldDrone : DroneUnlockable
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Shield Drone Components");
+		}
+
+		public override DroneType UnlockedType => DroneType.Shield;
+	}
 }

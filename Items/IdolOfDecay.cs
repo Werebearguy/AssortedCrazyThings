@@ -1,61 +1,61 @@
-﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs.DungeonBird;
-using System.Linq;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class IdolOfDecay : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Idol Of Decay");
-            Tooltip.SetDefault("Summons " + Harvester.name + "'s first form in the dungeon");
-        }
+	[Content(ContentType.Bosses)]
+	public class IdolOfDecay : AssItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Idol Of Decay");
+			Tooltip.SetDefault("Summons " + Harvester.name + "'s final form in the dungeon"
+				+ "\nUnlimited uses!");
 
-        public override void SetDefaults()
-        {
-            item.width = 38;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = -11;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(silver: 5);
-            item.UseSound = SoundID.Item44;
-            item.consumable = true;
-        }
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps sort inventory know that this is a boss summoning Item.
+		}
 
-        public override bool CanUseItem(Player player)
-        {
-            return !AssUtils.AnyNPCs(AssWorld.harvesterTypes.Take(3).ToArray()) && player.ZoneDungeon;
-        }
+		public override void SetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 28;
+			Item.maxStack = 1;
+			Item.rare = 1;
+			Item.useAnimation = 45;
+			Item.useTime = 45;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.value = Item.sellPrice(silver: 5);
+			Item.UseSound = SoundID.Item44;
+		}
 
-        public override bool UseItem(Player player)
-        {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                int i = NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, AssWorld.harvesterTypes[0]);
-                AssWorld.AwakeningMessage("Soul Harvester has been Awakened!");
-                if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
-                {
-                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
-                }
-            }
-            return true;
-        }
+		public override bool CanUseItem(Player player)
+		{
+			return !BabyHarvesterHandler.TryFindBabyHarvester(out _, out _) && !NPC.AnyNPCs(AssortedCrazyThings.harvester) && BabyHarvesterHandler.ValidPlayer(player);
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.WaterCandle, 1);
-            recipe.AddIngredient(ItemID.Bone, 50);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override bool? UseItem(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer)
+			{
+				int type = AssortedCrazyThings.harvester;
+
+				if (Main.netMode != NetmodeID.MultiplayerClient)
+				{
+					// If the player is not in multiplayer, spawn directly
+					NPC.SpawnOnPlayer(player.whoAmI, type);
+				}
+				else
+				{
+					// If the player is in multiplayer, request a spawn
+					// This will only work if NPCID.Sets.MPAllowedEnemies[type] is true, which we set in MinionBossBody
+					NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+				}
+			}
+
+			return true;
+		}
+	}
 }

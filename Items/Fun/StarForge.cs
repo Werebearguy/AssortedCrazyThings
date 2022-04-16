@@ -1,33 +1,34 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Fun
 {
-    public class StarForge : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Star Forge");
-            Tooltip.SetDefault("'An endless supply of the cosmos'");
-        }
+	[Content(ContentType.Weapons)]
+	public class StarForge : AssItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Star Forge");
+			Tooltip.SetDefault("'An endless supply of the cosmos'");
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.FallenStar);
-            item.maxStack = 1;
-            item.consumable = false;
-            item.value = Item.sellPrice(gold: 1);
-            item.rare = -11;
-        }
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.FallenStar, 3996);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void SetDefaults()
+		{
+			Item.CloneDefaults(ItemID.FallenStar);
+			Item.maxStack = 1;
+			Item.consumable = false;
+			Item.value = Item.sellPrice(0, 25, 0, 0);
+			Item.rare = 8;
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).
+				AddIngredient(ItemID.FallenStar, 500)
+				.AddTile(TileID.Anvils)
+				.Register();
+		}
+	}
 }

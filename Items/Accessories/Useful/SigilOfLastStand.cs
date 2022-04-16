@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -7,156 +7,150 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    //TODO make it abstract
-    public class SigilOfLastStand : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Sigil of Last Stand");
-            Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
-                + "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
-        }
+	public class SigilOfLastStand : SigilItemBase
+	{
+		public override void EvenSaferSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Sigil of Last Stand");
+			Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
+				+ "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 26;
-            item.height = 26;
-            item.value = Item.sellPrice(0, 2, 0, 0);
-            item.rare = -11;
-            item.accessory = true;
-        }
+		public override void SafeSetDefaults()
+		{
+			base.SafeSetDefaults();
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            //tooltip based off of the teleport ability
-            AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+			Item.width = 30;
+			Item.height = 30;
+			Item.value = Item.sellPrice(0, 2, 0, 0);
+		}
 
-            bool inVanitySlot = false;
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			//tooltip based off of the teleport ability
+			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Name == "SocialDesc")
-                {
-                    inVanitySlot = true;
-                    tooltips[i].text = "Cooldown will go down while in social slot";
-                    break;
-                }
-            }
+			bool inVanitySlot = false;
 
-            int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
-            if (insertIndex == -1) insertIndex = tooltips.Count;
+			for (int i = 0; i < tooltips.Count; i++)
+			{
+				if (tooltips[i].Name == "SocialDesc")
+				{
+					inVanitySlot = true;
+					tooltips[i].Text = "Cooldown will go down while in social slot";
+					break;
+				}
+			}
 
-            if (!inVanitySlot)
-            {
-                for (int i = 0; i < tooltips.Count; i++)
-                {
-                    if (tooltips[i].Name == "Tooltip1")
-                    {
-                        insertIndex = i + 1; //it inserts "left" of where it found the index (without +1), so everything else get pushed one up
-                        break;
-                    }
-                }
-            }
+			int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
+			if (insertIndex == -1) insertIndex = tooltips.Count;
 
-            if (AssUtils.ItemInInventoryOrEquipped(Main.LocalPlayer, item))
-            {
-                if (mPlayer.canTeleportHome && mPlayer.canGetDefense)
-                {
-                    tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", "Ready to use"));
-                }
+			if (!inVanitySlot)
+			{
+				for (int i = 0; i < tooltips.Count; i++)
+				{
+					if (tooltips[i].Name == "Tooltip1")
+					{
+						insertIndex = i + 1; //it inserts "left" of where it found the index (without +1), so everything else get pushed one up
+						break;
+					}
+				}
+			}
 
-                if (!mPlayer.canGetDefense)
-                {
-                    //create animating "..." effect after the Ready line
-                    string dots = "";
-                    int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+			if (Main.LocalPlayer.ItemInInventoryOrEquipped(Item))
+			{
+				if (mPlayer.canTeleportHome && mPlayer.canGetDefense)
+				{
+					tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready to use"));
+				}
 
-                    for (int i = 0; i < dotCount; i++)
-                    {
-                        dots += ".";
-                    }
+				if (!mPlayer.canGetDefense)
+				{
+					//create animating "..." effect after the Ready line
+					string dots = "";
+					int dotCount = ((int)Main.GameUpdateCount % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
 
-                    string timeName;
-                    if (mPlayer.getDefenseTimer > 60) //more than 1 minute
-                    {
-                        if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
-                        {
-                            timeName = " minutes";
-                        }
-                        else
-                        {
-                            timeName = " minute";
-                        }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
-                    }
-                    else
-                    {
-                        if (mPlayer.getDefenseTimer > 1) //more than 1 second
-                        {
-                            timeName = " seconds";
-                        }
-                        else
-                        {
-                            timeName = " second";
-                        }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
-                    }
-                }
+					for (int i = 0; i < dotCount; i++)
+					{
+						dots += ".";
+					}
 
-                if (!mPlayer.canTeleportHome)
-                {
-                    //create animating "..." effect after the Ready line
-                    string dots = "";
-                    int dotCount = ((int)Main.time % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
+					string timeName;
+					if (mPlayer.getDefenseTimer > 60) //more than 1 minute
+					{
+						if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
+						{
+							timeName = " minutes";
+						}
+						else
+						{
+							timeName = " minute";
+						}
+						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
+					}
+					else
+					{
+						if (mPlayer.getDefenseTimer > 1) //more than 1 second
+						{
+							timeName = " seconds";
+						}
+						else
+						{
+							timeName = " second";
+						}
+						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
+					}
+				}
 
-                    for (int i = 0; i < dotCount; i++)
-                    {
-                        dots += ".";
-                    }
+				if (!mPlayer.canTeleportHome)
+				{
+					//create animating "..." effect after the Ready line
+					string dots = "";
+					int dotCount = ((int)Main.GameUpdateCount % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
 
-                    string timeName;
-                    if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
-                    {
-                        if (mPlayer.teleportHomeTimer > 90) //more than 1:30 minutes because of round
-                        {
-                            timeName = " minutes";
-                        }
-                        else
-                        {
-                            timeName = " minute";
-                        }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
-                    }
-                    else
-                    {
-                        if (mPlayer.teleportHomeTimer > 1) //more than 1 second
-                        {
-                            timeName = " seconds";
-                        }
-                        else
-                        {
-                            timeName = " second";
-                        }
-                        tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
-                    }
-                }
-            }
-        }
+					for (int i = 0; i < dotCount; i++)
+					{
+						dots += ".";
+					}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetModPlayer<AssPlayer>().getDefense = true;
-            player.GetModPlayer<AssPlayer>().teleportHome = true;
-        }
+					string timeName;
+					if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
+					{
+						if (mPlayer.teleportHomeTimer > 90) //more than 1:30 minutes because of round
+						{
+							timeName = " minutes";
+						}
+						else
+						{
+							timeName = " minute";
+						}
+						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
+					}
+					else
+					{
+						if (mPlayer.teleportHomeTimer > 1) //more than 1 second
+						{
+							timeName = " seconds";
+						}
+						else
+						{
+							timeName = " second";
+						}
+						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
+					}
+				}
+			}
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<SigilOfRetreat>());
-            recipe.AddIngredient(ModContent.ItemType<SigilOfPainSuppression>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			player.GetModPlayer<AssPlayer>().getDefense = true;
+			player.GetModPlayer<AssPlayer>().teleportHome = true;
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<SigilOfRetreat>()).AddIngredient(ModContent.ItemType<SigilOfPainSuppression>()).AddTile(TileID.MythrilAnvil).Register();
+		}
+	}
 }

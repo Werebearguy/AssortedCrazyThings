@@ -1,52 +1,87 @@
+using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class Chunky : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Chunky");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-        }
+	[Content(ContentType.HostileNPCs)]
+	public class Chunky : AssNPC
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Chunky");
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+			Main.npcCatchable[NPC.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            npc.width = 36;
-            npc.height = 26;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 20;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 20f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            Main.npcCatchable[mod.NPCType("Chunky")] = true;
-            npc.catchItem = (short)mod.ItemType("ChunkyItem");
-        }
+		public override void SetDefaults()
+		{
+			NPC.width = 36;
+			NPC.height = 26;
+			NPC.damage = 7;
+			NPC.defense = 2;
+			NPC.lifeMax = 20;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 20f;
+			NPC.knockBackResist = 0.25f;
+			NPC.aiStyle = 1;
+			AIType = NPCID.ToxicSludge;
+			AnimationType = NPCID.ToxicSludge;
+			NPC.catchItem = (short)ModContent.ItemType<ChunkyItem>();
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (Main.hardMode) return SpawnCondition.Corruption.Chance * 0.05f;
-            return SpawnCondition.Corruption.Chance * 0.2f;
-        }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			if (NPC.life > 0)
+			{
+				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, hitDirection, -1f);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 40; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, 2 * hitDirection, -2f);
+				}
+			}
+		}
 
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.RottenChunk);
-            if (Main.rand.NextBool(10))
-            {
-                int i = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y - 16, mod.NPCType("ChunkysEye"));
-                if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
-                {
-                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
-                }
-            }
-        }
-    }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			if (Main.hardMode) return SpawnCondition.Corruption.Chance * 0.05f;
+			return SpawnCondition.Corruption.Chance * 0.2f;
+		}
+
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
+				new FlavorTextBestiaryInfoElement("A mass of rotten flesh with a single eye. It seems as though the eye and the mass do not get along.")
+			});
+		}
+
+		public override void OnKill()
+		{
+			if (Main.rand.NextBool(10))
+			{
+				int i = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.position.X, (int)NPC.position.Y - 16, ModContent.NPCType<ChunkysEye>());
+				if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
+				{
+					NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
+				}
+			}
+		}
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk));
+		}
+	}
 }

@@ -1,45 +1,43 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class VanitySelector : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Costume Suitcase");
-            Tooltip.SetDefault("Left Click to change your Pet's appearance"
-                 + "\nRight Click to change your Light Pet's appearance");
-        }
+	//Needs PlaceablesFunctional as it's an ingredient for VanityDresserItem
+	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	public class VanitySelector : AssItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Costume Suitcase");
+			Tooltip.SetDefault("Left Click to change your Pet's appearance"
+				 + "\nRight Click to change your Light Pet's appearance");
 
-        public override void SetDefaults()
-        {
-            item.width = 32;
-            item.height = 32;
-            item.maxStack = 1;
-            item.rare = -11;
-            item.useAnimation = 16;
-            item.useTime = 16;
-            item.UseSound = SoundID.Item1;
-            item.consumable = false;
-            item.value = Item.sellPrice(silver: 10);
-        }
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
 
-        public override bool CanUseItem(Player player)
-        {
-            return false;
-        }
+		public override void SetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 32;
+			Item.maxStack = 1;
+			Item.rare = 1;
+			Item.useAnimation = 16;
+			Item.useTime = 16;
+			Item.UseSound = SoundID.Item1;
+			Item.consumable = false;
+			Item.value = Item.sellPrice(silver: 10);
+		}
 
-        public override void AddRecipes()
-        {
-            //actual recipe here
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup("IronBar", 10);
-            recipe.AddIngredient(ItemID.Silk, 50);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override bool CanUseItem(Player player)
+		{
+			return false;
+		}
+
+		public override void AddRecipes()
+		{
+			//actual recipe here
+			CreateRecipe(1).AddRecipeGroup("IronBar", 10).AddIngredient(ItemID.Silk, 50).AddTile(TileID.Anvils).Register();
+		}
+	}
 }

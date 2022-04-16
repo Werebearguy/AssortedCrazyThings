@@ -2,22 +2,22 @@ using Terraria;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-    public class BrainOfCthulhuGitgud : GitgudItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Insanity-B-Gone");
-        }
+	public class BrainOfCthulhuGitgud : GitgudItem
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Insanity-B-Gone");
+		}
 
-        public override void MoreSetDefaults()
-        {
-            item.width = 32;
-            item.height = 32;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 32;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetModPlayer<GitGudPlayer>().brainOfCthulhuGitgud = true;
-        }
-    }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			player.GetModPlayer<GitGudPlayer>().brainOfCthulhuGitgud = true;
+		}
+	}
 }

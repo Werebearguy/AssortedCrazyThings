@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -7,96 +7,102 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetMoonProj : ModProjectile
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/PetMoonProj_0"; //temp
-            }
-        }
+	public class PetMoonProj : SimplePetProjBase
+	{
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/Projectiles/Pets/PetMoonProj_0"; //temp
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Personal Moon");
-            Main.projFrames[projectile.type] = 8;
-            Main.projPet[projectile.type] = true;
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Personal Moon");
+			Main.projFrames[Projectile.type] = 8;
+			Main.projPet[Projectile.type] = true;
+			ProjectileID.Sets.LightPet[Projectile.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.DD2PetGhost);
-            projectile.aiStyle = -1;
-            projectile.width = 40;
-            projectile.height = 40;
-            projectile.alpha = 0;
-        }
+		public override void SetDefaults()
+		{
+			Projectile.CloneDefaults(ProjectileID.DD2PetGhost);
+			Projectile.aiStyle = -1;
+			Projectile.width = 40;
+			Projectile.height = 40;
+			Projectile.alpha = 0;
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Vector3 lightVector = Vector3.One * 0.6f;
-            float lightFactor = 1f;
+		public override bool PreDraw(ref Color lightColor)
+		{
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
 
-            projectile.frame = Main.moonPhase;
+			Projectile.frame = Main.moonPhase;
 
-            //0 is 1f, 4 is not drawn at all
-            if (projectile.frame == 1 || projectile.frame == 7)
-            {
-                lightFactor = 0.85f;
-            }
-            else if (projectile.frame == 2 || projectile.frame == 6)
-            {
-                lightFactor = 0.7f;
-            }
-            else if (projectile.frame == 3 || projectile.frame == 5)
-            {
-                lightFactor = 0.55f;
-            }
+			if (Projectile.frame == 4 || Main.eclipse)
+			{
+				//Invisible
+				return false;
+			}
 
-            //int texture = Main.moonType; //0, 1 and 2
-            int texture = mPlayer.petMoonType;
-            if (Main.pumpkinMoon)
-            {
-                texture = 3;
-            }
-            else if (Main.snowMoon)
-            {
-                texture = 4;
-            }
+			//int texture = Main.moonType; //0, 1 and 2
+			int texture = mPlayer.petMoonType;
+			if (Main.pumpkinMoon)
+			{
+				texture = 9;
+			}
+			else if (Main.snowMoon)
+			{
+				texture = 10;
+			}
+			else if (WorldGen.drunkWorldGen)
+			{
+				texture = 11;
+			}
 
-            if (projectile.frame != 4) Lighting.AddLight(projectile.Center, lightVector * lightFactor);
+			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetMoonProj_" + texture).Value;
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-            Texture2D image = mod.GetTexture("Projectiles/Pets/PetMoonProj_" + texture);
+			Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height - 18f);
+			Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
+			Main.EntitySpriteDraw(image, drawPos, bounds, Color.LightGray, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0);
+			return false;
+		}
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height - 18f);
-            Vector2 drawPos = projectile.position - Main.screenPosition + stupidOffset;
+		public override void AI()
+		{
+			Vector3 lightVector = Vector3.One * 0.6f;
+			float lightFactor = 1f;
+			//0 is 1f, 4 is not drawn at all
+			if (Projectile.frame == 1 || Projectile.frame == 7)
+			{
+				lightFactor = 0.85f;
+			}
+			else if (Projectile.frame == 2 || Projectile.frame == 6)
+			{
+				lightFactor = 0.7f;
+			}
+			else if (Projectile.frame == 3 || Projectile.frame == 5)
+			{
+				lightFactor = 0.55f;
+			}
 
-            if (!Main.eclipse && projectile.frame != 4) spriteBatch.Draw(image, drawPos, bounds, Color.LightGray, 0f, bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
-            return false;
-        }
+			Lighting.AddLight(Projectile.Center, lightVector * lightFactor);
 
-        public override void AI()
-        {
-            Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
-            if (player.dead)
-            {
-                modPlayer.PetMoon = false;
-            }
-            if (modPlayer.PetMoon)
-            {
-                projectile.timeLeft = 2;
+			Player player = Projectile.GetOwner();
+			PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+			if (player.dead)
+			{
+				modPlayer.PetMoon = false;
+			}
+			if (modPlayer.PetMoon)
+			{
+				Projectile.timeLeft = 2;
 
-                AssAI.FlickerwickPetAI(projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: 20f, offsetY: -32f);
-            }
-        }
-    }
+				AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: 20f, offsetY: -32f);
+			}
+		}
+	}
 }

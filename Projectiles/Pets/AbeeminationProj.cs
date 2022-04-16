@@ -2,71 +2,66 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    //check this file for more info vvvvvvvv
-    public class AbeeminationProj : BabySlimeBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/AbeeminationProj_0"; //temp
-            }
-        }
+	[Content(ContentType.OtherPets)]
+	//check this file for more info vvvvvvvv
+	public class AbeeminationProj : BabySlimeBase
+	{
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/Projectiles/Pets/AbeeminationProj_0"; //temp
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Abeemination");
-            Main.projFrames[projectile.type] = 6;
-            Main.projPet[projectile.type] = true;
-            drawOffsetX = -10;
-            drawOriginOffsetY = -4;
-        }
+		public override bool UseJumpingFrame => false;
 
-        public override void MoreSetDefaults()
-        {
-            //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 32;
-            projectile.height = 30;
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Abeemination");
+		}
 
-            projectile.minion = false;
-        }
+		public override void SafeSetDefaults()
+		{
+			Projectile.width = 32;
+			Projectile.height = 30;
 
-        public override bool PreAI()
-        {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            if (projectile.GetOwner().dead)
-            {
-                modPlayer.Abeemination = false;
-            }
-            if (modPlayer.Abeemination)
-            {
-                projectile.timeLeft = 2;
-            }
-            return true;
-        }
+			Projectile.minion = false;
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            lightColor = Lighting.GetColor((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16), Color.White);
-            SpriteEffects effects = SpriteEffects.None;
-            if (projectile.direction != -1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = mod.GetTexture("Projectiles/Pets/AbeeminationProj_" + mPlayer.abeeminationType);
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
-            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f/* + drawOffsetX * 0.5f*/, projectile.height * 0.5f + projectile.gfxOffY);
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+		public override bool PreAI()
+		{
+			PetPlayer modPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			if (Projectile.GetOwner().dead)
+			{
+				modPlayer.Abeemination = false;
+			}
+			if (modPlayer.Abeemination)
+			{
+				Projectile.timeLeft = 2;
+			}
+			return true;
+		}
 
-            return false;
-        }
-    }
+		public override bool PreDraw(ref Color lightColor)
+		{
+			lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
+			SpriteEffects effects = SpriteEffects.None;
+			if (Projectile.direction != -1)
+			{
+				effects = SpriteEffects.FlipHorizontally;
+			}
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/AbeeminationProj_" + mPlayer.abeeminationType).Value;
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+			Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f/* + DrawOffsetX * 0.5f*/, Projectile.height * 0.5f + Projectile.gfxOffY);
+			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
+
+			return false;
+		}
+	}
 }

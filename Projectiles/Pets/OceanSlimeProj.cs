@@ -2,76 +2,66 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    //check this file for more info vvvvvvvv
-    public class OceanSlimeProj : BabySlimeBase
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/OceanSlimeProj_0";
-            }
-        }
+	[Content(ContentType.HostileNPCs)]
+	//check this file for more info vvvvvvvv
+	public class OceanSlimeProj : BabySlimeBase
+	{
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/Projectiles/Pets/OceanSlimeProj_0";
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Ocean Slime");
-            Main.projFrames[projectile.type] = 6;
-            Main.projPet[projectile.type] = true;
-            drawOffsetX = -10;
-            drawOriginOffsetY = -4;
-        }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Ocean Slime");
+		}
 
-        public override void MoreSetDefaults()
-        {
-            //used to set dimensions (if necessary) //also use to set projectile.minion
-            projectile.width = 32;
-            projectile.height = 30;
+		public override void SafeSetDefaults()
+		{
+			Projectile.width = 32;
+			Projectile.height = 30;
 
-            projectile.minion = false;
-        }
+			Projectile.minion = false;
+		}
 
-        public override bool PreAI()
-        {
-            PetPlayer modPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            if (projectile.GetOwner().dead)
-            {
-                modPlayer.OceanSlime = false;
-            }
-            if (modPlayer.OceanSlime)
-            {
-                projectile.timeLeft = 2;
-            }
-            return true;
-        }
+		public override bool PreAI()
+		{
+			PetPlayer modPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			if (Projectile.GetOwner().dead)
+			{
+				modPlayer.OceanSlime = false;
+			}
+			if (modPlayer.OceanSlime)
+			{
+				Projectile.timeLeft = 2;
+			}
+			return true;
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Pets/OceanSlimeProj_" + mPlayer.oceanSlimeType);
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / Main.projFrames[projectile.type]
-            };
-            bounds.Y *= bounds.Height;
+		public override bool PreDraw(ref Color lightColor)
+		{
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/OceanSlimeProj_" + mPlayer.oceanSlimeType).Value;
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2, projectile.height / 2 + projectile.gfxOffY);
+			Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2 + Projectile.gfxOffY);
 
-            if (mPlayer.oceanSlimeType == 0)
-            {
-                lightColor = lightColor * ((255f - projectile.alpha) / 255f);
-            }
+			if (mPlayer.oceanSlimeType == 0)
+			{
+				lightColor *= (255f - Projectile.alpha) / 255f;
+			}
 
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
-            return false;
-        }
-    }
+			return false;
+		}
+	}
 }

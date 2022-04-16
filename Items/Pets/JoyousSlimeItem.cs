@@ -1,34 +1,26 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class JoyousSlimeItem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bottled Joyous Slime");
-            Tooltip.SetDefault("Summons a friendly Joyous Slime to follow you");
-        }
+	[Content(ContentType.FriendlyNPCs)]
+	public class JoyousSlimeItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<JoyousSlimeProj>();
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<JoyousSlimeProj>();
-            item.buffType = ModContent.BuffType<JoyousSlimeBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
-        }
+		public override int BuffType => ModContent.BuffType<JoyousSlimeBuff>();
 
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
-    }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottled Joyous Slime");
+			Tooltip.SetDefault("Summons a friendly Joyous Slime to follow you");
+		}
+
+		public override void SafeSetDefaults()
+		{
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

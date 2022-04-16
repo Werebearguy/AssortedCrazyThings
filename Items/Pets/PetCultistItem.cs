@@ -1,34 +1,26 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class PetCultistItem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Tiny Ominous Coin");
-            Tooltip.SetDefault("Summons a tiny cultist to follow you and heal when injured");
-        }
+	[Content(ContentType.DroppedPets)]
+	public class PetCultistItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<PetCultistProj>();
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<PetCultistProj>();
-            item.buffType = ModContent.BuffType<PetCultistBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
-        }
+		public override int BuffType => ModContent.BuffType<PetCultistBuff>();
 
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
-    }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Tiny Ominous Coin");
+			Tooltip.SetDefault("Summons a tiny cultist to follow you and heal when injured");
+		}
+
+		public override void SafeSetDefaults()
+		{
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

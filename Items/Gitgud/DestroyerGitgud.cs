@@ -2,22 +2,22 @@ using Terraria;
 
 namespace AssortedCrazyThings.Items.Gitgud
 {
-    public class DestroyerGitgud : GitgudItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Metal Dreamcatcher");
-        }
+	public class DestroyerGitgud : GitgudItem
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Metal Dreamcatcher");
+		}
 
-        public override void MoreSetDefaults()
-        {
-            item.width = 32;
-            item.height = 32;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 32;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetModPlayer<GitGudPlayer>().destroyerGitgud = true;
-        }
-    }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			player.GetModPlayer<GitGudPlayer>().destroyerGitgud = true;
+		}
+	}
 }

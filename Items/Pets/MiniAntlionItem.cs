@@ -1,35 +1,27 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class MiniAntlionItem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Antlion Egg");
-            Tooltip.SetDefault("Summons a friendly Baby Antlion to follow you"
-                + "\nAppearance can be changed with Costume Suitcase");
-        }
+	[Content(ContentType.DroppedPets)]
+	public class MiniAntlionItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<MiniAntlionProj>();
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<MiniAntlionProj>();
-            item.buffType = ModContent.BuffType<MiniAntlionBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 10);
-        }
+		public override int BuffType => ModContent.BuffType<MiniAntlionBuff>();
 
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
-    }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Antlion Egg");
+			Tooltip.SetDefault("Summons a friendly Baby Antlion to follow you"
+				+ "\nAppearance can be changed with Costume Suitcase");
+		}
+
+		public override void SafeSetDefaults()
+		{
+			Item.value = Item.sellPrice(silver: 10);
+		}
+	}
 }

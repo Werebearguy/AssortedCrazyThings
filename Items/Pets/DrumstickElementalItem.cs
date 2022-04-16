@@ -1,4 +1,4 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
@@ -6,44 +6,27 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class DrumstickElementalItem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Magical Drumstick");
-            Tooltip.SetDefault("Summons a delicious Drumstick Elemental to follow you");
-        }
+	public class DrumstickElementalItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<DrumstickElementalProj>();
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<DrumstickElementalProj>();
-            item.buffType = ModContent.BuffType<DrumstickElementalBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 7, copper: 50);
-        }
+		public override int BuffType => ModContent.BuffType<DrumstickElementalBuff>();
 
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Magical Drumstick");
+			Tooltip.SetDefault("Summons a delicious Drumstick Elemental to follow you");
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Duck);
-            recipe.AddTile(TileID.CookingPots);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+		public override void SafeSetDefaults()
+		{
+			Item.value = Item.sellPrice(silver: 7, copper: 50);
+		}
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MallardDuck);
-            recipe.AddTile(TileID.CookingPots);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ItemID.Duck).AddTile(TileID.CookingPots).Register();
+			CreateRecipe(1).AddIngredient(ItemID.MallardDuck).AddTile(TileID.CookingPots).Register();
+		}
+	}
 }

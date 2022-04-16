@@ -1,326 +1,134 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
-    public abstract class CuteSlimeBaseNPC : ModNPC
-    {
-        private static readonly int RandomItemChance = 4;
+	//Not ContentType.FriendlyNPCs, but separate toggle
+	[Content(ContentType.CuteSlimes)]
+	public abstract class CuteSlimeBaseNPC : AssNPC
+	{
+		public abstract string IngameName { get; }
 
-        public abstract string IngameName { get; }
+		public abstract int CatchItem { get; }
 
-        public abstract int CatchItem { get; }
+		public abstract SpawnConditionType SpawnCondition { get; }
 
-        public abstract SpawnConditionType SpawnCondition { get; }
+		public abstract Color DustColor { get; }
 
-        public virtual bool IsFriendly
-        {
-            get
-            {
-                return true;
-            }
-        }
+		public virtual bool ShouldDropGel => true;
 
-        public virtual bool ShouldDropGel
-        {
-            get
-            {
-                return true;
-            }
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault(IngameName);
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+			Main.npcCatchable[NPC.type] = true;
+			NPCID.Sets.CountsAsCritter[NPC.type] = true;
 
-        public virtual bool ShouldDropRandomItem
-        {
-            get
-            {
-                return true;
-            }
-        }
+			SafeSetStaticDefaults();
+		}
 
-        public short RandomItem = -1;
-        public int Stack = -1;
+		public virtual void SafeSetStaticDefaults()
+		{
 
-        public bool DecidedOnRandomItem = false;
+		}
 
-        public bool HasRandomItem
-        {
-            get
-            {
-                return RandomItem > -1 && Stack > 0;
-            }
-        }
+		public sealed override void SetDefaults()
+		{
+			NPC.friendly = true;
+			NPC.dontTakeDamageFromHostiles = true;
+			NPC.defense = 0;
+			NPC.lifeMax = 5;
+			NPC.width = 28;
+			NPC.height = 33;
+			NPC.damage = 0;
+			NPC.rarity = 1;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 25f;
+			NPC.knockBackResist = 0.9f;
+			NPC.aiStyle = 1;
+			AIType = NPCID.ToxicSludge;
+			AnimationType = NPCID.ToxicSludge;
+			NPC.alpha = 75;
+			NPC.catchItem = (short)CatchItem;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault(IngameName);
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-            Main.npcCatchable[npc.type] = true;
-            MoreSetStaticDefaults();
-        }
+			SafeSetDefaults();
 
-        public virtual void MoreSetStaticDefaults()
-        {
+			// Slime AI breaks with big enough height when it jumps against a low ceiling
+			// then glitches into the ground
+			if (NPC.scale > 1f)
+			{
+				NPC.height -= (int)((NPC.scale - 1f) * NPC.height);
+			}
+		}
 
-        }
+		public override bool? CanBeHitByItem(Player player, Item item)
+		{
+			return null; //TODO NPC return true
+		}
 
-        public sealed override void SetDefaults()
-        {
-            if (IsFriendly)
-            {
-                npc.friendly = true;
-                npc.defense = 0;
-                npc.lifeMax = 5;
-            }
-            else
-            {
-                npc.chaseable = false;
-                npc.defense = 2;
-                npc.lifeMax = 20;
-            }
-            npc.width = 46;
-            npc.height = 32;
-            npc.damage = 0;
-            npc.rarity = 1;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.9f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 75;
-            npc.catchItem = (short)CatchItem;
+		public override bool? CanBeHitByProjectile(Projectile projectile)
+		{
+			return !projectile.minion;
+		}
 
-            MoreSetDefaults();
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			Color color = DustColor;
+			if (NPC.life > 0)
+			{
+				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 30; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+				}
+			}
+		}
 
-            // Slime AI breaks with big enough height when it jumps against a low ceiling
-            // then glitches into the ground
-            if (npc.scale > 0.9f)
-            {
-                npc.height -= (int)((npc.scale - 0.9f) * npc.height);
-            }
-        }
+		public virtual void SafeSetDefaults()
+		{
 
-        public virtual void MoreSetDefaults()
-        {
+		}
 
-        }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnCondition);
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SlimePets.CuteSlimeSpawnChance(spawnInfo, SpawnCondition);
-        }
+		public sealed override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			if (ShouldDropGel)
+			{
+				npcLoot.Add(ItemDropRule.Common(ItemID.Gel));
+			}
 
-        public override void OnCatchNPC(Player player, Item item)
-        {
-            DropRandomItem(player.getRect());
-            MoreNPCLoot(player.getRect());
-        }
+			SafeModifyNPCLoot(npcLoot);
+		}
 
-        public sealed override void NPCLoot()
-        {
-            if (ShouldDropGel) Item.NewItem(npc.getRect(), ItemID.Gel);
-            DropRandomItem(npc.getRect());
-            MoreNPCLoot(npc.getRect());
-        }
+		public virtual void SafeModifyNPCLoot(NPCLoot npcLoot)
+		{
 
-        public void DropRandomItem(Rectangle pos)
-        {
-            if (ShouldDropRandomItem && HasRandomItem && npc.value > 0)
-            {
-                Item.NewItem(pos, RandomItem, Stack);
-            }
-        }
+		}
 
-        public virtual void MoreNPCLoot(Rectangle pos)
-        {
+		public sealed override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+		{
+			return SafePreDraw(spriteBatch, screenPos, drawColor);
+		}
 
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write((short)RandomItem);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            RandomItem = reader.ReadInt16();
-        }
-
-        public override bool PreAI()
-        {
-            if (ShouldDropRandomItem && !DecidedOnRandomItem && Main.netMode != NetmodeID.MultiplayerClient && npc.value > 0f)
-            {
-                // Copied from vanilla and adjusted
-                DecidedOnRandomItem = true;
-                if (Main.rand.Next(RandomItemChance) == 0)
-                {
-                    int choice = Main.rand.Next(4);
-                    if (choice == 0)
-                    {
-                        choice = Main.rand.Next(7);
-                        if (choice == 0)
-                        {
-                            choice = 290;
-                        }
-                        else if (choice == 1)
-                        {
-                            choice = 292;
-                        }
-                        else if (choice == 2)
-                        {
-                            choice = 296;
-                        }
-                        else if (choice == 3)
-                        {
-                            choice = 2322;
-                        }
-                        else if (Main.netMode != NetmodeID.SinglePlayer && Main.rand.Next(2) == 0)
-                        {
-                            choice = 2997;
-                        }
-                        else
-                        {
-                            choice = 2350;
-                        }
-                    }
-                    else if (choice == 1)
-                    {
-                        choice = Main.rand.Next(3); //4
-                        if (choice == 0)
-                        {
-                            choice = 8;
-                        }
-                        else if (choice == 1)
-                        {
-                            choice = 166;
-                        }
-                        else if (choice == 2)
-                        {
-                            choice = 965;
-                        }
-                        //else
-                        //{
-                        //    choice = 58;
-                        //}
-                    }
-                    else if (choice == 2)
-                    {
-                        if (Main.rand.Next(2) == 0)
-                        {
-                            choice = Main.rand.Next(11, 15);
-                        }
-                        else
-                        {
-                            choice = Main.rand.Next(699, 703);
-                        }
-                    }
-                    else
-                    {
-                        choice = Main.rand.Next(3);
-                        if (choice == 0)
-                        {
-                            choice = 71;
-                        }
-                        else if (choice == 1)
-                        {
-                            choice = 72;
-                        }
-                        else
-                        {
-                            choice = 73;
-                        }
-                    }
-                    int stack = 1;
-                    if (choice == 8)
-                    {
-                        stack = Main.rand.Next(5, 11);
-                    }
-                    else if (choice == 166)
-                    {
-                        stack = Main.rand.Next(2, 7);
-                    }
-                    else if (choice == 965)
-                    {
-                        stack = Main.rand.Next(20, 46);
-                    }
-                    else if ((choice >= 11 && choice <= 14) || (choice >= 699 && choice <= 702))
-                    {
-                        stack = Main.rand.Next(3, 9);
-                        if (Main.rand.Next(2) == 0)
-                        {
-                            stack += 5;
-                        }
-                    }
-                    else if (choice == 71)
-                    {
-                        stack = Main.rand.Next(50, 100);
-                    }
-                    else if (choice == 72)
-                    {
-                        stack = Main.rand.Next(20, 100);
-                    }
-                    else if (choice == 73)
-                    {
-                        stack = Main.rand.Next(1, 3);
-                    }
-                    RandomItem = (short)choice;
-                    Stack = stack;
-                    npc.netUpdate = true;
-                }
-            }
-            return true;
-        }
-
-        public sealed override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            if (HasRandomItem)
-            {
-                // Copied from vanilla and adjusted
-                int type = RandomItem;
-                float scale = 1;
-                float someX = 20f * npc.scale;
-                float someY = 16f * npc.scale;
-                float itemWidth = Main.itemTexture[type].Width;
-                float itemHeight = Main.itemTexture[type].Height;
-                if (itemWidth > someX)
-                {
-                    scale *= someX / itemWidth;
-                    //itemWidth *= scale;
-                    itemHeight *= scale;
-                }
-                if (itemHeight > someY)
-                {
-                    scale *= someY / itemHeight;
-                    //itemWidth *= scale;
-                    //itemHeight *= scale;
-                }
-                //float xOff = -1f;
-                //float yOff = 1f;
-                float xOff = -2f;
-                float yOff = 3f + drawOffsetY;
-                int frameNumber = npc.frame.Y / (Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type]);
-                //xOff += frameNumber;
-                yOff += frameNumber * 2; //bobbing
-                if (npc.scale < 0.9 && frameNumber == 2) yOff -= frameNumber * 2;
-                //xOff *= scale;
-                if (npc.scale > 1) yOff -= npc.scale * 3;
-                if (npc.scale < 0.9) yOff -= npc.scale * 10;
-                float rotation = 0f;
-                spriteBatch.Draw(Main.itemTexture[type], new Vector2(npc.Center.X - Main.screenPosition.X + xOff, npc.Center.Y - Main.screenPosition.Y + npc.gfxOffY + yOff), null, drawColor, rotation, Main.itemTexture[type].Size() / 2, scale, SpriteEffects.None, 0f);
-
-            }
-            return MorePreDraw(spriteBatch, drawColor);
-        }
-
-        public virtual bool MorePreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            return true;
-        }
-    }
+		public virtual bool SafePreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+		{
+			return true;
+		}
+	}
 }

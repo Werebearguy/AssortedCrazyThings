@@ -7,66 +7,66 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class AnimatedTomeProj : ModProjectile
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/AnimatedTomeProj_0"; //temp
-            }
-        }
+	public class AnimatedTomeProj : SimplePetProjBase
+	{
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/Projectiles/Pets/AnimatedTomeProj_0"; //temp
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Animated Tome");
-            Main.projFrames[projectile.type] = 4;
-            Main.projPet[projectile.type] = true;
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Animated Tome");
+			Main.projFrames[Projectile.type] = 5;
+			Main.projPet[Projectile.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.BabyHornet);
-            projectile.width = 22;
-            projectile.height = 18;
-            projectile.aiStyle = -1;
-        }
+		public override void SetDefaults()
+		{
+			Projectile.CloneDefaults(ProjectileID.BabyHornet);
+			Projectile.width = 22;
+			Projectile.height = 18;
+			Projectile.aiStyle = -1;
+		}
 
-        public override void AI()
-        {
-            Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
-            if (player.dead)
-            {
-                modPlayer.AnimatedTome = false;
-            }
-            if (modPlayer.AnimatedTome)
-            {
-                projectile.timeLeft = 2;
-            }
-            AssAI.ZephyrfishAI(projectile);
-            AssAI.ZephyrfishDraw(projectile);
-        }
+		public override void AI()
+		{
+			Player player = Projectile.GetOwner();
+			PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+			if (player.dead)
+			{
+				modPlayer.AnimatedTome = false;
+			}
+			if (modPlayer.AnimatedTome)
+			{
+				Projectile.timeLeft = 2;
+			}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Texture2D image = mod.GetTexture("Projectiles/Pets/AnimatedTomeProj_" + mPlayer.animatedTomeType);
-            Rectangle bounds = new Rectangle
-            {
-                X = 0,
-                Y = projectile.frame,
-                Width = image.Bounds.Width,
-                Height = image.Bounds.Height / Main.projFrames[projectile.type]
-            };
-            bounds.Y *= bounds.Height; //cause proj.frame only contains the frame number
+			if (!player.active)
+			{
+				Projectile.active = false;
+				return;
+			}
 
-            Vector2 stupidOffset = new Vector2(projectile.width / 2 - projectile.direction * 3f, projectile.height / 2 + projectile.gfxOffY);
+			AssAI.ZephyrfishAI(Projectile);
+			AssAI.ZephyrfishDraw(Projectile);
+		}
 
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+		public override bool PreDraw(ref Color lightColor)
+		{
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/AnimatedTomeProj_" + mPlayer.animatedTomeType).Value;
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-            return false;
-        }
-    }
+			Vector2 stupidOffset = new Vector2(Projectile.width / 2 - Projectile.direction * 3f, Projectile.height / 2 + Projectile.gfxOffY);
+
+			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
+
+			return false;
+		}
+	}
 }

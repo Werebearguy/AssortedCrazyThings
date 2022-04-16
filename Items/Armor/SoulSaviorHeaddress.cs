@@ -5,49 +5,53 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Armor
 {
-    [AutoloadEquip(EquipType.Head)]
-    public class SoulSaviorHeaddress : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-            DisplayName.SetDefault("Soul Savior Headdress");
-            Tooltip.SetDefault("Increases minion damage by 10%"
-                + "\nIncreases your max number of minions");
-        }
+	[Content(ContentType.Bosses)]
+	[AutoloadEquip(EquipType.Head)]
+	public class SoulSaviorHeaddress : AssItem
+	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+			DisplayName.SetDefault("Soul Savior Headdress");
+			Tooltip.SetDefault("Increases minion damage by 10%"
+				+ "\nIncreases your max number of minions");
+			
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 32;
-            item.height = 28;
-            item.value = Item.sellPrice(gold: 2, silver: 80);
-            item.rare = -11;
-            item.defense = 14;
-        }
+		public override void SetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 28;
+			Item.value = Item.sellPrice(gold: 2, silver: 80);
+			Item.rare = 3;
+			Item.defense = 14;
+		}
 
-        public override void UpdateEquip(Player player)
-        {
-            player.maxMinions++;
-            player.minionDamage += 0.1f;
-        }
+		public override void UpdateEquip(Player player)
+		{
+			player.maxMinions++;
+			player.GetDamage(DamageClass.Summon) += 0.1f;
+		}
 
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return body.type == ModContent.ItemType<SoulSaviorPlate>() && legs.type == ModContent.ItemType<SoulSaviorRobe>();
-        }
+		public override bool IsArmorSet(Item head, Item body, Item legs)
+		{
+			return body.type == ModContent.ItemType<SoulSaviorPlate>() && legs.type == ModContent.ItemType<SoulSaviorRobe>();
+		}
 
-        public override void UpdateArmorSet(Player player)
-        {
-            Lighting.AddLight(player.Center, new Vector3(0.05f, 0.05f, 0.15f));
+		public override void UpdateArmorSet(Player player)
+		{
+			Lighting.AddLight(player.Center, new Vector3(0.05f, 0.05f, 0.15f));
 
-            AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-            mPlayer.soulSaviorArmor = true;
+			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+			mPlayer.soulSaviorArmor = true;
 
-            float factor = (player.maxMinions / 10f) * player.minionDamage;
+			StatModifier summoner = player.GetDamage(DamageClass.Summon);
+			float factor = summoner.ApplyTo(player.maxMinions / 10f);
 
-            player.thorns = factor;
+			player.thorns = factor;
 
-            /*
+			/*
              * HOW IT WORKS: thorns = 1f means that 100% of the damage an NPC does is reflected (absolute) (ONLY CONTACT DAMAGE)
              * aka if a zombie with 14 damage attacks you in your armor, you receive 1 damage (since you have 44 defense)  but the 
              * zombie receives 14 damage back
@@ -62,21 +66,15 @@ namespace AssortedCrazyThings.Items.Armor
              * and harvester wings)
              */
 
-            player.setBonus = "Reflects 10% contact damage per available minion slot"
-                + "\nReflected damage further increased by effects that increase minion damage"
-                + "\nCurrent reflected damage: " + (int)(factor * 100) + "%"
-                + "\nMinions summoned by the Everhallowed Lantern become 'empowered' and gain 30% more damage";
-        }
+			player.setBonus = "Reflects 10% contact damage per available minion slot"
+				+ "\nReflected damage further increased by effects that increase minion damage"
+				+ "\nCurrent reflected damage: " + (int)(factor * 100) + "%"
+				+ "\nMinions summoned by the Everhallowed Lantern become 'empowered' and gain 30% more damage";
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1);
-            recipe.AddIngredient(ItemID.Ectoplasm, 3);
-            recipe.AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 16);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1).AddIngredient(ItemID.Ectoplasm, 3).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 16).AddTile(TileID.MythrilAnvil).Register();
+		}
+	}
 }

@@ -1,32 +1,31 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
-    public class KnittingSet : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Knitting Set");
-            Tooltip.SetDefault("'A set of tools used in crafting cute clothing and accessories'");
-        }
-        public override void SetDefaults()
-        {
-            item.maxStack = 999;
-            item.width = 22;
-            item.height = 22;
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 35);
-        }
+	[Content(ContentType.CuteSlimes)]
+	public class KnittingSet : AssItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Knitting Set");
+			Tooltip.SetDefault("'A set of tools used in crafting cute clothing and accessories'");
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Silk, 15);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.maxStack = 999;
+			Item.width = 22;
+			Item.height = 22;
+			Item.rare = 1;
+			Item.value = Item.sellPrice(silver: 30);
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ItemID.Silk, 15).AddTile(TileID.Loom).Register();
+		}
+	}
 }

@@ -1,118 +1,129 @@
+using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class OceanSlime : ModNPC
-    {
-        private const int TotalNumberOfThese = 4;
+	[Content(ContentType.HostileNPCs)]
+	public class OceanSlime : AssNPC
+	{
+		private const int TotalNumberOfThese = 4;
 
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/NPCs/OceanSlime_0"; //use fixed texture
-            }
-        }
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/NPCs/OceanSlime_0"; //use fixed texture
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Ocean Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Ocean Slime");
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+			Main.npcCatchable[NPC.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            npc.width = 36;
-            npc.height = 36;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 25;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 175;
-            npc.color = new Color(65, 193, 247, 100);
-            Main.npcCatchable[mod.NPCType("OceanSlime")] = true;
-            npc.catchItem = (short)mod.ItemType("OceanSlimeItem");
-        }
+		public override void SetDefaults()
+		{
+			NPC.width = 36;
+			NPC.height = 36;
+			NPC.damage = 7;
+			NPC.defense = 2;
+			NPC.lifeMax = 25;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 25f;
+			NPC.knockBackResist = 0.25f;
+			NPC.aiStyle = 1;
+			AIType = NPCID.ToxicSludge;
+			AnimationType = NPCID.ToxicSludge;
+			NPC.catchItem = (short)ModContent.ItemType<OceanSlimeItem>();
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SpawnCondition.Ocean.Chance * 0.015f;
-        }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			Color color = AiTexture switch
+			{
+				1 => new Color(217, 216, 255, 100),
+				2 => new Color(98, 148, 143, 100),
+				3 => new Color(254, 180, 246, 100),
+				_ => new Color(65, 193, 247, 100),
+			};
+			if (NPC.life > 0)
+			{
+				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 40; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+				}
+			}
+		}
 
-        public override void NPCLoot()
-        {
-            int itemid = 0;
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return SpawnCondition.Ocean.Chance * 0.015f;
+		}
 
-            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-            {
-                AiTexture = Main.rand.Next(4);
-            }
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.Gel));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.BlackInk));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.SharkFin));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.PinkGel));
+		}
 
-            switch ((int)AiTexture)
-            {
-                case 0:
-                    itemid = ItemID.Gel;
-                    break;
-                case 1:
-                    itemid = ItemID.BlackInk;
-                    break;
-                case 2:
-                    itemid = ItemID.SharkFin;
-                    break;
-                case 3:
-                    itemid = ItemID.PinkGel;
-                    break;
-                default:
-                    break;
-            }
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+				new FlavorTextBestiaryInfoElement("Slimes that are lost to the sea are faced with two options; adapt, or be eaten. Luckily, these slimes taste bad.")
+			});
+		}
 
-            Item.NewItem(npc.getRect(), itemid);
-        }
+		public ref float AiTexture => ref NPC.ai[1];
 
-        public float AiTexture
-        {
-            get
-            {
-                return npc.ai[1];
-            }
-            set
-            {
-                npc.ai[1] = value;
-            }
-        }
+		public bool DecidedAiTexture
+		{
+			get => NPC.localAI[0] == 1f;
+			set => NPC.localAI[0] = value ? 1f : 0f;
+		}
 
-        public override bool PreAI()
-        {
-            if (AiTexture == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                AiTexture = Main.rand.Next(TotalNumberOfThese);
+		public override bool PreAI()
+		{
+			if (AiTexture == 0 && !DecidedAiTexture && Main.netMode != NetmodeID.MultiplayerClient)
+			{
+				AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-                npc.localAI[0] = 1;
-                npc.netUpdate = true;
-            }
+				DecidedAiTexture = true;
+				NPC.netUpdate = true;
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            Texture2D texture = mod.GetTexture("NPCs/OceanSlime_" + AiTexture);
-            Vector2 stupidOffset = new Vector2(0f, 4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
-            return false;
-        }
-    }
+		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+		{
+			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/OceanSlime_" + AiTexture).Value;
+			Vector2 stupidOffset = new Vector2(0f, 4f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+			Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
+			spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			return false;
+		}
+	}
 }

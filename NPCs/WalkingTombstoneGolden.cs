@@ -1,17 +1,20 @@
-using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class WalkingTombstoneGolden : ModNPC
-    {
-        private const int TotalNumberOfThese = 5;
+	[Content(ContentType.HostileNPCs)]
+	public class WalkingTombstoneGolden : AssNPC
+	{
+		private const int TotalNumberOfThese = 5;
 
-        /*
+		/*
         * 0 = Tombstone
         * 1 = CrossGraveMarker
         * 2 = GraveMarker
@@ -19,135 +22,120 @@ namespace AssortedCrazyThings.NPCs
         * 4 = Headstone
         */
 
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/NPCs/WalkingTombstoneGolden_0"; //use fixed texture
-            }
-        }
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/NPCs/WalkingTombstoneGolden_0"; //use fixed texture
+			}
+		}
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Walking Tombstone");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Crab];
-        }
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Walking Tombstone");
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Crab];
+		}
 
-        public override void SetDefaults()
-        {
-            npc.width = 36;
-            npc.height = 46;
-            npc.damage = 0;
-            npc.defense = 10;
-            npc.lifeMax = 40;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 75f;
-            npc.knockBackResist = 0.5f;
-            npc.aiStyle = 3;
-            aiType = NPCID.Crab;
-            animationType = NPCID.Crab;
-        }
+		public override void SetDefaults()
+		{
+			NPC.width = 36;
+			NPC.height = 46;
+			NPC.damage = 0;
+			NPC.defense = 10;
+			NPC.lifeMax = 40;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 75f;
+			NPC.knockBackResist = 0.5f;
+			NPC.aiStyle = 3;
+			AIType = NPCID.Crab;
+			AnimationType = NPCID.Crab;
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (AssUtils.AssConfig.WalkingTombstones) return SpawnCondition.OverworldNight.Chance * 0.005f * 1f;
-            else return 0f;
-        }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return spawnInfo.Player.ZoneGraveyard ? 0.15f : 0f; //TODO adjust
+		}
 
-        public override void NPCLoot()
-        {
-            int itemid = 0;
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+				new FlavorTextBestiaryInfoElement("Terrestrial crabs that have taken up a morbid and expensive form of camouflage.")
+			});
+		}
 
-            if (npc.Center == new Vector2(1000, 1000)) //RecipeBrowser fix
-            {
-                AiTexture = Main.rand.Next(5);
-            }
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.RichGravestone2));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.RichGravestone1));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.RichGravestone3));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.RichGravestone4));
+			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 4), ItemID.RichGravestone5));
+		}
 
-            switch ((int)AiTexture)
-            {
-                case 0:
-                    itemid = ItemID.RichGravestone2;
-                    break;
-                case 1:
-                    itemid = ItemID.RichGravestone1;
-                    break;
-                case 2:
-                    itemid = ItemID.RichGravestone3;
-                    break;
-                case 3:
-                    itemid = ItemID.RichGravestone4;
-                    break;
-                case 4:
-                    itemid = ItemID.RichGravestone5;
-                    break;
-                default:
-                    break;
-            }
+		public override void PostAI()
+		{
+			if (NPC.HasValidTarget && Main.player[NPC.target] is Player player && !player.ZoneGraveyard)
+			{
+				if (NPC.velocity.X > 0 || NPC.velocity.X < 0)
+				{
+					NPC.velocity.X = 0;
+				}
+				NPC.ai[0] = 1f;
+				NPC.direction = 1;
+				NPC.frameCounter = 0;
+			}
 
-            Item.NewItem(npc.getRect(), itemid);
-        }
+			if (NPC.velocity.Y < 0)
+			{
+				NPC.velocity.Y = 0;
+			}
+		}
 
-        public override void PostAI()
-        {
-            if (Main.dayTime)
-            {
-                if (npc.velocity.X > 0 || npc.velocity.X < 0)
-                {
-                    npc.velocity.X = 0;
-                }
-                npc.ai[0] = 1f;
-                npc.direction = 1;
-            }
+		public ref float AiTexture => ref NPC.ai[1];
 
-            if (npc.velocity.Y < 0)
-            {
-                npc.velocity.Y = 0;
-            }
-        }
+		public bool DecidedAiTexture
+		{
+			get => NPC.localAI[0] == 1f;
+			set => NPC.localAI[0] = value ? 1f : 0f;
+		}
 
-        public float AiTexture
-        {
-            get
-            {
-                return npc.ai[1];
-            }
-            set
-            {
-                npc.ai[1] = value;
-            }
-        }
+		public override bool PreAI()
+		{
+			if (AiTexture == 0 && !DecidedAiTexture && Main.netMode != NetmodeID.MultiplayerClient)
+			{
+				AiTexture = Main.rand.Next(TotalNumberOfThese);
 
-        public override bool PreAI()
-        {
-            if (AiTexture == 0 && npc.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                AiTexture = Main.rand.Next(TotalNumberOfThese);
+				DecidedAiTexture = true;
+				NPC.netUpdate = true;
+			}
 
-                npc.localAI[0] = 1;
-                npc.netUpdate = true;
-            }
+			return true;
+		}
 
-            return true;
-        }
+		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+		{
+			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/WalkingTombstoneGolden_" + AiTexture).Value;
+			Vector2 stupidOffset = new Vector2(0f, 4f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
+			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
+			Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
+			spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			return false;
+		}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            Texture2D texture = mod.GetTexture("NPCs/WalkingTombstoneGolden_" + AiTexture);
-            Vector2 stupidOffset = new Vector2(0f, 4f + npc.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
-            SpriteEffects effect = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 drawOrigin = new Vector2(npc.width * 0.5f, npc.height * 0.5f);
-            Vector2 drawPos = npc.position - Main.screenPosition + drawOrigin + stupidOffset;
-            spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2, npc.scale, effect, 0f);
-            return false;
-        }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WalkingTombstoneGore_01"), 1f);
-            }
-        }
-    }
+			if (NPC.life <= 0)
+			{
+				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("WalkingTombstoneGore_01").Type, 1f);
+			}
+		}
+	}
 }

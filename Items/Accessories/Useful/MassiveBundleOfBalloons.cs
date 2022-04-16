@@ -4,51 +4,41 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [AutoloadEquip(EquipType.Balloon)]
-    public class MassiveBundleOfBalloons : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Massive Bundle of Balloons");
-            Tooltip.SetDefault("Allows you to jump six more times"
-                + "\nNegates fall damage and increases jump height"
-                + "\nReleases bees when damaged");
-        }
+	[AutoloadEquip(EquipType.Balloon)]
+	public class MassiveBundleOfBalloons : AccessoryBase
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Massive Bundle of Balloons");
+			Tooltip.SetDefault("Allows you to jump six more times"
+				+ "\nNegates fall damage and increases jump height"
+				+ "\nReleases bees when damaged");
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 46;
-            item.height = 42;
-            item.value = 0;
-            item.rare = -11;
-            item.accessory = true;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 46;
+			Item.height = 42;
+			Item.value = Item.sellPrice(0, 3 + 2 + 3 + 3, 54 + 10, 0); //Horseshoe 54s, bundle 3g, honey 2g, fart 3g, sharkron 3g, dreams 10s
+			Item.rare = 3;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.noFallDmg = true;
-            player.jumpBoost = true;
-            player.doubleJumpCloud = true;
-            player.doubleJumpSandstorm = true;
-            player.doubleJumpBlizzard = true;
-            player.doubleJumpFart = true;
-            player.doubleJumpSail = true;
-            player.doubleJumpUnicorn = true;
-            player.bee = true;
-        }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			player.noFallDmg = true;
+			player.jumpBoost = true;
+			player.hasJumpOption_Cloud = true;
+			player.hasJumpOption_Sandstorm = true;
+			player.hasJumpOption_Blizzard = true;
+			player.hasJumpOption_Fart = true;
+			player.hasJumpOption_Sail = true;
+			player.hasJumpOption_Unicorn = true;
+			player.honeyCombItem = Item;
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LuckyHorseshoe, 1);
-            recipe.AddIngredient(ItemID.BundleofBalloons, 1);
-            recipe.AddIngredient(ItemID.HoneyBalloon, 1);
-            recipe.AddIngredient(ItemID.FartInABalloon, 1);
-            recipe.AddIngredient(ItemID.SharkronBalloon, 1);
-            recipe.AddIngredient(mod, "BottledDreams");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ItemID.LuckyHorseshoe, 1).AddIngredient(ItemID.BundleofBalloons, 1).AddIngredient(ItemID.HoneyBalloon, 1).AddIngredient(ItemID.FartInABalloon, 1).AddIngredient(ItemID.SharkronBalloon, 1).AddIngredient<BottledDreams>().AddTile(TileID.TinkerersWorkbench).Register();
+		}
+	}
 }

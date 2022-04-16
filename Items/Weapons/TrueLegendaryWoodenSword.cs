@@ -1,61 +1,53 @@
 using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-    public class TrueLegendaryWoodenSword : ModItem
-    {
-        public static int ProjDamage = 15;
+	public class TrueLegendaryWoodenSword : WeaponItemBase
+	{
+		public int ProjDamage = 28; //Default fallback
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("True Legendary Wooden Sword");
-            Tooltip.SetDefault("'Truly Legendary'");
-        }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("True Legendary Wooden Sword");
+			Tooltip.SetDefault("'Truly Legendary'");
+		}
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.CobaltSword);
-            item.width = 50;
-            item.height = 50;
-            item.rare = -11;
-            item.value = Item.sellPrice(0, 2, 25, 0); //2 gold for broken, 25 silver for legendary
-            item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();
-            item.shootSpeed = 10f; //fairly short range, similar to throwing knife
-        }
+		public override void SetDefaults()
+		{
+			Item.CloneDefaults(ItemID.CobaltSword);
+			ProjDamage = (int)(Item.damage * 0.8f);
+			Item.width = 58;
+			Item.height = 58;
+			Item.rare = 7;
+			Item.value = Item.sellPrice(0, 2, 0, 10); //2 gold for broken, 10 copper for legendary
+			Item.shoot = ModContent.ProjectileType<TrueLegendaryWoodenSwordProj>();
+			Item.shootSpeed = 10f; //fairly short range, similar to throwing knife
+		}
 
-        //public override void HoldItem(Player player)
-        //{
-        //    player.itemLocation.X += -player.direction * 3; 
-        //}
+		public override void MeleeEffects(Player player, Rectangle hitbox)
+		{
+			//162 for "sparks"
+			//169 for just light
+			int dustType = 169;
+			Dust dust = Dust.NewDustDirect(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, Color.White, 1.25f);
+			dust.noGravity = true;
+			dust.velocity *= 2f;
+		}
 
-        public override void MeleeEffects(Player player, Rectangle hitbox)
-        {
-            //162 for "sparks"
-            //169 for just light
-            int dustType = 169;
-            Dust dust = Dust.NewDustDirect(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType, player.velocity.X * 0.2f + (player.direction * 3), player.velocity.Y * 0.2f, 100, Color.White, 1.25f);
-            dust.noGravity = true;
-            dust.velocity *= 2f;
-        }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<LegendaryWoodenSword>(), 1).AddIngredient(ItemID.BrokenHeroSword, 1).AddTile(TileID.MythrilAnvil).Register();
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LegendaryWoodenSword>(), 1);
-            recipe.AddIngredient(ItemID.BrokenHeroSword, 1);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            Projectile.NewProjectile(player.Center + Vector2.Normalize(new Vector2(speedX, speedY)) * 30f, new Vector2(speedX, speedY), item.shoot, ProjDamage, item.knockBack, Main.myPlayer);
-            return false;
-        }
-    }
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		{
+			Projectile.NewProjectile(source, player.Center + Vector2.Normalize(velocity) * 30f, velocity, type, ProjDamage, knockback, Main.myPlayer);
+			return false;
+		}
+	}
 }

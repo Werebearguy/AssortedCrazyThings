@@ -2,10 +2,6 @@
 
 Everything is done in the Items/PetAccessories/PetAccessoryClass.cs file
 
-(0) Troubleshooting
-* If you add and then delete accessories (in the registering part from (2)), you might get an error.
-To fix it, comment the line in PetPlayer.cs called `slots = (uint)tag.GetInt("slots");`, build, enter world, then uncomment it again
-
 (1) Add Item
 
 * add a new class under `//Add new classes here in alphabetic order`
@@ -15,7 +11,7 @@ To fix it, comment the line in PetPlayer.cs called `slots = (uint)tag.GetInt("sl
 ```
 public class PetAccessoryThing : PetAccessoryItem
 {
-    public override void SetStaticDefaults()
+    public override void SafeSetStaticDefaults()
     {
         DisplayName.SetDefault("Cute Thing");
         Tooltip.SetDefault("'A thing for your cute slime to wear on a certain body part'");
@@ -31,12 +27,12 @@ with the item properly, but it won't do anything yet
 
 (2) Register properties
 
-* In Load():
-  * call `Add()` with the appropriate parameters in its appropriate place (by slots)
-  * watch out for brackets, they're finnicky here
-  * the first parameter of `Add()` is always the SlotType, the second one is a 'PetAccessory' object, which has the following parameters:
-  * `id`: set that to the next highest ID thats specified in the other `Add()` calls for that particular SlotType
-  * `name`: the name of the class without the 'PetAccessory' infront, to save space
+* In RegisterAccessories():
+  * call `Add()` with the appropriate parameters
+  * The first object is the mod instance this PetAccessory belongs to. In our case, our mod.
+  * The second object is a PetAccessory, which has the following parameters:
+  * `slot`: the SlotType associated with it, 
+  * `name`: the name of the item class without the 'PetAccessory' infront, to save space
   * `offsetX/Y`: self explanatory, remember, negative X is left, negative Y is up
   * `preDraw`: decides if that accessory should be drawn "behind" the actual slime (false means it will draw infront)
   * `alpha`: says by how much it should be transparent (0 is fully opaque, 255 fully transparent)
@@ -46,11 +42,6 @@ with the item properly, but it won't do anything yet
 and a `_Draw` texture (there will be a duplicate icon for the default item)
 
 * after you've done that, add a `_Draw` texture with the same name as the item you add, now the item should work
-
-* if you want to add alternative textures based on the pet they are on (Suffixed with `_Draw<identifyingNumber>`), call AddPetVariation()
-  on the PetAccessory object (watch the brackets) and assign each pet a texture to use
-  (-1 is "not rendered", 0 is "default, > 0 is "use `_Draw<identifyingNumber>` texture")
-  you can leave the other pet types out if you only need to adjust the texture of one pet
 
 * if you want to remove certain accessories from being usable for the system, comment the Add() call out with //
 

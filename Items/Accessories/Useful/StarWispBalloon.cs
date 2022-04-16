@@ -4,45 +4,39 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [AutoloadEquip(EquipType.Balloon)]
-    public class StarWispBalloon : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Star Wisp Balloon");
-            Tooltip.SetDefault("Increased mana regeneration and jump height" +
-                               "\nGlows in the dark");
-        }
+	[AutoloadEquip(EquipType.Balloon)]
+	public class StarWispBalloon : AccessoryBase
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Star Wisp Balloon");
+			Tooltip.SetDefault("Increased mana regeneration and jump height" +
+							   "\nGlows in the dark");
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 18;
-            item.height = 32;
-            item.value = 0;
-            item.rare = -11;
-            item.accessory = true;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 18;
+			Item.height = 32;
+			Item.value = Item.sellPrice(0, 5, 5, 0);
+			Item.rare = 9;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            //player.manaRegenDelayBonus++;
-            //player.manaRegenBonus += 25;
-            if (!player.HasBuff(BuffID.StarInBottle))
-            {
-                player.manaRegenBonus += 2;
-            }
-            player.jumpBoost = true;
-            Lighting.AddLight(player.Center, 0.7f, 1.3f, 1.6f);
-        }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			//player.manaRegenDelayBonus++;
+			//player.manaRegenBonus += 25;
+			if (!player.HasBuff(BuffID.StarInBottle))
+			{
+				player.manaRegenBonus += 2;
+			}
+			player.jumpBoost = true;
+			Lighting.AddLight(player.Center, 0.7f, 1.3f, 1.6f);
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, "StarInABalloon");
-            recipe.AddIngredient(mod, "WispInABalloon");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient<StarInABalloon>().AddIngredient<WispInABalloon>().AddTile(TileID.TinkerersWorkbench).Register();
+		}
+	}
 }

@@ -4,43 +4,37 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [AutoloadEquip(EquipType.Balloon)]
-    public class StarInABalloon : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Star in a Balloon");
-            Tooltip.SetDefault("Increased mana regeneration and jump height");
-        }
+	[AutoloadEquip(EquipType.Balloon)]
+	public class StarInABalloon : AccessoryBase
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Star in a Balloon");
+			Tooltip.SetDefault("Increased mana regeneration and jump height");
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 18;
-            item.height = 32;
-            item.value = Item.sellPrice(silver: 5);
-            item.rare = -11;
-            item.accessory = true;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 18;
+			Item.height = 32;
+			Item.value = Item.sellPrice(silver: 5);
+			Item.rare = 2;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            //player.manaRegenDelayBonus++;
-            //player.manaRegenBonus += 25;
-            if (!player.HasBuff(BuffID.StarInBottle))
-            {
-                player.manaRegenBonus += 2;
-            }
-            player.jumpBoost = true;
-        }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			//player.manaRegenDelayBonus++;
+			//player.manaRegenBonus += 25;
+			if (!player.HasBuff(BuffID.StarInBottle))
+			{
+				player.manaRegenBonus += 2;
+			}
+			player.jumpBoost = true;
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.StarinaBottle, 1);
-            recipe.AddIngredient(ItemID.ShinyRedBalloon, 1);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ItemID.StarinaBottle, 1).AddIngredient(ItemID.ShinyRedBalloon, 1).AddTile(TileID.TinkerersWorkbench).Register();
+		}
+	}
 }

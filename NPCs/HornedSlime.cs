@@ -1,47 +1,79 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class HornedSlime : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Horned Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-        }
+	[Content(ContentType.HostileNPCs)]
+	public class HornedSlime : AssNPC
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Horned Slime");
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+			Main.npcCatchable[NPC.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            npc.width = 36;
-            npc.height = 32;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 25;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.alpha = 175;
-            npc.color = new Color(240, 54, 115, 100);
-            Main.npcCatchable[mod.NPCType("HornedSlime")] = true;
-            npc.catchItem = (short)mod.ItemType("HornedSlimeItem");
-            npc.lavaImmune = true;
-        }
+		public override void SetDefaults()
+		{
+			NPC.width = 36;
+			NPC.height = 32;
+			NPC.damage = 7;
+			NPC.defense = 2;
+			NPC.lifeMax = 25;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 25f;
+			NPC.knockBackResist = 0.25f;
+			NPC.aiStyle = 1;
+			AIType = NPCID.ToxicSludge;
+			AnimationType = NPCID.ToxicSludge;
+			NPC.alpha = 175;
+			NPC.color = new Color(240, 54, 115, 100);
+			NPC.catchItem = (short)ModContent.ItemType<HornedSlimeItem>();
+			NPC.lavaImmune = true;
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SpawnCondition.Underworld.Chance * 0.015f;
-        }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			Color color = NPC.color;
+			if (NPC.life > 0)
+			{
+				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 40; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+				}
+			}
+		}
 
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
-        }
-    }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return SpawnCondition.Underworld.Chance * 0.015f;
+		}
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.Common(ItemID.Gel));
+		}
+
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+				new FlavorTextBestiaryInfoElement("The horn isn't just for decoration; it is capable of dispersing heat, allowing the slime to remain gelatinous.")
+			});
+		}
+	}
 }

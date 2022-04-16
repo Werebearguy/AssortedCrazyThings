@@ -4,34 +4,28 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    [AutoloadEquip(EquipType.Shoes)]
-    public class SlipperySoles : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Slippery Soles");
-            Tooltip.SetDefault("You slip and slide on all blocks");
-        }
-        public override void SetDefaults()
-        {
-            item.width = 20;
-            item.height = 28;
-            item.value = 0;
-            item.rare = -11;
-            item.accessory = true;
-        }
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.slippy2 = true;
-        }
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.FrozenSlimeBlock, 2);
-            recipe.AddIngredient(ItemID.Leather, 2);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+	[AutoloadEquip(EquipType.Shoes)]
+	public class SlipperySoles : AccessoryBase
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Slippery Soles");
+			Tooltip.SetDefault("You slip and slide on all blocks");
+		}
+		public override void SafeSetDefaults()
+		{
+			Item.width = 20;
+			Item.height = 28;
+			Item.value = Item.sellPrice(0, 0, 0, 20);
+			Item.rare = 1;
+		}
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			player.slippy2 = true;
+		}
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ItemID.FrozenSlimeBlock, 2).AddIngredient(ItemID.Leather, 2).AddTile(TileID.TinkerersWorkbench).Register();
+		}
+	}
 }

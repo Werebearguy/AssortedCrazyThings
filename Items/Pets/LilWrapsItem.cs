@@ -1,37 +1,29 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class LilWrapsItem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Gilded Coffin");
-            Tooltip.SetDefault("Summons Lil' Wraps to follow you"
-                + "\nAppearance can be changed with Costume Suitcase");
-        }
+	[Content(ContentType.DroppedPets)]
+	public class LilWrapsItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<LilWrapsProj>();
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<LilWrapsProj>();
-            item.buffType = ModContent.BuffType<LilWrapsBuff>();
-            item.width = 20;
-            item.height = 26;
-            item.rare = -11;
-            item.value = Item.sellPrice(silver: 10);
-        }
+		public override int BuffType => ModContent.BuffType<LilWrapsBuff>();
 
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
-    }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Gilded Coffin");
+			Tooltip.SetDefault("Summons Lil' Wraps to follow you"
+				+ "\nAppearance can be changed with Costume Suitcase");
+		}
+
+		public override void SafeSetDefaults()
+		{
+			Item.width = 20;
+			Item.height = 26;
+			Item.value = Item.sellPrice(silver: 10);
+		}
+	}
 }

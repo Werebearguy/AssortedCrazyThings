@@ -1,39 +1,37 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class EverburningShadowflameCandle : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Everburning Shadowflame Candle");
-            Tooltip.SetDefault("Applies shadowflame damage to all attacks");
-        }
+	public class EverburningShadowflameCandle : AccessoryBase
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Everburning Shadowflame Candle");
+			Tooltip.SetDefault("Applies shadowflame damage to all attacks");
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 24;
-            item.height = 22;
-            item.value = Item.sellPrice(gold: 3);
-            item.rare = -11;
-            item.accessory = true;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 24;
+			Item.height = 22;
+			Item.value = Item.sellPrice(0, 1, 41, 0);
+			Item.rare = 3;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetModPlayer<AssPlayer>().everburningShadowflameCandleBuff = true;
-        }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			player.GetModPlayer<AssPlayer>().everburningShadowflameCandleBuff = true;
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MagmaStone, 1);
-            recipe.AddIngredient(ItemID.SoulofNight, 50);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1)
+				.AddIngredient(ItemID.WaterCandle, 1) //1s
+				.AddIngredient(ItemID.AncientBattleArmorMaterial, 1) //Forbidden fragment //1g
+				.AddIngredient(ItemID.SoulofNight, 20) //2s * 20
+				.AddTile(TileID.TinkerersWorkbench)
+				.Register();
+		}
+	}
 }

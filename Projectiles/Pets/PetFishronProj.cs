@@ -7,70 +7,75 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-    public class PetFishronProj : ModProjectile
-    {
-        public override string Texture
-        {
-            get
-            {
-                return "AssortedCrazyThings/Projectiles/Pets/PetFishronProj_0"; //temp
-            }
-        }
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Mini Fishron");
-            Main.projFrames[projectile.type] = 4;
-            Main.projPet[projectile.type] = true;
-        }
+	[Content(ContentType.DroppedPets)]
+	public class PetFishronProj : SimplePetProjBase
+	{
+		public override string Texture
+		{
+			get
+			{
+				return "AssortedCrazyThings/Projectiles/Pets/PetFishronProj_0"; //temp
+			}
+		}
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Mini Fishron");
+			Main.projFrames[Projectile.type] = 8;
+			Main.projPet[Projectile.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            projectile.CloneDefaults(ProjectileID.ZephyrFish);
-            aiType = ProjectileID.ZephyrFish;
-            projectile.width = 48;
-            projectile.height = 32;
-        }
+		public override void SetDefaults()
+		{
+			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+			Projectile.aiStyle = -1;
+			Projectile.width = 48;
+			Projectile.height = 30;
+		}
 
-        public override bool PreAI()
-        {
-            Player player = projectile.GetOwner();
-            player.zephyrfish = false; // Relic from aiType
-            return true;
-        }
+		public override bool PreAI()
+		{
+			Player player = Projectile.GetOwner();
+			player.zephyrfish = false; // Relic from AIType
+			return true;
+		}
 
-        public override void AI()
-        {
-            Player player = projectile.GetOwner();
-            PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
-            if (player.dead)
-            {
-                modPlayer.PetFishron = false;
-            }
-            if (modPlayer.PetFishron)
-            {
-                projectile.timeLeft = 2;
-            }
-            AssAI.TeleportIfTooFar(projectile, player.MountedCenter);
-        }
+		public override void AI()
+		{
+			Player player = Projectile.GetOwner();
+			PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+			if (player.dead)
+			{
+				modPlayer.PetFishron = false;
+			}
+			if (modPlayer.PetFishron)
+			{
+				Projectile.timeLeft = 2;
+			}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            SpriteEffects effects = SpriteEffects.None;
-            if (projectile.spriteDirection != 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            PetPlayer mPlayer = projectile.GetOwner().GetModPlayer<PetPlayer>();
-            Texture2D image = mod.GetTexture("Projectiles/Pets/PetFishronProj_" + mPlayer.petFishronType);
-            Rectangle bounds = new Rectangle();
-            bounds.X = 0;
-            bounds.Width = image.Bounds.Width;
-            bounds.Height = image.Bounds.Height / Main.projFrames[projectile.type];
-            bounds.Y = projectile.frame * bounds.Height;
-            Vector2 stupidOffset = new Vector2(projectile.width * 0.5f, projectile.height * 0.5f - projectile.gfxOffY);
-            spriteBatch.Draw(image, projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, projectile.rotation, bounds.Size() / 2, projectile.scale, effects, 0f);
+			if (!player.active)
+			{
+				Projectile.active = false;
+				return;
+			}
 
-            return false;
-        }
-    }
+			AssAI.ZephyrfishAI(Projectile);
+			AssAI.ZephyrfishDraw(Projectile);
+		}
+
+		public override bool PreDraw(ref Color lightColor)
+		{
+			SpriteEffects effects = SpriteEffects.None;
+			if (Projectile.spriteDirection != 1)
+			{
+				effects = SpriteEffects.FlipHorizontally;
+			}
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetFishronProj_" + mPlayer.petFishronType).Value;
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+			Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - Projectile.gfxOffY);
+			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
+
+			return false;
+		}
+	}
 }

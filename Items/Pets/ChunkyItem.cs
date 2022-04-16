@@ -1,34 +1,26 @@
-using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-    public class ChunkyItem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bottled Chunky");
-            Tooltip.SetDefault("Summons Chunky to follow you");
-        }
+	[Content(ContentType.HostileNPCs)]
+	public class ChunkyItem : SimplePetItemBase
+	{
+		public override int PetType => ModContent.ProjectileType<ChunkySlimeProj>();
 
-        public override void SetDefaults()
-        {
-            item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType<ChunkySlimeProj>();
-            item.buffType = ModContent.BuffType<ChunkySlimeBuff>();
-            item.rare = -11;
-            item.value = Item.sellPrice(copper: 10);
-        }
+		public override int BuffType => ModContent.BuffType<ChunkySlimeBuff>();
 
-        public override void UseStyle(Player player)
-        {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-            {
-                player.AddBuff(item.buffType, 3600, true);
-            }
-        }
-    }
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottled Chunky");
+			Tooltip.SetDefault("Summons Chunky to follow you");
+		}
+
+		public override void SafeSetDefaults()
+		{
+			Item.value = Item.sellPrice(copper: 10);
+		}
+	}
 }

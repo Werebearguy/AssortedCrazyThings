@@ -1,44 +1,36 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-    public class EverburningCandelabra : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Everburning Candelabra");
-            Tooltip.SetDefault("Applies various forms of fire damage to all attacks");
-        }
+	public class EverburningCandelabra : AccessoryBase
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Everburning Candelabra");
+			Tooltip.SetDefault("Applies various forms of fire damage to all attacks");
+		}
 
-        public override void SetDefaults()
-        {
-            item.width = 32;
-            item.height = 36;
-            item.value = Item.sellPrice(gold: 13);
-            item.rare = -11;
-            item.accessory = true;
-        }
+		public override void SafeSetDefaults()
+		{
+			Item.width = 32;
+			Item.height = 32;
+			Item.value = Item.sellPrice(gold: 13);
+			Item.rare = 4;
+		}
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetModPlayer<AssPlayer>().everburningCandleBuff = true;
-            player.GetModPlayer<AssPlayer>().everburningShadowflameCandleBuff = true;
-            player.GetModPlayer<AssPlayer>().everfrozenCandleBuff = true;
-            player.GetModPlayer<AssPlayer>().everburningCursedCandleBuff = true;
-        }
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
+			mPlayer.everburningCandleBuff = true;
+			mPlayer.everburningShadowflameCandleBuff = true;
+			mPlayer.everfrozenCandleBuff = true;
+			mPlayer.everburningCursedCandleBuff = true;
+		}
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, "EverburningCandle");
-            recipe.AddIngredient(mod, "EverburningCursedCandle");
-            recipe.AddIngredient(mod, "EverburningShadowflameCandle");
-            recipe.AddIngredient(mod, "EverfrozenCandle");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-    }
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient<EverburningCandle>().AddIngredient<EverburningCursedCandle>().AddIngredient<EverburningShadowflameCandle>().AddIngredient<EverfrozenCandle>().AddTile(TileID.TinkerersWorkbench).Register();
+		}
+	}
 }

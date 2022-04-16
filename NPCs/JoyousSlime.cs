@@ -1,57 +1,93 @@
+using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-    public class JoyousSlime : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Joyous Slime");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.ToxicSludge];
-        }
+	[Content(ContentType.FriendlyNPCs)]
+	public class JoyousSlime : AssNPC
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Joyous Slime");
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+			Main.npcCatchable[NPC.type] = true;
+		}
 
-        public override void SetDefaults()
-        {
-            npc.width = 36;
-            npc.height = 32;
-            npc.damage = 7;
-            npc.defense = 2;
-            npc.lifeMax = 25;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.knockBackResist = 0.25f;
-            npc.aiStyle = 1;
-            aiType = NPCID.ToxicSludge;
-            animationType = NPCID.ToxicSludge;
-            npc.friendly = true;
-            npc.alpha = 175;
-            npc.color = new Color(169, 141, 255, 100);
-            Main.npcCatchable[mod.NPCType("JoyousSlime")] = true;
-            npc.catchItem = (short)mod.ItemType("JoyousSlimeItem");
-        }
+		public override void SetDefaults()
+		{
+			NPC.width = 36;
+			NPC.height = 32;
+			NPC.damage = 7;
+			NPC.defense = 2;
+			NPC.lifeMax = 25;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.value = 25f;
+			NPC.knockBackResist = 0.25f;
+			NPC.aiStyle = 1;
+			AIType = NPCID.ToxicSludge;
+			AnimationType = NPCID.ToxicSludge;
+			NPC.friendly = true;
+			NPC.dontTakeDamageFromHostiles = true;
+			NPC.alpha = 175;
+			NPC.color = new Color(169, 141, 255, 100);
+			NPC.catchItem = (short)ModContent.ItemType<JoyousSlimeItem>();
+		}
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return SpawnCondition.OverworldDay.Chance * 0.015f;
-        }
+		public override bool? CanBeHitByItem(Player player, Item item)
+		{
+			return null; //TODO NPC return true
+		}
 
-        public override bool? CanBeHitByItem(Player player, Item item)
-        {
-            return true;
-        }
+		public override bool? CanBeHitByProjectile(Projectile projectile)
+		{
+			return !projectile.minion;
+		}
 
-        public override bool? CanBeHitByProjectile(Projectile projectile)
-        {
-            return true;
-        }
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			Color color = NPC.color;
+			if (NPC.life > 0)
+			{
+				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 40; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+				}
+			}
+		}
 
-        public override void NPCLoot()
-        {
-            Item.NewItem(npc.getRect(), ItemID.Gel);
-        }
-    }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			return SpawnCondition.OverworldDay.Chance * 0.015f;
+		}
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.Common(ItemID.Gel));
+		}
+
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			//quickUnlock: true so only 1 kill is required to list everything about it
+			bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type], quickUnlock: true);
+
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+				new FlavorTextBestiaryInfoElement("A passive variant of slime with a friendly face. At night, it tries to be close to an equally friendly face.")
+			});
+		}
+	}
 }
