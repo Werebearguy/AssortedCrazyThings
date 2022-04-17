@@ -2,6 +2,7 @@ using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
@@ -78,25 +79,13 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ModContent.ItemType<DroneParts>()).Register();
+			CreateRecipe(1)
+				.AddIngredient(ModContent.ItemType<DroneParts>())
+				.AddCondition(new Recipe.Condition(NetworkText.FromLiteral("If it isn't unlocked yet"),
+				(Recipe recipe) => !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType)))
+				.Register();
 		}
 	}
-
-	//TODO reimplement
-	//public class DroneRecipe : ModRecipe
-	//{
-	//    public DroneType UnlockedType;
-
-	//    public DroneRecipe(Mod mod, DroneType unlockedType) : base(mod)
-	//    {
-	//        UnlockedType = unlockedType;
-	//    }
-
-	//    public override bool RecipeAvailable()
-	//    {
-	//        return !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType);
-	//    }
-	//}
 
 	public class DroneUnlockableBasicLaserDrone : DroneUnlockable
 	{

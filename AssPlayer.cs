@@ -691,24 +691,6 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-		{
-			DecreaseDroneShield(ref damage);
-
-			ResetEmpoweringTimer();
-
-			SpawnSoulTemp();
-		}
-
-		public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-		{
-			DecreaseDroneShield(ref damage);
-
-			ResetEmpoweringTimer();
-
-			SpawnSoulTemp();
-		}
-
 		public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
 		{
 			if (!Main.rand.NextBool(5)) return;
@@ -773,6 +755,13 @@ namespace AssortedCrazyThings
 			}
 
 			return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
+		}
+
+		public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+		{
+			ResetEmpoweringTimer();
+
+			SpawnSoulTemp();
 		}
 
 		public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)

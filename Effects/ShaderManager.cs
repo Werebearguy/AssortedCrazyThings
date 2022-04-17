@@ -1,6 +1,7 @@
 ﻿using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -69,7 +70,7 @@ namespace AssortedCrazyThings.Effects
 		{
 			if (Main.netMode != NetmodeID.Server)
 			{
-				CircleEffect = AssUtils.Instance.Assets.Request<Effect>("Effects/CircleShader/Circle").Value;
+				CircleEffect = AssUtils.Instance.Assets.Request<Effect>("Effects/CircleShader/Circle", AssetRequestMode.ImmediateLoad).Value;
 			}
 		}
 
