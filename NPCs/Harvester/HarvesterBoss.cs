@@ -146,7 +146,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
-				CustomTexturePath = "AssortedCrazyThings/NPCs/Harvester/Harvester_Bestiary",
+				CustomTexturePath = "AssortedCrazyThings/NPCs/Harvester/HarvesterBoss_Bestiary",
 				Position = new Vector2(-9, 18), //Position on the icon
 				PortraitPositionXOverride = 0, //Position on the portrait when clicked on
 				PortraitPositionYOverride = 20,
