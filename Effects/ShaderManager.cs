@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Effects
 
 		public static void DrawEmptyCanvasToScreen(SpriteBatch spriteBatch)
 		{
-			Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Transparent);
+			spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Transparent);
 		}
 
 		public static void RestoreVanillaSpriteBatchSettings(SpriteBatch spriteBatch)
