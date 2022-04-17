@@ -164,9 +164,9 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 				return;
 			}
 
-			if (AssWorld.downedHarvester || NPC.AnyNPCs(AssortedCrazyThings.harvester))
+			if (!NPC.downedBoss3 || AssWorld.downedHarvester || NPC.AnyNPCs(AssortedCrazyThings.harvester))
 			{
-				//Do not spawn another one if harvester is already slain or alive
+				//Do not spawn if skele isn't slain yet or harvester is already slain or alive
 				return;
 			}
 
