@@ -90,6 +90,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override bool PreDraw(ref Color lightColor)
 		{
+			Main.instance.LoadProjectile(Type);
 			Texture2D image = TextureAssets.Projectile[Type].Value;
 			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
