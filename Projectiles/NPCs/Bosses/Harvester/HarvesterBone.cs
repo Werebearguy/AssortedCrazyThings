@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 
-namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
+namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 {
 	//used in BaseHarvester, same as bone, just applies slow
 	[Content(ContentType.Bosses)]

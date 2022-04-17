@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
+﻿using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Buffs.NPCs.Bosses.DungeonBird
+namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 {
 	[Content(ContentType.Bosses)]
 	public class BabyHarvesterBuff : AssBuff

@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.NPCs.DungeonBird
+namespace AssortedCrazyThings.NPCs.Harvester
 {
 	[Content(ContentType.Bosses)]
 	public abstract class HarvesterTalon : AssNPC
@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 		{
 			get
 			{
-				return "AssortedCrazyThings/NPCs/DungeonBird/HarvesterTalon";
+				return "AssortedCrazyThings/NPCs/Harvester/HarvesterTalon";
 			}
 		}
 
@@ -29,20 +29,23 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 		public const int ChainFrameCount = 6;
 		public const int ChainFrameSpeed = 6;
 		public static Asset<Texture2D> ChainAsset;
+		public static Asset<Texture2D> OutlineAsset;
 
 		public override void Load()
 		{
-			ChainAsset = Mod.Assets.Request<Texture2D>("NPCs/DungeonBird/HarvesterChain");
+			ChainAsset = Mod.Assets.Request<Texture2D>("NPCs/Harvester/HarvesterBossChain");
+			OutlineAsset = ModContent.Request<Texture2D>(Texture + "_Outline");
 		}
 
 		public override void Unload()
 		{
 			ChainAsset = null;
+			OutlineAsset = null;
 		}
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(Harvester.name);
+			DisplayName.SetDefault(HarvesterBoss.name);
 			Main.npcFrameCount[NPC.type] = 1;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -96,7 +99,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 			NPC.width = 40; //38 //latest 40
 			NPC.height = 42; //42//latest 30
 			NPC.aiStyle = -1;
-			NPC.damage = Harvester.talonDamage;
+			NPC.damage = HarvesterBoss.talonDamage;
 			NPC.defense = 28;
 			NPC.lifeMax = 1337;
 			NPC.scale = 1f;
@@ -127,24 +130,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
 		public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
-			if (!HasParent)
+			if (!HasParent || !Visible)
 			{
 				return;
 			}
 
 			NPC body = Main.npc[ParentWhoAmI];
-			Harvester harvester = null;
-
-			if (body.ModNPC is Harvester h)
-			{
-				harvester = h;
-				if (h.AI_State != Harvester.State_Bombing)
-				{
-					return;
-				}
-			}
-
-			if (harvester == null)
+			if (body.ModNPC is not HarvesterBoss harvester)
 			{
 				return;
 			}
@@ -155,7 +147,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 			y -= -harvester.talonOffsetY + 20f; //has to result to 7f
 
 			x += GetOffset(harvester); //66f, -70f
-			x += NPC.spriteDirection * (Harvester.talonDirectionalOffset + 6);
+			x += NPC.spriteDirection * (HarvesterBoss.talonDirectionalOffset + 6);
 
 			SpriteEffects effect = (NPC.spriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
@@ -182,7 +174,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 					y = body.Center.Y - center.Y;
 					y -= -harvester.talonOffsetY + 20f;
 					x += GetOffset(harvester);
-					x += NPC.spriteDirection * (Harvester.talonDirectionalOffset + 0);
+					x += NPC.spriteDirection * (HarvesterBoss.talonDirectionalOffset + 0);
 
 					if (Main.rand.NextBool(8))
 					{
@@ -198,8 +190,39 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 				}
 			}
 
+			texture = OutlineAsset.Value;
+
+			int spriteOffset = -NPC.spriteDirection * HarvesterBoss.talonDirectionalOffset;
+			Vector2 drawPos = NPC.Center - screenPos + new Vector2(spriteOffset, NPC.gfxOffY);
+			Color color = new Color(195, 247, 255);
+
+			int fadeIn = 10;
+			int fadeDuration = 10;
+			int fadeOut = 12;
+			int finalTime = fadeIn + fadeDuration;
+			if (OutlineFadeTimer < fadeIn)
+			{
+				color *= (float)OutlineFadeTimer / fadeIn;
+			}
+			else if (OutlineFadeTimer > finalTime)
+			{
+				int fadeOutTimer = OutlineFadeTimer - finalTime;
+				if (fadeOutTimer < fadeOut)
+				{
+					color *= 1f - (float)fadeOutTimer / fadeOut;
+				}
+				else
+				{
+					color *= 0f;
+				}
+			}
+
+			spriteBatch.Draw(texture, drawPos + new Vector2(0, 0.5f), NPC.frame, color, NPC.rotation, texture.Size() / 2, NPC.scale, effect, 0f);
+
+			Main.instance.LoadNPC(NPC.type);
 			texture = TextureAssets.Npc[NPC.type].Value;
-			spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY), NPC.frame, NPC.GetAlpha(drawColor), 0f, texture.Size() / 2, 1f, effect, 0f);
+			color = NPC.GetAlpha(drawColor);
+			spriteBatch.Draw(texture, drawPos, NPC.frame, color, NPC.rotation, texture.Size() / 2, NPC.scale, effect, 0f);
 		}
 
 		public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -229,6 +252,26 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 		{
 			get => NPC.localAI[0] == 0f;
 			set => NPC.localAI[0] = value ? 0f : 1f;
+		}
+
+		public bool LastTickVisible
+		{
+			get => NPC.localAI[1] == 1f;
+			set => NPC.localAI[1] = value ? 1f : 0f;
+		}
+
+		public bool CurrentTickVisible
+		{
+			get => NPC.localAI[2] == 1f;
+			set => NPC.localAI[2] = value ? 1f : 0f;
+		}
+
+		public bool Visible => LastTickVisible && CurrentTickVisible;
+
+		public int OutlineFadeTimer
+		{
+			get => (int)NPC.localAI[3];
+			set => NPC.localAI[3] = value;
 		}
 
 		public override bool CheckDead()
@@ -262,11 +305,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 				return;
 			}
 
-			Harvester harvester = body.ModNPC as Harvester;
+			HarvesterBoss harvester = body.ModNPC as HarvesterBoss;
 
 			NPC.target = body.target;
 			if (NPC.target < 0 || NPC.target >= Main.maxPlayers) return;
 			Player target = Main.player[NPC.target];
+
+			CheckVisible(harvester);
 
 			NPC.gfxOffY = body.gfxOffY;
 			NPC.spriteDirection = body.spriteDirection;
@@ -330,7 +375,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 				betweenSelfAndBodyX += GetOffset(harvester);
 				float len = (float)Math.Sqrt(betweenSelfAndBodyX * betweenSelfAndBodyX + betweenSelfAndBodyY * betweenSelfAndBodyY);
 				float somevar = 12f;
-				if (len < somevar + speed && harvester.AI_State == Harvester.State_Bombing)
+				if (len < somevar + speed && harvester.AI_State == HarvesterBoss.State_Bombing)
 				{
 					RetractCounter = 0f;
 					NPC.velocity.X = betweenSelfAndBodyX;
@@ -481,7 +526,22 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 			}
 		}
 
-		private float GetOffset(Harvester harvester)
+		private void CheckVisible(HarvesterBoss harvester)
+		{
+			CurrentTickVisible = LastTickVisible;
+			LastTickVisible = harvester.AI_Animation == HarvesterBoss.Animation_Bombing;
+
+			if (Visible)
+			{
+				OutlineFadeTimer++;
+			}
+			else
+			{
+				OutlineFadeTimer = 0;
+			}
+		}
+
+		private float GetOffset(HarvesterBoss harvester)
 		{
 			return RightTalon ? harvester.talonOffsetRightX : harvester.talonOffsetLeftX;
 		}

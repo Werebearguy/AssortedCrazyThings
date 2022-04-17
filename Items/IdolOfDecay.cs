@@ -1,5 +1,5 @@
-using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Terraria;
 using Terraria.ID;
 
@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Idol Of Decay");
-			Tooltip.SetDefault("Summons " + Harvester.name + "'s final form in the dungeon"
+			Tooltip.SetDefault("Summons " + HarvesterBoss.name + "'s final form in the dungeon"
 				+ "\nUnlimited uses!");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

@@ -1,14 +1,14 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.NPCs;
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
+namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 {
 	[Content(ContentType.Bosses)]
 	public class BabyHarvesterHandler : AssSystem
@@ -179,7 +179,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 				{
 					//AssUtils.Print(Main.time + " spawning harvester");
 					BabyHarvesterProj.Spawn(player);
-					AssWorld.Message("You hear a faint cawing from the dungeon.", Harvester.deathColor);
+					AssWorld.Message("You hear a faint cawing from the dungeon.", HarvesterBoss.deathColor);
 
 					break;
 				}

@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.NPCs.DungeonBird
+namespace AssortedCrazyThings.NPCs.Harvester
 {
 	//this class also contains the NPC classes at the very bottom
 	[Content(ContentType.Bosses)]

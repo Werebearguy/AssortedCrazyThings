@@ -1,4 +1,4 @@
-﻿using AssortedCrazyThings.NPCs.DungeonBird;
+﻿using AssortedCrazyThings.NPCs.Harvester;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.BossBars
 			lifePercent = Utils.Clamp(npc.life / (float)npc.lifeMax, 0f, 1f);
 			shieldPercent = 0f;
 
-			if (npc.ModNPC is Harvester harvester)
+			if (npc.ModNPC is HarvesterBoss harvester)
 			{
 				if (!harvester.IsReviving)
 				{
@@ -45,8 +45,8 @@ namespace AssortedCrazyThings.BossBars
 				lifePercent = 0f;
 
 				var stats = harvester.GetAIStats();
-				shieldPercent = Utils.Clamp(harvester.ReviveProgress / Harvester.Revive_Duration, 0f, 1f);
-				shieldPercent = Utils.Remap(shieldPercent, 0f, 1f, Harvester.Revive_MinHP, stats.MaxHP);
+				shieldPercent = Utils.Clamp(harvester.ReviveProgress / HarvesterBoss.Revive_Duration, 0f, 1f);
+				shieldPercent = Utils.Remap(shieldPercent, 0f, 1f, HarvesterBoss.Revive_MinHP, stats.MaxHP);
 			}
 
 			return true;

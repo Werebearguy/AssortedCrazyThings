@@ -1,5 +1,5 @@
-using AssortedCrazyThings.NPCs.DungeonBird;
-using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Items
 		{
 			DisplayName.SetDefault("Loose Dungeon Soul");
 			Tooltip.SetDefault("'An inert soul caught by a net'"
-				+ "\nAwakened in your inventory when " + Harvester.name + " is defeated");
+				+ "\nAwakened in your inventory when " + HarvesterBoss.name + " is defeated");
 			// ticksperframe, frameCount
 			//Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;

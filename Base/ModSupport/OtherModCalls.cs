@@ -4,7 +4,7 @@ using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
@@ -36,8 +36,6 @@ namespace AssortedCrazyThings.Base.ModSupport
 
 						int summonItem = ModContent.ItemType<IdolOfDecay>();
 
-						//TODO harvester, include 15 x ModContent.ItemType<CaughtDungeonSoulFreed>() in loot but dont spawn it
-
 						/*
 						 * "AddBoss",
 							args[1] as Mod, // Mod
@@ -55,7 +53,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 						bossChecklist.Call(
 							"AddBoss",
 							Mod,
-							Harvester.name,
+							HarvesterBoss.name,
 							AssortedCrazyThings.harvester,
 							5.1f,
 							(Func<bool>)(() => AssWorld.downedHarvester),

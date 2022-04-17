@@ -8,7 +8,7 @@ using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.NPCs.DropConditions;
 using AssortedCrazyThings.NPCs.DropRules;
-using AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -25,11 +25,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AssortedCrazyThings.NPCs.DungeonBird
+namespace AssortedCrazyThings.NPCs.Harvester
 {
 	[AutoloadBossHead]
 	[Content(ContentType.Bosses)]
-	public class Harvester : AssNPC
+	[LegacyName("Harvester")]
+	public class HarvesterBoss : AssNPC
 	{
 		public class AIStats
 		{
@@ -145,7 +146,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
-				CustomTexturePath = "AssortedCrazyThings/NPCs/DungeonBird/Harvester_Bestiary",
+				CustomTexturePath = "AssortedCrazyThings/NPCs/Harvester/Harvester_Bestiary",
 				Position = new Vector2(-9, 18), //Position on the icon
 				PortraitPositionXOverride = 0, //Position on the portrait when clicked on
 				PortraitPositionYOverride = 20,
@@ -1191,6 +1192,13 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 					if (AI_Timer < 0)
 					{
 						AI_Timer--;
+
+						if (!keepSwooping)
+						{
+							//Last seek stage before bombing: put talons out
+							AI_Animation = Animation_Bombing;
+						}
+
 						float swoopPostTime = aiStats.SwoopWaitTime * lifeRatioClamped;
 						if (AI_Timer < -swoopPostTime)
 						{

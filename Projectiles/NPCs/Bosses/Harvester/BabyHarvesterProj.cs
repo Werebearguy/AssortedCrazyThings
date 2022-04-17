@@ -1,6 +1,6 @@
 using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Buffs.NPCs.Bosses.DungeonBird;
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester;
+using AssortedCrazyThings.NPCs.Harvester;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -14,7 +14,7 @@ using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
+namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 {
 	//This projectile represents all 3 stages of the pre-harvester boss encounter
 	[Content(ContentType.Bosses)]
@@ -736,16 +736,16 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
 						{
 							int yOffset = 62; //Manually adjusted
 							int index = NPC.NewNPC(new EntitySource_BossSpawn(Player), (int)Projectile.Center.X, (int)Projectile.Center.Y + yOffset, type);
-							if (index < Main.maxNPCs && Main.npc[index] is NPC npc && npc.ModNPC is Harvester harvester)
+							if (index < Main.maxNPCs && Main.npc[index] is NPC npc && npc.ModNPC is HarvesterBoss harvester)
 							{
-								harvester.AI_State = Harvester.State_SpawnedByBaby;
+								harvester.AI_State = HarvesterBoss.State_SpawnedByBaby;
 								if (Main.netMode == NetmodeID.Server)
 								{
 									NetMessage.SendData(MessageID.SyncNPC, number: index);
 								}
 							}
 
-							AssWorld.AwakeningMessage(Harvester.name + " has been awakened!");
+							AssWorld.AwakeningMessage(HarvesterBoss.name + " has been awakened!");
 						}
 
 						Projectile.Kill();

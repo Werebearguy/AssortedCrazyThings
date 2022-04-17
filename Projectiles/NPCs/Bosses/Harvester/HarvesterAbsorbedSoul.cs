@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.DungeonBird
+namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 {
 	[Content(ContentType.Bosses)]
 	public class HarvesterAbsorbedSoul : AssProjectile

@@ -2,7 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -122,7 +122,7 @@ namespace AssortedCrazyThings
 				return;
 			}
 
-			harvester = ModContent.NPCType<Harvester>();
+			harvester = ModContent.NPCType<HarvesterBoss>();
 			harvesterTalonLeft = ModContent.NPCType<HarvesterTalonLeft>();
 			harvesterTalonRight = ModContent.NPCType<HarvesterTalonRight>();
 		}

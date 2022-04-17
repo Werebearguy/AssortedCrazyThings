@@ -1,4 +1,4 @@
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
 using Terraria;
 using Terraria.ID;
 
@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Freed Dungeon Soul");
-			Tooltip.SetDefault("Awakened by defeating the " + Harvester.name);
+			Tooltip.SetDefault("Awakened by defeating the " + HarvesterBoss.name);
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 

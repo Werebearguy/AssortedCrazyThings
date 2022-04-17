@@ -1,5 +1,5 @@
 ﻿using AssortedCrazyThings.NPCs;
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;

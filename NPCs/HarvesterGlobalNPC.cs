@@ -1,4 +1,4 @@
-using AssortedCrazyThings.NPCs.DungeonBird;
+using AssortedCrazyThings.NPCs.Harvester;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
