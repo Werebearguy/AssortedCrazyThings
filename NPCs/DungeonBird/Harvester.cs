@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 		public const int FrameWidth = 314; //Old sprite 470
 		public const int FrameHeight = 196; //Old sprite 254
 
-		public readonly static int talonDamage = 24;
+		public readonly static int talonDamage = 36;
 		public readonly static int wid = 96;
 		public readonly static int hei = 96;
 
@@ -915,25 +915,42 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 			return talons;
 		}
 
+		bool lastEnraged = false;
+
 		private void HandleAI(Player target, List<HarvesterTalon> talons)
 		{
 			float lifeRatio = NPC.life / (float)NPC.lifeMax;
 			var aiStats = GetAIStats();
 
-			if (AI_State == State_Fireball || aiStats.AlwaysShootFireballs)
+			bool enraged = !BabyHarvesterHandler.ValidPlayer(target); //This is delayed as per method, but player won't see it coming
+			if (enraged && !lastEnraged)
+			{
+				SoundEngine.PlaySound(SoundID.Roar, (int)NPC.Center.X, (int)NPC.Center.Y, 0);
+			}
+			lastEnraged = enraged;
+
+			if (AI_State == State_Fireball || aiStats.AlwaysShootFireballs || enraged)
 			{
 				//Generate souls in a half circle above the boss and have them home to whatever the nearest player to them is
 				FireballTimer++;
-				if (FireballTimer % aiStats.FireballInterval == 0)
+				int fireballInterval = aiStats.FireballInterval;
+				float fireballSpeed = aiStats.FireballSpeed;
+				if (enraged)
+				{
+					fireballInterval /= 3;
+					fireballSpeed *= 1.5f;
+				}
+
+				if (FireballTimer % fireballInterval == 0)
 				{
 					if (Main.netMode != NetmodeID.MultiplayerClient)
 					{
 						Vector2 random = (-Vector2.UnitY).RotatedByRandom(MathHelper.PiOver2) * 160;
 						Vector2 pos = NPC.Center + random;
 						Vector2 toPlayer = target.DirectionFrom(pos);
-						int damage = (int)(NPC.damage * 0.70f);
+						int damage = (int)((NPC.damage / (float)NPC.defDamage) * 16); //Fixed damage based on default
 						damage = NPC.GetAttackDamage_ForProjectiles(damage, damage * 0.33f); //To compensate expert mode NPC damage + projectile damage increase
-						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer, aiStats.FireballSpeed);
+						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer, fireballSpeed);
 					}
 				}
 			}
@@ -1559,7 +1576,7 @@ namespace AssortedCrazyThings.NPCs.DungeonBird
 				return;
 			}
 
-			//Gore 5 is a broken rib. For use when entering its damaged phase.
+			//Gore 5 is a broken rib. For use when reviving
 
 			if (NPC.life <= 0 && !NPC.active) //!active is important due to CheckDead shenanigans
 			{
