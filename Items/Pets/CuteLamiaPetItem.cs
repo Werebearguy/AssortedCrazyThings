@@ -15,7 +15,8 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shaking Snake Pot");
-			Tooltip.SetDefault("Summons a small, friendly snake to follow you");
+			Tooltip.SetDefault("Summons a small, friendly snake to follow you"
+				+ "\nAppearance can be changed with Costume Suitcase");
 		}
 
 		public override void SafeSetDefaults()

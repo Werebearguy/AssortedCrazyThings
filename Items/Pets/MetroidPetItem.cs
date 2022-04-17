@@ -15,7 +15,8 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Parasite Container");
-			Tooltip.SetDefault("Summons a space parasite to follow you");
+			Tooltip.SetDefault("Summons a space parasite to follow you"
+				+ "\nAppearance can be changed with Costume Suitcase");
 		}
 
 		public override void SafeSetDefaults()

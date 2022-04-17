@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override void SafeSetDefaults()
 		{
 			DisplayName.SetDefault("Anomalocaris");
-			Description.SetDefault("A little Anomalocaris is following you");
+			Description.SetDefault("A little prehistoric shrimp is following you");
 		}
 	}
 }

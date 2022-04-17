@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ornery Shrimp");
-			Tooltip.SetDefault("Summons an Anomalocaris to follow you"
+			Tooltip.SetDefault("Summons a prehistoric shrimp to follow you"
 				+ "\nAppearance can be changed with Costume Suitcase");
 		}
 
