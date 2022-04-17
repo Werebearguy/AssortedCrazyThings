@@ -13,6 +13,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
 	public class TorchGodLightPetProj : SimplePetProjBase
 	{
 		private static Asset<Texture2D> flameAsset;
