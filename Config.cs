@@ -60,7 +60,7 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Pets that are crafted or sold - This does not include NPCs caught as pets!")]
+		[Tooltip("Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!")]
 		[Label("Other Pets")]
 		public bool OtherPets { get; set; }
 
