@@ -54,7 +54,11 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return spawnInfo.Player.ZoneGraveyard ? 0.15f : 0f; //TODO adjust
+#if TML_2022_03
+			return spawnInfo.player.ZoneGraveyard ? 0.15f : 0f;
+#else
+			return spawnInfo.Player.ZoneGraveyard ? 0.15f : 0f;
+#endif
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

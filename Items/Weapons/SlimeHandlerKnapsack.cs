@@ -76,7 +76,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.buffType = ModContent.BuffType<SlimePackMinionBuff>();
 		}
 
+#if TML_2022_03
+		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
+#else
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
+#endif
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 			if (mPlayer.selectedSlimePackMinionType == 2)
@@ -85,7 +89,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			}
 		}
 
+#if TML_2022_03
+		public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+#else
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+#endif
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 			if (mPlayer.selectedSlimePackMinionType == 2)

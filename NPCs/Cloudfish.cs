@@ -47,10 +47,17 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
+#if TML_2022_03
+			if (spawnInfo.player.ZoneSkyHeight)
+			{
+				int x = spawnInfo.spawnTileX;
+				int y = spawnInfo.spawnTileY;
+#else
 			if (spawnInfo.Player.ZoneSkyHeight)
 			{
 				int x = spawnInfo.SpawnTileX;
 				int y = spawnInfo.SpawnTileY;
+#endif
 				if (Main.tile[x, y].LiquidAmount == 0)
 				{
 					return 0f;

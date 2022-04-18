@@ -283,7 +283,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.buffType = ModContent.BuffType<DroneControllerBuff>();
 		}
 
+#if TML_2022_03
+		public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+#else
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+#endif
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -291,7 +295,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			damage += GetDroneData(selected).DmgModifier;
 		}
 
+#if TML_2022_03
+		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
+#else
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
+#endif
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -346,6 +354,25 @@ namespace AssortedCrazyThings.Items.Weapons
 			for (int i = 0; i < tooltips.Count; i++)
 			{
 				TooltipLine line = tooltips[i];
+#if TML_2022_03
+				if (hasController)
+				{
+					if (line.mod == "Terraria" && line.Name == "ItemName")
+					{
+						line.text += " (" + data.Name + ")";
+					}
+				}
+
+				if (line.mod == "Terraria" && line.Name == "Damage")
+				{
+					damageIndex = i;
+				}
+
+				if (line.mod == "Terraria" && line.Name == "Knockback")
+				{
+					knockbackIndex = i;
+				}
+#else
 				if (hasController)
 				{
 					if (line.Mod == "Terraria" && line.Name == "ItemName")
@@ -363,6 +390,7 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					knockbackIndex = i;
 				}
+#endif
 			}
 
 			if (damageIndex > -1)

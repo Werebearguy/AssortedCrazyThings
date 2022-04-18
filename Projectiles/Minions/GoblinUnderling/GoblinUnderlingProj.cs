@@ -286,7 +286,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 			StatModifier allDamage = player.GetDamage(DamageClass.Generic);
 
+#if TML_2022_03
+			Projectile.damage = (int)(originalDamage * (float)allDamage.CombineWith(tieredSummoner));
+#else
 			Projectile.damage = (int)allDamage.CombineWith(tieredSummoner).ApplyTo(originalDamage);
+#endif
 		}
 
 		private Vector2 GetIdleLocation(Player player)

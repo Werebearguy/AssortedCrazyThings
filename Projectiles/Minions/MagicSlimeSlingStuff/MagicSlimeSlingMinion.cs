@@ -72,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
 		public override void SafeSetDefaults()
 		{
-			Projectile.width = 24;
+			Projectile.width = 14;
 			Projectile.height = 18;
 
 			Projectile.DamageType = DamageClass.Summon;
@@ -81,7 +81,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			Projectile.timeLeft = TimeLeft;
 
 			DrawOriginOffsetY = 3;
-			DrawOffsetX = 0;
+			DrawOffsetX = -4;
 		}
 
 		public override void SendExtraAI(BinaryWriter writer)

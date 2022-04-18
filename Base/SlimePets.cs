@@ -114,12 +114,17 @@ namespace AssortedCrazyThings.Base
 		public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
 		{
 			//AssUtils.Print("spawn chance at " + (Main.netMode == NetmodeID.Server ? "Server" : "Client"));
-			float spawnChance = GetSpawnChance(spawnInfo.Player, type) * customFactor;
+#if TML_2022_03
+			Player player = spawnInfo.player;
+#else
+			Player player = spawnInfo.Player;
+#endif
+			float spawnChance = GetSpawnChance(player, type) * customFactor;
 			if (AssUtils.AnyNPCs(x => x.ModNPC is CuteSlimeBaseNPC)) spawnChance *= 0.5f;
 			//AssUtils.Print(spawnChance);
 			if (ContentConfig.Instance.CuteSlimesPotionOnly)
 			{
-				if (spawnInfo.Player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
+				if (player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
 				{
 					//if flag active and potion, spawn normally
 					//AssUtils.Print("potiononly and has potion");
@@ -131,7 +136,7 @@ namespace AssortedCrazyThings.Base
 			}
 			else
 			{
-				if (spawnInfo.Player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
+				if (player.GetModPlayer<AssPlayer>().cuteSlimeSpawnEnable)
 				{
 					//if no flag and potion active, spawn with higher chance
 					//AssUtils.Print("no potiononly and has potion");

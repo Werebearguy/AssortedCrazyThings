@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			if (proj.ModProjectile is MagicSlimeSlingMinionBase minion)
 			{
 				minion.ColorType = ColorType;
-				//ActualColor won't be synced, its assigned in send/recv 
+				//Color won't be synced, its assigned in send/recv 
 				minion.Color = MagicSlimeSling.GetColor(minion.ColorType);
 			}
 		}
@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			//Projectile.minion = true;
 			Projectile.friendly = true;
 			Projectile.minionSlots = 0f;
-			Projectile.width = 16;
+			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = 1;

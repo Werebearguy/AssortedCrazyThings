@@ -530,8 +530,11 @@ namespace AssortedCrazyThings.Base
 		{
 			if (spawnSource is EntitySource_ItemUse itemUseSource && itemUseSource.Entity is Player player)
 			{
+#if TML_2022_03
+#else
 				projectile.CritChance += player.GetWeaponCrit(itemUseSource.Item);
 				projectile.ArmorPenetration += player.GetWeaponArmorPenetration(itemUseSource.Item);
+#endif
 			}
 		}
 

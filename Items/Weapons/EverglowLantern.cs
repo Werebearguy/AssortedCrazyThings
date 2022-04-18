@@ -73,12 +73,20 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			foreach (TooltipLine line2 in tooltips)
 			{
+#if TML_2022_03
+				if (line2.mod == "Terraria" && line2.Name == "Damage")
+#else
 				if (line2.Mod == "Terraria" && line2.Name == "Damage")
+#endif
 				{
 					try //try catch in case some other mods modify it
 					{
 						//split string up into words
+#if TML_2022_03
+						newDamage = line2.text.Split(new string[] { " " }, 10, StringSplitOptions.RemoveEmptyEntries);
+#else
 						newDamage = line2.Text.Split(new string[] { " " }, 10, StringSplitOptions.RemoveEmptyEntries);
+#endif
 
 						//rebuild text string and add "x 2" after the damage number
 						tempString = newDamage[0] + " x 2";
@@ -88,8 +96,11 @@ namespace AssortedCrazyThings.Items.Weapons
 						{
 							tempString += " " + newDamage[i];
 						}
-
+#if TML_2022_03
+						line2.text = tempString;
+#else
 						line2.Text = tempString;
+#endif
 					}
 					catch (Exception)
 					{
