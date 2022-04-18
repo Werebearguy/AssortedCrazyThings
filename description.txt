@@ -1,6 +1,4 @@
 Welcome to Assorted Crazy Things!
-----NOTE----
- - This mod will not work on the Stable tml build just yet, it will be live at the start of May 2022. 
 
 Assorted Crazy Things (or ACT for short) is a mod that adds... an assortment of crazy things! We've got a lot of content, most of which is incredibly unobtrusive to the game. Care has been taken to make sure that sprites, coding, and content are all satisfying, and we absolutely want to keep everything running smoothly. Our mod contains pets, fun weapons, an armor set, one boss, a bunch of accessories, and a few mechanics that will surprise you. Likewise, we have two configurations; one for client, and the other for server. We made sure it's modular so that if you don't like one of the things added by the mod, you can simply turn it off! We both understand that the contents of the mod may not be to everyone's taste, and we made sure that you have the option to exclude it if you want other parts of the mod. Be sure to check Workshop -> Manage Mods -> Gear icon next to ACT to check the toggles.
 
