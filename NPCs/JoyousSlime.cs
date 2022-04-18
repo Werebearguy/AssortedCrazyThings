@@ -17,6 +17,7 @@ namespace AssortedCrazyThings.NPCs
 			DisplayName.SetDefault("Joyous Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
+			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
 		public override void SetDefaults()
@@ -33,7 +34,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
-			NPC.friendly = true;
+			NPC.friendly = false;
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.alpha = 175;
 			NPC.color = new Color(169, 141, 255, 100);
@@ -47,7 +48,11 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
 		{
-			return !projectile.minion;
+			if (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+			{
+				return false;
+			}
+			return true;
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

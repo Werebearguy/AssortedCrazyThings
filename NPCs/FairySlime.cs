@@ -17,6 +17,7 @@ namespace AssortedCrazyThings.NPCs
 			DisplayName.SetDefault("Fairy Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
+			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
 		public override void SetDefaults()
@@ -47,7 +48,11 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
 		{
-			return !projectile.minion;
+			if (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+			{
+				return false;
+			}
+			return true;
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

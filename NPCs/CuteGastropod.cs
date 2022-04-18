@@ -46,7 +46,11 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
 		{
-			return !projectile.minion;
+			if (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+			{
+				return false;
+			}
+			return true;
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

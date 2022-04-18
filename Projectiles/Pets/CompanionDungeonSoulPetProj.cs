@@ -20,6 +20,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		protected abstract ref bool GetBool(PetPlayer petPlayer);
 
+		protected abstract int GetOtherProj(Player player);
+
 		public virtual bool ReverseSide => false;
 
 		public override void Load()
@@ -92,7 +94,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 
-				AssAI.FlickerwickPetAI(Projectile, reverseSide: ReverseSide);
+				bool reverseSide = ReverseSide;
+				int otherProj = GetOtherProj(player);
+				bool staticDirection = player.ownedProjectileCounts[otherProj] > 0; //Do not swap sides if both are summoned
+
+				AssAI.FlickerwickPetAI(Projectile, staticDirection: staticDirection, reverseSide: reverseSide);
 
 				AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 7);
 
@@ -150,6 +156,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return ref petPlayer.SoulLightPet;
 		}
 
+		protected override int GetOtherProj(Player player)
+		{
+			return ModContent.ProjectileType<CompanionDungeonSoulPetProj2>();
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -165,6 +176,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		protected override ref bool GetBool(PetPlayer petPlayer)
 		{
 			return ref petPlayer.SoulLightPet2;
+		}
+
+		protected override int GetOtherProj(Player player)
+		{
+			return ModContent.ProjectileType<CompanionDungeonSoulPetProj>();
 		}
 
 		public override bool ReverseSide => true;
