@@ -11,7 +11,8 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Breath of Spazmatism");
-			Tooltip.SetDefault("Uses gel to fire a stream of cursed flames");
+			Tooltip.SetDefault("Uses gel to fire a stream of cursed flames"+
+				"\n80% chance to not consume ammo");
 		}
 
 		public override void SetDefaults()
