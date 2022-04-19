@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
-			NPC.friendly = false;
+			NPC.friendly = true;
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.alpha = 175;
 			NPC.color = new Color(169, 141, 255, 100);
