@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -48,10 +49,12 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
 		{
-			if (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+			if (!projectile.GetOwner().CanNPCBeHitByPlayerOrPlayerProjectile(NPC, projectile))
 			{
 				return false;
 			}
+
+			//This logic is distinct from vanilla, as we return true and not null
 			return true;
 		}
 
