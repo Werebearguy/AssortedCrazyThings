@@ -230,8 +230,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				right = true;
 			}
 
-			int totalOffset = initialOffset + directionalOffset;
-			if (Projectile.HandleStuck(player.Center.X + totalOffset, ref stuckTimer, StuckTimerMax))
+			float totalOffset = player.direction * initialOffset + directionalOffset;
+			if (Projectile.HandleStuck(player.Center.X - totalOffset, ref stuckTimer, StuckTimerMax))
 			{
 				Projectile.ai[0] = 1f;
 				Projectile.tileCollide = false;
