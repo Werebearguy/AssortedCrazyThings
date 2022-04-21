@@ -113,6 +113,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					{
 						scaleFactor10 = 1f;
 					}
+#if TML_2022_03
 					Gore gore = Main.gore[Gore.NewGore(Projectile.Center - new Vector2(24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
 					gore.velocity *= scaleFactor10;
 					gore.velocity.X += 1f;
@@ -129,6 +130,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					gore.velocity *= scaleFactor10;
 					gore.velocity.X += -1f;
 					gore.velocity.Y += -1f;
+#else
+					var entitySource = Projectile.GetSource_FromAI();
+					Gore gore = Main.gore[Gore.NewGore(entitySource, Projectile.Center - new Vector2(24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+					gore.velocity *= scaleFactor10;
+					gore.velocity.X += 1f;
+					gore.velocity.Y += 1f;
+					gore = Main.gore[Gore.NewGore(entitySource, Projectile.Center - new Vector2(24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+					gore.velocity *= scaleFactor10;
+					gore.velocity.X += -1f;
+					gore.velocity.Y += 1f;
+					gore = Main.gore[Gore.NewGore(entitySource, Projectile.Center - new Vector2(24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+					gore.velocity *= scaleFactor10;
+					gore.velocity.X += 1f;
+					gore.velocity.Y += -1f;
+					gore = Main.gore[Gore.NewGore(entitySource, Projectile.Center - new Vector2(24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+					gore.velocity *= scaleFactor10;
+					gore.velocity.X += -1f;
+					gore.velocity.Y += -1f;
+#endif
 				}
 			}
 

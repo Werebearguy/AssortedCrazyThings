@@ -92,6 +92,7 @@ namespace AssortedCrazyThings.NPCs
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
 				}
 
+#if TML_2022_03
 				switch ((int)AiTexture)//switch ((int)npc.altTexture)
 				{
 					case 0:
@@ -105,6 +106,22 @@ namespace AssortedCrazyThings.NPCs
 					default:
 						break;
 				}
+#else
+				var entitySource = NPC.GetSource_Death();
+				switch ((int)AiTexture)//switch ((int)npc.altTexture)
+				{
+					case 0:
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyeGreenGore").Type, 1f);
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyeGreenGore").Type, 1f);
+						break;
+					case 1:
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyePurpleGore").Type, 1f);
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("WanderingEyePurpleGore").Type, 1f);
+						break;
+					default:
+						break;
+				}
+#endif
 			}
 		}
 

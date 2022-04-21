@@ -543,7 +543,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 										velo.Y *= 1f + Main.rand.Next(-40, 41) * 0.02f;
 										velo.Normalize();
 										velo *= 3f + Main.rand.Next(-40, 41) * 0.01f;
+#if TML_2022_03
 										Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Bottom.Y - 8f, velo.X, velo.Y, ModContent.ProjectileType<SlimePackMinionSpike>(), Projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
+#else
+										Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Bottom.Y - 8f, velo.X, velo.Y, ModContent.ProjectileType<SlimePackMinionSpike>(), Projectile.damage / 2, 0f, Main.myPlayer, ai1: PickedTexture);
+#endif
 										ShootTimer = (byte)(PickedTexture * 3);
 									}
 								}

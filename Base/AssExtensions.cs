@@ -96,7 +96,11 @@ namespace AssortedCrazyThings.Base
 
 			if (player.whoAmI == Main.myPlayer)
 			{
+#if TML_2022_03
 				Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2), petProjID, 0, 0f, player.whoAmI);
+#else
+				Projectile.NewProjectile(player.GetSource_Buff(buffIndex), player.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2), petProjID, 0, 0f, player.whoAmI);
+#endif
 			}
 		}
 

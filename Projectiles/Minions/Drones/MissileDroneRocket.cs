@@ -95,6 +95,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 				{
 					scaleFactor10 = 1f;
 				}
+#if TML_2022_03
 				Gore gore = Main.gore[Gore.NewGore(new Vector2(Projectile.position.X + (float)(Projectile.width / 2) - 24f, Projectile.position.Y + (float)(Projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
 				gore.velocity *= scaleFactor10;
 				gore.velocity.X += 1f;
@@ -111,6 +112,25 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 				gore.velocity *= scaleFactor10;
 				gore.velocity.X += -1f;
 				gore.velocity.Y += -1f;
+#else
+				var entitySource = Projectile.GetSource_FromAI();
+				Gore gore = Main.gore[Gore.NewGore(entitySource, new Vector2(Projectile.position.X + (float)(Projectile.width / 2) - 24f, Projectile.position.Y + (float)(Projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+				gore.velocity *= scaleFactor10;
+				gore.velocity.X += 1f;
+				gore.velocity.Y += 1f;
+				gore = Main.gore[Gore.NewGore(entitySource, new Vector2(Projectile.position.X + (float)(Projectile.width / 2) - 24f, Projectile.position.Y + (float)(Projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+				gore.velocity *= scaleFactor10;
+				gore.velocity.X += -1f;
+				gore.velocity.Y += 1f;
+				gore = Main.gore[Gore.NewGore(entitySource, new Vector2(Projectile.position.X + (float)(Projectile.width / 2) - 24f, Projectile.position.Y + (float)(Projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+				gore.velocity *= scaleFactor10;
+				gore.velocity.X += 1f;
+				gore.velocity.Y += -1f;
+				gore = Main.gore[Gore.NewGore(entitySource, new Vector2(Projectile.position.X + (float)(Projectile.width / 2) - 24f, Projectile.position.Y + (float)(Projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f)];
+				gore.velocity *= scaleFactor10;
+				gore.velocity.X += -1f;
+				gore.velocity.Y += -1f;
+#endif
 			}
 			Projectile.position.X = Projectile.position.X + Projectile.width / 2;
 			Projectile.position.Y = Projectile.position.Y + Projectile.height / 2;

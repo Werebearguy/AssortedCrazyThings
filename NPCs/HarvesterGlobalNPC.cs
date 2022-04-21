@@ -26,7 +26,11 @@ namespace AssortedCrazyThings.NPCs
 				if (npc.type != soulType)
 				{
 					//NewNPC starts looking for the first !active from 0 to 200
+#if TML_2022_03
 					int soulID = NPC.NewNPC(npc.GetSpawnSource_NPCHurt(), (int)npc.Center.X, (int)npc.Top.Y + DungeonSoulBase.hei / 2, soulType);
+#else
+					int soulID = NPC.NewNPC(npc.GetSource_Death(), (int)npc.Center.X, (int)npc.Top.Y + DungeonSoulBase.hei / 2, soulType);
+#endif
 					if (Main.netMode == NetmodeID.Server)
 					{
 						NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, soulID);

@@ -602,7 +602,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 								AssUtils.ModifyVelocityForGravity(position, targetPos, GoblinUnderlingDart.Gravity, ref vector, GoblinUnderlingDart.TicksWithoutGravity);
 							}
 
+#if TML_2022_03
 							Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), position, vector, tier.rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);
+#else
+							Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, vector, tier.rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);
+#endif
 						}
 					}
 				}

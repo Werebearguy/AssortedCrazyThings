@@ -71,7 +71,11 @@ namespace AssortedCrazyThings.NPCs
 		{
 			if (Main.rand.NextBool(10))
 			{
+#if TML_2022_03
 				int i = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.position.X, (int)NPC.position.Y - 16, ModContent.NPCType<MeatballsEye>());
+#else
+				int i = NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.position.X, (int)NPC.position.Y - 16, ModContent.NPCType<MeatballsEye>());
+#endif
 				if (Main.netMode == NetmodeID.Server && i < Main.maxNPCs)
 				{
 					NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);

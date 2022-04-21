@@ -53,7 +53,11 @@ namespace AssortedCrazyThings.Items.Fun
 
 							byte plr = Player.FindClosest(Item.position, Item.width, Item.height);
 							Player player = Main.player[plr];
+#if TML_2022_03
 							Item.NewItem(player.GetItemSource_Misc(-1), player.getRect(), ModContent.ItemType<GuideVoodoorang>());
+#else
+							Item.NewItem(player.GetSource_Misc("GuideVoodoorang"), player.getRect(), ModContent.ItemType<GuideVoodoorang>());
+#endif
 
 							//despawns upon wof spawn
 							Item.TurnToAir();

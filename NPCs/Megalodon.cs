@@ -89,9 +89,16 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life <= 0)
 			{
+#if TML_2022_03
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_0").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_1").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_2").Type, 1f);
+#else
+				var entitySource = NPC.GetSource_Death();
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_0").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_1").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MegalodonGore_2").Type, 1f);
+#endif
 			}
 		}
 	}

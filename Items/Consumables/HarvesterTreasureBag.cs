@@ -42,7 +42,11 @@ namespace AssortedCrazyThings.Items.Consumables
 
 		public override void OpenBossBag(Player player)
 		{
+#if TML_2022_03
 			var source = player.GetItemSource_OpenItem(Type);
+#else
+			var source = player.GetSource_OpenItem(Type);
+#endif
 			//We have to replicate the expert drops from Harvester here via QuickSpawnItem
 			player.QuickSpawnItem(source, ItemID.Bone, Main.rand.Next(40, 61));
 			player.QuickSpawnItem(source, ModContent.ItemType<DesiccatedLeather>());

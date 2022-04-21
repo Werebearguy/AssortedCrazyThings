@@ -28,12 +28,18 @@ namespace AssortedCrazyThings.Buffs.Pets
 			petPlayer.PetMoon = true;
 			if (player.whoAmI == Main.myPlayer)
 			{
+#if TML_2022_03
+				var source = player.GetProjectileSource_Buff(buffIndex);
+#else
+				var source = player.GetSource_Buff(buffIndex);
+#endif
+
 				int sun = ModContent.ProjectileType<PetSunProj>();
 				bool moreThanOneSun = player.ownedProjectileCounts[sun] > 0;
 				int moon = ModContent.ProjectileType<PetMoonProj>();
 				bool moreThanOneMoon = player.ownedProjectileCounts[moon] > 0;
-				if (!moreThanOneSun) Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, sun, 0, 0f, player.whoAmI);
-				if (!moreThanOneMoon) Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, moon, 0, 0f, player.whoAmI);
+				if (!moreThanOneSun) Projectile.NewProjectile(source, player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, sun, 0, 0f, player.whoAmI);
+				if (!moreThanOneMoon) Projectile.NewProjectile(source, player.position.X + (player.width / 2), player.position.Y + (player.height / 3), 0f, 0f, moon, 0, 0f, player.whoAmI);
 			}
 		}
 

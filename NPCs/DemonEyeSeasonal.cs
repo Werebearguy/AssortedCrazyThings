@@ -42,6 +42,7 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life <= 0)
 			{
+#if TML_2022_03
 				switch ((int)AiTexture)
 				{
 					case 0:
@@ -63,6 +64,30 @@ namespace AssortedCrazyThings.NPCs
 					default:
 						break;
 				}
+#else
+				var entitySource = NPC.GetSource_Death();
+				switch ((int)AiTexture)
+				{
+					case 0:
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_1").Type, 1f);
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
+						break;
+					case 1:
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_1").Type, 1f);
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
+						break;
+					case 2:
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_1").Type, 1f);
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyeGreenGore_0").Type, 1f);
+						break;
+					case 3:
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_1").Type, 1f);
+						Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("DemonEyePurpleGore_0").Type, 1f);
+						break;
+					default:
+						break;
+				}
+#endif
 			}
 		}
 

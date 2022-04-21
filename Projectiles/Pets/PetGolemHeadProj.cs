@@ -125,7 +125,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 						Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - position;
 						velocity.Normalize();
 						velocity *= 7f;
+#if TML_2022_03
 						Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), position, velocity, ModContent.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
+#else
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, velocity, ModContent.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
+#endif
 						Projectile.netUpdate = true;
 					}
 					else

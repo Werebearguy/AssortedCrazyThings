@@ -547,7 +547,11 @@ namespace AssortedCrazyThings.Base
 			{
 				if (Main.netMode == NetmodeID.Server)
 				{
+#if TML_2022_03
 					int item = Item.NewItem(npc.GetItemSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
+#else
+					int item = Item.NewItem(npc.GetSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
+#endif
 					Main.timeItemSlotCannotBeReusedFor[item] = 54000;
 					for (int p = 0; p < Main.maxPlayers; p++)
 					{
@@ -564,7 +568,12 @@ namespace AssortedCrazyThings.Base
 				{
 					if (condition != null && condition(npc, Main.LocalPlayer) ||
 						condition == null)
+
+#if TML_2022_03
 						Item.NewItem(npc.GetItemSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
+#else
+						Item.NewItem(npc.GetSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
+#endif
 				}
 				//npc.value = 0f;
 			}

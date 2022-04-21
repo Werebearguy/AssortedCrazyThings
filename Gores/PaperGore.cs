@@ -13,12 +13,22 @@ namespace AssortedCrazyThings.Gores
 			GoreID.Sets.DisappearSpeed[Type] = 6;
 		}
 
+#if TML_2022_03
+
 		public override void OnSpawn(Gore gore)
 		{
 			gore.Frame = new SpriteFrame(1, 8, 0, (byte)Main.rand.Next(8));
 			gore.frameCounter = (byte)Main.rand.Next(8);
 			gore.timeLeft = 120;
 		}
+#else
+		public override void OnSpawn(Gore gore, IEntitySource source)
+		{
+			gore.Frame = new SpriteFrame(1, 8, 0, (byte)Main.rand.Next(8));
+			gore.frameCounter = (byte)Main.rand.Next(8);
+			gore.timeLeft = 120;
+		}
+#endif
 
 		public override bool Update(Gore gore)
 		{

@@ -73,6 +73,7 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life <= 0)
 			{
+#if TML_2022_03
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_01").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_02").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_02").Type, 1f);
@@ -80,6 +81,16 @@ namespace AssortedCrazyThings.NPCs
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
+#else
+				var entitySource = NPC.GetSource_Death();
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_01").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_02").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_02").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGrasshopperGore_03").Type, 1f);
+#endif
 			}
 		}
 	}

@@ -584,7 +584,11 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 						//Destroy soul and spawn a homing projectile which increases the soul count
 						if (Main.myPlayer == Projectile.owner)
 						{
+#if TML_2022_03
 							Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), soul.Center, Vector2.Zero, ModContent.ProjectileType<HarvesterAbsorbedSoul>(), 0, 0f, Main.myPlayer);
+#else
+							Projectile.NewProjectile(Projectile.GetSource_FromThis(), soul.Center, Vector2.Zero, ModContent.ProjectileType<HarvesterAbsorbedSoul>(), 0, 0f, Main.myPlayer);
+#endif
 
 							//AssUtils.Print(Main.time + " spawned homing soul");
 						}

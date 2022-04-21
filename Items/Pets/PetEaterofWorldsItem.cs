@@ -34,6 +34,7 @@ namespace AssortedCrazyThings.Items.Pets
 			}
 
 			IEntitySource source;
+#if TML_2022_03
 			if (buffIndex > -1)
 			{
 				source = player.GetProjectileSource_Buff(buffIndex);
@@ -46,6 +47,20 @@ namespace AssortedCrazyThings.Items.Pets
 			{
 				return;
 			}
+#else
+			if (buffIndex > -1)
+			{
+				source = player.GetSource_Buff(buffIndex);
+			}
+			else if (item != null)
+			{
+				source = player.GetSource_ItemUse(item);
+			}
+			else
+			{
+				return;
+			}
+#endif
 
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{

@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		{
 			orig(player, context);
 
-			if (player.whoAmI == Main.myPlayer && context == PlayerSpawnContext.ReviveFromDeath || context == PlayerSpawnContext.SpawningIntoWorld)
+			if (player.whoAmI == Main.myPlayer && (context == PlayerSpawnContext.ReviveFromDeath || context == PlayerSpawnContext.SpawningIntoWorld))
 			{
 				if (!ClientConfig.Instance.SatchelofGoodiesAutosummon)
 				{
@@ -50,8 +50,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 							}
 						}
 					}
-
+#if TML_2022_03
 					int pIndex = Projectile.NewProjectile(player.GetProjectileSource_Item(item), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
+#else
+					int pIndex = Projectile.NewProjectile(player.GetSource_Misc(item.Name.ToString()), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
+#endif
 					Main.projectile[pIndex].originalDamage = item.damage;
 					player.GetModPlayer<GoblinUnderlingPlayer>().hasMinion = true;
 

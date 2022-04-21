@@ -23,17 +23,22 @@ namespace AssortedCrazyThings.Buffs.Pets
 			PetBool(player) = true;
 			if (player.whoAmI == Main.myPlayer)
 			{
+#if TML_2022_03
+				var source = player.GetProjectileSource_Buff(buffIndex);
+#else
+				var source = player.GetSource_Buff(buffIndex);
+#endif
+
 				int spaz = ModContent.ProjectileType<TinySpazmatismProj>();
 				if (player.ownedProjectileCounts[spaz] <= 0)
 				{
-					Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y + (player.height / 2), -player.direction, 0f, spaz, 0, 0f, player.whoAmI);
-
+					Projectile.NewProjectile(source, player.position.X + (player.width / 2), player.position.Y + (player.height / 2), -player.direction, 0f, spaz, 0, 0f, player.whoAmI);
 				}
 
 				int reti = ModContent.ProjectileType<TinyRetinazerProj>();
 				if (player.ownedProjectileCounts[reti] <= 0)
 				{
-					Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2), player.position.Y, -player.direction, 0f, reti, 0, 0f, player.whoAmI);
+					Projectile.NewProjectile(source, player.position.X + (player.width / 2), player.position.Y, -player.direction, 0f, reti, 0, 0f, player.whoAmI);
 				}
 			}
 		}

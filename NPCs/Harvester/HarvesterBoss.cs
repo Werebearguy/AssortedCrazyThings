@@ -398,7 +398,11 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 				for (int j = 0; j < SpawnedSoulCount; j++) //spawn souls when dies
 				{
+#if TML_2022_03
 					index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
+#else
+					index = NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
+#endif
 					if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
 					{
 						soul.SetDefaults(npcTypeNew);
@@ -494,9 +498,16 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 					if (Main.netMode != NetmodeID.Server)
 					{
+#if TML_2022_03
+#else
+						var entitySource = NPC.GetSource_Death();
+#endif
 						for (int i = 0; i < 6; i++)
 						{
-							Gore.NewGore(Main.rand.NextVector2FromRectangle(NPC.getRect()), NPC.velocity, Mod.Find<ModGore>("SoulHarvesterGore_05").Type, 1f);
+#if TML_2022_03
+#else
+							Gore.NewGore(entitySource, Main.rand.NextVector2FromRectangle(NPC.getRect()), NPC.velocity, Mod.Find<ModGore>("SoulHarvesterGore_05").Type, 1f);
+#endif
 						}
 					}
 
@@ -525,7 +536,11 @@ namespace AssortedCrazyThings.NPCs.Harvester
 				if (other.active && other.type == npcTypeOld)
 				{
 					other.active = false;
+#if TML_2022_03
 					int index = NPC.NewNPC(NPC.GetSpawnSource_NPCHurt(), (int)other.position.X, (int)other.position.Y, npcTypeNew);
+#else
+					int index = NPC.NewNPC(NPC.GetSource_Death(), (int)other.position.X, (int)other.position.Y, npcTypeNew);
+#endif
 					NPC npcnew = Main.npc[index];
 					npcnew.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
 					npcnew.timeLeft = 3600;
@@ -819,7 +834,11 @@ namespace AssortedCrazyThings.NPCs.Harvester
 						((int)(NPC.Center.X + talonOffsetRightX), AssortedCrazyThings.harvesterTalonRight)
 					};
 
+#if TML_2022_03
 					var source = NPC.GetSpawnSourceForNPCFromNPCAI();
+#else
+					var source = NPC.GetSource_FromAI();
+#endif
 					foreach (var (x, type) in talonTypes)
 					{
 						int index = NPC.NewNPC(source, x, y, type);
@@ -951,7 +970,11 @@ namespace AssortedCrazyThings.NPCs.Harvester
 						Vector2 toPlayer = target.DirectionFrom(pos);
 						int damage = (int)((NPC.damage / (float)NPC.defDamage) * 16); //Fixed damage based on default
 						damage = NPC.GetAttackDamage_ForProjectiles(damage, damage * 0.33f); //To compensate expert mode NPC damage + projectile damage increase
+#if TML_2022_03
 						Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer, fireballSpeed);
+#else
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), pos, toPlayer * 1, ModContent.ProjectileType<HarvesterFracturedSoul>(), damage, 0f, Main.myPlayer, fireballSpeed);
+#endif
 					}
 				}
 			}
@@ -1588,6 +1611,11 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 			if (NPC.life <= 0 && !NPC.active) //!active is important due to CheckDead shenanigans
 			{
+#if TML_2022_03
+#else
+				var entitySource = NPC.GetSource_Death();
+#endif
+
 				int first = 1; //Head
 				int second = 13 + first; //"Feather"
 				int third = 2 + second; //Large wing bone
@@ -1599,7 +1627,11 @@ namespace AssortedCrazyThings.NPCs.Harvester
 					if (i < first) name = 1;
 					else if (i < second) name = 2;
 					else if (i < third) name = 3;
+#if TML_2022_03
 					Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SoulHarvesterGore_0" + name).Type, 1f);
+#else
+					Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("SoulHarvesterGore_0" + name).Type, 1f);
+#endif
 				}
 			}
 		}

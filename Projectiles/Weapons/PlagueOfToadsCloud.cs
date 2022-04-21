@@ -57,7 +57,11 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 						int rainSpawnX = (int)(Projectile.position.X + 14f + Main.rand.Next(Projectile.width - 28));
 						int rainSpawnY = (int)(Projectile.position.Y + Projectile.height + 4f);
 						//speedY = 5f;
+#if TML_2022_03
 						Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), rainSpawnX, rainSpawnY, 0f, 2f, ModContent.ProjectileType<PlagueOfToadsProj>(), Projectile.damage, 0f, Projectile.owner, Main.rand.Next(5), Main.rand.NextFloat(0.005f, 0.015f));
+#else
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), rainSpawnX, rainSpawnY, 0f, 2f, ModContent.ProjectileType<PlagueOfToadsProj>(), Projectile.damage, 0f, Projectile.owner, Main.rand.Next(5), Main.rand.NextFloat(0.005f, 0.015f));
+#endif
 					}
 				}
 			}

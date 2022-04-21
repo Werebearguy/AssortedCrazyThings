@@ -86,7 +86,11 @@ namespace AssortedCrazyThings.Items
 
 			//reduce but not prevent spam from boomerang related weapons or modded damage classes
 			if (player.ownedProjectileCounts[ModContent.ProjectileType<CandleDustDummy>()] < 2)
+#if TML_2022_03
 				Projectile.NewProjectile(player.GetProjectileSource_Item(item), pos, velo + player.velocity, ModContent.ProjectileType<CandleDustDummy>(), 0, 0f, player.whoAmI);
+#else
+				Projectile.NewProjectile(player.GetSource_ItemUse(item), pos, velo + player.velocity, ModContent.ProjectileType<CandleDustDummy>(), 0, 0f, player.whoAmI);
+#endif
 		}
 
 		public override void MeleeEffects(Item item, Player player, Rectangle hitbox)

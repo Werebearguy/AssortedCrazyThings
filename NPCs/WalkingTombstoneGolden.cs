@@ -138,7 +138,12 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life <= 0)
 			{
+#if TML_2022_03
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("WalkingTombstoneGore_01").Type, 1f);
+#else
+				var entitySource = NPC.GetSource_Death();
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("WalkingTombstoneGore_01").Type, 1f);
+#endif
 			}
 		}
 	}

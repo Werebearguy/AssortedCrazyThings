@@ -303,7 +303,11 @@ namespace AssortedCrazyThings
 
 				if (!checkIfAlive)
 				{
+#if TML_2022_03
 					AssUtils.NewProjectile(Player.GetProjectileSource_Item(tempSoulMinion), Player.Center.X, Player.Center.Y, -Player.velocity.X, Player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
+#else
+					AssUtils.NewProjectile(Player.GetSource_Accessory(tempSoulMinion), Player.Center.X, Player.Center.Y, -Player.velocity.X, Player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
+#endif
 				}
 			}
 		}

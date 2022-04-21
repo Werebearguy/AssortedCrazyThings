@@ -247,7 +247,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 								between = target + Target.velocity * 6f - shootOrigin;
 								between.Normalize();
 								between *= 6f;
+#if TML_2022_03
 								Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), shootOrigin, between, ModContent.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer);
+#else
+								Projectile.NewProjectile(Projectile.GetSource_FromThis(), shootOrigin, between, ModContent.ProjectileType<PetDestroyerDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer);
+#endif
 
 								//projectile.netUpdate = true;
 							}

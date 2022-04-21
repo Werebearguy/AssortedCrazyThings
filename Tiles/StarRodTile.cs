@@ -339,7 +339,7 @@ namespace AssortedCrazyThings.Tiles
 		//            projectile.velocity.X = 0f - Math.Abs(projectile.velocity.X);
 		//    }
 
-		//    Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, 12, 1000, 10f, Main.myPlayer);
+		//    Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, 12, 1000, 10f, Main.myPlayer);
 		//    projectile.Kill();
 		//}
 	}

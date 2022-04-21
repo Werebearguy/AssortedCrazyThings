@@ -78,9 +78,16 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life <= 0)
 			{
+#if TML_2022_03
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_2").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_1").Type, 1f);
 				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_0").Type, 1f);
+#else
+				var entitySource = NPC.GetSource_Death();
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_2").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_1").Type, 1f);
+				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("SpawnOfOcramGore_0").Type, 1f);
+#endif
 			}
 		}
 
@@ -290,14 +297,22 @@ namespace AssortedCrazyThings.NPCs
 					Vector2 randomCenter = center + new Vector2(Main.rand.Next(-50, 51), Main.rand.Next(-50, 51));
 					Vector2 toPlayer = player.DirectionFrom(randomCenter);
 					toPlayer *= 4;
+#if TML_2022_03
 					int leftSickle = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), center.X - NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+#else
+					int leftSickle = Projectile.NewProjectile(NPC.GetSource_FromAI(), center.X - NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+#endif
 					Main.projectile[leftSickle].tileCollide = false;
 					Main.projectile[leftSickle].timeLeft = projectileTravelTime;
 
 					randomCenter = center + new Vector2(Main.rand.Next(-50, 51), Main.rand.Next(-50, 51));
 					toPlayer = player.DirectionFrom(randomCenter);
 					toPlayer *= 4;
+#if TML_2022_03
 					int rightSickle = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), center.X + NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+#else
+					int rightSickle = Projectile.NewProjectile(NPC.GetSource_FromAI(), center.X + NPC.width * 0.5f, center.Y, toPlayer.X, toPlayer.Y, projectileType, projectileDamage, 0f, Main.myPlayer);
+#endif
 					Main.projectile[rightSickle].tileCollide = false;
 					Main.projectile[rightSickle].timeLeft = projectileTravelTime;
 
