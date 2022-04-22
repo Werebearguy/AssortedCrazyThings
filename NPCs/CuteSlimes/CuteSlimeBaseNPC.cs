@@ -41,16 +41,15 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			NPC.friendly = true;
 			NPC.dontTakeDamageFromHostiles = true;
-			NPC.defense = 0;
-			NPC.lifeMax = 5;
 			NPC.width = 28;
 			NPC.height = 33;
 			NPC.damage = 0;
+			NPC.defense = 0;
+			NPC.lifeMax = 5;
 			NPC.rarity = 1;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 25f;
-			NPC.knockBackResist = 0.9f;
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;

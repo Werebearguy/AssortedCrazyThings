@@ -25,13 +25,12 @@ namespace AssortedCrazyThings.NPCs
 		{
 			NPC.width = 36;
 			NPC.height = 32;
-			NPC.damage = 7;
-			NPC.defense = 2;
-			NPC.lifeMax = 25;
+			NPC.damage = 0;
+			NPC.defense = 0;
+			NPC.lifeMax = 5;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 25f;
-			NPC.knockBackResist = 0.25f;
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
@@ -89,9 +88,6 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			//quickUnlock: true so only 1 kill is required to list everything about it
-			bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type], quickUnlock: true);
-
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				new FlavorTextBestiaryInfoElement("A passive variant of slime with a friendly face. At night, it tries to be close to an equally friendly face.")
