@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Items.Pets
 			Item.width = 32;
 			Item.height = 32;
 
-			Item.value = Item.sellPrice(gold: 3); //Zephyr fish price
+			Item.value = Item.sellPrice(gold: 3) / 2; //Zephyr fish price halved because we double the catch rate of it
 		}
 	}
 }

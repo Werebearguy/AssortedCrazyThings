@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.width = 30;
 			Item.height = 32;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.rare = 3;
+			Item.rare = 5;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
