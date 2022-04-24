@@ -72,6 +72,8 @@ namespace AssortedCrazyThings.Items.Weapons
 				+ "\nGets stronger throughout progression"
 				+ "\nDoes not occupy a minion slot, but only one can be summoned"
 				+ "\n'Inside, there's a spiky ball, a coin, and a...moon?'");
+
+			ItemID.Sets.StaffMinionSlotsRequired[Type] = 0;
 		}
 
 		public override void SetDefaults()
