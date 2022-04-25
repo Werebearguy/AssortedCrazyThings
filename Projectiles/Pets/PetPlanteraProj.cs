@@ -31,15 +31,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plantera Sprout");
-			Main.projFrames[Projectile.type] = 2;
+			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.BabyEater);
-			Projectile.width = 36;
-			Projectile.height = 36;
+			Projectile.width = 46;
+			Projectile.height = 46;
 			Projectile.friendly = true;
 			Projectile.minion = false; //only determines the damage type
 									   //minion = false to prevent it from being "replaced" after casting other summons and then spawning its tentacles again
@@ -112,7 +112,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.friendly = false;
 				AssAI.BabyEaterAI(Projectile, originOffset: new Vector2(0f, -60f));
 
-				AssAI.BabyEaterDraw(Projectile);
+				AssAI.BabyEaterDraw(Projectile, 5);
 				Projectile.rotation += 3.14159f;
 			}
 			else //STATE_ATTACK
@@ -135,7 +135,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					}
 				}
 
-				AssAI.BabyEaterDraw(Projectile, 4);
+				AssAI.BabyEaterDraw(Projectile, 3);
 			}
 			#endregion
 		}
@@ -146,10 +146,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{
-				Projectile projectile = Main.projectile[i];
-				if (projectile.active && Projectile.owner == projectile.owner && projectile.type == ModContent.ProjectileType<PetPlanteraProjTentacle>())
+				Projectile other = Main.projectile[i];
+				if (other.active && Projectile.owner == other.owner && other.type == ModContent.ProjectileType<PetPlanteraProjTentacle>())
 				{
-					AssUtils.DrawTether("AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", projectile.Center, Projectile.Center);
+					AssUtils.DrawTether("AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", other.Center, Projectile.Center);
 					tentacleCount++;
 				}
 				if (tentacleCount >= 4) break;
@@ -186,10 +186,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
 			Projectile.aiStyle = -1;
-			Projectile.width = 14; //14
-			Projectile.height = 19; //19
-									//gets set in the buff
-									//projectile.damage = 1; //to prevent dyes from working on it
+			Projectile.width = 20;
+			Projectile.height = 22;
 		}
 
 		public override void AI()
@@ -260,7 +258,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AssAI.ZephyrfishAI(Projectile, parent: parent, velocityFactor: 1.5f + (Projectile.whoAmI % 4) * 0.8f, random: true, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
 			Vector2 between = parent.Center - Projectile.Center;
 			Projectile.spriteDirection = 1;
-			Projectile.rotation = between.ToRotation();
+			Projectile.rotation = between.ToRotation() - MathHelper.PiOver2;
 
 			AssAI.ZephyrfishDraw(Projectile, 3 + Main.rand.Next(3));
 		}
