@@ -413,7 +413,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 					float between = Vector2.Distance(npc.Center, player.Center);
 					if (((between < range &&
 						Vector2.Distance(player.Center, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1) &&
-						 Collision.CanHitLine(player.Center, 1, 1, npc.position, npc.width, npc.height))
+						 (Collision.CanHitLine(player.Center, 1, 1, npc.position, npc.width, npc.height) || Collision.CanHit(Projectile.Center, 1, 1, npc.position, npc.width, npc.height)))
 					{
 						distanceFromTarget = between;
 						targetCenter = npc.Center;

@@ -44,7 +44,8 @@ namespace AssortedCrazyThings.Base
 					float between = Vector2.DistanceSquared(npc.Center, relativeCenter);
 					if ((between < range && Vector2.DistanceSquared(relativeCenter, targetCenter) > between && between < distanceFromTarget) || targetIndex == -1)
 					{
-						if (ignoreTiles || Collision.CanHitLine(ent.position, ent.width, ent.height, npc.position, npc.width, npc.height))
+						if (ignoreTiles || Collision.CanHitLine(ent.position, ent.width, ent.height, npc.position, npc.width, npc.height) ||
+							Collision.CanHit(ent.position, ent.width, ent.height, npc.position, npc.width, npc.height))
 						{
 							distanceFromTarget = between;
 							targetCenter = npc.Center;
