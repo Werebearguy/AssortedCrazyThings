@@ -64,11 +64,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (Main.hardMode)
-			{
-				return SpawnCondition.OverworldNightMonster.Chance * 0.025f;
-			}
-			return 0f;
+			return SpawnCondition.OverworldNightMonster.Chance * (Main.hardMode ? 0.025f : 0f);
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

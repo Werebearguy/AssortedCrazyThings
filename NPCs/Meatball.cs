@@ -55,8 +55,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (Main.hardMode) return SpawnCondition.Crimson.Chance * 0.04f;
-			return SpawnCondition.Crimson.Chance * 0.15f;
+			return SpawnCondition.Crimson.Chance * (Main.hardMode ? 0.04f : 0.15f);
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

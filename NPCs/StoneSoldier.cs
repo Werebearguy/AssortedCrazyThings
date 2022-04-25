@@ -39,7 +39,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Cavern.Chance * 0.04f;
+			return SpawnCondition.Cavern.Chance * (Main.hardMode ? 0.01f : 0.04f);
 		}
 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

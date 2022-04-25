@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (NPC.downedGolemBoss && !NPC.AnyNPCs(ModContent.NPCType<SpawnOfOcram>()))
+			if (NPC.downedGolemBoss && !NPC.AnyNPCs(NPC.type))
 			{
 				return SpawnCondition.OverworldNightMonster.Chance * 0.005f;
 			}
@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.NPCs
 
 			Texture2D texture = TextureAssets.Npc[NPC.type].Value;
 
-			Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Npc[NPC.type].Value.Width * 0.5f, NPC.height * 0.5f);
+			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, NPC.height * 0.5f);
 			//the higher the k, the older the position
 			//Length is implicitely set in TrailCacheLength up there
 			//start from half the length so the origninal sprite isnt super blurred
