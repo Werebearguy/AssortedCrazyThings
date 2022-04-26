@@ -21,6 +21,7 @@ namespace AssortedCrazyThings.NPCs
 				IsWet = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
 		public override void SetDefaults()
@@ -38,7 +39,6 @@ namespace AssortedCrazyThings.NPCs
 			AIType = NPCID.Goldfish;
 			AnimationType = NPCID.Goldfish;
 			NPC.noGravity = true;
-			NPC.buffImmune[BuffID.Confused] = false;
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
