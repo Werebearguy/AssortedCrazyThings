@@ -84,7 +84,7 @@ namespace AssortedCrazyThings.Base.DrawLayers
 
 			asset = glowAsset;
 			texture = asset.Value;
-			color = drawPlayer.GetImmuneAlpha(Color.White, drawInfo.shadow);
+			color = drawPlayer.GetImmuneAlphaPure(Color.White * drawInfo.stealth * (1f - drawInfo.shadow), drawInfo.shadow);
 			data = new DrawData(texture, position, frame, color, (float)bodyRotation, origin, 1f, playerEffect, 0)
 			{
 				shader = drawInfo.cWings
