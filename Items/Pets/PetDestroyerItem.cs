@@ -34,20 +34,6 @@ namespace AssortedCrazyThings.Items.Pets
 			}
 
 			IEntitySource source;
-#if TML_2022_03
-			if (buffIndex > -1)
-			{
-				source = player.GetProjectileSource_Buff(buffIndex);
-			}
-			else if (item != null)
-			{
-				source = player.GetProjectileSource_Item(item);
-			}
-			else
-			{
-				return;
-			}
-#else
 			if (buffIndex > -1)
 			{
 				source = player.GetSource_Buff(buffIndex);
@@ -60,7 +46,6 @@ namespace AssortedCrazyThings.Items.Pets
 			{
 				return;
 			}
-#endif
 
 			int probe = ModContent.ProjectileType<PetDestroyerProbe>();
 			for (int i = 0; i < Main.maxProjectiles; i++)

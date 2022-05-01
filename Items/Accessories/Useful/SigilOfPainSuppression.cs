@@ -35,11 +35,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 				if (tooltips[i].Name == "SocialDesc")
 				{
 					inVanitySlot = true;
-#if TML_2022_03
-					tooltips[i].text = "Cooldown will go down while in social slot";
-#else
 					tooltips[i].Text = "Cooldown will go down while in social slot";
-#endif
 					break;
 				}
 			}

@@ -319,11 +319,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 							velocity.Normalize();
 							velocity *= 10f;
 							Projectile.velocity += -velocity * 0.75f; //recoil
-#if TML_2022_03
-							Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), BarrelPos, velocity, ModContent.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
-#else
 							Projectile.NewProjectile(Projectile.GetSource_FromThis(), BarrelPos, velocity, ModContent.ProjectileType<HeavyLaserDroneLaser>(), CustomDmg, CustomKB, Main.myPlayer, 0f, 0f);
-#endif
 
 							AI_STATE = STATE_RECOIL;
 							ChargeTimer = byte.MaxValue;
@@ -349,11 +345,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
 				if (CanOverlay && Main.rand.NextFloat() < OverlayOpacity * 0.5f)
 				{
-#if TML_2022_03
-					Gore gore = Gore.NewGorePerfect(BarrelPos + new Vector2(Direction == 1 ? -8f : -Projectile.width - 4f, Direction == 1 ? -14f : -16f), Vector2.Zero, Main.rand.Next(61, 64));
-#else
 					Gore gore = Gore.NewGorePerfect(Projectile.GetSource_FromThis(), BarrelPos + new Vector2(Direction == 1 ? -8f : -Projectile.width - 4f, Direction == 1 ? -14f : -16f), Vector2.Zero, Main.rand.Next(61, 64));
-#endif
 					gore.position.X += Main.rand.NextFloat(8);
 					gore.scale *= 0.18f;
 					gore.velocity *= 0.6f;

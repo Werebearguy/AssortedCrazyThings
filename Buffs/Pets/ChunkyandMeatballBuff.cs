@@ -23,11 +23,8 @@ namespace AssortedCrazyThings.Buffs.Pets
 			PetBool(player) = true;
 			if (player.whoAmI == Main.myPlayer)
 			{
-#if TML_2022_03
-				var spawnSource = player.GetProjectileSource_Buff(buffIndex);
-#else
 				var spawnSource = player.GetSource_Buff(buffIndex);
-#endif
+
 				int chunky = ModContent.ProjectileType<ChunkyProj>();
 				bool chunkyNotSpawned = player.ownedProjectileCounts[chunky] <= 0;
 				int meatball = ModContent.ProjectileType<MeatballProj>();

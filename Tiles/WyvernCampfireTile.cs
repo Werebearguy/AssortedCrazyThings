@@ -74,11 +74,7 @@ namespace AssortedCrazyThings.Tiles
 		//TileID.Sets.HasOutlines[Type] = true;
 		//TileID.Sets.DisableSmartCursor[Type] = true;
 		//and this hook
-#if TML_2022_03
-		public override bool HasSmartInteract()
-#else
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
-#endif
 		{
 			return true;
 		}

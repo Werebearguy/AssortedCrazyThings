@@ -71,9 +71,6 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 			}
 		}
 
-#if TML_2022_03
-
-#else
 		public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams)
 		{
 			if (!TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
@@ -91,7 +88,6 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 
 			return true;
 		}
-#endif
 
 		public override void Update(Player player, ref int buffIndex)
 		{

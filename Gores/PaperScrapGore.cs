@@ -15,15 +15,6 @@ namespace AssortedCrazyThings.Gores
 			GoreID.Sets.DisappearSpeed[Type] = 7;
 		}
 
-#if TML_2022_03
-		public override void OnSpawn(Gore gore)
-		{
-			gore.velocity += new Vector2(Main.rand.NextFloat() - 0.5f, Main.rand.NextFloat() * MathHelper.TwoPi);
-			gore.Frame = new SpriteFrame(1, 8, 0, (byte)Main.rand.Next(8));
-			gore.frameCounter = (byte)Main.rand.Next(8);
-			//UpdateType = 910;
-		}
-#else
 		public override void OnSpawn(Gore gore, IEntitySource source)
 		{
 			gore.velocity += new Vector2(Main.rand.NextFloat() - 0.5f, Main.rand.NextFloat() * MathHelper.TwoPi);
@@ -31,7 +22,6 @@ namespace AssortedCrazyThings.Gores
 			gore.frameCounter = (byte)Main.rand.Next(8);
 			//UpdateType = 910;
 		}
-#endif
 
 		public override bool Update(Gore gore)
 		{

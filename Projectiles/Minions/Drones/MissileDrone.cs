@@ -192,11 +192,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 							{
 								//Main.NewText(Counter);
 								Vector2 velocity = new Vector2(Main.rand.NextFloat(-1f, 1f) - Projectile.direction * 0.5f, -5);
-#if TML_2022_03
-								Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), ShootOrigin, velocity, ModContent.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
-#else
 								Projectile.NewProjectile(Projectile.GetSource_FromThis(), ShootOrigin, velocity, ModContent.ProjectileType<MissileDroneRocket>(), CustomDmg, CustomKB, Main.myPlayer);
-#endif
 								Projectile.velocity.Y += 2f;
 								Projectile.netUpdate = true;
 							}

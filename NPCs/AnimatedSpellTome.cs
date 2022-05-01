@@ -80,21 +80,6 @@ namespace AssortedCrazyThings.NPCs
 					Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), 2 * hitDirection, -2f);
 				}
 
-#if TML_2022_03
-				for (int u = 0; u < 6; u++)
-				{
-					Vector2 pos = NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height));
-					Gore gore = Gore.NewGoreDirect(pos, NPC.velocity * 0.5f, Mod.Find<ModGore>("PaperScrapGore").Type, 1f);
-					gore.velocity += new Vector2(Main.rand.NextFloat(3) - 1f, Main.rand.NextFloat(MathHelper.TwoPi) - 0.3f);
-				}
-
-				for (int i = 0; i < 3; i++)
-				{
-					Gore gore = Gore.NewGoreDirect(NPC.position, NPC.velocity.SafeNormalize(Vector2.UnitY) * 3f, Mod.Find<ModGore>("PaperGore").Type, 1f + Main.rand.NextFloatDirection() * 0.2f);
-					gore.velocity += new Vector2(Main.rand.NextFloat(2) - 1f, Main.rand.NextFloat(MathHelper.TwoPi) - 0.3f);
-					gore.velocity *= 4f;
-				}
-#else
 				var entitySource = NPC.GetSource_Death();
 				for (int u = 0; u < 6; u++)
 				{
@@ -109,7 +94,6 @@ namespace AssortedCrazyThings.NPCs
 					gore.velocity += new Vector2(Main.rand.NextFloat(2) - 1f, Main.rand.NextFloat(MathHelper.TwoPi) - 0.3f);
 					gore.velocity *= 4f;
 				}
-#endif
 			}
 		}
 

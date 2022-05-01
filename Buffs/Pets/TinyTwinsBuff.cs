@@ -23,11 +23,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 			PetBool(player) = true;
 			if (player.whoAmI == Main.myPlayer)
 			{
-#if TML_2022_03
-				var source = player.GetProjectileSource_Buff(buffIndex);
-#else
 				var source = player.GetSource_Buff(buffIndex);
-#endif
 
 				int spaz = ModContent.ProjectileType<TinySpazmatismProj>();
 				if (player.ownedProjectileCounts[spaz] <= 0)

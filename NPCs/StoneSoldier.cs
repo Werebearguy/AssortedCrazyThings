@@ -96,20 +96,12 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life <= 0)
 			{
-#if TML_2022_03
-				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_01").Type, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_02").Type, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_03").Type, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_04").Type, 1f);
-				Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_04").Type, 1f);
-#else
 				var entitySource = NPC.GetSource_Death();
 				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_01").Type, 1f);
 				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_02").Type, 1f);
 				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_03").Type, 1f);
 				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_04").Type, 1f);
 				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("StoneSoldierGore_04").Type, 1f);
-#endif
 			}
 
 			for (int i = 0; i < 15; i++)

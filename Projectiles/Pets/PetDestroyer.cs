@@ -219,11 +219,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 						Vector2 velocity = target.Center + target.velocity * 5f - Projectile.Center;
 						velocity.Normalize();
 						velocity *= 7f;
-#if TML_2022_03
-						Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), position, velocity, ModContent.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
-#else
 						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, velocity, ModContent.ProjectileType<PetDestroyerDroneLaser>(), LaserDamage, 2f, Main.myPlayer, 0f, 0f);
-#endif
 						Projectile.netUpdate = true;
 						//decide not to update parent, instead, parent updates itself
 						//parent.netUpdate = true;

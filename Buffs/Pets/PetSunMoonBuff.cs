@@ -28,11 +28,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 			petPlayer.PetMoon = true;
 			if (player.whoAmI == Main.myPlayer)
 			{
-#if TML_2022_03
-				var source = player.GetProjectileSource_Buff(buffIndex);
-#else
 				var source = player.GetSource_Buff(buffIndex);
-#endif
 
 				int sun = ModContent.ProjectileType<PetSunProj>();
 				bool moreThanOneSun = player.ownedProjectileCounts[sun] > 0;

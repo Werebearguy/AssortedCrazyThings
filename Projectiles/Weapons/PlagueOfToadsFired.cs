@@ -35,11 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 		{
 			if (Projectile.active && Main.myPlayer == Projectile.owner)
 			{
-#if TML_2022_03
-				Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, ModContent.ProjectileType<PlagueOfToadsCloud>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-#else
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, ModContent.ProjectileType<PlagueOfToadsCloud>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-#endif
 			}
 		}
 

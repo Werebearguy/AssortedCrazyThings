@@ -211,11 +211,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.buffType = ModContent.BuffType<CompanionDungeonSoulMinionBuff>();
 		}
 
-#if TML_2022_03
-		public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
-#else
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
-#endif
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -223,11 +219,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			damage += GetSoulData(selected).DmgModifier;
 		}
 
-#if TML_2022_03
-		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback, ref float flat)
-#else
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
-#endif
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
 
@@ -267,20 +259,6 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			for (int i = 0; i < tooltips.Count; i++)
 			{
-#if TML_2022_03
-				if (Main.LocalPlayer.HasItem(ModContent.ItemType<EverhallowedLantern>()))
-				{
-					if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
-					{
-						tooltips[i].text += " (" + data.Name + ")";
-					}
-				}
-
-				if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "Tooltip0")
-				{
-					line = tooltips[i];
-				}
-#else
 				if (Main.LocalPlayer.HasItem(ModContent.ItemType<EverhallowedLantern>()))
 				{
 					if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
@@ -293,7 +271,6 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					line = tooltips[i];
 				}
-#endif
 			}
 
 			int tooltipIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));

@@ -114,11 +114,7 @@ namespace AssortedCrazyThings.Base
 		public static float CuteSlimeSpawnChance(NPCSpawnInfo spawnInfo, SpawnConditionType type, float customFactor = 1f)
 		{
 			//AssUtils.Print("spawn chance at " + (Main.netMode == NetmodeID.Server ? "Server" : "Client"));
-#if TML_2022_03
-			Player player = spawnInfo.player;
-#else
 			Player player = spawnInfo.Player;
-#endif
 			float spawnChance = GetSpawnChance(player, type) * customFactor;
 			if (AssUtils.AnyNPCs(x => x.ModNPC is CuteSlimeBaseNPC)) spawnChance *= 0.5f;
 			//AssUtils.Print(spawnChance);
