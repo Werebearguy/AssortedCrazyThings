@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.Base.DrawLayers
 				return false;
 			}
 
-			return drawInfo.drawPlayer.wings == Mod.GetEquipSlot(nameof(HarvesterWings), EquipType.Wings);
+			return drawInfo.drawPlayer.wings == EquipLoader.GetEquipSlot(Mod, nameof(HarvesterWings), EquipType.Wings);
 		}
 
 		public override Position GetDefaultPosition()

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Armor
 	{
 		public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
 		{
-			int bodyType = Mod.GetEquipSlot(nameof(SoulSaviorPlate), EquipType.Body);
+			int bodyType = EquipLoader.GetEquipSlot(Mod, nameof(SoulSaviorPlate), EquipType.Body);
 			if (drawInfo.drawPlayer.body == bodyType)
 			{
 				drawInfo.bodyGlowColor = Color.White;

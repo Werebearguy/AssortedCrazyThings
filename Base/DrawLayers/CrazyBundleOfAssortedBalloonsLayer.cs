@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Base.DrawLayers
 				return false;
 			}
 
-			return drawPlayer.balloon == Mod.GetEquipSlot(nameof(CrazyBundleOfAssortedBalloons), EquipType.Balloon);
+			return drawPlayer.balloon == EquipLoader.GetEquipSlot(Mod, nameof(CrazyBundleOfAssortedBalloons), EquipType.Balloon);
 		}
 
 		public override Position GetDefaultPosition()
