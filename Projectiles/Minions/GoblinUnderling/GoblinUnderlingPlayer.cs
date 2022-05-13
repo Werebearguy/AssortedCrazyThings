@@ -79,7 +79,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void SaveData(TagCompound tag)
 		{
-			tag.Set("firstSummon", firstSummon);
+			tag["firstSummon"] = firstSummon;
 		}
 
 		public override void UpdateVisibleVanityAccessories()
