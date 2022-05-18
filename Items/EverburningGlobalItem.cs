@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.Items
 
 					else if (item.CountsAsClass(DamageClass.Ranged))
 					{
-						if (player.HasAmmo(item, true))
+						if (player.HasAmmo(item))
 						{
 							ShootCandleDust(item, mPlayer);
 						}
