@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -19,7 +20,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.height = 32;
 			Item.damage = 40;
 			Item.mana = 0;
-			Item.shoot = ProjectileID.MiniRetinaLaser;
+			Item.shoot = ModContent.ProjectileType<SightofRetinazerLaser>();
 			Item.shootSpeed = 15f;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Ranged;
