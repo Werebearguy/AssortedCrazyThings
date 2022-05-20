@@ -39,8 +39,8 @@ namespace AssortedCrazyThings.Projectiles.Tools
 
 		public float MovementFactor
 		{
-			get { return Projectile.ai[0]; }
-			set { Projectile.ai[0] = value; }
+			get => Projectile.ai[0];
+			set => Projectile.ai[0] = value;
 		}
 
 		// It appears that for this AI, only the ai0 field is used!
@@ -104,10 +104,7 @@ namespace AssortedCrazyThings.Projectiles.Tools
 					NPC npc = Main.npc[i];
 					if (npc.active && npc.catchItem > 0)
 					{
-						if (hitboxMod.Intersects(npc.getRect())/* && (Main.npc[i].noTileCollide || projOwner.CanHit(Main.npc[i]))*/)
-						{
-							NPC.CatchNPC(i, Projectile.owner);
-						}
+						NPC.CheckCatchNPC(npc, hitboxMod, projOwner.HeldItem, projOwner);
 					}
 				}
 			}
