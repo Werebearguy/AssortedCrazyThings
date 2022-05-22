@@ -405,89 +405,6 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
-		/// Alternative NewProjectile, automatically sets owner to Main.myPlayer.
-		/// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles.
-		/// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
-		/// Use preSync to set ai[0], ai[1] and other values
-		/// </summary>
-		public static int NewProjectile(IEntitySource source, Vector2 position, Vector2 velocity, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
-		{
-			return NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, Type, Damage, Knockback, preCreate, preSync);
-		}
-
-		/// <summary>
-		/// Alternative NewProjectile, automatically sets owner to Main.myPlayer.
-		/// Also doesn't take into account vanilla projectiles that set things like ai or timeLeft, so only use this for ModProjectiles.
-		/// Use preCreate if you want to spawn or not spawn the projectile based on the projectile itself.
-		/// Use preSync to set ai[0], ai[1] and other values
-		/// </summary>
-		public static int NewProjectile(IEntitySource source, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float Knockback, Func<Projectile, bool> preCreate = null, Action<Projectile> preSync = null)
-		{
-			if (preCreate != null)
-			{
-				Projectile test = new Projectile();
-				test.SetDefaults(Type);
-				if (!preCreate(test)) return Main.maxProjectiles;
-			}
-
-			int index = Main.maxProjectiles;
-			for (int i = 0; i < Main.maxProjectiles; i++)
-			{
-				if (!Main.projectile[i].active)
-				{
-					index = i;
-					break;
-				}
-			}
-
-			if (index == Main.maxProjectiles)
-				index = Projectile.FindOldestProjectile();
-
-			int Owner = Main.myPlayer;
-			float ai0 = 0f;
-			float ai1 = 0f;
-
-			Projectile projectile = Main.projectile[index];
-			projectile.SetDefaults(Type);
-			projectile.position.X = X - projectile.width * 0.5f;
-			projectile.position.Y = Y - projectile.height * 0.5f;
-			projectile.owner = Owner;
-			projectile.velocity.X = SpeedX;
-			projectile.velocity.Y = SpeedY;
-			projectile.damage = Damage;
-			projectile.knockBack = Knockback;
-			projectile.identity = index;
-			projectile.gfxOffY = 0f;
-			projectile.stepSpeed = 1f;
-			projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
-			if (projectile.ignoreWater)
-			{
-				projectile.wet = false;
-			}
-			projectile.honeyWet = Collision.honey;
-			Main.projectileIdentity[Owner, index] = index;
-			FindBannerToAssociateTo(source, projectile);
-			HandlePlayerStatModifiers(source, projectile);
-			projectile.ai[0] = ai0;
-			projectile.ai[1] = ai1;
-			if (Type > 0)
-			{
-				if (ProjectileID.Sets.NeedsUUID[Type])
-				{
-					projectile.projUUID = projectile.identity;
-				}
-			}
-
-			preSync?.Invoke(projectile);
-
-			if (Main.netMode != NetmodeID.SinglePlayer)
-			{
-				NetMessage.SendData(MessageID.SyncProjectile, number: index);
-			}
-			return index;
-		}
-
-		/// <summary>
 		/// If you need immediate sync, usually necessary outside of Projectile.AI (as netUpdate is set to false before it's invoked)
 		/// </summary>
 		/// <param name="projectile"></param>
@@ -499,39 +416,6 @@ namespace AssortedCrazyThings.Base
 				projectile.netSpam = 0;
 				projectile.netUpdate = false;
 				projectile.netUpdate2 = false;
-			}
-		}
-
-		//Clone from vanilla since it's private
-		private static void FindBannerToAssociateTo(IEntitySource spawnSource, Projectile next)
-		{
-			EntitySource_Parent entitySource_Parent = spawnSource as EntitySource_Parent;
-			if (entitySource_Parent == null)
-			{
-				return;
-			}
-
-			Projectile projectile = entitySource_Parent.Entity as Projectile;
-			if (projectile != null)
-			{
-				next.bannerIdToRespondTo = projectile.bannerIdToRespondTo;
-				return;
-			}
-
-			NPC nPC = entitySource_Parent.Entity as NPC;
-			if (nPC != null)
-			{
-				next.bannerIdToRespondTo = Item.NPCtoBanner(nPC.BannerID());
-			}
-		}
-
-		//Clone from tml since it's private, may need updates, keep an eye out
-		private static void HandlePlayerStatModifiers(IEntitySource spawnSource, Projectile projectile)
-		{
-			if (spawnSource is EntitySource_ItemUse itemUseSource && itemUseSource.Entity is Player player)
-			{
-				projectile.CritChance += player.GetWeaponCrit(itemUseSource.Item);
-				projectile.ArmorPenetration += player.GetWeaponArmorPenetration(itemUseSource.Item);
 			}
 		}
 

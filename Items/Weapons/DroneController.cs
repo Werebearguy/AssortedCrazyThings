@@ -121,14 +121,6 @@ namespace AssortedCrazyThings.Items.Weapons
 			return canSpawn;
 		}
 
-		private static void PreSync(Projectile proj)
-		{
-			if (proj.ModProjectile is DroneBase drone && drone.IsCombatDrone)
-			{
-				drone.MinionPos = GetSlotOfNextDrone(proj);
-			}
-		}
-
 		/// <summary>
 		/// Sets the data up for a DroneType
 		/// </summary>
@@ -321,7 +313,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			DroneData droneData = GetDroneData(selected);
 			type = droneData.ProjType;
 
-			int index = AssUtils.NewProjectile(source, player.Center.X, player.Center.Y, 0f, player.velocity.Y - 6f, type, damage, knockback, preSync: PreSync);
+			int index = Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, player.velocity.Y - 6f, type, damage, knockback, Main.myPlayer);
 			Main.projectile[index].originalDamage = (int)(Item.damage * (1f + droneData.DmgModifier));
 			return false;
 		}

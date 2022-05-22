@@ -18,18 +18,9 @@ namespace AssortedCrazyThings.Items.Weapons
 			{
 				0 => new Color(0, 80, 255),//blue
 				1 => new Color(0, 220, 40),//green
-				_ => new Color(255, 30, 0),//red
+				2 => new Color(255, 30, 0),//red
+				_ => new Color(255, 255, 255),//fallback
 			};
-		}
-
-		private void PreSync(Projectile proj)
-		{
-			if (proj.ModProjectile is MagicSlimeSlingFired fired)
-			{
-				fired.ColorType = proj.GetOwner().GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
-				//Color won't be synced, its assigned in send/recv 
-				fired.Color = GetColor(fired.ColorType);
-			}
 		}
 
 		public const byte MagicSlimeSlingMinionTypes = 3;
@@ -86,8 +77,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			velocity.Y = -1f;
 			velocity.X = magnitude * Math.Sign(velocity.X);
 
-			//PreSync uses current mPlayer.nextMagicSlimeSlingMinion
-			int index = AssUtils.NewProjectile(source, position.X, position.Y - YOff, velocity.X, velocity.Y, type, damage, knockback, preSync: PreSync);
+			int index = Projectile.NewProjectile(source, position.X, position.Y - YOff, velocity.X, velocity.Y, type, damage, knockback, Main.myPlayer);
 			Main.projectile[index].originalDamage = Item.damage;
 
 			//switch to next type

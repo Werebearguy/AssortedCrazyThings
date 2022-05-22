@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,25 +15,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 	public class MagicSlimeSlingFired : AssProjectile
 	{
 		public byte ColorType = 0;
-		public Color Color = default(Color);
+		public Color Color => MagicSlimeSling.GetColor(ColorType);
 
-		private void PreSync(Projectile proj)
-		{
-			if (proj.ModProjectile is MagicSlimeSlingMinionBase minion)
-			{
-				minion.ColorType = ColorType;
-				//Color won't be synced, its assigned in send/recv 
-				minion.Color = MagicSlimeSling.GetColor(minion.ColorType);
-			}
-		}
-
-		public override string Texture
-		{
-			get
-			{
-				return "Terraria/Images/Item_" + ItemID.Gel;
-			}
-		}
+		public override string Texture => "Terraria/Images/Item_" + ItemID.Gel;
 
 		public override void SetStaticDefaults()
 		{
@@ -70,7 +55,26 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
 			ColorType = reader.ReadByte();
-			if (Color == default(Color)) Color = MagicSlimeSling.GetColor(ColorType);
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			SetColor(source);
+		}
+
+		private void SetColor(IEntitySource source)
+		{
+			if (source is not EntitySource_ItemUse itemSource)
+			{
+				return;
+			}
+
+			if (itemSource.Entity is not Player player)
+			{
+				return;
+			}
+
+			ColorType = player.GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
 		}
 
 		public override void Kill(int timeLeft)
@@ -95,7 +99,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 					int type = MagicSlimeSling.Types[ColorType];
 					Vector2 velo = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-4, -2));
 					velo += -Projectile.oldVelocity * 0.4f;
-					int index = AssUtils.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Top, velo, type, Projectile.damage, Projectile.knockBack, preSync: PreSync);
+					int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Top, velo, type, Projectile.damage, Projectile.knockBack, Main.myPlayer);
 					Main.projectile[index].originalDamage = Projectile.originalDamage;
 				}
 			}

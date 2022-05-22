@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,16 +24,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 		private bool Spawned = false;
 
 		public byte ColorType = 0;
+		public Color Color => MagicSlimeSling.GetColor(ColorType);
 
-		public Color Color = default(Color);
-
-		public override string Texture
-		{
-			get
-			{
-				return "AssortedCrazyThings/Projectiles/Minions/MagicSlimeSlingStuff/MagicSlimeSlingMinion";
-			}
-		}
+		public override string Texture => "AssortedCrazyThings/Projectiles/Minions/MagicSlimeSlingStuff/MagicSlimeSlingMinion";
 
 		public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
 		{
@@ -92,7 +86,31 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
 			ColorType = reader.ReadByte();
-			if (Color == default(Color)) Color = MagicSlimeSling.GetColor(ColorType);
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			SetColor(source);
+		}
+
+		private void SetColor(IEntitySource source)
+		{
+			if (source is not EntitySource_Parent parent)
+			{
+				return;
+			}
+
+			if (parent.Entity is not Projectile parentProj)
+			{
+				return;
+			}
+
+			if (parentProj.ModProjectile is not MagicSlimeSlingFired fired)
+			{
+				return;
+			}
+
+			ColorType = fired.ColorType;
 		}
 
 		public override void Kill(int timeLeft)

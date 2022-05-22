@@ -144,8 +144,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			position.X += Main.rand.NextFloat(-1980, 1980) / 2;
 			position.Y += 1000;
 
-			return AssUtils.NewProjectile(new EntitySource_WorldEvent(), position, Vector2.Zero, ModContent.ProjectileType<BabyHarvesterProj>(), 0, 0,
-				preSync: (Projectile proj) => (proj.ModProjectile as BabyHarvesterProj).AssignPlayerOwner(player.whoAmI));
+			return Projectile.NewProjectile(player.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<BabyHarvesterProj>(), 0, 0, Main.myPlayer);
 		}
 
 		public override void Load()
@@ -251,6 +250,21 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
 			PlayerOwner = reader.ReadByte();
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (source is not EntitySource_Parent parent)
+			{
+				return;
+			}
+
+			if (parent.Entity is not Player player)
+			{
+				return;
+			}
+
+			AssignPlayerOwner(player.whoAmI);
 		}
 
 		public void AssignPlayerOwner(int newPlayer)

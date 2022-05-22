@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -131,6 +132,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
 			RandomNumber = reader.ReadByte();
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (IsCombatDrone)
+			{
+				MinionPos = DroneController.GetSlotOfNextDrone(Projectile);
+			}
 		}
 
 		protected virtual void CustomAI()
