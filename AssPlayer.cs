@@ -284,27 +284,36 @@ namespace AssortedCrazyThings
 				return;
 			}
 
-			if (tempSoulMinion != null && !tempSoulMinion.IsAir && Player.whoAmI == Main.myPlayer)
+			if (!(tempSoulMinion != null && !tempSoulMinion.IsAir && Player.whoAmI == Main.myPlayer))
 			{
-				bool checkIfAlive = false;
-				int spawnedType = Main.hardMode ? ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
-				int spawnedDamage = Main.hardMode ? (int)(EverhallowedLantern.BaseDmg * 1.1f * 2f) : ((EverhallowedLantern.BaseDmg / 2 - 1) * 2);
-				for (int i = 0; i < Main.maxProjectiles; i++)
+				return;
+			}
+
+			if (Player.statLife > Player.statLifeMax2 * 0.25f)
+			{
+				return;
+			}
+
+			bool checkIfAlive = false;
+			int spawnedType = Main.hardMode ? ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>() : ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>();
+			int spawnedDamage = Main.hardMode ? (int)(EverhallowedLantern.BaseDmg * 1.1f * 2f) : ((EverhallowedLantern.BaseDmg / 2 - 1) * 2);
+			for (int i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile projectile = Main.projectile[i];
+				if (projectile.active && projectile.owner == Player.whoAmI && projectile.type == spawnedType)
 				{
-					if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == spawnedType)
+					if (projectile.minionSlots == 0f) //criteria for temp, is set by isTemp
 					{
-						if (Main.projectile[i].minionSlots == 0f) //criteria for temp, is set by isTemp
-						{
-							checkIfAlive = true;
-							break;
-						}
+						checkIfAlive = true;
+						break;
 					}
 				}
+			}
 
-				if (!checkIfAlive)
-				{
-					AssUtils.NewProjectile(Player.GetSource_Accessory(tempSoulMinion), Player.Center.X, Player.Center.Y, -Player.velocity.X, Player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, preSync: PreSyncSoulTemp);
-				}
+			if (!checkIfAlive)
+			{
+				int proj = Projectile.NewProjectile(Player.GetSource_Accessory(tempSoulMinion), Player.Center.X, Player.Center.Y, -Player.velocity.X, Player.velocity.Y - 6f, spawnedType, spawnedDamage, EverhallowedLantern.BaseKB, Main.myPlayer);
+				Main.projectile[proj].originalDamage = spawnedDamage;
 			}
 		}
 

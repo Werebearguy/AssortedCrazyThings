@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -55,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
 		public sealed override void SetDefaults()
 		{
-			Projectile.CloneDefaults(ProjectileID.Spazmamini);
+			//Projectile.CloneDefaults(ProjectileID.Spazmamini);
 			Projectile.width = 14;
 			Projectile.height = 24;
 			Projectile.aiStyle = -1;
@@ -65,6 +66,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 			Projectile.minionSlots = 0.5f;
 			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
+			Projectile.netImportant = true;
+			Projectile.ignoreWater = true;
 
 			Projectile.usesIDStaticNPCImmunity = true;
 			Projectile.idStaticNPCHitCooldown = 8;
@@ -77,6 +80,31 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 		public virtual void SafeSetDefaults()
 		{
 
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			SetIsTemp(source);
+		}
+
+		private void SetIsTemp(IEntitySource source)
+		{
+			if (source is not EntitySource_ItemUse itemSource)
+			{
+				return;
+			}
+
+			if (itemSource.Entity is not Player player)
+			{
+				return;
+			}
+
+			if (itemSource.Item != player.GetModPlayer<AssPlayer>().tempSoulMinion)
+			{
+				return;
+			}
+
+			isTemp = true;
 		}
 
 		public override void SendExtraAI(BinaryWriter writer)

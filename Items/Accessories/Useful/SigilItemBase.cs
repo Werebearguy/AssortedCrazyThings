@@ -30,15 +30,5 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.value = Item.sellPrice(0, 1, 0, 0);
 			Item.rare = 3;
 		}
-
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
-			//4
-			if (4 * player.statLife < player.statLifeMax2)
-			{
-				player.GetModPlayer<AssPlayer>().tempSoulMinion = Item;
-			}
-			player.maxMinions++;
-		}
 	}
 }

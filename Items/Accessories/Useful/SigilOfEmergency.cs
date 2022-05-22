@@ -22,11 +22,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			//4
-			if (4 * player.statLife < player.statLifeMax2)
-			{
-				player.GetModPlayer<AssPlayer>().tempSoulMinion = Item;
-			}
+			player.GetModPlayer<AssPlayer>().tempSoulMinion = Item;
 			player.maxMinions++;
 		}
 	}
