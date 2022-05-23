@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Utilities;
 using System;
 using System.IO;
 using Terraria;
@@ -56,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
 		private bool playedOverheatSound = false;
 
-		private SoundEffectInstance overheatSound = null;
+		private SlotId overheatSound = SlotId.Invalid;
 
 		private void IncreaseCharge()
 		{
@@ -284,9 +285,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 					{
 						//TODO find some better sound to use
 						Projectile.soundDelay = 20;
-						float volume = FixVolume(0.7f + ratio * 0.5f);
+						float volume = 0.7f + ratio * 0.5f;
 						float pitch = -0.1f + ratio * 0.4f;
-						SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.Item15.Style, volume, pitch);
+						SoundEngine.PlaySound(SoundID.Item15 with { Volume = volume, Pitch = pitch }, Projectile.Center);
 						//Main.PlaySound(SoundID.Item15.WithVolume(0.7f + (Counter / (float)ChargeDelay) * 0.5f), projectile.position);
 						//Main.NewText("volume : " + (0.7f + volumeCounter * 0.1f));
 					}
@@ -354,10 +355,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
 			if (AI_STATE == STATE_RECOIL)
 			{
-				if (overheatSound == null && !playedOverheatSound)
+				if (overheatSound == SlotId.Invalid && !playedOverheatSound)
 				{
-					float volume = FixVolume(1.5f);
-					overheatSound = SoundEngine.PlaySound(SoundID.Trackable, (int)Projectile.position.X, (int)Projectile.position.Y, 224, volume, 0.1f);
+					float volume = 1.5f;
+					overheatSound = SoundEngine.PlaySound(SoundID.DD2_KoboldIgniteLoop with { Volume = volume, Pitch = 0.1f }, Projectile.position);
 					playedOverheatSound = true;
 				}
 			}
@@ -366,27 +367,22 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 				playedOverheatSound = false;
 			}
 
-			if (overheatSound != null)
+			if (SoundEngine.TryGetActiveSound(overheatSound, out var sound))
 			{
-				float f = 0.008f * Main.soundVolume;
-				if (overheatSound.Volume > f)
+				float f = 0.008f;
+				if (sound.Volume > f)
 				{
-					overheatSound.Volume -= f;
-					if (overheatSound.Volume < f)
+					sound.Volume -= f;
+					if (sound.Volume < f)
 					{
-						overheatSound.Stop();
+						sound.Stop();
 					}
 				}
-				if (overheatSound.State == SoundState.Stopped)
-				{
-					overheatSound = null;
-				}
 			}
-		}
-
-		public static float FixVolume(float volume)
-		{
-			return Main.soundVolume * volume > 1 ? Main.soundVolume / volume : volume;
+			else
+			{
+				overheatSound = SlotId.Invalid;
+			}
 		}
 
 		private int FindClosestHorizontalTarget()

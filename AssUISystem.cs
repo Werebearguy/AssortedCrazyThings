@@ -180,7 +180,7 @@ namespace AssortedCrazyThings
 
 				try
 				{
-					SoundEngine.PlaySound(SoundID.Item4.WithVolume(0.6f), Main.LocalPlayer.position);
+					SoundEngine.PlaySound(SoundID.Item4 with { Volume = 0.6f });
 				}
 				catch
 				{

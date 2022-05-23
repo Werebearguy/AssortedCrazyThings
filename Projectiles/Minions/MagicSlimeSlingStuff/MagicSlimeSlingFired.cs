@@ -79,7 +79,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
 		public override void Kill(int timeLeft)
 		{
-			SoundEngine.PlaySound(SoundID.NPCKilled, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.NPCDeath1.Style, 0.8f, 0.2f);
+			SoundEngine.PlaySound(SoundID.NPCDeath1 with { Volume = 0.8f, Pitch = 0.2f }, Projectile.Center);
 			for (int i = 0; i < 15; i++)
 			{
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 4, -Projectile.direction, -2f, 200, Color, 1f);

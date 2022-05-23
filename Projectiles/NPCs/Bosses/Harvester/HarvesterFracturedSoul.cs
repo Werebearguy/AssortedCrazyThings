@@ -136,7 +136,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		public override void Kill(int timeLeft)
 		{
-			SoundEngine.PlaySound(0, (int)Projectile.Center.X, (int)Projectile.Center.Y, 27);
+			SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
 			for (int i = 0; i < 20; i++)
 			{
 				int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 135, 0f, 0f, 100);

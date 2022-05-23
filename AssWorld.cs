@@ -72,9 +72,10 @@ namespace AssortedCrazyThings
 		}
 
 		//small methods I made for myself to not make the code cluttered since I have to use these six times
-		public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), int soundStyle = -1)
+		public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), SoundStyle soundStyle = default)
 		{
-			if (soundStyle != -1) SoundEngine.PlaySound(SoundID.Roar, pos, soundStyle); //soundStyle 2 for screech, 0 for regular roar
+			//Sound only in singleplayer
+			if (soundStyle != default) SoundEngine.PlaySound(soundStyle, pos);
 			Message(message, new Color(175, 75, 255));
 		}
 
@@ -206,7 +207,7 @@ namespace AssortedCrazyThings
 						//check if it wasnt alive in previous update
 						if (!megalodonAlive)
 						{
-							AwakeningMessage(megalodonMessage, npc.position, 0);
+							AwakeningMessage(megalodonMessage, npc.Center, SoundID.Roar);
 							megalodonAlive = true;
 						}
 					}
@@ -215,7 +216,7 @@ namespace AssortedCrazyThings
 						isMiniocramSpawned = true;
 						if (!miniocramAlive)
 						{
-							AwakeningMessage(miniocramMessage, npc.position, 0);
+							AwakeningMessage(miniocramMessage, npc.Center, SoundID.Roar);
 							miniocramAlive = true;
 						}
 					}

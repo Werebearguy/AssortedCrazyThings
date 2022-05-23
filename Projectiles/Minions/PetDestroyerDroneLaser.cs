@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-			SoundEngine.PlaySound(SoundID.Item10.WithVolume(0.5f), Projectile.position);
+			SoundEngine.PlaySound(SoundID.Item10 with { Volume = 0.5f}, Projectile.position);
 			return true;
 		}
 
@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 			if (Projectile.ai[1] == 0f)
 			{
 				Projectile.ai[1] = 1f;
-				SoundEngine.PlaySound(SoundID.Item12.WithVolume(0.5f), Projectile.position);
+				SoundEngine.PlaySound(SoundID.Item12 with { Volume = 0.5f }, Projectile.position);
 			}
 
 			if (Projectile.alpha > 0)

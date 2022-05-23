@@ -120,7 +120,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 4, -Projectile.direction, -2f, 200, Color, 1f);
 				dust.velocity *= 0.5f;
 			}
-			SoundEngine.PlaySound(SoundID.NPCDeath1.SoundId, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.NPCDeath1.Style, 0.7f, 0.2f);
+			SoundEngine.PlaySound(SoundID.NPCDeath1 with { Volume = 0.7f, Pitch = 0.2f }, Projectile.Center);
 		}
 
 		public override Color? GetAlpha(Color lightColor)
@@ -142,7 +142,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			if (!Spawned)
 			{
 				Spawned = true;
-				SoundEngine.PlaySound(SoundID.Item9.SoundId, (int)Projectile.Center.X, (int)Projectile.Center.Y, SoundID.Item9.Style, 0.7f);
+				SoundEngine.PlaySound(SoundID.Item9 with { Volume = 0.7f }, Projectile.Center);
 			}
 
 			if (Increment)

@@ -97,7 +97,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-			SoundEngine.PlaySound(SoundID.Item10.WithVolume(0.7f), Projectile.Center);
+			SoundEngine.PlaySound(SoundID.Item10 with { Volume = 0.7f }, Projectile.Center);
 
 			for (int i = 4; i < 16; i++)
 			{

@@ -78,7 +78,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 1);
+				SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
 			}
 
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;

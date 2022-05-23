@@ -808,7 +808,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 			if (!Initialized)
 			{
-				SoundEngine.PlaySound(SoundID.Roar, (int)NPC.Center.X, (int)NPC.Center.Y, 0);
+				SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
 
 				if (Main.netMode != NetmodeID.MultiplayerClient)
 				{
@@ -927,7 +927,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			bool enraged = !BabyHarvesterHandler.ValidPlayer(target); //This is delayed as per method, but player won't see it coming
 			if (enraged && !lastEnraged)
 			{
-				SoundEngine.PlaySound(SoundID.Roar, (int)NPC.Center.X, (int)NPC.Center.Y, 0);
+				SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
 			}
 			lastEnraged = enraged;
 
@@ -1227,7 +1227,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 				{
 					if (AI_Timer == 0)
 					{
-						SoundEngine.PlaySound(SoundID.Roar, (int)NPC.Center.X, (int)NPC.Center.Y, 0, pitchOffset: 0.15f);
+						SoundEngine.PlaySound(SoundID.Roar with { Pitch = 0.15f }, NPC.Center);
 					}
 
 					int xSpeed = 12;
@@ -1309,7 +1309,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 				if (AI_Timer == 0)
 				{
 					SetFadingAura(20, 1.4f, 0.5f);
-					SoundEngine.PlaySound(SoundID.Roar, (int)target.Center.X, (int)target.Center.Y, 0, pitchOffset: 0f);
+					SoundEngine.PlaySound(SoundID.Roar, target.Center);
 				}
 
 				//Lock rotation, talons do not move based on rotation
@@ -1410,7 +1410,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 					NPC.life = (int)(NPC.lifeMax * aiStats.MaxHP);
 
 					SetFadingAura(20, 0.8f, 0.5f);
-					SoundEngine.PlaySound(SoundID.Roar, (int)NPC.Center.X, (int)NPC.Center.Y, 0);
+					SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
 					AI_Animation = Animation_NoHorizontal;
 					SetState(State_Fireball);
 				}
