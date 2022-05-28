@@ -242,27 +242,16 @@ namespace AssortedCrazyThings.Tiles
 			return entity.type == ProjectileID.FallingStarSpawner;
 		}
 
-		public override bool InstancePerEntity => true;
-
-		private bool firstTick = false;
-
-		public override bool PreAI(Projectile projectile)
+		public override void OnSpawn(Projectile projectile, IEntitySource source)
 		{
-			//Modified event rate messes with the timer increment, need safer detection (at the start of AI)
-			if (firstTick)
+			if (source is not EntitySource_Misc { Context: "FallingStar" })
 			{
-				return true;
-			}
-			firstTick = true;
-
-			if (projectile.owner != Main.myPlayer)
-			{
-				return true;
+				return;
 			}
 
 			if (!TryGetRedirectX(projectile, DetectionDistX, out float redirectX, out _))
 			{
-				return true;
+				return;
 			}
 
 			projectile.position.X = redirectX;
@@ -271,8 +260,6 @@ namespace AssortedCrazyThings.Tiles
 				//Anything above this would land outside the screen, so reduce it
 				projectile.velocity.X *= 0.5f;
 			}
-
-			return true;
 		}
 
 		private static bool TryGetRedirectX(Projectile projectile, float detectionDistX, out float redirectX, out float distX)
