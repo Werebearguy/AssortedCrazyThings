@@ -27,6 +27,8 @@ namespace AssortedCrazyThings.NPCs
 		{
 			DisplayName.SetDefault("Strange Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
+
+			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);
 		}
 
 		public override void SetDefaults()

@@ -17,6 +17,8 @@ namespace AssortedCrazyThings.NPCs
 			DisplayName.SetDefault("Horned Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
+
+			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);
 		}
 
 		public override void SetDefaults()
