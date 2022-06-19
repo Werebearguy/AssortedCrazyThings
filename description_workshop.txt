@@ -1,0 +1,21 @@
+[b]Welcome to Assorted Crazy Things![/b]
+
+Assorted Crazy Things (or [b]ACT[/b] for short) is a mod that adds... an assortment of crazy things! We've got a lot of content, most of which is incredibly unobtrusive to the game. Care has been taken to make sure that sprites, coding, and content are all satisfying, and we absolutely want to keep everything running smoothly. Our mod contains pets, fun weapons, an armor set, one boss, a bunch of accessories, and a few mechanics that will surprise you.
+
+Likewise, we have two configurations; one for client, and the other for server. We made sure it's modular so that if you don't like one of the things added by the mod, you can simply turn it off! We both understand that the contents of the mod may not be to everyone's taste, and we made sure that you have the option to exclude it if you want other parts of the mod. Be sure to check Workshop -> Manage Mods -> Gear icon next to ACT to check the toggles, as some of the content is disabled by default!
+
+Hopefully, you will find that the content of this mod livens up your world without intruding on vanilla gameplay or modded gameplay. Consider Assorted Crazy Things to be a supplementary mod which subtly adds a bit more to the world, rather than a mod that makes its presence known with a bang. As we have [b]a lot[/b] of content, please refer to our wiki to see all that we currently offer.
+[hr][/hr]
+Mod Contents:
+[list]
+    [*]11 Tiles
+    [*]51 NPCs, including one boss
+    [*]212 items, including pets, accessories, armor, and more
+    [*]More things to come!
+[/list]
+
+[url=https://github.com/Werebearguy/AssortedCrazyThings/wiki]Wiki & Changelogs[/url]
+
+[url=https://forums.terraria.org/index.php?threads/.74330/]Terraria Community Forums homepage[/url]
+[hr][/hr]
+If you happen to come across a problem with the mod, please report it on our Terraria Community Forums homepage or on the Steam Workshop page in the appropriate discussion page. 
