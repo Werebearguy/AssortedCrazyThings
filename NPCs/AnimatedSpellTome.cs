@@ -97,10 +97,8 @@ namespace AssortedCrazyThings.NPCs
 			}
 		}
 
-		public override void PostAI()
+		public override void DrawEffects(ref Color drawColor)
 		{
-			NPC.rotation = NPC.velocity.X * 0.06f;
-
 			//using Microsoft.Xna.Framework;
 			//change the npc. to projectile. if you port this to pets
 			Color color = Lighting.GetColor((int)NPC.Center.X / 16, (int)NPC.Center.Y / 16);
@@ -122,6 +120,11 @@ namespace AssortedCrazyThings.NPCs
 					dust.velocity *= 0f;
 				}
 			}
+		}
+
+		public override void PostAI()
+		{
+			NPC.rotation = NPC.velocity.X * 0.06f;
 		}
 	}
 }

@@ -66,7 +66,7 @@ namespace AssortedCrazyThings.NPCs
 			}
 		}
 
-		public override void PostAI()
+		public override void DrawEffects(ref Color drawColor)
 		{
 			//using Microsoft.Xna.Framework;
 			//change the NPC. to Projectile. if you port this to pets
