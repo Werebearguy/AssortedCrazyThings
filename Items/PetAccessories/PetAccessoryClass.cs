@@ -123,7 +123,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 		protected override void SafeAddRecipes()
 		{
-			Recipe recipe = Mod.CreateRecipe(ItemID.GoldenKey);
+			Recipe recipe = Recipe.Create(ItemID.GoldenKey);
 			recipe.AddIngredient(ModContent.ItemType<PetAccessorySwallowedKey>());
 			recipe.Register();
 		}
