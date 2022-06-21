@@ -1,0 +1,5 @@
+Additions:
+* Added higher resolution workshop icon
+
+Fixes:
+* Fixed Animated Spell Tome and Gold Giant Grasshopper causing an error on servers
