@@ -31,7 +31,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Replica Golem Head");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
-			DrawOriginOffsetY = -10;
 		}
 
 		public override void SetDefaults()
@@ -41,6 +40,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.width = 38;
 			Projectile.height = 38;
 			Projectile.tileCollide = false;
+			DrawOriginOffsetY = -10;
 		}
 
 		protected override void CheckActive()

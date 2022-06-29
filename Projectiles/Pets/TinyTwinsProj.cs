@@ -14,7 +14,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Tiny Spazmatism");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
-			DrawOriginOffsetY = -10;
 		}
 
 		public override void SetDefaults()
@@ -24,6 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			//AIType = ProjectileID.BabyEater;
 			Projectile.width = 30;
 			Projectile.height = 30;
+			DrawOriginOffsetY = -10;
 		}
 
 		public override bool PreAI()
@@ -82,7 +82,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Tiny Retinazer");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
-			DrawOriginOffsetY = -10;
 		}
 
 		public override void SetDefaults()
@@ -91,6 +90,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AIType = ProjectileID.ZephyrFish;
 			Projectile.width = 30;
 			Projectile.height = 30;
+			DrawOriginOffsetY = -10;
 		}
 
 		public override bool PreAI()

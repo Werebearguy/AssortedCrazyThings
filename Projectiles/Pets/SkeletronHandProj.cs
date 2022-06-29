@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Skeletron Pet Hand");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
-			DrawOriginOffsetY = -8;
 		}
 
 		public override void SetDefaults()
@@ -33,6 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.aiStyle = -1;
 			Projectile.width = 24;
 			Projectile.height = 32;
+			DrawOriginOffsetY = -8;
 		}
 
 		public override void AI()

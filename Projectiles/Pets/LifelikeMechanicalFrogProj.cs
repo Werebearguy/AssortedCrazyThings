@@ -14,7 +14,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Lifelike Mechanical Frog");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
-			DrawOriginOffsetY = 1;
 		}
 
 		public override void SetDefaults()
@@ -23,6 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AIType = ProjectileID.Bunny;
 			Projectile.width = 18;
 			Projectile.height = 20;
+			DrawOriginOffsetY = 1;
 		}
 
 		public override bool PreAI()

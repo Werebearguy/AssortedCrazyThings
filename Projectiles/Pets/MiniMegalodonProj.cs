@@ -12,8 +12,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Mini Megalodon");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
-			DrawOffsetX = -4;
-			DrawOriginOffsetY = -8;
 		}
 
 		public override void SetDefaults()
@@ -23,6 +21,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.width = 32;
 			Projectile.height = 24;
 			//AIType = ProjectileID.EyeSpring;
+			DrawOffsetX = -4;
+			DrawOriginOffsetY = -8;
 		}
 
 		public override bool PreAI()

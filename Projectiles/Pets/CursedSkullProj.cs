@@ -22,13 +22,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Cursed Skull");
 			Main.projFrames[Projectile.type] = 3;
 			Main.projPet[Projectile.type] = true;
-			DrawOriginOffsetY = 2;
 		}
 
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
 			AIType = ProjectileID.ZephyrFish;
+			DrawOriginOffsetY = 2;
 		}
 
 		public override bool PreAI()
