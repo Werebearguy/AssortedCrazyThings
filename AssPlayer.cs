@@ -193,8 +193,8 @@ namespace AssortedCrazyThings
 
 			//Actual data here
 			packet.Write((byte)shieldDroneReduction);
-			packet.WriteVarInt(lastSlainBossTimerSeconds);
-			packet.WriteVarInt(lastSlainBossType);
+			packet.Write7BitEncodedInt(lastSlainBossTimerSeconds);
+			packet.Write7BitEncodedInt(lastSlainBossType);
 
 			packet.Send(toWho, fromWho);
 		}
@@ -202,8 +202,8 @@ namespace AssortedCrazyThings
 		public void ReceiveSyncPlayer(BinaryReader reader)
 		{
 			shieldDroneReduction = reader.ReadByte();
-			lastSlainBossTimerSeconds = reader.ReadVarInt();
-			lastSlainBossType = reader.ReadVarInt();
+			lastSlainBossTimerSeconds = reader.Read7BitEncodedInt();
+			lastSlainBossType = reader.Read7BitEncodedInt();
 		}
 
 		public override void OnEnterWorld(Player player)
@@ -612,7 +612,7 @@ namespace AssortedCrazyThings
 			{
 				ModPacket packet = Mod.GetPacket();
 				packet.Write((byte)AssMessageType.SlainBoss);
-				packet.WriteVarInt(lastSlainBossType);
+				packet.Write7BitEncodedInt(lastSlainBossType);
 				packet.Send(Player.whoAmI);
 			}
 		}

@@ -357,19 +357,16 @@ namespace AssortedCrazyThings
 							if (other.active && other.type == NPCID.WyvernHead)
 							{
 								DungeonSoulBase.KillInstantly(other);
-								if (k < Main.maxNPCs)
-								{
-									NetMessage.SendData(MessageID.SyncNPC, number: k);
-								}
+								NetMessage.SendData(MessageID.SyncNPC, number: k);
 								break;
 							}
 						}
 					}
 					break;
 				case AssMessageType.SlainBoss:
+					int type = reader.Read7BitEncodedInt();
 					if (Main.netMode == NetmodeID.MultiplayerClient)
 					{
-						int type = reader.ReadVarInt();
 						Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
 					}
 					break;

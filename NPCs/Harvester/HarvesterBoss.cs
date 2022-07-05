@@ -211,7 +211,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override void SendExtraAI(BinaryWriter writer)
 		{
-			writer.WriteVarInt(AI_Counter);
+			writer.Write7BitEncodedInt(AI_Counter);
 			writer.Write(activeTalonIndex);
 			writer.Write(RevivesDone);
 
@@ -222,7 +222,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-			AI_Counter = reader.ReadVarInt();
+			AI_Counter = reader.Read7BitEncodedInt();
 			activeTalonIndex = reader.ReadByte();
 			RevivesDone = reader.ReadByte();
 
