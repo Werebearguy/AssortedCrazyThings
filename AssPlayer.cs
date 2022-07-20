@@ -752,7 +752,7 @@ namespace AssortedCrazyThings
 			return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
 		}
 
-		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
 		{
 			if (getDefenseDuration != 0) damage = 1;
 
@@ -763,10 +763,10 @@ namespace AssortedCrazyThings
 				hitDirection = 0; //this cancels knockback
 			}
 
-			return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
+			return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
 		}
 
-		public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+		public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
 		{
 			ResetEmpoweringTimer();
 
