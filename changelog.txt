@@ -1,2 +1,3 @@
 Fixes:
-* Fixed some pets being visually offset
+* Fixed mod not loading on 1.4-preview
+* Fixed True Legendary Wooden Sword not scaling with damage modifiers of any kind
