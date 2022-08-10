@@ -652,7 +652,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					{
 						int i = (int)Projectile.Center.X / 16;
 						int j = (int)Projectile.Bottom.Y / 16 + 1;
-						if (WorldGen.SolidTile(i, j) || Main.tile[i, j].IsHalfBlock || Main.tile[i, j].Slope > 0)
+						if (WorldGen.SolidTileAllowBottomSlope(i, j) || Main.tile[i, j].IsHalfBlock || Main.tile[i, j].Slope > 0)
 						{
 							try
 							{
@@ -717,7 +717,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					Projectile.direction = -1;
 				}
 
-				if (Projectile.wet && Projectile.GetOwner().Bottom.Y < Projectile.Bottom.Y && JumpTimer == 0f)
+				if (Projectile.wet && player.Bottom.Y < Projectile.Bottom.Y && JumpTimer == 0f)
 				{
 					if (Projectile.velocity.Y > -4f)
 					{
