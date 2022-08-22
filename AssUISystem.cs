@@ -28,8 +28,6 @@ namespace AssortedCrazyThings
 		internal static UserInterface HoverNPCUIInterface;
 		internal static HoverNPCUI HoverNPCUI;
 
-		internal static UserInterface HarvesterEdgeUIInterface;
-
 		internal static UserInterface EnhancedHunterUIInterface;
 		internal static EnhancedHunterUI EnhancedHunterUI;
 
@@ -77,8 +75,6 @@ namespace AssortedCrazyThings
 
 				HoverNPCUIInterface = null;
 				HoverNPCUI = null;
-
-				HarvesterEdgeUIInterface = null;
 
 				EnhancedHunterUIInterface = null;
 				EnhancedHunterUI = null;
@@ -326,7 +322,7 @@ namespace AssortedCrazyThings
 
 		private void UpdateHoverNPCUI(GameTime gameTime)
 		{
-			HoverNPCUI.Update(gameTime);
+			HoverNPCUI?.Update(gameTime);
 		}
 
 		private void UpdateEnhancedHunterUI(GameTime gameTime)
@@ -376,7 +372,7 @@ namespace AssortedCrazyThings
 			int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Hotbar"));
 			if (inventoryIndex != -1)
 			{
-				if (CircleUI.visible)
+				if (CircleUI.visible && CircleUIInterface != null)
 				{
 					//remove the item icon when using the item while held outside the inventory
 					int mouseItemIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Item / NPC Head"));
@@ -414,42 +410,28 @@ namespace AssortedCrazyThings
 			int mouseOverIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Over"));
 			if (mouseOverIndex != -1)
 			{
-				layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-					(
-					"ACT: NPC Mouse Over",
-					delegate
-					{
-						HoverNPCUIInterface.Draw(Main.spriteBatch, new GameTime());
-						return true;
-					},
-					InterfaceScaleType.UI)
-				);
-
-				if (EnhancedHunterUIInterface != null)
+				if (HoverNPCUIInterface != null)
 				{
-					if (EnhancedHunterUI.visible)
-					{
-						layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+					layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
+						(
+						"ACT: NPC Mouse Over",
+						delegate
+						{
+							HoverNPCUIInterface.Draw(Main.spriteBatch, new GameTime());
+							return true;
+						},
+						InterfaceScaleType.UI)
+					);
+				}
+
+				if (EnhancedHunterUI.visible && EnhancedHunterUIInterface != null)
+				{
+					layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
 						(
 						"ACT: Enhanced Hunter",
 						delegate
 						{
 							EnhancedHunterUIInterface.Draw(Main.spriteBatch, new GameTime());
-							return true;
-						},
-						InterfaceScaleType.UI)
-					);
-					}
-				}
-
-				if (HarvesterEdgeUIInterface != null)
-				{
-					layers.Insert(++mouseOverIndex, new LegacyGameInterfaceLayer
-						(
-						"ACT: Harvester Edge",
-						delegate
-						{
-							HarvesterEdgeUIInterface.Draw(Main.spriteBatch, new GameTime());
 							return true;
 						},
 						InterfaceScaleType.UI)
