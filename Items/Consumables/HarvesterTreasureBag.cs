@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,12 +12,9 @@ namespace AssortedCrazyThings.Items.Consumables
 	[Content(ContentType.Bosses)]
 	public class HarvesterTreasureBag : AssItem
 	{
-		//Sets the associated NPC this treasure bag is dropped from
-		public override int BossBagNPC => AssortedCrazyThings.harvester;
-
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Treasure Bag");
+			DisplayName.SetDefault("Treasure Bag (Soul Harvester)");
 			Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}"); //References a language key that says "Right Click To Open" in the language of the game
 
 			ItemID.Sets.BossBag[Type] = true; //This set is one that every boss bag should have, it, for example, lets our boss bag drop dev armor..
@@ -40,17 +38,12 @@ namespace AssortedCrazyThings.Items.Consumables
 			return true;
 		}
 
-		public override void OpenBossBag(Player player)
+		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			var source = player.GetSource_OpenItem(Type);
-			//We have to replicate the expert drops from Harvester here via QuickSpawnItem
-			player.QuickSpawnItem(source, ItemID.Bone, Main.rand.Next(40, 61));
-			player.QuickSpawnItem(source, ModContent.ItemType<DesiccatedLeather>());
-
-			if (Main.rand.NextBool(7))
-			{
-				player.QuickSpawnItem(source, ModContent.ItemType<SoulHarvesterMask>());
-			}
+			itemLoot.Add(ItemDropRule.Common(ItemID.Bone, 1, 40, 60));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>(), 1));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), 7));
+			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(AssortedCrazyThings.harvester));
 		}
 
 		//Below is code for the visuals
