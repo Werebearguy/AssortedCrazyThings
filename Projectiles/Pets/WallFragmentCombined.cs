@@ -14,6 +14,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			SafeSetStaticDefaults();
 		}
 
 		public virtual void SafeSetStaticDefaults()
