@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().TorturedSoul;
 
-		public override void SafeSetDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tortured Soul");
 			Description.SetDefault("Shouldn't have been so greedy, eh?");

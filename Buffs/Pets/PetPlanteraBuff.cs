@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetPlantera;
 
-		public override void SafeSetDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plantera Sprout");
 			Description.SetDefault("A Plantera Sprout is following you");

@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CursedSkull;
 
-		public override void SafeSetDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cursed Skull");
 			Description.SetDefault("It won't curse you, I promise");

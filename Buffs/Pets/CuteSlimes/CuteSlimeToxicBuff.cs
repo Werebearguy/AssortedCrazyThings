@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Buffs.Pets.CuteSlimes
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeToxic;
 
-		public override void SafeSetDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cute Toxic Slime");
 			Description.SetDefault("A cute toxic slime is following you");

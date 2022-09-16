@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetEaterofWorlds;
 
-		public override void SafeSetDefaults()
+		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tiny Eater of Worlds");
 			Description.SetDefault("A tiny Eater of Worlds is following you");

@@ -19,10 +19,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 
-			SafeSetDefaults();
+			SafeSetStaticDefaults();
 		}
 
-		public virtual void SafeSetDefaults()
+		public virtual void SafeSetStaticDefaults()
 		{
 
 		}
