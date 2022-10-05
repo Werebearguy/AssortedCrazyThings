@@ -9,10 +9,10 @@ namespace AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw
 {
 	public class SwarmofCthulhuDrawUnit : SwarmDrawUnit
 	{
-		private const string name = "AssortedCrazyThings/Base/SwarmDraw/SwarmofCthulhuDraw/SwarmofCthulhu";
+		public const string assetName = "AssortedCrazyThings/Base/SwarmDraw/SwarmofCthulhuDraw/SwarmofCthulhu";
 
 		public SwarmofCthulhuDrawUnit() :
-			base(ModContent.Request<Texture2D>(name), 4, 6, 0, null)
+			base(ModContent.Request<Texture2D>(assetName), 4, 6, 0, null)
 		{
 
 		}

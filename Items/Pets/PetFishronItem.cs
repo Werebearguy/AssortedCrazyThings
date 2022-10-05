@@ -12,16 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetFishronBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Soggy Fish Cake");
-			Tooltip.SetDefault("Summons a friendly Fishron that flies with you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetFishronItem_AoMM : SimplePetItemBase_AoMM<PetFishronItem>
+	{
+		public override int BuffType => ModContent.BuffType<PetFishronBuff_AoMM>();
 	}
 }

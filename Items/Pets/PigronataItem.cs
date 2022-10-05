@@ -12,13 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PigronataBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Pigronata");
-			Tooltip.SetDefault("Summons a friendly Pigronata to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(gold: 2, silver: 20);
@@ -28,5 +21,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Pigronata, 1).AddIngredient(ItemID.LifeFruit, 1).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class PigronataItem_AoMM : SimplePetItemBase_AoMM<PigronataItem>
+	{
+		public override int BuffType => ModContent.BuffType<PigronataBuff_AoMM>();
 	}
 }

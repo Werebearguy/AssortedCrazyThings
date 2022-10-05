@@ -36,7 +36,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 			Projectile.friendly = true;
 			Projectile.hostile = false;
 			Projectile.alpha = 255; //might not be needed
-			Projectile.DamageType = DamageClass.Ranged;
 			Projectile.penetrate = -1;
 			Projectile.aiStyle = -1;
 			Projectile.DamageType = DamageClass.Summon;

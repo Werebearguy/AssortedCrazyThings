@@ -13,12 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DetachedHungryBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Unconscious Hungry");
-			Tooltip.SetDefault("Summons a detached Hungry to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(gold: 1);
@@ -28,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.HellstoneBar, 4).AddIngredient(ItemID.RottenChunk, 10).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class DetachedHungryItem_AoMM : SimplePetItemBase_AoMM<DetachedHungryItem>
+	{
+		public override int BuffType => ModContent.BuffType<DetachedHungryBuff_AoMM>();
 	}
 }

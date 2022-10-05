@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<BrainofConfusionProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().BrainofConfusion;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Brain of Confusion");
-			Description.SetDefault("A Brain of Confusion is following you");
-		}
+	public class BrainofConfusionBuff_AoMM : SimplePetBuffBase_AoMM<BrainofConfusionBuff>
+	{
+
 	}
 }

@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<VampireBatProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().VampireBat;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Vampire Bat");
-			Description.SetDefault("A particularly dashing vampire is following you");
-		}
+	public class VampireBatBuff_AoMM : SimplePetBuffBase_AoMM<VampireBatBuff>
+	{
+
 	}
 }

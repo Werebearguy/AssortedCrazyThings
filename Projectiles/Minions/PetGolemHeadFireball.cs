@@ -9,6 +9,9 @@ namespace AssortedCrazyThings.Projectiles.Minions
 	[Content(ContentType.DroppedPets)]
 	public class PetGolemHeadFireball : AssProjectile
 	{
+		public const float Gravity = 0.2f;
+		public const int TicksWithoutGravity = 20;
+
 		public override string Texture
 		{
 			get

@@ -1,8 +1,14 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -17,6 +23,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Number Muncher");
 			Main.projFrames[Projectile.type] = 10;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<NumberMuncherBuff_AoMM>(), ModContent.ProjectileType<NumberMuncherShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -80,6 +88,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					dust.noGravity = true;
 				}
 			}
+
+			if (AmuletOfManyMinionsApi.IsActive(this) &&
+				AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) && state.IsInFiringRange &&
+				state.TargetNPC is NPC targetNPC)
+			{
+				Projectile.spriteDirection = Projectile.direction = ((targetNPC.Center.X - Projectile.Center.X) < 0).ToDirectionInt();
+			}
 		}
 
 		private void GetFrame()
@@ -127,6 +142,109 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					frame2 = 1; //flying frame 1
 				}
 			}
+		}
+	}
+
+	public class NumberMuncherShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.Bullet;
+
+		public override void SafeSetDefaults()
+		{
+			Projectile.hide = true;
+		}
+
+		int textWhoAmI = -1;
+
+		public string GenerateRandomText()
+		{
+			int mode = Main.rand.Next(9);
+			switch (mode)
+			{
+				case 0:
+				case 1:
+				case 2:
+					{
+						//Addition
+						int result = Main.rand.Next(1, 101);
+						int first = result - Main.rand.Next(1, result + 1);
+						return $"{first} + {result - first} = {result}";
+					}
+				case 3:
+				case 4:
+				case 5:
+					{
+						//Subtraction
+						int first = Main.rand.Next(1, 101);
+						int second = Main.rand.Next(1, first + 1);
+						return $"{first} - {second} = {first - second}";
+					}
+				case 6:
+				case 7:
+					{
+						//Multiplication
+						int first = Main.rand.Next(1, 51);
+						int second = Main.rand.Next(1, 101) / first;
+						return $"{first} x {second} = {first * second}";
+					}
+				case 8:
+					{
+						//Division
+						int first = Main.rand.Next(2, 101);
+						int second = first / Main.rand.Next(1, first + 1);
+						return $"{first} / {second} = {first / second}";
+					}
+				default:
+					return "ERROR";
+			}
+		}
+
+		public override void SafeAI()
+		{
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
+
+			if (textWhoAmI == -1)
+			{
+				Projectile.velocity *= 0.6f;
+				textWhoAmI = PopupText.NewText(new AdvancedPopupRequest
+				{
+					Text = GenerateRandomText(),
+					Color = Color.White,
+					DurationInFrames = 10,
+					Velocity = Vector2.Zero
+				},
+				Projectile.Center);
+			}
+
+			if (textWhoAmI <= -1 || textWhoAmI >= Main.maxItemText || Main.popupText[textWhoAmI] is not PopupText popupText)
+			{
+				if (Main.myPlayer == Projectile.owner)
+				{
+					Projectile.Kill();
+				}
+				return;
+			}
+
+			Projectile.ai[1]++;
+			popupText.lifeTime = 60;
+			popupText.alpha = 255;
+			popupText.scale = Math.Min(1f, Projectile.ai[1] / 10f);
+			Vector2 value = FontAssets.MouseText.Value.MeasureString(popupText.name);
+			popupText.position = Projectile.Center - value / 2f;
+		}
+
+		public override void Kill(int timeLeft)
+		{
+			if (textWhoAmI <= -1 || textWhoAmI >= Main.maxItemText || Main.popupText[textWhoAmI] is not PopupText popupText)
+			{
+				return;
+			}
+
+			popupText.lifeTime = 60;
+			popupText.velocity = Projectile.velocity; //Keep going after disconnecting
 		}
 	}
 }

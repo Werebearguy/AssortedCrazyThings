@@ -1,8 +1,11 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,6 +32,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<CuteLamiaPetBuff_AoMM>(), ModContent.ProjectileType<CuteLamiaPetShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -81,6 +86,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				}
 
 				Projectile.rotation -= Projectile.spriteDirection * MathHelper.PiOver2;
+			}
+
+			if (AmuletOfManyMinionsApi.IsActive(this) &&
+				AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) && state.IsInFiringRange &&
+				state.TargetNPC is NPC targetNPC)
+			{
+				Projectile.spriteDirection = Projectile.direction = ((targetNPC.Center.X - Projectile.Center.X) < 0).ToDirectionInt();
 			}
 		}
 
@@ -154,5 +166,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				}
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class CuteLamiaPetShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.AmethystBolt;
+
+		public override SoundStyle? SpawnSound => SoundID.Item8;
 	}
 }

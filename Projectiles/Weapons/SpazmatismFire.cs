@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
@@ -8,7 +9,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("'Handle with care'");
+			DisplayName.SetDefault("Spazmatism Breath");
 		}
 
 		public override void SetDefaults()
@@ -17,6 +18,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			Projectile.aiStyle = 23;
 			Projectile.friendly = true;
 			Projectile.hostile = false;
+			Projectile.DamageType = DamageClass.Ranged;
 			//adding this makes the game select the AI that is meant for the Spazmatism cursed fire ai
 			AIType = ProjectileID.EyeFire;
 		}
@@ -25,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 		{
 			if (Main.rand.NextFloat() >= .66f)
 			{
-				target.AddBuff(BuffID.CursedInferno, 180); //three full seconds, 33% chance
+				target.AddBuff(BuffID.CursedInferno, 180); //three full seconds, 66% chance
 			}
 		}
 	}

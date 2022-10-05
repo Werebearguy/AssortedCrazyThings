@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<PetGoldfishProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetGoldfish;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Possessed Goldfish");
-			Description.SetDefault("A possessed goldfish is following you");
-		}
+	public class PetGoldfishBuff_AoMM : SimplePetBuffBase_AoMM<PetGoldfishBuff>
+	{
+
 	}
 }

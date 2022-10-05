@@ -1,6 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -12,6 +16,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Cute Gastropod");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<CuteGastropodBuff_AoMM>(), ModContent.ProjectileType<CuteGastropodShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -41,5 +47,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.CuteSlimes)]
+	public class CuteGastropodShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.PinkLaser;
+
+		public override SoundStyle? SpawnSound => SoundID.Item8;
 	}
 }

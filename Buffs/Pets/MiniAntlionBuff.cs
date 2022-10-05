@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<MiniAntlionProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().MiniAntlion;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Baby Antlion");
-			Description.SetDefault("A Baby Antlion is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class MiniAntlionBuff_AoMM : SimplePetBuffBase_AoMM<MiniAntlionBuff>
+	{
+
 	}
 }

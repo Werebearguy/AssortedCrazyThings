@@ -12,12 +12,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetDestroyer;
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tiny Destroyer");
-			Description.SetDefault("A tiny Destroyer and two tiny Probes are following you");
-		}
-
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.buffTime[buffIndex] = 18000;
@@ -28,5 +22,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 				PetDestroyerItem.Spawn(player, buffIndex: buffIndex);
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetDestroyerBuff_AoMM : SimplePetBuffBase_AoMM<PetDestroyerBuff>
+	{
+
 	}
 }

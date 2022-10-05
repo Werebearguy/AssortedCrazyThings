@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<JoyousSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().JoyousSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Joyous Slime");
-			Description.SetDefault("A Joyous Slime is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
+	public class JoyousSlimeBuff_AoMM : SimplePetBuffBase_AoMM<JoyousSlimeBuff>
+	{
+
 	}
 }

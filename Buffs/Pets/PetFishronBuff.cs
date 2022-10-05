@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<PetFishronProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetFishron;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Fishron");
-			Description.SetDefault("A Fishron is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetFishronBuff_AoMM : SimplePetBuffBase_AoMM<PetFishronBuff>
+	{
+
 	}
 }

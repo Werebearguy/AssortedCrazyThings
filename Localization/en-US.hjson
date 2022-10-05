@@ -1,0 +1,518 @@
+Mods.AssortedCrazyThings: {
+	BuffName: {
+		# Cute Slimes
+		CuteSlimeBlackBuff: Cute Black Slime
+		CuteSlimeBlueBuff: Cute Blue Slime
+		CuteSlimeCorruptBuff: Cute Corrupt Slime
+		CuteSlimeCrimsonBuff: Cute Crimson Slime
+		CuteSlimeDungeonBuff: Cute Dungeon Slime
+		CuteSlimeGreenBuff: Cute Green Slime
+		CuteSlimeIceBuff: Cute Ice Slime
+		CuteSlimeIlluminantBuff: Cute Illuminant Slime
+		CuteSlimeJungleBuff: Cute Jungle Slime
+		CuteSlimeLavaBuff: Cute Lava Slime
+		CuteSlimePinkBuff: Cute Pink Slime
+		CuteSlimePrincessBuff: Cute Princess Slime
+		CuteSlimePurpleBuff: Cute Purple Slime
+		CuteSlimeQueenBuff: Cute Queen Slime
+		CuteSlimeRainbowBuff: Cute Rainbow Slime
+		CuteSlimeRedBuff: Cute Red Slime
+		CuteSlimeSandBuff: Cute Sand Slime
+		CuteSlimeToxicBuff: Cute Toxic Slime
+		CuteSlimeXmasBuff: Cute Christmas Slime
+		CuteSlimeYellowBuff: Cute Yellow Slime
+		# Pets. AoMM versions are auto-generated
+		AbeeminationBuff: Abeemination
+		AlienHornetBuff: Alien Hornet
+		AnimatedTomeBuff: Animated Tome
+		AnomalocarisBuff: Anomalocaris
+		BabyCrimeraBuff: Baby Crimera
+		BabyIchorStickerBuff: Lil' Ichy
+		BabyOcramBuff: Baby Ocram
+		BrainofConfusionBuff: Brain of Confusion
+		ChunkyandMeatballBuff: Chunky and Meatball
+		ChunkySlimeBuff: Chunky
+		CompanionDungeonSoulPetBuff: Companion Soul
+		CompanionDungeonSoulPetBuff2: "{$Mods.AssortedCrazyThings.BuffName.CompanionDungeonSoulPetBuff}"
+		CursedSkullBuff: Cursed Skull
+		CuteGastropodBuff: Cute Gastropod
+		CuteLamiaPetBuff: Small Snake
+		DemonHeartBuff: Demon Heart
+		DetachedHungryBuff: Detached Hungry
+		DocileDemonEyeBuff: Docile Demon Eye
+		DrumstickElementalBuff: Drumstick Elemental
+		DynamiteBunnyBuff: Dynamite Bunny
+		EnchantedSwordBuff: Enchanted Sword
+		FailureSlimeBuff: Failure Slime
+		FairySlimeBuff: Fairy Slime
+		FairySwarmBuff: Fairy Swarm
+		GhostMartianBuff: Ghost Martian
+		GobletBuff: Goblet
+		HornedSlimeBuff: Horned Slime
+		IlluminantSlimeBuff: Illuminant Slime
+		JoyousSlimeBuff: Joyous Slime
+		LifelikeMechanicalFrogBuff: Lifelike Mechanical Frog
+		LilWrapsBuff: Lil' Wraps
+		MeatballSlimeBuff: Meatball
+		MetroidPetBuff: Metroid
+		MiniAntlionBuff: Baby Antlion
+		MiniAntlionBuff_AoMM: "{$Mods.AssortedCrazyThings.BuffName.MiniAntlionBuff} {$Mods.AssortedCrazyThings.Common.AoMMVersion}"
+		MiniMegalodonBuff: Mini Megalodon
+		NumberMuncherBuff: Number Muncher
+		OceanSlimeBuff: Ocean Slime
+		PetCultistBuff: Dwarf Cultist
+		PetDestroyerBuff: Tiny Destroyer
+		PetEaterofWorldsBuff: Tiny Eater of Worlds
+		PetFishronBuff: Fishron
+		PetGoldfishBuff: Possessed Goldfish
+		PetGolemHeadBuff: Replica Golem Head
+		PetHarvesterBuff: Stubborn Bird
+		PetMoonBuff: Personal Moon
+		PetPlanteraBuff: Plantera Sprout
+		PetQueenSlimeBuff: Playful Slimelings
+		PetSunBuff: Personal Sun
+		PetSunMoonBuff: Personal Sun and Moon
+		PigronataBuff: Pigronata
+		PrinceSlimeBuff: Prince Slime
+		QueenLarvaBuff: Queen Larva
+		RainbowSlimeBuff: Rainbow Slime
+		SkeletronHandBuff: Skeletron's Spare Hand
+		SkeletronPrimeHandBuff: Skeletron Prime's Hand is attached to you
+		StingSlimeBuff: Sting Slime
+		StrangeRobotBuff: Strange Robot
+		SuspiciousNuggetBuff: Suspicious Nugget
+		SwarmofCthulhuBuff: Swarm of Cthulhu
+		TinyTwinsBuff: Tiny Twins
+		TorchGodLightPetBuff: Godly Torch
+		TorturedSoulBuff: Tortured Soul
+		TrueObservingEyeBuff: True Observing Eye
+		TurtleSlimeBuff: Turtle Slime
+		VampireBatBuff: Vampire Bat
+		WallFragmentBuff: Wall Fragment
+		YoungHarpyBuff: Young Harpy
+		YoungWyvernBuff: Young Wyvern
+	}
+
+	BuffDescription: {
+		# Cute Slimes
+		CuteSlimeBlackBuff: A cute black slime is following you
+		CuteSlimeBlueBuff: A cute blue slime is following you
+		CuteSlimeCorruptBuff: A cute corrupt slime is following you
+		CuteSlimeCrimsonBuff: A cute crimson slime is following you
+		CuteSlimeDungeonBuff: A cute dungeon slime is following you
+		CuteSlimeGreenBuff: A cute green slime is following you
+		CuteSlimeIceBuff: A cute ice slime is following you
+		CuteSlimeIlluminantBuff: A cute illuminant slime is following you
+		CuteSlimeJungleBuff: A cute jungle slime is following you
+		CuteSlimeLavaBuff: A cute lava slime is following you
+		CuteSlimePinkBuff: A cute pink slime is following you
+		CuteSlimePrincessBuff: A cute princess slime is following you
+		CuteSlimePurpleBuff: A cute purple slime is following you
+		CuteSlimeQueenBuff: A cute queen slime is following you
+		CuteSlimeRainbowBuff: A cute rainbow slime is following you
+		CuteSlimeRedBuff: A cute red slime is following you
+		CuteSlimeSandBuff: A cute sand slime is following you
+		CuteSlimeToxicBuff: A cute toxic slime is following you
+		CuteSlimeXmasBuff: A cute Christmas slime is following you
+		CuteSlimeYellowBuff: A cute yellow slime is following you
+		# Pets. AoMM versions are auto-generated
+		AbeeminationBuff: An abeemination is following you
+		AlienHornetBuff: An alien hornet is following you
+		AnimatedTomeBuff: An animated tome is following you
+		AnomalocarisBuff: A little prehistoric shrimp is following you
+		BabyCrimeraBuff: A little crimera is following you
+		BabyIchorStickerBuff: A baby ichor sticker is following you
+		BabyOcramBuff: What could have been now follows you
+		BrainofConfusionBuff: A brain of confusion is following you
+		ChunkyandMeatballBuff: Two reunited brothers are following you
+		ChunkySlimeBuff: Chunky is following you
+		CompanionDungeonSoulPetBuffCommon: A friendly dungeon soul is following you
+		CompanionDungeonSoulPetBuff:
+			'''
+			{$Mods.AssortedCrazyThings.BuffDescription.CompanionDungeonSoulPetBuffCommon}
+			Light pet slot
+			'''
+		CompanionDungeonSoulPetBuff2:
+			'''
+			{$Mods.AssortedCrazyThings.BuffDescription.CompanionDungeonSoulPetBuffCommon}
+			Pet slot
+			'''
+		CursedSkullBuff: It won't curse you, I promise
+		CuteGastropodBuff: A cute gastropod is following you
+		CuteLamiaPetBuff: A small snake is following you
+		DemonHeartBuff: A demon heart is following you
+		DetachedHungryBuff: You might be the next meal...
+		DocileDemonEyeBuff: A demon eye is following you
+		DrumstickElementalBuff: Dinner is following you
+		DynamiteBunnyBuff: A little dynamite bunny is following you
+		EnchantedSwordBuff: The enchanted sword watches over you
+		FailureSlimeBuff: A strange creature is following you
+		FairySlimeBuff: A fairy slime is following you
+		FairySwarmBuff: A fairy swarm is following you
+		GhostMartianBuff: A vengeful invader's ghost is following you
+		GobletBuff: A tiny goblin is following you
+		HornedSlimeBuff: A horned slime is following you
+		IlluminantSlimeBuff: An illuminant slime is following you
+		JoyousSlimeBuff: A joyous slime is following you
+		LifelikeMechanicalFrogBuff: Whatever happened to this frog at the anvil is a mystery
+		LilWrapsBuff: A mummy is following you
+		MeatballSlimeBuff: Meatball is following you
+		MetroidPetBuff: A space parasite is following you
+		MiniAntlionBuff: A baby antlion is following you
+		MiniAntlionBuff_AoMM: "{$Mods.AssortedCrazyThings.BuffDescription.MiniAntlionBuff}"
+		MiniMegalodonBuff: It recognizes your strength...for now
+		NumberMuncherBuff: An educated amphibian is following you
+		OceanSlimeBuff: An ocean slime is following you
+		PetCultistBuff: A tiny cultist is following you
+		PetDestroyerBuff: A tiny Destroyer and two tiny Probes are following you
+		PetEaterofWorldsBuff: A tiny Eater of Worlds is following you
+		PetFishronBuff: A fishron is following you
+		PetGoldfishBuff: A possessed goldfish is following you
+		PetGolemHeadBuff: A replica Golem head watches over you
+		PetHarvesterBuff: A stubborn bird is following you
+		PetMoonBuff: A small moon is providing you with constant moonlight
+		PetPlanteraBuff: A Plantera sprout is following you
+		PetQueenSlimeBuff: A trio of slimelings is following you
+		PetSunBuff: A small sun is providing you with constant sunlight
+		PetSunMoonBuff:
+			'''
+			A small sun and moon are providing you with constant light
+			No adverse gravitational effects will happen'
+			'''
+		PigronataBuff: A pigronata is thankful that you did not bust it
+		PrinceSlimeBuff: A prince slime is following you
+		QueenLarvaBuff: A Queen Bee larva is following you
+		RainbowSlimeBuff: A rainbow slime is following you
+		SkeletronHandBuff: Skeletron's hand is attached to you
+		SkeletronPrimeHandBuff: Skeletron Prime's hand is attached to you
+		StingSlimeBuff: A sting slime is following you
+		StrangeRobotBuff: A strange robot is following you
+		SuspiciousNuggetBuff: A suspicious nugget is following you
+		SwarmofCthulhuBuff: A swarm of Cthulhu is following you
+		TinyTwinsBuff: The Twins are watching you
+		TorchGodLightPetBuff: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
+		TorturedSoulBuff: Shouldn't have been so greedy, eh?
+		TrueObservingEyeBuff: A tiny True Eye of Cthulhu is following you
+		TurtleSlimeBuff: A turtle slime is following you
+		VampireBatBuff: A particularly dashing vampire is following you
+		WallFragmentBuff: Several fragments of the Wall are following you
+		YoungHarpyBuff: A young harpy is following you
+		YoungWyvernBuff: A young wyvern is following you
+	}
+
+	Common: {
+		AoMMVersion: "(AoMM version)"
+		PetHasAltSkins: Appearance can be changed with Costume Suitcase
+	}
+
+	ItemName: {
+		# Cute Slimes
+		CuteSlimeBlackItem: Bottled Cute Black Slime
+		CuteSlimeBlueItem: Bottled Cute Blue Slime
+		CuteSlimeCorruptItem: Bottled Cute Corrupt Slime
+		CuteSlimeCrimsonItem: Bottled Cute Crimson Slime
+		CuteSlimeDungeonItem: Bottled Cute Dungeon Slime
+		CuteSlimeGreenItem: Bottled Cute Green Slime
+		CuteSlimeIceItem: Bottled Cute Ice Slime
+		CuteSlimeIlluminantItem: Bottled Cute Illuminant Slime
+		CuteSlimeJungleItem: Bottled Cute Jungle Slime
+		CuteSlimeLavaItem: Bottled Cute Lava Slime
+		CuteSlimePinkItem: Bottled Cute Pink Slime
+		CuteSlimePrincessItem: Bottled Cute Princess Slime
+		CuteSlimePurpleItem: Bottled Cute Purple Slime
+		CuteSlimeQueenItem: Bottled Cute Queen Slime
+		CuteSlimeRainbowItem: Bottled Cute Rainbow Slime
+		CuteSlimeRedItem: Bottled Cute Red Slime
+		CuteSlimeSandItem: Bottled Cute Sand Slime
+		CuteSlimeToxicItem: Bottled Cute Toxic Slime
+		CuteSlimeXmasItem: Bottled Cute Christmas Slime
+		CuteSlimeYellowItem: Bottled Cute Yellow Slime
+		# Pets. AoMM versions are auto-generated
+		AbeeminationItem: Abeemination
+		AlienHornetItem: Vortex Nectar
+		AnimatedTomeItem: Animated Tome
+		AnomalocarisItem: Ornery Shrimp
+		BabyCrimeraItem: Juicy Vertebrae
+		BabyIchorStickerItem: Sleeping Ichor Sticker
+		BabyOcramItem: Baby Ocram
+		BrainofConfusionItem: Brain of Confusion
+		ChunkyandMeatballItem: Chunky and Meatball
+		ChunkySlimeItem: Bottled Chunky
+		CompanionDungeonSoulPetItem: Companion Soul
+		CompanionDungeonSoulPetItem2: "{$Mods.AssortedCrazyThings.ItemName.CompanionDungeonSoulPetItem}"
+		CursedSkullItem: Inert Skull
+		CuteGastropodItem: Mysterious Pod
+		CuteLamiaPetItem: Shaking Snake Pot
+		DemonHeartItem: Demon Heart
+		DetachedHungryItem: Unconscious Hungry
+		DocileDemonEyeItem: Docile Demon Eye
+		DrumstickElementalItem: Magical Drumstick
+		DynamiteBunnyItem: Dynamite Carrot
+		EnchantedSwordItem: Enchanted Sword
+		FailureSlimeItem: Slimy Skull
+		FairySlimeItem: Bottled Fairy Slime
+		FairySwarmItem: Bottle of Assorted Fairies
+		GhostMartianItem: K-II Meter
+		GobletItem: Goblet Battle Standard
+		HornedSlimeItem: Bottled Horned Slime
+		IlluminantSlimeItem: Bottled Illuminant Slime
+		JoyousSlimeItem: Bottled Joyous Slime
+		LifelikeMechanicalFrogItem: Lifelike Mechanical Frog
+		LilWrapsItem: Gilded Coffin
+		MeatballSlimeItem: Bottled Meatball
+		MetroidPetItem: Parasite Container
+		MiniAntlionItem: Antlion Egg
+		MiniMegalodonItem: Small Megalodon Tooth
+		NumberMuncherItem: Archaic Storage Device
+		OceanSlimeItem: Bottled Ocean Slime
+		PetCultistItem: Tiny Ominous Coin
+		PetDestroyerItem: Destroyer's Core
+		PetEaterofWorldsItem: Cracked Worm Egg
+		PetFishronItem: Soggy Fish Cake
+		PetGoldfishItem: Possessed Fish Idol
+		PetGolemHeadItem: Replica Golem Head
+		PetHarvesterItem: Stubborn Bird Soul
+		PetMoonItem: Bottled Moon
+		PetPlanteraItem: Potted Plantera Seed
+		PetQueenSlimeItem: Playful Slimelings
+		PetSunItem: Bottled Sun
+		PetSunMoonItem: Bottled Sun and Moon
+		PigronataItem: Pigronata
+		PrinceSlimeItem: Bottled Prince Slime
+		QueenLarvaItem: Queen Larva
+		RainbowSlimeItem: Bottled Rainbow Slime
+		SkeletronHandItem: Skeletron's Spare Hand
+		SkeletronPrimeHandItem: Skeletron Prime's Spare Hand
+		StingSlimeItem: Bottled Sting Slime
+		StrangeRobotItem: Odd Mechanical Device
+		SuspiciousNuggetItem: Suspicious Nugget
+		SwarmofCthulhuItem: Bottle of Restless Eyes
+		TinyTwinsItem: Tiny Twins
+		TorchGodLightPetItem: Godly Torch
+		TorturedSoulItem: Tortured Soul
+		TrueObservingEyeItem: True Observing Eye
+		TurtleSlimeItem: Bottled Turtle Slime
+		VampireBatItem: Fixed Bat Wing
+		WallFragmentItem: Wall Fragment
+		YoungHarpyItem: Clump of Down Feathers
+		YoungWyvernItem: Wyverntail
+	}
+
+	ItemTooltip: {
+		# Cute Slimes
+		CuteSlimeBlackItem: Summons a cute black slime to follow you
+		CuteSlimeBlueItem: Summons a cute blue slime to follow you
+		CuteSlimeCorruptItem: Summons a cute corrupt slime to follow you
+		CuteSlimeCrimsonItem: Summons a cute crimson slime to follow you
+		CuteSlimeDungeonItem: Summons a cute dungeon slime to follow you
+		CuteSlimeGreenItem: Summons a cute green slime to follow you
+		CuteSlimeIceItem: Summons a cute ice slime to follow you
+		CuteSlimeIlluminantItem: Summons a cute illuminant slime to follow you
+		CuteSlimeJungleItem: Summons a cute jungle slime to follow you
+		CuteSlimeLavaItem: Summons a cute lava slime to follow you
+		CuteSlimePinkItem: Summons a cute pink slime to follow you
+		CuteSlimePrincessItem: Summons a cute princess slime to follow you
+		CuteSlimePurpleItem: Summons a cute purple slime to follow you
+		CuteSlimeQueenItem: Summons a cute queen slime to follow you
+		CuteSlimeRainbowItem: Summons a cute rainbow slime to follow you
+		CuteSlimeRedItem: Summons a cute red slime to follow you
+		CuteSlimeSandItem: Summons a cute sand slime to follow you
+		CuteSlimeToxicItem: Summons a cute toxic slime to follow you
+		CuteSlimeXmasItem: Summons a cute christmas slime to follow you
+		CuteSlimeYellowItem: Summons a cute yellow slime to follow you
+		# Pets. AoMM versions are auto-generated
+		AbeeminationItem:
+			'''
+			Summons a friendly abeemination to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		AlienHornetItem: Summons a friendly alien hornet to follow you
+		AnimatedTomeItem:
+			'''
+			Summons a friendly animated tome to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		AnomalocarisItem:
+			'''
+			Summons a prehistoric shrimp to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		BabyCrimeraItem: Summons a baby crimera to follow you
+		BabyIchorStickerItem: Summons a baby ichor sticker to follow you
+		BabyOcramItem: Summons a miniature Ocram that follows you
+		BrainofConfusionItem: Summons a brain of confusion to follow aimlessly behind you
+		ChunkyandMeatballItem: Summons a pair of inseperable brothers to follow you
+		ChunkySlimeItem: Summons Chunky to follow you
+		CompanionDungeonSoulPetItemCommon: Summons a friendly Soul to light your way
+		CompanionDungeonSoulPetItem:
+			'''
+			{$Mods.AssortedCrazyThings.ItemTooltip.CompanionDungeonSoulPetItemCommon}
+			Light pet slot
+			'''
+		CompanionDungeonSoulPetItem2: 
+			'''
+			{$Mods.AssortedCrazyThings.ItemTooltip.CompanionDungeonSoulPetItemCommon}
+			Pet slot
+			'''
+		CursedSkullItem:
+			'''
+			Summons a friendly cursed skull that follows you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		CuteGastropodItem: Summons a cute gastropod to follow you
+		CuteLamiaPetItem:
+			'''
+			Summons a small, friendly snake to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		DemonHeartItem: Summons a friendly demon heart to follow you
+		DetachedHungryItem: Summons a detached hungry to follow you
+		DocileDemonEyeItem:
+			'''
+			Summons a docile demon eye to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		DrumstickElementalItem: Summons a delicious drumstick elemental to follow you
+		DynamiteBunnyItem:
+			'''
+			Summons a dynamite bunny to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		EnchantedSwordItem: Summons an enchanted sword to watch over you
+		FailureSlimeItem: Summons a strange creature to follow you
+		FairySlimeItem: Summons a friendly fairy slime to follow you
+		FairySwarmItem: Summons several fairies to swarm around you
+		GhostMartianItem: Summons a vengeful invader's ghost to follow you
+		GobletItem: Summons a tiny goblin to follow you
+		HornedSlimeItem: Summons a friendly horned slime to follow you
+		IlluminantSlimeItem: Summons a friendly illuminant slime to follow you
+		JoyousSlimeItem: Summons a friendly joyous slime to follow you
+		LifelikeMechanicalFrogItem:
+			'''
+			Summons a friendly frog to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		LilWrapsItem:
+			'''
+			Summons a mummy to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		MeatballSlimeItem: Summons Meatball to follow you
+		MetroidPetItem:
+			'''
+			Summons a space parasite to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		MiniAntlionItem:
+			'''
+			Summons a friendly baby antlion to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		MiniMegalodonItem: Summons a friendly mini megalodon that follows you
+		NumberMuncherItem: Summons an educated amphibian that follows you
+		OceanSlimeItem:
+			'''
+			Summons a friendly ocean slime to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		PetCultistItem: Summons a tiny cultist to follow you and heal when injured
+		PetDestroyerItem: Summons a tiny Destroyer and two tiny probes to follow you
+		PetEaterofWorldsItem: Summons a tiny Eater of Worlds to follow you
+		PetFishronItem:
+			'''
+			Summons a friendly fishron that flies with you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		PetGoldfishItem:
+			'''
+			Summons a goldfish that follows you
+			'You feel like you lost something important in obtaining this idol...'
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		PetGolemHeadItem:
+			'''
+			Summons a replica Golem head to watch over you
+			Shoots bouncing fireballs at nearby enemies
+			'''
+		PetHarvesterItem: Summons a stubborn bird to follow you
+		PetMoonItem:
+			'''
+			Summons a small moon that provides you with constant moonlight
+			Shows the current moon cycle in the buff tip
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		PetPlanteraItem:
+			'''
+			Summons a Plantera sprout to watch over you
+			'It's a mean and green'
+			'''
+		PetQueenSlimeItem: Summons a trio of slimelings to follow you
+		PetSunItem:
+			'''
+			Summons a small sun that provides you with constant sunlight
+			Shows the current time in the buff tip
+			'''
+		PetSunMoonItem:
+			'''
+			Summons a small sun and moon that provide you with constant light
+			Shows the current time in the buff tip
+			Shows the current moon cycle in the buff tip
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		PigronataItem:
+			'''
+			Summons a friendly pigronata to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		PrinceSlimeItem: Summons a prince slime to follow you
+		QueenLarvaItem:
+			'''
+			Summons a Queen Bee larva to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		RainbowSlimeItem: Summons a friendly rainbow slime to follow you
+		SkeletronHandItem:
+			'''
+			Summons Skeletron's hand attached to you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		SkeletronPrimeHandItem:
+			'''
+			Summons Skeletron Prime's hand attached to you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		StingSlimeItem:
+			'''
+			Summons a friendly sting slime to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		StrangeRobotItem: Summons a strange robot to follow you
+		SuspiciousNuggetItem: Summons a suspicious nugget to follow you
+		SwarmofCthulhuItem: Summons several eyes to swarm around you
+		TinyTwinsItem: Summons a tiny pair of The Twins to follow you
+		TorchGodLightPetItem:
+			'''
+			Summons a godly torch to follow you
+			Automatically places your normal torches with 'Smart Cursor' active
+			'''
+		TorturedSoulItem: Summons an unfriendly tortured soul to follow you
+		TrueObservingEyeItem: Summons a True Eye of Cthulhu to watch after you
+		TurtleSlimeItem: Summons a friendly turtle slime to follow you
+		VampireBatItem:
+			'''
+			Summons a friendly vampire that flies with you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		WallFragmentItem: Summons several fragments of the Wall to follow you
+		YoungHarpyItem:
+			'''
+			Summons a friendly harpy to follow you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+		YoungWyvernItem:
+			'''
+			Summons a friendly young wyvern that flies with you
+			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
+			'''
+	}
+}

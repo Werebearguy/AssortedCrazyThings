@@ -12,12 +12,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetEaterofWorlds;
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tiny Eater of Worlds");
-			Description.SetDefault("A tiny Eater of Worlds is following you");
-		}
-
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.buffTime[buffIndex] = 18000;
@@ -28,5 +22,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 				PetEaterofWorldsItem.Spawn(player, buffIndex: buffIndex);
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetEaterofWorldsBuff_AoMM : SimplePetBuffBase_AoMM<PetEaterofWorldsBuff>
+	{
+
 	}
 }

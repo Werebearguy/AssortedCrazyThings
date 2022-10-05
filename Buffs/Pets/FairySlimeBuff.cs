@@ -10,13 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<FairySlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().FairySlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Fairy Slime");
-			Description.SetDefault("A Fairy Slime is following you");
-			Main.buffNoTimeDisplay[Type] = true;
-			Main.vanityPet[Type] = true;
-		}
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
+	public class FairySlimeBuff_AoMM : SimplePetBuffBase_AoMM<FairySlimeBuff>
+	{
+
 	}
 }

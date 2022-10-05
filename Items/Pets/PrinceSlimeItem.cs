@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PrinceSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Prince Slime");
-			Tooltip.SetDefault("Summons a friendly Prince Slime to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PrinceSlimeItem_AoMM : SimplePetItemBase_AoMM<PrinceSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<PrinceSlimeBuff_AoMM>();
 	}
 }

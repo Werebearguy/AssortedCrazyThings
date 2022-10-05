@@ -1,14 +1,20 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
+	[Content(ContentType.OtherPets)] //Temporary
 	//check this file for more info vvvvvvvv
 	public class FailureSlimeProj : BabySlimeBase
 	{
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Failure Slime");
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<FailureSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()

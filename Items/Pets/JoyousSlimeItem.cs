@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<JoyousSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Joyous Slime");
-			Tooltip.SetDefault("Summons a friendly Joyous Slime to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
+	public class JoyousSlimeItem_AoMM : SimplePetItemBase_AoMM<JoyousSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<JoyousSlimeBuff_AoMM>();
 	}
 }

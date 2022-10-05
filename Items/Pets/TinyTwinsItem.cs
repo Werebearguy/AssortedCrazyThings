@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<TinyTwinsBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tiny Twins");
-			Tooltip.SetDefault("Summons a tiny pair of The Twins to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class TinyTwinsItem_AoMM : SimplePetItemBase_AoMM<TinyTwinsItem>
+	{
+		public override int BuffType => ModContent.BuffType<TinyTwinsBuff_AoMM>();
 	}
 }

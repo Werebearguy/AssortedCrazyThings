@@ -19,6 +19,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 
+			//Buffs are localized
 			SafeSetStaticDefaults();
 		}
 

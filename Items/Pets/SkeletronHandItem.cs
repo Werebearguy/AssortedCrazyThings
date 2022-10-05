@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<SkeletronHandBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Skeletron's Spare Hand");
-			Tooltip.SetDefault("Summons Skeletron's Hand attached to you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class SkeletronHandItem_AoMM : SimplePetItemBase_AoMM<SkeletronHandItem>
+	{
+		public override int BuffType => ModContent.BuffType<SkeletronHandBuff_AoMM>();
 	}
 }

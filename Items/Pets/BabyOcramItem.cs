@@ -13,15 +13,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<BabyOcramBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Baby Ocram");
-			Tooltip.SetDefault("Summons a miniature Ocram that follows you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 60);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs | ContentType.DroppedPets)]
+	public class BabyOcramItem_AoMM : SimplePetItemBase_AoMM<BabyOcramItem>
+	{
+		public override int BuffType => ModContent.BuffType<BabyOcramBuff_AoMM>();
 	}
 }

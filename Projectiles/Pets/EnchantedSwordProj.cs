@@ -1,6 +1,9 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -11,6 +14,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Enchanted Sword");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
+
+			//TODO aomm rotation sword
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<EnchantedSwordBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -18,7 +24,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.CloneDefaults(ProjectileID.TikiSpirit);
 			AIType = ProjectileID.TikiSpirit;
 			Projectile.width = 26;
-			Projectile.height = 50;
+			Projectile.height = 26;
+			DrawOriginOffsetY = -14;
 		}
 
 		public override bool PreAI()
@@ -41,6 +48,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.timeLeft = 2;
 			}
 			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+
+			if (AmuletOfManyMinionsApi.IsActive(this))
+			{
+				if (AmuletOfManyMinionsApi.IsAttacking(this))
+				{
+					Projectile.rotation = Projectile.velocity.X * -0.08f + Microsoft.Xna.Framework.MathHelper.Pi;
+				}
+				else
+				{
+					Projectile.rotation += Microsoft.Xna.Framework.MathHelper.Pi;
+				}
+			}
 		}
 	}
 }

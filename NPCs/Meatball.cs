@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
-			NPC.catchItem = (short)ModContent.ItemType<MeatballItem>();
+			NPC.catchItem = (short)ModContent.ItemType<MeatballSlimeItem>();
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

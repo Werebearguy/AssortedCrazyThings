@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<TrueObservingEyeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().TrueObservingEye;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("True Observing Eye");
-			Description.SetDefault("A tiny True Eye of Cthulhu is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class TrueObservingEyeBuff_AoMM : SimplePetBuffBase_AoMM<TrueObservingEyeBuff>
+	{
+
 	}
 }

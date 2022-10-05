@@ -12,13 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<AbeeminationBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Abeemination");
-			Tooltip.SetDefault("Summons a friendly Abeemination to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(gold: 2);
@@ -28,5 +21,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Abeemination, 1).AddIngredient(ItemID.LifeFruit, 1).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class AbeeminationItem_AoMM : SimplePetItemBase_AoMM<AbeeminationItem>
+	{
+		public override int BuffType => ModContent.BuffType<AbeeminationBuff_AoMM>();
 	}
 }

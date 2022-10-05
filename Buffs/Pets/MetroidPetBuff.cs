@@ -4,17 +4,17 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.DroppedPets)]
 	public class MetroidPetBuff : SimplePetBuffBase
 	{
 		public override int PetType => ModContent.ProjectileType<MetroidPetProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().MetroidPet;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Metroid");
-			Description.SetDefault("A space parasite is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class MetroidPetBuff_AoMM : SimplePetBuffBase_AoMM<MetroidPetBuff>
+	{
+
 	}
 }

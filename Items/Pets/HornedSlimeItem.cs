@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<HornedSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Horned Slime");
-			Tooltip.SetDefault("Summons a friendly Horned Slime to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class HornedSlimeItem_AoMM : SimplePetItemBase_AoMM<HornedSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<HornedSlimeBuff_AoMM>();
 	}
 }

@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<EnchantedSwordProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().EnchantedSword;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Enchanted Sword");
-			Description.SetDefault("The Enchanted Sword watches over you");
-		}
+	public class EnchantedSwordBuff_AoMM : SimplePetBuffBase_AoMM<EnchantedSwordBuff>
+	{
+
 	}
 }

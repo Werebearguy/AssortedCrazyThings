@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<CuteGastropodProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteGastropod;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Gastropod");
-			Description.SetDefault("A cute Gastropod is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.CuteSlimes)]
+	public class CuteGastropodBuff_AoMM : SimplePetBuffBase_AoMM<CuteGastropodBuff>
+	{
+
 	}
 }

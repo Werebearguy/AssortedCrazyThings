@@ -12,12 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<NumberMuncherBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Archaic Storage Device");
-			Tooltip.SetDefault("Summons an educated amphibian that follows you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(0, 0, 1, 20); //two statues
@@ -30,5 +24,10 @@ namespace AssortedCrazyThings.Items.Pets
 				.AddTile(TileID.Bookcases)
 				.Register();
 		}
+	}
+
+	public class NumberMuncherItem_AoMM : SimplePetItemBase_AoMM<NumberMuncherItem>
+	{
+		public override int BuffType => ModContent.BuffType<NumberMuncherBuff_AoMM>();
 	}
 }

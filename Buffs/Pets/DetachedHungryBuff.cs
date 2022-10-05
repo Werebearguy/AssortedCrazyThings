@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<DetachedHungryProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().DetachedHungry;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Detached Hungry");
-			Description.SetDefault("You might be the next meal...");
-		}
+	public class DetachedHungryBuff_AoMM : SimplePetBuffBase_AoMM<DetachedHungryBuff>
+	{
+
 	}
 }

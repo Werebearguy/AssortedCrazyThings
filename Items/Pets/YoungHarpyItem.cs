@@ -13,16 +13,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<YoungHarpyBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Clump of Down Feathers");
-			Tooltip.SetDefault("Summons a friendly Harpy to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
+	public class YoungHarpyItem_AoMM : SimplePetItemBase_AoMM<YoungHarpyItem>
+	{
+		public override int BuffType => ModContent.BuffType<YoungHarpyBuff_AoMM>();
 	}
 }

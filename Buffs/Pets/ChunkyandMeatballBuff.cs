@@ -11,12 +11,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().ChunkyandMeatball;
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Chunky and Meatball");
-			Description.SetDefault("Two reunited brothers are following you");
-		}
-
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.buffTime[buffIndex] = 18000;
@@ -39,5 +33,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 				}
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class ChunkyandMeatballBuff_AoMM : SimplePetBuffBase_AoMM<ChunkyandMeatballBuff>
+	{
+
 	}
 }

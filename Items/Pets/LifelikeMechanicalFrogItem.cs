@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<LifelikeMechanicalFrogBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Lifelike Mechanical Frog");
-			Tooltip.SetDefault("Summons a friendly Frog to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
@@ -29,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Frog, 1).AddTile(TileID.Anvils).Register();
 		}
+	}
+
+	public class LifelikeMechanicalFrogItem_AoMM : SimplePetItemBase_AoMM<LifelikeMechanicalFrogItem>
+	{
+		public override int BuffType => ModContent.BuffType<LifelikeMechanicalFrogBuff_AoMM>();
 	}
 }

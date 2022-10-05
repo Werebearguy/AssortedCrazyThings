@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,6 +26,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Dynamite Bunny");
 			Main.projFrames[Projectile.type] = Main.projFrames[ProjectileID.Bunny];
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<DynamiteBunnyBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -45,6 +49,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public const int ExplosionTimerDecr = 4;
 		public const int ExplosionTimerMax = 255 + ExplosionTimerDecr * 60;
 		private int explosionTimer = 0;
+
+		private int aommExplosionHitCount = 0;
+		public int aommExplosionHitCountMax = 4;
 
 		public override void AI()
 		{
@@ -134,6 +141,23 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 
 			prevDynamiteBunnyType = dynamiteBunnyType;
+		}
+
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			if (!AmuletOfManyMinionsApi.IsActive(this))
+			{
+				return;
+			}
+
+			aommExplosionHitCount++;
+			if (aommExplosionHitCount >= aommExplosionHitCountMax)
+			{
+				aommExplosionHitCount = 0;
+
+				Projectile grenate = Projectile.NewProjectileDirect(Projectile.GetSource_OnHit(target), Projectile.Center, Vector2.Zero, ProjectileID.Grenade, (int)(Projectile.damage * 0.75f), Projectile.knockBack, Main.myPlayer);
+				grenate.timeLeft = 3;
+			}
 		}
 
 		public override bool PreDraw(ref Color lightColor)

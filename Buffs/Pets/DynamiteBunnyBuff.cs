@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<DynamiteBunnyProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().DynamiteBunny;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dynamite Bunny");
-			Description.SetDefault("A little Dynamite Bunny is following you");
-		}
+	public class DynamiteBunnyBuff_AoMM : SimplePetBuffBase_AoMM<DynamiteBunnyBuff>
+	{
+
 	}
 }

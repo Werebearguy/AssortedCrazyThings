@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<AnimatedTomeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().AnimatedTome;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Animated Tome");
-			Description.SetDefault("An animated tome is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class AnimatedTomeBuff_AoMM : SimplePetBuffBase_AoMM<AnimatedTomeBuff>
+	{
+
 	}
 }

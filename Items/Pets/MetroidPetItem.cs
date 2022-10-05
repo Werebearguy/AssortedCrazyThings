@@ -5,23 +5,22 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.DroppedPets)]
 	public class MetroidPetItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<MetroidPetProj>();
 
 		public override int BuffType => ModContent.BuffType<MetroidPetBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Parasite Container");
-			Tooltip.SetDefault("Summons a space parasite to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class MetroidPetItem_AoMM : SimplePetItemBase_AoMM<MetroidPetItem>
+	{
+		public override int BuffType => ModContent.BuffType<MetroidPetBuff_AoMM>();
 	}
 }

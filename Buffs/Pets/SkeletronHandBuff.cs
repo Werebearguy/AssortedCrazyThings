@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<SkeletronHandProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().SkeletronHand;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Skeletron's Spare Hand");
-			Description.SetDefault("Skeletron's Hand is attached to you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class SkeletronHandBuff_AoMM : SimplePetBuffBase_AoMM<SkeletronHandBuff>
+	{
+
 	}
 }

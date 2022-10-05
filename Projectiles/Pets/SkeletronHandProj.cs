@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -23,6 +25,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Skeletron Pet Hand");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<SkeletronHandBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -31,8 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AIType = ProjectileID.BabyEater;
 			Projectile.aiStyle = -1;
 			Projectile.width = 24;
-			Projectile.height = 32;
-			DrawOriginOffsetY = -8;
+			Projectile.height = 24;
 		}
 
 		public override void AI()
@@ -60,13 +63,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Player player = Projectile.GetOwner();
-			AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", Projectile.Center, player.Center + new Vector2(0, player.gfxOffY), selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
+			AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", Projectile.Center - new Vector2(0, Projectile.height / 2), player.Center + new Vector2(0, player.gfxOffY), selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
 
 			PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/SkeletronHandProj_" + mPlayer.skeletronHandType).Value;
 			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-			Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height);
+			Vector2 stupidOffset = new Vector2(Projectile.width / 2, Projectile.height / 2);
 			Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
 			Vector2 drawOrigin = bounds.Size() / 2;
 			drawOrigin.Y += Projectile.height / 2;

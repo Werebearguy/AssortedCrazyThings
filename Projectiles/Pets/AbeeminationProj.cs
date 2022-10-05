@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -23,6 +25,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Abeemination");
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<AbeeminationBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()

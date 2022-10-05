@@ -420,6 +420,29 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
+		/// Gets a projectile given its owner ID, its identity ID, and its type ID.
+		/// </summary>
+		/// <param name="owner">The owner to check</param>
+		/// <param name="identity">The identity to check</param>
+		/// <param name="type">The type to check</param>
+		/// <param name="index">The index ("whoAmI") of the found projectile. Main.maxProjectiles if returning null.</param>
+		/// <returns>Returns null if not found.</returns>
+		public static Projectile NetGetProjectile(int owner, int identity, int type, out int index)
+		{
+			for (short i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile proj = Main.projectile[i];
+				if (proj.active && proj.owner == owner && proj.identity == identity && proj.type == type)
+				{
+					index = i;
+					return proj;
+				}
+			}
+			index = Main.maxProjectiles;
+			return null;
+		}
+
+		/// <summary>
 		/// Alternative, static version of npc.DropItemInstanced. Checks the playerCondition delegate before syncing/spawning the item
 		/// </summary>
 		public static void DropItemInstanced(NPC npc, Vector2 Position, Vector2 HitboxSize, int itemType, int itemStack = 1, Func<NPC, Player, bool> condition = null, bool interactionRequired = true)
@@ -536,6 +559,37 @@ namespace AssortedCrazyThings.Base
 			velocityYOffset = Math.Min(velocityYOffset, offsetCap);
 
 			velocity.Y -= factor * velocityYOffset;
+		}
+
+		/// <summary>
+		/// Helper method that returns true if the given parameters allow for a shot from a burst to happen
+		/// </summary>
+		/// <param name="timer">The timer incrementing by 1</param>
+		/// <param name="interval">The total shot interval, including break</param>
+		/// <param name="burstDurationRatio">The ratio of the "burst duration" from the interval</param>
+		/// <param name="shotsPerBurst">Amount of shots per burst</param>
+		/// <returns>Returns true if can shoot</returns>
+		public static bool CanShootBurst(int timer, int interval, float burstDurationRatio, int shotsPerBurst)
+		{
+			//Examples:
+			//interval = 60
+			//burstDurationRatio = 0.5
+			//shotsPerBurst = 3
+			//burstDuration = 30
+			//timeBetweenShots = 10
+			//shots at 10, 20, 30
+
+			//interval = 40
+			//burstDurationRatio = 0.5
+			//shotsPerBurst = 3
+			//burstDuration = 20
+			//timeBetweenShots = 6
+			//shots at 6, 12, 18 //Due to rounding
+
+			int burstDuration = (int)(burstDurationRatio * interval);
+			int timeBetweenShots = burstDuration / shotsPerBurst;
+
+			return timer <= burstDuration && timer >= timeBetweenShots && timer % timeBetweenShots == 0;
 		}
 	}
 }

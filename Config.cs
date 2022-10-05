@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AssortedCrazyThings.Base.ModSupport.AoMM;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Terraria;
@@ -129,6 +130,13 @@ namespace AssortedCrazyThings
 
 		[Header("Other")]
 
+		[ReloadRequired]
+		[DefaultValue(true)]
+		[BackgroundColor(89, 106, 159)]
+		[Tooltip("Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets")]
+		[Label("'The Amulet Of Many Minions' cross-Mod content")]
+		public bool AommSupport { get; set; }
+
 		/// <summary>
 		/// Affects the way Cute Slimes spawn and how the Jellied Ale works
 		/// </summary>
@@ -143,6 +151,11 @@ namespace AssortedCrazyThings
 		public bool Hint => true;
 
 		public override void OnChanged()
+		{
+			SetFlags();
+		}
+
+		private void SetFlags()
 		{
 			//Inverted, sets a flag if toggle is false
 			FilterFlags = ContentType.Always;
@@ -206,6 +219,11 @@ namespace AssortedCrazyThings
 			if (!BossConsolation)
 			{
 				FilterFlags |= ContentType.BossConsolation;
+			}
+			if (!AommSupport || !ModLoader.HasMod("AmuletOfManyMinions")) //Using instead of API.AommMod as that references the not-yet-registered config itself
+			{
+				//Automatically filter aomm content if the mod is disabled
+				FilterFlags |= ContentType.AommSupport;
 			}
 		}
 	}

@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetPlanteraBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Potted Plantera Seed");
-			Tooltip.SetDefault("Summons a Plantera Sprout to watch over you"
-				+ "\n'It's a mean and green'");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
@@ -67,5 +60,11 @@ namespace AssortedCrazyThings.Items.Pets
 				}
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetPlanteraItem_AoMM : SimplePetItemBase_AoMM<PetPlanteraItem>
+	{
+		public override int BuffType => ModContent.BuffType<PetPlanteraBuff_AoMM>();
 	}
 }

@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<SwarmofCthulhuBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottle of Restless Eyes");
-			Tooltip.SetDefault("Summons several eyes to swarm around you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class SwarmofCthulhuItem_AoMM : SimplePetItemBase_AoMM<SwarmofCthulhuItem>
+	{
+		public override int BuffType => ModContent.BuffType<SwarmofCthulhuBuff_AoMM>();
 	}
 }

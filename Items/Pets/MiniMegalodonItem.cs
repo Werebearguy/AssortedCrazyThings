@@ -13,15 +13,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<MiniMegalodonBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Small Megalodon Tooth");
-			Tooltip.SetDefault("Summons a friendly Mini Megalodon that follows you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs | ContentType.DroppedPets)]
+	public class MiniMegalodonItem_AoMM : SimplePetItemBase_AoMM<MiniMegalodonItem>
+	{
+		public override int BuffType => ModContent.BuffType<MiniMegalodonBuff_AoMM>();
 	}
 }

@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<BabyOcramProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().BabyOcram;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Baby Ocram");
-			Description.SetDefault("What could have been now follows you");
-		}
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs | ContentType.DroppedPets)]
+	public class BabyOcramBuff_AoMM : SimplePetBuffBase_AoMM<BabyOcramBuff>
+	{
+
 	}
 }

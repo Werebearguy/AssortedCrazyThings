@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -22,6 +24,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Pigronata");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PigronataBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -52,6 +56,21 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.timeLeft = 2;
 			}
 			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+		}
+
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			var dustRect = Utils.CenteredRectangle(target.Center, new Vector2(10));
+			for (int i = 0; i < 10; i++)
+			{
+				int dustType = Main.rand.Next(139, 143); //Confetti dusts
+				var dust = Dust.NewDustDirect(dustRect.TopLeft(), dustRect.Width, dustRect.Height, dustType);
+
+				dust.velocity.X += Main.rand.NextFloat(-0.05f, 0.05f);
+				dust.velocity.Y += Main.rand.NextFloat(-0.05f, 0.05f);
+
+				dust.scale *= 1f + Main.rand.NextFloat(-0.03f, 0.03f);
+			}
 		}
 
 		public override bool PreDraw(ref Color lightColor)

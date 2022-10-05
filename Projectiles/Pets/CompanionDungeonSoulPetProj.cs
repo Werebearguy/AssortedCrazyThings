@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -98,11 +100,22 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				int otherProj = GetOtherProj(player);
 				bool staticDirection = player.ownedProjectileCounts[otherProj] > 0; //Do not swap sides if both are summoned
 
+				int aommDir = 0;
+				if (AmuletOfManyMinionsApi.IsActive(this) && !AmuletOfManyMinionsApi.IsIdle(this))
+				{
+					aommDir = (Projectile.velocity.X > 0).ToDirectionInt();
+				}
+
 				AssAI.FlickerwickPetAI(Projectile, staticDirection: staticDirection, reverseSide: reverseSide);
 
 				AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 7);
 
 				Projectile.direction = Projectile.spriteDirection = -player.direction;
+
+				if (aommDir != 0)
+				{
+					Projectile.direction = aommDir;
+				}
 
 				Projectile.rotation = 0f;
 			}
@@ -111,12 +124,18 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		private int GetFaceFrame(Player player)
 		{
 			//Sorted by priority
+			//6: aomm only, when not idle
 			//3: 25% health
 			//2: enemies nearby (60 tile radius)
 			//0: idle for long (2 minutes)
 			//5: idle for short (15 seconds)
 			//4: idle boss slain (1 minute ago)
 			//1: idle regular
+
+			if (AmuletOfManyMinionsApi.IsActive(this) && !AmuletOfManyMinionsApi.IsIdle(this))
+			{
+				return 6;
+			}
 
 			if (player.statLife <= player.statLifeMax2 * 0.25f)
 			{
@@ -181,6 +200,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		protected override int GetOtherProj(Player player)
 		{
 			return ModContent.ProjectileType<CompanionDungeonSoulPetProj>();
+		}
+
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<CompanionDungeonSoulPetBuff2_AoMM>(), null);
 		}
 
 		public override bool ReverseSide => true;

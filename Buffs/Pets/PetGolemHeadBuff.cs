@@ -10,12 +10,12 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<PetGolemHeadProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetGolemHead;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Replica Golem Head");
-			Description.SetDefault("A Replica Golem Head watches over you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetGolemHeadBuff_AoMM : SimplePetBuffBase_AoMM<PetGolemHeadBuff>
+	{
+
 	}
 }
 

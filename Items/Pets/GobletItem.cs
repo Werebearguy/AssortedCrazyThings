@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<GobletBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Goblet Battle Standard");
-			Tooltip.SetDefault("Summons a tiny goblin to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class GobletItem_AoMM : SimplePetItemBase_AoMM<GobletItem>
+	{
+		public override int BuffType => ModContent.BuffType<GobletBuff_AoMM>();
 	}
 }

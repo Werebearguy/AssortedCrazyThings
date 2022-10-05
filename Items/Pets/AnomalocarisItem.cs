@@ -11,13 +11,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<AnomalocarisBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ornery Shrimp");
-			Tooltip.SetDefault("Summons a prehistoric shrimp to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;
@@ -25,5 +18,10 @@ namespace AssortedCrazyThings.Items.Pets
 
 			Item.value = Item.sellPrice(gold: 3) / 2; //Zephyr fish price halved because we double the catch rate of it
 		}
+	}
+
+	public class AnomalocarisItem_AoMM : SimplePetItemBase_AoMM<AnomalocarisItem>
+	{
+		public override int BuffType => ModContent.BuffType<AnomalocarisBuff_AoMM>();
 	}
 }

@@ -16,9 +16,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bottle of Assorted Fairies");
-			Tooltip.SetDefault("Summons several fairies to swarm around you");
-
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 		}
@@ -28,5 +25,17 @@ namespace AssortedCrazyThings.Items.Pets
 			Item.noUseGraphic = true;
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class FairySwarmItem_AoMM : SimplePetItemBase_AoMM<FairySwarmItem>
+	{
+		public override void EvenSaferSetStaticDefaults()
+		{
+			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+		}
+
+		public override int BuffType => ModContent.BuffType<FairySwarmBuff_AoMM>();
 	}
 }

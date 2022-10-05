@@ -1,6 +1,11 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -11,6 +16,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Baby Ichor Sticker");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<BabyIchorStickerBuff_AoMM>(), ModContent.ProjectileType<BabyIchorStickerShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -47,6 +54,29 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				//Make it animate 50% slower by skipping every second increase
 				Projectile.frameCounter--;
 			}
+		}
+	}
+
+	public class BabyIchorStickerShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.GoldenShowerFriendly;
+
+		public override SoundStyle? SpawnSound => SoundID.Item17;
+
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			int petLevel = AmuletOfManyMinionsApi.GetPetLevel(Projectile.GetOwner());
+			if (petLevel >= 5)
+			{
+				target.AddBuff(BuffID.Ichor, 300);
+			}
+		}
+
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+		{
+			width = 10;
+			height = 10;
+			return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
 		}
 	}
 }

@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<CuteLamiaPetProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteLamiaPet;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Small Snake");
-			Description.SetDefault("A small snake is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class CuteLamiaPetBuff_AoMM : SimplePetBuffBase_AoMM<CuteLamiaPetBuff>
+	{
+
 	}
 }

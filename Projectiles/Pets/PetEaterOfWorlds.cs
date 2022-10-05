@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -81,7 +83,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		}
 	}
 
-	public class PetEaterofWorldsHead : PetEaterofWorldsBase { }
+	public class PetEaterofWorldsHead : PetEaterofWorldsBase
+	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			AmuletOfManyMinionsApi.RegisterWormPet(this, ModContent.GetInstance<PetEaterofWorldsBuff_AoMM>(), null, false, 140);
+		}
+	}
 
 	public class PetEaterofWorldsBody1 : PetEaterofWorldsBase { }
 

@@ -6,16 +6,10 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-	[Content(ContentType.DroppedPets)]
+	[Content(ContentType.DroppedPets | ContentType.Weapons, needsAllToFilter: true)] //Also used by BasicLaserDrone
 	public class PetDestroyerDroneLaser : AssProjectile
 	{
-		public override string Texture
-		{
-			get
-			{
-				return "Terraria/Images/Projectile_" + ProjectileID.MiniRetinaLaser;
-			}
-		}
+		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.MiniRetinaLaser; 
 
 		public override void SetStaticDefaults()
 		{
@@ -35,7 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
-			SoundEngine.PlaySound(SoundID.Item10 with { Volume = 0.5f}, Projectile.position);
+			SoundEngine.PlaySound(SoundID.Item10 with { Volume = 0.5f }, Projectile.position);
 			return true;
 		}
 

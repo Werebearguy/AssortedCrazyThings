@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<StingSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().StingSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sting Slime");
-			Description.SetDefault("A Sting Slime is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class StingSlimeBuff_AoMM : SimplePetBuffBase_AoMM<StingSlimeBuff>
+	{
+
 	}
 }

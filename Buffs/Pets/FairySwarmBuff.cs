@@ -10,11 +10,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<FairySwarmProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().FairySwarm;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Fairy Swarm");
-			Description.SetDefault("A Fairy Swarm is following you");
-		}
+	public class FairySwarmBuff_AoMM : SimplePetBuffBase_AoMM<FairySwarmBuff>
+	{
+
 	}
 }

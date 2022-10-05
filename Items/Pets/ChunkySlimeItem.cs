@@ -5,22 +5,23 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
+	[LegacyName("ChunkyItem")]
 	[Content(ContentType.HostileNPCs)]
-	public class ChunkyItem : SimplePetItemBase
+	public class ChunkySlimeItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<ChunkySlimeProj>();
 
 		public override int BuffType => ModContent.BuffType<ChunkySlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Chunky");
-			Tooltip.SetDefault("Summons Chunky to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class ChunkySlimeItem_AoMM : SimplePetItemBase_AoMM<ChunkySlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<ChunkySlimeBuff_AoMM>();
 	}
 }

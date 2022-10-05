@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<GhostMartianProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().GhostMartian;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ghost Martian");
-			Description.SetDefault("A vengeful invader's ghost is following you");
-		}
+	public class GhostMartianBuff_AoMM : SimplePetBuffBase_AoMM<GhostMartianBuff>
+	{
+
 	}
 }

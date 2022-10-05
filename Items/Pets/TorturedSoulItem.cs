@@ -13,12 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<TorturedSoulBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tortured Soul");
-			Tooltip.SetDefault("Summons an unfriendly Tortured Soul to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 50);
@@ -28,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.TaxCollectorsStickOfDoom, 1).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class TorturedSoulItem_AoMM : SimplePetItemBase_AoMM<TorturedSoulItem>
+	{
+		public override int BuffType => ModContent.BuffType<TorturedSoulBuff_AoMM>();
 	}
 }

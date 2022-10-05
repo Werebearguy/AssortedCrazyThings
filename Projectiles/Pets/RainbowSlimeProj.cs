@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -12,6 +15,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Rainbow Slime");
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<RainbowSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()

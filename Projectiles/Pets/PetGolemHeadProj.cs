@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Minions.Drones;
 using Microsoft.Xna.Framework;
@@ -14,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	[Content(ContentType.DroppedPets)]
 	public class PetGolemHeadProj : DroneBase
 	{
-		public const int AttackDelay = 60;
+		public int attackDelay = 60;
 
 		private const int FireballDamage = 20;
 
@@ -31,6 +33,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Replica Golem Head");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			//Manual shooting
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetGolemHeadBuff_AoMM>(), 0);
 		}
 
 		public override void SetDefaults()
@@ -41,6 +46,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.height = 38;
 			Projectile.tileCollide = false;
 			DrawOriginOffsetY = -10;
+		}
+
+		public override bool PreAI()
+		{
+			//Don't do any aomm movement
+			AmuletOfManyMinionsApi.ReleaseControl(this);
+			return base.PreAI();
 		}
 
 		protected override void CheckActive()
@@ -59,9 +71,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		protected override void CustomFrame(int frameCounterMaxFar = 4, int frameCounterMaxClose = 8)
 		{
-			if (Counter > AttackDelay)
+			if (Counter > attackDelay)
 			{
-				if (Counter < (int)(AttackDelay * 1.5f))
+				if (Counter < (int)(attackDelay * 1.5f))
 				{
 					Projectile.frame = 1;
 				}
@@ -111,33 +123,59 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Projectile.rotation = 0f;
 
+			attackDelay = 60;
+			int damage = FireballDamage;
+			float kb = 2f;
+			int targetIndex = -1;
+			float speed = 7f;
+
+			if (AmuletOfManyMinionsApi.IsActive(this) &&
+				 AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras) &&
+				 AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) &&
+				 state.IsInFiringRange && state.TargetNPC is NPC targetNPC)
+			{
+				targetIndex = targetNPC.whoAmI;
+				attackDelay = paras.AttackFrames;
+				damage = Projectile.damage;
+				kb = Projectile.knockBack;
+				speed = paras.LaunchVelocity;
+			}
+
 			Counter++;
-			if (Counter % AttackDelay == 0)
+			if (Counter % attackDelay == 0)
 			{
 				if (Main.myPlayer == Projectile.owner)
 				{
-					int targetIndex = AssAI.FindTarget(Projectile, Projectile.Center, 600);
-					if (targetIndex != -1 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+					if (targetIndex == -1 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
 					{
-						if (Counter == AttackDelay) Counter += AttackDelay;
+						targetIndex = AssAI.FindTarget(Projectile, Projectile.Center, 600);
+					}
+
+					if (targetIndex != -1)
+					{
+						if (Counter == attackDelay) Counter += attackDelay;
 						Vector2 position = Projectile.Center;
 						position.Y += 6f;
-						Vector2 velocity = Main.npc[targetIndex].Center + Main.npc[targetIndex].velocity * 5f - position;
+						NPC target = Main.npc[targetIndex];
+						Vector2 targetCenter = target.Center + 3 * target.velocity;
+						Vector2 velocity = targetCenter - position;
 						velocity.Normalize();
-						velocity *= 7f;
-						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, velocity, ModContent.ProjectileType<PetGolemHeadFireball>(), FireballDamage, 2f, Main.myPlayer, 0f, 0f);
+						velocity *= speed;
+						AssUtils.ModifyVelocityForGravity(position, targetCenter, PetGolemHeadFireball.Gravity, ref velocity, PetGolemHeadFireball.TicksWithoutGravity);
+
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, velocity, ModContent.ProjectileType<PetGolemHeadFireball>(), damage, kb, Main.myPlayer);
 						Projectile.netUpdate = true;
 					}
 					else
 					{
-						if (Counter > AttackDelay)
+						if (Counter > attackDelay)
 						{
-							Counter -= AttackDelay;
+							Counter -= attackDelay;
 							Projectile.netUpdate = true;
 						}
 					}
 				}
-				Counter -= AttackDelay;
+				Counter -= attackDelay;
 			}
 		}
 	}

@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<YoungWyvernBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Wyverntail");
-			Tooltip.SetDefault("Summons a friendly Young Wyvern that flies with you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
@@ -29,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Wyverntail, 1).AddTile(TileID.WorkBenches).Register();
 		}
+	}
+
+	public class YoungWyvernItem_AoMM : SimplePetItemBase_AoMM<YoungWyvernItem>
+	{
+		public override int BuffType => ModContent.BuffType<YoungWyvernBuff_AoMM>();
 	}
 }

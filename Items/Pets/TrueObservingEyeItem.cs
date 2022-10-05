@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<TrueObservingEyeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("True Observing Eye");
-			Tooltip.SetDefault("Summons a True Eye of Cthulhu to watch after you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class TrueObservingEyeItem_AoMM : SimplePetItemBase_AoMM<TrueObservingEyeItem>
+	{
+		public override int BuffType => ModContent.BuffType<TrueObservingEyeBuff_AoMM>();
 	}
 }

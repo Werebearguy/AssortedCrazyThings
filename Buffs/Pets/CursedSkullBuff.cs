@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<CursedSkullProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CursedSkull;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cursed Skull");
-			Description.SetDefault("It won't curse you, I promise");
-		}
+	public class CursedSkullBuff_AoMM : SimplePetBuffBase_AoMM<CursedSkullBuff>
+	{
+
 	}
 }

@@ -12,15 +12,14 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<StrangeRobotBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Odd Mechanical Device");
-			Tooltip.SetDefault("Summons a strange robot to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.SetShopValues(ItemRarityColor.Orange3, Item.buyPrice(1)); //Same as other travelling merchant pets
 		}
+	}
+
+	public class StrangeRobotItem_AoMM : SimplePetItemBase_AoMM<StrangeRobotItem>
+	{
+		public override int BuffType => ModContent.BuffType<StrangeRobotBuff_AoMM>();
 	}
 }

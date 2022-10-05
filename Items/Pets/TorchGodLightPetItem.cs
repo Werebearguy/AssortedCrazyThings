@@ -16,13 +16,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<TorchGodLightPetBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Godly Torch");
-			Tooltip.SetDefault("Summons a godly torch to follow you\n" +
-				"Automatically places your normal torches with 'Smart Cursor' active");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(gold: 2);
@@ -52,7 +45,7 @@ namespace AssortedCrazyThings.Items.Pets
 			On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
 		}
 
-		private int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
 			/*
 				* Try dropping when these conditions are true
@@ -79,6 +72,8 @@ namespace AssortedCrazyThings.Items.Pets
 			return ret;
 		}
 	}
+
+	//Light pet, no Aomm form
 
 	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
 	public class TorchGodLightPetGlobalNPC : AssGlobalNPC

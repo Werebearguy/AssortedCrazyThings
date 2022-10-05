@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<StrangeRobotProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().StrangeRobot;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Strange Robot");
-			Description.SetDefault("A strange robot is following you");
-		}
+	public class StrangeRobotBuff_AoMM : SimplePetBuffBase_AoMM<StrangeRobotBuff>
+	{
+
 	}
 }

@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<RainbowSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().RainbowSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rainbow Slime");
-			Description.SetDefault("A Rainbow Slime is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class RainbowSlimeBuff_AoMM : SimplePetBuffBase_AoMM<RainbowSlimeBuff>
+	{
+
 	}
 }

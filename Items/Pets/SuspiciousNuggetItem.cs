@@ -12,15 +12,14 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<SuspiciousNuggetBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Suspicious Nugget");
-			Tooltip.SetDefault("Summons a Suspicious Nugget to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.SetShopValues(ItemRarityColor.Orange3, Item.buyPrice(50)); //10 times more expensive then cube
 		}
+	}
+
+	public class SuspiciousNuggetItem_AoMM : SimplePetItemBase_AoMM<SuspiciousNuggetItem>
+	{
+		public override int BuffType => ModContent.BuffType<SuspiciousNuggetBuff_AoMM>();
 	}
 }

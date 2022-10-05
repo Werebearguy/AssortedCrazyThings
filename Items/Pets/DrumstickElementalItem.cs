@@ -12,12 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DrumstickElementalBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Magical Drumstick");
-			Tooltip.SetDefault("Summons a delicious Drumstick Elemental to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 7, copper: 50);
@@ -28,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ItemID.Duck).AddTile(TileID.CookingPots).Register();
 			CreateRecipe(1).AddIngredient(ItemID.MallardDuck).AddTile(TileID.CookingPots).Register();
 		}
+	}
+
+	public class DrumstickElementalItem_AoMM : SimplePetItemBase_AoMM<DrumstickElementalItem>
+	{
+		public override int BuffType => ModContent.BuffType<DrumstickElementalBuff_AoMM>();
 	}
 }

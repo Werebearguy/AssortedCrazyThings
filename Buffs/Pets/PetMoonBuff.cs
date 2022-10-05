@@ -13,8 +13,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Personal Moon");
-			Description.SetDefault("A small moon is providing you with constant moonlight");
 			Main.vanityPet[Type] = false;
 			Main.lightPet[Type] = true;
 		}

@@ -12,16 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<AnimatedTomeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Animated Tome");
-			Tooltip.SetDefault("Summons a friendly Animated Tome to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class AnimatedTomeItem_AoMM : SimplePetItemBase_AoMM<AnimatedTomeItem>
+	{
+		public override int BuffType => ModContent.BuffType<AnimatedTomeBuff_AoMM>();
 	}
 }

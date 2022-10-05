@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DocileDemonEyeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Docile Demon Eye");
-			Tooltip.SetDefault("Summons a docile Demon Eye to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 34;
@@ -32,5 +25,10 @@ namespace AssortedCrazyThings.Items.Pets
 			//regular recipe, dont delete
 			CreateRecipe(1).AddIngredient(ItemID.BlackLens, 1).AddIngredient(ItemID.Lens, 1).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class DocileDemonEyeItem_AoMM : SimplePetItemBase_AoMM<DocileDemonEyeItem>
+	{
+		public override int BuffType => ModContent.BuffType<DocileDemonEyeBuff_AoMM>();
 	}
 }

@@ -1,6 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +18,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Tiny Spazmatism");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TinyTwinsBuff_AoMM>(), ModContent.ProjectileType<TinySpazmatismShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -30,6 +36,20 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
+
+			if (AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras))
+			{
+				//Need to update every tick
+				paras.AttackFrames = 5;
+
+				//Does not need to update every tick
+				paras.PreferredTargetDistance = 80;
+
+				AmuletOfManyMinionsApi.UpdateParamsDirect(this, paras);
+			}
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage / 3f);
+
 			return true;
 		}
 
@@ -71,6 +91,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
 			Projectile.rotation = between.ToRotation() + 1.57f;
 			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
+
+			if (AmuletOfManyMinionsApi.IsActive(this))
+			{
+				AoMM_AI();
+			}
+		}
+
+		private void AoMM_AI()
+		{
+			//Need state to adjust rotation
+			if (!AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state)
+				|| !state.IsInFiringRange || state.TargetNPC is not NPC targetNPC)
+			{
+				return;
+			}
+
+			Vector2 between = Projectile.Center - targetNPC.Center;
+			Projectile.rotation = between.ToRotation() + 1.57f;
+			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
 		}
 	}
 
@@ -82,6 +121,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Tiny Retinazer");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TinyTwinsBuff_AoMM>(), ModContent.ProjectileType<TinyRetinazerShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -122,6 +163,69 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
 			Projectile.rotation = between.ToRotation() + 1.57f;
 			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
+
+			if (AmuletOfManyMinionsApi.IsActive(this))
+			{
+				AoMM_AI();
+			}
+		}
+
+		private void AoMM_AI()
+		{
+			//Need state to adjust rotation
+			if (!AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state)
+				|| !state.IsInFiringRange || state.TargetNPC is not NPC targetNPC)
+			{
+				return;
+			}
+
+			Vector2 between = Projectile.Center - targetNPC.Center;
+			Projectile.rotation = between.ToRotation() + 1.57f;
+			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
+		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class TinySpazmatismShotProj : AssProjectile
+	{
+		public override string Texture => "AssortedCrazyThings/Empty";
+
+		public override void SetStaticDefaults()
+		{
+			ProjectileID.Sets.MinionShot[Projectile.type] = true;
+		}
+
+		public override void SetDefaults()
+		{
+			Projectile.CloneDefaults(ProjectileID.EyeFire);
+			Projectile.aiStyle = 23;
+			Projectile.friendly = true;
+			Projectile.hostile = false;
+			Projectile.timeLeft = 30;
+			Projectile.DamageType = DamageClass.Summon;
+			AIType = ProjectileID.EyeFire;
+		}
+
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			target.AddBuff(BuffID.CursedInferno, 60);
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			Projectile.ai[0] = 7; //Start particles immediately
+		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class TinyRetinazerShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.MiniRetinaLaser; //Optic staff laser
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			//Due to increased extraUpdates (2), but too slow (0.25f) looks unnatural for a laser
+			Projectile.velocity *= 0.5f;
 		}
 	}
 }

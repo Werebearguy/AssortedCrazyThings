@@ -12,16 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetGolemHeadBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Replica Golem Head");
-			Tooltip.SetDefault("Summons a Replica Golem Head to watch over you"
-				+ "\nShoots bouncing fireballs at nearby enemies");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetGolemHeadItem_AoMM : SimplePetItemBase_AoMM<PetGolemHeadItem>
+	{
+		public override int BuffType => ModContent.BuffType<PetGolemHeadBuff_AoMM>();
 	}
 }

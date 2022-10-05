@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -33,6 +35,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Plantera Sprout");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetPlanteraBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -41,8 +45,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.width = 46;
 			Projectile.height = 46;
 			Projectile.friendly = true;
-			Projectile.minion = false; //only determines the damage type
-									   //minion = false to prevent it from being "replaced" after casting other summons and then spawning its tentacles again
+			Projectile.DamageType = DamageClass.Summon;
+			Projectile.minion = false; //minion = false to prevent it from being "replaced" after casting other summons and then spawning its tentacles again
 			Projectile.minionSlots = 0f;
 			Projectile.penetrate = -1;
 			Projectile.aiStyle = -1;
@@ -144,17 +148,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			int tentacleCount = 0;
 
+			string chainPath = Texture + "_Chain";
+			int tentacleType = ModContent.ProjectileType<PetPlanteraProjTentacle>();
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{
 				Projectile other = Main.projectile[i];
-				if (other.active && Projectile.owner == other.owner && other.type == ModContent.ProjectileType<PetPlanteraProjTentacle>())
+				if (other.active && Projectile.owner == other.owner && other.type == tentacleType)
 				{
-					AssUtils.DrawTether("AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", other.Center, Projectile.Center);
+					AssUtils.DrawTether(chainPath, other.Center, Projectile.Center);
 					tentacleCount++;
 				}
 				if (tentacleCount >= 4) break;
 			}
-			AssUtils.DrawTether("AssortedCrazyThings/Projectiles/Pets/PetPlanteraProj_Chain", Projectile.GetOwner().Center, Projectile.Center);
+			AssUtils.DrawTether(chainPath, Projectile.GetOwner().Center, Projectile.Center);
 			return true;
 		}
 	}

@@ -12,17 +12,17 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<WallFragmentBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Wall Fragment");
-			Tooltip.SetDefault("Summons several fragments of the Wall to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 22;
 			Item.height = 26;
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class WallFragmentItem_AoMM : SimplePetItemBase_AoMM<WallFragmentItem>
+	{
+		public override int BuffType => ModContent.BuffType<WallFragmentBuff_AoMM>();
 	}
 }

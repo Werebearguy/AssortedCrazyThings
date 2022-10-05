@@ -14,12 +14,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<ChunkyandMeatballBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Chunky and Meatball");
-			Tooltip.SetDefault("Summons a pair of inseperable brothers to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 4);
@@ -29,5 +23,11 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient<ChunkysEyeItem>().AddIngredient<MeatballsEyeItem>().AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class ChunkyandMeatballItem_AoMM : SimplePetItemBase_AoMM<ChunkyandMeatballItem>
+	{
+		public override int BuffType => ModContent.BuffType<ChunkyandMeatballBuff_AoMM>();
 	}
 }

@@ -13,12 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<AlienHornetBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Vortex Nectar");
-			Tooltip.SetDefault("Summons a friendly Alien Hornet to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(gold: 5);
@@ -28,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Nectar, 1).AddIngredient(ItemID.FragmentVortex, 10).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class AlienHornetItem_AoMM : SimplePetItemBase_AoMM<AlienHornetItem>
+	{
+		public override int BuffType => ModContent.BuffType<AlienHornetBuff_AoMM>();
 	}
 }
