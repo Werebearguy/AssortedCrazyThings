@@ -309,6 +309,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		private int frame2Counter = 0;
 		private int frame2 = 0;
 
+		bool didZephyrfishAILastTick = false;
+
 		public override bool PreAI()
 		{
 			Player player = Projectile.GetOwner();
@@ -331,10 +333,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				desiredSwimming = true;
 			}
-			//else if (!desiredSwimming)
-			//{
-			//	Swimming = false;
-			//}
+
+			//TODO onconsistency with idle state in aomm form, likely related to this?
+			//Main.NewText(Projectile.tileCollide);
 
 			Swimming = desiredSwimming;
 
@@ -342,12 +343,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			if (Swimming)
 			{
+				didZephyrfishAILastTick = true;
 				SwimmingZephyrfishAI();
 				return false;
 			}
-			Timer = 0;
-			Projectile.ai[0] = 0; //reset from ZephyrfishAI();
-			Projectile.ai[1] = 0; //reset from ZephyrfishAI();
+			if (didZephyrfishAILastTick)
+			{
+				didZephyrfishAILastTick = false;
+				Timer = 0;
+				Projectile.ai[0] = 0; //reset from ZephyrfishAI();
+				Projectile.ai[1] = 0; //reset for vanilla AI?;
+			}
 
 			return true;
 		}

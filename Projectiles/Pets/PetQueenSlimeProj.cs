@@ -70,7 +70,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			DisplayName.SetDefault("Slime Sibling");
 
-			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<PetQueenSlimeBuff_AoMM>(), null, false);
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<PetQueenSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()
@@ -127,7 +127,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 	public class PetQueenSlimeGround2Proj : PetQueenSlimeGroundProj
 	{
-
 		public PetQueenSlimeGround2Proj() : base(false)
 		{
 

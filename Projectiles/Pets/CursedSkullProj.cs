@@ -61,13 +61,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			if (Projectile.frame >= 3) Projectile.frame = 0;
 
-			if (Projectile.Center.X - Projectile.GetOwner().Center.X > 0f)
+			if (!AmuletOfManyMinionsApi.IsActive(this) || !AmuletOfManyMinionsApi.IsAttacking(this))
 			{
-				Projectile.spriteDirection = 1;
-			}
-			else
-			{
-				Projectile.spriteDirection = -1;
+				Projectile.spriteDirection = (Projectile.Center.X - Projectile.GetOwner().Center.X > 0f).ToDirectionInt();
 			}
 		}
 

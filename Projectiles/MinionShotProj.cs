@@ -36,6 +36,8 @@ namespace AssortedCrazyThings.Projectiles
 		{
 			Projectile.CloneDefaults(ClonedType);
 			Projectile.DamageType = DamageClass.Summon;
+			Projectile.friendly = true;
+			Projectile.hostile = false;
 			Projectile.timeLeft = 180;
 
 			AIType = ClonedType;

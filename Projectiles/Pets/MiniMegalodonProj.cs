@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 
-			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<MiniMegalodonBuff_AoMM>(), null);
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<MiniMegalodonBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()

@@ -94,6 +94,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AIType = projectileToMimic;
 		}
 
+		public override bool PreKill(int timeLeft)
+		{
+			Projectile.type = projectileToMimic;
+
+			return true; //No base
+		}
+
 		public override void SendExtraAI(BinaryWriter writer)
 		{
 			writer.Write7BitEncodedInt(AIType);

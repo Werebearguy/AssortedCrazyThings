@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,7 +16,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 
-			//TODO aomm rotation sword
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<EnchantedSwordBuff_AoMM>(), null);
 		}
 
@@ -53,11 +53,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				if (AmuletOfManyMinionsApi.IsAttacking(this))
 				{
-					Projectile.rotation = Projectile.velocity.X * -0.08f + Microsoft.Xna.Framework.MathHelper.Pi;
+					Projectile.rotation = Projectile.velocity.X * 0.08f + MathHelper.Pi;
 				}
 				else
 				{
-					Projectile.rotation += Microsoft.Xna.Framework.MathHelper.Pi;
+					Projectile.rotation += MathHelper.Pi;
 				}
 			}
 		}
