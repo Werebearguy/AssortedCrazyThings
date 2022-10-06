@@ -39,6 +39,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.5f);
+
 			return true;
 		}
 
