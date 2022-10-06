@@ -30,8 +30,9 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ModContent.ItemType<CompanionDungeonSoulPetItem>(), 1).AddTile(TileID.CrystalBall).Register();
 		}
 	}
-
+	
 	//Reimplementation from SimplePetItemBase_AoMM for the most part
+	[Content(ContentType.AommSupport | ContentType.Bosses)]
 	public class CompanionDungeonSoulPetItem2_AoMM : CompanionDungeonSoulPetItem2
 	{
 		public override void SetStaticDefaults()
