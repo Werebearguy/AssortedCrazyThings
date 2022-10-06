@@ -107,7 +107,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 		}
 
-		private bool overlappingWithAnyEnemy = false;
+		private bool drawWeapon = false;
 		private int weaponFrame = 0;
 		private const int weaponFrameCount = 3;
 		private int weaponFrameCounter = 0;
@@ -127,15 +127,22 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			if (!AmuletOfManyMinionsApi.IsAttacking(this))
 			{
+				drawWeapon = false;
+				weaponFrameCounter = 0;
+				weaponFrame = 0;
 				return;
 			}
 
-			overlappingWithAnyEnemy = false;
+			drawWeapon = true;
+
+			bool overlappingWithAnyEnemy = false;
 			for (int i = 0; i < Main.maxNPCs; i++)
 			{
 				NPC npc = Main.npc[i];
 
-				if (npc.CanBeChasedBy() && npc.Hitbox.Intersects(Projectile.Hitbox))
+				var hitbox = npc.Hitbox;
+				hitbox.Inflate(6, 6);
+				if (npc.CanBeChasedBy() && hitbox.Intersects(Projectile.Hitbox))
 				{
 					overlappingWithAnyEnemy = true;
 					break;
@@ -152,7 +159,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					if (weaponFrame >= weaponFrameCount)
 					{
 						weaponFrame = 0;
-						overlappingWithAnyEnemy = false;
 					}
 				}
 			}
@@ -165,7 +171,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void PostDraw(Color lightColor)
 		{
-			if (!overlappingWithAnyEnemy ||
+			if (!drawWeapon ||
 				!AmuletOfManyMinionsApi.IsActive(this) ||
 				!AmuletOfManyMinionsApi.IsAttacking(this))
 			{
