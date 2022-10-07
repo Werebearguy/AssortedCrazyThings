@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -209,10 +210,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.rotation = 0f;
 
 			Projectile.friendly = false;
+			Projectile.tileCollide = false;
 			if (Launched)
 			{
 				Projectile.alpha = 0;
 				Projectile.friendly = true;
+				Projectile.tileCollide = true;
 				return;
 			}
 			else
@@ -228,6 +231,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.timeLeft = 2;
 			AssAI.BabyEaterAI(Projectile, parent: parent, velocityFactor: 1.5f, sway: 0.1f);
 			AssAI.TeleportIfTooFar(Projectile, parent.Center);
+		}
+
+		public override bool OnTileCollide(Vector2 oldVelocity)
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 5, Math.Sign(oldVelocity.X), Math.Sign(oldVelocity.Y));
+			}
+
+			return base.OnTileCollide(oldVelocity);
 		}
 
 		private void Launch(BabyOcramProj babyOcram)

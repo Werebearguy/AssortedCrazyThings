@@ -50,12 +50,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			if (AmuletOfManyMinionsApi.IsActive(this))
 			{
-				//Default AttackFrames scaling is 60 (tier 0) to 30 (capped at tier >= 5), so scale damage at same rate
-				//tier 0 ratio with fixed 5 attackframes = 12
-				//tier >=5 ratio "-" = 6
+				//Default AttackFrames scaling is 45 (tier 0) to 20 (capped at tier >= 5), so scale damage at same rate
+				//tier 0 ratio with fixed 5 attackframes = 9
+				//tier >=5 ratio "-" = 4
 				int tier = AmuletOfManyMinionsApi.GetPetLevel(player);
 				float damageRange = Math.Clamp(tier, 1, 5) / 5f;
-				float damageRatio = 6 + (1f - damageRange) * 6f;
+				float damageRatio = 4 + (1 - damageRange) * 5;
 				Projectile.originalDamage = Math.Max(4, (int)(Projectile.originalDamage / damageRatio)); //Min damage is 4
 			}
 
