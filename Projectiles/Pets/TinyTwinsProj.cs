@@ -26,7 +26,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Projectile.CloneDefaults(ProjectileID.BabyEater);
 			Projectile.aiStyle = -1;
-			//AIType = ProjectileID.BabyEater;
 			Projectile.width = 30;
 			Projectile.height = 30;
 			DrawOriginOffsetY = -10;
@@ -57,6 +56,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				float damageRange = Math.Clamp(tier, 1, 5) / 5f;
 				float damageRatio = 4 + (1 - damageRange) * 5;
 				Projectile.originalDamage = Math.Max(4, (int)(Projectile.originalDamage / damageRatio)); //Min damage is 4
+
+				Projectile.knockBack *= 0.3f;
 			}
 
 			return true;
@@ -97,28 +98,34 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void PostAI()
 		{
-			Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
-			Projectile.rotation = between.ToRotation() + 1.57f;
-			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
-
+			bool defaultAI = true;
 			if (AmuletOfManyMinionsApi.IsActive(this))
 			{
-				AoMM_AI();
+				defaultAI = AoMM_AI();
+			}
+
+			if (defaultAI)
+			{
+				Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
+				Projectile.rotation = between.ToRotation() + MathHelper.PiOver2;
+				Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
 			}
 		}
 
-		private void AoMM_AI()
+		private bool AoMM_AI()
 		{
 			//Need state to adjust rotation
 			if (!AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state)
 				|| !state.IsInFiringRange || state.TargetNPC is not NPC targetNPC)
 			{
-				return;
+				return true;
 			}
 
 			Vector2 between = Projectile.Center - targetNPC.Center;
-			Projectile.rotation = between.ToRotation() + 1.57f;
+			Projectile.rotation = between.ToRotation() + MathHelper.PiOver2;
 			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
+
+			return false;
 		}
 	}
 
@@ -169,35 +176,47 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			if (Projectile.frame > 1) Projectile.frame = 0;
 
-			Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
-			Projectile.rotation = between.ToRotation() + 1.57f;
-			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
-
+			bool defaultAI = true;
 			if (AmuletOfManyMinionsApi.IsActive(this))
 			{
-				AoMM_AI();
+				defaultAI = AoMM_AI();
+			}
+
+			if (defaultAI)
+			{
+				Vector2 between = Projectile.Center - Projectile.GetOwner().Center;
+				Projectile.rotation = between.ToRotation() + MathHelper.PiOver2;
+				Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
 			}
 		}
 
-		private void AoMM_AI()
+		private bool AoMM_AI()
 		{
 			//Need state to adjust rotation
 			if (!AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state)
 				|| !state.IsInFiringRange || state.TargetNPC is not NPC targetNPC)
 			{
-				return;
+				return true;
 			}
 
 			Vector2 between = Projectile.Center - targetNPC.Center;
-			Projectile.rotation = between.ToRotation() + 1.57f;
+			Projectile.rotation = between.ToRotation() + MathHelper.PiOver2;
 			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
+
+			return false;
 		}
 	}
 
 	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
 	public class TinySpazmatismShotProj : AssProjectile
 	{
-		public override string Texture => "AssortedCrazyThings/Empty";
+		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.EyeFire;
+
+		public int Timer
+		{
+			get => (int)Projectile.ai[0];
+			set => Projectile.ai[0] = value;
+		}
 
 		public override void SetStaticDefaults()
 		{
@@ -207,12 +226,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.EyeFire);
-			Projectile.aiStyle = 23;
+			Projectile.aiStyle = -1;
 			Projectile.friendly = true;
 			Projectile.hostile = false;
 			Projectile.timeLeft = 30;
 			Projectile.DamageType = DamageClass.Summon;
-			AIType = ProjectileID.EyeFire;
+
+			Projectile.usesIDStaticNPCImmunity = true;
+			Projectile.idStaticNPCHitCooldown = 10;
 		}
 
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -220,9 +241,68 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			target.AddBuff(BuffID.CursedInferno, 60);
 		}
 
+		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		{
+			hitbox.Inflate(30, 30);
+		}
+
 		public override void OnSpawn(IEntitySource source)
 		{
-			Projectile.ai[0] = 7; //Start particles immediately
+			Projectile.velocity *= 0.6f;
+		}
+
+		public override void AI()
+		{
+			if (Projectile.timeLeft > 60)
+			{
+				Projectile.timeLeft = 60;
+			}
+
+			Timer++;
+			int timerUp = Timer - 3; //When to start spawning dusts
+			if (timerUp > 0)
+			{
+				float dustScale = 1f;
+				if (timerUp == 1)
+				{
+					dustScale = 0.25f;
+				}
+				else if (timerUp == 2)
+				{
+					dustScale = 0.5f;
+				}
+				else if (timerUp == 3)
+				{
+					dustScale = 0.75f;
+				}
+
+				dustScale *= 0.6f;
+
+				if (Main.rand.NextBool(2))
+				{
+					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CursedTorch, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100);
+					if (Main.rand.NextFloat() < 0.667f)
+					{
+						dust.noGravity = true;
+						dust.scale *= 3f;
+						dust.velocity.X *= 2f;
+						dust.velocity.Y *= 2f;
+					}
+
+					dust.scale *= 1.5f;
+
+					dust.velocity.X *= 1.2f;
+					dust.velocity.Y *= 1.2f;
+					dust.scale *= dustScale;
+					dust.velocity += Projectile.velocity;
+					if (!dust.noGravity)
+					{
+						dust.velocity *= 0.5f;
+					}
+				}
+			}
+
+			Projectile.rotation += 0.3f * Projectile.direction;
 		}
 	}
 
