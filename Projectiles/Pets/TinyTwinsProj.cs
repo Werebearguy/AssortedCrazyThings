@@ -154,6 +154,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.zephyrfish = false; // Relic from AIType
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.65f);
+
 			return true;
 		}
 
