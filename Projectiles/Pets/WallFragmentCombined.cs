@@ -4,6 +4,7 @@ using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,8 +17,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
-
-			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<WallFragmentBuff_AoMM>(), null);
 
 			SafeSetStaticDefaults();
 		}
@@ -40,7 +39,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
 
-			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.5f);
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.65f);
 
 			return true;
 		}
@@ -88,6 +87,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall Mouth");
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<WallFragmentBuff_AoMM>(), null);
 		}
 	}
 
@@ -104,6 +105,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wall Eye");
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<WallFragmentBuff_AoMM>(), ModContent.ProjectileType<WallFragmentEyeShotProj>());
 		}
 	}
 
@@ -115,6 +118,28 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				return "AssortedCrazyThings/Projectiles/Pets/WallFragmentEye2_0"; //temp
 			}
+		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class WallFragmentEyeShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.MiniRetinaLaser; //Optic staff laser
+
+		public override void SafeSetDefaults()
+		{
+			//To make the two lasers hit simultaneously, need to reset the vanilla behavior, then set custom one
+			Projectile.usesIDStaticNPCImmunity = false;
+			Projectile.idStaticNPCHitCooldown = 0;
+
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 12;
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			//Due to increased extraUpdates (2), but too slow (0.25f) looks unnatural for a laser
+			Projectile.velocity *= 0.5f;
 		}
 	}
 }

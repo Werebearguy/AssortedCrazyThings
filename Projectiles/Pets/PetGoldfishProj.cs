@@ -334,9 +334,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				desiredSwimming = true;
 			}
 
-			//TODO onconsistency with idle state in aomm form, likely related to this?
-			//Main.NewText(Projectile.tileCollide);
-
 			Swimming = desiredSwimming;
 
 			GetFrame();

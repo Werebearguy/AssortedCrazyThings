@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -36,36 +38,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			if (AmuletOfManyMinionsApi.IsActive(this) && PostAttacking)
-			{
-				float num318 = PostAttackingTimer / (float)25;
-				float scale22 = 1f - num318;
-				Color value122 = Projectile.GetAlpha(new Color(255, 220, 220)) * scale22 * scale22 * 0.8f * Projectile.Opacity;
-				value122.A = 0;
-				short num319 = ProjectileID.MedusaHeadRay;
-				Main.instance.LoadProjectile(num319);
-				Texture2D value123 = TextureAssets.Projectile[num319].Value;
-				Vector2 origin25 = value123.Size() * new Vector2(0.5f, 1f);
-				float num320 = 9f;
-				float num321 = Projectile.velocity.ToRotation();
-				if (Projectile.velocity.Length() < 0.1f)
-				{
-					num321 = Projectile.direction == 1 ? 0f : MathHelper.Pi;
-				}
-
-				Vector2 vector50 = Projectile.position + Projectile.Size / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-				vector50.Y += -2f + (float)(Math.Cos(Main.mouseTextColor / 255f * MathHelper.TwoPi * 2f) * 4.0);
-				Vector2 value124 = (num321 + MathHelper.PiOver2).ToRotationVector2();
-				for (int num322 = 0; (float)num322 < num320; num322++)
-				{
-					float num323 = (num322 % 2 != 0).ToDirectionInt();
-					float num324 = ((float)num322 + 1f) * num323 * 0.2f * (0.2f + 2f * num318) + num321 + MathHelper.PiOver2;
-					float num325 = Utils.Remap(Vector2.Dot(num324.ToRotationVector2(), value124), -1f, 1f, 0f, 1f);
-					float num326 = Projectile.scale * (0.15f + 0.6f * (float)Math.Sin(Main.GlobalTimeWrappedHourly + num322 * 0.739f)) * num325;
-					Main.EntitySpriteDraw(value123, vector50 + Projectile.rotation.ToRotationVector2().RotatedBy(MathHelper.TwoPi * (1f / num320) * num322 + Main.GlobalTimeWrappedHourly) * 4f * Projectile.scale, null, value122 * num325, num324, origin25, new Vector2(num326 * 1.5f, num326), SpriteEffects.None, 0);
-				}
-			}
-
 			Texture2D image = TextureAssets.Projectile[Type].Value;
 			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
@@ -78,23 +50,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return false;
 		}
 
-		private bool setAoMMParas = false;
-
 		public override bool PreAI()
 		{
-			if (!setAoMMParas)
-			{
-				setAoMMParas = true;
+			AmuletOfManyMinionsApi.ReleaseControl(this);
 
-				if (AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras))
-				{
-					paras.PreferredTargetDistance = 30;
-
-					AmuletOfManyMinionsApi.UpdateParamsDirect(this, paras);
-				}
-			}
-
-			return true;
+			return base.PreAI();
 		}
 
 		public override void AI()
@@ -112,146 +72,439 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 
-				bool defaultAI = true;
 				if (AmuletOfManyMinionsApi.IsActive(this))
 				{
-					defaultAI = AoMM_AI();
+					AoMM_AI();
 				}
 
-				if (defaultAI)
-				{
-					AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: -6f, offsetY: 6f);
+				AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, offsetX: -6f, offsetY: 6f);
 
-					Projectile.spriteDirection = (player.Center.X <= Projectile.Center.X).ToDirectionInt();
+				Projectile.spriteDirection = (player.Center.X <= Projectile.Center.X).ToDirectionInt();
 
-					AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
-				}
-
-				if (AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) &&
-						state.IsInFiringRange && state.TargetNPC is NPC targetNPC)
-				{
-					Projectile.spriteDirection = ((targetNPC.Center.X - Projectile.Center.X) < 0).ToDirectionInt();
-				}
+				AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 4, frameCounterMaxClose: 10);
 			}
 		}
 
-		public const int FireRate = 20;
+		private bool atleastOneEnemyInAttackRange = false; //Acts as a spawn/despawn handler
 
-		public const int AttackTick = 1;
+		private int attackRangeScanTimer = 0;
+		private int attackRangeScanTimerMax = 60;
 
-		public int AttackTimer
+		private void AoMM_AI()
 		{
-			get => (int)Projectile.ai[0];
-			set => Projectile.ai[0] = value;
-		}
-
-		public int PostAttackingTimer
-		{
-			get => (int)Projectile.ai[1];
-			set => Projectile.ai[1] = value;
-		}
-
-		public bool AttackThisTick => AttackTimer == AttackTick;
-
-		public bool PostAttacking => PostAttackingTimer > 0;
-
-		private bool atleastOneEnemyNextToMe = false;
-
-		private bool AoMM_AI()
-		{
-			atleastOneEnemyNextToMe = false;
-			int radius = 50 + AmuletOfManyMinionsApi.GetPetLevel(Projectile.GetOwner()) * 10;
-
-			for (int i = 0; i < Main.maxNPCs; i++)
+			attackRangeScanTimer++;
+			if (attackRangeScanTimer >= attackRangeScanTimerMax)
 			{
-				NPC npc = Main.npc[i];
-
-				if (npc.CanBeChasedBy() && npc.DistanceSQ(Projectile.Center) < radius * radius)
+				attackRangeScanTimer = 0;
+				if (!AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state))
 				{
-					atleastOneEnemyNextToMe = true;
-					break;
-				}
-			}
-
-			if (atleastOneEnemyNextToMe)
-			{
-				AttackTimer++;
-				if (AttackTimer >= AttackTick + FireRate)
-				{
-					AttackTimer = AttackTick;
-				}
-			}
-			else
-			{
-				AttackTimer = 0;
-			}
-
-			if (PostAttackingTimer > 0)
-			{
-				PostAttackingTimer++;
-				if (PostAttackingTimer >= 25)
-				{
-					PostAttackingTimer = 0;
-				}
-			}
-
-			if (PostAttackingTimer == 0 && AttackTimer > 0)
-			{
-				//Kickstart
-				PostAttackingTimer = 1;
-			}
-
-			if (PostAttacking)
-			{
-				if (Main.rand.NextBool(2))
-				{
-					float scale = 1.4f + Main.rand.NextFloat() * 0.4f;
-					float sizeOffset = 1.1f + Main.rand.NextFloat() * 0.3f;
-					Vector2 offset = Main.rand.NextVector2CircularEdge(Projectile.width * sizeOffset, -Projectile.height * 0.25f * sizeOffset);
-					float rotation = offset.ToRotation() + MathHelper.PiOver2;
-					Dust dust = Dust.NewDustDirect(Projectile.Bottom + offset, 1, 1, DustID.SteampunkSteam, 0f, 0f, 50, Color.GhostWhite, scale);
-					dust.velocity = offset * 0.0125f + Vector2.UnitX.RotatedBy(rotation);
-					dust.noGravity = true;
+					return;
 				}
 
-				AssAI.FlickerwickPetDraw(Projectile, frameCounterMaxFar: 10, frameCounterMaxClose: 10);
+				bool oldAtleastOneEnemyInAttackRange = atleastOneEnemyInAttackRange;
+				atleastOneEnemyInAttackRange = false;
+				int radius = 50 + state.SearchRange;
 
-				return false;
+				for (int i = 0; i < Main.maxNPCs; i++)
+				{
+					NPC npc = Main.npc[i];
+
+					if (npc.CanBeChasedBy() && npc.DistanceSQ(Projectile.Center) < radius * radius)
+					{
+						atleastOneEnemyInAttackRange = true;
+						break;
+					}
+				}
+
+				if (Main.myPlayer == Projectile.owner)
+				{
+					int shotType = ModContent.ProjectileType<GhostMartianShotProj>();
+					Player player = Projectile.GetOwner();
+
+					if (oldAtleastOneEnemyInAttackRange && !atleastOneEnemyInAttackRange)
+					{
+						//Turn inactive so it despawns automatically later
+						for (int i = 0; i < Main.maxProjectiles; i++)
+						{
+							Projectile proj = Main.projectile[i];
+
+							if (proj.active && proj.owner == Projectile.owner && proj.type == shotType && proj.ModProjectile is GhostMartianShotProj shotProj && !shotProj.Retreat)
+							{
+								shotProj.Retreat = true;
+								proj.NetSync();
+							}
+						}
+					}
+
+					if (atleastOneEnemyInAttackRange)
+					{
+						if (player.ownedProjectileCounts[shotType] == 0)
+						{
+							//Spawn new one if not spawned yet
+							Projectile.NewProjectile(Projectile.GetSource_FromThis(), player.Center + new Vector2(Main.rand.NextBool().ToDirectionInt() * (200 + Main.rand.Next(300)), -150), Vector2.Zero, shotType, Projectile.damage, 0, Main.myPlayer);
+						}
+						else
+						{
+							//Turn active so it won't despawn
+							for (int i = 0; i < Main.maxProjectiles; i++)
+							{
+								Projectile proj = Main.projectile[i];
+
+								if (proj.active && proj.owner == Projectile.owner && proj.type == shotType && proj.ModProjectile is GhostMartianShotProj shotProj && shotProj.Retreat)
+								{
+									shotProj.Retreat = false;
+									proj.NetSync();
+								}
+							}
+						}
+					}
+				}
 			}
+		}
+	}
 
-			return true;
+	[Content(ContentType.AommSupport | ContentType.OtherPets)]
+	public class GhostMartianShotProj : AssProjectile
+	{
+		public int ParentIdentity
+		{
+			get => (int)Projectile.ai[0] - 1;
+			set => Projectile.ai[0] = value + 1;
 		}
 
-		public override bool? CanHitNPC(NPC target)
+		//Should be set only from outside of this class
+		public bool Retreat
 		{
-			return AttackThisTick; //forcing true ignores friendly check
+			get => Projectile.ai[1] == 1f;
+			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
 
-		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		public int ParentIndex
 		{
-			if (AttackThisTick)
-			{
-				int radius = 30 + AmuletOfManyMinionsApi.GetPetLevel(Projectile.GetOwner()) * 4;
-				hitbox.Inflate(radius, radius);
-			}
+			get => (int)Projectile.localAI[0] - 1;
+			set => Projectile.localAI[0] = value + 1;
+		}
+
+		public bool Spawned
+		{
+			get => Projectile.localAI[1] == 1f;
+			set => Projectile.localAI[1] = value ? 1f : 0f;
+		}
+
+		public Vector2 AttackCircleCenter => Projectile.Bottom + new Vector2(0, attackRadius);
+
+		public Rectangle AttackCircleHitbox => Utils.CenteredRectangle(AttackCircleCenter, new Vector2(2 * attackRadius));
+
+		public bool hasTarget = false;
+
+		public bool attacking = false;
+
+		public override void SetStaticDefaults()
+		{
+			ProjectileID.Sets.MinionShot[Projectile.type] = true;
+			Main.projFrames[Projectile.type] = 8;
+		}
+
+		public override void SetDefaults()
+		{
+			Projectile.width = 16;
+			Projectile.height = 16;
+			Projectile.DamageType = DamageClass.Summon;
+			Projectile.tileCollide = false;
+			Projectile.netImportant = true;
+			Projectile.aiStyle = -1;
+			Projectile.friendly = true;
+			Projectile.penetrate = -1;
+			Projectile.alpha = 255;
+			Projectile.timeLeft = 240; //Doesn't matter
+
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 20;
 		}
 
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
-			knockback *= 0.25f;
+			damage += target.checkArmorPenetration(target.defense);
 		}
 
-		public override Color? GetAlpha(Color lightColor)
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			if (AmuletOfManyMinionsApi.IsActive(this) && PostAttacking)
-			{
-				lightColor.G = (byte)(lightColor.G * 0.7f);
-				lightColor.B = (byte)(lightColor.B * 0.7f);
+			//Gets reset every tick, but in same tick, reduce subsequent damage
+			Projectile.damage = (int)(Projectile.damage * 0.8f);
+		}
 
-				return lightColor;
+		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		{
+			hitbox = AttackCircleHitbox; //Just for visualization purposes
+		}
+
+		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+		{
+			if (!attacking)
+			{
+				return false;
 			}
 
-			return base.GetAlpha(lightColor);
+			//Vanilla adjusts its hitbox in AI, we don't do that, so some checks are omitted
+			if (targetHitbox.Intersects(AttackCircleHitbox) && targetHitbox.Distance(AttackCircleCenter) < attackRadius - 8)
+			{
+				if (Projectile.AI_137_CanHit(targetHitbox.Center.ToVector2()))
+				{
+					return true;
+				}
+
+				if (Projectile.AI_137_CanHit(targetHitbox.TopLeft() + new Vector2(targetHitbox.Width / 2, 0f)))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (source is not EntitySource_Parent parentSource)
+			{
+				return;
+			}
+
+			if (parentSource.Entity is not Projectile parent)
+			{
+				return;
+			}
+
+			ParentIdentity = parent.identity;
+		}
+
+		public override void AI()
+		{
+			if (ParentIdentity <= -1 || ParentIdentity > Main.maxProjectiles)
+			{
+				Projectile.Kill();
+				return;
+			}
+
+			Projectile parent = null;
+			if (ParentIndex <= -1)
+			{
+				//Find parent based on identity
+				Projectile test = AssUtils.NetGetProjectile(Projectile.owner, ParentIdentity, ModContent.ProjectileType<GhostMartianProj>(), out int index);
+				if (test != null)
+				{
+					//Important not to use test.whoAmI here
+					ParentIndex = index;
+				}
+			}
+
+			if (ParentIndex > -1 && ParentIndex <= Main.maxProjectiles)
+			{
+				parent = Main.projectile[ParentIndex];
+			}
+
+			if (parent == null)
+			{
+				//If the parent was not found, despawn
+				Projectile.Kill();
+				return;
+			}
+
+			parent = Main.projectile[ParentIndex];
+			if (!parent.active || parent.type != ModContent.ProjectileType<GhostMartianProj>())
+			{
+				Projectile.Kill();
+				return;
+			}
+
+			if (parent.ModProjectile is not GhostMartianProj ghostMartian)
+			{
+				return;
+			}
+
+			Visuals();
+
+			if (!Spawned)
+			{
+				Spawned = true;
+				SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
+
+				for (int i = 0; i < 20; i++)
+				{
+					Dust dust = Dust.NewDustDirect(Projectile.Center, 0, 0, DustID.Electric, Scale: 1);
+					dust.noLight = true;
+					dust.noGravity = true;
+				}
+			}
+
+			Player player = Projectile.GetOwner();
+			Projectile.damage = (int)(parent.originalDamage * 0.9f);
+			Projectile.timeLeft = 2;
+			//Not knockback
+
+			if (!AmuletOfManyMinionsApi.TryGetStateDirect(ghostMartian, out var state))
+			{
+				return;
+			}
+
+			//Attack on its own, don't rely on targeted enemy, it may reset constantly due to LOS change
+			int range = state.SearchRange;
+
+			hasTarget = false;
+			if (Retreat)
+			{
+				Retreat_AI(player);
+			}
+			else
+			{
+				retreatDir = 0;
+				int targetIndex = AssAI.FindTarget(Projectile, player.Center, range);
+				if (targetIndex == -1)
+				{
+					Idle_AI();
+				}
+				else
+				{
+					hasTarget = true;
+					Attack_AI(targetIndex);
+				}
+			}
+
+			Projectile.rotation = Projectile.velocity.X * 0.02f;
+		}
+
+		private int retreatDir = 0;
+
+		public void Retreat_AI(Player player)
+		{
+			if (retreatDir == 0)
+			{
+				retreatDir = -Math.Sign(player.Center.X - Projectile.Center.X);
+			}
+
+			//Fly away from the player, then despawn after sufficient distance travelled
+			Vector2 destination = player.Center + new Vector2(retreatDir * 1000, -450);
+			Vector2 directionTo = destination - Projectile.Center;
+			float distSQ = directionTo.LengthSquared();
+			if (Main.myPlayer == Projectile.owner && distSQ < 30 * 30)
+			{
+				Projectile.Kill();
+				return;
+			}
+			directionTo = directionTo.SafeNormalize(Vector2.UnitX * retreatDir);
+
+			float inertia = 30;
+			float speed = 12f;
+			Projectile.velocity = (Projectile.velocity * (inertia - 1) + directionTo * speed) / inertia;
+
+		}
+
+		public void Idle_AI()
+		{
+			AssAI.ZephyrfishAI(Projectile);
+		}
+
+		public int attackRadius = 16 * 2;
+
+		public void Attack_AI(int targetIndex)
+		{
+			NPC target = Main.npc[targetIndex];
+
+			//Fly towards the top of the target
+			Vector2 destination = target.Top + target.velocity * 3 - new Vector2(0, attackRadius);
+			Vector2 directionTo = destination - Projectile.Center;
+			float distSQ = directionTo.LengthSquared();
+			directionTo = directionTo.SafeNormalize(Vector2.UnitX);
+
+			float inertia = 10;
+			float speed = 10f;
+			Projectile.velocity = (Projectile.velocity * (inertia - 1) + directionTo * speed) / inertia;
+
+			if (distSQ < 2 * 2)
+			{
+				Projectile.Center = destination;
+				Projectile.velocity *= 0;
+			}
+
+			attacking = distSQ < attackRadius * attackRadius;
+
+			if (!attacking)
+			{
+				return;
+			}
+			
+			if (Projectile.soundDelay == 0)
+			{
+				SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, Projectile.Center);
+
+				Projectile.soundDelay = 10;
+			}
+
+			int visualRadius = attackRadius - 2;
+			DelegateMethods.v3_1 = new Vector3(0.2f, 0.7f, 1f);
+			Utils.PlotTileLine(AttackCircleCenter + Vector2.UnitX * -visualRadius, AttackCircleCenter + Vector2.UnitX * visualRadius, 2 * visualRadius, DelegateMethods.CastLightOpen);
+
+			//Circular around center
+			Vector2 top = new Vector2(AttackCircleCenter.X, AttackCircleCenter.Y - visualRadius);
+			for (int j = 0; j < 8; j++)
+			{
+				if (!Main.rand.NextBool(6))
+				{
+					continue;
+				}
+
+				Vector2 random = Main.rand.NextVector2Unit();
+				if (Math.Abs(random.X) < 0.05f)
+				{
+					continue;
+				}
+
+				Vector2 dustCenter = AttackCircleCenter + random * visualRadius;
+				if (!WorldGen.SolidTile((int)dustCenter.X / 16, (int)dustCenter.Y / 16) && Projectile.AI_137_CanHit(dustCenter))
+				{
+					Dust dust = Dust.NewDustDirect(dustCenter, 0, 0, DustID.Electric, 0f, 0f, 100);
+					dust.position = dustCenter;
+					dust.velocity = (top - dust.position).SafeNormalize(Vector2.Zero);
+					dust.scale = 0.5f;
+					dust.fadeIn = 0.3f;
+					dust.noGravity = true;
+					dust.noLight = true;
+				}
+			}
+
+			//Vertical line between center and top
+			/*
+			for (int l = 0; l < 4; l++)
+			{
+				if (!Main.rand.NextBool(10))
+				{
+					continue;
+				}
+
+				Dust dust = Dust.NewDustDirect(top - new Vector2(8f, 0f), 16, visualRadius, DustID.Electric, 0f, 0f, 100);
+				dust.velocity *= 0.3f;
+				dust.velocity += -Vector2.UnitY;
+				dust.scale = 0.7f;
+				dust.noGravity = true;
+				dust.noLight = true;
+			}
+			*/
+		}
+
+		private void Visuals()
+		{
+			if (Projectile.alpha > 0)
+			{
+				Projectile.alpha -= 20;
+
+				if (Projectile.alpha < 0)
+				{
+					Projectile.alpha = 0;
+				}
+			}
+
+			int startFrame = hasTarget ? 4 : 0;
+			int endFrame = hasTarget ? -1 : 3;
+			Projectile.LoopAnimation(6, startFrame, endFrame);
 		}
 	}
 }

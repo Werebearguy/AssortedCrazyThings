@@ -1117,7 +1117,7 @@ namespace AssortedCrazyThings.Base
 						projectile.velocity = Vector2.Normalize(projectile.velocity) * idleMagnitude;
 					}
 				}
-				projectile.rotation = projectile.velocity.ToRotation() + 1.57079637f;
+				projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
 				int direction = projectile.direction;
 				projectile.direction = projectile.spriteDirection = (projectile.velocity.X > 0f) ? 1 : -1;
 				if (projectile.minion && direction != projectile.direction)
@@ -1185,7 +1185,7 @@ namespace AssortedCrazyThings.Base
 						float rotatedBy = MathHelper.WrapAngle(parentRotation - projectile.rotation);
 						newVelocity = newVelocity.RotatedBy(rotatedBy * 0.1f);
 					}
-					projectile.rotation = newVelocity.ToRotation() + 1.57079637f;
+					projectile.rotation = newVelocity.ToRotation() + MathHelper.PiOver2;
 					projectile.position = projectile.Center;
 					projectile.scale = scaleOffset;
 					projectile.width = projectile.height = (int)(defScaleFactor * projectile.scale);

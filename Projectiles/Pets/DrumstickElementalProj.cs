@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -49,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				}
 			}
 
-			Projectile.originalDamage = (int)(Projectile.originalDamage * prolongFactor / shotsPerBurst * 1.2f);
+			Projectile.originalDamage = Math.Max(4, (int)(Projectile.originalDamage * prolongFactor / shotsPerBurst * 1.45f));
 
 			return true;
 		}

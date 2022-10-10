@@ -137,7 +137,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			int damage = Math.Max(1, (int)(1.25f * Projectile.damage / targetNPCs.Count));
 			foreach (var targetNPC in targetNPCs)
 			{
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), targetNPC.Center, Vector2.Zero, ModContent.ProjectileType<FairySwarmShotProj>(), damage, 3 + Projectile.knockBack, Main.myPlayer);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), targetNPC.Center, Vector2.Zero, ModContent.ProjectileType<FairySwarmShotProj>(), damage, 2.5f + Projectile.knockBack, Main.myPlayer);
 			}
 		}
 	}
@@ -168,7 +168,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			float fromPlayerToTargetX = target.Center.X - Projectile.GetOwner().Center.X;
 
-			if (target.defense > 20)
+			if (target.defense >= 20)
 			{
 				damage += target.checkArmorPenetration(10);
 			}

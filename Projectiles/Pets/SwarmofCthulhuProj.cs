@@ -45,12 +45,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 				if (AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras))
 				{
-					paras.AttackFramesScaleFactor *= 0.4f;
+					paras.AttackFramesScaleFactor *= 0.5f;
 					AmuletOfManyMinionsApi.UpdateParamsDirect(this, paras);
 				}
 			}
 
-			Projectile.originalDamage = Math.Max(4, (int)(Projectile.originalDamage * 0.5f));
+			Projectile.originalDamage = Math.Max(4, (int)(Projectile.originalDamage * 0.6f));
 
 			return base.PreAI();
 		}
@@ -150,6 +150,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.alpha = 255;
 			Projectile.penetrate = 5; //Used for tracking bounces, when enemy is hit it sets to 0
 			Projectile.DamageType = DamageClass.Summon;
+
+			Projectile.usesIDStaticNPCImmunity = true;
+			Projectile.idStaticNPCHitCooldown = 8;
 		}
 
 		public override void OnSpawn(IEntitySource source)
@@ -177,9 +180,25 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return Projectile.penetrate > 0 ? null : false; //Wack workaround in case hitbox overlaps with more than 1 NPC in the same tick
 		}
 
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			if (target.defense >= 20)
+			{
+				damage += target.checkArmorPenetration(10);
+			}
+		}
+
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			Projectile.penetrate = 0;
+		}
+
+		public override void Kill(int timeLeft)
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 5, Math.Sign(Projectile.velocity.X), Math.Sign(Projectile.velocity.Y));
+			}
 		}
 
 		public override void AI()

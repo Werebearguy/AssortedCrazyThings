@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -66,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				//float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
 				//projectile.scale = 1f + scaleFactor * 0.01f;
 
-				Projectile.rotation = Projectile.velocity.ToRotation() + 1.57079637f;
+				Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 				Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f).ToDirectionInt();
 			}
 		}
@@ -76,7 +77,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
 			Vector2 drawPos = Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-			Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 			Rectangle drawRect = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
 			Color color = Projectile.GetAlpha(lightColor);
 			Vector2 drawOrigin = drawRect.Size() / 2f;
@@ -85,7 +86,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			Main.EntitySpriteDraw(texture, drawPos, drawRect, color, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 
-			texture = Mod.Assets.Request<Texture2D>("Projectiles/Pets/" + Name + "_Glowmask").Value;
+			texture = ModContent.Request<Texture2D>(Texture + "_Glowmask").Value;
 			Main.EntitySpriteDraw(texture, drawPos, drawRect, Color.White, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 
 			return false;
@@ -157,6 +158,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.aiStyle = -1;
 			Projectile.width = 20;
 			Projectile.height = 18;
+		}
+
+		public override bool PreAI()
+		{
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.6f);
+
+			return base.PreAI();
 		}
 
 		public override void AI()

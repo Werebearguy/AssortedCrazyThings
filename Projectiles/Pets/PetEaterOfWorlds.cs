@@ -4,6 +4,7 @@ using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -37,6 +38,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		//default 16
 		public const int DISTANCE_BETWEEN_SEGMENTS = 17;
 
+		public override bool PreAI()
+		{
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 1.3f);
+
+			return base.PreAI();
+		}
+
 		public override void AI()
 		{
 			Player player = Projectile.GetOwner();
@@ -60,7 +68,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				//float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
 				//projectile.scale = 1f + scaleFactor * 0.01f;
 
-				Projectile.rotation = Projectile.velocity.ToRotation() + 1.57079637f;
+				Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 				Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f).ToDirectionInt();
 			}
 		}
@@ -70,7 +78,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
 			Vector2 drawPos = Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-			Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 			Rectangle drawRect = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
 			Color color = Projectile.GetAlpha(lightColor);
 			Vector2 drawOrigin = drawRect.Size() / 2f;

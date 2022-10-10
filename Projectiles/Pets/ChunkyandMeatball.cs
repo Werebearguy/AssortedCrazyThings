@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
 
-			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.65f);
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.7f);
 
 			return true;
 		}
@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
 
-			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.65f);
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.7f);
 
 			return true;
 		}
