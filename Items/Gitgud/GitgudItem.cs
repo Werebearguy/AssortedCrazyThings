@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 				tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Desc", "Consolation Prize"));
 				string reduced = "" + Math.Round(data.Reduction * 100) + "% reduced damage taken " + (data.Invasion != "" ? "during " + data.Invasion : "from " + data.BossName);
 				tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Reduced", reduced));
-				if (data.BuffType != -1)
+				if (data.BuffTypeList.Length > 0)
 				{
 					tooltips.Insert(insertIndex++, new TooltipLine(Mod, "BuffImmune", "Immunity to '" + data.BuffNameFunc() + "' while " + data.BossName + (data.BossName.Contains(" or ") ? " are" : " is") + " alive"));
 				}

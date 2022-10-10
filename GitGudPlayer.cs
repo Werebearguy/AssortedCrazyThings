@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -54,7 +55,7 @@ namespace AssortedCrazyThings
 		/// <summary>
 		/// Buff immunity while boss is alive
 		/// </summary>
-		public int BuffType { private set; get; }
+		public int[] BuffTypeList { private set; get; }
 		/// <summary>
 		/// Buff name for tooltip
 		/// </summary>
@@ -103,13 +104,13 @@ namespace AssortedCrazyThings
 		/// </summary>
 		public byte[] Counter { private set; get; }
 
-		public GitgudData(int itemType, int buffType,
+		public GitgudData(int itemType, int[] buffTypeList,
 			int[] bossTypeList, int[] nPCTypeList, int[] projTypeList, byte counterMax, float reduction, Func<NPC, bool> customCountCondition, string invasion, Func<bool> invasionBool)
 		{
 			ItemType = itemType;
 			ItemNameFunc = () => Lang.GetItemNameValue(itemType);
-			BuffType = buffType;
-			BuffNameFunc = () => Lang.GetBuffName(buffType);
+			BuffTypeList = buffTypeList;
+			BuffNameFunc = () => string.Join(", ", buffTypeList.Select(b => Lang.GetBuffName(b)).ToArray());
 			BossTypeList = bossTypeList;
 
 			NPC npc = ContentSamples.NpcsByNetId[bossTypeList[0]];
@@ -151,10 +152,25 @@ namespace AssortedCrazyThings
 			return ItemNameFunc();
 		}
 
+		public static void Add<T>(int[] buffTypeList,
+			int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, Func<NPC, bool> customCountCondition = null, string invasion = "", Func<bool> invasionBool = null) where T : ModItem
+		{
+			Add(ModContent.ItemType<T>(), buffTypeList, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, customCountCondition, invasion, invasionBool);
+		}
+
 		public static void Add<T>(int buffType,
 			int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, Func<NPC, bool> customCountCondition = null, string invasion = "", Func<bool> invasionBool = null) where T : ModItem
 		{
 			Add(ModContent.ItemType<T>(), buffType, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, customCountCondition, invasion, invasionBool);
+		}
+
+		public static void Add(int itemType, int[] buffTypeList,
+			int[] bossTypeList, int[] nPCTypeList = null, int[] projTypeList = null, byte counterMax = 5, float reduction = 0.15f, Func<NPC, bool> customCountCondition = null, string invasion = "", Func<bool> invasionBool = null)
+		{
+			if (itemType < 0 || itemType >= ItemLoader.ItemCount) throw new Exception("not a valid item type");
+
+			DataList[DataList.Length - 1] = new GitgudData(itemType, buffTypeList, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, customCountCondition, invasion, invasionBool);
+			Array.Resize(ref DataList, DataList.Length + 1);
 		}
 
 		public static void Add(int itemType, int buffType,
@@ -162,7 +178,7 @@ namespace AssortedCrazyThings
 		{
 			if (itemType < 0 || itemType >= ItemLoader.ItemCount) throw new Exception("not a valid item type");
 
-			DataList[DataList.Length - 1] = new GitgudData(itemType, buffType, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, customCountCondition, invasion, invasionBool);
+			DataList[DataList.Length - 1] = new GitgudData(itemType, buffType == -1 ? Array.Empty<int>() : new int[] { buffType }, bossTypeList, nPCTypeList, projTypeList, counterMax, reduction, customCountCondition, invasion, invasionBool);
 			Array.Resize(ref DataList, DataList.Length + 1);
 		}
 
@@ -250,37 +266,40 @@ namespace AssortedCrazyThings
 					gPlayer.skeletronGitgudCounter = value;
 					break;
 				case 6:
+					gPlayer.deerclopsGitgudCounter = value;
+					break;
+				case 7:
 					gPlayer.wallOfFleshGitgudCounter = value;
 					break;
 				//HARDMODE
-				case 7:
+				case 8:
 					gPlayer.queenSlimeGitgudCounter = value;
 					break;
-				case 8:
+				case 9:
 					gPlayer.destroyerGitgudCounter = value;
 					break;
-				case 9:
+				case 10:
 					gPlayer.twinsGitgudCounter = value;
 					break;
-				case 10:
+				case 11:
 					gPlayer.skeletronPrimeGitgudCounter = value;
 					break;
-				case 11:
+				case 12:
 					gPlayer.planteraGitgudCounter = value;
 					break;
-				case 12:
+				case 13:
 					gPlayer.empressOfLightGitgudCounter = value;
 					break;
-				case 13:
+				case 14:
 					gPlayer.golemGitgudCounter = value;
 					break;
-				case 14:
+				case 15:
 					gPlayer.dukeFishronGitgudCounter = value;
 					break;
-				case 15:
+				case 16:
 					gPlayer.lunaticCultistGitgudCounter = value;
 					break;
-				case 16:
+				case 17:
 					gPlayer.moonLordGitgudCounter = value;
 					break;
 				//INVASIONS
@@ -465,9 +484,12 @@ namespace AssortedCrazyThings
 				for (int i = 0; i < DataList.Length; i++)
 				{
 					GitgudData data = DataList[i];
-					if (data.Accessory[player.whoAmI] && data.BuffType != -1 && AssUtils.AnyNPCs(data.BossTypeList))
+					if (data.Accessory[player.whoAmI] && data.BuffTypeList.Length > 0 && AssUtils.AnyNPCs(data.BossTypeList))
 					{
-						player.buffImmune[data.BuffType] = true;
+						for (int j = 0; j < data.BuffTypeList.Length; j++)
+						{
+							player.buffImmune[data.BuffTypeList[j]] = true;
+						}
 					}
 				}
 			}
@@ -660,6 +682,11 @@ namespace AssortedCrazyThings
 				NPCID.SkeletronHead,
 				nPCTypeList: new int[] { NPCID.SkeletronHand },
 				projTypeList: new int[] { ProjectileID.Skull });
+			Add<DeerclopsGitgud>(
+				new int[] { BuffID.Slow, BuffID.Frozen },
+				new int[] { NPCID.Deerclops },
+				nPCTypeList: new int[] { NPCID.DeerclopsLeg },
+				projTypeList: new int[] { ProjectileID.DeerclopsIceSpike, ProjectileID.DeerclopsRangedProjectile, ProjectileID.InsanityShadowHostile });
 			Add<WallOfFleshGitgud>(
 				-1,
 				NPCID.WallofFlesh,
@@ -757,6 +784,9 @@ namespace AssortedCrazyThings
 		public byte skeletronGitgudCounter = 0;
 		public bool skeletronGitgud = false;
 
+		public byte deerclopsGitgudCounter = 0;
+		public bool deerclopsGitgud = false;
+
 		public byte wallOfFleshGitgudCounter = 0;
 		public bool wallOfFleshGitgud = false;
 
@@ -805,6 +835,7 @@ namespace AssortedCrazyThings
 			eaterOfWorldsGitgud = false;
 			queenBeeGitgud = false;
 			skeletronGitgud = false;
+			deerclopsGitgud = false;
 			wallOfFleshGitgud = false;
 			queenSlimeGitgud = false;
 			destroyerGitgud = false;
@@ -829,6 +860,7 @@ namespace AssortedCrazyThings
 				eaterOfWorldsGitgud,
 				queenBeeGitgud,
 				skeletronGitgud,
+				deerclopsGitgud,
 				wallOfFleshGitgud,
 				queenSlimeGitgud,
 				destroyerGitgud,
@@ -855,6 +887,7 @@ namespace AssortedCrazyThings
 			tag.Add("eaterOfWorldsGitgudCounter", (byte)eaterOfWorldsGitgudCounter);
 			tag.Add("queenBeeGitgudCounter", (byte)queenBeeGitgudCounter);
 			tag.Add("skeletronGitgudCounter", (byte)skeletronGitgudCounter);
+			tag.Add("deerclopsGitgudCounter", (byte)deerclopsGitgudCounter);
 			tag.Add("wallOfFleshGitgudCounter", (byte)wallOfFleshGitgudCounter);
 			tag.Add("queenSlimeGitgudCounter", (byte)queenSlimeGitgudCounter);
 			tag.Add("destroyerGitgudCounter", (byte)destroyerGitgudCounter);
@@ -877,6 +910,7 @@ namespace AssortedCrazyThings
 			eaterOfWorldsGitgudCounter = tag.GetByte("eaterOfWorldsGitgudCounter");
 			queenBeeGitgudCounter = tag.GetByte("queenBeeGitgudCounter");
 			skeletronGitgudCounter = tag.GetByte("skeletronGitgudCounter");
+			deerclopsGitgudCounter = tag.GetByte("deerclopsGitgudCounter");
 			wallOfFleshGitgudCounter = tag.GetByte("wallOfFleshGitgudCounter");
 			queenSlimeGitgudCounter = tag.GetByte("queenSlimeGitgudCounter");
 			destroyerGitgudCounter = tag.GetByte("destroyerGitgudCounter");
@@ -918,6 +952,7 @@ namespace AssortedCrazyThings
 				eaterOfWorldsGitgudCounter,
 				queenBeeGitgudCounter,
 				skeletronGitgudCounter,
+				deerclopsGitgudCounter,
 				wallOfFleshGitgudCounter,
 				queenSlimeGitgudCounter,
 				destroyerGitgudCounter,
