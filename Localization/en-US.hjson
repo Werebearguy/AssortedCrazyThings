@@ -56,7 +56,6 @@ Mods.AssortedCrazyThings: {
 		MeatballSlimeBuff: Meatball
 		MetroidPetBuff: Metroid
 		MiniAntlionBuff: Baby Antlion
-		MiniAntlionBuff_AoMM: "{$Mods.AssortedCrazyThings.BuffName.MiniAntlionBuff} {$Mods.AssortedCrazyThings.Common.AoMMVersion}"
 		MiniMegalodonBuff: Mini Megalodon
 		NumberMuncherBuff: Number Muncher
 		OceanSlimeBuff: Ocean Slime
@@ -159,7 +158,6 @@ Mods.AssortedCrazyThings: {
 		MeatballSlimeBuff: Meatball is following you
 		MetroidPetBuff: A space parasite is following you
 		MiniAntlionBuff: A baby antlion is following you
-		MiniAntlionBuff_AoMM: "{$Mods.AssortedCrazyThings.BuffDescription.MiniAntlionBuff}"
 		MiniMegalodonBuff: It recognizes your strength...for now
 		NumberMuncherBuff: An educated amphibian is following you
 		OceanSlimeBuff: An ocean slime is following you
