@@ -13,9 +13,9 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
 		public override void SafeSetDefaults()
 		{
-			//Projectile.scale = 0.8f;
+			Projectile.scale = 0.8f;
 			Projectile.alpha = 75;
-			DrawOriginOffsetY = -21;
+			DrawOriginOffsetY = -19;
 		}
 	}
 }
