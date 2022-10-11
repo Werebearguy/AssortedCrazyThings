@@ -93,6 +93,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		}
 	}
 
+	public class PetAccessoryPumpkinMask : PetAccessoryItem
+	{
+		public override void SafeSetStaticDefaults()
+		{
+			DisplayName.SetDefault("Cute Pumpkin Mask");
+			Tooltip.SetDefault("'A perfectly-sized pumpkin for your cute slime to wear on her head'");
+		}
+	}
+
 	public class PetAccessorySlimeHead : PetAccessoryItem
 	{
 		public override void SafeSetStaticDefaults()
@@ -274,16 +283,21 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		public bool HasAlts => AltTextureSuffixes.Count > 0;
 
 		/// <summary>
-		/// For UI tooltips
+		/// For the texture names
 		/// </summary>
 		public List<string> AltTextureSuffixes { private set; get; }
+
+		/// <summary>
+		/// For UI tooltips
+		/// </summary>
+		public List<string> AltTextureDisplayNames { private set; get; }
 
 		/// <summary>
 		/// For UI only, the _Draw{number} stuff is done manually
 		/// </summary>
 		public List<Asset<Texture2D>> AltTextures { private set; get; }
 
-		public PetAccessory(SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null)
+		public PetAccessory(SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null, List<string> altTextureNameOverrides = null)
 		{
 			_name = "PetAccessory" + name;
 			if (!AssUtils.Instance.TryFind(Name, out ModItem modItem))
@@ -306,10 +320,25 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			UseNoHair = useNoHair;
 
 			AltTextureSuffixes = new List<string>();
-			if (altTextures != null && altTextures.Count > 0)
+			AltTextureDisplayNames = new List<string>();
+			if (altTextures?.Count > 0)
 			{
 				AltTextureSuffixes.AddRange(altTextures);
+				AltTextureDisplayNames.AddRange(altTextures);
 			}
+
+			if (altTextureNameOverrides?.Count > 0)
+			{
+				for (int i = 0; i < AltTextureDisplayNames.Count; i++)
+				{
+					string nameOverride = altTextureNameOverrides[i];
+					if (!string.IsNullOrEmpty(nameOverride))
+					{
+						AltTextureDisplayNames[i] = nameOverride;
+					}
+				}
+			}
+
 			//add icons for UI
 			AltTextures = new List<Asset<Texture2D>>(AltTextureSuffixes.Count);
 			for (int i = 0; i < AltTextureSuffixes.Count; i++)
@@ -370,7 +399,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Add(mod, new PetAccessory(SlotType.Hat, name: "BunnyEars", preDraw: true));
 			Add(mod, new PetAccessory(SlotType.Hat, name: "Tophat"));
 			Add(mod, new PetAccessory(SlotType.Hat, name: "PartyHat"));
-
+			Add(mod, new PetAccessory(SlotType.Hat, name: "PumpkinMask", useNoHair: true,
+				altTextures: new List<string> { "SOrange", "IOrange", "SGreen", "IGreen", "SWhite", "IWhite", "SPurple", "IPurple", "SMelon", "IMelon" },
+				altTextureNameOverrides: new List<string> { "Sinister Orange", "Innocent Orange", "Sinister Green", "Innocent Green", "Sinister White", "Innocent White", "Sinister Purple", "Innocent Purple", "Sinister Melon", "Innocent Melon" }));
 
 			//CARRIED SLOT ACCESSORIES GO HERE
 			//------------------------------------------------

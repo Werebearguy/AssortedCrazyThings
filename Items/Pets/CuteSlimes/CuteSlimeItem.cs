@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 									Item itemTemp = new Item();
 									itemTemp.SetDefaults(petAccessory.Type);
 									tooltip = itemTemp.Name.StartsWith("Cute ") ? itemTemp.Name.Substring(5) : itemTemp.Name;
-									tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureSuffixes[petAccessory.AltTextureIndex] + ")" : "";
+									tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureDisplayNames[petAccessory.AltTextureIndex] + ")" : "";
 								}
 								else
 								{
