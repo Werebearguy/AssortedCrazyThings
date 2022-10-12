@@ -16,6 +16,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			DisplayName.SetDefault("Demon Eye");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
+			NPCID.Sets.DemonEyes[NPC.type] = true;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
