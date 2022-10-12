@@ -148,6 +148,7 @@ namespace AssortedCrazyThings
 		public bool MetroidPet = false;
 		public bool CuteLamiaPet = false;
 		public bool TorchGodLightPet = false;
+		public bool Woby = false;
 		//ALTERNATE
 		//public bool ClassName = false;
 
@@ -241,6 +242,7 @@ namespace AssortedCrazyThings
 			MetroidPet = false;
 			CuteLamiaPet = false;
 			TorchGodLightPet = false;
+			Woby = false;
 			//ALTERNATE
 			//ClassName = false;
 		}

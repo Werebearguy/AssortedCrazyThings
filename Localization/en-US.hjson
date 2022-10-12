@@ -90,6 +90,7 @@ Mods.AssortedCrazyThings: {
 		WallFragmentBuff: Wall Fragment
 		YoungHarpyBuff: Young Harpy
 		YoungWyvernBuff: Young Wyvern
+		WobyBuff: Woby, 'A lovable dog...'
 	}
 
 	BuffDescription: {
@@ -196,6 +197,7 @@ Mods.AssortedCrazyThings: {
 		WallFragmentBuff: Several fragments of the Wall are following you
 		YoungHarpyBuff: A young harpy is following you
 		YoungWyvernBuff: A young wyvern is following you
+		WobyBuff: A loyal canine is following you
 	}
 
 	Common: {
@@ -294,6 +296,7 @@ Mods.AssortedCrazyThings: {
 		WallFragmentItem: Wall Fragment
 		YoungHarpyItem: Clump of Down Feathers
 		YoungWyvernItem: Wyverntail
+		WobyItem: Dog Lover's Badge
 	}
 
 	ItemTooltip: {
@@ -512,5 +515,6 @@ Mods.AssortedCrazyThings: {
 			Summons a friendly young wyvern that flies with you
 			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
 			'''
+		WobyItem: Summons a loyal canine to follow you
 	}
 }
