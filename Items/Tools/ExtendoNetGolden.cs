@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Items.Tools
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ItemID.Wire, 10).AddRecipeGroup("ACT:GoldPlatinum", 10).AddIngredient(ItemID.GoldenBugNet, 1).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddIngredient(ItemID.Wire, 10).AddRecipeGroup(AssRecipes.GoldPlatinumGroup, 10).AddIngredient(ItemID.GoldenBugNet, 1).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

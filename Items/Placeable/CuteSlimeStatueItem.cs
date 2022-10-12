@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Items.Placeable
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ItemID.Gel, 200).AddIngredient(ItemID.StoneBlock, 50).AddRecipeGroup("ACT:RegularCuteSlimes", 1).AddTile(TileID.HeavyWorkBench).Register();
+			CreateRecipe(1).AddIngredient(ItemID.Gel, 200).AddIngredient(ItemID.StoneBlock, 50).AddRecipeGroup(AssRecipes.RegularCuteSlimesGroup, 1).AddTile(TileID.HeavyWorkBench).Register();
 		}
 	}
 }

@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Items.Weapons
 				.AddIngredient(ItemID.BorealWood, 10)
 				.AddIngredient(ItemID.PalmWood, 10)
 				.AddIngredient(ItemID.RichMahogany, 10)
-				.AddRecipeGroup("ACT:EvilWood", 10)
+				.AddRecipeGroup(AssRecipes.EvilWoodGroup, 10)
 				.AddTile(TileID.WorkBenches)
 				.Register();
 		}

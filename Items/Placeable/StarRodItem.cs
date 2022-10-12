@@ -30,8 +30,8 @@ namespace AssortedCrazyThings.Items.Placeable
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-				.AddRecipeGroup("ACT:GoldPlatinum", 10)
-				.AddRecipeGroup("ACT:DemoniteCrimtane", 5)
+				.AddRecipeGroup(AssRecipes.GoldPlatinumGroup, 10)
+				.AddRecipeGroup(AssRecipes.DemoniteCrimtaneGroup, 5)
 				.AddIngredient(ItemID.FallenStar, 25)
 				.AddTile(TileID.Anvils)
 				.Register();

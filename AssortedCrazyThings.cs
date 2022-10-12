@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Effects;
-using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
@@ -12,9 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
@@ -204,49 +201,6 @@ namespace AssortedCrazyThings
 				ModContent.ProjectileType<PetDestroyerTail>()
 				};
 			}
-		}
-
-		public override void AddRecipeGroups()
-		{
-			string any = Language.GetTextValue("LegacyMisc.37") + " ";
-			if (ContentConfig.Instance.CuteSlimes && ContentConfig.Instance.PlaceablesFunctional)
-			{
-				RecipeGroup.RegisterGroup("ACT:RegularCuteSlimes", new RecipeGroup(() => any + "Regular Bottled Slime", new int[]
-				{
-					ModContent.ItemType<CuteSlimeBlueItem>(),
-					ModContent.ItemType<CuteSlimeBlackItem>(),
-					ModContent.ItemType<CuteSlimeGreenItem>(),
-					ModContent.ItemType<CuteSlimePinkItem>(),
-					ModContent.ItemType<CuteSlimePurpleItem>(),
-					ModContent.ItemType<CuteSlimeRainbowItem>(),
-					ModContent.ItemType<CuteSlimeRedItem>(),
-					ModContent.ItemType<CuteSlimeYellowItem>()
-				}));
-			}
-
-			RecipeGroup.RegisterGroup("ACT:EvilWood", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.Ebonwood), new int[]
-			{
-					ItemID.Ebonwood,
-					ItemID.Shadewood
-			}));
-
-			RecipeGroup.RegisterGroup("ACT:GoldPlatinum", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
-			{
-				ItemID.GoldBar,
-				ItemID.PlatinumBar
-			}));
-
-			RecipeGroup.RegisterGroup("ACT:AdamantiteTitanium", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.AdamantiteBar), new int[]
-			{
-				ItemID.AdamantiteBar,
-				ItemID.TitaniumBar
-			}));
-
-			RecipeGroup.RegisterGroup("ACT:DemoniteCrimtane", new RecipeGroup(() => any + Lang.GetItemNameValue(ItemID.DemoniteBar), new int[]
-			{
-				ItemID.DemoniteBar,
-				ItemID.CrimtaneBar
-			}));
 		}
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)

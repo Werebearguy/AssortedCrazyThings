@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Items.Placeable
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ItemID.GiantHarpyFeather).AddRecipeGroup("ACT:AdamantiteTitanium", 12).Register();
+			CreateRecipe(1).AddIngredient(ItemID.GiantHarpyFeather).AddRecipeGroup(AssRecipes.AdamantiteTitaniumGroup, 12).Register();
 		}
 	}
 }
