@@ -14,7 +14,7 @@ Mod Contents:
     [*]More things to come!
 [/list]
 
-[url=https://github.com/Werebearguy/AssortedCrazyThings/wiki]Wiki & Changelogs[/url]
+[url=https://github.com/Werebearguy/AssortedCrazyThings/wiki]Wiki, Changelogs & Source Code[/url]
 
 [url=https://forums.terraria.org/index.php?threads/.74330/]Terraria Community Forums homepage[/url]
 [hr][/hr]

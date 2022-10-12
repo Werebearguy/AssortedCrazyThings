@@ -12,8 +12,8 @@ Mod Contents:
 - 212 items, including pets, accessories, armor, and more
 - More things to come!
 
-Wiki & Changelogs: https://github.com/Werebearguy/AssortedCrazyThings/wiki
-
-If you happen to come across a problem with the mod, please report it on our Terraria Community Forums homepage or on the Steam Workshop page in the appropriate discussion page. 
+Wiki, Changelogs & Source Code: https://github.com/Werebearguy/AssortedCrazyThings/wiki
 
 Terraria Community Forums homepage: https://forums.terraria.org/index.php?threads/.74330/
+
+If you happen to come across a problem with the mod, please report it on our Terraria Community Forums homepage or on the Steam Workshop page in the appropriate discussion page. 
