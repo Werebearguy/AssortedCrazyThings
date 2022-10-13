@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -16,6 +19,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Goblet");
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<GobletBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()

@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<YoungHarpyProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().YoungHarpy;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Young Harpy");
-			Description.SetDefault("A young Harpy is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
+	public class YoungHarpyBuff_AoMM : SimplePetBuffBase_AoMM<YoungHarpyBuff>
+	{
+
 	}
 }

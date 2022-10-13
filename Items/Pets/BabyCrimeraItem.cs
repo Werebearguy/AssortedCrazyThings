@@ -13,12 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<BabyCrimeraBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Juicy Vertebrae");
-			Tooltip.SetDefault("Summons a baby Crimera to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 20);
@@ -28,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Vertebrae, 10).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class BabyCrimeraItem_AoMM : SimplePetItemBase_AoMM<BabyCrimeraItem>
+	{
+		public override int BuffType => ModContent.BuffType<BabyCrimeraBuff_AoMM>();
 	}
 }

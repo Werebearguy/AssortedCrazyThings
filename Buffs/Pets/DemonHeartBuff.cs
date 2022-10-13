@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<DemonHeartProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().DemonHeart;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Demon Heart");
-			Description.SetDefault("A Demon Heart is following you");
-		}
+	public class DemonHeartBuff_AoMM : SimplePetBuffBase_AoMM<DemonHeartBuff>
+	{
+
 	}
 }

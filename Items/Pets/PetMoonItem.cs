@@ -12,14 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetMoonBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Moon");
-			Tooltip.SetDefault("Summons a small moon that provides you with constant moonlight"
-				+ "\nShows the current moon cycle in the buff tip"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 20;
@@ -32,4 +24,6 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ItemID.Bottle).AddIngredient(ItemID.MoonStone).AddIngredient(ItemID.Sextant).AddTile(TileID.CrystalBall).Register();
 		}
 	}
+
+	//Light pet, no Aomm form
 }

@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -23,6 +25,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Metroid");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<MetroidPetBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()

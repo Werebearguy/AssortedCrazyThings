@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<MiniMegalodonProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().MiniMegalodon;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Mini Megalodon");
-			Description.SetDefault("It recognizes your strength...for now");
-		}
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs | ContentType.DroppedPets)]
+	public class MiniMegalodonBuff_AoMM : SimplePetBuffBase_AoMM<MiniMegalodonBuff>
+	{
+
 	}
 }

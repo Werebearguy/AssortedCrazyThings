@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<VampireBatBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Fixed Bat Wing");
-			Tooltip.SetDefault("Summons a friendly vampire that flies with you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 20);
@@ -29,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.BrokenBatWing, 2).AddIngredient(ItemID.SoulofNight, 10).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class VampireBatItem_AoMM : SimplePetItemBase_AoMM<VampireBatItem>
+	{
+		public override int BuffType => ModContent.BuffType<VampireBatBuff_AoMM>();
 	}
 }

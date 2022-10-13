@@ -13,12 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<BabyIchorStickerBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sleeping Ichor Sticker");
-			Tooltip.SetDefault("Summons a Baby Ichor Sticker to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 45, copper: 30);
@@ -28,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Vertebrae, 15).AddIngredient(ItemID.Ichor, 5).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class BabyIchorStickerItem_AoMM : SimplePetItemBase_AoMM<BabyIchorStickerItem>
+	{
+		public override int BuffType => ModContent.BuffType<BabyIchorStickerBuff_AoMM>();
 	}
 }

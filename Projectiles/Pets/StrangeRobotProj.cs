@@ -1,9 +1,12 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -57,6 +60,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Strange Robot");
 			Main.projFrames[Projectile.type] = 5;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<StrangeRobotBuff_AoMM>(), ModContent.ProjectileType<StrangeRobotShotProj>());
 		}
 
 		public override void SetDefaults()
@@ -234,6 +239,131 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void PostAI()
 		{
 			Projectile.frame = frame2;
+
+			if (AmuletOfManyMinionsApi.IsActive(this) &&
+				AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) && state.IsInFiringRange &&
+				state.TargetNPC is NPC targetNPC)
+			{
+				Projectile.spriteDirection = Projectile.direction = ((targetNPC.Center.X - Projectile.Center.X) < 0).ToDirectionInt();
+			}
+		}
+	}
+
+	public class StrangeRobotShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.ZapinatorLaser;
+
+		public override SoundStyle? SpawnSound => SoundID.Item158; 
+
+		public override Color? GetAlpha(Color lightColor)
+		{
+			var alpha = Projectile.alpha;
+			if (alpha < 200)
+			{
+				return new Color(255 - alpha, 255 - alpha, 255 - alpha, 0);
+			}
+
+			return Color.Transparent;
+		}
+
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			//Copied from vanilla
+			Vector2 position;
+			if (Main.rand.NextBool(20))
+			{
+				Projectile.tileCollide = false;
+				Projectile.position.X += Main.rand.Next(-256, 257);
+			}
+
+			if (Main.rand.NextBool(20))
+			{
+				Projectile.tileCollide = false;
+				Projectile.position.Y += Main.rand.Next(-256, 257);
+			}
+
+			if (Main.rand.NextBool(2))
+			{
+				Projectile.tileCollide = false;
+			}
+
+			if (!Main.rand.NextBool(3))
+			{
+				position = Projectile.position;
+				Projectile.position -= Projectile.velocity * Main.rand.Next(0, 40);
+				if (Projectile.tileCollide && Collision.SolidTiles(Projectile.position, Projectile.width, Projectile.height))
+				{
+					Projectile.position = position;
+					Projectile.position -= Projectile.velocity * Main.rand.Next(0, 40);
+					if (Projectile.tileCollide && Collision.SolidTiles(Projectile.position, Projectile.width, Projectile.height))
+					{
+						Projectile.position = position;
+					}
+				}
+			}
+
+			Projectile.velocity *= 0.6f;
+			if (Main.rand.NextBool(7))
+			{
+				Projectile.velocity.X += (float)Main.rand.Next(30, 31) * 0.01f;
+			}
+
+			if (Main.rand.NextBool(7))
+			{
+				Projectile.velocity.Y += (float)Main.rand.Next(30, 31) * 0.01f;
+			}
+
+			//Not the parameters!
+			Projectile.damage = (int)(Projectile.damage * 0.9f);
+			Projectile.knockBack *= 0.9f;
+			if (Main.rand.NextBool(20))
+			{
+				Projectile.knockBack *= 10f;
+			}
+
+			if (Main.rand.NextBool(50))
+			{
+				Projectile.damage *= 10;
+			}
+
+			if (Main.rand.NextBool(7))
+			{
+				position = Projectile.position;
+				Projectile.position.X += Main.rand.Next(-64, 65);
+				if (Projectile.tileCollide && Collision.SolidTiles(Projectile.position, Projectile.width, Projectile.height))
+				{
+					Projectile.position = position;
+				}
+			}
+
+			if (Main.rand.NextBool(7))
+			{
+				position = Projectile.position;
+				Projectile.position.Y += Main.rand.Next(-64, 65);
+				if (Projectile.tileCollide && Collision.SolidTiles(Projectile.position, Projectile.width, Projectile.height))
+				{
+					Projectile.position = position;
+				}
+			}
+
+			if (Main.rand.NextBool(14))
+			{
+				Projectile.velocity.X *= -1f;
+			}
+
+			if (Main.rand.NextBool(14))
+			{
+				Projectile.velocity.Y *= -1f;
+			}
+
+			if (Main.rand.NextBool(10))
+			{
+				Projectile.velocity *= (float)Main.rand.Next(1, 201) * 0.0005f;
+			}
+
+			Projectile.ai[1] = Projectile.tileCollide ? 0f: 1f;
+
+			Projectile.netUpdate = true;
 		}
 	}
 }

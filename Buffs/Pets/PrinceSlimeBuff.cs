@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<PrinceSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PrinceSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Prince Slime");
-			Description.SetDefault("A Prince Slime is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PrinceSlimeBuff_AoMM : SimplePetBuffBase_AoMM<PrinceSlimeBuff>
+	{
+
 	}
 }

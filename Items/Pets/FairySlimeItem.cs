@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<FairySlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Fairy Slime");
-			Tooltip.SetDefault("Summons a friendly Fairy Slime to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
+	public class FairySlimeItem_AoMM : SimplePetItemBase_AoMM<FairySlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<FairySlimeBuff_AoMM>();
 	}
 }

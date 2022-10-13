@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<TurtleSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Turtle Slime");
-			Tooltip.SetDefault("Summons a friendly Turtle Slime to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class TurtleSlimeItem_AoMM : SimplePetItemBase_AoMM<TurtleSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<TurtleSlimeBuff_AoMM>();
 	}
 }

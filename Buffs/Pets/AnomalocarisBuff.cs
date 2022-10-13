@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<AnomalocarisProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetAnomalocaris;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Anomalocaris");
-			Description.SetDefault("A little prehistoric shrimp is following you");
-		}
+	public class AnomalocarisBuff_AoMM : SimplePetBuffBase_AoMM<AnomalocarisBuff>
+	{
+
 	}
 }

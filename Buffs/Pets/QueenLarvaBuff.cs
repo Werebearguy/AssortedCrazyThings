@@ -10,11 +10,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<QueenLarvaProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().QueenLarva;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Queen Larva");
-			Description.SetDefault("A Queen Bee Larva is following you");
-		}
+	public class QueenLarvaBuff_AoMM : SimplePetBuffBase_AoMM<QueenLarvaBuff>
+	{
+
 	}
 }

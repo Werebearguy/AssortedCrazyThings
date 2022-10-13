@@ -11,14 +11,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().WallFragment;
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Wall Fragment");
-			Description.SetDefault("Several fragments of the Wall are following you");
-			Main.buffNoTimeDisplay[Type] = true;
-			Main.vanityPet[Type] = true;
-		}
-
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.buffTime[buffIndex] = 18000;
@@ -47,5 +39,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 				}
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class WallFragmentBuff_AoMM : SimplePetBuffBase_AoMM<WallFragmentBuff>
+	{
+
 	}
 }

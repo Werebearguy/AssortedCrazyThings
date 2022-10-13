@@ -12,18 +12,17 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<QueenLarvaBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Queen Larva");
-			Tooltip.SetDefault("Summons a Queen Bee Larva to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 28;
 			Item.height = 32;
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class QueenLarvaItem_AoMM : SimplePetItemBase_AoMM<QueenLarvaItem>
+	{
+		public override int BuffType => ModContent.BuffType<QueenLarvaBuff_AoMM>();
 	}
 }

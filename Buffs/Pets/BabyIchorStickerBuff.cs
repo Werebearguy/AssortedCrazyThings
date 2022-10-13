@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<BabyIchorStickerProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().BabyIchorSticker;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Lil' Ichy");
-			Description.SetDefault("A baby Ichor Sticker is following you");
-		}
+	public class BabyIchorStickerBuff_AoMM : SimplePetBuffBase_AoMM<BabyIchorStickerBuff>
+	{
+
 	}
 }

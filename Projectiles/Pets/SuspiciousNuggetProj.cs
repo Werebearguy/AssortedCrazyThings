@@ -1,7 +1,12 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -16,6 +21,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Suspicious Nugget");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<SuspiciousNuggetBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -100,10 +107,90 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 		}
 
+		private bool drawWeapon = false;
+		private int weaponFrame = 0;
+		private const int weaponFrameCount = 3;
+		private int weaponFrameCounter = 0;
+
 		public override void PostAI()
 		{
 			Projectile.frame = frame2;
 			Projectile.rotation = rot2;
+
+			if (AmuletOfManyMinionsApi.IsActive(this))
+			{
+				AoMM_AI();
+			}
+		}
+
+		private void AoMM_AI()
+		{
+			if (!AmuletOfManyMinionsApi.IsAttacking(this))
+			{
+				drawWeapon = false;
+				weaponFrameCounter = 0;
+				weaponFrame = 0;
+				return;
+			}
+
+			drawWeapon = true;
+
+			bool overlappingWithAnyEnemy = false;
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+
+				var hitbox = npc.Hitbox;
+				hitbox.Inflate(6, 6);
+				if (npc.CanBeChasedBy() && hitbox.Intersects(Projectile.Hitbox))
+				{
+					overlappingWithAnyEnemy = true;
+					break;
+				}
+			}
+
+			if (overlappingWithAnyEnemy || weaponFrameCounter > 0 || weaponFrame > 0)
+			{
+				weaponFrameCounter++;
+				if (weaponFrameCounter >= 6)
+				{
+					weaponFrameCounter = 0;
+					weaponFrame++;
+					if (weaponFrame >= weaponFrameCount)
+					{
+						weaponFrame = 0;
+					}
+				}
+			}
+			else
+			{
+				weaponFrameCounter = 0;
+				weaponFrame = 0;
+			}
+		}
+
+		public override void PostDraw(Color lightColor)
+		{
+			if (!drawWeapon ||
+				!AmuletOfManyMinionsApi.IsActive(this) ||
+				!AmuletOfManyMinionsApi.IsAttacking(this))
+			{
+				return;
+			}
+
+			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+			Texture2D image = ModContent.Request<Texture2D>(Texture + "_Weapon").Value;
+			Rectangle bounds = image.Frame(1, weaponFrameCount, frameY: weaponFrame);
+
+			int xOffset = Projectile.spriteDirection == -1 ? 2 : 4;
+			int yOffset = -12;
+			Vector2 stupidOffset = new Vector2(Projectile.width / 2 + xOffset, bounds.Height / 2 + yOffset + Projectile.gfxOffY);
+
+			Vector2 drawPos = Projectile.position - Main.screenPosition + stupidOffset;
+			Vector2 origin = bounds.Size() / 2;
+
+			Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
 		}
 	}
 }

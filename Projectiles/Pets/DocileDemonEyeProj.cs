@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,6 +27,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Docile Demon Eye");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			//Some forms spawn projectile
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<DocileDemonEyeBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -36,6 +42,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
+
 			return true;
 		}
 
@@ -52,6 +59,29 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.timeLeft = 2;
 			}
 			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
+
+			if (AmuletOfManyMinionsApi.IsActive(this))
+			{
+				AoMM_AI();
+			}
+		}
+
+		private void AoMM_AI()
+		{
+			if (!AmuletOfManyMinionsApi.IsAttacking(this) || !AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var destination))
+			{
+				return;
+			}
+
+			destination.FiredProjectileId = null; //Dynamically set projectile
+
+			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
+			int eyeType = mPlayer.petEyeType; //Make the laser variants shoot a laser
+			if (eyeType >= 9 && eyeType <= 11)
+			{
+				destination.FiredProjectileId = ModContent.ProjectileType<DocileDemonEyeShotProj>();
+			}
+			AmuletOfManyMinionsApi.UpdateParamsDirect(this, destination);
 		}
 
 		public override bool PreDraw(ref Color lightColor)
@@ -71,6 +101,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void PostAI()
 		{
 			Projectile.spriteDirection = Projectile.direction = (Projectile.velocity.X < 0).ToDirectionInt();
+		}
+	}
+
+	public class DocileDemonEyeShotProj : MinionShotProj_AoMM
+	{
+		public override int ClonedType => ProjectileID.MiniRetinaLaser; //Optic staff laser
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			//Due to increased extraUpdates (2), but too slow (0.25f) looks unnatural for a laser
+			Projectile.velocity *= 0.5f;
 		}
 	}
 }

@@ -1,5 +1,8 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -10,6 +13,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("ChunkySlimeProj");
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<ChunkySlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()

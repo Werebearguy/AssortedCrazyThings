@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<OceanSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().OceanSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ocean Slime");
-			Description.SetDefault("A Ocean Slime is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class OceanSlimeBuff_AoMM : SimplePetBuffBase_AoMM<OceanSlimeBuff>
+	{
+
 	}
 }

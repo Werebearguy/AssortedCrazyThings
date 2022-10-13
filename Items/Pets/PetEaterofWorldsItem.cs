@@ -14,12 +14,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetEaterofWorldsBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cracked Worm Egg");
-			Tooltip.SetDefault("Summons a tiny Eater of Worlds to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 
@@ -76,5 +70,11 @@ namespace AssortedCrazyThings.Items.Pets
 			index = Projectile.NewProjectile(source, player.Center.X - off * player.direction, player.Center.Y, 0f, 0f, ModContent.ProjectileType<PetEaterofWorldsTail>(), 0, 0f, player.whoAmI, index, 0f);
 			Main.projectile[prevIndex].localAI[1] = index;
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetEaterofWorldsItem_AoMM : SimplePetItemBase_AoMM<PetEaterofWorldsItem>
+	{
+		public override int BuffType => ModContent.BuffType<PetEaterofWorldsBuff_AoMM>();
 	}
 }

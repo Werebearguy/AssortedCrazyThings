@@ -13,9 +13,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Personal Sun and Moon");
-			Description.SetDefault("A small sun and moon are providing you with constant light"
-				+ "\n'No adverse gravitational effects will happen'");
 			Main.vanityPet[Type] = false;
 			Main.lightPet[Type] = true;
 		}

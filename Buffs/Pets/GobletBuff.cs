@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<GobletProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().Goblet;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Goblet");
-			Description.SetDefault("A tiny Goblin is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class GobletBuff_AoMM : SimplePetBuffBase_AoMM<GobletBuff>
+	{
+
 	}
 }

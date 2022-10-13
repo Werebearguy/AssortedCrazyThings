@@ -13,8 +13,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Personal Sun");
-			Description.SetDefault("A small sun is providing you with constant sunlight");
 			Main.vanityPet[Type] = false;
 			Main.lightPet[Type] = true;
 		}

@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,6 +30,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Young Wyvern");
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<YoungWyvernBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()

@@ -13,12 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DemonHeartBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Demon Heart");
-			Tooltip.SetDefault("Summons a friendly Demon Heart to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.rare = ItemRarityID.Expert;
@@ -30,5 +24,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.DemonHeart, 1).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class DemonHeartItem_AoMM : SimplePetItemBase_AoMM<DemonHeartItem>
+	{
+		public override int BuffType => ModContent.BuffType<DemonHeartBuff_AoMM>();
 	}
 }

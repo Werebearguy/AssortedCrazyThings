@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 
 namespace AssortedCrazyThings.Base.SwarmDraw
 {
-	public abstract class SwarmDrawUnit : ICloneable
+	public abstract partial class SwarmDrawUnit : ICloneable
 	{
 		public Asset<Texture2D> Asset { get; protected set; }
 

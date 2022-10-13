@@ -13,10 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul");
-			Tooltip.SetDefault("Summons a friendly Soul to light your way"
-							   + "\nLight pet slot");
-
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
@@ -53,4 +49,6 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ModContent.ItemType<CompanionDungeonSoulPetItem2>(), 1).AddTile(TileID.CrystalBall).Register();
 		}
 	}
+
+	//Light pet, no Aomm form
 }

@@ -13,13 +13,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<CursedSkullBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Inert Skull");
-			Tooltip.SetDefault("Summons a friendly cursed skull that follows you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
@@ -29,5 +22,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.Bone, 10).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class CursedSkullItem_AoMM : SimplePetItemBase_AoMM<CursedSkullItem>
+	{
+		public override int BuffType => ModContent.BuffType<CursedSkullBuff_AoMM>();
 	}
 }

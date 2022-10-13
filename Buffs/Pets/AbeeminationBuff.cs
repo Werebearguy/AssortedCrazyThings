@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<AbeeminationProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().Abeemination;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Abeemination");
-			Description.SetDefault("An Abeemination is following you");
-		}
+	public class AbeeminationBuff_AoMM : SimplePetBuffBase_AoMM<AbeeminationBuff>
+	{
+
 	}
 }

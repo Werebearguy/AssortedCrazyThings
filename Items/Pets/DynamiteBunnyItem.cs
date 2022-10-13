@@ -12,13 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<DynamiteBunnyBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dynamite Carrot");
-			Tooltip.SetDefault("Summons a Dynamite Bunny to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 14;
@@ -40,5 +33,10 @@ namespace AssortedCrazyThings.Items.Pets
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.Register();
 		}
+	}
+
+	public class DynamiteBunnyItem_AoMM : SimplePetItemBase_AoMM<DynamiteBunnyItem>
+	{
+		public override int BuffType => ModContent.BuffType<DynamiteBunnyBuff_AoMM>();
 	}
 }

@@ -16,9 +16,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Stubborn Bird Soul");
-			Tooltip.SetDefault("Summons a stubborn bird to follow you");
-
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
@@ -32,5 +29,19 @@ namespace AssortedCrazyThings.Items.Pets
 			Item.master = true;
 			Item.value = Item.sellPrice(0, 5);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.Bosses)]
+	public class PetHarvesterItem_AoMM : SimplePetItemBase_AoMM<PetHarvesterItem>
+	{
+		public override void EvenSaferSetStaticDefaults()
+		{
+			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+
+			ItemID.Sets.ItemNoGravity[Item.type] = true;
+		}
+
+		public override int BuffType => ModContent.BuffType<PetHarvesterBuff_AoMM>();
 	}
 }

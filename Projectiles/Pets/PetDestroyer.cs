@@ -1,9 +1,12 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -64,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				//float scaleFactor = MathHelper.Clamp(projectile.localAI[0], 0f, 50f);
 				//projectile.scale = 1f + scaleFactor * 0.01f;
 
-				Projectile.rotation = Projectile.velocity.ToRotation() + 1.57079637f;
+				Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 				Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f).ToDirectionInt();
 			}
 		}
@@ -74,7 +77,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
 			Vector2 drawPos = Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-			Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 			Rectangle drawRect = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
 			Color color = Projectile.GetAlpha(lightColor);
 			Vector2 drawOrigin = drawRect.Size() / 2f;
@@ -83,14 +86,22 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			Main.EntitySpriteDraw(texture, drawPos, drawRect, color, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 
-			texture = Mod.Assets.Request<Texture2D>("Projectiles/Pets/" + Name + "_Glowmask").Value;
+			texture = ModContent.Request<Texture2D>(Texture + "_Glowmask").Value;
 			Main.EntitySpriteDraw(texture, drawPos, drawRect, Color.White, Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 
 			return false;
 		}
 	}
 
-	public class PetDestroyerHead : PetDestroyerBase { }
+	public class PetDestroyerHead : PetDestroyerBase
+	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			AmuletOfManyMinionsApi.RegisterWormPet(this, ModContent.GetInstance<PetDestroyerBuff_AoMM>(), null, false, 200);
+		}
+	}
 
 	public class PetDestroyerBody1 : PetDestroyerBase { }
 
@@ -136,6 +147,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Tiny Destroyer Probe");
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetDestroyerBuff_AoMM>(), ModContent.ProjectileType<PetDestroyerDroneLaser>());
 		}
 
 		public override void SetDefaults()
@@ -145,6 +158,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.aiStyle = -1;
 			Projectile.width = 20;
 			Projectile.height = 18;
+		}
+
+		public override bool PreAI()
+		{
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.6f);
+
+			return base.PreAI();
 		}
 
 		public override void AI()
@@ -202,7 +222,36 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			AssAI.ZephyrfishAI(Projectile, parent: parent, velocityFactor: 1f, random: false, swapSides: 1, offsetX: offsetX, offsetY: offsetY);
 
-			int targetIndex = AssAI.FindTarget(Projectile, Projectile.Center, 500);
+			int targetIndex = -1;
+			
+			if (AmuletOfManyMinionsApi.IsActive(this) &&
+				 AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) &&
+				 state.IsInFiringRange && state.TargetNPC is NPC targetNPC)
+			{
+				//Just need to get the index to set rotation later
+				targetIndex = targetNPC.whoAmI;
+			}
+			else
+			{
+				Regular_AI(ref targetIndex);
+			}
+
+			if (targetIndex != -1)
+			{
+				rot = (Main.npc[targetIndex].Center - Projectile.Center).ToRotation();
+			}
+			else
+			{
+				rot = rot.AngleLerp(Projectile.velocity.ToRotation(), 0.1f);
+			}
+
+			Projectile.rotation = rot;
+			Projectile.direction = Projectile.spriteDirection = -1;
+		}
+
+		private void Regular_AI(ref int targetIndex)
+		{
+			targetIndex = AssAI.FindTarget(Projectile, Projectile.Center, 500);
 
 			if (Main.myPlayer == Projectile.owner)
 			{
@@ -236,18 +285,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					AttackCounter -= AttackDelay;
 				}
 			}
-
-			if (targetIndex != -1)
-			{
-				rot = (Main.npc[targetIndex].Center - Projectile.Center).ToRotation();
-			}
-			else
-			{
-				rot = rot.AngleLerp(Projectile.velocity.ToRotation(), 0.1f);
-			}
-
-			Projectile.rotation = rot;
-			Projectile.direction = Projectile.spriteDirection = -1;
 		}
 
 		public override bool PreDraw(ref Color lightColor)

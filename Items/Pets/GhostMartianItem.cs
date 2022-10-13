@@ -12,12 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<GhostMartianBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("K-II Meter");
-			Tooltip.SetDefault("Summons a vengeful invader's ghost to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.noUseGraphic = true;
@@ -32,5 +26,10 @@ namespace AssortedCrazyThings.Items.Pets
 				.AddTile(TileID.Anvils)
 				.Register();
 		}
+	}
+
+	public class GhostMartianItem_AoMM : SimplePetItemBase_AoMM<GhostMartianItem>
+	{
+		public override int BuffType => ModContent.BuffType<GhostMartianBuff_AoMM>();
 	}
 }

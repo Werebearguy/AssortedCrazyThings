@@ -14,12 +14,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetDestroyerBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Destroyer's Core");
-			Tooltip.SetDefault("Summons a tiny Destroyer and two tiny Probes to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 
@@ -81,5 +75,11 @@ namespace AssortedCrazyThings.Items.Pets
 			Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, 0f, probe, 0, 0f, player.whoAmI, 0f, 0f);
 			Projectile.NewProjectile(source, player.Center.X, player.Center.Y, 0f, 0f, probe, 0, 0f, player.whoAmI, 0f, ((player.whoAmI + 1) * 13) % PetDestroyerProbe.AttackDelay);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetDestroyerItem_AoMM : SimplePetItemBase_AoMM<PetDestroyerItem>
+	{
+		public override int BuffType => ModContent.BuffType<PetDestroyerBuff_AoMM>();
 	}
 }

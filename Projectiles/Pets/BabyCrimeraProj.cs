@@ -1,6 +1,9 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -11,6 +14,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Baby Crimera");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<BabyCrimeraBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()

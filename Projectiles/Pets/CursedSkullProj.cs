@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -22,6 +24,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Cursed Skull");
 			Main.projFrames[Projectile.type] = 3;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<CursedSkullBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -57,13 +61,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			if (Projectile.frame >= 3) Projectile.frame = 0;
 
-			if (Projectile.Center.X - Projectile.GetOwner().Center.X > 0f)
+			if (!AmuletOfManyMinionsApi.IsActive(this) || !AmuletOfManyMinionsApi.IsAttacking(this))
 			{
-				Projectile.spriteDirection = 1;
-			}
-			else
-			{
-				Projectile.spriteDirection = -1;
+				Projectile.spriteDirection = (Projectile.Center.X - Projectile.GetOwner().Center.X > 0f).ToDirectionInt();
 			}
 		}
 

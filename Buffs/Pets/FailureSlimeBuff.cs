@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<FailureSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().FailureSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Failure Slime");
-			Description.SetDefault("A strange creature is following you");
-		}
+	public class FailureSlimeBuff_AoMM : SimplePetBuffBase_AoMM<FailureSlimeBuff>
+	{
+
 	}
 }

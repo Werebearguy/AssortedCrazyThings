@@ -11,17 +11,16 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<FailureSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Slimy Skull");
-			Tooltip.SetDefault("Summons a strange creature to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 40); //TODO value
 		}
 
 		//TODO obtain (grab bag?)
+	}
+
+	public class FailureSlimeItem_AoMM : SimplePetItemBase_AoMM<FailureSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<FailureSlimeBuff_AoMM>();
 	}
 }

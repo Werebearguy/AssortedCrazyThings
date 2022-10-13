@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,6 +26,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Pet Goldfish");
 			Main.projFrames[Projectile.type] = 10;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetGoldfishBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -34,7 +38,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AIType = ProjectileID.BabyGrinch;
 		}
 
-		private bool Swimming { get { return Projectile.GetOwner().wet; } }
+		private bool Swimming { get; set; }
 
 		/// <summary>
 		/// Player owner direction
@@ -305,10 +309,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		private int frame2Counter = 0;
 		private int frame2 = 0;
 
+		bool didZephyrfishAILastTick = false;
+
 		public override bool PreAI()
 		{
 			Player player = Projectile.GetOwner();
 			PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
+
+			player.grinch = false;
+
 			if (player.dead)
 			{
 				modPlayer.PetGoldfish = false;
@@ -318,22 +327,51 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.timeLeft = 2;
 			}
 
+			bool desiredSwimming = player.wet;
+
+			if (AmuletOfManyMinionsApi.IsActive(this) && AmuletOfManyMinionsApi.IsAttacking(this))
+			{
+				desiredSwimming = true;
+			}
+
+			Swimming = desiredSwimming;
+
+			GetFrame();
+
 			if (Swimming)
 			{
+				didZephyrfishAILastTick = true;
 				SwimmingZephyrfishAI();
 				return false;
 			}
-			Timer = 0;
-			Projectile.ai[1] = 0; //reset from ZephyrfishAI();
+			if (didZephyrfishAILastTick)
+			{
+				didZephyrfishAILastTick = false;
+				Timer = 0;
+				Projectile.ai[0] = 0; //reset from ZephyrfishAI();
+				Projectile.ai[1] = 0; //reset for vanilla AI?;
+			}
 
 			return true;
 		}
 
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			//If in water, deal more damage
+			float mult = 1f;
+			if (Projectile.GetOwner().wet)
+			{
+				mult += 0.5f;
+			}
+			if (Projectile.wet)
+			{
+				mult += 0.5f;
+			}
+			damage = (int)(damage * mult);
+		}
+
 		public override bool PreDraw(ref Color lightColor)
 		{
-			if (Main.hasFocus) GetFrame();
-
-			lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
 			SpriteEffects effects = Projectile.direction != -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType).Value;

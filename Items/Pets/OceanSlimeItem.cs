@@ -12,16 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<OceanSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Ocean Slime");
-			Tooltip.SetDefault("Summons a friendly Ocean Slime to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class OceanSlimeItem_AoMM : SimplePetItemBase_AoMM<OceanSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<OceanSlimeBuff_AoMM>();
 	}
 }

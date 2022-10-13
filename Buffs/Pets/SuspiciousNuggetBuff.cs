@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<SuspiciousNuggetProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().SuspiciousNugget;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Suspicious Nugget");
-			Description.SetDefault("A Suspicious Nugget is following you");
-		}
+	public class SuspiciousNuggetBuff_AoMM : SimplePetBuffBase_AoMM<SuspiciousNuggetBuff>
+	{
+
 	}
 }

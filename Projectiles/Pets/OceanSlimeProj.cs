@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -21,6 +23,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ocean Slime");
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<OceanSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()

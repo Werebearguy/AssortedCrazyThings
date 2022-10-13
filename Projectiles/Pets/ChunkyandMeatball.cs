@@ -1,6 +1,9 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -12,6 +15,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Chunky");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<ChunkyandMeatballBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -26,6 +31,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.7f);
+
 			return true;
 		}
 
@@ -58,6 +66,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Meatball");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<ChunkyandMeatballBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -72,6 +82,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.eater = false; // Relic from AIType
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.7f);
+
 			return true;
 		}
 

@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -16,6 +18,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Stubborn Bird");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetHarvesterBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -49,8 +53,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override bool PreDraw(ref Color lightColor)
 		{
 			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-
-			Main.instance.LoadProjectile(Projectile.type);
 
 			Texture2D image = TextureAssets.Projectile[Projectile.type].Value;
 			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);

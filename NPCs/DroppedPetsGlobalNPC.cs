@@ -65,6 +65,10 @@ namespace AssortedCrazyThings.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SkeletronHandItem>(), chanceDenominator: 10));
 			}
+			else if (npc.type == NPCID.Deerclops)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WobyItem>(), chanceDenominator: 10));
+			}
 			else if (npc.type == NPCID.WallofFlesh)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WallFragmentItem>(), chanceDenominator: 10));

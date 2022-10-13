@@ -12,13 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetSunBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Sun");
-			Tooltip.SetDefault("Summons a small sun that provides you with constant sunlight"
-				+ "\nShows the current time in the buff tip");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 20;
@@ -31,4 +24,6 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ItemID.Bottle).AddIngredient(ItemID.SunStone).AddIngredient(ItemID.Hellstone, 25).AddTile(TileID.CrystalBall).Register();
 		}
 	}
+
+	//Light pet, no Aomm form
 }

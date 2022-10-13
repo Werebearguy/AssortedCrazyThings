@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<NumberMuncherProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().NumberMuncher;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Number Muncher");
-			Description.SetDefault("An educated amphibian is following you");
-		}
+	public class NumberMuncherBuff_AoMM : SimplePetBuffBase_AoMM<NumberMuncherBuff>
+	{
+
 	}
 }

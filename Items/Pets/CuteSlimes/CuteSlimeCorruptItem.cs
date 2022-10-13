@@ -10,11 +10,5 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 		public override int PetType => ModContent.ProjectileType<CuteSlimeCorruptProj>();
 
 		public override int BuffType => ModContent.BuffType<CuteSlimeCorruptBuff>();
-
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Cute Corrupt Slime");
-			Tooltip.SetDefault("Summons a friendly Cute Corrupt Slime to follow you");
-		}
 	}
 }

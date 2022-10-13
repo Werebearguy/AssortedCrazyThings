@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<PigronataProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().Pigronata;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Pigronata");
-			Description.SetDefault("A Pigronata is thankful that you did not bust it");
-		}
+	public class PigronataBuff_AoMM : SimplePetBuffBase_AoMM<PigronataBuff>
+	{
+
 	}
 }

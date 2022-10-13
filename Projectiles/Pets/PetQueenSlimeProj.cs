@@ -1,7 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
@@ -13,6 +16,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Slime Sibling");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetQueenSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -27,6 +32,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.zephyrfish = false; // Relic from AIType
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.65f);
 			return true;
 		}
 
@@ -64,6 +71,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Slime Sibling");
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<PetQueenSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()
@@ -90,6 +99,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
+
+			Projectile.originalDamage = (int)(Projectile.originalDamage * 0.65f);
+
 			return true;
 		}
 
@@ -120,7 +132,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 	public class PetQueenSlimeGround2Proj : PetQueenSlimeGroundProj
 	{
-
 		public PetQueenSlimeGround2Proj() : base(false)
 		{
 

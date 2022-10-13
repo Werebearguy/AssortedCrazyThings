@@ -12,15 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<IlluminantSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Illuminant Slime");
-			Tooltip.SetDefault("Summons a friendly Illuminant Slime to follow you");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class IlluminantSlimeItem_AoMM : SimplePetItemBase_AoMM<IlluminantSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<IlluminantSlimeBuff_AoMM>();
 	}
 }

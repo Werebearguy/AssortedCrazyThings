@@ -9,12 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<DocileDemonEyeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().DocileDemonEye;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Docile Demon Eye");
-			Description.SetDefault("A Demon Eye is following you"
-				+ "\nChange its appearance with a Demon Eye Contact Case");
-		}
+	public class DocileDemonEyeBuff_AoMM : SimplePetBuffBase_AoMM<DocileDemonEyeBuff>
+	{
+
 	}
 }

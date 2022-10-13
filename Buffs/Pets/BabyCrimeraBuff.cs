@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<BabyCrimeraProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().BabyCrimera;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Baby Crimera");
-			Description.SetDefault("A little Crimera is following you");
-		}
+	public class BabyCrimeraBuff_AoMM : SimplePetBuffBase_AoMM<BabyCrimeraBuff>
+	{
+
 	}
 }

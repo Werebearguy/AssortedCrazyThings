@@ -66,7 +66,10 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MiniMegalodonItem>()));
+			if (ContentConfig.Instance.DroppedPets)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MiniMegalodonItem>()));
+			}
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

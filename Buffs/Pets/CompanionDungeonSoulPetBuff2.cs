@@ -12,12 +12,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<CompanionDungeonSoulPetProj2>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().SoulLightPet2;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Companion Soul");
-			Description.SetDefault("A friendly Dungeon Soul is following you"
-				+ "\nPet slot");
-		}
+	[Content(ContentType.AommSupport | ContentType.Bosses)]
+	public class CompanionDungeonSoulPetBuff2_AoMM : SimplePetBuffBase_AoMM<CompanionDungeonSoulPetBuff2>
+	{
+
 	}
 }

@@ -12,16 +12,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<MiniAntlionBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Antlion Egg");
-			Tooltip.SetDefault("Summons a friendly Baby Antlion to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(silver: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class MiniAntlionItem_AoMM : SimplePetItemBase_AoMM<MiniAntlionItem>
+	{
+		public override int BuffType => ModContent.BuffType<MiniAntlionBuff_AoMM>();
 	}
 }

@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<TorturedSoulProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().TorturedSoul;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tortured Soul");
-			Description.SetDefault("Shouldn't have been so greedy, eh?");
-		}
+	public class TorturedSoulBuff_AoMM : SimplePetBuffBase_AoMM<TorturedSoulBuff>
+	{
+
 	}
 }

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
 {
@@ -24,6 +25,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			Projectile.tileCollide = true;
 			Projectile.friendly = true;
 			Projectile.hostile = false;
+			Projectile.DamageType = DamageClass.Melee;
 
 			//DrawOriginOffsetX = 0;
 			//DrawOffsetX = (int)0;

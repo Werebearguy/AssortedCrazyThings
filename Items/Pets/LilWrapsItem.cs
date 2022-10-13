@@ -12,18 +12,17 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<LilWrapsBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Gilded Coffin");
-			Tooltip.SetDefault("Summons Lil' Wraps to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 20;
 			Item.height = 26;
 			Item.value = Item.sellPrice(silver: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class LilWrapsItem_AoMM : SimplePetItemBase_AoMM<LilWrapsItem>
+	{
+		public override int BuffType => ModContent.BuffType<LilWrapsBuff_AoMM>();
 	}
 }

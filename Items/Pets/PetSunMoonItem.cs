@@ -12,15 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetSunMoonBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Sun and Moon");
-			Tooltip.SetDefault("Summons a small sun and moon that provide you with constant light"
-				+ "\nShows the current time in the buff tip"
-				+ "\nShows the current moon cycle in the buff tip"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 38;
@@ -33,4 +24,6 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ModContent.ItemType<PetSunItem>()).AddIngredient(ModContent.ItemType<PetMoonItem>()).AddTile(TileID.CrystalBall).Register();
 		}
 	}
+
+	//Light pet, no Aomm form
 }

@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<MeatballSlimeProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().MeatballSlime;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Meatball");
-			Description.SetDefault("Meatball is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class MeatballSlimeBuff_AoMM : SimplePetBuffBase_AoMM<MeatballSlimeBuff>
+	{
+
 	}
 }

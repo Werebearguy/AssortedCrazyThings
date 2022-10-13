@@ -33,7 +33,8 @@ namespace AssortedCrazyThings
 			ContentType.VanityArmor |
 			ContentType.Accessories |
 			ContentType.VanityAccessories |
-			ContentType.BossConsolation;
+			ContentType.BossConsolation |
+			ContentType.AommSupport;
 
 		public static void Load()
 		{
@@ -192,6 +193,7 @@ namespace AssortedCrazyThings
 				ContentType.Accessories => "Accessories",
 				ContentType.VanityAccessories => "Vanity Accessories",
 				ContentType.BossConsolation => "Boss Consolation Items",
+				ContentType.AommSupport => "'The Amulet Of Many Minions' content",
 				_ => string.Empty,
 			};
 		}
@@ -227,6 +229,7 @@ namespace AssortedCrazyThings
 		Accessories = 1 << 13,
 		VanityAccessories = 1 << 14,
 		BossConsolation = 1 << 15,
+		AommSupport = 1 << 16,
 	}
 
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]

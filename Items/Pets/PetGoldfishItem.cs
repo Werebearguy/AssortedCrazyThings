@@ -12,14 +12,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<PetGoldfishBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Possessed Fish Idol");
-			Tooltip.SetDefault("Summons a goldfish that follows you"
-				+ "\n'You feel like you lost something important in obtaining this idol...'"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
@@ -29,5 +21,10 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe(1).AddIngredient(ItemID.FishStatue, 1).AddTile(TileID.DemonAltar).Register();
 		}
+	}
+
+	public class PetGoldfishItem_AoMM : SimplePetItemBase_AoMM<PetGoldfishItem>
+	{
+		public override int BuffType => ModContent.BuffType<PetGoldfishBuff_AoMM>();
 	}
 }

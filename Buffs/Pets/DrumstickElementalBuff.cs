@@ -9,11 +9,10 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<DrumstickElementalProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().DrumstickElemental;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Drumstick Elemental");
-			Description.SetDefault("Dinner is following you");
-		}
+	public class DrumstickElementalBuff_AoMM : SimplePetBuffBase_AoMM<DrumstickElementalBuff>
+	{
+
 	}
 }

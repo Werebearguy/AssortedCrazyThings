@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -16,6 +18,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("Illuminant Slime");
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
+
+			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<IlluminantSlimeBuff_AoMM>(), null);
 		}
 
 		public override void SafeSetDefaults()

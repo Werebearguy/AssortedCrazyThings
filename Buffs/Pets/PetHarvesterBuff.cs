@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override int PetType => ModContent.ProjectileType<PetHarvesterProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetHarvester;
+	}
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Stubborn Bird");
-			Description.SetDefault("A stubborn bird is following you");
-		}
+	[Content(ContentType.AommSupport | ContentType.Bosses)]
+	public class PetHarvesterBuff_AoMM : SimplePetBuffBase_AoMM<PetHarvesterBuff>
+	{
+
 	}
 }

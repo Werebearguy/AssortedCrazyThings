@@ -13,16 +13,15 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override int BuffType => ModContent.BuffType<StingSlimeBuff>();
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bottled Sting Slime");
-			Tooltip.SetDefault("Summons a friendly black Sting Slime to follow you"
-				+ "\nAppearance can be changed with Costume Suitcase");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.value = Item.sellPrice(copper: 10);
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	public class StingSlimeItem_AoMM : SimplePetItemBase_AoMM<StingSlimeItem>
+	{
+		public override int BuffType => ModContent.BuffType<StingSlimeBuff_AoMM>();
 	}
 }

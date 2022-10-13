@@ -14,8 +14,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Godly Torch");
-			Description.SetDefault("'Your torch placement has been deemed unnecessary. I will do it correctly.'");
 			Main.vanityPet[Type] = false;
 			Main.lightPet[Type] = true;
 		}

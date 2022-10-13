@@ -13,9 +13,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul");
-			Description.SetDefault("A friendly Dungeon Soul is following you"
-				+ "\nLight pet slot");
 			Main.vanityPet[Type] = false;
 			Main.lightPet[Type] = true;
 		}

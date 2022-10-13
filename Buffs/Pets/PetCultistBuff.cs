@@ -13,8 +13,8 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Dwarf Cultist");
-			Description.SetDefault("A tiny Cultist is following you");
+			Main.vanityPet[Type] = false;
+			Main.lightPet[Type] = true;
 		}
 	}
 }

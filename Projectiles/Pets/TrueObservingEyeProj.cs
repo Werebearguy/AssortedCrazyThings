@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -16,6 +18,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			DisplayName.SetDefault("True Observing Eye");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TrueObservingEyeBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
@@ -26,6 +30,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.height = 12;
 			Projectile.tileCollide = false;
 		}
+
+		Vector2 eyeTowardsPosition = Vector2.Zero;
 
 		public override bool PreDraw(ref Color lightColor)
 		{
@@ -47,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 			image = ModContent.Request<Texture2D>(Texture + "_Eye").Value;
 
-			Vector2 between = Projectile.GetOwner().Center - (Projectile.position + stupidOffset);
+			Vector2 between = eyeTowardsPosition - (Projectile.position + stupidOffset);
 			//between.Length(): 94 is "idle", 200 is very fast following
 			//28.5f = 200f / 7f
 			float magnitude = Utils.Clamp(between.Length() / 28.5f, 1.3f, 7f);
@@ -74,8 +80,42 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
-			AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
-			AssAI.FlickerwickPetDraw(Projectile, 6, 8);
+
+			eyeTowardsPosition = player.Center;
+
+			bool defaultAI = true;
+			if (AmuletOfManyMinionsApi.IsActive(this))
+			{
+				//Split off before regular AI because only then velocity is the aomm one
+				defaultAI = AoMM_AI();
+			}
+
+			if (defaultAI)
+			{
+				AssAI.FlickerwickPetAI(Projectile, lightPet: false, lightDust: false, reverseSide: true, veloSpeed: 0.5f, offsetX: 20f, offsetY: -60f);
+				AssAI.FlickerwickPetDraw(Projectile, 6, 8);
+			}
+			else
+			{
+				AssAI.FlickerwickPetDraw(Projectile, 8, 8);
+			}
+		}
+
+		private bool AoMM_AI()
+		{
+			if (!AmuletOfManyMinionsApi.IsAttacking(this) || !AmuletOfManyMinionsApi.TryGetStateDirect(this, out var state) 
+				|| !state.IsInFiringRange || state.TargetNPC is not NPC targetNPC)
+			{
+				return true;
+			}
+
+			eyeTowardsPosition = targetNPC.Center;
+
+			Vector2 between = Projectile.Center - targetNPC.Center;
+			Projectile.rotation = Projectile.velocity.X * 0.05f;
+			Projectile.spriteDirection = Projectile.direction = -(between.X < 0).ToDirectionInt();
+
+			return false;
 		}
 	}
 }

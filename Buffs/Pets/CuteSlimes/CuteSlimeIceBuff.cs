@@ -9,11 +9,5 @@ namespace AssortedCrazyThings.Buffs.Pets.CuteSlimes
 		public override int PetType => ModContent.ProjectileType<CuteSlimeIceProj>();
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeIce;
-
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Ice Slime");
-			Description.SetDefault("A cute ice slime is following you");
-		}
 	}
 }

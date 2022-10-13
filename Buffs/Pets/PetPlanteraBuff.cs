@@ -12,14 +12,6 @@ namespace AssortedCrazyThings.Buffs.Pets
 
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().PetPlantera;
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Plantera Sprout");
-			Description.SetDefault("A Plantera Sprout is following you");
-			Main.buffNoTimeDisplay[Type] = true;
-			Main.vanityPet[Type] = true;
-		}
-
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.buffTime[buffIndex] = 18000;
@@ -30,5 +22,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 				PetPlanteraItem.Spawn(player, buffIndex: buffIndex);
 			}
 		}
+	}
+
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class PetPlanteraBuff_AoMM : SimplePetBuffBase_AoMM<PetPlanteraBuff>
+	{
+
 	}
 }
