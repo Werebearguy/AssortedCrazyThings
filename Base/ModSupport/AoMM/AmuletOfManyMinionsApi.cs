@@ -178,58 +178,6 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 			AommMod?.Call("ReleaseControl", versionString, proj);
 		}
 
-		/// <summary>
-		/// Register a read-only cross mod minion. AoMM will run its state calculations for this minion every frame,
-		/// but will not perform any actions based on those state calculations. The ModProjectile may read AoMM's 
-		/// calculated state using mod.Call("GetState",this), and act on that state as it pleases.
-		/// </summary>
-		/// <param name="proj">The singleton instance of the ModProjectile for this minion type</param>
-		/// <param name="buff">The singleton instance of the ModBuff associated with the minion</param>
-		/// <param name="searchRange">The range (in pixels) over which the tactic enemy selection should search.</param>
-		/// <returns></returns>
-		internal static void RegisterInfoMinion(ModProjectile proj, ModBuff buff, int searchRange)
-		{
-			AommMod?.Call("RegisterInfoMinion", versionString, proj, buff, searchRange);
-		}
-
-		/// <summary>
-		/// Register a read-only cross mod combat pet. AoMM will run its state calculations for this combat pet every frame,
-		/// but will not perform any actions based on those state calculations. The ModProjectile may read AoMM's 
-		/// calculated state using mod.Call("GetState",this), and act on that state as it pleases.
-		/// </summary>
-		/// <param name="proj">The singleton instance of the ModProjectile for this combat pet type</param>
-		/// <param name="buff">The singleton instance of the ModBuff associated with the pet</param>
-		/// <returns></returns>
-		internal static void RegisterInfoPet(ModProjectile proj, ModBuff buff)
-		{
-			AommMod?.Call("RegisterInfoPet", versionString, proj, buff);
-		}
-
-		/// <summary>
-		/// Register a basic cross mod minion. AoMM will run its state calculations for this minion every frame,
-		/// and take over its position and velocity while the pathfinding node is present.
-		/// </summary>
-		/// <param name="proj">The singleton instance of the ModProjectile for this minion type</param>
-		/// <param name="buff">The singleton instance of the ModBuff associated with the minion</param>
-		/// <param name="searchRange">
-		/// The range (in pixels) over which the tactic enemy selection should search. AoMM will release the 
-		/// minion from the pathfinding AI as soon as an enemy is detected in range.
-		/// Should be ~400 for early pre-HM, ~800 for early HM, ~1200 for late HM.
-		/// </param>
-		/// <param name="travelSpeed">
-		/// The speed at which the minion should travel while following the pathfinder
-		/// Should be ~8 for early pre-HM, ~12 for early HM, ~16 for late HM.
-		/// </param>
-		/// <param name="inertia">
-		/// How quickly the minion should change directions while following the pathfinder. Higher values lead to
-		/// slower turning.
-		/// Should be ~16 for early pre-HM, ~12 for early HM, ~8 for late HM.
-		/// </param>
-		internal static void RegisterPathfindingMinion(ModProjectile proj, ModBuff buff, int searchRange, int travelSpeed, int inertia)
-		{
-			AommMod?.Call("RegisterPathfindingMinion", versionString, proj, buff, searchRange, travelSpeed, inertia);
-		}
-
 
 		/// <summary>
 		/// Register a basic cross mod combat pet. AoMM will run its state calculations for this minion every frame,
@@ -261,41 +209,6 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 		internal static void RegisterFlyingPet(ModProjectile proj, ModBuff buff, int? projType, bool defaultIdle = true)
 		{
 			AommMod?.Call("RegisterFlyingPet", versionString, proj, buff, projType, defaultIdle);
-		}
-
-		/// <summary>
-		/// Register a fully managed flying cross mod minion. AoMM will take over this projectile's 
-		/// AI every frame, and will cause it to behave like a basic flying minion (eg. the Raven staff).
-		/// </summary>
-		/// <param name="proj">The singleton instance of the ModProjectile for this minion type</param>
-		/// <param name="buff">The singleton instance of the ModBuff associated with the minion</param>
-		/// <param name="projType">Which projectile the minion should shoot. If null, the minion will do a melee attack</param>
-		/// <param name="searchRange">
-		/// The range (in pixels) over which the tactic enemy selection should search.
-		/// Should be ~400 for early pre-HM, ~800 for early HM, ~1200 for late HM.
-		/// </param>
-		/// <param name="travelSpeed">
-		/// The speed at which the minion should travel.
-		/// Should be ~8 for early pre-HM, ~12 for early HM, ~16 for late HM.
-		/// </param>
-		/// <param name="inertia">
-		/// How quickly the minion should change directions while moving. Higher values lead to
-		/// slower turning.
-		/// Should be ~16 for early pre-HM, ~12 for early HM, ~8 for late HM.
-		/// </param>
-		/// <param name="attackFrames">
-		/// How frequently the minion should fire a projectile, if it fires a projectile.
-		/// A good frequency depends on the amount of damage done, with somewhere around 45 frames
-		/// for a high damage projectile and 15 frames for a low damage projectile.
-		/// </param>
-		/// <param name="defaultIdle">
-		/// Whether to use default pet AI while idling by the player. Set to true to maintain unique minion behaviors 
-		/// while not attacking enemies.
-		/// </param>
-		internal static void RegisterFlyingMinion(
-			ModProjectile proj, ModBuff buff, int? projType, int searchRange, int travelSpeed, int inertia, int attackFrames = 30, bool defaultIdle = true)
-		{
-			AommMod?.Call("RegisterFlyingMinion", versionString, proj, buff, projType, searchRange, travelSpeed, inertia, attackFrames, defaultIdle);
 		}
 
 		/// <summary>
@@ -354,41 +267,6 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 		internal static void RegisterWormPet(ModProjectile proj, ModBuff buff, int? projType, bool defaultIdle = true, int wormLength = 64)
 		{
 			AommMod?.Call("RegisterWormPet", versionString, proj, buff, projType, defaultIdle, wormLength);
-		}
-
-		/// <summary>
-		/// Register a fully managed grounded cross mod minion. AoMM will take over this projectile's 
-		/// AI every frame, and will cause it to behave like a basic grounded minion (eg. the Pirate staff).
-		/// </summary>
-		/// <param name="proj">The singleton instance of the ModProjectile for this minion type</param>
-		/// <param name="buff">The singleton instance of the ModBuff associated with the minion</param>
-		/// <param name="projType">Which projectile the minion should shoot. If null, the minion will do a melee attack.</param>
-		/// <param name="searchRange">
-		/// The range (in pixels) over which the tactic enemy selection should search.
-		/// Should be ~400 for early pre-HM, ~800 for early HM, ~1200 for late HM.
-		/// </param>
-		/// <param name="travelSpeed">
-		/// The speed at which the minion should travel.
-		/// Should be ~8 for early pre-HM, ~12 for early HM, ~16 for late HM.
-		/// </param>
-		/// <param name="inertia">
-		/// How quickly the minion should change directions while moving. Higher values lead to
-		/// slower turning.
-		/// Should be ~16 for early pre-HM, ~12 for early HM, ~8 for late HM.
-		/// </param>
-		/// <param name="attackFrames">
-		/// How frequently the minion should fire a projectile, if it fires a projectile.
-		/// A good frequency depends on the amount of damage done, with somewhere around 45 frames
-		/// for a high damage projectile and 15 frames for a low damage projectile.
-		/// </param>
-		/// <param name="defaultIdle">
-		/// Whether to use default pet AI while idling by the player. Set to true to maintain unique minion behaviors 
-		/// while not attacking enemies.
-		/// </param>
-		internal static void RegisterGroundedMinion(
-			ModProjectile proj, ModBuff buff, int? projType, int searchRange, int travelSpeed, int inertia, int attackFrames = 30, bool defaultIdle = true)
-		{
-			AommMod?.Call("RegisterGroundedMinion", versionString, proj, buff, projType, searchRange, travelSpeed, inertia, attackFrames, defaultIdle);
 		}
 
 		/// <summary>
@@ -538,7 +416,7 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 	/// <summary>
 	/// Interface containing the names and types of the parameters used to determine the 
 	/// behavior of managed minions and combat pets. These parameters are initially set in
-	/// the registration mod.Call("RegisterXPet",...) or mod.Call("RegisterXMinion", ...).
+	/// the registration mod.Call("RegisterXPet",...).
 	/// 
 	/// An object that implements this interface can be populated directly with a projectile's
 	/// current AoMM parameters using mod.Call("GetParamsDirect", versionString, projectile, paramsImpl).  
@@ -621,8 +499,8 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 	/// The AI parameters of an active projectile can be updated to match an object that implements
 	/// this interface using mod.Call("UpdateParamsDirect", versionString, projectile, paramsImpl).  
 	///
-	/// The values in this interface can only be updated for minions, as they are updated automatically
-	/// for pets.
+	/// The values in this interface are updated automatically for combat pets after a single frame,
+	/// so must be set via mod.Call("UpdateParamsDirect") every frame to maintain a persistent value.
 	/// </summary>
 	public interface IAoMMParams : IAoMMCombatPetParams
 	{
