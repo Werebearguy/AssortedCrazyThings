@@ -9,7 +9,8 @@ Hopefully, you will find that the content of this mod livens up your world witho
 Mod Contents:
 - 11 Tiles
 - 51 NPCs, including one boss
-- 212 items, including pets, accessories, armor, and more
+- 277 items, including pets, accessories, armor, and more
+- Cross-mod content (The Amulet of Many Minions)
 - More things to come!
 
 Wiki, Changelogs & Source Code: https://github.com/Werebearguy/AssortedCrazyThings/wiki

@@ -5,12 +5,15 @@ Assorted Crazy Things (or [b]ACT[/b] for short) is a mod that adds... an assortm
 Likewise, we have two configurations; one for client, and the other for server. We made sure it's modular so that if you don't like one of the things added by the mod, you can simply turn it off! We both understand that the contents of the mod may not be to everyone's taste, and we made sure that you have the option to exclude it if you want other parts of the mod. Be sure to check Workshop -> Manage Mods -> Gear icon next to ACT to check the toggles, as some of the content is disabled by default!
 
 Hopefully, you will find that the content of this mod livens up your world without intruding on vanilla gameplay or modded gameplay. Consider Assorted Crazy Things to be a supplementary mod which subtly adds a bit more to the world, rather than a mod that makes its presence known with a bang. As we have [b]a lot[/b] of content, please refer to our wiki to see all that we currently offer.
+
+New in version v1.4.1, we've now included cross-mod compatibility with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]"The Amulet of Many Minions"[/url] mod! With both mods enabled, you will be able to convert most pets found in Assorted Crazy Things into minions. With over 60 pets available, the number of options you have for combat pets will drastically increase. For more detailed information, including what each pet does when converted, please see our wiki page [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Cross-Mod-Content#the-amulet-of-many-minions]here[/url].
 [hr][/hr]
 Mod Contents:
 [list]
     [*]11 Tiles
     [*]51 NPCs, including one boss
-    [*]212 items, including pets, accessories, armor, and more
+    [*]277 items, including pets, accessories, armor, and more
+    [*]Cross-mod content (The Amulet of Many Minions)
     [*]More things to come!
 [/list]
 
