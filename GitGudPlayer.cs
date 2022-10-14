@@ -205,6 +205,7 @@ namespace AssortedCrazyThings
 
 			bool deleted = false;
 
+			//TODO instead of iterating, figure out solution that deletes item even in modded slots
 			Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.bank4.item, player.armor }; //go though player inv
 			for (int y = 0; y < inventoryArray.Length; y++)
 			{

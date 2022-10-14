@@ -280,6 +280,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 			foreach (var proj in GetLocalGoblinUnderlings())
 			{
+				//TODO modded bosses
 				if (type == NPCID.MoonLordCore)
 				{
 					TryCreate(proj, GoblinUnderlingMessageSource.MoonlordDefeat);
@@ -331,6 +332,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 			foreach (var proj in GetLocalGoblinUnderlings())
 			{
+				//TODO modded bosses
 				if (npc.type == NPCID.MoonLordCore)
 				{
 					TryCreate(proj, GoblinUnderlingMessageSource.MoonlordSpawn);
