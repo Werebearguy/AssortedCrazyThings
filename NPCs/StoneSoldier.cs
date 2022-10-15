@@ -70,12 +70,23 @@ namespace AssortedCrazyThings.NPCs
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ItemID.StoneBlock, minimumDropped: 10, maximumDropped: 30));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.Amethyst));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.Topaz));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.Sapphire));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 4), ItemID.Emerald));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 5), ItemID.Ruby));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 6), ItemID.Diamond));
+			AddAppearanceLoot(npcLoot, 1, ItemID.Amethyst);
+			AddAppearanceLoot(npcLoot, 2, ItemID.Topaz);
+			AddAppearanceLoot(npcLoot, 3, ItemID.Sapphire);
+			AddAppearanceLoot(npcLoot, 4, ItemID.Emerald);
+			AddAppearanceLoot(npcLoot, 5, ItemID.Ruby);
+			AddAppearanceLoot(npcLoot, 6, ItemID.Diamond);
+		}
+
+		private static void AddAppearanceLoot(NPCLoot npcLoot, int index, int itemID)
+		{
+			//Actual drop
+			var dropRule = new LeadingConditionRule(new MatchAppearanceCondition(1, index));
+			dropRule.OnSuccess(ItemDropRule.Common(itemID, 1), hideLootReport: true);
+			npcLoot.Add(dropRule);
+
+			//Dummy for bestiary, technically not accurate because we use bell curve, don't want to replicate logic for that
+			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition("Drops based on appearance"), itemID, chanceDenominator: 6));
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

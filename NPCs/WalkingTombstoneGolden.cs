@@ -67,11 +67,22 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.RichGravestone2));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.RichGravestone1));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.RichGravestone3));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.RichGravestone4));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 4), ItemID.RichGravestone5));
+			AddAppearanceLoot(npcLoot, 0, ItemID.RichGravestone2);
+			AddAppearanceLoot(npcLoot, 1, ItemID.RichGravestone1);
+			AddAppearanceLoot(npcLoot, 2, ItemID.RichGravestone3);
+			AddAppearanceLoot(npcLoot, 3, ItemID.RichGravestone4);
+			AddAppearanceLoot(npcLoot, 4, ItemID.RichGravestone5);
+		}
+
+		private static void AddAppearanceLoot(NPCLoot npcLoot, int index, int itemID)
+		{
+			//Actual drop
+			var dropRule = new LeadingConditionRule(new MatchAppearanceCondition(1, index));
+			dropRule.OnSuccess(ItemDropRule.Common(itemID, 1), hideLootReport: true);
+			npcLoot.Add(dropRule);
+
+			//Dummy for bestiary
+			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition("Drops based on appearance"), itemID, chanceDenominator: 5));
 		}
 
 		public override void PostAI()

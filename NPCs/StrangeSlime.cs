@@ -79,10 +79,21 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 0), ItemID.StrangePlant1));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 1), ItemID.StrangePlant2));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 2), ItemID.StrangePlant3));
-			npcLoot.Add(ItemDropRule.ByCondition(new MatchAppearanceCondition(1, 3), ItemID.StrangePlant4));
+			AddAppearanceLoot(npcLoot, 0, ItemID.StrangePlant1);
+			AddAppearanceLoot(npcLoot, 1, ItemID.StrangePlant2);
+			AddAppearanceLoot(npcLoot, 2, ItemID.StrangePlant3);
+			AddAppearanceLoot(npcLoot, 3, ItemID.StrangePlant4);
+		}
+
+		private static void AddAppearanceLoot(NPCLoot npcLoot, int index, int itemID)
+		{
+			//Actual drop
+			var dropRule = new LeadingConditionRule(new MatchAppearanceCondition(1, index));
+			dropRule.OnSuccess(ItemDropRule.Common(itemID, 1), hideLootReport: true);
+			npcLoot.Add(dropRule);
+
+			//Dummy for bestiary
+			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition("Drops based on appearance"), itemID, chanceDenominator: 4));
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
