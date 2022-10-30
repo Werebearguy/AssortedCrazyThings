@@ -12,8 +12,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
 	public class DocileDemonEyeProj : SimplePetProjBase
 	{
-		public const byte TotalNumberOfThese = 12;
-
 		public override string Texture
 		{
 			get

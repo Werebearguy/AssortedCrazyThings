@@ -25,7 +25,7 @@ namespace AssortedCrazyThings
 	{
 		private bool enteredWorld = false;
 
-		private const int altTextureCountLoaded = 25; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
+		private const int altTextureCountLoaded = 26; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
 
 		//Alt texture types
 		public byte mechFrogType = 0;
@@ -55,6 +55,7 @@ namespace AssortedCrazyThings
 		public byte animatedTomeType = 0;
 
 		public byte youngHarpyType = 0;
+		public byte joyousSlimeType = 0;
 
 		//ALTERNATE
 		////name pet texture
@@ -315,7 +316,8 @@ namespace AssortedCrazyThings
 				{ "stingSlimeType", stingSlimeType },
 				{ "animatedTomeType", animatedTomeType },
 
-				{ "youngHarpyType", youngHarpyType }
+				{ "youngHarpyType", youngHarpyType },
+				{ "joyousSlimeType", joyousSlimeType }
 			};
 
 			tag.Add("petTags", petTags);
@@ -395,6 +397,7 @@ namespace AssortedCrazyThings
 				animatedTomeType = petTags.GetByte("animatedTomeType");
 
 				youngHarpyType = petTags.GetByte("youngHarpyType");
+				joyousSlimeType = petTags.GetByte("joyousSlimeType");
 			}
 		}
 
@@ -935,7 +938,8 @@ namespace AssortedCrazyThings
 			List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
 				"Red Fractured", "Green Fractured", "Purple Fractured",
 				"Red Mechanical", "Green Mechanical", "Purple Mechanical",
-				"Red Laser", "Green Laser", "Purple Laser" };
+				"Red Laser", "Green Laser", "Purple Laser",
+				"Flying Pumpkin", "Flying Jack"};
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<DocileDemonEyeProj>(), tooltips);
 		}
@@ -973,6 +977,13 @@ namespace AssortedCrazyThings
 			List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove", "Default (Legacy)", "Eagle (Legacy)", "Raven (Legacy)", "Dove (Legacy)" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<YoungHarpyProj>(), tooltips, new Vector2(0f, 4f));
+		}
+
+		public static CircleUIConf GetJoyousSlimeConf()
+		{
+			List<string> tooltips = new List<string>() { "Default", "Joyous Pumpkin" };
+
+			return CircleUIHandler.PetConf(ModContent.ProjectileType<JoyousSlimeProj>(), tooltips, new Vector2(1f, -4f));
 		}
 
 		public static CircleUIConf GetAbeeminationConf()
@@ -1033,7 +1044,7 @@ namespace AssortedCrazyThings
 
 		public static CircleUIConf PetGoldfishConf()
 		{
-			List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny" };
+			List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny", "Ghostfish" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetGoldfishProj>(), tooltips);
 		}
@@ -1140,6 +1151,7 @@ namespace AssortedCrazyThings
 			animatedTomeType = 0;
 
 			youngHarpyType = 0;
+			joyousSlimeType = 0;
 
 			petAccessoriesBySlots = new (byte, byte)[4]; //C# initializes the array as (0,0)
 			lastPetAccessoriesBySlots = new (byte, byte)[4];
@@ -1241,8 +1253,7 @@ namespace AssortedCrazyThings
                 //    condition: () => ClassName,
                 //    uiConf: GetClassNameConf,
                 //    onUIStart: () => classNameType,
-                //    onUIEnd: () => classNameType = (byte)CircleUI.returned,
-                //    needsSaving: true
+                //    onUIEnd: () => classNameType = (byte)CircleUI.returned
                 //),
                 });
 			}
@@ -1366,6 +1377,17 @@ namespace AssortedCrazyThings
 					onUIEnd: () => youngHarpyType = (byte)CircleUI.returned
 				),
 				});
+
+				CircleUIList.AddRange(new List<CircleUIHandler>()
+				{
+					new CircleUIHandler(
+					triggerItem: ModContent.ItemType<VanitySelector>(),
+					condition: () => JoyousSlime,
+					uiConf: GetJoyousSlimeConf,
+					onUIStart: () => joyousSlimeType,
+					onUIEnd: () => joyousSlimeType = (byte)CircleUI.returned
+				),
+				});
 			}
 
 			//after filling the list
@@ -1416,6 +1438,7 @@ namespace AssortedCrazyThings
 			animatedTomeType = ClonedTypes[index++];
 
 			youngHarpyType = ClonedTypes[index++];
+			joyousSlimeType = ClonedTypes[index++];
 		}
 
 		/// <summary>
@@ -1454,6 +1477,7 @@ namespace AssortedCrazyThings
 				ClonedTypes[++index] = animatedTomeType;
 
 				ClonedTypes[++index] = youngHarpyType;
+				ClonedTypes[++index] = joyousSlimeType;
 				//ALTERNATE
 				//ClonedTypes[++index] = classNameType;
 			}

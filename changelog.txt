@@ -1,21 +1,8 @@
 * FIXES
-    * Fixed some content being mislabeled in the config causing certain features to not work under some configurations
-    * Fixed Breath of Spazmatism and True Legendary Wooden Sword projectiles not counting as their intended class
-    * Fixed Cute Pink Slime pet not being its proper size and floating above the ground
-    * Fixed Possessed Goldfish running away after the player was submerged in water once
-    * Fixed Tiny Ominous Coin (which summons Dwarf Cultist) not being equipable in the light pet slot
-    * Fixed Swarm of Cthulhu and Fairy Swarm getting stuck inside the player after a while
+    * Fixed transparency on Baby Ichor Sticker pet
 * ADDITIONS
-    * General
-        * Added cross-mod content with the [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Cross-Mod-Content#the-amulet-of-many-minions]"The Amulet of Many Minions"[/url] mod
-            * 62 pets (all existing pets except Cute Slimes and light pets) received a "combat pet" item
-            * Only available if that mod is enabled (and up-to-date)
-            * Toggleable in the config
-    * Accessories
-        * Added Deerclops consolation prize
-    * Pets
-        * Several vanilla enemies can now drop new pets
-            * Deerclops drops Dog Lover's Badge
     * Pet Vanity
-        * New Cute Slime vanity items have been added
-            * Cute Pumpkin Mask 
+        * Added new appearances to several pets, found when using the Costume Suitcase
+            * Joyous Slime
+            * Docile Demon Eye
+            * Posessed Goldfish

@@ -123,8 +123,7 @@ public static CircleUIConf GetClassNameConf()
     condition: () => ClassName,
     uiConf: GetClassNameConf,
     onUIStart: () => classNameType,
-    onUIEnd: () => classNameType = (byte)CircleUI.returned,
-    needsSaving: true
+    onUIEnd: () => classNameType = (byte)CircleUI.returned
 ),
 ```
 
