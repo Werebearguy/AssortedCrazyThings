@@ -133,16 +133,24 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 		private static Dictionary<int, int> TierToSoulsEaten;
 		private static Dictionary<int, int> SoulsEatenToTier;
 
-		public static int Spawn(Player player)
+		public static int Spawn(Player player, Vector2? posOverride = null)
 		{
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
 				return Main.maxProjectiles;
 			}
 
-			Vector2 position = player.Center;
-			position.X += Main.rand.NextFloat(-1980, 1980) / 2;
-			position.Y += 1000;
+			Vector2 position;
+			if (posOverride == null)
+			{
+				position = player.Center;
+				position.X += Main.rand.NextFloat(-1980, 1980) / 2;
+				position.Y += 1000;
+			}
+			else
+			{
+				position = posOverride.Value;
+			}
 
 			return Projectile.NewProjectile(player.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<BabyHarvesterProj>(), 0, 0, Main.myPlayer);
 		}

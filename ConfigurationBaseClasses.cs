@@ -82,4 +82,10 @@ namespace AssortedCrazyThings
 	{
 
 	}
+
+	[Autoload(false)]
+	public abstract class AssGlobalWall : GlobalWall
+	{
+
+	}
 }

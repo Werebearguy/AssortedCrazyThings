@@ -3,6 +3,7 @@ using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
+using AssortedCrazyThings.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -324,6 +325,12 @@ namespace AssortedCrazyThings
 						Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
 					}
 					break;
+				case AssMessageType.HarvesterSpawnFromCage:
+					playerNumber = reader.ReadByte();
+					Vector2 spawnPos = reader.ReadVector2();
+					bool resend = Main.netMode == NetmodeID.Server;
+					AntiqueCageUnlockedTile.SpawnFromCage(Main.player[playerNumber], spawnPos, resend);
+					break;
 				default:
 					Logger.Debug("Unknown Message type: " + msgType);
 					break;
@@ -357,7 +364,8 @@ namespace AssortedCrazyThings
 		GitgudChangeCounters,
 		ResetEmpoweringTimerpvp,
 		WyvernCampfireKill,
-		SlainBoss
+		SlainBoss,
+		HarvesterSpawnFromCage
 	}
 
 	public enum PetPlayerChanges : byte

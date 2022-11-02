@@ -116,6 +116,7 @@ namespace AssortedCrazyThings
 				typeof(GlobalProjectile),
 				typeof(GlobalItem),
 				typeof(GlobalTile),
+				typeof(GlobalWall),
 			};
 		}
 
