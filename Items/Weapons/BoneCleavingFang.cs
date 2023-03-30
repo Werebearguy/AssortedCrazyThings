@@ -14,9 +14,9 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bone-Cleaving Fang");
-			Tooltip.SetDefault(@"Striking enemies will charge the sword, causing it to glow with power.
-				Release the built up power by right-clicking. The brighter the sword, the greater the power.
-				The sword's power fades when not used.");
+			Tooltip.SetDefault("Striking enemies will charge the sword, causing it to glow with power." +
+				"\nRelease the built up power by right-clicking. The brighter the sword, the greater the power." +
+				"\nThe sword's power fades when not used.");
 		}
 
 		public override void SetDefaults()
