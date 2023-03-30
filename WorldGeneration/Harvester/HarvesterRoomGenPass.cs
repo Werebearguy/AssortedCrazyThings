@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
@@ -31,12 +32,14 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 
 		public HarvesterRoomGenPass() : base("Soul Harvester Room", 1f)
 		{
-			crackedDungeonBrickTypes = new HashSet<int>
+			crackedDungeonBrickTypes = new HashSet<int>();
+			for (int i = 0; i < TileLoader.TileCount; i++)
 			{
-				TileID.CrackedBlueDungeonBrick,
-				TileID.CrackedGreenDungeonBrick,
-				TileID.CrackedPinkDungeonBrick,
-			};
+				if (TileID.Sets.CrackedBricks[i])
+				{
+					crackedDungeonBrickTypes.Add(i);
+				}
+			}
 		}
 
 		protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
@@ -323,7 +326,7 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 			}
 			else
 			{
-				WorldGen.structures.AddStructure(area);
+				WorldGen.structures.AddProtectedStructure(area);
 			}
 
 			return requiredTilesPlaced;
