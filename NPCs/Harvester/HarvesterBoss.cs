@@ -444,7 +444,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<PetHarvesterItem>(), 4));
 
 			//Drop one of three sigils, one random one per player
-			var sigils = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfPainSuppression>() };
+			var sigils = new int[] { ModContent.ItemType<SigilOfRetreat>(), ModContent.ItemType<SigilOfEmergency>(), ModContent.ItemType<SigilOfTheWing>() };
 			var sigilRule = new OneFromOptionsPerPlayerOnPlayerRule(options: sigils);
 			npcLoot.Add(sigilRule);
 

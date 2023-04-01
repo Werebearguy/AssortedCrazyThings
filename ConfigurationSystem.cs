@@ -106,6 +106,7 @@ namespace AssortedCrazyThings
 				typeof(ModItem),
 				typeof(ModProjectile),
 				typeof(ModBuff),
+				typeof(ModMount),
 				typeof(ModNPC),
 				typeof(ModTile),
 				typeof(PlayerDrawLayer),

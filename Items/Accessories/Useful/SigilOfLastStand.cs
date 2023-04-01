@@ -30,41 +30,27 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			//tooltip based off of the teleport ability
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
-			bool inVanitySlot = false;
-
 			for (int i = 0; i < tooltips.Count; i++)
 			{
 				if (tooltips[i].Name == "SocialDesc")
 				{
-					inVanitySlot = true;
 					tooltips[i].Text = "Cooldown will go down while in social slot";
 					break;
 				}
 			}
 
 			int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
-			if (insertIndex == -1) insertIndex = tooltips.Count;
-
-			if (!inVanitySlot)
-			{
-				for (int i = 0; i < tooltips.Count; i++)
-				{
-					if (tooltips[i].Name == "Tooltip1")
-					{
-						insertIndex = i + 1; //it inserts "left" of where it found the index (without +1), so everything else get pushed one up
-						break;
-					}
-				}
-			}
+			if (insertIndex == -1) insertIndex = tooltips.Count - 1;
+			insertIndex++;
 
 			if (Main.LocalPlayer.ItemInInventoryOrEquipped(Item))
 			{
-				if (mPlayer.canTeleportHome && mPlayer.canGetDefense)
+				if (mPlayer.canTeleportHome && mPlayer.SigilOfTheWingReady)
 				{
 					tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready to use"));
 				}
 
-				if (!mPlayer.canGetDefense)
+				if (!mPlayer.SigilOfTheWingReady)
 				{
 					//create animating "..." effect after the Ready line
 					string dots = "";
@@ -76,9 +62,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 					}
 
 					string timeName;
-					if (mPlayer.getDefenseTimer > 60) //more than 1 minute
+					if (mPlayer.sigilOfTheWingCooldown > 60 * 60) //more than 1 minute
 					{
-						if (mPlayer.getDefenseTimer > 90) //more than 1:30 minutes because of round
+						if (mPlayer.sigilOfTheWingCooldown > 90 * 60) //more than 1:30 minutes because of round
 						{
 							timeName = " minutes";
 						}
@@ -86,11 +72,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 						{
 							timeName = " minute";
 						}
-						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.getDefenseTimer / 60f) + timeName + dots));
+						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / (60f * 60f)) + timeName + dots));
 					}
 					else
 					{
-						if (mPlayer.getDefenseTimer > 1) //more than 1 second
+						if (mPlayer.sigilOfTheWingCooldown > 60) //more than 1 second
 						{
 							timeName = " seconds";
 						}
@@ -98,7 +84,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 						{
 							timeName = " second";
 						}
-						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + mPlayer.getDefenseTimer + timeName + dots));
+						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / 60f) + timeName + dots));
 					}
 				}
 
@@ -144,13 +130,13 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<AssPlayer>().getDefense = true;
+			player.GetModPlayer<AssPlayer>().sigilOfTheWing = true;
 			player.GetModPlayer<AssPlayer>().teleportHome = true;
 		}
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ModContent.ItemType<SigilOfRetreat>()).AddIngredient(ModContent.ItemType<SigilOfPainSuppression>()).AddTile(TileID.MythrilAnvil).Register();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<SigilOfRetreat>()).AddIngredient(ModContent.ItemType<SigilOfTheWing>()).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

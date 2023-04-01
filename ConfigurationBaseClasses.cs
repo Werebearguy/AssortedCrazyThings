@@ -22,6 +22,12 @@ namespace AssortedCrazyThings
 	}
 
 	[Autoload(false)]
+	public abstract class AssMount : ModMount
+	{
+
+	}
+
+	[Autoload(false)]
 	public abstract class AssNPC : ModNPC
 	{
 

@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Buffs.Mounts;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
@@ -11,8 +13,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameInput;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -36,13 +40,11 @@ namespace AssortedCrazyThings
 		public const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
 		public short teleportHomeTimer = 0; //gets saved when you relog so you can't cheese it
 
-		//TECHNICALLY NOT DEFENSE; YOU JUST GET 1 DAMAGE FROM EVERYTHING FOR A CERTAIN DURATION
-		public bool getDefense = false;
-		public bool canGetDefense = false;
-		public const short GetDefenseTimerMax = 600; //in seconds //10 ingame minutes
-		private const short GetDefenseDurationMax = 600; //in ticks //10 ingame seconds
-		public short getDefenseDuration = 0;
-		public short getDefenseTimer = 0; //gets saved when you relog so you can't cheese it
+		public bool sigilOfTheWingOngoing = false;
+		public int sigilOfTheWingFinishCounter = 0;
+		public bool sigilOfTheWing = false;
+		public int sigilOfTheWingCooldown = 0; //gets saved when you relog so you can't cheese it
+		public bool SigilOfTheWingReady => sigilOfTheWingCooldown <= 0;
 
 		private int lastSlainBossTimerSeconds = -1; //-1: never slain a boss, otherwise starts at 0 and counts
 		private int lastSlainBossTimerInternal = 0; //Used for incrementing the seconds timer
@@ -52,6 +54,8 @@ namespace AssortedCrazyThings
 		public bool needsNearbyEnemyNumber = false;
 		public int nearbyEnemyNumber = 0; //Impl of vanilla player.accThirdEyeNumber which works for all clients, shorter range
 		public int nearbyEnemyTimer = 0;
+
+		public bool hidePlayer = false;
 
 		//soul minion stuff
 		public bool soulMinion = false;
@@ -108,7 +112,9 @@ namespace AssortedCrazyThings
 			everfrozenCandleBuff = false;
 			everburningShadowflameCandleBuff = false;
 			teleportHome = false;
-			getDefense = false;
+			sigilOfTheWingOngoing = false;
+			sigilOfTheWing = false;
+			hidePlayer = false;
 			soulMinion = false;
 			tempSoulMinion = null;
 			slimePackMinion = false;
@@ -133,7 +139,7 @@ namespace AssortedCrazyThings
 		public override void SaveData(TagCompound tag)
 		{
 			tag.Add("teleportHomeWhenLowTimer", (int)teleportHomeTimer);
-			tag.Add("getDefenseTimer", (int)getDefenseTimer);
+			tag.Add("sigilOfTheWingCooldown", sigilOfTheWingCooldown);
 			tag.Add("lastSlainBossTimerSeconds", (int)lastSlainBossTimerSeconds);
 			tag.Add("droneControllerUnlocked", (byte)droneControllerUnlocked);
 		}
@@ -141,7 +147,7 @@ namespace AssortedCrazyThings
 		public override void LoadData(TagCompound tag)
 		{
 			teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
-			getDefenseTimer = (short)tag.GetInt("getDefenseTimer");
+			sigilOfTheWingCooldown = tag.GetInt("sigilOfTheWingCooldown");
 			string timerKey = "lastSlainBossTimerSeconds";
 			if (tag.ContainsKey(timerKey))
 			{
@@ -377,19 +383,16 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		private void UpdateGetDefenseWhenLow()
+		private void SigilOfTheWingCooldown()
 		{
 			//this code runs even when the accessory is not equipped
-			canGetDefense = getDefenseTimer <= 0;
-
-			if (!canGetDefense && Main.GameUpdateCount % 60 == 59)
+			if (sigilOfTheWingCooldown > 0)
 			{
-				getDefenseTimer--;
-			}
-
-			if (getDefenseDuration != 0)
-			{
-				getDefenseDuration--;
+				sigilOfTheWingCooldown--;
+				if (sigilOfTheWingCooldown == 0)
+				{
+					sigilOfTheWingFinishCounter = 0;
+				}
 			}
 		}
 
@@ -400,6 +403,7 @@ namespace AssortedCrazyThings
 		{
 			if (empoweringBuff)
 			{
+				//TODO convert timer to ticks
 				if (Main.GameUpdateCount % 60 == 0)
 				{
 					if (empoweringTimer < empoweringTimerMax)
@@ -416,22 +420,119 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		private bool GetDefense(double damage)
+		private bool SigilOfTheWingDeath(int hitDirection)
 		{
-			if (getDefense)
+			if (sigilOfTheWing && SigilOfTheWingReady)
 			{
-				if (canGetDefense)
-				{
-					Player.statLife += (int)damage;
-					Player.AddBuff(BuffID.RapidHealing, 600);
-					CombatText.NewText(Player.getRect(), CombatText.HealLife, "Defense increased");
+				Player.statLife = 5;
+				Player.AddBuff(ModContent.BuffType<SigilOfTheWingBuff>(), SigilOfTheWing.DurationSeconds * 60);
 
-					getDefenseTimer = GetDefenseTimerMax;
-					getDefenseDuration = GetDefenseDurationMax;
-					return false;
+				sigilOfTheWingCooldown = SigilOfTheWing.CooldownSeconds * 60;
+
+				for (int j = 0; j < 100; j++)
+				{
+					if (Player.stoned)
+					{
+						Dust.NewDust(Player.position, Player.width, Player.height, 1, 2 * hitDirection, -2f);
+					}
+					else if (Player.frostArmor)
+					{
+						Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 135, 2 * hitDirection, -2f);
+						dust.shader = GameShaders.Armor.GetSecondaryShader(Player.ArmorSetDye(), Player);
+					}
+					else if (Player.boneArmor)
+					{
+						Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 26, 2 * hitDirection, -2f);
+						dust.shader = GameShaders.Armor.GetSecondaryShader(Player.ArmorSetDye(), Player);
+					}
+					else
+					{
+						Dust.NewDust(Player.position, Player.width, Player.height, 5, 2 * hitDirection, -2f);
+					}
 				}
+
+				SoundEngine.PlaySound(SoundID.NPCDeath39, Player.Center);
+
+				if (Player.stoned)
+				{
+					Player.stoned = false;
+					Player.ClearBuff(BuffID.Stoned);
+				}
+
+				return false;
 			}
 			return true;
+		}
+
+		public void SigilOfTheWingStop(ref int buffIndex)
+		{
+			if (buffIndex > -1)
+			{
+				Player.DelBuff(buffIndex);
+				buffIndex--;
+			}
+			sigilOfTheWingFinishCounter = 0;
+			Player.mount.Dismount(Player);
+			Player.immune = true;
+			Player.immuneTime = 90;
+			Player.immuneNoBlink = false;
+
+			SoundEngine.PlaySound(SoundID.NPCHit36, Player.Center);
+		}
+
+		public void SigilOfTheWingStop()
+		{
+			int index = -1;
+			if (Player.FindBuffIndex(ModContent.BuffType<SigilOfTheWingBuff>()) is int index2 && index2 > -1)
+			{
+				index = index2;
+			}
+			SigilOfTheWingStop(ref index);
+		}
+
+		public void SigilOfTheWingRegen(ref float regen)
+		{
+			if (!sigilOfTheWingOngoing)
+			{
+				return;
+			}
+
+			int targetLifeMax = (int)(Player.statLifeMax2 * 0.25f);
+			if (Player.statLife > targetLifeMax)
+			{
+				Player.ClearBuff(ModContent.BuffType<SigilOfTheWingBuff>());
+				SigilOfTheWingStop();
+				return;
+			}
+
+			if (Player.lifeRegen < 0)
+			{
+				Player.lifeRegen = 0;
+			}
+
+			regen = 0; //Cancel existing natural regen
+			int amount = targetLifeMax / (SigilOfTheWing.DurationSeconds / 2); //lifeRegen represents how much life every 2 seconds is regenerated
+			Player.lifeRegen += Math.Max(1, amount);
+
+			if (Main.myPlayer == Player.whoAmI)
+			{
+				int finishStep = (int)(targetLifeMax * 0.1f);
+				const int totalSteps = 3;
+				int remainingCounters = totalSteps - sigilOfTheWingFinishCounter;
+				//When 70%, 80%, and 90%
+				if (sigilOfTheWingFinishCounter < totalSteps && Player.statLife >= targetLifeMax - remainingCounters * finishStep)
+				{
+					float pitchOff = (sigilOfTheWingFinishCounter == totalSteps - 1) ? 0.05f : 0;
+					SoundEngine.PlaySound(SoundID.MaxMana.WithVolumeScale(0.7f).WithPitchOffset(pitchOff), Player.Center);
+					for (double i = 0; i < MathHelper.TwoPi; i += MathHelper.TwoPi / 25)
+					{
+						Dust dust = Dust.NewDustPerfect(Player.Center - new Vector2(0f, 0), 135, new Vector2((float)-Math.Cos(i), (float)Math.Sin(i)) * 3f, 0, new Color(255, 255, 255), 1.8f);
+						dust.noGravity = true;
+					}
+
+					sigilOfTheWingFinishCounter++;
+				}
+			}
 		}
 
 		private bool TeleportHome(double damage)
@@ -484,13 +585,9 @@ namespace AssortedCrazyThings
 
 		public override void Initialize()
 		{
-			teleportHome = false;
 			teleportHomeTimer = 0;
-			getDefense = false;
-			getDefenseDuration = 0;
-			getDefenseTimer = 0;
+			sigilOfTheWingCooldown = 0;
 			lastSlainBossTimerSeconds = -1;
-			tempSoulMinion = null;
 			selectedSoulMinionType = SoulType.Dungeon;
 			selectedSlimePackMinionType = 0;
 			nextMagicSlimeSlingMinion = 0;
@@ -743,9 +840,7 @@ namespace AssortedCrazyThings
 
 		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
-			//getDefense before teleportHome (so you don't teleport BEFORE you gain the defense)
-
-			if (!GetDefense(damage)) return false;
+			if (!SigilOfTheWingDeath(hitDirection)) return false;
 
 			if (!TeleportHome(damage)) return false;
 
@@ -754,8 +849,6 @@ namespace AssortedCrazyThings
 
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
 		{
-			if (getDefenseDuration != 0) damage = 1;
-
 			DecreaseDroneShield(ref damage);
 
 			if (wyvernCampfire && damageSource.SourceProjectileType == ProjectileID.HarpyFeather)
@@ -800,7 +893,7 @@ namespace AssortedCrazyThings
 		{
 			UpdateTeleportHomeWhenLow();
 
-			UpdateGetDefenseWhenLow();
+			SigilOfTheWingCooldown();
 
 			Empower();
 
@@ -823,6 +916,53 @@ namespace AssortedCrazyThings
 			}
 
 			UpdateNearbyEnemies();
+		}
+
+		public static readonly PlayerDrawLayer[] WhitelistedByPlayerHiding = new[] {
+			PlayerDrawLayers.MountBack,
+			PlayerDrawLayers.MountFront,
+
+			PlayerDrawLayers.WebbedDebuffBack,
+			PlayerDrawLayers.FrozenOrWebbedDebuff,
+			PlayerDrawLayers.ElectrifiedDebuffBack,
+			PlayerDrawLayers.ElectrifiedDebuffFront,
+		};
+
+		public override void HideDrawLayers(PlayerDrawSet drawInfo)
+		{
+			HideDrawLayersForPlayer(drawInfo);
+		}
+
+		private void HideDrawLayersForPlayer(PlayerDrawSet drawInfo)
+		{
+			if (!hidePlayer)
+			{
+				return;
+			}
+
+			foreach (PlayerDrawLayer layer in PlayerDrawLayerLoader.Layers)
+			{
+				//If layer matches whitelist, or the layer it is parented to matches whitelist, don't hide
+				if (Array.IndexOf(WhitelistedByPlayerHiding, layer) > -1)
+				{
+					continue;
+				}
+
+				var position = layer.GetDefaultPosition();
+				if (position is PlayerDrawLayer.BeforeParent beforeParent && Array.IndexOf(WhitelistedByPlayerHiding, beforeParent.Parent) > -1 ||
+					position is PlayerDrawLayer.AfterParent afterParent && Array.IndexOf(WhitelistedByPlayerHiding, afterParent.Parent) > -1)
+				{
+					continue;
+				}
+
+				layer.Hide();
+			}
+		}
+
+		public override void NaturalLifeRegen(ref float regen)
+		{
+			//Used instead of other liferegen hooks because this runs after good/bad ones, just before application
+			SigilOfTheWingRegen(ref regen);
 		}
 	}
 }
