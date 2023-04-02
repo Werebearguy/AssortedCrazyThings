@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ItemID.MeteoriteBar, 5).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 2).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddIngredient(ItemID.Bone, 25).AddIngredient(ModContent.ItemType<CaughtDungeonSoulFreed>(), 10).AddIngredient(ModContent.ItemType<DesiccatedLeather>(), 1).AddTile(TileID.Anvils).Register();
 		}
 	}
 }
