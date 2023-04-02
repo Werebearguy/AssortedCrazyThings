@@ -12,8 +12,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public override void EvenSaferSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sigil of Last Stand");
-			Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
-				+ "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
+			//TODO
+			//Tooltip.SetDefault("Combines the effects of Sigil of Retreat and Sigil of Pain Suppression"
+			//	+ "\nHas a cooldown of " + (AssPlayer.TeleportHomeTimerMax / 60) + " minutes");
 		}
 
 		public override void SafeSetDefaults()
@@ -45,7 +46,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 			if (Main.LocalPlayer.ItemInInventoryOrEquipped(Item))
 			{
-				if (mPlayer.canTeleportHome && mPlayer.SigilOfTheWingReady)
+				if (mPlayer.SigilOfTheWingReady)
 				{
 					tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready to use"));
 				}
@@ -87,56 +88,17 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Pain supression: Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / 60f) + timeName + dots));
 					}
 				}
-
-				if (!mPlayer.canTeleportHome)
-				{
-					//create animating "..." effect after the Ready line
-					string dots = "";
-					int dotCount = ((int)Main.GameUpdateCount % 120) / 30; //from 0 to 30, from 31 to 60, from 61 to 90
-
-					for (int i = 0; i < dotCount; i++)
-					{
-						dots += ".";
-					}
-
-					string timeName;
-					if (mPlayer.teleportHomeTimer > 60) //more than 1 minute
-					{
-						if (mPlayer.teleportHomeTimer > 90) //more than 1:30 minutes because of round
-						{
-							timeName = " minutes";
-						}
-						else
-						{
-							timeName = " minute";
-						}
-						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready1", "Retreat: Ready again in " + Math.Round(mPlayer.teleportHomeTimer / 60f) + timeName + dots));
-					}
-					else
-					{
-						if (mPlayer.teleportHomeTimer > 1) //more than 1 second
-						{
-							timeName = " seconds";
-						}
-						else
-						{
-							timeName = " second";
-						}
-						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready1", "Retreat: Ready again in " + mPlayer.teleportHomeTimer + timeName + dots));
-					}
-				}
 			}
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetModPlayer<AssPlayer>().sigilOfTheWing = true;
-			player.GetModPlayer<AssPlayer>().teleportHome = true;
 		}
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ModContent.ItemType<SigilOfRetreat>()).AddIngredient(ModContent.ItemType<SigilOfTheWing>()).AddTile(TileID.MythrilAnvil).Register();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<SigilOfTheTalon>()).AddIngredient(ModContent.ItemType<SigilOfTheWing>()).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

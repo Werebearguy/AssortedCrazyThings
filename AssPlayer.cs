@@ -35,10 +35,7 @@ namespace AssortedCrazyThings
 		public bool everfrozenCandleBuff = false;
 		public bool everburningShadowflameCandleBuff = false;
 
-		public bool teleportHome = false;
-		public bool canTeleportHome = false;
-		public const short TeleportHomeTimerMax = 600; //in seconds //10 ingame minutes
-		public short teleportHomeTimer = 0; //gets saved when you relog so you can't cheese it
+		public bool sigilOfTheTalon = false;
 
 		public bool sigilOfTheWingOngoing = false;
 		public int sigilOfTheWingFinishCounter = 0;
@@ -95,6 +92,8 @@ namespace AssortedCrazyThings
 
 		public bool mouseoveredDresser = false;
 
+		public int LastSelectedWeaponDamage { get; private set; } = 0;
+
 		/// <summary>
 		/// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
 		/// </summary>
@@ -111,7 +110,7 @@ namespace AssortedCrazyThings
 			everburningCursedCandleBuff = false;
 			everfrozenCandleBuff = false;
 			everburningShadowflameCandleBuff = false;
-			teleportHome = false;
+			sigilOfTheTalon = false;
 			sigilOfTheWingOngoing = false;
 			sigilOfTheWing = false;
 			hidePlayer = false;
@@ -138,15 +137,13 @@ namespace AssortedCrazyThings
 
 		public override void SaveData(TagCompound tag)
 		{
-			tag.Add("teleportHomeWhenLowTimer", (int)teleportHomeTimer);
-			tag.Add("sigilOfTheWingCooldown", sigilOfTheWingCooldown);
+			tag.Add("sigilOfTheWingCooldown", (int)sigilOfTheWingCooldown);
 			tag.Add("lastSlainBossTimerSeconds", (int)lastSlainBossTimerSeconds);
 			tag.Add("droneControllerUnlocked", (byte)droneControllerUnlocked);
 		}
 
 		public override void LoadData(TagCompound tag)
 		{
-			teleportHomeTimer = (short)tag.GetInt("teleportHomeWhenLowTimer");
 			sigilOfTheWingCooldown = tag.GetInt("sigilOfTheWingCooldown");
 			string timerKey = "lastSlainBossTimerSeconds";
 			if (tag.ContainsKey(timerKey))
@@ -372,17 +369,6 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		private void UpdateTeleportHomeWhenLow()
-		{
-			//this code runs even when the accessory is not equipped
-			canTeleportHome = teleportHomeTimer <= 0;
-
-			if (!canTeleportHome && Main.GameUpdateCount % 60 == 59)
-			{
-				teleportHomeTimer--;
-			}
-		}
-
 		private void SigilOfTheWingCooldown()
 		{
 			//this code runs even when the accessory is not equipped
@@ -535,35 +521,6 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		private bool TeleportHome(double damage)
-		{
-			if (teleportHome)
-			{
-				if (canTeleportHome && Player.whoAmI == Main.myPlayer)
-				{
-					Player.RemoveAllGrapplingHooks();
-
-					//inserted before player.Spawn()
-					Player.statLife += (int)damage;
-
-					Player.Spawn(PlayerSpawnContext.RecallFromItem);
-					for (int i = 0; i < 70; i++)
-					{
-						Dust.NewDust(Player.position, Player.width, Player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
-					}
-					//end
-
-					Player.AddBuff(BuffID.RapidHealing, 300, false);
-
-					NetMessage.SendData(MessageID.PlayerControls, number: Player.whoAmI);
-
-					teleportHomeTimer = TeleportHomeTimerMax;
-					return false;
-				}
-			}
-			return true;
-		}
-
 		private void ApplyCandleDebuffs(Entity victim)
 		{
 			if (victim is NPC npc)
@@ -585,7 +542,6 @@ namespace AssortedCrazyThings
 
 		public override void Initialize()
 		{
-			teleportHomeTimer = 0;
 			sigilOfTheWingCooldown = 0;
 			lastSlainBossTimerSeconds = -1;
 			selectedSoulMinionType = SoulType.Dungeon;
@@ -842,8 +798,6 @@ namespace AssortedCrazyThings
 		{
 			if (!SigilOfTheWingDeath(hitDirection)) return false;
 
-			if (!TeleportHome(damage)) return false;
-
 			return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
 		}
 
@@ -891,8 +845,6 @@ namespace AssortedCrazyThings
 
 		public override void PostUpdateBuffs()
 		{
-			UpdateTeleportHomeWhenLow();
-
 			SigilOfTheWingCooldown();
 
 			Empower();
@@ -913,6 +865,12 @@ namespace AssortedCrazyThings
 				{
 					if (Player.ownedProjectileCounts[DroneController.GetDroneData(DroneType.Shield).ProjType] < 1) shieldDroneReduction = 0;
 				}
+			}
+
+			Item heldItem = Player.HeldItem;
+			if (heldItem.damage > 0 && !heldItem.accessory)
+			{
+				LastSelectedWeaponDamage = Player.GetWeaponDamage(heldItem);
 			}
 
 			UpdateNearbyEnemies();
