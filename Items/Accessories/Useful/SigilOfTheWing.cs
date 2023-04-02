@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[LegacyName("SigilOfPainSuppression")]
 	public class SigilOfTheWing : SigilItemBase
 	{
-		public static readonly int DurationSeconds = 10;
+		public static readonly int DurationSeconds = 5;
 		public static readonly int HealthRestoreAmount = 25;
 		public static readonly int CooldownSeconds = 6 * 60;
 

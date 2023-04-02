@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Mounts;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,8 @@ namespace AssortedCrazyThings.Buffs.Mounts
 	[Content(ContentType.Bosses)]
 	public class SigilOfTheWingBuff : AssBuff
 	{
+		public static readonly int Duration = SigilOfTheWing.DurationSeconds * 60;
+
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blessing of the Wing");
@@ -22,13 +25,14 @@ namespace AssortedCrazyThings.Buffs.Mounts
 			player.immune = true;
 			player.immuneTime = 2;
 			player.immuneNoBlink = true;
+			player.aggro -= 600;
 
 			AssPlayer assPlayer = player.GetModPlayer<AssPlayer>();
 			player.mount.SetMount(ModContent.MountType<SigilOfTheWingMount>(), player);
-			if (player.buffTime[buffIndex] > 600)
+			if (player.buffTime[buffIndex] > Duration)
 			{
 				//For some reason this gets set to 3600 after AddBuff with any duration
-				player.buffTime[buffIndex] = 600;
+				player.buffTime[buffIndex] = Duration;
 			}
 			else if (player.buffTime[buffIndex] <= 2)
 			{

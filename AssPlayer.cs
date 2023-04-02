@@ -445,6 +445,8 @@ namespace AssortedCrazyThings
 					Player.ClearBuff(BuffID.Stoned);
 				}
 
+				AssWorld.Message($"{Player.name} has died, but their soul has not given up...", new Color(225, 25, 25));
+
 				return false;
 			}
 			return true;
