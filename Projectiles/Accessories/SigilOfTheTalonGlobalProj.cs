@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles
+namespace AssortedCrazyThings.Projectiles.Accessories
 {
 	[Content(ContentType.Bosses)]
 	public class SigilOfTheTalonGlobalProj : AssGlobalProjectile
