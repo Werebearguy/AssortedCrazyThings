@@ -16,15 +16,7 @@ namespace AssortedCrazyThings.Projectiles
 		public static readonly int MaxPenetrateCount = 3;
 		public int PenetrateCount { get; private set; } = MaxPenetrateCount;
 
-		public int GetDamageDropoff(int damage)
-		{
-			float ratio = (float)PenetrateCount / MaxPenetrateCount;
-			return Math.Max(1, (int)(damage * Utils.Remap(ratio, 0f, 1f, SigilOfTheTalon.FirstDamageDropOff / 100f / MaxPenetrateCount, SigilOfTheTalon.FirstDamageDropOff / 100f))); //To avoid reports of "it doesnt work", min 1 damage
-		}
-
 		public override bool InstancePerEntity => true;
-
-		public static bool Extending(Projectile projectile) => projectile.ai[0] == 0;
 
 		public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
 		{
@@ -58,18 +50,23 @@ namespace AssortedCrazyThings.Projectiles
 			DamageHostiles(projectile);
 		}
 
+		public static bool Extending(Projectile projectile) => projectile.ai[0] == 0;
+
 		public static void Visuals(Projectile projectile)
 		{
 			for (int i = 0; i < 2; i++)
 			{
-				if (true || Main.rand.NextBool())
-				{
-					Dust dust = Dust.NewDustPerfect(projectile.Center, 135, new Vector2(Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-0.5f, 0.5f)), 0, Color.White * 0.8f, 0.8f);
-					dust.noGravity = true;
-					dust.noLight = true;
-					dust.fadeIn = Main.rand.NextFloat(0.6f, 0.9f);
-				}
+				Dust dust = Dust.NewDustPerfect(projectile.Center, 135, new Vector2(Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-0.5f, 0.5f)), 0, Color.White * 0.8f, 0.8f);
+				dust.noGravity = true;
+				dust.noLight = true;
+				dust.fadeIn = Main.rand.NextFloat(0.6f, 0.9f);
 			}
+		}
+
+		public int GetDamageDropoff(int damage)
+		{
+			float ratio = (float)PenetrateCount / MaxPenetrateCount;
+			return Math.Max(1, (int)(damage * Utils.Remap(ratio, 0f, 1f, SigilOfTheTalon.FirstDamageDropOff / 100f / MaxPenetrateCount, SigilOfTheTalon.FirstDamageDropOff / 100f))); //To avoid reports of "it doesnt work", min 1 damage
 		}
 
 		private void DamageHostiles(Projectile projectile)
