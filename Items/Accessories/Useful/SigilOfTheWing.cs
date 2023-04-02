@@ -17,8 +17,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			DisplayName.SetDefault("Sigil of the Wing");
 			Tooltip.SetDefault($"On death, transform into a soul for {DurationSeconds} seconds, regenerating {HealthRestoreAmount}% max health"
-				+ "\nYou can move while this is taking place, but you cannot use items"
-				+ "\nHas a cooldown of " + (CooldownSeconds / 60) + " minutes");
+				+ "\nWhile transformed, you cannot use items"
+				+ $"\nHas a cooldown of {CooldownSeconds / 60} minutes");
 		}
 
 		public override void SafeSetDefaults()
@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			Item.value = Item.sellPrice(0, 1, 0, 0);
 		}
 
-		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		public static void ModifyTooltip(Mod mod, Item item, List<TooltipLine> tooltips, string prefix = "")
 		{
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 
@@ -47,11 +47,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			if (insertIndex == -1) insertIndex = tooltips.Count - 1;
 			insertIndex++;
 
-			if (Main.LocalPlayer.ItemInInventoryOrEquipped(Item))
+			if (Main.LocalPlayer.ItemInInventoryOrEquipped(item))
 			{
 				if (mPlayer.SigilOfTheWingReady)
 				{
-					tooltips.Insert(insertIndex, new TooltipLine(Mod, "Ready", "Ready to use"));
+					tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", prefix + "Effect ready"));
 				}
 				else
 				{
@@ -75,7 +75,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 						{
 							timeName = " minute";
 						}
-						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / (60f * 60f)) + timeName + dots));
+						tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", prefix + "Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / (60f * 60f)) + timeName + dots));
 					}
 					else
 					{
@@ -87,10 +87,15 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 						{
 							timeName = " second";
 						}
-						tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Ready2", "Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / 60f) + timeName + dots));
+						tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", prefix + "Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / 60f) + timeName + dots));
 					}
 				}
 			}
+		}
+
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			ModifyTooltip(Mod, Item, tooltips);
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

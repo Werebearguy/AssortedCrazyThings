@@ -1,15 +1,26 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 
-namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
+namespace AssortedCrazyThings.Projectiles.Accessories
 {
+	//Mostly a copy of HarvesterFracturedSoul but friendly
 	[Content(ContentType.Bosses)]
-	public class HarvesterFracturedSoul : AssProjectile
+	public class SigilOfTheBeakProj : AssProjectile
 	{
-		public float MaxSpeed => Projectile.ai[0];
+		public static readonly int DefaultSpeed = 16;
+		public static readonly int DefaultInertia = 32;
+		public static readonly int DefaultTimeToHome = 25;
+		public float LifeRatio => Projectile.ai[0];
+
+		public int Timer
+		{
+			get => (int)Projectile.ai[1];
+			set => Projectile.ai[1] = value;
+		}
 
 		public override void SetStaticDefaults()
 		{
@@ -22,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 		{
 			Projectile.aiStyle = -1;
 			Projectile.alpha = 255;
-			Projectile.hostile = true;
+			Projectile.friendly = true;
 			Projectile.tileCollide = false;
 			Projectile.timeLeft = 240;
 
@@ -55,38 +66,53 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		private void Movement()
 		{
-			int plr = Player.FindClosest(Projectile.Center, 1, 1);
-			Player target = Main.player[plr];
-
-			if (!Projectile.tileCollide && target.Center.Y < Projectile.Bottom.Y)
+			int targetIndex = -1;
+			float maxDistSQ = float.MaxValue;
+			float distSQ;
+			for (int j = 0; j < Main.maxNPCs; j++)
 			{
-				//similar to some weapons with things dropping from the sky
-				Projectile.tileCollide = true;
+				NPC npc = Main.npc[j];
+				if (!npc.CanBeChasedBy())
+				{
+					continue;
+				}
+				distSQ = Projectile.DistanceSQ(npc.Center);
+				if (distSQ < maxDistSQ && (!Projectile.tileCollide || Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height)))
+				{
+					maxDistSQ = distSQ;
+					targetIndex = j;
+				}
+			}
+
+			if (targetIndex > -1)
+			{
+				NPC target = Main.npc[targetIndex];
+
+				if (!Projectile.tileCollide && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+				{
+					//once out of blocks, collide with them again
+					Projectile.tileCollide = true;
+				}
+
+				Timer++;
+				int timeToHome = (int)(DefaultTimeToHome * Utils.Remap(LifeRatio, 0f, 1f, 0.25f, 1f));
+				if (Timer > timeToHome)
+				{
+					int newTimer = Timer - timeToHome;
+					float speed = DefaultSpeed * Math.Min(1, newTimer / 30f);
+					Vector2 toTarget = target.Center - Projectile.Center;
+					toTarget.Normalize();
+					toTarget *= speed;
+					float inertia = DefaultInertia * Utils.Remap(LifeRatio, 0f, 1f, 0.25f, 1f);
+					if (inertia == 0)
+					{
+						inertia = DefaultInertia;
+					}
+					Projectile.velocity = (Projectile.velocity * inertia + toTarget) / (inertia + 1);
+				}
 			}
 
 			Projectile.spriteDirection = Projectile.direction = (Projectile.velocity.X > 0).ToDirectionInt();
-
-			Projectile.ai[1] += 1f;
-			if (Projectile.ai[1] > 30f && Projectile.ai[1] < 110f)
-			{
-				float speed = Projectile.velocity.Length();
-				Vector2 toPlayer = target.Center - Projectile.Center;
-				toPlayer.Normalize();
-				toPlayer *= speed;
-				Projectile.velocity = (Projectile.velocity * 24f + toPlayer) / 25f;
-				Projectile.velocity.Normalize();
-				Projectile.velocity *= speed;
-			}
-
-			float maxSpeed = MaxSpeed;
-			if (maxSpeed <= 0)
-			{
-				maxSpeed = 18;
-			}
-			if (Projectile.velocity.Length() < maxSpeed)
-			{
-				Projectile.velocity *= 1.02f;
-			}
 		}
 
 		private void Visuals()
@@ -104,7 +130,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			if (Projectile.localAI[0] == 0f)
 			{
 				Projectile.localAI[0] = 1f;
-				SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
+				SoundEngine.PlaySound(SoundID.Item8.WithVolumeScale(0.8f), Projectile.Center);
 
 				for (int i = 0; i < 10; i++)
 				{
@@ -113,7 +139,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 					dust.noGravity = true;
 					dust.velocity = Projectile.Center - dust.position;
 					dust.velocity.Normalize();
-					dust.velocity *= -5f;
+					dust.velocity *= -3f;
 					dust.velocity += Projectile.velocity / 2f;
 				}
 			}
@@ -123,7 +149,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 		{
 			if (Projectile.alpha > 0)
 			{
-				Projectile.alpha -= 30;
+				Projectile.alpha -= 25;
 
 				if (Projectile.alpha < 0)
 				{

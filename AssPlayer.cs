@@ -5,6 +5,7 @@ using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Accessories.Useful;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.Projectiles.Accessories;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
@@ -35,6 +36,11 @@ namespace AssortedCrazyThings
 		public bool everfrozenCandleBuff = false;
 		public bool everburningShadowflameCandleBuff = false;
 
+		public const int sigilOfTheBeakTimerMax = 120;
+		public int sigilOfTheBeakTimer = 0;
+		public Item sigilOfTheBeak = null;
+		public int sigilOfTheBeakDamage = 0;
+
 		public bool sigilOfTheTalon = false;
 
 		public bool sigilOfTheWingOngoing = false;
@@ -56,7 +62,7 @@ namespace AssortedCrazyThings
 
 		//soul minion stuff
 		public bool soulMinion = false;
-		public Item tempSoulMinion = null;
+		public Item tempSoulMinion = null; //Unused
 		public SoulType selectedSoulMinionType = SoulType.Dungeon;
 
 		public bool slimePackMinion = false;
@@ -94,6 +100,10 @@ namespace AssortedCrazyThings
 
 		public int LastSelectedWeaponDamage { get; private set; } = 0;
 
+		public const int OutOfCombatTimeMax = 300;
+		public bool OutOfCombat => outOfCombatTimer <= 0;
+		public int outOfCombatTimer = 0;
+
 		/// <summary>
 		/// Bitfield. Use .HasFlag(DroneType.SomeType) to check if its there or not
 		/// </summary>
@@ -110,6 +120,8 @@ namespace AssortedCrazyThings
 			everburningCursedCandleBuff = false;
 			everfrozenCandleBuff = false;
 			everburningShadowflameCandleBuff = false;
+			sigilOfTheBeak = null;
+			sigilOfTheBeakDamage = 0;
 			sigilOfTheTalon = false;
 			sigilOfTheWingOngoing = false;
 			sigilOfTheWing = false;
@@ -261,22 +273,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		/// <summary>
-		/// Sets the isTemp on the projectile so it behaves differently
-		/// </summary>
-		private void PreSyncSoulTemp(Projectile proj)
-		{
-			if (!ContentConfig.Instance.Bosses)
-			{
-				return;
-			}
-
-			if (proj.ModProjectile is CompanionDungeonSoulMinionBase soul)
-			{
-				soul.isTemp = true;
-			}
-		}
-
+		//Unused
 		/// <summary>
 		/// Spawns the temporary soul when wearing the accessory that allows it
 		/// </summary>
@@ -378,6 +375,68 @@ namespace AssortedCrazyThings
 				if (sigilOfTheWingCooldown == 0)
 				{
 					sigilOfTheWingFinishCounter = 0;
+				}
+			}
+		}
+
+		private void SigilOfTheBeakSpawn()
+		{
+			if (Main.myPlayer != Player.whoAmI || OutOfCombat)
+			{
+				return;
+			}
+
+			if (sigilOfTheBeak == null || sigilOfTheBeak.IsAir)
+			{
+				return;
+			}
+
+			int timerCutoff = sigilOfTheBeakTimerMax;
+			float lifeRatio = (float)Player.statLife / Player.statLifeMax2;
+			timerCutoff = (int)(timerCutoff * Utils.Remap(lifeRatio, 0f, 1f, 0.2f, 1f));
+
+			sigilOfTheBeakTimer++;
+			if (sigilOfTheBeakTimer > timerCutoff)
+			{
+				sigilOfTheBeakTimer = 0;
+
+				bool anyHostiles = false;
+				for (int i = 0; i < Main.maxNPCs; i++)
+				{
+					NPC npc = Main.npc[i];
+					if (!npc.CanBeChasedBy())
+					{
+						continue;
+					}
+
+					float distSQ = Player.DistanceSQ(npc.Center);
+					if (distSQ < 2000 * 2000)
+					{
+						anyHostiles = true;
+						break;
+					}
+				}
+
+				if (anyHostiles)
+				{
+					//Find suitable location in upper hemisphere or player with direct LOS to player
+					Vector2 pos = Player.Center;
+					int tries = 0;
+					while(tries < 100)
+					{
+						tries++;
+
+						Vector2 random = (-Vector2.UnitY).RotatedByRandom(MathHelper.PiOver2) * Main.rand.Next(60, 100);
+						random += Player.Center;
+						if (Collision.CanHitLine(Player.position, Player.width, Player.height, random, 1, 1))
+						{
+							pos = random;
+							break;
+						}
+					}
+
+					int damage = Math.Max(1, sigilOfTheBeakDamage);
+					Projectile.NewProjectile(Player.GetSource_Accessory(sigilOfTheBeak), pos, Main.rand.NextVector2Circular(1f, 1f), ModContent.ProjectileType<SigilOfTheBeakProj>(), damage, 4f, Main.myPlayer, lifeRatio);
 				}
 			}
 		}
@@ -691,6 +750,14 @@ namespace AssortedCrazyThings
 			}
 		}
 
+		private void UpdateOutOfCombatTimer()
+		{
+			if (outOfCombatTimer > 0)
+			{
+				outOfCombatTimer--;
+			}
+		}
+
 		public void UpdateNearbyEnemies()
 		{
 			float distSQ = 600 * 600;
@@ -755,35 +822,24 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-			if (!Main.rand.NextBool(5)) return;
-			ApplyCandleDebuffs(target);
+			if (Main.rand.NextBool(5))
+			{
+				ApplyCandleDebuffs(target);
+			}
+
+			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
-		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
 		{
-			if (!Main.rand.NextBool(5)) return;
-			if (proj.minion && !Main.rand.NextBool(5)) return;
-			ApplyCandleDebuffs(target);
-		}
+			if (!proj.minion && Main.rand.NextBool(5) || proj.minion && Main.rand.NextBool(25))
+			{
+				ApplyCandleDebuffs(target);
+			}
 
-		public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
-		{
-			//ApplyCandleDebuffs(target);
-			AssPlayer assPlayer = target.GetModPlayer<AssPlayer>();
-			assPlayer.ResetEmpoweringTimer();
-
-			assPlayer.SpawnSoulTemp();
-		}
-
-		public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
-		{
-			//ApplyCandleDebuffs(target);
-			AssPlayer assPlayer = target.GetModPlayer<AssPlayer>();
-			assPlayer.ResetEmpoweringTimer();
-
-			assPlayer.SpawnSoulTemp();
+			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
 		public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
@@ -803,6 +859,12 @@ namespace AssortedCrazyThings
 			return base.PreKill(damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource);
 		}
 
+		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+		{
+			//Don't count as in combat after death, in case respawn timer is less than OutOfCombatTimeMax
+			outOfCombatTimer = 0;
+		}
+
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
 		{
 			DecreaseDroneShield(ref damage);
@@ -817,9 +879,10 @@ namespace AssortedCrazyThings
 
 		public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
 		{
+			//Gets called on all sides
 			ResetEmpoweringTimer();
 
-			SpawnSoulTemp();
+			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
 		public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
@@ -852,6 +915,13 @@ namespace AssortedCrazyThings
 			Empower();
 
 			UpdateSlainBossTimer();
+
+			UpdateOutOfCombatTimer();
+		}
+
+		public override void PostUpdateEquips()
+		{
+			SigilOfTheBeakSpawn();
 		}
 
 		public override void PreUpdate()

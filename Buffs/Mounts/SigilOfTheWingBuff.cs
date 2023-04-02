@@ -22,6 +22,7 @@ namespace AssortedCrazyThings.Buffs.Mounts
 
 		public override void Update(Player player, ref int buffIndex)
 		{
+			//This doesn't protect against spikes or similar environmental damage
 			player.immune = true;
 			player.immuneTime = 2;
 			player.immuneNoBlink = true;

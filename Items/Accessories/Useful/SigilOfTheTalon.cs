@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			player.GetModPlayer<AssPlayer>().sigilOfTheTalon = true;
 		}
 
-		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		public static void ModifyTooltip(Mod mod, List<TooltipLine> tooltips, string prefix = "")
 		{
 			int insertIndex = tooltips.FindLastIndex(l => l.Name.StartsWith("Tooltip"));
 			if (insertIndex == -1) insertIndex = tooltips.Count - 1;
@@ -41,8 +41,13 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			var mPlayer = player.GetModPlayer<AssPlayer>();
 			int damage = Math.Max(1, (int)(mPlayer.LastSelectedWeaponDamage * FirstDamageDropOff / 100f));
 
-			string text = $"Deals {FirstDamageDropOff}% of your last held weapon's damage ({damage})";
-			tooltips.Insert(insertIndex, new TooltipLine(Mod, "HookDamage", text));
+			string text = $"{prefix}Deals {FirstDamageDropOff}% of your last held weapon's damage (currently {damage})";
+			tooltips.Insert(insertIndex, new TooltipLine(mod, "HookDamage", text));
+		}
+
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			ModifyTooltip(Mod, tooltips);
 		}
 	}
 }
