@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Pets
 {
 	/// <summary>
-	/// localAI[1] freely available
+	/// ai0/1, localai0/1 used
 	/// </summary>
 	public abstract class BabySlimeBase : AssProjectile
 	{
@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 									 //AIType = ProjectileID.BabySlime;
 			Projectile.alpha = 50;
 
-			//set those in moresetdefaults in the projectile that inherits from this
+			//set those in SafeSetDefaults in the projectile that inherits from this
 			//projectile.width = 38;
 			//projectile.height = 40;
 
@@ -609,10 +609,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					}
 				}
 
+				int i = (int)Projectile.Center.X / 16;
+				int j = (int)Projectile.Center.Y / 16;
 				if (left | right)
 				{
-					int i = (int)Projectile.Center.X / 16;
-					int j = (int)Projectile.Center.Y / 16;
 					if (left)
 					{
 						i--;
@@ -622,7 +622,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 						i++;
 					}
 					i += (int)Projectile.velocity.X;
-					if (WorldGen.SolidTile(i, j))
+					if (Main.sectionManager.TileLoaded(i, j) && WorldGen.SolidTile(i, j))
 					{
 						flag4 = true;
 					}
@@ -632,7 +632,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					flag3 = true;
 				}
 				Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
-				if (Projectile.velocity.Y == 0f)
+
+				if (Main.sectionManager.TileLoaded(i, j) && Main.sectionManager.TileLoaded(i, j - 5) && Projectile.velocity.Y == 0f)
 				{
 					if (!flag3 && (Projectile.velocity.X < 0f || Projectile.velocity.X > 0f))
 					{
@@ -650,8 +651,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					}
 					if (flag4)
 					{
-						int i = (int)Projectile.Center.X / 16;
-						int j = (int)Projectile.Bottom.Y / 16 + 1;
+						i = (int)Projectile.Center.X / 16;
+						j = (int)Projectile.Bottom.Y / 16 + 1;
 						if (WorldGen.SolidTileAllowBottomSlope(i, j) || Main.tile[i, j].IsHalfBlock || Main.tile[i, j].Slope > 0)
 						{
 							try

@@ -33,24 +33,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			behindNPCs.Add(index);
 		}
 
-		private int PulsatingCounter
-		{
-			get
-			{
-				return (int)Projectile.localAI[1];
-			}
-			set
-			{
-				Projectile.localAI[1] = value;
-			}
-		}
+		private int pulsatingCounter;
 
 		private float PulsatingAlpha
 		{
 			get
 			{
 				//0.7f to 1f when full TimeLeft, drops down to 0.7f
-				return 0.7f + ((float)PulsatingCounter / PulsatingLimit) * ((float)Projectile.timeLeft / TimeLeft);
+				return 0.7f + ((float)pulsatingCounter / PulsatingLimit) * ((float)Projectile.timeLeft / TimeLeft);
 			}
 		}
 
@@ -73,6 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			Projectile.minion = true;
 			customMinionSlots = 0f;
 			Projectile.timeLeft = TimeLeft;
+			Projectile.hide = true;
 
 			DrawOriginOffsetY = 3;
 			DrawOffsetX = -4;
@@ -147,21 +138,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
 			if (Increment)
 			{
-				PulsatingCounter++;
-				if (PulsatingCounter >= PulsatingLimit) Increment = false;
+				pulsatingCounter++;
+				if (pulsatingCounter >= PulsatingLimit) Increment = false;
 			}
 			else
 			{
-				PulsatingCounter--;
-				if (PulsatingCounter <= 0) Increment = true;
+				pulsatingCounter--;
+				if (pulsatingCounter <= 0) Increment = true;
 			}
 
-			if (Projectile.frame > 1)
+			if (Projectile.frame >= Main.projFrames[Projectile.type])
 			{
 				Projectile.frame = 1;
 			}
 
-			if (Projectile.ai[0] != 0)
+			if (InAir)
 			{
 				int dustType = Main.rand.Next(4);
 				if (dustType == 0)
@@ -181,7 +172,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 					return;
 				}
 
-				if (Main.rand.NextFloat() < Projectile.velocity.Length() / 7f)
+				if (Main.rand.NextFloat() < Projectile.velocity.LengthSquared() / (7 * 7))
 				{
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, dustType, 0f, 0f, 100, default(Color), 1.25f);
 					dust.velocity *= 0.1f;
