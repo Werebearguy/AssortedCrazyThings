@@ -832,7 +832,7 @@ namespace AssortedCrazyThings
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
-		public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
 			if (!proj.minion && Main.rand.NextBool(5) || proj.minion && Main.rand.NextBool(25))
 			{

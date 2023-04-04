@@ -195,10 +195,13 @@ namespace AssortedCrazyThings.Items.Weapons
 				}
 			}
 
-			Timer -= 0.33f; //Decrease only 33% speed
-			if (Timer <= 0)
+			if (Timer > 0)
 			{
-				ResetFX();
+				Timer -= 0.33f; //Decrease only 33% speed
+				if (Timer <= 0)
+				{
+					ResetTimer();
+				}
 			}
 		}
 	}

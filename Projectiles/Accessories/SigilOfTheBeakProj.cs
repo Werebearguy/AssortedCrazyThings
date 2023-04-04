@@ -162,7 +162,15 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 
 		public override void Kill(int timeLeft)
 		{
-			SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
+			if (timeLeft <= 0)
+			{
+				SoundEngine.PlaySound(SoundID.Item8.WithVolumeScale(0.7f).WithPitchOffset(-0.2f), Projectile.Center);
+			}
+			else
+			{
+				SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
+			}
+
 			for (int i = 0; i < 20; i++)
 			{
 				int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 135, 0f, 0f, 100);
