@@ -37,6 +37,12 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			CanHarvesterSpawnNaturally = true;
 		}
 
+		public override void PreWorldGen()
+		{
+			CheckedInteractableCage = false;
+			CanHarvesterSpawnNaturally = true;
+		}
+
 		public override void SaveWorldData(TagCompound tag)
 		{
 			tag.Add("CanHarvesterSpawnNaturally", (bool)CanHarvesterSpawnNaturally);
@@ -154,7 +160,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 			int startX = 0;
 			int endX = Main.maxTilesX / 2 + 1;
-			if (WorldGen.dungeonX > endX)
+			if (Main.dungeonX > endX)
 			{
 				//For performance reasons, check only half the world, don't rely on WorldGen.dMinX etc
 				startX = endX;
