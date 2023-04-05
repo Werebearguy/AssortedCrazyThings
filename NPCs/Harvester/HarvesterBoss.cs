@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public static readonly string name = "Soul Harvester";
 		public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
-		public const int SpawnedSoulCount = 15;
+		public const int SpawnedSoulCount = 25;
 		public static Color deathColor = new Color(35, 200, 254);
 		public const int FrameCountHorizontal = 4;
 		public const int FrameCountVertical = 5;

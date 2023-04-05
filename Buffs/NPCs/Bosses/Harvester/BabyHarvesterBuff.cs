@@ -67,7 +67,13 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 			var numSouls = babyHarvester.SoulsEaten;
 			if (numSouls > 0)
 			{
-				tip += $"\nThe bird has absorbed {babyHarvester.SoulsEaten} souls";
+				string amount = "" + babyHarvester.SoulsEaten;
+				if (BabyHarvesterProj.TierToSoulsEaten.TryGetValue(BabyHarvesterProj.MaxTier, out var v))
+				{
+					amount += "/" + v;
+				}
+
+				tip += $"\nThe bird has absorbed {amount} souls";
 			}
 		}
 
