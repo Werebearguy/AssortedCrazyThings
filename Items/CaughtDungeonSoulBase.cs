@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
 {
@@ -16,13 +18,33 @@ namespace AssortedCrazyThings.Items
 		private int frame2Counter;
 		private int frame2;
 
-		//public override bool CloneNewInstances
-		//{
-		//    get
-		//    {
-		//        return true;
-		//    }
-		//}
+		private static bool loaded = false;
+
+		public override void Load()
+		{
+			if (!loaded)
+			{
+				On.Terraria.Item.CanCombineStackInWorld += Item_CanCombineStackInWorld;
+				loaded = true;
+			}
+		}
+
+		private static bool Item_CanCombineStackInWorld(On.Terraria.Item.orig_CanCombineStackInWorld orig, Item self)
+		{
+			var ret = orig(self);
+
+			if (self.type >= ItemID.Count && self.type == ModContent.ItemType<CaughtDungeonSoulFreed>())
+			{
+				return false;
+			}
+
+			return ret;
+		}
+
+		public override void Unload()
+		{
+			loaded = false;
+		}
 
 		public sealed override void SetDefaults()
 		{

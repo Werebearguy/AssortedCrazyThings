@@ -383,39 +383,6 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			return Color.Lerp(drawColor, Color.White, 0.4f).MultiplyRGBA(overlayColor) * NPC.Opacity;
 		}
 
-		/// <summary>
-		/// Spawns souls multiplied by the number of people present during the fight
-		/// </summary>
-		private void SpawnSouls(int npcTypeNew)
-		{
-			int count = Array.FindAll(NPC.playerInteraction, interacted => interacted).Length;
-
-			for (int i = 0; i < count; i++)
-			{
-				Vector2 randVector = Vector2.One;
-				float randFactor;
-				int index;
-
-				for (int j = 0; j < SpawnedSoulCount; j++) //spawn souls when dies
-				{
-					index = NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, npcTypeNew);
-					if (index < Main.maxNPCs && Main.npc[index] is NPC soul)
-					{
-						soul.SetDefaults(npcTypeNew);
-						randVector = randVector.RotatedByRandom(MathHelper.ToRadians(359f));
-						randFactor = Main.rand.NextFloat(2f, 8f);
-						//Main.npc[index].timeLeft = 3600;
-						soul.velocity = randVector * randFactor;
-						soul.ai[2] = Main.rand.Next(1, DungeonSoulBase.offsetYPeriod); //doesnt get synced properly to clients idk
-						if (Main.netMode == NetmodeID.Server)
-						{
-							NetMessage.SendData(MessageID.SyncNPC, number: index);
-						}
-					}
-				}
-			}
-		}
-
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
@@ -431,9 +398,18 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			noHasItemWithBankRule.OnSuccess(ItemDropRule.Common(idolOfDecay));
 			npcLoot.Add(noHasItemWithBankRule);
 
-			LeadingConditionRule neverDropsRule = new LeadingConditionRule(new Conditions.NeverTrue());
-			neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CaughtDungeonSoulFreed>(), 1, SpawnedSoulCount, SpawnedSoulCount));
-			npcLoot.Add(neverDropsRule);
+			//Souls are NOT spawned in the bag
+			int itemType = ModContent.ItemType<CaughtDungeonSoulFreed>();
+			var parameters = new DropOneByOne.Parameters()
+			{
+				ChanceNumerator = 1,
+				ChanceDenominator = 1,
+				MinimumStackPerChunkBase = 1,
+				MaximumStackPerChunkBase = 1,
+				MinimumItemDropsCount = SpawnedSoulCount,
+				MaximumItemDropsCount = SpawnedSoulCount,
+			};
+			npcLoot.Add(new DropOneByOne(itemType, parameters));
 
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<HarvesterTreasureBag>()));
 
@@ -466,16 +442,8 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 			AssWorld.Message(deathMessage, deathColor);
 
-			int npcTypeOld = ModContent.NPCType<DungeonSoul>();
-			int npcTypeNew = ModContent.NPCType<DungeonSoulFreed>();  //version that doesn't get eaten by harvesters
-
-			int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
-			int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
-
 			//"convert" NPC souls
-			ConvertSouls(npcTypeOld, npcTypeNew, itemTypeOld, itemTypeNew);
-
-			SpawnSouls(npcTypeNew);
+			ConvertSouls();
 		}
 
 		public override bool CheckDead()
@@ -518,8 +486,13 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			return base.CheckDead();
 		}
 
-		private void ConvertSouls(int npcTypeOld, int npcTypeNew, int itemTypeOld, int itemTypeNew)
+		private void ConvertSouls()
 		{
+			int npcTypeOld = ModContent.NPCType<DungeonSoul>();
+			int npcTypeNew = ModContent.NPCType<DungeonSoulFreed>();  //version that doesn't get eaten by harvesters
+
+			int itemTypeOld = ModContent.ItemType<CaughtDungeonSoul>();
+			int itemTypeNew = ModContent.ItemType<CaughtDungeonSoulFreed>(); //version that is used in crafting
 			for (short j = 0; j < Main.maxNPCs; j++)
 			{
 				NPC other = Main.npc[j];
