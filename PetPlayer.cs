@@ -25,6 +25,8 @@ namespace AssortedCrazyThings
 	{
 		private bool enteredWorld = false;
 
+		public int numSlimePets = 0;
+
 		private const int altTextureCountLoaded = 26; //IMPORTANT TO INCREMENT THIS EACH TIME A NEW ALT TEXTURE IS ADDED 
 
 		//Alt texture types
@@ -632,6 +634,8 @@ namespace AssortedCrazyThings
 
 			if (ContentConfig.Instance.CuteSlimes)
 			{
+				numSlimePets = 0;
+
 				ValidateSlimePetIndex();
 
 				slimeHugsUpdatedThisTick = false;

@@ -79,6 +79,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 		public int oldHugType = -1;
 		public int hugType = -1;
 
+		public int petSlot = 0;
+
 		public static Dictionary<int, Asset<Texture2D>> SheetAssets { get; private set; }
 		public static Dictionary<int, Asset<Texture2D>> SheetNoHairAssets { get; private set; }
 
@@ -220,7 +222,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			Projectile.width = Projwidth;
 			Projectile.height = Projheight;
 			AIType = clonedAIType;
-			//TODO revisit offsets
 			DrawOffsetX = -18;
 			DrawOriginOffsetY = -16;
 
@@ -247,6 +248,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			Player player = Projectile.GetOwner();
 			player.lizard = false;
 
+
 			ref bool petBool = ref PetBool(player);
 			if (player.dead)
 			{
@@ -257,6 +259,8 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				Projectile.timeLeft = 2;
 			}
 			PetPlayer petPlayer = player.GetModPlayer<PetPlayer>();
+			petSlot = petPlayer.numSlimePets; //TODO fix cute slime overlap eventually using this (requires custom AI)
+			petPlayer.numSlimePets++;
 
 			if (SlimePets.TryGetPetFromProj(Projectile.type, out _))
 			{

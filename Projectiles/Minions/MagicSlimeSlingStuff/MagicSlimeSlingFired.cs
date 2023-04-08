@@ -97,8 +97,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 				if (sum < (2 + player.maxMinions))
 				{
 					int type = MagicSlimeSling.Types[ColorType];
-					Vector2 velo = new Vector2(Main.rand.NextFloat(-2, 2), Main.rand.NextFloat(-4, -2));
-					velo += -Projectile.oldVelocity * 0.4f;
+					Vector2 velo = -Vector2.UnitY * Main.rand.NextFloat(2, 4);
 					int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Top, velo, type, Projectile.damage, Projectile.knockBack, Main.myPlayer);
 					Main.projectile[index].originalDamage = Projectile.originalDamage;
 				}

@@ -51,6 +51,7 @@ namespace AssortedCrazyThings.NPCs
 				return false;
 			}
 
+			//TODO this and similar: Look for proj.friendly aswell?
 			//This logic is distinct from vanilla, as we return true and not null
 			return true;
 		}

@@ -1,5 +1,5 @@
+using AssortedCrazyThings.Base;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Weapons
@@ -7,6 +7,8 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	[Content(ContentType.Weapons)]
 	public class PlagueOfToadsCloud : AssProjectile
 	{
+		public const int Lifetime = 18000;
+
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plague of Toads Cloud");
@@ -21,22 +23,14 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			Projectile.height = 28;
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = -1;
+			Projectile.timeLeft = Lifetime;
 		}
 
 		public override void AI()
 		{
-			Projectile.frameCounter++;
-			if (Projectile.frameCounter > 8)
-			{
-				Projectile.frameCounter = 0;
-				Projectile.frame++;
-				if (Projectile.frame > 5)
-				{
-					Projectile.frame = 0;
-				}
-			}
+			Projectile.LoopAnimation(6);
 			Projectile.ai[1] += 1f;
-			if (Projectile.ai[1] >= 7200f)
+			if (Projectile.ai[1] >= Lifetime)
 			{
 				Projectile.alpha += 5;
 				if (Projectile.alpha > 255)
@@ -72,7 +66,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 				{
 					//check for other plague of toads clouds
 					Projectile other = Main.projectile[i];
-					if (other.active && other.owner == Projectile.owner && other.type == Projectile.type && other.ai[1] < 3600f)
+					if (other.active && other.owner == Projectile.owner && other.type == Projectile.type && other.ai[1] < Lifetime)
 					{
 						cloudCount++;
 						if (other.ai[1] > cloudAi1)
@@ -86,7 +80,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 				{
 					Projectile projectile = Main.projectile[cloudIndex];
 					projectile.netUpdate = true;
-					projectile.ai[1] = 36000f;
+					projectile.ai[1] = Lifetime;
 				}
 			}
 		}
