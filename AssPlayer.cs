@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Handlers.OutOfCombatHandler;
 using AssortedCrazyThings.Buffs.Mounts;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
@@ -833,6 +834,7 @@ namespace AssortedCrazyThings
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
+
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
 		{
 			if (!proj.minion && Main.rand.NextBool(5) || proj.minion && Main.rand.NextBool(25))
@@ -840,7 +842,10 @@ namespace AssortedCrazyThings
 				ApplyCandleDebuffs(target);
 			}
 
-			outOfCombatTimer = OutOfCombatTimeMax;
+			if (!OutOfCombatSystem.IgnoredFriendlyProj.Contains(proj.type))
+			{
+				outOfCombatTimer = OutOfCombatTimeMax;
+			}
 		}
 
 		public override void ModifyWeaponDamage(Item item, ref StatModifier damage)

@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Handlers.OutOfCombatHandler;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -27,6 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 			DisplayName.SetDefault("Fractured Soul");
 
 			Main.projFrames[Projectile.type] = 4;
+			OutOfCombatSystem.IgnoredFriendlyProj.Add(Projectile.type);
 		}
 
 		public override void SetDefaults()
