@@ -130,19 +130,27 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		//Transformations are indexed by the "from" tier in "from -> to"
 		public static Dictionary<int, TierData> TierDatas;
-		private static Dictionary<int, int> TierToSoulsEaten;
-		private static Dictionary<int, int> SoulsEatenToTier;
+		public static Dictionary<int, int> TierToSoulsEaten;
+		public static Dictionary<int, int> SoulsEatenToTier;
 
-		public static int Spawn(Player player)
+		public static int Spawn(Player player, Vector2? posOverride = null)
 		{
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
 				return Main.maxProjectiles;
 			}
 
-			Vector2 position = player.Center;
-			position.X += Main.rand.NextFloat(-1980, 1980) / 2;
-			position.Y += 1000;
+			Vector2 position;
+			if (posOverride == null)
+			{
+				position = player.Center;
+				position.X += Main.rand.NextFloat(-1980, 1980) / 2;
+				position.Y += 1000;
+			}
+			else
+			{
+				position = posOverride.Value;
+			}
 
 			return Projectile.NewProjectile(player.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<BabyHarvesterProj>(), 0, 0, Main.myPlayer);
 		}
@@ -185,13 +193,13 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 				[2] = new TierData
 				{
 					FrameSpeed = 4,
-					SoulsToNextTier = 5,
+					SoulsToNextTier = 10,
 					TransformationFrameCount = 9,
 				},
 				[3] = new TierData
 				{
 					FrameSpeed = 4,
-					SoulsToNextTier = 10,
+					SoulsToNextTier = 25,
 					TransformationFrameCount = 10,
 				},
 				[4] = new TierData //Dummy tier, used to detect last tier switch into main form
@@ -384,7 +392,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 				Vector2 dustCenter = Projectile.Center + new Vector2(offset.X * i, offset.Y).RotatedBy(Projectile.rotation);
 				Rectangle dustBox = Utils.CenteredRectangle(dustCenter, size);
 
-				if (Main.rand.NextFloat() < 0.5f * (float)SoulsEaten / maxSoulsEaten)
+				if (Main.rand.NextFloat() < 0.8f * (float)SoulsEaten / maxSoulsEaten)
 				{
 					Dust dust = Dust.NewDustDirect(dustBox.TopLeft(), dustBox.Width, dustBox.Height, 135, 0f, 0f, 0, default(Color), 1.5f);
 					dust.noGravity = true;

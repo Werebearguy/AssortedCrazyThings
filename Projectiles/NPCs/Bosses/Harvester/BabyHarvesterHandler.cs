@@ -2,11 +2,14 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.Harvester;
+using AssortedCrazyThings.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 {
@@ -16,8 +19,54 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 		public static int WhoAmICache { get; private set; } = Main.maxProjectiles;
 		public static bool HasWhoAmICache => WhoAmICache >= 0 && WhoAmICache < Main.maxProjectiles;
 
+		//Set to false when there was a proper harvester room generated with all contents intact
+		//Set to true once it spawned the proper way in case the player cancels the encounter so it can spawn naturally again
+		public static bool CanHarvesterSpawnNaturally { get; set; } = true;
+
+		private static bool CheckedInteractableCage { get; set; } = false;
+
+		public override void OnWorldLoad()
+		{
+			CheckedInteractableCage = false;
+			CanHarvesterSpawnNaturally = true;
+		}
+
+		public override void OnWorldUnload()
+		{
+			CheckedInteractableCage = false;
+			CanHarvesterSpawnNaturally = true;
+		}
+
+		public override void PreWorldGen()
+		{
+			CheckedInteractableCage = false;
+			CanHarvesterSpawnNaturally = true;
+		}
+
+		public override void SaveWorldData(TagCompound tag)
+		{
+			tag.Add("CanHarvesterSpawnNaturally", (bool)CanHarvesterSpawnNaturally);
+		}
+
+		public override void LoadWorldData(TagCompound tag)
+		{
+			CanHarvesterSpawnNaturally = tag.GetBool("CanHarvesterSpawnNaturally");
+		}
+
+		public override void NetSend(BinaryWriter writer)
+		{
+			writer.Write((bool)CanHarvesterSpawnNaturally);
+		}
+
+		public override void NetReceive(BinaryReader reader)
+		{
+			CanHarvesterSpawnNaturally = reader.ReadBoolean();
+		}
+
 		public override void PostUpdateProjectiles()
 		{
+			CheckInteractableCageToSetNaturalSpawnFlag();
+
 			TryFindBabyHarvester(out _, out int whoAmICache, fromCache: false);
 			WhoAmICache = whoAmICache;
 
@@ -90,6 +139,63 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			}
 		}
 
+		private static void CheckInteractableCageToSetNaturalSpawnFlag()
+		{
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return;
+			}
+
+			if (CanHarvesterSpawnNaturally)
+			{
+				//No point checking if it can spawn naturally already
+				return;
+			}
+
+			if (CheckedInteractableCage)
+			{
+				return;
+			}
+			CheckedInteractableCage = true;
+
+			int startX = 0;
+			int endX = Main.maxTilesX / 2 + 1;
+			if (Main.dungeonX > endX)
+			{
+				//For performance reasons, check only half the world, don't rely on WorldGen.dMinX etc
+				startX = endX;
+				endX = Main.maxTilesX;
+			}
+
+			static bool InteractableCageExists(int startX, int endX)
+			{
+				for (int i = startX; i < endX; i++)
+				{
+					for (int j = 0; j < Main.maxTilesY; j++)
+					{
+						Tile tile = Framing.GetTileSafely(i, j);
+						if (tile.HasTile && Main.wallDungeon[tile.WallType] && AntiqueCageTileBase.IsTileInteractable(i, j))
+						{
+							return true;
+						}
+					}
+				}
+
+				return false;
+			}
+
+			if (!InteractableCageExists(startX, endX))
+			{
+				//If it couldn't spawn before, but no tile was found: fall back to natural spawning
+				CanHarvesterSpawnNaturally = true;
+
+				if (Main.netMode == NetmodeID.Server)
+				{
+					NetMessage.SendData(MessageID.WorldData);
+				}
+			}
+		}
+
 		public static bool TryFindBabyHarvester(out Projectile proj, out int index, bool fromCache = true)
 		{
 			proj = null;
@@ -139,7 +245,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			return player.GetModPlayer<BabyHarvesterPlayer>().IsTurningInvalid(out timeLeft);
 		}
 
-		private static void TrySpawnBabyHarvester()
+		public static void TrySpawnBabyHarvester()
 		{
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
@@ -153,7 +259,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 				{
 					Projectile proj = Main.projectile[i];
 
-					if (proj.active && ValidProjectile(proj) && i != WhoAmICache)
+					if (proj.active && i != WhoAmICache && ValidProjectile(proj))
 					{
 						//AssUtils.Print("deleted a duplicate");
 						proj.Kill();
@@ -164,6 +270,12 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 				return;
 			}
 
+			if (!CanHarvesterSpawnNaturally)
+			{
+				//Do not spawn unless otherwise specified
+				return;
+			}
+
 			if (!NPC.downedBoss3 || AssWorld.downedHarvester || NPC.AnyNPCs(AssortedCrazyThings.harvester))
 			{
 				//Do not spawn if skele isn't slain yet or harvester is already slain or alive
@@ -171,18 +283,33 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			}
 
 			//No alive baby harvester, spawn
+			ForceSpawnBabyHarvester("You hear a faint cawing from the dungeon.");
+		}
+
+		public static void ForceSpawnBabyHarvester(string message, Vector2? posOverride = null, Player playerOverride = null)
+		{
+			if (playerOverride != null)
+			{
+				Spawn(message, playerOverride, posOverride);
+				return;
+			}
+
 			for (int i = 0; i < Main.maxPlayers; i++)
 			{
 				Player player = Main.player[i];
 
 				if (player.active && !player.dead && ValidPlayer(player))
 				{
-					//AssUtils.Print(Main.time + " spawning harvester");
-					BabyHarvesterProj.Spawn(player);
-					AssWorld.Message("You hear a faint cawing from the dungeon.", HarvesterBoss.deathColor);
-
+					Spawn(message, player);
 					break;
 				}
+			}
+
+			static void Spawn(string message, Player player, Vector2? posOverride = null)
+			{
+				//AssUtils.Print(Main.time + " spawning harvester");
+				BabyHarvesterProj.Spawn(player, posOverride);
+				AssWorld.Message(message, HarvesterBoss.deathColor);
 			}
 		}
 

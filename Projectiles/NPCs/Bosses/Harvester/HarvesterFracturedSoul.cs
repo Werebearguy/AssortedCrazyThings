@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			Projectile.spriteDirection = Projectile.direction = (Projectile.velocity.X > 0).ToDirectionInt();
 
 			Projectile.ai[1] += 1f;
-			if (Projectile.ai[1] < 110f && Projectile.ai[1] > 30f)
+			if (Projectile.ai[1] > 30f && Projectile.ai[1] < 110f)
 			{
 				float speed = Projectile.velocity.Length();
 				Vector2 toPlayer = target.Center - Projectile.Center;

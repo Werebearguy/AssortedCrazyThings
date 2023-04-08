@@ -22,6 +22,12 @@ namespace AssortedCrazyThings
 	}
 
 	[Autoload(false)]
+	public abstract class AssMount : ModMount
+	{
+
+	}
+
+	[Autoload(false)]
 	public abstract class AssNPC : ModNPC
 	{
 
@@ -79,6 +85,12 @@ namespace AssortedCrazyThings
 
 	[Autoload(false)]
 	public abstract class AssGlobalTile : GlobalTile
+	{
+
+	}
+
+	[Autoload(false)]
+	public abstract class AssGlobalWall : GlobalWall
 	{
 
 	}

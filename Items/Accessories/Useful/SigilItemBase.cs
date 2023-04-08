@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-	//TODO extend functionality regarding cooldown tooltips
+	//TODO 1.4.4 sigils transform into eachother in shimmer
 	[Content(ContentType.Bosses)]
 	public abstract class SigilItemBase : AccessoryBase
 	{
