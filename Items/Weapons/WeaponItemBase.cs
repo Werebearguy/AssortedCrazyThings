@@ -1,8 +1,3 @@
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-
 namespace AssortedCrazyThings.Items.Weapons
 {
 	[Content(ContentType.Weapons)]

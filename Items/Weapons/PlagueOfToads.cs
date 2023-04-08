@@ -17,22 +17,6 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			//item.mana = 10;
-			//item.damage = 36;
-			//item.useStyle = 1;
-			//item.shootSpeed = 16f;
-			//item.shoot = ModContent.ProjectileType<PlagueOfToadsFired>();
-			//item.width = 26;
-			//item.height = 28;
-			//item.UseSound = SoundID.Item66;
-			//item.useAnimation = 22;
-			//item.useTime = 22;
-			//item.rare = -11;
-			//item.noMelee = true;
-			//item.knockback = 0f;
-			//item.value = Item.sellPrice(gold: 3, silver: 50);
-			//item.magic = true;
-
 			Item.mana = 20;
 			Item.damage = 8;
 			Item.useStyle = ItemUseStyleID.Swing;
@@ -52,7 +36,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y);
+			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, Main.MouseWorld.X, Main.MouseWorld.Y); 
 			return false;
 		}
 
