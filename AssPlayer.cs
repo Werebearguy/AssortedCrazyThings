@@ -35,6 +35,7 @@ namespace AssortedCrazyThings
 		public bool everburningCursedCandleBuff = false;
 		public bool everfrozenCandleBuff = false;
 		public bool everburningShadowflameCandleBuff = false;
+		public bool AnyCandleBuff => everburningCandleBuff || everburningCursedCandleBuff || everfrozenCandleBuff || everburningShadowflameCandleBuff;
 
 		public const int sigilOfTheBeakTimerMax = 120;
 		public int sigilOfTheBeakTimer = 0;
@@ -586,10 +587,10 @@ namespace AssortedCrazyThings
 		{
 			if (victim is NPC npc)
 			{
-				if (everburningCandleBuff) npc.AddBuff(BuffID.OnFire, 120);
+				if (everburningCandleBuff) npc.AddBuff(BuffID.OnFire3, 120);
 				if (everburningCursedCandleBuff) npc.AddBuff(BuffID.CursedInferno, 120);
-				if (everfrozenCandleBuff) npc.AddBuff(BuffID.Frostburn, 120);
-				if (everburningShadowflameCandleBuff) npc.AddBuff(BuffID.ShadowFlame, 60);
+				if (everfrozenCandleBuff) npc.AddBuff(BuffID.Frostburn2, 120);
+				if (everburningShadowflameCandleBuff) npc.AddBuff(BuffID.ShadowFlame, 120);
 			}
 			//else if (victim is Player)
 		}
