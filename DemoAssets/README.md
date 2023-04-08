@@ -1,0 +1,1 @@
+Assets used for the workshop description
