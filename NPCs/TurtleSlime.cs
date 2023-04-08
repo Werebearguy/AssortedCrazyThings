@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
-			NPC.catchItem = (short)ModContent.ItemType<TurtleSlimeItem>();
+			NPC.catchItem = ModContent.ItemType<TurtleSlimeItem>();
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

@@ -154,7 +154,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 		public override void SafeSetDefaults()
 		{
 			frameSpeed = 6;
-			NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoul>();
+			NPC.catchItem = ModContent.ItemType<CaughtDungeonSoul>();
 
 			fadeAwayMax = 240;
 		}
@@ -166,7 +166,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 		public override void SafeSetDefaults()
 		{
 			frameSpeed = 4;
-			NPC.catchItem = (short)ModContent.ItemType<CaughtDungeonSoulFreed>();
+			NPC.catchItem = ModContent.ItemType<CaughtDungeonSoulFreed>();
 
 			NPC.timeLeft = 3600;
 			fadeAwayMax = 3600;

@@ -54,7 +54,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
 			NPC.alpha = 75;
-			NPC.catchItem = (short)CatchItem;
+			NPC.catchItem = CatchItem;
 
 			SafeSetDefaults();
 

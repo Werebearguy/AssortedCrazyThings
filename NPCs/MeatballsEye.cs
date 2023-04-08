@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			base.SetDefaults();
 
-			NPC.catchItem = (short)ModContent.ItemType<Items.MeatballsEyeItem>();
+			NPC.catchItem = ModContent.ItemType<Items.MeatballsEyeItem>();
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

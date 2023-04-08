@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.aiStyle = 14;
 			NPC.noGravity = true;
 			AIType = NPCID.GiantBat;
-			NPC.catchItem = (short)ModContent.ItemType<AnimatedTomeItem>();
+			NPC.catchItem = ModContent.ItemType<AnimatedTomeItem>();
 		}
 
 		public override void FindFrame(int frameHeight)

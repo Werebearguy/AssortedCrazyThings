@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.alpha = 175;
 			NPC.color = new Color(213, 196, 197, 100);
-			NPC.catchItem = (short)ModContent.ItemType<FairySlimeItem>();
+			NPC.catchItem = ModContent.ItemType<FairySlimeItem>();
 		}
 
 		public override bool? CanBeHitByItem(Player player, Item item)

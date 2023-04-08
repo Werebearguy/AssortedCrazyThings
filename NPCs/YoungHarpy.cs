@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.noGravity = true;
 			AIType = NPCID.FlyingSnake;
 			AnimationType = NPCID.FlyingSnake;
-			NPC.catchItem = (short)ModContent.ItemType<YoungHarpyItem>();
+			NPC.catchItem = ModContent.ItemType<YoungHarpyItem>();
 		}
 
 		public override bool? CanBeHitByItem(Player player, Item item)

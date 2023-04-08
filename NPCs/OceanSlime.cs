@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
-			NPC.catchItem = (short)ModContent.ItemType<OceanSlimeItem>();
+			NPC.catchItem = ModContent.ItemType<OceanSlimeItem>();
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

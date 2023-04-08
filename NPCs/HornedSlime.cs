@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.NPCs
 			AnimationType = NPCID.ToxicSludge;
 			NPC.alpha = 175;
 			NPC.color = new Color(240, 54, 115, 100);
-			NPC.catchItem = (short)ModContent.ItemType<HornedSlimeItem>();
+			NPC.catchItem = ModContent.ItemType<HornedSlimeItem>();
 			NPC.lavaImmune = true;
 		}
 
