@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Items.Consumables
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
 			itemLoot.Add(ItemDropRule.Common(ItemID.Bone, 1, 40, 60));
-			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>(), 1));
+			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesiccatedLeather>(), 2));
 			itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulHarvesterMask>(), 7));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(AssortedCrazyThings.harvester));
 		}
