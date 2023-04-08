@@ -1,24 +1,54 @@
-[b]Welcome to Assorted Crazy Things![/b]
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Welcome%20to%20ACT.png[/img][/center]
 
-Assorted Crazy Things (or [b]ACT[/b] for short) is a mod that adds... an assortment of crazy things! We've got a lot of content, most of which is incredibly unobtrusive to the game. Care has been taken to make sure that sprites, coding, and content are all satisfying, and we absolutely want to keep everything running smoothly. Our mod contains pets, fun weapons, an armor set, one boss, a bunch of accessories, and a few mechanics that will surprise you.
+Assorted Crazy Things (or [b]ACT[/b] for short) is a mod that adds… an assortment of crazy things! We've got a lot of content, most of which is incredibly unobtrusive to the game. Care has been taken to make sure that sprites, coding, and content are all satisfying, and we absolutely want to keep everything running smoothly. Our mod contains pets, fun weapons, an armor set, one boss, a bunch of accessories, and a few mechanics that will surprise you.
 
-Likewise, we have two configurations; one for client, and the other for server. We made sure it's modular so that if you don't like one of the things added by the mod, you can simply turn it off! We both understand that the contents of the mod may not be to everyone's taste, and we made sure that you have the option to exclude it if you want other parts of the mod. Be sure to check Workshop -> Manage Mods -> Gear icon next to ACT to check the toggles, as some of the content is disabled by default!
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Friendly%20Faces.png[/img][/center]
+
+ACT has quite a selection of pets to choose from, ranging from humble slimes to endearing miniature enemies. Spread throughout the game's various stages, you'll find no shortage of colorful and lively pets to accompany you on your adventures. Some pets come from enemy drops, some are sold by the Traveling merchant, and some you can catch in the wild with a net or a fishing rod. 
+
+Some pets even have a special feature where they can be customized. You can find more information regarding this feature on our [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Items;-Pet-Vanity]Pet Vanity[/url] wiki page.
+
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Costume%20Suitcase.gif[/img][/center]
+
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Fun%20Equipment.png[/img][/center]
+
+Any Terrarian knows that to survive in a harsh environment, you need to be armed to the teeth and look stylish while doing so. We have a plethora of weapons, equipment, and stylish accessories to cover you on all fronts. Carry a balloon made of cobblestone into battle, or use a slingshot to summon tiny slimes that fight for you. Wear armor made for a summoner and slam your face into enemies to deal damage, and use an assortment of candles to burn your foes with pretty colors. Struggling against an overwhelming opponent, and need that little bit of help? You'll receive consolation prizes that weaken a boss for you so that you can have a slightly easier time. There's bound to be something to catch your fancy, or at least keep you alive for just a little bit longer. 
+
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Fearsome%20Foes.png[/img][/center]
+
+While the main focus of the mod is to provide an assortment of crazy things, that doesn't mean we're slacking on including hostile forces! We've included several enemies that can seamlessly blend in with their environments, as well as some outstanding creatures that demand your immediate attention. Though this enemy count is not high, they still make their presence known one way or another while not being so common as to drown out other spawns. We've taken great care to make sure that our enemies are polite enough to let other mobs spawn just as often. Who's to say bad guys can't be polite?
+
+However, not all enemies are kind. Upon defeating Skeletron, your journey into the dungeon will be met with a peculiar room with a locked chest and a cage with an obscured figure. Find a way to open the secrets of this room, and experience a unique adventure in the dungeon with an unlikely and tentatitve companion.
+
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Baby%20Harvester.png[/img][/center]
+
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Highly%20Configurable.png[/img][/center]
+
+The contents of our mod are highly modular. We have two configuration files, accessible in-game via the gear icon next to our mod when managing your mods in the Workshop -> Manage Mods menu. There are quite a few options, some of which have text on hover that will further explain what is removed if the options are toggled. There is quite a bit of content in this mod, and we recognize that some of the contents may not be interesting to everyone. So, we included these configurations so that you can pick and choose what you’d like from our mod with ease. Some features are disabled by default, so be sure to take a look at the configuration to customize your experience.
+
+[center][img]https://raw.githubusercontent.com/Werebearguy/AssortedCrazyThings/master/DemoAssets/Final%20Notes.png[/img][/center]
 
 Hopefully, you will find that the content of this mod livens up your world without intruding on vanilla gameplay or modded gameplay. Consider Assorted Crazy Things to be a supplementary mod which subtly adds a bit more to the world, rather than a mod that makes its presence known with a bang. As we have [b]a lot[/b] of content, please refer to our wiki to see all that we currently offer.
 
-New in version v1.4.1, we've now included cross-mod compatibility with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]"The Amulet of Many Minions"[/url] mod! With both mods enabled, you will be able to convert most pets found in Assorted Crazy Things into minions. With over 60 pets available, the number of options you have for combat pets will drastically increase. For more detailed information, including what each pet does when converted, please see our wiki page [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Cross-Mod-Content#the-amulet-of-many-minions]here[/url].
-[hr][/hr]
 Mod Contents:
 [list]
-    [*]11 Tiles
+    [*]15 Tiles
     [*]51 NPCs, including one boss
-    [*]277 items, including pets, accessories, armor, and more
-    [*]Cross-mod content (The Amulet of Many Minions)
+    [*]221 items, including pets, accessories, armor, and more
+    [*]Cross-mod content with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]”The Amulet of Many Minions”[/url]
     [*]More things to come!
 [/list]
 
-[url=https://github.com/Werebearguy/AssortedCrazyThings/wiki]Wiki, Changelogs & Source Code[/url]
+Cross-Mod Compatibility:
+[list]
+    [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]”The Amulet of Many Minions”[/url] : 62 of our vanity pets can be turned into minions if this mod is enabled! For more detailed information, including what each pet does when converted, please see our wiki page [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Cross-Mod-Content#the-amulet-of-many-minions]here[/url].
+[/list]
 
-[url=https://forums.terraria.org/index.php?threads/.74330/]Terraria Community Forums homepage[/url]
-[hr][/hr]
+Other Links:
+[list]
+    [*][url=https://github.com/Werebearguy/AssortedCrazyThings/wiki]Wiki, Changelogs & Source Code[/url]
+    [*][url=https://forums.terraria.org/index.php?threads/.74330/]Terraria Community Forums homepage[/url]
+[/list]
+
+
 If you happen to come across a problem with the mod, please report it on our Terraria Community Forums homepage or on the Steam Workshop page in the appropriate discussion page. 
