@@ -19,6 +19,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 		{
 			Projectile.tileCollide = false;
 			Projectile.ignoreWater = true;
+			Projectile.netImportant = true;
 			Projectile.width = 54;
 			Projectile.height = 28;
 			Projectile.aiStyle = -1;
