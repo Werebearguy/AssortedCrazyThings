@@ -46,14 +46,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
 		{
-			if (!projectile.GetOwner().CanNPCBeHitByPlayerOrPlayerProjectile(NPC, projectile))
-			{
-				return false;
-			}
-
-			//TODO this and similar: Look for proj.friendly aswell?
-			//This logic is distinct from vanilla, as we return true and not null
-			return true;
+			return projectile.CanBeHitByProjectileCritterLike(NPC);
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

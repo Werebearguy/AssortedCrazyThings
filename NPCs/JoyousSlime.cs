@@ -48,13 +48,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
 		{
-			if (!projectile.GetOwner().CanNPCBeHitByPlayerOrPlayerProjectile(NPC, projectile))
-			{
-				return false;
-			}
-
-			//This logic is distinct from vanilla, as we return true and not null
-			return true;
+			return projectile.CanBeHitByProjectileCritterLike(NPC);
 		}
 
 		public override void HitEffect(int hitDirection, double damage)

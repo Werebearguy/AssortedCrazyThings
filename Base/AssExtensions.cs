@@ -209,5 +209,21 @@ namespace AssortedCrazyThings.Base
 			if (stillAnimating) proj.LoopAnimation(speed, startFrame, endFrame);
 			return stillAnimating;
 		}
+
+		public static bool? CanBeHitByProjectileCritterLike(this Projectile proj, NPC npc)
+		{
+			if (proj.owner < Main.maxPlayers && !proj.GetOwner().CanNPCBeHitByPlayerOrPlayerProjectile(npc, proj))
+			{
+				return false;
+			}
+
+			if (!proj.friendly && npc.friendly)
+			{
+				return false;
+			}
+
+			//This logic is distinct from vanilla, as we return true and not null
+			return true;
+		}
 	}
 }
