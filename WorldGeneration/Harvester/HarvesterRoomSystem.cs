@@ -48,7 +48,7 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 		}
 
 		/*
-		//The next two methods are debug only, remove on release
+		//The next two methods are debug only
 		public static bool JustPressed(Keys key)
 		{
 			return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
