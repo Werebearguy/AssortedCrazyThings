@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 							(Func<bool>)(() => true),
 							collection,
 							summonItem,
-							$"Enter the dungeon for the first time, or use a [i:{summonItem}] in the dungeon"
+							$"Find and open an Antique Cage in the dungeon, or use [i:{summonItem}]"
 						);
 					}
 				}
