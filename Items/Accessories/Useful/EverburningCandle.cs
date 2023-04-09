@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public override void SafeSetStaticDefaults()
 		{
 			DisplayName.SetDefault("Everburning Candle");
-			Tooltip.SetDefault("Applies hellfire damage to all attacks");
+			Tooltip.SetDefault("Applies fire damage to all attacks");
 		}
 
 		public override void SafeSetDefaults()
