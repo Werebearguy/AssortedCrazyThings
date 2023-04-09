@@ -1,8 +1,34 @@
+Medium size update changing the first encounter with the Soul Harvester as well as a revamp to its loot, including new Soul Harvester themed weaponry
+
 * FIXES
-    * Fixed transparency on Baby Ichor Sticker pet
+      * Fixed Freed Dungeon Soul Journey Mode research count being 1 instead of 15
+      * Fixed Magic Slime Sling slimes moving towards the player instead of an enemy right when they appear
+      * Fixed Plague of Toads cloud not appearing for newly joined players in multiplayer
+      * Fixed wording in Horned Slime bestiary entry
+      * Fixed some critters getting hurt by certain projectiles when they shouldn't
+* CHANGES
+      * Reworked first encounter with the Soul Harvester, now doesn't appear as soon as you enter the dungeon anymore
+          * Changed Freed Dungeon Soul drop amount from 15 to 25, does not increase with player count, and no longer requires using a Bug Net to collect
+          * Changed Dessicated Leather drop amount from 1 to 2
+          * Changed soul absorb count from 15 to 36, thus taking longer to transform
+      * Buffed Everburning Candle to inflict Hel-fire, and Everfrozen Candle to inflict Frostbite. Same buffs apply to Everburning Candelabra
+      * Buffed Plague of Toads cloud duration from 1 to 5 minutes
+      * Changed Everglow Lantern recipe and sprite to match new weapons
+      * Reworked Sigil of Emergency to Sigil of the Beak
+      * Reworked Sigil of Pain Suppression to Sigil of the Wing
+      * Reworked Sigil of Retreat to Sigil of the Talon
+      * Reworked Sigil of Last Stand to Sigil of the Harvester, now includes all 3 sigils' effects
 * ADDITIONS
-    * Pet Vanity
-        * Added new appearances to several pets, found when using the Costume Suitcase
-            * Joyous Slime
-            * Docile Demon Eye
-            * Posessed Goldfish
+      * General
+          * Soul Harvester first stage debuff now shows the total soul absorb count in its tooltip
+      * World Generation
+          * Soul Harvester Room
+      * Weapons
+          * Bone-Cleaving Fang
+          * Bone-Shatter Longbow
+          * Talonstorm
+      * Placeables
+          * Antique Chest
+          * Antique Cage
+      * Consumable
+          * Antique Key
