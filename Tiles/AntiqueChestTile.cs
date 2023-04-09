@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
 			TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-			TileObjectData.newTile.AnchorInvalidTiles = new int[] { TileID.MagicalIceBlock };
+			TileObjectData.newTile.AnchorInvalidTiles = new int[] { TileID.MagicalIceBlock }; //TODO 1.4.4
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
@@ -74,7 +74,7 @@ namespace AssortedCrazyThings.Tiles
 
 		public override bool UnlockChest(int i, int j, ref short frameXAdjustment, ref int dustType, ref bool manual)
 		{
-			DustType = dustType;
+			dustType = DustType;
 			return true;
 		}
 
