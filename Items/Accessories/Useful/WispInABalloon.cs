@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Wisp in a Balloon");
-			Tooltip.SetDefault("Glows in the dark and increases jump height");
+			// DisplayName.SetDefault("Wisp in a Balloon");
+			// Tooltip.SetDefault("Glows in the dark and increases jump height");
 		}
 
 		public override void SafeSetDefaults()

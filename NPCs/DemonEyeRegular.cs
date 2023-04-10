@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.NPCs
 			return SpawnCondition.OverworldNightMonster.Chance * 0.025f;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

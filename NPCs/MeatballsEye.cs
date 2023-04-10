@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			base.SetStaticDefaults();
 
-			DisplayName.SetDefault("Meatball's Eye");
+			// DisplayName.SetDefault("Meatball's Eye");
 		}
 
 		public override void SetDefaults()

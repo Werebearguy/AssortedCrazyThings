@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Goblin Underling");
+			// DisplayName.SetDefault("Goblin Underling");
 			Main.projFrames[Projectile.type] = 20;
 			//Main.projPet[Projectile.type] = true; //Causes it do disappear on left/right clicks since MinionSacrificable is not set
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
@@ -149,12 +149,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			hitbox.X = centerX - hitbox.Width / 2;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			GoblinUnderlingSystem.CommonModifyHitNPC(Projectile, target, ref damage, ref knockback, ref hitDirection);
+			GoblinUnderlingSystem.CommonModifyHitNPC(Projectile, target, ref modifiers);
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (!target.boss && OutOfCombat())
 			{

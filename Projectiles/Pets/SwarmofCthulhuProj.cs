@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Swarm of Cthulhu");
+			// DisplayName.SetDefault("Swarm of Cthulhu");
 			Main.projFrames[Projectile.type] = 1; //Dummy
 			Main.projPet[Projectile.type] = true;
 
@@ -180,15 +180,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return Projectile.penetrate > 0 ? null : false; //Wack workaround in case hitbox overlaps with more than 1 NPC in the same tick
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (target.defense >= 20)
 			{
-				damage += target.checkArmorPenetration(10);
+				modifiers.ArmorPenetration += 10;
 			}
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Projectile.penetrate = 0;
 		}

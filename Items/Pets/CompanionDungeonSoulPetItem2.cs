@@ -40,8 +40,8 @@ namespace AssortedCrazyThings.Items.Pets
 			base.SetStaticDefaults();
 
 			string name = ModContent.GetInstance<CompanionDungeonSoulPetItem2>().Name;
-			DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
-			Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");
+			// DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
+			// Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");
 		}
 
 		public override void SafeSetDefaults()

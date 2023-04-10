@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Antique Cage");
+			// DisplayName.SetDefault("Antique Cage");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

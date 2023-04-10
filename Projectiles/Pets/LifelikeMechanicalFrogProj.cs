@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Lifelike Mechanical Frog");
+			// DisplayName.SetDefault("Lifelike Mechanical Frog");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 

@@ -47,7 +47,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul");
+			// DisplayName.SetDefault("Companion Soul");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
@@ -180,12 +180,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			AssPlayer mPlayer = Projectile.GetOwner().GetModPlayer<AssPlayer>();
 			if (mPlayer.soulSaviorArmor)
 			{
-				damage = (int)(1.3f * damage);
+				modifiers.SourceDamage += 0.3f;
 			}
 		}
 

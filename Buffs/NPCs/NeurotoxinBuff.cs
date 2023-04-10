@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Buffs.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Neurotoxin");
+			// DisplayName.SetDefault("Neurotoxin");
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

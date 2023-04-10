@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Antlion");
+			// DisplayName.SetDefault("Baby Antlion");
 
 			Main.projFrames[Projectile.type] = 11;
 			Main.projPet[Projectile.type] = true;

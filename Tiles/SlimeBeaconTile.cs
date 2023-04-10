@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -24,8 +25,8 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.Origin = new Point16(1, 2);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
 			TileObjectData.addTile(Type);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Slime Beacon");
+			LocalizedText name = CreateMapEntryName();
+			// name.SetDefault("Slime Beacon");
 			AddMapEntry(new Color(75, 139, 166), name);
 			DustType = 1;
 			AnimationFrameHeight = 56;

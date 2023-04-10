@@ -18,10 +18,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void Load()
 		{
-			On.Terraria.Player.Spawn += OnSpawnSummonGoblinUnderling;
+			On_Player.Spawn += OnSpawnSummonGoblinUnderling;
 		}
 
-		private static void OnSpawnSummonGoblinUnderling(On.Terraria.Player.orig_Spawn orig, Player player, PlayerSpawnContext context)
+		private static void OnSpawnSummonGoblinUnderling(On_Player.orig_Spawn orig, Player player, PlayerSpawnContext context)
 		{
 			orig(player, context);
 
@@ -67,9 +67,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			hasMinion = false;
 		}
 
-		public override void OnEnterWorld(Player player)
+		public override void OnEnterWorld()
 		{
-			GoblinUnderlingSystem.OnEnterWorld(player);
+			GoblinUnderlingSystem.OnEnterWorld(Player);
 		}
 
 		public override void LoadData(TagCompound tag)

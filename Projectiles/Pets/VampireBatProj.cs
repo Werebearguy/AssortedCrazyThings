@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Vampire Bat");
+			// DisplayName.SetDefault("Vampire Bat");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 

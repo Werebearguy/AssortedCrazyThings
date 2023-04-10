@@ -11,8 +11,8 @@ namespace AssortedCrazyThings.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul Minion");
-			Description.SetDefault("A friendly Soul is fighting for you");
+			// DisplayName.SetDefault("Companion Soul Minion");
+			// Description.SetDefault("A friendly Soul is fighting for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Buffs
 			}
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			int ownedCount;
 			foreach (SoulType type in Enum.GetValues(typeof(SoulType)))

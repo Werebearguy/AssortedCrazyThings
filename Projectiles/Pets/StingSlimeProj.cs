@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sting Slime");
+			// DisplayName.SetDefault("Sting Slime");
 
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<StingSlimeBuff_AoMM>(), null);
 		}

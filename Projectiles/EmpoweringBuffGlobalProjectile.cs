@@ -9,14 +9,14 @@ namespace AssortedCrazyThings.Projectiles
 	{
 		//public override bool InstancePerEntity => false;
 
-		public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if ((projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.friendly && projectile.damage > 0)
 			{
 				AssPlayer mPlayer = projectile.GetOwner().GetModPlayer<AssPlayer>();
 				if (mPlayer.empoweringBuff)
 				{
-					damage += (int)(damage * mPlayer.empoweringStep * 0.25f);
+					modifiers.SourceDamage += mPlayer.empoweringStep * 0.25f;
 				}
 			}
 		}

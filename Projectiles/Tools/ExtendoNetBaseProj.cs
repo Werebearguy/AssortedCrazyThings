@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("EXTENDO!");
+			// DisplayName.SetDefault("EXTENDO!");
 		}
 
 		protected float initialSpeed = 10f;

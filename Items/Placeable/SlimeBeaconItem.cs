@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Beacon");
-			Tooltip.SetDefault("'Do The Slime With Me!'");
+			// DisplayName.SetDefault("Slime Beacon");
+			// Tooltip.SetDefault("'Do The Slime With Me!'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

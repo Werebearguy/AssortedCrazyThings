@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cute Slime Statue");
-			Tooltip.SetDefault("You can't catch statue spawned creatures");
+			// DisplayName.SetDefault("Cute Slime Statue");
+			// Tooltip.SetDefault("You can't catch statue spawned creatures");
 			
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

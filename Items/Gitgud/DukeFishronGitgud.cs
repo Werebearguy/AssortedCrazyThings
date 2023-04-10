@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("White Hook");
+			// DisplayName.SetDefault("White Hook");
 		}
 
 		public override void SafeSetDefaults()

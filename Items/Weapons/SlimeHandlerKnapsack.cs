@@ -49,9 +49,9 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Handler Knapsack");
-			Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you"
-				+ "\nRight click to pick from available forms");
+			// DisplayName.SetDefault("Slime Handler Knapsack");
+			/* Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you"
+				+ "\nRight click to pick from available forms"); */
 		}
 
 		public override void SetDefaults()

@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Desiccated Leather");
-			Tooltip.SetDefault("'It's dry, sticky, and smells horrible'");
+			// DisplayName.SetDefault("Desiccated Leather");
+			// Tooltip.SetDefault("'It's dry, sticky, and smells horrible'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 4;
 		}

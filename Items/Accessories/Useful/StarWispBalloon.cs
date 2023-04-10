@@ -9,9 +9,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Star Wisp Balloon");
-			Tooltip.SetDefault("Increased mana regeneration and jump height" +
-							   "\nGlows in the dark");
+			// DisplayName.SetDefault("Star Wisp Balloon");
+			/* Tooltip.SetDefault("Increased mana regeneration and jump height" +
+							   "\nGlows in the dark"); */
 		}
 
 		public override void SafeSetDefaults()

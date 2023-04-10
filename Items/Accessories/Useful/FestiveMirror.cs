@@ -7,8 +7,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Festive Mirror");
-			Tooltip.SetDefault("Provides immunity to Chilled, Frozen, and Stoned");
+			// DisplayName.SetDefault("Festive Mirror");
+			// Tooltip.SetDefault("Provides immunity to Chilled, Frozen, and Stoned");
 		}
 
 		public override void SafeSetDefaults()

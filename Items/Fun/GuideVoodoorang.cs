@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Fun
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Guide Voodoorang");
-			Tooltip.SetDefault("'Why are you like this?'");
+			// DisplayName.SetDefault("Guide Voodoorang");
+			// Tooltip.SetDefault("'Why are you like this?'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -44,11 +44,23 @@ namespace AssortedCrazyThings.Items.Fun
 						NPC npc = Main.npc[i];
 						if (npc.active && npc.type == NPCID.Guide)
 						{
-							if (Main.netMode == NetmodeID.Server)
+							if (npc.IsNPCValidForBestiaryKillCredit())
 							{
-								NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, i, 9999f, 10f, -npc.direction);
+								Main.BestiaryTracker.Kills.RegisterKill(npc);
 							}
-							npc.StrikeNPCNoInteraction(9999, 10f, -npc.direction);
+
+							var hit = new NPC.HitInfo
+							{
+								Knockback = 10,
+								HitDirection = -npc.direction,
+								InstantKill = true
+							};
+							npc.StrikeNPC(hit);
+							if (Main.netMode != NetmodeID.SinglePlayer)
+							{
+								NetMessage.SendStrikeNPC(npc, hit);
+							}
+
 							NPC.SpawnWOF(Item.position);
 
 							byte plr = Player.FindClosest(Item.position, Item.width, Item.height);

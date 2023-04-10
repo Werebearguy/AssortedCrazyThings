@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cursed Skull");
+			// DisplayName.SetDefault("Cursed Skull");
 			Main.projFrames[Projectile.type] = 3;
 			Main.projPet[Projectile.type] = true;
 

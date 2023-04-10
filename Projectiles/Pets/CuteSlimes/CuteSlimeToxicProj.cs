@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cute Toxic Slime");
+			// DisplayName.SetDefault("Cute Toxic Slime");
 		}
 
 		public override void SafeSetDefaults()

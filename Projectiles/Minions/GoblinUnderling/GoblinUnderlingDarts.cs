@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Goblin Underling Dart");
+			// DisplayName.SetDefault("Goblin Underling Dart");
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
@@ -51,12 +51,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			return true;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			GoblinUnderlingSystem.CommonModifyHitNPC(Projectile, target, ref damage, ref knockback, ref hitDirection);
+			GoblinUnderlingSystem.CommonModifyHitNPC(Projectile, target, ref modifiers);
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
 			{

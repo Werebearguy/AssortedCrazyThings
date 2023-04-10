@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Plague of Toads Cloud");
+			// DisplayName.SetDefault("Plague of Toads Cloud");
 			Main.projFrames[Projectile.type] = 6;
 		}
 

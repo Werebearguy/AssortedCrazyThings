@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Candle Dust Dummy");
+			// DisplayName.SetDefault("Candle Dust Dummy");
 		}
 
 		public override void SetDefaults()

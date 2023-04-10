@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Personal Sun");
+			// DisplayName.SetDefault("Personal Sun");
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.LightPet[Projectile.type] = true;

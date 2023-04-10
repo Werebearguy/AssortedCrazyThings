@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Animated Tome");
+			// DisplayName.SetDefault("Animated Tome");
 			Main.npcFrameCount[NPC.type] = 5;
 			Main.npcCatchable[NPC.type] = true;
 		}
@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.NPCs
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

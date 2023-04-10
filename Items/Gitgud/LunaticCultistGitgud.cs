@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Notice of Occupational Termination");
+			// DisplayName.SetDefault("Notice of Occupational Termination");
 		}
 
 		public override void SafeSetDefaults()

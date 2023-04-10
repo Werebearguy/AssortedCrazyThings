@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cute Illuminant Slime");
+			// DisplayName.SetDefault("Cute Illuminant Slime");
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
 		}

@@ -10,11 +10,11 @@ namespace AssortedCrazyThings.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Jellied Ale");
-			Description.SetDefault("Your perception of slimes is a bit off...");
+			// DisplayName.SetDefault("Jellied Ale");
+			// Description.SetDefault("Your perception of slimes is a bit off...");
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			string canSpawn = "\nCute Slimes that can spawn: ";
 			string suffix = "None";

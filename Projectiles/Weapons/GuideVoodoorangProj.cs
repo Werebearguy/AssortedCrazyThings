@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Guide Voodoorang");
+			// DisplayName.SetDefault("Guide Voodoorang");
 		}
 
 		public override void SetDefaults()
@@ -29,7 +29,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			return true;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			SoundEngine.PlaySound(SoundID.PlayerHit, Projectile.position); //player hurt sound
 		}
@@ -42,13 +42,21 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 				{
 					for (int i = 0; i < Main.maxNPCs; i++)
 					{
-						if (Main.npc[i].active && Main.npc[i].type == NPCID.Guide)
+						NPC npc = Main.npc[i];
+						if (npc.active && npc.type == NPCID.Guide)
 						{
-							if (Main.netMode == NetmodeID.Server)
+							var hit = new NPC.HitInfo
 							{
-								NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -Main.npc[i].direction);
+								Knockback = 10,
+								HitDirection = -npc.direction,
+								InstantKill = true
+							};
+							npc.StrikeNPC(hit);
+							if (Main.netMode != NetmodeID.SinglePlayer)
+							{
+								NetMessage.SendStrikeNPC(npc, hit);
 							}
-							Main.npc[i].StrikeNPCNoInteraction(9999, 10f, -Main.npc[i].direction);
+
 							NPC.SpawnWOF(Projectile.position);
 
 							Projectile.Kill();

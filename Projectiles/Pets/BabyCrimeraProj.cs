@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Crimera");
+			// DisplayName.SetDefault("Baby Crimera");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 

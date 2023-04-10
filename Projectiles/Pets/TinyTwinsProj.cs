@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tiny Spazmatism");
+			// DisplayName.SetDefault("Tiny Spazmatism");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 
@@ -134,7 +134,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tiny Retinazer");
+			// DisplayName.SetDefault("Tiny Retinazer");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 
@@ -239,7 +239,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.idStaticNPCHitCooldown = 10;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			target.AddBuff(BuffID.CursedInferno, 60);
 		}

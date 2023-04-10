@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 	[Content(ContentType.Weapons)]
 	public class GoblinUnderlingGlobalProjectile : AssGlobalProjectile
 	{
-		public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+		public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
 		{
 			if (projectile.trap || projectile.npcProj)
 			{
@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 				return;
 			}
 
-			if (damage < target.statLifeMax2 * 0.2f)
+			if (info.Damage < target.statLifeMax2 * 0.2f)
 			{
 				return;
 			}

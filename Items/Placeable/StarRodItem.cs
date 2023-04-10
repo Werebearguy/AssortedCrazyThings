@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Star Rod");
-			Tooltip.SetDefault("Attracts Falling Stars at night if you are nearby");
+			// DisplayName.SetDefault("Star Rod");
+			// Tooltip.SetDefault("Attracts Falling Stars at night if you are nearby");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}

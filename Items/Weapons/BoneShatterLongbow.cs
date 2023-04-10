@@ -11,8 +11,8 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bone-Shatter Longbow");
-			Tooltip.SetDefault("Wooden arrows ignite into burning souls");
+			// DisplayName.SetDefault("Bone-Shatter Longbow");
+			// Tooltip.SetDefault("Wooden arrows ignite into burning souls");
 		}
 
 		public override void SetDefaults()

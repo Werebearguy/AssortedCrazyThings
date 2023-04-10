@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Meatball Slime");
+			// DisplayName.SetDefault("Meatball Slime");
 
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<MeatballSlimeBuff_AoMM>(), null);
 		}

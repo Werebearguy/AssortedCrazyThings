@@ -455,7 +455,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void clientClone(ModPlayer clientClone)
+		public override void CopyClientState(ModPlayer clientClone)
 		{
 			PetPlayer clone = clientClone as PetPlayer;
 
@@ -620,7 +620,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void OnEnterWorld(Player player)
+		public override void OnEnterWorld()
 		{
 			enteredWorld = true;
 		}

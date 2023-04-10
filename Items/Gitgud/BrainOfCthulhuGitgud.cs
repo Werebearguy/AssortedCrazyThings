@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Insanity-B-Gone");
+			// DisplayName.SetDefault("Insanity-B-Gone");
 		}
 
 		public override void SafeSetDefaults()

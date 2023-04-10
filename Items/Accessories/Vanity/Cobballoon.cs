@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cobballoon");
-			Tooltip.SetDefault("'A clump of stones that manages to float, much to your confusion'");
+			// DisplayName.SetDefault("Cobballoon");
+			// Tooltip.SetDefault("'A clump of stones that manages to float, much to your confusion'");
 		}
 
 		public override void SafeSetDefaults()

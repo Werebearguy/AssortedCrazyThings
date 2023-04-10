@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Consumables
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Jellied Ale");
+			// DisplayName.SetDefault("Jellied Ale");
 
 			ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
 				new Color(13, 106, 137),

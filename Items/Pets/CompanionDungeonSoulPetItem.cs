@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
@@ -11,8 +12,12 @@ namespace AssortedCrazyThings.Items.Pets
 	[Content(ContentType.Bosses)]
 	public class CompanionDungeonSoulPetItem : CaughtDungeonSoulBase
 	{
+		public static LocalizedText CommonTooltipText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
+			CommonTooltipText = Language.GetOrRegister(Mod.GetLocalizationKey($"Items.{nameof(CompanionDungeonSoulPetItem)}.CommonTooltip"));
+
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 

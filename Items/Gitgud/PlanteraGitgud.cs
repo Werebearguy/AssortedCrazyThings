@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Green Thumb");
+			// DisplayName.SetDefault("Green Thumb");
 		}
 
 		public override void SafeSetDefaults()

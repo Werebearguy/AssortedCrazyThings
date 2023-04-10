@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cute Dungeon Slime");
+			// DisplayName.SetDefault("Cute Dungeon Slime");
 		}
 
 		public override void SafeSetDefaults()
@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				return true;
 			}
 			int intended = Main.CurrentDrawnEntityShader;
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0);
+			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
 
 			SpriteEffects effects = SpriteEffects.None;
 			if (Projectile.spriteDirection == -1)
@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, 10f + Projectile.gfxOffY);
 			Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0);
 
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended);
+			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
 			return true;
 		}
 	}

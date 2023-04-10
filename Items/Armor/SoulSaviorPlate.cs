@@ -11,9 +11,9 @@ namespace AssortedCrazyThings.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Soul Savior Breastplate");
-			Tooltip.SetDefault("Increases minion damage by 10%"
-				+ "\nIncreases your max number of minions by 2");
+			// DisplayName.SetDefault("Soul Savior Breastplate");
+			/* Tooltip.SetDefault("Increases minion damage by 10%"
+				+ "\nIncreases your max number of minions by 2"); */
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

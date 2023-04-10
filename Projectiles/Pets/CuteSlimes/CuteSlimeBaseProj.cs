@@ -515,7 +515,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			}
 
 			int intended = Main.CurrentDrawnEntityShader;
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0);
+			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
 
 			foreach (var petAccessory in accessories)
 			{
@@ -539,7 +539,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				Main.spriteBatch.Draw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2 + originOffset, Projectile.scale, effect, 0);
 			}
 
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended);
+			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
 		}
 	}
 }

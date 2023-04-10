@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Skeletron Prime Pet Hand");
+			// DisplayName.SetDefault("Skeletron Prime Pet Hand");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 
@@ -259,7 +259,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Projectile.timeLeft > 3)
 			{

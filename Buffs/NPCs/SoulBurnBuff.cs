@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Soul Burn");
+			// DisplayName.SetDefault("Soul Burn");
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

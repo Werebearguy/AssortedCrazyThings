@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pet Goldfish");
+			// DisplayName.SetDefault("Pet Goldfish");
 			Main.projFrames[Projectile.type] = 10;
 			Main.projPet[Projectile.type] = true;
 
@@ -355,7 +355,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return true;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			//If in water, deal more damage
 			float mult = 1f;
@@ -367,7 +367,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				mult += 0.5f;
 			}
-			damage = (int)(damage * mult);
+			modifiers.SourceDamage *= mult;
 		}
 
 		public override bool PreDraw(ref Color lightColor)

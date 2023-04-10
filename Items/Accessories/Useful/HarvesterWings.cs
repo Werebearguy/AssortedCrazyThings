@@ -17,10 +17,10 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Harvester Wings");
-			Tooltip.SetDefault("Allows flight and slow fall" +
+			// DisplayName.SetDefault("Harvester Wings");
+			/* Tooltip.SetDefault("Allows flight and slow fall" +
 			"\nIncreases your max number of minions" +
-			"\n5% increased summon damage");
+			"\n5% increased summon damage"); */
 
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(95, 6.5f, 1.35f);
 		}

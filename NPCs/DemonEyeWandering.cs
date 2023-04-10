@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Wandering Eye");
+			// DisplayName.SetDefault("Wandering Eye");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WanderingEye];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.NPCs
 			return SpawnCondition.OverworldNightMonster.Chance * (Main.hardMode ? 0.025f : 0f);
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{
@@ -76,16 +76,16 @@ namespace AssortedCrazyThings.NPCs
 
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hit.HitDirection, -1f);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 30; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hit.HitDirection, -1f);
 				}
 
 				var entitySource = NPC.GetSource_Death();

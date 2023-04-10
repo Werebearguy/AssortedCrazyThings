@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Magic Slime Sling Fired");
+			// DisplayName.SetDefault("Magic Slime Sling Fired");
 			Main.projFrames[Projectile.type] = 1;
 		}
 

@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			}
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			target.AddBuff(ModContent.BuffType<SoulBurnBuff>(), 10 * 60);
 		}

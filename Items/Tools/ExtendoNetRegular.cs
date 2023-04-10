@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Items.Tools
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Extendo-Net");
-			Tooltip.SetDefault("'Catches those hard to reach critters'");
+			// DisplayName.SetDefault("Extendo-Net");
+			// Tooltip.SetDefault("'Catches those hard to reach critters'");
 		}
 
 		public override void SetDefaults()

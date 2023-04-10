@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Honey Thimble");
+			// DisplayName.SetDefault("Honey Thimble");
 		}
 
 		public override void SafeSetDefaults()

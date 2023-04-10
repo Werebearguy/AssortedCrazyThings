@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.VanityArmor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Soul Harvester Mask");
+			// DisplayName.SetDefault("Soul Harvester Mask");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

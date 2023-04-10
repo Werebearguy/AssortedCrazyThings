@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Missile Drone");
+			// DisplayName.SetDefault("Missile Drone");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;

@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Plantera Sprout");
+			// DisplayName.SetDefault("Plantera Sprout");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
@@ -183,7 +183,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Mean Seed Tentacle");
+			// DisplayName.SetDefault("Mean Seed Tentacle");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 		}

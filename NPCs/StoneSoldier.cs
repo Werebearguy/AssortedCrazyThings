@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Stone Soldier");
+			// DisplayName.SetDefault("Stone Soldier");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ArmedZombie];
 		}
 
@@ -42,7 +42,7 @@ namespace AssortedCrazyThings.NPCs
 			return SpawnCondition.Cavern.Chance * (Main.hardMode ? 0.01f : 0.04f);
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
 			if (Main.hardMode) NPC.lifeMax = NPC.lifeMax * 2;
 		}
@@ -98,7 +98,7 @@ namespace AssortedCrazyThings.NPCs
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

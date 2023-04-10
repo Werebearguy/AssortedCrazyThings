@@ -11,9 +11,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sigil of the Beak");
-			Tooltip.SetDefault("Summons fractured souls to seek out enemies in combat" +
-				"\nFrequency and intensity increases the lower your health gets");
+			// DisplayName.SetDefault("Sigil of the Beak");
+			/* Tooltip.SetDefault("Summons fractured souls to seek out enemies in combat" +
+				"\nFrequency and intensity increases the lower your health gets"); */
 		}
 
 		public override void SafeSetDefaults()

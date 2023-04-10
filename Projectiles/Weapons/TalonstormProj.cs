@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Talonstorm");
+			// DisplayName.SetDefault("Talonstorm");
 			Main.projFrames[Projectile.type] = 6;
 		}
 

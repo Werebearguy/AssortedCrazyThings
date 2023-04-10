@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			base.SetStaticDefaults();
 
-			DisplayName.SetDefault("Chunky's Eye");
+			// DisplayName.SetDefault("Chunky's Eye");
 		}
 
 		public override void SetDefaults()

@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Walking Tombstone");
+			// DisplayName.SetDefault("Walking Tombstone");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Crab];
 		}
 
@@ -136,7 +136,7 @@ namespace AssortedCrazyThings.NPCs
 			return false;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

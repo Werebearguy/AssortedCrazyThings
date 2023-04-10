@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Drone Controller");
-			Description.SetDefault("Command a swarm of drones");
+			// DisplayName.SetDefault("Drone Controller");
+			// Description.SetDefault("Command a swarm of drones");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Buffs
 			}
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
 			{

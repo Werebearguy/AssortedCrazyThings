@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 			Main.lightPet[Type] = true;
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			tip += "\n" + AssUtils.GetTimeAsString();
 		}

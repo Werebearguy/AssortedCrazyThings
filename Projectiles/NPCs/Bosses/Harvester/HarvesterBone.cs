@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Harvester Bone");
+			// DisplayName.SetDefault("Harvester Bone");
 		}
 
 		public override void SetDefaults()
@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			return true;
 		}
 
-		public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
+		public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
 		{
 			if (Main.rand.NextFloat() >= 0.5f)
 			{

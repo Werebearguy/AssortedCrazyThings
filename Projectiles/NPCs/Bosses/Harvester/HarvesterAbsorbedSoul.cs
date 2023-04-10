@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Absorbed Soul");
+			// DisplayName.SetDefault("Absorbed Soul");
 		}
 
 		public override void SetDefaults()

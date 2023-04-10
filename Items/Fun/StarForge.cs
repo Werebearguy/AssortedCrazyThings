@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Items.Fun
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Star Forge");
-			Tooltip.SetDefault("'An endless supply of the cosmos'");
+			// DisplayName.SetDefault("Star Forge");
+			// Tooltip.SetDefault("'An endless supply of the cosmos'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bloated Bait Thief");
+			// DisplayName.SetDefault("Bloated Bait Thief");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.NPCs
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

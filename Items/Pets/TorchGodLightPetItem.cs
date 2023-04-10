@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
@@ -28,7 +29,7 @@ namespace AssortedCrazyThings.Items.Pets
 				.AddIngredient(ItemID.Torch, 999)
 				.AddIngredient(ItemID.LifeCrystal)
 				.AddTile(TileID.DemonAltar)
-				.AddCondition(new Recipe.Condition(NetworkText.FromLiteral("If Torch God's Favor was already used"), (Recipe recipe) => Main.LocalPlayer.unlockedBiomeTorches))
+				.AddCondition(AssConditions.UnlockedBiomeTorches)
 				.Register();
 
 			//Fallback
@@ -42,10 +43,10 @@ namespace AssortedCrazyThings.Items.Pets
 		//TODO maybe look into reworking this into OnSpawn with GlobalItem
 		public override void Load()
 		{
-			On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
+			On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
 		}
 
-		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
 			/*
 				* Try dropping when these conditions are true

@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Mini Fishron");
+			// DisplayName.SetDefault("Mini Fishron");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 

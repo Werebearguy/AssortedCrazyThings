@@ -24,8 +24,8 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 
 		public sealed override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(PaintingName);
-			Tooltip.SetDefault($"'{PaintingAuthor}'");
+			// DisplayName.SetDefault(PaintingName);
+			// Tooltip.SetDefault($"'{PaintingAuthor}'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

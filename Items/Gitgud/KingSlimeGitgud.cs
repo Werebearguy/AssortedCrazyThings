@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Inquisition Notice");
+			// DisplayName.SetDefault("Slime Inquisition Notice");
 		}
 
 		public override void SafeSetDefaults()

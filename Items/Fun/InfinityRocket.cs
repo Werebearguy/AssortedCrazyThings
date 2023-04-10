@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Items.Fun
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Infinity Rocket");
-			Tooltip.SetDefault("'It seriously never ends!'");
+			// DisplayName.SetDefault("Infinity Rocket");
+			// Tooltip.SetDefault("'It seriously never ends!'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

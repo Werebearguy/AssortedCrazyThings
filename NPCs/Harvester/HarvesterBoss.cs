@@ -137,7 +137,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
+			// DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
 			Main.npcFrameCount[NPC.type] = 1; //Dummy texture and frame count, real sheet is two-dimensional
 
 			NPCID.Sets.BossBestiaryPriority.Add(NPC.type);
@@ -198,14 +198,9 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			Music = MusicID.Boss1;
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
-			float bossAdjustment = 1f;
-			if (Main.GameModeInfo.IsMasterMode)
-			{
-				bossAdjustment = 0.85f;
-			}
-			NPC.lifeMax = (int)(NPC.lifeMax * bossLifeScale * bossAdjustment);
+			NPC.lifeMax = (int)(NPC.lifeMax * balance * bossAdjustment);
 			NPC.damage = (int)(NPC.damage * 1.1f);
 		}
 
@@ -236,7 +231,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			return false;
 		}
 
-		public override bool? CanHitNPC(NPC target)
+		public override bool CanHitNPC(NPC target)
 		{
 			//Body won't deal contact damage to townies/critters
 			return false;
@@ -262,21 +257,21 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			return base.CanBeHitByProjectile(projectile);
 		}
 
-		public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+		public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers)
 		{
 			if (VulnerableToMelee)
 			{
 				//Take three times the damage from melee swings
-				damage *= 3;
+				modifiers.FinalDamage *= 3;
 			}
 		}
 
-		public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
 		{
 			if (VulnerableToMelee && projectile.ownerHitCheck && projectile.CountsAsClass(DamageClass.Melee))
 			{
 				//Take two times the damage from melee projectiles that require direct line of sight (things like arkhalis, spears, etc)
-				damage *= 2;
+				modifiers.FinalDamage *= 2;
 			}
 		}
 
@@ -665,7 +660,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 		}
 
 		//Synced
-		private byte activeTalonIndex = Main.maxNPCs;
+		private byte activeTalonIndex = byte.MaxValue;
 
 		//Synced
 		//0: no revives yet
@@ -1413,14 +1408,14 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			}
 
 			HarvesterTalon activeTalon = null;
-			if (activeTalonIndex == Main.maxNPCs)
+			if (activeTalonIndex == byte.MaxValue)
 			{
 				for (int i = 0; i < talons.Count; i++)
 				{
 					HarvesterTalon talon = talons[i];
 					if (talon.Idle)
 					{
-						if (activeTalonIndex != Main.maxNPCs)
+						if (activeTalonIndex != byte.MaxValue)
 						{
 							//Already has an idle talon, choose the one further away from player
 							if (Math.Abs(talons[activeTalonIndex].NPC.Center.X - target.Center.X) <= Math.Abs(talon.NPC.Center.X - target.Center.X))
@@ -1436,7 +1431,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 				}
 
 				//During kickstart found one idle talon: turn it active
-				if (activeTalonIndex != Main.maxNPCs)
+				if (activeTalonIndex != byte.MaxValue)
 				{
 					activeTalon = talons[activeTalonIndex];
 					ActivateTalon(talons[activeTalonIndex]);
@@ -1551,7 +1546,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			return null;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

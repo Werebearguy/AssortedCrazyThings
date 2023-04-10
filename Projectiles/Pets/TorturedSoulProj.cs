@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tortured Soul");
+			// DisplayName.SetDefault("Tortured Soul");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
@@ -72,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override SoundStyle? SpawnSound => SoundID.Coins;
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//Copied from golden slime HitEffect
 			int numParticles = 7;

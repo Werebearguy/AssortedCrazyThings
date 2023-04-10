@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -36,8 +37,8 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.Origin = new Point16(1, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.addTile(Type);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Wyvern Campfire");
+			LocalizedText name = CreateMapEntryName();
+			// name.SetDefault("Wyvern Campfire");
 			AddMapEntry(new Color(105, 105, 105), name);
 			DustType = -1;
 			AnimationFrameHeight = 36;

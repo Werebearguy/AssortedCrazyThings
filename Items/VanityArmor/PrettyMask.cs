@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.VanityArmor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pretty Mask");
-			Tooltip.SetDefault("'Goes well with a red scarf, red gloves, red boots, and your birthday suit'");
+			// DisplayName.SetDefault("Pretty Mask");
+			// Tooltip.SetDefault("'Goes well with a red scarf, red gloves, red boots, and your birthday suit'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

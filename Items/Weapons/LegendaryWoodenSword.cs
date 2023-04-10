@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Legendary Wooden Sword");
+			// DisplayName.SetDefault("Legendary Wooden Sword");
 		}
 
 		public override void SetDefaults()

@@ -26,8 +26,8 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 			Main.debuff[Type] = true;
 			BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
 
-			DisplayName.SetDefault("Ominous Bird");
-			Description.SetDefault(dummy);
+			// DisplayName.SetDefault("Ominous Bird");
+			// Description.SetDefault(dummy);
 
 			if (!Main.dedServ)
 			{
@@ -40,7 +40,7 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 			sheetAsset = null;
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			if (!TryGetBabyHarvester(out BabyHarvesterProj babyHarvester))
 			{

@@ -38,7 +38,7 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 			}
 		}
 
-		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
 		{
 			int dungeonIndex = tasks.FindIndex(t => t.Name == "Dungeon");
 			if (dungeonIndex > -1)

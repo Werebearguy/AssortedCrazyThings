@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Laser");
+			// DisplayName.SetDefault("Laser");
 		}
 
 		public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			Projectile.idStaticNPCHitCooldown = -1;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.immune[Projectile.owner] = 6;
 		}

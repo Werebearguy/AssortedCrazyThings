@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.BossBars
 			return null;
 		}
 
-		public override bool? ModifyInfo(ref BigProgressBarInfo info, ref float lifePercent, ref float shieldPercent)
+		public override bool? ModifyInfo(ref BigProgressBarInfo info, ref float life, ref float lifeMax, ref float shield, ref float shieldMax)
 		{
 			NPC npc = Main.npc[info.npcIndexToAimAt];
 			if (!npc.active)
@@ -32,21 +32,22 @@ namespace AssortedCrazyThings.BossBars
 			}
 
 			bossHeadIndex = npc.GetBossHeadTextureIndex();
-			lifePercent = Utils.Clamp(npc.life / (float)npc.lifeMax, 0f, 1f);
-			shieldPercent = 0f;
+			life = Utils.Clamp(npc.life, 0f, lifeMax);
+			shield = 0f;
 
 			if (npc.ModNPC is HarvesterBoss harvester)
 			{
 				if (!harvester.IsReviving)
 				{
-					return base.ModifyInfo(ref info, ref lifePercent, ref shieldPercent);
+					return base.ModifyInfo(ref info, ref life, ref lifeMax, ref shield, ref shieldMax);
 				}
 
-				lifePercent = 0f;
+				life = 0f;
 
 				var stats = harvester.GetAIStats();
-				shieldPercent = Utils.Clamp(harvester.ReviveProgress / HarvesterBoss.Revive_Duration, 0f, 1f);
-				shieldPercent = Utils.Remap(shieldPercent, 0f, 1f, HarvesterBoss.Revive_MinHP, stats.MaxHP);
+				shieldMax = lifeMax;
+				shield = Utils.Clamp(harvester.ReviveProgress / HarvesterBoss.Revive_Duration, 0f, 1f);
+				shield = shieldMax * Utils.Remap(shield, 0f, 1f, HarvesterBoss.Revive_MinHP, stats.MaxHP);
 			}
 
 			return true;

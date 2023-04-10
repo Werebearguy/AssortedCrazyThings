@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Small Snake");
+			// DisplayName.SetDefault("Small Snake");
 
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;

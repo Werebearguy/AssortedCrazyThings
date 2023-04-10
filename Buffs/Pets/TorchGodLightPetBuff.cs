@@ -18,10 +18,8 @@ namespace AssortedCrazyThings.Buffs.Pets
 			Main.lightPet[Type] = true;
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
-			base.ModifyBuffTip(ref tip, ref rare);
-
 			if (!Main.SmartCursorIsUsed)
 			{
 				tip += "\nEnable 'Smart Cursor' to automatically place torches";

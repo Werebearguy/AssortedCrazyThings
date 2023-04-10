@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bright Side of the Moon");
+			// DisplayName.SetDefault("Bright Side of the Moon");
 		}
 
 		public override void SafeSetDefaults()

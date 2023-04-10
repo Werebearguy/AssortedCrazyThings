@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -42,8 +43,8 @@ namespace AssortedCrazyThings.Tiles
 
 			DustType = 1;
 
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Antique Cage");
+			LocalizedText name = CreateMapEntryName();
+			// name.SetDefault("Antique Cage");
 			AddMapEntry(new Color(102, 115, 103), name);
 			
 			//Whatever is specified as anchors here has to be checked in a GlobalTile/Wall class to prevent destruction

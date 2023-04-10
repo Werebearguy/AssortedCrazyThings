@@ -57,7 +57,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Strange Robot");
+			// DisplayName.SetDefault("Strange Robot");
 			Main.projFrames[Projectile.type] = 5;
 			Main.projPet[Projectile.type] = true;
 
@@ -266,7 +266,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return Color.Transparent;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			//Copied from vanilla
 			Vector2 position;

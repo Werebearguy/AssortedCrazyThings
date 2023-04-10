@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(name);
+			// DisplayName.SetDefault(name);
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Corruptor];
 			//same as chaos elemental, tho for npcs you still have to manually draw it (PreDraw())
 			NPCID.Sets.TrailingMode[NPC.type] = 3;
@@ -69,7 +69,7 @@ namespace AssortedCrazyThings.NPCs
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BabyOcramItem>(), chanceDenominator: 5));
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

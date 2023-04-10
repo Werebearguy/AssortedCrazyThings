@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Metal Contact Lens");
+			// DisplayName.SetDefault("Metal Contact Lens");
 		}
 
 		public override void SafeSetDefaults()

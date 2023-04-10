@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Fractured Soul");
+			// DisplayName.SetDefault("Fractured Soul");
 
 			Main.projFrames[Projectile.type] = 4;
 			OutOfCombatSystem.IgnoredFriendlyProj.Add(Projectile.type);

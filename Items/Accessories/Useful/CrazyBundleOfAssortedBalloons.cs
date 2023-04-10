@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Crazy Bundle of Assorted Balloons");
-			Tooltip.SetDefault("It's got all kinds of effects");
+			// DisplayName.SetDefault("Crazy Bundle of Assorted Balloons");
+			// Tooltip.SetDefault("It's got all kinds of effects");
 		}
 
 		public override void SafeSetDefaults()

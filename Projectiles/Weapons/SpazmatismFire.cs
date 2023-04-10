@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Spazmatism Breath");
+			// DisplayName.SetDefault("Spazmatism Breath");
 		}
 
 		public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			AIType = ProjectileID.EyeFire;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (Main.rand.NextFloat() >= .66f)
 			{

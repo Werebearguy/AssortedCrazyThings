@@ -8,7 +8,7 @@ namespace AssortedCrazyThings.Buffs
 	{
 		//Tells you its effects in the regular campfire buff (which the wyvern campfire applies)
 		//Logic handled in WyvernCampfireTile.NearbyEffects and AssWorld.ResetNearbyTileEffects
-		public override void ModifyBuffTip(int type, ref string tip, ref int rare)
+		public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare)
 		{
 			if (type == BuffID.Campfire && Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire)
 			{

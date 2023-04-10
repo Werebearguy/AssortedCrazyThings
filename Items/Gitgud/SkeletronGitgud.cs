@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Carton of Soy Milk");
+			// DisplayName.SetDefault("Carton of Soy Milk");
 		}
 
 		public override void SafeSetDefaults()

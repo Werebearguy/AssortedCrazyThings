@@ -11,10 +11,10 @@ namespace AssortedCrazyThings.Items.Consumables
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Enhanced Hunter Potion");
-			Tooltip.SetDefault("Shows the location of enemies"
+			// DisplayName.SetDefault("Enhanced Hunter Potion");
+			/* Tooltip.SetDefault("Shows the location of enemies"
 				+ "\nAdditionally, shows the location of enemies outside your vision range"
-				+ "\nRange is roughly one screen in each direction");
+				+ "\nRange is roughly one screen in each direction"); */
 
 			ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
 				new Color(13, 106, 137),

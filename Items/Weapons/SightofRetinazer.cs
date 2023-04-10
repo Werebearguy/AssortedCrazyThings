@@ -10,7 +10,7 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sight of Retinazer");
+			// DisplayName.SetDefault("Sight of Retinazer");
 		}
 
 		public override void SetDefaults()

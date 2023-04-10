@@ -8,8 +8,8 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Antique Key");
-			Tooltip.SetDefault("'An old key that looks to fit the lock on the nearby cage...'");
+			// DisplayName.SetDefault("Antique Key");
+			// Tooltip.SetDefault("'An old key that looks to fit the lock on the nearby cage...'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

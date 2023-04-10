@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Accessories
 			SafeSetDefaults();
 
 			Item.accessory = true;
-			Item.canBePlacedInVanityRegardlessOfConditions = true;
+			Item.hasVanityEffects = true;
 		}
 
 		public virtual void SafeSetDefaults()

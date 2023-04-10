@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
@@ -81,8 +82,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		{
 			CreateRecipe(1)
 				.AddIngredient(ModContent.ItemType<DroneParts>())
-				.AddCondition(new Recipe.Condition(NetworkText.FromLiteral("If it isn't unlocked yet"),
-				(Recipe recipe) => !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType)))
+				.AddCondition(AssConditions.DroneTypeNotUnlocked(UnlockedType))
 				.Register();
 		}
 	}
@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Basic Laser Drone Components");
+			// DisplayName.SetDefault("Basic Laser Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.BasicLaser;
@@ -101,7 +101,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Heavy Laser Drone Components");
+			// DisplayName.SetDefault("Heavy Laser Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.HeavyLaser;
@@ -111,7 +111,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Missile Drone Components");
+			// DisplayName.SetDefault("Missile Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.Missile;
@@ -121,7 +121,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Healing Drone Components");
+			// DisplayName.SetDefault("Healing Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.Healing;
@@ -131,7 +131,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shield Drone Components");
+			// DisplayName.SetDefault("Shield Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.Shield;

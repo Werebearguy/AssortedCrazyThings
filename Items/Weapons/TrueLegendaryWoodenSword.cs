@@ -11,8 +11,8 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("True Legendary Wooden Sword");
-			Tooltip.SetDefault("'Truly Legendary'");
+			// DisplayName.SetDefault("True Legendary Wooden Sword");
+			// Tooltip.SetDefault("'Truly Legendary'");
 		}
 
 		public override void SetDefaults()

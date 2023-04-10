@@ -17,10 +17,10 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void Load()
 		{
-			On.Terraria.NPC.SetEventFlagCleared += DropItemIfPossible;
+			On_NPC.SetEventFlagCleared += DropItemIfPossible;
 		}
 
-		private static void DropItemIfPossible(On.Terraria.NPC.orig_SetEventFlagCleared orig, ref bool eventFlag, int gameEventId)
+		private static void DropItemIfPossible(On_NPC.orig_SetEventFlagCleared orig, ref bool eventFlag, int gameEventId)
 		{
 			//This is not clientside
 			orig(ref eventFlag, gameEventId);
@@ -67,11 +67,11 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Satchel of Goodies");
-			Tooltip.SetDefault("Summons a Goblin Underling to fight for you"
+			// DisplayName.SetDefault("Satchel of Goodies");
+			/* Tooltip.SetDefault("Summons a Goblin Underling to fight for you"
 				+ "\nGets stronger throughout progression"
 				+ "\nDoes not occupy a minion slot, but only one can be summoned"
-				+ "\n'Inside, there's a spiky ball, a coin, and a...moon?'");
+				+ "\n'Inside, there's a spiky ball, a coin, and a...moon?'"); */
 
 			ItemID.Sets.StaffMinionSlotsRequired[Type] = 0;
 		}

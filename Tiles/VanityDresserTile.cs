@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -27,8 +28,8 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Costume Dresser");
+			LocalizedText name = CreateMapEntryName();
+			// name.SetDefault("Costume Dresser");
 			AddMapEntry(new Color(200, 200, 200), name);
 			DustType = 11;
 			TileID.Sets.DisableSmartCursor[Type] = true;

@@ -168,7 +168,7 @@ namespace AssortedCrazyThings
 		}
 
 		//TODO get rid of this, use manual packets since setting those values happens in a singular place
-		public override void clientClone(ModPlayer clientClone)
+		public override void CopyClientState(ModPlayer clientClone)
 		{
 			AssPlayer clone = clientClone as AssPlayer;
 			clone.shieldDroneReduction = shieldDroneReduction;
@@ -223,7 +223,7 @@ namespace AssortedCrazyThings
 			lastSlainBossType = reader.Read7BitEncodedInt();
 		}
 
-		public override void OnEnterWorld(Player player)
+		public override void OnEnterWorld()
 		{
 			SendClientChangesPacket();
 		}
@@ -258,7 +258,7 @@ namespace AssortedCrazyThings
 		/// Decreases damage based on current shield level from the Shield Drone, spawns dust
 		/// </summary>
 		/// <param name="damage"></param>
-		public void DecreaseDroneShield(ref int damage)
+		public void DecreaseDroneShield(ref Player.HurtModifiers modifiers)
 		{
 			if (shieldDroneReduction > 0)
 			{
@@ -270,7 +270,7 @@ namespace AssortedCrazyThings
 					dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
 				}
 
-				damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
+				modifiers.FinalDamage *= (100 - shieldDroneReduction) / 100f;
 				if (Main.netMode != NetmodeID.Server && Main.myPlayer == Player.whoAmI) shieldDroneReduction -= ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
 			}
 		}
@@ -824,7 +824,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Main.rand.NextBool(5))
 			{
@@ -835,7 +835,7 @@ namespace AssortedCrazyThings
 		}
 
 
-		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (!proj.minion && Main.rand.NextBool(5) || proj.minion && Main.rand.NextBool(25))
 			{
@@ -871,19 +871,17 @@ namespace AssortedCrazyThings
 			outOfCombatTimer = 0;
 		}
 
-		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
+		public override void ModifyHurt(ref Player.HurtModifiers modifiers)
 		{
-			DecreaseDroneShield(ref damage);
+			DecreaseDroneShield(ref modifiers);
 
-			if (wyvernCampfire && damageSource.SourceProjectileType == ProjectileID.HarpyFeather)
+			if (wyvernCampfire && modifiers.DamageSource.SourceProjectileType == ProjectileID.HarpyFeather)
 			{
-				hitDirection = 0; //this cancels knockback
+				modifiers.HitDirectionOverride = 0; //this cancels knockback
 			}
-
-			return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
 		}
 
-		public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+		public override void PostHurt(Player.HurtInfo info)
 		{
 			//Gets called on all sides
 			ResetEmpoweringTimer();

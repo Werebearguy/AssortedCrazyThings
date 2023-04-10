@@ -12,8 +12,8 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Talonstorm");
-			Tooltip.SetDefault("Summons a bone storm that attacks enemies with extending talons");
+			// DisplayName.SetDefault("Talonstorm");
+			// Tooltip.SetDefault("Summons a bone storm that attacks enemies with extending talons");
 		}
 
 		public override void SetDefaults()

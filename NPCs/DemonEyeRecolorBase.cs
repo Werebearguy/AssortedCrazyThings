@@ -14,7 +14,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Demon Eye");
+			// DisplayName.SetDefault("Demon Eye");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
 			NPCID.Sets.DemonEyes[NPC.type] = true;
 
@@ -53,20 +53,20 @@ namespace AssortedCrazyThings.NPCs
 			}
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hit.HitDirection, -1f);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 30; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hit.HitDirection, -1f);
 				}
 			}
 		}

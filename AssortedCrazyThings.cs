@@ -100,7 +100,7 @@ namespace AssortedCrazyThings
 		{
 			List<int> tempList = new List<int>();
 
-			for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++)
+			for (int i = NPCID.Count; i < NPCLoader.NPCCount; i++)
 			{
 				ModNPC modNPC = NPCLoader.GetNPC(i);
 				if (modNPC != null && (modNPC.GetType().Name.EndsWith("Body") || modNPC.GetType().Name.EndsWith("Tail")))

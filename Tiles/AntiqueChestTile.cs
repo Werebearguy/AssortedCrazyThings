@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using System.Collections.Generic;
 
 namespace AssortedCrazyThings.Tiles
 {
@@ -28,20 +29,19 @@ namespace AssortedCrazyThings.Tiles
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.BasicChest[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
+			TileID.Sets.AvoidedByNPCs[Type] = true;
+			TileID.Sets.InteractibleByNPCs[Type] = true;
+			TileID.Sets.IsAContainer[Type] = true;
+			TileID.Sets.FriendlyFairyCanLureTo[Type] = true;
 
 			DustType = 1;
 			AdjTiles = new int[] { TileID.Containers };
-			ChestDrop = ItemType;
+			ItemDrop = ItemType;
 
 			// Names
-			ContainerName.SetDefault("Antique Chest");
-
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Antique Chest");
+			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(102, 115, 103), name, MapChestName);
-
-			name = CreateMapEntryName(Name + "_Locked"); // With multiple map entries, you need unique translation keys.
-			name.SetDefault("Locked Antique Chest");
+			name = this.GetLocalization("MapEntry_Locked");
 			AddMapEntry(new Color(147, 160, 163), name, MapChestName);
 
 			// Placement
@@ -50,11 +50,23 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
 			TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-			TileObjectData.newTile.AnchorInvalidTiles = new int[] { TileID.MagicalIceBlock }; //TODO 1.4.4
+			TileObjectData.newTile.AnchorInvalidTiles = new int[] {
+				TileID.MagicalIceBlock,
+				TileID.Boulder,
+				TileID.BouncyBoulder,
+				TileID.LifeCrystalBoulder,
+				TileID.RollingCactus
+			};
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
+		}
+
+		public override LocalizedText DefaultContainerName(int frameX, int frameY)
+		{
+			bool locked = frameX / 36 == 1;
+			return this.GetLocalization("MapEntry" + (locked ? "_Locked" : ""));
 		}
 
 		public override ushort GetMapOption(int i, int j)
@@ -76,6 +88,17 @@ namespace AssortedCrazyThings.Tiles
 		{
 			dustType = DustType;
 			return true;
+		}
+
+		public override bool LockChest(int i, int j, ref short frameXAdjustment, ref bool manual)
+		{
+			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
+			//We need to return true only if the tile style is the unlocked variant of a chest that supports locking. 
+			if (style == 0)
+			{
+				return true;
+			}
+			return false;
 		}
 
 		public static string MapChestName(string name, int i, int j)
@@ -112,9 +135,23 @@ namespace AssortedCrazyThings.Tiles
 			num = 1;
 		}
 
+		public override IEnumerable<Item> GetItemDrops(int i, int j)
+		{
+			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
+			if (style == 0)
+			{
+				yield return new Item(ItemType);
+			}
+			if (style == 1)
+			{
+				//Style 1 is when locked. We want that tile style to drop the original item as well. Use the Chest Lock item to lock this chest.
+				//No item places ExampleChest in the locked style, so the automatic item drop is unknown, this is why GetItemDrops is necessary in this situation. 
+				yield return new Item(ItemType);
+			}
+		}
+
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ChestDrop);
 			Chest.DestroyChest(i, j);
 		}
 
@@ -155,7 +192,7 @@ namespace AssortedCrazyThings.Tiles
 			bool isLocked = Chest.IsLocked(left, top);
 			if (Main.netMode == NetmodeID.MultiplayerClient && !isLocked)
 			{
-				if (left == player.chestX && top == player.chestY && player.chest >= 0)
+				if (left == player.chestX && top == player.chestY && player.chest != -1)
 				{
 					player.chest = -1;
 					Recipe.FindRecipes();
@@ -172,18 +209,18 @@ namespace AssortedCrazyThings.Tiles
 				if (isLocked)
 				{
 					int key = ItemID.GoldenKey;
-					if (player.ConsumeItem(key) && Chest.Unlock(left, top))
+					if (player.ConsumeItem(key, includeVoidBag: true) && Chest.Unlock(left, top))
 					{
 						if (Main.netMode == NetmodeID.MultiplayerClient)
 						{
-							NetMessage.SendData(MessageID.Unlock, -1, -1, null, player.whoAmI, 1f, left, top);
+							NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, left, top);
 						}
 					}
 				}
 				else
 				{
 					int chest = Chest.FindChest(left, top);
-					if (chest >= 0)
+					if (chest != -1)
 					{
 						Main.stackSplit = 600;
 						if (chest == player.chest)
@@ -229,7 +266,7 @@ namespace AssortedCrazyThings.Tiles
 			}
 			else
 			{
-				string defaultName = TileLoader.ContainerName(tile.TileType); // This gets the ContainerName text for the currently selected language
+				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
 				player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
 				if (player.cursorItemIconText == defaultName)
 				{

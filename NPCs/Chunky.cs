@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Chunky");
+			// DisplayName.SetDefault("Chunky");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 		}
@@ -35,20 +35,20 @@ namespace AssortedCrazyThings.NPCs
 			NPC.catchItem = ModContent.ItemType<ChunkySlimeItem>();
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, hit.HitDirection, -1f);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 40; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, 2 * hitDirection, -2f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 18, 2 * hit.HitDirection, -2f);
 				}
 			}
 		}

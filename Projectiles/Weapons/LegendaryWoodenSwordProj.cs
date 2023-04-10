@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Legendary Wooden Sword");
+			// DisplayName.SetDefault("Legendary Wooden Sword");
 		}
 
 		public override void SetDefaults()

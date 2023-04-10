@@ -24,8 +24,8 @@ namespace AssortedCrazyThings.Items.Pets
 		public sealed override void SafeSetStaticDefaults()
 		{
 			string name = BaseModItem.Name;
-			DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
-			Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");
+			// DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
+			// Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");
 
 			EvenSaferSetStaticDefaults();
 		}

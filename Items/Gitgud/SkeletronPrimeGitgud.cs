@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Clock Set Ten Years Ahead");
+			// DisplayName.SetDefault("Clock Set Ten Years Ahead");
 		}
 
 		public override void SafeSetDefaults()

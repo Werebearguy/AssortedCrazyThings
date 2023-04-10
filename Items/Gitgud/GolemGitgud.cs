@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Rechargeable Solar Battery");
+			// DisplayName.SetDefault("Rechargeable Solar Battery");
 		}
 
 		public override void SafeSetDefaults()

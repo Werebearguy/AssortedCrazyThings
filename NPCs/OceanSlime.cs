@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ocean Slime");
+			// DisplayName.SetDefault("Ocean Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 
@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.catchItem = ModContent.ItemType<OceanSlimeItem>();
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			Color color = AiTexture switch
 			{
@@ -61,16 +61,16 @@ namespace AssortedCrazyThings.NPCs
 			};
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hit.HitDirection, -1f, NPC.alpha, color);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 40; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hit.HitDirection, -2f, NPC.alpha, color);
 				}
 			}
 		}

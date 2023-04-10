@@ -11,10 +11,10 @@ namespace AssortedCrazyThings.Items.Consumables
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Empowerment Flask");
-			Tooltip.SetDefault("Incrementally increases damage dealt over time"
+			// DisplayName.SetDefault("Empowerment Flask");
+			/* Tooltip.SetDefault("Incrementally increases damage dealt over time"
 				+ "\nBonus resets upon taking damage"
-				+ "\n(Summon damage only increases marginally)");
+				+ "\n(Summon damage only increases marginally)"); */
 
 			ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
 				new Color(13, 106, 137),

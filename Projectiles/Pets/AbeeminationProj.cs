@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Abeemination");
+			// DisplayName.SetDefault("Abeemination");
 
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<AbeeminationBuff_AoMM>(), null);
 		}

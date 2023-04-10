@@ -7,8 +7,8 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tome of Shadowflame Skulls");
-			Tooltip.SetDefault("Inflicts Shadowflame on enemies");
+			// DisplayName.SetDefault("Tome of Shadowflame Skulls");
+			// Tooltip.SetDefault("Inflicts Shadowflame on enemies");
 		}
 
 		public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Soul Harvester Trophy");
+			// DisplayName.SetDefault("Soul Harvester Trophy");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

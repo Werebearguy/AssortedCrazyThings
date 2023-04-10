@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Metal Dreamcatcher");
+			// DisplayName.SetDefault("Metal Dreamcatcher");
 		}
 
 		public override void SafeSetDefaults()

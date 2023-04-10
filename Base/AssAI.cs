@@ -162,7 +162,7 @@ namespace AssortedCrazyThings.Base
 				dust.velocity *= 0.5f;
 				dust.velocity.Y += -0.9f;
 				dust.scale += 0.1f + Main.rand.NextFloat() * 0.6f;
-				dust.shader = GameShaders.Armor.GetSecondaryShader(Main.GetProjectileDesiredShader(projectile.whoAmI), player);
+				dust.shader = GameShaders.Armor.GetSecondaryShader(Main.GetProjectileDesiredShader(projectile), player);
 			}
 
 			if (lightPet)
@@ -1423,7 +1423,7 @@ namespace AssortedCrazyThings.Base
 				Vector2 toPlayer = player.Center - Projectile.Center;
 				float len = toPlayer.Length();
 
-				AssAI.TeleportIfTooFar(Projectile, player.Center);
+				TeleportIfTooFar(Projectile, player.Center);
 
 				if (len < maxLen && player.velocity.Y == 0f && Projectile.Bottom.Y <= player.Bottom.Y && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
 				{
@@ -1926,7 +1926,7 @@ namespace AssortedCrazyThings.Base
 				Vector2 toPlayer = player.Center - Projectile.Center;
 				float len = toPlayer.Length();
 
-				AssAI.TeleportIfTooFar(Projectile, player.Center);
+				TeleportIfTooFar(Projectile, player.Center);
 
 				if (len < maxLen && player.velocity.Y == 0f && Projectile.Bottom.Y <= player.Bottom.Y && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
 				{

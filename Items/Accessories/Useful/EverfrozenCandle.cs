@@ -7,8 +7,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Everfrozen Candle");
-			Tooltip.SetDefault("Applies frostbite damage to all attacks");
+			// DisplayName.SetDefault("Everfrozen Candle");
+			// Tooltip.SetDefault("Applies frostbite damage to all attacks");
 		}
 
 		public override void SafeSetDefaults()

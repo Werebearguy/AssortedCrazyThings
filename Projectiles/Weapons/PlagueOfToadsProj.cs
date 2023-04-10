@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Plague of Toads Fired");
+			// DisplayName.SetDefault("Plague of Toads Fired");
 			Main.projFrames[Projectile.type] = 1;
 		}
 

@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Broken Lens");
+			// DisplayName.SetDefault("Broken Lens");
 		}
 
 		public override void SafeSetDefaults()

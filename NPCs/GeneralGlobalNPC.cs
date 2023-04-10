@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Items.DroneUnlockables;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
@@ -65,12 +66,12 @@ namespace AssortedCrazyThings.NPCs
 			}
 		}
 
-		public override void SetupShop(int type, Chest shop, ref int nextSlot)
+		public override void ModifyShop(NPCShop shop)
 		{
-			if (ContentConfig.Instance.PlaceablesFunctional && type == NPCID.PartyGirl && NPC.downedSlimeKing)
+			int type = shop.NpcType;
+			if (type == NPCID.PartyGirl)
 			{
-				shop.item[nextSlot].SetDefaults(ModContent.ItemType<SlimeBeaconItem>());
-				nextSlot++;
+				shop.Add(ModContent.ItemType<SlimeBeaconItem>(), AssConditions.PlaceablesFunctional, Condition.DownedKingSlime);
 			}
 		}
 

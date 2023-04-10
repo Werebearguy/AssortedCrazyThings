@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Number Muncher");
+			// DisplayName.SetDefault("Number Muncher");
 			Main.projFrames[Projectile.type] = 10;
 			Main.projPet[Projectile.type] = true;
 

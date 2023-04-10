@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sparkling Cupcake");
+			// DisplayName.SetDefault("Sparkling Cupcake");
 		}
 
 		public override void SafeSetDefaults()

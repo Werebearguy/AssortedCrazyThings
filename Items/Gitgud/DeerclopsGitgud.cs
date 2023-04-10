@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Deerclops Effigy");
+			// DisplayName.SetDefault("Deerclops Effigy");
 		}
 
 		public override void SafeSetDefaults()

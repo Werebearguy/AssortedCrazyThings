@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul");
+			// DisplayName.SetDefault("Companion Soul");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 		}

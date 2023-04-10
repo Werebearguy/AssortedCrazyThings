@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(name);
+			// DisplayName.SetDefault(name);
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.NPCs
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

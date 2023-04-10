@@ -530,7 +530,7 @@ namespace AssortedCrazyThings
 		/// <summary>
 		/// Called in ModifyHitByNPC
 		/// </summary>
-		public static void ReduceDamageNPC(int whoAmI, int npcType, ref int damage)
+		public static void ReduceDamageNPC(int whoAmI, int npcType, ref Player.HurtModifiers modifiers)
 		{
 			if (DataList != null)
 			{
@@ -543,7 +543,7 @@ namespace AssortedCrazyThings
 						if (data.InvasionBool() ||
 							(Array.BinarySearch(data.NPCTypeList, npcType) > -1 && AssUtils.AnyNPCs(data.BossTypeList)))
 						{
-							damage = (int)(damage * (1 - data.Reduction));
+							modifiers.FinalDamage *= 1 - data.Reduction;
 							return;
 						}
 					}
@@ -554,7 +554,7 @@ namespace AssortedCrazyThings
 		/// <summary>
 		/// Called in ModifyHitByProjectile
 		/// </summary>
-		public static void ReduceDamageProj(int whoAmI, int projType, ref int damage)
+		public static void ReduceDamageProj(int whoAmI, int projType, ref Player.HurtModifiers modifiers)
 		{
 			if (DataList != null)
 			{
@@ -567,7 +567,7 @@ namespace AssortedCrazyThings
 						if (data.InvasionBool() ||
 							(Array.BinarySearch(data.ProjTypeList, projType) > -1 && AssUtils.AnyNPCs(data.BossTypeList)))
 						{
-							damage = (int)(damage * (1 - data.Reduction));
+							modifiers.FinalDamage *= 1 - data.Reduction;
 							return;
 						}
 					}
@@ -686,7 +686,6 @@ namespace AssortedCrazyThings
 			Add<DeerclopsGitgud>(
 				new int[] { BuffID.Slow, BuffID.Frozen },
 				new int[] { NPCID.Deerclops },
-				nPCTypeList: new int[] { NPCID.DeerclopsLeg },
 				projTypeList: new int[] { ProjectileID.DeerclopsIceSpike, ProjectileID.DeerclopsRangedProjectile, ProjectileID.InsanityShadowHostile });
 			Add<WallOfFleshGitgud>(
 				-1,
@@ -926,14 +925,14 @@ namespace AssortedCrazyThings
 			//pirateInvasionGitgudCounter = tag.GetByte("pirateInvasionGitgudCounter");
 		}
 
-		public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+		public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
 		{
-			GitgudData.ReduceDamageNPC(Player.whoAmI, npc.type, ref damage);
+			GitgudData.ReduceDamageNPC(Player.whoAmI, npc.type, ref modifiers);
 		}
 
-		public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+		public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
 		{
-			GitgudData.ReduceDamageProj(Player.whoAmI, proj.type, ref damage);
+			GitgudData.ReduceDamageProj(Player.whoAmI, proj.type, ref modifiers);
 		}
 
 		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -943,9 +942,9 @@ namespace AssortedCrazyThings
 			return true;
 		}
 
-		public override void OnEnterWorld(Player player)
+		public override void OnEnterWorld()
 		{
-			GitgudData.LoadCounters(player.whoAmI, new byte[]
+			GitgudData.LoadCounters(Player.whoAmI, new byte[]
 			{
 				kingSlimeGitgudCounter,
 				eyeOfCthulhuGitgudCounter,
@@ -978,9 +977,9 @@ namespace AssortedCrazyThings
 			//AssUtils.Print(GitgudData.DataList.Length);
 		}
 
-		public override void OnRespawn(Player player)
+		public override void OnRespawn()
 		{
-			GitgudData.SpawnItem(player);
+			GitgudData.SpawnItem(Player);
 		}
 	}
 }

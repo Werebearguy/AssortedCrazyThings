@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Ichor Sticker");
+			// DisplayName.SetDefault("Baby Ichor Sticker");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override SoundStyle? SpawnSound => SoundID.Item17;
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			int petLevel = AmuletOfManyMinionsApi.GetPetLevel(Projectile.GetOwner());
 			if (petLevel >= 5)

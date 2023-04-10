@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pet Golem Head Fireball");
+			// DisplayName.SetDefault("Pet Golem Head Fireball");
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
 
@@ -44,7 +44,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 			return true;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			target.AddBuff(BuffID.OnFire, 240);
 		}

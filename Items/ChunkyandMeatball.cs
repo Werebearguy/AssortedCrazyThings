@@ -19,8 +19,8 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Chunky's Eye");
-			Tooltip.SetDefault("'Find Meatball's Eye and combine the two at a Demon Altar'");
+			// DisplayName.SetDefault("Chunky's Eye");
+			// Tooltip.SetDefault("'Find Meatball's Eye and combine the two at a Demon Altar'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -30,8 +30,8 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Meatball's Eye");
-			Tooltip.SetDefault("'Find Chunky's Eye and combine the two at a Demon Altar'");
+			// DisplayName.SetDefault("Meatball's Eye");
+			// Tooltip.SetDefault("'Find Chunky's Eye and combine the two at a Demon Altar'");
 
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Fairy Swarm");
+			// DisplayName.SetDefault("Fairy Swarm");
 			Main.projFrames[Projectile.type] = 1; //The texture is a dummy
 			Main.projPet[Projectile.type] = true;
 
@@ -164,17 +164,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.DamageType = DamageClass.Summon;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			float fromPlayerToTargetX = target.Center.X - Projectile.GetOwner().Center.X;
 
 			if (target.defense >= 20)
 			{
-				damage += target.checkArmorPenetration(10);
+				modifiers.ArmorPenetration += 10;
 			}
 
 			//Hit away from player
-			hitDirection = Math.Sign(fromPlayerToTargetX);
+			modifiers.HitDirectionOverride = Math.Sign(fromPlayerToTargetX);
 		}
 
 		public override void Kill(int timeLeft)

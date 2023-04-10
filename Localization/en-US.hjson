@@ -1,520 +1,2109 @@
-Mods.AssortedCrazyThings: {
-	BuffName: {
-		# Cute Slimes
-		CuteSlimeBlackBuff: Cute Black Slime
-		CuteSlimeBlueBuff: Cute Blue Slime
-		CuteSlimeCorruptBuff: Cute Corrupt Slime
-		CuteSlimeCrimsonBuff: Cute Crimson Slime
-		CuteSlimeDungeonBuff: Cute Dungeon Slime
-		CuteSlimeGreenBuff: Cute Green Slime
-		CuteSlimeIceBuff: Cute Ice Slime
-		CuteSlimeIlluminantBuff: Cute Illuminant Slime
-		CuteSlimeJungleBuff: Cute Jungle Slime
-		CuteSlimeLavaBuff: Cute Lava Slime
-		CuteSlimePinkBuff: Cute Pink Slime
-		CuteSlimePrincessBuff: Cute Princess Slime
-		CuteSlimePurpleBuff: Cute Purple Slime
-		CuteSlimeQueenBuff: Cute Queen Slime
-		CuteSlimeRainbowBuff: Cute Rainbow Slime
-		CuteSlimeRedBuff: Cute Red Slime
-		CuteSlimeSandBuff: Cute Sand Slime
-		CuteSlimeToxicBuff: Cute Toxic Slime
-		CuteSlimeXmasBuff: Cute Christmas Slime
-		CuteSlimeYellowBuff: Cute Yellow Slime
-		# Pets. AoMM versions are auto-generated
-		AbeeminationBuff: Abeemination
-		AlienHornetBuff: Alien Hornet
-		AnimatedTomeBuff: Animated Tome
-		AnomalocarisBuff: Anomalocaris
-		BabyCrimeraBuff: Baby Crimera
-		BabyIchorStickerBuff: Lil' Ichy
-		BabyOcramBuff: Baby Ocram
-		BrainofConfusionBuff: Brain of Confusion
-		ChunkyandMeatballBuff: Chunky and Meatball
-		ChunkySlimeBuff: Chunky
-		CompanionDungeonSoulPetBuff: Companion Soul
-		CompanionDungeonSoulPetBuff2: "{$Mods.AssortedCrazyThings.BuffName.CompanionDungeonSoulPetBuff}"
-		CursedSkullBuff: Cursed Skull
-		CuteGastropodBuff: Cute Gastropod
-		CuteLamiaPetBuff: Small Snake
-		DemonHeartBuff: Demon Heart
-		DetachedHungryBuff: Detached Hungry
-		DocileDemonEyeBuff: Docile Demon Eye
-		DrumstickElementalBuff: Drumstick Elemental
-		DynamiteBunnyBuff: Dynamite Bunny
-		EnchantedSwordBuff: Enchanted Sword
-		FailureSlimeBuff: Failure Slime
-		FairySlimeBuff: Fairy Slime
-		FairySwarmBuff: Fairy Swarm
-		GhostMartianBuff: Ghost Martian
-		GobletBuff: Goblet
-		HornedSlimeBuff: Horned Slime
-		IlluminantSlimeBuff: Illuminant Slime
-		JoyousSlimeBuff: Joyous Slime
-		LifelikeMechanicalFrogBuff: Lifelike Mechanical Frog
-		LilWrapsBuff: Lil' Wraps
-		MeatballSlimeBuff: Meatball
-		MetroidPetBuff: Metroid
-		MiniAntlionBuff: Baby Antlion
-		MiniMegalodonBuff: Mini Megalodon
-		NumberMuncherBuff: Number Muncher
-		OceanSlimeBuff: Ocean Slime
-		PetCultistBuff: Dwarf Cultist
-		PetDestroyerBuff: Tiny Destroyer
-		PetEaterofWorldsBuff: Tiny Eater of Worlds
-		PetFishronBuff: Fishron
-		PetGoldfishBuff: Possessed Goldfish
-		PetGolemHeadBuff: Replica Golem Head
-		PetHarvesterBuff: Stubborn Bird
-		PetMoonBuff: Personal Moon
-		PetPlanteraBuff: Plantera Sprout
-		PetQueenSlimeBuff: Playful Slimelings
-		PetSunBuff: Personal Sun
-		PetSunMoonBuff: Personal Sun and Moon
-		PigronataBuff: Pigronata
-		PrinceSlimeBuff: Prince Slime
-		QueenLarvaBuff: Queen Larva
-		RainbowSlimeBuff: Rainbow Slime
-		SkeletronHandBuff: Skeletron's Spare Hand
-		SkeletronPrimeHandBuff: Skeletron Prime's Hand is attached to you
-		StingSlimeBuff: Sting Slime
-		StrangeRobotBuff: Strange Robot
-		SuspiciousNuggetBuff: Suspicious Nugget
-		SwarmofCthulhuBuff: Swarm of Cthulhu
-		TinyTwinsBuff: Tiny Twins
-		TorchGodLightPetBuff: Godly Torch
-		TorturedSoulBuff: Tortured Soul
-		TrueObservingEyeBuff: True Observing Eye
-		TurtleSlimeBuff: Turtle Slime
-		VampireBatBuff: Vampire Bat
-		WallFragmentBuff: Wall Fragment
-		YoungHarpyBuff: Young Harpy
-		YoungWyvernBuff: Young Wyvern
-		WobyBuff: Woby, 'A lovable dog...'
-	}
 
-	BuffDescription: {
-		# Cute Slimes
-		CuteSlimeBlackBuff: A cute black slime is following you
-		CuteSlimeBlueBuff: A cute blue slime is following you
-		CuteSlimeCorruptBuff: A cute corrupt slime is following you
-		CuteSlimeCrimsonBuff: A cute crimson slime is following you
-		CuteSlimeDungeonBuff: A cute dungeon slime is following you
-		CuteSlimeGreenBuff: A cute green slime is following you
-		CuteSlimeIceBuff: A cute ice slime is following you
-		CuteSlimeIlluminantBuff: A cute illuminant slime is following you
-		CuteSlimeJungleBuff: A cute jungle slime is following you
-		CuteSlimeLavaBuff: A cute lava slime is following you
-		CuteSlimePinkBuff: A cute pink slime is following you
-		CuteSlimePrincessBuff: A cute princess slime is following you
-		CuteSlimePurpleBuff: A cute purple slime is following you
-		CuteSlimeQueenBuff: A cute queen slime is following you
-		CuteSlimeRainbowBuff: A cute rainbow slime is following you
-		CuteSlimeRedBuff: A cute red slime is following you
-		CuteSlimeSandBuff: A cute sand slime is following you
-		CuteSlimeToxicBuff: A cute toxic slime is following you
-		CuteSlimeXmasBuff: A cute Christmas slime is following you
-		CuteSlimeYellowBuff: A cute yellow slime is following you
-		# Pets. AoMM versions are auto-generated
-		AbeeminationBuff: An abeemination is following you
-		AlienHornetBuff: An alien hornet is following you
-		AnimatedTomeBuff: An animated tome is following you
-		AnomalocarisBuff: A little prehistoric shrimp is following you
-		BabyCrimeraBuff: A little crimera is following you
-		BabyIchorStickerBuff: A baby ichor sticker is following you
-		BabyOcramBuff: What could have been now follows you
-		BrainofConfusionBuff: A brain of confusion is following you
-		ChunkyandMeatballBuff: Two reunited brothers are following you
-		ChunkySlimeBuff: Chunky is following you
-		CompanionDungeonSoulPetBuffCommon: A friendly dungeon soul is following you
-		CompanionDungeonSoulPetBuff:
-			'''
-			{$Mods.AssortedCrazyThings.BuffDescription.CompanionDungeonSoulPetBuffCommon}
-			Light pet slot
-			'''
-		CompanionDungeonSoulPetBuff2:
-			'''
-			{$Mods.AssortedCrazyThings.BuffDescription.CompanionDungeonSoulPetBuffCommon}
-			Pet slot
-			'''
-		CursedSkullBuff: It won't curse you, I promise
-		CuteGastropodBuff: A cute gastropod is following you
-		CuteLamiaPetBuff: A small snake is following you
-		DemonHeartBuff: A demon heart is following you
-		DetachedHungryBuff: You might be the next meal...
-		DocileDemonEyeBuff: A demon eye is following you
-		DrumstickElementalBuff: Dinner is following you
-		DynamiteBunnyBuff: A little dynamite bunny is following you
-		EnchantedSwordBuff: The enchanted sword watches over you
-		FailureSlimeBuff: A strange creature is following you
-		FairySlimeBuff: A fairy slime is following you
-		FairySwarmBuff: A fairy swarm is following you
-		GhostMartianBuff: A vengeful invader's ghost is following you
-		GobletBuff: A tiny goblin is following you
-		HornedSlimeBuff: A horned slime is following you
-		IlluminantSlimeBuff: An illuminant slime is following you
-		JoyousSlimeBuff: A joyous slime is following you
-		LifelikeMechanicalFrogBuff: Whatever happened to this frog at the anvil is a mystery
-		LilWrapsBuff: A mummy is following you
-		MeatballSlimeBuff: Meatball is following you
-		MetroidPetBuff: A space parasite is following you
-		MiniAntlionBuff: A baby antlion is following you
-		MiniMegalodonBuff: It recognizes your strength...for now
-		NumberMuncherBuff: An educated amphibian is following you
-		OceanSlimeBuff: An ocean slime is following you
-		PetCultistBuff: A tiny cultist is following you
-		PetDestroyerBuff: A tiny Destroyer and two tiny Probes are following you
-		PetEaterofWorldsBuff: A tiny Eater of Worlds is following you
-		PetFishronBuff: A fishron is following you
-		PetGoldfishBuff: A possessed goldfish is following you
-		PetGolemHeadBuff: A replica Golem head watches over you
-		PetHarvesterBuff: A stubborn bird is following you
-		PetMoonBuff: A small moon is providing you with constant moonlight
-		PetPlanteraBuff: A Plantera sprout is following you
-		PetQueenSlimeBuff: A trio of slimelings is following you
-		PetSunBuff: A small sun is providing you with constant sunlight
-		PetSunMoonBuff:
-			'''
-			A small sun and moon are providing you with constant light
-			No adverse gravitational effects will happen'
-			'''
-		PigronataBuff: A pigronata is thankful that you did not bust it
-		PrinceSlimeBuff: A prince slime is following you
-		QueenLarvaBuff: A Queen Bee larva is following you
-		RainbowSlimeBuff: A rainbow slime is following you
-		SkeletronHandBuff: Skeletron's hand is attached to you
-		SkeletronPrimeHandBuff: Skeletron Prime's hand is attached to you
-		StingSlimeBuff: A sting slime is following you
-		StrangeRobotBuff: A strange robot is following you
-		SuspiciousNuggetBuff: A suspicious nugget is following you
-		SwarmofCthulhuBuff: A swarm of Cthulhu is following you
-		TinyTwinsBuff: The Twins are watching you
-		TorchGodLightPetBuff: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
-		TorturedSoulBuff: Shouldn't have been so greedy, eh?
-		TrueObservingEyeBuff: A tiny True Eye of Cthulhu is following you
-		TurtleSlimeBuff: A turtle slime is following you
-		VampireBatBuff: A particularly dashing vampire is following you
-		WallFragmentBuff: Several fragments of the Wall are following you
-		YoungHarpyBuff: A young harpy is following you
-		YoungWyvernBuff: A young wyvern is following you
-		WobyBuff: A loyal canine is following you
-	}
+Mods: {
+	AssortedCrazyThings: {
+		Buffs: {
+			# Cute Slimes
+			CuteSlimeBlackBuff: {
+				DisplayName: Cute Black Slime
+				Description: A cute black slime is following you
+			}
 
-	Common: {
-		AoMMVersion: "(AoMM version)"
-		PetHasAltSkins: Appearance can be changed with Costume Suitcase
-	}
+			CuteSlimeBlueBuff: {
+				DisplayName: Cute Blue Slime
+				Description: A cute blue slime is following you
+			}
 
-	ItemName: {
-		# Cute Slimes
-		CuteSlimeBlackItem: Bottled Cute Black Slime
-		CuteSlimeBlueItem: Bottled Cute Blue Slime
-		CuteSlimeCorruptItem: Bottled Cute Corrupt Slime
-		CuteSlimeCrimsonItem: Bottled Cute Crimson Slime
-		CuteSlimeDungeonItem: Bottled Cute Dungeon Slime
-		CuteSlimeGreenItem: Bottled Cute Green Slime
-		CuteSlimeIceItem: Bottled Cute Ice Slime
-		CuteSlimeIlluminantItem: Bottled Cute Illuminant Slime
-		CuteSlimeJungleItem: Bottled Cute Jungle Slime
-		CuteSlimeLavaItem: Bottled Cute Lava Slime
-		CuteSlimePinkItem: Bottled Cute Pink Slime
-		CuteSlimePrincessItem: Bottled Cute Princess Slime
-		CuteSlimePurpleItem: Bottled Cute Purple Slime
-		CuteSlimeQueenItem: Bottled Cute Queen Slime
-		CuteSlimeRainbowItem: Bottled Cute Rainbow Slime
-		CuteSlimeRedItem: Bottled Cute Red Slime
-		CuteSlimeSandItem: Bottled Cute Sand Slime
-		CuteSlimeToxicItem: Bottled Cute Toxic Slime
-		CuteSlimeXmasItem: Bottled Cute Christmas Slime
-		CuteSlimeYellowItem: Bottled Cute Yellow Slime
-		# Pets. AoMM versions are auto-generated
-		AbeeminationItem: Abeemination
-		AlienHornetItem: Vortex Nectar
-		AnimatedTomeItem: Animated Tome
-		AnomalocarisItem: Ornery Shrimp
-		BabyCrimeraItem: Juicy Vertebrae
-		BabyIchorStickerItem: Sleeping Ichor Sticker
-		BabyOcramItem: Baby Ocram
-		BrainofConfusionItem: Brain of Confusion
-		ChunkyandMeatballItem: Chunky and Meatball
-		ChunkySlimeItem: Bottled Chunky
-		CompanionDungeonSoulPetItem: Companion Soul
-		CompanionDungeonSoulPetItem2: "{$Mods.AssortedCrazyThings.ItemName.CompanionDungeonSoulPetItem}"
-		CursedSkullItem: Inert Skull
-		CuteGastropodItem: Mysterious Pod
-		CuteLamiaPetItem: Shaking Snake Pot
-		DemonHeartItem: Demon Heart
-		DetachedHungryItem: Unconscious Hungry
-		DocileDemonEyeItem: Docile Demon Eye
-		DrumstickElementalItem: Magical Drumstick
-		DynamiteBunnyItem: Dynamite Carrot
-		EnchantedSwordItem: Enchanted Sword
-		FailureSlimeItem: Slimy Skull
-		FairySlimeItem: Bottled Fairy Slime
-		FairySwarmItem: Bottle of Assorted Fairies
-		GhostMartianItem: K-II Meter
-		GobletItem: Goblet Battle Standard
-		HornedSlimeItem: Bottled Horned Slime
-		IlluminantSlimeItem: Bottled Illuminant Slime
-		JoyousSlimeItem: Bottled Joyous Slime
-		LifelikeMechanicalFrogItem: Lifelike Mechanical Frog
-		LilWrapsItem: Gilded Coffin
-		MeatballSlimeItem: Bottled Meatball
-		MetroidPetItem: Parasite Container
-		MiniAntlionItem: Antlion Egg
-		MiniMegalodonItem: Small Megalodon Tooth
-		NumberMuncherItem: Archaic Storage Device
-		OceanSlimeItem: Bottled Ocean Slime
-		PetCultistItem: Tiny Ominous Coin
-		PetDestroyerItem: Destroyer's Core
-		PetEaterofWorldsItem: Cracked Worm Egg
-		PetFishronItem: Soggy Fish Cake
-		PetGoldfishItem: Possessed Fish Idol
-		PetGolemHeadItem: Replica Golem Head
-		PetHarvesterItem: Stubborn Bird Soul
-		PetMoonItem: Bottled Moon
-		PetPlanteraItem: Potted Plantera Seed
-		PetQueenSlimeItem: Playful Slimelings
-		PetSunItem: Bottled Sun
-		PetSunMoonItem: Bottled Sun and Moon
-		PigronataItem: Pigronata
-		PrinceSlimeItem: Bottled Prince Slime
-		QueenLarvaItem: Queen Larva
-		RainbowSlimeItem: Bottled Rainbow Slime
-		SkeletronHandItem: Skeletron's Spare Hand
-		SkeletronPrimeHandItem: Skeletron Prime's Spare Hand
-		StingSlimeItem: Bottled Sting Slime
-		StrangeRobotItem: Odd Mechanical Device
-		SuspiciousNuggetItem: Suspicious Nugget
-		SwarmofCthulhuItem: Bottle of Restless Eyes
-		TinyTwinsItem: Tiny Twins
-		TorchGodLightPetItem: Godly Torch
-		TorturedSoulItem: Tortured Soul
-		TrueObservingEyeItem: True Observing Eye
-		TurtleSlimeItem: Bottled Turtle Slime
-		VampireBatItem: Fixed Bat Wing
-		WallFragmentItem: Wall Fragment
-		YoungHarpyItem: Clump of Down Feathers
-		YoungWyvernItem: Wyverntail
-		WobyItem: Dog Lover's Badge
-	}
+			CuteSlimeCorruptBuff: {
+				DisplayName: Cute Corrupt Slime
+				Description: A cute corrupt slime is following you
+			}
 
-	ItemTooltip: {
-		# Cute Slimes
-		CuteSlimeBlackItem: Summons a cute black slime to follow you
-		CuteSlimeBlueItem: Summons a cute blue slime to follow you
-		CuteSlimeCorruptItem: Summons a cute corrupt slime to follow you
-		CuteSlimeCrimsonItem: Summons a cute crimson slime to follow you
-		CuteSlimeDungeonItem: Summons a cute dungeon slime to follow you
-		CuteSlimeGreenItem: Summons a cute green slime to follow you
-		CuteSlimeIceItem: Summons a cute ice slime to follow you
-		CuteSlimeIlluminantItem: Summons a cute illuminant slime to follow you
-		CuteSlimeJungleItem: Summons a cute jungle slime to follow you
-		CuteSlimeLavaItem: Summons a cute lava slime to follow you
-		CuteSlimePinkItem: Summons a cute pink slime to follow you
-		CuteSlimePrincessItem: Summons a cute princess slime to follow you
-		CuteSlimePurpleItem: Summons a cute purple slime to follow you
-		CuteSlimeQueenItem: Summons a cute queen slime to follow you
-		CuteSlimeRainbowItem: Summons a cute rainbow slime to follow you
-		CuteSlimeRedItem: Summons a cute red slime to follow you
-		CuteSlimeSandItem: Summons a cute sand slime to follow you
-		CuteSlimeToxicItem: Summons a cute toxic slime to follow you
-		CuteSlimeXmasItem: Summons a cute christmas slime to follow you
-		CuteSlimeYellowItem: Summons a cute yellow slime to follow you
-		# Pets. AoMM versions are auto-generated
-		AbeeminationItem:
-			'''
-			Summons a friendly abeemination to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		AlienHornetItem: Summons a friendly alien hornet to follow you
-		AnimatedTomeItem:
-			'''
-			Summons a friendly animated tome to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		AnomalocarisItem:
-			'''
-			Summons a prehistoric shrimp to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		BabyCrimeraItem: Summons a baby crimera to follow you
-		BabyIchorStickerItem: Summons a baby ichor sticker to follow you
-		BabyOcramItem: Summons a miniature Ocram that follows you
-		BrainofConfusionItem: Summons a brain of confusion to follow aimlessly behind you
-		ChunkyandMeatballItem: Summons a pair of inseperable brothers to follow you
-		ChunkySlimeItem: Summons Chunky to follow you
-		CompanionDungeonSoulPetItemCommon: Summons a friendly Soul to light your way
-		CompanionDungeonSoulPetItem:
-			'''
-			{$Mods.AssortedCrazyThings.ItemTooltip.CompanionDungeonSoulPetItemCommon}
-			Light pet slot
-			'''
-		CompanionDungeonSoulPetItem2: 
-			'''
-			{$Mods.AssortedCrazyThings.ItemTooltip.CompanionDungeonSoulPetItemCommon}
-			Pet slot
-			'''
-		CursedSkullItem:
-			'''
-			Summons a friendly cursed skull that follows you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		CuteGastropodItem: Summons a cute gastropod to follow you
-		CuteLamiaPetItem:
-			'''
-			Summons a small, friendly snake to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		DemonHeartItem: Summons a friendly demon heart to follow you
-		DetachedHungryItem: Summons a detached hungry to follow you
-		DocileDemonEyeItem:
-			'''
-			Summons a docile demon eye to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		DrumstickElementalItem: Summons a delicious drumstick elemental to follow you
-		DynamiteBunnyItem:
-			'''
-			Summons a dynamite bunny to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		EnchantedSwordItem: Summons an enchanted sword to watch over you
-		FailureSlimeItem: Summons a strange creature to follow you
-		FairySlimeItem: Summons a friendly fairy slime to follow you
-		FairySwarmItem: Summons several fairies to swarm around you
-		GhostMartianItem: Summons a vengeful invader's ghost to follow you
-		GobletItem: Summons a tiny goblin to follow you
-		HornedSlimeItem: Summons a friendly horned slime to follow you
-		IlluminantSlimeItem: Summons a friendly illuminant slime to follow you
-		JoyousSlimeItem: Summons a friendly joyous slime to follow you
-		LifelikeMechanicalFrogItem:
-			'''
-			Summons a friendly frog to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		LilWrapsItem:
-			'''
-			Summons a mummy to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		MeatballSlimeItem: Summons Meatball to follow you
-		MetroidPetItem:
-			'''
-			Summons a space parasite to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		MiniAntlionItem:
-			'''
-			Summons a friendly baby antlion to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		MiniMegalodonItem: Summons a friendly mini megalodon that follows you
-		NumberMuncherItem: Summons an educated amphibian that follows you
-		OceanSlimeItem:
-			'''
-			Summons a friendly ocean slime to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		PetCultistItem: Summons a tiny cultist to follow you and heal when injured
-		PetDestroyerItem: Summons a tiny Destroyer and two tiny probes to follow you
-		PetEaterofWorldsItem: Summons a tiny Eater of Worlds to follow you
-		PetFishronItem:
-			'''
-			Summons a friendly fishron that flies with you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		PetGoldfishItem:
-			'''
-			Summons a goldfish that follows you
-			'You feel like you lost something important in obtaining this idol...'
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		PetGolemHeadItem:
-			'''
-			Summons a replica Golem head to watch over you
-			Shoots bouncing fireballs at nearby enemies
-			'''
-		PetHarvesterItem: Summons a stubborn bird to follow you
-		PetMoonItem:
-			'''
-			Summons a small moon that provides you with constant moonlight
-			Shows the current moon cycle in the buff tip
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		PetPlanteraItem:
-			'''
-			Summons a Plantera sprout to watch over you
-			'It's a mean and green'
-			'''
-		PetQueenSlimeItem: Summons a trio of slimelings to follow you
-		PetSunItem:
-			'''
-			Summons a small sun that provides you with constant sunlight
-			Shows the current time in the buff tip
-			'''
-		PetSunMoonItem:
-			'''
-			Summons a small sun and moon that provide you with constant light
-			Shows the current time in the buff tip
-			Shows the current moon cycle in the buff tip
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		PigronataItem:
-			'''
-			Summons a friendly pigronata to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		PrinceSlimeItem: Summons a prince slime to follow you
-		QueenLarvaItem:
-			'''
-			Summons a Queen Bee larva to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		RainbowSlimeItem: Summons a friendly rainbow slime to follow you
-		SkeletronHandItem:
-			'''
-			Summons Skeletron's hand attached to you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		SkeletronPrimeHandItem:
-			'''
-			Summons Skeletron Prime's hand attached to you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		StingSlimeItem:
-			'''
-			Summons a friendly sting slime to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		StrangeRobotItem: Summons a strange robot to follow you
-		SuspiciousNuggetItem: Summons a suspicious nugget to follow you
-		SwarmofCthulhuItem: Summons several eyes to swarm around you
-		TinyTwinsItem: Summons a tiny pair of The Twins to follow you
-		TorchGodLightPetItem:
-			'''
-			Summons a godly torch to follow you
-			Automatically places your normal torches with 'Smart Cursor' active
-			'''
-		TorturedSoulItem: Summons an unfriendly tortured soul to follow you
-		TrueObservingEyeItem: Summons a True Eye of Cthulhu to watch after you
-		TurtleSlimeItem: Summons a friendly turtle slime to follow you
-		VampireBatItem:
-			'''
-			Summons a friendly vampire that flies with you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		WallFragmentItem: Summons several fragments of the Wall to follow you
-		YoungHarpyItem:
-			'''
-			Summons a friendly harpy to follow you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		YoungWyvernItem:
-			'''
-			Summons a friendly young wyvern that flies with you
-			{$Mods.AssortedCrazyThings.Common.PetHasAltSkins}
-			'''
-		WobyItem: Summons a loyal canine to follow you
+			CuteSlimeCrimsonBuff: {
+				DisplayName: Cute Crimson Slime
+				Description: A cute crimson slime is following you
+			}
+
+			CuteSlimeDungeonBuff: {
+				DisplayName: Cute Dungeon Slime
+				Description: A cute dungeon slime is following you
+			}
+
+			CuteSlimeGreenBuff: {
+				DisplayName: Cute Green Slime
+				Description: A cute green slime is following you
+			}
+
+			CuteSlimeIceBuff: {
+				DisplayName: Cute Ice Slime
+				Description: A cute ice slime is following you
+			}
+
+			CuteSlimeIlluminantBuff: {
+				DisplayName: Cute Illuminant Slime
+				Description: A cute illuminant slime is following you
+			}
+
+			CuteSlimeJungleBuff: {
+				DisplayName: Cute Jungle Slime
+				Description: A cute jungle slime is following you
+			}
+
+			CuteSlimeLavaBuff: {
+				DisplayName: Cute Lava Slime
+				Description: A cute lava slime is following you
+			}
+
+			CuteSlimePinkBuff: {
+				DisplayName: Cute Pink Slime
+				Description: A cute pink slime is following you
+			}
+
+			CuteSlimePrincessBuff: {
+				DisplayName: Cute Princess Slime
+				Description: A cute princess slime is following you
+			}
+
+			CuteSlimePurpleBuff: {
+				DisplayName: Cute Purple Slime
+				Description: A cute purple slime is following you
+			}
+
+			CuteSlimeQueenBuff: {
+				DisplayName: Cute Queen Slime
+				Description: A cute queen slime is following you
+			}
+
+			CuteSlimeRainbowBuff: {
+				DisplayName: Cute Rainbow Slime
+				Description: A cute rainbow slime is following you
+			}
+
+			CuteSlimeRedBuff: {
+				DisplayName: Cute Red Slime
+				Description: A cute red slime is following you
+			}
+
+			CuteSlimeSandBuff: {
+				DisplayName: Cute Sand Slime
+				Description: A cute sand slime is following you
+			}
+
+			CuteSlimeToxicBuff: {
+				DisplayName: Cute Toxic Slime
+				Description: A cute toxic slime is following you
+			}
+
+			CuteSlimeXmasBuff: {
+				DisplayName: Cute Christmas Slime
+				Description: A cute Christmas slime is following you
+			}
+
+			CuteSlimeYellowBuff: {
+				DisplayName: Cute Yellow Slime
+				Description: A cute yellow slime is following you
+			}
+
+			# Pets. AoMM versions are auto-generated
+			AbeeminationBuff: {
+				DisplayName: Abeemination
+				Description: An abeemination is following you
+			}
+
+			AlienHornetBuff: {
+				DisplayName: Alien Hornet
+				Description: An alien hornet is following you
+			}
+
+			AnimatedTomeBuff: {
+				DisplayName: Animated Tome
+				Description: An animated tome is following you
+			}
+
+			AnomalocarisBuff: {
+				DisplayName: Anomalocaris
+				Description: A little prehistoric shrimp is following you
+			}
+
+			BabyCrimeraBuff: {
+				DisplayName: Baby Crimera
+				Description: A little crimera is following you
+			}
+
+			BabyIchorStickerBuff: {
+				DisplayName: Lil' Ichy
+				Description: A baby ichor sticker is following you
+			}
+
+			BabyOcramBuff: {
+				DisplayName: Baby Ocram
+				Description: What could have been now follows you
+			}
+
+			BrainofConfusionBuff: {
+				DisplayName: Brain of Confusion
+				Description: A brain of confusion is following you
+			}
+
+			ChunkyandMeatballBuff: {
+				DisplayName: Chunky and Meatball
+				Description: Two reunited brothers are following you
+			}
+
+			ChunkySlimeBuff: {
+				DisplayName: Chunky
+				Description: Chunky is following you
+			}
+
+			CompanionDungeonSoulPetBuff: {
+				DisplayName: Companion Soul
+				CommonDescription: A friendly dungeon soul is following you
+				Description:
+					'''
+					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
+					Light pet slot
+					'''
+			}
+
+			CompanionDungeonSoulPetBuff2: {
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				Description:
+					'''
+					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
+					Pet slot
+					'''
+			}
+
+			CursedSkullBuff: {
+				DisplayName: Cursed Skull
+				Description: It won't curse you, I promise
+			}
+
+			CuteGastropodBuff: {
+				DisplayName: Cute Gastropod
+				Description: A cute gastropod is following you
+			}
+
+			CuteLamiaPetBuff: {
+				DisplayName: Small Snake
+				Description: A small snake is following you
+			}
+
+			DemonHeartBuff: {
+				DisplayName: Demon Heart
+				Description: A demon heart is following you
+			}
+
+			DetachedHungryBuff: {
+				DisplayName: Detached Hungry
+				Description: You might be the next meal...
+			}
+
+			DocileDemonEyeBuff: {
+				DisplayName: Docile Demon Eye
+				Description: A demon eye is following you
+			}
+
+			DrumstickElementalBuff: {
+				DisplayName: Drumstick Elemental
+				Description: Dinner is following you
+			}
+
+			DynamiteBunnyBuff: {
+				DisplayName: Dynamite Bunny
+				Description: A little dynamite bunny is following you
+			}
+
+			EnchantedSwordBuff: {
+				DisplayName: Enchanted Sword
+				Description: The enchanted sword watches over you
+			}
+
+			FailureSlimeBuff: {
+				DisplayName: Failure Slime
+				Description: A strange creature is following you
+			}
+
+			FairySlimeBuff: {
+				DisplayName: Fairy Slime
+				Description: A fairy slime is following you
+			}
+
+			FairySwarmBuff: {
+				DisplayName: Fairy Swarm
+				Description: A fairy swarm is following you
+			}
+
+			GhostMartianBuff: {
+				DisplayName: Ghost Martian
+				Description: A vengeful invader's ghost is following you
+			}
+
+			GobletBuff: {
+				DisplayName: Goblet
+				Description: A tiny goblin is following you
+			}
+
+			HornedSlimeBuff: {
+				DisplayName: Horned Slime
+				Description: A horned slime is following you
+			}
+
+			IlluminantSlimeBuff: {
+				DisplayName: Illuminant Slime
+				Description: An illuminant slime is following you
+			}
+
+			JoyousSlimeBuff: {
+				DisplayName: Joyous Slime
+				Description: A joyous slime is following you
+			}
+
+			LifelikeMechanicalFrogBuff: {
+				DisplayName: Lifelike Mechanical Frog
+				Description: Whatever happened to this frog at the anvil is a mystery
+			}
+
+			LilWrapsBuff: {
+				DisplayName: Lil' Wraps
+				Description: A mummy is following you
+			}
+
+			MeatballSlimeBuff: {
+				DisplayName: Meatball
+				Description: Meatball is following you
+			}
+
+			MetroidPetBuff: {
+				DisplayName: Metroid
+				Description: A space parasite is following you
+			}
+
+			MiniAntlionBuff: {
+				DisplayName: Baby Antlion
+				Description: A baby antlion is following you
+			}
+
+			MiniMegalodonBuff: {
+				DisplayName: Mini Megalodon
+				Description: It recognizes your strength...for now
+			}
+
+			NumberMuncherBuff: {
+				DisplayName: Number Muncher
+				Description: An educated amphibian is following you
+			}
+
+			OceanSlimeBuff: {
+				DisplayName: Ocean Slime
+				Description: An ocean slime is following you
+			}
+
+			PetCultistBuff: {
+				DisplayName: Dwarf Cultist
+				Description: A tiny cultist is following you
+			}
+
+			PetDestroyerBuff: {
+				DisplayName: Tiny Destroyer
+				Description: A tiny Destroyer and two tiny Probes are following you
+			}
+
+			PetEaterofWorldsBuff: {
+				DisplayName: Tiny Eater of Worlds
+				Description: A tiny Eater of Worlds is following you
+			}
+
+			PetFishronBuff: {
+				DisplayName: Fishron
+				Description: A fishron is following you
+			}
+
+			PetGoldfishBuff: {
+				DisplayName: Possessed Goldfish
+				Description: A possessed goldfish is following you
+			}
+
+			PetGolemHeadBuff: {
+				DisplayName: Replica Golem Head
+				Description: A replica Golem head watches over you
+			}
+
+			PetHarvesterBuff: {
+				DisplayName: Stubborn Bird
+				Description: A stubborn bird is following you
+			}
+
+			PetMoonBuff: {
+				DisplayName: Personal Moon
+				Description: A small moon is providing you with constant moonlight
+			}
+
+			PetPlanteraBuff: {
+				DisplayName: Plantera Sprout
+				Description: A Plantera sprout is following you
+			}
+
+			PetQueenSlimeBuff: {
+				DisplayName: Playful Slimelings
+				Description: A trio of slimelings is following you
+			}
+
+			PetSunBuff: {
+				DisplayName: Personal Sun
+				Description: A small sun is providing you with constant sunlight
+			}
+
+			PetSunMoonBuff: {
+				DisplayName: Personal Sun and Moon
+				Description:
+					'''
+					A small sun and moon are providing you with constant light
+					No adverse gravitational effects will happen'
+					'''
+			}
+
+			PigronataBuff: {
+				DisplayName: Pigronata
+				Description: A pigronata is thankful that you did not bust it
+			}
+
+			PrinceSlimeBuff: {
+				DisplayName: Prince Slime
+				Description: A prince slime is following you
+			}
+
+			QueenLarvaBuff: {
+				DisplayName: Queen Larva
+				Description: A Queen Bee larva is following you
+			}
+
+			RainbowSlimeBuff: {
+				DisplayName: Rainbow Slime
+				Description: A rainbow slime is following you
+			}
+
+			SkeletronHandBuff: {
+				DisplayName: Skeletron's Spare Hand
+				Description: Skeletron's hand is attached to you
+			}
+
+			SkeletronPrimeHandBuff: {
+				DisplayName: Skeletron Prime's Hand is attached to you
+				Description: Skeletron Prime's hand is attached to you
+			}
+
+			StingSlimeBuff: {
+				DisplayName: Sting Slime
+				Description: A sting slime is following you
+			}
+
+			StrangeRobotBuff: {
+				DisplayName: Strange Robot
+				Description: A strange robot is following you
+			}
+
+			SuspiciousNuggetBuff: {
+				DisplayName: Suspicious Nugget
+				Description: A suspicious nugget is following you
+			}
+
+			SwarmofCthulhuBuff: {
+				DisplayName: Swarm of Cthulhu
+				Description: A swarm of Cthulhu is following you
+			}
+
+			TinyTwinsBuff: {
+				DisplayName: Tiny Twins
+				Description: The Twins are watching you
+			}
+
+			TorchGodLightPetBuff: {
+				DisplayName: Godly Torch
+				Description: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
+			}
+
+			TorturedSoulBuff: {
+				DisplayName: Tortured Soul
+				Description: Shouldn't have been so greedy, eh?
+			}
+
+			TrueObservingEyeBuff: {
+				DisplayName: True Observing Eye
+				Description: A tiny True Eye of Cthulhu is following you
+			}
+
+			TurtleSlimeBuff: {
+				DisplayName: Turtle Slime
+				Description: A turtle slime is following you
+			}
+
+			VampireBatBuff: {
+				DisplayName: Vampire Bat
+				Description: A particularly dashing vampire is following you
+			}
+
+			WallFragmentBuff: {
+				DisplayName: Wall Fragment
+				Description: Several fragments of the Wall are following you
+			}
+
+			YoungHarpyBuff: {
+				DisplayName: Young Harpy
+				Description: A young harpy is following you
+			}
+
+			YoungWyvernBuff: {
+				DisplayName: Young Wyvern
+				Description: A young wyvern is following you
+			}
+
+			WobyBuff: {
+				DisplayName: Woby, 'A lovable dog...'
+				Description: A loyal canine is following you
+			}
+
+			CompanionDungeonSoulMinionBuff: {
+				DisplayName: Companion Soul Minion
+				Description: A friendly Soul is fighting for you
+			}
+
+			CuteSlimeSpawnEnableBuff: {
+				DisplayName: Jellied Ale
+				Description: Your perception of slimes is a bit off...
+			}
+
+			DroneControllerBuff: {
+				DisplayName: Drone Controller
+				Description: Command a swarm of drones
+			}
+
+			EmpoweringBuff: {
+				DisplayName: Empowering
+				Description: You get stronger the longer you don't receive damage
+			}
+
+			EnhancedHunterBuff: {
+				DisplayName: Enhanced Hunter
+				Description: Shows the location of enemies outside your vision range
+			}
+
+			GoblinUnderlingBuff: {
+				DisplayName: Goblin Underling
+				Description: A loyal goblin underling is fighting for you
+			}
+
+			SigilOfTheWingBuff: {
+				DisplayName: Blessing of the Wing
+				Description: Your spirit hangs on by a thread
+			}
+
+			BabyHarvesterBuff: {
+				DisplayName: Ominous Bird
+				Description: REPLACEME
+			}
+
+			SoulBurnBuff: {
+				DisplayName: Soul Burn
+				Description: Rapidly losing life
+			}
+
+			SlimePackMinionBuff: {
+				DisplayName: Slime
+				Description: A friendly Slime from your Knapsack is fighting for you
+			}
+
+			SoulBuff: {
+				DisplayName: Soul
+				Description: Releases a soul
+			}
+
+			StarRodBuff: {
+				DisplayName: Star Rod
+				Description: Falling Stars will land closer to you
+			}
+		}
+
+		Common: {
+			AoMMVersion: (AoMM version)
+			PetHasAltSkins: Appearance can be changed with Costume Suitcase
+		}
+
+		Items: {
+			# Cute Slimes
+			CuteSlimeBlackItem: {
+				DisplayName: Bottled Cute Black Slime
+				Tooltip: Summons a cute black slime to follow you
+			}
+
+			CuteSlimeBlueItem: {
+				DisplayName: Bottled Cute Blue Slime
+				Tooltip: Summons a cute blue slime to follow you
+			}
+
+			CuteSlimeCorruptItem: {
+				DisplayName: Bottled Cute Corrupt Slime
+				Tooltip: Summons a cute corrupt slime to follow you
+			}
+
+			CuteSlimeCrimsonItem: {
+				DisplayName: Bottled Cute Crimson Slime
+				Tooltip: Summons a cute crimson slime to follow you
+			}
+
+			CuteSlimeDungeonItem: {
+				DisplayName: Bottled Cute Dungeon Slime
+				Tooltip: Summons a cute dungeon slime to follow you
+			}
+
+			CuteSlimeGreenItem: {
+				DisplayName: Bottled Cute Green Slime
+				Tooltip: Summons a cute green slime to follow you
+			}
+
+			CuteSlimeIceItem: {
+				DisplayName: Bottled Cute Ice Slime
+				Tooltip: Summons a cute ice slime to follow you
+			}
+
+			CuteSlimeIlluminantItem: {
+				DisplayName: Bottled Cute Illuminant Slime
+				Tooltip: Summons a cute illuminant slime to follow you
+			}
+
+			CuteSlimeJungleItem: {
+				DisplayName: Bottled Cute Jungle Slime
+				Tooltip: Summons a cute jungle slime to follow you
+			}
+
+			CuteSlimeLavaItem: {
+				DisplayName: Bottled Cute Lava Slime
+				Tooltip: Summons a cute lava slime to follow you
+			}
+
+			CuteSlimePinkItem: {
+				DisplayName: Bottled Cute Pink Slime
+				Tooltip: Summons a cute pink slime to follow you
+			}
+
+			CuteSlimePrincessItem: {
+				DisplayName: Bottled Cute Princess Slime
+				Tooltip: Summons a cute princess slime to follow you
+			}
+
+			CuteSlimePurpleItem: {
+				DisplayName: Bottled Cute Purple Slime
+				Tooltip: Summons a cute purple slime to follow you
+			}
+
+			CuteSlimeQueenItem: {
+				DisplayName: Bottled Cute Queen Slime
+				Tooltip: Summons a cute queen slime to follow you
+			}
+
+			CuteSlimeRainbowItem: {
+				DisplayName: Bottled Cute Rainbow Slime
+				Tooltip: Summons a cute rainbow slime to follow you
+			}
+
+			CuteSlimeRedItem: {
+				DisplayName: Bottled Cute Red Slime
+				Tooltip: Summons a cute red slime to follow you
+			}
+
+			CuteSlimeSandItem: {
+				DisplayName: Bottled Cute Sand Slime
+				Tooltip: Summons a cute sand slime to follow you
+			}
+
+			CuteSlimeToxicItem: {
+				DisplayName: Bottled Cute Toxic Slime
+				Tooltip: Summons a cute toxic slime to follow you
+			}
+
+			CuteSlimeXmasItem: {
+				DisplayName: Bottled Cute Christmas Slime
+				Tooltip: Summons a cute christmas slime to follow you
+			}
+
+			CuteSlimeYellowItem: {
+				DisplayName: Bottled Cute Yellow Slime
+				Tooltip: Summons a cute yellow slime to follow you
+			}
+
+			# Pets. AoMM versions are auto-generated
+			AbeeminationItem: {
+				DisplayName: Abeemination
+				Tooltip:
+					'''
+					Summons a friendly abeemination to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			AlienHornetItem: {
+				DisplayName: Vortex Nectar
+				Tooltip: Summons a friendly alien hornet to follow you
+			}
+
+			AnimatedTomeItem: {
+				DisplayName: Animated Tome
+				Tooltip:
+					'''
+					Summons a friendly animated tome to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			AnomalocarisItem: {
+				DisplayName: Ornery Shrimp
+				Tooltip:
+					'''
+					Summons a prehistoric shrimp to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			BabyCrimeraItem: {
+				DisplayName: Juicy Vertebrae
+				Tooltip: Summons a baby crimera to follow you
+			}
+
+			BabyIchorStickerItem: {
+				DisplayName: Sleeping Ichor Sticker
+				Tooltip: Summons a baby ichor sticker to follow you
+			}
+
+			BabyOcramItem: {
+				DisplayName: Baby Ocram
+				Tooltip: Summons a miniature Ocram that follows you
+			}
+
+			BrainofConfusionItem: {
+				DisplayName: Brain of Confusion
+				Tooltip: Summons a brain of confusion to follow aimlessly behind you
+			}
+
+			ChunkyandMeatballItem: {
+				DisplayName: Chunky and Meatball
+				Tooltip: Summons a pair of inseperable brothers to follow you
+			}
+
+			ChunkySlimeItem: {
+				DisplayName: Bottled Chunky
+				Tooltip: Summons Chunky to follow you
+			}
+
+			CompanionDungeonSoulPetItem: {
+				DisplayName: Companion Soul
+				CommonTooltip: Summons a friendly Soul to light your way
+				Tooltip:
+					'''
+					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
+					Light pet slot
+					'''
+			}
+
+			CompanionDungeonSoulPetItem2: {
+				DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
+				Tooltip:
+					'''
+					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
+					Pet slot
+					'''
+			}
+
+			CursedSkullItem: {
+				DisplayName: Inert Skull
+				Tooltip:
+					'''
+					Summons a friendly cursed skull that follows you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			CuteGastropodItem: {
+				DisplayName: Mysterious Pod
+				Tooltip: Summons a cute gastropod to follow you
+			}
+
+			CuteLamiaPetItem: {
+				DisplayName: Shaking Snake Pot
+				Tooltip:
+					'''
+					Summons a small, friendly snake to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			DemonHeartItem: {
+				DisplayName: Demon Heart
+				Tooltip: Summons a friendly demon heart to follow you
+			}
+
+			DetachedHungryItem: {
+				DisplayName: Unconscious Hungry
+				Tooltip: Summons a detached hungry to follow you
+			}
+
+			DocileDemonEyeItem: {
+				DisplayName: Docile Demon Eye
+				Tooltip:
+					'''
+					Summons a docile demon eye to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			DrumstickElementalItem: {
+				DisplayName: Magical Drumstick
+				Tooltip: Summons a delicious drumstick elemental to follow you
+			}
+
+			DynamiteBunnyItem: {
+				DisplayName: Dynamite Carrot
+				Tooltip:
+					'''
+					Summons a dynamite bunny to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			EnchantedSwordItem: {
+				DisplayName: Enchanted Sword
+				Tooltip: Summons an enchanted sword to watch over you
+			}
+
+			FailureSlimeItem: {
+				DisplayName: Slimy Skull
+				Tooltip: Summons a strange creature to follow you
+			}
+
+			FairySlimeItem: {
+				DisplayName: Bottled Fairy Slime
+				Tooltip: Summons a friendly fairy slime to follow you
+			}
+
+			FairySwarmItem: {
+				DisplayName: Bottle of Assorted Fairies
+				Tooltip: Summons several fairies to swarm around you
+			}
+
+			GhostMartianItem: {
+				DisplayName: K-II Meter
+				Tooltip: Summons a vengeful invader's ghost to follow you
+			}
+
+			GobletItem: {
+				DisplayName: Goblet Battle Standard
+				Tooltip: Summons a tiny goblin to follow you
+			}
+
+			HornedSlimeItem: {
+				DisplayName: Bottled Horned Slime
+				Tooltip: Summons a friendly horned slime to follow you
+			}
+
+			IlluminantSlimeItem: {
+				DisplayName: Bottled Illuminant Slime
+				Tooltip: Summons a friendly illuminant slime to follow you
+			}
+
+			JoyousSlimeItem: {
+				DisplayName: Bottled Joyous Slime
+				Tooltip: Summons a friendly joyous slime to follow you
+			}
+
+			LifelikeMechanicalFrogItem: {
+				DisplayName: Lifelike Mechanical Frog
+				Tooltip:
+					'''
+					Summons a friendly frog to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			LilWrapsItem: {
+				DisplayName: Gilded Coffin
+				Tooltip:
+					'''
+					Summons a mummy to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			MeatballSlimeItem: {
+				DisplayName: Bottled Meatball
+				Tooltip: Summons Meatball to follow you
+			}
+
+			MetroidPetItem: {
+				DisplayName: Parasite Container
+				Tooltip:
+					'''
+					Summons a space parasite to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			MiniAntlionItem: {
+				DisplayName: Antlion Egg
+				Tooltip:
+					'''
+					Summons a friendly baby antlion to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			MiniMegalodonItem: {
+				DisplayName: Small Megalodon Tooth
+				Tooltip: Summons a friendly mini megalodon that follows you
+			}
+
+			NumberMuncherItem: {
+				DisplayName: Archaic Storage Device
+				Tooltip: Summons an educated amphibian that follows you
+			}
+
+			OceanSlimeItem: {
+				DisplayName: Bottled Ocean Slime
+				Tooltip:
+					'''
+					Summons a friendly ocean slime to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			PetCultistItem: {
+				DisplayName: Tiny Ominous Coin
+				Tooltip: Summons a tiny cultist to follow you and heal when injured
+			}
+
+			PetDestroyerItem: {
+				DisplayName: Destroyer's Core
+				Tooltip: Summons a tiny Destroyer and two tiny probes to follow you
+			}
+
+			PetEaterofWorldsItem: {
+				DisplayName: Cracked Worm Egg
+				Tooltip: Summons a tiny Eater of Worlds to follow you
+			}
+
+			PetFishronItem: {
+				DisplayName: Soggy Fish Cake
+				Tooltip:
+					'''
+					Summons a friendly fishron that flies with you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			PetGoldfishItem: {
+				DisplayName: Possessed Fish Idol
+				Tooltip:
+					'''
+					Summons a goldfish that follows you
+					'You feel like you lost something important in obtaining this idol...'
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			PetGolemHeadItem: {
+				DisplayName: Replica Golem Head
+				Tooltip:
+					'''
+					Summons a replica Golem head to watch over you
+					Shoots bouncing fireballs at nearby enemies
+					'''
+			}
+
+			PetHarvesterItem: {
+				DisplayName: Stubborn Bird Soul
+				Tooltip: Summons a stubborn bird to follow you
+			}
+
+			PetMoonItem: {
+				DisplayName: Bottled Moon
+				Tooltip:
+					'''
+					Summons a small moon that provides you with constant moonlight
+					Shows the current moon cycle in the buff tip
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			PetPlanteraItem: {
+				DisplayName: Potted Plantera Seed
+				Tooltip:
+					'''
+					Summons a Plantera sprout to watch over you
+					'It's a mean and green'
+					'''
+			}
+
+			PetQueenSlimeItem: {
+				DisplayName: Playful Slimelings
+				Tooltip: Summons a trio of slimelings to follow you
+			}
+
+			PetSunItem: {
+				DisplayName: Bottled Sun
+				Tooltip:
+					'''
+					Summons a small sun that provides you with constant sunlight
+					Shows the current time in the buff tip
+					'''
+			}
+
+			PetSunMoonItem: {
+				DisplayName: Bottled Sun and Moon
+				Tooltip:
+					'''
+					Summons a small sun and moon that provide you with constant light
+					Shows the current time in the buff tip
+					Shows the current moon cycle in the buff tip
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			PigronataItem: {
+				DisplayName: Pigronata
+				Tooltip:
+					'''
+					Summons a friendly pigronata to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			PrinceSlimeItem: {
+				DisplayName: Bottled Prince Slime
+				Tooltip: Summons a prince slime to follow you
+			}
+
+			QueenLarvaItem: {
+				DisplayName: Queen Larva
+				Tooltip:
+					'''
+					Summons a Queen Bee larva to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			RainbowSlimeItem: {
+				DisplayName: Bottled Rainbow Slime
+				Tooltip: Summons a friendly rainbow slime to follow you
+			}
+
+			SkeletronHandItem: {
+				DisplayName: Skeletron's Spare Hand
+				Tooltip:
+					'''
+					Summons Skeletron's hand attached to you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			SkeletronPrimeHandItem: {
+				DisplayName: Skeletron Prime's Spare Hand
+				Tooltip:
+					'''
+					Summons Skeletron Prime's hand attached to you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			StingSlimeItem: {
+				DisplayName: Bottled Sting Slime
+				Tooltip:
+					'''
+					Summons a friendly sting slime to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			StrangeRobotItem: {
+				DisplayName: Odd Mechanical Device
+				Tooltip: Summons a strange robot to follow you
+			}
+
+			SuspiciousNuggetItem: {
+				DisplayName: Suspicious Nugget
+				Tooltip: Summons a suspicious nugget to follow you
+			}
+
+			SwarmofCthulhuItem: {
+				DisplayName: Bottle of Restless Eyes
+				Tooltip: Summons several eyes to swarm around you
+			}
+
+			TinyTwinsItem: {
+				DisplayName: Tiny Twins
+				Tooltip: Summons a tiny pair of The Twins to follow you
+			}
+
+			TorchGodLightPetItem: {
+				DisplayName: Godly Torch
+				Tooltip:
+					'''
+					Summons a godly torch to follow you
+					Automatically places your normal torches with 'Smart Cursor' active
+					'''
+			}
+
+			TorturedSoulItem: {
+				DisplayName: Tortured Soul
+				Tooltip: Summons an unfriendly tortured soul to follow you
+			}
+
+			TrueObservingEyeItem: {
+				DisplayName: True Observing Eye
+				Tooltip: Summons a True Eye of Cthulhu to watch after you
+			}
+
+			TurtleSlimeItem: {
+				DisplayName: Bottled Turtle Slime
+				Tooltip: Summons a friendly turtle slime to follow you
+			}
+
+			VampireBatItem: {
+				DisplayName: Fixed Bat Wing
+				Tooltip:
+					'''
+					Summons a friendly vampire that flies with you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			WallFragmentItem: {
+				DisplayName: Wall Fragment
+				Tooltip: Summons several fragments of the Wall to follow you
+			}
+
+			YoungHarpyItem: {
+				DisplayName: Clump of Down Feathers
+				Tooltip:
+					'''
+					Summons a friendly harpy to follow you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			YoungWyvernItem: {
+				DisplayName: Wyverntail
+				Tooltip:
+					'''
+					Summons a friendly young wyvern that flies with you
+					{$Common.PetHasAltSkins}
+					'''
+			}
+
+			WobyItem: {
+				DisplayName: Dog Lover's Badge
+				Tooltip: Summons a loyal canine to follow you
+			}
+
+			BottledDreams: {
+				DisplayName: Bottled Dreams
+				Tooltip: Allows the holder to double jump
+			}
+
+			CrazyBundleOfAssortedBalloons: {
+				DisplayName: Crazy Bundle of Assorted Balloons
+				Tooltip: It's got all kinds of effects
+			}
+
+			EverburningCandelabra: {
+				DisplayName: Everburning Candelabra
+				Tooltip: Applies various forms of fire damage to all attacks
+			}
+
+			EverburningCandle: {
+				DisplayName: Everburning Candle
+				Tooltip: Applies fire damage to all attacks
+			}
+
+			EverburningCursedCandle: {
+				DisplayName: Everburning Cursed Candle
+				Tooltip: Applies cursed fire damage to all attacks
+			}
+
+			EverburningShadowflameCandle: {
+				DisplayName: Everburning Shadowflame Candle
+				Tooltip: Applies shadowflame damage to all attacks
+			}
+
+			EverfrozenCandle: {
+				DisplayName: Everfrozen Candle
+				Tooltip: Applies frostbite damage to all attacks
+			}
+
+			FestiveMirror: {
+				DisplayName: Festive Mirror
+				Tooltip: Provides immunity to Chilled, Frozen, and Stoned
+			}
+
+			HarvesterWings: {
+				DisplayName: Harvester Wings
+				Tooltip:
+					'''
+					Allows flight and slow fall
+					Increases your max number of minions
+					5% increased summon damage
+					'''
+			}
+
+			MassiveBundleOfBalloons: {
+				DisplayName: Massive Bundle of Balloons
+				Tooltip:
+					'''
+					Allows you to jump six more times
+					Negates fall damage and increases jump height
+					Releases bees when damaged
+					'''
+			}
+
+			SigilOfTheBeak: {
+				DisplayName: Sigil of the Beak
+				Tooltip:
+					'''
+					Summons fractured souls to seek out enemies in combat
+					Frequency and intensity increases the lower your health gets
+					'''
+			}
+
+			SigilOfTheHarvester: {
+				DisplayName: Sigil of the Harvester
+				Tooltip:
+					'''
+					'The aspects of the Harvester reside within you'
+					Summons fractured souls to seek out enemies in combat
+					Frequency and intensity increases the lower your health gets
+					On death, transform into a soul for 5 seconds, regenerating 25% max health
+					While transformed, you cannot use items
+					Has a cooldown of 6 minutes
+					Allows your grappling hooks to deal damage when extending
+					Can hit up to 3 enemies
+					'''
+			}
+
+			SigilOfTheTalon: {
+				DisplayName: Sigil of the Talon
+				Tooltip:
+					'''
+					Allows your grappling hooks to deal damage when extending
+					Can hit up to 3 enemies
+					'''
+			}
+
+			SigilOfTheWing: {
+				DisplayName: Sigil of the Wing
+				Tooltip:
+					'''
+					On death, transform into a soul for 5 seconds, regenerating 25% max health
+					While transformed, you cannot use items
+					Has a cooldown of 6 minutes
+					'''
+			}
+
+			SlipperySoles: {
+				DisplayName: Slippery Soles
+				Tooltip: You slip and slide on all blocks
+			}
+
+			SolesOfFireAndIce: {
+				DisplayName: Soles of Fire and Ice
+				Tooltip: Allows you to walk on water, lava, and thin ice
+			}
+
+			StarInABalloon: {
+				DisplayName: Star in a Balloon
+				Tooltip: Increased mana regeneration and jump height
+			}
+
+			StarWispBalloon: {
+				DisplayName: Star Wisp Balloon
+				Tooltip:
+					'''
+					Increased mana regeneration and jump height
+					Glows in the dark
+					'''
+			}
+
+			WispInABalloon: {
+				DisplayName: Wisp in a Balloon
+				Tooltip: Glows in the dark and increases jump height
+			}
+
+			Cobballoon: {
+				DisplayName: Cobballoon
+				Tooltip: "'A clump of stones that manages to float, much to your confusion'"
+			}
+
+			EyelloonRetinazer: {
+				DisplayName: Retinazer Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			GreenEyelloon: {
+				DisplayName: Green Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			GreenEyelloonFractured: {
+				DisplayName: Green Toothy Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			GreenEyelloonMetal: {
+				DisplayName: Green Metal Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			GreenEyelloonMetalFractured: {
+				DisplayName: Green Metal Toothy Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			PurpleEyelloon: {
+				DisplayName: Purple Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			PurpleEyelloonFractured: {
+				DisplayName: Purple Toothy Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			PurpleEyelloonMetal: {
+				DisplayName: Purple Metal Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			PurpleEyelloonMetalFractured: {
+				DisplayName: Purple Metal Toothy Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			RedEyelloon: {
+				DisplayName: Red Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			RedEyelloonFractured: {
+				DisplayName: Red Toothy Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			RedEyelloonMetal: {
+				DisplayName: Red Metal Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			RedEyelloonMetalFractured: {
+				DisplayName: Red Metal Toothy Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			SpazmatismEyelloon: {
+				DisplayName: Spazmatism Eye-lloon
+				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
+			}
+
+			AntiqueKey: {
+				DisplayName: Antique Key
+				Tooltip: "'An old key that looks to fit the lock on the nearby cage...'"
+			}
+
+			SoulSaviorHeaddress: {
+				DisplayName: Soul Savior Headdress
+				Tooltip:
+					'''
+					Increases minion damage by 10%
+					Increases your max number of minions
+					'''
+			}
+
+			SoulSaviorPlate: {
+				DisplayName: Soul Savior Breastplate
+				Tooltip:
+					'''
+					Increases minion damage by 10%
+					Increases your max number of minions by 2
+					'''
+			}
+
+			SoulSaviorRobe: {
+				DisplayName: Soul Savior Robe
+				Tooltip:
+					'''
+					Increases minion damage by 10%
+					Increases your max number of minions
+					'''
+			}
+
+			CaughtDungeonSoul: {
+				DisplayName: Loose Dungeon Soul
+				Tooltip:
+					'''
+					'An inert soul caught by a net'
+					Awakened in your inventory when {$NPCs.HarvesterBoss.DisplayName} is defeated
+					'''
+			}
+
+			CaughtDungeonSoulFreed: {
+				DisplayName: Freed Dungeon Soul
+				Tooltip: Awakened by defeating the {$NPCs.HarvesterBoss.DisplayName}
+			}
+
+			ChunkysEyeItem: {
+				DisplayName: Chunky's Eye
+				Tooltip: "'Find Meatball's Eye and combine the two at a Demon Altar'"
+			}
+
+			CuteSlimeSpawnEnableFlask.DisplayName: Jellied Ale
+
+			EmpowermentFlask: {
+				DisplayName: Empowerment Flask
+				Tooltip:
+					'''
+					Incrementally increases damage dealt over time
+					Bonus resets upon taking damage
+					(Summon damage only increases marginally)
+					'''
+			}
+
+			EnhancedHunterPotion: {
+				DisplayName: Enhanced Hunter Potion
+				Tooltip:
+					'''
+					Shows the location of enemies
+					Additionally, shows the location of enemies outside your vision range
+					Range is roughly one screen in each direction
+					'''
+			}
+
+			HarvesterTreasureBag: {
+				DisplayName: Treasure Bag ({$NPCs.HarvesterBoss.DisplayName})
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			DesiccatedLeather: {
+				DisplayName: Desiccated Leather
+				Tooltip: "'It's dry, sticky, and smells horrible'"
+			}
+
+			DroneParts: {
+				DisplayName: Drone Parts
+				Tooltip: "'These parts could be repurposed...'"
+			}
+
+			DroneUnlockableBasicLaserDrone: {
+				DisplayName: Basic Laser Drone Components
+				Tooltip: ""
+			}
+
+			DroneUnlockableHealingDrone: {
+				DisplayName: Healing Drone Components
+				Tooltip: ""
+			}
+
+			DroneUnlockableHeavyLaserDrone: {
+				DisplayName: Heavy Laser Drone Components
+				Tooltip: ""
+			}
+
+			DroneUnlockableMissileDrone: {
+				DisplayName: Missile Drone Components
+				Tooltip: ""
+			}
+
+			DroneUnlockableShieldDrone: {
+				DisplayName: Shield Drone Components
+				Tooltip: ""
+			}
+
+			CraftOfMiners: {
+				DisplayName: Craft of Miners
+				Tooltip:
+					'''
+					'Use those fists of yours to tear through any blocks in your way'
+					[c/44942e:'Dedicated to Anonymous']
+					'''
+			}
+
+			GuideVoodoorang: {
+				DisplayName: Guide Voodoorang
+				Tooltip: "'Why are you like this?'"
+			}
+
+			InfinityRocket: {
+				DisplayName: Infinity Rocket
+				Tooltip: "'It seriously never ends!'"
+			}
+
+			StarForge: {
+				DisplayName: Star Forge
+				Tooltip: "'An endless supply of the cosmos'"
+			}
+
+			BrainOfCthulhuGitgud: {
+				DisplayName: Insanity-B-Gone
+				Tooltip: ""
+			}
+
+			DeerclopsGitgud: {
+				DisplayName: Deerclops Effigy
+				Tooltip: ""
+			}
+
+			DestroyerGitgud: {
+				DisplayName: Metal Dreamcatcher
+				Tooltip: ""
+			}
+
+			DukeFishronGitgud: {
+				DisplayName: White Hook
+				Tooltip: ""
+			}
+
+			EaterOfWorldsGitgud: {
+				DisplayName: Toy Seagull
+				Tooltip: ""
+			}
+
+			EmpressOfLightGitgud: {
+				DisplayName: Well-Worn Boots of Stomping
+				Tooltip: ""
+			}
+
+			EyeOfCthulhuGitgud: {
+				DisplayName: Broken Lens
+				Tooltip: ""
+			}
+
+			GolemGitgud: {
+				DisplayName: Rechargeable Solar Battery
+				Tooltip: ""
+			}
+
+			KingSlimeGitgud: {
+				DisplayName: Slime Inquisition Notice
+				Tooltip: ""
+			}
+
+			LunaticCultistGitgud: {
+				DisplayName: Notice of Occupational Termination
+				Tooltip: ""
+			}
+
+			MoonLordGitgud: {
+				DisplayName: Bright Side of the Moon
+				Tooltip: ""
+			}
+
+			PlanteraGitgud: {
+				DisplayName: Green Thumb
+				Tooltip: ""
+			}
+
+			QueenBeeGitgud: {
+				DisplayName: Honey Thimble
+				Tooltip: ""
+			}
+
+			QueenSlimeGitgud: {
+				DisplayName: Sparkling Cupcake
+				Tooltip: ""
+			}
+
+			SkeletronGitgud: {
+				DisplayName: Carton of Soy Milk
+				Tooltip: ""
+			}
+
+			SkeletronPrimeGitgud: {
+				DisplayName: Clock Set Ten Years Ahead
+				Tooltip: ""
+			}
+
+			TwinsGitgud: {
+				DisplayName: Metal Contact Lens
+				Tooltip: ""
+			}
+
+			WallOfFleshGitgud: {
+				DisplayName: Wall of Flesh Voodoo Doll
+				Tooltip: ""
+			}
+
+			IdolOfDecay: {
+				DisplayName: Idol Of Decay
+				Tooltip:
+					'''
+					Summons {$NPCs.HarvesterBoss.DisplayName}'s final form in the dungeon
+					Unlimited uses!
+					'''
+			}
+
+			KnittingSet: {
+				DisplayName: Knitting Set
+				Tooltip: "'A set of tools used in crafting cute clothing and accessories'"
+			}
+
+			MeatballsEyeItem: {
+				DisplayName: Meatball's Eye
+				Tooltip: "'Find Chunky's Eye and combine the two at a Demon Altar'"
+			}
+
+			PetAccessoryBowtie: {
+				DisplayName: Cute Bowtie
+				Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"
+			}
+
+			PetAccessoryBunnyEars: {
+				DisplayName: Cute Bunny Ears
+				Tooltip: "'A pair of Easter bunny ears for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryBunnySuit: {
+				DisplayName: Cute Bunny Suit
+				Tooltip: "'A bunny(?) costume for your cute slime to wear on her chest'"
+			}
+
+			PetAccessoryCrown: {
+				DisplayName: Cute Crown
+				Tooltip: "'A regal crown for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryHairBow: {
+				DisplayName: Cute Hair Bow
+				Tooltip: "'A large bow for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryKitchenKnife: {
+				DisplayName: Cute Kitchen Knife
+				Tooltip: "'A plush kitchen knife for your cute slime to carry'"
+			}
+
+			PetAccessoryMetalHelmet: {
+				DisplayName: Cute Knight's Helmet
+				Tooltip: "'A plush knight's helmet for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryMittens: {
+				DisplayName: Cute Mittens
+				Tooltip: "'Warm mittens for your cute slime's hands'"
+			}
+
+			PetAccessoryPartyHat: {
+				DisplayName: Cute Party Hat
+				Tooltip: "'A party hat for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryPumpkinMask: {
+				DisplayName: Cute Pumpkin Mask
+				Tooltip: "'A perfectly-sized pumpkin for your cute slime to wear on her head'"
+			}
+
+			PetAccessorySlimeHead: {
+				DisplayName: Cute Head Slime
+				Tooltip: "'A slime plush that sits on your cute slime's head'"
+			}
+
+			PetAccessoryStaff: {
+				DisplayName: Cute Staff
+				Tooltip: "'A plush staff for your cute slime to carry'"
+			}
+
+			PetAccessorySwallowedKey: {
+				DisplayName: Cute Swallowed Key
+				Tooltip: "'A plush key for your cute slime to...carry?'"
+			}
+
+			PetAccessoryTophat: {
+				DisplayName: Cute Top Hat
+				Tooltip: "'A classy top hat for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryToyBreastplate: {
+				DisplayName: Cute Knight's Breastplate
+				Tooltip: "'A plush knight's breastplate for your cute slime to wear on her body'"
+			}
+
+			PetAccessoryToyMace: {
+				DisplayName: Cute Paladin's Mace
+				Tooltip: "'A plush paladin's mace for your cute slime to carry'"
+			}
+
+			PetAccessoryToyShield: {
+				DisplayName: Cute Knight's Shield
+				Tooltip: "'A plush knight's shield for your cute slime to carry'"
+			}
+
+			PetAccessoryToySpear: {
+				DisplayName: Cute Spartan's Spear
+				Tooltip: "'A plush warrior's spear for your cute slime to carry'"
+			}
+
+			PetAccessoryToySword: {
+				DisplayName: Cute Knight's Sword
+				Tooltip: "'A plush knight's sword for your cute slime to carry'"
+			}
+
+			PetAccessoryWizardHat: {
+				DisplayName: Cute Wizard Hat
+				Tooltip: "'A brown wizard's hat for your cute slime to wear on her head'"
+			}
+
+			PetAccessoryXmasHat: {
+				DisplayName: Cute Santa Hat
+				Tooltip: "'A festive hat for your cute slime to wear on hear head'"
+			}
+
+			AntiqueCageItem: {
+				DisplayName: Antique Cage
+				Tooltip: ""
+			}
+
+			AntiqueChestItem: {
+				DisplayName: Antique Chest
+				Tooltip: ""
+			}
+
+			CuteSlimeStatueItem: {
+				DisplayName: Cute Slime Statue
+				Tooltip: You can't catch statue spawned creatures
+			}
+
+			HarvesterRelicItem: {
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Relic"
+				Tooltip: ""
+			}
+
+			HarvesterTrophyItem: {
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
+				Tooltip: ""
+			}
+
+			FieldsOfJoyItem: {
+				DisplayName: Fields of Joy
+				Tooltip: "'C. Paigner'"
+			}
+
+			PretentiousRockItem: {
+				DisplayName: A Study of Slate
+				Tooltip: "'C. Paigner'"
+			}
+
+			SCP099Item: {
+				DisplayName: The Portrait
+				Tooltip: "'R. Magritte'"
+			}
+
+			SCP3515Item: {
+				DisplayName: SCP-3515
+				Tooltip: "'Unknown'"
+			}
+
+			SlimeBeaconItem: {
+				DisplayName: Slime Beacon
+				Tooltip: "'Do The Slime With Me!'"
+			}
+
+			StarRodItem: {
+				DisplayName: Star Rod
+				Tooltip: Attracts Falling Stars at night if you are nearby
+			}
+
+			VanityDresserItem: {
+				DisplayName: Costume Dresser
+				Tooltip:
+					'''
+					Left Click to change your Pet's appearance
+					Right Click to change your Light Pet's appearance
+					'''
+			}
+
+			WyvernCampfireItem: {
+				DisplayName: Wyvern Campfire
+				Tooltip: "'Makes Wyverns go poof!'"
+			}
+
+			ExtendoNetGolden: {
+				DisplayName: Golden Extendo-Net
+				Tooltip: "'Catches those REALLY hard to reach critters'"
+			}
+
+			ExtendoNetRegular: {
+				DisplayName: Extendo-Net
+				Tooltip: "'Catches those hard to reach critters'"
+			}
+
+			PrettyMask: {
+				DisplayName: Pretty Mask
+				Tooltip: "'Goes well with a red scarf, red gloves, red boots, and your birthday suit'"
+			}
+
+			SoulHarvesterMask: {
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Mask"
+				Tooltip: ""
+			}
+
+			VanitySelector: {
+				DisplayName: Costume Suitcase
+				Tooltip:
+					'''
+					Left Click to change your Pet's appearance
+					Right Click to change your Light Pet's appearance
+					'''
+			}
+
+			BoneCleavingFang: {
+				DisplayName: Bone-Cleaving Fang
+				Tooltip:
+					'''
+					Striking enemies will charge the sword, causing it to glow with power.
+					Release the built up power by right-clicking. The brighter the sword, the greater the power.
+					The sword's power fades when not used.
+					'''
+			}
+
+			BoneShatterLongbow: {
+				DisplayName: Bone-Shatter Longbow
+				Tooltip: Wooden arrows ignite into burning souls
+			}
+
+			BreathOfSpazmatism: {
+				DisplayName: Breath of Spazmatism
+				Tooltip:
+					'''
+					Uses gel to fire a stream of cursed flames
+					80% chance to not consume ammo
+					'''
+			}
+
+			DroneController: {
+				DisplayName: Drone Controller
+				Tooltip:
+					'''
+					Summons a friendly Drone to support or fight for you
+					Right click to pick from available drones
+					Holding the item improves the Drones' supportive and offensive abilities
+					'''
+			}
+
+			EverglowLantern: {
+				DisplayName: Everglow Lantern
+				Tooltip:
+					'''
+					Summons two freed Dungeon Souls at a time to fight for you
+					Each Dungeon Soul occupies only half a minion slot
+					'''
+			}
+
+			EverhallowedLantern: {
+				DisplayName: Everhallowed Lantern
+				Tooltip:
+					'''
+					Summons a Soul to fight for you
+					Right click to pick from available forms
+					'''
+			}
+
+			GoblinUnderlingItem: {
+				DisplayName: Satchel of Goodies
+				Tooltip:
+					'''
+					Summons a Goblin Underling to fight for you
+					Gets stronger throughout progression
+					Does not occupy a minion slot, but only one can be summoned
+					'Inside, there's a spiky ball, a coin, and a...moon?'
+					'''
+			}
+
+			LegendaryWoodenSword: {
+				DisplayName: Legendary Wooden Sword
+				Tooltip: ""
+			}
+
+			MagicSlimeSling: {
+				DisplayName: Magic Slime Sling
+				Tooltip: Shoots magic gel that turns into slime minions on hit
+			}
+
+			PlagueOfToads: {
+				DisplayName: Plague of Toads
+				Tooltip: Summons a cloud to rain toads on your foes
+			}
+
+			PocketSand: {
+				DisplayName: Pocket Sand
+				Tooltip: "'Throw a clump of sand at an enemy to confuse it'"
+			}
+
+			SightofRetinazer: {
+				DisplayName: Sight of Retinazer
+				Tooltip: ""
+			}
+
+			SlimeHandlerKnapsack: {
+				DisplayName: Slime Handler Knapsack
+				Tooltip:
+					'''
+					Summons a friendly Slime of a random color from your Knapsack to fight for you
+					Right click to pick from available forms
+					'''
+			}
+
+			Talonstorm: {
+				DisplayName: Talonstorm
+				Tooltip: Summons a bone storm that attacks enemies with extending talons
+			}
+
+			TomeOfShadowflameSkulls: {
+				DisplayName: Tome of Shadowflame Skulls
+				Tooltip: Inflicts Shadowflame on enemies
+			}
+
+			TrueLegendaryWoodenSword: {
+				DisplayName: True Legendary Wooden Sword
+				Tooltip: "'Truly Legendary'"
+			}
+		}
+
+		NPCs: {
+			AnimatedSpellTome.DisplayName: Animated Spell Tome
+			AnimatedTome.DisplayName: Animated Tome
+			Bass.DisplayName: Bass
+			BloatedBaitThief.DisplayName: Bloated Bait Thief
+			Chunky.DisplayName: Chunky
+			ChunkysEye.DisplayName: Chunky's Eye
+			Cloudfish.DisplayName: Cloudfish
+			CuteGastropod.DisplayName: Cute Gastropod
+			CuteSlimeBlack.DisplayName: Cute Black Slime
+			CuteSlimeBlue.DisplayName: Cute Blue Slime
+			CuteSlimeCorrupt.DisplayName: Cute Corrupt Slime
+			CuteSlimeCrimson.DisplayName: Cute Crimson Slime
+			CuteSlimeDungeon.DisplayName: Cute Dungeon Slime
+			CuteSlimeGreen.DisplayName: Cute Green Slime
+			CuteSlimeIce.DisplayName: Cute Ice Slime
+			CuteSlimeIlluminant.DisplayName: Cute Illuminant Slime
+			CuteSlimeJungle.DisplayName: Cute Jungle Slime
+			CuteSlimeLava.DisplayName: Cute Lava Slime
+			CuteSlimePink.DisplayName: Cute Pink Slime
+			CuteSlimePurple.DisplayName: Cute Purple Slime
+			CuteSlimeRainbow.DisplayName: Cute Rainbow Slime
+			CuteSlimeRed.DisplayName: Cute Red Slime
+			CuteSlimeSand.DisplayName: Cute Sand Slime
+			CuteSlimeToxic.DisplayName: Cute Toxic Slime
+			CuteSlimeXmas.DisplayName: Cute Holiday Slime
+			CuteSlimeYellow.DisplayName: Cute Yellow Slime
+			DemonEyeFractured.DisplayName: Demon Eye
+			DemonEyeLaser.DisplayName: Demon Eye
+			DemonEyeMechanical.DisplayName: Demon Eye
+			DemonEyeRegular.DisplayName: Demon Eye
+			DemonEyeSeasonal.DisplayName: Demon Eye
+			DemonEyeWandering.DisplayName: Wandering Eye
+			FairySlime.DisplayName: Fairy Slime
+			GiantGrasshopper.DisplayName: Giant Grasshopper
+			GiantGrasshopperGold.DisplayName: Giant Grasshopper
+			DungeonSoul.DisplayName: Dungeon Soul
+			DungeonSoulFreed.DisplayName: Dungeon Soul
+			HarvesterBoss.DisplayName: Soul Harvester
+			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HornedSlime.DisplayName: Horned Slime
+			JoyousSlime.DisplayName: Joyous Slime
+			Meatball.DisplayName: Meatball
+			MeatballsEye.DisplayName: Meatball's Eye
+			Megalodon.DisplayName: Megalodon
+			OceanSlime.DisplayName: Ocean Slime
+			SpawnOfOcram.DisplayName: Spawn of Ocram
+			StingSlime.DisplayName: Sting Slime
+			StoneSoldier.DisplayName: Stone Soldier
+			StrangeSlime.DisplayName: Strange Slime
+			TurtleSlime.DisplayName: Turtle Slime
+			WalkingTombstoneGolden.DisplayName: Walking Tombstone
+			YoungHarpy.DisplayName: Young Harpy
+		}
+
+		Projectiles: {
+			SigilOfTheBeakProj.DisplayName: Fractured Soul
+			CompanionDungeonSoulFrightMinion.DisplayName: Companion Soul
+			CompanionDungeonSoulMightMinion.DisplayName: Companion Soul
+			CompanionDungeonSoulPostWOFMinion.DisplayName: Companion Soul
+			CompanionDungeonSoulPreWOFMinion.DisplayName: Companion Soul
+			CompanionDungeonSoulSightMinion.DisplayName: Companion Soul
+			BasicLaserDrone.DisplayName: Basic Laser Drone
+			HealingDrone.DisplayName: Healing Drone
+			HeavyLaserDrone.DisplayName: Heavy Laser Drone
+			HeavyLaserDroneLaser.DisplayName: Laser Drone Laser
+			MissileDrone.DisplayName: Missile Drone
+			MissileDroneRocket.DisplayName: Missile Drone Rocket
+			ShieldDrone.DisplayName: Shield Drone
+			GoblinUnderlingDart_0.DisplayName: Goblin Underling Dart
+			GoblinUnderlingDart_1.DisplayName: Goblin Underling Dart
+			GoblinUnderlingDart_2.DisplayName: Goblin Underling Dart
+			GoblinUnderlingDart_3.DisplayName: Goblin Underling Dart
+			GoblinUnderlingDart_4.DisplayName: Goblin Underling Dart
+			GoblinUnderlingProj.DisplayName: Goblin Underling
+			GoblinUnderlingTerraBeam.DisplayName: Goblin Underling Terra Beam
+			MagicSlimeSlingFired.DisplayName: Magic Slime Sling Fired
+			MagicSlimeSlingMinion1.DisplayName: Magic Slime Sling Minion
+			MagicSlimeSlingMinion2.DisplayName: Magic Slime Sling Minion
+			MagicSlimeSlingMinion3.DisplayName: Magic Slime Sling Minion
+			PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
+			PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
+			SlimePackAssortedMinion.DisplayName: Slime Pack Minion
+			SlimePackMinion.DisplayName: Slime Pack Minion
+			SlimePackMinionSpike.DisplayName: Slime Pack Minion Spike
+			SlimePackSpikedMinion.DisplayName: Slime Pack Minion
+			BabyHarvesterProj.DisplayName: Baby Bird
+			HarvesterAbsorbedSoul.DisplayName: Absorbed Soul
+			HarvesterBone.DisplayName: Harvester Bone
+			HarvesterFracturedSoul.DisplayName: Fractured Soul
+			AbeeminationProj.DisplayName: Abeemination
+			AlienHornetProj.DisplayName: Alien Hornet
+			AnimatedTomeProj.DisplayName: Animated Tome
+			AnomalocarisProj.DisplayName: Anomalocaris
+			BabyCrimeraProj.DisplayName: Baby Crimera
+			BabyIchorStickerProj.DisplayName: Baby Ichor Sticker
+			BabyOcramProj.DisplayName: Baby Ocram
+			BrainofConfusionProj.DisplayName: Brain of Confusion
+			ChunkyProj.DisplayName: Chunky
+			ChunkySlimeProj.DisplayName: Chunky Slime
+			CompanionDungeonSoulPetProj.DisplayName: Companion Soul
+			CompanionDungeonSoulPetProj2.DisplayName: Companion Soul
+			CursedSkullProj.DisplayName: Cursed Skull
+			CuteGastropodProj.DisplayName: Cute Gastropod
+			CuteLamiaPetProj.DisplayName: Small Snake
+			CuteSlimeBlackProj.DisplayName: Cute Black Slime
+			CuteSlimeBlueProj.DisplayName: Cute Blue Slime
+			CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
+			CuteSlimeCrimsonProj.DisplayName: Cute Crimson Slime
+			CuteSlimeDungeonProj.DisplayName: Cute Dungeon Slime
+			CuteSlimeGreenProj.DisplayName: Cute Green Slime
+			CuteSlimeIceProj.DisplayName: Cute Ice Slime
+			CuteSlimeIlluminantProj.DisplayName: Cute Illuminant Slime
+			CuteSlimeJungleProj.DisplayName: Cute Jungle Slime
+			CuteSlimeLavaProj.DisplayName: Cute Lava Slime
+			CuteSlimePinkProj.DisplayName: Cute Pink Slime
+			CuteSlimePrincessProj.DisplayName: Cute Princess Slime
+			CuteSlimePurpleProj.DisplayName: Cute Purple Slime
+			CuteSlimeQueenProj.DisplayName: Cute Queen Slime
+			CuteSlimeRainbowProj.DisplayName: Cute Rainbow Slime
+			CuteSlimeRedProj.DisplayName: Cute Red Slime
+			CuteSlimeSandProj.DisplayName: Cute Sand Slime
+			CuteSlimeToxicProj.DisplayName: Cute Toxic Slime
+			CuteSlimeXmasProj.DisplayName: Cute Christmas Slime
+			CuteSlimeYellowProj.DisplayName: Cute Yellow Slime
+			DemonHeartProj.DisplayName: Demon Heart
+			DetachedHungryProj.DisplayName: Detached Hungry
+			DocileDemonEyeProj.DisplayName: Docile Demon Eye
+			DrumstickElementalProj.DisplayName: Drumstick Elemental
+			DynamiteBunnyProj.DisplayName: Dynamite Bunny
+			EnchantedSwordProj.DisplayName: Enchanted Sword
+			FailureSlimeProj.DisplayName: Failure Slime
+			FairySlimeProj.DisplayName: Fairy Slime
+			FairySwarmProj.DisplayName: Fairy Swarm
+			GhostMartianProj.DisplayName: Ghost Martian
+			GobletProj.DisplayName: Goblet
+			HornedSlimeProj.DisplayName: Horned Slime
+			IlluminantSlimeProj.DisplayName: Illuminant Slime
+			JoyousSlimeProj.DisplayName: Joyous Slime
+			LifelikeMechanicalFrogProj.DisplayName: Lifelike Mechanical Frog
+			LilWrapsProj.DisplayName: Lil' Wraps
+			MeatballProj.DisplayName: Meatball
+			MeatballSlimeProj.DisplayName: Meatball Slime
+			MetroidPetProj.DisplayName: Metroid
+			MiniAntlionProj.DisplayName: Baby Antlion
+			MiniMegalodonProj.DisplayName: Mini Megalodon
+			NumberMuncherProj.DisplayName: Number Muncher
+			OceanSlimeProj.DisplayName: Ocean Slime
+			PetCultistProj.DisplayName: Dwarf Cultist
+			PetDestroyerBody1.DisplayName: Tiny Destroyer
+			PetDestroyerBody2.DisplayName: Tiny Destroyer
+			PetDestroyerHead.DisplayName: Tiny Destroyer
+			PetDestroyerProbe.DisplayName: Tiny Destroyer Probe
+			PetDestroyerTail.DisplayName: Tiny Destroyer
+			PetEaterofWorldsBody1.DisplayName: Tiny Eater of Worlds
+			PetEaterofWorldsBody2.DisplayName: Tiny Eater of Worlds
+			PetEaterofWorldsHead.DisplayName: Tiny Eater of Worlds
+			PetEaterofWorldsTail.DisplayName: Tiny Eater of Worlds
+			PetFishronProj.DisplayName: Mini Fishron
+			PetGoldfishProj.DisplayName: Pet Goldfish
+			PetGolemHeadProj.DisplayName: Replica Golem Head
+			PetHarvesterProj.DisplayName: Stubborn Bird
+			PetMoonProj.DisplayName: Personal Moon
+			PetPlanteraProj.DisplayName: Plantera Sprout
+			PetPlanteraProjTentacle.DisplayName: Mean Seed Tentacle
+			PetQueenSlimeAirProj.DisplayName: Slime Sibling
+			PetQueenSlimeGround1Proj.DisplayName: Slime Sibling
+			PetQueenSlimeGround2Proj.DisplayName: Slime Sibling
+			PetSunProj.DisplayName: Personal Sun
+			PigronataProj.DisplayName: Pigronata
+			PrinceSlimeProj.DisplayName: Prince Slime
+			QueenLarvaProj.DisplayName: Queen Bee Larva
+			RainbowSlimeProj.DisplayName: Rainbow Slime
+			SkeletronHandProj.DisplayName: Skeletron Pet Hand
+			SkeletronPrimeHandProj.DisplayName: Skeletron Prime Pet Hand
+			StingSlimeProj.DisplayName: Sting Slime
+			StrangeRobotProj.DisplayName: Strange Robot
+			SuspiciousNuggetProj.DisplayName: Suspicious Nugget
+			SwarmofCthulhuProj.DisplayName: Swarm of Cthulhu
+			TinyRetinazerProj.DisplayName: Tiny Retinazer
+			TinySpazmatismProj.DisplayName: Tiny Spazmatism
+			TorchGodLightPetProj.DisplayName: Godly Torch
+			TorturedSoulProj.DisplayName: Tortured Soul
+			TrueObservingEyeProj.DisplayName: True Observing Eye
+			TurtleSlimeProj.DisplayName: Turtle Slime
+			VampireBatProj.DisplayName: Vampire Bat
+			WallFragmentEye1.DisplayName: Wall Eye
+			WallFragmentEye2.DisplayName: Wall Eye
+			WallFragmentMouth.DisplayName: Wall Mouth
+			WobyProj.DisplayName: Woby
+			YoungHarpyProj.DisplayName: Young Harpy
+			YoungWyvernProj.DisplayName: Young Wyvern
+			ExtendoNetGoldenProj.DisplayName: EXTENDO!
+			ExtendoNetRegularProj.DisplayName: EXTENDO!
+			BoneCleavingFangProj.DisplayName: Bone-Cleaving Fang
+			BoneShatterLongbowProj.DisplayName: Bone-Shatter Longbow Arrow
+			CandleDustDummy.DisplayName: Candle Dust Dummy
+			GuideVoodoorangProj.DisplayName: Guide Voodoorang
+			LegendaryWoodenSwordProj.DisplayName: Legendary Wooden Sword
+			PlagueOfToadsCloud.DisplayName: Plague of Toads
+			PlagueOfToadsFired.DisplayName: Plague of Toads
+			PlagueOfToadsProj.DisplayName: Plague of Toads
+			PocketSandProj.DisplayName: Pocket Sand
+			SightofRetinazerLaser.DisplayName: Laser
+			SpazmatismFire.DisplayName: Spazmatism Breath
+			TalonstormClawProj.DisplayName: Talonstorm
+			TalonstormFiredProj.DisplayName: Talonstorm
+			TalonstormProj.DisplayName: Talonstorm
+			TrueLegendaryWoodenSwordProj.DisplayName: True Legendary Wooden Sword
+		}
+
+		Tiles: {
+			MapEntry_Locked: Locked
+
+			AntiqueChestTile: {
+				MapEntry: Antique Chest
+				MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Tiles.AntiqueChestTile.MapEntry}"
+			}
+
+			AntiqueCageLockedTile.MapEntry: Antique Cage
+			AntiqueCageOpenTile.MapEntry: Antique Cage
+			AntiqueCageUnlockedTile.MapEntry: Antique Cage
+			CuteSlimeStatueTile.MapEntry: Statue
+			SlimeBeaconTile.MapEntry: Slime Beacon
+			StarRodTile.MapEntry: Star Rod
+			VanityDresserTile.MapEntry: Costume Dresser
+			WyvernCampfireTile.MapEntry: Wyvern Campfire
+		}
+
+		Conditions: {
+			UnlockedBiomeTorches: If Torch God's Favor was already used
+			PlaceablesFunctional: If the 'Placeables (functional)' setting is enabled
+			DroneTypeNotUnlocked: If it isn't unlocked yet
+		}
 	}
 }

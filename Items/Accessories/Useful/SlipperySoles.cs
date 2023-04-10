@@ -9,8 +9,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slippery Soles");
-			Tooltip.SetDefault("You slip and slide on all blocks");
+			// DisplayName.SetDefault("Slippery Soles");
+			// Tooltip.SetDefault("You slip and slide on all blocks");
 		}
 		public override void SafeSetDefaults()
 		{

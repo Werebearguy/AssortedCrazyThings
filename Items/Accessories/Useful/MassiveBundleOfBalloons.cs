@@ -9,10 +9,10 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Massive Bundle of Balloons");
-			Tooltip.SetDefault("Allows you to jump six more times"
+			// DisplayName.SetDefault("Massive Bundle of Balloons");
+			/* Tooltip.SetDefault("Allows you to jump six more times"
 				+ "\nNegates fall damage and increases jump height"
-				+ "\nReleases bees when damaged");
+				+ "\nReleases bees when damaged"); */
 		}
 
 		public override void SafeSetDefaults()

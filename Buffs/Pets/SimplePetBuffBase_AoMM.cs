@@ -25,8 +25,8 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public sealed override void SafeSetStaticDefaults()
 		{
 			string name = BaseModBuff.Name;
-			DisplayName.SetDefault("{$Mods.AssortedCrazyThings.BuffName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
-			Description.SetDefault("{$Mods.AssortedCrazyThings.BuffDescription." + name + "}");
+			// DisplayName.SetDefault("{$Mods.AssortedCrazyThings.BuffName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
+			// Description.SetDefault("{$Mods.AssortedCrazyThings.BuffDescription." + name + "}");
 
 			EvenSaferSetStaticDefaults();
 		}

@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Well-Worn Boots of Stomping");
+			// DisplayName.SetDefault("Well-Worn Boots of Stomping");
 		}
 
 		public override void SafeSetDefaults()

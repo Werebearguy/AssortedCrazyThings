@@ -24,12 +24,12 @@ namespace AssortedCrazyThings.Items
 		{
 			if (!loaded)
 			{
-				On.Terraria.Item.CanCombineStackInWorld += Item_CanCombineStackInWorld;
+				On_Item.CanCombineStackInWorld += Item_CanCombineStackInWorld;
 				loaded = true;
 			}
 		}
 
-		private static bool Item_CanCombineStackInWorld(On.Terraria.Item.orig_CanCombineStackInWorld orig, Item self)
+		private static bool Item_CanCombineStackInWorld(On_Item.orig_CanCombineStackInWorld orig, Item self)
 		{
 			var ret = orig(self);
 

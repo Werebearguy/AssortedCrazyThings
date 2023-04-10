@@ -12,9 +12,9 @@ namespace AssortedCrazyThings.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Soul Savior Headdress");
-			Tooltip.SetDefault("Increases minion damage by 10%"
-				+ "\nIncreases your max number of minions");
+			// DisplayName.SetDefault("Soul Savior Headdress");
+			/* Tooltip.SetDefault("Increases minion damage by 10%"
+				+ "\nIncreases your max number of minions"); */
 			
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

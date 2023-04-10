@@ -12,9 +12,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sigil of the Talon");
-			Tooltip.SetDefault("Allows your grappling hooks to deal damage when extending"
-				+ "\nCan hit up to 3 enemies");
+			// DisplayName.SetDefault("Sigil of the Talon");
+			/* Tooltip.SetDefault("Allows your grappling hooks to deal damage when extending"
+				+ "\nCan hit up to 3 enemies"); */
 		}
 
 		public override void SafeSetDefaults()

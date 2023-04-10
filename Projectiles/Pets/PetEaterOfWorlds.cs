@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tiny Eater of Worlds");
+			// DisplayName.SetDefault("Tiny Eater of Worlds");
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;
 			//ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; //doesn't work for some reason with hide = true

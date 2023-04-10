@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.NPCs
             });
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{
@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.NPCs
 			{
 				for (int i = 0; i < 10; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), hit.HitDirection, -1f);
 				}
 			}
 			else
@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.NPCs
 				Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("GiantGoldenGrasshopperGore_03").Type, 1f);
 				for (int i = 0; i < 20; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), 2 * hitDirection, -2f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), 2 * hit.HitDirection, -2f);
 				}
 			}
 		}
