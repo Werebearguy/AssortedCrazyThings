@@ -63,7 +63,7 @@ namespace AssortedCrazyThings.Tiles
 
 		public override void NearbyEffects(int i, int j, bool closer)
 		{
-			if (closer && Main.tile[i, j].TileFrameY < AnimationFrameHeight)
+			if (!closer && Main.tile[i, j].TileFrameY < AnimationFrameHeight)
 			{
 				Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = true;
 				Main.SceneMetrics.HasCampfire = true;

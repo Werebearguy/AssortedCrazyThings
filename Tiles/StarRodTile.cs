@@ -200,7 +200,7 @@ namespace AssortedCrazyThings.Tiles
 
 		public override void NearbyEffects(int i, int j, bool closer)
 		{
-			if (IsEnabled(i, j) && CanBeActive(i, j))
+			if (!closer && IsEnabled(i, j) && CanBeActive(i, j))
 			{
 				Main.LocalPlayer.GetModPlayer<StarRodModPlayer>().starRodTileNearby = true;
 			}
