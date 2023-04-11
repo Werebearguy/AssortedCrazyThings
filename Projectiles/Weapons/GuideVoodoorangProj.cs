@@ -45,6 +45,11 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 						NPC npc = Main.npc[i];
 						if (npc.active && npc.type == NPCID.Guide)
 						{
+							if (npc.IsNPCValidForBestiaryKillCredit())
+							{
+								Main.BestiaryTracker.Kills.RegisterKill(npc);
+							}
+
 							var hit = new NPC.HitInfo
 							{
 								Knockback = 10,
@@ -60,6 +65,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 							NPC.SpawnWOF(Projectile.position);
 
 							Projectile.Kill();
+							break;
 							//item itself doesn't get deleted but only works when the guide is in the world anyway
 						}
 					}
