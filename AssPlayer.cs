@@ -506,7 +506,11 @@ namespace AssortedCrazyThings
 					Player.ClearBuff(BuffID.Stoned);
 				}
 
-				AssWorld.Message($"{Player.name} has died, but their soul has not given up...", new Color(225, 25, 25));
+				if (Main.netMode != NetmodeID.Server)
+				{
+					//This check is here because server code doesn't run properly for this context (it runs desynced from client)
+					AssWorld.SigilOfTheWingDeath.AnnounceClient(Player.name);
+				}
 
 				return false;
 			}

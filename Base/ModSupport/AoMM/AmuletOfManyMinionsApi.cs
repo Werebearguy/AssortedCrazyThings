@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.ModSupport.AoMM
@@ -43,9 +44,12 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 			}
 		}
 
+		public static LocalizedText AoMMVersionText { get; private set; }
+
 		public override void Load()
 		{
 			versionString = apiVersion.ToString();
+			AoMMVersionText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.AoMMVersion"));
 		}
 
 		public override void Unload()

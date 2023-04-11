@@ -15,10 +15,6 @@ namespace AssortedCrazyThings.NPCs
 	[Content(ContentType.HostileNPCs)]
 	public class SpawnOfOcram : AssNPC
 	{
-		//TODO 1.4.4 localize
-		public const string name = "Spawn of Ocram";
-		public const string message = "Spawn of Ocram has appeared!";
-
 		public override void SetStaticDefaults()
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Corruptor];

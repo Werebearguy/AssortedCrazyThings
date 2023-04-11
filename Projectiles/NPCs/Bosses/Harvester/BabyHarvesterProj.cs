@@ -766,7 +766,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 								}
 							}
 
-							AssWorld.AwakeningMessage(HarvesterBoss.name + " has been awakened!");
+							AssWorld.SoulHarvesterBossAppear.Announce();
 						}
 
 						Projectile.Kill();

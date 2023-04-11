@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.Harvester;
 using Microsoft.Xna.Framework;
@@ -17,23 +18,80 @@ namespace AssortedCrazyThings
 	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
 	public class AssWorld : AssSystem
 	{
+		//Announcements
+		public record struct Announcement(LocalizedText Text, Color Color)
+		{
+			public void Announce(params object[] args)
+			{
+				if (Main.netMode == NetmodeID.SinglePlayer)
+				{
+					Main.NewText(Text.Format(args), Color);
+				}
+				else if (Main.netMode == NetmodeID.Server)
+				{
+					ChatHelper.BroadcastChatMessage(NetworkText.FromKey(Text.Key, args), Color);
+				}
+			}
+
+			/// <summary>
+			/// When <see cref="Announce"/> can't be used due to server not existing in the context
+			/// </summary>
+			public void AnnounceClient(params object[] args)
+			{
+				if (Main.netMode == NetmodeID.SinglePlayer)
+				{
+					Main.NewText(Text.Format(args), Color);
+				}
+				else if (Main.netMode == NetmodeID.MultiplayerClient)
+				{
+					ModPacket packet = AssUtils.Instance.GetPacket();
+					packet.Write((byte)AssMessageType.RequestChatMessage);
+					NetworkText.FromKey(Text.Key, args).Serialize(packet);
+					packet.WriteRGB(Color);
+					packet.Send();
+				}
+			}
+		}
+
+		public static Announcement SigilOfTheWingDeath { get; private set; }
+		public static Announcement SoulHarvesterDeath { get; private set; }
+		public static Announcement SoulHarvesterBabyAppear { get; private set; }
+		public static Announcement SoulHarvesterBabyCageAppear { get; private set; }
+		public static Announcement SoulHarvesterBossAppear { get; private set; }
+		public static Announcement SpawnOfOcramAppear { get; private set; }
+		public static Announcement MegalodonAppear { get; private set; }
+		public static Announcement BigEnemyDisappear { get; private set; }
+
 		//basically "if they were alive last update"
 		public bool megalodonAlive = false;
 		public bool miniocramAlive = false;
 		//"are they alive this update"
 		bool isMegalodonSpawned;
 		bool isMiniocramSpawned;
-		//static names, in case you want to change them later
-		public static string megalodonName = Megalodon.name;
-		public static string miniocramName = SpawnOfOcram.name;
-		public static string megalodonMessage = Megalodon.message;
-		public static string miniocramMessage = SpawnOfOcram.message;
-		//the megalodon messages are modified down below in the Disappear message
 
 		//Soul stuff
 		public static bool downedHarvester;
 
 		public static bool slimeRainSky = false;
+
+		private Announcement RegisterAnnouncement(string name, Color color)
+		{
+			return new Announcement(Language.GetOrRegister(Mod.GetLocalizationKey($"Announcements.{name}")), color);
+		}
+
+		public override void OnModLoad()
+		{
+			var appearColor = new Color(175, 75, 255);
+			var harvesterColor = new Color(35, 200, 254);
+			SigilOfTheWingDeath = RegisterAnnouncement(nameof(SigilOfTheWingDeath), new Color(225, 25, 25));
+			SoulHarvesterDeath = RegisterAnnouncement(nameof(SoulHarvesterDeath), harvesterColor);
+			SoulHarvesterBossAppear = RegisterAnnouncement(nameof(SoulHarvesterBossAppear), appearColor);
+			SoulHarvesterBabyAppear = RegisterAnnouncement(nameof(SoulHarvesterBabyAppear), harvesterColor);
+			SoulHarvesterBabyCageAppear = RegisterAnnouncement(nameof(SoulHarvesterBabyCageAppear), harvesterColor);
+			SpawnOfOcramAppear = RegisterAnnouncement(nameof(SpawnOfOcramAppear), appearColor);
+			MegalodonAppear = RegisterAnnouncement(nameof(MegalodonAppear), appearColor);
+			BigEnemyDisappear = RegisterAnnouncement(nameof(BigEnemyDisappear), new Color(175, 255, 175));
+		}
 
 		public override void OnWorldLoad()
 		{
@@ -71,12 +129,11 @@ namespace AssortedCrazyThings
 			downedHarvester = flags[0];
 		}
 
-		//small methods I made for myself to not make the code cluttered since I have to use these six times
-		public static void AwakeningMessage(string message, Vector2 pos = default(Vector2), SoundStyle? soundStyle = null)
+		public static void AwakeningMessage(Announcement announcement, Vector2? pos, SoundStyle? soundStyle, params object[] args)
 		{
 			//Sound only in singleplayer
 			if (soundStyle != null) SoundEngine.PlaySound(soundStyle.Value, pos);
-			Message(message, new Color(175, 75, 255));
+			announcement.Announce(args);
 		}
 
 		public static void Message(string message, Color color)
@@ -201,22 +258,23 @@ namespace AssortedCrazyThings
 				NPC npc = Main.npc[j];
 				if (npc.active)
 				{
-					if (npc.TypeName == megalodonName && !isMegalodonSpawned)
+					if (npc.type == ModContent.NPCType<Megalodon>() && !isMegalodonSpawned)
 					{
 						isMegalodonSpawned = true;
 						//check if it wasnt alive in previous update
 						if (!megalodonAlive)
 						{
-							AwakeningMessage(megalodonMessage, npc.Center, SoundID.Roar);
+							AwakeningMessage(MegalodonAppear, npc.Center, SoundID.Roar);
 							megalodonAlive = true;
 						}
 					}
-					if (npc.TypeName == miniocramName && !isMiniocramSpawned)
+
+					if (npc.type == ModContent.NPCType<SpawnOfOcram>() && !isMiniocramSpawned)
 					{
 						isMiniocramSpawned = true;
 						if (!miniocramAlive)
 						{
-							AwakeningMessage(miniocramMessage, npc.Center, SoundID.Roar);
+							AwakeningMessage(SpawnOfOcramAppear, npc.Center, SoundID.Roar);
 							miniocramAlive = true;
 						}
 					}
@@ -227,12 +285,12 @@ namespace AssortedCrazyThings
 			if (!isMegalodonSpawned && megalodonAlive)
 			{
 				megalodonAlive = false;
-				Message("The " + megalodonName + " disappeared... for now", new Color(175, 255, 175));
+				BigEnemyDisappear.Announce(ModContent.GetInstance<Megalodon>().DisplayName.ToString());
 			}
 			if (!isMiniocramSpawned && miniocramAlive)
 			{
 				miniocramAlive = false;
-				Message("The " + miniocramName + " disappeared... for now", new Color(175, 255, 175));
+				BigEnemyDisappear.Announce(ModContent.GetInstance<SpawnOfOcram>().DisplayName.ToString());
 			}
 		}
 

@@ -12,10 +12,6 @@ namespace AssortedCrazyThings.NPCs
 	[Content(ContentType.HostileNPCs)]
 	public class Megalodon : AssNPC
 	{
-		//TODO 1.4.4 localize
-		public static string name = "Megalodon";
-		public static string message = "A Megalodon is approaching! Get out of the ocean!";
-
 		public override void SetStaticDefaults()
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];

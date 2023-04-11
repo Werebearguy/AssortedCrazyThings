@@ -52,11 +52,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			}
 		}
 
-		//TODO 1.4.4 localize
-		public static readonly string name = "Soul Harvester";
-		public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
 		public const int SpawnedSoulCount = 25;
-		public static Color deathColor = new Color(35, 200, 254);
 		public const int FrameCountHorizontal = 4;
 		public const int FrameCountVertical = 5;
 		public const int FrameWidth = 314; //Old sprite 470
@@ -435,7 +431,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 		{
 			NPC.SetEventFlagCleared(ref AssWorld.downedHarvester, -1);
 
-			AssWorld.Message(deathMessage, deathColor);
+			AssWorld.SoulHarvesterDeath.Announce();
 
 			//"convert" NPC souls
 			ConvertSouls();

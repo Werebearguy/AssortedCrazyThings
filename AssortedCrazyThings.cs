@@ -11,7 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -331,6 +333,15 @@ namespace AssortedCrazyThings
 					bool resend = Main.netMode == NetmodeID.Server;
 					AntiqueCageUnlockedTile.SpawnFromCage(Main.player[playerNumber], spawnPos, resend);
 					break;
+				case AssMessageType.RequestChatMessage:
+					NetworkText text = NetworkText.Deserialize(reader);
+					Color color = reader.ReadRGB();
+					if (Main.netMode == NetmodeID.Server)
+					{
+						Console.WriteLine("sending message");
+						ChatHelper.BroadcastChatMessage(text, color);
+					}
+					break;
 				default:
 					Logger.Debug("Unknown Message type: " + msgType);
 					break;
@@ -365,7 +376,8 @@ namespace AssortedCrazyThings
 		ResetEmpoweringTimerpvp,
 		WyvernCampfireKill,
 		SlainBoss,
-		HarvesterSpawnFromCage
+		HarvesterSpawnFromCage,
+		RequestChatMessage
 	}
 
 	public enum PetPlayerChanges : byte

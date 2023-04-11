@@ -2080,5 +2080,16 @@ Mods: {
 			PlaceablesFunctional: If the 'Placeables (functional)' setting is enabled
 			DroneTypeNotUnlocked: If it isn't unlocked yet
 		}
+
+		Announcements: {
+			SigilOfTheWingDeath: "{0} has died, but their soul has not given up..."
+			SoulHarvesterDeath: The Dungeon Souls have been freed!
+			SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} has been awakened!"
+			SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName} has appeared!"
+			MegalodonAppear: A {$NPCs.Megalodon.DisplayName} is approaching! Get out of the ocean!
+			BigEnemyDisappear: The {0} disappeared... for now
+			SoulHarvesterBabyAppear: You hear a faint cawing from the dungeon.
+			SoulHarvesterBabyCageAppear: A hungry bird has been released!
+		}
 	}
 }
