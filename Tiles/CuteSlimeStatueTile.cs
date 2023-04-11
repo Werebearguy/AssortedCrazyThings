@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
@@ -32,9 +31,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.addAlternate(1); // facing right will use the second texture style
 			TileObjectData.addTile(Type);
 
-			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Statue");
-			AddMapEntry(new Color(144, 148, 144), name);
+			AddMapEntry(new Color(144, 148, 144), Language.GetText("MapObject.Statue"));
 			DustType = 11;
 		}
 

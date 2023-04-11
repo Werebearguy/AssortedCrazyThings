@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
@@ -12,8 +13,13 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public virtual int TotalNumberOfThese => 0;
 
+		public static LocalizedText CommonDisplayNameText { get; private set; }
+
+		public override LocalizedText DisplayName => CommonDisplayNameText;
+
 		public override void SetStaticDefaults()
 		{
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.DemonEyeRecolor.DisplayName"));
 			// DisplayName.SetDefault("Demon Eye");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
 			NPCID.Sets.DemonEyes[NPC.type] = true;

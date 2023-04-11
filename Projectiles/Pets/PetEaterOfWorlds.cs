@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -14,8 +15,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public static int[] wormTypes;
 
+		public static LocalizedText CommonDisplayNameText { get; private set; }
+
+		public override LocalizedText DisplayName => CommonDisplayNameText;
+
 		public override void SetStaticDefaults()
 		{
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.PetEaterofWorlds.DisplayName"));
 			// DisplayName.SetDefault("Tiny Eater of Worlds");
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;

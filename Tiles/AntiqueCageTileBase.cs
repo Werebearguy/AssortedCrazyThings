@@ -20,6 +20,8 @@ namespace AssortedCrazyThings.Tiles
 
 		public static HashSet<int> InteractableCageTypes { get; private set; }
 
+		public static LocalizedText CommonMapEntryText { get; private set; }
+
 		public static bool IsTileInteractable(int i, int j)
 		{
 			return Framing.GetTileSafely(i, j) is Tile tile && InteractableCageTypes.Contains(tile.TileType);
@@ -43,9 +45,8 @@ namespace AssortedCrazyThings.Tiles
 
 			DustType = 1;
 
-			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Antique Cage");
-			AddMapEntry(new Color(102, 115, 103), name);
+			CommonMapEntryText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.AntiqueCage.MapEntry"));
+			AddMapEntry(new Color(102, 115, 103), CommonMapEntryText);
 			
 			//Whatever is specified as anchors here has to be checked in a GlobalTile/Wall class to prevent destruction
 

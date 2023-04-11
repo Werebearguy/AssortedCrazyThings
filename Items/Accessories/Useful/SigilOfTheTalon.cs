@@ -10,6 +10,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public static readonly int FirstDamageDropOff = 75;
 
+		//TODO tooltip 3 format
 		public override void EvenSaferSetStaticDefaults()
 		{
 			// DisplayName.SetDefault("Sigil of the Talon");

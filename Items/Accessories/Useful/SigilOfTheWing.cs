@@ -13,6 +13,10 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public static readonly int HealthRestoreAmount = 25;
 		public static readonly int CooldownSeconds = 6 * 60;
 
+		//TODO fix tooltip
+		/*($"On death, transform into a soul for {DurationSeconds} seconds, regenerating {HealthRestoreAmount}% max health"
+				+ "\nWhile transformed, you cannot use items"
+				+ $"\nHas a cooldown of {CooldownSeconds / 60} minutes"); */
 		public override void EvenSaferSetStaticDefaults()
 		{
 			// DisplayName.SetDefault("Sigil of the Wing");

@@ -1356,7 +1356,7 @@ Mods: {
 
 			ChunkysEyeItem: {
 				DisplayName: Chunky's Eye
-				Tooltip: "'Find Meatball's Eye and combine the two at a Demon Altar'"
+				Tooltip: "'Find {$Items.MeatballsEyeItem.DisplayName} and combine the two at a Demon Altar'"
 			}
 
 			CuteSlimeSpawnEnableFlask.DisplayName: Jellied Ale
@@ -1551,7 +1551,7 @@ Mods: {
 
 			MeatballsEyeItem: {
 				DisplayName: Meatball's Eye
-				Tooltip: "'Find Chunky's Eye and combine the two at a Demon Altar'"
+				Tooltip: "'Find {$Items.ChunkysEyeItem.DisplayName} and combine the two at a Demon Altar'"
 			}
 
 			PetAccessoryBowtie: {
@@ -1897,11 +1897,7 @@ Mods: {
 			CuteSlimeToxic.DisplayName: Cute Toxic Slime
 			CuteSlimeXmas.DisplayName: Cute Holiday Slime
 			CuteSlimeYellow.DisplayName: Cute Yellow Slime
-			DemonEyeFractured.DisplayName: Demon Eye
-			DemonEyeLaser.DisplayName: Demon Eye
-			DemonEyeMechanical.DisplayName: Demon Eye
-			DemonEyeRegular.DisplayName: Demon Eye
-			DemonEyeSeasonal.DisplayName: Demon Eye
+			DemonEyeRecolor.DisplayName: Demon Eye
 			DemonEyeWandering.DisplayName: Wandering Eye
 			FairySlime.DisplayName: Fairy Slime
 			GiantGrasshopper.DisplayName: Giant Grasshopper
@@ -1928,11 +1924,7 @@ Mods: {
 
 		Projectiles: {
 			SigilOfTheBeakProj.DisplayName: Fractured Soul
-			CompanionDungeonSoulFrightMinion.DisplayName: Companion Soul
-			CompanionDungeonSoulMightMinion.DisplayName: Companion Soul
-			CompanionDungeonSoulPostWOFMinion.DisplayName: Companion Soul
-			CompanionDungeonSoulPreWOFMinion.DisplayName: Companion Soul
-			CompanionDungeonSoulSightMinion.DisplayName: Companion Soul
+			CompanionDungeonSoulMinion.DisplayName: Companion Soul
 			BasicLaserDrone.DisplayName: Basic Laser Drone
 			HealingDrone.DisplayName: Healing Drone
 			HeavyLaserDrone.DisplayName: Heavy Laser Drone
@@ -1940,17 +1932,11 @@ Mods: {
 			MissileDrone.DisplayName: Missile Drone
 			MissileDroneRocket.DisplayName: Missile Drone Rocket
 			ShieldDrone.DisplayName: Shield Drone
-			GoblinUnderlingDart_0.DisplayName: Goblin Underling Dart
-			GoblinUnderlingDart_1.DisplayName: Goblin Underling Dart
-			GoblinUnderlingDart_2.DisplayName: Goblin Underling Dart
-			GoblinUnderlingDart_3.DisplayName: Goblin Underling Dart
-			GoblinUnderlingDart_4.DisplayName: Goblin Underling Dart
+			GoblinUnderlingDart.DisplayName: Goblin Underling Dart
 			GoblinUnderlingProj.DisplayName: Goblin Underling
 			GoblinUnderlingTerraBeam.DisplayName: Goblin Underling Terra Beam
-			MagicSlimeSlingFired.DisplayName: Magic Slime Sling Fired
-			MagicSlimeSlingMinion1.DisplayName: Magic Slime Sling Minion
-			MagicSlimeSlingMinion2.DisplayName: Magic Slime Sling Minion
-			MagicSlimeSlingMinion3.DisplayName: Magic Slime Sling Minion
+			MagicSlimeSlingFired.DisplayName: Magic Slime Sling
+			MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
 			PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
 			SlimePackAssortedMinion.DisplayName: Slime Pack Minion
@@ -2020,15 +2006,9 @@ Mods: {
 			NumberMuncherProj.DisplayName: Number Muncher
 			OceanSlimeProj.DisplayName: Ocean Slime
 			PetCultistProj.DisplayName: Dwarf Cultist
-			PetDestroyerBody1.DisplayName: Tiny Destroyer
-			PetDestroyerBody2.DisplayName: Tiny Destroyer
-			PetDestroyerHead.DisplayName: Tiny Destroyer
+			PetDestroyer.DisplayName: Tiny Destroyer
 			PetDestroyerProbe.DisplayName: Tiny Destroyer Probe
-			PetDestroyerTail.DisplayName: Tiny Destroyer
-			PetEaterofWorldsBody1.DisplayName: Tiny Eater of Worlds
-			PetEaterofWorldsBody2.DisplayName: Tiny Eater of Worlds
-			PetEaterofWorldsHead.DisplayName: Tiny Eater of Worlds
-			PetEaterofWorldsTail.DisplayName: Tiny Eater of Worlds
+			PetEaterofWorlds.DisplayName: Tiny Eater of Worlds
 			PetFishronProj.DisplayName: Mini Fishron
 			PetGoldfishProj.DisplayName: Pet Goldfish
 			PetGolemHeadProj.DisplayName: Replica Golem Head
@@ -2036,9 +2016,7 @@ Mods: {
 			PetMoonProj.DisplayName: Personal Moon
 			PetPlanteraProj.DisplayName: Plantera Sprout
 			PetPlanteraProjTentacle.DisplayName: Mean Seed Tentacle
-			PetQueenSlimeAirProj.DisplayName: Slime Sibling
-			PetQueenSlimeGround1Proj.DisplayName: Slime Sibling
-			PetQueenSlimeGround2Proj.DisplayName: Slime Sibling
+			PetQueenSlimeProj.DisplayName: Slime Sibling
 			PetSunProj.DisplayName: Personal Sun
 			PigronataProj.DisplayName: Pigronata
 			PrinceSlimeProj.DisplayName: Prince Slime
@@ -2065,21 +2043,21 @@ Mods: {
 			YoungWyvernProj.DisplayName: Young Wyvern
 			ExtendoNetGoldenProj.DisplayName: EXTENDO!
 			ExtendoNetRegularProj.DisplayName: EXTENDO!
-			BoneCleavingFangProj.DisplayName: Bone-Cleaving Fang
-			BoneShatterLongbowProj.DisplayName: Bone-Shatter Longbow Arrow
+			BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
+			BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName} Arrow"
 			CandleDustDummy.DisplayName: Candle Dust Dummy
-			GuideVoodoorangProj.DisplayName: Guide Voodoorang
-			LegendaryWoodenSwordProj.DisplayName: Legendary Wooden Sword
-			PlagueOfToadsCloud.DisplayName: Plague of Toads
-			PlagueOfToadsFired.DisplayName: Plague of Toads
-			PlagueOfToadsProj.DisplayName: Plague of Toads
-			PocketSandProj.DisplayName: Pocket Sand
-			SightofRetinazerLaser.DisplayName: Laser
-			SpazmatismFire.DisplayName: Spazmatism Breath
-			TalonstormClawProj.DisplayName: Talonstorm
-			TalonstormFiredProj.DisplayName: Talonstorm
-			TalonstormProj.DisplayName: Talonstorm
-			TrueLegendaryWoodenSwordProj.DisplayName: True Legendary Wooden Sword
+			GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
+			LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
+			PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
+			SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} Laser"
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} Breath"
+			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
 		}
 
 		Tiles: {
@@ -2090,10 +2068,7 @@ Mods: {
 				MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Tiles.AntiqueChestTile.MapEntry}"
 			}
 
-			AntiqueCageLockedTile.MapEntry: Antique Cage
-			AntiqueCageOpenTile.MapEntry: Antique Cage
-			AntiqueCageUnlockedTile.MapEntry: Antique Cage
-			CuteSlimeStatueTile.MapEntry: Statue
+			AntiqueCage.MapEntry: Antique Cage
 			SlimeBeaconTile.MapEntry: Slime Beacon
 			StarRodTile.MapEntry: Star Rod
 			VanityDresserTile.MapEntry: Costume Dresser

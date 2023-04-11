@@ -26,7 +26,6 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
 			TileObjectData.addTile(Type);
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Slime Beacon");
 			AddMapEntry(new Color(75, 139, 166), name);
 			DustType = 1;
 			AnimationFrameHeight = 56;

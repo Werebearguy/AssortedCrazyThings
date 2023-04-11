@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
@@ -11,6 +12,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
+
+		public static LocalizedText CommonDisplayNameText { get; private set; }
 
 		public bool Spawned
 		{
@@ -24,8 +27,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			set => Projectile.ai[0] = value;
 		}
 
+		public override LocalizedText DisplayName => CommonDisplayNameText;
+
 		public override void SetStaticDefaults()
 		{
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.GoblinUnderlingDart.DisplayName"));
 			// DisplayName.SetDefault("Goblin Underling Dart");
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;

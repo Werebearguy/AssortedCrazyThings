@@ -16,7 +16,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public override void SetStaticDefaults()
 		{
-			CommonTooltipText = Language.GetOrRegister(Mod.GetLocalizationKey($"Items.{nameof(CompanionDungeonSoulPetItem)}.CommonTooltip"));
+			CommonTooltipText = Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(CompanionDungeonSoulPetItem)}.CommonTooltip"));
 
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;

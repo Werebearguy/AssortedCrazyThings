@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
@@ -45,8 +46,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 		public float defveloCatchUpIdle;// = 8f;
 		public float defveloNoclip;// = 12f;
 
+		public static LocalizedText CommonDisplayNameText { get; private set; }
+
+		public override LocalizedText DisplayName => CommonDisplayNameText;
+
 		public override void SetStaticDefaults()
 		{
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.CompanionDungeonSoulMinion.DisplayName"));
 			// DisplayName.SetDefault("Companion Soul");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;

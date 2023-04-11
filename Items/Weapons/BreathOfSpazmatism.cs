@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.height = 38;
 			//item.damage = 20; //same damage as flamethrower, which is 35
 			Item.UseSound = SoundID.Item34;
-			Item.shoot = ModContent.ProjectileType<SpazmatismFire>();
+			Item.shoot = ModContent.ProjectileType<BreathOfSpazmatismProj>();
 			Item.shootSpeed = 8f;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Ranged;

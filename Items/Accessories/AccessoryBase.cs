@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Items.Accessories
 			SafeSetDefaults();
 
 			Item.accessory = true;
-			Item.hasVanityEffects = true;
 		}
 
 		public virtual void SafeSetDefaults()

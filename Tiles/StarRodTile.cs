@@ -64,7 +64,6 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.addTile(Type);
 
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Star Rod");
 			AddMapEntry(new Color(75, 80, 75), name);
 			DustType = 1;
 		}

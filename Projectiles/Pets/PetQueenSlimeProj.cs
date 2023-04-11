@@ -4,6 +4,7 @@ using AssortedCrazyThings.Buffs.Pets;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -11,8 +12,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	[Content(ContentType.DroppedPets)]
 	public class PetQueenSlimeAirProj : SimplePetProjBase
 	{
+		public static LocalizedText CommonDisplayNameText { get; private set; }
+
+		public override LocalizedText DisplayName => CommonDisplayNameText;
+
 		public override void SetStaticDefaults()
 		{
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.PetQueenSlimeProj.DisplayName"));
+
 			// DisplayName.SetDefault("Slime Sibling");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
@@ -67,6 +74,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			this.front = front;
 		}
+
+		public override LocalizedText DisplayName => PetQueenSlimeAirProj.CommonDisplayNameText;
 
 		public override void SafeSetStaticDefaults()
 		{

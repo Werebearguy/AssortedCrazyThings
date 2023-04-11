@@ -38,7 +38,6 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.addTile(Type);
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Wyvern Campfire");
 			AddMapEntry(new Color(105, 105, 105), name);
 			DustType = -1;
 			AnimationFrameHeight = 36;

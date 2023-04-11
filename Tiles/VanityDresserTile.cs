@@ -29,7 +29,6 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			LocalizedText name = CreateMapEntryName();
-			// name.SetDefault("Costume Dresser");
 			AddMapEntry(new Color(200, 200, 200), name);
 			DustType = 11;
 			TileID.Sets.DisableSmartCursor[Type] = true;

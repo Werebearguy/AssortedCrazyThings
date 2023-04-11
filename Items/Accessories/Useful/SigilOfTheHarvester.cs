@@ -8,6 +8,15 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[LegacyName("SigilOfLastStand")]
 	public class SigilOfTheHarvester : SigilItemBase
 	{
+		//TODO fix tooltip
+		/*("'The aspects of the Harvester reside within you'"
+				+ "\nSummons fractured souls to seek out enemies in combat"
+				+ "\nFrequency and intensity increases the lower your health gets"
+				+ $"\nOn death, transform into a soul for {SigilOfTheWing.DurationSeconds} seconds, regenerating {SigilOfTheWing.HealthRestoreAmount}% max health"
+				+ "\nWhile transformed, you cannot use items"
+				+ $"\nHas a cooldown of {SigilOfTheWing.CooldownSeconds / 60} minutes"
+				+ "\nAllows your grappling hooks to deal damage when extending"
+				+ "\nCan hit up to 3 enemies"); */
 		public override void EvenSaferSetStaticDefaults()
 		{
 			// DisplayName.SetDefault("Sigil of the Harvester");
