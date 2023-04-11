@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class AssRecipes : AssSystem
 	{
 		public static int RegularCuteSlimesGroup { get; private set; }

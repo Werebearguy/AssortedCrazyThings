@@ -4,7 +4,7 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Items
 {
 	//Needs PlaceablesFunctional as it's an ingredient for VanityDresserItem
-	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class VanitySelector : AssItem
 	{
 		public override void SetDefaults()

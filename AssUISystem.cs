@@ -13,7 +13,7 @@ using Terraria.UI;
 
 namespace AssortedCrazyThings
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class AssUISystem : AssSystem
 	{
 		/// <summary>

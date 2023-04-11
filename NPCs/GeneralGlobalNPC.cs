@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class GeneralGlobalNPC : AssGlobalNPC
 	{
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)

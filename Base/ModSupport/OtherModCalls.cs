@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.ModSupport
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class OtherModCalls : AssSystem
 	{
 		public override void PostSetupContent()

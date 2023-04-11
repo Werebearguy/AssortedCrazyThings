@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class TorchGodLightPetItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<TorchGodLightPetProj>();
@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 	//Light pet, no Aomm form
 
-	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class TorchGodLightPetGlobalNPC : AssGlobalNPC
 	{
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)

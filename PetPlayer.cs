@@ -20,7 +20,7 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class PetPlayer : AssPlayerBase
 	{
 		private bool enteredWorld = false;

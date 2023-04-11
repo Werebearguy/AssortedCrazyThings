@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Base.SwarmDraw
 {
 	//TODO unhardcode this when both a better tml loader comes along and more swarm draw sets exist
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class SwarmDrawPlayer : AssPlayerBase
 	{
 		public static void HandleDrawSet(ref SwarmDrawSet set, Func<SwarmDrawSet> gen, bool condition, Vector2 center)

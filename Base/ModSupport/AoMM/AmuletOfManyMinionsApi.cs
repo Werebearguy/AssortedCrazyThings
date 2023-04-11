@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 	/// <summary>
 	/// Collection of utility methods that wrap the mod.Calls available from AoMM.
 	/// </summary>
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class AmuletOfManyMinionsApi : AssSystem
 	{
 		//GENERAL INFO - PLEASE READ THIS FIRST!

@@ -2,7 +2,7 @@
 
 namespace AssortedCrazyThings.Base.Handlers.OutOfCombatHandler
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	internal class OutOfCombatSystem : AssSystem
 	{
 		/// <summary>

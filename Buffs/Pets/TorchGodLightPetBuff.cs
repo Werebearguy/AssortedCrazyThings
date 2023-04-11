@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class TorchGodLightPetBuff : SimplePetBuffBase
 	{
 		public override int PetType => ModContent.ProjectileType<TorchGodLightPetProj>();
