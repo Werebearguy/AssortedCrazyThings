@@ -1,6 +1,5 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable.Paintings
@@ -12,11 +11,6 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 	public abstract class PaintingItemBase<T> : PlaceableItem<T> where T : ModTile
 	{
 		public virtual (int item, int amount) RecipeIngredient => (0, 0);
-
-		public sealed override void SetStaticDefaults()
-		{
-
-		}
 
 		public sealed override void SetDefaults()
 		{

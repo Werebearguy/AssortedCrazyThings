@@ -1359,7 +1359,10 @@ Mods: {
 				Tooltip: "'Find {$Items.MeatballsEyeItem.DisplayName} and combine the two at a Demon Altar'"
 			}
 
-			CuteSlimeSpawnEnableFlask.DisplayName: Jellied Ale
+			CuteSlimeSpawnEnableFlask: {
+				DisplayName: Jellied Ale
+				Tooltip: ""
+			}
 
 			EmpowermentFlask: {
 				DisplayName: Empowerment Flask
