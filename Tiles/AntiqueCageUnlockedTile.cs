@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.Tiles
 		{
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
-			player.cursorItemIconID = ItemType;
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 			player.cursorItemIconText = "";
 			player.cursorItemIconEnabled = true;
 		}

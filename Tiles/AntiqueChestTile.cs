@@ -1,5 +1,4 @@
-﻿using AssortedCrazyThings.Items.Placeable;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -14,7 +13,7 @@ using System.Collections.Generic;
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.Bosses)]
-	public class AntiqueChestTile : DroppableTile<AntiqueChestItem>
+	public class AntiqueChestTile : AssTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -36,7 +35,6 @@ namespace AssortedCrazyThings.Tiles
 
 			DustType = 1;
 			AdjTiles = new int[] { TileID.Containers };
-			ItemDrop = ItemType;
 
 			// Names
 			LocalizedText name = CreateMapEntryName();
@@ -138,15 +136,16 @@ namespace AssortedCrazyThings.Tiles
 		public override IEnumerable<Item> GetItemDrops(int i, int j)
 		{
 			int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
+			int defaultType = TileLoader.GetItemDropFromTypeAndStyle(Type, 0);
 			if (style == 0)
 			{
-				yield return new Item(ItemType);
+				yield return new Item(defaultType);
 			}
 			if (style == 1)
 			{
 				//Style 1 is when locked. We want that tile style to drop the original item as well. Use the Chest Lock item to lock this chest.
-				//No item places ExampleChest in the locked style, so the automatic item drop is unknown, this is why GetItemDrops is necessary in this situation. 
-				yield return new Item(ItemType);
+				//No item places this in the locked style, so the automatic item drop is unknown, this is why GetItemDrops is necessary in this situation. 
+				yield return new Item(defaultType);
 			}
 		}
 
@@ -257,6 +256,7 @@ namespace AssortedCrazyThings.Tiles
 			{
 				top--;
 			}
+			Tile topLeft = Main.tile[left, top];
 
 			int chest = Chest.FindChest(left, top);
 			player.cursorItemIconID = -1;
@@ -270,8 +270,9 @@ namespace AssortedCrazyThings.Tiles
 				player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
 				if (player.cursorItemIconText == defaultName)
 				{
-					player.cursorItemIconID = ItemType;
-					if (Main.tile[left, top].TileFrameX / 36 == 1)
+					int style = tile.TileFrameX / 36;
+					player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
+					if (style == 1)
 					{
 						player.cursorItemIconID = ItemID.GoldenKey;
 					}

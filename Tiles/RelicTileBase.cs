@@ -13,7 +13,7 @@ using Terraria.ObjectData;
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.Bosses)] //Relic on a non-boss is not a thing
-	public abstract class RelicTileBase<T> : DroppableTile<T> where T : ModItem
+	public abstract class RelicTileBase : AssTile
 	{
 		//Every relic has its own extra floating part, should be 50x50
 		public abstract string Extra { get; }
@@ -64,11 +64,6 @@ namespace AssortedCrazyThings.Tiles
 			//Register map name and color
 			//"MapObject.Relic" refers to the translation key for the vanilla "Relic" text
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
-		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ItemType);
 		}
 
 		public override bool CreateDust(int i, int j, ref int type)

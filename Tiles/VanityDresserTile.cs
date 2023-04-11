@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,7 +10,7 @@ using Terraria.ObjectData;
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
-	public class VanityDresserTile : DroppableTile<VanityDresserItem>
+	public class VanityDresserTile : AssTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -40,7 +39,7 @@ namespace AssortedCrazyThings.Tiles
 			player.mouseInterface = true;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ModContent.ItemType<VanityDresserItem>();
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 			player.GetModPlayer<AssPlayer>().mouseoveredDresser = true;
 			if (close && player.itemAnimation == 0)
 			{
@@ -68,11 +67,6 @@ namespace AssortedCrazyThings.Tiles
 		public override void NumDust(int i, int j, bool fail, ref int num)
 		{
 			num = fail ? 1 : 3;
-		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 32, ItemType);
 		}
 	}
 }

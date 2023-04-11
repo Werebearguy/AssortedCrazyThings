@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
-using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -19,7 +18,7 @@ namespace AssortedCrazyThings.Tiles
 {
 	//Classes handling player nearby state below
 	[Content(ContentType.PlaceablesFunctional)]
-	public class StarRodTile : DroppableTile<StarRodItem>
+	public class StarRodTile : AssTile
 	{
 		public const int Height = 4;
 		public const int TotalHeight = 18 * Height;
@@ -66,11 +65,6 @@ namespace AssortedCrazyThings.Tiles
 			LocalizedText name = CreateMapEntryName();
 			AddMapEntry(new Color(75, 80, 75), name);
 			DustType = 1;
-		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, TotalWidth, TotalHeight, ItemType);
 		}
 
 		//you need these four things for the outline to work:
@@ -194,7 +188,7 @@ namespace AssortedCrazyThings.Tiles
 			player.mouseInterface = true;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ItemType;
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 		}
 
 		public override void NearbyEffects(int i, int j, bool closer)

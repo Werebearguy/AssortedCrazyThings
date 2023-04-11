@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -12,7 +11,7 @@ using Terraria.ObjectData;
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.PlaceablesFunctional)]
-	public class SlimeBeaconTile : DroppableTile<SlimeBeaconItem>
+	public class SlimeBeaconTile : AssTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -33,7 +32,6 @@ namespace AssortedCrazyThings.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ItemType);
 			AssWorld.DisableSlimeRainSky();
 		}
 
@@ -83,7 +81,7 @@ namespace AssortedCrazyThings.Tiles
 			player.mouseInterface = true;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ItemType;
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 		}
 	}
 }
