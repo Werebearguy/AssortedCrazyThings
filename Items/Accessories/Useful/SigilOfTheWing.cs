@@ -17,13 +17,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		/*($"On death, transform into a soul for {DurationSeconds} seconds, regenerating {HealthRestoreAmount}% max health"
 				+ "\nWhile transformed, you cannot use items"
 				+ $"\nHas a cooldown of {CooldownSeconds / 60} minutes"); */
-		public override void EvenSaferSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Sigil of the Wing");
-			/* Tooltip.SetDefault($"On death, transform into a soul for {DurationSeconds} seconds, regenerating {HealthRestoreAmount}% max health"
-				+ "\nWhile transformed, you cannot use items"
-				+ $"\nHas a cooldown of {CooldownSeconds / 60} minutes"); */
-		}
 
 		public override void SafeSetDefaults()
 		{

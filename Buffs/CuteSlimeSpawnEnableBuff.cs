@@ -8,12 +8,6 @@ namespace AssortedCrazyThings.Buffs
 	[Content(ContentType.CuteSlimes)]
 	public class CuteSlimeSpawnEnableBuff : AssBuff
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Jellied Ale");
-			// Description.SetDefault("Your perception of slimes is a bit off...");
-		}
-
 		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			string canSpawn = "\nCute Slimes that can spawn: ";

@@ -6,13 +6,6 @@ namespace AssortedCrazyThings.NPCs
 {
 	public class ChunkysEye : ChunkysMeatballsEyeBase
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-
-			// DisplayName.SetDefault("Chunky's Eye");
-		}
-
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

@@ -17,11 +17,6 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			}
 		}
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Harvester Bone");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.SkeletonBone);

@@ -19,8 +19,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.PetQueenSlimeProj.DisplayName"));
-
-			// DisplayName.SetDefault("Slime Sibling");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
@@ -79,8 +77,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Slime Sibling");
-
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<PetQueenSlimeBuff_AoMM>(), null);
 		}
 

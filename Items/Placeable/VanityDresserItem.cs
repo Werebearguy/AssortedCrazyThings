@@ -10,11 +10,8 @@ namespace AssortedCrazyThings.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Costume Dresser");
-			/* Tooltip.SetDefault("Left Click to change your Pet's appearance"
-				 + "\nRight Click to change your Light Pet's appearance"); */
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			
 		}
 
 		public override void SetDefaults()

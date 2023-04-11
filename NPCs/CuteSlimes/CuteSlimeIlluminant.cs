@@ -11,14 +11,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
 	public class CuteSlimeIlluminant : CuteSlimeBaseNPC
 	{
-		public override string IngameName
-		{
-			get
-			{
-				return "Cute Illuminant Slime";
-			}
-		}
-
 		public override int CatchItem
 		{
 			get

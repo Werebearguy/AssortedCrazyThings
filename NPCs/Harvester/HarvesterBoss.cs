@@ -52,6 +52,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			}
 		}
 
+		//TODO 1.4.4 localize
 		public static readonly string name = "Soul Harvester";
 		public static readonly string deathMessage = "The Dungeon Souls have been freed!"; //on death
 		public const int SpawnedSoulCount = 25;
@@ -137,7 +138,6 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault(name); //defined above since its used in CaughtDungeonSoul
 			Main.npcFrameCount[NPC.type] = 1; //Dummy texture and frame count, real sheet is two-dimensional
 
 			NPCID.Sets.BossBestiaryPriority.Add(NPC.type);

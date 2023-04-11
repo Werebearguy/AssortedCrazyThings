@@ -8,13 +8,6 @@ namespace AssortedCrazyThings.Items.VanityArmor
 	[AutoloadEquip(EquipType.Head)]
 	public class SoulHarvesterMask : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Soul Harvester Mask");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 32;

@@ -37,7 +37,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Missile Drone Rocket");
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}

@@ -7,12 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class WispInABalloon : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Wisp in a Balloon");
-			// Tooltip.SetDefault("Glows in the dark and increases jump height");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 18;

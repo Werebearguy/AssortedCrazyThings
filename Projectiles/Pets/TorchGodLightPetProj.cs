@@ -74,7 +74,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Godly Torch");
 			Main.projFrames[Projectile.type] = 7;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.LightPet[Projectile.type] = true;

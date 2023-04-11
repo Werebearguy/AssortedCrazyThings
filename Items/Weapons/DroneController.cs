@@ -243,14 +243,6 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 		#endregion
 
-		public override void EvenSaferSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Drone Controller");
-			/* Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
-				+ "\nRight click to pick from available drones"
-				+ "\nHolding the item improves the Drones' supportive and offensive abilities"); */
-		}
-
 		public const int BaseDmg = 22;
 		public const float BaseKB = 2.5f;
 

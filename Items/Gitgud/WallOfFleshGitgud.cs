@@ -6,7 +6,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Wall of Flesh Voodoo Doll");
 		}
 
 		public override void SafeSetDefaults()

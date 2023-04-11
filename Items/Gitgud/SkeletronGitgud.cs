@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class SkeletronGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Carton of Soy Milk");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

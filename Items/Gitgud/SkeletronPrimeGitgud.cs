@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class SkeletronPrimeGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Clock Set Ten Years Ahead");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 30;

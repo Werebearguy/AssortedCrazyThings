@@ -12,8 +12,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 	[Content(ContentType.CuteSlimes)]
 	public abstract class CuteSlimeBaseNPC : AssNPC
 	{
-		public abstract string IngameName { get; }
-
 		public abstract int CatchItem { get; }
 
 		public abstract SpawnConditionType SpawnCondition { get; }
@@ -24,7 +22,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault(IngameName);
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship

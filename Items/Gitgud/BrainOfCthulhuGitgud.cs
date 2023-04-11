@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class BrainOfCthulhuGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Insanity-B-Gone");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

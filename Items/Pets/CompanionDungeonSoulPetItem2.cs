@@ -39,6 +39,7 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			base.SetStaticDefaults();
 
+			//TODO 1.4.4 aomm localize
 			string name = ModContent.GetInstance<CompanionDungeonSoulPetItem2>().Name;
 			// DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
 			// Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");

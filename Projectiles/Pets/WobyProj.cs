@@ -15,8 +15,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Woby");
-
 			Main.projFrames[Projectile.type] = 11;
 			Main.projPet[Projectile.type] = true;
 		}

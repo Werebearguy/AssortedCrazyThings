@@ -8,12 +8,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class CrazyBundleOfAssortedBalloons : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Crazy Bundle of Assorted Balloons");
-			// Tooltip.SetDefault("It's got all kinds of effects");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 46;

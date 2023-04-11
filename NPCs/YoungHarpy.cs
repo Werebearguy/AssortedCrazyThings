@@ -14,7 +14,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Young Harpy");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
 			Main.npcCatchable[NPC.type] = true;
 

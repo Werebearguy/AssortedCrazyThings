@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Bass");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)

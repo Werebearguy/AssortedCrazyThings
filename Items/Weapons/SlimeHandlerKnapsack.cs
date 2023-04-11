@@ -47,13 +47,6 @@ namespace AssortedCrazyThings.Items.Weapons
 			return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock, drawOffset: new Vector2(0f, -2f));
 		}
 
-		public override void EvenSaferSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Slime Handler Knapsack");
-			/* Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you"
-				+ "\nRight click to pick from available forms"); */
-		}
-
 		public override void SetDefaults()
 		{
 			//change damage in SlimePackMinion.cs

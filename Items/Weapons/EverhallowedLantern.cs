@@ -181,14 +181,6 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 		#endregion
 
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Everhallowed Lantern");
-			//"Summons a Soul to fight for you" is changed for the appropriate type in ModifyTooltips
-			/* Tooltip.SetDefault("Summons a Soul to fight for you"
-				+ "\nRight click to pick from available forms"); */
-		}
-
 		public override void SetDefaults()
 		{
 			//Defaults for damage, shoot and knockback dont matter too much here, only for the first summon
@@ -250,6 +242,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
+			//"Summons a Soul to fight for you" is changed for the appropriate type
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 			SoulType selected = mPlayer.selectedSoulMinionType;
 

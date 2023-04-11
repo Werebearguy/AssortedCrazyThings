@@ -45,7 +45,6 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault(HarvesterBoss.name);
 			Main.npcFrameCount[NPC.type] = 1;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)

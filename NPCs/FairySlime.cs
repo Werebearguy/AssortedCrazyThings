@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Fairy Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship

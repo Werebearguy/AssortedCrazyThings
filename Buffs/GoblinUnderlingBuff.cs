@@ -9,8 +9,6 @@ namespace AssortedCrazyThings.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Goblin Underling");
-			// Description.SetDefault("A loyal goblin underling is fighting for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

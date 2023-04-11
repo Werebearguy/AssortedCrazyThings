@@ -32,7 +32,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.GoblinUnderlingDart.DisplayName"));
-			// DisplayName.SetDefault("Goblin Underling Dart");
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}

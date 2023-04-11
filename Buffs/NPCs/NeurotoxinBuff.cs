@@ -21,11 +21,6 @@ namespace AssortedCrazyThings.Buffs.NPCs
 			Tier = tier;
 		}
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Neurotoxin");
-		}
-
 		public override void Update(NPC npc, ref int buffIndex)
 		{
 			npc.GetGlobalNPC<NeurotoxinGlobalNPC>().dps = DPS;

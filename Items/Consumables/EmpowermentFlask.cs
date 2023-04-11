@@ -11,10 +11,6 @@ namespace AssortedCrazyThings.Items.Consumables
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Empowerment Flask");
-			/* Tooltip.SetDefault("Incrementally increases damage dealt over time"
-				+ "\nBonus resets upon taking damage"
-				+ "\n(Summon damage only increases marginally)"); */
 
 			ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
 				new Color(13, 106, 137),
@@ -22,7 +18,7 @@ namespace AssortedCrazyThings.Items.Consumables
 				new Color(146, 229, 255)
 			};
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+			Item.ResearchUnlockCount = 20;
 		}
 
 		public override void SetDefaults()

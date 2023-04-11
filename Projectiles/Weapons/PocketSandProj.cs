@@ -18,11 +18,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			}
 		}
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Pocket Sand");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.ThrowingKnife);

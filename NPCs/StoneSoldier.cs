@@ -17,7 +17,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Stone Soldier");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ArmedZombie];
 		}
 

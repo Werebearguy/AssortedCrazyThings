@@ -9,12 +9,6 @@ namespace AssortedCrazyThings.Items.Weapons
 {
 	public class TrueLegendaryWoodenSword : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("True Legendary Wooden Sword");
-			// Tooltip.SetDefault("'Truly Legendary'");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.CobaltSword);

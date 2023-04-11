@@ -9,10 +9,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	{
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.MiniRetinaLaser;
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Laser");
-		}
 
 		public override void SetDefaults()
 		{

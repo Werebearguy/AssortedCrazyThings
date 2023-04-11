@@ -18,7 +18,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Swarm of Cthulhu");
 			Main.projFrames[Projectile.type] = 1; //Dummy
 			Main.projPet[Projectile.type] = true;
 

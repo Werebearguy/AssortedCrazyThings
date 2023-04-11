@@ -6,11 +6,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 	{
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeBlack;
 
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Cute Black Slime");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			//Projectile.scale = 0.9f;

@@ -10,11 +10,6 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Idol Of Decay");
-			/* Tooltip.SetDefault("Summons " + HarvesterBoss.name + "'s final form in the dungeon"
-				+ "\nUnlimited uses!"); */
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // This helps sort inventory know that this is a boss summoning Item.
 		}
 

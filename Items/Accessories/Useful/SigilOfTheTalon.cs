@@ -11,12 +11,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public static readonly int FirstDamageDropOff = 75;
 
 		//TODO tooltip 3 format
-		public override void EvenSaferSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Sigil of the Talon");
-			/* Tooltip.SetDefault("Allows your grappling hooks to deal damage when extending"
-				+ "\nCan hit up to 3 enemies"); */
-		}
 
 		public override void SafeSetDefaults()
 		{

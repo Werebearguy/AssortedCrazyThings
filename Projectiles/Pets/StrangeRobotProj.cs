@@ -57,7 +57,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Strange Robot");
 			Main.projFrames[Projectile.type] = 5;
 			Main.projPet[Projectile.type] = true;
 

@@ -6,11 +6,6 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 	{
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().CuteSlimeToxic;
 
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Cute Toxic Slime");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Projectile.alpha = 75;

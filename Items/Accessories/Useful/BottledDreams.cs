@@ -7,12 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Waist)]
 	public class BottledDreams : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Bottled Dreams");
-			// Tooltip.SetDefault("Allows the holder to double jump");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 20;

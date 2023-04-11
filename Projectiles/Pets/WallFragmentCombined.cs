@@ -86,8 +86,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Wall Mouth");
-
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<WallFragmentBuff_AoMM>(), null);
 		}
 	}
@@ -104,7 +102,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Wall Eye");
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<WallFragmentBuff_AoMM>(), ModContent.ProjectileType<WallFragmentEyeShotProj>());
 		}

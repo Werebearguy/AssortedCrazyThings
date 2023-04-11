@@ -6,13 +6,6 @@ namespace AssortedCrazyThings.Items.Placeable
 	[Content(ContentType.Bosses)]
 	public class AntiqueChestItem : PlaceableItem<AntiqueChestTile>
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Antique Chest");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType);

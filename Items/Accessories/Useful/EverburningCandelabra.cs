@@ -5,12 +5,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class EverburningCandelabra : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Everburning Candelabra");
-			// Tooltip.SetDefault("Applies various forms of fire damage to all attacks");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

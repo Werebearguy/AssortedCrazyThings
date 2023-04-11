@@ -14,11 +14,6 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			set => Projectile.ai[0] = value;
 		}
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Absorbed Soul");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.width = 8;

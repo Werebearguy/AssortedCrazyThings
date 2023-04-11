@@ -31,7 +31,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Slime Pack Minion");
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -174,7 +173,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Slime Pack Minion");
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 

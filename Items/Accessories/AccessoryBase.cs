@@ -7,8 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories
 	{
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; //All accessories have 1
-
 			SafeSetStaticDefaults();
 		}
 

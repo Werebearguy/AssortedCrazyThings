@@ -16,8 +16,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; //All pet items have 1
-
 			SafeSetStaticDefaults();
 		}
 

@@ -7,12 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 	[AutoloadEquip(EquipType.Balloon)]
 	public class PurpleEyelloonMetal : VanityAccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Purple Metal Eye-lloon");
-			// Tooltip.SetDefault("'A Demon Eye balloon, for your Demon Eye needs!'");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 18;

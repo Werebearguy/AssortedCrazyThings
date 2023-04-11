@@ -32,7 +32,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Goblin Underling Terra Beam");
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}

@@ -7,13 +7,6 @@ namespace AssortedCrazyThings.Items.Placeable
 	[Content(ContentType.Bosses)]
 	public class AntiqueCageItem : PlaceableItem<AntiqueCageOpenTile>
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Antique Cage");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType); //to test: Terraria.ModLoader.ModContent.TileType<AntiqueCageLockedTile>()

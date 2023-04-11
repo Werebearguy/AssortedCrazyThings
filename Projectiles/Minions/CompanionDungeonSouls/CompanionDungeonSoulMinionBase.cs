@@ -53,7 +53,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.CompanionDungeonSoulMinion.DisplayName"));
-			// DisplayName.SetDefault("Companion Soul");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;

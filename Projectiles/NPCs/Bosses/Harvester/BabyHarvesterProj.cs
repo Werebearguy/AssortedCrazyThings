@@ -233,7 +233,6 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Baby Bird");
 			Main.projFrames[Projectile.type] = 5;
 
 			ProjectileID.Sets.DontAttachHideToAlpha[Projectile.type] = true;

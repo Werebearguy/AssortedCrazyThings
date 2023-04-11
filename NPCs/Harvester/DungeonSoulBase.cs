@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public sealed override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Dungeon Soul");
 			Main.npcFrameCount[NPC.type] = 6;
 			Main.npcCatchable[NPC.type] = true;
 

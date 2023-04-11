@@ -8,16 +8,6 @@ namespace AssortedCrazyThings.Items.Armor
 	[AutoloadEquip(EquipType.Body)]
 	public class SoulSaviorPlate : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-			// DisplayName.SetDefault("Soul Savior Breastplate");
-			/* Tooltip.SetDefault("Increases minion damage by 10%"
-				+ "\nIncreases your max number of minions by 2"); */
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 28;

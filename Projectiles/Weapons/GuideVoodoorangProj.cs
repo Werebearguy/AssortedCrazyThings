@@ -8,11 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	[Content(ContentType.Weapons)]
 	public class GuideVoodoorangProj : AssProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Guide Voodoorang");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.WoodenBoomerang);

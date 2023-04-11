@@ -3,7 +3,6 @@ using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
@@ -13,8 +12,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
 			SafeSetStaticDefaults();
 		}
 
@@ -91,7 +88,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Basic Laser Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.BasicLaser;
@@ -101,7 +97,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Heavy Laser Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.HeavyLaser;
@@ -111,7 +106,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Missile Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.Missile;
@@ -121,7 +115,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Healing Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.Healing;
@@ -131,7 +124,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Shield Drone Components");
 		}
 
 		public override DroneType UnlockedType => DroneType.Shield;

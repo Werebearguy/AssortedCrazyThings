@@ -7,14 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class MassiveBundleOfBalloons : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Massive Bundle of Balloons");
-			/* Tooltip.SetDefault("Allows you to jump six more times"
-				+ "\nNegates fall damage and increases jump height"
-				+ "\nReleases bees when damaged"); */
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 46;

@@ -11,8 +11,6 @@ namespace AssortedCrazyThings.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Companion Soul Minion");
-			// Description.SetDefault("A friendly Soul is fighting for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

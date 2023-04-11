@@ -18,7 +18,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Animated Tome");
 			Main.npcFrameCount[NPC.type] = 5;
 			Main.npcCatchable[NPC.type] = true;
 		}

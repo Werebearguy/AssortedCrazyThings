@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class GolemGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Rechargeable Solar Battery");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Pet Golem Head Fireball");
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
 

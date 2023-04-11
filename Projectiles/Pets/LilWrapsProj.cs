@@ -26,7 +26,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Lil' Wraps");
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
 

@@ -13,7 +13,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Cute Gastropod");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
 			Main.npcCatchable[NPC.type] = true;
 		}

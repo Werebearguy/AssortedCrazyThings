@@ -67,12 +67,6 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Satchel of Goodies");
-			/* Tooltip.SetDefault("Summons a Goblin Underling to fight for you"
-				+ "\nGets stronger throughout progression"
-				+ "\nDoes not occupy a minion slot, but only one can be summoned"
-				+ "\n'Inside, there's a spiky ball, a coin, and a...moon?'"); */
-
 			ItemID.Sets.StaffMinionSlotsRequired[Type] = 0;
 		}
 

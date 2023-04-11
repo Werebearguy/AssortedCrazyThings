@@ -11,7 +11,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Detached Hungry");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 

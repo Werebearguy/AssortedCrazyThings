@@ -32,7 +32,6 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Walking Tombstone");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Crab];
 		}
 

@@ -25,7 +25,6 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Wandering Eye");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WanderingEye];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)

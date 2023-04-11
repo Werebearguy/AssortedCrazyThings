@@ -9,12 +9,6 @@ namespace AssortedCrazyThings.Items.Weapons
 	[Content(ContentType.Bosses)]
 	public class BoneShatterLongbow : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Bone-Shatter Longbow");
-			// Tooltip.SetDefault("Wooden arrows ignite into burning souls");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToBow(26, 7f, true);

@@ -6,13 +6,8 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Tools
 {
 	[Content(ContentType.Tools)]
-	abstract public class ExtendoNetBaseProj : AssProjectile
+	public abstract class ExtendoNetBaseProj : AssProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("EXTENDO!");
-		}
-
 		protected float initialSpeed = 10f;
 		protected float extendSpeed = 2.5f;
 		protected float retractSpeed = 2.3f;

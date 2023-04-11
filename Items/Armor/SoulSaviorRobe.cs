@@ -8,16 +8,6 @@ namespace AssortedCrazyThings.Items.Armor
 	[AutoloadEquip(EquipType.Legs)]
 	public class SoulSaviorRobe : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-			// DisplayName.SetDefault("Soul Savior Robe");
-			/* Tooltip.SetDefault("Increases minion damage by 10%"
-				+ "\nIncreases your max number of minions"); */
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 24;

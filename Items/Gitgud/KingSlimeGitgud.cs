@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class KingSlimeGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Slime Inquisition Notice");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class EaterOfWorldsGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Toy Seagull");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

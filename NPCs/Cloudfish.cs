@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Cloudfish");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
 			Main.npcCatchable[NPC.type] = true;
 

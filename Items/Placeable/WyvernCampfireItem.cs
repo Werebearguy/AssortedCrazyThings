@@ -6,14 +6,6 @@ namespace AssortedCrazyThings.Items.Placeable
 {
 	public class WyvernCampfireItem : PlaceableItem<WyvernCampfireTile>
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Wyvern Campfire");
-			// Tooltip.SetDefault("'Makes Wyverns go poof!'");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType);

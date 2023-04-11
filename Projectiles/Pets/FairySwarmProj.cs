@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Fairy Swarm");
 			Main.projFrames[Projectile.type] = 1; //The texture is a dummy
 			Main.projPet[Projectile.type] = true;
 

@@ -26,9 +26,6 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 			Main.debuff[Type] = true;
 			BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
 
-			// DisplayName.SetDefault("Ominous Bird");
-			// Description.SetDefault(dummy);
-
 			if (!Main.dedServ)
 			{
 				sheetAsset = ModContent.Request<Texture2D>(Texture + "_Sheet");

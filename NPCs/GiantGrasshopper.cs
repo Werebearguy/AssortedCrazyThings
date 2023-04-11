@@ -13,7 +13,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Giant Grasshopper");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Derpling];
 
 			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData

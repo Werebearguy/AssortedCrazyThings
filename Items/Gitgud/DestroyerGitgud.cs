@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class DestroyerGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Metal Dreamcatcher");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

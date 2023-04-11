@@ -6,14 +6,6 @@ namespace AssortedCrazyThings.Items.Fun
 	[Content(ContentType.Weapons)]
 	public class StarForge : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Star Forge");
-			// Tooltip.SetDefault("'An endless supply of the cosmos'");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.FallenStar);

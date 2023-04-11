@@ -10,12 +10,10 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Freed Dungeon Soul");
-			// Tooltip.SetDefault("Awakened by defeating the " + HarvesterBoss.name);
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 15;
+			Item.ResearchUnlockCount = 15;
 		}
 
 		public override void SafeSetDefaults()

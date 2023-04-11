@@ -22,7 +22,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Laser Drone Laser");
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
 

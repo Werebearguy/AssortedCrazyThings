@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class QueenSlimeGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Sparkling Cupcake");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

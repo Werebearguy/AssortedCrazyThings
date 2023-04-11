@@ -22,8 +22,6 @@ namespace AssortedCrazyThings.Items.Pets
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SafeSetDefaults()

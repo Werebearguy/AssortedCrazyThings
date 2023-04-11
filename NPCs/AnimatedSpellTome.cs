@@ -14,7 +14,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Animated Spell Tome");
 			Main.npcFrameCount[NPC.type] = 5;
 		}
 

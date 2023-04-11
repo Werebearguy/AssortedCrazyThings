@@ -14,8 +14,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Rainbow Slime");
-
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<RainbowSlimeBuff_AoMM>(), null);
 		}
 

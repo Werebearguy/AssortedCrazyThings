@@ -23,6 +23,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 		public sealed override void SafeSetStaticDefaults()
 		{
+			//TODO 1.4.4 localize aomm
 			string name = BaseModItem.Name;
 			// DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
 			// Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");

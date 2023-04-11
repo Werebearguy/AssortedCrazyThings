@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Dynamite Bunny");
 			Main.projFrames[Projectile.type] = Main.projFrames[ProjectileID.Bunny];
 			Main.projPet[Projectile.type] = true;
 

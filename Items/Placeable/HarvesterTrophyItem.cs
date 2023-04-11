@@ -7,13 +7,6 @@ namespace AssortedCrazyThings.Items.Placeable
 	[Content(ContentType.Bosses)]
 	public class HarvesterTrophyItem : PlaceableItem<HarvesterTrophyTile>
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Soul Harvester Trophy");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType);

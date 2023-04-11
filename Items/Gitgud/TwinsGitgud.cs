@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class TwinsGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Metal Contact Lens");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 16;

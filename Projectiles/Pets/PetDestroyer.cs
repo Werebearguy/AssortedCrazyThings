@@ -25,7 +25,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.PetDestroyer.DisplayName"));
-			// DisplayName.SetDefault("Tiny Destroyer");
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;
 			//ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; //doesn't work for some reason with hide = true
@@ -150,7 +149,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Tiny Destroyer Probe");
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;
 

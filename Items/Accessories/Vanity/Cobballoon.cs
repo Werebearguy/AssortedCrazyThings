@@ -6,12 +6,6 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 	[AutoloadEquip(EquipType.Balloon)]
 	public class Cobballoon : VanityAccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Cobballoon");
-			// Tooltip.SetDefault("'A clump of stones that manages to float, much to your confusion'");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 18;

@@ -54,7 +54,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 		public override void SafeSetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.MagicSlimeSlingMinion.DisplayName"));
-			// DisplayName.SetDefault("Magic Slime Sling Minion");
 			Main.projFrames[Projectile.type] = 2;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;

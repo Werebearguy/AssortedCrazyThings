@@ -13,22 +13,9 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 	{
 		public virtual (int item, int amount) RecipeIngredient => (0, 0);
 
-		/// <summary>
-		/// Name of the painting
-		/// </summary>
-		public abstract string PaintingName { get; }
-
-		/// <summary>
-		/// Name of the author displayed in the tooltip
-		/// </summary>
-		public abstract string PaintingAuthor { get; }
-
 		public sealed override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault(PaintingName);
-			// Tooltip.SetDefault($"'{PaintingAuthor}'");
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public sealed override void SetDefaults()

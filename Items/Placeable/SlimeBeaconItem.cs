@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.Items.Placeable
 {
 	public class SlimeBeaconItem : PlaceableItem<SlimeBeaconTile>
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Slime Beacon");
-			// Tooltip.SetDefault("'Do The Slime With Me!'");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType);

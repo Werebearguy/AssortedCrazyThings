@@ -28,7 +28,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Goblin Underling");
 			Main.projFrames[Projectile.type] = 20;
 			//Main.projPet[Projectile.type] = true; //Causes it do disappear on left/right clicks since MinionSacrificable is not set
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;

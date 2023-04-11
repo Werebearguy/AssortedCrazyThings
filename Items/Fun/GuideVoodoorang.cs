@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.Items.Fun
 	[Content(ContentType.Weapons)]
 	public class GuideVoodoorang : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Guide Voodoorang");
-			// Tooltip.SetDefault("'Why are you like this?'");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.WoodenBoomerang);

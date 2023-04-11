@@ -7,12 +7,6 @@ namespace AssortedCrazyThings.Items.Tools
 {
 	public class ExtendoNetGolden : ExtendoNetBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Golden Extendo-Net");
-			// Tooltip.SetDefault("'Catches those REALLY hard to reach critters'");
-		}
-
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

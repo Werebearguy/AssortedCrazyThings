@@ -13,14 +13,11 @@ namespace AssortedCrazyThings.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Loose Dungeon Soul");
-			/* Tooltip.SetDefault("'An inert soul caught by a net'"
-				+ "\nAwakened in your inventory when " + HarvesterBoss.name + " is defeated"); */
 			// ticksperframe, frameCount
 			//Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 			
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 15;
+			Item.ResearchUnlockCount = 15;
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

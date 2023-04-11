@@ -13,8 +13,6 @@ namespace AssortedCrazyThings.Buffs.Mounts
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Blessing of the Wing");
-			// Description.SetDefault("Your spirit hangs on by a thread");
 			Main.debuff[Type] = true;
 			Main.buffNoSave[Type] = true;
 			BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;

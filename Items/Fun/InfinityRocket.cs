@@ -6,14 +6,6 @@ namespace AssortedCrazyThings.Items.Fun
 	[Content(ContentType.Weapons)]
 	public class InfinityRocket : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Infinity Rocket");
-			// Tooltip.SetDefault("'It seriously never ends!'");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.EndlessMusketPouch);

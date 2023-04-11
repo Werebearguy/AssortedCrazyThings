@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class EyeOfCthulhuGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Broken Lens");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 16;

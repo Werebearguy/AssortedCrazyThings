@@ -7,15 +7,6 @@ namespace AssortedCrazyThings.Items
 	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
 	public class VanitySelector : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Costume Suitcase");
-			/* Tooltip.SetDefault("Left Click to change your Pet's appearance"
-				 + "\nRight Click to change your Light Pet's appearance"); */
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 32;

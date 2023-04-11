@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 						bossChecklist.Call(
 							"AddBoss",
 							Mod,
-							HarvesterBoss.name,
+							"{$NPCLoader.GetNPC(AssortedCrazyThings.harvester).DisplayName.Key}",
 							AssortedCrazyThings.harvester,
 							5.1f,
 							(Func<bool>)(() => AssWorld.downedHarvester),

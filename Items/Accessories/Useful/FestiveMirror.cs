@@ -5,12 +5,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 {
 	public class FestiveMirror : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Festive Mirror");
-			// Tooltip.SetDefault("Provides immunity to Chilled, Frozen, and Stoned");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 26;

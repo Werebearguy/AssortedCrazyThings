@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.Items.VanityArmor
 	[AutoloadEquip(EquipType.Head)]
 	public class PrettyMask : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Pretty Mask");
-			// Tooltip.SetDefault("'Goes well with a red scarf, red gloves, red boots, and your birthday suit'");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			//item.CloneDefaults(ItemID.BallaHat);

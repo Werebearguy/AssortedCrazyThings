@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class DukeFishronGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			// DisplayName.SetDefault("White Hook");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 12;

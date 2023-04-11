@@ -7,11 +7,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	[Content(ContentType.Weapons)]
 	public class BreathOfSpazmatismProj : AssProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Spazmatism Breath");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.EyeFire);
