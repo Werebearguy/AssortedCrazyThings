@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 	{
 		public bool[] HitNPCs { get; private set; } = new bool[Main.maxNPCs];
 
-		public static readonly int MaxPenetrateCount = 3;
+		public static int MaxPenetrateCount => SigilOfTheTalon.MaxPierce;
 		public int PenetrateCount { get; private set; } = MaxPenetrateCount;
 
 		public override bool InstancePerEntity => true;

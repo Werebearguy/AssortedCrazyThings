@@ -1175,13 +1175,9 @@ Mods: {
 				Tooltip:
 					'''
 					'The aspects of the Harvester reside within you'
-					Summons fractured souls to seek out enemies in combat
-					Frequency and intensity increases the lower your health gets
-					On death, transform into a soul for 5 seconds, regenerating 25% max health
-					While transformed, you cannot use items
-					Has a cooldown of 6 minutes
-					Allows your grappling hooks to deal damage when extending
-					Can hit up to 3 enemies
+					{$Items.SigilOfTheBeak.Tooltip}
+					{$Items.SigilOfTheWing.Tooltip}
+					{$Items.SigilOfTheTalon.Tooltip@3}
 					'''
 			}
 
@@ -1190,18 +1186,23 @@ Mods: {
 				Tooltip:
 					'''
 					Allows your grappling hooks to deal damage when extending
-					Can hit up to 3 enemies
+					Can hit up to {0} enemies
 					'''
+				HookDamage: Deals {0}% of your last held weapon's damage (currently {1})
 			}
 
 			SigilOfTheWing: {
 				DisplayName: Sigil of the Wing
 				Tooltip:
 					'''
-					On death, transform into a soul for 5 seconds, regenerating 25% max health
+					On death, transform into a soul for {0} seconds, regenerating {1}% max health
 					While transformed, you cannot use items
-					Has a cooldown of 6 minutes
+					Has a cooldown of {2} minutes
 					'''
+				SocialDesc: Cooldown will go down while in social slot
+				EffectReady: Effect ready
+				ReadyAgainInMinutes: Ready again in {0} {^0:minute;minutes}
+				ReadyAgainInSeconds: Ready again in {0} {^0:second;seconds}
 			}
 
 			SlipperySoles: {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -10,7 +11,16 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public static readonly int FirstDamageDropOff = 75;
 
-		//TODO tooltip 3 format
+		public static readonly int MaxPierce = 3;
+
+		public static LocalizedText HookDamageText { get; private set; }
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxPierce);
+
+		public override void EvenSaferSetStaticDefaults()
+		{
+			HookDamageText = this.GetLocalization("HookDamage");
+		}
 
 		public override void SafeSetDefaults()
 		{
@@ -36,8 +46,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			var mPlayer = player.GetModPlayer<AssPlayer>();
 			int damage = Math.Max(1, (int)(mPlayer.LastSelectedWeaponDamage * FirstDamageDropOff / 100f));
 
-			string text = $"{prefix}Deals {FirstDamageDropOff}% of your last held weapon's damage (currently {damage})";
-			tooltips.Insert(insertIndex, new TooltipLine(mod, "HookDamage", text));
+			string text = prefix + HookDamageText.Format(FirstDamageDropOff,  damage);
+			tooltips.Insert(insertIndex, new TooltipLine(mod, nameof(HookDamageText), text));
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
