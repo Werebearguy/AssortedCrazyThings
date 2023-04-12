@@ -123,7 +123,7 @@ namespace AssortedCrazyThings
 					string name = npc.GetFullNetName().ToString();
 					if (!BossName.Contains(name))
 					{
-						BossName += " or " + name;
+						BossName += GitgudItem.BossNameSeparator + name;
 					}
 				}
 			}
