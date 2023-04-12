@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
@@ -246,6 +247,17 @@ namespace AssortedCrazyThings.Items.Weapons
 		public const int BaseDmg = 22;
 		public const float BaseKB = 2.5f;
 
+		public static LocalizedText FirerateText { get; private set; }
+		public static LocalizedText UnlockMoreText { get; private set; }
+		public static LocalizedText CanSpawnText { get; private set; }
+
+		public override void EvenSaferSetStaticDefaults()
+		{
+			FirerateText = this.GetLocalization("Firerate");
+			UnlockMoreText = this.GetLocalization("UnlockMore");
+			CanSpawnText = this.GetLocalization("CanSpawn");
+		}
+
 		public override void SetDefaults()
 		{
 			Item.damage = BaseDmg;
@@ -361,7 +373,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			{
 				if (data.Combat)
 				{
-					if (data.Firerate != "") tooltips.Insert(knockbackIndex, new TooltipLine(Mod, "Firerate", data.Firerate + " firerate"));
+					if (data.Firerate != "") tooltips.Insert(knockbackIndex, new TooltipLine(Mod, nameof(FirerateText), FirerateText.Format(data.Firerate)));
 				}
 				else
 				{
@@ -375,13 +387,13 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			if (!(allUnlocked && hasController))
 			{
-				tooltips.Add(new TooltipLine(Mod, "Destroyer", "Defeat The Destroyer to unlock more drones"));
+				tooltips.Add(new TooltipLine(Mod, nameof(UnlockMoreText), UnlockMoreText.ToString()));
 			}
 
 			CanSpawn(Main.LocalPlayer, selected, out bool blocked);
 			if (hasController && blocked)
 			{
-				tooltips.Add(new TooltipLine(Mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
+				tooltips.Add(new TooltipLine(Mod, nameof(CanSpawnText), CanSpawnText.Format(data.Name)));
 			}
 		}
 	}

@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Items.Weapons
 	/// </summary>
 	public abstract class MinionItemBase : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
+		public sealed override void SafeSetStaticDefaults()
 		{
 			ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Type] = true;

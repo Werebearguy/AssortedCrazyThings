@@ -9,6 +9,8 @@ namespace AssortedCrazyThings.Items.Armor
 	[AutoloadEquip(EquipType.Head)]
 	public class SoulSaviorHeaddress : AssItem
 	{
+		public static readonly int EverhallowedLanternDamageIncrease = 30;
+
 		public override void SetDefaults()
 		{
 			Item.width = 32;
@@ -59,7 +61,7 @@ namespace AssortedCrazyThings.Items.Armor
 			player.setBonus = "Reflects 10% contact damage per available minion slot"
 				+ "\nReflected damage further increased by effects that increase minion damage"
 				+ "\nCurrent reflected damage: " + (int)(factor * 100) + "%"
-				+ "\nMinions summoned by the Everhallowed Lantern become 'empowered' and gain 30% more damage";
+				+ $"\nMinions summoned by the Everhallowed Lantern become 'empowered' and gain {EverhallowedLanternDamageIncrease}% more damage";
 		}
 
 		public override void AddRecipes()

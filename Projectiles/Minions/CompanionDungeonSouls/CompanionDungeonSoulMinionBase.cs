@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Armor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -190,7 +191,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 			AssPlayer mPlayer = Projectile.GetOwner().GetModPlayer<AssPlayer>();
 			if (mPlayer.soulSaviorArmor)
 			{
-				modifiers.SourceDamage += 0.3f;
+				modifiers.SourceDamage += SoulSaviorHeaddress.EverhallowedLanternDamageIncrease / 100f;
 			}
 		}
 

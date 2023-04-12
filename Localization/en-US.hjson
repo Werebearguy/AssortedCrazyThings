@@ -1348,6 +1348,7 @@ Mods: {
 					'An inert soul caught by a net'
 					Awakened in your inventory when {$NPCs.HarvesterBoss.DisplayName} is defeated
 					'''
+				SpawnSoul: Use it to spawn a soul for the {$NPCs.HarvesterBoss.DisplayName} to eat
 			}
 
 			CaughtDungeonSoulFreed: {
@@ -1401,29 +1402,15 @@ Mods: {
 				Tooltip: "'These parts could be repurposed...'"
 			}
 
-			DroneUnlockableBasicLaserDrone: {
-				DisplayName: Basic Laser Drone Components
-				Tooltip: ""
-			}
+			DroneUnlockableBasicLaserDrone.DisplayName: Basic Laser Drone Components
+			DroneUnlockableHealingDrone.DisplayName: Healing Drone Components
+			DroneUnlockableHeavyLaserDrone.DisplayName: Heavy Laser Drone Components
+			DroneUnlockableMissileDrone.DisplayName: Missile Drone Components
+			DroneUnlockableShieldDrone.DisplayName: Shield Drone Components
 
-			DroneUnlockableHealingDrone: {
-				DisplayName: Healing Drone Components
-				Tooltip: ""
-			}
-
-			DroneUnlockableHeavyLaserDrone: {
-				DisplayName: Heavy Laser Drone Components
-				Tooltip: ""
-			}
-
-			DroneUnlockableMissileDrone: {
-				DisplayName: Missile Drone Components
-				Tooltip: ""
-			}
-
-			DroneUnlockableShieldDrone: {
-				DisplayName: Shield Drone Components
-				Tooltip: ""
+			DroneUnlockable: {
+				Unlocks: Unlocks the {0} for the {$Items.DroneController.DisplayName}
+				AlreadyUnlocked: Already unlocked {0} for the {$Items.DroneController.DisplayName}
 			}
 
 			CraftOfMiners: {
@@ -1450,95 +1437,24 @@ Mods: {
 				Tooltip: "'An endless supply of the cosmos'"
 			}
 
-			BrainOfCthulhuGitgud: {
-				DisplayName: Insanity-B-Gone
-				Tooltip: ""
-			}
-
-			DeerclopsGitgud: {
-				DisplayName: Deerclops Effigy
-				Tooltip: ""
-			}
-
-			DestroyerGitgud: {
-				DisplayName: Metal Dreamcatcher
-				Tooltip: ""
-			}
-
-			DukeFishronGitgud: {
-				DisplayName: White Hook
-				Tooltip: ""
-			}
-
-			EaterOfWorldsGitgud: {
-				DisplayName: Toy Seagull
-				Tooltip: ""
-			}
-
-			EmpressOfLightGitgud: {
-				DisplayName: Well-Worn Boots of Stomping
-				Tooltip: ""
-			}
-
-			EyeOfCthulhuGitgud: {
-				DisplayName: Broken Lens
-				Tooltip: ""
-			}
-
-			GolemGitgud: {
-				DisplayName: Rechargeable Solar Battery
-				Tooltip: ""
-			}
-
-			KingSlimeGitgud: {
-				DisplayName: Slime Inquisition Notice
-				Tooltip: ""
-			}
-
-			LunaticCultistGitgud: {
-				DisplayName: Notice of Occupational Termination
-				Tooltip: ""
-			}
-
-			MoonLordGitgud: {
-				DisplayName: Bright Side of the Moon
-				Tooltip: ""
-			}
-
-			PlanteraGitgud: {
-				DisplayName: Green Thumb
-				Tooltip: ""
-			}
-
-			QueenBeeGitgud: {
-				DisplayName: Honey Thimble
-				Tooltip: ""
-			}
-
-			QueenSlimeGitgud: {
-				DisplayName: Sparkling Cupcake
-				Tooltip: ""
-			}
-
-			SkeletronGitgud: {
-				DisplayName: Carton of Soy Milk
-				Tooltip: ""
-			}
-
-			SkeletronPrimeGitgud: {
-				DisplayName: Clock Set Ten Years Ahead
-				Tooltip: ""
-			}
-
-			TwinsGitgud: {
-				DisplayName: Metal Contact Lens
-				Tooltip: ""
-			}
-
-			WallOfFleshGitgud: {
-				DisplayName: Wall of Flesh Voodoo Doll
-				Tooltip: ""
-			}
+			BrainOfCthulhuGitgud.DisplayName: Insanity-B-Gone
+			DeerclopsGitgud.DisplayName: Deerclops Effigy
+			DestroyerGitgud.DisplayName: Metal Dreamcatcher
+			DukeFishronGitgud.DisplayName: White Hook
+			EaterOfWorldsGitgud.DisplayName: Toy Seagull
+			EmpressOfLightGitgud.DisplayName: Well-Worn Boots of Stomping
+			EyeOfCthulhuGitgud.DisplayName: Broken Lens
+			GolemGitgud.DisplayName: Rechargeable Solar Battery
+			KingSlimeGitgud.DisplayName: Slime Inquisition Notice
+			LunaticCultistGitgud.DisplayName: Notice of Occupational Termination
+			MoonLordGitgud.DisplayName: Bright Side of the Moon
+			PlanteraGitgud.DisplayName: Green Thumb
+			QueenBeeGitgud.DisplayName: Honey Thimble
+			QueenSlimeGitgud.DisplayName: Sparkling Cupcake
+			SkeletronGitgud.DisplayName: Carton of Soy Milk
+			SkeletronPrimeGitgud.DisplayName: Clock Set Ten Years Ahead
+			TwinsGitgud.DisplayName: Metal Contact Lens
+			WallOfFleshGitgud.DisplayName: Wall of Flesh Voodoo Doll
 
 			IdolOfDecay: {
 				DisplayName: Idol Of Decay
@@ -1712,6 +1628,7 @@ Mods: {
 			SlimeBeaconItem: {
 				DisplayName: Slime Beacon
 				Tooltip: "'Do The Slime With Me!'"
+				NoMultiplayer: "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"
 			}
 
 			StarRodItem: {
@@ -1794,6 +1711,9 @@ Mods: {
 					Right click to pick from available drones
 					Holding the item improves the Drones' supportive and offensive abilities
 					'''
+				Firerate: "{0} firerate"
+				UnlockMore: Defeat {$NPCName.TheDestroyer} to unlock more drones
+				CanSpawn: Only one {0} can be out at once
 			}
 
 			EverglowLantern: {
@@ -1812,6 +1732,8 @@ Mods: {
 					Summons a Soul to fight for you
 					Right click to pick from available forms
 					'''
+				MechCondition: Defeat mechanical bosses to unlock new minions
+				SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
 			}
 
 			GoblinUnderlingItem: {

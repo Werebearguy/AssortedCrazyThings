@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items
@@ -11,12 +12,16 @@ namespace AssortedCrazyThings.Items
 	[Content(ContentType.Bosses)]
 	public class CaughtDungeonSoul : CaughtDungeonSoulBase
 	{
+		public static LocalizedText SpawnSoulText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			// ticksperframe, frameCount
 			//Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-			
+
+			SpawnSoulText = this.GetLocalization("SpawnSoul");
+
 			Item.ResearchUnlockCount = 15;
 
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
@@ -51,7 +56,7 @@ namespace AssortedCrazyThings.Items
 			if (CanUseCondition())
 			{
 				// Can use item
-				tooltips.Add(new TooltipLine(Mod, "MakeNPC", "Use it to spawn a soul for the Soul Harvester to eat")
+				tooltips.Add(new TooltipLine(Mod, nameof(SpawnSoulText), SpawnSoulText.ToString())
 				{
 					OverrideColor = new Color(35, 200, 254)
 				});

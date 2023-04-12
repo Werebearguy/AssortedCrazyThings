@@ -20,6 +20,8 @@ namespace AssortedCrazyThings.Items.Gitgud
 		public static LocalizedText BuffImmunityText { get; private set; }
 		public static LocalizedText TimesDiedText { get; private set; }
 
+		public override LocalizedText Tooltip => LocalizedText.Empty;
+
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			if (GitgudData.GetDataFromItemType(Item.type, out GitgudData data) &&

@@ -3,6 +3,7 @@ using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.DroneUnlockables
@@ -10,8 +11,17 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	[Content(ContentType.Weapons)]
 	public abstract class DroneUnlockable : AssItem
 	{
+		public static LocalizedText UnlocksText { get; private set; }
+		public static LocalizedText AlreadyUnlockedText { get; private set; }
+
+		public override LocalizedText Tooltip => LocalizedText.Empty;
+
 		public sealed override void SetStaticDefaults()
 		{
+			string category = $"{LocalizationCategory}.DroneUnlockable.";
+			UnlocksText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Unlocks"));
+			AlreadyUnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AlreadyUnlocked"));
+
 			SafeSetStaticDefaults();
 		}
 
@@ -37,14 +47,15 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-			string tooltip = DroneController.GetDroneData(UnlockedType).Name + " for the Drone Controller";
+			string name = DroneController.GetDroneData(UnlockedType).Name;
+			string tooltip;
 			if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
 			{
-				tooltip = "Unlocks the " + tooltip;
+				tooltip = UnlocksText.Format(name);
 			}
 			else
 			{
-				tooltip = "Already unlocked " + tooltip;
+				tooltip = AlreadyUnlockedText.Format(name);
 			}
 			tooltips.Add(new TooltipLine(Mod, "Unlocks", tooltip));
 		}

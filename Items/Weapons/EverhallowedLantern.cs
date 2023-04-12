@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Items.Armor;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
@@ -10,6 +11,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
@@ -61,6 +63,8 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public const int BaseDmg = 26;
 		public const float BaseKB = 0.5f;
+
+		public static readonly int SetIncrease = SoulSaviorHeaddress.EverhallowedLanternDamageIncrease;
 
 		#region Static Methods
 		/// <summary>
@@ -181,6 +185,15 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 		#endregion
 
+		public static LocalizedText MechConditionText { get; private set; }
+		public static LocalizedText SetBonusBoostText { get; private set; }
+
+		public override void EvenSaferSetStaticDefaults()
+		{
+			MechConditionText = this.GetLocalization("MechCondition");
+			SetBonusBoostText = this.GetLocalization("SetBonusBoost");
+		}
+
 		public override void SetDefaults()
 		{
 			//Defaults for damage, shoot and knockback dont matter too much here, only for the first summon
@@ -285,10 +298,10 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			if (!(allUnlocked && Main.LocalPlayer.HasItem(Item.type)))
 			{
-				tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
+				tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, nameof(MechConditionText), MechConditionText.ToString()));
 			}
 
-			tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
+			tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, nameof(SetBonusBoostText), SetBonusBoostText.Format(SetIncrease)));
 		}
 
 		public override void AddRecipes()
