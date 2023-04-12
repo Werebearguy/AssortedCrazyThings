@@ -4,10 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class WallOfFleshGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

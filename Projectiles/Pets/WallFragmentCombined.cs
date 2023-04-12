@@ -102,7 +102,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<WallFragmentBuff_AoMM>(), ModContent.ProjectileType<WallFragmentEyeShotProj>());
 		}
 	}

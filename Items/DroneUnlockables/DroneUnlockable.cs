@@ -85,46 +85,26 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
 	public class DroneUnlockableBasicLaserDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-		}
-
 		public override DroneType UnlockedType => DroneType.BasicLaser;
 	}
 
 	public class DroneUnlockableHeavyLaserDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-		}
-
 		public override DroneType UnlockedType => DroneType.HeavyLaser;
 	}
 
 	public class DroneUnlockableMissileDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-		}
-
 		public override DroneType UnlockedType => DroneType.Missile;
 	}
 
 	public class DroneUnlockableHealingDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-		}
-
 		public override DroneType UnlockedType => DroneType.Healing;
 	}
 
 	public class DroneUnlockableShieldDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-		}
-
 		public override DroneType UnlockedType => DroneType.Shield;
 	}
 }
