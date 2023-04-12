@@ -8,10 +8,6 @@ using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-	//TODO look into
-	//NPCID.Sets.GoldCrittersCollection
-	//NPCID.Sets.NormalGoldCritterBestiaryPriority
-	//bestiaryEntry.UIInfoProvider = new GoldCritterUICollectionInfoProvider
 	public class GiantGrasshopperGold : GiantGrasshopper
 	{
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -23,7 +23,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			//TODO loca
 			SocialDescText = this.GetLocalization("SocialDesc");
 			EffectReadyText = this.GetLocalization("EffectReady");
 			ReadyAgainInMinutesText = this.GetLocalization("ReadyAgainInMinutes");

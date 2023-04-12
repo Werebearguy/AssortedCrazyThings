@@ -1362,7 +1362,8 @@ Mods: {
 
 			CuteSlimeSpawnEnableFlask: {
 				DisplayName: Jellied Ale
-				Tooltip: ""
+				SeeMoreOften: You will see Cute Slimes more often for a short time
+				See: Allows you to see Cute Slimes for a short time
 			}
 
 			EmpowermentFlask: {

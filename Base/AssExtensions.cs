@@ -225,5 +225,11 @@ namespace AssortedCrazyThings.Base
 			//This logic is distinct from vanilla, as we return true and not null
 			return true;
 		}
+
+		public static bool? CanBeHitByItemCritterLike(this Player player, NPC npc)
+		{
+			//This logic is distinct from vanilla, as we return true and not null
+			return true;
+		}
 	}
 }

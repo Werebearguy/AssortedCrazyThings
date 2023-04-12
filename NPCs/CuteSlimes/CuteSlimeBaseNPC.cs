@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override bool? CanBeHitByItem(Player player, Item item)
 		{
-			return null; //TODO NPC return true
+			return player.CanBeHitByItemCritterLike(NPC);
 		}
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)

@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 				{
 					tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Count", "Times died: " + data.Counter[Main.myPlayer] + "/" + data.CounterMax));
 				}
-				tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Gitgud", "[c/E180CE:'git gud']"));
+				tooltips.Insert(insertIndex++, new TooltipLine(Mod, "Gitgud", "[c/E180CE:'git gud']")); //No need to translate this one
 			}
 		}
 
