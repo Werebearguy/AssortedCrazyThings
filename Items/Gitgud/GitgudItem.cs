@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Items.Gitgud
 			ConsolationPrizeText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ConsolationPrize"));
 			ReducedDamageTakenBossText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ReducedDamageTakenBoss"));
 			//ReducedDamageTakenInvasionText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ReducedDamageTakenInvasion"));
-			BuffImmunityText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BuffImmunityOne"));
+			BuffImmunityText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BuffImmunity"));
 			TimesDiedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}TimesDied"));
 
 			SafeSetStaticDefaults();
