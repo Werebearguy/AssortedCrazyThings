@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			Item.DefaultToPlaceableTile(TileType); //to test: Terraria.ModLoader.ModContent.TileType<AntiqueCageLockedTile>()
 			Item.width = 30;
 			Item.height = 30;
-			Item.maxStack = 99;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.rare = 3;
 			Item.value = Item.sellPrice(0, 1, 0, 0);
 		}

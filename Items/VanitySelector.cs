@@ -11,7 +11,6 @@ namespace AssortedCrazyThings.Items
 		{
 			Item.width = 32;
 			Item.height = 32;
-			Item.maxStack = 1;
 			Item.rare = 1;
 			Item.useAnimation = 16;
 			Item.useTime = 16;

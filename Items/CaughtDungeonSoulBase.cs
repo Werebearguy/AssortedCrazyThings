@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.Items
 		{
 			Item.width = 14;
 			Item.height = 24;
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.value = Item.sellPrice(copper: 50);
 			Item.rare = 2;
 			Item.color = Color.White;

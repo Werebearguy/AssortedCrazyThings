@@ -22,12 +22,11 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.rare = 4;
 			Item.width = 26;
 			Item.height = 24;
 			Item.consumable = true;
-			Item.maxStack = 1;
 			Item.UseSound = SoundID.Item4;
 			Item.useTime = 30;
 			Item.useAnimation = 30;

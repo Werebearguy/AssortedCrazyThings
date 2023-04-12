@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.Items.VanityArmor
 			Item.rare = 1;
 			Item.value = Item.sellPrice(silver: 75);
 			Item.vanity = true;
-			Item.maxStack = 1;
 		}
 	}
 }

@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items
 		}
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.width = 22;
 			Item.height = 22;
 			Item.rare = 3;

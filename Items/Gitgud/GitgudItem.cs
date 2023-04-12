@@ -48,7 +48,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 		{
 			Item.value = Item.sellPrice(copper: 1);
 			Item.rare = -1;
-			Item.maxStack = 1;
 			Item.accessory = true;
 
 			//item.width = 32;

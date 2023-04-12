@@ -16,7 +16,6 @@ namespace AssortedCrazyThings.Items.VanityArmor
 			Item.rare = 1;
 			Item.value = Item.sellPrice(0, 0, 2 * 50, 0);
 			Item.vanity = true;
-			Item.maxStack = 1;
 		}
 
 		public override void AddRecipes()

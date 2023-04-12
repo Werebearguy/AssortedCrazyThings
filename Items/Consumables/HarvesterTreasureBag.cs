@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Consumables
 
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.consumable = true;
 			Item.width = 24;
 			Item.height = 24;

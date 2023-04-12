@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Items.Placeable
 			Item.DefaultToPlaceableTile(TileType);
 			Item.width = 30;
 			Item.height = 30;
-			Item.maxStack = 99;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.rare = 1;
 			Item.value = Item.buyPrice(0, 1);
 		}

@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Placeable.Paintings
 			Item.value = Item.sellPrice(0, 0, 50, 0);
 			Item.width = 32;
 			Item.height = 32;
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.rare = 2;
 		}
 

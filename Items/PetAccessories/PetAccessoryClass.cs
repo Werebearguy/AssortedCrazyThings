@@ -467,7 +467,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		{
 			Item.width = 28;
 			Item.height = 30;
-			Item.maxStack = 1;
 			Item.rare = 2;
 			Item.useAnimation = 16;
 			Item.useTime = 16;
