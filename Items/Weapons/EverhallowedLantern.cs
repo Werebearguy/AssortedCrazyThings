@@ -38,7 +38,6 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public readonly int ProjType;
 		public readonly LocalizedText Name; //Needs to include pluralization
-		public string NameSingular => Name.Format(1);
 		public readonly LocalizedText ToUnlock;
 		public readonly LocalizedText Description;
 
@@ -46,15 +45,16 @@ namespace AssortedCrazyThings.Items.Weapons
 		public readonly float KBModifier;
 		public readonly Func<bool> Unlocked;
 
-		public readonly string Tooltip => NameSingular
+		public string NameSingular => Name.Format(1);
+		public string Tooltip => NameSingular
 			+ $"\n{EverhallowedLantern.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
 			+ $"\n{EverhallowedLantern.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
 			+ "\n" + Description.ToString();
 
-		public SoulData(int projType, string key, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
+		public SoulData(int projType, string internalName, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
 		{
 			ProjType = projType;
-			string thisKey = $"SoulData.{key}.";
+			string thisKey = $"SoulData.{internalName}.";
 			Name = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}DisplayName"), () => "");
 			ToUnlock = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Unlock"), () => "");
 			Description = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Description"), () => "");
@@ -84,14 +84,14 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
-						key: "DungeonSoul",
+						internalName: "DungeonSoul",
 						dmgModifier: 0.1f
 						);
 				case SoulType.Fright:
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
-						key: "SoulofFright",
+						internalName: "SoulofFright",
 						unlocked: () => NPC.downedMechBoss3,
 						dmgModifier: 0.25f,
 						kBModifier: 3f
@@ -100,7 +100,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulSightMinion>(),
-						key: "SoulofSight",
+						internalName: "SoulofSight",
 						unlocked: () => NPC.downedMechBoss2,
 						dmgModifier: -0.15f
 						);
@@ -108,7 +108,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
-						key: "SoulofMight",
+						internalName: "SoulofMight",
 						unlocked: () => NPC.downedMechBoss1,
 						dmgModifier: 0.55f,
 						kBModifier: 7f
