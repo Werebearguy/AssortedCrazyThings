@@ -456,7 +456,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	{
 		protected override bool CloneNewInstances => true;
 
-		[CloneByReference]
+		[field: CloneByReference]
 		public LocalizedText ShortNameText { get; private set; }
 
 		public sealed override void SetStaticDefaults()
