@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Buffs
 					int ownedCount = Main.LocalPlayer.ownedProjectileCounts[data.ProjType];
 					if (ownedCount > 0)
 					{
-						tip += "\n" + data.Name + "s: " + ownedCount;
+						tip += "\n" + data.Name.Format(ownedCount) + ": " + ownedCount;
 					}
 				}
 			}

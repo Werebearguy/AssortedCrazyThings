@@ -11,14 +11,18 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	[Content(ContentType.Weapons)]
 	public abstract class DroneUnlockable : AssItem
 	{
+		public static LocalizedText UnlockedText { get; private set; }
 		public static LocalizedText UnlocksText { get; private set; }
 		public static LocalizedText AlreadyUnlockedText { get; private set; }
 
 		public override LocalizedText Tooltip => LocalizedText.Empty;
 
+		public abstract DroneType UnlockedType { get; }
+
 		public sealed override void SetStaticDefaults()
 		{
 			string category = $"{LocalizationCategory}.DroneUnlockable.";
+			UnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}UnlockedText"));
 			UnlocksText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Unlocks"));
 			AlreadyUnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AlreadyUnlocked"));
 
@@ -47,7 +51,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-			string name = DroneController.GetDroneData(UnlockedType).Name;
+			string name = DroneController.GetDroneData(UnlockedType).NameSingular;
 			string tooltip;
 			if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
 			{
@@ -59,8 +63,6 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 			}
 			tooltips.Add(new TooltipLine(Mod, "Unlocks", tooltip));
 		}
-
-		public abstract DroneType UnlockedType { get; }
 
 		public override bool CanUseItem(Player player)
 		{
@@ -80,7 +82,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 			if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
 			{
 				player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
-				Main.NewText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
+				Main.NewText(UnlockedText.Format(DroneController.GetDroneData(UnlockedType).NameSingular), CombatText.HealLife);
 			}
 			return true;
 		}

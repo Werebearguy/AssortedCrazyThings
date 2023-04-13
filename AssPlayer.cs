@@ -654,7 +654,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-						AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
+						AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular, CombatText.HealLife);
 					},
 					triggerLeft: false
 				)}

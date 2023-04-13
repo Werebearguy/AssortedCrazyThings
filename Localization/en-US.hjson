@@ -1409,6 +1409,7 @@ Mods: {
 			DroneUnlockableShieldDrone.DisplayName: Shield Drone Components
 
 			DroneUnlockable: {
+				UnlockedText: Unlocked: {0}
 				Unlocks: Unlocks the {0} for the {$Items.DroneController.DisplayName}
 				AlreadyUnlocked: Already unlocked {0} for the {$Items.DroneController.DisplayName}
 			}
@@ -1714,6 +1715,7 @@ Mods: {
 				Firerate: "{0} firerate"
 				UnlockMore: Defeat {$NPCName.TheDestroyer} to unlock more drones
 				CanSpawn: Only one {0} can be out at once
+				ToUnlock: Craft and use a '{0}' Item
 			}
 
 			EverglowLantern: {
@@ -2053,6 +2055,55 @@ Mods: {
 				DisplayName: "{^0:Soul;Souls} of Might"
 				Unlock: Defeat {$NPCName.TheDestroyer}
 				Description: ""
+			}
+		}
+
+		DroneData: {
+			BaseDamage: Base Damage: {0}
+			BaseKnockback: Base Knockback: {0}
+
+			BasicLaserDrone: {
+				DisplayName: Basic Laser {^0:Drone;Drones}
+				ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
+				Firerate: High
+				Description: Rapidly fires lasers
+				Misc: ""
+			}
+
+			HeavyLaserDrone: {
+				DisplayName: Heavy Laser {^0:Drone;Drones}
+				ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
+				Firerate: Extremely slow
+				Description: Fires a penetrating laser after a long delay
+				Misc: ""
+			}
+
+			MissileDrone: {
+				DisplayName: Missile {^0:Drone;Drones}
+				ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
+				Firerate: Very slow
+				Description: Fires a salvo of missiles after a long delay
+				Misc: ""
+			}
+
+			HealingDrone: {
+				DisplayName: Healing {^0:Drone;Drones}
+				ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
+				Firerate: ""
+				Description: Heals you when hurt
+				Misc: Only one can be summoned
+			}
+
+			ShieldDrone: {
+				DisplayName: Shield {^0:Drone;Drones}
+				ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
+				Firerate: ""
+				Description: Creates a damage reducing shield over time
+				Misc:
+					'''
+					Only one can be summoned
+					Shield resets if drone despawns
+					'''
 			}
 		}
 	}
