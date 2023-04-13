@@ -530,6 +530,15 @@ Mods: {
 
 		Items: {
 			# Cute Slimes
+			CuteSlime: {
+				AccessoryBlacklisted: Blacklisted
+				AccessoryNone: None
+				HatSlot: Hat Slot: {0}
+				BodySlot: Body Slot: {0}
+				CarriedSlot: Carry Slot: {0}
+				AccessorySlot: Accessory Slot: {0}
+			}
+
 			CuteSlimeBlackItem: {
 				DisplayName: Bottled Cute Black Slime
 				Tooltip: Summons a cute black slime to follow you
@@ -1477,108 +1486,129 @@ Mods: {
 			}
 
 			PetAccessoryBowtie: {
-				DisplayName: Cute Bowtie
+				DisplayName: Cute {$Items.PetAccessoryBowtie.ShortName}
 				Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"
+				ShortName: Bowtie
 			}
 
 			PetAccessoryBunnyEars: {
-				DisplayName: Cute Bunny Ears
+				DisplayName: Cute {$Items.PetAccessoryBunnyEars.ShortName}
 				Tooltip: "'A pair of Easter bunny ears for your cute slime to wear on her head'"
+				ShortName: Bunny Ears
 			}
 
 			PetAccessoryBunnySuit: {
-				DisplayName: Cute Bunny Suit
+				DisplayName: Cute {$Items.PetAccessoryBunnySuit.ShortName}
 				Tooltip: "'A bunny(?) costume for your cute slime to wear on her chest'"
+				ShortName: Bunny Suit
 			}
 
 			PetAccessoryCrown: {
-				DisplayName: Cute Crown
+				DisplayName: Cute {$Items.PetAccessoryCrown.ShortName}
 				Tooltip: "'A regal crown for your cute slime to wear on her head'"
+				ShortName: Crown
 			}
 
 			PetAccessoryHairBow: {
-				DisplayName: Cute Hair Bow
+				DisplayName: Cute {$Items.PetAccessoryHairBow.ShortName}
 				Tooltip: "'A large bow for your cute slime to wear on her head'"
+				ShortName: Hair Bow
 			}
 
 			PetAccessoryKitchenKnife: {
-				DisplayName: Cute Kitchen Knife
+				DisplayName: Cute {$Items.PetAccessoryKitchenKnife.ShortName}
 				Tooltip: "'A plush kitchen knife for your cute slime to carry'"
+				ShortName: Kitchen Knife
 			}
 
 			PetAccessoryMetalHelmet: {
-				DisplayName: Cute Knight's Helmet
+				DisplayName: Cute {$Items.PetAccessoryMetalHelmet.ShortName}
 				Tooltip: "'A plush knight's helmet for your cute slime to wear on her head'"
+				ShortName: Knight's Helmet
 			}
 
 			PetAccessoryMittens: {
-				DisplayName: Cute Mittens
+				DisplayName: Cute {$Items.PetAccessoryMittens.ShortName}
 				Tooltip: "'Warm mittens for your cute slime's hands'"
+				ShortName: Mittens
 			}
 
 			PetAccessoryPartyHat: {
-				DisplayName: Cute Party Hat
+				DisplayName: Cute {$Items.PetAccessoryPartyHat.ShortName}
 				Tooltip: "'A party hat for your cute slime to wear on her head'"
+				ShortName: Party Hat
 			}
 
 			PetAccessoryPumpkinMask: {
-				DisplayName: Cute Pumpkin Mask
+				DisplayName: Cute {$Items.PetAccessoryPumpkinMask.ShortName}
 				Tooltip: "'A perfectly-sized pumpkin for your cute slime to wear on her head'"
+				ShortName: Pumpkin Mask
 			}
 
 			PetAccessorySlimeHead: {
-				DisplayName: Cute Head Slime
+				DisplayName: Cute {$Items.PetAccessorySlimeHead.ShortName}
 				Tooltip: "'A slime plush that sits on your cute slime's head'"
+				ShortName: Head Slime
 			}
 
 			PetAccessoryStaff: {
-				DisplayName: Cute Staff
+				DisplayName: Cute {$Items.PetAccessoryStaff.ShortName}
 				Tooltip: "'A plush staff for your cute slime to carry'"
+				ShortName: Staff
 			}
 
 			PetAccessorySwallowedKey: {
-				DisplayName: Cute Swallowed Key
+				DisplayName: Cute {$Items.PetAccessorySwallowedKey.ShortName}
 				Tooltip: "'A plush key for your cute slime to...carry?'"
+				ShortName: Swallowed Key
 			}
 
 			PetAccessoryTophat: {
-				DisplayName: Cute Top Hat
+				DisplayName: Cute {$Items.PetAccessoryTophat.ShortName}
 				Tooltip: "'A classy top hat for your cute slime to wear on her head'"
+				ShortName: Top Hat
 			}
 
 			PetAccessoryToyBreastplate: {
-				DisplayName: Cute Knight's Breastplate
+				DisplayName: Cute {$Items.PetAccessoryToyBreastplate.ShortName}
 				Tooltip: "'A plush knight's breastplate for your cute slime to wear on her body'"
+				ShortName: Knight's Breastplate
 			}
 
 			PetAccessoryToyMace: {
-				DisplayName: Cute Paladin's Mace
+				DisplayName: Cute {$Items.PetAccessoryToyMace.ShortName}
 				Tooltip: "'A plush paladin's mace for your cute slime to carry'"
+				ShortName: Paladin's Mace
 			}
 
 			PetAccessoryToyShield: {
-				DisplayName: Cute Knight's Shield
+				DisplayName: Cute {$Items.PetAccessoryToyShield.ShortName}
 				Tooltip: "'A plush knight's shield for your cute slime to carry'"
+				ShortName: Knight's Shield
 			}
 
 			PetAccessoryToySpear: {
-				DisplayName: Cute Spartan's Spear
+				DisplayName: Cute {$Items.PetAccessoryToySpear.ShortName}
 				Tooltip: "'A plush warrior's spear for your cute slime to carry'"
+				ShortName: Spartan's Spear
 			}
 
 			PetAccessoryToySword: {
-				DisplayName: Cute Knight's Sword
+				DisplayName: Cute {$Items.PetAccessoryToySword.ShortName}
 				Tooltip: "'A plush knight's sword for your cute slime to carry'"
+				ShortName: Knight's Sword
 			}
 
 			PetAccessoryWizardHat: {
-				DisplayName: Cute Wizard Hat
+				DisplayName: Cute {$Items.PetAccessoryWizardHat.ShortName}
 				Tooltip: "'A brown wizard's hat for your cute slime to wear on her head'"
+				ShortName: Wizard Hat
 			}
 
 			PetAccessoryXmasHat: {
-				DisplayName: Cute Santa Hat
+				DisplayName: Cute {$Items.PetAccessoryXmasHat.ShortName}
 				Tooltip: "'A festive hat for your cute slime to wear on hear head'"
+				ShortName: Santa Hat
 			}
 
 			AntiqueCageItem: {

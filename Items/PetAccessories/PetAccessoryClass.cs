@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
@@ -453,8 +454,15 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	[Content(ContentType.CuteSlimes)]
 	public abstract class PetAccessoryItem : AssItem
 	{
+		protected override bool CloneNewInstances => true;
+
+		[CloneByReference]
+		public LocalizedText ShortNameText { get; private set; }
+
 		public sealed override void SetStaticDefaults()
 		{
+			ShortNameText = this.GetLocalization("ShortName");
+
 			SafeSetStaticDefaults();
 		}
 
@@ -476,22 +484,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Item.value = Item.sellPrice(silver: 30);
 		}
 
-		private string Enum2string(SlotType e)
+		private static string Enum2string(SlotType e)
 		{
-			switch (e)
+			return e switch
 			{
-				case SlotType.Body:
-					return "Worn on the body";
-				case SlotType.Hat:
-					return "Worn on the head";
-				case SlotType.Carried:
-					return "Carried";
-				case SlotType.Accessory:
-					return "Worn as an accessory";
-				case SlotType.None:
-				default:
-					return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + e + ")";
-			}
+				SlotType.Body => "Worn on the body",
+				SlotType.Hat => "Worn on the head",
+				SlotType.Carried => "Carried",
+				SlotType.Accessory => "Worn as an accessory",
+				_ => throw new Exception("Unknown SlotType: " + e)
+			};
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
