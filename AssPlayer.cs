@@ -678,7 +678,7 @@ namespace AssortedCrazyThings
 				onUIEnd: delegate
 				{
 					selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-					AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
+					AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular, CombatText.HealLife);
 				},
 				triggerLeft: false
 				));

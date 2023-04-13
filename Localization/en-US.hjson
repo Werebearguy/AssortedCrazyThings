@@ -2026,5 +2026,34 @@ Mods: {
 			SoulHarvesterBabyAppear: You hear a faint cawing from the dungeon.
 			SoulHarvesterBabyCageAppear: A hungry bird has been released!
 		}
+
+		SoulData: {
+			BaseDamage: Base Damage: {0}
+			BaseKnockback: Base Knockback: {0}
+
+			DungeonSoul: {
+				DisplayName: Dungeon {^0:Soul;Souls}
+				Unlock: ""
+				Description: ""
+			}
+
+			SoulofFright: {
+				DisplayName: "{^0:Soul;Souls} of Fright"
+				Unlock: Defeat {$NPCName.SkeletronPrime}
+				Description: Inflicts {$BuffName.Ichor} and {$BuffName.Poisoned}
+			}
+
+			SoulofSight: {
+				DisplayName: "{^0:Soul;Souls} of Sight"
+				Unlock: Defeat {$Enemies.TheTwins}
+				Description: Inflicts {$BuffName.CursedInferno}
+			}
+
+			SoulofMight: {
+				DisplayName: "{^0:Soul;Souls} of Might"
+				Unlock: Defeat {$NPCName.TheDestroyer}
+				Description: ""
+			}
+		}
 	}
 }

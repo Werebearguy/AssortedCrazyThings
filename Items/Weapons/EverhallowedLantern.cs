@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Items.Armor;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
@@ -24,10 +25,10 @@ namespace AssortedCrazyThings.Items.Weapons
 	public enum SoulType : byte
 	{
 		None = 0,
-		Dungeon = 1,
-		Fright = 2,
-		Sight = 4,
-		Might = 8,
+		Dungeon = 1 << 0,
+		Fright = 1 << 1,
+		Sight = 1 << 2,
+		Might = 1 << 3,
 	}
 
 	/// <summary>
@@ -36,25 +37,30 @@ namespace AssortedCrazyThings.Items.Weapons
 	public struct SoulData
 	{
 		public readonly int ProjType;
-		public readonly string Name;
+		public readonly LocalizedText Name; //Needs to include pluralization
+		public string NameSingular => Name.Format(1);
+		public readonly LocalizedText ToUnlock;
+		public readonly LocalizedText Description;
 
 		public readonly float DmgModifier;
 		public readonly float KBModifier;
-		public readonly string Tooltip;
-		public readonly string ToUnlock;
 		public readonly Func<bool> Unlocked;
 
-		public SoulData(int projType, string name, string desc = "", string toUnlock = "", Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
+		public readonly string Tooltip => NameSingular
+			+ $"\n{EverhallowedLantern.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
+			+ $"\n{EverhallowedLantern.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
+			+ "\n" + Description.ToString();
+
+		public SoulData(int projType, string key, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
 		{
 			ProjType = projType;
-			Name = name;
+			string thisKey = $"SoulData.{key}.";
+			Name = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}DisplayName"), () => "");
+			ToUnlock = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Unlock"), () => "");
+			Description = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Description"), () => "");
 			DmgModifier = dmgModifier;
 			KBModifier = kBModifier;
-			ToUnlock = toUnlock;
 			Unlocked = unlocked ?? (() => true);
-			string stats = "\nBase Damage: " + (int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f))
-			 + "\nBase Knockback: " + Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1);
-			Tooltip = Name + stats + "\n" + desc;
 		}
 	}
 
@@ -78,16 +84,14 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
-						name: "Dungeon Soul",
+						key: "DungeonSoul",
 						dmgModifier: 0.1f
 						);
 				case SoulType.Fright:
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
-						name: "Soul of Fright",
-						desc: "Inflicts Ichor and Posioned",
-						toUnlock: "Defeat Skeletron Prime",
+						key: "SoulofFright",
 						unlocked: () => NPC.downedMechBoss3,
 						dmgModifier: 0.25f,
 						kBModifier: 3f
@@ -96,9 +100,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulSightMinion>(),
-						name: "Soul of Sight",
-						desc: "Inflicts Cursed Inferno",
-						toUnlock: "Defeat The Twins",
+						key: "SoulofSight",
 						unlocked: () => NPC.downedMechBoss2,
 						dmgModifier: -0.15f
 						);
@@ -106,8 +108,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
-						name: "Soul of Might",
-						toUnlock: "Defeat The Destroyer",
+						key: "SoulofMight",
 						unlocked: () => NPC.downedMechBoss1,
 						dmgModifier: 0.55f,
 						kBModifier: 7f
@@ -121,6 +122,10 @@ namespace AssortedCrazyThings.Items.Weapons
 		/// Holds data about each SoulType
 		/// </summary>
 		public static SoulData[] DataList;
+
+		public static LocalizedText BaseDamageText { get; private set; }
+
+		public static LocalizedText BaseKnockbackText { get; private set; }
 
 		/// <summary>
 		/// Used to access a particular SoulTypes data
@@ -146,8 +151,8 @@ namespace AssortedCrazyThings.Items.Weapons
 					firstValidProjType = data.ProjType;
 					assets.Add(TextureAssets.Projectile[firstValidProjType]);
 					unlocked.Add(data.Unlocked());
-					tooltips.Add(data.Tooltip);
-					toUnlock.Add(data.ToUnlock);
+					tooltips.Add(data.Tooltip.ToString());
+					toUnlock.Add(data.ToUnlock.ToString());
 				}
 			}
 
@@ -163,6 +168,10 @@ namespace AssortedCrazyThings.Items.Weapons
 			{
 				return;
 			}
+
+			string category = $"{nameof(SoulData)}.";
+			BaseDamageText = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}BaseDamage"));
+			BaseKnockbackText = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}BaseKnockback"));
 
 			Array a = Enum.GetValues(typeof(SoulType));
 			DataList = new SoulData[a.Length - 1]; //without None
@@ -269,7 +278,7 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
 					{
-						tooltips[i].Text += " (" + data.Name + ")";
+						tooltips[i].Text += " (" + data.NameSingular + ")";
 					}
 				}
 

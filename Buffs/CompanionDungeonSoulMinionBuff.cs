@@ -59,10 +59,8 @@ namespace AssortedCrazyThings.Buffs
 					ownedCount = Main.LocalPlayer.ownedProjectileCounts[data.ProjType];
 					if (ownedCount > 0)
 					{
-						string name = data.Name;
-						int startIndex = name.IndexOf("Soul");
-						name = name.Insert(startIndex + 4, "s");
-						tip += "\n" + name + " : " + ownedCount;
+						string name = data.Name.Format(ownedCount);
+						tip += "\n" + name + ": " + ownedCount;
 					}
 				}
 			}
