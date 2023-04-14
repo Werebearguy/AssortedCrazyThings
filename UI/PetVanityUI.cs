@@ -180,7 +180,7 @@ namespace AssortedCrazyThings.UI
 			for (done = 0; done < petAccessory.AltTextures.Count; done++)
 			{
 				bool isMouseWithin = CircleUI.CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, petAccessory.AltTextures.Count, done);
-				string tooltip = petAccessory.AltTextureDisplayNames[done];
+				string tooltip = petAccessory.AltTextureDisplayNames[done].ToString();
 
 				if (isMouseWithin)
 				{

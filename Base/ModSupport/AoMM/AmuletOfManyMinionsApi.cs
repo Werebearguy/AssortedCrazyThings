@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 		public override void Load()
 		{
 			versionString = apiVersion.ToString();
-			AoMMVersionText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.AoMMVersion"));
+			AoMMVersionText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.AoMMVersion"), () => "test123");
 			ConcatenateTwoText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.ConcatenateTwo"));
 		}
 

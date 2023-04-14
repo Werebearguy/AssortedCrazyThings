@@ -167,7 +167,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		/// <summary>
 		/// Unique ID for this accessory (unique in the scope of a single SlotType)
 		/// </summary>
-		public byte ID { private set; get; } //The internal ID of the accessory
+		public byte ID { private set; get; }
 
 		private readonly string _name;
 		public override string Name => _name; //The item name associated with the accessory
@@ -205,17 +205,22 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		/// <summary>
 		/// For UI tooltips
 		/// </summary>
-		public List<string> AltTextureDisplayNames { private set; get; }
+		public List<LocalizedText> AltTextureDisplayNames { private set; get; }
+
+		/// <summary>
+		/// Factory for creating key:defaultValue entries for <see cref="AltTextureDisplayNames"/>, as they don't work during initialization/Load
+		/// </summary>
+		public List<(string key, string defaultValue)> AltTextureDisplayNamesDeferredFactory { private set; get; }
 
 		/// <summary>
 		/// For UI only, the _Draw{number} stuff is done manually
 		/// </summary>
 		public List<Asset<Texture2D>> AltTextures { private set; get; }
 
-		public PetAccessory(SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null, List<string> altTextureNameOverrides = null)
+		public PetAccessory(Mod mod, SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null, List<string> altTextureNameOverrides = null)
 		{
 			_name = "PetAccessory" + name;
-			if (!AssUtils.Instance.TryFind(Name, out ModItem modItem))
+			if (!mod.TryFind(Name, out ModItem modItem))
 			{
 				throw new Exception($"Item called '{Name}' doesn't exist, are you sure you spelled it correctly?");
 			}
@@ -235,22 +240,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			UseNoHair = useNoHair;
 
 			AltTextureSuffixes = new List<string>();
-			AltTextureDisplayNames = new List<string>();
-			if (altTextures?.Count > 0)
+			AltTextureDisplayNames = new List<LocalizedText>();
+			AltTextureDisplayNamesDeferredFactory = new List<(string key, string defaultValue)>();
+			if (altTextures != null)
 			{
 				AltTextureSuffixes.AddRange(altTextures);
-				AltTextureDisplayNames.AddRange(altTextures);
-			}
-
-			if (altTextureNameOverrides?.Count > 0)
-			{
-				for (int i = 0; i < AltTextureDisplayNames.Count; i++)
+				string category = $"Items.{Name}.AccessoryNames.";
+				for (int i = 0; i < altTextures.Count; i++)
 				{
-					string nameOverride = altTextureNameOverrides[i];
-					if (!string.IsNullOrEmpty(nameOverride))
-					{
-						AltTextureDisplayNames[i] = nameOverride;
-					}
+					string altTexture = altTextures[i];
+					AltTextureDisplayNamesDeferredFactory.Add(($"{category}{altTexture}", altTexture));
 				}
 			}
 
@@ -299,38 +298,39 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 			//BODY SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Body, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Body, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Body, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red" }));
 
 			//HAT SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Hat, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "WizardHat", useNoHair: true));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "BunnyEars", preDraw: true));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "Tophat"));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "PartyHat"));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "PumpkinMask", useNoHair: true,
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "WizardHat", useNoHair: true));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "BunnyEars", preDraw: true));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "Tophat"));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "PartyHat"));
+			//Override is just the value, otherwise value = key
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "PumpkinMask", useNoHair: true,
 				altTextures: new List<string> { "SOrange", "IOrange", "SGreen", "IGreen", "SWhite", "IWhite", "SPurple", "IPurple", "SMelon", "IMelon" },
 				altTextureNameOverrides: new List<string> { "Sinister Orange", "Innocent Orange", "Sinister Green", "Innocent Green", "Sinister White", "Innocent White", "Sinister Purple", "Innocent Purple", "Sinister Melon", "Innocent Melon" }));
 
 			//CARRIED SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Carried, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
 
 			//ACCESSORY SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Accessory, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Accessory, name: "SwallowedKey", preDraw: true));
-			Add(mod, new PetAccessory(SlotType.Accessory, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Accessory, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Accessory, name: "SwallowedKey", preDraw: true));
+			Add(mod, new PetAccessory(mod, SlotType.Accessory, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
 
 			CreateMaps();
 		}
@@ -445,6 +445,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		}
 
 		public sealed override void SetupContent() => SetStaticDefaults();
+
+		public override void SetStaticDefaults()
+		{
+			for (int i = 0; i < AltTextureDisplayNamesDeferredFactory.Count; i++)
+			{
+				(string key, string defaultValue) = AltTextureDisplayNamesDeferredFactory[i];
+				LocalizedText text = Language.GetOrRegister(Mod.GetLocalizationKey(key), () => defaultValue);
+				AltTextureDisplayNames.Add(text);
+			}
+		}
 	}
 
 	/// <summary>

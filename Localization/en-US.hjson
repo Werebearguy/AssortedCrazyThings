@@ -1500,12 +1500,42 @@ Mods: {
 				Blacklisted: This accessory type is disabled for your particular slime
 				NoUse: You have no summoned slime to equip this on
 				Disabled: This accessory type is not registered for use by the devs
+
+				Colors: {
+					Red: Red
+					Orange: Orange
+					Gold: Gold
+					Yellow: Yellow
+					Green: Green
+					Blue: Blue
+					Purple: Purple
+					Pink: Pink
+					White: White
+					Gray: Gray
+					Black: Black
+					Platinum: Platinum
+					Iron: Iron
+				}
 			}
 
 			PetAccessoryBowtie: {
 				DisplayName: Cute {$Items.PetAccessoryBowtie.ShortName}
 				Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"
 				ShortName: Bowtie
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
 			}
 
 			PetAccessoryBunnyEars: {
@@ -1518,36 +1548,93 @@ Mods: {
 				DisplayName: Cute {$Items.PetAccessoryBunnySuit.ShortName}
 				Tooltip: "'A bunny(?) costume for your cute slime to wear on her chest'"
 				ShortName: Bunny Suit
+
+				AccessoryNames: {
+					Black: "{$Items.PetAccessory.Colors.Black}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+				}
 			}
 
 			PetAccessoryCrown: {
 				DisplayName: Cute {$Items.PetAccessoryCrown.ShortName}
 				Tooltip: "'A regal crown for your cute slime to wear on her head'"
 				ShortName: Crown
+
+				AccessoryNames: {
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Platinum: "{$Items.PetAccessory.Colors.Platinum}"
+				}
 			}
 
 			PetAccessoryHairBow: {
 				DisplayName: Cute {$Items.PetAccessoryHairBow.ShortName}
 				Tooltip: "'A large bow for your cute slime to wear on her head'"
 				ShortName: Hair Bow
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
 			}
 
 			PetAccessoryKitchenKnife: {
 				DisplayName: Cute {$Items.PetAccessoryKitchenKnife.ShortName}
 				Tooltip: "'A plush kitchen knife for your cute slime to carry'"
 				ShortName: Kitchen Knife
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryMetalHelmet: {
 				DisplayName: Cute {$Items.PetAccessoryMetalHelmet.ShortName}
 				Tooltip: "'A plush knight's helmet for your cute slime to wear on her head'"
 				ShortName: Knight's Helmet
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryMittens: {
 				DisplayName: Cute {$Items.PetAccessoryMittens.ShortName}
 				Tooltip: "'Warm mittens for your cute slime's hands'"
 				ShortName: Mittens
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
 			}
 
 			PetAccessoryPartyHat: {
@@ -1560,18 +1647,53 @@ Mods: {
 				DisplayName: Cute {$Items.PetAccessoryPumpkinMask.ShortName}
 				Tooltip: "'A perfectly-sized pumpkin for your cute slime to wear on her head'"
 				ShortName: Pumpkin Mask
+
+				AccessoryNames: {
+					SOrange: Sinister Orange
+					IOrange: Innocent Orange
+					SGreen: Sinister Green
+					IGreen: Innocent Green
+					SWhite: Sinister White
+					IWhite: Innocent White
+					SPurple: Sinister Purple
+					IPurple: Innocent Purple
+					SMelon: Sinister Melon
+					IMelon: Innocent Melon
+				}
 			}
 
 			PetAccessorySlimeHead: {
 				DisplayName: Cute {$Items.PetAccessorySlimeHead.ShortName}
 				Tooltip: "'A slime plush that sits on your cute slime's head'"
 				ShortName: Head Slime
+
+				AccessoryNames: {
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					Pinky: Pinky
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
 			}
 
 			PetAccessoryStaff: {
 				DisplayName: Cute {$Items.PetAccessoryStaff.ShortName}
 				Tooltip: "'A plush staff for your cute slime to carry'"
 				ShortName: Staff
+
+				AccessoryNames: {
+					Amethyst: Amethyst
+					Sapphire: Sapphire
+					Emerald: Emerald
+					Ruby: Ruby
+					Amber: Amber
+					Topaz: Topaz
+					Diamond: Diamond
+					Magic: Magic
+				}
 			}
 
 			PetAccessorySwallowedKey: {
@@ -1590,30 +1712,55 @@ Mods: {
 				DisplayName: Cute {$Items.PetAccessoryToyBreastplate.ShortName}
 				Tooltip: "'A plush knight's breastplate for your cute slime to wear on her body'"
 				ShortName: Knight's Breastplate
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryToyMace: {
 				DisplayName: Cute {$Items.PetAccessoryToyMace.ShortName}
 				Tooltip: "'A plush paladin's mace for your cute slime to carry'"
 				ShortName: Paladin's Mace
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryToyShield: {
 				DisplayName: Cute {$Items.PetAccessoryToyShield.ShortName}
 				Tooltip: "'A plush knight's shield for your cute slime to carry'"
 				ShortName: Knight's Shield
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryToySpear: {
 				DisplayName: Cute {$Items.PetAccessoryToySpear.ShortName}
 				Tooltip: "'A plush warrior's spear for your cute slime to carry'"
 				ShortName: Spartan's Spear
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryToySword: {
 				DisplayName: Cute {$Items.PetAccessoryToySword.ShortName}
 				Tooltip: "'A plush knight's sword for your cute slime to carry'"
 				ShortName: Knight's Sword
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
 			}
 
 			PetAccessoryWizardHat: {
@@ -1626,6 +1773,11 @@ Mods: {
 				DisplayName: Cute {$Items.PetAccessoryXmasHat.ShortName}
 				Tooltip: "'A festive hat for your cute slime to wear on hear head'"
 				ShortName: Santa Hat
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+				}
 			}
 
 			AntiqueCageItem: {
