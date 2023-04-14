@@ -12,6 +12,13 @@ namespace AssortedCrazyThings.Tiles
 	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class VanityDresserTile : AssTile
 	{
+		public LocalizedText MouseoverText { get; private set; }
+		public LocalizedText WorkProperlyText { get; private set; }
+
+		//TODO combattext ones
+		public LocalizedText NoCostumesFoundPetText { get; private set; }
+		public LocalizedText NoCostumesFoundLightPetText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			Main.tileSolidTop[Type] = true;
@@ -31,6 +38,11 @@ namespace AssortedCrazyThings.Tiles
 			AddMapEntry(new Color(200, 200, 200), name);
 			DustType = 11;
 			TileID.Sets.DisableSmartCursor[Type] = true;
+
+			MouseoverText = this.GetLocalization("Mouseover");
+			WorkProperlyText = this.GetLocalization("WorkProperly");
+			NoCostumesFoundPetText = this.GetLocalization("NoCostumesFoundPet");
+			NoCostumesFoundLightPetText = this.GetLocalization("NoCostumesFoundLightPet");
 		}
 
 		private void MouseOverCombined(bool close)
@@ -44,12 +56,10 @@ namespace AssortedCrazyThings.Tiles
 			if (close && player.itemAnimation == 0)
 			{
 				// "\n[c/"+ (Color.Orange * (Main.mouseTextColor / 255f)).Hex3() + ":\nCostume Dresser]" doesnt work cause chat tags are broken with escape characters
-				player.cursorItemIconText = "\nCostume Dresser"
-					 + "\nLeft Click to change your Pet's appearance"
-					 + "\nRight Click to change your Light Pet's appearance";
+				player.cursorItemIconText = $"\n{MouseoverText}";
 				if (player.HeldItem.type != ItemID.None)
 				{
-					player.cursorItemIconText += "\nFor this to work properly, don't have any item selected";
+					player.cursorItemIconText += $"\n{WorkProperlyText}";
 				}
 			}
 		}

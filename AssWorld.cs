@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.Harvester;
+using AssortedCrazyThings.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -152,16 +153,17 @@ namespace AssortedCrazyThings
 		{
 			if (!Main.slimeRain && Main.netMode != NetmodeID.MultiplayerClient)
 			{
+				var tile = ModContent.GetInstance<SlimeBeaconTile>();
 				if (!slimeRainSky)
 				{
 					SkyManager.Instance.Activate("Slime", default(Vector2));
-					CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.HealLife, "Background Activated");
+					CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.HealLife, tile.ActivatedText.ToString());
 					slimeRainSky = true;
 				}
 				else
 				{
 					SkyManager.Instance.Deactivate("Slime");
-					CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, "Background Deactivated");
+					CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, tile.DeactivatedText.ToString());
 					slimeRainSky = false;
 				}
 			}
@@ -171,8 +173,9 @@ namespace AssortedCrazyThings
 		{
 			if (!Main.slimeRain && slimeRainSky && Main.netMode != NetmodeID.MultiplayerClient)
 			{
+				var tile = ModContent.GetInstance<SlimeBeaconTile>();
 				SkyManager.Instance.Deactivate("Slime");
-				CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, "Background Deactivated");
+				CombatText.NewText(Main.LocalPlayer.getRect(), CombatText.DamagedFriendly, tile.DeactivatedText.ToString());
 				slimeRainSky = false;
 			}
 		}

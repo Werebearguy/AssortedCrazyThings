@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Tiles;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.Graphics;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -33,6 +35,14 @@ namespace AssortedCrazyThings
 
 		internal static UserInterface PetVanityUIInterface;
 		internal static PetVanityUI PetVanityUI;
+
+		public static LocalizedText SelectedText { get; private set; }
+
+		public override void Load()
+		{
+			string category = "Common.";
+			SelectedText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Selected"));
+		}
 
 		public override void PostSetupContent()
 		{
@@ -136,17 +146,15 @@ namespace AssortedCrazyThings
 			bool found = false;
 			for (int i = 0; i < l.Count; i++)
 			{
-				if (l[i].Condition())
+				var handler = l[i];
+				if (handler.Condition())
 				{
-					if (l[i].TriggerItem == triggerType)
+					if (handler.TriggerItem == triggerType && handler.TriggerLeft == triggerLeft)
 					{
-						if (l[i].TriggerLeft == triggerLeft)
-						{
-							CircleUI.UIConf = l[i].UIConf();
-							CircleUI.currentSelected = l[i].OnUIStart();
-							found = true;
-							break;
-						}
+						CircleUI.UIConf = handler.UIConf();
+						CircleUI.currentSelected = handler.OnUIStart();
+						found = true;
+						break;
 					}
 				}
 			}
@@ -155,7 +163,9 @@ namespace AssortedCrazyThings
 			{
 				if (triggerType == ModContent.ItemType<VanitySelector>())
 				{
-					AssUtils.UIText("No alt costumes found for" + (triggerLeft ? "" : " light") + " pet", CombatText.DamagedFriendly);
+					var text = triggerLeft ? ModContent.GetInstance<VanityDresserTile>().NoCostumesFoundPetText :
+						ModContent.GetInstance<VanityDresserTile>().NoCostumesFoundLightPetText;
+					AssUtils.UIText(text.ToString(), CombatText.DamagedFriendly);
 					return;
 				}
 			}
@@ -202,7 +212,7 @@ namespace AssortedCrazyThings
 				if (CircleUI.triggerItemType == ModContent.ItemType<VanitySelector>())
 				{
 					PoofVisual(CircleUI.UIConf.AdditionalInfo);
-					AssUtils.UIText("Selected: " + CircleUI.UIConf.Tooltips[CircleUI.returned], CombatText.HealLife);
+					AssUtils.UIText(SelectedText.Format(CircleUI.UIConf.Tooltips[CircleUI.returned]), CombatText.HealLife);
 				}
 			}
 
@@ -297,7 +307,7 @@ namespace AssortedCrazyThings
 					{
 						//No idea why but this threw errors one time
 					}
-					//UIText("Selected: " + PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned], CombatText.HealLife);
+					//UIText(SelectedText.Format(PetVanityUI.petAccessory.AltTextureSuffixes[PetVanityUI.returned]), CombatText.HealLife);
 
 					PetVanityUI.petAccessory.AltTextureIndex = (byte)PetVanityUI.returned;
 					pPlayer.ToggleAccessory(PetVanityUI.petAccessory);

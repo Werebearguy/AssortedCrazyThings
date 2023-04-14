@@ -635,7 +635,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedSlimePackMinionType = (byte)CircleUI.returned;
-						AssUtils.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
+						AssUtils.UIText(AssUISystem.SelectedText.Format((selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked"))), CombatText.HealLife);
 					},
 					triggerLeft: false
 				),
@@ -654,7 +654,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-						AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular, CombatText.HealLife);
+						AssUtils.UIText(AssUISystem.SelectedText.Format(DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular), CombatText.HealLife);
 					},
 					triggerLeft: false
 				)}
@@ -678,7 +678,7 @@ namespace AssortedCrazyThings
 				onUIEnd: delegate
 				{
 					selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-					AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular, CombatText.HealLife);
+					AssUtils.UIText(AssUISystem.SelectedText.Format(EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular), CombatText.HealLife);
 				},
 				triggerLeft: false
 				));

@@ -358,7 +358,7 @@ Mods: {
 				Description:
 					'''
 					A small sun and moon are providing you with constant light
-					No adverse gravitational effects will happen'
+					'No adverse gravitational effects will happen'
 					'''
 			}
 
@@ -531,7 +531,8 @@ Mods: {
 		Common: {
 			ConcatenateTwo: "{0} {1}"
 			AoMMVersion: (AoMM version)
-			PetHasAltSkins: Appearance can be changed with Costume Suitcase
+			PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
+			Selected: Selected: {0}
 		}
 
 		Items: {
@@ -2067,15 +2068,35 @@ Mods: {
 			MapEntry_Locked: Locked
 
 			AntiqueChestTile: {
-				MapEntry: Antique Chest
+				MapEntry: {$Items.AntiqueChest.DisplayName}
 				MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Tiles.AntiqueChestTile.MapEntry}"
 			}
 
-			AntiqueCage.MapEntry: Antique Cage
-			SlimeBeaconTile.MapEntry: Slime Beacon
-			StarRodTile.MapEntry: Star Rod
-			VanityDresserTile.MapEntry: Costume Dresser
-			WyvernCampfireTile.MapEntry: Wyvern Campfire
+			AntiqueCage.MapEntry: {$Items.AntiqueCageItem.DisplayName}
+
+			SlimeBeaconTile: {
+				MapEntry: {$Items.SlimeBeaconItem.DisplayName}
+				NotInMultiplayer: NOT IN MULTIPLAYER
+				Activated: Background Activated
+				Deactivated: Background Deactivated
+			}
+
+			StarRodTile.MapEntry: {$Items.StarRodItem.DisplayName}
+
+			VanityDresserTile: {
+				MapEntry: {$Items.VanityDresserItem.DisplayName}
+				Mouseover:
+					'''
+					Costume Dresser
+					Left Click to change your Pet's appearance
+					Right Click to change your Light Pet's appearance
+					'''
+				WorkProperly: For this to work properly, don't have any item selected
+				NoCostumesFoundPet: No alt costumes found for pet
+				NoCostumesFoundLightPet: No alt costumes found for light pet
+			}
+
+			WyvernCampfireTile.MapEntry: {$Items.WyvernCampfireItem.DisplayName}
 		}
 
 		Conditions: {
