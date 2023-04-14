@@ -533,6 +533,8 @@ Mods: {
 			AoMMVersion: (AoMM version)
 			PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
 			Selected: Selected: {0}
+			BaseDamage: Base Damage: {0}
+			BaseKnockback: Base Knockback: {0}
 		}
 
 		Items: {
@@ -1980,6 +1982,11 @@ Mods: {
 					Summons a friendly Slime of a random color from your Knapsack to fight for you
 					Right click to pick from available forms
 					'''
+				Default: Default
+				Assorted: Assorted
+				Spiked: Spiked
+				SpikedBonus: Shoots spikes while fighting
+				SpikedUnlock: Defeat Plantera
 			}
 
 			Talonstorm: {
@@ -2269,9 +2276,6 @@ Mods: {
 		}
 
 		SoulData: {
-			BaseDamage: Base Damage: {0}
-			BaseKnockback: Base Knockback: {0}
-
 			DungeonSoul: {
 				DisplayName: Dungeon {^0:Soul;Souls}
 				Unlock: ""
@@ -2298,9 +2302,6 @@ Mods: {
 		}
 
 		DroneData: {
-			BaseDamage: Base Damage: {0}
-			BaseKnockback: Base Knockback: {0}
-
 			BasicLaserDrone: {
 				DisplayName: Basic Laser {^0:Drone;Drones}
 				ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"

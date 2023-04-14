@@ -47,8 +47,8 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public string NameSingular => Name.Format(1);
 		public string Tooltip => NameSingular
-			+ $"\n{EverhallowedLantern.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
-			+ $"\n{EverhallowedLantern.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
+			+ $"\n{AssUISystem.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
+			+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
 			+ "\n" + Description.ToString();
 
 		public SoulData(int projType, string internalName, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
@@ -123,10 +123,6 @@ namespace AssortedCrazyThings.Items.Weapons
 		/// </summary>
 		public static SoulData[] DataList;
 
-		public static LocalizedText BaseDamageText { get; private set; }
-
-		public static LocalizedText BaseKnockbackText { get; private set; }
-
 		/// <summary>
 		/// Used to access a particular SoulTypes data
 		/// </summary>
@@ -168,10 +164,6 @@ namespace AssortedCrazyThings.Items.Weapons
 			{
 				return;
 			}
-
-			string category = $"{nameof(SoulData)}.";
-			BaseDamageText = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}BaseDamage"));
-			BaseKnockbackText = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}BaseKnockback"));
 
 			Array a = Enum.GetValues(typeof(SoulType));
 			DataList = new SoulData[a.Length - 1]; //without None

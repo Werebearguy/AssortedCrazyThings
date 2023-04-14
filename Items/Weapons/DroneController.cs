@@ -175,10 +175,6 @@ namespace AssortedCrazyThings.Items.Weapons
 		/// </summary>
 		public static DroneData[] DataList;
 
-		public static LocalizedText BaseDamageText { get; private set; }
-
-		public static LocalizedText BaseKnockbackText { get; private set; }
-
 		/// <summary>
 		/// Used to access a particular DroneTypes data
 		/// </summary>
@@ -221,8 +217,6 @@ namespace AssortedCrazyThings.Items.Weapons
 			}
 
 			string category = $"{nameof(DroneData)}.";
-			BaseDamageText = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}BaseDamage"));
-			BaseKnockbackText = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}BaseKnockback"));
 
 			Array a = Enum.GetValues(typeof(DroneType));
 			DataList = new DroneData[a.Length - 1]; //without None
@@ -416,8 +410,8 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public string NameSingular => Name.Format(1);
 		public string UITooltip => NameSingular
-			+ (Combat ? ($"\n{DroneController.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
-			+ $"\n{DroneController.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
+			+ (Combat ? ($"\n{AssUISystem.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
+			+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
 			+ "\n" + Description.ToString()
 			+ "\n" + Misc.ToString();
 

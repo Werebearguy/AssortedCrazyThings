@@ -68,7 +68,7 @@ namespace AssortedCrazyThings
 		public SoulType selectedSoulMinionType = SoulType.Dungeon;
 
 		public bool slimePackMinion = false;
-		public byte selectedSlimePackMinionType = 0;
+		public SlimeType selectedSlimePackMinionType = SlimeType.Default;
 
 		public byte nextMagicSlimeSlingMinion = 0;
 
@@ -612,7 +612,7 @@ namespace AssortedCrazyThings
 			sigilOfTheWingCooldown = 0;
 			lastSlainBossTimerSeconds = -1;
 			selectedSoulMinionType = SoulType.Dungeon;
-			selectedSlimePackMinionType = 0;
+			selectedSlimePackMinionType = SlimeType.Default;
 			nextMagicSlimeSlingMinion = 0;
 			empoweringTimer = 0;
 			empoweringStep = 0f;
@@ -631,11 +631,11 @@ namespace AssortedCrazyThings
 					triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
 					condition: () => true,
 					uiConf: SlimeHandlerKnapsack.GetUIConf,
-					onUIStart: () => selectedSlimePackMinionType,
+					onUIStart: () => (int)selectedSlimePackMinionType,
 					onUIEnd: delegate
 					{
-						selectedSlimePackMinionType = (byte)CircleUI.returned;
-						AssUtils.UIText(AssUISystem.SelectedText.Format((selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked"))), CombatText.HealLife);
+						selectedSlimePackMinionType =  (SlimeType)(byte)CircleUI.returned;
+						AssUtils.UIText(AssUISystem.SelectedText.Format(SlimeHandlerKnapsack.Enum2string(selectedSlimePackMinionType)), CombatText.HealLife);
 					},
 					triggerLeft: false
 				),

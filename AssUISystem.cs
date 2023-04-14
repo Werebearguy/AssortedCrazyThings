@@ -38,10 +38,16 @@ namespace AssortedCrazyThings
 
 		public static LocalizedText SelectedText { get; private set; }
 
+		public static LocalizedText BaseDamageText { get; private set; }
+
+		public static LocalizedText BaseKnockbackText { get; private set; }
+
 		public override void Load()
 		{
 			string category = "Common.";
 			SelectedText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Selected"));
+			BaseDamageText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseDamage"));
+			BaseKnockbackText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseKnockback"));
 		}
 
 		public override void PostSetupContent()
