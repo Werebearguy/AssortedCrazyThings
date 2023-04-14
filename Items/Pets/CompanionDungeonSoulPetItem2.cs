@@ -1,7 +1,9 @@
+using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
@@ -35,15 +37,11 @@ namespace AssortedCrazyThings.Items.Pets
 	[Content(ContentType.AommSupport | ContentType.Bosses)]
 	public class CompanionDungeonSoulPetItem2_AoMM : CompanionDungeonSoulPetItem2
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
+		private static ModItem BaseModItem => ModContent.GetInstance<CompanionDungeonSoulPetItem2>();
 
-			//TODO 1.4.4 aomm localize
-			string name = ModContent.GetInstance<CompanionDungeonSoulPetItem2>().Name;
-			// DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
-			// Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");
-		}
+		public override LocalizedText DisplayName => AmuletOfManyMinionsApi.AppendAoMMVersion(BaseModItem.DisplayName);
+
+		public override LocalizedText Tooltip => BaseModItem.Tooltip;
 
 		public override void SafeSetDefaults()
 		{

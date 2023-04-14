@@ -521,9 +521,15 @@ Mods: {
 				DisplayName: Star Rod
 				Description: Falling Stars will land closer to you
 			}
+
+			NeurotoxinBuff: {
+				CommonName: Neurotoxin
+				CommonDescription: Rapidly losing life
+			}
 		}
 
 		Common: {
+			ConcatenateTwo: "{0} {1}"
 			AoMMVersion: (AoMM version)
 			PetHasAltSkins: Appearance can be changed with Costume Suitcase
 		}
@@ -2025,6 +2031,26 @@ Mods: {
 			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
 			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
 			TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
+			AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName} Shot"
+			AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName} Shot"
+			BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName} Shot"
+			BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName} Shot"
+			CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName} Shot"
+			CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName} Shot"
+			DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName} Shot"
+			DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName} Shot"
+			DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName} Shot"
+			FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName} Shot"
+			GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName} Shot"
+			NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName} Shot"
+			SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Bomb Shot"
+			SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Laser Shot"
+			StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName} Shot"
+			SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName} Shot"
+			TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName} Shot"
+			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
+			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
+			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
 		}
 
 		Tiles: {

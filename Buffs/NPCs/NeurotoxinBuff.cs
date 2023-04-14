@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.NPCs
@@ -9,6 +10,20 @@ namespace AssortedCrazyThings.Buffs.NPCs
 	public class NeurotoxinBuff : AssBuff
 	{
 		public override string Texture => "AssortedCrazyThings/Buffs/NPCs/NeurotoxinBuff";
+
+		public override LocalizedText DisplayName => CommonNameText;
+
+		public override LocalizedText Description => CommonDescriptionText;
+
+		public static LocalizedText CommonNameText { get; private set; }
+		public static LocalizedText CommonDescriptionText { get; private set; }
+
+		public override void SetStaticDefaults()
+		{
+			string category = $"Buffs.{nameof(NeurotoxinBuff)}.";
+			CommonNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CommonName"));
+			CommonDescriptionText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CommonDescription"));
+		}
 
 		public int DPS { get; init; }
 		public int Tier { get; init; }
