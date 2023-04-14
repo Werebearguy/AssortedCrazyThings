@@ -456,12 +456,31 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	{
 		protected override bool CloneNewInstances => true;
 
+		public static LocalizedText HatSlotText { get; private set; }
+		public static LocalizedText BodySlotText { get; private set; }
+		public static LocalizedText CarriedSlotText { get; private set; }
+		public static LocalizedText AccessorySlotText { get; private set; }
+
+		public static LocalizedText BlacklistedText { get; private set; }
+		public static LocalizedText NoUseText { get; private set; }
+		public static LocalizedText DisabledText { get; private set; }
+
 		[field: CloneByReference]
 		public LocalizedText ShortNameText { get; private set; }
 
 		public sealed override void SetStaticDefaults()
 		{
 			ShortNameText = this.GetLocalization("ShortName");
+
+			string category = "Items.PetAccessory.";
+			HatSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}HatSlot"));
+			BodySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BodySlot"));
+			CarriedSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CarriedSlot"));
+			AccessorySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessorySlot"));
+
+			BlacklistedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Blacklisted"));
+			NoUseText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}NoUse"));
+			DisabledText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Disabled"));
 
 			SafeSetStaticDefaults();
 		}
@@ -484,14 +503,14 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Item.value = Item.sellPrice(silver: 30);
 		}
 
-		private static string Enum2string(SlotType e)
+		private static LocalizedText Enum2string(SlotType e)
 		{
 			return e switch
 			{
-				SlotType.Body => "Worn on the body",
-				SlotType.Hat => "Worn on the head",
-				SlotType.Carried => "Carried",
-				SlotType.Accessory => "Worn as an accessory",
+				SlotType.Body => BodySlotText,
+				SlotType.Hat => HatSlotText,
+				SlotType.Carried => CarriedSlotText,
+				SlotType.Accessory => AccessorySlotText,
 				_ => throw new Exception("Unknown SlotType: " + e)
 			};
 		}
@@ -500,7 +519,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		{
 			if (PetAccessory.TryGetAccessoryFromItem(Item.type, out PetAccessory petAccessory))
 			{
-				tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot)));
+				tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot).ToString()));
 
 				Player player = Main.LocalPlayer;
 				PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
@@ -509,12 +528,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
 				{
 					if (slimePet.IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
 					{
-						tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+						tooltips.Add(new TooltipLine(Mod, nameof(BlacklistedText), BlacklistedText.ToString()));
 					}
 				}
 				else if (player.HasItem(Item.type))
 				{
-					tooltips.Add(new TooltipLine(Mod, "NoUse", "You have no summoned slime to equip this on")
+					tooltips.Add(new TooltipLine(Mod, nameof(NoUseText), NoUseText.ToString())
 					{
 						OverrideColor = Color.OrangeRed
 					});
@@ -522,7 +541,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			}
 			else
 			{
-				tooltips.Add(new TooltipLine(Mod, "Disabled", "This accessory type is not registered for use by the devs"));
+				tooltips.Add(new TooltipLine(Mod, nameof(DisabledText), DisabledText.ToString()));
 			}
 		}
 
@@ -558,13 +577,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 			PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 			//no valid slime pet found
-			if (!pPlayer.HasValidSlimePet(out _)) return false;
+			if (!pPlayer.HasValidSlimePet(out SlimePet slimePet)) return false;
 
 			//if a right click, enable usage
 			if (player.altFunctionUse == 2) return true;
 			//if a left click and no alts, enable usage
-			else if (!petAccessory.HasAlts) return true;
-			//else disable (if it has alts when left clicked)
+			else if (!petAccessory.HasAlts && !slimePet.IsSlotTypeBlacklisted[(int)petAccessory.Slot]) return true;
+			//else disable (if it has alts when left clicked, as that opens a UI instead)
 			return false;
 		}
 

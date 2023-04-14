@@ -1491,6 +1491,16 @@ Mods: {
 				Tooltip: "'Find {$Items.ChunkysEyeItem.DisplayName} and combine the two at a Demon Altar'"
 			}
 
+			PetAccessory: {
+				HatSlot: Worn on the head
+				BodySlot: Worn on the body
+				CarriedSlot: Carried
+				AccessorySlot: Worn as an accessory
+				Blacklisted: This accessory type is disabled for your particular slime
+				NoUse: You have no summoned slime to equip this on
+				Disabled: This accessory type is not registered for use by the devs
+			}
+
 			PetAccessoryBowtie: {
 				DisplayName: Cute {$Items.PetAccessoryBowtie.ShortName}
 				Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"

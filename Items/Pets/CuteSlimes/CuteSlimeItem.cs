@@ -64,7 +64,7 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 									if (ContentSamples.ItemsByType[petAccessory.Type].ModItem is PetAccessoryItem petAccessoryItem)
 									{
 										tooltip = petAccessoryItem.ShortNameText.ToString();
-										tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureDisplayNames[petAccessory.AltTextureIndex] + ")" : "";
+										tooltip += petAccessory.HasAlts ? $" ({petAccessory.AltTextureDisplayNames[petAccessory.AltTextureIndex]})" : "";
 									}
 								}
 							}
