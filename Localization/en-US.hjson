@@ -2068,23 +2068,23 @@ Mods: {
 			MapEntry_Locked: Locked
 
 			AntiqueChestTile: {
-				MapEntry: {$Items.AntiqueChest.DisplayName}
+				MapEntry: "{$Items.AntiqueChest.DisplayName}"
 				MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Tiles.AntiqueChestTile.MapEntry}"
 			}
 
-			AntiqueCage.MapEntry: {$Items.AntiqueCageItem.DisplayName}
+			AntiqueCage.MapEntry: "{$Items.AntiqueCageItem.DisplayName}"
 
 			SlimeBeaconTile: {
-				MapEntry: {$Items.SlimeBeaconItem.DisplayName}
+				MapEntry: "{$Items.SlimeBeaconItem.DisplayName}"
 				NotInMultiplayer: NOT IN MULTIPLAYER
 				Activated: Background Activated
 				Deactivated: Background Deactivated
 			}
 
-			StarRodTile.MapEntry: {$Items.StarRodItem.DisplayName}
+			StarRodTile.MapEntry: "{$Items.StarRodItem.DisplayName}"
 
 			VanityDresserTile: {
-				MapEntry: {$Items.VanityDresserItem.DisplayName}
+				MapEntry: "{$Items.VanityDresserItem.DisplayName}"
 				Mouseover:
 					'''
 					Costume Dresser
@@ -2096,7 +2096,7 @@ Mods: {
 				NoCostumesFoundLightPet: No alt costumes found for light pet
 			}
 
-			WyvernCampfireTile.MapEntry: {$Items.WyvernCampfireItem.DisplayName}
+			WyvernCampfireTile.MapEntry: "{$Items.WyvernCampfireItem.DisplayName}"
 		}
 
 		Conditions: {
