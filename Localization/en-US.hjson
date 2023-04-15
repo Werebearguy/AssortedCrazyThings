@@ -846,7 +846,11 @@ Mods: {
 
 			JoyousSlimeItem: {
 				DisplayName: Bottled Joyous Slime
-				Tooltip: Summons a friendly joyous slime to follow you
+				Tooltip:
+					'''
+					Summons a friendly joyous slime to follow you
+					{$Common.PetHasAltSkins}
+					'''
 			}
 
 			LifelikeMechanicalFrogItem: {
