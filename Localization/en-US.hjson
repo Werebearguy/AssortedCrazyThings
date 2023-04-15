@@ -1174,16 +1174,16 @@ Mods: {
 
 			FestiveMirror: {
 				DisplayName: Festive Mirror
-				Tooltip: Provides immunity to Chilled, Frozen, and Stoned
+				Tooltip: Provides immunity to {$BuffName.Chilled}, {$BuffName.Frozen}, and {$BuffName.Stoned}
 			}
 
 			HarvesterWings: {
 				DisplayName: Harvester Wings
 				Tooltip:
 					'''
-					Allows flight and slow fall
-					Increases your max number of minions
-					5% increased summon damage
+					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
 					'''
 			}
 
@@ -1193,7 +1193,7 @@ Mods: {
 					'''
 					Allows you to jump six more times
 					Negates fall damage and increases jump height
-					Releases bees when damaged
+					{$ItemTooltip.HoneyComb}
 					'''
 			}
 
@@ -1253,14 +1253,14 @@ Mods: {
 
 			StarInABalloon: {
 				DisplayName: Star in a Balloon
-				Tooltip: Increased mana regeneration and jump height
+				Tooltip: "{$BuffDescription.StarInBottle} and jump height"
 			}
 
 			StarWispBalloon: {
 				DisplayName: Star Wisp Balloon
 				Tooltip:
 					'''
-					Increased mana regeneration and jump height
+					{$Items.StarInABalloon.Tooltip}
 					Glows in the dark
 					'''
 			}
@@ -1354,8 +1354,15 @@ Mods: {
 				DisplayName: Soul Savior Headdress
 				Tooltip:
 					'''
-					Increases minion damage by 10%
-					Increases your max number of minions
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+				SetBonus:
+					'''
+					Reflects {0}% contact damage per available minion slot
+					Reflected damage further increased by effects that increase summon damage
+					Current reflected damage: {1}%
+					Minions summoned by the {$Items.EverhallowedLantern.DisplayName} become 'empowered' and gain {2}% more damage
 					'''
 			}
 
@@ -1363,8 +1370,8 @@ Mods: {
 				DisplayName: Soul Savior Breastplate
 				Tooltip:
 					'''
-					Increases minion damage by 10%
-					Increases your max number of minions by 2
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
 					'''
 			}
 
@@ -1372,8 +1379,8 @@ Mods: {
 				DisplayName: Soul Savior Robe
 				Tooltip:
 					'''
-					Increases minion damage by 10%
-					Increases your max number of minions
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
 					'''
 			}
 
@@ -1417,7 +1424,7 @@ Mods: {
 				DisplayName: Enhanced Hunter Potion
 				Tooltip:
 					'''
-					Shows the location of enemies
+					{$ItemTooltip.HunterPotion}
 					Additionally, shows the location of enemies outside your vision range
 					Range is roughly one screen in each direction
 					'''
@@ -1856,14 +1863,7 @@ Mods: {
 				Tooltip: Attracts Falling Stars at night if you are nearby
 			}
 
-			VanityDresserItem: {
-				DisplayName: Costume Dresser
-				Tooltip:
-					'''
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					'''
-			}
+			VanityDresserItem.DisplayName: Costume Dresser
 
 			WyvernCampfireItem: {
 				DisplayName: Wyvern Campfire
@@ -1919,7 +1919,7 @@ Mods: {
 				Tooltip:
 					'''
 					Uses gel to fire a stream of cursed flames
-					80% chance to not consume ammo
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
 					'''
 			}
 

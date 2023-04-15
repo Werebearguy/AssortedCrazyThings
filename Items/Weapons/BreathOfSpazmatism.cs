@@ -2,12 +2,17 @@ using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
 	public class BreathOfSpazmatism : WeaponItemBase
 	{
+		public static readonly int SaveAmmoChance = 80;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SaveAmmoChance);
+
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.Flamethrower);
@@ -40,7 +45,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{
-			return Main.rand.NextFloat() >= .80f; //80% chance not to consume ammo (since its so fast)
+			return Main.rand.NextFloat() >= SaveAmmoChance / 100f; //80% chance not to consume ammo (since its so fast)
 		}
 	}
 }

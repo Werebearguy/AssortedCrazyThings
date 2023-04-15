@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Armor
@@ -8,6 +9,11 @@ namespace AssortedCrazyThings.Items.Armor
 	[AutoloadEquip(EquipType.Legs)]
 	public class SoulSaviorRobe : AssItem
 	{
+		public static readonly int DamageIncrease = 10;
+		public static readonly int MaxMinionsIncrease = 1;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, MaxMinionsIncrease);
+
 		public override void SetDefaults()
 		{
 			Item.width = 24;
@@ -19,8 +25,8 @@ namespace AssortedCrazyThings.Items.Armor
 
 		public override void UpdateEquip(Player player)
 		{
-			player.maxMinions++;
-			player.GetDamage(DamageClass.Summon) += 0.1f;
+			player.maxMinions += MaxMinionsIncrease;
+			player.GetDamage(DamageClass.Summon) += DamageIncrease / 100f;
 		}
 
 		public override void EquipFrameEffects(Player player, EquipType type)

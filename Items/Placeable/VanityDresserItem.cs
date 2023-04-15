@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Tiles;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Placeable
@@ -8,6 +9,8 @@ namespace AssortedCrazyThings.Items.Placeable
 	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class VanityDresserItem : PlaceableItem<VanityDresserTile>
 	{
+		public override LocalizedText Tooltip => ModContent.GetInstance<VanitySelector>().Tooltip;
+
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(TileType);
