@@ -540,7 +540,7 @@ Mods: {
 
 			Campfire.WyvernCampfireNearby:
 				'''
-				Wyvern Campfire nearby:
+				{$Items.WyvernCampfireItem.DisplayName} nearby:
 				You are protected from Wyverns
 				Harpy feathers don't knock you away
 				'''
@@ -549,10 +549,10 @@ Mods: {
 		Common: {
 			ConcatenateTwo: "{0} {1}"
 			AoMMVersion: (AoMM version)
-			PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
 			Selected: Selected: {0}
 			BaseDamage: Base Damage: {0}
 			BaseKnockback: Base Knockback: {0}
+			Tooltips.PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
 		}
 
 		Items: {
@@ -672,7 +672,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly abeemination to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -686,7 +686,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly animated tome to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -695,7 +695,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a prehistoric shrimp to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -753,7 +753,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly cursed skull that follows you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -767,7 +767,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a small, friendly snake to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -786,7 +786,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a docile demon eye to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -800,7 +800,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a dynamite bunny to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -849,7 +849,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly joyous slime to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -858,7 +858,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly frog to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -867,7 +867,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a mummy to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -881,7 +881,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a space parasite to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -890,7 +890,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly baby antlion to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -909,7 +909,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly ocean slime to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -933,7 +933,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly fishron that flies with you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -943,7 +943,7 @@ Mods: {
 					'''
 					Summons a goldfish that follows you
 					'You feel like you lost something important in obtaining this idol...'
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -967,7 +967,7 @@ Mods: {
 					'''
 					Summons a small moon that provides you with constant moonlight
 					Shows the current moon cycle in the buff tip
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1001,7 +1001,7 @@ Mods: {
 					Summons a small sun and moon that provide you with constant light
 					Shows the current time in the buff tip
 					Shows the current moon cycle in the buff tip
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1010,7 +1010,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly pigronata to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1024,7 +1024,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a Queen Bee larva to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1038,7 +1038,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons Skeletron's hand attached to you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1047,7 +1047,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons Skeletron Prime's hand attached to you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1056,7 +1056,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly sting slime to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1109,7 +1109,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly vampire that flies with you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1123,7 +1123,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly harpy to follow you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 
@@ -1132,7 +1132,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a friendly young wyvern that flies with you
-					{$Common.PetHasAltSkins}
+					{$Common.Tooltips.PetHasAltSkins}
 					'''
 			}
 

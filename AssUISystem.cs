@@ -36,6 +36,7 @@ namespace AssortedCrazyThings
 		internal static UserInterface PetVanityUIInterface;
 		internal static PetVanityUI PetVanityUI;
 
+		//Not all localizations are "code-ified", i.e. those pertaining to gear stat changes or general item tooltips as they are only used in the lang file itself
 		public static LocalizedText SelectedText { get; private set; }
 
 		public static LocalizedText BaseDamageText { get; private set; }
