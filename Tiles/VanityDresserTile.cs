@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.Tiles
 		public LocalizedText MouseoverText { get; private set; }
 		public LocalizedText WorkProperlyText { get; private set; }
 
-		//TODO combattext ones
 		public LocalizedText NoCostumesFoundPetText { get; private set; }
 		public LocalizedText NoCostumesFoundLightPetText { get; private set; }
 

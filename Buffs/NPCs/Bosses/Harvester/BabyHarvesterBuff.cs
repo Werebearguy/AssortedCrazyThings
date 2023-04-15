@@ -5,6 +5,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
@@ -18,6 +19,11 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 
 		private const string dummy = "REPLACEME";
 
+		public static LocalizedText AbsorbedText { get; private set; }
+		public static LocalizedText Tier1Text { get; private set; }
+		public static LocalizedText Tier2Text { get; private set; }
+		public static LocalizedText Tier3Text { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = true;
@@ -25,6 +31,11 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 
 			Main.debuff[Type] = true;
 			BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
+
+			AbsorbedText = this.GetLocalization("Absorbed");
+			Tier1Text = this.GetLocalization("Tier1");
+			Tier2Text = this.GetLocalization("Tier2");
+			Tier3Text = this.GetLocalization("Tier3");
 
 			if (!Main.dedServ)
 			{
@@ -49,15 +60,15 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 			string toReplaceWith;
 			if (tier == 1)
 			{
-				toReplaceWith = "What's this bird doing?";
+				toReplaceWith = Tier1Text.ToString();
 			}
 			else if (tier == 2)
 			{
-				toReplaceWith = "I wonder if it will keep growing";
+				toReplaceWith = Tier2Text.ToString();
 			}
 			else
 			{
-				toReplaceWith = "I'm not sure it should keep eating...";
+				toReplaceWith = Tier3Text.ToString();
 			}
 			tip = tip.Replace(dummy, toReplaceWith);
 
@@ -70,7 +81,7 @@ namespace AssortedCrazyThings.Buffs.NPCs.Bosses.Harvester
 					amount += "/" + v;
 				}
 
-				tip += $"\nThe bird has absorbed {amount} souls";
+				tip += $"\n" + AbsorbedText.Format(amount);
 			}
 		}
 

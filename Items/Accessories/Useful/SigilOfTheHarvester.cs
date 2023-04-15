@@ -23,8 +23,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
-			SigilOfTheTalon.ModifyTooltip(Mod, tooltips, ModContent.GetInstance<SigilOfTheTalon>().DisplayName.ToString() + ": ");
-			SigilOfTheWing.ModifyTooltip(Mod, Item, tooltips, ModContent.GetInstance<SigilOfTheWing>().DisplayName.ToString() + ": ");
+			string divider = AssUISystem.GetColon();
+			SigilOfTheTalon.ModifyTooltip(Mod, tooltips, ModContent.GetInstance<SigilOfTheTalon>().DisplayName.ToString() + divider);
+			SigilOfTheWing.ModifyTooltip(Mod, Item, tooltips, ModContent.GetInstance<SigilOfTheWing>().DisplayName.ToString() + divider);
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

@@ -367,7 +367,7 @@ namespace AssortedCrazyThings.Base
 		{
 			string suffix = "";
 			if (showNumber) suffix = " (" + (Main.moonPhase + 1) + ")";
-			string prefix = Lang.inter[102].Value + ": "; //can't seem to find "Moon Phase" in the lang files for GameUI
+			string prefix = Lang.inter[102].Value + AssUISystem.GetColon(); //can't seem to find "Moon Phase" in the lang files for GameUI
 			string value = "";
 			string check = "";
 			switch (Main.moonPhase)

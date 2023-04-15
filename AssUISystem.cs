@@ -107,6 +107,19 @@ namespace AssortedCrazyThings
 		}
 
 		/// <summary>
+		/// Returns language agnostic representation of ": "
+		/// </summary>
+		public static string GetColon()
+		{
+			string divider = ": ";
+			if (Language.ActiveCulture.LegacyId == (int)GameCulture.CultureName.Chinese)
+			{
+				divider = ":";
+			}
+			return divider;
+		}
+
+		/// <summary>
 		/// Creates golden dust particles at the projectiles location with that type and LocalPlayer as owner. (Used for pets)
 		/// </summary>
 		private void PoofVisual(int projType)

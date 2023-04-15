@@ -2,6 +2,7 @@
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
@@ -9,8 +10,12 @@ namespace AssortedCrazyThings.Buffs
 	[Content(ContentType.Bosses)]
 	public class CompanionDungeonSoulMinionBuff : AssBuff
 	{
+		public LocalizedText TinyDungeonSoulsText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
+			TinyDungeonSoulsText = this.GetLocalization("TinyDungeonSouls");
+
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -60,14 +65,14 @@ namespace AssortedCrazyThings.Buffs
 					if (ownedCount > 0)
 					{
 						string name = data.Name.Format(ownedCount);
-						tip += "\n" + name + ": " + ownedCount;
+						tip += "\n" + name + AssUISystem.GetColon() + ownedCount;
 					}
 				}
 			}
 			ownedCount = Main.LocalPlayer.ownedProjectileCounts[ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
 			if (ownedCount > 0)
 			{
-				tip += "\n" + "Tiny Dungeon Souls: " + ownedCount;
+				tip += "\n" + TinyDungeonSoulsText.ToString() + AssUISystem.GetColon() + ownedCount;
 			}
 		}
 	}

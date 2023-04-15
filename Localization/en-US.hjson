@@ -420,6 +420,8 @@ Mods: {
 			TorchGodLightPetBuff: {
 				DisplayName: Godly Torch
 				Description: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
+				EnableSmartCursor: Enable 'Smart Cursor' to automatically place torches
+				NoTorches: No normal torches found to place
 			}
 
 			TorturedSoulBuff: {
@@ -465,11 +467,14 @@ Mods: {
 			CompanionDungeonSoulMinionBuff: {
 				DisplayName: Companion Soul Minion
 				Description: A friendly Soul is fighting for you
+				TinyDungeonSouls: Tiny Dungeon Souls
 			}
 
 			CuteSlimeSpawnEnableBuff: {
 				DisplayName: Jellied Ale
 				Description: Your perception of slimes is a bit off...
+				CuteSlimesCanSpawn: Cute Slimes that can spawn
+				None: None
 			}
 
 			DroneControllerBuff: {
@@ -480,6 +485,7 @@ Mods: {
 			EmpoweringBuff: {
 				DisplayName: Empowering
 				Description: You get stronger the longer you don't receive damage
+				IncreasedDamage: Increased Damage: {0}%
 			}
 
 			EnhancedHunterBuff: {
@@ -499,7 +505,12 @@ Mods: {
 
 			BabyHarvesterBuff: {
 				DisplayName: Ominous Bird
+				# Do not translate Description
 				Description: REPLACEME
+				Absorbed: The bird has absorbed {0} souls
+				Tier1: What's this bird doing?
+				Tier2: I wonder if it will keep growing
+				Tier3: I'm not sure it should keep eating...
 			}
 
 			SoulBurnBuff: {
@@ -526,6 +537,13 @@ Mods: {
 				CommonName: Neurotoxin
 				CommonDescription: Rapidly losing life
 			}
+
+			Campfire.WyvernCampfireNearby:
+				'''
+				Wyvern Campfire nearby:
+				You are protected from Wyverns
+				Harpy feathers don't knock you away
+				'''
 		}
 
 		Common: {
@@ -2063,6 +2081,32 @@ Mods: {
 			TurtleSlime.DisplayName: Turtle Slime
 			WalkingTombstoneGolden.DisplayName: Walking Tombstone
 			YoungHarpy.DisplayName: Young Harpy
+
+			CuteSlimes: {
+				SpawnConditionType: {
+					Forest: {
+						Black: Black
+						Blue: Blue
+						Green: Green
+						Pink: Pink
+						Purple: Purple
+						Rainbow: Rainbow
+						Red: Red
+						Yellow: Yellow
+					}
+
+					Desert.Sand: Sand
+					Tundra.Ice: Ice
+					Jungle.Jungle: Jungle
+					Underground.Toxic: Toxic
+					Hell.Lava: Lava
+					Corruption.Corrupt: Corrupt
+					Crimson.Crimson: Crimson
+					Hallow.Illuminant: Illuminant
+					Dungeon.Dungeon: Dungeon
+					Xmas.Xmas: Xmas
+				}
+			}
 		}
 
 		Projectiles: {

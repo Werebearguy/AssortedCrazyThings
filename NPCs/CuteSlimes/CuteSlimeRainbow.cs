@@ -21,7 +21,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			get
 			{
-				return SpawnConditionType.Overworld;
+				return SpawnConditionType.Forest;
 			}
 		}
 

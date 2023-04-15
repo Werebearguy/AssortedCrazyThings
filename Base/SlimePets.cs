@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
@@ -32,7 +33,7 @@ namespace AssortedCrazyThings.Base
 		/// <summary>
 		/// For the Jellied Ale bufftip
 		/// </summary>
-		public static List<List<string>> slimePetNPCsEnumToNames;
+		public static List<List<LocalizedText>> slimePetNPCsEnumToNames;
 
 		/// <summary>
 		/// To increase cute slime spawns when mods are present and its used with Jellied Ale
@@ -47,7 +48,7 @@ namespace AssortedCrazyThings.Base
 		{
 			switch (type)
 			{
-				case SpawnConditionType.Overworld:
+				case SpawnConditionType.Forest:
 					return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
 				case SpawnConditionType.Desert:
 					return Main.dayTime && player.ZoneOverworldHeight && player.townNPCs < 3f && player.ZoneDesert && !AssUtils.EvilBiome(player);
@@ -81,7 +82,7 @@ namespace AssortedCrazyThings.Base
 		{
 			switch (type)
 			{
-				case SpawnConditionType.Overworld:
+				case SpawnConditionType.Forest:
 					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.0075f : 0f;
 				case SpawnConditionType.Desert:
 					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDayDesert.Chance * 0.12f : 0f;
@@ -151,26 +152,38 @@ namespace AssortedCrazyThings.Base
 			PetAccessory.RegisterAccessories();
 		}
 
-		private static void LoadPets()
+		private void LoadPets()
 		{
 			slimePetList = new List<SlimePet>();
 			slimePetsByProj = new Dictionary<int, SlimePet>();
 			//in all these lists, insert stuff in alphabetic order please
 
-			Array enumArray = Enum.GetValues(typeof(SpawnConditionType));
+			Dictionary<SpawnConditionType, List<string>> slimePetNPCsEnumToKeys = new();
+			slimePetNPCsEnumToKeys[SpawnConditionType.Forest] = new List<string>() { "Black", "Blue", "Green", "Pink", "Purple", "Rainbow", "Red", "Yellow" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Desert] = new List<string>() { "Sand" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Tundra] = new List<string>() { "Ice" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Jungle] = new List<string>() { "Jungle" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Underground] = new List<string>() { "Toxic" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Hell] = new List<string>() { "Lava" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Hallow] = new List<string>() { "Illuminant" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
 
+			Array enumArray = Enum.GetValues(typeof(SpawnConditionType));
 			AssUtils.FillWithDefault(ref slimePetNPCsEnumToNames, null, enumArray.Length);
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Overworld] = new List<string>() { "Black", "Blue", "Green", "Pink", "Purple", "Rainbow", "Red", "Yellow" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Desert] = new List<string>() { "Sand" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Tundra] = new List<string>() { "Ice" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Jungle] = new List<string>() { "Jungle" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Underground] = new List<string>() { "Toxic" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Hell] = new List<string>() { "Lava" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Hallow] = new List<string>() { "Illuminant" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
-			slimePetNPCsEnumToNames[(int)SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
+			string category = $"NPCs.CuteSlimes.SpawnConditionType.";
+
+			foreach (var pair in slimePetNPCsEnumToKeys)
+			{
+				slimePetNPCsEnumToNames[(int)pair.Key] = new List<LocalizedText>();
+				foreach (var key in pair.Value)
+				{
+					var text = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{pair.Key}.{key}"));
+					slimePetNPCsEnumToNames[(int)pair.Key].Add(text);
+				}
+			}
 
 			slimePetRegularNPCs = new List<int>
 			{
@@ -367,7 +380,7 @@ namespace AssortedCrazyThings.Base
 	public enum SpawnConditionType : byte
 	{
 		None,
-		Overworld,
+		Forest,
 		Desert,
 		Tundra,
 		Jungle,
