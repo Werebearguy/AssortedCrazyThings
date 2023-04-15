@@ -35,7 +35,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon,
-				new FlavorTextBestiaryInfoElement("This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.")
 			});
 		}
 

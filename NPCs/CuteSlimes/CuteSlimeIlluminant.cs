@@ -33,7 +33,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundHallow,
-				new FlavorTextBestiaryInfoElement("The erratic nature of the Hallow has made this slime quite playful.")
 			});
 		}
 

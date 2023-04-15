@@ -102,7 +102,6 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-				new FlavorTextBestiaryInfoElement("Slimes that are lost to the sea are faced with two options; adapt, or be eaten. Luckily, these slimes taste bad.")
 			});
 		}
 

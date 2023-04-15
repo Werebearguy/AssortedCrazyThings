@@ -30,7 +30,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("A playful slime that is quite active. It sometimes goes overboard when having fun.")
 			});
 		}
 	}

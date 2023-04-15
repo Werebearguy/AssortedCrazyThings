@@ -30,7 +30,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.")
 			});
 		}
 

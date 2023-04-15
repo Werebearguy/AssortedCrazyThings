@@ -99,7 +99,6 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("These peculiar slimes are host to strange plants, which grow for life. The slime always makes sure to keep it upright.")
 			});
 		}
 

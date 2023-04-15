@@ -66,7 +66,6 @@ namespace AssortedCrazyThings.NPCs
 
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-				new FlavorTextBestiaryInfoElement("Harpies are not inherently hostile. If they make a childhood friend, they'll always be friends.")
 			});
 		}
 	}

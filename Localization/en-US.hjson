@@ -2032,55 +2032,229 @@ Mods: {
 		}
 
 		NPCs: {
-			AnimatedSpellTome.DisplayName: Animated Spell Tome
-			AnimatedTome.DisplayName: Animated Tome
-			Bass.DisplayName: Bass
-			BloatedBaitThief.DisplayName: Bloated Bait Thief
-			Chunky.DisplayName: Chunky
-			ChunkysEye.DisplayName: Chunky's Eye
-			Cloudfish.DisplayName: Cloudfish
-			CuteGastropod.DisplayName: Cute Gastropod
-			CuteSlimeBlack.DisplayName: Cute Black Slime
-			CuteSlimeBlue.DisplayName: Cute Blue Slime
-			CuteSlimeCorrupt.DisplayName: Cute Corrupt Slime
-			CuteSlimeCrimson.DisplayName: Cute Crimson Slime
-			CuteSlimeDungeon.DisplayName: Cute Dungeon Slime
-			CuteSlimeGreen.DisplayName: Cute Green Slime
-			CuteSlimeIce.DisplayName: Cute Ice Slime
-			CuteSlimeIlluminant.DisplayName: Cute Illuminant Slime
-			CuteSlimeJungle.DisplayName: Cute Jungle Slime
-			CuteSlimeLava.DisplayName: Cute Lava Slime
-			CuteSlimePink.DisplayName: Cute Pink Slime
-			CuteSlimePurple.DisplayName: Cute Purple Slime
-			CuteSlimeRainbow.DisplayName: Cute Rainbow Slime
-			CuteSlimeRed.DisplayName: Cute Red Slime
-			CuteSlimeSand.DisplayName: Cute Sand Slime
-			CuteSlimeToxic.DisplayName: Cute Toxic Slime
-			CuteSlimeXmas.DisplayName: Cute Holiday Slime
-			CuteSlimeYellow.DisplayName: Cute Yellow Slime
+			AnimatedSpellTome: {
+				DisplayName: Animated Spell Tome
+				BestiaryFlavorText: Master wizards need not look for a specific tome; it will find them when needed.
+			}
+
+			AnimatedTome: {
+				DisplayName: Animated Tome
+				BestiaryFlavorText: In the past, this book was a best seller; it practically flew from the shelves!
+			}
+
+			Bass: {
+				DisplayName: Bass
+				BestiaryFlavorText: A simple fish commonly found in calm freshwater rivers and lakes.
+			}
+
+			BloatedBaitThief: {
+				DisplayName: Bloated Bait Thief
+				BestiaryFlavorText: An engorged bass with a bloated belly. Something is wriggling inside...
+			}
+
+			Chunky: {
+				DisplayName: Chunky
+				BestiaryFlavorText: A mass of rotten flesh with a single eye. It seems as though the eye and the mass do not get along.
+			}
+
+			ChunkysEye: {
+				DisplayName: Chunky's Eye
+				BestiaryFlavorText: A minion of Cthulhu that was trapped in the Corruption. It now seeks its lost little brother.
+			}
+
+			Cloudfish: {
+				DisplayName: Cloudfish
+				BestiaryFlavorText: Is it a cloud? Is it a fish? It's both!
+			}
+
+			CuteGastropod: {
+				DisplayName: Cute Gastropod
+				BestiaryFlavorText: This hallowed variant of slime has taken on a more friendly appearance after meeting a special person.
+			}
+
+			CuteSlimeBlack: {
+				DisplayName: Cute Black Slime
+				BestiaryFlavorText: Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.
+			}
+
+			CuteSlimeBlue: {
+				DisplayName: Cute Blue Slime
+				BestiaryFlavorText: Though its expression is dull, this slime is very affectionate and loves to hug anyone that it gets close to.
+			}
+
+			CuteSlimeCorrupt: {
+				DisplayName: Cute Corrupt Slime
+				BestiaryFlavorText: Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.
+			}
+
+			CuteSlimeCrimson: {
+				DisplayName: Cute Crimson Slime
+				BestiaryFlavorText: Though it looks like it has an unstable mind, this slime is incredibly calm and collected.
+			}
+
+			CuteSlimeDungeon: {
+				DisplayName: Cute Dungeon Slime
+				BestiaryFlavorText: This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.
+			}
+
+			CuteSlimeGreen: {
+				DisplayName: Cute Green Slime
+				BestiaryFlavorText: Don't let the closed eyes fool you; this slime is attentive and ready to act at a moment's notice.
+			}
+
+			CuteSlimeIce: {
+				DisplayName: Cute Ice Slime
+				BestiaryFlavorText: Its body may be cold to the touch, but its expression and mannerisms will warm your heart.
+			}
+
+			CuteSlimeIlluminant: {
+				DisplayName: Cute Illuminant Slime
+				BestiaryFlavorText: The erratic nature of the Hallow has made this slime quite playful.
+			}
+
+			CuteSlimeJungle: {
+				DisplayName: Cute Jungle Slime
+				BestiaryFlavorText: Life in the jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.
+			}
+
+			CuteSlimeLava: {
+				DisplayName: Cute Lava Slime
+				BestiaryFlavorText: Having accidentally gotten impaled by a chunk of obsidian, this slime laments being unable to remove it.
+			}
+
+			CuteSlimePink: {
+				DisplayName: Cute Pink Slime
+				BestiaryFlavorText: Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.
+			}
+
+			CuteSlimePurple: {
+				DisplayName: Cute Purple Slime
+				BestiaryFlavorText: Don't let the smile fool you; it's actually much happier than it looks.
+			}
+
+			CuteSlimeRainbow: {
+				DisplayName: Cute Rainbow Slime
+				BestiaryFlavorText: The caring and motherly nature that this slime exhibits shows that it understands compassion.
+			}
+
+			CuteSlimeRed: {
+				DisplayName: Cute Red Slime
+				BestiaryFlavorText: A playful slime that is quite active. It sometimes goes overboard when having fun.
+			}
+
+			CuteSlimeSand: {
+				DisplayName: Cute Sand Slime
+				BestiaryFlavorText: The coarse sand that coats its body leads it to keep its distance, but it won't turn down a friend.
+			}
+
+			CuteSlimeToxic: {
+				DisplayName: Cute Toxic Slime
+				BestiaryFlavorText: Appearances are deceiving; it's only half as monstrous as it looks!
+			}
+
+			CuteSlimeXmas: {
+				DisplayName: Cute Holiday Slime
+				BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring that gift to everyone.
+			}
+
+			CuteSlimeYellow: {
+				DisplayName: Cute Yellow Slime
+				BestiaryFlavorText: Moving with delicate grace, this slime dances about without missing a step.
+			}
+
 			DemonEyeRecolor.DisplayName: Demon Eye
 			DemonEyeWandering.DisplayName: Wandering Eye
-			FairySlime.DisplayName: Fairy Slime
-			GiantGrasshopper.DisplayName: Giant Grasshopper
-			GiantGrasshopperGold.DisplayName: Giant Grasshopper
+
+			FairySlime: {
+				DisplayName: Fairy Slime
+				BestiaryFlavorText: Not wanting to lose to its flying neighbors, it has grown wing-like extentions. It can't fly, but it's happy regardless of this fact.
+			}
+
+			GiantGrasshopper: {
+				DisplayName: Giant Grasshopper
+				BestiaryFlavorText: It can leap over entire bushes in a single bound.
+			}
+
+			GiantGrasshopperGold: {
+				DisplayName: Giant Grasshopper
+				BestiaryFlavorText: Rarely, critters are found coated entirely in gold! Shopkeepers will pay handsomely for these, or you can show them off in cages!
+			}
+
 			DungeonSoul.DisplayName: Dungeon Soul
 			DungeonSoulFreed.DisplayName: Dungeon Soul
-			HarvesterBoss.DisplayName: Soul Harvester
+
+			HarvesterBoss: {
+				DisplayName: Soul Harvester
+				BestiaryFlavorText: After having absorbed the essence of fallen dungeon denizens, this skeletal bird rapidly grew into a ferocious hunter that sought to eat the hand that once fed it.
+			}
+
 			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
 			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
-			HornedSlime.DisplayName: Horned Slime
-			JoyousSlime.DisplayName: Joyous Slime
-			Meatball.DisplayName: Meatball
-			MeatballsEye.DisplayName: Meatball's Eye
-			Megalodon.DisplayName: Megalodon
-			OceanSlime.DisplayName: Ocean Slime
-			SpawnOfOcram.DisplayName: Spawn of Ocram
-			StingSlime.DisplayName: Sting Slime
-			StoneSoldier.DisplayName: Stone Soldier
-			StrangeSlime.DisplayName: Strange Slime
-			TurtleSlime.DisplayName: Turtle Slime
-			WalkingTombstoneGolden.DisplayName: Walking Tombstone
-			YoungHarpy.DisplayName: Young Harpy
+
+			HornedSlime: {
+				DisplayName: Horned Slime
+				BestiaryFlavorText: The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.
+			}
+
+			JoyousSlime: {
+				DisplayName: Joyous Slime
+				BestiaryFlavorText: A passive variant of slime with a friendly face. At night, it tries to be close to an equally friendly face.
+			}
+
+			Meatball: {
+				DisplayName: Meatball
+				BestiaryFlavorText: A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.
+			}
+
+			MeatballsEye: {
+				DisplayName: Meatball's Eye
+				BestiaryFlavorText: A minion of Cthulhu that was trapped in the Crimson. It hastily seeks out its older brother.
+			}
+
+			Megalodon: {
+				DisplayName: Megalodon
+				BestiaryFlavorText: Thought to be extinct, this ancient predator is as long-lived as its endless hunger.
+			}
+
+			OceanSlime: {
+				DisplayName: Ocean Slime
+				BestiaryFlavorText: Slimes that are lost to the sea are faced with two options; adapt, or be eaten. Luckily, these slimes taste bad.
+			}
+
+			SpawnOfOcram: {
+				DisplayName: Spawn of Ocram
+				BestiaryFlavorText: An ancient being's offspring, once thought to have been lost to time.
+			}
+
+			StingSlime: {
+				DisplayName: Sting Slime
+				BestiaryFlavorText: Bounce like a slime, sting like a scorpion.
+			}
+
+			StoneSoldier: {
+				DisplayName: Stone Soldier
+				BestiaryFlavorText: Animate stone statues that have wandered from an ancient tomb. Their eyes are valuable.
+			}
+
+			StrangeSlime: {
+				DisplayName: Strange Slime
+				BestiaryFlavorText: These peculiar slimes are host to strange plants, which grow for life. The slime always makes sure to keep it upright.
+			}
+
+			TurtleSlime: {
+				DisplayName: Turtle Slime
+				BestiaryFlavorText: Giant tortoises are known to shed part of their shell as they grow. These slimes collect those old fragments for protection.
+			}
+
+			WalkingTombstoneGolden: {
+				DisplayName: Walking Tombstone
+				BestiaryFlavorText: Terrestrial crabs that have taken up a morbid and expensive form of camouflage.
+			}
+
+			YoungHarpy: {
+				DisplayName: Young Harpy
+				BestiaryFlavorText: Harpies are not inherently hostile. If they make a childhood friend, they'll always be friends.
+			}
 
 			CuteSlimes: {
 				SpawnConditionType: {

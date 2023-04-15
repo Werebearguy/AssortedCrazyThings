@@ -73,7 +73,6 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.")
 			});
 		}
 	}
