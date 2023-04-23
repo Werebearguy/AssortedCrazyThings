@@ -13,8 +13,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			Main.projFrames[Projectile.type] = 8;
+			Main.projFrames[Projectile.type] = Main.projFrames[ProjectileID.Bunny];
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 6 - 0, 4)
+				.WhenNotSelected(0, 0)
+				.WithOffset(2f, 0f)
+				.WithSpriteDirection(-1);
 
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<LifelikeMechanicalFrogBuff_AoMM>(), null);
 		}

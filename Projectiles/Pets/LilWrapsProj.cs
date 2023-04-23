@@ -29,6 +29,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(1, 7 - 1, 6)
+				.WhenNotSelected(0, 0)
+				.WithOffset(2f, 0f)
+				.WithSpriteDirection(-1);
+
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<LilWrapsBuff_AoMM>(), null);
 		}
 
@@ -44,6 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Player player = Projectile.GetOwner();
 			player.grinch = false; // Relic from AIType
+
 			return true;
 		}
 
@@ -121,21 +127,27 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
+
+			GetFrame();
+		}
+
+		public override void PostAI()
+		{
+			Projectile.frameCounter = 0;
+			Projectile.frame = frame2;
 		}
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			if (Main.hasFocus) GetFrame();
-
 			lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
 			SpriteEffects effects = SpriteEffects.None;
-			if (Projectile.direction != -1)
+			if (Projectile.spriteDirection == -1)
 			{
 				effects = SpriteEffects.FlipHorizontally;
 			}
 			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/LilWrapsProj_" + mPlayer.lilWrapsType).Value;
-			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: frame2);
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Vector2 stupidOffset = new Vector2(10f, 23f + Projectile.gfxOffY);
 			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 

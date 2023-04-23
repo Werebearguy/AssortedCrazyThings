@@ -24,6 +24,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(-14, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
+
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetFishronBuff_AoMM>(), null);
 		}
 
@@ -33,13 +38,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.aiStyle = -1;
 			Projectile.width = 48;
 			Projectile.height = 30;
-		}
-
-		public override bool PreAI()
-		{
-			Player player = Projectile.GetOwner();
-			player.zephyrfish = false; // Relic from AIType
-			return true;
 		}
 
 		public override void AI()

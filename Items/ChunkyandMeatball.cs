@@ -3,7 +3,7 @@ using Terraria;
 namespace AssortedCrazyThings.Items
 {
 	[Content(ContentType.HostileNPCs)]
-	public abstract class ChunkyandMeatballItem : AssItem
+	public abstract class ChunkyandMeatballEyeItemBase : AssItem
 	{
 		public override void SetDefaults()
 		{
@@ -15,12 +15,12 @@ namespace AssortedCrazyThings.Items
 		}
 	}
 
-	public class ChunkysEyeItem : ChunkyandMeatballItem
+	public class ChunkysEyeItem : ChunkyandMeatballEyeItemBase
 	{
 
 	}
 
-	public class MeatballsEyeItem : ChunkyandMeatballItem
+	public class MeatballsEyeItem : ChunkyandMeatballEyeItemBase
 	{
 
 	}

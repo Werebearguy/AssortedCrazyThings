@@ -15,6 +15,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(2, 5 - 2, 8)
+				.WhenNotSelected(2, 1)
+				.WithOffset(-8f, 0f)
+				.WithSpriteDirection(-1);
+
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<MiniMegalodonBuff_AoMM>(), null);
 		}
 
@@ -24,16 +29,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.aiStyle = -1;
 			Projectile.width = 32;
 			Projectile.height = 24;
-			//AIType = ProjectileID.EyeSpring;
 			DrawOffsetX = -4;
 			DrawOriginOffsetY = -8;
-		}
-
-		public override bool PreAI()
-		{
-			Player player = Projectile.GetOwner();
-			player.eyeSpring = false;
-			return true;
 		}
 
 		public override void AI()

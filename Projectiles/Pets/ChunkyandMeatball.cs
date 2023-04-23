@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
+using AssortedCrazyThings.Items.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,6 +16,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(-4, -8f)
+				.WithSpriteDirection(-1)
+				.WithCode(DocileDemonEyeProj.FloatAndRotate);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<ChunkyandMeatballBuff_AoMM>(), null);
 		}
@@ -64,6 +71,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			SecondaryPetHandler.AddToMainProj(ModContent.ProjectileType<ChunkyProj>(), Projectile.type);
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(-8, -18f)
+				.WithSpriteDirection(-1)
+				.WithCode(DocileDemonEyeProj.FloatAndRotate);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<ChunkyandMeatballBuff_AoMM>(), null);
 		}

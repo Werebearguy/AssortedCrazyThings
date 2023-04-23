@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
@@ -18,6 +19,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(-6f, -6f)
+				.WithSpriteDirection(-1)
+				.WithCode(DocileDemonEyeProj.FloatAndRotate);
+
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TinyTwinsBuff_AoMM>(), ModContent.ProjectileType<TinySpazmatismShotProj>());
 		}
 
@@ -33,7 +39,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override bool PreAI()
 		{
 			Player player = Projectile.GetOwner();
-			player.eater = false; // Relic from AIType
 
 			if (AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras))
 			{
@@ -83,6 +88,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override bool PreDraw(ref Color lightColor)
 		{
+			if (Projectile.isAPreviewDummy)
+			{
+				return true;
+			}
+
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{
 				Projectile projectile = Main.projectile[i];
@@ -135,6 +145,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			SecondaryPetHandler.AddToMainProj(ModContent.ProjectileType<TinySpazmatismProj>(), Projectile.type);
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(-12f, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(DocileDemonEyeProj.FloatAndRotate);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TinyTwinsBuff_AoMM>(), ModContent.ProjectileType<TinyRetinazerShotProj>());
 		}

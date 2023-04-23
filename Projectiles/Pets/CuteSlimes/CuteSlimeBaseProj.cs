@@ -139,7 +139,26 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				SheetAdditionNoHairAssets[Projectile.type] = GetTextureMaybeNull(sheetName + Addition + NoHair);
 			}
 
+			float xOff = Projectile.scale != 1f ? (Projectile.scale > 1f ? -Projectile.scale * 3 : Projectile.scale * 6) : 0;
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
+				.WithOffset(xOff, 0)
+				.WithSpriteDirection(-1)
+				.WithCode(CuteSlimePet);
+
 			SafeSetStaticDefaults();
+		}
+
+		public static void CuteSlimePet(Projectile proj, bool walking)
+		{
+			var cuteSlime = (CuteSlimeBaseProj)proj.ModProjectile;
+			if (walking)
+			{
+				AssExtensions.LoopAnimationInt(ref cuteSlime.frameY, ref cuteSlime.frameCounter, 12, DefaultYWalkStart, DefaultYWalkEnd);
+			}
+			else
+			{
+				AssExtensions.LoopAnimationInt(ref cuteSlime.frameY, ref cuteSlime.frameCounter, 16, DefaultYIdleStart, DefaultYIdleEnd);
+			}
 		}
 
 		private static Asset<Texture2D> GetTextureMaybeNull(string name)

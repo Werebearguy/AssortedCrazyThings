@@ -15,6 +15,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(-6, -15f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.FloatAndRotateForwardWhenWalking);
+
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<EnchantedSwordBuff_AoMM>(), null);
 		}
 

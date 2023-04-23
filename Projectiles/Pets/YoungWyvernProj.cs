@@ -30,6 +30,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(2, 8 - 2, 5)
+				.WhenNotSelected(0, 0)
+				.WithOffset(-10f, 0f)
+				.WithSpriteDirection(-1);
+
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<YoungWyvernBuff_AoMM>(), null);
 		}
 
@@ -146,7 +151,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 						}
 
 						if (frame >= lastFrame || frame < 2)
+						{
 							frame = 2;
+						}
 					}
 					else
 					{

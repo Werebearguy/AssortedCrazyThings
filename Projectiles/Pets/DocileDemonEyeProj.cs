@@ -25,8 +25,19 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(-8, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(FloatAndRotate);
+
 			//Some forms spawn projectile
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<DocileDemonEyeBuff_AoMM>(), null);
+		}
+
+		public static void FloatAndRotate(Projectile proj, bool walking)
+		{
+			DelegateMethods.CharacterPreview.Float(proj, walking);
+			proj.rotation = -MathHelper.PiOver2;
 		}
 
 		public override void SetDefaults()

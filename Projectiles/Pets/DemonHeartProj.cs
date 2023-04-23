@@ -16,6 +16,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(-4, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
+
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<DemonHeartBuff_AoMM>(), ModContent.ProjectileType<DemonHeartShotProj>());
 		}
 

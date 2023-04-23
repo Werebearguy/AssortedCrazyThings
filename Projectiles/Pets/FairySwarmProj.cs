@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Base.SwarmDraw;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using System;
@@ -138,6 +139,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), targetNPC.Center, Vector2.Zero, ModContent.ProjectileType<FairySwarmShotProj>(), damage, 2.5f + Projectile.knockBack, Main.myPlayer);
 			}
+		}
+
+		public override void PostDraw(Color lightColor)
+		{
+			Projectile.GetOwner().GetModPlayer<SwarmDrawPlayer>().isFairySwarmDummyDrawing = Projectile.isAPreviewDummy;
 		}
 	}
 

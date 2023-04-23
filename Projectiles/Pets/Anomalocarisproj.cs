@@ -25,6 +25,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
+				.WithOffset(-6, -16f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
+
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<AnomalocarisBuff_AoMM>(), null);
 		}
 

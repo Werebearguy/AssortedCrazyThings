@@ -35,6 +35,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
+				.WithOffset(-10, -10f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
+
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetPlanteraBuff_AoMM>(), null);
 		}
 
@@ -145,6 +150,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override bool PreDraw(ref Color lightColor)
 		{
+			if (Projectile.isAPreviewDummy)
+			{
+				return true;
+			}
+
 			int tentacleCount = 0;
 
 			string chainPath = Texture + "_Chain";
@@ -159,6 +169,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				}
 				if (tentacleCount >= 4) break;
 			}
+
 			AssUtils.DrawTether(chainPath, Projectile.GetOwner().Center, Projectile.Center);
 			return true;
 		}

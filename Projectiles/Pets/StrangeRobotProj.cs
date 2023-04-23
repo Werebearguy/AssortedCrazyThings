@@ -60,6 +60,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 5;
 			Main.projPet[Projectile.type] = true;
 
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 2 - 0, 8)
+				.WhenNotSelected(0, 0)
+				.WithOffset(-4f, 0f)
+				.WithSpriteDirection(-1);
+
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<StrangeRobotBuff_AoMM>(), ModContent.ProjectileType<StrangeRobotShotProj>());
 		}
 

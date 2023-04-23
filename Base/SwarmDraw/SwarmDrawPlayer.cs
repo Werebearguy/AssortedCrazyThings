@@ -44,10 +44,36 @@ namespace AssortedCrazyThings.Base.SwarmDraw
 
 		public SwarmDrawSet swarmofCthulhuDrawSet;
 
+		public bool isFairySwarmDummyDrawing = false;
+
+		public bool isSwarmofCthulhuDummyDrawing = false;
+
 		public override void Initialize()
 		{
 			fairySwarmDrawSet = null;
 			swarmofCthulhuDrawSet = null;
+		}
+
+		public override void ResetEffects()
+		{
+			//Workaround for player select UI pet
+			if (!Main.gameMenu)
+			{
+				return;
+			}
+
+			if (ContentConfig.Instance.DroppedPets)
+			{
+				HandleDrawSet(ref fairySwarmDrawSet,
+					SwarmDrawSet.New<FairySwarmDrawSet>,
+					isFairySwarmDummyDrawing,
+					Player.Center);
+
+				HandleDrawSet(ref swarmofCthulhuDrawSet,
+					SwarmDrawSet.New<SwarmofCthulhuDrawSet>,
+					isSwarmofCthulhuDummyDrawing,
+					Player.Center);
+			}
 		}
 
 		public override void PostUpdate()

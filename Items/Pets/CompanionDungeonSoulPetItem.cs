@@ -27,6 +27,7 @@ namespace AssortedCrazyThings.Items.Pets
 		public override void SafeSetDefaults()
 		{
 			Item.DefaultToVanitypet(ModContent.ProjectileType<CompanionDungeonSoulPetProj>(), ModContent.BuffType<CompanionDungeonSoulPetBuff>());
+			Item.maxStack = 1;
 			frame2CounterCount = -1;
 			animatedTextureSelect = 0;
 

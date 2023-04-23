@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Base.SwarmDraw;
 using AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
@@ -95,6 +96,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			float kb = Projectile.knockBack;
 			float speed = paras.LaunchVelocity;
 			Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2Unit() * speed, ModContent.ProjectileType<SwarmofCthulhuShotProj>(), damage, kb, Main.myPlayer);
+		}
+
+		public override void PostDraw(Color lightColor)
+		{
+			Projectile.GetOwner().GetModPlayer<SwarmDrawPlayer>().isSwarmofCthulhuDummyDrawing = Projectile.isAPreviewDummy;
 		}
 	}
 
