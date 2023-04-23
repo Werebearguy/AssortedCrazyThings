@@ -66,6 +66,27 @@ namespace AssortedCrazyThings.NPCs
 			}
 		}
 
+		public override bool ModifyCollisionData(Rectangle victimHitbox, ref int immunityCooldownSlot, ref MultipliableFloat damageMultiplier, ref Rectangle npcHitbox)
+		{
+			if (NPC.ai[2] > 5f)
+			{
+				int width = 34;
+				if (NPC.spriteDirection < 0)
+				{
+					npcHitbox.X -= width;
+					npcHitbox.Width += width;
+				}
+				else
+				{
+					npcHitbox.Width += width;
+				}
+
+				damageMultiplier *= 1.25f;
+			}
+
+			return base.ModifyCollisionData(victimHitbox, ref immunityCooldownSlot, ref damageMultiplier, ref npcHitbox);
+		}
+
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ItemID.StoneBlock, minimumDropped: 10, maximumDropped: 30));
@@ -166,12 +187,6 @@ namespace AssortedCrazyThings.NPCs
 				NPC.netUpdate = true;
 			}
 
-			if (SpawnedGem != 0 && NPC.ai[3] == 1)
-			{
-				if (NPC.direction == 1) NPC.velocity.X += 0.09f; //0.02
-				else NPC.velocity.X -= 0.09f;
-			}
-
 			return true;
 		}
 
@@ -183,7 +198,7 @@ namespace AssortedCrazyThings.NPCs
 			if (tex <= 0 || tex > 6)
 				return;
 
-			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/StoneSoldier_" + tex).Value;
+			Texture2D texture = ModContent.Request<Texture2D>(Texture + "_" + tex).Value;
 			Vector2 stupidOffset = new Vector2(0f, -8f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
 			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
