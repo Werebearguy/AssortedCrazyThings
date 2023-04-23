@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -17,12 +18,22 @@ namespace AssortedCrazyThings.NPCs
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
 
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused
+				}
+			};
+
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
 				IsWet = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
+
+			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -70,6 +81,12 @@ namespace AssortedCrazyThings.NPCs
 		public override void AI()
 		{
 			AssAI.ModifiedGoldfishAI(NPC, 200f);
+		}
+
+		public override bool CheckActive()
+		{
+			NPC.netSpam = 0;
+			return base.CheckActive();
 		}
 	}
 }

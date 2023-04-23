@@ -1224,6 +1224,39 @@ namespace AssortedCrazyThings.Base
 						hasPlayer = true;
 					}
 				}
+
+				int num262 = (int)npc.Center.X / 16;
+				int num263 = (int)npc.Bottom.Y / 16;
+				if (Main.sectionManager.TilesLoaded(num262, num263, num262, num263 + 1))
+				{
+					if (Framing.GetTileSafely(num262, num263).TopSlope)
+					{
+						if (Framing.GetTileSafely(num262, num263).LeftSlope)
+						{
+							npc.direction = -1;
+							npc.velocity.X = Math.Abs(npc.velocity.X) * -1f;
+						}
+						else
+						{
+							npc.direction = 1;
+							npc.velocity.X = Math.Abs(npc.velocity.X);
+						}
+					}
+					else if (Framing.GetTileSafely(num262, num263 + 1).TopSlope)
+					{
+						if (Framing.GetTileSafely(num262, num263 + 1).LeftSlope)
+						{
+							npc.direction = -1;
+							npc.velocity.X = Math.Abs(npc.velocity.X) * -1f;
+						}
+						else
+						{
+							npc.direction = 1;
+							npc.velocity.X = Math.Abs(npc.velocity.X);
+						}
+					}
+				}
+
 				if (!hasPlayer)
 				{
 					if (npc.collideX)

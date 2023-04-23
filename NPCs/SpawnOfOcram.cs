@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -21,6 +22,14 @@ namespace AssortedCrazyThings.NPCs
 			//same as chaos elemental, tho for npcs you still have to manually draw it (PreDraw())
 			NPCID.Sets.TrailingMode[NPC.type] = 3;
 			NPCID.Sets.TrailCacheLength[NPC.type] = 8;
+
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused
+				}
+			};
 		}
 
 		public override void SetDefaults()
