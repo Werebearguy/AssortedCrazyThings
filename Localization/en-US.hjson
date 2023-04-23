@@ -2446,25 +2446,15 @@ Mods: {
 
 		Tiles: {
 			MapEntry_Locked: Locked
-
-			AntiqueChestTile: {
-				MapEntry: "{$Items.AntiqueChest.DisplayName}"
-				MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Tiles.AntiqueChestTile.MapEntry}"
-			}
-
-			AntiqueCage.MapEntry: "{$Items.AntiqueCageItem.DisplayName}"
+			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {Items.AntiqueChestItem.DisplayName}"
 
 			SlimeBeaconTile: {
-				MapEntry: "{$Items.SlimeBeaconItem.DisplayName}"
 				NotInMultiplayer: NOT IN MULTIPLAYER
 				Activated: Background Activated
 				Deactivated: Background Deactivated
 			}
 
-			StarRodTile.MapEntry: "{$Items.StarRodItem.DisplayName}"
-
 			VanityDresserTile: {
-				MapEntry: "{$Items.VanityDresserItem.DisplayName}"
 				Mouseover:
 					'''
 					Costume Dresser
@@ -2475,12 +2465,10 @@ Mods: {
 				NoCostumesFoundPet: No alt costumes found for pet
 				NoCostumesFoundLightPet: No alt costumes found for light pet
 			}
-
-			WyvernCampfireTile.MapEntry: "{$Items.WyvernCampfireItem.DisplayName}"
 		}
 
 		Conditions: {
-			UnlockedBiomeTorches: If Torch God's Favor was already used
+			UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
 			PlaceablesFunctional: If the 'Placeables (functional)' setting is enabled
 			DroneTypeNotUnlocked: If it isn't unlocked yet
 		}

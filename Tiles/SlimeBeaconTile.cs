@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -28,8 +29,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.Origin = new Point16(1, 2);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
 			TileObjectData.addTile(Type);
-			LocalizedText name = CreateMapEntryName();
-			AddMapEntry(new Color(75, 139, 166), name);
+			AddMapEntry(new Color(75, 139, 166), ModContent.GetInstance<SlimeBeaconItem>().DisplayName);
 			DustType = 1;
 			AnimationFrameHeight = 56;
 

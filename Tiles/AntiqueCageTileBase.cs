@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
+﻿using AssortedCrazyThings.Items.Placeable;
+using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -17,8 +18,6 @@ namespace AssortedCrazyThings.Tiles
 		public const int FrameHeight = 18 * Height;
 
 		public static HashSet<int> InteractableCageTypes { get; private set; }
-
-		public static LocalizedText CommonMapEntryText { get; private set; }
 
 		public static bool IsTileInteractable(int i, int j)
 		{
@@ -43,8 +42,7 @@ namespace AssortedCrazyThings.Tiles
 
 			DustType = 1;
 
-			CommonMapEntryText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.AntiqueCage.MapEntry"));
-			AddMapEntry(new Color(102, 115, 103), CommonMapEntryText);
+			AddMapEntry(new Color(102, 115, 103), ModContent.GetInstance<AntiqueCageItem>().DisplayName);
 			
 			//Whatever is specified as anchors here has to be checked in a GlobalTile/Wall class to prevent destruction
 

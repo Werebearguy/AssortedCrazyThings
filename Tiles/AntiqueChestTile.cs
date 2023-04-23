@@ -9,6 +9,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using System.Collections.Generic;
+using AssortedCrazyThings.Items.Placeable;
+using Terraria.Map;
 
 namespace AssortedCrazyThings.Tiles
 {
@@ -37,7 +39,7 @@ namespace AssortedCrazyThings.Tiles
 			AdjTiles = new int[] { TileID.Containers };
 
 			// Names
-			LocalizedText name = CreateMapEntryName();
+			LocalizedText name = ModContent.GetInstance<AntiqueChestItem>().DisplayName;
 			AddMapEntry(new Color(102, 115, 103), name, MapChestName);
 			name = this.GetLocalization("MapEntry_Locked");
 			AddMapEntry(new Color(147, 160, 163), name, MapChestName);
@@ -63,8 +65,8 @@ namespace AssortedCrazyThings.Tiles
 
 		public override LocalizedText DefaultContainerName(int frameX, int frameY)
 		{
-			bool locked = frameX / 36 == 1;
-			return this.GetLocalization("MapEntry" + (locked ? "_Locked" : ""));
+			int option = /*frameX / 36*/0; //Only use the first style for the default name
+			return Lang._mapLegendCache[MapHelper.TileToLookup(Type, option)];
 		}
 
 		public override ushort GetMapOption(int i, int j)

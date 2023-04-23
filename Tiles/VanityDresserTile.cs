@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -33,8 +34,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			LocalizedText name = CreateMapEntryName();
-			AddMapEntry(new Color(200, 200, 200), name);
+			AddMapEntry(new Color(200, 200, 200), ModContent.GetInstance<VanityDresserItem>().DisplayName);
 			DustType = 11;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 

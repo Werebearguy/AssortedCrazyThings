@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -10,7 +11,6 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -62,8 +62,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
 
-			LocalizedText name = CreateMapEntryName();
-			AddMapEntry(new Color(75, 80, 75), name);
+			AddMapEntry(new Color(75, 80, 75), ModContent.GetInstance<StarRodItem>().DisplayName);
 			DustType = 1;
 		}
 
