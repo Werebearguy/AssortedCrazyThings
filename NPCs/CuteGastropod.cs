@@ -68,7 +68,6 @@ namespace AssortedCrazyThings.NPCs
 			bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type], quickUnlock: true);
 
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				//TODO ?
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
 			});
