@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Data;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.DroneUnlockables;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
@@ -72,6 +73,7 @@ namespace AssortedCrazyThings.NPCs
 			if (type == NPCID.PartyGirl)
 			{
 				shop.Add(ModContent.ItemType<SlimeBeaconItem>(), AssConditions.PlaceablesFunctional, Condition.DownedKingSlime);
+				shop.Add(ModContent.ItemType<SillyBalloonKit>(), AssConditions.VanityAccessories);
 			}
 		}
 

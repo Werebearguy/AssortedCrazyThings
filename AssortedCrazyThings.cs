@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Effects;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
@@ -251,6 +252,7 @@ namespace AssortedCrazyThings
 					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
 					aPlayer.shieldDroneReduction = reader.ReadByte();
 					aPlayer.droneControllerUnlocked = (DroneType)reader.ReadByte();
+					aPlayer.selectedSillyBalloonType = (BalloonType)reader.ReadByte();
 
 					//server transmits to others
 					if (Main.netMode == NetmodeID.Server)

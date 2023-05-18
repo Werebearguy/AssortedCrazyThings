@@ -1273,81 +1273,6 @@ Mods: {
 				Tooltip: Glows in the dark and increases jump height
 			}
 
-			Cobballoon: {
-				DisplayName: Cobballoon
-				Tooltip: "'A clump of stones that manages to float, much to your confusion'"
-			}
-
-			EyelloonRetinazer: {
-				DisplayName: Retinazer Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			GreenEyelloon: {
-				DisplayName: Green Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			GreenEyelloonFractured: {
-				DisplayName: Green Toothy Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			GreenEyelloonMetal: {
-				DisplayName: Green Metal Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			GreenEyelloonMetalFractured: {
-				DisplayName: Green Metal Toothy Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			PurpleEyelloon: {
-				DisplayName: Purple Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			PurpleEyelloonFractured: {
-				DisplayName: Purple Toothy Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			PurpleEyelloonMetal: {
-				DisplayName: Purple Metal Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			PurpleEyelloonMetalFractured: {
-				DisplayName: Purple Metal Toothy Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			RedEyelloon: {
-				DisplayName: Red Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			RedEyelloonFractured: {
-				DisplayName: Red Toothy Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			RedEyelloonMetal: {
-				DisplayName: Red Metal Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			RedEyelloonMetalFractured: {
-				DisplayName: Red Metal Toothy Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
-			SpazmatismEyelloon: {
-				DisplayName: Spazmatism Eye-lloon
-				Tooltip: "'A Demon Eye balloon, for your Demon Eye needs!'"
-			}
-
 			AntiqueKey: {
 				DisplayName: Antique Key
 				Tooltip: "'An old key that looks to fit the lock on the nearby cage...'"
@@ -2032,6 +1957,31 @@ Mods: {
 				BuffImmunity: Immunity to '{0}' while {1} {^2:is;are} alive
 				TimesDied: Times died: {0}/{1}
 			}
+
+			SillyBalloonKit: {
+				DisplayName: Silly Balloon Kit
+				Tooltip:
+					'''
+					'A great gift for parties, birthdays, and saving the world!'
+					Inflate a fun party balloon to carry around
+					Left click to pick a different balloon
+					'''
+				DemonEyeGreen: Demon Eye (Green)
+				DemonEyePurple: Demon Eye (Purple)
+				DemonEyeRed: Demon Eye (Red)
+				FracturedEyeGreen: Fractured Eye (Green)
+				FracturedEyePurple: Fractured Eye (Purple)
+				FracturedEyeRed: Fractured Eye (Red)
+				MetalEyeGreen: Metal Eye (Green)
+				MetalEyePurple: Metal Eye (Purple)
+				MetalEyeRed: Metal Eye (Red)
+				FracturedMetalEyeGreen: Fractured Metal Eye (Green)
+				FracturedMetalEyePurple: Fractured Metal Eye (Purple)
+				FracturedMetalEyeRed: Fractured Metal Eye (Red)
+				Spazmatism: Spazmatism
+				Retinazer: Retinazer
+				Cobballoon: Cobballoon
+			}
 		}
 
 		NPCs: {
@@ -2471,6 +2421,7 @@ Mods: {
 			UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
 			PlaceablesFunctional: If the 'Placeables (functional)' setting is enabled
 			DroneTypeNotUnlocked: If it isn't unlocked yet
+			VanityAccessories: If the 'Vanity Accessories' setting is enabled
 		}
 
 		Announcements: {
