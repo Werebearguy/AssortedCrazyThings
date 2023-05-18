@@ -26,13 +26,7 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public static LocalizedText Enum2string(SlimeType e)
 		{
-			return e switch
-			{
-				SlimeType.Default => DefaultText,
-				SlimeType.Assorted => AssortedText,
-				SlimeType.Spiked => SpikedText,
-				_ => throw new Exception("Unknown SlimeType: " + e),
-			};
+			return ModContent.GetInstance<SlimeHandlerKnapsack>().GetLocalization(Enum.GetName(typeof(SlimeType), e));
 		}
 
 		//Half-assed implementation
@@ -67,17 +61,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock, drawOffset: new Vector2(0f, -2f));
 		}
 
-		public static LocalizedText DefaultText { get; private set; }
-		public static LocalizedText AssortedText { get; private set; }
-		public static LocalizedText SpikedText { get; private set; }
 		public static LocalizedText SpikedBonusText { get; private set; }
 		public static LocalizedText SpikedUnlockText { get; private set; }
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DefaultText = this.GetLocalization("Default");
-			AssortedText = this.GetLocalization("Assorted");
-			SpikedText = this.GetLocalization("Spiked");
 			SpikedBonusText = this.GetLocalization("SpikedBonus");
 			SpikedUnlockText = this.GetLocalization("SpikedUnlock");
 		}

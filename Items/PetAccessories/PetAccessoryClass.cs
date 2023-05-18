@@ -451,11 +451,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	{
 		protected override bool CloneNewInstances => true;
 
-		public static LocalizedText HatSlotText { get; private set; }
-		public static LocalizedText BodySlotText { get; private set; }
-		public static LocalizedText CarriedSlotText { get; private set; }
-		public static LocalizedText AccessorySlotText { get; private set; }
-
 		public static LocalizedText BlacklistedText { get; private set; }
 		public static LocalizedText NoUseText { get; private set; }
 		public static LocalizedText DisabledText { get; private set; }
@@ -468,11 +463,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			ShortNameText = this.GetLocalization("ShortName");
 
 			string category = "Items.PetAccessory.";
-			HatSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}HatSlot"));
-			BodySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BodySlot"));
-			CarriedSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CarriedSlot"));
-			AccessorySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessorySlot"));
-
 			BlacklistedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Blacklisted"));
 			NoUseText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}NoUse"));
 			DisabledText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Disabled"));
@@ -500,14 +490,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 		private static LocalizedText Enum2string(SlotType e)
 		{
-			return e switch
-			{
-				SlotType.Body => BodySlotText,
-				SlotType.Hat => HatSlotText,
-				SlotType.Carried => CarriedSlotText,
-				SlotType.Accessory => AccessorySlotText,
-				_ => throw new Exception("Unknown SlotType: " + e)
-			};
+			string category = "Items.PetAccessory.";
+			return Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}{Enum.GetName(typeof(SlotType), e)}"));
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
