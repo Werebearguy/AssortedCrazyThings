@@ -208,11 +208,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		public List<LocalizedText> AltTextureDisplayNames { private set; get; }
 
 		/// <summary>
-		/// Factory for creating key:defaultValue entries for <see cref="AltTextureDisplayNames"/>, as they don't work during initialization/Load
-		/// </summary>
-		public List<(string key, string defaultValue)> AltTextureDisplayNamesDeferredFactory { private set; get; }
-
-		/// <summary>
 		/// For UI only, the _Draw{number} stuff is done manually
 		/// </summary>
 		public List<Asset<Texture2D>> AltTextures { private set; get; }
@@ -241,7 +236,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 			AltTextureSuffixes = new List<string>();
 			AltTextureDisplayNames = new List<LocalizedText>();
-			AltTextureDisplayNamesDeferredFactory = new List<(string key, string defaultValue)>();
 			if (altTextures != null)
 			{
 				AltTextureSuffixes.AddRange(altTextures);
@@ -249,7 +243,8 @@ namespace AssortedCrazyThings.Items.PetAccessories
 				for (int i = 0; i < altTextures.Count; i++)
 				{
 					string altTexture = altTextures[i];
-					AltTextureDisplayNamesDeferredFactory.Add(($"{category}{altTexture}", altTexture));
+					LocalizedText text = Language.GetOrRegister(mod.GetLocalizationKey($"{category}{altTexture}"), () => altTexture);
+					AltTextureDisplayNames.Add(text);
 				}
 			}
 
@@ -445,16 +440,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		}
 
 		public sealed override void SetupContent() => SetStaticDefaults();
-
-		public override void SetStaticDefaults()
-		{
-			for (int i = 0; i < AltTextureDisplayNamesDeferredFactory.Count; i++)
-			{
-				(string key, string defaultValue) = AltTextureDisplayNamesDeferredFactory[i];
-				LocalizedText text = Language.GetOrRegister(Mod.GetLocalizationKey(key), () => defaultValue);
-				AltTextureDisplayNames.Add(text);
-			}
-		}
 	}
 
 	/// <summary>
