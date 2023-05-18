@@ -68,6 +68,12 @@ namespace AssortedCrazyThings.Items.Weapons
 		{
 			SpikedBonusText = this.GetLocalization("SpikedBonus");
 			SpikedUnlockText = this.GetLocalization("SpikedUnlock");
+
+			//Needs to be called so the lang is initialized
+			if (!Main.dedServ)
+			{
+				GetUIConf();
+			}
 		}
 
 		public override void SetDefaults()

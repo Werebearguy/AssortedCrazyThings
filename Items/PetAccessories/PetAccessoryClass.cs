@@ -467,6 +467,18 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			NoUseText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}NoUse"));
 			DisabledText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Disabled"));
 
+			//Needs to be here so the lang is initialized
+			if (!Main.dedServ)
+			{
+				foreach (var slot in Enum.GetValues(typeof(SlotType)))
+				{
+					if ((SlotType)slot != SlotType.None)
+					{
+						Enum2string((SlotType)slot);
+					}
+				}
+			}
+
 			SafeSetStaticDefaults();
 		}
 
