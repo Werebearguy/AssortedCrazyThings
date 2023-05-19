@@ -990,7 +990,7 @@ namespace AssortedCrazyThings
 
 		public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
 		{
-			if (Player.balloon == EquipLoader.GetEquipSlot(Mod, nameof(SillyBalloonKit), EquipType.Balloon))
+			if (ContentConfig.Instance.VanityAccessories && Player.balloon == EquipLoader.GetEquipSlot(Mod, nameof(SillyBalloonKit), EquipType.Balloon))
 			{
 				Player.balloon = SillyBalloonKit.EquipSlots[selectedSillyBalloonType];
 			}
