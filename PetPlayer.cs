@@ -68,11 +68,14 @@ namespace AssortedCrazyThings
 		public bool CuteSlimeToxic = false;
 		public bool CuteSlimeSand = false;
 		public bool CuteSlimeRed = false;
+		public bool CuteSlimeRedIce = false;
 		public bool CuteSlimeRainbow = false;
 		public bool CuteSlimeQueen = false;
 		public bool CuteSlimePurple = false;
+		public bool CuteSlimePurpleIce = false;
 		public bool CuteSlimePrincess = false;
 		public bool CuteSlimePink = false;
+		public bool CuteSlimePinkIce = false;
 		public bool CuteSlimeLava = false;
 		public bool CuteSlimeJungle = false;
 		public bool CuteSlimeIlluminant = false;
@@ -80,7 +83,9 @@ namespace AssortedCrazyThings
 		public bool CuteSlimeGreen = false;
 		public bool CuteSlimeDungeon = false;
 		public bool CuteSlimeCrimson = false;
+		public bool CuteSlimeCrimsonJungle = false;
 		public bool CuteSlimeCorrupt = false;
+		public bool CuteSlimeCorruptJungle = false;
 		public bool CuteSlimeBlue = false;
 		public bool CuteSlimeBlack = false;
 
@@ -161,12 +166,15 @@ namespace AssortedCrazyThings
 			CuteSlimeXmas = false;
 			CuteSlimeToxic = false;
 			CuteSlimeSand = false;
+			CuteSlimeQueen = false;
 			CuteSlimeRed = false;
+			CuteSlimeRedIce = false;
 			CuteSlimeRainbow = false;
 			CuteSlimePrincess = false;
-			CuteSlimeQueen = false;
 			CuteSlimePurple = false;
+			CuteSlimePurpleIce = false;
 			CuteSlimePink = false;
+			CuteSlimePinkIce = false;
 			CuteSlimeLava = false;
 			CuteSlimeJungle = false;
 			CuteSlimeIce = false;
@@ -174,7 +182,9 @@ namespace AssortedCrazyThings
 			CuteSlimeGreen = false;
 			CuteSlimeDungeon = false;
 			CuteSlimeCrimson = false;
+			CuteSlimeCrimsonJungle = false;
 			CuteSlimeCorrupt = false;
+			CuteSlimeCorruptJungle = false;
 			CuteSlimeBlue = false;
 			CuteSlimeBlack = false;
 

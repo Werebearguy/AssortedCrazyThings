@@ -278,7 +278,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				Projectile.timeLeft = 2;
 			}
 			PetPlayer petPlayer = player.GetModPlayer<PetPlayer>();
-			petSlot = petPlayer.numSlimePets; //TODO fix cute slime overlap eventually using this (requires custom AI)
+			petSlot = petPlayer.numSlimePets; //TODO fix cute slime overlap eventually using this (requires custom AI), test by removing ResetEffects of flag
 			petPlayer.numSlimePets++;
 
 			if (SlimePets.TryGetPetFromProj(Projectile.type, out _))

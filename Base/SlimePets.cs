@@ -62,10 +62,20 @@ namespace AssortedCrazyThings.Base
 					return player.ZoneUnderworldHeight && player.townNPCs < 3f/* && !AssUtils.EvilBiome(player)*/;
 				case SpawnConditionType.Corruption:
 					return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson);
+				case SpawnConditionType.CorruptionIce:
+					return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) && player.ZoneSnow;
+				case SpawnConditionType.CorruptionJungle:
+					return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) && player.ZoneJungle;
 				case SpawnConditionType.Crimson:
 					return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt);
+				case SpawnConditionType.CrimsonIce:
+					return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) && player.ZoneSnow;
+				case SpawnConditionType.CrimsonJungle:
+					return player.ZoneOverworldHeight && Main.hardMode && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) && player.ZoneJungle;
 				case SpawnConditionType.Hallow:
 					return Main.hardMode && !player.ZoneOverworldHeight && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson);
+				case SpawnConditionType.HallowIce:
+					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson) && player.ZoneSnow;
 				case SpawnConditionType.Dungeon:
 					return player.ZoneDungeon && player.townNPCs < 3f && !AssUtils.EvilBiome(player);
 				case SpawnConditionType.Xmas:
@@ -78,7 +88,7 @@ namespace AssortedCrazyThings.Base
 		/// <summary>
 		/// Used in CuteSlimeSpawnChance, returns the spawn chance based on the SpawnConditionType
 		/// </summary>
-		public static float GetSpawnChance(Player player, SpawnConditionType type = SpawnConditionType.None)
+		public static float GetSpawnChance(Player player, NPCSpawnInfo spawnInfo, SpawnConditionType type = SpawnConditionType.None)
 		{
 			switch (type)
 			{
@@ -96,16 +106,26 @@ namespace AssortedCrazyThings.Base
 					return player.townNPCs < 3f ? SpawnCondition.Underworld.Chance * 0.015f : 0f;
 				case SpawnConditionType.Corruption:
 					return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Corruption.Chance * 0.025f : SpawnCondition.Crimson.Chance * 0.025f) : 0f;
+				case SpawnConditionType.CorruptionIce:
+					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneSnow && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) ? 0.025f : 0f;
+				case SpawnConditionType.CorruptionJungle:
+					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneJungle && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) ? 0.025f : 0f;
 				case SpawnConditionType.Crimson:
 					return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.025f : SpawnCondition.Corruption.Chance * 0.025f) : 0f;
+				case SpawnConditionType.CrimsonIce:
+					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneSnow && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) ? 0.025f : 0f;
+				case SpawnConditionType.CrimsonJungle:
+					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneJungle && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) ? 0.025f : 0f;
 				case SpawnConditionType.Hallow:
 					return Main.hardMode && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson) && !player.ZoneOverworldHeight ? 0.015f : 0f;
+				case SpawnConditionType.HallowIce:
+					return Main.hardMode && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson) && player.ZoneOverworldHeight && player.ZoneSnow ? 0.015f : 0f;
 				case SpawnConditionType.Dungeon:
 					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.DungeonNormal.Chance * 0.025f : 0f;
 				case SpawnConditionType.Xmas:
 					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.05f : 0f;
 				default:
-					return 1f;
+					return 0f;
 			}
 		}
 
@@ -116,7 +136,7 @@ namespace AssortedCrazyThings.Base
 		{
 			//AssUtils.Print("spawn chance at " + (Main.netMode == NetmodeID.Server ? "Server" : "Client"));
 			Player player = spawnInfo.Player;
-			float spawnChance = GetSpawnChance(player, type) * customFactor;
+			float spawnChance = GetSpawnChance(player, spawnInfo, type) * customFactor;
 			if (AssUtils.AnyNPCs(x => x.ModNPC is CuteSlimeBaseNPC)) spawnChance *= 0.5f;
 			//AssUtils.Print(spawnChance);
 			if (ContentConfig.Instance.CuteSlimesPotionOnly)
@@ -166,8 +186,13 @@ namespace AssortedCrazyThings.Base
 			slimePetNPCsEnumToKeys[SpawnConditionType.Underground] = new List<string>() { "Toxic" };
 			slimePetNPCsEnumToKeys[SpawnConditionType.Hell] = new List<string>() { "Lava" };
 			slimePetNPCsEnumToKeys[SpawnConditionType.Corruption] = new List<string>() { "Corrupt" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.CorruptionIce] = new List<string>() { "PurpleIce" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.CorruptionJungle] = new List<string>() { "CorruptJungle" };
 			slimePetNPCsEnumToKeys[SpawnConditionType.Crimson] = new List<string>() { "Crimson" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.CrimsonIce] = new List<string>() { "RedIce" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.CrimsonJungle] = new List<string>() { "CrimsonJungle" };
 			slimePetNPCsEnumToKeys[SpawnConditionType.Hallow] = new List<string>() { "Illuminant" };
+			slimePetNPCsEnumToKeys[SpawnConditionType.HallowIce] = new List<string>() { "PinkIce" };
 			slimePetNPCsEnumToKeys[SpawnConditionType.Dungeon] = new List<string>() { "Dungeon" };
 			slimePetNPCsEnumToKeys[SpawnConditionType.Xmas] = new List<string>() { "Xmas" };
 
@@ -212,7 +237,15 @@ namespace AssortedCrazyThings.Base
 			));
 			Add(SlimePet.NewSlimePet
 			(
+				type: ModContent.ProjectileType<CuteSlimeCorruptJungleProj>()
+			));
+			Add(SlimePet.NewSlimePet
+			(
 				type: ModContent.ProjectileType<CuteSlimeCrimsonProj>()
+			));
+			Add(SlimePet.NewSlimePet
+			(
+				type: ModContent.ProjectileType<CuteSlimeCrimsonJungleProj>()
 			));
 			Add(SlimePet.NewSlimePet
 			(
@@ -241,6 +274,14 @@ namespace AssortedCrazyThings.Base
 			));
 			Add(SlimePet.NewSlimePet
 			(
+				type: ModContent.ProjectileType<CuteSlimePinkProj>()
+			));
+			Add(SlimePet.NewSlimePet
+			(
+				type: ModContent.ProjectileType<CuteSlimePinkIceProj>()
+			));
+			Add(SlimePet.NewSlimePet
+			(
 				type: ModContent.ProjectileType<CuteSlimePrincessProj>(),
 				postAdditionSlot: (byte)SlotType.Hat
 			));
@@ -250,7 +291,7 @@ namespace AssortedCrazyThings.Base
 			));
 			Add(SlimePet.NewSlimePet
 			(
-				type: ModContent.ProjectileType<CuteSlimePinkProj>()
+				type: ModContent.ProjectileType<CuteSlimePurpleIceProj>()
 			));
 			Add(SlimePet.NewSlimePet
 			(
@@ -264,6 +305,10 @@ namespace AssortedCrazyThings.Base
 			Add(SlimePet.NewSlimePet
 			(
 				type: ModContent.ProjectileType<CuteSlimeRedProj>()
+			));
+			Add(SlimePet.NewSlimePet
+			(
+				type: ModContent.ProjectileType<CuteSlimeRedIceProj>()
 			));
 			Add(SlimePet.NewSlimePet
 			(
@@ -387,8 +432,13 @@ namespace AssortedCrazyThings.Base
 		Underground,
 		Hell,
 		Corruption,
+		CorruptionIce,
+		CorruptionJungle,
 		Crimson,
+		CrimsonIce,
+		CrimsonJungle,
 		Hallow,
+		HallowIce,
 		Dungeon,
 		Xmas
 	}

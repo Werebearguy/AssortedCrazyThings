@@ -17,9 +17,19 @@ Mods: {
 				Description: A cute corrupt slime is following you
 			}
 
+			CuteSlimeCorruptJungleBuff: {
+				DisplayName: Cute Corrupt Jungle Slime
+				Description: A cute corrupt jungle slime is following you
+			}
+
 			CuteSlimeCrimsonBuff: {
 				DisplayName: Cute Crimson Slime
 				Description: A cute crimson slime is following you
+			}
+
+			CuteSlimeCrimsonJungleBuff: {
+				DisplayName: Cute Crimson Jungle Slime
+				Description: A cute crimson jungle slime is following you
 			}
 
 			CuteSlimeDungeonBuff: {
@@ -57,6 +67,11 @@ Mods: {
 				Description: A cute pink slime is following you
 			}
 
+			CuteSlimePinkIceBuff: {
+				DisplayName: Cute Pink Ice Slime
+				Description: A cute pink ice slime is following you
+			}
+
 			CuteSlimePrincessBuff: {
 				DisplayName: Cute Princess Slime
 				Description: A cute princess slime is following you
@@ -65,6 +80,11 @@ Mods: {
 			CuteSlimePurpleBuff: {
 				DisplayName: Cute Purple Slime
 				Description: A cute purple slime is following you
+			}
+
+			CuteSlimePurpleIceBuff: {
+				DisplayName: Cute Purple Ice Slime
+				Description: A cute purple ice slime is following you
 			}
 
 			CuteSlimeQueenBuff: {
@@ -80,6 +100,11 @@ Mods: {
 			CuteSlimeRedBuff: {
 				DisplayName: Cute Red Slime
 				Description: A cute red slime is following you
+			}
+
+			CuteSlimeRedIceBuff: {
+				DisplayName: Cute Red Ice Slime
+				Description: A cute red ice slime is following you
 			}
 
 			CuteSlimeSandBuff: {
@@ -580,9 +605,19 @@ Mods: {
 				Tooltip: Summons a cute corrupt slime to follow you
 			}
 
+			CuteSlimeCorruptJungleItem: {
+				DisplayName: Bottled Cute Corrupt Jungle Slime
+				Tooltip: Summons a cute corrupt jungle slime to follow you
+			}
+
 			CuteSlimeCrimsonItem: {
 				DisplayName: Bottled Cute Crimson Slime
 				Tooltip: Summons a cute crimson slime to follow you
+			}
+
+			CuteSlimeCrimsonJungleItem: {
+				DisplayName: Bottled Cute Crimson Jungle Slime
+				Tooltip: Summons a cute crimson jungle slime to follow you
 			}
 
 			CuteSlimeDungeonItem: {
@@ -620,6 +655,11 @@ Mods: {
 				Tooltip: Summons a cute pink slime to follow you
 			}
 
+			CuteSlimePinkIceItem: {
+				DisplayName: Bottled Cute Pink Ice Slime
+				Tooltip: Summons a cute pink ice slime to follow you
+			}
+
 			CuteSlimePrincessItem: {
 				DisplayName: Bottled Cute Princess Slime
 				Tooltip: Summons a cute princess slime to follow you
@@ -628,6 +668,11 @@ Mods: {
 			CuteSlimePurpleItem: {
 				DisplayName: Bottled Cute Purple Slime
 				Tooltip: Summons a cute purple slime to follow you
+			}
+
+			CuteSlimePurpleIceItem: {
+				DisplayName: Bottled Cute Purple Ice Slime
+				Tooltip: Summons a cute purple ice slime to follow you
 			}
 
 			CuteSlimeQueenItem: {
@@ -643,6 +688,11 @@ Mods: {
 			CuteSlimeRedItem: {
 				DisplayName: Bottled Cute Red Slime
 				Tooltip: Summons a cute red slime to follow you
+			}
+
+			CuteSlimeRedIceItem: {
+				DisplayName: Bottled Cute Red Ice Slime
+				Tooltip: Summons a cute red ice slime to follow you
 			}
 
 			CuteSlimeSandItem: {
@@ -2040,9 +2090,19 @@ Mods: {
 				BestiaryFlavorText: Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.
 			}
 
+			CuteSlimeCorruptJungle: {
+				DisplayName: Cute Corrupt Jungle Slime
+				BestiaryFlavorText: Slimes are incredibly adaptable, being able to survive even the harshest conditions.
+			}
+
 			CuteSlimeCrimson: {
 				DisplayName: Cute Crimson Slime
 				BestiaryFlavorText: Though it looks like it has an unstable mind, this slime is incredibly calm and collected.
+			}
+
+			CuteSlimeCrimsonJungle: {
+				DisplayName: Cute Crimson Jungle Slime
+				BestiaryFlavorText: When the jungle turned red, this slime adapted quickly by mimicking the crimson grass.
 			}
 
 			CuteSlimeDungeon: {
@@ -2080,9 +2140,19 @@ Mods: {
 				BestiaryFlavorText: Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.
 			}
 
+			CuteSlimePinkIce: {
+				DisplayName: Cute Pink Ice Slime
+				BestiaryFlavorText: The hallow may have chaotic effects on the wildlife, but this slime remains calm and polite.
+			}
+
 			CuteSlimePurple: {
 				DisplayName: Cute Purple Slime
 				BestiaryFlavorText: Don't let the smile fool you; it's actually much happier than it looks.
+			}
+
+			CuteSlimePurpleIce: {
+				DisplayName: Cute Purple Ice Slime
+				BestiaryFlavorText: Frightened by the corruption, this slime is perpetually nervous.
 			}
 
 			CuteSlimeRainbow: {
@@ -2093,6 +2163,11 @@ Mods: {
 			CuteSlimeRed: {
 				DisplayName: Cute Red Slime
 				BestiaryFlavorText: A playful slime that is quite active. It sometimes goes overboard when having fun.
+			}
+
+			CuteSlimeRedIce: {
+				DisplayName: Cute Red Ice Slime
+				BestiaryFlavorText: It is best to avoid standing out when in the Crimson, and this slime knows that all too well.
 			}
 
 			CuteSlimeSand: {
@@ -2228,8 +2303,13 @@ Mods: {
 					Underground.Toxic: Toxic
 					Hell.Lava: Lava
 					Corruption.Corrupt: Corrupt
+					CorruptionIce.PurpleIce: Purple Ice
+					CorruptionJungle.CorruptJungle: Corrupt Jungle
 					Crimson.Crimson: Crimson
+					CrimsonIce.RedIce: Red Ice
+					CrimsonJungle.CrimsonJungle: Crimson Jungle
 					Hallow.Illuminant: Illuminant
+					HallowIce.PinkIce: Pink Ice
 					Dungeon.Dungeon: Dungeon
 					Xmas.Xmas: Xmas
 				}
@@ -2279,7 +2359,9 @@ Mods: {
 			CuteSlimeBlackProj.DisplayName: Cute Black Slime
 			CuteSlimeBlueProj.DisplayName: Cute Blue Slime
 			CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
+			CuteSlimeCorruptJungleProj.DisplayName: Cute Corrupt Jungle Slime
 			CuteSlimeCrimsonProj.DisplayName: Cute Crimson Slime
+			CuteSlimeCrimsonJungleProj.DisplayName: Cute Crimson Jungle Slime
 			CuteSlimeDungeonProj.DisplayName: Cute Dungeon Slime
 			CuteSlimeGreenProj.DisplayName: Cute Green Slime
 			CuteSlimeIceProj.DisplayName: Cute Ice Slime
@@ -2287,11 +2369,14 @@ Mods: {
 			CuteSlimeJungleProj.DisplayName: Cute Jungle Slime
 			CuteSlimeLavaProj.DisplayName: Cute Lava Slime
 			CuteSlimePinkProj.DisplayName: Cute Pink Slime
+			CuteSlimePinkIceProj.DisplayName: Cute Pink Ice Slime
 			CuteSlimePrincessProj.DisplayName: Cute Princess Slime
 			CuteSlimePurpleProj.DisplayName: Cute Purple Slime
+			CuteSlimePurpleIceProj.DisplayName: Cute Purple Ice Slime
 			CuteSlimeQueenProj.DisplayName: Cute Queen Slime
 			CuteSlimeRainbowProj.DisplayName: Cute Rainbow Slime
 			CuteSlimeRedProj.DisplayName: Cute Red Slime
+			CuteSlimeRedIceProj.DisplayName: Cute Red Ice Slime
 			CuteSlimeSandProj.DisplayName: Cute Sand Slime
 			CuteSlimeToxicProj.DisplayName: Cute Toxic Slime
 			CuteSlimeXmasProj.DisplayName: Cute Christmas Slime
