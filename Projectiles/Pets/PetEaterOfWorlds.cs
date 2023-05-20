@@ -26,8 +26,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projPet[Projectile.type] = true;
 			//ProjectileID.Sets.DontAttachHideToAlpha[projectile.type] = true; //doesn't work for some reason with hide = true
 			//ProjectileID.Sets.NeedsUUID[projectile.type] = true;
-
-			//TODO preview
 		}
 
 		public override void SetDefaults()

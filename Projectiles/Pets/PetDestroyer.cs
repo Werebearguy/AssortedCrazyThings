@@ -152,8 +152,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 1;
 			Main.projPet[Projectile.type] = true;
 
-			//TODO preview
-
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetDestroyerBuff_AoMM>(), ModContent.ProjectileType<PetDestroyerDroneLaser>());
 		}
 
