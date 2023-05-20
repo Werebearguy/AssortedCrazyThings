@@ -16,6 +16,25 @@ namespace AssortedCrazyThings.Base
 			return (color.R + color.G + color.B) / 3f;
 		}
 
+		//Only needed if not using lightColor in DrawInWorld
+		public static void ModifyShimmerColor(this Item item, ref Color currentColor)
+		{
+			if (item.shimmered)
+			{
+				currentColor.R = (byte)(255f * (1f - item.shimmerTime));
+				currentColor.G = (byte)(255f * (1f - item.shimmerTime));
+				currentColor.B = (byte)(255f * (1f - item.shimmerTime));
+				currentColor.A = (byte)(255f * (1f - item.shimmerTime));
+			}
+			else if (item.shimmerTime > 0f)
+			{
+				currentColor.R = (byte)(currentColor.R * (1f - item.shimmerTime));
+				currentColor.G = (byte)(currentColor.G * (1f - item.shimmerTime));
+				currentColor.B = (byte)(currentColor.B * (1f - item.shimmerTime));
+				currentColor.A = (byte)(currentColor.A * (1f - item.shimmerTime));
+			}
+		}
+
 		/// <summary>
 		/// Returns the Player that owns the given projectile. Only use if you are certain an owner exists and it is a player
 		/// </summary>

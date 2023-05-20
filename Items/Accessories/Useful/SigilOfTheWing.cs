@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -27,6 +28,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			EffectReadyText = this.GetLocalization("EffectReady");
 			ReadyAgainInMinutesText = this.GetLocalization("ReadyAgainInMinutes");
 			ReadyAgainInSecondsText = this.GetLocalization("ReadyAgainInSeconds");
+
+			ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<SigilOfTheBeak>();
 		}
 
 		public override void SafeSetDefaults()

@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -8,6 +9,11 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public static readonly int PreHMDamage = 30;
 		public static readonly int HMDamage = 50;
+
+		public override void EvenSaferSetStaticDefaults()
+		{
+			ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<SigilOfTheTalon>();
+		}
 
 		public override void SafeSetDefaults()
 		{

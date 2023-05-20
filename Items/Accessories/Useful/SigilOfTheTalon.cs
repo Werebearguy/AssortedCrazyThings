@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -20,6 +21,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public override void EvenSaferSetStaticDefaults()
 		{
 			HookDamageText = this.GetLocalization("HookDamage");
+			ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<SigilOfTheWing>();
 		}
 
 		public override void SafeSetDefaults()

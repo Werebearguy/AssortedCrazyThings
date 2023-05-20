@@ -4,7 +4,6 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
 {
-	//TODO 1.4.4 sigils transform into eachother in shimmer
 	[Content(ContentType.Bosses)]
 	public abstract class SigilItemBase : AccessoryBase
 	{
@@ -12,8 +11,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-
-			ItemID.Sets.ItemNoGravity[Item.type] = true;
 
 			EvenSaferSetStaticDefaults();
 		}
