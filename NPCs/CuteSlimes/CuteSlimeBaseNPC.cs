@@ -23,7 +23,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		/// <summary>
 		/// NPCs in this set will not transform into shimmer, and won't be replaced by rare variants on spawn
 		/// </summary>
-		public virtual bool CannotTransformInShimmerOrRareVariants => false;
+		public virtual bool CannotTransformIntoShimmerOrRareVariants => false;
 
 		public virtual bool ShouldDropGel => true;
 
@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 
-			if (!CannotTransformInShimmerOrRareVariants)
+			if (!CannotTransformIntoShimmerOrRareVariants)
 			{
 				NPCID.Sets.ShimmerTransformToNPC[NPC.type] = ModContent.NPCType<CuteSlimeShimmer>();
 			}

@@ -30,7 +30,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			}
 		}
 
-		public override bool CannotTransformInShimmerOrRareVariants => true;
+		public override bool CannotTransformIntoShimmerOrRareVariants => true;
 
 		public override Color DustColor => Color.Transparent;
 

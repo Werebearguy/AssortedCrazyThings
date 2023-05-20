@@ -236,7 +236,7 @@ namespace AssortedCrazyThings.Base
 			};
 
 			//Add all slimes and then remove exclusions
-			slimePetReplacedByRareVariantOnSpawnNPCs = Mod.GetContent<CuteSlimeBaseNPC>().Where(m => !m.CannotTransformInShimmerOrRareVariants).Select(m => m.Type).ToList();
+			slimePetReplacedByRareVariantOnSpawnNPCs = Mod.GetContent<CuteSlimeBaseNPC>().Where(m => !m.CannotTransformIntoShimmerOrRareVariants).Select(m => m.Type).ToList();
 
 			//start list
 			Add(SlimePet.NewSlimePet

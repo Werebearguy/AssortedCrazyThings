@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			}
 		}
 
-		public override bool CannotTransformInShimmerOrRareVariants => false;
+		public override bool CannotTransformIntoShimmerOrRareVariants => false;
 
 		public override Color DustColor => Color.Transparent;
 
@@ -47,27 +47,27 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			{
 				scale = 1.5f;
 				count = 40;
-				for (int num33 = 0; num33 < 8; num33++)
+				for (int i = 0; i < 8; i++)
 				{
-					int num34 = Gore.NewGore(entitySource, new Vector2(NPC.position.X, NPC.Center.Y - 10f), Vector2.Zero, 1218);
-					Main.gore[num34].velocity = new Vector2(Main.rand.Next(1, 10) * 0.3f * 2.5f * hit.HitDirection, 0f - (3f + Main.rand.Next(4) * 0.3f));
+					Gore gore = Gore.NewGoreDirect(entitySource, new Vector2(NPC.position.X, NPC.Center.Y - 10f), Vector2.Zero, 1218);
+					gore.velocity = new Vector2(Main.rand.Next(1, 10) * 0.3f * 2.5f * hit.HitDirection, 0f - (3f + Main.rand.Next(4) * 0.3f));
 				}
 			}
 			else
 			{
-				for (int num35 = 0; num35 < 3; num35++)
+				for (int i = 0; i < 3; i++)
 				{
-					int num36 = Gore.NewGore(entitySource, new Vector2(NPC.position.X, NPC.Center.Y - 10f), Vector2.Zero, 1218);
-					Main.gore[num36].velocity = new Vector2(Main.rand.Next(1, 10) * 0.3f * 2f * hit.HitDirection, 0f - (2.5f + Main.rand.Next(4) * 0.3f));
+					Gore gore = Gore.NewGoreDirect(entitySource, new Vector2(NPC.position.X, NPC.Center.Y - 10f), Vector2.Zero, 1218);
+					gore.velocity = new Vector2(Main.rand.Next(1, 10) * 0.3f * 2f * hit.HitDirection, 0f - (2.5f + Main.rand.Next(4) * 0.3f));
 				}
 			}
 
-			for (int num37 = 0; num37 < count; num37++)
+			for (int k = 0; k < count; k++)
 			{
-				int num38 = Dust.NewDust(NPC.position, NPC.width, NPC.height, type, 2 * hit.HitDirection, -1f, 80, color, scale);
+				Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, type, 2 * hit.HitDirection, -1f, 80, color, scale);
 				if (!Main.rand.NextBool(3))
 				{
-					Main.dust[num38].noGravity = true;
+					dust.noGravity = true;
 				}
 			}
 		}
