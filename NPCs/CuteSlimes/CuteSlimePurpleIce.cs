@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			}
 		}
 
-		public override Color DustColor => new Color(97, 89, 164, 100);
+		public override Color DustColor => new Color(174, 170, 214, 100);
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{

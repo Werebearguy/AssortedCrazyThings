@@ -19,9 +19,15 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public abstract Color DustColor { get; }
 
+		//https://terraria.wiki.gg/wiki/Shimmer_Slime
+		/// <summary>
+		/// NPCs in this set will not transform into shimmer, and won't be replaced by rare variants on spawn
+		/// </summary>
+		public virtual bool CannotTransformInShimmerOrRareVariants => false;
+
 		public virtual bool ShouldDropGel => true;
 
-		public override void SetStaticDefaults()
+		public sealed override void SetStaticDefaults()
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
@@ -34,6 +40,11 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			});
 
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
+
+			if (!CannotTransformInShimmerOrRareVariants)
+			{
+				NPCID.Sets.ShimmerTransformToNPC[NPC.type] = ModContent.NPCType<CuteSlimeShimmer>();
+			}
 
 			SafeSetStaticDefaults();
 		}

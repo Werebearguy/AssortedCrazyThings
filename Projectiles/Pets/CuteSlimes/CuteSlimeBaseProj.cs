@@ -141,7 +141,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 
 			float xOff = Projectile.scale != 1f ? (Projectile.scale > 1f ? -Projectile.scale * 3 : Projectile.scale * 6) : 0;
 			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
-				.WithOffset(xOff, 0)
+				.WithOffset(xOff, -2)
 				.WithSpriteDirection(-1)
 				.WithCode(CuteSlimePet);
 

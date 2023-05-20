@@ -29,6 +29,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			}
 		}
 
+		public override bool CannotTransformInShimmerOrRareVariants => true;
+
 		public override Color DustColor => new Color(137, 129, 193, 100);
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -38,7 +40,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			});
 		}
 
-		public override bool ShouldDropGel => true;
+		public override bool ShouldDropGel => false;
 
 		public override void SafeSetDefaults()
 		{

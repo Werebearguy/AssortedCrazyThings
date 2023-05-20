@@ -20,6 +20,8 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 		public static LocalizedText CarriedSlotText { get; private set; }
 		public static LocalizedText AccessorySlotText { get; private set; }
 
+		public virtual bool CanShimmerItem => true;
+
 		public override void SafeSetStaticDefaults()
 		{
 			string category = "Items.CuteSlime.";
@@ -29,6 +31,11 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 			BodySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BodySlot"));
 			CarriedSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CarriedSlot"));
 			AccessorySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessorySlot"));
+
+			if (CanShimmerItem)
+			{
+				ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<CuteSlimeShimmerItem>();
+			}
 		}
 
 		public override void SafeSetDefaults()

@@ -37,9 +37,19 @@ Mods: {
 				Description: A cute dungeon slime is following you
 			}
 
+			CuteSlimeGoldenBuff: {
+				DisplayName: Cute Golden Slime
+				Description: A cute golden slime is following you
+			}
+
 			CuteSlimeGreenBuff: {
 				DisplayName: Cute Green Slime
 				Description: A cute green slime is following you
+			}
+
+			CuteSlimeHoneyBuff: {
+				DisplayName: Cute Honey Slime
+				Description: A cute honey slime is following you
 			}
 
 			CuteSlimeIceBuff: {
@@ -110,6 +120,11 @@ Mods: {
 			CuteSlimeSandBuff: {
 				DisplayName: Cute Sand Slime
 				Description: A cute sand slime is following you
+			}
+
+			CuteSlimeShimmerBuff: {
+				DisplayName: Cute Shimmer Slime
+				Description: A cute shimmer slime is following you
 			}
 
 			CuteSlimeToxicBuff: {
@@ -625,9 +640,19 @@ Mods: {
 				Tooltip: Summons a cute dungeon slime to follow you
 			}
 
+			CuteSlimeGoldenItem: {
+				DisplayName: Bottled Cute Golden Slime
+				Tooltip: Summons a cute golden slime to follow you
+			}
+
 			CuteSlimeGreenItem: {
 				DisplayName: Bottled Cute Green Slime
 				Tooltip: Summons a cute green slime to follow you
+			}
+
+			CuteSlimeHoneyItem: {
+				DisplayName: Bottled Cute Honey Slime
+				Tooltip: Summons a cute honey slime to follow you
 			}
 
 			CuteSlimeIceItem: {
@@ -698,6 +723,11 @@ Mods: {
 			CuteSlimeSandItem: {
 				DisplayName: Bottled Cute Sand Slime
 				Tooltip: Summons a cute sand slime to follow you
+			}
+
+			CuteSlimeShimmerItem: {
+				DisplayName: Bottled Cute Shimmer Slime
+				Tooltip: Summons a cute shimmer slime to follow you
 			}
 
 			CuteSlimeToxicItem: {
@@ -2110,9 +2140,16 @@ Mods: {
 				BestiaryFlavorText: This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.
 			}
 
+			CuteSlimeGolden.DisplayName: Cute Golden Slime
+
 			CuteSlimeGreen: {
 				DisplayName: Cute Green Slime
 				BestiaryFlavorText: Don't let the closed eyes fool you; this slime is attentive and ready to act at a moment's notice.
+			}
+
+			CuteSlimeHoney: {
+				DisplayName: Cute Honey Slime
+				BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware
 			}
 
 			CuteSlimeIce: {
@@ -2173,6 +2210,11 @@ Mods: {
 			CuteSlimeSand: {
 				DisplayName: Cute Sand Slime
 				BestiaryFlavorText: The coarse sand that coats its body leads it to keep its distance, but it won't turn down a friend.
+			}
+
+			CuteSlimeShimmer: {
+				DisplayName: Cute Shimmer Slime
+				BestiaryFlavorText: When exposed to the mysterious shimmer, this slime took on an aetherial appearance.
 			}
 
 			CuteSlimeToxic: {
@@ -2290,7 +2332,6 @@ Mods: {
 						Black: Black
 						Blue: Blue
 						Green: Green
-						Pink: Pink
 						Purple: Purple
 						Rainbow: Rainbow
 						Red: Red
@@ -2312,6 +2353,7 @@ Mods: {
 					HallowIce.PinkIce: Pink Ice
 					Dungeon.Dungeon: Dungeon
 					Xmas.Xmas: Xmas
+					Honey.Honey: Honey
 				}
 			}
 		}
@@ -2363,7 +2405,9 @@ Mods: {
 			CuteSlimeCrimsonProj.DisplayName: Cute Crimson Slime
 			CuteSlimeCrimsonJungleProj.DisplayName: Cute Crimson Jungle Slime
 			CuteSlimeDungeonProj.DisplayName: Cute Dungeon Slime
+			CuteSlimeGoldenProj.DisplayName: Cute Golden Slime
 			CuteSlimeGreenProj.DisplayName: Cute Green Slime
+			CuteSlimeHoneyProj.DisplayName: Cute Honey Slime
 			CuteSlimeIceProj.DisplayName: Cute Ice Slime
 			CuteSlimeIlluminantProj.DisplayName: Cute Illuminant Slime
 			CuteSlimeJungleProj.DisplayName: Cute Jungle Slime
@@ -2378,6 +2422,7 @@ Mods: {
 			CuteSlimeRedProj.DisplayName: Cute Red Slime
 			CuteSlimeRedIceProj.DisplayName: Cute Red Ice Slime
 			CuteSlimeSandProj.DisplayName: Cute Sand Slime
+			CuteSlimeShimmerProj.DisplayName: Cute Shimmer Slime
 			CuteSlimeToxicProj.DisplayName: Cute Toxic Slime
 			CuteSlimeXmasProj.DisplayName: Cute Christmas Slime
 			CuteSlimeYellowProj.DisplayName: Cute Yellow Slime
