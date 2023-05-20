@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.Handlers.BestiaryHandler
 {
-	[Content(ContentType.FriendlyNPCs | ContentType.HostileNPCs | ContentType.Bosses, needsAllToFilterOut: true)]
+	[Content(ContentType.FriendlyNPCs | ContentType.HostileNPCs | ContentType.CuteSlimes | ContentType.Bosses, needsAllToFilterOut: true)]
 	public class ExportRegisterBestiaryTextsGlobalNPC : AssGlobalNPC
 	{
 		public static readonly string Key = "BestiaryFlavorText";
