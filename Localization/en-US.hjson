@@ -2636,5 +2636,143 @@ Mods: {
 					'''
 			}
 		}
+
+		Configs: {
+			ClientConfig: {
+				DisplayName: Client Config
+
+				Headers: {
+					SatchelofGoodies: Satchel of Goodies - Minion Options
+					HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
+				}
+
+				SatchelofGoodiesAutosummon: {
+					Label: Auto-summon
+					Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
+				}
+
+				SatchelofGoodiesVisibleArmor: {
+					Label: Armor progression
+					Tooltip: Enable to show armor progression
+				}
+
+				SatchelofGoodiesChatterFreq: {
+					Label: Dialogue frequency
+					Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
+				}
+
+				Hint: {
+					Label: Hint
+					Tooltip: ""
+				}
+			}
+
+			ContentConfig: {
+				DisplayName: Content Config (Server)
+
+				Headers: {
+					TogglesSpecial:
+						'''
+						The following toggles let you control content added by this mod
+
+						Special - Toggles which take priority over other relevant config options
+						'''
+					NPCs: NPCs
+					Items: Items
+					Other: Other
+					HintClientConfig: Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left
+				}
+
+				Bosses: {
+					Label: Bosses
+					Tooltip: Boss content
+				}
+
+				CuteSlimes: {
+					Label: Cute Slimes
+					Tooltip: Cute slime content
+				}
+
+				HostileNPCs: {
+					Label: Hostile
+					Tooltip: Harmful entities - This includes pets obtained by catching
+				}
+
+				FriendlyNPCs: {
+					Label: Friendly
+					Tooltip: Harmless entities - This includes pets obtained by catching
+				}
+
+				DroppedPets: {
+					Label: Dropped Pets
+					Tooltip: Pets that drop from hostile entities
+				}
+
+				OtherPets: {
+					Label: Other Pets
+					Tooltip: Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!
+				}
+
+				Weapons: {
+					Label: Weapons
+					Tooltip: Items that deal damage - Includes ammunition
+				}
+
+				Tools: {
+					Label: Tools
+					Tooltip: Tools and useful items
+				}
+
+				PlaceablesFunctional: {
+					Label: Placeables (functional)
+					Tooltip: Placeable functional tiles and objects
+				}
+
+				PlaceablesDecorative: {
+					Label: Placeables (decorative)
+					Tooltip: Placeable decorative tiles and objects
+				}
+
+				Armor: {
+					Label: Armor
+					Tooltip: Armor with stats
+				}
+
+				VanityArmor: {
+					Label: Vanity
+					Tooltip: Vanity armor
+				}
+
+				Accessories: {
+					Label: Accessories
+					Tooltip: Accesssories with effects
+				}
+
+				VanityAccessories: {
+					Label: Vanity Accessories
+					Tooltip: Accessories without effects
+				}
+
+				BossConsolation: {
+					Label: Boss Consolation
+					Tooltip: Accessories that drop for failing to defeat a vanilla boss within 5 attempts
+				}
+
+				AommSupport: {
+					Label: "'The Amulet Of Many Minions' cross-Mod content"
+					Tooltip: Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets
+				}
+
+				CuteSlimesPotionOnly: {
+					Label: Cute Slimes Potion Only
+					Tooltip: Affects the way Cute Slimes spawn and how the Jellied Ale works
+				}
+
+				Hint: {
+					Label: Hint
+					Tooltip: ""
+				}
+			}
+		}
 	}
 }

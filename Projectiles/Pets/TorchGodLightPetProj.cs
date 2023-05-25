@@ -355,12 +355,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				{
 					short x = TorchTarget.X;
 					short y = TorchTarget.Y;
-					ushort type = TileID.Torches;
 
+					int type = TileID.Torches;
 					int placeStyle = 0;
 					if (player.UsingBiomeTorches)
 					{
-						placeStyle = player.BiomeTorchPlaceStyle(placeStyle);
+						player.BiomeTorchPlaceStyle(ref type, ref placeStyle);
 					}
 
 					if (WorldGen.PlaceTile(x, y, type, style: placeStyle))

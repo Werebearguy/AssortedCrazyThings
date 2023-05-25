@@ -1,5 +1,4 @@
-﻿using AssortedCrazyThings.Base.ModSupport.AoMM;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Terraria;
@@ -9,28 +8,22 @@ using Terraria.ModLoader.Config;
 
 namespace AssortedCrazyThings
 {
-	[Label("Content Config (Server)")]
 	public class ContentConfig : ServerConfigBase
 	{
 		public static ContentConfig Instance => ModContent.GetInstance<ContentConfig>();
 
 		internal ContentType FilterFlags { private set; get; }
 
-		[Header("The following toggles let you control content added by this mod" +
-			"\n\nSpecial - Toggles which take priority over other relevant config options")]
+		[Header("TogglesSpecial")]
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(152, 150, 113)]
-		[Tooltip("Boss content")]
-		[Label("Bosses")]
 		public bool Bosses { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(false)]
 		[BackgroundColor(123, 164, 255)]
-		[Tooltip("Cute slime content")]
-		[Label("Cute Slimes")]
 		public bool CuteSlimes { get; set; }
 
 		[Header("NPCs")]
@@ -38,15 +31,11 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(227, 160, 147)]
-		[Tooltip("Harmful entities - This includes pets obtained by catching")]
-		[Label("Hostile")]
 		public bool HostileNPCs { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(227, 160, 147)]
-		[Tooltip("Harmless entities - This includes pets obtained by catching")]
-		[Label("Friendly")]
 		public bool FriendlyNPCs { get; set; }
 
 		[Header("Items")]
@@ -54,78 +43,56 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Pets that drop from hostile entities")]
-		[Label("Dropped Pets")]
 		public bool DroppedPets { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!")]
-		[Label("Other Pets")]
 		public bool OtherPets { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Items that deal damage - Includes ammunition")]
-		[Label("Weapons")]
 		public bool Weapons { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Tools and useful items")]
-		[Label("Tools")]
 		public bool Tools { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Placeable functional tiles and objects")]
-		[Label("Placeables (functional)")]
 		public bool PlaceablesFunctional { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Placeable decorative tiles and objects")]
-		[Label("Placeables (decorative)")]
 		public bool PlaceablesDecorative { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Armor with stats")]
-		[Label("Armor")]
 		public bool Armor { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Vanity armor")]
-		[Label("Vanity")]
 		public bool VanityArmor { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Accesssories with effects")]
-		[Label("Accessories")]
 		public bool Accessories { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Accessories without effects")]
-		[Label("Vanity Accessories")]
 		public bool VanityAccessories { get; set; }
 
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(194, 147, 227)]
-		[Tooltip("Accessories that drop for failing to defeat a vanilla boss within 5 attempts")]
-		[Label("Boss Consolation")]
 		public bool BossConsolation { get; set; }
 
 		[Header("Other")]
@@ -133,21 +100,18 @@ namespace AssortedCrazyThings
 		[ReloadRequired]
 		[DefaultValue(true)]
 		[BackgroundColor(89, 106, 159)]
-		[Tooltip("Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets")]
-		[Label("'The Amulet Of Many Minions' cross-Mod content")]
 		public bool AommSupport { get; set; }
 
 		/// <summary>
 		/// Affects the way Cute Slimes spawn and how the Jellied Ale works
 		/// </summary>
 		[DefaultValue(true)]
-		[Label("Cute Slimes Potion Only")]
-		[Tooltip("Affects the way Cute Slimes spawn and how the Jellied Ale works")]
 		public bool CuteSlimesPotionOnly { get; set; }
 
-		[Header("Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left")]
-		[Label("Hint")]
+		[Header("HintClientConfig")]
+
 		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
 		public bool Hint => true;
 
 		public override void OnChanged()
@@ -228,24 +192,19 @@ namespace AssortedCrazyThings
 		}
 	}
 
-	[Label("Client Config")]
 	public class ClientConfig : ModConfig
 	{
 		public static ClientConfig Instance => ModContent.GetInstance<ClientConfig>();
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		[Header("Satchel of Goodies - Minion Options")]
+		[Header("SatchelofGoodies")]
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]
-		[Label("Auto-summon")]
-		[Tooltip("Enable to auto-summon this minion upon spawning if the item is in your inventory")]
 		public bool SatchelofGoodiesAutosummon { get; set; }
 
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]
-		[Label("Armor progression")]
-		[Tooltip("Enable to show armor progression")]
 		public bool SatchelofGoodiesVisibleArmor { get; set; }
 
 		public const int SatchelofGoodiesChatterFreq_Min = 0;
@@ -255,15 +214,13 @@ namespace AssortedCrazyThings
 		[Slider]
 		[Increment(5)]
 		[Range(SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max)]
-		[Label("Dialogue frequency")]
-		[Tooltip("Control how often this minion will display dialogue (in percent). 0 for off")]
 		public int SatchelofGoodiesChatterFreq { get; set; }
 
 		internal bool SatchelofGoodiesDialogueDisabled => SatchelofGoodiesChatterFreq == 0;
 
-		[Header("Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right")]
-		[Label("Hint")]
+		[Header("HintServerConfig")]
 		[JsonIgnore]
+		[ShowDespiteJsonIgnore]
 		public bool Hint => true;
 
 		[OnDeserialized]
