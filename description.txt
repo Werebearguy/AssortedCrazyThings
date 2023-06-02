@@ -18,3 +18,8 @@ Wiki, Changelogs & Source Code: https://github.com/Werebearguy/AssortedCrazyThin
 Terraria Community Forums homepage: https://forums.terraria.org/index.php?threads/.74330/
 
 If you happen to come across a problem with the mod, please report it on our Terraria Community Forums homepage or on the Steam Workshop page in the appropriate discussion page. 
+
+Localization:
+If you want to add support for different languages, you are welcome to contribute localizations here: https://github.com/Werebearguy/AssortedCrazyThings
+List of localization contributors:
+* None!
