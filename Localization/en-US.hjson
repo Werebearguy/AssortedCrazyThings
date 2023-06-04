@@ -2549,9 +2549,7 @@ Mods: {
 
 		Conditions: {
 			UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
-			PlaceablesFunctional: If the 'Placeables (functional)' setting is enabled
 			DroneTypeNotUnlocked: If it isn't unlocked yet
-			VanityAccessories: If the 'Vanity Accessories' setting is enabled
 		}
 
 		Announcements: {

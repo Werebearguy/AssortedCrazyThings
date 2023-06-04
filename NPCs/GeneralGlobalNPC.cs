@@ -72,8 +72,14 @@ namespace AssortedCrazyThings.NPCs
 			int type = shop.NpcType;
 			if (type == NPCID.PartyGirl)
 			{
-				shop.Add(ModContent.ItemType<SlimeBeaconItem>(), AssConditions.PlaceablesFunctional, Condition.DownedKingSlime);
-				shop.Add(ModContent.ItemType<SillyBalloonKit>(), AssConditions.VanityAccessories);
+				if (ContentConfig.Instance.PlaceablesFunctional)
+				{
+					shop.Add(ModContent.ItemType<SlimeBeaconItem>(), Condition.DownedKingSlime);
+				}
+				if (ContentConfig.Instance.VanityAccessories)
+				{
+					shop.Add(ModContent.ItemType<SillyBalloonKit>());
+				}
 			}
 		}
 
