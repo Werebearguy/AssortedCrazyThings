@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Base.Data
 
 		public static Condition DroneTypeNotUnlocked(DroneType droneType)
 		{
-			return new Condition(Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{CommonKey}DroneTypeNotUnlocked")), () => Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(droneType));
+			return new Condition(Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{CommonKey}DroneTypeNotUnlocked")), () => !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(droneType));
 		}
 	}
 }
