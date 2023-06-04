@@ -13,8 +13,6 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Fractured Soul");
-
 			Main.projFrames[Projectile.type] = 4;
 		}
 

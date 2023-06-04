@@ -139,7 +139,26 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				SheetAdditionNoHairAssets[Projectile.type] = GetTextureMaybeNull(sheetName + Addition + NoHair);
 			}
 
+			float xOff = Projectile.scale != 1f ? (Projectile.scale > 1f ? -Projectile.scale * 3 : Projectile.scale * 6) : 0;
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
+				.WithOffset(xOff, -2)
+				.WithSpriteDirection(-1)
+				.WithCode(CuteSlimePet);
+
 			SafeSetStaticDefaults();
+		}
+
+		public static void CuteSlimePet(Projectile proj, bool walking)
+		{
+			var cuteSlime = (CuteSlimeBaseProj)proj.ModProjectile;
+			if (walking)
+			{
+				AssExtensions.LoopAnimationInt(ref cuteSlime.frameY, ref cuteSlime.frameCounter, 12, DefaultYWalkStart, DefaultYWalkEnd);
+			}
+			else
+			{
+				AssExtensions.LoopAnimationInt(ref cuteSlime.frameY, ref cuteSlime.frameCounter, 16, DefaultYIdleStart, DefaultYIdleEnd);
+			}
 		}
 
 		private static Asset<Texture2D> GetTextureMaybeNull(string name)
@@ -259,7 +278,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				Projectile.timeLeft = 2;
 			}
 			PetPlayer petPlayer = player.GetModPlayer<PetPlayer>();
-			petSlot = petPlayer.numSlimePets; //TODO fix cute slime overlap eventually using this (requires custom AI)
+			petSlot = petPlayer.numSlimePets; //TODO fix cute slime overlap eventually using this (requires custom AI), test by removing ResetEffects of flag
 			petPlayer.numSlimePets++;
 
 			if (SlimePets.TryGetPetFromProj(Projectile.type, out _))
@@ -515,7 +534,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			}
 
 			int intended = Main.CurrentDrawnEntityShader;
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0);
+			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
 
 			foreach (var petAccessory in accessories)
 			{
@@ -539,7 +558,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 				Main.spriteBatch.Draw(texture, drawPos, frameLocal, color, Projectile.rotation, frameLocal.Size() / 2 + originOffset, Projectile.scale, effect, 0);
 			}
 
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended);
+			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
 		}
 	}
 }

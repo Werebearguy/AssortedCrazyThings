@@ -25,9 +25,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Animated Tome");
 			Main.projFrames[Projectile.type] = 5;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 4)
+				.WithOffset(-6f, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<AnimatedTomeBuff_AoMM>(), ModContent.ProjectileType<AnimatedTomeShotProj>());
 		}
@@ -70,7 +74,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/AnimatedTomeProj_" + mPlayer.animatedTomeType).Value;
 			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 
-			Vector2 stupidOffset = new Vector2(Projectile.width / 2 - Projectile.direction * 3f, Projectile.height / 2 + Projectile.gfxOffY);
+			Vector2 stupidOffset = new Vector2(Projectile.width / 2 - Projectile.spriteDirection * 3f, Projectile.height / 2 + Projectile.gfxOffY);
 
 			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 

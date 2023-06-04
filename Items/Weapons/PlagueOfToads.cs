@@ -9,12 +9,6 @@ namespace AssortedCrazyThings.Items.Weapons
 {
 	public class PlagueOfToads : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Plague of Toads");
-			Tooltip.SetDefault("Summons a cloud to rain toads on your foes");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.mana = 20;

@@ -21,9 +21,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pigronata");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(-12, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PigronataBuff_AoMM>(), null);
 		}
@@ -58,7 +62,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AssAI.TeleportIfTooFar(Projectile, player.MountedCenter);
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			var dustRect = Utils.CenteredRectangle(target.Center, new Vector2(10));
 			for (int i = 0; i < 10; i++)

@@ -9,11 +9,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	[Content(ContentType.Weapons)]
 	public class TrueLegendaryWoodenSwordProj : AssProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("True Legendary Wooden Sword");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.ThrowingKnife);

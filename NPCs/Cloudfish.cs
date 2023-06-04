@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -15,16 +16,25 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cloudfish");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
 			Main.npcCatchable[NPC.type] = true;
+
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused
+				}
+			};
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
 				IsWet = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
+			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -94,13 +104,18 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-				new FlavorTextBestiaryInfoElement("Is it a cloud? Is it a fish? It's both!")
 			});
 		}
 
 		public override void AI()
 		{
-			AssAI.ModifiedGoldfishAI(NPC, 200f);
+			AssAI.ModifiedGoldfishAI(NPC, scareRange);
+		}
+
+		public override bool CheckActive()
+		{
+			NPC.netSpam = 0;
+			return base.CheckActive();
 		}
 	}
 }

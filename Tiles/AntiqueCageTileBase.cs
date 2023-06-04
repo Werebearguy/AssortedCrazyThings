@@ -3,15 +3,15 @@ using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.Bosses)]
-	public abstract class AntiqueCageTileBase : DroppableTile<AntiqueCageItem>
+	public abstract class AntiqueCageTileBase : AssTile
 	{
 		public const int Width = 3;
 		public const int Height = 3;
@@ -42,9 +42,7 @@ namespace AssortedCrazyThings.Tiles
 
 			DustType = 1;
 
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Antique Cage");
-			AddMapEntry(new Color(102, 115, 103), name);
+			AddMapEntry(new Color(102, 115, 103), ModContent.GetInstance<AntiqueCageItem>().DisplayName);
 			
 			//Whatever is specified as anchors here has to be checked in a GlobalTile/Wall class to prevent destruction
 
@@ -107,7 +105,6 @@ namespace AssortedCrazyThings.Tiles
 			{
 				BabyHarvesterHandler.CanHarvesterSpawnNaturally = true;
 			}
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ItemType);
 		}
 	}
 

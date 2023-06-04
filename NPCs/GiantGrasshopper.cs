@@ -13,7 +13,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Giant Grasshopper");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Derpling];
 
 			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
@@ -59,12 +58,12 @@ namespace AssortedCrazyThings.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("It can leap over entire bushes in a single bound.")
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

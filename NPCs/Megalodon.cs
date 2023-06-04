@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -12,13 +13,17 @@ namespace AssortedCrazyThings.NPCs
 	[Content(ContentType.HostileNPCs)]
 	public class Megalodon : AssNPC
 	{
-		public static string name = "Megalodon";
-		public static string message = "A Megalodon is approaching! Get out of the ocean!";
-
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(name);
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Shark];
+
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused
+				}
+			};
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -79,11 +84,10 @@ namespace AssortedCrazyThings.NPCs
 
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-				new FlavorTextBestiaryInfoElement("Thought to be extinct, this ancient predator is as long-lived as its endless hunger.")
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{

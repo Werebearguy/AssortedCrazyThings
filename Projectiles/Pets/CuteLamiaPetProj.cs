@@ -28,10 +28,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Small Snake");
-
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(3, 8-3, 6)
+				.WhenNotSelected(0, 0)
+				.WithOffset(-6, -1)
+				.WithSpriteDirection(-1);
 
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<CuteLamiaPetBuff_AoMM>(), ModContent.ProjectileType<CuteLamiaPetShotProj>());
 		}

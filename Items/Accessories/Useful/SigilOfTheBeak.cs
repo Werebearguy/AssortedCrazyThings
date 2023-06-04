@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -11,9 +12,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sigil of the Beak");
-			Tooltip.SetDefault("Summons fractured souls to seek out enemies in combat" +
-				"\nFrequency and intensity increases the lower your health gets");
+			ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<SigilOfTheTalon>();
 		}
 
 		public override void SafeSetDefaults()

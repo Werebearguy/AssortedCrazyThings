@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
 	public class CuteSlimeRed : CuteSlimeBaseNPC
 	{
-		public override string IngameName
-		{
-			get
-			{
-				return "Cute Red Slime";
-			}
-		}
-
 		public override int CatchItem
 		{
 			get
@@ -28,7 +20,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			get
 			{
-				return SpawnConditionType.Overworld;
+				return SpawnConditionType.Forest;
 			}
 		}
 
@@ -37,8 +29,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("A playful slime that is quite active. It sometimes goes overboard when having fun.")
 			});
 		}
 	}

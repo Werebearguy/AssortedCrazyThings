@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 			dustColor = ItemID.BrightOrangeDye;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			int rand = Main.rand.Next(10);
 			if (rand == 0)

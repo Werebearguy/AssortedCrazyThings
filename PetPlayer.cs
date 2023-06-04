@@ -20,7 +20,7 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class PetPlayer : AssPlayerBase
 	{
 		private bool enteredWorld = false;
@@ -66,21 +66,29 @@ namespace AssortedCrazyThings
 		public bool CuteSlimeYellow = false;
 		public bool CuteSlimeXmas = false;
 		public bool CuteSlimeToxic = false;
+		public bool CuteSlimeShimmer = false;
 		public bool CuteSlimeSand = false;
 		public bool CuteSlimeRed = false;
+		public bool CuteSlimeRedIce = false;
 		public bool CuteSlimeRainbow = false;
 		public bool CuteSlimeQueen = false;
 		public bool CuteSlimePurple = false;
+		public bool CuteSlimePurpleIce = false;
 		public bool CuteSlimePrincess = false;
 		public bool CuteSlimePink = false;
+		public bool CuteSlimePinkIce = false;
 		public bool CuteSlimeLava = false;
 		public bool CuteSlimeJungle = false;
 		public bool CuteSlimeIlluminant = false;
 		public bool CuteSlimeIce = false;
+		public bool CuteSlimeHoney = false;
 		public bool CuteSlimeGreen = false;
+		public bool CuteSlimeGolden = false;
 		public bool CuteSlimeDungeon = false;
 		public bool CuteSlimeCrimson = false;
+		public bool CuteSlimeCrimsonJungle = false;
 		public bool CuteSlimeCorrupt = false;
+		public bool CuteSlimeCorruptJungle = false;
 		public bool CuteSlimeBlue = false;
 		public bool CuteSlimeBlack = false;
 
@@ -160,21 +168,29 @@ namespace AssortedCrazyThings
 			CuteSlimeYellow = false;
 			CuteSlimeXmas = false;
 			CuteSlimeToxic = false;
+			CuteSlimeShimmer = false;
 			CuteSlimeSand = false;
 			CuteSlimeRed = false;
+			CuteSlimeRedIce = false;
 			CuteSlimeRainbow = false;
-			CuteSlimePrincess = false;
 			CuteSlimeQueen = false;
 			CuteSlimePurple = false;
+			CuteSlimePurpleIce = false;
+			CuteSlimePrincess = false;
 			CuteSlimePink = false;
+			CuteSlimePinkIce = false;
 			CuteSlimeLava = false;
 			CuteSlimeJungle = false;
 			CuteSlimeIce = false;
 			CuteSlimeIlluminant = false;
+			CuteSlimeHoney = false;
 			CuteSlimeGreen = false;
+			CuteSlimeGolden = false;
 			CuteSlimeDungeon = false;
 			CuteSlimeCrimson = false;
+			CuteSlimeCrimsonJungle = false;
 			CuteSlimeCorrupt = false;
+			CuteSlimeCorruptJungle = false;
 			CuteSlimeBlue = false;
 			CuteSlimeBlack = false;
 
@@ -455,7 +471,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void clientClone(ModPlayer clientClone)
+		public override void CopyClientState(ModPlayer clientClone)
 		{
 			PetPlayer clone = clientClone as PetPlayer;
 
@@ -620,7 +636,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void OnEnterWorld(Player player)
+		public override void OnEnterWorld()
 		{
 			enteredWorld = true;
 		}

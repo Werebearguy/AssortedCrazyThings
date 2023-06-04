@@ -8,11 +8,6 @@ namespace AssortedCrazyThings.Items.Weapons
 {
 	public class SightofRetinazer : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sight of Retinazer");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.LaserRifle);

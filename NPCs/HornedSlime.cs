@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -14,10 +15,17 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Horned Slime");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 
+			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[1] {
+					BuffID.Poisoned
+				}
+			});
+
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.ShimmerSlime;
 			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);
 		}
 
@@ -41,21 +49,21 @@ namespace AssortedCrazyThings.NPCs
 			NPC.lavaImmune = true;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			Color color = NPC.color;
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hit.HitDirection, -1f, NPC.alpha, color);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 40; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hit.HitDirection, -2f, NPC.alpha, color);
 				}
 			}
 		}
@@ -74,7 +82,6 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.")
 			});
 		}
 	}

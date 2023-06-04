@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bone-Cleaving Fang");
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
 		}

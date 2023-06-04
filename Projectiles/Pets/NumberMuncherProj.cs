@@ -20,9 +20,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Number Muncher");
 			Main.projFrames[Projectile.type] = 10;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(2, 10 - 2, 6)
+				.WhenNotSelected(0, 0)
+				.WithOffset(2f, 0f)
+				.WithSpriteDirection(-1);
 
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<NumberMuncherBuff_AoMM>(), ModContent.ProjectileType<NumberMuncherShotProj>());
 		}

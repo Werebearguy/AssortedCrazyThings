@@ -32,7 +32,39 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = UseJumpingFrame ? 7 : 6;
 			Main.projPet[Projectile.type] = true;
 
+			if (!Projectile.minion)
+			{
+				var settings = ProjectileID.Sets.SimpleLoop(0, 2, 6)
+					.WithOffset(-4, 0)
+					.WhenNotSelected(0, 2, walkingFrameSpeed)
+					.WithSpriteDirection(-1)
+					.WithCode(SlimePet2);
+
+				if (UseJumpingFrame)
+				{
+					settings.WhenSelected(2, 1, 6);
+				}
+
+				ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = settings;
+			}
+
 			SafeSetStaticDefaults();
+		}
+
+		public static void SlimePet2(Projectile proj, bool walking)
+		{
+			if (walking)
+			{
+				float percent = (float)Main.timeForVisualEffects % 30f / 30f;
+				float change = Utils.MultiLerp(percent, 0f, 0f, 16f, 20f, 20f, 16f, 0f/*, 0f*/);
+				proj.position.Y -= change;
+
+				var babySlime = (BabySlimeBase)proj.ModProjectile;
+				if (change == 0f && babySlime.UseJumpingFrame)
+				{
+					proj.frame = 0;
+				}
+			}
 		}
 
 		public virtual void SafeSetStaticDefaults()

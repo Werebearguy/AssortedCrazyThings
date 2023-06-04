@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.NPCs.CuteSlimes;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,9 +15,18 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cute Gastropod");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
 			Main.npcCatchable[NPC.type] = true;
+
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused
+				}
+			};
+
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = ModContent.NPCType<CuteSlimeShimmer>();
 		}
 
 		public override void SetDefaults()
@@ -41,7 +52,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override bool? CanBeHitByItem(Player player, Item item)
 		{
-			return null; //TODO NPC return true
+			return player.CanBeHitByItemCritterLike(NPC);
 		}
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
@@ -61,7 +72,6 @@ namespace AssortedCrazyThings.NPCs
 
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
-				new FlavorTextBestiaryInfoElement("This hallowed variant of slime has taken on a more friendly appearance after meeting a special person.")
 			});
 		}
 	}

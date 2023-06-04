@@ -6,13 +6,6 @@ namespace AssortedCrazyThings.NPCs
 {
 	public class ChunkysEye : ChunkysMeatballsEyeBase
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-
-			DisplayName.SetDefault("Chunky's Eye");
-		}
-
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -24,7 +17,6 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
-				new FlavorTextBestiaryInfoElement("A minion of Cthulhu that was trapped in the Corruption. It now seeks its lost little brother.")
 			});
 		}
 	}

@@ -32,12 +32,6 @@ namespace AssortedCrazyThings.Items.Weapons
 			ModContent.ProjectileType<MagicSlimeSlingMinion3>()
 		};
 
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Magic Slime Sling");
-			Tooltip.SetDefault("Shoots magic gel that turns into slime minions on hit");
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 12;

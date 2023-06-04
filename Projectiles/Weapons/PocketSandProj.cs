@@ -18,11 +18,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			}
 		}
 
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Pocket Sand");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.ThrowingKnife);
@@ -35,7 +30,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			Projectile.hostile = false;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (Main.rand.NextFloat() >= .50f)
 			{

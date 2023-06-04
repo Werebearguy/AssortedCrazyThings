@@ -3,7 +3,7 @@
 namespace AssortedCrazyThings.Base.Handlers.UnreplaceableMinionWith0SlotsHandler
 {
 	//Taken with permission from billybobmcbo
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class UnreplaceableMinionWith0SlotsSystem : AssSystem
 	{
 		private static HashSet<int> Minions;

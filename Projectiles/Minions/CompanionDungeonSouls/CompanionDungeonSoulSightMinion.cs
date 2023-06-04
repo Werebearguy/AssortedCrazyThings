@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 			Projectile.idStaticNPCHitCooldown = 14;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Main.rand.NextBool(4))
 			{

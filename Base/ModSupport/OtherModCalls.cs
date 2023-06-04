@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.ModSupport
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class OtherModCalls : AssSystem
 	{
 		public override void PostSetupContent()
@@ -53,7 +53,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 						bossChecklist.Call(
 							"AddBoss",
 							Mod,
-							HarvesterBoss.name,
+							"Soul Harvester",
 							AssortedCrazyThings.harvester,
 							5.1f,
 							(Func<bool>)(() => AssWorld.downedHarvester),

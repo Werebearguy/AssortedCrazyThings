@@ -41,7 +41,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 		}
@@ -124,6 +123,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		private int GetFaceFrame(Player player)
 		{
 			//Sorted by priority
+			//0: player select
 			//6: aomm only, when not idle
 			//3: 25% health
 			//2: enemies nearby (60 tile radius)
@@ -131,6 +131,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			//5: idle for short (15 seconds)
 			//4: idle boss slain (1 minute ago)
 			//1: idle regular
+
+			if (Projectile.isAPreviewDummy)
+			{
+				return 0;
+			}
 
 			if (AmuletOfManyMinionsApi.IsActive(this) && !AmuletOfManyMinionsApi.IsIdle(this))
 			{
@@ -205,6 +210,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 10)
+				.WithOffset(2, -12f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<CompanionDungeonSoulPetBuff2_AoMM>(), null);
 		}

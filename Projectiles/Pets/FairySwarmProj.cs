@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Base.SwarmDraw;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using System;
@@ -15,7 +16,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Fairy Swarm");
 			Main.projFrames[Projectile.type] = 1; //The texture is a dummy
 			Main.projPet[Projectile.type] = true;
 
@@ -140,6 +140,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), targetNPC.Center, Vector2.Zero, ModContent.ProjectileType<FairySwarmShotProj>(), damage, 2.5f + Projectile.knockBack, Main.myPlayer);
 			}
 		}
+
+		public override void PostDraw(Color lightColor)
+		{
+			Projectile.GetOwner().GetModPlayer<SwarmDrawPlayer>().isFairySwarmDummyDrawing = Projectile.isAPreviewDummy;
+		}
 	}
 
 	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
@@ -164,17 +169,17 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.DamageType = DamageClass.Summon;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			float fromPlayerToTargetX = target.Center.X - Projectile.GetOwner().Center.X;
 
 			if (target.defense >= 20)
 			{
-				damage += target.checkArmorPenetration(10);
+				modifiers.ArmorPenetration += 10;
 			}
 
 			//Hit away from player
-			hitDirection = Math.Sign(fromPlayerToTargetX);
+			modifiers.HitDirectionOverride = Math.Sign(fromPlayerToTargetX);
 		}
 
 		public override void Kill(int timeLeft)

@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Items.Pets;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -13,9 +14,15 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Meatball");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
+
+			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[1] {
+					BuffID.Poisoned
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -35,20 +42,20 @@ namespace AssortedCrazyThings.NPCs
 			NPC.catchItem = ModContent.ItemType<MeatballSlimeItem>();
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, hit.HitDirection, -1f);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 30; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hitDirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 5, 2 * hit.HitDirection, -1f);
 				}
 			}
 		}
@@ -62,7 +69,6 @@ namespace AssortedCrazyThings.NPCs
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson,
-				new FlavorTextBestiaryInfoElement("A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.")
 			});
 		}
 

@@ -14,9 +14,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Drumstick Elemental");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(-14, -20f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			//Shoot manually in burst of 3
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<DrumstickElementalBuff_AoMM>(), 0);

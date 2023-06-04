@@ -12,8 +12,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("ChunkySlimeProj");
-
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<ChunkySlimeBuff_AoMM>(), null);
 		}
 

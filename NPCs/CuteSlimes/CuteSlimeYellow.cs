@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
 	public class CuteSlimeYellow : CuteSlimeBaseNPC
 	{
-		public override string IngameName
-		{
-			get
-			{
-				return "Cute Yellow Slime";
-			}
-		}
-
 		public override int CatchItem
 		{
 			get
@@ -28,7 +20,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			get
 			{
-				return SpawnConditionType.Overworld;
+				return SpawnConditionType.Forest;
 			}
 		}
 
@@ -37,8 +29,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("Moving with delicate grace, this slime dances about without missing a step.")
 			});
 		}
 	}

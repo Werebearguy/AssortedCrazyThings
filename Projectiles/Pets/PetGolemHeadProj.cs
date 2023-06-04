@@ -30,9 +30,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Replica Golem Head");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 1)
+				.WithOffset(-6, -15f)
+				.WithSpriteDirection(-1);
 
 			//Manual shooting
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetGolemHeadBuff_AoMM>(), 0);

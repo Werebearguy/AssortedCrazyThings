@@ -45,7 +45,6 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(HarvesterBoss.name);
 			Main.npcFrameCount[NPC.type] = 1;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -111,14 +110,8 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			NPC.SpawnWithHigherTime(30);
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
-			//float bossAdjustment = 1f;
-			//if (Main.GameModeInfo.IsMasterMode)
-			//{
-			//    bossAdjustment = 0.85f;
-			//}
-			//NPC.lifeMax = (int)(NPC.lifeMax * 1.3f * bossLifeScale * bossAdjustment);
 			NPC.lifeMax = 1337;
 			NPC.damage = (int)(NPC.damage * 1.1f);
 		}
@@ -225,7 +218,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			spriteBatch.Draw(texture, drawPos, NPC.frame, color, NPC.rotation, texture.Size() / 2, NPC.scale, effect, 0f);
 		}
 
-		public override void OnHitPlayer(Player target, int damage, bool crit)
+		public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
 		{
 			target.AddBuff(BuffID.Slow, 120, false); //2 seconds, 100% chance
 		}

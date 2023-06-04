@@ -9,8 +9,6 @@ namespace AssortedCrazyThings.Items.Tools
 	{
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
 			ItemID.Sets.CatchingTool[Type] = true; //noMelee = true prevents the item hitbox code from being ran, meaning this only serves for mod compatibility
 
 			SafeSetStaticDefaults();

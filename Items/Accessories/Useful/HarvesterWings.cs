@@ -4,6 +4,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -14,14 +15,13 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		//Mirror of wing type 43, item ID 4754 (Grox The Great's Wings)
 		public const int NumFrames = 7;
+		public static readonly int DamageIncrease = 5;
+		public static readonly int MaxMinionsIncrease = 1;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaxMinionsIncrease, DamageIncrease);
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Harvester Wings");
-			Tooltip.SetDefault("Allows flight and slow fall" +
-			"\nIncreases your max number of minions" +
-			"\n5% increased summon damage");
-
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(95, 6.5f, 1.35f);
 		}
 
@@ -35,8 +35,8 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetDamage(DamageClass.Summon) += 0.05f;
-			player.maxMinions++;
+			player.GetDamage(DamageClass.Summon) += DamageIncrease / 100f;
+			player.maxMinions += MaxMinionsIncrease;
 		}
 
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)

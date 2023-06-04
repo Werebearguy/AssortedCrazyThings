@@ -5,8 +5,6 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
 			SafeSetStaticDefaults();
 		}
 

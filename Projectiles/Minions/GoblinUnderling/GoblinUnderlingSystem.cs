@@ -173,13 +173,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 			AssPlayer.OnSlainBoss += OnSlainBoss;
 
-			On.Terraria.Main.ReportInvasionProgress += OnOOAStarts;
+			On_Main.ReportInvasionProgress += OnOOAStarts;
 
 			//MP handled in HijackGetData
-			On.Terraria.GameContent.Events.DD2Event.SetEnemySpawningOnHold += OnOOANewWave_SP;
+			Terraria.GameContent.Events.On_DD2Event.SetEnemySpawningOnHold += OnOOANewWave_SP;
 		}
 
-		private static void OnOOANewWave_SP(On.Terraria.GameContent.Events.DD2Event.orig_SetEnemySpawningOnHold orig, int forHowLong)
+		private static void OnOOANewWave_SP(Terraria.GameContent.Events.On_DD2Event.orig_SetEnemySpawningOnHold orig, int forHowLong)
 		{
 			orig(forHowLong);
 
@@ -198,7 +198,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			}
 		}
 
-		private static void OnOOAStarts(On.Terraria.Main.orig_ReportInvasionProgress orig, int progress, int progressMax, int icon, int progressWave)
+		private static void OnOOAStarts(On_Main.orig_ReportInvasionProgress orig, int progress, int progressMax, int icon, int progressWave)
 		{
 			orig(progress, progressMax, icon, progressWave);
 
@@ -499,22 +499,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		/// <summary>
 		/// Handles kb scaling and knocking away from player. Should be called from all projectiles
 		/// </summary>
-		public static void CommonModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref int hitDirection)
+		public static void CommonModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
 		{
 			GoblinUnderlingTier tier = GetCurrentTier();
 			//damage = (int)(damage * tier.damageMult); THIS IS DONE IN GOBLIN PREAI, OVERRIDING DEFAULT MINION SCALING
 
-			knockback *= tier.knockbackMult;
+			modifiers.Knockback *= tier.knockbackMult;
 
-			int armorPen = tier.armorPen;
-			damage += target.checkArmorPenetration(armorPen);
+			modifiers.ArmorPenetration += tier.armorPen;
 
 			float fromPlayerToTargetX = target.Center.X - projectile.GetOwner().Center.X;
 			if (Math.Abs(fromPlayerToTargetX) < 7 * 16)
 			{
 				//Hit away from player if target is close
-				hitDirection = Math.Sign(fromPlayerToTargetX);
-				knockback *= 2;
+				modifiers.HitDirectionOverride = Math.Sign(fromPlayerToTargetX);
+				modifiers.Knockback *= 2;
 			}
 		}
 

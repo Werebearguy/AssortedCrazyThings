@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Base.Handlers.UnreplaceableMinionWith0SlotsHandler
 	/// unset the minion flag from projectiles added to the <see cref="UnreplaceableMinionWith0SlotsSystem"/> cache in order to prevent them from
 	/// being sacrificed when the player uses a summon item. 
 	/// </summary>
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class UnreplaceableMinionWith0SlotsGlobalItem : AssGlobalItem
 	{
 		public override bool CanUseItem(Item item, Player player)

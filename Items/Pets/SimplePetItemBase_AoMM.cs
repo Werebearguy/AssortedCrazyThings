@@ -4,6 +4,7 @@ using Terraria.ID;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace AssortedCrazyThings.Items.Pets
 {
@@ -21,12 +22,12 @@ namespace AssortedCrazyThings.Items.Pets
 		//Use base item texture
 		public override string Texture => BaseModItem.Texture;
 
+		public override LocalizedText DisplayName => AmuletOfManyMinionsApi.AppendAoMMVersion(BaseModItem.DisplayName);
+
+		public override LocalizedText Tooltip => BaseModItem.Tooltip;
+
 		public sealed override void SafeSetStaticDefaults()
 		{
-			string name = BaseModItem.Name;
-			DisplayName.SetDefault("{$Mods.AssortedCrazyThings.ItemName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
-			Tooltip.SetDefault("{$Mods.AssortedCrazyThings.ItemTooltip." + name + "}");
-
 			EvenSaferSetStaticDefaults();
 		}
 

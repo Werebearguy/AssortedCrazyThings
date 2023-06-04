@@ -26,9 +26,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Skeletron Prime Pet Hand");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(2, -12f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			//Some forms spawn projectile
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<SkeletronPrimeHandBuff_AoMM>(), null);
@@ -124,7 +128,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Player player = Projectile.GetOwner();
-			AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHand_Arm", Projectile.Center, player.Center + new Vector2(0, player.gfxOffY), centerPad: -20f, direction: 0);
+			var playerPos = player.Center + new Vector2(0, player.gfxOffY);
+			if (Projectile.isAPreviewDummy)
+			{
+				playerPos = Projectile.Center - ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type].Offset + new Vector2(-14, 0);
+			}
+			AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronPrimeHand_Arm", Projectile.Center, playerPos, centerPad: -20f, direction: 0);
 
 			PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/SkeletronPrimeHandProj_" + mPlayer.skeletronPrimeHandType).Value;
@@ -259,7 +268,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Projectile.timeLeft > 3)
 			{

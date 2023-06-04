@@ -6,14 +6,13 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions
 {
-	[Content(ContentType.DroppedPets | ContentType.Weapons, needsAllToFilter: true)] //Also used by BasicLaserDrone
+	[Content(ContentType.DroppedPets | ContentType.Weapons, needsAllToFilterOut: true)] //Also used by BasicLaserDrone
 	public class PetDestroyerDroneLaser : AssProjectile
 	{
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.MiniRetinaLaser; 
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pet Destroyer Laser");
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
 

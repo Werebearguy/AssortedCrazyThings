@@ -17,9 +17,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ghost Martian");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 10)
+				.WithOffset(2, -12f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<GhostMartianBuff_AoMM>(), 0);
 		}
@@ -222,12 +226,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.localNPCHitCooldown = 20;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			damage += target.checkArmorPenetration(target.defense);
+			modifiers.ScalingArmorPenetration += 1f;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//Gets reset every tick, but in same tick, reduce subsequent damage
 			Projectile.damage = (int)(Projectile.damage * 0.8f);

@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class EmpressOfLightGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Well-Worn Boots of Stomping");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 30;

@@ -18,9 +18,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Suspicious Nugget");
 			Main.projFrames[Projectile.type] = 8;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(1, 7 - 1, 4)
+				.WhenNotSelected(0, 0)
+				.WithOffset(-2f, 0f)
+				.WithSpriteDirection(-1);
 
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<SuspiciousNuggetBuff_AoMM>(), null);
 		}
@@ -37,7 +41,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override bool PreAI()
 		{
 			Player player = Projectile.GetOwner();
-			player.grinch = false; // Relic from AIType
+			player.petFlagBabyRedPanda = false; // Relic from AIType
 
 			GetFrame();
 

@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
@@ -22,12 +23,12 @@ namespace AssortedCrazyThings.Buffs.Pets
 		//Use base buff texture
 		public override string Texture => BaseModBuff.Texture;
 
+		public override LocalizedText DisplayName => AmuletOfManyMinionsApi.AppendAoMMVersion(BaseModBuff.DisplayName);
+
+		public override LocalizedText Description => BaseModBuff.Description;
+
 		public sealed override void SafeSetStaticDefaults()
 		{
-			string name = BaseModBuff.Name;
-			DisplayName.SetDefault("{$Mods.AssortedCrazyThings.BuffName." + name + "} {$Mods.AssortedCrazyThings.Common.AoMMVersion}");
-			Description.SetDefault("{$Mods.AssortedCrazyThings.BuffDescription." + name + "}");
-
 			EvenSaferSetStaticDefaults();
 		}
 

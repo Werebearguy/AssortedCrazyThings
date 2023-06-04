@@ -23,9 +23,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pet Goldfish");
 			Main.projFrames[Projectile.type] = 10;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(1, 6 - 1, 6)
+				.WhenNotSelected(0, 0)
+				.WithOffset(0f, 0f)
+				.WithSpriteDirection(-1);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<PetGoldfishBuff_AoMM>(), null);
 		}
@@ -355,7 +359,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return true;
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void PostAI()
+		{
+			Projectile.frameCounter = 0;
+			Projectile.frame = frame2;
+		}
+
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			//If in water, deal more damage
 			float mult = 1f;
@@ -367,15 +377,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				mult += 0.5f;
 			}
-			damage = (int)(damage * mult);
+			modifiers.SourceDamage *= mult;
 		}
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			SpriteEffects effects = Projectile.direction != -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/PetGoldfishProj_" + mPlayer.petGoldfishType).Value;
-			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: frame2);
+			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Vector2 stupidOffset = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f - 2 + Projectile.gfxOffY);
 
 			if (mPlayer.petGoldfishType == 4)

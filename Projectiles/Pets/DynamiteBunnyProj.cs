@@ -23,9 +23,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Dynamite Bunny");
 			Main.projFrames[Projectile.type] = Main.projFrames[ProjectileID.Bunny];
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, 6 - 0, 4)
+				.WhenNotSelected(0, 0)
+				.WithOffset(2f, 0f)
+				.WithSpriteDirection(-1);
 
 			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<DynamiteBunnyBuff_AoMM>(), null);
 		}
@@ -143,7 +147,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			prevDynamiteBunnyType = dynamiteBunnyType;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (!AmuletOfManyMinionsApi.IsActive(this))
 			{

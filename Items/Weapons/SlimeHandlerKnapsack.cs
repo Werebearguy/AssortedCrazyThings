@@ -10,12 +10,26 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
-	public class SlimeHandlerKnapsack : MinionItemBase
+	public enum SlimeType
 	{
+		Default,
+		Assorted,
+		Spiked,
+	}
+
+	public sealed class SlimeHandlerKnapsack : MinionItemBase
+	{
+		public static LocalizedText Enum2string(SlimeType e)
+		{
+			return ModContent.GetInstance<SlimeHandlerKnapsack>().GetLocalization(Enum.GetName(typeof(SlimeType), e));
+		}
+
+		//Half-assed implementation
 		public static CircleUIConf GetUIConf()
 		{
 			List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
@@ -24,18 +38,18 @@ namespace AssortedCrazyThings.Items.Weapons
 						AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
 			List<string> tooltips = new List<string>
 					{
-						"Default"
-						+ "\nBase Damage: " + SlimePackMinion.DefDamage
-						+ "\nBase Knockback: " + SlimePackMinion.DefKnockback,
-						"Assorted"
-						+ "\nBase Damage: " + SlimePackMinion.DefDamage
-						+ "\nBase Knockback: " + SlimePackMinion.DefKnockback,
-						"Spiked"
-						+ "\nBase Damage: " + Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1))
-						+ "\nBase Knockback: " + Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1)
-						+ "\nShoots spikes while fighting"
+						Enum2string(SlimeType.Default).ToString()
+						+ $"\n{AssUISystem.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
+						+ $"\n{AssUISystem.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
+						Enum2string(SlimeType.Assorted).ToString()
+						+ $"\n{AssUISystem.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
+						+ $"\n{AssUISystem.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
+						Enum2string(SlimeType.Spiked).ToString()
+						+ $"\n{AssUISystem.BaseDamageText.Format(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1)))}"
+						+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1))}"
+						+ $"\n{SpikedBonusText}"
 					};
-			List<string> toUnlock = new List<string>() { "Default", "Default", "Defeat Plantera" };
+			List<string> toUnlock = new List<string>() { Enum2string(SlimeType.Default).ToString(), Enum2string(SlimeType.Default).ToString(), SpikedUnlockText.ToString() };
 
 			List<bool> unlocked = new List<bool>()
 					{
@@ -47,11 +61,19 @@ namespace AssortedCrazyThings.Items.Weapons
 			return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock, drawOffset: new Vector2(0f, -2f));
 		}
 
+		public static LocalizedText SpikedBonusText { get; private set; }
+		public static LocalizedText SpikedUnlockText { get; private set; }
+
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Handler Knapsack");
-			Tooltip.SetDefault("Summons a friendly Slime of a random color from your Knapsack to fight for you"
-				+ "\nRight click to pick from available forms");
+			SpikedBonusText = this.GetLocalization("SpikedBonus");
+			SpikedUnlockText = this.GetLocalization("SpikedUnlock");
+
+			//Needs to be called so the lang is initialized
+			if (!Main.dedServ)
+			{
+				GetUIConf();
+			}
 		}
 
 		public override void SetDefaults()
@@ -79,7 +101,7 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-			if (mPlayer.selectedSlimePackMinionType == 2)
+			if (mPlayer.selectedSlimePackMinionType == SlimeType.Spiked)
 			{
 				knockback *= 1f + SlimePackMinion.SpikedIncrease;
 			}
@@ -88,7 +110,7 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-			if (mPlayer.selectedSlimePackMinionType == 2)
+			if (mPlayer.selectedSlimePackMinionType == SlimeType.Spiked)
 			{
 				damage += SlimePackMinion.SpikedIncrease;
 			}
@@ -97,12 +119,12 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-			byte selected = mPlayer.selectedSlimePackMinionType;
-			if (selected == 1)
+			SlimeType selected = mPlayer.selectedSlimePackMinionType;
+			if (selected == SlimeType.Assorted)
 			{
 				type = ModContent.ProjectileType<SlimePackAssortedMinion>();
 			}
-			else if (selected == 2)
+			else if (selected == SlimeType.Spiked)
 			{
 				type = ModContent.ProjectileType<SlimePackSpikedMinion>();
 			}
@@ -119,7 +141,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			int index = Projectile.NewProjectile(source, spawnPos.X, spawnPos.Y, -player.velocity.X, player.velocity.Y - 6f, type, damage, knockback, Main.myPlayer, 0f, 0f);
 
 			int ogDamage = Item.damage;
-			if (selected == 2)
+			if (selected == SlimeType.Spiked)
 			{
 				ogDamage = (int)(ogDamage * (1f + SlimePackMinion.SpikedIncrease));
 			}

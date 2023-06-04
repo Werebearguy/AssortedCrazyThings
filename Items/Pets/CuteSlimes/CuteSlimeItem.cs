@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets.CuteSlimes
@@ -11,6 +13,31 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 	[Content(ContentType.CuteSlimes)]
 	public abstract class CuteSlimeItem : SimplePetItemBase
 	{
+		public static LocalizedText AccessoryBlacklistedText { get; private set; }
+		public static LocalizedText AccessoryNoneText { get; private set; }
+		public static LocalizedText HatSlotText { get; private set; }
+		public static LocalizedText BodySlotText { get; private set; }
+		public static LocalizedText CarriedSlotText { get; private set; }
+		public static LocalizedText AccessorySlotText { get; private set; }
+
+		public virtual bool CanShimmerItem => true;
+
+		public override void SafeSetStaticDefaults()
+		{
+			string category = "Items.CuteSlime.";
+			AccessoryBlacklistedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessoryBlacklisted"));
+			AccessoryNoneText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessoryNone"));
+			HatSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}HatSlot"));
+			BodySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BodySlot"));
+			CarriedSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CarriedSlot"));
+			AccessorySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessorySlot"));
+
+			if (CanShimmerItem)
+			{
+				ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<CuteSlimeShimmerItem>();
+			}
+		}
+
 		public override void SafeSetDefaults()
 		{
 			base.SafeSetDefaults();
@@ -31,29 +58,30 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 					{
 						for (byte slotNumber = 1; slotNumber < 5; slotNumber++) //0 is None, reserved
 						{
-							string tooltip;
+							string tooltip = string.Empty;
 
 							if (slimePet.IsSlotTypeBlacklisted[slotNumber])
 							{
-								tooltip = "Blacklisted";
+								tooltip = AccessoryBlacklistedText.ToString();
 							}
 							else
 							{
 								if (pPlayer.TryGetAccessoryInSlot(slotNumber, out PetAccessory petAccessory))
 								{
-									//type = PetAccessory.Items[accessory - 1];
-									Item itemTemp = new Item();
-									itemTemp.SetDefaults(petAccessory.Type);
-									tooltip = itemTemp.Name.StartsWith("Cute ") ? itemTemp.Name.Substring(5) : itemTemp.Name;
-									tooltip += petAccessory.HasAlts ? " (" + petAccessory.AltTextureDisplayNames[petAccessory.AltTextureIndex] + ")" : "";
-								}
-								else
-								{
-									tooltip = "None";
+									if (ContentSamples.ItemsByType[petAccessory.Type].ModItem is PetAccessoryItem petAccessoryItem)
+									{
+										tooltip = petAccessoryItem.ShortNameText.ToString();
+										tooltip += petAccessory.HasAlts ? $" ({petAccessory.AltTextureDisplayNames[petAccessory.AltTextureIndex]})" : "";
+									}
 								}
 							}
 
-							tooltips.Add(new TooltipLine(Mod, ((SlotType)slotNumber).ToString(), Enum2String(slotNumber) + tooltip));
+							if (string.IsNullOrEmpty(tooltip))
+							{
+								tooltip = AccessoryNoneText.ToString();
+							}
+
+							tooltips.Add(new TooltipLine(Mod, ((SlotType)slotNumber).ToString(), SlotToString(slotNumber).Format(tooltip)));
 						}
 					}
 				}
@@ -64,25 +92,25 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 			}
 		}
 
-		private string Enum2String(byte b)
+		private static LocalizedText SlotToString(byte b)
 		{
 			if (b == (byte)SlotType.Hat)
 			{
-				return "Hat slot: ";
+				return HatSlotText;
 			}
 			if (b == (byte)SlotType.Body)
 			{
-				return "Body slot: ";
+				return BodySlotText;
 			}
 			if (b == (byte)SlotType.Carried)
 			{
-				return "Carry slot: ";
+				return CarriedSlotText;
 			}
 			if (b == (byte)SlotType.Accessory)
 			{
-				return "Accessory slot: ";
+				return AccessorySlotText;
 			}
-			return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + b + ")";
+			throw new Exception("Unknown Slot number: " + b);
 		}
 	}
 }

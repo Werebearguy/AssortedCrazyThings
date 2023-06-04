@@ -3,11 +3,11 @@ using Terraria;
 namespace AssortedCrazyThings.Items
 {
 	[Content(ContentType.HostileNPCs)]
-	public abstract class ChunkyandMeatballItem : AssItem
+	public abstract class ChunkyandMeatballEyeItemBase : AssItem
 	{
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.width = 22;
 			Item.height = 22;
 			Item.value = Item.sellPrice(silver: 2);
@@ -15,25 +15,13 @@ namespace AssortedCrazyThings.Items
 		}
 	}
 
-	public class ChunkysEyeItem : ChunkyandMeatballItem
+	public class ChunkysEyeItem : ChunkyandMeatballEyeItemBase
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Chunky's Eye");
-			Tooltip.SetDefault("'Find Meatball's Eye and combine the two at a Demon Altar'");
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
 	}
 
-	public class MeatballsEyeItem : ChunkyandMeatballItem
+	public class MeatballsEyeItem : ChunkyandMeatballEyeItemBase
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Meatball's Eye");
-			Tooltip.SetDefault("'Find Chunky's Eye and combine the two at a Demon Altar'");
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
 	}
 }

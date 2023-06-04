@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
 	public class CuteSlimeJungle : CuteSlimeBaseNPC
 	{
-		public override string IngameName
-		{
-			get
-			{
-				return "Cute Jungle Slime";
-			}
-		}
-
 		public override int CatchItem
 		{
 			get
@@ -37,8 +29,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
-				new FlavorTextBestiaryInfoElement("Life in the jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.")
 			});
 		}
 	}

@@ -9,14 +9,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
 	public class CuteSlimeRainbow : CuteSlimeBaseNPC
 	{
-		public override string IngameName
-		{
-			get
-			{
-				return "Cute Rainbow Slime";
-			}
-		}
-
 		public override int CatchItem
 		{
 			get
@@ -29,7 +21,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			get
 			{
-				return SpawnConditionType.Overworld;
+				return SpawnConditionType.Forest;
 			}
 		}
 
@@ -38,8 +30,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("The caring and motherly nature that this slime exhibits shows that it understands compassion.")
 			});
 		}
 
@@ -50,8 +42,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override Color? GetAlpha(Color lightColor)
 		{
-			lightColor = Main.DiscoColor;
-			lightColor *= (255f - NPC.alpha) / 255f;
+			lightColor = NPC.GetShimmerColor(Main.DiscoColor);
+			lightColor *= NPC.Opacity;
 			return lightColor;
 		}
 	}

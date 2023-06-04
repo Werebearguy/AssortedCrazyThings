@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
@@ -46,9 +47,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 
 		public override bool UseJumpingFrame => false;
 
+		public static LocalizedText CommonDisplayNameText { get; private set; }
+
+		public override LocalizedText DisplayName => CommonDisplayNameText;
+
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Magic Slime Sling Minion");
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.MagicSlimeSlingMinion.DisplayName"));
 			Main.projFrames[Projectile.type] = 2;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;

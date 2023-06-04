@@ -7,15 +7,6 @@ namespace AssortedCrazyThings.Items.Fun
 	[Content(ContentType.Weapons | ContentType.Tools)]
 	public class CraftOfMiners : AssItem
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Craft of Miners");
-			Tooltip.SetDefault("'Use those fists of yours to tear through any blocks in your way'"
-				+ "\n[c/44942e:'Dedicated to Anonymous']");
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.ShroomiteDiggingClaw);

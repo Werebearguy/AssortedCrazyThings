@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
@@ -10,9 +11,20 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 	[Content(ContentType.Weapons)]
 	public abstract class DroneUnlockable : AssItem
 	{
+		public static LocalizedText UnlockedText { get; private set; }
+		public static LocalizedText UnlocksText { get; private set; }
+		public static LocalizedText AlreadyUnlockedText { get; private set; }
+
+		public override LocalizedText Tooltip => LocalizedText.Empty;
+
+		public abstract DroneType UnlockedType { get; }
+
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			string category = $"{LocalizationCategory}.DroneUnlockable.";
+			UnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}UnlockedText"));
+			UnlocksText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Unlocks"));
+			AlreadyUnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AlreadyUnlocked"));
 
 			SafeSetStaticDefaults();
 		}
@@ -24,12 +36,11 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.rare = 4;
 			Item.width = 26;
 			Item.height = 24;
 			Item.consumable = true;
-			Item.maxStack = 1;
 			Item.UseSound = SoundID.Item4;
 			Item.useTime = 30;
 			Item.useAnimation = 30;
@@ -40,19 +51,18 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-			string tooltip = DroneController.GetDroneData(UnlockedType).Name + " for the Drone Controller";
+			string name = DroneController.GetDroneData(UnlockedType).NameSingular;
+			string tooltip;
 			if (!mPlayer.droneControllerUnlocked.HasFlag(UnlockedType))
 			{
-				tooltip = "Unlocks the " + tooltip;
+				tooltip = UnlocksText.Format(name);
 			}
 			else
 			{
-				tooltip = "Already unlocked " + tooltip;
+				tooltip = AlreadyUnlockedText.Format(name);
 			}
 			tooltips.Add(new TooltipLine(Mod, "Unlocks", tooltip));
 		}
-
-		public abstract DroneType UnlockedType { get; }
 
 		public override bool CanUseItem(Player player)
 		{
@@ -72,7 +82,7 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 			if (Main.netMode != NetmodeID.Server && Main.myPlayer == player.whoAmI)
 			{
 				player.GetModPlayer<AssPlayer>().droneControllerUnlocked |= UnlockedType;
-				Main.NewText("Unlocked: " + DroneController.GetDroneData(UnlockedType).Name, CombatText.HealLife);
+				Main.NewText(UnlockedText.Format(DroneController.GetDroneData(UnlockedType).NameSingular), CombatText.HealLife);
 			}
 			return true;
 		}
@@ -81,59 +91,33 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		{
 			CreateRecipe(1)
 				.AddIngredient(ModContent.ItemType<DroneParts>())
-				.AddCondition(new Recipe.Condition(NetworkText.FromLiteral("If it isn't unlocked yet"),
-				(Recipe recipe) => !Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(UnlockedType)))
+				.AddCondition(AssConditions.DroneTypeNotUnlocked(UnlockedType))
 				.Register();
 		}
 	}
 
 	public class DroneUnlockableBasicLaserDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Basic Laser Drone Components");
-		}
-
 		public override DroneType UnlockedType => DroneType.BasicLaser;
 	}
 
 	public class DroneUnlockableHeavyLaserDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Heavy Laser Drone Components");
-		}
-
 		public override DroneType UnlockedType => DroneType.HeavyLaser;
 	}
 
 	public class DroneUnlockableMissileDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Missile Drone Components");
-		}
-
 		public override DroneType UnlockedType => DroneType.Missile;
 	}
 
 	public class DroneUnlockableHealingDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Healing Drone Components");
-		}
-
 		public override DroneType UnlockedType => DroneType.Healing;
 	}
 
 	public class DroneUnlockableShieldDrone : DroneUnlockable
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Shield Drone Components");
-		}
-
 		public override DroneType UnlockedType => DroneType.Shield;
 	}
 }

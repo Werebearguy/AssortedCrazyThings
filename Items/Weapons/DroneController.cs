@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
@@ -132,17 +133,13 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new DroneData
 						(
 						projType: ModContent.ProjectileType<BasicLaserDrone>(),
-						name: "Basic Laser Drone",
-						desc: "Rapidly fires lasers",
-						firerate: "High"
+						droneType: selected
 						);
 				case DroneType.HeavyLaser:
 					return new DroneData
 						(
 						projType: ModContent.ProjectileType<HeavyLaserDrone>(),
-						name: "Heavy Laser Drone",
-						desc: "Fires a penetrating laser after a long delay",
-						firerate: "Extremely slow",
+						droneType: selected,
 						dmgModifier: 8.091f,
 						kBModifier: 4f
 						);
@@ -150,9 +147,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new DroneData
 						(
 						projType: ModContent.ProjectileType<MissileDrone>(),
-						name: "Missile Drone",
-						desc: "Fires a salvo of missiles after a long delay",
-						firerate: "Very slow",
+						droneType: selected,
 						dmgModifier: 2.19f,
 						kBModifier: 1.2f
 						);
@@ -160,18 +155,14 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new DroneData
 						(
 						projType: ModContent.ProjectileType<HealingDrone>(),
-						name: "Healing Drone",
-						desc: "Heals you when hurt",
-						misc: "Only one can be summoned",
+						droneType: selected,
 						combat: false
 						);
 				case DroneType.Shield:
 					return new DroneData
 						(
 						projType: ModContent.ProjectileType<ShieldDrone>(),
-						name: "Shield Drone",
-						desc: "Creates a damage reducing shield over time",
-						misc: "Only one can be summoned\nShield resets if drone despawns",
+						droneType: selected,
 						combat: false
 						);
 				default:
@@ -208,7 +199,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					assets.Add(AssUtils.Instance.Assets.Request<Texture2D>(data.PreviewTextureName));
 					unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
 					tooltips.Add(data.UITooltip);
-					toUnlock.Add("Craft and use a '" + data.Name + " Components' Item");
+					toUnlock.Add(ToUnlockText.Format(data.ComponentName.ToString()));
 				}
 			}
 
@@ -224,6 +215,8 @@ namespace AssortedCrazyThings.Items.Weapons
 			{
 				return;
 			}
+
+			string category = $"{nameof(DroneData)}.";
 
 			Array a = Enum.GetValues(typeof(DroneType));
 			DataList = new DroneData[a.Length - 1]; //without None
@@ -243,16 +236,21 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 		#endregion
 
-		public override void EvenSaferSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Drone Controller");
-			Tooltip.SetDefault("Summons a friendly Drone to support or fight for you"
-				+ "\nRight click to pick from available drones"
-				+ "\nHolding the item improves the Drones' supportive and offensive abilities");
-		}
-
 		public const int BaseDmg = 22;
 		public const float BaseKB = 2.5f;
+
+		public static LocalizedText FirerateText { get; private set; }
+		public static LocalizedText UnlockMoreText { get; private set; }
+		public static LocalizedText CanSpawnText { get; private set; }
+		public static LocalizedText ToUnlockText { get; private set; }
+
+		public override void EvenSaferSetStaticDefaults()
+		{
+			FirerateText = this.GetLocalization("Firerate");
+			UnlockMoreText = this.GetLocalization("UnlockMore");
+			CanSpawnText = this.GetLocalization("CanSpawn");
+			ToUnlockText = this.GetLocalization("ToUnlock");
+		}
 
 		public override void SetDefaults()
 		{
@@ -342,7 +340,7 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					if (line.Mod == "Terraria" && line.Name == "ItemName")
 					{
-						line.Text += " (" + data.Name + ")";
+						line.Text += " (" + data.NameSingular + ")";
 					}
 				}
 
@@ -369,7 +367,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			{
 				if (data.Combat)
 				{
-					if (data.Firerate != "") tooltips.Insert(knockbackIndex, new TooltipLine(Mod, "Firerate", data.Firerate + " firerate"));
+					if (data.Firerate.ToString() != "") tooltips.Insert(knockbackIndex, new TooltipLine(Mod, nameof(FirerateText), FirerateText.Format(data.Firerate)));
 				}
 				else
 				{
@@ -383,13 +381,13 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			if (!(allUnlocked && hasController))
 			{
-				tooltips.Add(new TooltipLine(Mod, "Destroyer", "Defeat The Destroyer to unlock more drones"));
+				tooltips.Add(new TooltipLine(Mod, nameof(UnlockMoreText), UnlockMoreText.ToString()));
 			}
 
 			CanSpawn(Main.LocalPlayer, selected, out bool blocked);
 			if (hasController && blocked)
 			{
-				tooltips.Add(new TooltipLine(Mod, "CanSpawn", "Only one " + data.Name + " can be out at once"));
+				tooltips.Add(new TooltipLine(Mod, nameof(CanSpawnText), CanSpawnText.Format(data.NameSingular)));
 			}
 		}
 	}
@@ -400,36 +398,53 @@ namespace AssortedCrazyThings.Items.Weapons
 	public struct DroneData
 	{
 		public readonly int ProjType;
-		public readonly string Name;
+		public readonly string InternalName;
+		public readonly LocalizedText Name;
+		public readonly LocalizedText ComponentName;
+		public readonly LocalizedText Firerate;
+		public readonly LocalizedText Description;
+		public readonly LocalizedText Misc;
 		public readonly float DmgModifier;
 		public readonly float KBModifier;
-		public readonly string UITooltip;
-		public readonly string Firerate;
 		public readonly bool Combat;
 
-		public string PreviewTextureName
-		{
-			get
-			{
-				return "Projectiles/Minions/Drones/" + Name.Replace(" ", "") + "Preview";
-			}
-		}
+		public string NameSingular => Name.Format(1);
+		public string UITooltip => NameSingular
+			+ (Combat ? ($"\n{AssUISystem.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
+			+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
+			+ "\n" + Description.ToString()
+			+ "\n" + Misc.ToString();
 
-		public DroneData(int projType, string name, string desc, string misc = "", string firerate = "", float dmgModifier = 0f, float kBModifier = 1f, bool combat = true)
+		public string PreviewTextureName => $"Projectiles/Minions/Drones/{InternalName}Preview"; 
+
+		public DroneData(int projType, DroneType droneType, float dmgModifier = 0f, float kBModifier = 1f, bool combat = true)
 		{
 			ProjType = projType;
-			Name = name;
+			InternalName = GetInternalName(droneType);
+			string thisKey = $"DroneData.{InternalName}.";
+			Name = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}DisplayName"), () => "");
+			ComponentName = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}ComponentName"), () => "");
+			Firerate = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Firerate"), () => "");
+			Description = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Description"), () => "");
+			Misc = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Misc"), () => "");
 			DmgModifier = dmgModifier;
 			KBModifier = kBModifier;
-			Firerate = firerate;
-			string stats = combat ? ("\nBase Damage: " + (int)(DroneController.BaseDmg * (DmgModifier + 1f))
-			 + "\nBase Knockback: " + Math.Round(DroneController.BaseKB * KBModifier, 1)) : "";
-			UITooltip = Name + stats + "\n" + desc + "\n" + misc;
 			Combat = combat;
 		}
+
+		public static string GetInternalName(DroneType droneType)
+		{
+			return droneType switch
+			{
+				DroneType.BasicLaser => "BasicLaserDrone",
+				DroneType.HeavyLaser => "HeavyLaserDrone",
+				DroneType.Missile => "MissileDrone",
+				DroneType.Healing => "HealingDrone",
+				DroneType.Shield => "ShieldDrone",
+				_ => throw new Exception("No DroneType specified"),
+			};
+		}
 	}
-
-
 
 	/// <summary>
 	/// The type of drone enumerated, so you can check against it via .HasFlag(DroneType.SomeType)
@@ -438,10 +453,10 @@ namespace AssortedCrazyThings.Items.Weapons
 	public enum DroneType : byte
 	{
 		None = 0,
-		BasicLaser = 1,
-		HeavyLaser = 2,
-		Missile = 4,
-		Healing = 8,
-		Shield = 16
+		BasicLaser = 1 << 0,
+		HeavyLaser = 1 << 1,
+		Missile = 1 << 2,
+		Healing = 1 << 3,
+		Shield = 1 << 4,
 	}
 }

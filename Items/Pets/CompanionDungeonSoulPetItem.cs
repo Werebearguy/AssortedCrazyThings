@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
@@ -11,25 +12,25 @@ namespace AssortedCrazyThings.Items.Pets
 	[Content(ContentType.Bosses)]
 	public class CompanionDungeonSoulPetItem : CaughtDungeonSoulBase
 	{
+		public static LocalizedText CommonTooltipText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
+			CommonTooltipText = Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(CompanionDungeonSoulPetItem)}.CommonTooltip"));
+
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-
-			ItemID.Sets.ItemNoGravity[Item.type] = true;
-
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SafeSetDefaults()
 		{
 			Item.DefaultToVanitypet(ModContent.ProjectileType<CompanionDungeonSoulPetProj>(), ModContent.BuffType<CompanionDungeonSoulPetBuff>());
+			Item.maxStack = 1;
 			frame2CounterCount = -1;
 			animatedTextureSelect = 0;
 
 			Item.width = 26;
 			Item.height = 28;
-			Item.maxStack = 1;
 			Item.noUseGraphic = true;
 
 			Item.rare = 3;

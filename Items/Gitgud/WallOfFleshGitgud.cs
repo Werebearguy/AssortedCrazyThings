@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class WallOfFleshGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Wall of Flesh Voodoo Doll");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

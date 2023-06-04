@@ -4,7 +4,7 @@ using Terraria;
 
 namespace AssortedCrazyThings.NPCs
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class BuffGlobalNPC : AssGlobalNPC
 	{
 		public override bool InstancePerEntity => true;

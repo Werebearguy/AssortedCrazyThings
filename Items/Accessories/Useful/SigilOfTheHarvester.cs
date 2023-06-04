@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -8,18 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[LegacyName("SigilOfLastStand")]
 	public class SigilOfTheHarvester : SigilItemBase
 	{
-		public override void EvenSaferSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sigil of the Harvester");
-			Tooltip.SetDefault("'The aspects of the Harvester reside within you'"
-				+ "\nSummons fractured souls to seek out enemies in combat"
-				+ "\nFrequency and intensity increases the lower your health gets"
-				+ $"\nOn death, transform into a soul for {SigilOfTheWing.DurationSeconds} seconds, regenerating {SigilOfTheWing.HealthRestoreAmount}% max health"
-				+ "\nWhile transformed, you cannot use items"
-				+ $"\nHas a cooldown of {SigilOfTheWing.CooldownSeconds / 60} minutes"
-				+ "\nAllows your grappling hooks to deal damage when extending"
-				+ "\nCan hit up to 3 enemies");
-		}
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SigilOfTheWing.DurationSeconds, SigilOfTheWing.HealthRestoreAmount, SigilOfTheWing.CooldownSeconds, SigilOfTheTalon.MaxPierce);
 
 		public override void SafeSetDefaults()
 		{
@@ -33,8 +23,9 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
-			SigilOfTheTalon.ModifyTooltip(Mod, tooltips, "Sigil of the Talon: ");
-			SigilOfTheWing.ModifyTooltip(Mod, Item, tooltips, "Sigil of the Wing: ");
+			string divider = AssUISystem.GetColon();
+			SigilOfTheTalon.ModifyTooltip(Mod, tooltips, ModContent.GetInstance<SigilOfTheTalon>().DisplayName.ToString() + divider);
+			SigilOfTheWing.ModifyTooltip(Mod, Item, tooltips, ModContent.GetInstance<SigilOfTheWing>().DisplayName.ToString() + divider);
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

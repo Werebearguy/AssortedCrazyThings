@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class TorchGodLightPetProj : SimplePetProjBase
 	{
 		private static Asset<Texture2D> flameAsset;
@@ -74,7 +74,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Godly Torch");
 			Main.projFrames[Projectile.type] = 7;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.LightPet[Projectile.type] = true;
@@ -356,12 +355,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				{
 					short x = TorchTarget.X;
 					short y = TorchTarget.Y;
-					ushort type = TileID.Torches;
 
+					int type = TileID.Torches;
 					int placeStyle = 0;
 					if (player.UsingBiomeTorches)
 					{
-						placeStyle = player.BiomeTorchPlaceStyle(placeStyle);
+						player.BiomeTorchPlaceStyle(ref type, ref placeStyle);
 					}
 
 					if (WorldGen.PlaceTile(x, y, type, style: placeStyle))

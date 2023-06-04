@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -24,12 +25,12 @@ namespace AssortedCrazyThings.Items
 		{
 			if (!loaded)
 			{
-				On.Terraria.Item.CanCombineStackInWorld += Item_CanCombineStackInWorld;
+				On_Item.CanCombineStackInWorld += Item_CanCombineStackInWorld;
 				loaded = true;
 			}
 		}
 
-		private static bool Item_CanCombineStackInWorld(On.Terraria.Item.orig_CanCombineStackInWorld orig, Item self)
+		private static bool Item_CanCombineStackInWorld(On_Item.orig_CanCombineStackInWorld orig, Item self)
 		{
 			var ret = orig(self);
 
@@ -50,7 +51,7 @@ namespace AssortedCrazyThings.Items
 		{
 			Item.width = 14;
 			Item.height = 24;
-			Item.maxStack = 999;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.value = Item.sellPrice(copper: 50);
 			Item.rare = 2;
 			Item.color = Color.White;

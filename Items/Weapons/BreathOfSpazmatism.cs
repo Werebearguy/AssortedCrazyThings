@@ -2,18 +2,16 @@ using AssortedCrazyThings.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
 	public class BreathOfSpazmatism : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Breath of Spazmatism");
-			Tooltip.SetDefault("Uses gel to fire a stream of cursed flames"+
-				"\n80% chance to not consume ammo");
-		}
+		public static readonly int SaveAmmoChance = 80;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SaveAmmoChance);
 
 		public override void SetDefaults()
 		{
@@ -22,7 +20,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.height = 38;
 			//item.damage = 20; //same damage as flamethrower, which is 35
 			Item.UseSound = SoundID.Item34;
-			Item.shoot = ModContent.ProjectileType<SpazmatismFire>();
+			Item.shoot = ModContent.ProjectileType<BreathOfSpazmatismProj>();
 			Item.shootSpeed = 8f;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Ranged;
@@ -47,7 +45,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{
-			return Main.rand.NextFloat() >= .80f; //80% chance not to consume ammo (since its so fast)
+			return Main.rand.NextFloat() >= SaveAmmoChance / 100f; //80% chance not to consume ammo (since its so fast)
 		}
 	}
 }

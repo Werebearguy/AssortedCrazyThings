@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.Items.Pets.CuteSlimes;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Pets.CuteSlimes;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -18,6 +19,24 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			else if (npc.type == NPCID.QueenSlimeBoss)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CuteSlimeQueenItem>(), chanceDenominator: 10));
+			}
+		}
+
+		public override void SpawnNPC(int npc, int tileX, int tileY)
+		{
+			NPC slime = Main.npc[npc];
+			if (!SlimePets.slimePetReplacedByRareVariantOnSpawnNPCs.Contains(slime.type))
+			{
+				return;
+			}
+
+			if (Main.rand.NextBool(SlimePets.rareVariantSpawnDenominator))
+			{
+				slime.SetDefaults(ModContent.NPCType<CuteSlimePink>());
+			}
+			else if (Main.tenthAnniversaryWorld && Main.rand.NextBool(SlimePets.rareVariantSpawnDenominator))
+			{
+				slime.SetDefaults(ModContent.NPCType<CuteSlimeGolden>());
 			}
 		}
 	}

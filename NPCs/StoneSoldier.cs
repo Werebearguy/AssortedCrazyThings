@@ -17,7 +17,6 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Stone Soldier");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ArmedZombie];
 		}
 
@@ -42,7 +41,7 @@ namespace AssortedCrazyThings.NPCs
 			return SpawnCondition.Cavern.Chance * (Main.hardMode ? 0.01f : 0.04f);
 		}
 
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
 			if (Main.hardMode) NPC.lifeMax = NPC.lifeMax * 2;
 		}
@@ -65,6 +64,27 @@ namespace AssortedCrazyThings.NPCs
 				AssExtensions.LoopAnimation(ref bFrameY, ref bFrameCounter, 8, 0, Main.npcFrameCount[NPC.type] - 1);
 				NPC.frame.Y = bFrameY * frameHeight;
 			}
+		}
+
+		public override bool ModifyCollisionData(Rectangle victimHitbox, ref int immunityCooldownSlot, ref MultipliableFloat damageMultiplier, ref Rectangle npcHitbox)
+		{
+			if (NPC.ai[2] > 5f)
+			{
+				int width = 34;
+				if (NPC.spriteDirection < 0)
+				{
+					npcHitbox.X -= width;
+					npcHitbox.Width += width;
+				}
+				else
+				{
+					npcHitbox.Width += width;
+				}
+
+				damageMultiplier *= 1.25f;
+			}
+
+			return base.ModifyCollisionData(victimHitbox, ref immunityCooldownSlot, ref damageMultiplier, ref npcHitbox);
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -94,11 +114,10 @@ namespace AssortedCrazyThings.NPCs
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
-				new FlavorTextBestiaryInfoElement("Animate stone statues that have wandered from an ancient tomb. Their eyes are valuable.")
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{
@@ -168,12 +187,6 @@ namespace AssortedCrazyThings.NPCs
 				NPC.netUpdate = true;
 			}
 
-			if (SpawnedGem != 0 && NPC.ai[3] == 1)
-			{
-				if (NPC.direction == 1) NPC.velocity.X += 0.09f; //0.02
-				else NPC.velocity.X -= 0.09f;
-			}
-
 			return true;
 		}
 
@@ -185,7 +198,7 @@ namespace AssortedCrazyThings.NPCs
 			if (tex <= 0 || tex > 6)
 				return;
 
-			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/StoneSoldier_" + tex).Value;
+			Texture2D texture = ModContent.Request<Texture2D>(Texture + "_" + tex).Value;
 			Vector2 stupidOffset = new Vector2(0f, -8f + NPC.gfxOffY); //gfxoffY is for when the npc is on a slope or half brick
 			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
@@ -194,7 +207,7 @@ namespace AssortedCrazyThings.NPCs
 			drawColor.R = Math.Max(drawColor.R, (byte)100);
 			drawColor.G = Math.Max(drawColor.G, (byte)100);
 			drawColor.B = Math.Max(drawColor.B, (byte)100);
-			spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 		}
 	}
 }

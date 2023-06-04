@@ -15,9 +15,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tortured Soul");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(0f, -22f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TorturedSoulBuff_AoMM>(), ModContent.ProjectileType<TorturedSoulShotProj>());
 		}
@@ -72,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override SoundStyle? SpawnSound => SoundID.Coins;
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//Copied from golden slime HitEffect
 			int numParticles = 7;

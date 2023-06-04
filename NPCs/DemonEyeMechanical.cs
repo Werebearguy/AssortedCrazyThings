@@ -28,7 +28,7 @@ namespace AssortedCrazyThings.NPCs
 			return !NPC.downedMechBoss2 ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.025f;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{
@@ -62,7 +62,7 @@ namespace AssortedCrazyThings.NPCs
 			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
 			Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
-			spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 			return false;
 		}
 

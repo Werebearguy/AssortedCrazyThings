@@ -233,7 +233,6 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Bird");
 			Main.projFrames[Projectile.type] = 5;
 
 			ProjectileID.Sets.DontAttachHideToAlpha[Projectile.type] = true;
@@ -423,7 +422,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 		private int SoulTargetClosest(float maxDistance = 1000f)
 		{
-			short closest = Main.maxNPCs;
+			int closest = Main.maxNPCs;
 			Vector2 toSoul;
 			float oldDistance = maxDistance;
 			float newDistance;
@@ -767,7 +766,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 								}
 							}
 
-							AssWorld.AwakeningMessage(HarvesterBoss.name + " has been awakened!");
+							AssWorld.SoulHarvesterBossAppear.Announce();
 						}
 
 						Projectile.Kill();

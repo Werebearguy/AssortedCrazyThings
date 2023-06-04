@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -13,15 +14,24 @@ namespace AssortedCrazyThings.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bloated Bait Thief");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
+
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused
+				}
+			};
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
 				IsWet = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
+			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -62,12 +72,12 @@ namespace AssortedCrazyThings.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("An engorged bass with a bloated belly. Something is wriggling inside...")
 			});
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			if (Main.netMode == NetmodeID.Server)
 			{
@@ -85,6 +95,12 @@ namespace AssortedCrazyThings.NPCs
 		public override void AI()
 		{
 			AssAI.ModifiedGoldfishAI(NPC, 400f);
+		}
+
+		public override bool CheckActive()
+		{
+			NPC.netSpam = 0;
+			return base.CheckActive();
 		}
 	}
 }

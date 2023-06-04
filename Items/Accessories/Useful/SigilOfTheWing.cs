@@ -2,6 +2,8 @@ using AssortedCrazyThings.Base;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Accessories.Useful
@@ -13,12 +15,21 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		public static readonly int HealthRestoreAmount = 25;
 		public static readonly int CooldownSeconds = 6 * 60;
 
+		public static LocalizedText SocialDescText { get; private set; }
+		public static LocalizedText EffectReadyText { get; private set; }
+		public static LocalizedText ReadyAgainInMinutesText { get; private set; }
+		public static LocalizedText ReadyAgainInSecondsText { get; private set; }
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DurationSeconds, HealthRestoreAmount, CooldownSeconds);
+
 		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sigil of the Wing");
-			Tooltip.SetDefault($"On death, transform into a soul for {DurationSeconds} seconds, regenerating {HealthRestoreAmount}% max health"
-				+ "\nWhile transformed, you cannot use items"
-				+ $"\nHas a cooldown of {CooldownSeconds / 60} minutes");
+			SocialDescText = this.GetLocalization("SocialDesc");
+			EffectReadyText = this.GetLocalization("EffectReady");
+			ReadyAgainInMinutesText = this.GetLocalization("ReadyAgainInMinutes");
+			ReadyAgainInSecondsText = this.GetLocalization("ReadyAgainInSeconds");
+
+			ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<SigilOfTheBeak>();
 		}
 
 		public override void SafeSetDefaults()
@@ -38,7 +49,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			{
 				if (tooltips[i].Name == "SocialDesc")
 				{
-					tooltips[i].Text = "Cooldown will go down while in social slot";
+					tooltips[i].Text = SocialDescText.ToString();
 					break;
 				}
 			}
@@ -51,7 +62,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 			{
 				if (mPlayer.SigilOfTheWingReady)
 				{
-					tooltips.Insert(insertIndex, new TooltipLine(mod, "Ready", prefix + "Effect ready"));
+					tooltips.Insert(insertIndex, new TooltipLine(mod, nameof(EffectReadyText), prefix + EffectReadyText.ToString()));
 				}
 				else
 				{
@@ -64,30 +75,13 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 						dots += ".";
 					}
 
-					string timeName;
 					if (mPlayer.sigilOfTheWingCooldown > 60 * 60) //more than 1 minute
 					{
-						if (mPlayer.sigilOfTheWingCooldown > 90 * 60) //more than 1:30 minutes because of round
-						{
-							timeName = " minutes";
-						}
-						else
-						{
-							timeName = " minute";
-						}
-						tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", prefix + "Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / (60f * 60f)) + timeName + dots));
+						tooltips.Insert(insertIndex++, new TooltipLine(mod, nameof(ReadyAgainInMinutesText), prefix + ReadyAgainInMinutesText.Format((int)Math.Round(mPlayer.sigilOfTheWingCooldown / (60f * 60f))) + dots));
 					}
 					else
 					{
-						if (mPlayer.sigilOfTheWingCooldown > 60) //more than 1 second
-						{
-							timeName = " seconds";
-						}
-						else
-						{
-							timeName = " second";
-						}
-						tooltips.Insert(insertIndex++, new TooltipLine(mod, "Ready2", prefix + "Ready again in " + Math.Round(mPlayer.sigilOfTheWingCooldown / 60f) + timeName + dots));
+						tooltips.Insert(insertIndex++, new TooltipLine(mod, nameof(ReadyAgainInSecondsText), prefix + ReadyAgainInSecondsText.Format(Math.Round(mPlayer.sigilOfTheWingCooldown / 60f)) + dots));
 					}
 				}
 			}

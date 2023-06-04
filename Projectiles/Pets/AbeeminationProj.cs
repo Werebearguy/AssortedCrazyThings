@@ -4,6 +4,7 @@ using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
@@ -24,8 +25,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Abeemination");
-
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<AbeeminationBuff_AoMM>(), null);
 		}
 
@@ -55,7 +54,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		{
 			lightColor = Lighting.GetColor((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16), Color.White);
 			SpriteEffects effects = SpriteEffects.None;
-			if (Projectile.direction != -1)
+			if (Projectile.spriteDirection == -1)
 			{
 				effects = SpriteEffects.FlipHorizontally;
 			}

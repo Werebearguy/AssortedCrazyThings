@@ -1,8 +1,6 @@
-using AssortedCrazyThings.Items.Placeable;
-
 namespace AssortedCrazyThings.Tiles
 {
-	public class HarvesterRelicTile : RelicTileBase<HarvesterRelicItem>
+	public class HarvesterRelicTile : RelicTileBase
 	{
 		public override string Extra => "AssortedCrazyThings/Tiles/HarvesterRelicTile";
 	}

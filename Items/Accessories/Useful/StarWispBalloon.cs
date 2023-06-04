@@ -7,13 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class StarWispBalloon : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Star Wisp Balloon");
-			Tooltip.SetDefault("Increased mana regeneration and jump height" +
-							   "\nGlows in the dark");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 18;

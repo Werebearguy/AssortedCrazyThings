@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			CreateRecipe()
 				.AddIngredient(ItemID.MartianConduitPlating, 25)
-				.AddCondition(Recipe.Condition.InGraveyardBiome)
+				.AddCondition(Condition.InGraveyard)
 				.AddTile(TileID.Anvils)
 				.Register();
 		}

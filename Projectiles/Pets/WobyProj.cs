@@ -15,10 +15,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Woby");
-
 			Main.projFrames[Projectile.type] = 11;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(5, 11 - 5, 6)
+				.WhenNotSelected(0, 4, 6)
+				.WithOffset(-6f, 0f)
+				.WithSpriteDirection(-1);
 		}
 
 		public override void SetDefaults()
@@ -108,7 +111,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 							frame2++;
 							frame2Counter = 0;
 						}
-						if (frame2 < 5 || frame2 > 10) //frame 3 to 7 is running
+						if (frame2 < 5 || frame2 > 10) //frame 5 to 10 is running
 						{
 							frame2 = 5;
 						}

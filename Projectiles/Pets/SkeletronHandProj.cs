@@ -22,9 +22,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Skeletron Pet Hand");
 			Main.projFrames[Projectile.type] = 2;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 8)
+				.WithOffset(2, -12f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<SkeletronHandBuff_AoMM>(), null);
 		}
@@ -63,7 +67,12 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Player player = Projectile.GetOwner();
-			AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", Projectile.Center - new Vector2(0, Projectile.height / 2), player.Center + new Vector2(0, player.gfxOffY), selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
+			var playerPos = player.Center + new Vector2(0, player.gfxOffY);
+			if (Projectile.isAPreviewDummy)
+			{
+				playerPos = Projectile.Center - ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type].Offset + new Vector2(-16, 0);
+			}
+			AssUtils.DrawSkeletronLikeArms("AssortedCrazyThings/Projectiles/Pets/SkeletronHand_Arm", Projectile.Center - new Vector2(0, Projectile.height / 2), playerPos, selfPad: Projectile.height / 2, centerPad: -20f, direction: 0);
 
 			PetPlayer mPlayer = player.GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/SkeletronHandProj_" + mPlayer.skeletronHandType).Value;

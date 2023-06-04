@@ -1,4 +1,6 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
+using AssortedCrazyThings.Items.Armor;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
@@ -10,6 +12,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
@@ -22,10 +25,10 @@ namespace AssortedCrazyThings.Items.Weapons
 	public enum SoulType : byte
 	{
 		None = 0,
-		Dungeon = 1,
-		Fright = 2,
-		Sight = 4,
-		Might = 8,
+		Dungeon = 1 << 0,
+		Fright = 1 << 1,
+		Sight = 1 << 2,
+		Might = 1 << 3,
 	}
 
 	/// <summary>
@@ -34,25 +37,30 @@ namespace AssortedCrazyThings.Items.Weapons
 	public struct SoulData
 	{
 		public readonly int ProjType;
-		public readonly string Name;
+		public readonly LocalizedText Name; //Needs to include pluralization
+		public readonly LocalizedText ToUnlock;
+		public readonly LocalizedText Description;
 
 		public readonly float DmgModifier;
 		public readonly float KBModifier;
-		public readonly string Tooltip;
-		public readonly string ToUnlock;
 		public readonly Func<bool> Unlocked;
 
-		public SoulData(int projType, string name, string desc = "", string toUnlock = "", Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
+		public string NameSingular => Name.Format(1);
+		public string Tooltip => NameSingular
+			+ $"\n{AssUISystem.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
+			+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
+			+ "\n" + Description.ToString();
+
+		public SoulData(int projType, string internalName, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
 		{
 			ProjType = projType;
-			Name = name;
+			string thisKey = $"SoulData.{internalName}.";
+			Name = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}DisplayName"), () => "");
+			ToUnlock = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Unlock"), () => "");
+			Description = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Description"), () => "");
 			DmgModifier = dmgModifier;
 			KBModifier = kBModifier;
-			ToUnlock = toUnlock;
 			Unlocked = unlocked ?? (() => true);
-			string stats = "\nBase Damage: " + (int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f))
-			 + "\nBase Knockback: " + Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1);
-			Tooltip = Name + stats + "\n" + desc;
 		}
 	}
 
@@ -61,6 +69,8 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public const int BaseDmg = 26;
 		public const float BaseKB = 0.5f;
+
+		public static readonly int SetIncrease = SoulSaviorHeaddress.EverhallowedLanternDamageIncrease;
 
 		#region Static Methods
 		/// <summary>
@@ -74,16 +84,14 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulPostWOFMinion>(),
-						name: "Dungeon Soul",
+						internalName: "DungeonSoul",
 						dmgModifier: 0.1f
 						);
 				case SoulType.Fright:
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulFrightMinion>(),
-						name: "Soul of Fright",
-						desc: "Inflicts Ichor and Posioned",
-						toUnlock: "Defeat Skeletron Prime",
+						internalName: "SoulofFright",
 						unlocked: () => NPC.downedMechBoss3,
 						dmgModifier: 0.25f,
 						kBModifier: 3f
@@ -92,9 +100,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulSightMinion>(),
-						name: "Soul of Sight",
-						desc: "Inflicts Cursed Inferno",
-						toUnlock: "Defeat The Twins",
+						internalName: "SoulofSight",
 						unlocked: () => NPC.downedMechBoss2,
 						dmgModifier: -0.15f
 						);
@@ -102,8 +108,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					return new SoulData
 						(
 						projType: ModContent.ProjectileType<CompanionDungeonSoulMightMinion>(),
-						name: "Soul of Might",
-						toUnlock: "Defeat The Destroyer",
+						internalName: "SoulofMight",
 						unlocked: () => NPC.downedMechBoss1,
 						dmgModifier: 0.55f,
 						kBModifier: 7f
@@ -142,8 +147,8 @@ namespace AssortedCrazyThings.Items.Weapons
 					firstValidProjType = data.ProjType;
 					assets.Add(TextureAssets.Projectile[firstValidProjType]);
 					unlocked.Add(data.Unlocked());
-					tooltips.Add(data.Tooltip);
-					toUnlock.Add(data.ToUnlock);
+					tooltips.Add(data.Tooltip.ToString());
+					toUnlock.Add(data.ToUnlock.ToString());
 				}
 			}
 
@@ -181,12 +186,13 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 		#endregion
 
-		public override void SafeSetStaticDefaults()
+		public static LocalizedText MechConditionText { get; private set; }
+		public static LocalizedText SetBonusBoostText { get; private set; }
+
+		public override void EvenSaferSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Everhallowed Lantern");
-			//"Summons a Soul to fight for you" is changed for the appropriate type in ModifyTooltips
-			Tooltip.SetDefault("Summons a Soul to fight for you"
-				+ "\nRight click to pick from available forms");
+			MechConditionText = this.GetLocalization("MechCondition");
+			SetBonusBoostText = this.GetLocalization("SetBonusBoost");
 		}
 
 		public override void SetDefaults()
@@ -250,6 +256,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
+			//"Summons a Soul to fight for you" is changed for the appropriate type
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 			SoulType selected = mPlayer.selectedSoulMinionType;
 
@@ -263,7 +270,7 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
 					{
-						tooltips[i].Text += " (" + data.Name + ")";
+						tooltips[i].Text += " (" + data.NameSingular + ")";
 					}
 				}
 
@@ -292,10 +299,10 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			if (!(allUnlocked && Main.LocalPlayer.HasItem(Item.type)))
 			{
-				tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, "Mech", "Defeat mechanical bosses to unlock new minions"));
+				tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, nameof(MechConditionText), MechConditionText.ToString()));
 			}
 
-			tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, "Boost", "30% damage increase from wearing the 'Soul Savior' Set"));
+			tooltips.Insert(tooltipIndex++, new TooltipLine(Mod, nameof(SetBonusBoostText), SetBonusBoostText.Format(SetIncrease)));
 		}
 
 		public override void AddRecipes()

@@ -142,7 +142,7 @@ namespace AssortedCrazyThings
 			//Bitwise "and" results in the overlap, representing the flags that caused the content to be filtered
 			var flags = ContentConfig.Instance.FilterFlags & content.ContentType;
 
-			if (content.NeedsAllToFilter && flags != content.ContentType)
+			if (content.NeedsAllToFilterOut && flags != content.ContentType)
 			{
 				//If the content needs a full match
 				return ContentType.Always;
@@ -241,14 +241,18 @@ namespace AssortedCrazyThings
 
 		public ContentType ContentType { get; private set; }
 
-		public bool NeedsAllToFilter { get; private set; }
+		public bool NeedsAllToFilterOut { get; private set; }
 
 		public bool Ignore { get; private set; }
 
-		public ContentAttribute(ContentType contentType, bool needsAllToFilter = false, bool ignore = false)
+		public ContentAttribute(ContentType contentType, bool needsAllToFilterOut = false, bool ignore = false)
 		{
 			ContentType = contentType;
-			NeedsAllToFilter = needsAllToFilter;
+			NeedsAllToFilterOut = needsAllToFilterOut;
+			if (ContentType == ConfigurationSystem.AllFlags)
+			{
+				NeedsAllToFilterOut = true; //The opposite makes no sense
+			}
 			Ignore = ignore;
 		}
 

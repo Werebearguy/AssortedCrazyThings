@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Buffs.Pets;
 using AssortedCrazyThings.Projectiles.Pets;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class TorchGodLightPetItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<TorchGodLightPetProj>();
@@ -28,7 +29,7 @@ namespace AssortedCrazyThings.Items.Pets
 				.AddIngredient(ItemID.Torch, 999)
 				.AddIngredient(ItemID.LifeCrystal)
 				.AddTile(TileID.DemonAltar)
-				.AddCondition(new Recipe.Condition(NetworkText.FromLiteral("If Torch God's Favor was already used"), (Recipe recipe) => Main.LocalPlayer.unlockedBiomeTorches))
+				.AddCondition(AssConditions.UnlockedBiomeTorches)
 				.Register();
 
 			//Fallback
@@ -42,22 +43,20 @@ namespace AssortedCrazyThings.Items.Pets
 		//TODO maybe look into reworking this into OnSpawn with GlobalItem
 		public override void Load()
 		{
-			On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
+			On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
 		}
 
-		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
 			/*
 				* Try dropping when these conditions are true
-				* int number = Item.NewItem(new EntitySource_TorchGod(this, "TorchGod_FavorLoot"), (int)position.X, (int)position.Y, width, height, 5043);
+				* int number = Item.NewItem(GetItemSource_Misc(6), (int)position.X, (int)position.Y, width, height, 5043);
 					if (Main.netMode == 1)
 						NetMessage.SendData(21, -1, -1, null, number, 1f);
 				*/
 			//If this causes a recursion somehow, im screaming
 			Player player = Main.LocalPlayer;
-			if (source is EntitySource_TorchGod torchGodSource &&
-				torchGodSource.Context == "TorchGod_FavorLoot" &&
-				torchGodSource.TargetedEntity == player &&
+			if (source.Context == "TorchGod" &&
 				Type == ItemID.TorchGodsFavor && Stack == 1)
 			{
 				int itemToDrop = ModContent.ItemType<TorchGodLightPetItem>();
@@ -75,7 +74,7 @@ namespace AssortedCrazyThings.Items.Pets
 
 	//Light pet, no Aomm form
 
-	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilter: true)]
+	[Content(ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
 	public class TorchGodLightPetGlobalNPC : AssGlobalNPC
 	{
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)

@@ -16,10 +16,10 @@ namespace AssortedCrazyThings.Mounts
 
 		public override void Load()
 		{
-			On.Terraria.Mount.DoesHoverIgnoresFatigue += Mount_DoesHoverIgnoresFatigue;
+			On_Mount.DoesHoverIgnoresFatigue += Mount_DoesHoverIgnoresFatigue;
 		}
 
-		private static bool Mount_DoesHoverIgnoresFatigue(On.Terraria.Mount.orig_DoesHoverIgnoresFatigue orig, Mount self)
+		private static bool Mount_DoesHoverIgnoresFatigue(On_Mount.orig_DoesHoverIgnoresFatigue orig, Mount self)
 		{
 			bool ret = orig(self);
 

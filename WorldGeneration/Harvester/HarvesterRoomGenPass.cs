@@ -326,7 +326,7 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 			}
 			else
 			{
-				WorldGen.structures.AddProtectedStructure(area);
+				GenVars.structures.AddProtectedStructure(area);
 			}
 
 			return requiredTilesPlaced;
@@ -546,14 +546,14 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 		public static void GetScanAreaParams(out int startX, out int endX, out int startY, out int endY)
 		{
 			startX = 0;
-			if (WorldGen.dMinX > 0)
+			if (GenVars.dMinX > 0)
 			{
-				startX = WorldGen.dMinX;
+				startX = GenVars.dMinX;
 			}
 			endX = Main.maxTilesX;
-			if (WorldGen.dMaxX > startX)
+			if (GenVars.dMaxX > startX)
 			{
-				endX = WorldGen.dMaxX;
+				endX = GenVars.dMaxX;
 			}
 
 			startY = (int)Main.worldSurface; //Dungeon guardian spawn line
@@ -564,9 +564,9 @@ namespace AssortedCrazyThings.WorldGeneration.Harvester
 			}
 
 			endY = Main.maxTilesY;
-			if (WorldGen.dMaxY > startY)
+			if (GenVars.dMaxY > startY)
 			{
-				endY = WorldGen.dMaxY;
+				endY = GenVars.dMaxY;
 			}
 		}
 

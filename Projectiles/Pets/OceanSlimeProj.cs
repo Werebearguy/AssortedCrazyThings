@@ -22,8 +22,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ocean Slime");
-
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<OceanSlimeBuff_AoMM>(), null);
 		}
 

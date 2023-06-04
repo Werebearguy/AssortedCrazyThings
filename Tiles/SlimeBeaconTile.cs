@@ -5,14 +5,19 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.PlaceablesFunctional)]
-	public class SlimeBeaconTile : DroppableTile<SlimeBeaconItem>
+	public class SlimeBeaconTile : AssTile
 	{
+		public LocalizedText NotInMultiplayerText { get; private set; }
+		public LocalizedText ActivatedText { get; private set; }
+		public LocalizedText DeactivatedText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
@@ -24,16 +29,17 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.Origin = new Point16(1, 2);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
 			TileObjectData.addTile(Type);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Slime Beacon");
-			AddMapEntry(new Color(75, 139, 166), name);
+			AddMapEntry(new Color(75, 139, 166), ModContent.GetInstance<SlimeBeaconItem>().DisplayName);
 			DustType = 1;
 			AnimationFrameHeight = 56;
+
+			NotInMultiplayerText = this.GetLocalization("NotInMultiplayer");
+			ActivatedText = this.GetLocalization("Activated");
+			DeactivatedText = this.GetLocalization("Deactivated");
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ItemType);
 			AssWorld.DisableSlimeRainSky();
 		}
 
@@ -68,7 +74,7 @@ namespace AssortedCrazyThings.Tiles
 			SoundEngine.PlaySound(SoundID.Mech, new Vector2(i * 16, j * 16));
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
-				CombatText.NewText(Main.LocalPlayer.getRect(), new Color(255, 100, 30, 255), "NOT IN MULTIPLAYER");
+				CombatText.NewText(Main.LocalPlayer.getRect(), new Color(255, 100, 30, 255), NotInMultiplayerText.ToString());
 			}
 			else
 			{
@@ -83,7 +89,7 @@ namespace AssortedCrazyThings.Tiles
 			player.mouseInterface = true;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ItemType;
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 		}
 	}
 }

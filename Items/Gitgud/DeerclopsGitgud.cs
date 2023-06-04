@@ -4,11 +4,6 @@ namespace AssortedCrazyThings.Items.Gitgud
 {
 	public class DeerclopsGitgud : GitgudItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Deerclops Effigy");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 32;

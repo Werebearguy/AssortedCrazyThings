@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Effects;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
@@ -11,7 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -100,7 +103,7 @@ namespace AssortedCrazyThings
 		{
 			List<int> tempList = new List<int>();
 
-			for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++)
+			for (int i = NPCID.Count; i < NPCLoader.NPCCount; i++)
 			{
 				ModNPC modNPC = NPCLoader.GetNPC(i);
 				if (modNPC != null && (modNPC.GetType().Name.EndsWith("Body") || modNPC.GetType().Name.EndsWith("Tail")))
@@ -249,6 +252,7 @@ namespace AssortedCrazyThings
 					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
 					aPlayer.shieldDroneReduction = reader.ReadByte();
 					aPlayer.droneControllerUnlocked = (DroneType)reader.ReadByte();
+					aPlayer.selectedSillyBalloonType = (BalloonType)reader.ReadByte();
 
 					//server transmits to others
 					if (Main.netMode == NetmodeID.Server)
@@ -331,6 +335,15 @@ namespace AssortedCrazyThings
 					bool resend = Main.netMode == NetmodeID.Server;
 					AntiqueCageUnlockedTile.SpawnFromCage(Main.player[playerNumber], spawnPos, resend);
 					break;
+				case AssMessageType.RequestChatMessage:
+					NetworkText text = NetworkText.Deserialize(reader);
+					Color color = reader.ReadRGB();
+					if (Main.netMode == NetmodeID.Server)
+					{
+						Console.WriteLine("sending message");
+						ChatHelper.BroadcastChatMessage(text, color);
+					}
+					break;
 				default:
 					Logger.Debug("Unknown Message type: " + msgType);
 					break;
@@ -365,7 +378,8 @@ namespace AssortedCrazyThings
 		ResetEmpoweringTimerpvp,
 		WyvernCampfireKill,
 		SlainBoss,
-		HarvesterSpawnFromCage
+		HarvesterSpawnFromCage,
+		RequestChatMessage
 	}
 
 	public enum PetPlayerChanges : byte

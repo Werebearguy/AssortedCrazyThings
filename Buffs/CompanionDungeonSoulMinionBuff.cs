@@ -2,6 +2,7 @@
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
@@ -9,10 +10,12 @@ namespace AssortedCrazyThings.Buffs
 	[Content(ContentType.Bosses)]
 	public class CompanionDungeonSoulMinionBuff : AssBuff
 	{
+		public LocalizedText TinyDungeonSoulsText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Companion Soul Minion");
-			Description.SetDefault("A friendly Soul is fighting for you");
+			TinyDungeonSoulsText = this.GetLocalization("TinyDungeonSouls");
+
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -50,7 +53,7 @@ namespace AssortedCrazyThings.Buffs
 			}
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			int ownedCount;
 			foreach (SoulType type in Enum.GetValues(typeof(SoulType)))
@@ -61,17 +64,15 @@ namespace AssortedCrazyThings.Buffs
 					ownedCount = Main.LocalPlayer.ownedProjectileCounts[data.ProjType];
 					if (ownedCount > 0)
 					{
-						string name = data.Name;
-						int startIndex = name.IndexOf("Soul");
-						name = name.Insert(startIndex + 4, "s");
-						tip += "\n" + name + " : " + ownedCount;
+						string name = data.Name.Format(ownedCount);
+						tip += "\n" + name + AssUISystem.GetColon() + ownedCount;
 					}
 				}
 			}
 			ownedCount = Main.LocalPlayer.ownedProjectileCounts[ModContent.ProjectileType<CompanionDungeonSoulPreWOFMinion>()];
 			if (ownedCount > 0)
 			{
-				tip += "\n" + "Tiny Dungeon Souls: " + ownedCount;
+				tip += "\n" + TinyDungeonSoulsText.ToString() + AssUISystem.GetColon() + ownedCount;
 			}
 		}
 	}

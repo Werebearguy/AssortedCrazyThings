@@ -15,9 +15,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("True Observing Eye");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 6)
+				.WithOffset(2f, -30f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<TrueObservingEyeBuff_AoMM>(), null);
 		}
@@ -61,7 +65,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			between.Normalize();
 			between *= magnitude;
 
-			drawPos += between;
+			if (!Projectile.isAPreviewDummy)
+			{
+				drawPos += between;
+			}
 			drawOrigin = image.Bounds.Size() / 2;
 			Main.EntitySpriteDraw(image, drawPos, image.Bounds, lightColor, Projectile.rotation, drawOrigin, 1f, effects, 0);
 

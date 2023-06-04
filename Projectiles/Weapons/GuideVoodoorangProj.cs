@@ -8,11 +8,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 	[Content(ContentType.Weapons)]
 	public class GuideVoodoorangProj : AssProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Guide Voodoorang");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.WoodenBoomerang);
@@ -29,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			return true;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			SoundEngine.PlaySound(SoundID.PlayerHit, Projectile.position); //player hurt sound
 		}
@@ -42,16 +37,30 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 				{
 					for (int i = 0; i < Main.maxNPCs; i++)
 					{
-						if (Main.npc[i].active && Main.npc[i].type == NPCID.Guide)
+						NPC npc = Main.npc[i];
+						if (npc.active && npc.type == NPCID.Guide)
 						{
-							if (Main.netMode == NetmodeID.Server)
+							if (npc.IsNPCValidForBestiaryKillCredit())
 							{
-								NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, i, 9999f, 10f, -Main.npc[i].direction);
+								Main.BestiaryTracker.Kills.RegisterKill(npc);
 							}
-							Main.npc[i].StrikeNPCNoInteraction(9999, 10f, -Main.npc[i].direction);
+
+							var hit = new NPC.HitInfo
+							{
+								Knockback = 10,
+								HitDirection = -npc.direction,
+								InstantKill = true
+							};
+							npc.StrikeNPC(hit);
+							if (Main.netMode != NetmodeID.SinglePlayer)
+							{
+								NetMessage.SendStrikeNPC(npc, hit);
+							}
+
 							NPC.SpawnWOF(Projectile.position);
 
 							Projectile.Kill();
+							break;
 							//item itself doesn't get deleted but only works when the guide is in the world anyway
 						}
 					}

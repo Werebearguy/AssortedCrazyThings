@@ -283,14 +283,14 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			}
 
 			//No alive baby harvester, spawn
-			ForceSpawnBabyHarvester("You hear a faint cawing from the dungeon.");
+			ForceSpawnBabyHarvester(AssWorld.SoulHarvesterBabyAppear);
 		}
 
-		public static void ForceSpawnBabyHarvester(string message, Vector2? posOverride = null, Player playerOverride = null)
+		public static void ForceSpawnBabyHarvester(AssWorld.Announcement announcement, Vector2? posOverride = null, Player playerOverride = null)
 		{
 			if (playerOverride != null)
 			{
-				Spawn(message, playerOverride, posOverride);
+				Spawn(announcement, playerOverride, posOverride);
 				return;
 			}
 
@@ -300,16 +300,16 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 
 				if (player.active && !player.dead && ValidPlayer(player))
 				{
-					Spawn(message, player);
+					Spawn(announcement, player);
 					break;
 				}
 			}
 
-			static void Spawn(string message, Player player, Vector2? posOverride = null)
+			static void Spawn(AssWorld.Announcement announcement, Player player, Vector2? posOverride = null)
 			{
 				//AssUtils.Print(Main.time + " spawning harvester");
 				BabyHarvesterProj.Spawn(player, posOverride);
-				AssWorld.Message(message, HarvesterBoss.deathColor);
+				announcement.Announce();
 			}
 		}
 

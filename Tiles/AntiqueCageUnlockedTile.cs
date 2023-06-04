@@ -91,7 +91,7 @@ namespace AssortedCrazyThings.Tiles
 		{
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
-			player.cursorItemIconID = ItemType;
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 			player.cursorItemIconText = "";
 			player.cursorItemIconEnabled = true;
 		}
@@ -102,7 +102,7 @@ namespace AssortedCrazyThings.Tiles
 
 			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
-				BabyHarvesterHandler.ForceSpawnBabyHarvester("A hungry bird has been released!", spawnPos, player);
+				BabyHarvesterHandler.ForceSpawnBabyHarvester(AssWorld.SoulHarvesterBabyCageAppear, spawnPos, player);
 			}
 
 			if (!request && Main.netMode != NetmodeID.Server)

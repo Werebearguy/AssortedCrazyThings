@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.PetAccessories
@@ -14,120 +15,66 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryBowtie : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Bowtie");
-			Tooltip.SetDefault("'A soft bowtie for your cute slime to wear on her chest'");
-		}
+
 	}
 
 	public class PetAccessoryBunnyEars : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Bunny Ears");
-			Tooltip.SetDefault("'A pair of Easter bunny ears for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryBunnySuit : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Bunny Suit");
-			Tooltip.SetDefault("'A bunny(?) costume for your cute slime to wear on her chest'");
-		}
+
 	}
 
 	public class PetAccessoryCrown : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Crown");
-			Tooltip.SetDefault("'A regal crown for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryMetalHelmet : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Knight's Helmet");
-			Tooltip.SetDefault("'A plush knight's helmet for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryKitchenKnife : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Kitchen Knife");
-			Tooltip.SetDefault("'A plush kitchen knife for your cute slime to carry'");
-		}
+
 	}
 
 	public class PetAccessoryHairBow : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Hair Bow");
-			Tooltip.SetDefault("'A large bow for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryMittens : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Mittens");
-			Tooltip.SetDefault("'Warm mittens for your cute slime's hands'");
-		}
+
 	}
 
 	public class PetAccessoryPartyHat : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Party Hat");
-			Tooltip.SetDefault("'A party hat for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryPumpkinMask : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Pumpkin Mask");
-			Tooltip.SetDefault("'A perfectly-sized pumpkin for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessorySlimeHead : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Head Slime");
-			Tooltip.SetDefault("'A slime plush that sits on your cute slime's head'");
-		}
+
 	}
 
 	public class PetAccessoryStaff : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Staff");
-			Tooltip.SetDefault("'A plush staff for your cute slime to carry'");
-		}
+
 	}
 
 	public class PetAccessorySwallowedKey : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Swallowed Key");
-			Tooltip.SetDefault("'A plush key for your cute slime to...carry?'");
-		}
-
 		protected override bool UseDefaultRecipe => false;
 
 		protected override void SafeAddRecipes()
@@ -140,74 +87,42 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 	public class PetAccessoryTophat : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Top Hat");
-			Tooltip.SetDefault("'A classy top hat for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryToyBreastplate : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Knight's Breastplate");
-			Tooltip.SetDefault("'A plush knight's breastplate for your cute slime to wear on her body'");
-		}
+
 	}
 
 	public class PetAccessoryToyShield : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Knight's Shield");
-			Tooltip.SetDefault("'A plush knight's shield for your cute slime to carry'");
-		}
+
 	}
 
 	public class PetAccessoryToyMace : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Paladin's Mace");
-			Tooltip.SetDefault("'A plush paladin's mace for your cute slime to carry'");
-		}
+
 	}
 
 	public class PetAccessoryToySpear : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Spartan's Spear");
-			Tooltip.SetDefault("'A plush warrior's spear for your cute slime to carry'");
-		}
+
 	}
 
 	public class PetAccessoryToySword : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Knight's Sword");
-			Tooltip.SetDefault("'A plush knight's sword for your cute slime to carry'");
-		}
+
 	}
 
 	public class PetAccessoryWizardHat : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Wizard Hat");
-			Tooltip.SetDefault("'A brown wizard's hat for your cute slime to wear on her head'");
-		}
+
 	}
 
 	public class PetAccessoryXmasHat : PetAccessoryItem
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cute Santa Hat");
-			Tooltip.SetDefault("'A festive hat for your cute slime to wear on hear head'");
-		}
+
 	}
 
 	/// <summary>
@@ -252,7 +167,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		/// <summary>
 		/// Unique ID for this accessory (unique in the scope of a single SlotType)
 		/// </summary>
-		public byte ID { private set; get; } //The internal ID of the accessory
+		public byte ID { private set; get; }
 
 		private readonly string _name;
 		public override string Name => _name; //The item name associated with the accessory
@@ -290,17 +205,17 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		/// <summary>
 		/// For UI tooltips
 		/// </summary>
-		public List<string> AltTextureDisplayNames { private set; get; }
+		public List<LocalizedText> AltTextureDisplayNames { private set; get; }
 
 		/// <summary>
 		/// For UI only, the _Draw{number} stuff is done manually
 		/// </summary>
 		public List<Asset<Texture2D>> AltTextures { private set; get; }
 
-		public PetAccessory(SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null, List<string> altTextureNameOverrides = null)
+		public PetAccessory(Mod mod, SlotType slot, string name, float offsetX = 0f, float offsetY = 0f, bool preDraw = false, byte alpha = 0, bool useNoHair = false, List<string> altTextures = null, List<string> altTextureNameOverrides = null)
 		{
 			_name = "PetAccessory" + name;
-			if (!AssUtils.Instance.TryFind(Name, out ModItem modItem))
+			if (!mod.TryFind(Name, out ModItem modItem))
 			{
 				throw new Exception($"Item called '{Name}' doesn't exist, are you sure you spelled it correctly?");
 			}
@@ -320,22 +235,16 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			UseNoHair = useNoHair;
 
 			AltTextureSuffixes = new List<string>();
-			AltTextureDisplayNames = new List<string>();
-			if (altTextures?.Count > 0)
+			AltTextureDisplayNames = new List<LocalizedText>();
+			if (altTextures != null)
 			{
 				AltTextureSuffixes.AddRange(altTextures);
-				AltTextureDisplayNames.AddRange(altTextures);
-			}
-
-			if (altTextureNameOverrides?.Count > 0)
-			{
-				for (int i = 0; i < AltTextureDisplayNames.Count; i++)
+				string category = $"Items.{Name}.AccessoryNames.";
+				for (int i = 0; i < altTextures.Count; i++)
 				{
-					string nameOverride = altTextureNameOverrides[i];
-					if (!string.IsNullOrEmpty(nameOverride))
-					{
-						AltTextureDisplayNames[i] = nameOverride;
-					}
+					string altTexture = altTextures[i];
+					LocalizedText text = Language.GetOrRegister(mod.GetLocalizationKey($"{category}{altTexture}"), () => altTexture);
+					AltTextureDisplayNames.Add(text);
 				}
 			}
 
@@ -384,38 +293,39 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 			//BODY SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Body, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Body, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Body, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "Bowtie", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "ToyBreastplate", altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Body, name: "BunnySuit", altTextures: new List<string>() { "Black", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Red" }));
 
 			//HAT SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Hat, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "WizardHat", useNoHair: true));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "BunnyEars", preDraw: true));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "Tophat"));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "PartyHat"));
-			Add(mod, new PetAccessory(SlotType.Hat, name: "PumpkinMask", useNoHair: true,
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "Crown", altTextures: new List<string>() { "Gold", "Platinum" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "HairBow", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "MetalHelmet", useNoHair: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "SlimeHead", alpha: 56, altTextures: new List<string>() { "Blue", "Purple", "Pink", "Pinky", "Red", "Yellow", "Green", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "WizardHat", useNoHair: true));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "XmasHat", useNoHair: true, altTextures: new List<string>() { "Red", "Green" }));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "BunnyEars", preDraw: true));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "Tophat"));
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "PartyHat"));
+			//Override is just the value, otherwise value = key
+			Add(mod, new PetAccessory(mod, SlotType.Hat, name: "PumpkinMask", useNoHair: true,
 				altTextures: new List<string> { "SOrange", "IOrange", "SGreen", "IGreen", "SWhite", "IWhite", "SPurple", "IPurple", "SMelon", "IMelon" },
 				altTextureNameOverrides: new List<string> { "Sinister Orange", "Innocent Orange", "Sinister Green", "Innocent Green", "Sinister White", "Innocent White", "Sinister Purple", "Innocent Purple", "Sinister Melon", "Innocent Melon" }));
 
 			//CARRIED SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Carried, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
-			Add(mod, new PetAccessory(SlotType.Carried, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "KitchenKnife", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "Staff", preDraw: true, altTextures: new List<string>() { "Amethyst", "Sapphire", "Emerald", "Ruby", "Amber", "Topaz", "Diamond", "Magic" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "ToyMace", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "ToySpear", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Carried, name: "ToySword", preDraw: true, altTextures: new List<string>() { "Iron", "Gold" }));
 
 			//ACCESSORY SLOT ACCESSORIES GO HERE
 			//------------------------------------------------
-			Add(mod, new PetAccessory(SlotType.Accessory, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
-			Add(mod, new PetAccessory(SlotType.Accessory, name: "SwallowedKey", preDraw: true));
-			Add(mod, new PetAccessory(SlotType.Accessory, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
+			Add(mod, new PetAccessory(mod, SlotType.Accessory, name: "Mittens", altTextures: new List<string>() { "Red", "Orange", "Gold", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Gray", "Black" }));
+			Add(mod, new PetAccessory(mod, SlotType.Accessory, name: "SwallowedKey", preDraw: true));
+			Add(mod, new PetAccessory(mod, SlotType.Accessory, name: "ToyShield", altTextures: new List<string>() { "Iron", "Gold" }));
 
 			CreateMaps();
 		}
@@ -539,9 +449,35 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	[Content(ContentType.CuteSlimes)]
 	public abstract class PetAccessoryItem : AssItem
 	{
+		protected override bool CloneNewInstances => true;
+
+		public static LocalizedText BlacklistedText { get; private set; }
+		public static LocalizedText NoUseText { get; private set; }
+		public static LocalizedText DisabledText { get; private set; }
+
+		[field: CloneByReference]
+		public LocalizedText ShortNameText { get; private set; }
+
 		public sealed override void SetStaticDefaults()
 		{
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; //All accessories have 1
+			ShortNameText = this.GetLocalization("ShortName");
+
+			string category = "Items.PetAccessory.";
+			BlacklistedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Blacklisted"));
+			NoUseText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}NoUse"));
+			DisabledText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Disabled"));
+
+			//Needs to be here so the lang is initialized
+			if (!Main.dedServ)
+			{
+				foreach (var slot in Enum.GetValues(typeof(SlotType)))
+				{
+					if ((SlotType)slot != SlotType.None)
+					{
+						Enum2string((SlotType)slot);
+					}
+				}
+			}
 
 			SafeSetStaticDefaults();
 		}
@@ -555,7 +491,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 		{
 			Item.width = 28;
 			Item.height = 30;
-			Item.maxStack = 1;
 			Item.rare = 2;
 			Item.useAnimation = 16;
 			Item.useTime = 16;
@@ -565,29 +500,17 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Item.value = Item.sellPrice(silver: 30);
 		}
 
-		private string Enum2string(SlotType e)
+		private static LocalizedText Enum2string(SlotType e)
 		{
-			switch (e)
-			{
-				case SlotType.Body:
-					return "Worn on the body";
-				case SlotType.Hat:
-					return "Worn on the head";
-				case SlotType.Carried:
-					return "Carried";
-				case SlotType.Accessory:
-					return "Worn as an accessory";
-				case SlotType.None:
-				default:
-					return "UNINTENDED BEHAVIOR, REPORT TO DEV! (" + e + ")";
-			}
+			string category = "Items.PetAccessory.";
+			return Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}{Enum.GetName(typeof(SlotType), e)}"));
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			if (PetAccessory.TryGetAccessoryFromItem(Item.type, out PetAccessory petAccessory))
 			{
-				tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot)));
+				tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot).ToString()));
 
 				Player player = Main.LocalPlayer;
 				PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
@@ -596,12 +519,12 @@ namespace AssortedCrazyThings.Items.PetAccessories
 				{
 					if (slimePet.IsSlotTypeBlacklisted[(byte)petAccessory.Slot])
 					{
-						tooltips.Add(new TooltipLine(Mod, "Blacklisted", "This accessory type is disabled for your particular slime"));
+						tooltips.Add(new TooltipLine(Mod, nameof(BlacklistedText), BlacklistedText.ToString()));
 					}
 				}
 				else if (player.HasItem(Item.type))
 				{
-					tooltips.Add(new TooltipLine(Mod, "NoUse", "You have no summoned slime to equip this on")
+					tooltips.Add(new TooltipLine(Mod, nameof(NoUseText), NoUseText.ToString())
 					{
 						OverrideColor = Color.OrangeRed
 					});
@@ -609,7 +532,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			}
 			else
 			{
-				tooltips.Add(new TooltipLine(Mod, "Disabled", "This accessory type is not registered for use by the devs"));
+				tooltips.Add(new TooltipLine(Mod, nameof(DisabledText), DisabledText.ToString()));
 			}
 		}
 
@@ -645,13 +568,13 @@ namespace AssortedCrazyThings.Items.PetAccessories
 
 			PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();
 			//no valid slime pet found
-			if (!pPlayer.HasValidSlimePet(out _)) return false;
+			if (!pPlayer.HasValidSlimePet(out SlimePet slimePet)) return false;
 
 			//if a right click, enable usage
 			if (player.altFunctionUse == 2) return true;
 			//if a left click and no alts, enable usage
-			else if (!petAccessory.HasAlts) return true;
-			//else disable (if it has alts when left clicked)
+			else if (!petAccessory.HasAlts && !slimePet.IsSlotTypeBlacklisted[(int)petAccessory.Slot]) return true;
+			//else disable (if it has alts when left clicked, as that opens a UI instead)
 			return false;
 		}
 

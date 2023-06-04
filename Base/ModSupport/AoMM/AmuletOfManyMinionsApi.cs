@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.ModSupport.AoMM
@@ -10,7 +11,7 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 	/// <summary>
 	/// Collection of utility methods that wrap the mod.Calls available from AoMM.
 	/// </summary>
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class AmuletOfManyMinionsApi : AssSystem
 	{
 		//GENERAL INFO - PLEASE READ THIS FIRST!
@@ -43,9 +44,20 @@ namespace AssortedCrazyThings.Base.ModSupport.AoMM
 			}
 		}
 
+		public static LocalizedText AoMMVersionText { get; private set; }
+
+		public static LocalizedText ConcatenateTwoText { get; private set; }
+
+		public static LocalizedText AppendAoMMVersion(LocalizedText text)
+		{
+			return ConcatenateTwoText.WithFormatArgs(text, AoMMVersionText);
+		}
+
 		public override void Load()
 		{
 			versionString = apiVersion.ToString();
+			AoMMVersionText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.AoMMVersion"));
+			ConcatenateTwoText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.ConcatenateTwo"));
 		}
 
 		public override void Unload()

@@ -4,6 +4,7 @@ using AssortedCrazyThings.Buffs.Mounts;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Accessories.Useful;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Accessories;
@@ -25,7 +26,7 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	//[LegacyName("AssPlayer")] Maybe rename later
 	public sealed class AssPlayer : AssPlayerBase
 	{
@@ -68,7 +69,9 @@ namespace AssortedCrazyThings
 		public SoulType selectedSoulMinionType = SoulType.Dungeon;
 
 		public bool slimePackMinion = false;
-		public byte selectedSlimePackMinionType = 0;
+		public SlimeType selectedSlimePackMinionType = SlimeType.Default;
+
+		public BalloonType selectedSillyBalloonType = 0; //Needs saving and syncing
 
 		public byte nextMagicSlimeSlingMinion = 0;
 
@@ -154,6 +157,7 @@ namespace AssortedCrazyThings
 			tag.Add("sigilOfTheWingCooldown", (int)sigilOfTheWingCooldown);
 			tag.Add("lastSlainBossTimerSeconds", (int)lastSlainBossTimerSeconds);
 			tag.Add("droneControllerUnlocked", (byte)droneControllerUnlocked);
+			tag.Add("selectedSillyBalloonType", (byte)selectedSillyBalloonType);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -165,22 +169,26 @@ namespace AssortedCrazyThings
 				lastSlainBossTimerSeconds = tag.GetInt("lastSlainBossTimerSeconds");
 			}
 			droneControllerUnlocked = (DroneType)tag.GetByte("droneControllerUnlocked");
+			selectedSillyBalloonType = (BalloonType)tag.GetByte("selectedSillyBalloonType");
 		}
 
 		//TODO get rid of this, use manual packets since setting those values happens in a singular place
-		public override void clientClone(ModPlayer clientClone)
+		public override void CopyClientState(ModPlayer clientClone)
 		{
 			AssPlayer clone = clientClone as AssPlayer;
 			clone.shieldDroneReduction = shieldDroneReduction;
 			//Needs syncing because spawning drone parts depends on this serverside (See GeneralGlobalNPC.NPCLoot)
 			clone.droneControllerUnlocked = droneControllerUnlocked;
+			//Needs syncing because correct balloon needs to be displayed for other players
+			clone.selectedSillyBalloonType = selectedSillyBalloonType;
 		}
 
 		public override void SendClientChanges(ModPlayer clientPlayer)
 		{
 			AssPlayer clone = clientPlayer as AssPlayer;
 			if (clone.shieldDroneReduction != shieldDroneReduction ||
-				clone.droneControllerUnlocked != droneControllerUnlocked)
+				clone.droneControllerUnlocked != droneControllerUnlocked ||
+				clone.selectedSillyBalloonType != selectedSillyBalloonType)
 			{
 				SendClientChangesPacket();
 			}
@@ -198,6 +206,7 @@ namespace AssortedCrazyThings
 				packet.Write((byte)Player.whoAmI);
 				packet.Write((byte)shieldDroneReduction);
 				packet.Write((byte)droneControllerUnlocked);
+				packet.Write((byte)selectedSillyBalloonType);
 				packet.Send(toClient, ignoreClient);
 			}
 		}
@@ -213,6 +222,8 @@ namespace AssortedCrazyThings
 			packet.Write7BitEncodedInt(lastSlainBossTimerSeconds);
 			packet.Write7BitEncodedInt(lastSlainBossType);
 
+			packet.Write((byte)selectedSillyBalloonType);
+
 			packet.Send(toWho, fromWho);
 		}
 
@@ -221,9 +232,11 @@ namespace AssortedCrazyThings
 			shieldDroneReduction = reader.ReadByte();
 			lastSlainBossTimerSeconds = reader.Read7BitEncodedInt();
 			lastSlainBossType = reader.Read7BitEncodedInt();
+
+			selectedSillyBalloonType = (BalloonType)reader.ReadByte();
 		}
 
-		public override void OnEnterWorld(Player player)
+		public override void OnEnterWorld()
 		{
 			SendClientChangesPacket();
 		}
@@ -258,7 +271,7 @@ namespace AssortedCrazyThings
 		/// Decreases damage based on current shield level from the Shield Drone, spawns dust
 		/// </summary>
 		/// <param name="damage"></param>
-		public void DecreaseDroneShield(ref int damage)
+		public void DecreaseDroneShield(ref Player.HurtModifiers modifiers)
 		{
 			if (shieldDroneReduction > 0)
 			{
@@ -270,7 +283,7 @@ namespace AssortedCrazyThings
 					dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
 				}
 
-				damage = (int)(damage * ((100 - shieldDroneReduction) / 100f));
+				modifiers.FinalDamage *= (100 - shieldDroneReduction) / 100f;
 				if (Main.netMode != NetmodeID.Server && Main.myPlayer == Player.whoAmI) shieldDroneReduction -= ShieldIncreaseAmount; //since this is only set clientside by the projectile and synced by packets
 			}
 		}
@@ -506,7 +519,11 @@ namespace AssortedCrazyThings
 					Player.ClearBuff(BuffID.Stoned);
 				}
 
-				AssWorld.Message($"{Player.name} has died, but their soul has not given up...", new Color(225, 25, 25));
+				if (Main.netMode != NetmodeID.Server)
+				{
+					//This check is here because server code doesn't run properly for this context (it runs desynced from client)
+					AssWorld.SigilOfTheWingDeath.AnnounceClient(Player.name);
+				}
 
 				return false;
 			}
@@ -608,7 +625,8 @@ namespace AssortedCrazyThings
 			sigilOfTheWingCooldown = 0;
 			lastSlainBossTimerSeconds = -1;
 			selectedSoulMinionType = SoulType.Dungeon;
-			selectedSlimePackMinionType = 0;
+			selectedSlimePackMinionType = SlimeType.Default;
+			selectedSillyBalloonType = 0;
 			nextMagicSlimeSlingMinion = 0;
 			empoweringTimer = 0;
 			empoweringStep = 0f;
@@ -619,6 +637,24 @@ namespace AssortedCrazyThings
 			//needs to call new List() since Initialize() is called per player in the player select screen
 			CircleUIList = new List<CircleUIHandler>();
 
+			if (ContentConfig.Instance.VanityAccessories)
+			{
+				CircleUIList.AddRange(new List<CircleUIHandler>
+				{
+					new CircleUIHandler(
+					triggerItem: ModContent.ItemType<SillyBalloonKit>(),
+					condition: () => true,
+					uiConf: SillyBalloonKit.GetUIConf,
+					onUIStart: () => (int)selectedSillyBalloonType,
+					onUIEnd: delegate
+					{
+						selectedSillyBalloonType =  (BalloonType)(byte)CircleUI.returned;
+						AssUtils.UIText(AssUISystem.SelectedText.Format(SillyBalloonKit.Enum2string(selectedSillyBalloonType)), CombatText.HealLife);
+					}
+				),
+				});
+			}
+
 			if (ContentConfig.Instance.Weapons)
 			{
 				CircleUIList.AddRange(new List<CircleUIHandler>
@@ -627,11 +663,11 @@ namespace AssortedCrazyThings
 					triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
 					condition: () => true,
 					uiConf: SlimeHandlerKnapsack.GetUIConf,
-					onUIStart: () => selectedSlimePackMinionType,
+					onUIStart: () => (int)selectedSlimePackMinionType,
 					onUIEnd: delegate
 					{
-						selectedSlimePackMinionType = (byte)CircleUI.returned;
-						AssUtils.UIText("Selected: " + (selectedSlimePackMinionType == 0 ? "Default" : (selectedSlimePackMinionType == 1 ? "Assorted" : "Spiked")), CombatText.HealLife);
+						selectedSlimePackMinionType =  (SlimeType)(byte)CircleUI.returned;
+						AssUtils.UIText(AssUISystem.SelectedText.Format(SlimeHandlerKnapsack.Enum2string(selectedSlimePackMinionType)), CombatText.HealLife);
 					},
 					triggerLeft: false
 				),
@@ -650,7 +686,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-						AssUtils.UIText("Selected: " + DroneController.GetDroneData(selectedDroneControllerMinionType).Name, CombatText.HealLife);
+						AssUtils.UIText(AssUISystem.SelectedText.Format(DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular), CombatText.HealLife);
 					},
 					triggerLeft: false
 				)}
@@ -674,7 +710,7 @@ namespace AssortedCrazyThings
 				onUIEnd: delegate
 				{
 					selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-					AssUtils.UIText("Selected: " + EverhallowedLantern.GetSoulData(selectedSoulMinionType).Name, CombatText.HealLife);
+					AssUtils.UIText(AssUISystem.SelectedText.Format(EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular), CombatText.HealLife);
 				},
 				triggerLeft: false
 				));
@@ -824,7 +860,7 @@ namespace AssortedCrazyThings
 			}
 		}
 
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Main.rand.NextBool(5))
 			{
@@ -835,7 +871,7 @@ namespace AssortedCrazyThings
 		}
 
 
-		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (!proj.minion && Main.rand.NextBool(5) || proj.minion && Main.rand.NextBool(25))
 			{
@@ -871,19 +907,17 @@ namespace AssortedCrazyThings
 			outOfCombatTimer = 0;
 		}
 
-		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
+		public override void ModifyHurt(ref Player.HurtModifiers modifiers)
 		{
-			DecreaseDroneShield(ref damage);
+			DecreaseDroneShield(ref modifiers);
 
-			if (wyvernCampfire && damageSource.SourceProjectileType == ProjectileID.HarpyFeather)
+			if (wyvernCampfire && modifiers.DamageSource.SourceProjectileType == ProjectileID.HarpyFeather)
 			{
-				hitDirection = 0; //this cancels knockback
+				modifiers.HitDirectionOverride = 0; //this cancels knockback
 			}
-
-			return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
 		}
 
-		public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+		public override void PostHurt(Player.HurtInfo info)
 		{
 			//Gets called on all sides
 			ResetEmpoweringTimer();
@@ -952,6 +986,14 @@ namespace AssortedCrazyThings
 			}
 
 			UpdateNearbyEnemies();
+		}
+
+		public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
+		{
+			if (ContentConfig.Instance.VanityAccessories && Player.balloon == EquipLoader.GetEquipSlot(Mod, nameof(SillyBalloonKit), EquipType.Balloon))
+			{
+				Player.balloon = SillyBalloonKit.EquipSlots[selectedSillyBalloonType];
+			}
 		}
 
 		public static readonly PlayerDrawLayer[] WhitelistedByPlayerHiding = new[] {

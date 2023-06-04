@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
+using AssortedCrazyThings.Base.SwarmDraw;
 using AssortedCrazyThings.Base.SwarmDraw.SwarmofCthulhuDraw;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
@@ -18,7 +19,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Swarm of Cthulhu");
 			Main.projFrames[Projectile.type] = 1; //Dummy
 			Main.projPet[Projectile.type] = true;
 
@@ -96,6 +96,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			float kb = Projectile.knockBack;
 			float speed = paras.LaunchVelocity;
 			Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2Unit() * speed, ModContent.ProjectileType<SwarmofCthulhuShotProj>(), damage, kb, Main.myPlayer);
+		}
+
+		public override void PostDraw(Color lightColor)
+		{
+			Projectile.GetOwner().GetModPlayer<SwarmDrawPlayer>().isSwarmofCthulhuDummyDrawing = Projectile.isAPreviewDummy;
 		}
 	}
 
@@ -180,15 +185,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return Projectile.penetrate > 0 ? null : false; //Wack workaround in case hitbox overlaps with more than 1 NPC in the same tick
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (target.defense >= 20)
 			{
-				damage += target.checkArmorPenetration(10);
+				modifiers.ArmorPenetration += 10;
 			}
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Projectile.penetrate = 0;
 		}

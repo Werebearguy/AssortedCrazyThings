@@ -8,14 +8,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 {
 	public class CuteSlimeCorrupt : CuteSlimeBaseNPC
 	{
-		public override string IngameName
-		{
-			get
-			{
-				return "Cute Corrupt Slime";
-			}
-		}
-
 		public override int CatchItem
 		{
 			get
@@ -38,7 +30,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption,
-				new FlavorTextBestiaryInfoElement("Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.")
 			});
 		}
 

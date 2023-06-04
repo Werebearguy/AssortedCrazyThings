@@ -4,7 +4,7 @@ using Terraria;
 
 namespace AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	internal class SpawnedNPCSystem : AssSystem
 	{
 		private int prevCount;

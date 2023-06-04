@@ -13,7 +13,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Pack Minion Spike");
 			Main.projFrames[Projectile.type] = 16;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;

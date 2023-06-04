@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 			}
 		}
 
-		public override void ModifyBuffTip(ref string tip, ref int rare)
+		public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
 		{
 			tip += "\n" + AssUtils.GetMoonPhaseAsString();
 			tip += "\n" + AssUtils.GetTimeAsString();

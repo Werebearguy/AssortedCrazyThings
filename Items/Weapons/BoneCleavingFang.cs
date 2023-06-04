@@ -11,14 +11,6 @@ namespace AssortedCrazyThings.Items.Weapons
 	[Content(ContentType.Bosses)]
 	public class BoneCleavingFang : WeaponItemBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bone-Cleaving Fang");
-			Tooltip.SetDefault("Striking enemies will charge the sword, causing it to glow with power." +
-				"\nRelease the built up power by right-clicking. The brighter the sword, the greater the power." +
-				"\nThe sword's power fades when not used.");
-		}
-
 		public override void SetDefaults()
 		{
 			//Stats stonger than Muramasa
@@ -61,7 +53,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			return false;
 		}
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (target.CanBeChasedBy())
 			{

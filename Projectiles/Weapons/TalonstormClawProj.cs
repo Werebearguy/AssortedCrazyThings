@@ -32,7 +32,6 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Talonstorm");
 			Main.projFrames[Projectile.type] = 1;
 		}
 
@@ -228,7 +227,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			return base.OnTileCollide(oldVelocity);
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (!HasParent)
 			{
@@ -236,10 +235,10 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			}
 
 			Projectile parent = Main.projectile[ParentIndex];
-			hitDirection = (target.Center.X > parent.Center.X).ToDirectionInt();
+			modifiers.HitDirectionOverride = (target.Center.X > parent.Center.X).ToDirectionInt();
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Retracting = true;
 			Projectile.netUpdate = true;

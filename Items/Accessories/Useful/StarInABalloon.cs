@@ -7,12 +7,6 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[AutoloadEquip(EquipType.Balloon)]
 	public class StarInABalloon : AccessoryBase
 	{
-		public override void SafeSetStaticDefaults()
-		{
-			DisplayName.SetDefault("Star in a Balloon");
-			Tooltip.SetDefault("Increased mana regeneration and jump height");
-		}
-
 		public override void SafeSetDefaults()
 		{
 			Item.width = 18;

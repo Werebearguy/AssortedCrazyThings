@@ -1,4 +1,6 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Data;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.DroneUnlockables;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
@@ -11,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs
 {
-	[Content(ConfigurationSystem.AllFlags, needsAllToFilter: true)]
+	[Content(ConfigurationSystem.AllFlags)]
 	public class GeneralGlobalNPC : AssGlobalNPC
 	{
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
@@ -65,12 +67,13 @@ namespace AssortedCrazyThings.NPCs
 			}
 		}
 
-		public override void SetupShop(int type, Chest shop, ref int nextSlot)
+		public override void ModifyShop(NPCShop shop)
 		{
-			if (ContentConfig.Instance.PlaceablesFunctional && type == NPCID.PartyGirl && NPC.downedSlimeKing)
+			int type = shop.NpcType;
+			if (type == NPCID.PartyGirl)
 			{
-				shop.item[nextSlot].SetDefaults(ModContent.ItemType<SlimeBeaconItem>());
-				nextSlot++;
+				shop.Add(ModContent.ItemType<SlimeBeaconItem>(), AssConditions.PlaceablesFunctional, Condition.DownedKingSlime);
+				shop.Add(ModContent.ItemType<SillyBalloonKit>(), AssConditions.VanityAccessories);
 			}
 		}
 

@@ -1,17 +1,16 @@
 ﻿using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Items.Placeable;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.ModLoader;
+using Terraria.Localization;
 using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.PlaceablesFunctional | ContentType.CuteSlimes)]
-	public class CuteSlimeStatueTile : DroppableTile<CuteSlimeStatueItem>
+	public class CuteSlimeStatueTile : AssTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -31,15 +30,8 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.addAlternate(1); // facing right will use the second texture style
 			TileObjectData.addTile(Type);
 
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Statue");
-			AddMapEntry(new Color(144, 148, 144), name);
+			AddMapEntry(new Color(144, 148, 144), Language.GetText("MapObject.Statue"));
 			DustType = 11;
-		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ItemType);
 		}
 
 		private bool MechSpawn(float x, float y, int[] types)

@@ -12,8 +12,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Horned Slime");
-
 			AmuletOfManyMinionsApi.RegisterSlimePet(this, ModContent.GetInstance<HornedSlimeBuff_AoMM>(), null);
 		}
 

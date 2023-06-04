@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Consumables
@@ -10,9 +11,15 @@ namespace AssortedCrazyThings.Items.Consumables
 	[Content(ContentType.CuteSlimes)]
 	public class CuteSlimeSpawnEnableFlask : AssItem
 	{
+		public static LocalizedText SeeMoreOftenText { get; private set; }
+		public static LocalizedText SeeText { get; private set; }
+
+		public override LocalizedText Tooltip => LocalizedText.Empty;
+
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Jellied Ale");
+			SeeMoreOftenText = this.GetLocalization("SeeMoreOften");
+			SeeText = this.GetLocalization("See");
 
 			ItemID.Sets.DrinkParticleColors[Item.type] = new Color[3] {
 				new Color(13, 106, 137),
@@ -20,22 +27,11 @@ namespace AssortedCrazyThings.Items.Consumables
 				new Color(146, 229, 255)
 			};
 
-			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
-		}
-
-		public override void ModifyTooltips(List<TooltipLine> tooltips)
-		{
-			string tooltip = "You will see Cute Slimes more often for a short time";
-			if (ContentConfig.Instance.CuteSlimesPotionOnly)
-			{
-				tooltip = "Allows you to see Cute Slimes for a short time";
-			}
-			tooltips.Add(new TooltipLine(Mod, "Tooltip", tooltip));
+			Item.ResearchUnlockCount = 10;
 		}
 
 		public override void SetDefaults()
 		{
-			//item.CloneDefaults(ItemID.Silk);
 			Item.width = 20;
 			Item.height = 28;
 			Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -43,12 +39,17 @@ namespace AssortedCrazyThings.Items.Consumables
 			Item.useTime = 17;
 			Item.useTurn = true;
 			Item.UseSound = SoundID.Item3;
-			Item.maxStack = 30;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.consumable = true;
 			Item.buffTime = 5 * 60 * 60;
 			Item.buffType = ModContent.BuffType<CuteSlimeSpawnEnableBuff>();
 			Item.rare = 0;
 			Item.value = Item.sellPrice(copper: 20);
+		}
+
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			tooltips.Add(new TooltipLine(Mod, "Tooltip", (ContentConfig.Instance.CuteSlimesPotionOnly ? SeeText : SeeMoreOftenText).ToString()));
 		}
 
 		public override void AddRecipes()

@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,19 +20,18 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
 		protected byte TotalNumberOfThese = 16; //16 for default, 13 for assorted, 16 for spiked
 
-		protected string SlimeType = "";
+		protected SlimeType slimeType = SlimeType.Default;
 
 		public override string Texture
 		{
 			get
 			{
-				return "AssortedCrazyThings/Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_0"; //use fixed texture
+				return "AssortedCrazyThings/Projectiles/Minions/SlimePackMinions/SlimeMinion_0"; //use fixed texture
 			}
 		}
 
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Pack Minion");
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -93,14 +93,14 @@ namespace AssortedCrazyThings.Projectiles.Minions
 			//Rainbow is _5, Illuminant is _15
 			if (HasTexture)
 			{
-				Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture).Value;
+				Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + slimeType + "_" + PickedTexture).Value;
 				Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 				Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY - DrawOriginOffsetY); //gfxoffY is for when the projectile is on a slope or half brick
 				SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 				Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
 				Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
 
-				if (PickedTexture == 5 && SlimeType != "Assorted")
+				if (PickedTexture == 5 && slimeType != SlimeType.Assorted)
 				{
 					double cX = Projectile.Center.X + DrawOffsetX;
 					double cY = Projectile.Center.Y + DrawOriginOffsetY;
@@ -109,13 +109,13 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
 				Color color = lightColor * ((255 - Projectile.alpha) / 255f);
 
-				if (SlimeType == "Assorted" && (PickedTexture == 0 ||
+				if (slimeType == SlimeType.Assorted && (PickedTexture == 0 ||
 					PickedTexture == 5 ||
 					PickedTexture == 6 ||
 					PickedTexture == 7 ||
 					PickedTexture == 11)) color.A = 255;
 
-				if (PickedTexture == 3 && SlimeType != "Assorted") //pinky
+				if (PickedTexture == 3 && slimeType != SlimeType.Assorted) //pinky
 				{
 					drawPos.Y += 7f;
 					Projectile.scale = 0.5f;
@@ -130,15 +130,15 @@ namespace AssortedCrazyThings.Projectiles.Minions
 		{
 			if (HasTexture)
 			{
-				if ((PickedTexture == 15 && SlimeType != "Assorted") || (PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
+				if ((PickedTexture == 15 && slimeType != SlimeType.Assorted) || (PickedTexture == 10 || PickedTexture == 12) && slimeType == SlimeType.Assorted)
 				{
-					Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask").Value;
+					Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + slimeType + "_" + PickedTexture + "_Glowmask").Value;
 					Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 					SpriteEffects effect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 					Vector2 drawOrigin = new Vector2(Projectile.width * 0.5f, Projectile.height * 0.5f);
 					Vector2 stupidOffset = new Vector2(0f, Projectile.gfxOffY - DrawOriginOffsetY); //gfxoffY is for when the projectile is on a slope or half brick
 
-					if (PickedTexture == 15 && SlimeType != "Assorted") //illuminant slime
+					if (PickedTexture == 15 && slimeType != SlimeType.Assorted) //illuminant slime
 					{
 						for (int k = Projectile.oldPos.Length - 1; k >= 0; k--)
 						{
@@ -151,7 +151,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 							Main.EntitySpriteDraw(image, drawPos, bounds, color, Projectile.oldRot[k], bounds.Size() / 2, Projectile.scale, effect, 0);
 						}
 					}
-					else if ((PickedTexture == 10 || PickedTexture == 12) && SlimeType == "Assorted")
+					else if ((PickedTexture == 10 || PickedTexture == 12) && slimeType == SlimeType.Assorted)
 					{
 						Vector2 drawPos = Projectile.position - Main.screenPosition + drawOrigin + stupidOffset;
 						Color fullColor = lightColor;
@@ -161,7 +161,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 						if (PickedTexture == 10)
 						{
 							//Turtle
-							image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + SlimeType + "_" + PickedTexture + "_Glowmask2").Value;
+							image = Mod.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinion" + slimeType + "_" + PickedTexture + "_Glowmask2").Value;
 							Main.EntitySpriteDraw(image, drawPos, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effect, 0);
 						}
 					}
@@ -174,7 +174,6 @@ namespace AssortedCrazyThings.Projectiles.Minions
 	{
 		public override void SafeSetStaticDefaults()
 		{
-			DisplayName.SetDefault("Slime Pack Minion");
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 
@@ -189,7 +188,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 
 			Projectile.minion = true;
 
-			SlimeType = "Assorted";
+			slimeType = SlimeType.Assorted;
 			TotalNumberOfThese = 13;
 
 			shootSpikes = false;
@@ -204,7 +203,7 @@ namespace AssortedCrazyThings.Projectiles.Minions
 			Projectile.width = 32;
 			Projectile.height = 30;
 
-			SlimeType = "Spiked";
+			slimeType = SlimeType.Spiked;
 			TotalNumberOfThese = 16;
 
 			shootSpikes = true;

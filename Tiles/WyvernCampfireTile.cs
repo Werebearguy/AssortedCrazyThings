@@ -14,7 +14,7 @@ using Terraria.ObjectData;
 namespace AssortedCrazyThings.Tiles
 {
 	[Content(ContentType.PlaceablesFunctional)]
-	public class WyvernCampfireTile : DroppableTile<WyvernCampfireItem>
+	public class WyvernCampfireTile : AssTile
 	{
 		private const int maxFrames = 8;
 
@@ -36,17 +36,10 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.Origin = new Point16(1, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.addTile(Type);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Wyvern Campfire");
-			AddMapEntry(new Color(105, 105, 105), name);
+			AddMapEntry(new Color(105, 105, 105), ModContent.GetInstance<WyvernCampfireItem>().DisplayName);
 			DustType = -1;
 			AnimationFrameHeight = 36;
 			AdjTiles = new int[] { TileID.Campfire };
-		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ItemType);
 		}
 
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -62,7 +55,7 @@ namespace AssortedCrazyThings.Tiles
 
 		public override void NearbyEffects(int i, int j, bool closer)
 		{
-			if (closer && Main.tile[i, j].TileFrameY < AnimationFrameHeight)
+			if (!closer && Main.tile[i, j].TileFrameY < AnimationFrameHeight)
 			{
 				Main.LocalPlayer.GetModPlayer<AssPlayer>().wyvernCampfire = true;
 				Main.SceneMetrics.HasCampfire = true;
@@ -127,7 +120,7 @@ namespace AssortedCrazyThings.Tiles
 			player.mouseInterface = true;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ItemType;
+			player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type);
 		}
 
 		public override bool RightClick(int i, int j)

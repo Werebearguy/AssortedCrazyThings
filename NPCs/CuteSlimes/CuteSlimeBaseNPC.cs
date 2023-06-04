@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,22 +13,38 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 	[Content(ContentType.CuteSlimes)]
 	public abstract class CuteSlimeBaseNPC : AssNPC
 	{
-		public abstract string IngameName { get; }
-
 		public abstract int CatchItem { get; }
 
 		public abstract SpawnConditionType SpawnCondition { get; }
 
 		public abstract Color DustColor { get; }
 
+		//https://terraria.wiki.gg/wiki/Shimmer_Slime
+		/// <summary>
+		/// NPCs in this set will not transform into shimmer, and won't be replaced by rare variants on spawn
+		/// </summary>
+		public virtual bool CannotTransformIntoShimmerOrRareVariants => false;
+
 		public virtual bool ShouldDropGel => true;
 
-		public override void SetStaticDefaults()
+		public sealed override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(IngameName);
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
+
+			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[1] {
+					BuffID.Poisoned
+				}
+			});
+
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
+
+			if (!CannotTransformIntoShimmerOrRareVariants)
+			{
+				NPCID.Sets.ShimmerTransformToNPC[NPC.type] = ModContent.NPCType<CuteSlimeShimmer>();
+			}
 
 			SafeSetStaticDefaults();
 		}
@@ -68,7 +85,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override bool? CanBeHitByItem(Player player, Item item)
 		{
-			return null; //TODO NPC return true
+			return player.CanBeHitByItemCritterLike(NPC);
 		}
 
 		public override bool? CanBeHitByProjectile(Projectile projectile)
@@ -76,21 +93,21 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			return projectile.CanBeHitByProjectileCritterLike(NPC);
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			Color color = DustColor;
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100f; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hitDirection, -1f, NPC.alpha, color);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, hit.HitDirection, -1f, NPC.alpha, color);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < 30; i++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hitDirection, -2f, NPC.alpha, color);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 4, 2 * hit.HitDirection, -2f, NPC.alpha, color);
 				}
 			}
 		}

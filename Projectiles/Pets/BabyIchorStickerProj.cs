@@ -13,9 +13,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Ichor Sticker");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
+
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(0, Main.projFrames[Projectile.type], 5)
+				.WithOffset(-6f, -14f)
+				.WithSpriteDirection(-1)
+				.WithCode(DelegateMethods.CharacterPreview.Float);
 
 			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<BabyIchorStickerBuff_AoMM>(), ModContent.ProjectileType<BabyIchorStickerShotProj>());
 		}
@@ -63,7 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override SoundStyle? SpawnSound => SoundID.Item17;
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			int petLevel = AmuletOfManyMinionsApi.GetPetLevel(Projectile.GetOwner());
 			if (petLevel >= 5)
