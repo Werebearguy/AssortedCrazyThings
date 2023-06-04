@@ -16,10 +16,10 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			Main.projFrames[Projectile.type] = 12;
+			Main.projFrames[Projectile.type] = 14;
 			Main.projPet[Projectile.type] = true;
 
-			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(1, 7 - 1, 6)
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(2, 10 - 2, 5)
 				.WhenNotSelected(0, 0)
 				.WithOffset(-6f, 0f)
 				.WithSpriteDirection(-1);
@@ -33,7 +33,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			AIType = ProjectileID.BabyGrinch;
 			Projectile.width = 24; //40 for flying
 			Projectile.height = 38;
-			DrawOriginOffsetY = 4;
+			DrawOriginOffsetY = 2;
 		}
 
 		public override bool PreAI()
@@ -64,14 +64,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					{
 						frame2Counter += (int)xAbs;
 						frame2Counter++;
-						if (frame2Counter > 20) //6
+						if (frame2Counter > 16) //6
 						{
 							frame2++;
 							frame2Counter = 0;
 						}
-						if (frame2 > 6) //frame 1 to 6 is running
+						if (frame2 < 2 || frame2 > 9) //frame 2 to 9 is running
 						{
-							frame2 = 1;
+							frame2 = 2;
 						}
 					}
 					else
@@ -83,7 +83,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				else if (Projectile.velocity.Y != 0f)
 				{
 					frame2Counter = 0;
-					frame2 = 7; //frame 7 is jumping
+					frame2 = 1; //frame 1 is jumping
 				}
 				//projectile.velocity.Y += 0.4f;
 				//if (projectile.velocity.Y > 10f)
@@ -102,9 +102,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					frame2++;
 					frame2Counter = 0;
 				}
-				if (frame2 < 8 || frame2 > 11)
+				if (frame2 < 10 || frame2 > 13)
 				{
-					frame2 = 8;
+					frame2 = 10;
 				}
 				Projectile.rotation = Projectile.velocity.X * 0.01f;
 			}
