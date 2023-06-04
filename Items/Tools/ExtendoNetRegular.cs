@@ -10,8 +10,8 @@ namespace AssortedCrazyThings.Items.Tools
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			Item.useAnimation = 24;
-			Item.useTime = 32;
+			Item.useAnimation = 22;
+			Item.useTime = 22;
 			Item.value = Item.sellPrice(silver: 45);
 			Item.rare = 1;
 			Item.shoot = ModContent.ProjectileType<ExtendoNetRegularProj>();

@@ -1,6 +1,8 @@
 using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Tools
@@ -8,15 +10,14 @@ namespace AssortedCrazyThings.Projectiles.Tools
 	[Content(ContentType.Tools)]
 	public abstract class ExtendoNetBaseProj : AssProjectile
 	{
-		protected float initialSpeed = 10f;
-		protected float extendSpeed = 2.5f;
-		protected float retractSpeed = 2.3f;
+		protected float rangeMin = 3 * 16;
+		protected float rangeMax = 11 * 16;
 
 		public override void SetDefaults()
 		{
 			Projectile.width = 28;
 			Projectile.height = 28;
-			Projectile.aiStyle = 19;
+			Projectile.aiStyle = -1;
 			Projectile.penetrate = -1;
 			Projectile.scale = 1f;
 
@@ -32,50 +33,38 @@ namespace AssortedCrazyThings.Projectiles.Tools
 			return false;
 		}
 
-		public float MovementFactor
-		{
-			get => Projectile.ai[0];
-			set => Projectile.ai[0] = value;
-		}
-
-		// It appears that for this AI, only the ai0 field is used!
 		public override void AI()
 		{
-			// Since we access the owner player instance so much, it's useful to create a helper local variable for this
-			// Sadly, Projectile/ModProjectile does not have its own
-			Player projOwner = Projectile.GetOwner();
-			// Here we set some of the projectile's owner properties, such as held item and itemtime, along with projectile direction and position based on the player
-			Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
-			Projectile.direction = projOwner.direction;
+			Player player = Projectile.GetOwner();
+			int duration = player.itemAnimationMax;
+			if (Projectile.timeLeft > duration)
+			{
+				Projectile.timeLeft = duration;
+			}
+
+			Projectile.gfxOffY = player.gfxOffY;
+			Projectile.velocity = Vector2.Normalize(Projectile.velocity); //Velocity isn't used in this spear implementation, but we use the field to store the spear's attack direction.
+
+			Projectile.direction = player.direction;
 			Projectile.spriteDirection = -Projectile.direction;
-			projOwner.heldProj = Projectile.whoAmI;
-			projOwner.itemTime = projOwner.itemAnimation;
-			Projectile.position.X = ownerMountedCenter.X - (float)(Projectile.width / 2);
-			Projectile.position.Y = ownerMountedCenter.Y - (float)(Projectile.height / 2);
-			// As long as the player isn't frozen, the spear can move
-			if (!projOwner.frozen)
+			player.heldProj = Projectile.whoAmI;
+
+			float halfDuration = duration * 0.5f;
+			float progress;
+
+			//Here 'progress' is set to a value that goes from 0.0 to 1.0 and back during the item use animation.
+			if (Projectile.timeLeft < halfDuration)
 			{
-				if (MovementFactor == 0f) // When initially thrown out, the ai0 will be 0f
-				{
-					MovementFactor = initialSpeed; // Make sure the spear moves forward when initially thrown out
-					Projectile.netUpdate = true; // Make sure to netUpdate this spear
-				}
-				if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3) // Somewhere along the item animation, make sure the spear moves back
-				{
-					MovementFactor -= retractSpeed;
-				}
-				else // Otherwise, increase the movement factor
-				{
-					MovementFactor += extendSpeed;
-				}
+				progress = Projectile.timeLeft / halfDuration;
 			}
-			// Change the spear position based off of the velocity and the movementFactor
-			Projectile.position += Projectile.velocity * MovementFactor;
-			// When we reach the end of the animation, we can kill the spear projectile
-			if (projOwner.itemAnimation == 0)
+			else
 			{
-				Projectile.Kill();
+				progress = (duration - Projectile.timeLeft) / halfDuration;
 			}
+
+			//Move the projectile from the rangeMin to the rangeMax and back, using SmoothStep for easing the movement
+			Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * rangeMin, Projectile.velocity * rangeMax, progress);
+
 			// Apply proper rotation, with an offset of 135 degrees due to the sprite's rotation, notice the usage of MathHelper, use this class!
 			// MathHelper.ToRadians(xx degrees here)
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
@@ -87,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Tools
 
 			if (Main.myPlayer == Projectile.owner)
 			{
-				Vector2 between = projOwner.Center - Projectile.Center;
+				Vector2 between = player.Center - Projectile.Center;
 				between.Normalize();
 				Rectangle hitboxMod = new Rectangle(Projectile.Hitbox.X + (int)(between.X * Projectile.width * 1.3f),
 					Projectile.Hitbox.Y + (int)(between.Y * Projectile.height * 1.3f),
@@ -99,10 +88,21 @@ namespace AssortedCrazyThings.Projectiles.Tools
 					NPC npc = Main.npc[i];
 					if (npc.active && npc.catchItem > 0)
 					{
-						NPC.CheckCatchNPC(npc, hitboxMod, projOwner.HeldItem, projOwner);
+						NPC.CheckCatchNPC(npc, hitboxMod, player.HeldItem, player);
 					}
 				}
 			}
+		}
+
+		public override bool PreDraw(ref Color lightColor)
+		{
+			Player player = Main.player[Projectile.owner];
+			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+			Vector2 flipOffset = new Vector2(player.direction == 1 ? texture.Width : 0, 0);
+			SpriteEffects effects = player.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+			Main.EntitySpriteDraw(texture, Projectile.Center + new Vector2(0, Projectile.gfxOffY) - Main.screenPosition, frame, lightColor, Projectile.rotation, flipOffset, 1f, effects, 0);
+			return false;
 		}
 	}
 }

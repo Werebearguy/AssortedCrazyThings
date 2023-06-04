@@ -22,7 +22,7 @@ namespace AssortedCrazyThings.Items.Tools
 		public override void SetDefaults()
 		{
 			Item.useStyle = ItemUseStyleID.Shoot;
-			Item.shootSpeed = 3.7f;
+			Item.shootSpeed = 3.7f; //Doesn't matter for spear impl
 			Item.width = 40;
 			Item.height = 40;
 			Item.DamageType = DamageClass.Melee;

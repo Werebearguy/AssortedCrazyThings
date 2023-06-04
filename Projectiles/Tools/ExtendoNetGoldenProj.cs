@@ -6,9 +6,8 @@ namespace AssortedCrazyThings.Projectiles.Tools
 		{
 			base.SetDefaults();
 			Projectile.scale = 1.3f;
-			initialSpeed = 13f;
-			extendSpeed = 4f;
-			retractSpeed = 3.6f;
+			rangeMin = 5 * 16f;
+			rangeMax = 14 * 16f;
 		}
 
 		public override bool? CanCutTiles()
