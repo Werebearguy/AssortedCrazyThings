@@ -96,7 +96,7 @@ namespace AssortedCrazyThings.NPCs
 				Vector2 stupidOffset = new Vector2(0f, 0f); //4f
 				SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 				Vector2 drawPos = NPC.Center - screenPos - Vector2.Zero + stupidOffset;
-				spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+				spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 			}
 		}
 

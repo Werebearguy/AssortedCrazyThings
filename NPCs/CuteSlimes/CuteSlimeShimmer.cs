@@ -135,7 +135,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			Vector2 drawOrigin = new Vector2(NPC.width * 0.5f, NPC.height * 0.5f);
 			Vector2 drawPos = NPC.position - screenPos + drawOrigin + stupidOffset;
 			drawColor.A = 255;
-			spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 		}
 	}
 }

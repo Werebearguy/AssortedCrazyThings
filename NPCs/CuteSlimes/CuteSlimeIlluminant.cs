@@ -50,7 +50,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
-			Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/CuteSlimes/CuteSlimeIlluminantAddition").Value;
+			Texture2D texture = ModContent.Request<Texture2D>(Texture + "Addition").Value;
 			SpriteEffects effect = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 			Vector2 drawOrigin = new Vector2(NPC.width / 2, NPC.height / 2 + NPC.gfxOffY - 5f);
 

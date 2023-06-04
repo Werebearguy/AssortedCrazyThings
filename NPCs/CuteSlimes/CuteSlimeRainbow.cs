@@ -42,8 +42,8 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override Color? GetAlpha(Color lightColor)
 		{
-			lightColor = Main.DiscoColor;
-			lightColor *= (255f - NPC.alpha) / 255f;
+			lightColor = NPC.GetShimmerColor(Main.DiscoColor);
+			lightColor *= NPC.Opacity;
 			return lightColor;
 		}
 	}

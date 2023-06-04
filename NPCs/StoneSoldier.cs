@@ -207,7 +207,7 @@ namespace AssortedCrazyThings.NPCs
 			drawColor.R = Math.Max(drawColor.R, (byte)100);
 			drawColor.G = Math.Max(drawColor.G, (byte)100);
 			drawColor.B = Math.Max(drawColor.B, (byte)100);
-			spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
+			spriteBatch.Draw(texture, drawPos, new Rectangle?(texture.Bounds), NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 		}
 	}
 }
