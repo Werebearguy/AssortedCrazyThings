@@ -25,7 +25,7 @@ Small size update porting the mod to 1.4.4, adding some new pets, and making the
             * Cute Pink Ice Slime
             * Cute Purple Ice Slime
             * Cute Red Ice Slime
-            * Cute Gold Slime
+            * Cute Golden Slime
             * Cute Honey Slime
             * Cute Shimmer Slime
 * REMOVALS
