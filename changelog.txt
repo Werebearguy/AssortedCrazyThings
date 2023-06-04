@@ -10,6 +10,7 @@ Small size update porting the mod to 1.4.4, adding some new pets, and making the
     * All stackable items now have a maximum stack of 9999
     * Sigil of the Beak, Sigil of the Wing, and Sigil of the Talon can now be transformed into eachother via Shimmer
     * Certain enemies and critters now transform into Shimmer Slime or Faeling via Shimmer
+    * Changed Crazy Bundle of Assorted Balloons recipe
     * Resprited Mini Megalodon and Goblet pets
 * ADDITIONS
     * General
