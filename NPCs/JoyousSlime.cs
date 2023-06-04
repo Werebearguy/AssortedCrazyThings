@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.NPCs
 				}
 			});
 
+			//No shimmer transformation, special
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 

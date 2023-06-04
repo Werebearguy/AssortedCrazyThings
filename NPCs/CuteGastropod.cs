@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
+using AssortedCrazyThings.NPCs.CuteSlimes;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
@@ -24,6 +25,8 @@ namespace AssortedCrazyThings.NPCs
 					BuffID.Confused
 				}
 			};
+
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = ModContent.NPCType<CuteSlimeShimmer>();
 		}
 
 		public override void SetDefaults()

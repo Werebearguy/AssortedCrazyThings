@@ -36,6 +36,7 @@ namespace AssortedCrazyThings.NPCs
 				}
 			});
 
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.ShimmerSlime;
 			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);
 		}
 

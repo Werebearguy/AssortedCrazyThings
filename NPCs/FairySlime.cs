@@ -26,6 +26,7 @@ namespace AssortedCrazyThings.NPCs
 				}
 			});
 
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 

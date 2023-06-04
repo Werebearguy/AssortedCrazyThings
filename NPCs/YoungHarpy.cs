@@ -31,6 +31,8 @@ namespace AssortedCrazyThings.NPCs
 				Position = new Vector2(0, 10f)
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 		}
 
 		public override void SetDefaults()

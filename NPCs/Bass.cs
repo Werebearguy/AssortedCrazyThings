@@ -31,6 +31,7 @@ namespace AssortedCrazyThings.NPCs
 				IsWet = true
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 
 			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
