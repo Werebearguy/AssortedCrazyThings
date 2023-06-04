@@ -1,5 +1,5 @@
 author = Harblesnargits, direwolf420
-version = 1.4.3
+version = 1.4.4
 displayName = Assorted Crazy Things
 hideResources = true
 buildIgnore = *.csproj, *.user, *.md, obj\*, bin\*, .vs\*, Wiki\*, Guides\*, .gitignore, sample.png
