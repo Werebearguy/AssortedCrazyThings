@@ -50,15 +50,13 @@ namespace AssortedCrazyThings.Items.Pets
 		{
 			/*
 				* Try dropping when these conditions are true
-				* int number = Item.NewItem(new EntitySource_TorchGod(this, "TorchGod_FavorLoot"), (int)position.X, (int)position.Y, width, height, 5043);
+				* int number = Item.NewItem(GetItemSource_Misc(6), (int)position.X, (int)position.Y, width, height, 5043);
 					if (Main.netMode == 1)
 						NetMessage.SendData(21, -1, -1, null, number, 1f);
 				*/
 			//If this causes a recursion somehow, im screaming
 			Player player = Main.LocalPlayer;
-			if (source is EntitySource_TorchGod torchGodSource &&
-				torchGodSource.Context == "TorchGod_FavorLoot" &&
-				torchGodSource.TargetedEntity == player &&
+			if (source.Context == "TorchGod" &&
 				Type == ItemID.TorchGodsFavor && Stack == 1)
 			{
 				int itemToDrop = ModContent.ItemType<TorchGodLightPetItem>();
