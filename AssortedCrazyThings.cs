@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.Weapons;
+using AssortedCrazyThings.NPCs.DropConditions;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
 using AssortedCrazyThings.Tiles;
@@ -137,6 +138,10 @@ namespace AssortedCrazyThings
 				animatedSoulTextures[0] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulAnimated");
 				animatedSoulTextures[1] = Assets.Request<Texture2D>("Items/CaughtDungeonSoulFreedAnimated");
 			}
+
+			//Needs to be initialized early since it's used outside of its own condition
+			string category = $"DropConditions.";
+			MatchAppearanceCondition.DescriptionText = Language.GetOrRegister(ModContent.GetInstance<AssortedCrazyThings>().GetLocalizationKey($"{category}{typeof(MatchAppearanceCondition).Name}.Description"));
 		}
 
 		private void UnloadMisc()

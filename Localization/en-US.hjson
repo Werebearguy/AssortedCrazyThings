@@ -2552,6 +2552,12 @@ Mods: {
 			DroneTypeNotUnlocked: If it isn't unlocked yet
 		}
 
+		DropConditions: {
+			MatchAppearanceCondition.Description: Drops based on appearance
+			NotAllDronePartsUnlockedCondition.Description: Drops if not all {$Items.DroneParts.DisplayName} are unlocked yet
+			NoHasItemWithBankCondition.Description: Only if {0} is not in the closest players inventory or banks
+		}
+
 		Announcements: {
 			SigilOfTheWingDeath: "{0} has died, but their soul has not given up..."
 			SoulHarvesterDeath: The Dungeon Souls have been freed!

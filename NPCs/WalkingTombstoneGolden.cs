@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.NPCs
 			npcLoot.Add(dropRule);
 
 			//Dummy for bestiary
-			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition("Drops based on appearance"), itemID, chanceDenominator: 5));
+			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition(MatchAppearanceCondition.DescriptionText), itemID, chanceDenominator: 5));
 		}
 
 		public override void PostAI()

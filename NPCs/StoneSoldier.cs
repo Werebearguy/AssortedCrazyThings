@@ -106,7 +106,7 @@ namespace AssortedCrazyThings.NPCs
 			npcLoot.Add(dropRule);
 
 			//Dummy for bestiary, technically not accurate because we use bell curve, don't want to replicate logic for that
-			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition("Drops based on appearance"), itemID, chanceDenominator: 6));
+			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition(MatchAppearanceCondition.DescriptionText), itemID, chanceDenominator: 6));
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

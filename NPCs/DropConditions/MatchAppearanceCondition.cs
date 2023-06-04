@@ -1,12 +1,15 @@
 ﻿using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 
 namespace AssortedCrazyThings.NPCs.DropConditions
 {
 	public class MatchAppearanceCondition : Conditions.IsUsingSpecificAIValues, IProvideItemConditionDescription
 	{
+		public static LocalizedText DescriptionText { get; set; }
+
 		public MatchAppearanceCondition(int aiSlot, int valueToMatch) : base(aiSlot, valueToMatch)
 		{
-
+			//Loaded earlier as it's used elsewhere
 		}
 
 		public new bool CanDrop(DropAttemptInfo info)
@@ -20,7 +23,7 @@ namespace AssortedCrazyThings.NPCs.DropConditions
 
 		public new string GetConditionDescription()
 		{
-			return "Drops based on appearance";
+			return DescriptionText.ToString();
 		}
 	}
 }
