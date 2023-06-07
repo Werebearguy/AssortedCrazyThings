@@ -79,7 +79,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 				}
 			}
 
-			if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation) && summonersAssociation.Version > new Version(0, 4, 1))
+			if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation))
 			{
 				if (ContentConfig.Instance.Bosses)
 				{
