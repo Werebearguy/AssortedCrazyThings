@@ -2256,6 +2256,7 @@ Mods: {
 			HarvesterBoss: {
 				DisplayName: Soul Harvester
 				BestiaryFlavorText: After having absorbed the essence of fallen dungeon denizens, this skeletal bird rapidly grew into a ferocious hunter that sought to eat the hand that once fed it.
+				BossChecklistIntegration.SpawnInfo: Find and open an {$Items.AntiqueCageItem.DisplayName} in the dungeon, or use [i:AssortedCrazyThings/IdolOfDecay]
 			}
 
 			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"

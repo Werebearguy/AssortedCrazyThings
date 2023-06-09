@@ -4,7 +4,6 @@ using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
 using AssortedCrazyThings.Items.VanityArmor;
 using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
@@ -18,64 +17,63 @@ namespace AssortedCrazyThings.Base.ModSupport
 	{
 		public override void PostSetupContent()
 		{
+			//https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call
 			//https://forums.terraria.org/index.php?threads/boss-checklist-in-game-progression-checklist.50668/
 			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
 			{
 				if (ContentConfig.Instance.Bosses)
 				{
 					//5.1f means just after skeletron
-					if (bossChecklist.Version >= new Version(1, 3, 1)) //Calls were overhauled for 1.4
+					List<int> collection = new List<int>()
 					{
-						List<int> collection = new List<int>()
+						ModContent.ItemType<HarvesterRelicItem>(),
+						ModContent.ItemType<PetHarvesterItem>(),
+						ModContent.ItemType<HarvesterTrophyItem>(),
+						ModContent.ItemType<SoulHarvesterMask>()
+					};
+
+					int summonItem = ModContent.ItemType<IdolOfDecay>();
+
+					/*
+					"LogBoss",
+					submittedMod, // Mod
+					internalName, // Internal Name
+					Convert.ToSingle(args[3]), // Prog
+					args[4] as Func<bool>, // Downed
+					InterpretObjectAsListOfInt(args[5]), // NPC IDs
+					args[6] as Dictionary<string, object>
+					*/
+					bossChecklist.Call(
+						"LogBoss",
+						Mod,
+						"SoulHarvester",
+						5.1f,
+						(Func<bool>)(() => AssWorld.downedHarvester),
+						AssortedCrazyThings.harvester,
+						new Dictionary<string, object>()
 						{
-							ModContent.ItemType<HarvesterRelicItem>(),
-							ModContent.ItemType<PetHarvesterItem>(),
-							ModContent.ItemType<HarvesterTrophyItem>(),
-							ModContent.ItemType<SoulHarvesterMask>()
-						};
-
-						int summonItem = ModContent.ItemType<IdolOfDecay>();
-
-						/*
-						 * "AddBoss",
-							args[1] as Mod, // Mod
-							args[2] as string, // Boss Name
-							InterpretObjectAsListOfInt(args[3]), // IDs
-							Convert.ToSingle(args[4]), // Prog
-							args[5] as Func<bool>, // Downed
-							args[6] as Func<bool>, // Available
-							InterpretObjectAsListOfInt(args[7]), // Collection
-							InterpretObjectAsListOfInt(args[8]), // Spawn Items
-							args[9] as string, // Spawn Info
-							InterpretObjectAsStringFunction(args[10]), // Despawn message
-							args[11] as Action<SpriteBatch, Rectangle, Color> // Custom Drawing
-						 */
-						bossChecklist.Call(
-							"AddBoss",
-							Mod,
-							"Soul Harvester",
-							AssortedCrazyThings.harvester,
-							5.1f,
-							(Func<bool>)(() => AssWorld.downedHarvester),
-							(Func<bool>)(() => true),
-							collection,
-							summonItem,
-							$"Find and open an Antique Cage in the dungeon, or use [i:{summonItem}]"
-						);
-					}
+							["spawnItems"] = summonItem,
+							["collectibles"] = collection
+							// Other optional arguments as needed...
+						}
+					);
 				}
 
 				if (ContentConfig.Instance.Weapons)
 				{
-					if (bossChecklist.Version >= new Version(1, 3, 2)) //"AddToBossLoot" was added
+					List<int> goblinInvasion = new List<int>()
 					{
-						List<int> goblinInvasion = new List<int>()
-						{
-							ModContent.ItemType<GoblinUnderlingItem>()
-						};
+						ModContent.ItemType<GoblinUnderlingItem>()
+					};
 
-						bossChecklist.Call("AddToBossLoot", "Terraria GoblinArmy", goblinInvasion);
-					}
+					bossChecklist.Call(
+						"SubmitEventNPCs",
+						Mod,
+						new Dictionary<string, object>()
+						{
+							["Terraria GoblinArmy"] = goblinInvasion,
+						}
+					);
 				}
 			}
 
