@@ -1,33 +1,6 @@
-Small size update porting the mod to 1.4.4, adding some new pets, and making the mod localizable
+Preview maintenance
 
 * FIXES
-    * Fixed Wyvern Campfire effect having shorter range than intended
-    * Fixed Guide Voodoorang potentially summoning more than one Wall of Flesh if submerged in lava and more than one Guide is present
-    * Fixed missing "Daytime" and "Graveyard" bestiary tags on some entities
-    * Fixed Stone Soldier sword attack range being inconsistent
-    * Fixed Dessicated Leather drop from Treasure Bag (Soul Harvester) being 1x50% instead of 2x100%
-* CHANGES
-    * All stackable items now have a maximum stack of 9999
-    * Sigil of the Beak, Sigil of the Wing, and Sigil of the Talon can now be transformed into eachother via Shimmer
-    * Certain enemies and critters now transform into Shimmer Slime or Faeling via Shimmer
-    * Changed Crazy Bundle of Assorted Balloons recipe
-    * Resprited Mini Megalodon and Goblet pets
-* ADDITIONS
-    * General
-        * All pets now appear on the player select screen
-        * Mod is now localizable. Read the mod description for more info
-    * Accessories
-        * Silly Balloon Kit
-    * Pets
-        * Cute Slimes
-            * Cute Corrupt Jungle Slime
-            * Cute Crimson Jungle Slime
-            * Cute Pink Ice Slime
-            * Cute Purple Ice Slime
-            * Cute Red Ice Slime
-            * Cute Golden Slime
-            * Cute Honey Slime
-            * Cute Shimmer Slime
-* REMOVALS
-    * Accessories
-        * Removed Cobballoon and Eye-lloons, replaced by Silly Balloon Kit
+    * Fixed Mod not working on preview.
+    * Fixed Slime Handler Knapsack default slimes not appearing.
+    * Fixed Boss Checklist compatibility not working.
