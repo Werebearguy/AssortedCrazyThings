@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Base.ModSupport
 					};
 
 					bossChecklist.Call(
-						"SubmitEventNPCs",
+						"SubmitEntryLoot",
 						Mod,
 						new Dictionary<string, object>()
 						{
