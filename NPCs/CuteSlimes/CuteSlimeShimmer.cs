@@ -114,7 +114,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			float yOff = Main.NPCAddHeight(NPC);
 			Vector2 halfSize = new Vector2(TextureAssets.Npc[NPC.type].Width() / 2, TextureAssets.Npc[NPC.type].Height() / Main.npcFrameCount[NPC.type] / 2);
 
-			DrawData data = new DrawData(TextureAssets.Npc[NPC.type].Value, new Vector2(NPC.position.X - screenPos.X + NPC.width / 2 - TextureAssets.Npc[NPC.type].Width() * NPC.scale / 2f + halfSize.X * NPC.scale, NPC.position.Y - screenPos.Y + NPC.height - TextureAssets.Npc[NPC.type].Height() * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + halfSize.Y * NPC.scale + yOff + yUnused + NPC.gfxOffY), NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, halfSize, NPC.scale, spriteEffects);
+			DrawData data = new DrawData(TextureAssets.Npc[NPC.type].Value, new Vector2(NPC.position.X - screenPos.X + NPC.width / 2 - TextureAssets.Npc[NPC.type].Width() * NPC.scale / 2f + halfSize.X * NPC.scale, NPC.position.Y - screenPos.Y + NPC.height - TextureAssets.Npc[NPC.type].Height() * NPC.scale / Main.npcFrameCount[NPC.type] + 4f + halfSize.Y * NPC.scale + yOff + yUnused + NPC.gfxOffY), NPC.frame, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), NPC.rotation, halfSize, NPC.scale, spriteEffects);
 			GameShaders.Misc["RainbowTownSlime"].Apply(data);
 			data.Draw(spriteBatch);
 			Main.pixelShader.CurrentTechnique.Passes[0].Apply();

@@ -296,7 +296,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
-			drawColor = NPC.GetAlpha(drawColor);
+			drawColor = NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor));
 
 			//Vanilla draw code
 			float someNumModdedNPCsArentUsing = 0f;

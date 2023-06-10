@@ -59,7 +59,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			for (int k = NPC.oldPos.Length - 1; k >= 0; k--)
 			{
 				Vector2 drawPos = NPC.oldPos[k] - screenPos + drawOrigin;
-				Color color = NPC.GetAlpha(Color.White) * ((NPC.oldPos.Length - k) / (1f * NPC.oldPos.Length)) * ((255 - NPC.alpha) / 255f) * 0.5f;
+				Color color = NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(Color.White)) * ((NPC.oldPos.Length - k) / (1f * NPC.oldPos.Length)) * 0.5f;
 				color.A = (byte)(NPC.alpha * ((NPC.oldPos.Length - k) / NPC.oldPos.Length));
 				spriteBatch.Draw(texture, drawPos, NPC.frame, color, NPC.oldRot[k], NPC.frame.Size() / 2, NPC.scale, effect, 0f);
 			}

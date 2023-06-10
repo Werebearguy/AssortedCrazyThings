@@ -128,7 +128,7 @@ namespace AssortedCrazyThings.NPCs
 			for (int k = (NPC.oldPos.Length / 3); k < NPC.oldPos.Length; k++)
 			{
 				Vector2 drawPos = NPC.oldPos[k] - screenPos + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-				Color color = NPC.GetAlpha(drawColor) * ((float)(NPC.oldPos.Length - k) / (2f * NPC.oldPos.Length));
+				Color color = NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)) * ((float)(NPC.oldPos.Length - k) / (2f * NPC.oldPos.Length));
 				spriteBatch.Draw(texture, drawPos, NPC.frame, color, NPC.oldRot[k], drawOrigin, NPC.scale, SpriteEffects.None, 0f);
 			}
 			return true;
