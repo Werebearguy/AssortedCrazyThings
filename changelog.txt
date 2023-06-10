@@ -1,6 +1,5 @@
-Preview maintenance
+Preview maintenance.
 
 * FIXES
-    * Fixed Mod not working on preview.
-    * Fixed Slime Handler Knapsack default slimes not appearing.
-    * Fixed Boss Checklist compatibility not working.
+    * Fixed Boss Checklist compatibility with newest version
+    * Fixed various enemies and critters not tinting their color from Hunter Potion and some debuffs
