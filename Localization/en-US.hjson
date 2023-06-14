@@ -2778,6 +2778,8 @@ Mods: {
 					Tooltip: ""
 				}
 			}
+
+			Common.AcceptClientChanges: You are not the server owner so you can not change this config
 		}
 	}
 }

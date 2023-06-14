@@ -257,7 +257,7 @@ namespace AssortedCrazyThings
 			if (Main.netMode == NetmodeID.SinglePlayer) return true;
 			else if (!IsPlayerLocalServerOwner(whoAmI))
 			{
-				message = "You are not the server owner so you can not change this config";
+				message = AssUISystem.AcceptClientChangesText.ToString();
 				return false;
 			}
 			return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);

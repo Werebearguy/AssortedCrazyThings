@@ -43,12 +43,17 @@ namespace AssortedCrazyThings
 
 		public static LocalizedText BaseKnockbackText { get; private set; }
 
+		public static LocalizedText AcceptClientChangesText { get; private set; }
+
 		public override void Load()
 		{
 			string category = "Common.";
 			SelectedText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Selected"));
 			BaseDamageText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseDamage"));
 			BaseKnockbackText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseKnockback"));
+
+			category = "Configs.Common.";
+			AcceptClientChangesText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AcceptClientChanges"));
 		}
 
 		public override void PostSetupContent()
