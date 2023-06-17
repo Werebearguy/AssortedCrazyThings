@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.friendly = true;
 			NPC.damage = 0;
 			NPC.defense = 0;
-			NPC.lifeMax = 60;
+			NPC.lifeMax = 5;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 75f;
