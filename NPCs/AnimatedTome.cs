@@ -29,6 +29,7 @@ namespace AssortedCrazyThings.NPCs
 			NPC.damage = 13;
 			NPC.defense = 2;
 			NPC.lifeMax = 16;
+			NPC.dontTakeDamageFromHostiles = true; //Needed for npcCatchable which aren't friendly by default and deal damage
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 60f;
