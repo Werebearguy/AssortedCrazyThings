@@ -36,7 +36,7 @@ namespace AssortedCrazyThings.NPCs
 			DrawOffsetY = 4;
 			NPC.damage = 0;
 			NPC.defense = 0;
-			NPC.lifeMax = 20;
+			NPC.lifeMax = 5;
 			NPC.friendly = true;
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.HitSound = SoundID.NPCHit1;
@@ -67,8 +67,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			//quickUnlock: true so only 1 kill is required to list everything about it
-			bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type], quickUnlock: true);
+			bestiaryEntry.UIInfoProvider = new CritterUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPC.type]);
 
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
