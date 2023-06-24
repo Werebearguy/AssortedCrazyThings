@@ -45,7 +45,15 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
+
 			AssAI.EyeSpringAI(Projectile, out bool left, out bool right, out bool jumped, flyForever: false);
+
+			if (AmuletOfManyMinionsApi.IsActive(this) && AmuletOfManyMinionsApi.IsAttacking(this))
+			{
+				//Otherwise it's inverted
+				Projectile.spriteDirection = Projectile.direction = (Projectile.velocity.X < 0).ToDirectionInt();
+			}
+
 			//AssAI.EyeSpringDraw(Projectile, left, right);
 			EyeSpringDraw_Custom(Projectile, left, right, jumped);
 		}

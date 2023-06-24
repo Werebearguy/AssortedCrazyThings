@@ -1,8 +1,9 @@
 ﻿When replacing/updating AmuletOfManyMinionsApi
-* add the [Content(ConfigurationSystem.AllFlags)] attribute
-* add to the AommMod getter: if (!ContentConfig.Instance.AommSupport) { return null; }
+* namespace AssortedCrazyThings.Base.ModSupport.AoMM
 * ModSystem -> AssSystem
-* Add below AommMod and add using Terraria.Localization;
+* add the [Content(ConfigurationSystem.AllFlags)] attribute to class
+* add to the AommMod getter: if (!ContentConfig.Instance.AommSupport) { return null; }
+* Add below AommMod and add `using Terraria.Localization;`:
 ```cs
 public static LocalizedText AoMMVersionText { get; private set; }
 

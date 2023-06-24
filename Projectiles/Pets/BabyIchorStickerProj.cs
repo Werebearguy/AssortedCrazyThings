@@ -11,6 +11,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 {
 	public class BabyIchorStickerProj : SimplePetProjBase
 	{
+		public static readonly int PetPevelUpgrade = 5;
+
 		public override void SetStaticDefaults()
 		{
 			Main.projFrames[Projectile.type] = 4;
@@ -21,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				.WithSpriteDirection(-1)
 				.WithCode(DelegateMethods.CharacterPreview.Float);
 
-			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<BabyIchorStickerBuff_AoMM>(), ModContent.ProjectileType<BabyIchorStickerShotProj>());
+			AmuletOfManyMinionsApi.RegisterFlyingPet(this, ModContent.GetInstance<BabyIchorStickerBuff_AoMM>(), ModContent.ProjectileType<BabyIchorStickerShotProj>(), levelUpTier: PetPevelUpgrade);
 		}
 
 		public override void SetDefaults()
@@ -70,7 +72,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			int petLevel = AmuletOfManyMinionsApi.GetPetLevel(Projectile.GetOwner());
-			if (petLevel >= 5)
+			if (petLevel >= BabyIchorStickerProj.PetPevelUpgrade)
 			{
 				target.AddBuff(BuffID.Ichor, 300);
 			}
