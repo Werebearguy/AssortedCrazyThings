@@ -50,6 +50,8 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Player player = Projectile.GetOwner();
 			player.grinch = false; // Relic from AIType
 
+			GetFrame();
+
 			return true;
 		}
 
@@ -127,8 +129,6 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
-
-			GetFrame();
 		}
 
 		public override void PostAI()
@@ -148,7 +148,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			PetPlayer mPlayer = Projectile.GetOwner().GetModPlayer<PetPlayer>();
 			Texture2D image = Mod.Assets.Request<Texture2D>("Projectiles/Pets/LilWrapsProj_" + mPlayer.lilWrapsType).Value;
 			Rectangle bounds = image.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
-			Vector2 stupidOffset = new Vector2(10f, 23f + Projectile.gfxOffY);
+			Vector2 stupidOffset = new Vector2(10f, 24f + Projectile.gfxOffY);
 			Main.EntitySpriteDraw(image, Projectile.position - Main.screenPosition + stupidOffset, bounds, lightColor, Projectile.rotation, bounds.Size() / 2, Projectile.scale, effects, 0);
 
 			return false;
