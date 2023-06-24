@@ -1,5 +1,6 @@
 Preview maintenance.
 
 * FIXES
-    * Fixed Boss Checklist compatibility with newest version
-    * Fixed various enemies and critters not tinting their color from Hunter Potion and some debuffs
+    * Now possible to achieve 100% Bestiary completion (several entities were bugged)
+    * Fixed several hostile entities which can be caught sometimes taking damage on spawn
+    * Fixed Lil Wraps not having a walking animation
