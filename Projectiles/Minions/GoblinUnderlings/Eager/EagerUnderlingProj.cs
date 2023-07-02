@@ -1,5 +1,5 @@
 using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Base.Handlers.UnreplaceableMinionWith0SlotsHandler;
+using AssortedCrazyThings.Base.Handlers.UnreplaceableMinionHandler;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			//ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; //Causes other minions to despawn on use
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 
-			UnreplaceableMinionWith0SlotsSystem.Add(Projectile.type);
+			UnreplaceableMinionSystem.Add(Projectile.type);
 		}
 
 		public override void SetDefaults()
