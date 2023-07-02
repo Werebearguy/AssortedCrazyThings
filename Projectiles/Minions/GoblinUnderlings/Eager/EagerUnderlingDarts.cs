@@ -5,10 +5,10 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 {
 	[Content(ContentType.Weapons)]
-	public abstract class GoblinUnderlingDart : AssProjectile
+	public abstract class EagerUnderlingDart : AssProjectile
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
@@ -31,7 +31,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public override void SetStaticDefaults()
 		{
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.GoblinUnderlingDart.DisplayName"));
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(EagerUnderlingDart)}.DisplayName"));
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
@@ -65,7 +65,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		{
 			foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
 			{
-				if (proj.ModProjectile is GoblinUnderlingProj goblin)
+				if (proj.ModProjectile is EagerUnderlingProj goblin)
 				{
 					if (!target.boss && goblin.OutOfCombat())
 					{
@@ -102,27 +102,27 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		}
 	}
 
-	public class GoblinUnderlingDart_0 : GoblinUnderlingDart
+	public class EagerUnderlingDart_0 : EagerUnderlingDart
 	{
 
 	}
 
-	public class GoblinUnderlingDart_1 : GoblinUnderlingDart
+	public class EagerUnderlingDart_1 : EagerUnderlingDart
 	{
 
 	}
 
-	public class GoblinUnderlingDart_2 : GoblinUnderlingDart
+	public class EagerUnderlingDart_2 : EagerUnderlingDart
 	{
 
 	}
 
-	public class GoblinUnderlingDart_3 : GoblinUnderlingDart
+	public class EagerUnderlingDart_3 : EagerUnderlingDart
 	{
 
 	}
 
-	public class GoblinUnderlingDart_4 : GoblinUnderlingDart
+	public class EagerUnderlingDart_4 : EagerUnderlingDart
 	{
 
 	}

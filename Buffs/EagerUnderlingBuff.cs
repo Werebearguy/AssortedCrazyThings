@@ -1,11 +1,11 @@
-﻿using AssortedCrazyThings.Projectiles.Minions.GoblinUnderling;
+﻿using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs
 {
 	[Content(ContentType.Weapons)]
-	public class GoblinUnderlingBuff : AssBuff
+	public class EagerUnderlingBuff : AssBuff
 	{
 		public override void SetStaticDefaults()
 		{
@@ -15,8 +15,8 @@ namespace AssortedCrazyThings.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			GoblinUnderlingPlayer modPlayer = player.GetModPlayer<GoblinUnderlingPlayer>();
-			if (player.ownedProjectileCounts[ModContent.ProjectileType<GoblinUnderlingProj>()] > 0)
+			EagerUnderlingPlayer modPlayer = player.GetModPlayer<EagerUnderlingPlayer>();
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<EagerUnderlingProj>()] > 0)
 			{
 				modPlayer.hasMinion = true;
 			}

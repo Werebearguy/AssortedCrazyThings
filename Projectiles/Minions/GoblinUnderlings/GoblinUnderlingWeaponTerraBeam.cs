@@ -1,13 +1,14 @@
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 {
 	[Content(ContentType.Weapons)]
-	public class GoblinUnderlingTerraBeam : AssProjectile
+	public class GoblinUnderlingWeaponTerraBeam : AssProjectile
 	{
 		public bool Spawned
 		{
@@ -66,7 +67,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 			foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
 			{
-				if (proj.ModProjectile is GoblinUnderlingProj goblin)
+				//TODO change to "melee variants" here
+				if (proj.ModProjectile is EagerUnderlingProj goblin)
 				{
 					if (!target.boss && goblin.OutOfCombat())
 					{

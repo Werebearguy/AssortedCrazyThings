@@ -532,9 +532,9 @@ Mods: {
 				Description: Shows the location of enemies outside your vision range
 			}
 
-			GoblinUnderlingBuff: {
-				DisplayName: Goblin Underling
-				Description: A loyal goblin underling is fighting for you
+			EagerUnderlingBuff: {
+				DisplayName: Eager Underling
+				Description: A loyal underling is fighting for you
 			}
 
 			SigilOfTheWingBuff: {
@@ -1965,11 +1965,11 @@ Mods: {
 				SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
 			}
 
-			GoblinUnderlingItem: {
+			EagerUnderlingItem: {
 				DisplayName: Satchel of Goodies
 				Tooltip:
 					'''
-					Summons a Goblin Underling to fight for you
+					Summons an eager underling to fight for you
 					Gets stronger throughout progression
 					Does not occupy a minion slot, but only one can be summoned
 					'Inside, there's a spiky ball, a coin, and a...moon?'
@@ -2369,9 +2369,9 @@ Mods: {
 			MissileDrone.DisplayName: Missile Drone
 			MissileDroneRocket.DisplayName: Missile Drone Rocket
 			ShieldDrone.DisplayName: Shield Drone
-			GoblinUnderlingDart.DisplayName: Goblin Underling Dart
-			GoblinUnderlingProj.DisplayName: Goblin Underling
-			GoblinUnderlingTerraBeam.DisplayName: Goblin Underling Terra Beam
+			EagerUnderlingDart.DisplayName: Eager Underling Dart
+			EagerUnderlingProj.DisplayName: Eager Underling
+			GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
 			MagicSlimeSlingFired.DisplayName: Magic Slime Sling
 			MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser

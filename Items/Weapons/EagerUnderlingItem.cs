@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderling;
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -9,8 +10,9 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
+	[LegacyName("GoblinUnderlingItem")]
 	[Content(ContentType.Weapons)]
-	public class GoblinUnderlingItem : MinionItemBase
+	public class EagerUnderlingItem : MinionItemBase
 	{
 		public const int BaseDmg = 8;
 		public const float BaseKB = 1.5f;
@@ -27,7 +29,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 			if (gameEventId == GameEventClearedID.DefeatedGoblinArmy)
 			{
-				int itemType = ModContent.ItemType<GoblinUnderlingItem>();
+				int itemType = ModContent.ItemType<EagerUnderlingItem>();
 
 				static bool Condition(Player player, int itemType) => !player.HasItemWithBanks(itemType);
 
@@ -85,21 +87,21 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.value = Item.sellPrice(0, 0, 50, 0);
 			Item.rare = 2;
 			Item.UseSound = SoundID.Item44;
-			Item.shoot = ModContent.ProjectileType<GoblinUnderlingProj>();
+			Item.shoot = ModContent.ProjectileType<EagerUnderlingProj>();
 			Item.shootSpeed = 0f;
-			Item.buffType = ModContent.BuffType<GoblinUnderlingBuff>();
+			Item.buffType = ModContent.BuffType<EagerUnderlingBuff>();
 		}
 
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
 		{
 			//This is purely done for the tooltip
-			damage *= GoblinUnderlingSystem.GetCurrentTier().damageMult;
+			damage *= GoblinUnderlingSystem.GetCurrentTierStats().damageMult;
 		}
 
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
 		{
 			//This is purely done for the tooltip
-			knockback *= GoblinUnderlingSystem.GetCurrentTier().knockbackMult;
+			knockback *= GoblinUnderlingSystem.GetCurrentTierStats().knockbackMult;
 		}
 
 		public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

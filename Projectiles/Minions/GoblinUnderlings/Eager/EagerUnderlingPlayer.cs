@@ -4,10 +4,10 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 {
 	[Content(ContentType.Weapons)]
-	public class GoblinUnderlingPlayer : AssPlayerBase
+	public class EagerUnderlingPlayer : AssPlayerBase
 	{
 		private bool hasValhallaArmorVisual = false;
 		private bool prevHasValhallaArmorVisual = false;
@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 					return;
 				}
 
-				int index = player.FindItem(ModContent.ItemType<GoblinUnderlingItem>());
+				int index = player.FindItem(ModContent.ItemType<EagerUnderlingItem>());
 				if (index != -1)
 				{
 					Item item = player.inventory[index];
@@ -52,7 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 					}
 					int pIndex = Projectile.NewProjectile(player.GetSource_Misc(item.Name.ToString()), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
 					Main.projectile[pIndex].originalDamage = item.damage;
-					player.GetModPlayer<GoblinUnderlingPlayer>().hasMinion = true;
+					player.GetModPlayer<EagerUnderlingPlayer>().hasMinion = true;
 
 					player.AddBuff(item.buffType, 3600, false);
 				}

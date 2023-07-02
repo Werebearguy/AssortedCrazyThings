@@ -7,10 +7,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 {
 	[Content(ContentType.Weapons)]
-	public class GoblinUnderlingProj : AssProjectile
+	public class EagerUnderlingProj : AssProjectile
 	{
 		public const float Gravity = 0.4f;
 
@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		public const int WeaponFrameCount = 4;
 
-		public override string Texture => "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingProj_0";
+		public override string Texture => "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Eager/EagerUnderlingProj_0";
 
 		public override void SetStaticDefaults()
 		{
@@ -100,6 +100,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		{
 			//Custom draw to just center on the hitbox
 			var tier = GoblinUnderlingSystem.GetCurrentTier();
+			var tierStats = GoblinUnderlingSystem.GetCurrentTierStats();
 			int texIndex = tier.texIndex;
 			Texture2D texture;
 			if (Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor)
@@ -123,7 +124,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			//No minion coloring, so use manual draw
 			Main.spriteBatch.Draw(texture, drawPos, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
 
-			if (MeleeAttacking || RangedAttacking && tier.showMeleeDuringRanged)
+			if (MeleeAttacking || RangedAttacking && tierStats.showMeleeDuringRanged)
 			{
 				texture = GoblinUnderlingSystem.weaponAssets[texIndex].Value;
 				sourceRect = texture.Frame(1, WeaponFrameCount, 0, AttackFrameNumber);
@@ -140,7 +141,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			int centerX = hitbox.Center.X;
 			int bottomY = hitbox.Bottom;
 
-			int increase = GoblinUnderlingSystem.GetCurrentTier().meleeAttackHitboxIncrease;
+			int increase = GoblinUnderlingSystem.GetCurrentTierStats().meleeAttackHitboxIncrease;
 			hitbox.Inflate(increase, increase / 2); //Top shouldn't grow as much, as its only going to grow upwards
 
 			//Restore coordinates
@@ -222,7 +223,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		public override bool PreAI()
 		{
 			Player player = Projectile.GetOwner();
-			GoblinUnderlingPlayer modPlayer = player.GetModPlayer<GoblinUnderlingPlayer>();
+			EagerUnderlingPlayer modPlayer = player.GetModPlayer<EagerUnderlingPlayer>();
 			if (player.dead)
 			{
 				modPlayer.hasMinion = false;
@@ -275,7 +276,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		private void SetScaledDamage(Player player)
 		{
-			var tier = GoblinUnderlingSystem.GetCurrentTier();
+			var tier = GoblinUnderlingSystem.GetCurrentTierStats();
 
 			//Copied scaling from vanilla, but summoner is adjusted by our scaling
 			int originalDamage = Projectile.originalDamage;
@@ -346,7 +347,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 				return;
 			}
 
-			var modPlayer = player.GetModPlayer<GoblinUnderlingPlayer>();
+			var modPlayer = player.GetModPlayer<EagerUnderlingPlayer>();
 			if (modPlayer.firstSummon)
 			{
 				if (GoblinUnderlingSystem.TryCreate(Projectile, GoblinUnderlingMessageSource.FirstSummon))
@@ -382,7 +383,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		private int GetNextTimerValue(int attackFrameCount)
 		{
-			GoblinUnderlingTier tier = GoblinUnderlingSystem.GetCurrentTier();
+			GoblinUnderlingTierStats tier = GoblinUnderlingSystem.GetCurrentTierStats();
 			int time = tier.meleeAttackInterval;
 			if (RangedAttacking)
 			{
@@ -398,7 +399,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 
 		private void UnderlingAI(Player player, out Vector2 idleLocation)
 		{
-			var tier = GoblinUnderlingSystem.GetCurrentTier();
+			var tier = GoblinUnderlingSystem.GetCurrentTierStats();
 
 			//if target is outside of meleeAttackRange (but inside globalAttackRange), minion stops moving horizontally
 			//on the edge of the meleeAttackRange, then initiates attacking behavior but with darts instead of sword
@@ -592,9 +593,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 							}
 
 							//We do a little hardcode
-							if (tier.rangedProjType != ModContent.ProjectileType<GoblinUnderlingTerraBeam>())
+							if (tier.rangedProjType != ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>())
 							{
-								AssUtils.ModifyVelocityForGravity(position, targetPos, GoblinUnderlingDart.Gravity, ref vector, GoblinUnderlingDart.TicksWithoutGravity);
+								AssUtils.ModifyVelocityForGravity(position, targetPos, EagerUnderlingDart.Gravity, ref vector, EagerUnderlingDart.TicksWithoutGravity);
 							}
 
 							Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, vector, tier.rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);

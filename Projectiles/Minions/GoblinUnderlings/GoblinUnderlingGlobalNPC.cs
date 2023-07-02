@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 {
 	[Content(ContentType.Weapons)]
 	public class GoblinUnderlingGlobalNPC : AssGlobalNPC

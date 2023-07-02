@@ -1,5 +1,6 @@
 ﻿using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -10,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 {
 	//Code mostly taken from Lucy's Axe, without the netcode
 	public enum GoblinUnderlingMessageSource
@@ -31,6 +32,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		Count
 	}
 
+	//TODO split into tier, message, assets classes
 	[Content(ContentType.Weapons)]
 	public class GoblinUnderlingSystem : AssSystem
 	{
@@ -44,9 +46,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		private static Dictionary<GoblinUnderlingMessageSource, List<string>> sourceToMessages; //Must have all entries registered
 		private static Dictionary<GoblinUnderlingMessageSource, Func<int>> sourceToCooldowns; //Anything not registered gets a one second default cooldown
 
+		private static List<GoblinUnderlingTierStats> tierStats = new();
 		private static List<GoblinUnderlingTier> tiers = new();
 
-		public static int TierCount => tiers.Count;
+		public static int TierCount => tierStats.Count;
 		public static int CurrentTierIndex { get; private set; }
 		public static Asset<Texture2D>[] bodyAssets;
 		public static Asset<Texture2D>[] weaponAssets;
@@ -54,6 +57,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		public static GoblinUnderlingTier GetCurrentTier()
 		{
 			return tiers[CurrentTierIndex];
+		}
+
+		public static GoblinUnderlingTierStats GetCurrentTierStats()
+		{
+			return tierStats[CurrentTierIndex];
 		}
 
 		private static void RegisterMessage(GoblinUnderlingMessageSource source, List<string> messages, Func<int> cooldown = null)
@@ -246,8 +254,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 				bodyAssets = new Asset<Texture2D>[TierCount];
 				weaponAssets = new Asset<Texture2D>[TierCount];
 
-				string body = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingProj_";
-				string weapon = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderling/GoblinUnderlingWeapon_";
+				string body = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Eager/EagerUnderlingProj_";
+				string weapon = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Weapons/WeaponSword_";
 				foreach (var tier in tiers)
 				{
 					int index = tier.texIndex;
@@ -261,13 +269,23 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		{
 			tiers = new List<GoblinUnderlingTier>
 			{
-				//Baseline values in Item/AI code                                                                                         //dmg    kb    ap  sp     m  hb  ran   ransp
-                /*Baseline*/ new GoblinUnderlingTier(0, () => true                 , ModContent.ProjectileType<GoblinUnderlingDart_0>()   , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f ),
-                /*EoC*/      new GoblinUnderlingTier(1, () => NPC.downedBoss1      , ModContent.ProjectileType<GoblinUnderlingDart_1>()   , 1.25f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f ),
-                /*EoW/BoC*/  new GoblinUnderlingTier(2, () => NPC.downedBoss2      , ModContent.ProjectileType<GoblinUnderlingDart_2>()   , 1.5f , 1.4f, 0 , 0.4f , 6, 4 , 1.5f, 10f),
-                /*Skeletron*/new GoblinUnderlingTier(3, () => NPC.downedBoss3      , ModContent.ProjectileType<GoblinUnderlingDart_3>()   , 1.75f, 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f),
-                /*Mechboss*/ new GoblinUnderlingTier(4, () => NPC.downedMechBossAny, ModContent.ProjectileType<GoblinUnderlingDart_4>()   , 3f   , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f),
-                /*Plantera*/ new GoblinUnderlingTier(5, () => NPC.downedPlantBoss  , ModContent.ProjectileType<GoblinUnderlingTerraBeam>(), 3.5f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f , true),
+                /*Baseline*/ new GoblinUnderlingTier(0, () => true                 ),
+                /*EoC*/      new GoblinUnderlingTier(1, () => NPC.downedBoss1      ),
+                /*EoW/BoC*/  new GoblinUnderlingTier(2, () => NPC.downedBoss2      ),
+                /*Skeletron*/new GoblinUnderlingTier(3, () => NPC.downedBoss3      ),
+                /*Mechboss*/ new GoblinUnderlingTier(4, () => NPC.downedMechBossAny),
+                /*Plantera*/ new GoblinUnderlingTier(5, () => NPC.downedPlantBoss  ),
+			};
+
+			tierStats = new List<GoblinUnderlingTierStats>
+			{
+				//Baseline values in Item/AI code                                                                    //dmg    kb    ap  sp     m  hb  ran   ransp
+                /*Baseline*/ new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f ),
+                /*EoC*/      new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_1>()          , 1.25f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f ),
+                /*EoW/BoC*/  new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_2>()          , 1.5f , 1.4f, 0 , 0.4f , 6, 4 , 1.5f, 10f),
+                /*Skeletron*/new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_3>()          , 1.75f, 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f),
+                /*Mechboss*/ new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_4>()          , 3f   , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f),
+                /*Plantera*/ new GoblinUnderlingTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.5f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f , true),
 			};
 		}
 
@@ -354,7 +372,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			{
 				Projectile proj = Main.projectile[i];
 
-				if (proj.active && proj.owner == Main.myPlayer && proj.type == ModContent.ProjectileType<GoblinUnderlingProj>())
+				if (proj.active && proj.owner == Main.myPlayer && proj.type == ModContent.ProjectileType<EagerUnderlingProj>())
 				{
 					yield return proj;
 				}
@@ -387,7 +405,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 			}
 		}
 
-		private static void DetermineCurrentTier()
+		private static void DetermineCurrentProgressionTier()
 		{
 			CurrentTierIndex = 0;
 			for (int i = TierCount - 1; i >= 0; i--)
@@ -409,7 +427,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 				return;
 			}
 
-			variation = (byte)Main.rand.Next(12);
+			variation = (byte)Main.rand.Next(sourceToMessages[GoblinUnderlingMessageSource.Idle].Count);
 			PutMessageTypeOnCooldown(GoblinUnderlingMessageSource.Idle);
 		}
 
@@ -501,7 +519,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		/// </summary>
 		public static void CommonModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
 		{
-			GoblinUnderlingTier tier = GetCurrentTier();
+			GoblinUnderlingTierStats tier = GetCurrentTierStats();
 			//damage = (int)(damage * tier.damageMult); THIS IS DONE IN GOBLIN PREAI, OVERRIDING DEFAULT MINION SCALING
 
 			modifiers.Knockback *= tier.knockbackMult;
@@ -533,6 +551,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		public override void Unload()
 		{
 			tiers = null;
+			tierStats = null;
 			bodyAssets = null;
 			weaponAssets = null;
 
@@ -549,7 +568,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderling
 		{
 			UpdateMessageCooldowns();
 
-			DetermineCurrentTier();
+			DetermineCurrentProgressionTier();
 		}
 
 		public override bool HijackGetData(ref byte messageType, ref BinaryReader reader, int playerNumber)
