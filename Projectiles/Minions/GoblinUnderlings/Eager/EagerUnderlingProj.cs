@@ -29,9 +29,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		public override void SetStaticDefaults()
 		{
 			Main.projFrames[Projectile.type] = 20;
-			//Main.projPet[Projectile.type] = true; //Causes it do disappear on left/right clicks since MinionSacrificable is not set
+			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-			//ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; //Causes other minions to despawn on use
+			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 
 			UnreplaceableMinionSystem.Add(Projectile.type);
@@ -46,7 +46,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.DamageType = DamageClass.Summon;
 			Projectile.netImportant = true;
 			Projectile.minion = true;
-			Projectile.minionSlots = 0; //Multiple caveats with this
+			Projectile.minionSlots = 1;
 			Projectile.penetrate = -1;
 			Projectile.timeLeft *= 5;
 			Projectile.decidesManualFallThrough = true;
@@ -54,46 +54,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 18; //Facilitates attack 5 * 4 duration (default pirates), dynamic in AI
-		}
-
-		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
-		{
-			//No Main.projPet[Projectile.type] = true, so manually do the tile collision
-			Projectile.velocity = Collision.TileCollision(Projectile.position, Projectile.velocity, width, height, fallThrough, fallThrough);
-
-			return false;
-		}
-
-		public override bool ShouldUpdatePosition()
-		{
-			//No Main.projPet[Projectile.type] = true, so manually do the slope collision and updating
-			Vector2 velocity = Projectile.velocity;
-			if (Projectile.honeyWet)
-			{
-				velocity *= 0.25f;
-			}
-			else if (Projectile.wet)
-			{
-				velocity *= 0.5f;
-			}
-			Projectile.position += velocity;
-
-			if (Projectile.tileCollide)
-			{
-				Vector4 vector = Collision.SlopeCollision(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, 0f, false);
-				Projectile.position.X = vector.X;
-				Projectile.position.Y = vector.Y;
-				Projectile.velocity.X = vector.Z;
-				Projectile.velocity.Y = vector.W;
-			}
-
-			return false;
-		}
-
-		public override bool OnTileCollide(Vector2 oldVelocity)
-		{
-			//No Main.projPet[Projectile.type] = true, so manually prevent death on tile collision
-			return false;
 		}
 
 		public override bool PreDraw(ref Color lightColor)

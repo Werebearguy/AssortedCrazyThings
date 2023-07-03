@@ -67,11 +67,6 @@ namespace AssortedCrazyThings.Items.Weapons
 			}
 		}
 
-		public override void EvenSaferSetStaticDefaults()
-		{
-			ItemID.Sets.StaffMinionSlotsRequired[Type] = 0;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.damage = BaseDmg;
