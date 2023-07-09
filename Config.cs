@@ -208,11 +208,11 @@ namespace AssortedCrazyThings
 		public bool SatchelofGoodiesVisibleArmor { get; set; }
 
 		public const int SatchelofGoodiesChatterFreq_Min = 0;
-		public const int SatchelofGoodiesChatterFreq_Max = 200;
+		public const int SatchelofGoodiesChatterFreq_Max = 500;
 		[DefaultValue(100)]
 		[BackgroundColor(125, 217, 124)]
 		[Slider]
-		[Increment(5)]
+		[Increment(10)]
 		[Range(SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max)]
 		public int SatchelofGoodiesChatterFreq { get; set; }
 
