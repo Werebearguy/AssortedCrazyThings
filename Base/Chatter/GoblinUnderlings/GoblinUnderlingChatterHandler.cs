@@ -176,6 +176,17 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 			};
 		}
 
+		public override void OnPlayerHurt(Player player, Entity entity, Player.HurtInfo hurtInfo)
+		{
+			foreach (var pair in GeneratorsPerType)
+			{
+				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
+				{
+					pair.Value.TryCreate(proj, ChatterSource.PlayerHurt, new PlayerHurtChatterParams(entity, hurtInfo));
+				}
+			}
+		}
+
 		public override void OnArmorEquipped(Player player, EquipSnapshot equips, EquipSnapshot prevEquips)
 		{
 			foreach (var pair in GeneratorsPerType)
