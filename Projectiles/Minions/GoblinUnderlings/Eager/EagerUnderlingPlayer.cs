@@ -34,24 +34,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				if (index != -1)
 				{
 					Item item = player.inventory[index];
-
-					int projType = item.shoot;
-					if (player.ownedProjectileCounts[projType] > 0)
-					{
-						//Mostly failsafe, but if minion still alive, kill it, to avoid duplicate
-						for (int i = 0; i < Main.maxProjectiles; i++)
-						{
-							Projectile other = Main.projectile[i];
-							if (other.active && other.owner == player.whoAmI && other.type == projType)
-							{
-								other.Kill();
-							}
-						}
-					}
-					int pIndex = Projectile.NewProjectile(player.GetSource_Misc(item.Name.ToString()), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
-					Main.projectile[pIndex].originalDamage = item.damage;
-					player.GetModPlayer<EagerUnderlingPlayer>().hasMinion = true;
-
 					player.AddBuff(item.buffType, 3600, false);
 				}
 			}
