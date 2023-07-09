@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 
 namespace AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler
 {
@@ -50,6 +51,29 @@ namespace AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler
 
 			prevCount = curCount;
 			prevIdentities = currIdentities;
+		}
+
+		//Special check for Eater, as he is not a boss. So just check for "first spawned head"
+		public static bool IsABoss(NPC npc)
+		{
+			bool onlyOneEater = false;
+			if (npc.type == NPCID.EaterofWorldsHead)
+			{
+				onlyOneEater = true;
+				for (int i = 0; i < Main.maxNPCs; i++)
+				{
+					NPC other = Main.npc[i];
+
+					if (other.active && i != npc.whoAmI && other.type == NPCID.EaterofWorldsHead)
+					{
+						onlyOneEater = false;
+						break;
+					}
+				}
+			}
+
+			//Some "bosses" are not actual bosses but have health bar (i.e. OOA mage)
+			return npc.boss || onlyOneEater || npc.GetBossHeadTextureIndex() > -1;
 		}
 	}
 }

@@ -1,7 +1,10 @@
+using AssortedCrazyThings.Base.Chatter;
+using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,6 +34,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			set => Projectile.localAI[1] = value;
 		}
 
+		public int ownedGoblinWhoAmI = -1;
+
+		public bool FromGoblin => ownedGoblinWhoAmI != -1;
+
 		public override void SetStaticDefaults()
 		{
 			Main.projFrames[Projectile.type] = 1;
@@ -56,28 +63,39 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			Projectile.localNPCHitCooldown = 10;
 		}
 
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (source is EntitySource_Parent parentSource
+				&& parentSource.Entity is Projectile parentProjectile
+				&& GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(parentProjectile.type))
+			{
+				ownedGoblinWhoAmI = parentProjectile.whoAmI;
+			}
+		}
+
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			GoblinUnderlingSystem.CommonModifyHitNPC(Projectile, target, ref modifiers);
+			if (FromGoblin)
+			{
+				GoblinUnderlingHelperSystem.CommonModifyHitNPC(Main.projectile[ownedGoblinWhoAmI].type, Projectile, target, ref modifiers);
+			}
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Projectile.damage = (int)(Projectile.damage * 0.85f);
 
-			foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
+			if (target.boss || !FromGoblin || Main.projectile[ownedGoblinWhoAmI] is not Projectile parent || parent.ModProjectile is not EagerUnderlingProj goblin)
 			{
-				//TODO change to "melee variants" here
-				if (proj.ModProjectile is EagerUnderlingProj goblin)
-				{
-					if (!target.boss && goblin.OutOfCombat())
-					{
-						GoblinUnderlingSystem.TryCreate(proj, GoblinUnderlingMessageSource.Attacking);
-					}
-
-					goblin.SetInCombat();
-				}
+				return;
 			}
+
+			if (goblin.OutOfCombat())
+			{
+				ModContent.GetInstance<GoblinUnderlingChatterHandler>().OnAttacking(parent, target, hit, damageDone);
+			}
+
+			goblin.SetInCombat();
 		}
 
 		public override Color? GetAlpha(Color lightColor)

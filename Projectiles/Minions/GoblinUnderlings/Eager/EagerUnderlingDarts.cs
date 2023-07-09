@@ -1,6 +1,8 @@
+using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -27,6 +29,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			set => Projectile.ai[0] = value;
 		}
 
+		public int ownedGoblinWhoAmI = -1;
+
+		public bool FromGoblin => ownedGoblinWhoAmI != -1;
+
 		public override LocalizedText DisplayName => CommonDisplayNameText;
 
 		public override void SetStaticDefaults()
@@ -50,6 +56,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.timeLeft = 180;
 		}
 
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (source is EntitySource_Parent parentSource
+				&& parentSource.Entity is Projectile parentProjectile
+				&& GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(parentProjectile.type))
+			{
+				ownedGoblinWhoAmI = parentProjectile.whoAmI;
+			}
+		}
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
@@ -58,23 +74,22 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			GoblinUnderlingSystem.CommonModifyHitNPC(Projectile, target, ref modifiers);
+			GoblinUnderlingHelperSystem.CommonModifyHitNPC(ModContent.ProjectileType<EagerUnderlingProj>(), Projectile, target, ref modifiers);
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
+			if (target.boss || !FromGoblin || Main.projectile[ownedGoblinWhoAmI] is not Projectile parent || parent.ModProjectile is not EagerUnderlingProj goblin)
 			{
-				if (proj.ModProjectile is EagerUnderlingProj goblin)
-				{
-					if (!target.boss && goblin.OutOfCombat())
-					{
-						GoblinUnderlingSystem.TryCreate(proj, GoblinUnderlingMessageSource.Attacking);
-					}
-
-					goblin.SetInCombat();
-				}
+				return;
 			}
+
+			if (goblin.OutOfCombat())
+			{
+				ModContent.GetInstance<GoblinUnderlingChatterHandler>().OnAttacking(parent, target, hit, damageDone);
+			}
+
+			goblin.SetInCombat();
 		}
 
 		public override void AI()

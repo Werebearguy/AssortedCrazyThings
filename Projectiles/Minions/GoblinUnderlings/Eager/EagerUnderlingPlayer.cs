@@ -6,12 +6,10 @@ using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 {
+	//TODO goblin repurpose for all underlings
 	[Content(ContentType.Weapons)]
 	public class EagerUnderlingPlayer : AssPlayerBase
 	{
-		private bool hasValhallaArmorVisual = false;
-		private bool prevHasValhallaArmorVisual = false;
-
 		public bool hasMinion = false;
 
 		public bool firstSummon = true;
@@ -61,15 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override void ResetEffects()
 		{
-			prevHasValhallaArmorVisual = hasValhallaArmorVisual;
-			hasValhallaArmorVisual = false;
-
 			hasMinion = false;
-		}
-
-		public override void OnEnterWorld()
-		{
-			GoblinUnderlingSystem.OnEnterWorld(Player);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -80,24 +70,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		public override void SaveData(TagCompound tag)
 		{
 			tag["firstSummon"] = firstSummon;
-		}
-
-		public override void UpdateVisibleVanityAccessories()
-		{
-			if (Main.myPlayer != Player.whoAmI)
-			{
-				return;
-			}
-
-			hasValhallaArmorVisual = Player.head == 210 && Player.body == 204 && Player.legs == 152;
-
-			if (hasValhallaArmorVisual && !prevHasValhallaArmorVisual)
-			{
-				foreach (var proj in GoblinUnderlingSystem.GetLocalGoblinUnderlings())
-				{
-					GoblinUnderlingSystem.TryCreate(proj, GoblinUnderlingMessageSource.OnValhallaArmorEquipped);
-				}
-			}
 		}
 	}
 }

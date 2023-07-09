@@ -90,13 +90,13 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
 		{
 			//This is purely done for the tooltip
-			damage *= GoblinUnderlingSystem.GetCurrentTierStats().damageMult;
+			damage *= GoblinUnderlingTierSystem.GetCurrentTierStats(Item.shoot).damageMult;
 		}
 
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
 		{
 			//This is purely done for the tooltip
-			knockback *= GoblinUnderlingSystem.GetCurrentTierStats().knockbackMult;
+			knockback *= GoblinUnderlingTierSystem.GetCurrentTierStats(Item.shoot).knockbackMult;
 		}
 
 		public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
