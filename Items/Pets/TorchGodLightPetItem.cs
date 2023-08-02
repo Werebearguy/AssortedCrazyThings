@@ -48,7 +48,6 @@ namespace AssortedCrazyThings.Items.Pets
 
 		private static int On_Item_NewItem_Inner(On_Item.orig_NewItem_Inner orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
-			Main.NewText("inner running");
 			/*
 				* Try dropping when these conditions are true
 				* int number = Item.NewItem(GetItemSource_Misc(6), (int)position.X, (int)position.Y, width, height, 5043);
