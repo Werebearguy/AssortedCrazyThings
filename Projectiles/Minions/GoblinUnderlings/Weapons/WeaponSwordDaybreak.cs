@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -7,15 +8,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 {
 	[Content(ContentType.Weapons)]
-	public abstract class EagerUnderlingDart : AssProjectile
+	public class WeaponSwordDaybreak : AssProjectile
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
-
-		public static LocalizedText CommonDisplayNameText { get; private set; }
 
 		public bool Spawned
 		{
@@ -33,11 +32,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public bool FromGoblin => ownedGoblinWhoAmI != -1;
 
-		public override LocalizedText DisplayName => CommonDisplayNameText;
-
 		public override void SetStaticDefaults()
 		{
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(EagerUnderlingDart)}.DisplayName"));
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
@@ -53,7 +49,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.friendly = true;
 			Projectile.hostile = false;
 			Projectile.DamageType = DamageClass.Summon;
-			Projectile.timeLeft = 180;
+			Projectile.timeLeft = 240;
 		}
 
 		public override void OnSpawn(IEntitySource source)
@@ -95,6 +91,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			goblin.SetInCombat();
 		}
 
+
+		public override Color? GetAlpha(Color lightColor)
+		{
+			return new Color(255, 255, 255, 100) * Projectile.Opacity;
+		}
+
 		public override void AI()
 		{
 			if (!Spawned)
@@ -118,30 +120,5 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X <= 0).ToDirectionInt();
 		}
-	}
-
-	public class EagerUnderlingDart_0 : EagerUnderlingDart
-	{
-
-	}
-
-	public class EagerUnderlingDart_1 : EagerUnderlingDart
-	{
-
-	}
-
-	public class EagerUnderlingDart_2 : EagerUnderlingDart
-	{
-
-	}
-
-	public class EagerUnderlingDart_3 : EagerUnderlingDart
-	{
-
-	}
-
-	public class EagerUnderlingDart_4 : EagerUnderlingDart
-	{
-
 	}
 }

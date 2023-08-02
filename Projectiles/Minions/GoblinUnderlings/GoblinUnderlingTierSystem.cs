@@ -14,7 +14,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		Evil = 2,
 		Skeletron = 3,
 		Mech = 4,
-		Plantera = 5
+		Plantera = 5,
+		Cultist = 6
 	}
 
 	[Content(ContentType.Weapons)]
@@ -54,6 +55,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				{ GoblinUnderlingProgressionTierStage.Skeletron, () => NPC.downedBoss3 },
 				{ GoblinUnderlingProgressionTierStage.Mech, () => NPC.downedMechBossAny },
 				{ GoblinUnderlingProgressionTierStage.Plantera, () => NPC.downedPlantBoss },
+				{ GoblinUnderlingProgressionTierStage.Cultist, () => NPC.downedAncientCultist },
 			};
 		}
 
