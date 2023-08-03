@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Items.Pets
 				*/
 			//If this causes a recursion somehow, im screaming
 			Player player = Main.LocalPlayer;
-			if (source.Context == "TorchGod" &&
+			if (source != null && source.Context == "TorchGod" &&
 				Type == ItemID.TorchGodsFavor && Stack == 1)
 			{
 				int itemToDrop = ModContent.ItemType<TorchGodLightPetItem>();
