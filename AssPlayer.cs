@@ -939,7 +939,11 @@ namespace AssortedCrazyThings
 				//Match Zephyr Fish conditions
 				if (attempt.legendary && !attempt.crate && inWater)
 				{
-					if (((int)(Player.Center.X / 16) < Main.maxTilesX * 0.08f || (int)(Player.Center.X / 16) > Main.maxTilesX * 0.92f) && Main.rand.NextBool(5)) //2 times more likely than zephyr fish makes it about as rare as reaver shark
+					const int oceanEdge = 380;
+					int tileX = attempt.X;
+					bool ocean = (Main.remixWorld && attempt.heightLevel == 1 && attempt.Y >= Main.rockLayer && Main.rand.NextBool(3)) || (attempt.waterTilesCount >= 300 && (tileX < oceanEdge || tileX > Main.maxTilesX - oceanEdge));
+					
+					if (ocean && Main.rand.NextBool(5)) //2 times more likely than zephyr fish makes it about as rare as reaver shark
 					{
 						itemDrop = ModContent.ItemType<AnomalocarisItem>();
 						return;
