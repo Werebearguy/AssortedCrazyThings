@@ -645,7 +645,7 @@ namespace AssortedCrazyThings.Base
 		public static bool Underground(NPCSpawnInfo spawnInfo)
 		{
 			int y = spawnInfo.SpawnTileY;
-			bool underground = y <= Main.rockLayer;
+			bool underground = y > Main.worldSurface && y <= Main.rockLayer;
 			if (Main.remixWorld)
 				underground = y > Main.rockLayer && y <= Main.maxTilesY - 190;
 
