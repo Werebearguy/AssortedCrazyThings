@@ -24,7 +24,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 30;
+			NPC.damage = 22;
 			NPC.defense = 16;
 			NPC.lifeMax = 50;
 			NPC.HitSound = SoundID.NPCHit41;
