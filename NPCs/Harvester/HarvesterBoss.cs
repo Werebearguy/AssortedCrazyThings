@@ -1550,7 +1550,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 			//Gore 5 is a broken rib. For use when reviving
 
-			if (NPC.life <= 0 && !NPC.active) //!active is important due to CheckDead shenanigans
+			if (NPC.life <= 0 && RevivesDone >= Revive_Count)
 			{
 				var entitySource = NPC.GetSource_Death();
 
