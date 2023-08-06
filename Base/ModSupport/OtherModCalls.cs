@@ -8,6 +8,7 @@ using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
 using System.Collections.Generic;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.ModSupport
@@ -77,6 +78,14 @@ namespace AssortedCrazyThings.Base.ModSupport
 				}
 			}
 
+			if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
+			{
+				if (ContentConfig.Instance.Bosses)
+				{
+					RegisterShadowDiamondDrop(magicStorage, AssortedCrazyThings.harvester);
+				}
+			}
+
 			if (ModLoader.TryGetMod("SummonersAssociation", out Mod summonersAssociation))
 			{
 				if (ContentConfig.Instance.Bosses)
@@ -113,6 +122,21 @@ namespace AssortedCrazyThings.Base.ModSupport
 					summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<DroneController>(), ModContent.BuffType<DroneControllerBuff>(), drones);
 				}
 			}
+		}
+
+		private static IItemDropRule GetShadowDiamondDropRule(Mod mod, int normal = 1, int expert = -1)
+		{
+			return (IItemDropRule)mod.Call("Get Shadow Diamond Drop Rule", normal, expert);
+		}
+
+		private static void SetShadowDiamondDropRule(Mod mod, int npcType, IItemDropRule rule)
+		{
+			mod.Call("Set Shadow Diamond Drop Rule", npcType, rule);
+		}
+
+		private static void RegisterShadowDiamondDrop(Mod mod, int npcType, int normal = 1, int expert = -1)
+		{
+			SetShadowDiamondDropRule(mod, npcType, GetShadowDiamondDropRule(mod, normal, expert));
 		}
 	}
 }
