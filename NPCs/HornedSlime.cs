@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -71,7 +72,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Underworld.Chance * 0.015f;
+			return !AssUtils.DontDigUpStartingIsland(spawnInfo) ? SpawnCondition.Underworld.Chance * 0.015f : 0f;
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)

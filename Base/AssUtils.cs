@@ -591,5 +591,65 @@ namespace AssortedCrazyThings.Base
 
 			return timer <= burstDuration && timer >= timeBetweenShots && timer % timeBetweenShots == 0;
 		}
+
+		public static bool DontDigUpStartingIsland(NPCSpawnInfo spawnInfo)
+		{
+			return Main.remixWorld && DontDigUpStartingIslandPosition(spawnInfo.SpawnTileX);
+		}
+
+		public static bool DontDigUpStartingIslandPosition(int x)
+		{
+			return x > Main.maxTilesX * 0.38f + 50 && x < Main.maxTilesX * 0.62f;
+		}
+
+		public static bool AboveSurface(NPCSpawnInfo spawnInfo)
+		{
+			int y = spawnInfo.SpawnTileY;
+			bool aboveSurface = y < Main.worldSurface;
+			if (Main.remixWorld && y > Main.rockLayer - 20)
+			{
+				if (y <= Main.maxTilesY - 190 && !Main.rand.NextBool(3))
+				{
+					aboveSurface = true;
+					//This doesnt work because NPC.ResetRemixHax is called before modded chances are evaluated
+					//Main.dayTime = false;
+					//if (Main.rand.NextBool())
+					//{
+					//	Main.dayTime = true;
+					//}
+				}
+				else if ((Main.bloodMoon || (Main.eclipse && Main.dayTime)) && DontDigUpStartingIsland(spawnInfo))
+				{
+					aboveSurface = true;
+				}
+			}
+
+			return aboveSurface;
+		}
+
+		public static bool DontDigUpDaytime(NPCSpawnInfo spawnInfo)
+		{
+			int y = spawnInfo.SpawnTileY;
+			bool day = Main.dayTime;
+			if (Main.remixWorld && y > Main.rockLayer - 20)
+			{
+				if (y <= Main.maxTilesY - 190 && !Main.rand.NextBool(3))
+				{
+					day = Main.rand.NextBool();
+				}
+			}
+
+			return day;
+		}
+
+		public static bool Underground(NPCSpawnInfo spawnInfo)
+		{
+			int y = spawnInfo.SpawnTileY;
+			bool underground = y <= Main.rockLayer;
+			if (Main.remixWorld)
+				underground = y > Main.rockLayer && y <= Main.maxTilesY - 190;
+
+			return underground;
+		}
 	}
 }
