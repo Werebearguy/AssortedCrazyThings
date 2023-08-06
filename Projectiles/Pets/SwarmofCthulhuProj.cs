@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 				if (AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras))
 				{
-					paras.AttackFramesScaleFactor *= 0.5f;
+					paras.AttackFramesScaleFactor *= 0.65f;
 					AmuletOfManyMinionsApi.UpdateParamsDirect(this, paras);
 				}
 			}
