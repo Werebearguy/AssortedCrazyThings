@@ -1,6 +1,14 @@
-Preview maintenance.
+Maintenance.
 
 * FIXES
-    * Now possible to achieve 100% Bestiary completion (several entities were bugged)
-    * Fixed several hostile entities which can be caught sometimes taking damage on spawn
-    * Fixed Lil Wraps not having a walking animation
+    * Fixed Cute Slimes not spawning on the "don't dig up" seed
+    * Fixed Horned Slime spawning on the starting island on the "don't dig up" seed
+    * Fixed Godly Torch not dropping
+    * Fixed Soul Harvester not spawning gore on death
+    * Fixed glitches with various visual effects when the "Blood and Gore" setting is disabled
+    * Fixed incompatibility with Stars Above
+* CHANGES
+    * Nerfed Stone Soldier sword and contact damage
+    * [AoMM] Nerfed Bottle of Restless Eyes pet firerate
+* ADDITIONS
+    * Added Magic Storage Shadow Diamond to Soul Harvester loot on first defeat
