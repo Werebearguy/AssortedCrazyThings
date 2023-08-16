@@ -1880,7 +1880,11 @@ Mods: {
 
 			ExtendoNetGolden: {
 				DisplayName: Golden Extendo-Net
-				Tooltip: "'Catches those REALLY hard to reach critters'"
+				Tooltip:
+					'''
+					'Catches those REALLY hard to reach critters'
+					Can catch lava critters too!
+					'''
 			}
 
 			ExtendoNetRegular: {
@@ -2223,7 +2227,7 @@ Mods: {
 			}
 
 			CuteSlimeXmas: {
-				DisplayName: Cute Holiday Slime
+				DisplayName: Cute Christmas Slime
 				BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring that gift to everyone.
 			}
 

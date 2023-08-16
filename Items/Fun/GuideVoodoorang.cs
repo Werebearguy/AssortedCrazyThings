@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base.ModSupport;
 using AssortedCrazyThings.Projectiles.Weapons;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,11 @@ namespace AssortedCrazyThings.Items.Fun
 	[Content(ContentType.Weapons)]
 	public class GuideVoodoorang : AssItem
 	{
+		public override void SetStaticDefaults()
+		{
+			OtherModCalls.RegisterBoomerang(Type, new BoomerangInfo(Item.shoot, 1));
+		}
+
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.WoodenBoomerang);

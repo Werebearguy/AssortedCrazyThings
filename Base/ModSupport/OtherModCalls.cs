@@ -8,14 +8,65 @@ using AssortedCrazyThings.Projectiles.Minions;
 using AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.ModSupport
 {
+	public struct BoomerangInfo
+	{
+		public int[] projectileTypes;
+		public int numBoomerangs;
+		public Func<Player, Item, int, bool> canUseItemFunc;
+
+		/// <summary>
+		/// numBoomerangs -1 for infinite
+		/// </summary>
+		public BoomerangInfo(int[] projectileTypes, int numBoomerangs, Func<Player, Item, int, bool> canUseItemFunc = null)
+		{
+			this.projectileTypes = projectileTypes;
+			this.numBoomerangs = numBoomerangs;
+			this.canUseItemFunc = canUseItemFunc;
+		}
+
+		/// <inheritdoc cref="BoomerangInfo(int[], int, Func{Player, Item, int, bool})"/>
+		public BoomerangInfo(int projectileType, int numBoomerangs, Func<Player, Item, int, bool> canUseItemFunc = null) :
+			this(new int[] { projectileType }, numBoomerangs, canUseItemFunc)
+		{
+
+		}
+	}
+
 	[Content(ConfigurationSystem.AllFlags)]
 	public class OtherModCalls : AssSystem
 	{
+		private static Dictionary<int, BoomerangInfo> boomerangInfos;
+
+		public static void RegisterBoomerang(int type, BoomerangInfo info)
+		{
+			if (boomerangInfos == null)
+			{
+				//Mod not loaded: don't do anything
+				return;
+			}
+
+			boomerangInfos[type] = info;
+		}
+
+		public override void Load()
+		{
+			if (ModLoader.HasMod("Bangarang"))
+			{
+				boomerangInfos = new Dictionary<int, BoomerangInfo>();
+			}
+		}
+
+		public override void Unload()
+		{
+			boomerangInfos = null;
+		}
+
 		public override void PostSetupContent()
 		{
 			//https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call
@@ -120,6 +171,15 @@ namespace AssortedCrazyThings.Base.ModSupport
 					}
 
 					summonersAssociation.Call("AddMinionInfo", ModContent.ItemType<DroneController>(), ModContent.BuffType<DroneControllerBuff>(), drones);
+				}
+			}
+
+			if (ModLoader.TryGetMod("Bangarang", out Mod bangarang))
+			{
+				foreach (var pair in boomerangInfos)
+				{
+					var info = pair.Value;
+					bangarang.Call(pair.Key, info.projectileTypes, info.numBoomerangs, info.canUseItemFunc);
 				}
 			}
 		}

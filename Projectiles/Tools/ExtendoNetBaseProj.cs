@@ -83,12 +83,13 @@ namespace AssortedCrazyThings.Projectiles.Tools
 					Projectile.width,
 					Projectile.height);
 
+				Item item = player.HeldItem;
 				for (int i = 0; i < Main.maxNPCs; i++)
 				{
 					NPC npc = Main.npc[i];
 					if (npc.active && npc.catchItem > 0)
 					{
-						NPC.CheckCatchNPC(npc, hitboxMod, player.HeldItem, player);
+						NPC.CheckCatchNPC(npc, hitboxMod, item, player, Terraria.ID.ItemID.Sets.LavaproofCatchingTool[item.type]);
 					}
 				}
 			}
