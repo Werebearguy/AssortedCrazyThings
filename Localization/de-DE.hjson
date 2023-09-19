@@ -2250,8 +2250,8 @@ Mods: {
 			}
 
 			GiantGrasshopperGold: {
-				// DisplayName: Giant Grasshopper
-				// BestiaryFlavorText: Rarely, critters are found coated entirely in gold! Shopkeepers will pay handsomely for these, or you can show them off in cages!
+				// DisplayName: Gold Giant Grasshopper
+				// BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
 			}
 
 			// DungeonSoul.DisplayName: Dungeon Soul
