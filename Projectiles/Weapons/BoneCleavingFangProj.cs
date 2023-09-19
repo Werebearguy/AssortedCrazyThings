@@ -89,7 +89,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			Vector2 normalizedVelocity = Projectile.velocity.SafeNormalize(Vector2.Zero);
 			for (int i = 0; i < 20; i++)

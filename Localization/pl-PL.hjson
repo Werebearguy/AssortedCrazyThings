@@ -1835,6 +1835,11 @@ Mods: {
 				// Tooltip: ""
 			}
 
+			HarvesterRelicColoredItem: {
+				// DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colored)"
+				// Tooltip: ""
+			}
+
 			HarvesterTrophyItem: {
 				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
 				// Tooltip: ""

@@ -32,12 +32,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 
-			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[1] {
-					BuffID.Poisoned
-				}
-			});
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
 
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 

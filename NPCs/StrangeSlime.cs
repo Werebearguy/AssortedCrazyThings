@@ -28,12 +28,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 
-			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[1] {
-					BuffID.Poisoned
-				}
-			});
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.ShimmerSlime;
 			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);

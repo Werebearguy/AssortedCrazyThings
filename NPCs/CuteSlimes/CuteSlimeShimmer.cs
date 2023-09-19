@@ -61,7 +61,7 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public override void SafeSetStaticDefaults()
 		{
-			NPCID.Sets.ShimmerImmunity[NPC.type] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Shimmer] = true;
 		}
 
 		public override void SafeSetDefaults()

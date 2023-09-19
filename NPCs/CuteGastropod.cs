@@ -18,13 +18,7 @@ namespace AssortedCrazyThings.NPCs
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingSnake];
 			Main.npcCatchable[NPC.type] = true;
 
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = ModContent.NPCType<CuteSlimeShimmer>();
 		}

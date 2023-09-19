@@ -115,7 +115,7 @@ namespace AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester
 			dust.scale = 1.3f;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			//AssUtils.Print(Main.time + " killed homing soul");
 

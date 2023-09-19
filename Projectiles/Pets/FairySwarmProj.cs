@@ -182,7 +182,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			modifiers.HitDirectionOverride = Math.Sign(fromPlayerToTargetX);
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			SoundEngine.PlaySound((SoundID.Item27 with { MaxInstances = 1 }).WithVolumeScale(0.5f));
 

@@ -18,13 +18,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Goldfish];
 
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{

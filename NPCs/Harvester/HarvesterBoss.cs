@@ -152,17 +152,9 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
 
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.Poisoned,
-					BuffID.Venom,
-					BuffID.OnFire,
-					BuffID.CursedInferno,
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.OnFire] = true;
 		}
 
 		public override void SetDefaults()

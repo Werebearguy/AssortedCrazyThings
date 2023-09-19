@@ -23,13 +23,7 @@ namespace AssortedCrazyThings.NPCs
 			NPCID.Sets.TrailingMode[NPC.type] = 3;
 			NPCID.Sets.TrailCacheLength[NPC.type] = 8;
 
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
 		}
 
 		public override void SetDefaults()

@@ -76,7 +76,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.MagicSlimeSlingStuff
 			ColorType = player.GetModPlayer<AssPlayer>().nextMagicSlimeSlingMinion;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			SoundEngine.PlaySound(SoundID.NPCDeath1 with { Volume = 0.8f, Pitch = 0.2f }, Projectile.Center);
 			for (int i = 0; i < 15; i++)

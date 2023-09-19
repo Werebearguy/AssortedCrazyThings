@@ -19,12 +19,12 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 		{
 			player.noFallDmg = true;
 			player.jumpBoost = true;
-			player.hasJumpOption_Cloud = true;
-			player.hasJumpOption_Sandstorm = true;
-			player.hasJumpOption_Blizzard = true;
-			player.hasJumpOption_Fart = true;
-			player.hasJumpOption_Sail = true;
-			player.hasJumpOption_Unicorn = true;
+			player.GetJumpState(ExtraJump.CloudInABottle).Enable();
+			player.GetJumpState(ExtraJump.SandstormInABottle).Enable();
+			player.GetJumpState(ExtraJump.BlizzardInABottle).Enable();
+			player.GetJumpState(ExtraJump.FartInAJar).Enable();
+			player.GetJumpState(ExtraJump.TsunamiInABottle).Enable();
+			player.GetJumpState(ExtraJump.UnicornMount).Enable();
 			player.honeyCombItem = Item;
 		}
 
