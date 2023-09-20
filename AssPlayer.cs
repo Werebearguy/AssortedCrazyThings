@@ -77,7 +77,7 @@ namespace AssortedCrazyThings
 
 		//empowering buff stuff
 		public bool empoweringBuff = false;
-		private const short empoweringTimerMax = 60; //in seconds //one minute until it caps out (independent of buff duration)
+		private const short empoweringTimerMax = 60 * 60; //in ticks //one minute until it caps out (independent of buff duration)
 		private short empoweringTimer = 0;
 		public static float empoweringTotal = 0.5f; //this gets modified in AssWorld.PreUpdate()
 		public float empoweringStep = 0f;
@@ -248,7 +248,7 @@ namespace AssortedCrazyThings
 		{
 			if (empoweringBuff && !Player.HasBuff(BuffID.ShadowDodge))
 			{
-				for (int i = 0; i < empoweringTimer; i++)
+				for (int i = 0; i < empoweringTimer / 60; i++)
 				{
 					Dust dust = Dust.NewDustPerfect(Player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
 					dust.noLight = true;
@@ -463,14 +463,10 @@ namespace AssortedCrazyThings
 		{
 			if (empoweringBuff)
 			{
-				//TODO convert timer to ticks
-				if (Main.GameUpdateCount % 60 == 0)
+				if (empoweringTimer < empoweringTimerMax)
 				{
-					if (empoweringTimer < empoweringTimerMax)
-					{
-						empoweringTimer++;
-						empoweringStep = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
-					}
+					empoweringTimer++;
+					empoweringStep = (empoweringTimer * empoweringTotal) / empoweringTimerMax;
 				}
 			}
 			else

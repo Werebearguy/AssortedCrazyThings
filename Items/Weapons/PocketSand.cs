@@ -41,7 +41,7 @@ namespace AssortedCrazyThings.Items.Weapons
 				float velox = ((cm.X * Item.shootSpeed * randx) / cm.Length()) + randx2; //first rand makes it so it has different velocity factor (how far it flies)
 				float veloy = ((cm.Y * Item.shootSpeed * randy) / cm.Length()) + bobandy; //second rand is a kinda offset used mainly for when shooting vertically or horizontally
 				Vector2 velo = new Vector2(velox, veloy);
-				Projectile.NewProjectile(source, position, velo, type, damage, knockback, Main.myPlayer); //TODO mention bugfix no owner in MP
+				Projectile.NewProjectile(source, position, velo, type, damage, knockback, Main.myPlayer);
 			}
 			return true;
 		}
