@@ -1,14 +1,12 @@
-Maintenance.
+Preview Maintenance.
 
 * FIXES
-    * Fixed Cute Slimes not spawning on the "don't dig up" seed
-    * Fixed Horned Slime spawning on the starting island on the "don't dig up" seed
-    * Fixed Godly Torch not dropping
-    * Fixed Soul Harvester not spawning gore on death
-    * Fixed glitches with various visual effects when the "Blood and Gore" setting is disabled
-    * Fixed incompatibility with Stars Above
+    * Fixed silent error in logs when certain pets are summoned in multiplayer
+    * Fixed some entities not having the correct name on mouseover, lifeform analyzer, and bestiary
 * CHANGES
-    * Nerfed Stone Soldier sword and contact damage
-    * [AoMM] Nerfed Bottle of Restless Eyes pet firerate
+    * Golden Extendo-Net now catches underworld critters
+    * Guide Voodoorang now affected by Bangarang mod
+    * Sigil of the Wing now displays a blue outline on the health bar while invincible
+    * All Demon Eye and Wandering Eye variants now count towards the vanilla (basic) Demon Eye and Wandering Eye kill counts in the bestiary
 * ADDITIONS
-    * Added Magic Storage Shadow Diamond to Soul Harvester loot on first defeat
+    * Added Soul Harvester Relic (Colored)

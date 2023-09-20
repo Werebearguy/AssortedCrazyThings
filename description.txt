@@ -7,7 +7,7 @@ Likewise, we have two configurations; one for client, and the other for server. 
 Hopefully, you will find that the content of this mod livens up your world without intruding on vanilla gameplay or modded gameplay. Consider Assorted Crazy Things to be a supplementary mod which subtly adds a bit more to the world, rather than a mod that makes its presence known with a bang. As we have a lot of content, please refer to our wiki to see all that we currently offer.
 
 Mod Contents:
-- 15 Tiles
+- 16 Tiles
 - 59 NPCs, including one boss
 - 215 items, including pets, accessories, armor, and more
 - Cross-mod content (The Amulet of Many Minions)
