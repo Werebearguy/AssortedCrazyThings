@@ -2537,7 +2537,7 @@ Mods: {
 
 		Tiles: {
 			MapEntry_Locked: 已上锁
-			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked}{Items.AntiqueChestItem.DisplayName}"
+			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked}{$Items.AntiqueChestItem.DisplayName}"
 
 			SlimeBeaconTile: {
 				NotInMultiplayer: 【不在多人游戏中】
