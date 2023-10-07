@@ -3,2792 +3,2793 @@ Mods: {
 		Buffs: {
 			# Cute Slimes
 			CuteSlimeBlackBuff: {
-				// DisplayName: Cute Black Slime
-				// Description: A cute black slime is following you
+				DisplayName: 可爱黑史莱姆
+				Description: 一只可爱的黑史莱姆跟随着你
 			}
 
 			CuteSlimeBlueBuff: {
-				// DisplayName: Cute Blue Slime
-				// Description: A cute blue slime is following you
+				DisplayName: 可爱蓝史莱姆
+				Description: 一只可爱的蓝史莱姆跟随着你
 			}
 
 			CuteSlimeCorruptBuff: {
-				// DisplayName: Cute Corrupt Slime
-				// Description: A cute corrupt slime is following you
+				DisplayName: 可爱腐化史莱姆
+				Description: 一只可爱的腐化史莱姆跟随着你
 			}
 
 			CuteSlimeCorruptJungleBuff: {
-				// DisplayName: Cute Corrupt Jungle Slime
-				// Description: A cute corrupt jungle slime is following you
+				DisplayName: 可爱腐化丛林史莱姆
+				Description: 一只可爱的腐化丛林史莱姆跟随着你
 			}
 
 			CuteSlimeCrimsonBuff: {
-				// DisplayName: Cute Crimson Slime
-				// Description: A cute crimson slime is following you
+				DisplayName: 可爱猩红史莱姆
+				Description: 一只可爱的猩红史莱姆跟随着你
 			}
 
 			CuteSlimeCrimsonJungleBuff: {
-				// DisplayName: Cute Crimson Jungle Slime
-				// Description: A cute crimson jungle slime is following you
+				DisplayName: 可爱猩红丛林史莱姆
+				Description: 一只可爱的猩红丛林史莱姆跟随着你
 			}
 
 			CuteSlimeDungeonBuff: {
-				// DisplayName: Cute Dungeon Slime
-				// Description: A cute dungeon slime is following you
+				DisplayName: 可爱地牢史莱姆
+				Description: 一只可爱的地牢史莱姆跟随着你
 			}
 
 			CuteSlimeGoldenBuff: {
-				// DisplayName: Cute Golden Slime
-				// Description: A cute golden slime is following you
+				DisplayName: 可爱金史莱姆
+				Description: 一只可爱的金史莱姆跟随着你
 			}
 
 			CuteSlimeGreenBuff: {
-				// DisplayName: Cute Green Slime
-				// Description: A cute green slime is following you
+				DisplayName: 可爱绿史莱姆
+				Description: 一只可爱的绿史莱姆跟随着你
 			}
 
 			CuteSlimeHoneyBuff: {
-				// DisplayName: Cute Honey Slime
-				// Description: A cute honey slime is following you
+				DisplayName: 可爱蜂蜜史莱姆
+				Description: 一只可爱的蜂蜜史莱姆跟随着你
 			}
 
 			CuteSlimeIceBuff: {
-				// DisplayName: Cute Ice Slime
-				// Description: A cute ice slime is following you
+				DisplayName: 可爱冰雪史莱姆
+				Description: 一只可爱的冰雪史莱姆跟随着你
 			}
 
 			CuteSlimeIlluminantBuff: {
-				// DisplayName: Cute Illuminant Slime
-				// Description: A cute illuminant slime is following you
+				DisplayName: 可爱夜明史莱姆
+				Description: 一只可爱的夜明史莱姆跟随着你
 			}
 
 			CuteSlimeJungleBuff: {
-				// DisplayName: Cute Jungle Slime
-				// Description: A cute jungle slime is following you
+				DisplayName: 可爱丛林史莱姆
+				Description: 一只可爱的丛林史莱姆跟随着你
 			}
 
 			CuteSlimeLavaBuff: {
-				// DisplayName: Cute Lava Slime
-				// Description: A cute lava slime is following you
+				DisplayName: 可爱熔岩史莱姆
+				Description: 一只可爱的熔岩史莱姆跟随着你
 			}
 
 			CuteSlimePinkBuff: {
-				// DisplayName: Cute Pink Slime
-				// Description: A cute pink slime is following you
+				DisplayName: 可爱粉史莱姆
+				Description: 一只可爱的粉史莱姆跟随着你
 			}
 
 			CuteSlimePinkIceBuff: {
-				// DisplayName: Cute Pink Ice Slime
-				// Description: A cute pink ice slime is following you
+				DisplayName: 可爱粉冰雪史莱姆
+				Description: 一只可爱的粉冰雪史莱姆跟随着你
 			}
 
 			CuteSlimePrincessBuff: {
-				// DisplayName: Cute Princess Slime
-				// Description: A cute princess slime is following you
+				DisplayName: 可爱史莱姆公主
+				Description: 一位可爱的史莱姆公主跟随着你
 			}
 
 			CuteSlimePurpleBuff: {
-				// DisplayName: Cute Purple Slime
-				// Description: A cute purple slime is following you
+				DisplayName: 可爱紫史莱姆
+				Description: 一只可爱的紫史莱姆跟随着你
 			}
 
 			CuteSlimePurpleIceBuff: {
-				// DisplayName: Cute Purple Ice Slime
-				// Description: A cute purple ice slime is following you
+				DisplayName: 可爱紫冰雪史莱姆
+				Description: 一只可爱的紫冰雪史莱姆跟随着你
 			}
 
 			CuteSlimeQueenBuff: {
-				// DisplayName: Cute Queen Slime
-				// Description: A cute queen slime is following you
+				DisplayName: 可爱史莱姆皇后
+				Description: 一位可爱的史莱姆皇后跟随着你
 			}
 
 			CuteSlimeRainbowBuff: {
-				// DisplayName: Cute Rainbow Slime
-				// Description: A cute rainbow slime is following you
+				DisplayName: 可爱彩虹史莱姆
+				Description: 一只可爱的彩虹史莱姆跟随着你
 			}
 
 			CuteSlimeRedBuff: {
-				// DisplayName: Cute Red Slime
-				// Description: A cute red slime is following you
+				DisplayName: 可爱红史莱姆
+				Description: 一只可爱的红史莱姆跟随着你
 			}
 
 			CuteSlimeRedIceBuff: {
-				// DisplayName: Cute Red Ice Slime
-				// Description: A cute red ice slime is following you
+				DisplayName: 可爱红冰雪史莱姆
+				Description: 一只可爱的红冰雪史莱姆跟随着你
 			}
 
 			CuteSlimeSandBuff: {
-				// DisplayName: Cute Sand Slime
-				// Description: A cute sand slime is following you
+				DisplayName: 可爱沙史莱姆
+				Description: 一只可爱的沙史莱姆跟随着你
 			}
 
 			CuteSlimeShimmerBuff: {
-				// DisplayName: Cute Shimmer Slime
-				// Description: A cute shimmer slime is following you
+				DisplayName: 可爱微光史莱姆
+				Description: 一只可爱的微光史莱姆跟随着你
 			}
 
 			CuteSlimeToxicBuff: {
-				// DisplayName: Cute Toxic Slime
-				// Description: A cute toxic slime is following you
+				DisplayName: 可爱毒史莱姆
+				Description: 一只可爱的毒史莱姆跟随着你
 			}
 
 			CuteSlimeXmasBuff: {
-				// DisplayName: Cute Christmas Slime
-				// Description: A cute Christmas slime is following you
+				DisplayName: 可爱礼物史莱姆
+				Description: 一只可爱的礼物史莱姆跟随着你
 			}
 
 			CuteSlimeYellowBuff: {
-				// DisplayName: Cute Yellow Slime
-				// Description: A cute yellow slime is following you
+				DisplayName: 可爱黄史莱姆
+				Description: 一只可爱的黄史莱姆跟随着你
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationBuff: {
-				// DisplayName: Abeemination
-				// Description: An abeemination is following you
+				DisplayName: 憎恶之蜂
+				Description: 一只憎恶之蜂跟随着你
 			}
 
 			AlienHornetBuff: {
-				// DisplayName: Alien Hornet
-				// Description: An alien hornet is following you
+				DisplayName: 异星黄蜂
+				Description: 一只异星黄蜂跟随着你
 			}
 
 			AnimatedTomeBuff: {
-				// DisplayName: Animated Tome
-				// Description: An animated tome is following you
+				DisplayName: 活化魔典
+				Description: 一本活化魔典跟随着你
 			}
 
 			AnomalocarisBuff: {
-				// DisplayName: Anomalocaris
-				// Description: A little prehistoric shrimp is following you
+				DisplayName: 奇虾
+				Description: 一只史前小虾跟随着你
 			}
 
 			BabyCrimeraBuff: {
-				// DisplayName: Baby Crimera
-				// Description: A little crimera is following you
+				DisplayName: 喀迈拉宝宝
+				Description: 一只喀迈拉宝宝跟随着你
 			}
 
 			BabyIchorStickerBuff: {
-				// DisplayName: Lil' Ichy
-				// Description: A baby ichor sticker is following you
+				DisplayName: 黏黏怪宝宝
+				Description: 一只黏黏怪宝宝跟随着你
 			}
 
 			BabyOcramBuff: {
-				// DisplayName: Baby Ocram
-				// Description: What could have been now follows you
+				DisplayName: 迷你奥库瑞姆
+				Description: 迷你奥库瑞姆跟随着你
 			}
 
 			BrainofConfusionBuff: {
-				// DisplayName: Brain of Confusion
-				// Description: A brain of confusion is following you
+				DisplayName: 混乱之脑
+				Description: 一颗混乱之脑跟随着你
 			}
 
 			ChunkyandMeatballBuff: {
-				// DisplayName: Chunky and Meatball
-				// Description: Two reunited brothers are following you
+				DisplayName: 腐块和肉球
+				Description: 重聚的两兄弟跟随着你
 			}
 
 			ChunkySlimeBuff: {
-				// DisplayName: Chunky
-				// Description: Chunky is following you
+				DisplayName: 腐块
+				Description: 一团腐块跟随着你
 			}
 
 			CompanionDungeonSoulPetBuff: {
-				// DisplayName: Companion Soul
-				// CommonDescription: A friendly dungeon soul is following you
-				/* Description:
+				DisplayName: 灵魂同伴
+				CommonDescription: 一位友好的地牢之魂跟随着你
+				Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
-					Light pet slot
-					''' */
+					照明宠物
+					'''
 			}
 
 			CompanionDungeonSoulPetBuff2: {
-				// DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
-				/* Description:
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
-					Pet slot
-					''' */
+					一般宠物
+					'''
 			}
 
 			CursedSkullBuff: {
-				// DisplayName: Cursed Skull
-				// Description: It won't curse you, I promise
+				DisplayName: 诅咒骷髅头
+				Description: 它不会诅咒你，我保证
 			}
 
 			CuteGastropodBuff: {
-				// DisplayName: Cute Gastropod
-				// Description: A cute gastropod is following you
+				DisplayName: 可爱腹足怪
+				Description: 一只可爱的腹足怪跟随着你
 			}
 
 			CuteLamiaPetBuff: {
-				// DisplayName: Small Snake
-				// Description: A small snake is following you
+				DisplayName: 小蛇
+				Description: 一条小蛇跟随着你
 			}
 
 			DemonHeartBuff: {
-				// DisplayName: Demon Heart
-				// Description: A demon heart is following you
+				DisplayName: 恶魔之心
+				Description: 一颗恶魔之心跟随着你
 			}
 
 			DetachedHungryBuff: {
-				// DisplayName: Detached Hungry
-				// Description: You might be the next meal...
+				DisplayName: 独立的饿鬼
+				Description: 也许下一餐就是你……
 			}
 
 			DocileDemonEyeBuff: {
-				// DisplayName: Docile Demon Eye
-				// Description: A demon eye is following you
+				DisplayName: 温驯的恶魔眼
+				Description: 一只恶魔眼跟随着你
 			}
 
 			DrumstickElementalBuff: {
-				// DisplayName: Drumstick Elemental
-				// Description: Dinner is following you
+				DisplayName: 鸡腿元素
+				Description: 晚餐跟随着你
 			}
 
 			DynamiteBunnyBuff: {
-				// DisplayName: Dynamite Bunny
-				// Description: A little dynamite bunny is following you
+				DisplayName: 爆炸兔
+				Description: 一只会爆炸的小兔子跟随着你
 			}
 
 			EnchantedSwordBuff: {
-				// DisplayName: Enchanted Sword
-				// Description: The enchanted sword watches over you
+				DisplayName: 附魔剑
+				Description: 一把附魔剑守护着你
 			}
 
 			FailureSlimeBuff: {
-				// DisplayName: Failure Slime
-				// Description: A strange creature is following you
+				DisplayName: 故障史莱姆
+				Description: 一只故障史莱姆跟随着你
 			}
 
 			FairySlimeBuff: {
-				// DisplayName: Fairy Slime
-				// Description: A fairy slime is following you
+				DisplayName: 仙灵史莱姆
+				Description: 一只仙灵史莱姆跟随着你
 			}
 
 			FairySwarmBuff: {
-				// DisplayName: Fairy Swarm
-				// Description: A fairy swarm is following you
+				DisplayName: 仙灵群
+				Description: 一小群仙灵跟随着你
 			}
 
 			GhostMartianBuff: {
-				// DisplayName: Ghost Martian
-				// Description: A vengeful invader's ghost is following you
+				DisplayName: 火星幽灵
+				Description: 一位想要复仇的入侵者鬼魂正追踪着你
 			}
 
 			GobletBuff: {
-				// DisplayName: Goblet
-				// Description: A tiny goblin is following you
+				DisplayName: 杯布林
+				Description: 一个哥布林小孩跟随着你
 			}
 
 			HornedSlimeBuff: {
-				// DisplayName: Horned Slime
-				// Description: A horned slime is following you
+				DisplayName: 恶魔史莱姆
+				Description: 一只恶魔史莱姆跟随着你
 			}
 
 			IlluminantSlimeBuff: {
-				// DisplayName: Illuminant Slime
-				// Description: An illuminant slime is following you
+				DisplayName: 夜明史莱姆
+				Description: 一只夜明史莱姆跟随着你
 			}
 
 			JoyousSlimeBuff: {
-				// DisplayName: Joyous Slime
-				// Description: A joyous slime is following you
+				DisplayName: 欢乐史莱姆
+				Description: 一只欢乐史莱姆跟随着你
 			}
 
 			LifelikeMechanicalFrogBuff: {
-				// DisplayName: Lifelike Mechanical Frog
-				// Description: Whatever happened to this frog at the anvil is a mystery
+				DisplayName: 栩栩如生的机械青蛙
+				Description: 这只青蛙在铁砧上发生了什么仍然是个谜
 			}
 
 			LilWrapsBuff: {
-				// DisplayName: Lil' Wraps
-				// Description: A mummy is following you
+				DisplayName: 小裹布
+				Description: 一个木乃伊跟随着你
 			}
 
 			MeatballSlimeBuff: {
-				// DisplayName: Meatball
-				// Description: Meatball is following you
+				DisplayName: 肉球
+				Description: 一团肉球跟随着你
 			}
 
 			MetroidPetBuff: {
-				// DisplayName: Metroid
-				// Description: A space parasite is following you
+				DisplayName: 密特罗德
+				Description: 一只太空寄生虫跟随着你
 			}
 
 			MiniAntlionBuff: {
-				// DisplayName: Baby Antlion
-				// Description: A baby antlion is following you
+				DisplayName: 蚁狮宝宝
+				Description: 一只蚁狮宝宝跟随着你
 			}
 
 			MiniMegalodonBuff: {
-				// DisplayName: Mini Megalodon
-				// Description: It recognizes your strength...for now
+				DisplayName: 迷你巨齿鲨
+				Description: 它认同了你的力量……暂时
 			}
 
 			NumberMuncherBuff: {
-				// DisplayName: Number Muncher
-				// Description: An educated amphibian is following you
+				DisplayName: 数字大嘴巴
+				Description: 一只受过教育的两栖动物跟随着你
 			}
 
 			OceanSlimeBuff: {
-				// DisplayName: Ocean Slime
-				// Description: An ocean slime is following you
+				DisplayName: 海洋史莱姆
+				Description: 一只海洋史莱姆跟随着你
 			}
 
 			PetCultistBuff: {
-				// DisplayName: Dwarf Cultist
-				// Description: A tiny cultist is following you
+				DisplayName: 小小邪教徒
+				Description: 一位小小邪教徒跟随着你
 			}
 
 			PetDestroyerBuff: {
-				// DisplayName: Tiny Destroyer
-				// Description: A tiny Destroyer and two tiny Probes are following you
+				DisplayName: 小型毁灭者
+				Description: 一台小型毁灭者和两架小型探测怪一同跟随着你
 			}
 
 			PetEaterofWorldsBuff: {
-				// DisplayName: Tiny Eater of Worlds
-				// Description: A tiny Eater of Worlds is following you
+				DisplayName: 小小世界吞噬怪
+				Description: 一只小小世界吞噬怪跟随着你
 			}
 
 			PetFishronBuff: {
-				// DisplayName: Fishron
-				// Description: A fishron is following you
+				DisplayName: 猪龙鱼
+				Description: 一只猪龙鱼跟随着你
 			}
 
 			PetGoldfishBuff: {
-				// DisplayName: Possessed Goldfish
-				// Description: A possessed goldfish is following you
+				DisplayName: 着魔的金鱼
+				Description: 一只着魔的金鱼跟随着你
 			}
 
 			PetGolemHeadBuff: {
-				// DisplayName: Replica Golem Head
-				// Description: A replica Golem head watches over you
+				DisplayName: 石巨人头复制品
+				Description: 石巨人头的复制品守护着你
 			}
 
 			PetHarvesterBuff: {
-				// DisplayName: Stubborn Bird
-				// Description: A stubborn bird is following you
+				DisplayName: 不屈之鸟
+				Description: 一只不屈不饶的鸟跟随着你
 			}
 
 			PetMoonBuff: {
-				// DisplayName: Personal Moon
-				// Description: A small moon is providing you with constant moonlight
+				DisplayName: 个人月亮
+				Description: 一颗小型月亮为你提供持续的月光
 			}
 
 			PetPlanteraBuff: {
-				// DisplayName: Plantera Sprout
-				// Description: A Plantera sprout is following you
+				DisplayName: 世纪之芽
+				Description: 一朵世纪之芽跟随着你
 			}
 
 			PetQueenSlimeBuff: {
-				// DisplayName: Playful Slimelings
-				// Description: A trio of slimelings is following you
+				DisplayName: 顽皮小史莱姆
+				Description: 一只顽皮小史莱姆跟随着你
 			}
 
 			PetSunBuff: {
-				// DisplayName: Personal Sun
-				// Description: A small sun is providing you with constant sunlight
+				DisplayName: 个人太阳
+				Description: 一颗小型太阳为你提供持续的日光
 			}
 
 			PetSunMoonBuff: {
-				// DisplayName: Personal Sun and Moon
-				/* Description:
+				DisplayName: 个人太阳和个人月亮
+				Description:
 					'''
-					A small sun and moon are providing you with constant light
-					'No adverse gravitational effects will happen'
-					''' */
+					两颗小型天体为你提供持续的光芒
+					"不会发生不利的重力影响"
+					'''
 			}
 
 			PigronataBuff: {
-				// DisplayName: Pigronata
-				// Description: A pigronata is thankful that you did not bust it
+				DisplayName: 彩罐猪龙
+				Description: 它很庆幸你没有砸碎它
 			}
 
 			PrinceSlimeBuff: {
-				// DisplayName: Prince Slime
-				// Description: A prince slime is following you
+				DisplayName: 史莱姆王子
+				Description: 一位史莱姆王子跟随着你
 			}
 
 			QueenLarvaBuff: {
-				// DisplayName: Queen Larva
-				// Description: A Queen Bee larva is following you
+				DisplayName: 皇后幼虫
+				Description: 一只蜂后幼虫跟随着你
 			}
 
 			RainbowSlimeBuff: {
-				// DisplayName: Rainbow Slime
-				// Description: A rainbow slime is following you
+				DisplayName: 彩虹史莱姆
+				Description: 一只彩虹史莱姆跟随着你
 			}
 
 			SkeletronHandBuff: {
-				// DisplayName: Skeletron's Spare Hand
-				// Description: Skeletron's hand is attached to you
+				DisplayName: 骷髅王的备用手臂
+				Description: 骷髅王的手臂与你相连
 			}
 
 			SkeletronPrimeHandBuff: {
-				// DisplayName: Skeletron Prime's Spare Hand
-				// Description: Skeletron Prime's hand is attached to you
+				DisplayName: 机械骷髅王的备用手臂
+				Description: 机械骷髅王的手臂与你相连
 			}
 
 			StingSlimeBuff: {
-				// DisplayName: Sting Slime
-				// Description: A sting slime is following you
+				DisplayName: 螫刺史莱姆
+				Description: 一只螫刺史莱姆跟随着你
 			}
 
 			StrangeRobotBuff: {
-				// DisplayName: Strange Robot
-				// Description: A strange robot is following you
+				DisplayName: 奇怪的机器人
+				Description: 一个奇怪的机器人跟随着你
 			}
 
 			SuspiciousNuggetBuff: {
-				// DisplayName: Suspicious Nugget
-				// Description: A suspicious nugget is following you
+				DisplayName: 可疑的金块
+				Description: 一块可疑的金块正在跟踪你
 			}
 
 			SwarmofCthulhuBuff: {
-				// DisplayName: Swarm of Cthulhu
-				// Description: A swarm of Cthulhu is following you
+				DisplayName: 克苏鲁集群
+				Description: 一小群克苏鲁之眼跟随着你
 			}
 
 			TinyTwinsBuff: {
-				// DisplayName: Tiny Twins
-				// Description: The Twins are watching you
+				DisplayName: 迷你双子魔眼
+				Description: 一对双子魔眼守护着你
 			}
 
 			TorchGodLightPetBuff: {
-				// DisplayName: Godly Torch
-				// Description: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
-				// EnableSmartCursor: Enable 'Smart Cursor' to automatically place torches
-				// NoTorches: No normal torches found to place
+				DisplayName: 火把神
+				Description: “由你来放置火把是不必要的，我会正确的做到这一点。”
+				EnableSmartCursor: 启用"智能光标"自动放置火把
+				NoTorches: 没有找到可以放置的一般火把
 			}
 
 			TorturedSoulBuff: {
-				// DisplayName: Tortured Soul
-				// Description: Shouldn't have been so greedy, eh?
+				DisplayName: 痛苦亡魂
+				Description: 不该这么贪心吧，嗯？
 			}
 
 			TrueObservingEyeBuff: {
-				// DisplayName: True Observing Eye
-				// Description: A tiny True Eye of Cthulhu is following you
+				DisplayName: 克苏鲁真眼
+				Description: 一只小小克苏鲁真眼跟随着你
 			}
 
 			TurtleSlimeBuff: {
-				// DisplayName: Turtle Slime
-				// Description: A turtle slime is following you
+				DisplayName: 龟壳史莱姆
+				Description: 一只龟壳史莱姆跟随着你
 			}
 
 			VampireBatBuff: {
-				// DisplayName: Vampire Bat
-				// Description: A particularly dashing vampire is following you
+				DisplayName: 吸血蝙蝠
+				Description: 一位特别潇洒的吸血鬼跟随着你
 			}
 
 			WallFragmentBuff: {
-				// DisplayName: Wall Fragment
-				// Description: Several fragments of the Wall are following you
+				DisplayName: 血肉墙碎块
+				Description: 几块血肉墙的残片跟随着你
 			}
 
 			YoungHarpyBuff: {
-				// DisplayName: Young Harpy
-				// Description: A young harpy is following you
+				DisplayName: 幼年鸟妖
+				Description: 一位年轻的鸟妖跟随着你
 			}
 
 			YoungWyvernBuff: {
-				// DisplayName: Young Wyvern
-				// Description: A young wyvern is following you
+				DisplayName: 幼年飞龙
+				Description: 一只年轻的飞龙跟随着你
 			}
 
 			WobyBuff: {
-				// DisplayName: Woby, 'A lovable dog...'
-				// Description: A loyal canine is following you
+				DisplayName: 沃比，一只可爱的小狗
+				Description: 一只忠诚的狗狗跟随着你
 			}
 
 			CompanionDungeonSoulMinionBuff: {
-				// DisplayName: Companion Soul Minion
-				// Description: A friendly Soul is fighting for you
-				// TinyDungeonSouls: Tiny Dungeon Souls
+				DisplayName: 灵魂同伴仆从
+				Description: 一位友好的灵魂为你而战
+				TinyDungeonSouls: 小小地牢之魂
 			}
 
 			CuteSlimeSpawnEnableBuff: {
-				// DisplayName: Jellied Ale
-				// Description: Your perception of slimes is a bit off...
-				// CuteSlimesCanSpawn: Cute Slimes that can spawn
-				// None: None
+				DisplayName: 果冻啤酒
+				Description: 你对史莱姆的认知有点偏差……
+				CuteSlimesCanSpawn: 可以生成的可爱史莱姆
+				None: 无
 			}
 
 			DroneControllerBuff: {
-				// DisplayName: Drone Controller
-				// Description: Command a swarm of drones
+				DisplayName: 无人机控制器
+				Description: 指挥一群无人机
 			}
 
 			EmpoweringBuff: {
-				// DisplayName: Empowering
-				// Description: You get stronger the longer you don't receive damage
-				// IncreasedDamage: Increased Damage: {0}%
+				DisplayName: 赋能
+				Description: 只要持续不受伤害，你造成的伤害也会随之提高
+				IncreasedDamage: 伤害提高: {0}%
 			}
 
 			EnhancedHunterBuff: {
-				// DisplayName: Enhanced Hunter
-				// Description: Shows the location of enemies outside your vision range
+				DisplayName: 强化猎人
+				Description: 显示视野范围外的敌人的位置
 			}
 
 			GoblinUnderlingBuff: {
-				// DisplayName: Goblin Underling
-				// Description: A loyal goblin underling is fighting for you
+				DisplayName: 哥布林下属
+				Description: 一位忠诚的哥布林手下为你而战
 			}
 
 			SigilOfTheWingBuff: {
-				// DisplayName: Blessing of the Wing
-				// Description: Your spirit hangs on by a thread
+				DisplayName: 翼之祝福
+				Description: 你的灵魂命悬一线
 			}
 
 			BabyHarvesterBuff: {
-				// DisplayName: Ominous Bird
+				DisplayName: 不祥之鸟
 				# Do not translate Description
-				// Description: REPLACEME
-				// Absorbed: The bird has absorbed {0} souls
-				// Tier1: What's this bird doing?
-				// Tier2: I wonder if it will keep growing
-				// Tier3: I'm not sure it should keep eating...
+				Description: REPLACEME
+				Absorbed: 小鸟已经吸收了{0}个灵魂
+				Tier1: 这只鸟在做什么?
+				Tier2: 真好奇它是否会继续成长
+				Tier3: 我不确定它是否应该继续吃……
 			}
 
 			SoulBurnBuff: {
-				// DisplayName: Soul Burn
-				// Description: Rapidly losing life
+				DisplayName: 灵魂燃烧
+				Description: 快速损失生命值
 			}
 
 			SlimePackMinionBuff: {
-				// DisplayName: Slime
-				// Description: A friendly Slime from your Knapsack is fighting for you
+				DisplayName: 史莱姆
+				Description: 你的背包里有一只友善的史莱姆为你而战
 			}
 
 			SoulBuff: {
-				// DisplayName: Soul
-				// Description: Releases a soul
+				DisplayName: 灵魂
+				Description: 释放灵魂
 			}
 
 			StarRodBuff: {
-				// DisplayName: Star Rod
-				// Description: Falling Stars will land closer to you
+				DisplayName: 星竿
+				Description: 流星会降落在离你更近的地方
 			}
 
 			NeurotoxinBuff: {
-				// CommonName: Neurotoxin
-				// CommonDescription: Rapidly losing life
+				CommonName: 神经毒素
+				CommonDescription: 快速损失生命值
 			}
 
-			/* Campfire.WyvernCampfireNearby:
+			Campfire.WyvernCampfireNearby:
 				'''
-				{$Items.WyvernCampfireItem.DisplayName} nearby:
-				You are protected from Wyverns
-				Harpy feathers don't knock you away
-				''' */
+				{$Items.WyvernCampfireItem.DisplayName} 在附近时:
+				你受到了保护，不会受到飞龙的伤害
+				鸟妖的羽毛不会击退你
+				'''
 		}
 
 		Common: {
-			// ConcatenateTwo: "{0} {1}"
-			// AoMMVersion: (AoMM version)
-			// Selected: Selected: {0}
-			// BaseDamage: Base Damage: {0}
-			// BaseKnockback: Base Knockback: {0}
-			// Tooltips.PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
+			ConcatenateTwo: "{0}{1}"
+			AoMMVersion: (AoMM版本)
+			Selected: 已选择: {0}
+			BaseDamage: 基础伤害: {0}
+			BaseKnockback: 基础击退: {0}
+			Tooltips.PetHasAltSkins: 可以使用{$Items.VanitySelector.DisplayName}更改外观
 		}
 
 		Items: {
 			# Cute Slimes
 			CuteSlime: {
-				// AccessoryBlacklisted: Blacklisted
-				// AccessoryNone: None
-				// HatSlot: Hat Slot: {0}
-				// BodySlot: Body Slot: {0}
-				// CarriedSlot: Carry Slot: {0}
-				// AccessorySlot: Accessory Slot: {0}
+				AccessoryBlacklisted: 已列入黑名单
+				AccessoryNone: 无
+				HatSlot: 帽子: {0}
+				BodySlot: 主体: {0}
+				CarriedSlot: 携带: {0}
+				AccessorySlot: 配饰: {0}
 			}
 
 			CuteSlimeBlackItem: {
-				// DisplayName: Bottled Cute Black Slime
-				// Tooltip: Summons a cute black slime to follow you
+				DisplayName: 可爱黑史莱姆瓶
+				Tooltip: 召唤一只可爱的黑史莱姆来跟随你
 			}
 
 			CuteSlimeBlueItem: {
-				// DisplayName: Bottled Cute Blue Slime
-				// Tooltip: Summons a cute blue slime to follow you
+				DisplayName: 可爱蓝史莱姆瓶
+				Tooltip: 召唤一只可爱的蓝史莱姆来跟随你
 			}
 
 			CuteSlimeCorruptItem: {
-				// DisplayName: Bottled Cute Corrupt Slime
-				// Tooltip: Summons a cute corrupt slime to follow you
+				DisplayName: 可爱腐化史莱姆瓶
+				Tooltip: 召唤一只可爱的腐化史莱姆来跟随你
 			}
 
 			CuteSlimeCorruptJungleItem: {
-				// DisplayName: Bottled Cute Corrupt Jungle Slime
-				// Tooltip: Summons a cute corrupt jungle slime to follow you
+				DisplayName: 可爱腐化丛林史莱姆瓶
+				Tooltip: 召唤一只可爱的腐化丛林史莱姆来跟随你
 			}
 
 			CuteSlimeCrimsonItem: {
-				// DisplayName: Bottled Cute Crimson Slime
-				// Tooltip: Summons a cute crimson slime to follow you
+				DisplayName: 可爱猩红史莱姆瓶
+				Tooltip: 召唤一只可爱的猩红史莱姆来跟随你
 			}
 
 			CuteSlimeCrimsonJungleItem: {
-				// DisplayName: Bottled Cute Crimson Jungle Slime
-				// Tooltip: Summons a cute crimson jungle slime to follow you
+				DisplayName: 可爱猩红丛林史莱姆瓶
+				Tooltip: 召唤一只可爱的猩红丛林史莱姆来跟随你
 			}
 
 			CuteSlimeDungeonItem: {
-				// DisplayName: Bottled Cute Dungeon Slime
-				// Tooltip: Summons a cute dungeon slime to follow you
+				DisplayName: 可爱地牢史莱姆瓶
+				Tooltip: 召唤一只可爱的地牢史莱姆来跟随你
 			}
 
 			CuteSlimeGoldenItem: {
-				// DisplayName: Bottled Cute Golden Slime
-				// Tooltip: Summons a cute golden slime to follow you
+				DisplayName: 可爱金史莱姆瓶
+				Tooltip: 召唤一只可爱的金史莱姆来跟随你
 			}
 
 			CuteSlimeGreenItem: {
-				// DisplayName: Bottled Cute Green Slime
-				// Tooltip: Summons a cute green slime to follow you
+				DisplayName: 可爱绿史莱姆瓶
+				Tooltip: 召唤一只可爱的绿史莱姆来跟随你
 			}
 
 			CuteSlimeHoneyItem: {
-				// DisplayName: Bottled Cute Honey Slime
-				// Tooltip: Summons a cute honey slime to follow you
+				DisplayName: 可爱蜂蜜史莱姆瓶
+				Tooltip: 召唤一只可爱的蜂蜜史莱姆来跟随你
 			}
 
 			CuteSlimeIceItem: {
-				// DisplayName: Bottled Cute Ice Slime
-				// Tooltip: Summons a cute ice slime to follow you
+				DisplayName: 可爱冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的冰雪史莱姆来跟随你
 			}
 
 			CuteSlimeIlluminantItem: {
-				// DisplayName: Bottled Cute Illuminant Slime
-				// Tooltip: Summons a cute illuminant slime to follow you
+				DisplayName: 可爱夜明史莱姆瓶
+				Tooltip: 召唤一只可爱的夜明史莱姆来跟随你
 			}
 
 			CuteSlimeJungleItem: {
-				// DisplayName: Bottled Cute Jungle Slime
-				// Tooltip: Summons a cute jungle slime to follow you
+				DisplayName: 可爱丛林史莱姆瓶
+				Tooltip: 召唤一只可爱的丛林史莱姆来跟随你
 			}
 
 			CuteSlimeLavaItem: {
-				// DisplayName: Bottled Cute Lava Slime
-				// Tooltip: Summons a cute lava slime to follow you
+				DisplayName: 可爱熔岩史莱姆瓶
+				Tooltip: 召唤一只可爱的熔岩史莱姆来跟随你
 			}
 
 			CuteSlimePinkItem: {
-				// DisplayName: Bottled Cute Pink Slime
-				// Tooltip: Summons a cute pink slime to follow you
+				DisplayName: 可爱粉史莱姆瓶
+				Tooltip: 召唤一只可爱的粉史莱姆来跟随你
 			}
 
 			CuteSlimePinkIceItem: {
-				// DisplayName: Bottled Cute Pink Ice Slime
-				// Tooltip: Summons a cute pink ice slime to follow you
+				DisplayName: 可爱粉冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的粉冰雪史莱姆来跟随你
 			}
 
 			CuteSlimePrincessItem: {
-				// DisplayName: Bottled Cute Princess Slime
-				// Tooltip: Summons a cute princess slime to follow you
+				DisplayName: 可爱史莱姆公主瓶
+				Tooltip: 召唤一位可爱的史莱姆公主来跟随你
 			}
 
 			CuteSlimePurpleItem: {
-				// DisplayName: Bottled Cute Purple Slime
-				// Tooltip: Summons a cute purple slime to follow you
+				DisplayName: 可爱紫史莱姆瓶
+				Tooltip: 召唤一只可爱的紫史莱姆来跟随你
 			}
 
 			CuteSlimePurpleIceItem: {
-				// DisplayName: Bottled Cute Purple Ice Slime
-				// Tooltip: Summons a cute purple ice slime to follow you
+				DisplayName: 可爱紫冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的紫冰雪史莱姆来跟随你
 			}
 
 			CuteSlimeQueenItem: {
-				// DisplayName: Bottled Cute Queen Slime
-				// Tooltip: Summons a cute queen slime to follow you
+				DisplayName: 可爱史莱姆皇后瓶
+				Tooltip: 召唤一位可爱的史莱姆皇后来跟随你
 			}
 
 			CuteSlimeRainbowItem: {
-				// DisplayName: Bottled Cute Rainbow Slime
-				// Tooltip: Summons a cute rainbow slime to follow you
+				DisplayName: 可爱彩虹史莱姆瓶
+				Tooltip: 召唤一只可爱的彩虹史莱姆来跟随你
 			}
 
 			CuteSlimeRedItem: {
-				// DisplayName: Bottled Cute Red Slime
-				// Tooltip: Summons a cute red slime to follow you
+				DisplayName: 可爱红史莱姆瓶
+				Tooltip: 召唤一只可爱的红史莱姆来跟随你
 			}
 
 			CuteSlimeRedIceItem: {
-				// DisplayName: Bottled Cute Red Ice Slime
-				// Tooltip: Summons a cute red ice slime to follow you
+				DisplayName: 可爱红冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的红冰雪史莱姆来跟随你
 			}
 
 			CuteSlimeSandItem: {
-				// DisplayName: Bottled Cute Sand Slime
-				// Tooltip: Summons a cute sand slime to follow you
+				DisplayName: 可爱沙史莱姆瓶
+				Tooltip: 召唤一只可爱的沙史莱姆来跟随你
 			}
 
 			CuteSlimeShimmerItem: {
-				// DisplayName: Bottled Cute Shimmer Slime
-				// Tooltip: Summons a cute shimmer slime to follow you
+				DisplayName: 可爱微光史莱姆瓶
+				Tooltip: 召唤一只可爱的微光史莱姆来跟随你
 			}
 
 			CuteSlimeToxicItem: {
-				// DisplayName: Bottled Cute Toxic Slime
-				// Tooltip: Summons a cute toxic slime to follow you
+				DisplayName: 可爱毒史莱姆瓶
+				Tooltip: 召唤一只可爱的毒史莱姆来跟随你
 			}
 
 			CuteSlimeXmasItem: {
-				// DisplayName: Bottled Cute Christmas Slime
-				// Tooltip: Summons a cute christmas slime to follow you
+				DisplayName: 可爱礼物史莱姆瓶
+				Tooltip: 召唤一只可爱的礼物史莱姆来跟随你
 			}
 
 			CuteSlimeYellowItem: {
-				// DisplayName: Bottled Cute Yellow Slime
-				// Tooltip: Summons a cute yellow slime to follow you
+				DisplayName: 可爱黄史莱姆瓶
+				Tooltip: 召唤一只可爱的黄史莱姆来跟随你
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationItem: {
-				// DisplayName: Abeemination
-				/* Tooltip:
+				DisplayName: 憎恶之蜂
+				Tooltip:
 					'''
-					Summons a friendly abeemination to follow you
+					召唤一只憎恶之蜂来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AlienHornetItem: {
-				// DisplayName: Vortex Nectar
-				// Tooltip: Summons a friendly alien hornet to follow you
+				DisplayName: 异星黄蜂
+				Tooltip: 召唤一只异星黄蜂来跟随你
 			}
 
 			AnimatedTomeItem: {
-				// DisplayName: Animated Tome
-				/* Tooltip:
+				DisplayName: 活化魔典
+				Tooltip:
 					'''
-					Summons a friendly animated tome to follow you
+					召唤一本活化魔典来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AnomalocarisItem: {
-				// DisplayName: Ornery Shrimp
-				/* Tooltip:
+				DisplayName: 暴躁虾
+				Tooltip:
 					'''
-					Summons a prehistoric shrimp to follow you
+					召唤一只史前虾来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			BabyCrimeraItem: {
-				// DisplayName: Juicy Vertebrae
-				// Tooltip: Summons a baby crimera to follow you
+				DisplayName: 多汁椎骨
+				Tooltip: 召唤一只喀迈拉宝宝来跟随你
 			}
 
 			BabyIchorStickerItem: {
-				// DisplayName: Sleeping Ichor Sticker
-				// Tooltip: Summons a baby ichor sticker to follow you
+				DisplayName: 沉睡的灵液黏黏怪
+				Tooltip: 召唤一只灵液黏黏怪宝宝来跟随你
 			}
 
 			BabyOcramItem: {
-				// DisplayName: Baby Ocram
-				// Tooltip: Summons a miniature Ocram that follows you
+				DisplayName: 迷你奥库瑞姆
+				Tooltip: 召唤迷你奥库瑞姆来跟随你
 			}
 
 			BrainofConfusionItem: {
-				// DisplayName: Brain of Confusion
-				// Tooltip: Summons a brain of confusion to follow aimlessly behind you
+				DisplayName: 混乱之脑
+				Tooltip: 召唤一颗混乱之脑来跟随你
 			}
 
 			ChunkyandMeatballItem: {
-				// DisplayName: Chunky and Meatball
-				// Tooltip: Summons a pair of inseperable brothers to follow you
+				DisplayName: 腐块和肉球
+				Tooltip: 召唤一对形影不离的兄弟来跟随你
 			}
 
 			ChunkySlimeItem: {
-				// DisplayName: Bottled Chunky
-				// Tooltip: Summons Chunky to follow you
+				DisplayName: 腐块瓶
+				Tooltip: 召唤一团腐块来跟随你
 			}
 
 			CompanionDungeonSoulPetItem: {
-				// DisplayName: Companion Soul
-				// CommonTooltip: Summons a friendly Soul to light your way
-				/* Tooltip:
+				DisplayName: 灵魂同伴
+				CommonTooltip: 召唤一位友好的灵魂来照亮你的道路
+				Tooltip:
 					'''
 					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
-					Light pet slot
-					''' */
+					照明宠物
+					'''
 			}
 
 			CompanionDungeonSoulPetItem2: {
-				// DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
-				/* Tooltip:
+				DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
+				Tooltip:
 					'''
 					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
-					Pet slot
-					''' */
+					一般宠物
+					'''
 			}
 
 			CursedSkullItem: {
-				// DisplayName: Inert Skull
-				/* Tooltip:
+				DisplayName: 非活性骷髅头
+				Tooltip:
 					'''
-					Summons a friendly cursed skull that follows you
+					召唤一位友好的诅咒骷髅来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			CuteGastropodItem: {
-				// DisplayName: Mysterious Pod
-				// Tooltip: Summons a cute gastropod to follow you
+				DisplayName: 神秘豆荚
+				Tooltip: 召唤一只可爱的腹足怪来跟随你
 			}
 
 			CuteLamiaPetItem: {
-				// DisplayName: Shaking Snake Pot
-				/* Tooltip:
+				DisplayName: 摇蛇壶
+				Tooltip:
 					'''
-					Summons a small, friendly snake to follow you
+					召唤一条友好的小蛇跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			DemonHeartItem: {
-				// DisplayName: Demon Heart
-				// Tooltip: Summons a friendly demon heart to follow you
+				DisplayName: 恶魔之心
+				Tooltip: 召唤友好的恶魔之心跟随你
 			}
 
 			DetachedHungryItem: {
-				// DisplayName: Unconscious Hungry
-				// Tooltip: Summons a detached hungry to follow you
+				DisplayName: 无意识的饿鬼
+				Tooltip: 召唤一只独立的饿鬼来跟随你
 			}
 
 			DocileDemonEyeItem: {
-				// DisplayName: Docile Demon Eye
-				/* Tooltip:
+				DisplayName: 温驯的恶魔眼
+				Tooltip:
 					'''
-					Summons a docile demon eye to follow you
+					召唤一只温驯的恶魔眼来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			DrumstickElementalItem: {
-				// DisplayName: Magical Drumstick
-				// Tooltip: Summons a delicious drumstick elemental to follow you
+				DisplayName: 神奇鸡腿
+				Tooltip: 召唤美味的鸡腿元素来跟随你
 			}
 
 			DynamiteBunnyItem: {
-				// DisplayName: Dynamite Carrot
-				/* Tooltip:
+				DisplayName: 炸药胡萝卜
+				Tooltip:
 					'''
-					Summons a dynamite bunny to follow you
+					召唤一只爆炸兔来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			EnchantedSwordItem: {
-				// DisplayName: Enchanted Sword
-				// Tooltip: Summons an enchanted sword to watch over you
+				DisplayName: 附魔剑
+				Tooltip: 召唤一把附魔剑来守护你
 			}
 
 			FailureSlimeItem: {
-				// DisplayName: Slimy Skull
-				// Tooltip: Summons a strange creature to follow you
+				DisplayName: 黏糊糊的头骨
+				Tooltip: 召唤一个奇怪的生物来跟随你
 			}
 
 			FairySlimeItem: {
-				// DisplayName: Bottled Fairy Slime
-				// Tooltip: Summons a friendly fairy slime to follow you
+				DisplayName: 仙灵史莱姆瓶
+				Tooltip: 召唤一只仙灵史莱姆来跟随你
 			}
 
 			FairySwarmItem: {
-				// DisplayName: Bottle of Assorted Fairies
-				// Tooltip: Summons several fairies to swarm around you
+				DisplayName: 多样仙灵瓶
+				Tooltip: 召唤一些仙灵聚集在你周围
 			}
 
 			GhostMartianItem: {
-				// DisplayName: K-II Meter
-				// Tooltip: Summons a vengeful invader's ghost to follow you
+				DisplayName: K-II仪
+				Tooltip: 召唤一个复仇的入侵者鬼魂来跟随你
 			}
 
 			GobletItem: {
-				// DisplayName: Goblet Battle Standard
-				// Tooltip: Summons a tiny goblin to follow you
+				DisplayName: 杯布林战旗
+				Tooltip: 召唤一个哥布林小孩来跟随你
 			}
 
 			HornedSlimeItem: {
-				// DisplayName: Bottled Horned Slime
-				// Tooltip: Summons a friendly horned slime to follow you
+				DisplayName: 恶魔史莱姆瓶
+				Tooltip: 召唤一只恶魔史莱姆来跟随你
 			}
 
 			IlluminantSlimeItem: {
-				// DisplayName: Bottled Illuminant Slime
-				// Tooltip: Summons a friendly illuminant slime to follow you
+				DisplayName: 夜明史莱姆瓶
+				Tooltip: 召唤一只夜明史莱姆来跟随你
 			}
 
 			JoyousSlimeItem: {
-				// DisplayName: Bottled Joyous Slime
-				/* Tooltip:
+				DisplayName: 欢乐史莱姆瓶
+				Tooltip:
 					'''
-					Summons a friendly joyous slime to follow you
+					召唤一只欢乐史莱姆来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			LifelikeMechanicalFrogItem: {
-				// DisplayName: Lifelike Mechanical Frog
-				/* Tooltip:
+				DisplayName: 栩栩如生的机械青蛙
+				Tooltip:
 					'''
-					Summons a friendly frog to follow you
+					召唤一只友好的青蛙来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			LilWrapsItem: {
-				// DisplayName: Gilded Coffin
-				/* Tooltip:
+				DisplayName: 镀金棺材
+				Tooltip:
 					'''
-					Summons a mummy to follow you
+					召唤一个木乃伊来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MeatballSlimeItem: {
-				// DisplayName: Bottled Meatball
-				// Tooltip: Summons Meatball to follow you
+				DisplayName: 肉球瓶
+				Tooltip: 召唤一团肉球来跟随你
 			}
 
 			MetroidPetItem: {
-				// DisplayName: Parasite Container
-				/* Tooltip:
+				DisplayName: 寄生虫容器
+				Tooltip:
 					'''
-					Summons a space parasite to follow you
+					召唤一只太空寄生虫来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MiniAntlionItem: {
-				// DisplayName: Antlion Egg
-				/* Tooltip:
+				DisplayName: 蚁狮蛋
+				Tooltip:
 					'''
-					Summons a friendly baby antlion to follow you
+					召唤一只友好的蚁狮宝宝来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MiniMegalodonItem: {
-				// DisplayName: Small Megalodon Tooth
-				// Tooltip: Summons a friendly mini megalodon that follows you
+				DisplayName: 小巨齿鲨牙
+				Tooltip: 召唤一只友好的迷你巨齿鲨来跟随你
 			}
 
 			NumberMuncherItem: {
-				// DisplayName: Archaic Storage Device
-				// Tooltip: Summons an educated amphibian that follows you
+				DisplayName: 老式存储设备
+				Tooltip: 召唤一只受过教育的两栖动物来跟随你
 			}
 
 			OceanSlimeItem: {
-				// DisplayName: Bottled Ocean Slime
-				/* Tooltip:
+				DisplayName: 海洋史莱姆瓶
+				Tooltip:
 					'''
-					Summons a friendly ocean slime to follow you
+					召唤一只海洋史莱姆来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetCultistItem: {
-				// DisplayName: Tiny Ominous Coin
-				// Tooltip: Summons a tiny cultist to follow you and heal when injured
+				DisplayName: 有点不祥的硬币
+				Tooltip: 召唤一位小小邪教徒来跟随和治疗你
 			}
 
 			PetDestroyerItem: {
-				// DisplayName: Destroyer's Core
-				// Tooltip: Summons a tiny Destroyer and two tiny probes to follow you
+				DisplayName: 毁灭核心
+				Tooltip: 召唤一台小型毁灭者和它的两架小型探测怪来跟随你
 			}
 
 			PetEaterofWorldsItem: {
-				// DisplayName: Cracked Worm Egg
-				// Tooltip: Summons a tiny Eater of Worlds to follow you
+				DisplayName: 破裂虫卵
+				Tooltip: 召唤一只小小世界吞噬怪来跟随你
 			}
 
 			PetFishronItem: {
-				// DisplayName: Soggy Fish Cake
-				/* Tooltip:
+				DisplayName: 湿透的鱼饼
+				Tooltip:
 					'''
-					Summons a friendly fishron that flies with you
+					召唤一条友好的猪龙鱼来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetGoldfishItem: {
-				// DisplayName: Possessed Fish Idol
-				/* Tooltip:
+				DisplayName: 着魔鱼雕像
+				Tooltip:
 					'''
-					Summons a goldfish that follows you
-					'You feel like you lost something important in obtaining this idol...'
+					召唤一条金鱼来跟随你
+					'你感觉在获得这个雕像的过程中失去了一些重要的东西……'
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetGolemHeadItem: {
-				// DisplayName: Replica Golem Head
-				/* Tooltip:
+				DisplayName: 石巨人头复制品
+				Tooltip:
 					'''
-					Summons a replica Golem head to watch over you
-					Shoots bouncing fireballs at nearby enemies
-					''' */
+					召唤石巨人头的复制品来守护你
+					向附近的敌人发射弹掉火球
+					'''
 			}
 
 			PetHarvesterItem: {
-				// DisplayName: Stubborn Bird Soul
-				// Tooltip: Summons a stubborn bird to follow you
+				DisplayName: 不屈鸟魂
+				Tooltip: 召唤一只不屈之鸟来跟随你
 			}
 
 			PetMoonItem: {
-				// DisplayName: Bottled Moon
-				/* Tooltip:
+				DisplayName: 月亮瓶
+				Tooltip:
 					'''
-					Summons a small moon that provides you with constant moonlight
-					Shows the current moon cycle in the buff tip
+					召唤一颗小型月亮为你提供持续的月光
+					在增益提示中显示当前的月相
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetPlanteraItem: {
-				// DisplayName: Potted Plantera Seed
-				/* Tooltip:
+				DisplayName: 世纪种子的盆栽
+				Tooltip:
 					'''
-					Summons a Plantera sprout to watch over you
-					'It's a mean and green'
-					''' */
+					召唤一朵世纪之芽来守护你
+					"卑鄙而苍翠"
+					'''
 			}
 
 			PetQueenSlimeItem: {
-				// DisplayName: Playful Slimelings
-				// Tooltip: Summons a trio of slimelings to follow you
+				DisplayName: 顽皮小史莱姆
+				Tooltip: 召唤三只小史莱姆来跟随你
 			}
 
 			PetSunItem: {
-				// DisplayName: Bottled Sun
-				/* Tooltip:
+				DisplayName: 太阳瓶
+				Tooltip:
 					'''
-					Summons a small sun that provides you with constant sunlight
-					Shows the current time in the buff tip
-					''' */
+					召唤一颗小型太阳为你提供持续的日光
+					在增益提示中显示当前的时间
+					'''
 			}
 
 			PetSunMoonItem: {
-				// DisplayName: Bottled Sun and Moon
-				/* Tooltip:
+				DisplayName: 日月瓶
+				Tooltip:
 					'''
-					Summons a small sun and moon that provide you with constant light
-					Shows the current time in the buff tip
-					Shows the current moon cycle in the buff tip
+					召唤两颗小型天体为你提供持续的光芒
+					在增益提示中显示当前的时间和月相
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PigronataItem: {
-				// DisplayName: Pigronata
-				/* Tooltip:
+				DisplayName: 彩罐猪龙
+				Tooltip:
 					'''
-					Summons a friendly pigronata to follow you
+					召唤一条友好的彩罐猪龙来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PrinceSlimeItem: {
-				// DisplayName: Bottled Prince Slime
-				// Tooltip: Summons a prince slime to follow you
+				DisplayName: 史莱姆王子瓶
+				Tooltip: 召唤一位史莱姆王子来跟随你
 			}
 
 			QueenLarvaItem: {
-				// DisplayName: Queen Larva
-				/* Tooltip:
+				DisplayName: 皇后幼虫
+				Tooltip:
 					'''
-					Summons a Queen Bee larva to follow you
+					召唤一只蜂后的幼虫来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			RainbowSlimeItem: {
-				// DisplayName: Bottled Rainbow Slime
-				// Tooltip: Summons a friendly rainbow slime to follow you
+				DisplayName: 彩虹史莱姆瓶
+				Tooltip: 召唤一只彩虹史莱姆来跟随你
 			}
 
 			SkeletronHandItem: {
-				// DisplayName: Skeletron's Spare Hand
-				/* Tooltip:
+				DisplayName: 骷髅王的备用手臂
+				Tooltip:
 					'''
-					Summons Skeletron's hand attached to you
+					召唤骷髅王的手臂附着在你身上
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			SkeletronPrimeHandItem: {
-				// DisplayName: Skeletron Prime's Spare Hand
-				/* Tooltip:
+				DisplayName: 机械骷髅王的备用手臂
+				Tooltip:
 					'''
-					Summons Skeletron Prime's hand attached to you
+					召唤机械骷髅王的手臂附着在你身上
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			StingSlimeItem: {
-				// DisplayName: Bottled Sting Slime
-				/* Tooltip:
+				DisplayName: 螫刺史莱姆瓶
+				Tooltip:
 					'''
-					Summons a friendly sting slime to follow you
+					召唤一只螫刺史莱姆来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			StrangeRobotItem: {
-				// DisplayName: Odd Mechanical Device
-				// Tooltip: Summons a strange robot to follow you
+				DisplayName: 奇怪的机械装置
+				Tooltip: 召唤一个奇怪的机器人来跟随你
 			}
 
 			SuspiciousNuggetItem: {
-				// DisplayName: Suspicious Nugget
-				// Tooltip: Summons a suspicious nugget to follow you
+				DisplayName: 可疑的金块
+				Tooltip: 召唤一块可疑的金块来跟随你
 			}
 
 			SwarmofCthulhuItem: {
-				// DisplayName: Bottle of Restless Eyes
-				// Tooltip: Summons several eyes to swarm around you
+				DisplayName: 躁动眼瓶
+				Tooltip: 召唤一些克苏鲁之仆聚集在你周围
 			}
 
 			TinyTwinsItem: {
-				// DisplayName: Tiny Twins
-				// Tooltip: Summons a tiny pair of The Twins to follow you
+				DisplayName: 迷你双子魔眼
+				Tooltip: 召唤一对双子魔眼来跟随你
 			}
 
 			TorchGodLightPetItem: {
-				// DisplayName: Godly Torch
-				/* Tooltip:
+				DisplayName: 火把神
+				Tooltip:
 					'''
-					Summons a godly torch to follow you
-					Automatically places your normal torches with 'Smart Cursor' active
-					''' */
+					召唤火把神来跟随你
+					开启"智能光标"时自动摆放一般火把
+					'''
 			}
 
 			TorturedSoulItem: {
-				// DisplayName: Tortured Soul
-				// Tooltip: Summons an unfriendly tortured soul to follow you
+				DisplayName: 痛苦亡魂
+				Tooltip: 召唤一个不友好的痛苦亡魂来跟随你
 			}
 
 			TrueObservingEyeItem: {
-				// DisplayName: True Observing Eye
-				// Tooltip: Summons a True Eye of Cthulhu to watch after you
+				DisplayName: 克苏鲁真眼
+				Tooltip: 召唤一只克苏鲁真眼来守护你
 			}
 
 			TurtleSlimeItem: {
-				// DisplayName: Bottled Turtle Slime
-				// Tooltip: Summons a friendly turtle slime to follow you
+				DisplayName: 龟壳史莱姆瓶
+				Tooltip: 召唤一只龟壳史莱姆来跟随你
 			}
 
 			VampireBatItem: {
-				// DisplayName: Fixed Bat Wing
-				/* Tooltip:
+				DisplayName: 修好的蝙蝠翅膀
+				Tooltip:
 					'''
-					Summons a friendly vampire that flies with you
+					召唤一位友好的吸血鬼与你同行
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			WallFragmentItem: {
-				// DisplayName: Wall Fragment
-				// Tooltip: Summons several fragments of the Wall to follow you
+				DisplayName: 血肉墙碎块
+				Tooltip: 召唤一些血肉墙的残片聚集在你周围
 			}
 
 			YoungHarpyItem: {
-				// DisplayName: Clump of Down Feathers
-				/* Tooltip:
+				DisplayName: 一簇羽绒
+				Tooltip:
 					'''
-					Summons a friendly harpy to follow you
+					召唤一位友好的鸟妖来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			YoungWyvernItem: {
-				// DisplayName: Wyverntail
-				/* Tooltip:
+				DisplayName: 飞龙尾
+				Tooltip:
 					'''
-					Summons a friendly young wyvern that flies with you
+					召唤一只友好的幼年飞龙来跟随你
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			WobyItem: {
-				// DisplayName: Dog Lover's Badge
-				// Tooltip: Summons a loyal canine to follow you
+				DisplayName: 爱狗者徽章
+				Tooltip: 召唤一只忠诚的狗狗来跟随你
 			}
 
 			BottledDreams: {
-				// DisplayName: Bottled Dreams
-				// Tooltip: Allows the holder to double jump
+				DisplayName: 梦境瓶
+				Tooltip: 可让持有者二连跳
 			}
 
 			CrazyBundleOfAssortedBalloons: {
-				// DisplayName: Crazy Bundle of Assorted Balloons
-				// Tooltip: It's got all kinds of effects
+				DisplayName: 疯狂多样气球捆绑包
+				Tooltip:
+					'''
+					可让持有者七连跳
+					消除坠落伤害并增加跳跃高度
+					{$ItemTooltip.HoneyComb}
+					魔力再生增加
+					在黑暗中发光
+					'''
 			}
 
 			EverburningCandelabra: {
-				// DisplayName: Everburning Candelabra
-				// Tooltip: Applies various forms of fire damage to all attacks
+				DisplayName: 不灭烛台
+				Tooltip: 使所有攻击有机率施加狱炎、诅咒狱火、暗影焰和冻伤
 			}
 
 			EverburningCandle: {
-				// DisplayName: Everburning Candle
-				// Tooltip: Applies fire damage to all attacks
+				DisplayName: 永燃蜡烛
+				Tooltip: 使所有攻击有机率施加狱炎
 			}
 
 			EverburningCursedCandle: {
-				// DisplayName: Everburning Cursed Candle
-				// Tooltip: Applies cursed fire damage to all attacks
+				DisplayName: 诅咒永燃蜡烛
+				Tooltip: 使所有攻击有机率施加诅咒狱火
 			}
 
 			EverburningShadowflameCandle: {
-				// DisplayName: Everburning Shadowflame Candle
-				// Tooltip: Applies shadowflame damage to all attacks
+				DisplayName: 暗影永燃蜡烛
+				Tooltip: 使所有攻击有机率施加暗影焰
 			}
 
 			EverfrozenCandle: {
-				// DisplayName: Everfrozen Candle
-				// Tooltip: Applies frostbite damage to all attacks
+				DisplayName: 永冻蜡烛
+				Tooltip: 使所有攻击有机率施加冻伤
 			}
 
 			FestiveMirror: {
-				// DisplayName: Festive Mirror
-				// Tooltip: Provides immunity to {$BuffName.Chilled}, {$BuffName.Frozen}, and {$BuffName.Stoned}
+				DisplayName: 庆典镜
+				Tooltip: 对{$BuffName.Chilled}、{$BuffName.Frozen}和{$BuffName.Stoned}免疫
 			}
 
 			HarvesterWings: {
-				// DisplayName: Harvester Wings
-				/* Tooltip:
+				DisplayName: 收割者之翼
+				Tooltip:
 					'''
 					{$CommonItemTooltip.FlightAndSlowfall}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy}
 					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
-					''' */
+					'''
 			}
 
 			MassiveBundleOfBalloons: {
-				// DisplayName: Massive Bundle of Balloons
-				/* Tooltip:
+				DisplayName: 大量气球束
+				Tooltip:
 					'''
-					Allows you to jump six more times
-					Negates fall damage and increases jump height
+					可让持有者七连跳
+					消除坠落伤害并增加跳跃高度
 					{$ItemTooltip.HoneyComb}
-					''' */
+					'''
 			}
 
 			SigilOfTheBeak: {
-				// DisplayName: Sigil of the Beak
-				/* Tooltip:
+				DisplayName: 喙之印
+				Tooltip:
 					'''
-					Summons fractured souls to seek out enemies in combat
-					Frequency and intensity increases the lower your health gets
-					''' */
+					在战斗中召唤破碎之魂寻找敌人
+					你的现有生命值越低，效果越强烈
+					'''
 			}
 
 			SigilOfTheHarvester: {
-				// DisplayName: Sigil of the Harvester
-				/* Tooltip:
+				DisplayName: 收割者之印
+				Tooltip:
 					'''
-					'The aspects of the Harvester reside within you'
+					"收割者的一切都存于你中"
 					{$Items.SigilOfTheBeak.Tooltip}
 					{$Items.SigilOfTheWing.Tooltip}
 					{$Items.SigilOfTheTalon.Tooltip@3}
-					''' */
+					'''
 			}
 
 			SigilOfTheTalon: {
-				// DisplayName: Sigil of the Talon
-				/* Tooltip:
+				DisplayName: 爪之印
+				Tooltip:
 					'''
-					Allows your grappling hooks to deal damage when extending
-					Can hit up to {0} enemies
-					''' */
-				// HookDamage: Deals {0}% of your last held weapon's damage (currently {1})
+					使你的钩爪能够造成伤害
+					最多可以击中{0}个敌人
+					'''
+				HookDamage: 造成的伤害相当于你最后造成伤害的武器的{0}% (目前为{1})
 			}
 
 			SigilOfTheWing: {
-				// DisplayName: Sigil of the Wing
-				/* Tooltip:
+				DisplayName: 翼之印
+				Tooltip:
 					'''
-					On death, transform into a soul for {0} seconds, regenerating {1}% max health
-					While transformed, you cannot use items
-					Has a cooldown of {2} minutes
-					''' */
-				// SocialDesc: Cooldown will go down while in social slot
-				// EffectReady: Effect ready
-				// ReadyAgainInMinutes: Ready again in {0} {^0:minute;minutes}
-				// ReadyAgainInSeconds: Ready again in {0} {^0:second;seconds}
+					当你死亡时，转后为灵魂型态，持续{0}秒，并回复{1}%最大生命值
+					灵魂形态时无法使用物品
+					冷却时间{2}分钟
+					'''
+				SocialDesc: 即使放置于时装栏冷却时间也会减少
+				EffectReady: 效果就绪中
+				ReadyAgainInMinutes: 下次效果还需等待{0}分钟
+				ReadyAgainInSeconds: 下次效果还需等待{0}秒
 			}
 
 			SlipperySoles: {
-				// DisplayName: Slippery Soles
-				// Tooltip: You slip and slide on all blocks
+				DisplayName: 滑底鞋
+				Tooltip: 使持有者可以在所有物块上滑行
 			}
 
 			SolesOfFireAndIce: {
-				// DisplayName: Soles of Fire and Ice
-				// Tooltip: Allows you to walk on water, lava, and thin ice
+				DisplayName: 冰与火之鞋
+				Tooltip: 允许你在水面、熔岩和薄冰上行走
 			}
 
 			StarInABalloon: {
-				// DisplayName: Star in a Balloon
-				// Tooltip: "{$BuffDescription.StarInBottle} and jump height"
+				DisplayName: 星星气球
+				Tooltip: 跳跃高度和{$BuffDescription.StarInBottle}
 			}
 
 			StarWispBalloon: {
-				// DisplayName: Star Wisp Balloon
-				/* Tooltip:
+				DisplayName: 星灵气球
+				Tooltip:
 					'''
 					{$Items.StarInABalloon.Tooltip}
-					Glows in the dark
-					''' */
+					在黑暗中发光
+					'''
 			}
 
 			WispInABalloon: {
-				// DisplayName: Wisp in a Balloon
-				// Tooltip: Glows in the dark and increases jump height
+				DisplayName: 妖灵气球
+				Tooltip: 在黑暗中发光并增加跳跃高度
 			}
 
 			AntiqueKey: {
-				// DisplayName: Antique Key
-				// Tooltip: "'An old key that looks to fit the lock on the nearby cage...'"
+				DisplayName: 古董钥匙
+				Tooltip: “一把旧钥匙，看起来挺适合附近那个笼子上的锁……'”
 			}
 
 			SoulSaviorHeaddress: {
-				// DisplayName: Soul Savior Headdress
-				/* Tooltip:
+				DisplayName: 灵魂救主头饰
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
-				/* SetBonus:
 					'''
-					Reflects {0}% contact damage per available minion slot
-					Reflected damage further increased by effects that increase summon damage
-					Current reflected damage: {1}%
-					Minions summoned by the {$Items.EverhallowedLantern.DisplayName} become 'empowered' and gain {2}% more damage
-					''' */
+				SetBonus:
+					'''
+					每个拥有的仆从栏位能使你反射{0}%接触伤害
+					增加召唤伤害的效果会进一步提高反射伤害
+					当前反射伤害: {1}%
+					由{$Items.EverhallowedLantern.DisplayName}召唤的仆从获得'赋能'增益并且造成的伤害提高{2}%
+					'''
 			}
 
 			SoulSaviorPlate: {
-				// DisplayName: Soul Savior Breastplate
-				/* Tooltip:
+				DisplayName: 灵魂救主胸甲
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
+					'''
 			}
 
 			SoulSaviorRobe: {
-				// DisplayName: Soul Savior Robe
-				/* Tooltip:
+				DisplayName: 灵魂救主长袍
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
+					'''
 			}
 
 			CaughtDungeonSoul: {
-				// DisplayName: Loose Dungeon Soul
-				/* Tooltip:
+				DisplayName: 无缚的地牢之魂
+				Tooltip:
 					'''
-					'An inert soul caught by a net'
-					Awakened in your inventory when {$NPCs.HarvesterBoss.DisplayName} is defeated
-					''' */
-				// SpawnSoul: Use it to spawn a soul for the {$NPCs.HarvesterBoss.DisplayName} to eat
+					"被网捕获的非活性灵魂"
+					当{$NPCs.HarvesterBoss.DisplayName}被击败时从你的物品栏中苏醒
+					'''
+				SpawnSoul: 使用能够生成灵魂供{$NPCs.HarvesterBoss.DisplayName}食用
 			}
 
 			CaughtDungeonSoulFreed: {
-				// DisplayName: Freed Dungeon Soul
-				// Tooltip: Awakened by defeating the {$NPCs.HarvesterBoss.DisplayName}
+				DisplayName: 释放地牢之魂
+				Tooltip: 通过击败{$NPCs.HarvesterBoss.DisplayName}来唤醒
 			}
 
 			ChunkysEyeItem: {
-				// DisplayName: Chunky's Eye
-				// Tooltip: "'Find {$Items.MeatballsEyeItem.DisplayName} and combine the two at a Demon Altar'"
+				DisplayName: 腐块眼
+				Tooltip: “获得{$Items.MeatballsEyeItem.DisplayName}并在恶魔祭坛能将两者结合起来”
 			}
 
 			CuteSlimeSpawnEnableFlask: {
-				// DisplayName: Jellied Ale
-				// SeeMoreOften: You will see Cute Slimes more often for a short time
-				// See: Allows you to see Cute Slimes for a short time
+				DisplayName: 果冻啤酒
+				SeeMoreOften: 喝下这种饮料后能够吸引可爱的史莱姆更频繁出现
+				See: 能够更频繁的遇见可爱的史莱姆
 			}
 
 			EmpowermentFlask: {
-				// DisplayName: Empowerment Flask
-				/* Tooltip:
+				DisplayName: 赋能瓶
+				Tooltip:
 					'''
-					Incrementally increases damage dealt over time
-					Bonus resets upon taking damage
-					(Summon damage only increases marginally)
-					''' */
+					随着时间的推移逐渐增加造成的伤害
+					受到伤害时奖励会重制
+					(召唤伤害提升的幅度较小)
+					'''
 			}
 
 			EnhancedHunterPotion: {
-				// DisplayName: Enhanced Hunter Potion
-				/* Tooltip:
-					'''
-					{$ItemTooltip.HunterPotion}
-					Additionally, shows the location of enemies outside your vision range
-					Range is roughly one screen in each direction
-					''' */
+				DisplayName: 强化狩猎药水
+				Tooltip: "{$ItemTooltip.HunterPotion}，包括视野范围外约等于一个画面范围的敌人"
 			}
 
 			HarvesterTreasureBag: {
-				// DisplayName: Treasure Bag ({$NPCs.HarvesterBoss.DisplayName})
-				// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+				DisplayName: ({$NPCs.HarvesterBoss.DisplayName})宝藏袋
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			DesiccatedLeather: {
-				// DisplayName: Desiccated Leather
-				// Tooltip: "'It's dry, sticky, and smells horrible'"
+				DisplayName: 干燥皮革
+				Tooltip: “又干又黏，而且气味难闻”
 			}
 
 			DroneParts: {
-				// DisplayName: Drone Parts
-				// Tooltip: "'These parts could be repurposed...'"
+				DisplayName: 无人机零件
+				Tooltip: “这些部件可以被重新利用……”
 			}
 
-			// DroneUnlockableBasicLaserDrone.DisplayName: Basic Laser Drone Components
-			// DroneUnlockableHealingDrone.DisplayName: Healing Drone Components
-			// DroneUnlockableHeavyLaserDrone.DisplayName: Heavy Laser Drone Components
-			// DroneUnlockableMissileDrone.DisplayName: Missile Drone Components
-			// DroneUnlockableShieldDrone.DisplayName: Shield Drone Components
+			DroneUnlockableBasicLaserDrone.DisplayName: 轻激光无人机组件
+			DroneUnlockableHealingDrone.DisplayName: 治疗无人机组件
+			DroneUnlockableHeavyLaserDrone.DisplayName: 重激光无人机组件
+			DroneUnlockableMissileDrone.DisplayName: 导弹无人机组件
+			DroneUnlockableShieldDrone.DisplayName: 护盾无人机组件
 
 			DroneUnlockable: {
-				// UnlockedText: Unlocked: {0}
-				// Unlocks: Unlocks the {0} for the {$Items.DroneController.DisplayName}
-				// AlreadyUnlocked: Already unlocked {0} for the {$Items.DroneController.DisplayName}
+				UnlockedText: 已解锁: {0}
+				Unlocks: "{$Items.DroneController.DisplayName}已解锁{0}"
+				AlreadyUnlocked: 已为{$Items.DroneController.DisplayName}解锁{0}
 			}
 
 			CraftOfMiners: {
-				// DisplayName: Craft of Miners
-				/* Tooltip:
+				DisplayName: 世界在我
+				Tooltip:
 					'''
-					'Use those fists of yours to tear through any blocks in your way'
-					[c/44942e:'Dedicated to Anonymous']
-					''' */
+					"用你的双拳打碎路上的任何障碍"
+					[c/44942e:"献给Anonymous"]
+					'''
 			}
 
 			GuideVoodoorang: {
-				// DisplayName: Guide Voodoorang
-				// Tooltip: "'Why are you like this?'"
+				DisplayName: 向导巫毒嘶吼
+				Tooltip: “你为什么要这样？”
 			}
 
 			InfinityRocket: {
-				// DisplayName: Infinity Rocket
-				// Tooltip: "'It seriously never ends!'"
+				DisplayName: 无尽火箭
+				Tooltip: “这真的永不结束！”
 			}
 
 			StarForge: {
-				// DisplayName: Star Forge
-				// Tooltip: "'An endless supply of the cosmos'"
+				DisplayName: 星炉
+				Tooltip: “宇宙的无穷供应”
 			}
 
-			// BrainOfCthulhuGitgud.DisplayName: Insanity-B-Gone
-			// DeerclopsGitgud.DisplayName: Deerclops Effigy
-			// DestroyerGitgud.DisplayName: Metal Dreamcatcher
-			// DukeFishronGitgud.DisplayName: White Hook
-			// EaterOfWorldsGitgud.DisplayName: Toy Seagull
-			// EmpressOfLightGitgud.DisplayName: Well-Worn Boots of Stomping
-			// EyeOfCthulhuGitgud.DisplayName: Broken Lens
-			// GolemGitgud.DisplayName: Rechargeable Solar Battery
-			// KingSlimeGitgud.DisplayName: Slime Inquisition Notice
-			// LunaticCultistGitgud.DisplayName: Notice of Occupational Termination
-			// MoonLordGitgud.DisplayName: Bright Side of the Moon
-			// PlanteraGitgud.DisplayName: Green Thumb
-			// QueenBeeGitgud.DisplayName: Honey Thimble
-			// QueenSlimeGitgud.DisplayName: Sparkling Cupcake
-			// SkeletronGitgud.DisplayName: Carton of Soy Milk
-			// SkeletronPrimeGitgud.DisplayName: Clock Set Ten Years Ahead
-			// TwinsGitgud.DisplayName: Metal Contact Lens
-			// WallOfFleshGitgud.DisplayName: Wall of Flesh Voodoo Doll
+			BrainOfCthulhuGitgud.DisplayName: 疯狂已逝
+			DeerclopsGitgud.DisplayName: 独眼巨鹿雕像
+			DestroyerGitgud.DisplayName: 金属捕梦网
+			DukeFishronGitgud.DisplayName: 白钩
+			EaterOfWorldsGitgud.DisplayName: 玩具海鸥
+			EmpressOfLightGitgud.DisplayName: 破旧的踩踏靴
+			EyeOfCthulhuGitgud.DisplayName: 碎晶体
+			GolemGitgud.DisplayName: 可充电的太阳能电池
+			KingSlimeGitgud.DisplayName: 史莱姆审判通知书
+			LunaticCultistGitgud.DisplayName: 解除职业通知书
+			MoonLordGitgud.DisplayName: 月球亮面
+			PlanteraGitgud.DisplayName: 绿拇指
+			QueenBeeGitgud.DisplayName: 蜂蜜顶针
+			QueenSlimeGitgud.DisplayName: 闪耀杯子蛋糕
+			SkeletronGitgud.DisplayName: 盒装豆浆
+			SkeletronPrimeGitgud.DisplayName: 提前十年的闹钟
+			TwinsGitgud.DisplayName: 金属隐形眼镜
+			WallOfFleshGitgud.DisplayName: 血肉墙巫毒娃娃
 
 			IdolOfDecay: {
-				// DisplayName: Idol Of Decay
-				/* Tooltip:
+				DisplayName: 腐朽偶像
+				Tooltip:
 					'''
-					Summons {$NPCs.HarvesterBoss.DisplayName}'s final form in the dungeon
-					Unlimited uses!
-					''' */
+					在地牢使用以召唤{$NPCs.HarvesterBoss.DisplayName}的最终型态
+					不消耗
+					'''
 			}
 
 			KnittingSet: {
-				// DisplayName: Knitting Set
-				// Tooltip: "'A set of tools used in crafting cute clothing and accessories'"
+				DisplayName: 缝纫套组
+				Tooltip: “一套用来制作可爱服装和配饰的工具组”
 			}
 
 			MeatballsEyeItem: {
-				// DisplayName: Meatball's Eye
-				// Tooltip: "'Find {$Items.ChunkysEyeItem.DisplayName} and combine the two at a Demon Altar'"
+				DisplayName: 肉球眼
+				Tooltip: “获得{$Items.ChunkysEyeItem.DisplayName}并在恶魔祭坛能将两者结合起来”
 			}
 
 			PetAccessory: {
-				// Hat: Worn on the head
-				// Body: Worn on the body
-				// Carried: Carried
-				// Accessory: Worn as an accessory
-				// Blacklisted: This accessory type is disabled for your particular slime
-				// NoUse: You have no summoned slime to equip this on
-				// Disabled: This accessory type is not registered for use by the devs
+				Hat: 戴在头上
+				Body: 戴在身上
+				Carried: 用手拿着
+				Accessory: 作为配饰配戴
+				Blacklisted: 使特定史莱姆禁用此配件
+				NoUse: 没有召唤任何史莱姆来装备它
+				Disabled: 此配件类型未注册仅供开发人员测试使用
 
 				Colors: {
-					// Red: Red
-					// Orange: Orange
-					// Gold: Gold
-					// Yellow: Yellow
-					// Green: Green
-					// Blue: Blue
-					// Purple: Purple
-					// Pink: Pink
-					// White: White
-					// Gray: Gray
-					// Black: Black
-					// Platinum: Platinum
-					// Iron: Iron
+					Red: 红色
+					Orange: 橙色
+					Gold: 黄金
+					Yellow: 黄色
+					Green: 绿色
+					Blue: 蓝色
+					Purple: 紫色
+					Pink: 粉色
+					White: 白色
+					Gray: 灰色
+					Black: 黑色
+					Platinum: 铂金
+					Iron: 铁
 				}
 			}
 
 			PetAccessoryBowtie: {
-				// DisplayName: Cute {$Items.PetAccessoryBowtie.ShortName}
-				// Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"
-				// ShortName: Bowtie
+				DisplayName: 可爱{$Items.PetAccessoryBowtie.ShortName}
+				Tooltip: “一个柔软的领结，可爱的史莱姆会将它配戴在胸前”
+				ShortName: 领结
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryBunnyEars: {
-				// DisplayName: Cute {$Items.PetAccessoryBunnyEars.ShortName}
-				// Tooltip: "'A pair of Easter bunny ears for your cute slime to wear on her head'"
-				// ShortName: Bunny Ears
+				DisplayName: 可爱{$Items.PetAccessoryBunnyEars.ShortName}
+				Tooltip: “一对复活节兔子耳朵，可爱的史莱姆会将它配戴在头上”
+				ShortName: 兔耳
 			}
 
 			PetAccessoryBunnySuit: {
-				// DisplayName: Cute {$Items.PetAccessoryBunnySuit.ShortName}
-				// Tooltip: "'A bunny(?) costume for your cute slime to wear on her chest'"
-				// ShortName: Bunny Suit
+				DisplayName: 可爱{$Items.PetAccessoryBunnySuit.ShortName}
+				Tooltip: “兔子(?)服装，可爱的史莱姆会将它穿在身上”
+				ShortName: 兔女郎服
 
 				AccessoryNames: {
-					// Black: "{$Items.PetAccessory.Colors.Black}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Red: "{$Items.PetAccessory.Colors.Red}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
 				}
 			}
 
 			PetAccessoryCrown: {
-				// DisplayName: Cute {$Items.PetAccessoryCrown.ShortName}
-				// Tooltip: "'A regal crown for your cute slime to wear on her head'"
-				// ShortName: Crown
+				DisplayName: 可爱{$Items.PetAccessoryCrown.ShortName}
+				Tooltip: “一顶华丽的皇冠，可爱的史莱姆会将它戴在头上”
+				ShortName: 皇冠
 
 				AccessoryNames: {
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Platinum: "{$Items.PetAccessory.Colors.Platinum}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Platinum: "{$Items.PetAccessory.Colors.Platinum}"
 				}
 			}
 
 			PetAccessoryHairBow: {
-				// DisplayName: Cute {$Items.PetAccessoryHairBow.ShortName}
-				// Tooltip: "'A large bow for your cute slime to wear on her head'"
-				// ShortName: Hair Bow
+				DisplayName: 可爱{$Items.PetAccessoryHairBow.ShortName}
+				Tooltip: “一个大蝴蝶结，可爱的史莱姆会将它配戴在头上”
+				ShortName: 发饰
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryKitchenKnife: {
-				// DisplayName: Cute {$Items.PetAccessoryKitchenKnife.ShortName}
-				// Tooltip: "'A plush kitchen knife for your cute slime to carry'"
-				// ShortName: Kitchen Knife
+				DisplayName: 可爱{$Items.PetAccessoryKitchenKnife.ShortName}
+				Tooltip: “一把玩具厨刀，可爱的史莱姆会随身携带它”
+				ShortName: 厨刀
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryMetalHelmet: {
-				// DisplayName: Cute {$Items.PetAccessoryMetalHelmet.ShortName}
-				// Tooltip: "'A plush knight's helmet for your cute slime to wear on her head'"
-				// ShortName: Knight's Helmet
+				DisplayName: 可爱{$Items.PetAccessoryMetalHelmet.ShortName}
+				Tooltip: “一个玩具骑士头盔，可爱的史莱姆会将它戴在头上”
+				ShortName: 骑士盔
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryMittens: {
-				// DisplayName: Cute {$Items.PetAccessoryMittens.ShortName}
-				// Tooltip: "'Warm mittens for your cute slime's hands'"
-				// ShortName: Mittens
+				DisplayName: 可爱{$Items.PetAccessoryMittens.ShortName}
+				Tooltip: “一双温暖的手套，可爱的史莱姆会将它们戴在手上”
+				ShortName: 手套
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryPartyHat: {
-				// DisplayName: Cute {$Items.PetAccessoryPartyHat.ShortName}
-				// Tooltip: "'A party hat for your cute slime to wear on her head'"
-				// ShortName: Party Hat
+				DisplayName: 可爱{$Items.PetAccessoryPartyHat.ShortName}
+				Tooltip: “一顶派对帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 派对帽
 			}
 
 			PetAccessoryPumpkinMask: {
-				// DisplayName: Cute {$Items.PetAccessoryPumpkinMask.ShortName}
-				// Tooltip: "'A perfectly-sized pumpkin for your cute slime to wear on her head'"
-				// ShortName: Pumpkin Mask
+				DisplayName: 可爱{$Items.PetAccessoryPumpkinMask.ShortName}
+				Tooltip: “一颗尺寸完美的南瓜，可爱的史莱姆会将它戴在头上”
+				ShortName: 南瓜面具
 
 				AccessoryNames: {
-					// SOrange: Sinister Orange
-					// IOrange: Innocent Orange
-					// SGreen: Sinister Green
-					// IGreen: Innocent Green
-					// SWhite: Sinister White
-					// IWhite: Innocent White
-					// SPurple: Sinister Purple
-					// IPurple: Innocent Purple
-					// SMelon: Sinister Melon
-					// IMelon: Innocent Melon
+					SOrange: 橙色邪恶
+					IOrange: 橙色纯真
+					SGreen: 绿色邪恶
+					IGreen: 绿色纯真
+					SWhite: 白色邪恶
+					IWhite: 白色纯真
+					SPurple: 紫色邪恶
+					IPurple: 紫色纯真
+					SMelon: 西瓜色邪恶
+					IMelon: 西瓜色纯真
 				}
 			}
 
 			PetAccessorySlimeHead: {
-				// DisplayName: Cute {$Items.PetAccessorySlimeHead.ShortName}
-				// Tooltip: "'A slime plush that sits on your cute slime's head'"
-				// ShortName: Head Slime
+				DisplayName: 可爱{$Items.PetAccessorySlimeHead.ShortName}
+				Tooltip: “一个绒毛史莱姆玩偶，可爱的史莱姆会将它叠在自己头上”
+				ShortName: 史莱姆玩具
 
 				AccessoryNames: {
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// Pinky: Pinky
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					Pinky: 粉色
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryStaff: {
-				// DisplayName: Cute {$Items.PetAccessoryStaff.ShortName}
-				// Tooltip: "'A plush staff for your cute slime to carry'"
-				// ShortName: Staff
+				DisplayName: 可爱{$Items.PetAccessoryStaff.ShortName}
+				Tooltip: “一把玩具法杖，可爱的史莱姆会随身携带它”
+				ShortName: 手杖
 
 				AccessoryNames: {
-					// Amethyst: Amethyst
-					// Sapphire: Sapphire
-					// Emerald: Emerald
-					// Ruby: Ruby
-					// Amber: Amber
-					// Topaz: Topaz
-					// Diamond: Diamond
-					// Magic: Magic
+					Amethyst: 紫晶
+					Sapphire: 蓝玉
+					Emerald: 翡翠
+					Ruby: 红玉
+					Amber: 琥珀
+					Topaz: 黄玉
+					Diamond: 钻石
+					Magic: 魔法
 				}
 			}
 
 			PetAccessorySwallowedKey: {
-				// DisplayName: Cute {$Items.PetAccessorySwallowedKey.ShortName}
-				// Tooltip: "'A plush key for your cute slime to...carry?'"
-				// ShortName: Swallowed Key
+				DisplayName: 可爱{$Items.PetAccessorySwallowedKey.ShortName}
+				Tooltip: “一把突然出现的钥匙，可爱的史莱姆会把它……嗯……带着？”
+				ShortName: 钥匙
 			}
 
 			PetAccessoryTophat: {
-				// DisplayName: Cute {$Items.PetAccessoryTophat.ShortName}
-				// Tooltip: "'A classy top hat for your cute slime to wear on her head'"
-				// ShortName: Top Hat
+				DisplayName: 可爱{$Items.PetAccessoryTophat.ShortName}
+				Tooltip: “一顶优雅的大礼帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 礼帽
 			}
 
 			PetAccessoryToyBreastplate: {
-				// DisplayName: Cute {$Items.PetAccessoryToyBreastplate.ShortName}
-				// Tooltip: "'A plush knight's breastplate for your cute slime to wear on her body'"
-				// ShortName: Knight's Breastplate
+				DisplayName: 可爱{$Items.PetAccessoryToyBreastplate.ShortName}
+				Tooltip: “一件玩具骑士胸甲，可爱的史莱姆会将它穿在身上”
+				ShortName: 骑士胸甲
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToyMace: {
-				// DisplayName: Cute {$Items.PetAccessoryToyMace.ShortName}
-				// Tooltip: "'A plush paladin's mace for your cute slime to carry'"
-				// ShortName: Paladin's Mace
+				DisplayName: 可爱{$Items.PetAccessoryToyMace.ShortName}
+				Tooltip: “一把类似圣骑士锤的玩具锤，可爱的史莱姆会随身携带它”
+				ShortName: 骑士锤
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToyShield: {
-				// DisplayName: Cute {$Items.PetAccessoryToyShield.ShortName}
-				// Tooltip: "'A plush knight's shield for your cute slime to carry'"
-				// ShortName: Knight's Shield
+				DisplayName: 可爱{$Items.PetAccessoryToyShield.ShortName}
+				Tooltip: “一个玩具骑士盾牌，可爱的史莱姆会随身携带它”
+				ShortName: 骑士盾
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToySpear: {
-				// DisplayName: Cute {$Items.PetAccessoryToySpear.ShortName}
-				// Tooltip: "'A plush warrior's spear for your cute slime to carry'"
-				// ShortName: Spartan's Spear
+				DisplayName: 可爱{$Items.PetAccessoryToySpear.ShortName}
+				Tooltip: “一把形似斯巴达长枪的玩具枪，可爱的史莱姆会随身携带它”
+				ShortName: 骑士枪
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToySword: {
-				// DisplayName: Cute {$Items.PetAccessoryToySword.ShortName}
-				// Tooltip: "'A plush knight's sword for your cute slime to carry'"
-				// ShortName: Knight's Sword
+				DisplayName: 可爱{$Items.PetAccessoryToySword.ShortName}
+				Tooltip: “一把玩具剑，可爱的史莱姆会随身携带它”
+				ShortName: 骑士剑
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryWizardHat: {
-				// DisplayName: Cute {$Items.PetAccessoryWizardHat.ShortName}
-				// Tooltip: "'A brown wizard's hat for your cute slime to wear on her head'"
-				// ShortName: Wizard Hat
+				DisplayName: 可爱{$Items.PetAccessoryWizardHat.ShortName}
+				Tooltip: “一顶棕色巫师帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 巫师帽
 			}
 
 			PetAccessoryXmasHat: {
-				// DisplayName: Cute {$Items.PetAccessoryXmasHat.ShortName}
-				// Tooltip: "'A festive hat for your cute slime to wear on hear head'"
-				// ShortName: Santa Hat
+				DisplayName: 可爱{$Items.PetAccessoryXmasHat.ShortName}
+				Tooltip: “一顶圣诞帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 圣诞帽
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
 				}
 			}
 
 			AntiqueCageItem: {
-				// DisplayName: Antique Cage
-				// Tooltip: ""
+				DisplayName: 古董笼子
+				Tooltip: ""
 			}
 
 			AntiqueChestItem: {
-				// DisplayName: Antique Chest
-				// Tooltip: ""
+				DisplayName: 古董箱
+				Tooltip: ""
 			}
 
 			CuteSlimeStatueItem: {
-				// DisplayName: Cute Slime Statue
-				// Tooltip: You can't catch statue spawned creatures
+				DisplayName: 可爱史莱姆雕像
+				Tooltip: 你无法捕捉雕像生成的生物
 			}
 
 			HarvesterRelicItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Relic"
-				// Tooltip: ""
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName}圣物"
+				Tooltip: ""
 			}
 
 			HarvesterRelicColoredItem: {
-				// DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colored)"
-				// Tooltip: ""
+				DisplayName: "{$Items.HarvesterRelicItem.DisplayName}(彩色)"
+				Tooltip: ""
 			}
 
 			HarvesterTrophyItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
-				// Tooltip: ""
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName}纪念章"
+				Tooltip: ""
 			}
 
 			FieldsOfJoyItem: {
-				// DisplayName: Fields of Joy
-				// Tooltip: "'C. Paigner'"
+				DisplayName: 欢乐原野
+				Tooltip: "'C. Paigner'"
 			}
 
 			PretentiousRockItem: {
-				// DisplayName: A Study of Slate
-				// Tooltip: "'C. Paigner'"
+				DisplayName: 研究板岩
+				Tooltip: "'C. Paigner'"
 			}
 
 			SCP099Item: {
-				// DisplayName: The Portrait
-				// Tooltip: "'R. Magritte'"
+				DisplayName: 肖像画
+				Tooltip: "'R. Magritte'"
 			}
 
 			SCP3515Item: {
-				// DisplayName: SCP-3515
-				// Tooltip: "'Unknown'"
+				DisplayName: SCP-3515
+				Tooltip: "'Unknown'"
 			}
 
 			SlimeBeaconItem: {
-				// DisplayName: Slime Beacon
-				// Tooltip: "'Do The Slime With Me!'"
-				// NoMultiplayer: "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"
+				DisplayName: 史莱姆信标
+				Tooltip: “一起做更多的史莱姆！”
+				NoMultiplayer: "[c/FFA01D:在多人模式中不起作用]"
 			}
 
 			StarRodItem: {
-				// DisplayName: Star Rod
-				// Tooltip: Attracts Falling Stars at night if you are nearby
+				DisplayName: 引星棒
+				Tooltip: 当你在附近时，会吸引夜晚的流星
 			}
 
-			// VanityDresserItem.DisplayName: Costume Dresser
+			VanityDresserItem.DisplayName: 宠物梳妆台
 
 			WyvernCampfireItem: {
-				// DisplayName: Wyvern Campfire
-				// Tooltip: "'Makes Wyverns go poof!'"
+				DisplayName: 飞龙篝火
+				Tooltip: “飞龙……”噗"！"
 			}
 
 			ExtendoNetGolden: {
-				// DisplayName: Golden Extendo-Net
-				/* Tooltip:
+				DisplayName: 加长金虫网
+				Tooltip:
 					'''
-					'Catches those REALLY hard to reach critters'
-					Can catch lava critters too!
-					''' */
+					"捕捉那些难以亲近的小动物"
+					也可以捕捉熔岩小动物！
+					'''
 			}
 
 			ExtendoNetRegular: {
-				// DisplayName: Extendo-Net
-				// Tooltip: "'Catches those hard to reach critters'"
+				DisplayName: 加长虫网
+				Tooltip: “捕捉那些难以亲近的小动物”
 			}
 
 			PrettyMask: {
-				// DisplayName: Pretty Mask
-				// Tooltip: "'Goes well with a red scarf, red gloves, red boots, and your birthday suit'"
+				DisplayName: 漂亮面具
+				Tooltip: “很适合搭配红围巾、红手套、红靴子和你的生日套装”
 			}
 
 			SoulHarvesterMask: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Mask"
-				// Tooltip: ""
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName}面具"
+				Tooltip: ""
 			}
 
 			VanitySelector: {
-				// DisplayName: Costume Suitcase
-				/* Tooltip:
+				DisplayName: 宠物服饰手提箱
+				Tooltip:
 					'''
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					''' */
+					单击左键更改一般宠物外观
+					单击右键更改照明宠物外观
+					'''
 			}
 
 			BoneCleavingFang: {
-				// DisplayName: Bone-Cleaving Fang
-				/* Tooltip:
+				DisplayName: 断骨牙
+				Tooltip:
 					'''
-					Striking enemies will charge the sword, causing it to glow with power.
-					Release the built up power by right-clicking. The brighter the sword, the greater the power.
-					The sword's power fades when not used.
-					''' */
+					攻击敌人会积累能量，点击右键释放能量攻击
+					随着能量的积累而发光，能量越多，亮度越高，释放的伤害也越高
+					不使用时，能量会逐渐消退
+					'''
 			}
 
 			BoneShatterLongbow: {
-				// DisplayName: Bone-Shatter Longbow
-				// Tooltip: Wooden arrows ignite into burning souls
+				DisplayName: 碎骨弓
+				Tooltip: 将木箭变为燃烧之魂
 			}
 
 			BreathOfSpazmatism: {
-				// DisplayName: Breath of Spazmatism
-				/* Tooltip:
+				DisplayName: 魔焰之息
+				Tooltip:
 					'''
-					Uses gel to fire a stream of cursed flames
+					发射诅咒焰束
 					{$CommonItemTooltip.PercentChanceToSaveAmmo}
-					''' */
+					'''
 			}
 
 			DroneController: {
-				// DisplayName: Drone Controller
-				/* Tooltip:
+				DisplayName: 无人机控制器
+				Tooltip:
 					'''
-					Summons a friendly Drone to support or fight for you
-					Right click to pick from available drones
-					Holding the item improves the Drones' supportive and offensive abilities
-					''' */
-				// Firerate: "{0} firerate"
-				// UnlockMore: Defeat {$NPCName.TheDestroyer} to unlock more drones
-				// CanSpawn: Only one {0} can be out at once
-				// ToUnlock: Craft and use a '{0}' Item
+					召唤友好的无人机来守护你
+					使用右键选择无人机类型
+					手持该物品可以提高无人机的支援和进攻速度
+					'''
+				Firerate: "{0}开火速度"
+				UnlockMore: 击败{$NPCName.TheDestroyer}以解锁更多无人机
+				CanSpawn: 同时只能存在一个{0}
+				ToUnlock: 制作并使用{0}
 			}
 
 			EverglowLantern: {
-				// DisplayName: Everglow Lantern
-				/* Tooltip:
+				DisplayName: 永辉灯笼
+				Tooltip:
 					'''
-					Summons two freed Dungeon Souls at a time to fight for you
-					Each Dungeon Soul occupies only half a minion slot
-					''' */
+					召唤两个被释放的地牢之魂为你而战
+					每个灵魂仅占据半格召唤栏位
+					'''
 			}
 
 			EverhallowedLantern: {
-				// DisplayName: Everhallowed Lantern
-				/* Tooltip:
+				DisplayName: 永圣灯笼
+				Tooltip:
 					'''
-					Summons a Soul to fight for you
-					Right click to pick from available forms
-					''' */
-				// MechCondition: Defeat mechanical bosses to unlock new minions
-				// SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
+					召唤灵魂为你而战
+					使用右键选择灵魂类型
+					'''
+				MechCondition: 击败机械三王以解锁新灵魂类型
+				SetBonusBoost: 穿戴"灵魂救主"套装后伤害增加{0}%
 			}
 
 			GoblinUnderlingItem: {
-				// DisplayName: Satchel of Goodies
-				/* Tooltip:
+				DisplayName: 好东西袋
+				Tooltip:
 					'''
-					Summons a Goblin Underling to fight for you
-					Gets stronger throughout progression
-					Does not occupy a minion slot, but only one can be summoned
-					'Inside, there's a spiky ball, a coin, and a...moon?'
-					''' */
+					召唤哥布林下属为你而战
+					随着游戏继承而变强
+					不占据召唤栏位，但不能复数召唤
+					“里面有一颗尖球、一枚硬币和一个……月亮？“
+					'''
 			}
 
 			LegendaryWoodenSword: {
-				// DisplayName: Legendary Wooden Sword
-				// Tooltip: ""
+				DisplayName: 传奇木剑
+				Tooltip: ""
 			}
 
 			MagicSlimeSling: {
-				// DisplayName: Magic Slime Sling
-				// Tooltip: Shoots magic gel that turns into slime minions on hit
+				DisplayName: 魔法史莱姆机弦
+				Tooltip: 发射魔法凝胶，击中后转化为暂时的史莱姆仆从
 			}
 
 			PlagueOfToads: {
-				// DisplayName: Plague of Toads
-				// Tooltip: Summons a cloud to rain toads on your foes
+				DisplayName: 蟾蜍瘟疫
+				Tooltip: 召唤一朵云，向敌人降下蟾蜍雨
 			}
 
 			PocketSand: {
-				// DisplayName: Pocket Sand
-				// Tooltip: "'Throw a clump of sand at an enemy to confuse it'"
+				DisplayName: 一袋沙
+				Tooltip: “扔出一团沙子来迷惑敌人”
 			}
 
 			SightofRetinazer: {
-				// DisplayName: Sight of Retinazer
-				// Tooltip: ""
+				DisplayName: 激光之视
+				Tooltip: ""
 			}
 
 			SlimeHandlerKnapsack: {
-				// DisplayName: Slime Handler Knapsack
-				/* Tooltip:
+				DisplayName: 史莱姆搬运包
+				Tooltip:
 					'''
-					Summons a friendly Slime of a random color from your Knapsack to fight for you
-					Right click to pick from available forms
-					''' */
-				// Default: Default
-				// Assorted: Assorted
-				// Spiked: Spiked
-				// SpikedBonus: Shoots spikes while fighting
-				// SpikedUnlock: Defeat Plantera
+					从你的背包中召唤一种随机颜色的友好史莱姆为你而战
+					使用右键选择史莱姆类型
+					'''
+				Default: 默认
+				Assorted: 混合
+				Spiked: 尖刺
+				SpikedBonus: 战斗时发射尖刺
+				SpikedUnlock: 击败世纪之花
 			}
 
 			Talonstorm: {
-				// DisplayName: Talonstorm
-				// Tooltip: Summons a bone storm that attacks enemies with extending talons
+				DisplayName: 利爪风暴
+				Tooltip: 召唤骨风暴，用延伸的利爪攻击敌人
 			}
 
 			TomeOfShadowflameSkulls: {
-				// DisplayName: Tome of Shadowflame Skulls
-				// Tooltip: Inflicts Shadowflame on enemies
+				DisplayName: 暗影焰头骨之书
+				Tooltip: 造成暗影焰减益
 			}
 
 			TrueLegendaryWoodenSword: {
-				// DisplayName: True Legendary Wooden Sword
-				// Tooltip: "'Truly Legendary'"
+				DisplayName: 真传奇木剑
+				Tooltip: “真正的传奇”
 			}
 
 			Gitgud: {
-				// Or: or
-				// ConsolationPrize: Consolation Prize
-				// ReducedDamageTakenBoss: "{0}% reduced damage taken from {1}"
-				// BuffImmunity: Immunity to '{0}' while {1} {^2:is;are} alive
-				// TimesDied: Times died: {0}/{1}
+				Or: 或
+				ConsolationPrize: 安慰奖
+				ReducedDamageTakenBoss: "{1}造成的伤害减少{0}%"
+				BuffImmunity: 当{1}存活时免疫{0}
+				TimesDied: 死亡次数: {0}/{1}
 			}
 
 			SillyBalloonKit: {
-				// DisplayName: Silly Balloon Kit
-				/* Tooltip:
+				DisplayName: 愚蠢气球套组
+				Tooltip:
 					'''
-					'A great gift for parties, birthdays, and saving the world!'
-					Inflate a fun party balloon to carry around
-					Left click to pick a different balloon
-					''' */
-				// DemonEyeGreen: Demon Eye (Green)
-				// DemonEyePurple: Demon Eye (Purple)
-				// DemonEyeRed: Demon Eye (Red)
-				// FracturedEyeGreen: Fractured Eye (Green)
-				// FracturedEyePurple: Fractured Eye (Purple)
-				// FracturedEyeRed: Fractured Eye (Red)
-				// MetalEyeGreen: Metal Eye (Green)
-				// MetalEyePurple: Metal Eye (Purple)
-				// MetalEyeRed: Metal Eye (Red)
-				// FracturedMetalEyeGreen: Fractured Metal Eye (Green)
-				// FracturedMetalEyePurple: Fractured Metal Eye (Purple)
-				// FracturedMetalEyeRed: Fractured Metal Eye (Red)
-				// Spazmatism: Spazmatism
-				// Retinazer: Retinazer
-				// Cobballoon: Cobballoon
+					"过生日、举办派对或者拯救世界的绝佳礼物！"
+					将一个有趣的派对气球充气以便随身携带
+					使用左键选择气球类型
+					'''
+				DemonEyeGreen: 恶魔眼(绿)
+				DemonEyePurple: 恶魔眼(紫)
+				DemonEyeRed: 恶魔眼(红)
+				FracturedEyeGreen: 破碎眼(绿)
+				FracturedEyePurple: 破碎眼(紫)
+				FracturedEyeRed: 破碎眼(红)
+				MetalEyeGreen: 金属眼(绿)
+				MetalEyePurple: 金属眼(紫)
+				MetalEyeRed: 金属眼(红)
+				FracturedMetalEyeGreen: 裂金眼(绿)
+				FracturedMetalEyePurple: 裂金眼(紫)
+				FracturedMetalEyeRed: 裂金眼(红)
+				Spazmatism: 魔焰眼
+				Retinazer: 激光眼
+				Cobballoon: 石化眼
 			}
 		}
 
 		NPCs: {
 			AnimatedSpellTome: {
-				// DisplayName: Animated Spell Tome
-				// BestiaryFlavorText: Master wizards need not look for a specific tome; it will find them when needed.
+				DisplayName: 活化咒法书
+				BestiaryFlavorText: 真正的大法师不需要自己寻找书籍，它们会在需要的时候自己出现。
 			}
 
 			AnimatedTome: {
-				// DisplayName: Animated Tome
-				// BestiaryFlavorText: In the past, this book was a best seller; it practically flew from the shelves!
+				DisplayName: 活化魔典
+				BestiaryFlavorText: 听说这本书曾是畅销书，当时的人们说它几乎像是从货架上飞了出去！
 			}
 
 			Bass: {
-				// DisplayName: Bass
-				// BestiaryFlavorText: A simple fish commonly found in calm freshwater rivers and lakes.
+				DisplayName: 鲈鱼
+				BestiaryFlavorText: 一种常见的鱼，经常出没于淡水河流和湖泊中。
 			}
 
 			BloatedBaitThief: {
-				// DisplayName: Bloated Bait Thief
-				// BestiaryFlavorText: An engorged bass with a bloated belly. Something is wriggling inside...
+				DisplayName: 肥胖的鱼饵窃贼
+				BestiaryFlavorText: 一只肚子肿胀的鲈鱼，里面好像有什么在蠕动……
 			}
 
 			Chunky: {
-				// DisplayName: Chunky
-				// BestiaryFlavorText: A mass of rotten flesh with a single eye. It seems as though the eye and the mass do not get along.
+				DisplayName: 腐块
+				BestiaryFlavorText: 一团有只眼睛的腐块。看起来眼睛和身体似乎不太协调。
 			}
 
 			ChunkysEye: {
-				// DisplayName: Chunky's Eye
-				// BestiaryFlavorText: A minion of Cthulhu that was trapped in the Corruption. It now seeks its lost little brother.
+				DisplayName: 腐块眼
+				BestiaryFlavorText: 被困在腐化之地的克苏鲁爪牙。正在寻找失踪的弟弟。
 			}
 
 			Cloudfish: {
-				// DisplayName: Cloudfish
-				// BestiaryFlavorText: Is it a cloud? Is it a fish? It's both!
+				DisplayName: 云鱼
+				BestiaryFlavorText: 云？鱼？两者都是！
 			}
 
 			CuteGastropod: {
-				// DisplayName: Cute Gastropod
-				// BestiaryFlavorText: This hallowed variant of slime has taken on a more friendly appearance after meeting a special person.
+				DisplayName: 可爱腹足怪
+				BestiaryFlavorText: 出现在神圣之地的史莱姆变体生物在遇见某些特别的人时会呈现出更加友好的外观。
 			}
 
 			CuteSlimeBlack: {
-				// DisplayName: Cute Black Slime
-				// BestiaryFlavorText: Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.
+				DisplayName: 可爱黑史莱姆
+				BestiaryFlavorText: 这种史莱姆对她的马尾辫抱持着极大的虚荣心，要和她交朋友最简单的办法就是称赞她的头发。
 			}
 
 			CuteSlimeBlue: {
-				// DisplayName: Cute Blue Slime
-				// BestiaryFlavorText: Though its expression is dull, this slime is very affectionate and loves to hug anyone that it gets close to.
+				DisplayName: 可爱蓝史莱姆
+				BestiaryFlavorText: 虽然这种史莱姆看起来很呆，但她们出乎意料的深情，喜欢拥抱任何她亲近的人。
 			}
 
 			CuteSlimeCorrupt: {
-				// DisplayName: Cute Corrupt Slime
-				// BestiaryFlavorText: Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.
+				DisplayName: 可爱腐化史莱姆
+				BestiaryFlavorText: 这种拥有空洞眼神的深色史莱姆或许会让你觉得很危险，但她们其实只是不太擅长社交。
 			}
 
 			CuteSlimeCorruptJungle: {
-				// DisplayName: Cute Corrupt Jungle Slime
-				// BestiaryFlavorText: Slimes are incredibly adaptable, being able to survive even the harshest conditions.
+				DisplayName: 可爱腐化丛林史莱姆
+				BestiaryFlavorText: 史莱姆的适应能力令人难以置信，即使在最恶劣的条件下她们也能生存。
 			}
 
 			CuteSlimeCrimson: {
-				// DisplayName: Cute Crimson Slime
-				// BestiaryFlavorText: Though it looks like it has an unstable mind, this slime is incredibly calm and collected.
+				DisplayName: 可爱猩红史莱姆
+				BestiaryFlavorText: 虽然从外表看起来这种史莱姆有点狂躁，但其实她们是冷静沉着的类型。
 			}
 
 			CuteSlimeCrimsonJungle: {
-				// DisplayName: Cute Crimson Jungle Slime
-				// BestiaryFlavorText: When the jungle turned red, this slime adapted quickly by mimicking the crimson grass.
+				DisplayName: 可爱猩红丛林史莱姆
+				BestiaryFlavorText: 当丛林遭到猩红侵蚀时，这种史莱姆通过模仿深红色的草来迅速适应。
 			}
 
 			CuteSlimeDungeon: {
-				// DisplayName: Cute Dungeon Slime
-				// BestiaryFlavorText: This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.
+				DisplayName: 可爱地牢史莱姆
+				BestiaryFlavorText: 这种史莱姆是按照古代女巫的形象创造的。她们几乎是完美的，除了没有腿。
 			}
 
-			// CuteSlimeGolden.DisplayName: Cute Golden Slime
+			CuteSlimeGolden.DisplayName: 可爱金史莱姆
 
 			CuteSlimeGreen: {
-				// DisplayName: Cute Green Slime
-				// BestiaryFlavorText: Don't let the closed eyes fool you; this slime is attentive and ready to act at a moment's notice.
+				DisplayName: 可爱绿史莱姆
+				BestiaryFlavorText: 别让她半梦半醒的样子欺骗了你；这种史莱姆很细心，随时准备采取行动。
 			}
 
 			CuteSlimeHoney: {
-				// DisplayName: Cute Honey Slime
-				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware
+				DisplayName: 可爱蜂蜜史莱姆
+				BestiaryFlavorText: 为了躲避黄蜂，这种史莱姆将蜂蜜融入自身来伪装。这导致黄蜂更容易发现她们。
 			}
 
 			CuteSlimeIce: {
-				// DisplayName: Cute Ice Slime
-				// BestiaryFlavorText: Its body may be cold to the touch, but its expression and mannerisms will warm your heart.
+				DisplayName: 可爱冰雪史莱姆
+				BestiaryFlavorText: 虽然她们摸起来很冰冷，但她们的外表和举止也许能温暖你的心。
 			}
 
 			CuteSlimeIlluminant: {
-				// DisplayName: Cute Illuminant Slime
-				// BestiaryFlavorText: The erratic nature of the Hallow has made this slime quite playful.
+				DisplayName: 可爱夜明史莱姆
+				BestiaryFlavorText: 神圣之地不稳定的性质使这种史莱姆变得非常有趣。
 			}
 
 			CuteSlimeJungle: {
-				// DisplayName: Cute Jungle Slime
-				// BestiaryFlavorText: Life in the jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.
+				DisplayName: 可爱丛林史莱姆
+				BestiaryFlavorText: 对于弱小的软泥生物来说，丛林生活很艰难。但这种史莱姆证明了这并非不可能。
 			}
 
 			CuteSlimeLava: {
-				// DisplayName: Cute Lava Slime
-				// BestiaryFlavorText: Having accidentally gotten impaled by a chunk of obsidian, this slime laments being unable to remove it.
+				DisplayName: 可爱熔岩史莱姆
+				BestiaryFlavorText: 这种史莱姆经常不小心将黑曜石卡进身体中。遗憾的是，她们无法自立移除。
 			}
 
 			CuteSlimePink: {
-				// DisplayName: Cute Pink Slime
-				// BestiaryFlavorText: Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.
+				DisplayName: 可爱粉史莱姆
+				BestiaryFlavorText: 娇小并不代表弱小。尽管这种史莱姆没有巨大的尺寸，但她们却拥有巨大的勇气。
 			}
 
 			CuteSlimePinkIce: {
-				// DisplayName: Cute Pink Ice Slime
-				// BestiaryFlavorText: The hallow may have chaotic effects on the wildlife, but this slime remains calm and polite.
+				DisplayName: 可爱粉冰雪史莱姆
+				BestiaryFlavorText: 神圣之地经常对野生动物产生混乱的影响，但这种史莱姆成功保持了平静和礼貌。
 			}
 
 			CuteSlimePurple: {
-				// DisplayName: Cute Purple Slime
-				// BestiaryFlavorText: Don't let the smile fool you; it's actually much happier than it looks.
+				DisplayName: 可爱紫史莱姆
+				BestiaryFlavorText: 别让她的微笑欺骗了你……她们实际上比看起来的还要开心。
 			}
 
 			CuteSlimePurpleIce: {
-				// DisplayName: Cute Purple Ice Slime
-				// BestiaryFlavorText: Frightened by the corruption, this slime is perpetually nervous.
+				DisplayName: 可爱紫冰雪史莱姆
+				BestiaryFlavorText: 出于对腐化的恐惧，这种史莱姆总是看起来很紧张。
 			}
 
 			CuteSlimeRainbow: {
-				// DisplayName: Cute Rainbow Slime
-				// BestiaryFlavorText: The caring and motherly nature that this slime exhibits shows that it understands compassion.
+				DisplayName: 可爱彩虹史莱姆
+				BestiaryFlavorText: 这种史莱姆展现出的关怀和母性证明了她具有一定的人性和同理心。
 			}
 
 			CuteSlimeRed: {
-				// DisplayName: Cute Red Slime
-				// BestiaryFlavorText: A playful slime that is quite active. It sometimes goes overboard when having fun.
+				DisplayName: 可爱红史莱姆
+				BestiaryFlavorText: 一种非常活跃的俏皮史莱姆，偶尔会玩过头。
 			}
 
 			CuteSlimeRedIce: {
-				// DisplayName: Cute Red Ice Slime
-				// BestiaryFlavorText: It is best to avoid standing out when in the Crimson, and this slime knows that all too well.
+				DisplayName: 可爱红冰雪史莱姆
+				BestiaryFlavorText: 在猩红之地最好避免引人注目，显然这种史莱姆深知这点。
 			}
 
 			CuteSlimeSand: {
-				// DisplayName: Cute Sand Slime
-				// BestiaryFlavorText: The coarse sand that coats its body leads it to keep its distance, but it won't turn down a friend.
+				DisplayName: 可爱沙史莱姆
+				BestiaryFlavorText: 覆盖其身体之上的粗沙使其难以接触，但她不会拒绝朋友。
 			}
 
 			CuteSlimeShimmer: {
-				// DisplayName: Cute Shimmer Slime
-				// BestiaryFlavorText: When exposed to the mysterious shimmer, this slime took on an aetherial appearance.
+				DisplayName: 可爱微光史莱姆
+				BestiaryFlavorText: 当暴露在神秘的微光之下时，这种史莱姆会呈现出空灵的外观。
 			}
 
 			CuteSlimeToxic: {
-				// DisplayName: Cute Toxic Slime
-				// BestiaryFlavorText: Appearances are deceiving; it's only half as monstrous as it looks!
+				DisplayName: 可爱毒史莱姆
+				BestiaryFlavorText: 外表是会骗人的，她只有看上去的一半可怕！
 			}
 
 			CuteSlimeXmas: {
-				// DisplayName: Cute Christmas Slime
-				// BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring that gift to everyone.
+				DisplayName: 可爱圣诞史莱姆
+				BestiaryFlavorText: 最好的礼物是朋友，这种史莱姆想把这份礼物带给每个人。
 			}
 
 			CuteSlimeYellow: {
-				// DisplayName: Cute Yellow Slime
-				// BestiaryFlavorText: Moving with delicate grace, this slime dances about without missing a step.
+				DisplayName: 可爱黄史莱姆
+				BestiaryFlavorText: 这种史莱姆动作十分优雅，舞步一步不落。
 			}
 
-			// DemonEyeRecolor.DisplayName: Demon Eye
-			// DemonEyeWandering.DisplayName: Wandering Eye
+			DemonEyeRecolor.DisplayName: 恶魔眼
+			DemonEyeWandering.DisplayName: 游荡眼球怪
 
 			FairySlime: {
-				// DisplayName: Fairy Slime
-				// BestiaryFlavorText: Not wanting to lose to its flying neighbors, it has grown wing-like extentions. It can't fly, but it's happy regardless of this fact.
+				DisplayName: 仙灵史莱姆
+				BestiaryFlavorText: 因为不想输给它们能够飞行的邻居，这种史莱姆长出了类似翅膀的延伸。它们很开心，尽管事实上他们仍然不会飞。
 			}
 
 			GiantGrasshopper: {
-				// DisplayName: Giant Grasshopper
-				// BestiaryFlavorText: It can leap over entire bushes in a single bound.
+				DisplayName: 巨型蚱蜢
+				BestiaryFlavorText: 它可以一次跳过整个灌木丛。
 			}
 
 			GiantGrasshopperGold: {
-				// DisplayName: Gold Giant Grasshopper
-				// BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
+				DisplayName: 巨型金蚱蜢
+				BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
 			}
 
-			// DungeonSoul.DisplayName: Dungeon Soul
-			// DungeonSoulFreed.DisplayName: Dungeon Soul
+			DungeonSoul.DisplayName: 地牢之魂
+			DungeonSoulFreed.DisplayName: 地牢之魂
 
 			HarvesterBoss: {
-				// DisplayName: Soul Harvester
-				// BestiaryFlavorText: After having absorbed the essence of fallen dungeon denizens, this skeletal bird rapidly grew into a ferocious hunter that sought to eat the hand that once fed it.
-				// BossChecklistIntegration.SpawnInfo: Find and open an {$Items.AntiqueCageItem.DisplayName} in the dungeon, or use [i:AssortedCrazyThings/IdolOfDecay]
+				DisplayName: 灵魂收割者
+				BestiaryFlavorText: 在吸收了地牢堕落灵魂的精华后，这只骷髅鸟迅速成长为凶猛的猎手，试图捕猎那曾喂养过它的手。
+				BossChecklistIntegration.SpawnInfo: 在地牢中找到并打开{$Items.AntiqueCageItem.DisplayName}，或使用[i:AssortedCrazyThings/IdolOfDecay]
 			}
 
-			// HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
-			// HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
 
 			HornedSlime: {
-				// DisplayName: Horned Slime
-				// BestiaryFlavorText: The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.
+				DisplayName: 恶魔史莱姆
+				BestiaryFlavorText: 这些恶魔角并不仅仅只是装饰；它们能够散发能量，令这些软泥能够持续凝聚形体。
 			}
 
 			JoyousSlime: {
-				// DisplayName: Joyous Slime
-				// BestiaryFlavorText: A passive variant of slime with a friendly face. At night, it tries to be close to an equally friendly face.
+				DisplayName: 欢乐史莱姆
+				BestiaryFlavorText: 史莱姆的非敌意变体，有着一张友善的面孔。每到晚上，他就会试图寻找另一个同样友善的同伴。
 			}
 
 			Meatball: {
-				// DisplayName: Meatball
-				// BestiaryFlavorText: A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.
+				DisplayName: 肉球
+				BestiaryFlavorText: 一团有只眼睛的肉球。眼睛看起来在不断的挣扎，试图逃脱。
 			}
 
 			MeatballsEye: {
-				// DisplayName: Meatball's Eye
-				// BestiaryFlavorText: A minion of Cthulhu that was trapped in the Crimson. It hastily seeks out its older brother.
+				DisplayName: 肉球眼
+				BestiaryFlavorText: 被困在猩红之地的克苏鲁爪牙。正在急忙寻找它的哥哥。
 			}
 
 			Megalodon: {
-				// DisplayName: Megalodon
-				// BestiaryFlavorText: Thought to be extinct, this ancient predator is as long-lived as its endless hunger.
+				DisplayName: 巨齿鲨
+				BestiaryFlavorText: 这种古老的掠食者被认为已经灭绝，但它的寿命和它永无止尽的饥饿一样长久。
 			}
 
 			OceanSlime: {
-				// DisplayName: Ocean Slime
-				// BestiaryFlavorText: Slimes that are lost to the sea are faced with two options; adapt, or be eaten. Luckily, these slimes taste bad.
+				DisplayName: 海洋史莱姆
+				BestiaryFlavorText: 迷失在大海中的史莱姆面临两种选择：适应，或成为食物。幸运的是，它们的味道很糟糕。
 			}
 
 			SpawnOfOcram: {
-				// DisplayName: Spawn of Ocram
-				// BestiaryFlavorText: An ancient being's offspring, once thought to have been lost to time.
+				DisplayName: 奥库瑞姆之子
+				BestiaryFlavorText: 似乎是某个远古传说的后裔。该存在已经消失在历史长河之中。
 			}
 
 			StingSlime: {
-				// DisplayName: Sting Slime
-				// BestiaryFlavorText: Bounce like a slime, sting like a scorpion.
+				DisplayName: 螫刺史莱姆
+				BestiaryFlavorText: 弹跳如软泥，刺痛如毒蝎。
 			}
 
 			StoneSoldier: {
-				// DisplayName: Stone Soldier
-				// BestiaryFlavorText: Animate stone statues that have wandered from an ancient tomb. Their eyes are valuable.
+				DisplayName: 石兵
+				BestiaryFlavorText: 从古老墓穴中游荡出来的活化石像。它们用宝石做成的双眼很值钱。
 			}
 
 			StrangeSlime: {
-				// DisplayName: Strange Slime
-				// BestiaryFlavorText: These peculiar slimes are host to strange plants, which grow for life. The slime always makes sure to keep it upright.
+				DisplayName: 奇异史莱姆
+				BestiaryFlavorText: 这些奇特的史莱姆身上寄生着奇妙的植物，它们会相伴终身。史莱姆们会不断确保这些植物能够直立。
 			}
 
 			TurtleSlime: {
-				// DisplayName: Turtle Slime
-				// BestiaryFlavorText: Giant tortoises are known to shed part of their shell as they grow. These slimes collect those old fragments for protection.
+				DisplayName: 龟壳史莱姆
+				BestiaryFlavorText: 大型海龟在生长过程中会不断褪壳，而这些史莱姆会收集这些被淘汰掉的残片来保护自己。
 			}
 
 			WalkingTombstoneGolden: {
-				// DisplayName: Walking Tombstone
-				// BestiaryFlavorText: Terrestrial crabs that have taken up a morbid and expensive form of camouflage.
+				DisplayName: 行走墓碑
+				BestiaryFlavorText: 这些寄居蟹采取了一种昂贵而病态的伪装方式。
 			}
 
 			YoungHarpy: {
-				// DisplayName: Young Harpy
-				// BestiaryFlavorText: Harpies are not inherently hostile. If they make a childhood friend, they'll always be friends.
+				DisplayName: 幼年鸟妖
+				BestiaryFlavorText: 鸟妖并不是天生就充满敌意。如果在小时候和她交了朋友，那她将永远认定你为朋友。
 			}
 
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
-						// Black: Black
-						// Blue: Blue
-						// Green: Green
-						// Purple: Purple
-						// Rainbow: Rainbow
-						// Red: Red
-						// Yellow: Yellow
+						Black: 黑
+						Blue: 蓝
+						Green: 绿
+						Purple: 紫
+						Rainbow: 彩虹
+						Red: 红
+						Yellow: 黄
 					}
 
-					// Desert.Sand: Sand
-					// Tundra.Ice: Ice
-					// Jungle.Jungle: Jungle
-					// Underground.Toxic: Toxic
-					// Hell.Lava: Lava
-					// Corruption.Corrupt: Corrupt
-					// CorruptionIce.PurpleIce: Purple Ice
-					// CorruptionJungle.CorruptJungle: Corrupt Jungle
-					// Crimson.Crimson: Crimson
-					// CrimsonIce.RedIce: Red Ice
-					// CrimsonJungle.CrimsonJungle: Crimson Jungle
-					// Hallow.Illuminant: Illuminant
-					// HallowIce.PinkIce: Pink Ice
-					// Dungeon.Dungeon: Dungeon
-					// Xmas.Xmas: Xmas
-					// Honey.Honey: Honey
+					Desert.Sand: 沙
+					Tundra.Ice: 冰雪
+					Jungle.Jungle: 丛林
+					Underground.Toxic: 毒
+					Hell.Lava: 熔岩
+					Corruption.Corrupt: 腐化
+					CorruptionIce.PurpleIce: 紫冰雪
+					CorruptionJungle.CorruptJungle: 腐化丛林
+					Crimson.Crimson: 猩红
+					CrimsonIce.RedIce: 红冰雪
+					CrimsonJungle.CrimsonJungle: 猩红丛林
+					Hallow.Illuminant: 夜明
+					HallowIce.PinkIce: 粉冰雪
+					Dungeon.Dungeon: 地牢
+					Xmas.Xmas: 地牢
+					Honey.Honey: 蜂蜜
 				}
 			}
 		}
 
 		Projectiles: {
-			// SigilOfTheBeakProj.DisplayName: Fractured Soul
-			// CompanionDungeonSoulMinion.DisplayName: Companion Soul
-			// BasicLaserDrone.DisplayName: Basic Laser Drone
-			// HealingDrone.DisplayName: Healing Drone
-			// HeavyLaserDrone.DisplayName: Heavy Laser Drone
-			// HeavyLaserDroneLaser.DisplayName: Laser Drone Laser
-			// MissileDrone.DisplayName: Missile Drone
-			// MissileDroneRocket.DisplayName: Missile Drone Rocket
-			// ShieldDrone.DisplayName: Shield Drone
-			// GoblinUnderlingDart.DisplayName: Goblin Underling Dart
-			// GoblinUnderlingProj.DisplayName: Goblin Underling
-			// GoblinUnderlingTerraBeam.DisplayName: Goblin Underling Terra Beam
-			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
-			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
-			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
-			// PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
-			// SlimePackAssortedMinion.DisplayName: Slime Pack Minion
-			// SlimePackMinion.DisplayName: Slime Pack Minion
-			// SlimePackMinionSpike.DisplayName: Slime Pack Minion Spike
-			// SlimePackSpikedMinion.DisplayName: Slime Pack Minion
-			// BabyHarvesterProj.DisplayName: Baby Bird
-			// HarvesterAbsorbedSoul.DisplayName: Absorbed Soul
-			// HarvesterBone.DisplayName: Harvester Bone
-			// HarvesterFracturedSoul.DisplayName: Fractured Soul
-			// AbeeminationProj.DisplayName: Abeemination
-			// AlienHornetProj.DisplayName: Alien Hornet
-			// AnimatedTomeProj.DisplayName: Animated Tome
-			// AnomalocarisProj.DisplayName: Anomalocaris
-			// BabyCrimeraProj.DisplayName: Baby Crimera
-			// BabyIchorStickerProj.DisplayName: Baby Ichor Sticker
-			// BabyOcramProj.DisplayName: Baby Ocram
-			// BrainofConfusionProj.DisplayName: Brain of Confusion
-			// ChunkyProj.DisplayName: Chunky
-			// ChunkySlimeProj.DisplayName: Chunky Slime
-			// CompanionDungeonSoulPetProj.DisplayName: Companion Soul
-			// CompanionDungeonSoulPetProj2.DisplayName: Companion Soul
-			// CursedSkullProj.DisplayName: Cursed Skull
-			// CuteGastropodProj.DisplayName: Cute Gastropod
-			// CuteLamiaPetProj.DisplayName: Small Snake
-			// CuteSlimeBlackProj.DisplayName: Cute Black Slime
-			// CuteSlimeBlueProj.DisplayName: Cute Blue Slime
-			// CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
-			// CuteSlimeCorruptJungleProj.DisplayName: Cute Corrupt Jungle Slime
-			// CuteSlimeCrimsonProj.DisplayName: Cute Crimson Slime
-			// CuteSlimeCrimsonJungleProj.DisplayName: Cute Crimson Jungle Slime
-			// CuteSlimeDungeonProj.DisplayName: Cute Dungeon Slime
-			// CuteSlimeGoldenProj.DisplayName: Cute Golden Slime
-			// CuteSlimeGreenProj.DisplayName: Cute Green Slime
-			// CuteSlimeHoneyProj.DisplayName: Cute Honey Slime
-			// CuteSlimeIceProj.DisplayName: Cute Ice Slime
-			// CuteSlimeIlluminantProj.DisplayName: Cute Illuminant Slime
-			// CuteSlimeJungleProj.DisplayName: Cute Jungle Slime
-			// CuteSlimeLavaProj.DisplayName: Cute Lava Slime
-			// CuteSlimePinkProj.DisplayName: Cute Pink Slime
-			// CuteSlimePinkIceProj.DisplayName: Cute Pink Ice Slime
-			// CuteSlimePrincessProj.DisplayName: Cute Princess Slime
-			// CuteSlimePurpleProj.DisplayName: Cute Purple Slime
-			// CuteSlimePurpleIceProj.DisplayName: Cute Purple Ice Slime
-			// CuteSlimeQueenProj.DisplayName: Cute Queen Slime
-			// CuteSlimeRainbowProj.DisplayName: Cute Rainbow Slime
-			// CuteSlimeRedProj.DisplayName: Cute Red Slime
-			// CuteSlimeRedIceProj.DisplayName: Cute Red Ice Slime
-			// CuteSlimeSandProj.DisplayName: Cute Sand Slime
-			// CuteSlimeShimmerProj.DisplayName: Cute Shimmer Slime
-			// CuteSlimeToxicProj.DisplayName: Cute Toxic Slime
-			// CuteSlimeXmasProj.DisplayName: Cute Christmas Slime
-			// CuteSlimeYellowProj.DisplayName: Cute Yellow Slime
-			// DemonHeartProj.DisplayName: Demon Heart
-			// DetachedHungryProj.DisplayName: Detached Hungry
-			// DocileDemonEyeProj.DisplayName: Docile Demon Eye
-			// DrumstickElementalProj.DisplayName: Drumstick Elemental
-			// DynamiteBunnyProj.DisplayName: Dynamite Bunny
-			// EnchantedSwordProj.DisplayName: Enchanted Sword
-			// FailureSlimeProj.DisplayName: Failure Slime
-			// FairySlimeProj.DisplayName: Fairy Slime
-			// FairySwarmProj.DisplayName: Fairy Swarm
-			// GhostMartianProj.DisplayName: Ghost Martian
-			// GobletProj.DisplayName: Goblet
-			// HornedSlimeProj.DisplayName: Horned Slime
-			// IlluminantSlimeProj.DisplayName: Illuminant Slime
-			// JoyousSlimeProj.DisplayName: Joyous Slime
-			// LifelikeMechanicalFrogProj.DisplayName: Lifelike Mechanical Frog
-			// LilWrapsProj.DisplayName: Lil' Wraps
-			// MeatballProj.DisplayName: Meatball
-			// MeatballSlimeProj.DisplayName: Meatball Slime
-			// MetroidPetProj.DisplayName: Metroid
-			// MiniAntlionProj.DisplayName: Baby Antlion
-			// MiniMegalodonProj.DisplayName: Mini Megalodon
-			// NumberMuncherProj.DisplayName: Number Muncher
-			// OceanSlimeProj.DisplayName: Ocean Slime
-			// PetCultistProj.DisplayName: Dwarf Cultist
-			// PetDestroyer.DisplayName: Tiny Destroyer
-			// PetDestroyerProbe.DisplayName: Tiny Destroyer Probe
-			// PetEaterofWorlds.DisplayName: Tiny Eater of Worlds
-			// PetFishronProj.DisplayName: Mini Fishron
-			// PetGoldfishProj.DisplayName: Pet Goldfish
-			// PetGolemHeadProj.DisplayName: Replica Golem Head
-			// PetHarvesterProj.DisplayName: Stubborn Bird
-			// PetMoonProj.DisplayName: Personal Moon
-			// PetPlanteraProj.DisplayName: Plantera Sprout
-			// PetPlanteraProjTentacle.DisplayName: Mean Seed Tentacle
-			// PetQueenSlimeProj.DisplayName: Slime Sibling
-			// PetSunProj.DisplayName: Personal Sun
-			// PigronataProj.DisplayName: Pigronata
-			// PrinceSlimeProj.DisplayName: Prince Slime
-			// QueenLarvaProj.DisplayName: Queen Bee Larva
-			// RainbowSlimeProj.DisplayName: Rainbow Slime
-			// SkeletronHandProj.DisplayName: Skeletron Pet Hand
-			// SkeletronPrimeHandProj.DisplayName: Skeletron Prime Pet Hand
-			// StingSlimeProj.DisplayName: Sting Slime
-			// StrangeRobotProj.DisplayName: Strange Robot
-			// SuspiciousNuggetProj.DisplayName: Suspicious Nugget
-			// SwarmofCthulhuProj.DisplayName: Swarm of Cthulhu
-			// TinyRetinazerProj.DisplayName: Tiny Retinazer
-			// TinySpazmatismProj.DisplayName: Tiny Spazmatism
-			// TorchGodLightPetProj.DisplayName: Godly Torch
-			// TorturedSoulProj.DisplayName: Tortured Soul
-			// TrueObservingEyeProj.DisplayName: True Observing Eye
-			// TurtleSlimeProj.DisplayName: Turtle Slime
-			// VampireBatProj.DisplayName: Vampire Bat
-			// WallFragmentEye1.DisplayName: Wall Eye
-			// WallFragmentEye2.DisplayName: Wall Eye
-			// WallFragmentMouth.DisplayName: Wall Mouth
-			// WobyProj.DisplayName: Woby
-			// YoungHarpyProj.DisplayName: Young Harpy
-			// YoungWyvernProj.DisplayName: Young Wyvern
-			// ExtendoNetGoldenProj.DisplayName: EXTENDO!
-			// ExtendoNetRegularProj.DisplayName: EXTENDO!
-			// BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
-			// BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName} Arrow"
-			// CandleDustDummy.DisplayName: Candle Dust Dummy
-			// GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
-			// LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
-			// PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
-			// SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} Laser"
-			// BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} Breath"
-			// TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
-			// AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName} Shot"
-			// AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName} Shot"
-			// BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName} Shot"
-			// BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName} Shot"
-			// CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName} Shot"
-			// CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName} Shot"
-			// DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName} Shot"
-			// DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName} Shot"
-			// DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName} Shot"
-			// FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName} Shot"
-			// GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName} Shot"
-			// NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName} Shot"
-			// SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Bomb Shot"
-			// SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Laser Shot"
-			// StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName} Shot"
-			// SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName} Shot"
-			// TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName} Shot"
-			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
-			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
-			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
+			SigilOfTheBeakProj.DisplayName: 破碎之魂
+			CompanionDungeonSoulMinion.DisplayName: 灵魂同伴
+			BasicLaserDrone.DisplayName: 轻激光无人机
+			HealingDrone.DisplayName: 治疗无人机
+			HeavyLaserDrone.DisplayName: 重激光无人机
+			HeavyLaserDroneLaser.DisplayName: 重激光无人机
+			MissileDrone.DisplayName: 导弹无人机
+			MissileDroneRocket.DisplayName: 导弹无人机导弹
+			ShieldDrone.DisplayName: 护盾无人机
+			GoblinUnderlingDart.DisplayName: 哥布林属下飞镖
+			GoblinUnderlingProj.DisplayName: 哥布林属下
+			GoblinUnderlingTerraBeam.DisplayName: 哥布林属下泰拉光束
+			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
+			MagicSlimeSlingMinion.DisplayName: 魔法史莱姆机弦仆从
+			PetDestroyerDroneLaser.DisplayName: 宠物毁灭者激光
+			PetGolemHeadFireball.DisplayName: 宠物石巨人头火球
+			SlimePackAssortedMinion.DisplayName: 史莱姆背包仆从
+			SlimePackMinion.DisplayName: 史莱姆背包仆从
+			SlimePackMinionSpike.DisplayName: 史莱姆背包仆从尖刺
+			SlimePackSpikedMinion.DisplayName: 史莱姆背包仆从
+			BabyHarvesterProj.DisplayName: 小鸟
+			HarvesterAbsorbedSoul.DisplayName: 吸收的灵魂
+			HarvesterBone.DisplayName: 收割者骨头
+			HarvesterFracturedSoul.DisplayName: 破碎之魂
+			AbeeminationProj.DisplayName: 憎恶之蜂
+			AlienHornetProj.DisplayName: 异星黄蜂
+			AnimatedTomeProj.DisplayName: 活化魔典
+			AnomalocarisProj.DisplayName: 奇虾
+			BabyCrimeraProj.DisplayName: 喀迈拉宝宝
+			BabyIchorStickerProj.DisplayName: 黏黏怪宝宝
+			BabyOcramProj.DisplayName: 迷你奥库瑞姆
+			BrainofConfusionProj.DisplayName: 混乱之脑
+			ChunkyProj.DisplayName: 腐块
+			ChunkySlimeProj.DisplayName: 腐块史莱姆
+			CompanionDungeonSoulPetProj.DisplayName: 灵魂同伴
+			CompanionDungeonSoulPetProj2.DisplayName: 灵魂同伴
+			CursedSkullProj.DisplayName: 诅咒骷髅头
+			CuteGastropodProj.DisplayName: 可爱腹足怪
+			CuteLamiaPetProj.DisplayName: 小蛇
+			CuteSlimeBlackProj.DisplayName: 可爱黑史莱姆
+			CuteSlimeBlueProj.DisplayName: 可爱蓝史莱姆
+			CuteSlimeCorruptProj.DisplayName: 可爱腐化史莱姆
+			CuteSlimeCorruptJungleProj.DisplayName: 可爱腐化丛林史莱姆
+			CuteSlimeCrimsonProj.DisplayName: 可爱猩红史莱姆
+			CuteSlimeCrimsonJungleProj.DisplayName: 可爱猩红丛林史莱姆
+			CuteSlimeDungeonProj.DisplayName: 可爱地牢史莱姆
+			CuteSlimeGoldenProj.DisplayName: 可爱金史莱姆
+			CuteSlimeGreenProj.DisplayName: 可爱绿史莱姆
+			CuteSlimeHoneyProj.DisplayName: 可爱蜂蜜史莱姆
+			CuteSlimeIceProj.DisplayName: 可爱冰雪史莱姆
+			CuteSlimeIlluminantProj.DisplayName: 可爱夜明史莱姆
+			CuteSlimeJungleProj.DisplayName: 可爱丛林史莱姆
+			CuteSlimeLavaProj.DisplayName: 可爱熔岩史莱姆
+			CuteSlimePinkProj.DisplayName: 可爱粉史莱姆
+			CuteSlimePinkIceProj.DisplayName: 可爱粉冰雪史莱姆
+			CuteSlimePrincessProj.DisplayName: 可爱史莱姆公主
+			CuteSlimePurpleProj.DisplayName: 可爱紫史莱姆
+			CuteSlimePurpleIceProj.DisplayName: 可爱紫冰雪史莱姆
+			CuteSlimeQueenProj.DisplayName: 可爱史莱姆皇后
+			CuteSlimeRainbowProj.DisplayName: 可爱彩虹史莱姆
+			CuteSlimeRedProj.DisplayName: 可爱红史莱姆
+			CuteSlimeRedIceProj.DisplayName: 可爱红冰雪史莱姆
+			CuteSlimeSandProj.DisplayName: 可爱沙史莱姆
+			CuteSlimeShimmerProj.DisplayName: 可爱微光史莱姆
+			CuteSlimeToxicProj.DisplayName: 可爱毒史莱姆
+			CuteSlimeXmasProj.DisplayName: 可爱礼物史莱姆
+			CuteSlimeYellowProj.DisplayName: 可爱黄史莱姆
+			DemonHeartProj.DisplayName: 恶魔之心
+			DetachedHungryProj.DisplayName: 独立的饿鬼
+			DocileDemonEyeProj.DisplayName: 温驯的恶魔眼
+			DrumstickElementalProj.DisplayName: 鸡腿元素
+			DynamiteBunnyProj.DisplayName: 爆炸兔
+			EnchantedSwordProj.DisplayName: 附魔剑
+			FailureSlimeProj.DisplayName: 故障史莱姆
+			FairySlimeProj.DisplayName: 仙灵史莱姆
+			FairySwarmProj.DisplayName: 仙灵群
+			GhostMartianProj.DisplayName: 火星幽灵
+			GobletProj.DisplayName: 杯布林
+			HornedSlimeProj.DisplayName: 恶魔史莱姆
+			IlluminantSlimeProj.DisplayName: 夜明史莱姆
+			JoyousSlimeProj.DisplayName: 欢乐史莱姆
+			LifelikeMechanicalFrogProj.DisplayName: 栩栩如生的机械青蛙
+			LilWrapsProj.DisplayName: 小裹布
+			MeatballProj.DisplayName: 肉球
+			MeatballSlimeProj.DisplayName: 肉球史莱姆
+			MetroidPetProj.DisplayName: 密特罗德
+			MiniAntlionProj.DisplayName: 蚁狮宝宝
+			MiniMegalodonProj.DisplayName: 迷你巨齿鲨
+			NumberMuncherProj.DisplayName: 数字大嘴巴
+			OceanSlimeProj.DisplayName: 海洋史莱姆
+			PetCultistProj.DisplayName: 小小邪教徒
+			PetDestroyer.DisplayName: 小型毁灭者
+			PetDestroyerProbe.DisplayName: 小型探测怪
+			PetEaterofWorlds.DisplayName: 小小世界吞噬怪
+			PetFishronProj.DisplayName: 迷你猪龙鱼
+			PetGoldfishProj.DisplayName: 宠物金鱼
+			PetGolemHeadProj.DisplayName: 石巨人头复制品
+			PetHarvesterProj.DisplayName: 不屈之鸟
+			PetMoonProj.DisplayName: 个人月亮
+			PetPlanteraProj.DisplayName: 世纪之芽
+			PetPlanteraProjTentacle.DisplayName: 卑鄙种子触手
+			PetQueenSlimeProj.DisplayName: 顽皮小史莱姆
+			PetSunProj.DisplayName: 个人太阳
+			PigronataProj.DisplayName: 彩罐猪龙
+			PrinceSlimeProj.DisplayName: 史莱姆王子
+			QueenLarvaProj.DisplayName: 皇后幼虫
+			RainbowSlimeProj.DisplayName: 彩虹史莱姆
+			SkeletronHandProj.DisplayName: 骷髅王手宠物
+			SkeletronPrimeHandProj.DisplayName: 机械骷髅王手宠物
+			StingSlimeProj.DisplayName: 螫刺史莱姆
+			StrangeRobotProj.DisplayName: 奇怪的机器人
+			SuspiciousNuggetProj.DisplayName: 可疑的金块
+			SwarmofCthulhuProj.DisplayName: 克苏鲁集群
+			TinyRetinazerProj.DisplayName: 迷你激光眼
+			TinySpazmatismProj.DisplayName: 迷你魔焰眼
+			TorchGodLightPetProj.DisplayName: 火把神
+			TorturedSoulProj.DisplayName: 痛苦亡魂
+			TrueObservingEyeProj.DisplayName: 克苏鲁真眼
+			TurtleSlimeProj.DisplayName: 龟壳史莱姆
+			VampireBatProj.DisplayName: 吸血蝙蝠
+			WallFragmentEye1.DisplayName: 血肉墙眼
+			WallFragmentEye2.DisplayName: 血肉墙眼
+			WallFragmentMouth.DisplayName: 血肉墙嘴
+			WobyProj.DisplayName: 沃比
+			YoungHarpyProj.DisplayName: 幼年鸟妖
+			YoungWyvernProj.DisplayName: 幼年飞龙
+			ExtendoNetGoldenProj.DisplayName: 延长！
+			ExtendoNetRegularProj.DisplayName: 延长！
+			BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
+			BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName}箭"
+			CandleDustDummy.DisplayName: 蜡烛尘假人
+			GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
+			LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
+			PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
+			SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName}激光"
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName}息"
+			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
+			AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName}射击"
+			AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName}射击"
+			BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName}射击"
+			BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName}射击"
+			CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName}射击"
+			CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName}射击"
+			DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName}射击"
+			DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName}射击"
+			DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName}射击"
+			FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName}射击"
+			GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName}射击"
+			NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName}射击"
+			SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName}爆炸射击"
+			SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName}激光射击"
+			StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName}射击"
+			SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName}射击"
+			TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName}射击"
+			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName}射击"
+			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
+			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
 		}
 
 		Tiles: {
-			// MapEntry_Locked: Locked
-			// AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {Items.AntiqueChestItem.DisplayName}"
+			MapEntry_Locked: 已上锁
+			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked}{Items.AntiqueChestItem.DisplayName}"
 
 			SlimeBeaconTile: {
-				// NotInMultiplayer: NOT IN MULTIPLAYER
-				// Activated: Background Activated
-				// Deactivated: Background Deactivated
+				NotInMultiplayer: 【不在多人游戏中】
+				Activated: 背景已启用
+				Deactivated: 背景已停用
 			}
 
 			VanityDresserTile: {
-				/* Mouseover:
+				Mouseover:
 					'''
-					Costume Dresser
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					''' */
-				// WorkProperly: For this to work properly, don't have any item selected
-				// NoCostumesFoundPet: No alt costumes found for pet
-				// NoCostumesFoundLightPet: No alt costumes found for light pet
+					宠物梳妆台
+					单击左键更改一般宠物的外观
+					单击右键更改照明宠物的外观
+					'''
+				WorkProperly: 要使其正常工作，请不要选择任何物品
+				NoCostumesFoundPet: 没有找到该一般宠物的替代服饰
+				NoCostumesFoundLightPet: 没有找到该照明宠物的替代服饰
 			}
 		}
 
 		Conditions: {
-			// UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
-			// DroneTypeNotUnlocked: If it isn't unlocked yet
+			UnlockedBiomeTorches: 如果已使用{$ItemName.TorchGodsFavor}
+			DroneTypeNotUnlocked: 如果尚未解锁
 		}
 
 		DropConditions: {
-			// MatchAppearanceCondition.Description: Drops based on appearance
-			// NotAllDronePartsUnlockedCondition.Description: Drops if not all {$Items.DroneParts.DisplayName} are unlocked yet
-			// NoHasItemWithBankCondition.Description: Only if {0} is not in the closest players inventory or banks
+			MatchAppearanceCondition.Description: 根据外观掉落
+			NotAllDronePartsUnlockedCondition.Description: 如果尚未解锁所有{$Items.DroneParts.DisplayName}则掉落
+			NoHasItemWithBankCondition.Description: 仅当{0}不在最近的玩家库存或银行中
 		}
 
 		Announcements: {
-			// SigilOfTheWingDeath: "{0} has died, but their soul has not given up..."
-			// SoulHarvesterDeath: The Dungeon Souls have been freed!
-			// SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} has been awakened!"
-			// SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName} has appeared!"
-			// MegalodonAppear: A {$NPCs.Megalodon.DisplayName} is approaching! Get out of the ocean!
-			// BigEnemyDisappear: The {0} disappeared... for now
-			// SoulHarvesterBabyAppear: You hear a faint cawing from the dungeon.
-			// SoulHarvesterBabyCageAppear: A hungry bird has been released!
+			SigilOfTheWingDeath: "{0}已死，它的灵魂不会放弃……"
+			SoulHarvesterDeath: 地牢之魂已被释放！
+			SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName}已苏醒！"
+			SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName}出现了！"
+			MegalodonAppear: "{$NPCs.Megalodon.DisplayName}正在逼近！"
+			BigEnemyDisappear: "{0}消失了……暂时"
+			SoulHarvesterBabyAppear: 你听到地牢中传来微弱的鸟叫声……
+			SoulHarvesterBabyCageAppear: 一只饥饿的小鸟被释放了！
 		}
 
 		SoulData: {
 			DungeonSoul: {
-				// DisplayName: Dungeon {^0:Soul;Souls}
-				// Unlock: ""
-				// Description: ""
+				DisplayName: 地牢之魂
+				Unlock: ""
+				Description: ""
 			}
 
 			SoulofFright: {
-				// DisplayName: "{^0:Soul;Souls} of Fright"
-				// Unlock: Defeat {$NPCName.SkeletronPrime}
-				// Description: Inflicts {$BuffName.Ichor} and {$BuffName.Poisoned}
+				DisplayName: 恐惧之魂
+				Unlock: 击败{$NPCName.SkeletronPrime}
+				Description: 造成{$BuffName.Ichor}和{$BuffName.Poisoned}
 			}
 
 			SoulofSight: {
-				// DisplayName: "{^0:Soul;Souls} of Sight"
-				// Unlock: Defeat {$Enemies.TheTwins}
-				// Description: Inflicts {$BuffName.CursedInferno}
+				DisplayName: 灵视之魂
+				Unlock: 击败{$Enemies.TheTwins}
+				Description: 造成{$BuffName.CursedInferno}
 			}
 
 			SoulofMight: {
-				// DisplayName: "{^0:Soul;Souls} of Might"
-				// Unlock: Defeat {$NPCName.TheDestroyer}
-				// Description: ""
+				DisplayName: 力量之魂
+				Unlock: 击败{$NPCName.TheDestroyer}
+				Description: ""
 			}
 		}
 
 		DroneData: {
 			BasicLaserDrone: {
-				// DisplayName: Basic Laser {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
-				// Firerate: High
-				// Description: Rapidly fires lasers
-				// Misc: ""
+				DisplayName: 轻激光无人机
+				ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
+				Firerate: 快
+				Description: 快速发射激光
+				Misc: ""
 			}
 
 			HeavyLaserDrone: {
-				// DisplayName: Heavy Laser {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
-				// Firerate: Extremely slow
-				// Description: Fires a penetrating laser after a long delay
-				// Misc: ""
+				DisplayName: 重激光无人机
+				ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
+				Firerate: 极慢
+				Description: 长时间延迟之后发射穿透激光
+				Misc: ""
 			}
 
 			MissileDrone: {
-				// DisplayName: Missile {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
-				// Firerate: Very slow
-				// Description: Fires a salvo of missiles after a long delay
-				// Misc: ""
+				DisplayName: 导弹无人机
+				ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
+				Firerate: 很慢
+				Description: 长时间延迟后发射导弹集群
+				Misc: ""
 			}
 
 			HealingDrone: {
-				// DisplayName: Healing {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
-				// Firerate: ""
-				// Description: Heals you when hurt
-				// Misc: Only one can be summoned
+				DisplayName: 治疗无人机
+				ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
+				Firerate: ""
+				Description: 在受伤后对你进行治疗
+				Misc: 只能召唤一架
 			}
 
 			ShieldDrone: {
-				// DisplayName: Shield {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
-				// Firerate: ""
-				// Description: Creates a damage reducing shield over time
-				/* Misc:
+				DisplayName: 护盾无人机
+				ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
+				Firerate: ""
+				Description: 随时间产生一个能减少一次伤害的护盾
+				Misc:
 					'''
-					Only one can be summoned
-					Shield resets if drone despawns
-					''' */
+					只能召唤一架
+					无人机不存在时已生成的护盾会消失
+					'''
 			}
 		}
 
 		Configs: {
 			ClientConfig: {
-				// DisplayName: Client Config
+				DisplayName: 客户端配置
 
 				Headers: {
-					// SatchelofGoodies: Satchel of Goodies - Minion Options
-					// HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
+					SatchelofGoodies: 好东西袋 - 仆从选项
+					HintServerConfig: 提示: 要转到包含功能切换的服务器配置，请点击右下角的"＞"
 				}
 
 				SatchelofGoodiesAutosummon: {
-					// Label: Auto-summon
-					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
+					Label: 自动召唤
+					Tooltip: 启用后如果该物品在你的库存中，则可以在人物生成时自动召唤该仆从
 				}
 
 				SatchelofGoodiesVisibleArmor: {
-					// Label: Armor progression
-					// Tooltip: Enable to show armor progression
+					Label: 装备进度
+					Tooltip: 启用后显示装备进度
 				}
 
 				SatchelofGoodiesChatterFreq: {
-					// Label: Dialogue frequency
-					// Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
+					Label: 对话频率
+					Tooltip: 控制哥布林下属和你对话的概率(单位为百分比)，调为0表示关闭对话
 				}
 
 				Hint: {
-					// Label: Hint
-					// Tooltip: ""
+					Label: 提示
+					Tooltip: ""
 				}
 			}
 
 			ContentConfig: {
-				// DisplayName: Content Config (Server)
+				DisplayName: 服务器配置
 
 				Headers: {
-					/* TogglesSpecial:
+					TogglesSpecial:
 						'''
-						The following toggles let you control content added by this mod
+						以下选项可以调整该Mod添加的内容
 
-						Special - Toggles which take priority over other relevant config options
-						''' */
-					// NPCs: NPCs
-					// Items: Items
-					// Other: Other
-					// HintClientConfig: Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left
+						特殊 - 优先于其它相关选项的设定
+						'''
+					NPCs: NPC
+					Items: 物品
+					Other: 其它
+					HintClientConfig: 提示: 要转到包含功能切换的服务器配置，请点击左下角的"＜"
 				}
 
 				Bosses: {
-					// Label: Bosses
-					// Tooltip: Boss content
+					Label: Boss
+					Tooltip: 切换Boss
 				}
 
 				CuteSlimes: {
-					// Label: Cute Slimes
-					// Tooltip: Cute slime content
+					Label: 可爱史莱姆
+					Tooltip: 切换可爱史莱姆
 				}
 
 				HostileNPCs: {
-					// Label: Hostile
-					// Tooltip: Harmful entities - This includes pets obtained by catching
+					Label: 敌对
+					Tooltip: 有害生物 - 包括一些需要使用虫网捕捉的宠物
 				}
 
 				FriendlyNPCs: {
-					// Label: Friendly
-					// Tooltip: Harmless entities - This includes pets obtained by catching
+					Label: 友好
+					Tooltip: 无害生物 - 包括一些需要使用虫网捕捉的宠物
 				}
 
 				DroppedPets: {
-					// Label: Dropped Pets
-					// Tooltip: Pets that drop from hostile entities
+					Label: 掉落宠物
+					Tooltip: 从特定生物掉落的宠物
 				}
 
 				OtherPets: {
-					// Label: Other Pets
-					// Tooltip: Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!
+					Label: 其它宠物
+					Tooltip: 制作、出售或以其它方式获得的宠物 - 不包括使用虫网捕获的生物！
 				}
 
 				Weapons: {
-					// Label: Weapons
-					// Tooltip: Items that deal damage - Includes ammunition
+					Label: 武器
+					Tooltip: 造成伤害的物品 - 包括弹药
 				}
 
 				Tools: {
-					// Label: Tools
-					// Tooltip: Tools and useful items
+					Label: 工具
+					Tooltip: 工具和其它实用物品
 				}
 
 				PlaceablesFunctional: {
-					// Label: Placeables (functional)
-					// Tooltip: Placeable functional tiles and objects
+					Label: 可放置功能性物品
+					Tooltip: 可放置的功能性物块和物品
 				}
 
 				PlaceablesDecorative: {
-					// Label: Placeables (decorative)
-					// Tooltip: Placeable decorative tiles and objects
+					Label: 可放置装饰物品
+					Tooltip: 可放置的装饰性物块和物品
 				}
 
 				Armor: {
-					// Label: Armor
-					// Tooltip: Armor with stats
+					Label: 盔甲
+					Tooltip: 带有统计数据的盔甲
 				}
 
 				VanityArmor: {
-					// Label: Vanity
-					// Tooltip: Vanity armor
+					Label: 时装盔甲
+					Tooltip: 时装盔甲
 				}
 
 				Accessories: {
-					// Label: Accessories
-					// Tooltip: Accesssories with effects
+					Label: 配饰
+					Tooltip: 具有效果的配饰
 				}
 
 				VanityAccessories: {
-					// Label: Vanity Accessories
-					// Tooltip: Accessories without effects
+					Label: 时装配饰
+					Tooltip: 无效果的配饰
 				}
 
 				BossConsolation: {
-					// Label: Boss Consolation
-					// Tooltip: Accessories that drop for failing to defeat a vanilla boss within 5 attempts
+					Label: 安慰配饰
+					Tooltip: 被原版Boss击败五次后掉落的安慰配饰
 				}
 
 				AommSupport: {
-					// Label: "'The Amulet Of Many Minions' cross-Mod content"
-					// Tooltip: Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets
+					Label: “The Amulet Of Many Minions” - 跨Mod内容
+					Tooltip: 启用“AoMM”Mod后可启用的内容，例如战斗宠物
 				}
 
 				CuteSlimesPotionOnly: {
-					// Label: Cute Slimes Potion Only
-					// Tooltip: Affects the way Cute Slimes spawn and how the Jellied Ale works
+					Label: 可爱史莱姆仅限药水
+					Tooltip: 影响可爱史莱姆的生成方式和果冻啤酒的运作方式
 				}
 
 				Hint: {
-					// Label: Hint
-					// Tooltip: ""
+					Label: 提示
+					Tooltip: ""
 				}
 			}
 
-			// Common.AcceptClientChanges: You are not the server owner so you can not change this config
+			Common.AcceptClientChanges: 非服务器持有者无法更改此配置
 		}
 	}
 }

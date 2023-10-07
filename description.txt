@@ -22,4 +22,4 @@ If you happen to come across a problem with the mod, please report it on our Ter
 Localization:
 If you want to add support for different languages, you are welcome to contribute localizations here: https://github.com/Werebearguy/AssortedCrazyThings
 List of localization contributors:
-* None!
+* Simplified Chinese: GamMa
