@@ -16,6 +16,7 @@ namespace AssortedCrazyThings.Items.Fun
 			Item.value = Item.sellPrice(gold: 5);
 			Item.rare = 9;
 			Item.noUseGraphic = true;
+			Item.attackSpeedOnlyAffectsWeaponAnimation = true;
 		}
 
 		public override void AddRecipes()
