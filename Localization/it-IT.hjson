@@ -532,9 +532,9 @@ Mods: {
 				// Description: Shows the location of enemies outside your vision range
 			}
 
-			GoblinUnderlingBuff: {
-				// DisplayName: Goblin Underling
-				// Description: A loyal goblin underling is fighting for you
+			EagerUnderlingBuff: {
+				// DisplayName: Eager Underling
+				// Description: A loyal underling is fighting for you
 			}
 
 			SigilOfTheWingBuff: {
@@ -1974,11 +1974,11 @@ Mods: {
 				// SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
 			}
 
-			GoblinUnderlingItem: {
+			EagerUnderlingItem: {
 				// DisplayName: Satchel of Goodies
 				/* Tooltip:
 					'''
-					Summons a Goblin Underling to fight for you
+					Summons an eager underling to fight for you
 					Gets stronger throughout progression
 					Does not occupy a minion slot, but only one can be summoned
 					'Inside, there's a spiky ball, a coin, and a...moon?'
@@ -2378,9 +2378,9 @@ Mods: {
 			// MissileDrone.DisplayName: Missile Drone
 			// MissileDroneRocket.DisplayName: Missile Drone Rocket
 			// ShieldDrone.DisplayName: Shield Drone
-			// GoblinUnderlingDart.DisplayName: Goblin Underling Dart
-			// GoblinUnderlingProj.DisplayName: Goblin Underling
-			// GoblinUnderlingTerraBeam.DisplayName: Goblin Underling Terra Beam
+			// EagerUnderlingDart.DisplayName: Eager Underling Dart
+			// EagerUnderlingProj.DisplayName: Eager Underling
+			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
 			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
 			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
@@ -2532,6 +2532,7 @@ Mods: {
 			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
 			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
 			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
+			// WeaponSwordDaybreak.DisplayName: Underling Daybreak
 		}
 
 		Tiles: {
@@ -2789,6 +2790,103 @@ Mods: {
 			}
 
 			// Common.AcceptClientChanges: You are not the server owner so you can not change this config
+		}
+
+		Chatter: {
+			GoblinUnderling: {
+				Eager: {
+					Idle: {
+						// Bored: I'm bored, boss!
+						// WhenFighting: When's da fighting, boss?
+						// HangingOut: I like hangin' out, boss!
+						// GoodBoss: You's a good boss, boss!
+						// BossSilent: Boss is always silent. So cool!
+						// HateSlimes: I hate slimes, dey're sticky!
+						// WhenMeal: When's meal time?
+						// DoYouLikeMe: Do ya like me, boss?
+						// GettingSleepy: I'm gettin' sleepy, boss...
+						// SeeBase: I can see our base from up here!
+						// SandInArmor: I got sand in my armor!
+						// GroundLooking: The ground's lookin' at me!
+						// BeatTheCold: I'll beat da cold by workin up a sweat!
+						// FaceLooksLikeRock: Dat rock looks like your face, boss!
+						// RockLooksLikeBones: Dose rocks look like bones
+						// FindShinyMetals: I hope we find shiny metals!
+						// NothingScares: Nothin' scares me when I'm wit you, boss!
+						// HeardRat: I think I heard a rat. A big rat!
+						// CavesSpooky: Caves are spooky!
+					}
+
+					// FirstSummon.YouTheBoss: You da boss now, boss!"
+
+					Attacking: {
+						// Gotcha: Gotcha!
+						// IGotThis: I got dis one!
+						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
+						// NoOneTouches: No one touches boss!
+						// BadGuys: Bad guys get black eyes!
+						// ComeHere: C'mere, you!
+						// LevelOne: I'm level one! I'm da strongest gob!
+					}
+
+					PlayerHurt: {
+						// DontHurt: Don't hurt da boss!
+						// YouWillPay: You'll pay for dat!
+						// YouGood: You good, boss?!
+						// ThatHurt: Dat looked like it hurt, boss!
+						// IsntWeak: Da boss ain't weak, chump!
+					}
+
+					BossSpawn: {
+						// UhOh: Uh oh!
+						// BigOne: Dat's a biggun!
+						// ThatOnesBig: Boss, dat one's big!
+						// NotAfraid: I ain't afraid of nothin!
+						// WeGotTrouble: Boss, we got trouble!
+						// HateBees: I hate bees!
+						// WontReadBook: I won't read da big book!
+						// OneEyedDummy: Big one-eyed dummy!
+						// BigGuts: Dat one's big! Dat means it has big guts!
+						// WeGotThis: We got dis, boss!
+						// JigglyJellyfish: Haha, jiggly jellyfish!
+						// FatBat: Dat's a fat bat!
+					}
+
+					BossDefeat: {
+						// WeDidIt: We did it, boss!
+						// KnewYouCould: I knew you could do it!
+						// EasyNext: Easy. Next!
+						// WontBeInSequel: You won't be in da sequel!
+						// NastyBees: Nasty bees! Only good for da honey!
+						// StupidBook: Stupid book man!
+						// DumbWeakling: Big dumb weakling!
+						// DumbDragon: Dumb dragon, boss is da strongest!
+						// YouTheBest: Boss, you da best!
+						// ToughTougher: Dat one was tough, but we're tougher!
+						// NoMoreSquid: I don't wanna see no more squid after dis...
+						// JellyTastesBad: Blech! Dat jelly tastes bad!
+						// SuckOnThat: Suck on dat, fat bat!
+					}
+
+					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+
+					OOANewWave: {
+						// HolesStillOpen: Boss, dem holes are still open!
+						// MoreBaddies: More baddies? More baddies!
+						// ProtectGem: Protect da shiny gem!
+						// WontLetPass: I won't let em pass, boss!
+					}
+
+					ArmorEquipped: {
+						// LookingSpiffy: Lookin' spiffy, boss!
+						// LookingFluffy: Lookin' fluffy, boss!
+					}
+
+					// ItemSelected.IsAToy: Is dat a toy?
+					// InvasionChanged.OldGangBack: Old gang is back!
+					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+				}
+			}
 		}
 	}
 }

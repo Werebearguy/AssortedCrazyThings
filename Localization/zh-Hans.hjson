@@ -532,9 +532,9 @@ Mods: {
 				Description: 显示视野范围外的敌人的位置
 			}
 
-			GoblinUnderlingBuff: {
-				DisplayName: 哥布林下属
-				Description: 一位忠诚的哥布林手下为你而战
+			EagerUnderlingBuff: {
+				DisplayName: 热切的下属
+				Description: 一位忠诚的热下为你而战
 			}
 
 			SigilOfTheWingBuff: {
@@ -1975,11 +1975,11 @@ Mods: {
 				SetBonusBoost: 穿戴"灵魂救主"套装后伤害增加{0}%
 			}
 
-			GoblinUnderlingItem: {
+			EagerUnderlingItem: {
 				DisplayName: 好东西袋
 				Tooltip:
 					'''
-					召唤哥布林下属为你而战
+					召唤热切的下属为你而战
 					随着游戏继承而变强
 					不占据召唤栏位，但不能复数召唤
 					“里面有一颗尖球、一枚硬币和一个……月亮？“
@@ -2379,9 +2379,9 @@ Mods: {
 			MissileDrone.DisplayName: 导弹无人机
 			MissileDroneRocket.DisplayName: 导弹无人机导弹
 			ShieldDrone.DisplayName: 护盾无人机
-			GoblinUnderlingDart.DisplayName: 哥布林属下飞镖
-			GoblinUnderlingProj.DisplayName: 哥布林属下
-			GoblinUnderlingTerraBeam.DisplayName: 哥布林属下泰拉光束
+			EagerUnderlingDart.DisplayName: 热切的属下飞镖
+			EagerUnderlingProj.DisplayName: 热切的属下
+			GoblinUnderlingWeaponTerraBeam.DisplayName: 热切的属下泰拉光束
 			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
 			MagicSlimeSlingMinion.DisplayName: 魔法史莱姆机弦仆从
 			PetDestroyerDroneLaser.DisplayName: 宠物毁灭者激光
@@ -2533,6 +2533,7 @@ Mods: {
 			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName}射击"
 			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
 			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
+			// WeaponSwordDaybreak.DisplayName: Underling Daybreak
 		}
 
 		Tiles: {
@@ -2790,6 +2791,103 @@ Mods: {
 			}
 
 			Common.AcceptClientChanges: 非服务器持有者无法更改此配置
+		}
+
+		Chatter: {
+			GoblinUnderling: {
+				Eager: {
+					Idle: {
+						// Bored: I'm bored, boss!
+						// WhenFighting: When's da fighting, boss?
+						// HangingOut: I like hangin' out, boss!
+						// GoodBoss: You's a good boss, boss!
+						// BossSilent: Boss is always silent. So cool!
+						// HateSlimes: I hate slimes, dey're sticky!
+						// WhenMeal: When's meal time?
+						// DoYouLikeMe: Do ya like me, boss?
+						// GettingSleepy: I'm gettin' sleepy, boss...
+						// SeeBase: I can see our base from up here!
+						// SandInArmor: I got sand in my armor!
+						// GroundLooking: The ground's lookin' at me!
+						// BeatTheCold: I'll beat da cold by workin up a sweat!
+						// FaceLooksLikeRock: Dat rock looks like your face, boss!
+						// RockLooksLikeBones: Dose rocks look like bones
+						// FindShinyMetals: I hope we find shiny metals!
+						// NothingScares: Nothin' scares me when I'm wit you, boss!
+						// HeardRat: I think I heard a rat. A big rat!
+						// CavesSpooky: Caves are spooky!
+					}
+
+					// FirstSummon.YouTheBoss: You da boss now, boss!"
+
+					Attacking: {
+						// Gotcha: Gotcha!
+						// IGotThis: I got dis one!
+						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
+						// NoOneTouches: No one touches boss!
+						// BadGuys: Bad guys get black eyes!
+						// ComeHere: C'mere, you!
+						// LevelOne: I'm level one! I'm da strongest gob!
+					}
+
+					PlayerHurt: {
+						// DontHurt: Don't hurt da boss!
+						// YouWillPay: You'll pay for dat!
+						// YouGood: You good, boss?!
+						// ThatHurt: Dat looked like it hurt, boss!
+						// IsntWeak: Da boss ain't weak, chump!
+					}
+
+					BossSpawn: {
+						// UhOh: Uh oh!
+						// BigOne: Dat's a biggun!
+						// ThatOnesBig: Boss, dat one's big!
+						// NotAfraid: I ain't afraid of nothin!
+						// WeGotTrouble: Boss, we got trouble!
+						// HateBees: I hate bees!
+						// WontReadBook: I won't read da big book!
+						// OneEyedDummy: Big one-eyed dummy!
+						// BigGuts: Dat one's big! Dat means it has big guts!
+						// WeGotThis: We got dis, boss!
+						// JigglyJellyfish: Haha, jiggly jellyfish!
+						// FatBat: Dat's a fat bat!
+					}
+
+					BossDefeat: {
+						// WeDidIt: We did it, boss!
+						// KnewYouCould: I knew you could do it!
+						// EasyNext: Easy. Next!
+						// WontBeInSequel: You won't be in da sequel!
+						// NastyBees: Nasty bees! Only good for da honey!
+						// StupidBook: Stupid book man!
+						// DumbWeakling: Big dumb weakling!
+						// DumbDragon: Dumb dragon, boss is da strongest!
+						// YouTheBest: Boss, you da best!
+						// ToughTougher: Dat one was tough, but we're tougher!
+						// NoMoreSquid: I don't wanna see no more squid after dis...
+						// JellyTastesBad: Blech! Dat jelly tastes bad!
+						// SuckOnThat: Suck on dat, fat bat!
+					}
+
+					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+
+					OOANewWave: {
+						// HolesStillOpen: Boss, dem holes are still open!
+						// MoreBaddies: More baddies? More baddies!
+						// ProtectGem: Protect da shiny gem!
+						// WontLetPass: I won't let em pass, boss!
+					}
+
+					ArmorEquipped: {
+						// LookingSpiffy: Lookin' spiffy, boss!
+						// LookingFluffy: Lookin' fluffy, boss!
+					}
+
+					// ItemSelected.IsAToy: Is dat a toy?
+					// InvasionChanged.OldGangBack: Old gang is back!
+					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+				}
+			}
 		}
 	}
 }
