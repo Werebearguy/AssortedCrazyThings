@@ -654,7 +654,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 						i++;
 					}
 					i += (int)Projectile.velocity.X;
-					if (Main.sectionManager.TileLoaded(i, j) && WorldGen.SolidTile(i, j))
+					if ((Main.netMode == NetmodeID.Server || Main.sectionManager.TileLoaded(i, j)) && WorldGen.SolidTile(i, j))
 					{
 						flag4 = true;
 					}
@@ -665,7 +665,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				}
 				Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
 
-				if (Main.sectionManager.TileLoaded(i, j) && Main.sectionManager.TileLoaded(i, j - 5) && Projectile.velocity.Y == 0f)
+				if ((Main.netMode == NetmodeID.Server || Main.sectionManager.TileLoaded(i, j) && Main.sectionManager.TileLoaded(i, j - 5)) && Projectile.velocity.Y == 0f)
 				{
 					if (!flag3 && (Projectile.velocity.X < 0f || Projectile.velocity.X > 0f))
 					{

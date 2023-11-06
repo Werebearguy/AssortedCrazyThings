@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -17,11 +18,24 @@ namespace AssortedCrazyThings.NPCs
 
 		public override LocalizedText DisplayName => CommonDisplayNameText;
 
+		public static HashSet<int> DemonEyes { get; private set; }
+
+		public override void Load()
+		{
+			DemonEyes ??= new HashSet<int>();
+		}
+
+		public override void Unload()
+		{
+			DemonEyes = null;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.DemonEyeRecolor.DisplayName"));
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
 			NPCID.Sets.DemonEyes[NPC.type] = true;
+			DemonEyes.Add(NPC.type);
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{
@@ -89,6 +103,19 @@ namespace AssortedCrazyThings.NPCs
 			}
 
 			return true;
+		}
+	}
+
+	//Lazy solution: Count *all* demon eye variants towards regular demon eye. Proper would be to make separate bestiary entries for them just like vanilla
+	[Content(ContentType.HostileNPCs)]
+	public class DemonEyeRecolorBestiarySystem : AssSystem
+	{
+		public override void PostSetupContent()
+		{
+			foreach (var type in DemonEyeRecolorBase.DemonEyes)
+			{
+				ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[type] = ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.DemonEye];
+			}
 		}
 	}
 }

@@ -7,6 +7,11 @@ namespace AssortedCrazyThings.Items.Tools
 {
 	public class ExtendoNetGolden : ExtendoNetBase
 	{
+		public override void SafeSetStaticDefaults()
+		{
+			ItemID.Sets.LavaproofCatchingTool[Type] = true;
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -18,12 +19,7 @@ namespace AssortedCrazyThings.NPCs
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.ToxicSludge];
 			Main.npcCatchable[NPC.type] = true;
 
-			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[1] {
-					BuffID.Poisoned
-				}
-			});
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.ShimmerSlime;
 			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);
@@ -71,7 +67,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Underworld.Chance * 0.015f;
+			return !AssUtils.DontDigUpStartingIsland(spawnInfo) ? SpawnCondition.Underworld.Chance * 0.015f : 0f;
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)

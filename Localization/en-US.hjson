@@ -427,7 +427,7 @@ Mods: {
 			}
 
 			SkeletronPrimeHandBuff: {
-				DisplayName: Skeletron Prime's Hand is attached to you
+				DisplayName: Skeletron Prime's Spare Hand
 				Description: Skeletron Prime's hand is attached to you
 			}
 
@@ -1835,6 +1835,11 @@ Mods: {
 				Tooltip: ""
 			}
 
+			HarvesterRelicColoredItem: {
+				DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colored)"
+				Tooltip: ""
+			}
+
 			HarvesterTrophyItem: {
 				DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
 				Tooltip: ""
@@ -1880,7 +1885,11 @@ Mods: {
 
 			ExtendoNetGolden: {
 				DisplayName: Golden Extendo-Net
-				Tooltip: "'Catches those REALLY hard to reach critters'"
+				Tooltip:
+					'''
+					'Catches those REALLY hard to reach critters'
+					Can catch lava critters too!
+					'''
 			}
 
 			ExtendoNetRegular: {
@@ -2223,7 +2232,7 @@ Mods: {
 			}
 
 			CuteSlimeXmas: {
-				DisplayName: Cute Holiday Slime
+				DisplayName: Cute Christmas Slime
 				BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring that gift to everyone.
 			}
 
@@ -2246,8 +2255,8 @@ Mods: {
 			}
 
 			GiantGrasshopperGold: {
-				DisplayName: Giant Grasshopper
-				BestiaryFlavorText: Rarely, critters are found coated entirely in gold! Shopkeepers will pay handsomely for these, or you can show them off in cages!
+				DisplayName: Gold Giant Grasshopper
+				BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
 			}
 
 			DungeonSoul.DisplayName: Dungeon Soul
@@ -2528,7 +2537,7 @@ Mods: {
 
 		Tiles: {
 			MapEntry_Locked: Locked
-			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {Items.AntiqueChestItem.DisplayName}"
+			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Items.AntiqueChestItem.DisplayName}"
 
 			SlimeBeaconTile: {
 				NotInMultiplayer: NOT IN MULTIPLAYER

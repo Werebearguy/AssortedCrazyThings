@@ -45,7 +45,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 				if (AmuletOfManyMinionsApi.TryGetParamsDirect(this, out var paras))
 				{
-					paras.AttackFramesScaleFactor *= 0.5f;
+					paras.AttackFramesScaleFactor *= 0.65f;
 					AmuletOfManyMinionsApi.UpdateParamsDirect(this, paras);
 				}
 			}
@@ -198,7 +198,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Projectile.penetrate = 0;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			for (int i = 0; i < 10; i++)
 			{

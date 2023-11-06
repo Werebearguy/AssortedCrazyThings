@@ -103,29 +103,29 @@ namespace AssortedCrazyThings.Base
 			switch (type)
 			{
 				case SpawnConditionType.Forest:
-					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDaySlime.Chance * 0.0075f : 0f;
+					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && AssUtils.DontDigUpDaytime(spawnInfo) && AssUtils.AboveSurface(spawnInfo) ? 0.005f : 0f;
 				case SpawnConditionType.Desert:
-					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) ? SpawnCondition.OverworldDayDesert.Chance * 0.12f : 0f;
+					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && AssUtils.DontDigUpDaytime(spawnInfo) && AssUtils.AboveSurface(spawnInfo) && spawnInfo.SpawnTileType == TileID.Sand ? 0.05f : 0f;
 				case SpawnConditionType.Tundra:
-					return player.townNPCs < 3f && player.ZoneSnow ? SpawnCondition.OverworldDaySlime.Chance * 0.06f : 0f;
+					return player.townNPCs < 3f && player.ZoneSnow && AssUtils.DontDigUpDaytime(spawnInfo) && AssUtils.AboveSurface(spawnInfo) ? 0.05f : 0f;
 				case SpawnConditionType.Jungle:
-					return player.townNPCs < 3f && Main.dayTime ? SpawnCondition.SurfaceJungle.Chance * 0.06f : 0f;
+					return player.townNPCs < 3f && player.ZoneJungle && AssUtils.DontDigUpDaytime(spawnInfo) && AssUtils.AboveSurface(spawnInfo) ? 0.02f : 0f;
 				case SpawnConditionType.Underground:
-					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.hardMode && player.ZoneDirtLayerHeight ? 0.015f : 0f;
+					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.hardMode && AssUtils.Underground(spawnInfo) ? 0.02f : 0f;
 				case SpawnConditionType.Hell:
-					return player.townNPCs < 3f ? SpawnCondition.Underworld.Chance * 0.015f : 0f;
+					return player.townNPCs < 3f && !AssUtils.DontDigUpStartingIsland(spawnInfo) ? SpawnCondition.Underworld.Chance * 0.015f : 0f;
 				case SpawnConditionType.Corruption:
-					return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Corruption.Chance * 0.025f : SpawnCondition.Crimson.Chance * 0.025f) : 0f;
+					return Main.hardMode && player.ZoneOverworldHeight && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) ? 0.025f : 0f;
 				case SpawnConditionType.CorruptionIce:
-					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneSnow && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) ? 0.025f : 0f;
+					return Main.hardMode && player.ZoneOverworldHeight && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) && player.ZoneSnow ? 0.025f : 0f;
 				case SpawnConditionType.CorruptionJungle:
-					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneJungle && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) ? 0.025f : 0f;
+					return Main.hardMode && player.ZoneOverworldHeight && (!Main.bloodMoon ? player.ZoneCorrupt : player.ZoneCrimson) && player.ZoneJungle ? 0.025f : 0f;
 				case SpawnConditionType.Crimson:
-					return Main.hardMode && player.ZoneOverworldHeight ? (!Main.bloodMoon ? SpawnCondition.Crimson.Chance * 0.025f : SpawnCondition.Corruption.Chance * 0.025f) : 0f;
+					return Main.hardMode && player.ZoneOverworldHeight && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) ? 0.025f : 0f;
 				case SpawnConditionType.CrimsonIce:
-					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneSnow && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) ? 0.025f : 0f;
+					return Main.hardMode && player.ZoneOverworldHeight && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) && player.ZoneSnow ? 0.025f : 0f;
 				case SpawnConditionType.CrimsonJungle:
-					return Main.hardMode && player.ZoneOverworldHeight && player.ZoneJungle && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) ? 0.025f : 0f;
+					return Main.hardMode && player.ZoneOverworldHeight && (!Main.bloodMoon ? player.ZoneCrimson : player.ZoneCorrupt) && player.ZoneJungle ? 0.025f : 0f;
 				case SpawnConditionType.Hallow:
 					return Main.hardMode && player.ZoneHallow && !(player.ZoneCorrupt || player.ZoneCrimson) && !player.ZoneOverworldHeight ? 0.015f : 0f;
 				case SpawnConditionType.HallowIce:
@@ -133,7 +133,7 @@ namespace AssortedCrazyThings.Base
 				case SpawnConditionType.Dungeon:
 					return player.townNPCs < 3f ? SpawnCondition.DungeonNormal.Chance * 0.025f : 0f;
 				case SpawnConditionType.Xmas:
-					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.xMas ? SpawnCondition.OverworldDaySlime.Chance * 0.05f : 0f;
+					return player.townNPCs < 3f && !AssUtils.EvilBiome(player) && Main.xMas && AssUtils.DontDigUpDaytime(spawnInfo) && AssUtils.AboveSurface(spawnInfo) ? 0.033f : 0f;
 				case SpawnConditionType.Honey:
 					return player.townNPCs < 3f && Framing.GetTileSafely(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY).WallType == WallID.HiveUnsafe ? 0.3f : 0f;
 				default:

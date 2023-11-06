@@ -1,0 +1,2795 @@
+Mods: {
+	AssortedCrazyThings: {
+		Buffs: {
+			# Cute Slimes
+			CuteSlimeBlackBuff: {
+				DisplayName: 可爱黑史莱姆
+				Description: 一只可爱的黑史莱姆跟随着你
+			}
+
+			CuteSlimeBlueBuff: {
+				DisplayName: 可爱蓝史莱姆
+				Description: 一只可爱的蓝史莱姆跟随着你
+			}
+
+			CuteSlimeCorruptBuff: {
+				DisplayName: 可爱腐化史莱姆
+				Description: 一只可爱的腐化史莱姆跟随着你
+			}
+
+			CuteSlimeCorruptJungleBuff: {
+				DisplayName: 可爱腐化丛林史莱姆
+				Description: 一只可爱的腐化丛林史莱姆跟随着你
+			}
+
+			CuteSlimeCrimsonBuff: {
+				DisplayName: 可爱猩红史莱姆
+				Description: 一只可爱的猩红史莱姆跟随着你
+			}
+
+			CuteSlimeCrimsonJungleBuff: {
+				DisplayName: 可爱猩红丛林史莱姆
+				Description: 一只可爱的猩红丛林史莱姆跟随着你
+			}
+
+			CuteSlimeDungeonBuff: {
+				DisplayName: 可爱地牢史莱姆
+				Description: 一只可爱的地牢史莱姆跟随着你
+			}
+
+			CuteSlimeGoldenBuff: {
+				DisplayName: 可爱金史莱姆
+				Description: 一只可爱的金史莱姆跟随着你
+			}
+
+			CuteSlimeGreenBuff: {
+				DisplayName: 可爱绿史莱姆
+				Description: 一只可爱的绿史莱姆跟随着你
+			}
+
+			CuteSlimeHoneyBuff: {
+				DisplayName: 可爱蜂蜜史莱姆
+				Description: 一只可爱的蜂蜜史莱姆跟随着你
+			}
+
+			CuteSlimeIceBuff: {
+				DisplayName: 可爱冰雪史莱姆
+				Description: 一只可爱的冰雪史莱姆跟随着你
+			}
+
+			CuteSlimeIlluminantBuff: {
+				DisplayName: 可爱夜明史莱姆
+				Description: 一只可爱的夜明史莱姆跟随着你
+			}
+
+			CuteSlimeJungleBuff: {
+				DisplayName: 可爱丛林史莱姆
+				Description: 一只可爱的丛林史莱姆跟随着你
+			}
+
+			CuteSlimeLavaBuff: {
+				DisplayName: 可爱熔岩史莱姆
+				Description: 一只可爱的熔岩史莱姆跟随着你
+			}
+
+			CuteSlimePinkBuff: {
+				DisplayName: 可爱粉史莱姆
+				Description: 一只可爱的粉史莱姆跟随着你
+			}
+
+			CuteSlimePinkIceBuff: {
+				DisplayName: 可爱粉冰雪史莱姆
+				Description: 一只可爱的粉冰雪史莱姆跟随着你
+			}
+
+			CuteSlimePrincessBuff: {
+				DisplayName: 可爱史莱姆公主
+				Description: 一位可爱的史莱姆公主跟随着你
+			}
+
+			CuteSlimePurpleBuff: {
+				DisplayName: 可爱紫史莱姆
+				Description: 一只可爱的紫史莱姆跟随着你
+			}
+
+			CuteSlimePurpleIceBuff: {
+				DisplayName: 可爱紫冰雪史莱姆
+				Description: 一只可爱的紫冰雪史莱姆跟随着你
+			}
+
+			CuteSlimeQueenBuff: {
+				DisplayName: 可爱史莱姆皇后
+				Description: 一位可爱的史莱姆皇后跟随着你
+			}
+
+			CuteSlimeRainbowBuff: {
+				DisplayName: 可爱彩虹史莱姆
+				Description: 一只可爱的彩虹史莱姆跟随着你
+			}
+
+			CuteSlimeRedBuff: {
+				DisplayName: 可爱红史莱姆
+				Description: 一只可爱的红史莱姆跟随着你
+			}
+
+			CuteSlimeRedIceBuff: {
+				DisplayName: 可爱红冰雪史莱姆
+				Description: 一只可爱的红冰雪史莱姆跟随着你
+			}
+
+			CuteSlimeSandBuff: {
+				DisplayName: 可爱沙史莱姆
+				Description: 一只可爱的沙史莱姆跟随着你
+			}
+
+			CuteSlimeShimmerBuff: {
+				DisplayName: 可爱微光史莱姆
+				Description: 一只可爱的微光史莱姆跟随着你
+			}
+
+			CuteSlimeToxicBuff: {
+				DisplayName: 可爱毒史莱姆
+				Description: 一只可爱的毒史莱姆跟随着你
+			}
+
+			CuteSlimeXmasBuff: {
+				DisplayName: 可爱礼物史莱姆
+				Description: 一只可爱的礼物史莱姆跟随着你
+			}
+
+			CuteSlimeYellowBuff: {
+				DisplayName: 可爱黄史莱姆
+				Description: 一只可爱的黄史莱姆跟随着你
+			}
+
+			# Pets. AoMM versions are auto-generated
+			AbeeminationBuff: {
+				DisplayName: 憎恶之蜂
+				Description: 一只憎恶之蜂跟随着你
+			}
+
+			AlienHornetBuff: {
+				DisplayName: 异星黄蜂
+				Description: 一只异星黄蜂跟随着你
+			}
+
+			AnimatedTomeBuff: {
+				DisplayName: 活化魔典
+				Description: 一本活化魔典跟随着你
+			}
+
+			AnomalocarisBuff: {
+				DisplayName: 奇虾
+				Description: 一只史前小虾跟随着你
+			}
+
+			BabyCrimeraBuff: {
+				DisplayName: 喀迈拉宝宝
+				Description: 一只喀迈拉宝宝跟随着你
+			}
+
+			BabyIchorStickerBuff: {
+				DisplayName: 黏黏怪宝宝
+				Description: 一只黏黏怪宝宝跟随着你
+			}
+
+			BabyOcramBuff: {
+				DisplayName: 迷你奥库瑞姆
+				Description: 迷你奥库瑞姆跟随着你
+			}
+
+			BrainofConfusionBuff: {
+				DisplayName: 混乱之脑
+				Description: 一颗混乱之脑跟随着你
+			}
+
+			ChunkyandMeatballBuff: {
+				DisplayName: 腐块和肉球
+				Description: 重聚的两兄弟跟随着你
+			}
+
+			ChunkySlimeBuff: {
+				DisplayName: 腐块
+				Description: 一团腐块跟随着你
+			}
+
+			CompanionDungeonSoulPetBuff: {
+				DisplayName: 灵魂同伴
+				CommonDescription: 一位友好的地牢之魂跟随着你
+				Description:
+					'''
+					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
+					照明宠物
+					'''
+			}
+
+			CompanionDungeonSoulPetBuff2: {
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				Description:
+					'''
+					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
+					一般宠物
+					'''
+			}
+
+			CursedSkullBuff: {
+				DisplayName: 诅咒骷髅头
+				Description: 它不会诅咒你，我保证
+			}
+
+			CuteGastropodBuff: {
+				DisplayName: 可爱腹足怪
+				Description: 一只可爱的腹足怪跟随着你
+			}
+
+			CuteLamiaPetBuff: {
+				DisplayName: 小蛇
+				Description: 一条小蛇跟随着你
+			}
+
+			DemonHeartBuff: {
+				DisplayName: 恶魔之心
+				Description: 一颗恶魔之心跟随着你
+			}
+
+			DetachedHungryBuff: {
+				DisplayName: 独立的饿鬼
+				Description: 也许下一餐就是你……
+			}
+
+			DocileDemonEyeBuff: {
+				DisplayName: 温驯的恶魔眼
+				Description: 一只恶魔眼跟随着你
+			}
+
+			DrumstickElementalBuff: {
+				DisplayName: 鸡腿元素
+				Description: 晚餐跟随着你
+			}
+
+			DynamiteBunnyBuff: {
+				DisplayName: 爆炸兔
+				Description: 一只会爆炸的小兔子跟随着你
+			}
+
+			EnchantedSwordBuff: {
+				DisplayName: 附魔剑
+				Description: 一把附魔剑守护着你
+			}
+
+			FailureSlimeBuff: {
+				DisplayName: 故障史莱姆
+				Description: 一只故障史莱姆跟随着你
+			}
+
+			FairySlimeBuff: {
+				DisplayName: 仙灵史莱姆
+				Description: 一只仙灵史莱姆跟随着你
+			}
+
+			FairySwarmBuff: {
+				DisplayName: 仙灵群
+				Description: 一小群仙灵跟随着你
+			}
+
+			GhostMartianBuff: {
+				DisplayName: 火星幽灵
+				Description: 一位想要复仇的入侵者鬼魂正追踪着你
+			}
+
+			GobletBuff: {
+				DisplayName: 杯布林
+				Description: 一个哥布林小孩跟随着你
+			}
+
+			HornedSlimeBuff: {
+				DisplayName: 恶魔史莱姆
+				Description: 一只恶魔史莱姆跟随着你
+			}
+
+			IlluminantSlimeBuff: {
+				DisplayName: 夜明史莱姆
+				Description: 一只夜明史莱姆跟随着你
+			}
+
+			JoyousSlimeBuff: {
+				DisplayName: 欢乐史莱姆
+				Description: 一只欢乐史莱姆跟随着你
+			}
+
+			LifelikeMechanicalFrogBuff: {
+				DisplayName: 栩栩如生的机械青蛙
+				Description: 这只青蛙在铁砧上发生了什么仍然是个谜
+			}
+
+			LilWrapsBuff: {
+				DisplayName: 小裹布
+				Description: 一个木乃伊跟随着你
+			}
+
+			MeatballSlimeBuff: {
+				DisplayName: 肉球
+				Description: 一团肉球跟随着你
+			}
+
+			MetroidPetBuff: {
+				DisplayName: 密特罗德
+				Description: 一只太空寄生虫跟随着你
+			}
+
+			MiniAntlionBuff: {
+				DisplayName: 蚁狮宝宝
+				Description: 一只蚁狮宝宝跟随着你
+			}
+
+			MiniMegalodonBuff: {
+				DisplayName: 迷你巨齿鲨
+				Description: 它认同了你的力量……暂时
+			}
+
+			NumberMuncherBuff: {
+				DisplayName: 数字大嘴巴
+				Description: 一只受过教育的两栖动物跟随着你
+			}
+
+			OceanSlimeBuff: {
+				DisplayName: 海洋史莱姆
+				Description: 一只海洋史莱姆跟随着你
+			}
+
+			PetCultistBuff: {
+				DisplayName: 小小邪教徒
+				Description: 一位小小邪教徒跟随着你
+			}
+
+			PetDestroyerBuff: {
+				DisplayName: 小型毁灭者
+				Description: 一台小型毁灭者和两架小型探测怪一同跟随着你
+			}
+
+			PetEaterofWorldsBuff: {
+				DisplayName: 小小世界吞噬怪
+				Description: 一只小小世界吞噬怪跟随着你
+			}
+
+			PetFishronBuff: {
+				DisplayName: 猪龙鱼
+				Description: 一只猪龙鱼跟随着你
+			}
+
+			PetGoldfishBuff: {
+				DisplayName: 着魔的金鱼
+				Description: 一只着魔的金鱼跟随着你
+			}
+
+			PetGolemHeadBuff: {
+				DisplayName: 石巨人头复制品
+				Description: 石巨人头的复制品守护着你
+			}
+
+			PetHarvesterBuff: {
+				DisplayName: 不屈之鸟
+				Description: 一只不屈不饶的鸟跟随着你
+			}
+
+			PetMoonBuff: {
+				DisplayName: 个人月亮
+				Description: 一颗小型月亮为你提供持续的月光
+			}
+
+			PetPlanteraBuff: {
+				DisplayName: 世纪之芽
+				Description: 一朵世纪之芽跟随着你
+			}
+
+			PetQueenSlimeBuff: {
+				DisplayName: 顽皮小史莱姆
+				Description: 一只顽皮小史莱姆跟随着你
+			}
+
+			PetSunBuff: {
+				DisplayName: 个人太阳
+				Description: 一颗小型太阳为你提供持续的日光
+			}
+
+			PetSunMoonBuff: {
+				DisplayName: 个人太阳和个人月亮
+				Description:
+					'''
+					两颗小型天体为你提供持续的光芒
+					"不会发生不利的重力影响"
+					'''
+			}
+
+			PigronataBuff: {
+				DisplayName: 彩罐猪龙
+				Description: 它很庆幸你没有砸碎它
+			}
+
+			PrinceSlimeBuff: {
+				DisplayName: 史莱姆王子
+				Description: 一位史莱姆王子跟随着你
+			}
+
+			QueenLarvaBuff: {
+				DisplayName: 皇后幼虫
+				Description: 一只蜂后幼虫跟随着你
+			}
+
+			RainbowSlimeBuff: {
+				DisplayName: 彩虹史莱姆
+				Description: 一只彩虹史莱姆跟随着你
+			}
+
+			SkeletronHandBuff: {
+				DisplayName: 骷髅王的备用手臂
+				Description: 骷髅王的手臂与你相连
+			}
+
+			SkeletronPrimeHandBuff: {
+				DisplayName: 机械骷髅王的备用手臂
+				Description: 机械骷髅王的手臂与你相连
+			}
+
+			StingSlimeBuff: {
+				DisplayName: 螫刺史莱姆
+				Description: 一只螫刺史莱姆跟随着你
+			}
+
+			StrangeRobotBuff: {
+				DisplayName: 奇怪的机器人
+				Description: 一个奇怪的机器人跟随着你
+			}
+
+			SuspiciousNuggetBuff: {
+				DisplayName: 可疑的金块
+				Description: 一块可疑的金块正在跟踪你
+			}
+
+			SwarmofCthulhuBuff: {
+				DisplayName: 克苏鲁集群
+				Description: 一小群克苏鲁之眼跟随着你
+			}
+
+			TinyTwinsBuff: {
+				DisplayName: 迷你双子魔眼
+				Description: 一对双子魔眼守护着你
+			}
+
+			TorchGodLightPetBuff: {
+				DisplayName: 火把神
+				Description: “由你来放置火把是不必要的，我会正确的做到这一点。”
+				EnableSmartCursor: 启用"智能光标"自动放置火把
+				NoTorches: 没有找到可以放置的一般火把
+			}
+
+			TorturedSoulBuff: {
+				DisplayName: 痛苦亡魂
+				Description: 不该这么贪心吧，嗯？
+			}
+
+			TrueObservingEyeBuff: {
+				DisplayName: 克苏鲁真眼
+				Description: 一只小小克苏鲁真眼跟随着你
+			}
+
+			TurtleSlimeBuff: {
+				DisplayName: 龟壳史莱姆
+				Description: 一只龟壳史莱姆跟随着你
+			}
+
+			VampireBatBuff: {
+				DisplayName: 吸血蝙蝠
+				Description: 一位特别潇洒的吸血鬼跟随着你
+			}
+
+			WallFragmentBuff: {
+				DisplayName: 血肉墙碎块
+				Description: 几块血肉墙的残片跟随着你
+			}
+
+			YoungHarpyBuff: {
+				DisplayName: 幼年鸟妖
+				Description: 一位年轻的鸟妖跟随着你
+			}
+
+			YoungWyvernBuff: {
+				DisplayName: 幼年飞龙
+				Description: 一只年轻的飞龙跟随着你
+			}
+
+			WobyBuff: {
+				DisplayName: 沃比，一只可爱的小狗
+				Description: 一只忠诚的狗狗跟随着你
+			}
+
+			CompanionDungeonSoulMinionBuff: {
+				DisplayName: 灵魂同伴仆从
+				Description: 一位友好的灵魂为你而战
+				TinyDungeonSouls: 小小地牢之魂
+			}
+
+			CuteSlimeSpawnEnableBuff: {
+				DisplayName: 果冻啤酒
+				Description: 你对史莱姆的认知有点偏差……
+				CuteSlimesCanSpawn: 可以生成的可爱史莱姆
+				None: 无
+			}
+
+			DroneControllerBuff: {
+				DisplayName: 无人机控制器
+				Description: 指挥一群无人机
+			}
+
+			EmpoweringBuff: {
+				DisplayName: 赋能
+				Description: 只要持续不受伤害，你造成的伤害也会随之提高
+				IncreasedDamage: 伤害提高: {0}%
+			}
+
+			EnhancedHunterBuff: {
+				DisplayName: 强化猎人
+				Description: 显示视野范围外的敌人的位置
+			}
+
+			GoblinUnderlingBuff: {
+				DisplayName: 哥布林下属
+				Description: 一位忠诚的哥布林手下为你而战
+			}
+
+			SigilOfTheWingBuff: {
+				DisplayName: 翼之祝福
+				Description: 你的灵魂命悬一线
+			}
+
+			BabyHarvesterBuff: {
+				DisplayName: 不祥之鸟
+				# Do not translate Description
+				Description: REPLACEME
+				Absorbed: 小鸟已经吸收了{0}个灵魂
+				Tier1: 这只鸟在做什么?
+				Tier2: 真好奇它是否会继续成长
+				Tier3: 我不确定它是否应该继续吃……
+			}
+
+			SoulBurnBuff: {
+				DisplayName: 灵魂燃烧
+				Description: 快速损失生命值
+			}
+
+			SlimePackMinionBuff: {
+				DisplayName: 史莱姆
+				Description: 你的背包里有一只友善的史莱姆为你而战
+			}
+
+			SoulBuff: {
+				DisplayName: 灵魂
+				Description: 释放灵魂
+			}
+
+			StarRodBuff: {
+				DisplayName: 星竿
+				Description: 流星会降落在离你更近的地方
+			}
+
+			NeurotoxinBuff: {
+				CommonName: 神经毒素
+				CommonDescription: 快速损失生命值
+			}
+
+			Campfire.WyvernCampfireNearby:
+				'''
+				{$Items.WyvernCampfireItem.DisplayName} 在附近时:
+				你受到了保护，不会受到飞龙的伤害
+				鸟妖的羽毛不会击退你
+				'''
+		}
+
+		Common: {
+			ConcatenateTwo: "{0}{1}"
+			AoMMVersion: (AoMM版本)
+			Selected: 已选择: {0}
+			BaseDamage: 基础伤害: {0}
+			BaseKnockback: 基础击退: {0}
+			Tooltips.PetHasAltSkins: 可以使用{$Items.VanitySelector.DisplayName}更改外观
+		}
+
+		Items: {
+			# Cute Slimes
+			CuteSlime: {
+				AccessoryBlacklisted: 已列入黑名单
+				AccessoryNone: 无
+				HatSlot: 帽子: {0}
+				BodySlot: 主体: {0}
+				CarriedSlot: 携带: {0}
+				AccessorySlot: 配饰: {0}
+			}
+
+			CuteSlimeBlackItem: {
+				DisplayName: 可爱黑史莱姆瓶
+				Tooltip: 召唤一只可爱的黑史莱姆来跟随你
+			}
+
+			CuteSlimeBlueItem: {
+				DisplayName: 可爱蓝史莱姆瓶
+				Tooltip: 召唤一只可爱的蓝史莱姆来跟随你
+			}
+
+			CuteSlimeCorruptItem: {
+				DisplayName: 可爱腐化史莱姆瓶
+				Tooltip: 召唤一只可爱的腐化史莱姆来跟随你
+			}
+
+			CuteSlimeCorruptJungleItem: {
+				DisplayName: 可爱腐化丛林史莱姆瓶
+				Tooltip: 召唤一只可爱的腐化丛林史莱姆来跟随你
+			}
+
+			CuteSlimeCrimsonItem: {
+				DisplayName: 可爱猩红史莱姆瓶
+				Tooltip: 召唤一只可爱的猩红史莱姆来跟随你
+			}
+
+			CuteSlimeCrimsonJungleItem: {
+				DisplayName: 可爱猩红丛林史莱姆瓶
+				Tooltip: 召唤一只可爱的猩红丛林史莱姆来跟随你
+			}
+
+			CuteSlimeDungeonItem: {
+				DisplayName: 可爱地牢史莱姆瓶
+				Tooltip: 召唤一只可爱的地牢史莱姆来跟随你
+			}
+
+			CuteSlimeGoldenItem: {
+				DisplayName: 可爱金史莱姆瓶
+				Tooltip: 召唤一只可爱的金史莱姆来跟随你
+			}
+
+			CuteSlimeGreenItem: {
+				DisplayName: 可爱绿史莱姆瓶
+				Tooltip: 召唤一只可爱的绿史莱姆来跟随你
+			}
+
+			CuteSlimeHoneyItem: {
+				DisplayName: 可爱蜂蜜史莱姆瓶
+				Tooltip: 召唤一只可爱的蜂蜜史莱姆来跟随你
+			}
+
+			CuteSlimeIceItem: {
+				DisplayName: 可爱冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的冰雪史莱姆来跟随你
+			}
+
+			CuteSlimeIlluminantItem: {
+				DisplayName: 可爱夜明史莱姆瓶
+				Tooltip: 召唤一只可爱的夜明史莱姆来跟随你
+			}
+
+			CuteSlimeJungleItem: {
+				DisplayName: 可爱丛林史莱姆瓶
+				Tooltip: 召唤一只可爱的丛林史莱姆来跟随你
+			}
+
+			CuteSlimeLavaItem: {
+				DisplayName: 可爱熔岩史莱姆瓶
+				Tooltip: 召唤一只可爱的熔岩史莱姆来跟随你
+			}
+
+			CuteSlimePinkItem: {
+				DisplayName: 可爱粉史莱姆瓶
+				Tooltip: 召唤一只可爱的粉史莱姆来跟随你
+			}
+
+			CuteSlimePinkIceItem: {
+				DisplayName: 可爱粉冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的粉冰雪史莱姆来跟随你
+			}
+
+			CuteSlimePrincessItem: {
+				DisplayName: 可爱史莱姆公主瓶
+				Tooltip: 召唤一位可爱的史莱姆公主来跟随你
+			}
+
+			CuteSlimePurpleItem: {
+				DisplayName: 可爱紫史莱姆瓶
+				Tooltip: 召唤一只可爱的紫史莱姆来跟随你
+			}
+
+			CuteSlimePurpleIceItem: {
+				DisplayName: 可爱紫冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的紫冰雪史莱姆来跟随你
+			}
+
+			CuteSlimeQueenItem: {
+				DisplayName: 可爱史莱姆皇后瓶
+				Tooltip: 召唤一位可爱的史莱姆皇后来跟随你
+			}
+
+			CuteSlimeRainbowItem: {
+				DisplayName: 可爱彩虹史莱姆瓶
+				Tooltip: 召唤一只可爱的彩虹史莱姆来跟随你
+			}
+
+			CuteSlimeRedItem: {
+				DisplayName: 可爱红史莱姆瓶
+				Tooltip: 召唤一只可爱的红史莱姆来跟随你
+			}
+
+			CuteSlimeRedIceItem: {
+				DisplayName: 可爱红冰雪史莱姆瓶
+				Tooltip: 召唤一只可爱的红冰雪史莱姆来跟随你
+			}
+
+			CuteSlimeSandItem: {
+				DisplayName: 可爱沙史莱姆瓶
+				Tooltip: 召唤一只可爱的沙史莱姆来跟随你
+			}
+
+			CuteSlimeShimmerItem: {
+				DisplayName: 可爱微光史莱姆瓶
+				Tooltip: 召唤一只可爱的微光史莱姆来跟随你
+			}
+
+			CuteSlimeToxicItem: {
+				DisplayName: 可爱毒史莱姆瓶
+				Tooltip: 召唤一只可爱的毒史莱姆来跟随你
+			}
+
+			CuteSlimeXmasItem: {
+				DisplayName: 可爱礼物史莱姆瓶
+				Tooltip: 召唤一只可爱的礼物史莱姆来跟随你
+			}
+
+			CuteSlimeYellowItem: {
+				DisplayName: 可爱黄史莱姆瓶
+				Tooltip: 召唤一只可爱的黄史莱姆来跟随你
+			}
+
+			# Pets. AoMM versions are auto-generated
+			AbeeminationItem: {
+				DisplayName: 憎恶之蜂
+				Tooltip:
+					'''
+					召唤一只憎恶之蜂来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			AlienHornetItem: {
+				DisplayName: 异星黄蜂
+				Tooltip: 召唤一只异星黄蜂来跟随你
+			}
+
+			AnimatedTomeItem: {
+				DisplayName: 活化魔典
+				Tooltip:
+					'''
+					召唤一本活化魔典来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			AnomalocarisItem: {
+				DisplayName: 暴躁虾
+				Tooltip:
+					'''
+					召唤一只史前虾来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			BabyCrimeraItem: {
+				DisplayName: 多汁椎骨
+				Tooltip: 召唤一只喀迈拉宝宝来跟随你
+			}
+
+			BabyIchorStickerItem: {
+				DisplayName: 沉睡的灵液黏黏怪
+				Tooltip: 召唤一只灵液黏黏怪宝宝来跟随你
+			}
+
+			BabyOcramItem: {
+				DisplayName: 迷你奥库瑞姆
+				Tooltip: 召唤迷你奥库瑞姆来跟随你
+			}
+
+			BrainofConfusionItem: {
+				DisplayName: 混乱之脑
+				Tooltip: 召唤一颗混乱之脑来跟随你
+			}
+
+			ChunkyandMeatballItem: {
+				DisplayName: 腐块和肉球
+				Tooltip: 召唤一对形影不离的兄弟来跟随你
+			}
+
+			ChunkySlimeItem: {
+				DisplayName: 腐块瓶
+				Tooltip: 召唤一团腐块来跟随你
+			}
+
+			CompanionDungeonSoulPetItem: {
+				DisplayName: 灵魂同伴
+				CommonTooltip: 召唤一位友好的灵魂来照亮你的道路
+				Tooltip:
+					'''
+					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
+					照明宠物
+					'''
+			}
+
+			CompanionDungeonSoulPetItem2: {
+				DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
+				Tooltip:
+					'''
+					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
+					一般宠物
+					'''
+			}
+
+			CursedSkullItem: {
+				DisplayName: 非活性骷髅头
+				Tooltip:
+					'''
+					召唤一位友好的诅咒骷髅来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			CuteGastropodItem: {
+				DisplayName: 神秘豆荚
+				Tooltip: 召唤一只可爱的腹足怪来跟随你
+			}
+
+			CuteLamiaPetItem: {
+				DisplayName: 摇蛇壶
+				Tooltip:
+					'''
+					召唤一条友好的小蛇跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			DemonHeartItem: {
+				DisplayName: 恶魔之心
+				Tooltip: 召唤友好的恶魔之心跟随你
+			}
+
+			DetachedHungryItem: {
+				DisplayName: 无意识的饿鬼
+				Tooltip: 召唤一只独立的饿鬼来跟随你
+			}
+
+			DocileDemonEyeItem: {
+				DisplayName: 温驯的恶魔眼
+				Tooltip:
+					'''
+					召唤一只温驯的恶魔眼来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			DrumstickElementalItem: {
+				DisplayName: 神奇鸡腿
+				Tooltip: 召唤美味的鸡腿元素来跟随你
+			}
+
+			DynamiteBunnyItem: {
+				DisplayName: 炸药胡萝卜
+				Tooltip:
+					'''
+					召唤一只爆炸兔来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			EnchantedSwordItem: {
+				DisplayName: 附魔剑
+				Tooltip: 召唤一把附魔剑来守护你
+			}
+
+			FailureSlimeItem: {
+				DisplayName: 黏糊糊的头骨
+				Tooltip: 召唤一个奇怪的生物来跟随你
+			}
+
+			FairySlimeItem: {
+				DisplayName: 仙灵史莱姆瓶
+				Tooltip: 召唤一只仙灵史莱姆来跟随你
+			}
+
+			FairySwarmItem: {
+				DisplayName: 多样仙灵瓶
+				Tooltip: 召唤一些仙灵聚集在你周围
+			}
+
+			GhostMartianItem: {
+				DisplayName: K-II仪
+				Tooltip: 召唤一个复仇的入侵者鬼魂来跟随你
+			}
+
+			GobletItem: {
+				DisplayName: 杯布林战旗
+				Tooltip: 召唤一个哥布林小孩来跟随你
+			}
+
+			HornedSlimeItem: {
+				DisplayName: 恶魔史莱姆瓶
+				Tooltip: 召唤一只恶魔史莱姆来跟随你
+			}
+
+			IlluminantSlimeItem: {
+				DisplayName: 夜明史莱姆瓶
+				Tooltip: 召唤一只夜明史莱姆来跟随你
+			}
+
+			JoyousSlimeItem: {
+				DisplayName: 欢乐史莱姆瓶
+				Tooltip:
+					'''
+					召唤一只欢乐史莱姆来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			LifelikeMechanicalFrogItem: {
+				DisplayName: 栩栩如生的机械青蛙
+				Tooltip:
+					'''
+					召唤一只友好的青蛙来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			LilWrapsItem: {
+				DisplayName: 镀金棺材
+				Tooltip:
+					'''
+					召唤一个木乃伊来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			MeatballSlimeItem: {
+				DisplayName: 肉球瓶
+				Tooltip: 召唤一团肉球来跟随你
+			}
+
+			MetroidPetItem: {
+				DisplayName: 寄生虫容器
+				Tooltip:
+					'''
+					召唤一只太空寄生虫来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			MiniAntlionItem: {
+				DisplayName: 蚁狮蛋
+				Tooltip:
+					'''
+					召唤一只友好的蚁狮宝宝来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			MiniMegalodonItem: {
+				DisplayName: 小巨齿鲨牙
+				Tooltip: 召唤一只友好的迷你巨齿鲨来跟随你
+			}
+
+			NumberMuncherItem: {
+				DisplayName: 老式存储设备
+				Tooltip: 召唤一只受过教育的两栖动物来跟随你
+			}
+
+			OceanSlimeItem: {
+				DisplayName: 海洋史莱姆瓶
+				Tooltip:
+					'''
+					召唤一只海洋史莱姆来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetCultistItem: {
+				DisplayName: 有点不祥的硬币
+				Tooltip: 召唤一位小小邪教徒来跟随和治疗你
+			}
+
+			PetDestroyerItem: {
+				DisplayName: 毁灭核心
+				Tooltip: 召唤一台小型毁灭者和它的两架小型探测怪来跟随你
+			}
+
+			PetEaterofWorldsItem: {
+				DisplayName: 破裂虫卵
+				Tooltip: 召唤一只小小世界吞噬怪来跟随你
+			}
+
+			PetFishronItem: {
+				DisplayName: 湿透的鱼饼
+				Tooltip:
+					'''
+					召唤一条友好的猪龙鱼来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetGoldfishItem: {
+				DisplayName: 着魔鱼雕像
+				Tooltip:
+					'''
+					召唤一条金鱼来跟随你
+					'你感觉在获得这个雕像的过程中失去了一些重要的东西……'
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetGolemHeadItem: {
+				DisplayName: 石巨人头复制品
+				Tooltip:
+					'''
+					召唤石巨人头的复制品来守护你
+					向附近的敌人发射弹掉火球
+					'''
+			}
+
+			PetHarvesterItem: {
+				DisplayName: 不屈鸟魂
+				Tooltip: 召唤一只不屈之鸟来跟随你
+			}
+
+			PetMoonItem: {
+				DisplayName: 月亮瓶
+				Tooltip:
+					'''
+					召唤一颗小型月亮为你提供持续的月光
+					在增益提示中显示当前的月相
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PetPlanteraItem: {
+				DisplayName: 世纪种子的盆栽
+				Tooltip:
+					'''
+					召唤一朵世纪之芽来守护你
+					"卑鄙而苍翠"
+					'''
+			}
+
+			PetQueenSlimeItem: {
+				DisplayName: 顽皮小史莱姆
+				Tooltip: 召唤三只小史莱姆来跟随你
+			}
+
+			PetSunItem: {
+				DisplayName: 太阳瓶
+				Tooltip:
+					'''
+					召唤一颗小型太阳为你提供持续的日光
+					在增益提示中显示当前的时间
+					'''
+			}
+
+			PetSunMoonItem: {
+				DisplayName: 日月瓶
+				Tooltip:
+					'''
+					召唤两颗小型天体为你提供持续的光芒
+					在增益提示中显示当前的时间和月相
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PigronataItem: {
+				DisplayName: 彩罐猪龙
+				Tooltip:
+					'''
+					召唤一条友好的彩罐猪龙来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			PrinceSlimeItem: {
+				DisplayName: 史莱姆王子瓶
+				Tooltip: 召唤一位史莱姆王子来跟随你
+			}
+
+			QueenLarvaItem: {
+				DisplayName: 皇后幼虫
+				Tooltip:
+					'''
+					召唤一只蜂后的幼虫来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			RainbowSlimeItem: {
+				DisplayName: 彩虹史莱姆瓶
+				Tooltip: 召唤一只彩虹史莱姆来跟随你
+			}
+
+			SkeletronHandItem: {
+				DisplayName: 骷髅王的备用手臂
+				Tooltip:
+					'''
+					召唤骷髅王的手臂附着在你身上
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			SkeletronPrimeHandItem: {
+				DisplayName: 机械骷髅王的备用手臂
+				Tooltip:
+					'''
+					召唤机械骷髅王的手臂附着在你身上
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			StingSlimeItem: {
+				DisplayName: 螫刺史莱姆瓶
+				Tooltip:
+					'''
+					召唤一只螫刺史莱姆来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			StrangeRobotItem: {
+				DisplayName: 奇怪的机械装置
+				Tooltip: 召唤一个奇怪的机器人来跟随你
+			}
+
+			SuspiciousNuggetItem: {
+				DisplayName: 可疑的金块
+				Tooltip: 召唤一块可疑的金块来跟随你
+			}
+
+			SwarmofCthulhuItem: {
+				DisplayName: 躁动眼瓶
+				Tooltip: 召唤一些克苏鲁之仆聚集在你周围
+			}
+
+			TinyTwinsItem: {
+				DisplayName: 迷你双子魔眼
+				Tooltip: 召唤一对双子魔眼来跟随你
+			}
+
+			TorchGodLightPetItem: {
+				DisplayName: 火把神
+				Tooltip:
+					'''
+					召唤火把神来跟随你
+					开启"智能光标"时自动摆放一般火把
+					'''
+			}
+
+			TorturedSoulItem: {
+				DisplayName: 痛苦亡魂
+				Tooltip: 召唤一个不友好的痛苦亡魂来跟随你
+			}
+
+			TrueObservingEyeItem: {
+				DisplayName: 克苏鲁真眼
+				Tooltip: 召唤一只克苏鲁真眼来守护你
+			}
+
+			TurtleSlimeItem: {
+				DisplayName: 龟壳史莱姆瓶
+				Tooltip: 召唤一只龟壳史莱姆来跟随你
+			}
+
+			VampireBatItem: {
+				DisplayName: 修好的蝙蝠翅膀
+				Tooltip:
+					'''
+					召唤一位友好的吸血鬼与你同行
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			WallFragmentItem: {
+				DisplayName: 血肉墙碎块
+				Tooltip: 召唤一些血肉墙的残片聚集在你周围
+			}
+
+			YoungHarpyItem: {
+				DisplayName: 一簇羽绒
+				Tooltip:
+					'''
+					召唤一位友好的鸟妖来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			YoungWyvernItem: {
+				DisplayName: 飞龙尾
+				Tooltip:
+					'''
+					召唤一只友好的幼年飞龙来跟随你
+					{$Common.Tooltips.PetHasAltSkins}
+					'''
+			}
+
+			WobyItem: {
+				DisplayName: 爱狗者徽章
+				Tooltip: 召唤一只忠诚的狗狗来跟随你
+			}
+
+			BottledDreams: {
+				DisplayName: 梦境瓶
+				Tooltip: 可让持有者二连跳
+			}
+
+			CrazyBundleOfAssortedBalloons: {
+				DisplayName: 疯狂多样气球捆绑包
+				Tooltip:
+					'''
+					可让持有者七连跳
+					消除坠落伤害并增加跳跃高度
+					{$ItemTooltip.HoneyComb}
+					魔力再生增加
+					在黑暗中发光
+					'''
+			}
+
+			EverburningCandelabra: {
+				DisplayName: 不灭烛台
+				Tooltip: 使所有攻击有机率施加狱炎、诅咒狱火、暗影焰和冻伤
+			}
+
+			EverburningCandle: {
+				DisplayName: 永燃蜡烛
+				Tooltip: 使所有攻击有机率施加狱炎
+			}
+
+			EverburningCursedCandle: {
+				DisplayName: 诅咒永燃蜡烛
+				Tooltip: 使所有攻击有机率施加诅咒狱火
+			}
+
+			EverburningShadowflameCandle: {
+				DisplayName: 暗影永燃蜡烛
+				Tooltip: 使所有攻击有机率施加暗影焰
+			}
+
+			EverfrozenCandle: {
+				DisplayName: 永冻蜡烛
+				Tooltip: 使所有攻击有机率施加冻伤
+			}
+
+			FestiveMirror: {
+				DisplayName: 庆典镜
+				Tooltip: 对{$BuffName.Chilled}、{$BuffName.Frozen}和{$BuffName.Stoned}免疫
+			}
+
+			HarvesterWings: {
+				DisplayName: 收割者之翼
+				Tooltip:
+					'''
+					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					'''
+			}
+
+			MassiveBundleOfBalloons: {
+				DisplayName: 大量气球束
+				Tooltip:
+					'''
+					可让持有者七连跳
+					消除坠落伤害并增加跳跃高度
+					{$ItemTooltip.HoneyComb}
+					'''
+			}
+
+			SigilOfTheBeak: {
+				DisplayName: 喙之印
+				Tooltip:
+					'''
+					在战斗中召唤破碎之魂寻找敌人
+					你的现有生命值越低，效果越强烈
+					'''
+			}
+
+			SigilOfTheHarvester: {
+				DisplayName: 收割者之印
+				Tooltip:
+					'''
+					"收割者的一切都存于你中"
+					{$Items.SigilOfTheBeak.Tooltip}
+					{$Items.SigilOfTheWing.Tooltip}
+					{$Items.SigilOfTheTalon.Tooltip@3}
+					'''
+			}
+
+			SigilOfTheTalon: {
+				DisplayName: 爪之印
+				Tooltip:
+					'''
+					使你的钩爪能够造成伤害
+					最多可以击中{0}个敌人
+					'''
+				HookDamage: 造成的伤害相当于你最后造成伤害的武器的{0}% (目前为{1})
+			}
+
+			SigilOfTheWing: {
+				DisplayName: 翼之印
+				Tooltip:
+					'''
+					当你死亡时，转后为灵魂型态，持续{0}秒，并回复{1}%最大生命值
+					灵魂形态时无法使用物品
+					冷却时间{2}分钟
+					'''
+				SocialDesc: 即使放置于时装栏冷却时间也会减少
+				EffectReady: 效果就绪中
+				ReadyAgainInMinutes: 下次效果还需等待{0}分钟
+				ReadyAgainInSeconds: 下次效果还需等待{0}秒
+			}
+
+			SlipperySoles: {
+				DisplayName: 滑底鞋
+				Tooltip: 使持有者可以在所有物块上滑行
+			}
+
+			SolesOfFireAndIce: {
+				DisplayName: 冰与火之鞋
+				Tooltip: 允许你在水面、熔岩和薄冰上行走
+			}
+
+			StarInABalloon: {
+				DisplayName: 星星气球
+				Tooltip: 跳跃高度和{$BuffDescription.StarInBottle}
+			}
+
+			StarWispBalloon: {
+				DisplayName: 星灵气球
+				Tooltip:
+					'''
+					{$Items.StarInABalloon.Tooltip}
+					在黑暗中发光
+					'''
+			}
+
+			WispInABalloon: {
+				DisplayName: 妖灵气球
+				Tooltip: 在黑暗中发光并增加跳跃高度
+			}
+
+			AntiqueKey: {
+				DisplayName: 古董钥匙
+				Tooltip: “一把旧钥匙，看起来挺适合附近那个笼子上的锁……'”
+			}
+
+			SoulSaviorHeaddress: {
+				DisplayName: 灵魂救主头饰
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+				SetBonus:
+					'''
+					每个拥有的仆从栏位能使你反射{0}%接触伤害
+					增加召唤伤害的效果会进一步提高反射伤害
+					当前反射伤害: {1}%
+					由{$Items.EverhallowedLantern.DisplayName}召唤的仆从获得'赋能'增益并且造成的伤害提高{2}%
+					'''
+			}
+
+			SoulSaviorPlate: {
+				DisplayName: 灵魂救主胸甲
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+			}
+
+			SoulSaviorRobe: {
+				DisplayName: 灵魂救主长袍
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
+			}
+
+			CaughtDungeonSoul: {
+				DisplayName: 无缚的地牢之魂
+				Tooltip:
+					'''
+					"被网捕获的非活性灵魂"
+					当{$NPCs.HarvesterBoss.DisplayName}被击败时从你的物品栏中苏醒
+					'''
+				SpawnSoul: 使用能够生成灵魂供{$NPCs.HarvesterBoss.DisplayName}食用
+			}
+
+			CaughtDungeonSoulFreed: {
+				DisplayName: 释放地牢之魂
+				Tooltip: 通过击败{$NPCs.HarvesterBoss.DisplayName}来唤醒
+			}
+
+			ChunkysEyeItem: {
+				DisplayName: 腐块眼
+				Tooltip: “获得{$Items.MeatballsEyeItem.DisplayName}并在恶魔祭坛能将两者结合起来”
+			}
+
+			CuteSlimeSpawnEnableFlask: {
+				DisplayName: 果冻啤酒
+				SeeMoreOften: 喝下这种饮料后能够吸引可爱的史莱姆更频繁出现
+				See: 能够更频繁的遇见可爱的史莱姆
+			}
+
+			EmpowermentFlask: {
+				DisplayName: 赋能瓶
+				Tooltip:
+					'''
+					随着时间的推移逐渐增加造成的伤害
+					受到伤害时奖励会重制
+					(召唤伤害提升的幅度较小)
+					'''
+			}
+
+			EnhancedHunterPotion: {
+				DisplayName: 强化狩猎药水
+				Tooltip: "{$ItemTooltip.HunterPotion}，包括视野范围外约等于一个画面范围的敌人"
+			}
+
+			HarvesterTreasureBag: {
+				DisplayName: ({$NPCs.HarvesterBoss.DisplayName})宝藏袋
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			DesiccatedLeather: {
+				DisplayName: 干燥皮革
+				Tooltip: “又干又黏，而且气味难闻”
+			}
+
+			DroneParts: {
+				DisplayName: 无人机零件
+				Tooltip: “这些部件可以被重新利用……”
+			}
+
+			DroneUnlockableBasicLaserDrone.DisplayName: 轻激光无人机组件
+			DroneUnlockableHealingDrone.DisplayName: 治疗无人机组件
+			DroneUnlockableHeavyLaserDrone.DisplayName: 重激光无人机组件
+			DroneUnlockableMissileDrone.DisplayName: 导弹无人机组件
+			DroneUnlockableShieldDrone.DisplayName: 护盾无人机组件
+
+			DroneUnlockable: {
+				UnlockedText: 已解锁: {0}
+				Unlocks: "{$Items.DroneController.DisplayName}已解锁{0}"
+				AlreadyUnlocked: 已为{$Items.DroneController.DisplayName}解锁{0}
+			}
+
+			CraftOfMiners: {
+				DisplayName: 世界在我
+				Tooltip:
+					'''
+					"用你的双拳打碎路上的任何障碍"
+					[c/44942e:"献给Anonymous"]
+					'''
+			}
+
+			GuideVoodoorang: {
+				DisplayName: 向导巫毒嘶吼
+				Tooltip: “你为什么要这样？”
+			}
+
+			InfinityRocket: {
+				DisplayName: 无尽火箭
+				Tooltip: “这真的永不结束！”
+			}
+
+			StarForge: {
+				DisplayName: 星炉
+				Tooltip: “宇宙的无穷供应”
+			}
+
+			BrainOfCthulhuGitgud.DisplayName: 疯狂已逝
+			DeerclopsGitgud.DisplayName: 独眼巨鹿雕像
+			DestroyerGitgud.DisplayName: 金属捕梦网
+			DukeFishronGitgud.DisplayName: 白钩
+			EaterOfWorldsGitgud.DisplayName: 玩具海鸥
+			EmpressOfLightGitgud.DisplayName: 破旧的踩踏靴
+			EyeOfCthulhuGitgud.DisplayName: 碎晶体
+			GolemGitgud.DisplayName: 可充电的太阳能电池
+			KingSlimeGitgud.DisplayName: 史莱姆审判通知书
+			LunaticCultistGitgud.DisplayName: 解除职业通知书
+			MoonLordGitgud.DisplayName: 月球亮面
+			PlanteraGitgud.DisplayName: 绿拇指
+			QueenBeeGitgud.DisplayName: 蜂蜜顶针
+			QueenSlimeGitgud.DisplayName: 闪耀杯子蛋糕
+			SkeletronGitgud.DisplayName: 盒装豆浆
+			SkeletronPrimeGitgud.DisplayName: 提前十年的闹钟
+			TwinsGitgud.DisplayName: 金属隐形眼镜
+			WallOfFleshGitgud.DisplayName: 血肉墙巫毒娃娃
+
+			IdolOfDecay: {
+				DisplayName: 腐朽偶像
+				Tooltip:
+					'''
+					在地牢使用以召唤{$NPCs.HarvesterBoss.DisplayName}的最终型态
+					不消耗
+					'''
+			}
+
+			KnittingSet: {
+				DisplayName: 缝纫套组
+				Tooltip: “一套用来制作可爱服装和配饰的工具组”
+			}
+
+			MeatballsEyeItem: {
+				DisplayName: 肉球眼
+				Tooltip: “获得{$Items.ChunkysEyeItem.DisplayName}并在恶魔祭坛能将两者结合起来”
+			}
+
+			PetAccessory: {
+				Hat: 戴在头上
+				Body: 戴在身上
+				Carried: 用手拿着
+				Accessory: 作为配饰配戴
+				Blacklisted: 使特定史莱姆禁用此配件
+				NoUse: 没有召唤任何史莱姆来装备它
+				Disabled: 此配件类型未注册仅供开发人员测试使用
+
+				Colors: {
+					Red: 红色
+					Orange: 橙色
+					Gold: 黄金
+					Yellow: 黄色
+					Green: 绿色
+					Blue: 蓝色
+					Purple: 紫色
+					Pink: 粉色
+					White: 白色
+					Gray: 灰色
+					Black: 黑色
+					Platinum: 铂金
+					Iron: 铁
+				}
+			}
+
+			PetAccessoryBowtie: {
+				DisplayName: 可爱{$Items.PetAccessoryBowtie.ShortName}
+				Tooltip: “一个柔软的领结，可爱的史莱姆会将它配戴在胸前”
+				ShortName: 领结
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryBunnyEars: {
+				DisplayName: 可爱{$Items.PetAccessoryBunnyEars.ShortName}
+				Tooltip: “一对复活节兔子耳朵，可爱的史莱姆会将它配戴在头上”
+				ShortName: 兔耳
+			}
+
+			PetAccessoryBunnySuit: {
+				DisplayName: 可爱{$Items.PetAccessoryBunnySuit.ShortName}
+				Tooltip: “兔子(?)服装，可爱的史莱姆会将它穿在身上”
+				ShortName: 兔女郎服
+
+				AccessoryNames: {
+					Black: "{$Items.PetAccessory.Colors.Black}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+				}
+			}
+
+			PetAccessoryCrown: {
+				DisplayName: 可爱{$Items.PetAccessoryCrown.ShortName}
+				Tooltip: “一顶华丽的皇冠，可爱的史莱姆会将它戴在头上”
+				ShortName: 皇冠
+
+				AccessoryNames: {
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Platinum: "{$Items.PetAccessory.Colors.Platinum}"
+				}
+			}
+
+			PetAccessoryHairBow: {
+				DisplayName: 可爱{$Items.PetAccessoryHairBow.ShortName}
+				Tooltip: “一个大蝴蝶结，可爱的史莱姆会将它配戴在头上”
+				ShortName: 发饰
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryKitchenKnife: {
+				DisplayName: 可爱{$Items.PetAccessoryKitchenKnife.ShortName}
+				Tooltip: “一把玩具厨刀，可爱的史莱姆会随身携带它”
+				ShortName: 厨刀
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryMetalHelmet: {
+				DisplayName: 可爱{$Items.PetAccessoryMetalHelmet.ShortName}
+				Tooltip: “一个玩具骑士头盔，可爱的史莱姆会将它戴在头上”
+				ShortName: 骑士盔
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryMittens: {
+				DisplayName: 可爱{$Items.PetAccessoryMittens.ShortName}
+				Tooltip: “一双温暖的手套，可爱的史莱姆会将它们戴在手上”
+				ShortName: 手套
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryPartyHat: {
+				DisplayName: 可爱{$Items.PetAccessoryPartyHat.ShortName}
+				Tooltip: “一顶派对帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 派对帽
+			}
+
+			PetAccessoryPumpkinMask: {
+				DisplayName: 可爱{$Items.PetAccessoryPumpkinMask.ShortName}
+				Tooltip: “一颗尺寸完美的南瓜，可爱的史莱姆会将它戴在头上”
+				ShortName: 南瓜面具
+
+				AccessoryNames: {
+					SOrange: 橙色邪恶
+					IOrange: 橙色纯真
+					SGreen: 绿色邪恶
+					IGreen: 绿色纯真
+					SWhite: 白色邪恶
+					IWhite: 白色纯真
+					SPurple: 紫色邪恶
+					IPurple: 紫色纯真
+					SMelon: 西瓜色邪恶
+					IMelon: 西瓜色纯真
+				}
+			}
+
+			PetAccessorySlimeHead: {
+				DisplayName: 可爱{$Items.PetAccessorySlimeHead.ShortName}
+				Tooltip: “一个绒毛史莱姆玩偶，可爱的史莱姆会将它叠在自己头上”
+				ShortName: 史莱姆玩具
+
+				AccessoryNames: {
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					Pinky: 粉色
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+				}
+			}
+
+			PetAccessoryStaff: {
+				DisplayName: 可爱{$Items.PetAccessoryStaff.ShortName}
+				Tooltip: “一把玩具法杖，可爱的史莱姆会随身携带它”
+				ShortName: 手杖
+
+				AccessoryNames: {
+					Amethyst: 紫晶
+					Sapphire: 蓝玉
+					Emerald: 翡翠
+					Ruby: 红玉
+					Amber: 琥珀
+					Topaz: 黄玉
+					Diamond: 钻石
+					Magic: 魔法
+				}
+			}
+
+			PetAccessorySwallowedKey: {
+				DisplayName: 可爱{$Items.PetAccessorySwallowedKey.ShortName}
+				Tooltip: “一把突然出现的钥匙，可爱的史莱姆会把它……嗯……带着？”
+				ShortName: 钥匙
+			}
+
+			PetAccessoryTophat: {
+				DisplayName: 可爱{$Items.PetAccessoryTophat.ShortName}
+				Tooltip: “一顶优雅的大礼帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 礼帽
+			}
+
+			PetAccessoryToyBreastplate: {
+				DisplayName: 可爱{$Items.PetAccessoryToyBreastplate.ShortName}
+				Tooltip: “一件玩具骑士胸甲，可爱的史莱姆会将它穿在身上”
+				ShortName: 骑士胸甲
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToyMace: {
+				DisplayName: 可爱{$Items.PetAccessoryToyMace.ShortName}
+				Tooltip: “一把类似圣骑士锤的玩具锤，可爱的史莱姆会随身携带它”
+				ShortName: 骑士锤
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToyShield: {
+				DisplayName: 可爱{$Items.PetAccessoryToyShield.ShortName}
+				Tooltip: “一个玩具骑士盾牌，可爱的史莱姆会随身携带它”
+				ShortName: 骑士盾
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToySpear: {
+				DisplayName: 可爱{$Items.PetAccessoryToySpear.ShortName}
+				Tooltip: “一把形似斯巴达长枪的玩具枪，可爱的史莱姆会随身携带它”
+				ShortName: 骑士枪
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryToySword: {
+				DisplayName: 可爱{$Items.PetAccessoryToySword.ShortName}
+				Tooltip: “一把玩具剑，可爱的史莱姆会随身携带它”
+				ShortName: 骑士剑
+
+				AccessoryNames: {
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+				}
+			}
+
+			PetAccessoryWizardHat: {
+				DisplayName: 可爱{$Items.PetAccessoryWizardHat.ShortName}
+				Tooltip: “一顶棕色巫师帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 巫师帽
+			}
+
+			PetAccessoryXmasHat: {
+				DisplayName: 可爱{$Items.PetAccessoryXmasHat.ShortName}
+				Tooltip: “一顶圣诞帽，可爱的史莱姆会将它戴在头上”
+				ShortName: 圣诞帽
+
+				AccessoryNames: {
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+				}
+			}
+
+			AntiqueCageItem: {
+				DisplayName: 古董笼子
+				Tooltip: ""
+			}
+
+			AntiqueChestItem: {
+				DisplayName: 古董箱
+				Tooltip: ""
+			}
+
+			CuteSlimeStatueItem: {
+				DisplayName: 可爱史莱姆雕像
+				Tooltip: 你无法捕捉雕像生成的生物
+			}
+
+			HarvesterRelicItem: {
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName}圣物"
+				Tooltip: ""
+			}
+
+			HarvesterRelicColoredItem: {
+				DisplayName: "{$Items.HarvesterRelicItem.DisplayName}(彩色)"
+				Tooltip: ""
+			}
+
+			HarvesterTrophyItem: {
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName}纪念章"
+				Tooltip: ""
+			}
+
+			FieldsOfJoyItem: {
+				DisplayName: 欢乐原野
+				Tooltip: "'C. Paigner'"
+			}
+
+			PretentiousRockItem: {
+				DisplayName: 研究板岩
+				Tooltip: "'C. Paigner'"
+			}
+
+			SCP099Item: {
+				DisplayName: 肖像画
+				Tooltip: "'R. Magritte'"
+			}
+
+			SCP3515Item: {
+				DisplayName: SCP-3515
+				Tooltip: "'Unknown'"
+			}
+
+			SlimeBeaconItem: {
+				DisplayName: 史莱姆信标
+				Tooltip: “一起做更多的史莱姆！”
+				NoMultiplayer: "[c/FFA01D:在多人模式中不起作用]"
+			}
+
+			StarRodItem: {
+				DisplayName: 引星棒
+				Tooltip: 当你在附近时，会吸引夜晚的流星
+			}
+
+			VanityDresserItem.DisplayName: 宠物梳妆台
+
+			WyvernCampfireItem: {
+				DisplayName: 飞龙篝火
+				Tooltip: “飞龙……”噗"！"
+			}
+
+			ExtendoNetGolden: {
+				DisplayName: 加长金虫网
+				Tooltip:
+					'''
+					"捕捉那些难以亲近的小动物"
+					也可以捕捉熔岩小动物！
+					'''
+			}
+
+			ExtendoNetRegular: {
+				DisplayName: 加长虫网
+				Tooltip: “捕捉那些难以亲近的小动物”
+			}
+
+			PrettyMask: {
+				DisplayName: 漂亮面具
+				Tooltip: “很适合搭配红围巾、红手套、红靴子和你的生日套装”
+			}
+
+			SoulHarvesterMask: {
+				DisplayName: "{$NPCs.HarvesterBoss.DisplayName}面具"
+				Tooltip: ""
+			}
+
+			VanitySelector: {
+				DisplayName: 宠物服饰手提箱
+				Tooltip:
+					'''
+					单击左键更改一般宠物外观
+					单击右键更改照明宠物外观
+					'''
+			}
+
+			BoneCleavingFang: {
+				DisplayName: 断骨牙
+				Tooltip:
+					'''
+					攻击敌人会积累能量，点击右键释放能量攻击
+					随着能量的积累而发光，能量越多，亮度越高，释放的伤害也越高
+					不使用时，能量会逐渐消退
+					'''
+			}
+
+			BoneShatterLongbow: {
+				DisplayName: 碎骨弓
+				Tooltip: 将木箭变为燃烧之魂
+			}
+
+			BreathOfSpazmatism: {
+				DisplayName: 魔焰之息
+				Tooltip:
+					'''
+					发射诅咒焰束
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					'''
+			}
+
+			DroneController: {
+				DisplayName: 无人机控制器
+				Tooltip:
+					'''
+					召唤友好的无人机来守护你
+					使用右键选择无人机类型
+					手持该物品可以提高无人机的支援和进攻速度
+					'''
+				Firerate: "{0}开火速度"
+				UnlockMore: 击败{$NPCName.TheDestroyer}以解锁更多无人机
+				CanSpawn: 同时只能存在一个{0}
+				ToUnlock: 制作并使用{0}
+			}
+
+			EverglowLantern: {
+				DisplayName: 永辉灯笼
+				Tooltip:
+					'''
+					召唤两个被释放的地牢之魂为你而战
+					每个灵魂仅占据半格召唤栏位
+					'''
+			}
+
+			EverhallowedLantern: {
+				DisplayName: 永圣灯笼
+				Tooltip:
+					'''
+					召唤灵魂为你而战
+					使用右键选择灵魂类型
+					'''
+				MechCondition: 击败机械三王以解锁新灵魂类型
+				SetBonusBoost: 穿戴"灵魂救主"套装后伤害增加{0}%
+			}
+
+			GoblinUnderlingItem: {
+				DisplayName: 好东西袋
+				Tooltip:
+					'''
+					召唤哥布林下属为你而战
+					随着游戏继承而变强
+					不占据召唤栏位，但不能复数召唤
+					“里面有一颗尖球、一枚硬币和一个……月亮？“
+					'''
+			}
+
+			LegendaryWoodenSword: {
+				DisplayName: 传奇木剑
+				Tooltip: ""
+			}
+
+			MagicSlimeSling: {
+				DisplayName: 魔法史莱姆机弦
+				Tooltip: 发射魔法凝胶，击中后转化为暂时的史莱姆仆从
+			}
+
+			PlagueOfToads: {
+				DisplayName: 蟾蜍瘟疫
+				Tooltip: 召唤一朵云，向敌人降下蟾蜍雨
+			}
+
+			PocketSand: {
+				DisplayName: 一袋沙
+				Tooltip: “扔出一团沙子来迷惑敌人”
+			}
+
+			SightofRetinazer: {
+				DisplayName: 激光之视
+				Tooltip: ""
+			}
+
+			SlimeHandlerKnapsack: {
+				DisplayName: 史莱姆搬运包
+				Tooltip:
+					'''
+					从你的背包中召唤一种随机颜色的友好史莱姆为你而战
+					使用右键选择史莱姆类型
+					'''
+				Default: 默认
+				Assorted: 混合
+				Spiked: 尖刺
+				SpikedBonus: 战斗时发射尖刺
+				SpikedUnlock: 击败世纪之花
+			}
+
+			Talonstorm: {
+				DisplayName: 利爪风暴
+				Tooltip: 召唤骨风暴，用延伸的利爪攻击敌人
+			}
+
+			TomeOfShadowflameSkulls: {
+				DisplayName: 暗影焰头骨之书
+				Tooltip: 造成暗影焰减益
+			}
+
+			TrueLegendaryWoodenSword: {
+				DisplayName: 真传奇木剑
+				Tooltip: “真正的传奇”
+			}
+
+			Gitgud: {
+				Or: 或
+				ConsolationPrize: 安慰奖
+				ReducedDamageTakenBoss: "{1}造成的伤害减少{0}%"
+				BuffImmunity: 当{1}存活时免疫{0}
+				TimesDied: 死亡次数: {0}/{1}
+			}
+
+			SillyBalloonKit: {
+				DisplayName: 愚蠢气球套组
+				Tooltip:
+					'''
+					"过生日、举办派对或者拯救世界的绝佳礼物！"
+					将一个有趣的派对气球充气以便随身携带
+					使用左键选择气球类型
+					'''
+				DemonEyeGreen: 恶魔眼(绿)
+				DemonEyePurple: 恶魔眼(紫)
+				DemonEyeRed: 恶魔眼(红)
+				FracturedEyeGreen: 破碎眼(绿)
+				FracturedEyePurple: 破碎眼(紫)
+				FracturedEyeRed: 破碎眼(红)
+				MetalEyeGreen: 金属眼(绿)
+				MetalEyePurple: 金属眼(紫)
+				MetalEyeRed: 金属眼(红)
+				FracturedMetalEyeGreen: 裂金眼(绿)
+				FracturedMetalEyePurple: 裂金眼(紫)
+				FracturedMetalEyeRed: 裂金眼(红)
+				Spazmatism: 魔焰眼
+				Retinazer: 激光眼
+				Cobballoon: 石化眼
+			}
+		}
+
+		NPCs: {
+			AnimatedSpellTome: {
+				DisplayName: 活化咒法书
+				BestiaryFlavorText: 真正的大法师不需要自己寻找书籍，它们会在需要的时候自己出现。
+			}
+
+			AnimatedTome: {
+				DisplayName: 活化魔典
+				BestiaryFlavorText: 听说这本书曾是畅销书，当时的人们说它几乎像是从货架上飞了出去！
+			}
+
+			Bass: {
+				DisplayName: 鲈鱼
+				BestiaryFlavorText: 一种常见的鱼，经常出没于淡水河流和湖泊中。
+			}
+
+			BloatedBaitThief: {
+				DisplayName: 肥胖的鱼饵窃贼
+				BestiaryFlavorText: 一只肚子肿胀的鲈鱼，里面好像有什么在蠕动……
+			}
+
+			Chunky: {
+				DisplayName: 腐块
+				BestiaryFlavorText: 一团有只眼睛的腐块。看起来眼睛和身体似乎不太协调。
+			}
+
+			ChunkysEye: {
+				DisplayName: 腐块眼
+				BestiaryFlavorText: 被困在腐化之地的克苏鲁爪牙。正在寻找失踪的弟弟。
+			}
+
+			Cloudfish: {
+				DisplayName: 云鱼
+				BestiaryFlavorText: 云？鱼？两者都是！
+			}
+
+			CuteGastropod: {
+				DisplayName: 可爱腹足怪
+				BestiaryFlavorText: 出现在神圣之地的史莱姆变体生物在遇见某些特别的人时会呈现出更加友好的外观。
+			}
+
+			CuteSlimeBlack: {
+				DisplayName: 可爱黑史莱姆
+				BestiaryFlavorText: 这种史莱姆对她的马尾辫抱持着极大的虚荣心，要和她交朋友最简单的办法就是称赞她的头发。
+			}
+
+			CuteSlimeBlue: {
+				DisplayName: 可爱蓝史莱姆
+				BestiaryFlavorText: 虽然这种史莱姆看起来很呆，但她们出乎意料的深情，喜欢拥抱任何她亲近的人。
+			}
+
+			CuteSlimeCorrupt: {
+				DisplayName: 可爱腐化史莱姆
+				BestiaryFlavorText: 这种拥有空洞眼神的深色史莱姆或许会让你觉得很危险，但她们其实只是不太擅长社交。
+			}
+
+			CuteSlimeCorruptJungle: {
+				DisplayName: 可爱腐化丛林史莱姆
+				BestiaryFlavorText: 史莱姆的适应能力令人难以置信，即使在最恶劣的条件下她们也能生存。
+			}
+
+			CuteSlimeCrimson: {
+				DisplayName: 可爱猩红史莱姆
+				BestiaryFlavorText: 虽然从外表看起来这种史莱姆有点狂躁，但其实她们是冷静沉着的类型。
+			}
+
+			CuteSlimeCrimsonJungle: {
+				DisplayName: 可爱猩红丛林史莱姆
+				BestiaryFlavorText: 当丛林遭到猩红侵蚀时，这种史莱姆通过模仿深红色的草来迅速适应。
+			}
+
+			CuteSlimeDungeon: {
+				DisplayName: 可爱地牢史莱姆
+				BestiaryFlavorText: 这种史莱姆是按照古代女巫的形象创造的。她们几乎是完美的，除了没有腿。
+			}
+
+			CuteSlimeGolden.DisplayName: 可爱金史莱姆
+
+			CuteSlimeGreen: {
+				DisplayName: 可爱绿史莱姆
+				BestiaryFlavorText: 别让她半梦半醒的样子欺骗了你；这种史莱姆很细心，随时准备采取行动。
+			}
+
+			CuteSlimeHoney: {
+				DisplayName: 可爱蜂蜜史莱姆
+				BestiaryFlavorText: 为了躲避黄蜂，这种史莱姆将蜂蜜融入自身来伪装。这导致黄蜂更容易发现她们。
+			}
+
+			CuteSlimeIce: {
+				DisplayName: 可爱冰雪史莱姆
+				BestiaryFlavorText: 虽然她们摸起来很冰冷，但她们的外表和举止也许能温暖你的心。
+			}
+
+			CuteSlimeIlluminant: {
+				DisplayName: 可爱夜明史莱姆
+				BestiaryFlavorText: 神圣之地不稳定的性质使这种史莱姆变得非常有趣。
+			}
+
+			CuteSlimeJungle: {
+				DisplayName: 可爱丛林史莱姆
+				BestiaryFlavorText: 对于弱小的软泥生物来说，丛林生活很艰难。但这种史莱姆证明了这并非不可能。
+			}
+
+			CuteSlimeLava: {
+				DisplayName: 可爱熔岩史莱姆
+				BestiaryFlavorText: 这种史莱姆经常不小心将黑曜石卡进身体中。遗憾的是，她们无法自立移除。
+			}
+
+			CuteSlimePink: {
+				DisplayName: 可爱粉史莱姆
+				BestiaryFlavorText: 娇小并不代表弱小。尽管这种史莱姆没有巨大的尺寸，但她们却拥有巨大的勇气。
+			}
+
+			CuteSlimePinkIce: {
+				DisplayName: 可爱粉冰雪史莱姆
+				BestiaryFlavorText: 神圣之地经常对野生动物产生混乱的影响，但这种史莱姆成功保持了平静和礼貌。
+			}
+
+			CuteSlimePurple: {
+				DisplayName: 可爱紫史莱姆
+				BestiaryFlavorText: 别让她的微笑欺骗了你……她们实际上比看起来的还要开心。
+			}
+
+			CuteSlimePurpleIce: {
+				DisplayName: 可爱紫冰雪史莱姆
+				BestiaryFlavorText: 出于对腐化的恐惧，这种史莱姆总是看起来很紧张。
+			}
+
+			CuteSlimeRainbow: {
+				DisplayName: 可爱彩虹史莱姆
+				BestiaryFlavorText: 这种史莱姆展现出的关怀和母性证明了她具有一定的人性和同理心。
+			}
+
+			CuteSlimeRed: {
+				DisplayName: 可爱红史莱姆
+				BestiaryFlavorText: 一种非常活跃的俏皮史莱姆，偶尔会玩过头。
+			}
+
+			CuteSlimeRedIce: {
+				DisplayName: 可爱红冰雪史莱姆
+				BestiaryFlavorText: 在猩红之地最好避免引人注目，显然这种史莱姆深知这点。
+			}
+
+			CuteSlimeSand: {
+				DisplayName: 可爱沙史莱姆
+				BestiaryFlavorText: 覆盖其身体之上的粗沙使其难以接触，但她不会拒绝朋友。
+			}
+
+			CuteSlimeShimmer: {
+				DisplayName: 可爱微光史莱姆
+				BestiaryFlavorText: 当暴露在神秘的微光之下时，这种史莱姆会呈现出空灵的外观。
+			}
+
+			CuteSlimeToxic: {
+				DisplayName: 可爱毒史莱姆
+				BestiaryFlavorText: 外表是会骗人的，她只有看上去的一半可怕！
+			}
+
+			CuteSlimeXmas: {
+				DisplayName: 可爱圣诞史莱姆
+				BestiaryFlavorText: 最好的礼物是朋友，这种史莱姆想把这份礼物带给每个人。
+			}
+
+			CuteSlimeYellow: {
+				DisplayName: 可爱黄史莱姆
+				BestiaryFlavorText: 这种史莱姆动作十分优雅，舞步一步不落。
+			}
+
+			DemonEyeRecolor.DisplayName: 恶魔眼
+			DemonEyeWandering.DisplayName: 游荡眼球怪
+
+			FairySlime: {
+				DisplayName: 仙灵史莱姆
+				BestiaryFlavorText: 因为不想输给它们能够飞行的邻居，这种史莱姆长出了类似翅膀的延伸。它们很开心，尽管事实上他们仍然不会飞。
+			}
+
+			GiantGrasshopper: {
+				DisplayName: 巨型蚱蜢
+				BestiaryFlavorText: 它可以一次跳过整个灌木丛。
+			}
+
+			GiantGrasshopperGold: {
+				DisplayName: 巨型金蚱蜢
+				BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
+			}
+
+			DungeonSoul.DisplayName: 地牢之魂
+			DungeonSoulFreed.DisplayName: 地牢之魂
+
+			HarvesterBoss: {
+				DisplayName: 灵魂收割者
+				BestiaryFlavorText: 在吸收了地牢堕落灵魂的精华后，这只骷髅鸟迅速成长为凶猛的猎手，试图捕猎那曾喂养过它的手。
+				BossChecklistIntegration.SpawnInfo: 在地牢中找到并打开{$Items.AntiqueCageItem.DisplayName}，或使用[i:AssortedCrazyThings/IdolOfDecay]
+			}
+
+			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+
+			HornedSlime: {
+				DisplayName: 恶魔史莱姆
+				BestiaryFlavorText: 这些恶魔角并不仅仅只是装饰；它们能够散发能量，令这些软泥能够持续凝聚形体。
+			}
+
+			JoyousSlime: {
+				DisplayName: 欢乐史莱姆
+				BestiaryFlavorText: 史莱姆的非敌意变体，有着一张友善的面孔。每到晚上，他就会试图寻找另一个同样友善的同伴。
+			}
+
+			Meatball: {
+				DisplayName: 肉球
+				BestiaryFlavorText: 一团有只眼睛的肉球。眼睛看起来在不断的挣扎，试图逃脱。
+			}
+
+			MeatballsEye: {
+				DisplayName: 肉球眼
+				BestiaryFlavorText: 被困在猩红之地的克苏鲁爪牙。正在急忙寻找它的哥哥。
+			}
+
+			Megalodon: {
+				DisplayName: 巨齿鲨
+				BestiaryFlavorText: 这种古老的掠食者被认为已经灭绝，但它的寿命和它永无止尽的饥饿一样长久。
+			}
+
+			OceanSlime: {
+				DisplayName: 海洋史莱姆
+				BestiaryFlavorText: 迷失在大海中的史莱姆面临两种选择：适应，或成为食物。幸运的是，它们的味道很糟糕。
+			}
+
+			SpawnOfOcram: {
+				DisplayName: 奥库瑞姆之子
+				BestiaryFlavorText: 似乎是某个远古传说的后裔。该存在已经消失在历史长河之中。
+			}
+
+			StingSlime: {
+				DisplayName: 螫刺史莱姆
+				BestiaryFlavorText: 弹跳如软泥，刺痛如毒蝎。
+			}
+
+			StoneSoldier: {
+				DisplayName: 石兵
+				BestiaryFlavorText: 从古老墓穴中游荡出来的活化石像。它们用宝石做成的双眼很值钱。
+			}
+
+			StrangeSlime: {
+				DisplayName: 奇异史莱姆
+				BestiaryFlavorText: 这些奇特的史莱姆身上寄生着奇妙的植物，它们会相伴终身。史莱姆们会不断确保这些植物能够直立。
+			}
+
+			TurtleSlime: {
+				DisplayName: 龟壳史莱姆
+				BestiaryFlavorText: 大型海龟在生长过程中会不断褪壳，而这些史莱姆会收集这些被淘汰掉的残片来保护自己。
+			}
+
+			WalkingTombstoneGolden: {
+				DisplayName: 行走墓碑
+				BestiaryFlavorText: 这些寄居蟹采取了一种昂贵而病态的伪装方式。
+			}
+
+			YoungHarpy: {
+				DisplayName: 幼年鸟妖
+				BestiaryFlavorText: 鸟妖并不是天生就充满敌意。如果在小时候和她交了朋友，那她将永远认定你为朋友。
+			}
+
+			CuteSlimes: {
+				SpawnConditionType: {
+					Forest: {
+						Black: 黑
+						Blue: 蓝
+						Green: 绿
+						Purple: 紫
+						Rainbow: 彩虹
+						Red: 红
+						Yellow: 黄
+					}
+
+					Desert.Sand: 沙
+					Tundra.Ice: 冰雪
+					Jungle.Jungle: 丛林
+					Underground.Toxic: 毒
+					Hell.Lava: 熔岩
+					Corruption.Corrupt: 腐化
+					CorruptionIce.PurpleIce: 紫冰雪
+					CorruptionJungle.CorruptJungle: 腐化丛林
+					Crimson.Crimson: 猩红
+					CrimsonIce.RedIce: 红冰雪
+					CrimsonJungle.CrimsonJungle: 猩红丛林
+					Hallow.Illuminant: 夜明
+					HallowIce.PinkIce: 粉冰雪
+					Dungeon.Dungeon: 地牢
+					Xmas.Xmas: 地牢
+					Honey.Honey: 蜂蜜
+				}
+			}
+		}
+
+		Projectiles: {
+			SigilOfTheBeakProj.DisplayName: 破碎之魂
+			CompanionDungeonSoulMinion.DisplayName: 灵魂同伴
+			BasicLaserDrone.DisplayName: 轻激光无人机
+			HealingDrone.DisplayName: 治疗无人机
+			HeavyLaserDrone.DisplayName: 重激光无人机
+			HeavyLaserDroneLaser.DisplayName: 重激光无人机
+			MissileDrone.DisplayName: 导弹无人机
+			MissileDroneRocket.DisplayName: 导弹无人机导弹
+			ShieldDrone.DisplayName: 护盾无人机
+			GoblinUnderlingDart.DisplayName: 哥布林属下飞镖
+			GoblinUnderlingProj.DisplayName: 哥布林属下
+			GoblinUnderlingTerraBeam.DisplayName: 哥布林属下泰拉光束
+			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
+			MagicSlimeSlingMinion.DisplayName: 魔法史莱姆机弦仆从
+			PetDestroyerDroneLaser.DisplayName: 宠物毁灭者激光
+			PetGolemHeadFireball.DisplayName: 宠物石巨人头火球
+			SlimePackAssortedMinion.DisplayName: 史莱姆背包仆从
+			SlimePackMinion.DisplayName: 史莱姆背包仆从
+			SlimePackMinionSpike.DisplayName: 史莱姆背包仆从尖刺
+			SlimePackSpikedMinion.DisplayName: 史莱姆背包仆从
+			BabyHarvesterProj.DisplayName: 小鸟
+			HarvesterAbsorbedSoul.DisplayName: 吸收的灵魂
+			HarvesterBone.DisplayName: 收割者骨头
+			HarvesterFracturedSoul.DisplayName: 破碎之魂
+			AbeeminationProj.DisplayName: 憎恶之蜂
+			AlienHornetProj.DisplayName: 异星黄蜂
+			AnimatedTomeProj.DisplayName: 活化魔典
+			AnomalocarisProj.DisplayName: 奇虾
+			BabyCrimeraProj.DisplayName: 喀迈拉宝宝
+			BabyIchorStickerProj.DisplayName: 黏黏怪宝宝
+			BabyOcramProj.DisplayName: 迷你奥库瑞姆
+			BrainofConfusionProj.DisplayName: 混乱之脑
+			ChunkyProj.DisplayName: 腐块
+			ChunkySlimeProj.DisplayName: 腐块史莱姆
+			CompanionDungeonSoulPetProj.DisplayName: 灵魂同伴
+			CompanionDungeonSoulPetProj2.DisplayName: 灵魂同伴
+			CursedSkullProj.DisplayName: 诅咒骷髅头
+			CuteGastropodProj.DisplayName: 可爱腹足怪
+			CuteLamiaPetProj.DisplayName: 小蛇
+			CuteSlimeBlackProj.DisplayName: 可爱黑史莱姆
+			CuteSlimeBlueProj.DisplayName: 可爱蓝史莱姆
+			CuteSlimeCorruptProj.DisplayName: 可爱腐化史莱姆
+			CuteSlimeCorruptJungleProj.DisplayName: 可爱腐化丛林史莱姆
+			CuteSlimeCrimsonProj.DisplayName: 可爱猩红史莱姆
+			CuteSlimeCrimsonJungleProj.DisplayName: 可爱猩红丛林史莱姆
+			CuteSlimeDungeonProj.DisplayName: 可爱地牢史莱姆
+			CuteSlimeGoldenProj.DisplayName: 可爱金史莱姆
+			CuteSlimeGreenProj.DisplayName: 可爱绿史莱姆
+			CuteSlimeHoneyProj.DisplayName: 可爱蜂蜜史莱姆
+			CuteSlimeIceProj.DisplayName: 可爱冰雪史莱姆
+			CuteSlimeIlluminantProj.DisplayName: 可爱夜明史莱姆
+			CuteSlimeJungleProj.DisplayName: 可爱丛林史莱姆
+			CuteSlimeLavaProj.DisplayName: 可爱熔岩史莱姆
+			CuteSlimePinkProj.DisplayName: 可爱粉史莱姆
+			CuteSlimePinkIceProj.DisplayName: 可爱粉冰雪史莱姆
+			CuteSlimePrincessProj.DisplayName: 可爱史莱姆公主
+			CuteSlimePurpleProj.DisplayName: 可爱紫史莱姆
+			CuteSlimePurpleIceProj.DisplayName: 可爱紫冰雪史莱姆
+			CuteSlimeQueenProj.DisplayName: 可爱史莱姆皇后
+			CuteSlimeRainbowProj.DisplayName: 可爱彩虹史莱姆
+			CuteSlimeRedProj.DisplayName: 可爱红史莱姆
+			CuteSlimeRedIceProj.DisplayName: 可爱红冰雪史莱姆
+			CuteSlimeSandProj.DisplayName: 可爱沙史莱姆
+			CuteSlimeShimmerProj.DisplayName: 可爱微光史莱姆
+			CuteSlimeToxicProj.DisplayName: 可爱毒史莱姆
+			CuteSlimeXmasProj.DisplayName: 可爱礼物史莱姆
+			CuteSlimeYellowProj.DisplayName: 可爱黄史莱姆
+			DemonHeartProj.DisplayName: 恶魔之心
+			DetachedHungryProj.DisplayName: 独立的饿鬼
+			DocileDemonEyeProj.DisplayName: 温驯的恶魔眼
+			DrumstickElementalProj.DisplayName: 鸡腿元素
+			DynamiteBunnyProj.DisplayName: 爆炸兔
+			EnchantedSwordProj.DisplayName: 附魔剑
+			FailureSlimeProj.DisplayName: 故障史莱姆
+			FairySlimeProj.DisplayName: 仙灵史莱姆
+			FairySwarmProj.DisplayName: 仙灵群
+			GhostMartianProj.DisplayName: 火星幽灵
+			GobletProj.DisplayName: 杯布林
+			HornedSlimeProj.DisplayName: 恶魔史莱姆
+			IlluminantSlimeProj.DisplayName: 夜明史莱姆
+			JoyousSlimeProj.DisplayName: 欢乐史莱姆
+			LifelikeMechanicalFrogProj.DisplayName: 栩栩如生的机械青蛙
+			LilWrapsProj.DisplayName: 小裹布
+			MeatballProj.DisplayName: 肉球
+			MeatballSlimeProj.DisplayName: 肉球史莱姆
+			MetroidPetProj.DisplayName: 密特罗德
+			MiniAntlionProj.DisplayName: 蚁狮宝宝
+			MiniMegalodonProj.DisplayName: 迷你巨齿鲨
+			NumberMuncherProj.DisplayName: 数字大嘴巴
+			OceanSlimeProj.DisplayName: 海洋史莱姆
+			PetCultistProj.DisplayName: 小小邪教徒
+			PetDestroyer.DisplayName: 小型毁灭者
+			PetDestroyerProbe.DisplayName: 小型探测怪
+			PetEaterofWorlds.DisplayName: 小小世界吞噬怪
+			PetFishronProj.DisplayName: 迷你猪龙鱼
+			PetGoldfishProj.DisplayName: 宠物金鱼
+			PetGolemHeadProj.DisplayName: 石巨人头复制品
+			PetHarvesterProj.DisplayName: 不屈之鸟
+			PetMoonProj.DisplayName: 个人月亮
+			PetPlanteraProj.DisplayName: 世纪之芽
+			PetPlanteraProjTentacle.DisplayName: 卑鄙种子触手
+			PetQueenSlimeProj.DisplayName: 顽皮小史莱姆
+			PetSunProj.DisplayName: 个人太阳
+			PigronataProj.DisplayName: 彩罐猪龙
+			PrinceSlimeProj.DisplayName: 史莱姆王子
+			QueenLarvaProj.DisplayName: 皇后幼虫
+			RainbowSlimeProj.DisplayName: 彩虹史莱姆
+			SkeletronHandProj.DisplayName: 骷髅王手宠物
+			SkeletronPrimeHandProj.DisplayName: 机械骷髅王手宠物
+			StingSlimeProj.DisplayName: 螫刺史莱姆
+			StrangeRobotProj.DisplayName: 奇怪的机器人
+			SuspiciousNuggetProj.DisplayName: 可疑的金块
+			SwarmofCthulhuProj.DisplayName: 克苏鲁集群
+			TinyRetinazerProj.DisplayName: 迷你激光眼
+			TinySpazmatismProj.DisplayName: 迷你魔焰眼
+			TorchGodLightPetProj.DisplayName: 火把神
+			TorturedSoulProj.DisplayName: 痛苦亡魂
+			TrueObservingEyeProj.DisplayName: 克苏鲁真眼
+			TurtleSlimeProj.DisplayName: 龟壳史莱姆
+			VampireBatProj.DisplayName: 吸血蝙蝠
+			WallFragmentEye1.DisplayName: 血肉墙眼
+			WallFragmentEye2.DisplayName: 血肉墙眼
+			WallFragmentMouth.DisplayName: 血肉墙嘴
+			WobyProj.DisplayName: 沃比
+			YoungHarpyProj.DisplayName: 幼年鸟妖
+			YoungWyvernProj.DisplayName: 幼年飞龙
+			ExtendoNetGoldenProj.DisplayName: 延长！
+			ExtendoNetRegularProj.DisplayName: 延长！
+			BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
+			BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName}箭"
+			CandleDustDummy.DisplayName: 蜡烛尘假人
+			GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
+			LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
+			PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
+			SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName}激光"
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName}息"
+			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
+			AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName}射击"
+			AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName}射击"
+			BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName}射击"
+			BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName}射击"
+			CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName}射击"
+			CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName}射击"
+			DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName}射击"
+			DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName}射击"
+			DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName}射击"
+			FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName}射击"
+			GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName}射击"
+			NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName}射击"
+			SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName}爆炸射击"
+			SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName}激光射击"
+			StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName}射击"
+			SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName}射击"
+			TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName}射击"
+			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName}射击"
+			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
+			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
+		}
+
+		Tiles: {
+			MapEntry_Locked: 已上锁
+			AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked}{$Items.AntiqueChestItem.DisplayName}"
+
+			SlimeBeaconTile: {
+				NotInMultiplayer: 【不在多人游戏中】
+				Activated: 背景已启用
+				Deactivated: 背景已停用
+			}
+
+			VanityDresserTile: {
+				Mouseover:
+					'''
+					宠物梳妆台
+					单击左键更改一般宠物的外观
+					单击右键更改照明宠物的外观
+					'''
+				WorkProperly: 要使其正常工作，请不要选择任何物品
+				NoCostumesFoundPet: 没有找到该一般宠物的替代服饰
+				NoCostumesFoundLightPet: 没有找到该照明宠物的替代服饰
+			}
+		}
+
+		Conditions: {
+			UnlockedBiomeTorches: 如果已使用{$ItemName.TorchGodsFavor}
+			DroneTypeNotUnlocked: 如果尚未解锁
+		}
+
+		DropConditions: {
+			MatchAppearanceCondition.Description: 根据外观掉落
+			NotAllDronePartsUnlockedCondition.Description: 如果尚未解锁所有{$Items.DroneParts.DisplayName}则掉落
+			NoHasItemWithBankCondition.Description: 仅当{0}不在最近的玩家库存或银行中
+		}
+
+		Announcements: {
+			SigilOfTheWingDeath: "{0}已死，它的灵魂不会放弃……"
+			SoulHarvesterDeath: 地牢之魂已被释放！
+			SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName}已苏醒！"
+			SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName}出现了！"
+			MegalodonAppear: "{$NPCs.Megalodon.DisplayName}正在逼近！"
+			BigEnemyDisappear: "{0}消失了……暂时"
+			SoulHarvesterBabyAppear: 你听到地牢中传来微弱的鸟叫声……
+			SoulHarvesterBabyCageAppear: 一只饥饿的小鸟被释放了！
+		}
+
+		SoulData: {
+			DungeonSoul: {
+				DisplayName: 地牢之魂
+				Unlock: ""
+				Description: ""
+			}
+
+			SoulofFright: {
+				DisplayName: 恐惧之魂
+				Unlock: 击败{$NPCName.SkeletronPrime}
+				Description: 造成{$BuffName.Ichor}和{$BuffName.Poisoned}
+			}
+
+			SoulofSight: {
+				DisplayName: 灵视之魂
+				Unlock: 击败{$Enemies.TheTwins}
+				Description: 造成{$BuffName.CursedInferno}
+			}
+
+			SoulofMight: {
+				DisplayName: 力量之魂
+				Unlock: 击败{$NPCName.TheDestroyer}
+				Description: ""
+			}
+		}
+
+		DroneData: {
+			BasicLaserDrone: {
+				DisplayName: 轻激光无人机
+				ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
+				Firerate: 快
+				Description: 快速发射激光
+				Misc: ""
+			}
+
+			HeavyLaserDrone: {
+				DisplayName: 重激光无人机
+				ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
+				Firerate: 极慢
+				Description: 长时间延迟之后发射穿透激光
+				Misc: ""
+			}
+
+			MissileDrone: {
+				DisplayName: 导弹无人机
+				ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
+				Firerate: 很慢
+				Description: 长时间延迟后发射导弹集群
+				Misc: ""
+			}
+
+			HealingDrone: {
+				DisplayName: 治疗无人机
+				ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
+				Firerate: ""
+				Description: 在受伤后对你进行治疗
+				Misc: 只能召唤一架
+			}
+
+			ShieldDrone: {
+				DisplayName: 护盾无人机
+				ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
+				Firerate: ""
+				Description: 随时间产生一个能减少一次伤害的护盾
+				Misc:
+					'''
+					只能召唤一架
+					无人机不存在时已生成的护盾会消失
+					'''
+			}
+		}
+
+		Configs: {
+			ClientConfig: {
+				DisplayName: 客户端配置
+
+				Headers: {
+					SatchelofGoodies: 好东西袋 - 仆从选项
+					HintServerConfig: 提示: 要转到包含功能切换的服务器配置，请点击右下角的"＞"
+				}
+
+				SatchelofGoodiesAutosummon: {
+					Label: 自动召唤
+					Tooltip: 启用后如果该物品在你的库存中，则可以在人物生成时自动召唤该仆从
+				}
+
+				SatchelofGoodiesVisibleArmor: {
+					Label: 装备进度
+					Tooltip: 启用后显示装备进度
+				}
+
+				SatchelofGoodiesChatterFreq: {
+					Label: 对话频率
+					Tooltip: 控制哥布林下属和你对话的概率(单位为百分比)，调为0表示关闭对话
+				}
+
+				Hint: {
+					Label: 提示
+					Tooltip: ""
+				}
+			}
+
+			ContentConfig: {
+				DisplayName: 服务器配置
+
+				Headers: {
+					TogglesSpecial:
+						'''
+						以下选项可以调整该Mod添加的内容
+
+						特殊 - 优先于其它相关选项的设定
+						'''
+					NPCs: NPC
+					Items: 物品
+					Other: 其它
+					HintClientConfig: 提示: 要转到包含功能切换的服务器配置，请点击左下角的"＜"
+				}
+
+				Bosses: {
+					Label: Boss
+					Tooltip: 切换Boss
+				}
+
+				CuteSlimes: {
+					Label: 可爱史莱姆
+					Tooltip: 切换可爱史莱姆
+				}
+
+				HostileNPCs: {
+					Label: 敌对
+					Tooltip: 有害生物 - 包括一些需要使用虫网捕捉的宠物
+				}
+
+				FriendlyNPCs: {
+					Label: 友好
+					Tooltip: 无害生物 - 包括一些需要使用虫网捕捉的宠物
+				}
+
+				DroppedPets: {
+					Label: 掉落宠物
+					Tooltip: 从特定生物掉落的宠物
+				}
+
+				OtherPets: {
+					Label: 其它宠物
+					Tooltip: 制作、出售或以其它方式获得的宠物 - 不包括使用虫网捕获的生物！
+				}
+
+				Weapons: {
+					Label: 武器
+					Tooltip: 造成伤害的物品 - 包括弹药
+				}
+
+				Tools: {
+					Label: 工具
+					Tooltip: 工具和其它实用物品
+				}
+
+				PlaceablesFunctional: {
+					Label: 可放置功能性物品
+					Tooltip: 可放置的功能性物块和物品
+				}
+
+				PlaceablesDecorative: {
+					Label: 可放置装饰物品
+					Tooltip: 可放置的装饰性物块和物品
+				}
+
+				Armor: {
+					Label: 盔甲
+					Tooltip: 带有统计数据的盔甲
+				}
+
+				VanityArmor: {
+					Label: 时装盔甲
+					Tooltip: 时装盔甲
+				}
+
+				Accessories: {
+					Label: 配饰
+					Tooltip: 具有效果的配饰
+				}
+
+				VanityAccessories: {
+					Label: 时装配饰
+					Tooltip: 无效果的配饰
+				}
+
+				BossConsolation: {
+					Label: 安慰配饰
+					Tooltip: 被原版Boss击败五次后掉落的安慰配饰
+				}
+
+				AommSupport: {
+					Label: “The Amulet Of Many Minions” - 跨Mod内容
+					Tooltip: 启用“AoMM”Mod后可启用的内容，例如战斗宠物
+				}
+
+				CuteSlimesPotionOnly: {
+					Label: 可爱史莱姆仅限药水
+					Tooltip: 影响可爱史莱姆的生成方式和果冻啤酒的运作方式
+				}
+
+				Hint: {
+					Label: 提示
+					Tooltip: ""
+				}
+			}
+
+			Common.AcceptClientChanges: 非服务器持有者无法更改此配置
+		}
+	}
+}

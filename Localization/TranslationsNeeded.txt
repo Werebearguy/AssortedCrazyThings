@@ -1,0 +1,9 @@
+en-US, 1119/1119, 100%, missing 0
+de-DE, 0/1119, 0%, missing 1119
+it-IT, 0/1119, 0%, missing 1119
+fr-FR, 0/1119, 0%, missing 1119
+es-ES, 0/1119, 0%, missing 1119
+ru-RU, 0/1119, 0%, missing 1119
+zh-Hans, 1119/1119, 100%, missing 0
+pt-BR, 0/1119, 0%, missing 1119
+pl-PL, 0/1119, 0%, missing 1119

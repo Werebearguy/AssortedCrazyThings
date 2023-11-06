@@ -152,17 +152,9 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
 
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.Poisoned,
-					BuffID.Venom,
-					BuffID.OnFire,
-					BuffID.CursedInferno,
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.OnFire] = true;
 		}
 
 		public override void SetDefaults()
@@ -1550,7 +1542,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 
 			//Gore 5 is a broken rib. For use when reviving
 
-			if (NPC.life <= 0 && !NPC.active) //!active is important due to CheckDead shenanigans
+			if (NPC.life <= 0 && RevivesDone >= Revive_Count)
 			{
 				var entitySource = NPC.GetSource_Death();
 

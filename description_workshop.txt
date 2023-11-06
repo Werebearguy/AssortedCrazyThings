@@ -32,7 +32,7 @@ Hopefully, you will find that the content of this mod livens up your world witho
 
 Mod Contents:
 [list]
-    [*]15 Tiles
+    [*]16 Tiles
     [*]59 NPCs, including one boss
     [*]215 items, including pets, accessories, armor, and more
     [*]Cross-mod content with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]"The Amulet of Many Minions"[/url]
@@ -56,4 +56,4 @@ If you happen to come across a problem with the mod, please report it on our Ter
 [b]Localization:[/b]
 If you want to add support for different languages, you are welcome to contribute localizations here: [b][url=https://github.com/Werebearguy/AssortedCrazyThings]GitHub[/url][/b]
 List of localization contributors:
-* None!
+* Simplified Chinese: GamMa

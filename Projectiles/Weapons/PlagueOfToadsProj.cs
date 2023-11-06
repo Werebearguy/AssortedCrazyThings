@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			Projectile.alpha = 50;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			Dust dust = Dust.NewDustDirect(new Vector2(Projectile.Center.X, Projectile.Bottom.Y - 2f), 2, 2, 154, 0f, 0f, 38, Color.LightGreen, 1f);
 			dust.velocity = new Vector2(Main.rand.NextFloat(2) - 1f, Main.rand.NextFloat(2) - 1f);

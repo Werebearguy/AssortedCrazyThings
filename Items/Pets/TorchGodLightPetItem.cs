@@ -43,10 +43,10 @@ namespace AssortedCrazyThings.Items.Pets
 		//TODO maybe look into reworking this into OnSpawn with GlobalItem
 		public override void Load()
 		{
-			On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
+			On_Item.NewItem_Inner += On_Item_NewItem_Inner;
 		}
 
-		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		private static int On_Item_NewItem_Inner(On_Item.orig_NewItem_Inner orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
 			/*
 				* Try dropping when these conditions are true
@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Items.Pets
 				*/
 			//If this causes a recursion somehow, im screaming
 			Player player = Main.LocalPlayer;
-			if (source.Context == "TorchGod" &&
+			if (source != null && source.Context == "TorchGod" &&
 				Type == ItemID.TorchGodsFavor && Stack == 1)
 			{
 				int itemToDrop = ModContent.ItemType<TorchGodLightPetItem>();
@@ -67,7 +67,7 @@ namespace AssortedCrazyThings.Items.Pets
 				}
 			}
 
-			int ret = orig(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
+			int ret = orig(source, X, Y, Width, Height, itemToClone, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
 			return ret;
 		}
 	}

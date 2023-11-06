@@ -240,7 +240,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			popupText.position = Projectile.Center - value / 2f;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			if (textWhoAmI <= -1 || textWhoAmI >= Main.maxItemText || Main.popupText[textWhoAmI] is not PopupText popupText)
 			{

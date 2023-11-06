@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.hasJumpOption_Unicorn = true;
+			player.GetJumpState(ExtraJump.UnicornMount).Enable();
 		}
 
 		public override void AddRecipes()

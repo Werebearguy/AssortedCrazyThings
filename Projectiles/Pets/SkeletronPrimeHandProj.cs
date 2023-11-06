@@ -185,7 +185,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 			Projectile.position.X = Projectile.position.X + Projectile.width / 2;

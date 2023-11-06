@@ -1325,7 +1325,7 @@ namespace AssortedCrazyThings.Base
 
 				int num262 = (int)npc.Center.X / 16;
 				int num263 = (int)npc.Bottom.Y / 16;
-				if (Main.sectionManager.TilesLoaded(num262, num263, num262, num263 + 1))
+				if (Main.netMode == NetmodeID.Server || Main.sectionManager.TilesLoaded(num262, num263, num262, num263 + 1))
 				{
 					if (Framing.GetTileSafely(num262, num263).TopSlope)
 					{

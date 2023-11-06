@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,7 @@ namespace AssortedCrazyThings.Gores
 		{
 			GoreID.Sets.DisappearSpeedAlpha[Type] = 10;
 			GoreID.Sets.DisappearSpeed[Type] = 7;
+			ChildSafety.SafeGore[Type] = true;
 		}
 
 		public override void OnSpawn(Gore gore, IEntitySource source)

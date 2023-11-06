@@ -53,14 +53,8 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
 
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Poisoned,
-					BuffID.OnFire
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.OnFire] = true;
 		}
 
 		public override Color? GetAlpha(Color lightColor)

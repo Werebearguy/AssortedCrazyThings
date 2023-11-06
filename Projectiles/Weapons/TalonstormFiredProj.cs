@@ -34,7 +34,7 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 			return Color.Lerp(lightColor, Color.White, 0.4f) * Projectile.Opacity;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			if (Projectile.active && Main.myPlayer == Projectile.owner)
 			{

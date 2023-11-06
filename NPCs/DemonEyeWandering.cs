@@ -136,4 +136,13 @@ namespace AssortedCrazyThings.NPCs
 			return false;
 		}
 	}
+
+	[Content(ContentType.HostileNPCs)]
+	public class DemonEyeWanderingBestiarySystem : AssSystem
+	{
+		public override void PostSetupContent()
+		{
+			ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[ModContent.NPCType<DemonEyeWandering>()] = ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[NPCID.WanderingEye];
+		}
+	}
 }

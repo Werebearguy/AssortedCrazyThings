@@ -12,10 +12,18 @@ namespace AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler
 		private static Dictionary<int, List<(int, bool)>> MainProjToProjs { get; set; }
 
 		private delegate Projectile CreatePetProjectileDummyDelegate(int projectileId);
+		private static FieldInfo PetProjectilesField { get; set; }
+		private static FieldInfo PlayerField { get; set; }
+		private static MethodInfo CreatePetProjectileDummyMethod { get; set; }
 
 		public override void OnModLoad()
 		{
 			MainProjToProjs = new Dictionary<int, List<(int, bool)>>();
+
+			var type = typeof(UICharacter);
+			PetProjectilesField = type.GetField("_petProjectiles", BindingFlags.Instance | BindingFlags.NonPublic);
+			PlayerField = type.GetField("_player", BindingFlags.Instance | BindingFlags.NonPublic);
+			CreatePetProjectileDummyMethod = type.GetMethod("PreparePetProjectiles_CreatePetProjectileDummy", BindingFlags.Instance | BindingFlags.NonPublic);
 
 			On_UICharacter.PreparePetProjectiles += On_UICharacter_PreparePetProjectiles;
 		}
@@ -50,8 +58,7 @@ namespace AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler
 
 			try
 			{
-				var petProjectilesField = typeof(UICharacter).GetField("_petProjectiles", BindingFlags.Instance | BindingFlags.NonPublic);
-				var _petProjectiles = (Projectile[])petProjectilesField.GetValue(self);
+				var _petProjectiles = (Projectile[])PetProjectilesField.GetValue(self);
 
 				if (_petProjectiles.Length == 0)
 				{
@@ -59,8 +66,7 @@ namespace AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler
 				}
 
 				//This now means that a pet exists, and the bonus pets can be registered
-				var playerField = typeof(UICharacter).GetField("_player", BindingFlags.Instance | BindingFlags.NonPublic);
-				var _player = (Player)playerField.GetValue(self);
+				var _player = (Player)PlayerField.GetValue(self);
 
 				var main = _petProjectiles[0];
 
@@ -70,7 +76,6 @@ namespace AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler
 				}
 				var list = _petProjectiles.ToList();
 
-				var CreatePetProjectileDummyMethod = typeof(UICharacter).GetMethod("PreparePetProjectiles_CreatePetProjectileDummy", BindingFlags.Instance | BindingFlags.NonPublic);
 				var CreatePetProjectileDummy = CreatePetProjectileDummyMethod.CreateDelegate<CreatePetProjectileDummyDelegate>(self);
 				int index = 0;
 				foreach (var pet in pets)
@@ -90,7 +95,7 @@ namespace AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler
 					}
 				}
 
-				petProjectilesField.SetValue(self, list.ToArray());
+				PetProjectilesField.SetValue(self, list.ToArray());
 			}
 			catch
 			{

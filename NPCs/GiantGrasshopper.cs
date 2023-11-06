@@ -15,12 +15,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Derpling];
 
-			NPCID.Sets.DebuffImmunitySets.Add(NPC.type, new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[1] {
-					BuffID.Confused
-				}
-			});
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{

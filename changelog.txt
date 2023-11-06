@@ -1,6 +1,12 @@
-Preview maintenance.
+Preview Maintenance.
 
 * FIXES
-    * Now possible to achieve 100% Bestiary completion (several entities were bugged)
-    * Fixed several hostile entities which can be caught sometimes taking damage on spawn
-    * Fixed Lil Wraps not having a walking animation
+    * Fixed silent error in logs when certain pets are summoned in multiplayer
+    * Fixed some entities not having the correct name on mouseover, lifeform analyzer, and bestiary
+* CHANGES
+    * Golden Extendo-Net now catches underworld critters
+    * Guide Voodoorang now affected by Bangarang mod
+    * Sigil of the Wing now displays a blue outline on the health bar while invincible
+    * All Demon Eye and Wandering Eye variants now count towards the vanilla (basic) Demon Eye and Wandering Eye kill counts in the bestiary
+* ADDITIONS
+    * Added Soul Harvester Relic (Colored)
