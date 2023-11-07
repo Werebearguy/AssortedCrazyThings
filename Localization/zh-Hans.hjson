@@ -533,7 +533,7 @@ Mods: {
 			}
 
 			EagerUnderlingBuff: {
-				DisplayName: 热切的下属
+				DisplayName: 热心的下属
 				Description: 一位忠诚的热下为你而战
 			}
 
@@ -1979,7 +1979,7 @@ Mods: {
 				DisplayName: 好东西袋
 				Tooltip:
 					'''
-					召唤热切的下属为你而战
+					召唤热心的下属为你而战
 					随着游戏继承而变强
 					不占据召唤栏位，但不能复数召唤
 					“里面有一颗尖球、一枚硬币和一个……月亮？“
@@ -2379,9 +2379,9 @@ Mods: {
 			MissileDrone.DisplayName: 导弹无人机
 			MissileDroneRocket.DisplayName: 导弹无人机导弹
 			ShieldDrone.DisplayName: 护盾无人机
-			EagerUnderlingDart.DisplayName: 热切的属下飞镖
-			EagerUnderlingProj.DisplayName: 热切的属下
-			GoblinUnderlingWeaponTerraBeam.DisplayName: 热切的属下泰拉光束
+			EagerUnderlingDart.DisplayName: 热心的属下飞镖
+			EagerUnderlingProj.DisplayName: 热心的属下
+			GoblinUnderlingWeaponTerraBeam.DisplayName: 哥布林属下泰拉光束
 			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
 			MagicSlimeSlingMinion.DisplayName: 魔法史莱姆机弦仆从
 			PetDestroyerDroneLaser.DisplayName: 宠物毁灭者激光
