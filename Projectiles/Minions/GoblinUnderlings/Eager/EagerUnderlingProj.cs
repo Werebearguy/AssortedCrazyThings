@@ -27,6 +27,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		public int inCombatTimer = 0;
 
 		private bool skipDefaultMovement = false;
+		private int oldAttackTarget = -1;
 
 		public const int WeaponFrameCount = 4;
 
@@ -449,6 +450,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			if (attackTarget > -1)
 			{
 				PickDestinationAndAttack(tier, meleeAttackRange, rangedAttackRangeFromProj, attackFrameCount, attackTarget, globalAttackRange, out destination);
+
+				//Do a little jump when it goes from no target to target
+				if (oldAttackTarget == -1 && IdleOrMoving && Projectile.velocity.Y == 0)
+				{
+					Projectile.velocity.Y -= 4;
+				}
 			}
 
 			GoFlyingPrematurely(player, awayDistMax, awayDistYMax, attackTarget);
@@ -483,6 +490,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				}
 			}
 
+			oldAttackTarget = attackTarget;
 			Projectile.spriteDirection = -Projectile.direction;
 		}
 
@@ -611,7 +619,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			//only go into melee if NPC is either grounded, or 4 blocks above standable ground
 			bool canGoMelee = npc.velocity.Y == 0f;
-			if (!canGoMelee && !tier.rangedOnly)
+			if (!canGoMelee)
 			{
 				int tilesToCheck = 4;
 				int npcY = (int)npc.Bottom.Y / 16;
@@ -636,7 +644,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			canGoMelee &= !Flying;
 
-			if ((playerDistance <= meleeAttackRange || projDistance < 120f) && canGoMelee)
+			if (!tier.rangedOnly && (playerDistance <= meleeAttackRange || projDistance < 120f) && canGoMelee)
 			{
 				//Melee range
 				allowJump = true;
