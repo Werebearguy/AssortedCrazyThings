@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -14,6 +15,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
+
+		public static HashSet<int> IsDart { get; private set; }
 
 		public static LocalizedText CommonDisplayNameText { get; private set; }
 
@@ -35,9 +38,20 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override LocalizedText DisplayName => CommonDisplayNameText;
 
+		public override void Load()
+		{
+			IsDart ??= new();
+		}
+
+		public override void Unload()
+		{
+			IsDart = null;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(EagerUnderlingDart)}.DisplayName"));
+			IsDart.Add(Type);
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}

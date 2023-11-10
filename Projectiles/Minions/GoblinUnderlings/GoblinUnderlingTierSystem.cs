@@ -68,9 +68,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		private static void DetermineCurrentProgressionTier()
 		{
-			//TODO debug
-			CurrentTier = GoblinUnderlingProgressionTierStage.Cultist;
-			return;
 			CurrentTier = GoblinUnderlingProgressionTierStage.PreBoss;
 			for (int i = TierCount - 1; i >= 0; i--)
 			{
