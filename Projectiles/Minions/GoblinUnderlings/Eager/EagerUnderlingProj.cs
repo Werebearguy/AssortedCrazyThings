@@ -1,7 +1,6 @@
 using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Base.Chatter;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
-using AssortedCrazyThings.Base.Handlers.UnreplaceableMinionHandler;
+using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,21 +43,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			GoblinUnderlingAssetsSystem.RegisterAssetPrefix(Projectile.type, AssetPrefix);
 			GoblinUnderlingTierSystem.GoblinUnderlingProjs[Projectile.type] = GoblinUnderlingChatterType.Eager;
 
-			//TODO rebalance
 			var tierStats = new Dictionary<GoblinUnderlingProgressionTierStage, GoblinUnderlingTierStats>
 			{
-				//Baseline values in Item/AI code																										   //dmg    kb    ap  sp     m  hb  ran   ransp
-				{ GoblinUnderlingProgressionTierStage.PreBoss	, new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f ) },
-				{ GoblinUnderlingProgressionTierStage.EoC		, new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_1>()          , 1.25f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f ) },
-				{ GoblinUnderlingProgressionTierStage.Evil		, new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_2>()          , 1.5f , 1.4f, 0 , 0.4f , 6, 4 , 1.5f, 10f) },
-				{ GoblinUnderlingProgressionTierStage.Skeletron	, new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_3>()          , 1.75f, 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f) },
-				{ GoblinUnderlingProgressionTierStage.Mech		, new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_4>()          , 3f   , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f) },
-				{ GoblinUnderlingProgressionTierStage.Plantera	, new GoblinUnderlingTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.5f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f , true) },
-				{ GoblinUnderlingProgressionTierStage.Cultist	, new GoblinUnderlingTierStats(ModContent.ProjectileType<WeaponSwordDaybreak>()			  , 3.5f , 2f  , 10, 0.7f , 4, 10, 1f  , 16f , false, true) },
+				//PreBoss = Baseline values in Item/AI code																								  //dmg    kb    ap  sp     m  hb  ran   ransp
+				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f ) },
+				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_1>()          , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f ) },
+				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_2>()          , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f) },
+				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_3>()          , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f) },
+				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_3>()          , 2.2f , 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f) }, //Mostly a copy of previous tier with more damage, same visuals too
+				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_4>()          , 2.8f , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f) },
+				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f , true) },
+				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingTierStats(ModContent.ProjectileType<WeaponSwordDaybreak>()           , 3.25f, 2.2f, 10, 0.8f , 4, 10, 1f  , 16f , false, true) },
 			};
 			GoblinUnderlingTierSystem.RegisterStats(Projectile.type, tierStats);
-
-			UnreplaceableMinionSystem.Add(Projectile.type);
 		}
 
 		public override void SetDefaults()
@@ -68,7 +65,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			Projectile.aiStyle = -1;
 			Projectile.DamageType = DamageClass.Summon;
-			Projectile.netImportant = true;
 			Projectile.minion = true;
 			Projectile.minionSlots = 1;
 			Projectile.penetrate = -1;
@@ -231,7 +227,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		{
 			Player player = Projectile.GetOwner();
 
-			SetFrame(); //Has to be before due to velocity checks
+			SetFrame(); //Has to be before due to velocity checks and attacking overriding frame
 
 			UnderlingAI(player, out Vector2 idleLocation);
 
@@ -284,6 +280,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			int distIdle = 48;
 			int offset = Projectile.width / 2;
 			defaultLocation.X -= (player.width / 2) * player.direction;
+			//defaultLocation.X -= (Projectile.minionPos * (Projectile.width + 6)) * player.direction;
+			//TODO like PetPlayer.numSlimePets
+			//minionPos calculations not necessary because you can't summon more than 1. Instead, use custom minionPos only for underlings
 			if (player.direction == 1)
 			{
 				defaultLocation.X -= distIdle;
@@ -350,7 +349,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			{
 				NPC npc = Main.npc[i];
 
-				if (npc.active && (npc.type == NPCID.EaterofWorldsHead || npc.boss || npc.GetBossHeadTextureIndex() > -1) && npc.DistanceSQ(player.Center) < 1280 * 1280)
+				if (npc.active && (npc.type == NPCID.EaterofWorldsHead || SpawnedNPCSystem.IsABoss(npc)) && npc.DistanceSQ(player.Center) < 1280 * 1280)
 				{
 					return;
 				}
@@ -395,6 +394,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			}
 		}
 
+		private static bool CustomEliminationCheck_Pirates(Entity otherEntity, int currentTarget) => true;
+
 		private void UnderlingAI(Player player, out Vector2 idleLocation)
 		{
 			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(Type);
@@ -408,7 +409,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Vector2 destination = GetIdleLocation(player);
 			idleLocation = destination;
 
-			if (Projectile.HandleStuck(destination.X, ref stuckTimer, StuckTimerMax))
+			if (Timer == 0 && Projectile.HandleStuck(destination.X, ref stuckTimer, StuckTimerMax))
 			{
 				Flying = true;
 				Projectile.tileCollide = false;
@@ -422,12 +423,10 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			int attackTarget = -1;
 
-			static bool CustomEliminationCheck_Pirates(Entity otherEntity, int currentTarget) => true;
-
 			bool checkBosses = false;
 			rangedAttackRangeFromProj *= 2;
 			int globalAttackRange = meleeAttackRange + rangedAttackRangeFromProj + Projectile.width; //800, calc same as below
-			if (IdleOrMoving)
+			if (IdleOrMoving || Flying)
 			{
 				Projectile.Minion_FindTargetInRange(globalAttackRange, ref attackTarget, skipIfCannotHitWithOwnBody: true, CustomEliminationCheck_Pirates);
 				if (attackTarget > -1)
@@ -523,12 +522,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			if (GeneralAttacking && Timer < 0)
 			{
 				Projectile.friendly = false;
-				Timer += 1;
-				if (nextTimerValue >= 0)
+				if (AttackCoolup(nextTimerValue))
 				{
-					Timer = 0;
-					GeneralAttacking = false;
-					Projectile.netUpdate = true;
 					return;
 				}
 			}
@@ -539,19 +534,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 					Projectile.friendly = true;
 				}
 
-				//Attacking animation
-				Projectile.spriteDirection = -Projectile.direction;
-				Projectile.rotation = 0f;
-
-				int startAttackFrame = 12;
-				bool hasJumpingAttackFrames = true;
-				AttackFrameNumber = (int)(((float)nextTimerValue - Timer) / ((float)nextTimerValue / attackFrameCount));
-				Projectile.frame = startAttackFrame + AttackFrameNumber;
-
-				if (hasJumpingAttackFrames && Projectile.velocity.Y != 0f)
-				{
-					Projectile.frame += attackFrameCount;
-				}
+				AttackingAnimation(attackFrameCount, nextTimerValue);
 
 				if (MeleeAttacking)
 				{
@@ -615,22 +598,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 					Projectile.velocity.Y = 10f;
 				}
 
-				Timer -= 1;
-				if (Timer <= 0)
+				if (AttackCooldown(attackCooldown))
 				{
-					if (attackCooldown <= 0)
-					{
-						Timer = 0;
-						GeneralAttacking = false;
-						Projectile.netUpdate = true;
-						return;
-					}
-
-					Timer = -attackCooldown;
+					return;
 				}
 			}
 
-			if (attackTarget >= 0)
+			if (attackTarget > -1)
 			{
 				float toTargetMaxDist = 20f;
 
@@ -642,7 +616,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 					Projectile.shouldFallThrough = npc.Center.Y > Projectile.Bottom.Y;
 
 					//only go into melee if NPC is either grounded, or 4 blocks above standable ground
-					bool canGoMelee = npc.velocity.Y == 0f;
+					bool canGoMelee = npc.velocity.Y == 0f && !Flying;
 					if (!canGoMelee)
 					{
 						int tilesToCheck = 4;
@@ -739,33 +713,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				}
 			}
 
-			if (IdleOrMoving && attackTarget < 0)
-			{
-				if (player.rocketDelay2 > 0 && player.wings != 45)
-				{
-					Flying = true;
-					Projectile.netUpdate = true;
-				}
-
-				Vector2 toPlayer = player.Center - Projectile.Center;
-				if (!AssAI.TeleportIfTooFar(Projectile, player.Center) && toPlayer.Length() > awayDistMax || Math.Abs(toPlayer.Y) > awayDistYMax)
-				{
-					Flying = true;
-					Projectile.netUpdate = true;
-					if (Projectile.velocity.Y > 0f && toPlayer.Y < 0f)
-					{
-						Projectile.velocity.Y = 0f;
-					}
-
-					if (Projectile.velocity.Y < 0f && toPlayer.Y > 0f)
-					{
-						Projectile.velocity.Y = 0f;
-					}
-				}
-			}
+			GoFlyingPrematurely(player, awayDistMax, awayDistYMax, attackTarget);
 
 			if (IdleOrMoving)
 			{
+				//Here destination can either be player or NPC
 				if (attackTarget < 0)
 				{
 					if (Projectile.Distance(player.Center) > 60f && Projectile.Distance(destination) > 60f && Math.Sign(destination.X - player.Center.X) != Math.Sign(Projectile.Center.X - player.Center.X))
@@ -1049,8 +1001,92 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 					Projectile.velocity.Y = 10f;
 				}
 			}
+			else if (Flying)
+			{
+				if (attackTarget > -1)
+				{
+					//TODO replicate ranged attack here
+				}
+			}
 
 			Projectile.spriteDirection = -Projectile.direction;
+		}
+
+		private bool AttackCoolup(int nextTimerValue)
+		{
+			Timer += 1;
+			if (nextTimerValue >= 0)
+			{
+				Timer = 0;
+				GeneralAttacking = false;
+				Projectile.netUpdate = true;
+				return true;
+			}
+
+			return false;
+		}
+
+		private bool AttackCooldown(int attackCooldown)
+		{
+			Timer -= 1;
+			if (Timer <= 0)
+			{
+				if (attackCooldown <= 0)
+				{
+					Timer = 0;
+					GeneralAttacking = false;
+					Projectile.netUpdate = true;
+					return true;
+				}
+
+				Timer = -attackCooldown;
+			}
+
+			return false;
+		}
+
+		private void GoFlyingPrematurely(Player player, float awayDistMax, float awayDistYMax, int attackTarget)
+		{
+			if (IdleOrMoving && attackTarget < 0)
+			{
+				if (player.rocketDelay2 > 0 && player.wings != 45)
+				{
+					Flying = true;
+					Projectile.netUpdate = true;
+				}
+
+				Vector2 toPlayer = player.Center - Projectile.Center;
+				if (!AssAI.TeleportIfTooFar(Projectile, player.Center) && toPlayer.Length() > awayDistMax || Math.Abs(toPlayer.Y) > awayDistYMax)
+				{
+					Flying = true;
+					Projectile.netUpdate = true;
+					if (Projectile.velocity.Y > 0f && toPlayer.Y < 0f)
+					{
+						Projectile.velocity.Y = 0f;
+					}
+
+					if (Projectile.velocity.Y < 0f && toPlayer.Y > 0f)
+					{
+						Projectile.velocity.Y = 0f;
+					}
+				}
+			}
+		}
+
+		private void AttackingAnimation(int attackFrameCount, int nextTimerValue)
+		{
+			Projectile.spriteDirection = -Projectile.direction;
+			Projectile.rotation = 0f;
+
+			int startAttackFrame = 12;
+			bool hasJumpingAttackFrames = true;
+			AttackFrameNumber = (int)(((float)nextTimerValue - Timer) / ((float)nextTimerValue / attackFrameCount));
+			Projectile.frame = startAttackFrame + AttackFrameNumber;
+
+			if (hasJumpingAttackFrames && Projectile.velocity.Y != 0f)
+			{
+				Projectile.frame += attackFrameCount;
+			}
 		}
 
 		private void SetFrame()

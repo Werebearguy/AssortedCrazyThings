@@ -1981,7 +1981,7 @@ Mods: {
 					'''
 					召唤热心的下属为你而战
 					随着游戏继承而变强
-					不占据召唤栏位，但不能复数召唤
+					不能复数召唤
 					“里面有一颗尖球、一枚硬币和一个……月亮？“
 					'''
 			}
@@ -2534,6 +2534,7 @@ Mods: {
 			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
 			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
 			// WeaponSwordDaybreak.DisplayName: Underling Daybreak
+			// WeaponSwordDaybreakExplosion.DisplayName: Weapon Sword Daybreak Explosion
 		}
 
 		Tiles: {

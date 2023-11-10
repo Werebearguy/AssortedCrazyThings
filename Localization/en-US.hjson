@@ -1980,7 +1980,7 @@ Mods: {
 					'''
 					Summons an eager underling to fight for you
 					Gets stronger throughout progression
-					Does not occupy a minion slot, but only one can be summoned
+					Only one can be summoned
 					'Inside, there's a spiky ball, a coin, and a...moon?'
 					'''
 			}
@@ -2533,6 +2533,7 @@ Mods: {
 			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
 			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
 			WeaponSwordDaybreak.DisplayName: Underling Daybreak
+			WeaponSwordDaybreakExplosion.DisplayName: Weapon Sword Daybreak Explosion
 		}
 
 		Tiles: {

@@ -75,9 +75,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			if (FromGoblin)
+			if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is EagerUnderlingProj goblin)
 			{
-				GoblinUnderlingHelperSystem.CommonModifyHitNPC(Main.projectile[ownedGoblinWhoAmI].type, Projectile, target, ref modifiers);
+				GoblinUnderlingHelperSystem.CommonModifyHitNPC(parent.type, Projectile, target, ref modifiers);
 			}
 		}
 

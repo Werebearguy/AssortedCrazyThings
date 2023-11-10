@@ -6,16 +6,22 @@ using Terraria;
 
 namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 {
+	//flinx: 22 dps (dummy) -> matches preboss tier
+	//frog: 68 dps (dummy). skeleton: 35. skeleton archer: 24 -> matches skeletron tier
+	//blade: 30 dps (dummy). skeleton archer: 30
+	//optic: 80 dps (dummy), skeleton archer: 55
+	//xeno: 90 dps (dummy), armored skeleton: 55
 	public enum GoblinUnderlingProgressionTierStage : int
 	{
-		//Value important, texture index
+		//Value important, texture index, ordered by progression
 		PreBoss = 0,
 		EoC = 1,
 		Evil = 2,
 		Skeletron = 3,
-		Mech = 4,
-		Plantera = 5,
-		Cultist = 6
+		WoF = 4,
+		Mech = 5,
+		Plantera = 6,
+		Cultist = 7
 	}
 
 	[Content(ContentType.Weapons)]
@@ -53,6 +59,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				{ GoblinUnderlingProgressionTierStage.EoC, () => NPC.downedBoss1 },
 				{ GoblinUnderlingProgressionTierStage.Evil, () => NPC.downedBoss2 },
 				{ GoblinUnderlingProgressionTierStage.Skeletron, () => NPC.downedBoss3 },
+				{ GoblinUnderlingProgressionTierStage.WoF, () => Main.hardMode },
 				{ GoblinUnderlingProgressionTierStage.Mech, () => NPC.downedMechBossAny },
 				{ GoblinUnderlingProgressionTierStage.Plantera, () => NPC.downedPlantBoss },
 				{ GoblinUnderlingProgressionTierStage.Cultist, () => NPC.downedAncientCultist },
@@ -61,6 +68,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		private static void DetermineCurrentProgressionTier()
 		{
+			//TODO debug
+			CurrentTier = GoblinUnderlingProgressionTierStage.Cultist;
+			return;
 			CurrentTier = GoblinUnderlingProgressionTierStage.PreBoss;
 			for (int i = TierCount - 1; i >= 0; i--)
 			{
