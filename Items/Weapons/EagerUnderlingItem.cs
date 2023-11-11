@@ -17,6 +17,8 @@ namespace AssortedCrazyThings.Items.Weapons
 		public const int BaseDmg = 8;
 		public const float BaseKB = 1.5f;
 
+		public GoblinUnderlingClass currentClass;
+
 		public override void Load()
 		{
 			On_NPC.SetEventFlagCleared += DropItemIfPossible;
@@ -69,6 +71,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void SetDefaults()
 		{
+			currentClass = GoblinUnderlingClass.Melee;
 			Item.damage = BaseDmg;
 			Item.knockBack = BaseKB;
 			Item.DamageType = DamageClass.Summon;
@@ -90,13 +93,13 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
 		{
 			//This is purely done for the tooltip
-			damage *= GoblinUnderlingTierSystem.GetCurrentTierStats(Item.shoot).damageMult;
+			damage *= GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass).damageMult;
 		}
 
 		public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
 		{
 			//This is purely done for the tooltip
-			knockback *= GoblinUnderlingTierSystem.GetCurrentTierStats(Item.shoot).knockbackMult;
+			knockback *= GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass).knockbackMult;
 		}
 
 		public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

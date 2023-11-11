@@ -90,7 +90,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		{
 			if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is EagerUnderlingProj goblin)
 			{
-				GoblinUnderlingHelperSystem.CommonModifyHitNPC(parent.type, Projectile, target, ref modifiers);
+				GoblinUnderlingHelperSystem.CommonModifyHitNPC(GoblinUnderlingClass.Melee, Projectile, target, ref modifiers);
 			}
 		}
 

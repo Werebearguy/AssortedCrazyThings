@@ -35,9 +35,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		/// <summary>
 		/// Handles kb scaling and knocking away from player. Should be called from all projectiles
 		/// </summary>
-		public static void CommonModifyHitNPC(int goblinType, Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+		public static void CommonModifyHitNPC(GoblinUnderlingClass currentClass, Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
 		{
-			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(goblinType);
+			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 			//damage = (int)(damage * tier.damageMult); THIS IS DONE IN GOBLIN PREAI, OVERRIDING DEFAULT MINION SCALING
 
 			modifiers.Knockback *= tier.knockbackMult;

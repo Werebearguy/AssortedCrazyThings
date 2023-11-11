@@ -1,11 +1,9 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,6 +29,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public const int WeaponFrameCount = 4;
 
+		public GoblinUnderlingClass currentClass;
+
 		public const string AssetPrefix = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Eager/Melee";
 
 		public override string Texture => AssetPrefix + "_0";
@@ -45,24 +45,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			GoblinUnderlingAssetsSystem.RegisterAssetPrefix(Projectile.type, AssetPrefix);
 			GoblinUnderlingTierSystem.GoblinUnderlingProjs[Projectile.type] = GoblinUnderlingChatterType.Eager;
-
-			var tierStats = new Dictionary<GoblinUnderlingProgressionTierStage, GoblinUnderlingTierStats>
-			{
-				//PreBoss = Baseline values in Item/AI code																								  //dmg    kb    ap  sp     m  hb  ran   ransp
-				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f , 1f) },
-				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_1>()          , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f , 1.2f) },
-				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_2>()          , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f, 1.3f) },
-				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_3>()          , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f, 1.4f) },
-				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_3>()          , 2.2f , 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f, 1.6f) }, //Mostly a copy of previous tier with more damage, same visuals too
-				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingTierStats(ModContent.ProjectileType<EagerUnderlingDart_4>()          , 2.8f , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f, 1.7f) },
-				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f, 2f , true) },
-				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingTierStats(ModContent.ProjectileType<WeaponSwordDaybreak>()           , 3.25f, 2.2f, 10, 0.8f , 4, 10, 1f  , 16f, 2f , false, true) },
-			};
-			GoblinUnderlingTierSystem.RegisterStats(Projectile.type, tierStats);
 		}
 
 		public override void SetDefaults()
 		{
+			currentClass = GoblinUnderlingClass.Melee;
+
 			Projectile.width = 24;
 			Projectile.height = 40;
 
@@ -82,7 +70,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		public override bool PreDraw(ref Color lightColor)
 		{
 			//Custom draw to just center on the hitbox
-			var tierStats = GoblinUnderlingTierSystem.GetCurrentTierStats(Type);
+			var tierStats = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
 			Texture2D texture;
 			var bodyAssets = GoblinUnderlingAssetsSystem.BodyAssets[Type];
@@ -106,15 +94,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			float scale = Projectile.scale;
 			Main.EntitySpriteDraw(texture, drawPos, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
 
-			if (MeleeAttacking || RangedAttacking && tierStats.showMeleeDuringRanged)
+			if (currentClass == GoblinUnderlingClass.Melee)
 			{
-				var asset = GoblinUnderlingAssetsSystem.GetWeaponAsset(GoblinUnderlingWeaponType.Sword, texIndex);
-				if (asset != null)
+				if (MeleeAttacking || RangedAttacking && ((GoblinUnderlingMeleeTierStats)tierStats).showMeleeDuringRanged)
 				{
-					texture = asset.Value;
-					sourceRect = texture.Frame(1, WeaponFrameCount, 0, AttackFrameNumber);
-					drawOrigin = sourceRect.Size() / 2f;
-					Main.EntitySpriteDraw(texture, drawPos, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
+					var asset = GoblinUnderlingAssetsSystem.GetWeaponAsset(GoblinUnderlingWeaponType.Sword, texIndex);
+					if (asset != null)
+					{
+						texture = asset.Value;
+						sourceRect = texture.Frame(1, WeaponFrameCount, 0, AttackFrameNumber);
+						drawOrigin = sourceRect.Size() / 2f;
+						Main.EntitySpriteDraw(texture, drawPos, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
+					}
 				}
 			}
 
@@ -123,11 +114,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override void ModifyDamageHitbox(ref Rectangle hitbox)
 		{
+			if (currentClass != GoblinUnderlingClass.Melee)
+			{
+				return;
+			}
+
 			//Save original coordinates
 			int centerX = hitbox.Center.X;
 			int bottomY = hitbox.Bottom;
 
-			int increase = GoblinUnderlingTierSystem.GetCurrentTierStats(Type).meleeAttackHitboxIncrease;
+			int increase = ((GoblinUnderlingMeleeTierStats)GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass)).meleeAttackHitboxIncrease;
 			hitbox.Inflate(increase, increase / 2); //Top shouldn't grow as much, as its only going to grow upwards
 
 			//Restore coordinates
@@ -137,7 +133,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			GoblinUnderlingHelperSystem.CommonModifyHitNPC(Type, Projectile, target, ref modifiers);
+			GoblinUnderlingHelperSystem.CommonModifyHitNPC(currentClass, Projectile, target, ref modifiers);
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -268,7 +264,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		private void SetScaledDamage(Player player)
 		{
-			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(Type);
+			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 
 			//Copied scaling from vanilla, but summoner is adjusted by our scaling
 			int originalDamage = Projectile.originalDamage;
@@ -385,18 +381,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		private int GetNextTimerValue(int attackFrameCount)
 		{
-			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(Type);
-			int time = tier.meleeAttackInterval;
+			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
+			int time = tier.attackInterval;
 			if (RangedAttacking)
 			{
-				float ranged = tier.rangedAttackIntervalMultiplier * time * attackFrameCount;
-				return (int)ranged;
+				if (currentClass == GoblinUnderlingClass.Melee && tier is GoblinUnderlingMeleeTierStats meleeTier)
+				{
+					float ranged = meleeTier.rangedAttackIntervalMultiplier * time * attackFrameCount;
+					return (int)ranged;
+				}
 			}
-			else
-			{
-				//Use the faster variant as fallback
-				return time * attackFrameCount;
-			}
+
+			return time * attackFrameCount;
 		}
 
 		private static bool CustomEliminationCheck_Pirates(Entity otherEntity, int currentTarget) => true;
@@ -404,7 +400,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		private void UnderlingAI(Player player, out Vector2 idleLocation)
 		{
 			skipDefaultMovement = false;
-			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(Type);
+			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 
 			//if target is outside of meleeAttackRange (but inside globalAttackRange), minion stops moving horizontally
 			//on the edge of the meleeAttackRange, then initiates attacking behavior but with ranged projectiles instead of melee
@@ -414,6 +410,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			float awayDistYMax = 400f; //300, increased to reduce amount of "bouncing" when player is standing on far up tiles or hooked up
 			Vector2 destination = GetIdleLocation(player);
 			idleLocation = destination;
+
+			bool ranged = true;
+			if (currentClass == GoblinUnderlingClass.Melee && tier is GoblinUnderlingMeleeTierStats meleeTier)
+			{
+				ranged = meleeTier.rangedOnly;
+			}
 
 			if (Timer == 0 && Projectile.HandleStuck(destination.X, ref stuckTimer, StuckTimerMax))
 			{
@@ -449,7 +451,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			if (attackTarget > -1)
 			{
-				PickDestinationAndAttack(tier, meleeAttackRange, rangedAttackRangeFromProj, attackFrameCount, attackTarget, globalAttackRange, out destination);
+				PickDestinationAndAttack(ranged, meleeAttackRange, rangedAttackRangeFromProj, attackFrameCount, attackTarget, globalAttackRange, out destination);
 
 				//Do a little jump when it goes from no target to target
 				if (oldAttackTarget == -1 && IdleOrMoving && Projectile.velocity.Y == 0)
@@ -470,7 +472,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			}
 			else if (GeneralAttacking)
 			{
-				AttackAction(tier, attackFrameCount, nextTimerValue, globalAttackRange);
+				AttackAction(ranged, tier.rangedProjType, tier.rangedVelocity, attackFrameCount, nextTimerValue, globalAttackRange);
 
 				if (AttackCooldown(attackCooldown))
 				{
@@ -482,7 +484,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			{
 				if (IdleOrMoving)
 				{
-					GroundedMovement(player, tier, awayDistMax, awayDistYMax, ref destination, attackTarget);
+					GroundedMovement(player, tier.movementSpeedMult, awayDistMax, awayDistYMax, ref destination, attackTarget);
 				}
 				else if (Flying)
 				{
@@ -494,7 +496,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.spriteDirection = -Projectile.direction;
 		}
 
-		private void AttackAction(GoblinUnderlingTierStats tier, int attackFrameCount, int nextTimerValue, int globalAttackRange)
+		private void AttackAction(bool ranged, int rangedProjType, float rangedVelocity, int attackFrameCount, int nextTimerValue, int globalAttackRange)
 		{
 			AttackingAnimation(attackFrameCount, nextTimerValue);
 
@@ -517,7 +519,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				if (!Flying)
 				{
 					skipDefaultMovement = true;
-					if (tier.rangedOnly)
+					if (ranged)
 					{
 						//Don't slow down as fast when in ranged only mode
 						Projectile.velocity.X *= Projectile.velocity.Y == 0f ? 0.85f : 0.9f;
@@ -548,7 +550,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 						Vector2 position = Projectile.Center;
 						Vector2 targetPos = npc.Center + npc.velocity * 0.6f;
 						Vector2 vector = targetPos - position;
-						float speed = tier.rangedVelocity;
+						float speed = rangedVelocity;
 						float mag = vector.Length();
 						if (mag > speed)
 						{
@@ -556,25 +558,25 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 							vector *= mag;
 						}
 
-						if (EagerUnderlingDart.IsDart.Contains(tier.rangedProjType))
+						if (EagerUnderlingDart.IsDart.Contains(rangedProjType))
 						{
 							AssUtils.ModifyVelocityForGravity(position, targetPos, EagerUnderlingDart.Gravity, ref vector, EagerUnderlingDart.TicksWithoutGravity);
 						}
 
-						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, vector, tier.rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, vector, rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);
 					}
 				}
 			}
 		}
 
-		private void PickDestinationAndAttack(GoblinUnderlingTierStats tier, int meleeAttackRange, int rangedAttackRangeFromProj, int attackFrameCount, int attackTarget, int globalAttackRange, out Vector2 destination)
+		private void PickDestinationAndAttack(bool ranged, int meleeAttackRange, int rangedAttackRangeFromProj, int attackFrameCount, int attackTarget, int globalAttackRange, out Vector2 destination)
 		{
 			NPC npc = Main.npc[attackTarget];
 			destination = npc.Center;
 			bool oldAttacking = GeneralAttacking;
 			if (Projectile.IsInRangeOfMeOrMyOwner(npc, globalAttackRange, out float projDistance, out float playerDistance, out bool _))
 			{
-				DecideAttack(tier, meleeAttackRange, rangedAttackRangeFromProj, npc, projDistance, playerDistance, out bool allowJump);
+				DecideAttack(ranged, meleeAttackRange, rangedAttackRangeFromProj, npc, projDistance, playerDistance, out bool allowJump);
 
 				if (allowJump)
 				{
@@ -609,7 +611,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			}
 		}
 
-		private void DecideAttack(GoblinUnderlingTierStats tier, int meleeAttackRange, int rangedAttackRangeFromProj, NPC npc, float projDistance, float playerDistance, out bool allowJump)
+		private void DecideAttack(bool ranged, int meleeAttackRange, int rangedAttackRangeFromProj, NPC npc, float projDistance, float playerDistance, out bool allowJump)
 		{
 			allowJump = false;
 			float toTargetMaxDist = 20f;
@@ -644,7 +646,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			canGoMelee &= !Flying;
 
-			if (!tier.rangedOnly && (playerDistance <= meleeAttackRange || projDistance < 120f) && canGoMelee)
+			if (!ranged && (playerDistance <= meleeAttackRange || projDistance < 120f) && canGoMelee)
 			{
 				//Melee range
 				allowJump = true;
@@ -682,7 +684,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			}
 		}
 
-		private void GroundedMovement(Player player, GoblinUnderlingTierStats tier, float awayDistMax, float awayDistYMax, ref Vector2 destination, int attackTarget)
+		private void GroundedMovement(Player player, float movementSpeedMult, float awayDistMax, float awayDistYMax, ref Vector2 destination, int attackTarget)
 		{
 			//Here destination can either be player or NPC
 			if (attackTarget < 0)
@@ -746,7 +748,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			if (attackTarget != -1)
 			{
 				//Formula: margin/max is 12.5 x change
-				velXChange = 1f * tier.movementSpeedMult;
+				velXChange = 1f * movementSpeedMult;
 				velXChangeMargin = velXChange * 12.5f;
 				velXChangeMax = velXChangeMargin;
 
