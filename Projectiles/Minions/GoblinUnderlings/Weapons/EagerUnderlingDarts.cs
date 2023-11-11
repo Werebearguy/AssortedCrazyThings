@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -8,10 +9,10 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 {
 	[Content(ContentType.Weapons)]
-	public abstract class EagerUnderlingDart : AssProjectile
+	public abstract class GoblinUnderlingWeaponDart : AssProjectile
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
@@ -50,7 +51,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override void SetStaticDefaults()
 		{
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(EagerUnderlingDart)}.DisplayName"));
+			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(GoblinUnderlingWeaponDart)}.DisplayName"));
 			IsDart.Add(Type);
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
@@ -134,27 +135,27 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		}
 	}
 
-	public class EagerUnderlingDart_0 : EagerUnderlingDart
+	public class GoblinUnderlingWeaponDart_0 : GoblinUnderlingWeaponDart
 	{
 
 	}
 
-	public class EagerUnderlingDart_1 : EagerUnderlingDart
+	public class GoblinUnderlingWeaponDart_1 : GoblinUnderlingWeaponDart
 	{
 
 	}
 
-	public class EagerUnderlingDart_2 : EagerUnderlingDart
+	public class GoblinUnderlingWeaponDart_2 : GoblinUnderlingWeaponDart
 	{
 
 	}
 
-	public class EagerUnderlingDart_3 : EagerUnderlingDart
+	public class GoblinUnderlingWeaponDart_3 : GoblinUnderlingWeaponDart
 	{
 
 	}
 
-	public class EagerUnderlingDart_4 : EagerUnderlingDart
+	public class GoblinUnderlingWeaponDart_4 : GoblinUnderlingWeaponDart
 	{
 
 	}

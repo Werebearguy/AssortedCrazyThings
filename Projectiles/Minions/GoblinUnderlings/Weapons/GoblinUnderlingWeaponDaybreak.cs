@@ -11,7 +11,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 {
 	//Weaker version of the vanilla daybreak without the stacking dot and debuff on hit/explosion
 	[Content(ContentType.Weapons)]
-	public class WeaponSwordDaybreak : AssProjectile
+	public class GoblinUnderlingWeaponDaybreak : AssProjectile
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
@@ -133,7 +133,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		{
 			if (Main.myPlayer == Projectile.owner)
 			{
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<WeaponSwordDaybreakExplosion>(), Projectile.damage, Projectile.knockBack, Main.myPlayer);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<GoblinUnderlingWeaponDaybreakExplosion>(), Projectile.damage, Projectile.knockBack, Main.myPlayer);
 			}
 		}
 

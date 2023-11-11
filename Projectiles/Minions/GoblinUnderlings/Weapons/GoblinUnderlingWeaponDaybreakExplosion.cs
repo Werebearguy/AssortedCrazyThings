@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 {
 	[Content(ContentType.Weapons)]
-	public class WeaponSwordDaybreakExplosion : AssProjectile
+	public class GoblinUnderlingWeaponDaybreakExplosion : AssProjectile
 	{
 		public override void SetStaticDefaults()
 		{

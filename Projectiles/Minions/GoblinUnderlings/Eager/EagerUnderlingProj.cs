@@ -1,6 +1,7 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
+using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -558,9 +559,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 							vector *= mag;
 						}
 
-						if (EagerUnderlingDart.IsDart.Contains(rangedProjType))
+						if (GoblinUnderlingWeaponDart.IsDart.Contains(rangedProjType))
 						{
-							AssUtils.ModifyVelocityForGravity(position, targetPos, EagerUnderlingDart.Gravity, ref vector, EagerUnderlingDart.TicksWithoutGravity);
+							AssUtils.ModifyVelocityForGravity(position, targetPos, GoblinUnderlingWeaponDart.Gravity, ref vector, GoblinUnderlingWeaponDart.TicksWithoutGravity);
 						}
 
 						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, vector, rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);

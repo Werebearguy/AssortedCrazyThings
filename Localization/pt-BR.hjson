@@ -2378,7 +2378,7 @@ Mods: {
 			// MissileDrone.DisplayName: Missile Drone
 			// MissileDroneRocket.DisplayName: Missile Drone Rocket
 			// ShieldDrone.DisplayName: Shield Drone
-			// EagerUnderlingDart.DisplayName: Eager Underling Dart
+			// GoblinUnderlingWeaponDart.DisplayName: Goblin Underling Dart
 			// EagerUnderlingProj.DisplayName: Eager Underling
 			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
 			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
@@ -2532,8 +2532,8 @@ Mods: {
 			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
 			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
 			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
-			// WeaponSwordDaybreak.DisplayName: Underling Daybreak
-			// WeaponSwordDaybreakExplosion.DisplayName: Weapon Sword Daybreak Explosion
+			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin Underling Daybreak
+			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 		}
 
 		Tiles: {

@@ -2379,7 +2379,7 @@ Mods: {
 			MissileDrone.DisplayName: 导弹无人机
 			MissileDroneRocket.DisplayName: 导弹无人机导弹
 			ShieldDrone.DisplayName: 护盾无人机
-			EagerUnderlingDart.DisplayName: 热心的属下飞镖
+			GoblinUnderlingWeaponDart.DisplayName: 哥布林属下飞镖
 			EagerUnderlingProj.DisplayName: 热心的属下
 			GoblinUnderlingWeaponTerraBeam.DisplayName: 哥布林属下泰拉光束
 			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
@@ -2533,8 +2533,8 @@ Mods: {
 			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName}射击"
 			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
 			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
-			// WeaponSwordDaybreak.DisplayName: Underling Daybreak
-			// WeaponSwordDaybreakExplosion.DisplayName: Weapon Sword Daybreak Explosion
+			GoblinUnderlingWeaponDaybreak.DisplayName: 哥布林 Daybreak
+			GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 		}
 
 		Tiles: {

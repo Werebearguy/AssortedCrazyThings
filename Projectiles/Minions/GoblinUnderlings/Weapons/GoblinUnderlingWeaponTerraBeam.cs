@@ -1,4 +1,3 @@
-using AssortedCrazyThings.Base.Chatter;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
@@ -8,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
+namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 {
 	[Content(ContentType.Weapons)]
 	public class GoblinUnderlingWeaponTerraBeam : AssProjectile
