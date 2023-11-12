@@ -1980,6 +1980,7 @@ Mods: {
 				Tooltip:
 					'''
 					召唤热心的下属为你而战
+					职业可由[c/{0}:<right>]改变
 					随着游戏继承而变强
 					不能复数召唤
 					“里面有一颗尖球、一枚硬币和一个……月亮？“
@@ -2889,6 +2890,12 @@ Mods: {
 					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
 				}
 			}
+		}
+
+		GoblinUnderlingClass: {
+			Melee: 近战
+			Magic: 魔法
+			Ranged: 远程
 		}
 	}
 }

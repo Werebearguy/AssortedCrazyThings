@@ -1,8 +1,11 @@
 ﻿namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 {
-	public enum GoblinUnderlingClass
+	[LocalizeEnum]
+	public enum GoblinUnderlingClass : byte
 	{
-		Melee,
+		Melee = 0,
+		Magic = 1,
+		Ranged = 2,
 	}
 
 	public abstract class GoblinUnderlingTierStats

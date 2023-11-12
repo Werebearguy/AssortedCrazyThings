@@ -7,17 +7,14 @@
 ```cs
 public static LocalizedText AoMMVersionText { get; private set; }
 
-public static LocalizedText ConcatenateTwoText { get; private set; }
-
 public static LocalizedText AppendAoMMVersion(LocalizedText text)
 {
-	return ConcatenateTwoText.WithFormatArgs(text, AoMMVersionText);
+	return AssLocalizationConcatenateTwoText.WithFormatArgs(text, AoMMVersionText);
 }
 
 public override void Load()
 {
 	versionString = apiVersion.ToString();
 	AoMMVersionText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.AoMMVersion"));
-	ConcatenateTwoText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.ConcatenateTwo"));
 }
 ```

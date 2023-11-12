@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -16,7 +17,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 	[Autoload(Side = ModSide.Client)]
 	public class GoblinUnderlingAssetsSystem : AssSystem
 	{
-		public static Dictionary<int, Asset<Texture2D>[]> BodyAssets { get; private set; }
+		public static Dictionary<GoblinUnderlingClass, int> BodyAssetFrameCounts { get; private set; }
+		public static Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>> BodyAssets { get; private set; }
 		private static Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]> WeaponAssets { get; set; }
 		private static Dictionary<GoblinUnderlingWeaponType, List<int>> HasNoWeaponAssets { get; set; }
 		public static Dictionary<int, string> AssetPrefixes { get; private set; }
@@ -48,7 +50,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		private static void LoadTextures()
 		{
 			var count = GoblinUnderlingTierSystem.TierCount;
-			BodyAssets = new Dictionary<int, Asset<Texture2D>[]>();
+			BodyAssets = new Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>>();
 			WeaponAssets = new Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]>();
 			HasNoWeaponAssets = new Dictionary<GoblinUnderlingWeaponType, List<int>>();
 
@@ -56,12 +58,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			foreach (var pair in AssetPrefixes)
 			{
 				int type = pair.Key;
-				BodyAssets[type] = new Asset<Texture2D>[count];
-				foreach (var tier in tiers)
+				BodyAssets[type] = new Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>();
+				foreach (var @class in Enum.GetValues<GoblinUnderlingClass>())
 				{
-					int index = (int)tier;
-					string assetPrefix = pair.Value;
-					BodyAssets[type][index] = ModContent.Request<Texture2D>(assetPrefix + "_" + index);
+					BodyAssets[type][@class] = new Asset<Texture2D>[count];
+					foreach (var tier in tiers)
+					{
+						int index = (int)tier;
+						string assetPrefix = pair.Value;
+						BodyAssets[type][@class][index] = ModContent.Request<Texture2D>(assetPrefix + @class + "_" + index);
+					}
 				}
 			}
 
@@ -89,6 +95,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		public override void OnModLoad()
 		{
 			AssetPrefixes = new();
+
+			BodyAssetFrameCounts = new();
+			BodyAssetFrameCounts[GoblinUnderlingClass.Melee] = 20;
+			BodyAssetFrameCounts[GoblinUnderlingClass.Magic] = 14;
+			BodyAssetFrameCounts[GoblinUnderlingClass.Ranged] = 14;
 		}
 
 		public override void PostSetupContent()
@@ -100,6 +111,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		{
 			AssetPrefixes = null;
 
+			BodyAssetFrameCounts = null;
 			BodyAssets = null;
 			WeaponAssets = null;
 		}

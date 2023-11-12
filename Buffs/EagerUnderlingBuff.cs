@@ -43,6 +43,7 @@ namespace AssortedCrazyThings.Buffs
 							}
 						}
 					}
+					//Source is important so that it applies the selected class to the minion
 					int pIndex = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
 					Main.projectile[pIndex].originalDamage = item.damage;
 					modPlayer.hasMinion = true;

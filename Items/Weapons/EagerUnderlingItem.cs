@@ -3,21 +3,28 @@ using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
 	[LegacyName("GoblinUnderlingItem")]
 	[Content(ContentType.Weapons)]
-	public class EagerUnderlingItem : MinionItemBase
+	public class EagerUnderlingItem : AssItem
 	{
 		public const int BaseDmg = 8;
 		public const float BaseKB = 1.5f;
 
 		public GoblinUnderlingClass currentClass;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(new Color(251, 206, 177).Hex3());
 
 		public override void Load()
 		{
@@ -90,6 +97,65 @@ namespace AssortedCrazyThings.Items.Weapons
 			Item.buffType = ModContent.BuffType<EagerUnderlingBuff>();
 		}
 
+		public override bool AltFunctionUse(Player player)
+		{
+			return true;
+		}
+
+		public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
+		{
+			if (player.altFunctionUse == 2)
+			{
+				mult = 0;
+			}
+		}
+
+		public override void UseAnimation(Player player)
+		{
+			if (player.altFunctionUse == 2)
+			{
+				Item.UseSound = SoundID.MaxMana.WithVolumeScale(0.8f);
+			}
+			else
+			{
+				Item.UseSound = SoundID.Item44;
+			}
+		}
+
+		public override float UseSpeedMultiplier(Player player)
+		{
+			if (player.altFunctionUse == 2)
+			{
+				return 3f;
+			}
+			return base.UseSpeedMultiplier(player);
+		}
+
+		public override void NetSend(BinaryWriter writer)
+		{
+			writer.Write((byte)currentClass);
+		}
+
+		public override void NetReceive(BinaryReader reader)
+		{
+			currentClass = (GoblinUnderlingClass)reader.ReadByte();
+		}
+
+		public override void SaveData(TagCompound tag)
+		{
+			tag.Add("currentClass", (byte)currentClass);
+		}
+
+		public override void LoadData(TagCompound tag)
+		{
+			byte val = tag.GetByte("currentClass");
+			if (!Enum.IsDefined(typeof(GoblinUnderlingClass), val))
+			{
+				val = 0;
+			}
+			currentClass = (GoblinUnderlingClass)val;
+		}
+
 		public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
 		{
 			//This is purely done for the tooltip
@@ -102,8 +168,36 @@ namespace AssortedCrazyThings.Items.Weapons
 			knockback *= GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass).knockbackMult;
 		}
 
-		public override bool SafeShoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
+			if (player.altFunctionUse == 2)
+			{
+				byte val = (byte)currentClass;
+				val++;
+				if (!Enum.IsDefined(typeof(GoblinUnderlingClass), val))
+				{
+					val = 0;
+				}
+				currentClass = (GoblinUnderlingClass)val;
+
+				if (player.ownedProjectileCounts[type] > 0)
+				{
+					for (int i = 0; i < Main.maxProjectiles; i++)
+					{
+						Projectile other = Main.projectile[i];
+						if (other.active && other.owner == player.whoAmI && other.type == type && other.ModProjectile is EagerUnderlingProj underling)
+						{
+							underling.currentClass = currentClass;
+							other.NetSync();
+						}
+					}
+				}
+
+				return false;
+			}
+
+			player.AddBuff(Item.buffType, 2);
+
 			if (player.ownedProjectileCounts[type] > 0)
 			{
 				//Use always resummons
@@ -123,6 +217,15 @@ namespace AssortedCrazyThings.Items.Weapons
 			int index = Projectile.NewProjectile(source, position, Vector2.UnitX * player.direction, type, damage, knockback, Main.myPlayer);
 			Main.projectile[index].originalDamage = origDamage;
 			return false;
+		}
+
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			int nameIndex = tooltips.FindIndex(t => t.Mod == "Terraria" && t.Name == "ItemName");
+			if (nameIndex > -1)
+			{
+				tooltips[nameIndex].Text = AssLocalization.ConcatenateTwoText.Format(tooltips[nameIndex].Text, $"({AssLocalization.GetEnumText(currentClass)})");
+			}
 		}
 	}
 }

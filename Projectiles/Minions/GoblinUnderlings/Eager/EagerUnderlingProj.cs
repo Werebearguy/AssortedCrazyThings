@@ -1,11 +1,14 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
+using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,17 +33,17 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public const int WeaponFrameCount = 4;
 
-		public GoblinUnderlingClass currentClass;
+		private bool spawned = false;
 
-		public const string AssetPrefix = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Eager/Melee";
+		public const string AssetPrefix = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Eager/";
 
-		public override string Texture => AssetPrefix + "_0";
+		public override string Texture => AssetPrefix + currentClass + "_0";
 
 		public override void SetStaticDefaults()
 		{
-			Main.projFrames[Projectile.type] = 20;
+			Main.projFrames[Projectile.type] = GoblinUnderlingAssetsSystem.BodyAssetFrameCounts[currentClass];
 			Main.projPet[Projectile.type] = true;
-			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+			//ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true; Has other right click feature instead
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 
@@ -68,13 +71,40 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.localNPCHitCooldown = 18; //Facilitates attack 5 * 4 duration (default pirates), dynamic in AI
 		}
 
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (source is not IEntitySource_WithStatsFromItem fromItem)
+			{
+				return;
+			}
+
+			if (fromItem.Item.ModItem is not EagerUnderlingItem underlingItem)
+			{
+				return;
+			}
+
+			currentClass = underlingItem.currentClass;
+		}
+
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write((byte)AttackState);
+			writer.Write((byte)currentClass);
+		}
+
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			AttackState = reader.ReadByte();
+			currentClass = (GoblinUnderlingClass)reader.ReadByte();
+		}
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			//Custom draw to just center on the hitbox
 			var tierStats = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
 			Texture2D texture;
-			var bodyAssets = GoblinUnderlingAssetsSystem.BodyAssets[Type];
+			var bodyAssets = GoblinUnderlingAssetsSystem.BodyAssets[Type][currentClass];
 			if (Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor)
 			{
 				texture = bodyAssets[0].Value;
@@ -83,7 +113,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			{
 				texture = bodyAssets[texIndex].Value;
 			}
-			Rectangle sourceRect = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
+			Rectangle sourceRect = texture.Frame(1, GoblinUnderlingAssetsSystem.BodyAssetFrameCounts[currentClass], 0, Projectile.frame);
 			Vector2 drawOrigin = sourceRect.Size() / 2f;
 
 			SpriteEffects spriteEffects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -152,16 +182,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			return true;
 		}
 
+		public GoblinUnderlingClass oldCurrentClass;
+
+		//Needs syncing
+		public GoblinUnderlingClass currentClass;
+		public int AttackState { get; private set; }
+
 		public int MovementState
 		{
 			get => (int)Projectile.ai[0];
 			set => Projectile.ai[0] = value;
-		}
-
-		public int AttackState
-		{
-			get => (int)Projectile.ai[2];
-			set => Projectile.ai[2] = value;
 		}
 
 		public int Timer
@@ -178,6 +208,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			set => MovementState = value ? 1 : 0;
 		}
 
+		//TODO goblin only used for Melee
 		public bool MeleeAttacking
 		{
 			get => AttackState == 1;
@@ -400,6 +431,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		private void UnderlingAI(Player player, out Vector2 idleLocation)
 		{
+			if (spawned && oldCurrentClass != currentClass)
+			{
+				Dust dust;
+				for (int i = 0; i < 16; i++)
+				{
+					dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 204, Projectile.velocity.X, Projectile.velocity.Y, 0, new Color(255, 255, 255), 0.8f);
+					dust.noGravity = true;
+					dust.noLight = true;
+				}
+
+				AttackFrameNumber = 0;
+				Timer = 0;
+				GeneralAttacking = false;
+			}
+
 			skipDefaultMovement = false;
 			var tier = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 
@@ -493,6 +539,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				}
 			}
 
+			if (!spawned)
+			{
+				spawned = true;
+			}
+
+			oldCurrentClass = currentClass;
 			oldAttackTarget = attackTarget;
 			Projectile.spriteDirection = -Projectile.direction;
 		}
@@ -1114,12 +1166,25 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 			int startAttackFrame = 12;
 			bool hasJumpingAttackFrames = true;
-			AttackFrameNumber = Utils.Clamp((int)(((float)nextTimerValue - Timer) / ((float)nextTimerValue / attackFrameCount)), 0, attackFrameCount - 1);
-			Projectile.frame = startAttackFrame + AttackFrameNumber;
-
-			if (hasJumpingAttackFrames && (Projectile.velocity.Y != 0f || Flying))
+			if (currentClass == GoblinUnderlingClass.Melee)
 			{
-				Projectile.frame += attackFrameCount;
+				AttackFrameNumber = Utils.Clamp((int)(((float)nextTimerValue - Timer) / ((float)nextTimerValue / attackFrameCount)), 0, attackFrameCount - 1);
+				Projectile.frame = startAttackFrame + AttackFrameNumber;
+
+				if (hasJumpingAttackFrames && (Projectile.velocity.Y != 0f || Flying))
+				{
+					Projectile.frame += attackFrameCount;
+				}
+			}
+			else if (currentClass == GoblinUnderlingClass.Magic || currentClass == GoblinUnderlingClass.Ranged)
+			{
+				AttackFrameNumber = 0;
+				Projectile.frame = startAttackFrame + AttackFrameNumber;
+
+				if (hasJumpingAttackFrames && (Projectile.velocity.Y != 0f || Flying))
+				{
+					Projectile.frame += 1;
+				}
 			}
 		}
 

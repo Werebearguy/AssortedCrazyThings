@@ -1979,6 +1979,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					Summons an eager underling to fight for you
+					Class can be changed with [c/{0}:<right>]
 					Gets stronger throughout progression
 					Only one can be summoned
 					'Inside, there's a spiky ball, a coin, and a...moon?'
@@ -2888,6 +2889,12 @@ Mods: {
 					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
 				}
 			}
+		}
+
+		GoblinUnderlingClass: {
+			// Melee: Melee
+			// Magic: Magic
+			// Ranged: Ranged
 		}
 	}
 }
