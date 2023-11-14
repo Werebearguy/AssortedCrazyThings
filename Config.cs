@@ -257,7 +257,7 @@ namespace AssortedCrazyThings
 			if (Main.netMode == NetmodeID.SinglePlayer) return true;
 			else if (!IsPlayerLocalServerOwner(whoAmI))
 			{
-				message = AssUISystem.AcceptClientChangesText.ToString();
+				message = AssLocalization.AcceptClientChangesText.ToString();
 				return false;
 			}
 			return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);

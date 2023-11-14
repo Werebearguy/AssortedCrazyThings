@@ -1,7 +1,6 @@
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -16,8 +15,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 	{
 		public const float Gravity = 0.1f;
 		public const int TicksWithoutGravity = 15;
-
-		public static HashSet<int> IsDart { get; private set; }
 
 		public static LocalizedText CommonDisplayNameText { get; private set; }
 
@@ -39,20 +36,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override LocalizedText DisplayName => CommonDisplayNameText;
 
-		public override void Load()
-		{
-			IsDart ??= new();
-		}
-
-		public override void Unload()
-		{
-			IsDart = null;
-		}
-
 		public override void SetStaticDefaults()
 		{
 			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(GoblinUnderlingWeaponDart)}.DisplayName"));
-			IsDart.Add(Type);
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 		}
@@ -60,6 +46,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
+			Projectile.alpha = 255;
 			Projectile.aiStyle = -1;
 			Projectile.height = 12;
 			Projectile.width = 12;
@@ -117,6 +104,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 				Spawned = true;
 
 				SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
+			}
+
+			if (Projectile.alpha > 0)
+			{
+				Projectile.alpha -= 50;
+
+				if (Projectile.alpha < 0)
+				{
+					Projectile.alpha = 0;
+				}
 			}
 
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;

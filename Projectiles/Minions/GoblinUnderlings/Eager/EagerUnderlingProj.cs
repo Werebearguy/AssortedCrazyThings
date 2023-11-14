@@ -2,7 +2,6 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
 using AssortedCrazyThings.Items.Weapons;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -88,14 +87,26 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		public override void SendExtraAI(BinaryWriter writer)
 		{
+			//TODO goblin optimize
 			writer.Write((byte)AttackState);
 			writer.Write((byte)currentClass);
+
+			BitsByte flags = new BitsByte();
+			flags[0] = lastAttackAngle != 0f;
+			writer.Write(flags);
+			if (flags[0])
+			{
+				writer.Write((float)lastAttackAngle);
+			}
 		}
 
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
 			AttackState = reader.ReadByte();
 			currentClass = (GoblinUnderlingClass)reader.ReadByte();
+
+			BitsByte flags = reader.ReadByte();
+			lastAttackAngle = flags[0] ? reader.ReadSingle() : 0f;
 		}
 
 		public override bool PreDraw(ref Color lightColor)
@@ -103,27 +114,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			//Custom draw to just center on the hitbox
 			var tierStats = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
-			Texture2D texture;
 			var bodyAssets = GoblinUnderlingAssetsSystem.BodyAssets[Type][currentClass];
-			if (Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor)
-			{
-				texture = bodyAssets[0].Value;
-			}
-			else
-			{
-				texture = bodyAssets[texIndex].Value;
-			}
+			Texture2D texture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor) ? bodyAssets[0] : bodyAssets[texIndex]).Value;
 			Rectangle sourceRect = texture.Frame(1, GoblinUnderlingAssetsSystem.BodyAssetFrameCounts[currentClass], 0, Projectile.frame);
 			Vector2 drawOrigin = sourceRect.Size() / 2f;
 
 			SpriteEffects spriteEffects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-			Vector2 drawPos = Projectile.position + Projectile.Size / 2f + new Vector2(0, Projectile.gfxOffY + 4f - 2f) - Main.screenPosition;
+			Vector2 center = Projectile.position + Projectile.Size / 2f + new Vector2(0, Projectile.gfxOffY + 4f - 2f) - Main.screenPosition;
 			Color color = lightColor;
 
 			float rotation = Projectile.rotation;
 			float scale = Projectile.scale;
-			Main.EntitySpriteDraw(texture, drawPos, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
+			Main.EntitySpriteDraw(texture, center, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
 
 			if (currentClass == GoblinUnderlingClass.Melee)
 			{
@@ -135,12 +138,105 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 						texture = asset.Value;
 						sourceRect = texture.Frame(1, WeaponFrameCount, 0, AttackFrameNumber);
 						drawOrigin = sourceRect.Size() / 2f;
-						Main.EntitySpriteDraw(texture, drawPos, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
+						Main.EntitySpriteDraw(texture, center, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
 					}
+				}
+			}
+			else if (currentClass == GoblinUnderlingClass.Ranged)
+			{
+				if (RangedAttacking)
+				{
+					if (GetBowDrawParams(center, sourceRect, spriteEffects, lastAttackAngle, out Texture2D weaponTexture, out Vector2 weaponCenter, out Rectangle weaponSourceRect, out Vector2 weaponDrawOrigin, out float weaponRotation))
+					{
+						Main.EntitySpriteDraw(weaponTexture, weaponCenter, weaponSourceRect, color, weaponRotation, weaponDrawOrigin, scale, spriteEffects, 0);
+					}
+
+					GetArmDrawParams(center, spriteEffects, lastAttackAngle, out Texture2D armTexture, out Vector2 armCenter, out Rectangle armSourceRect, out Vector2 armDrawOrigin, out float armRotation);
+					Main.EntitySpriteDraw(armTexture, armCenter, armSourceRect, color, armRotation, armDrawOrigin, scale, spriteEffects, 0);
 				}
 			}
 
 			return false;
+		}
+
+		private bool GetBowDrawParams(Vector2 drawCenter, Rectangle sourceRect, SpriteEffects spriteEffects, float attackAngle,
+			out Texture2D weaponTexture, out Vector2 weaponCenter, out Rectangle weaponSourceRect, out Vector2 weaponDrawOrigin, out float weaponRotation)
+		{
+			weaponTexture = null;
+			weaponCenter = default;
+			weaponSourceRect = default;
+			weaponDrawOrigin = default;
+			weaponRotation = 0f;
+			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
+			var asset = GoblinUnderlingAssetsSystem.GetWeaponAsset(GoblinUnderlingWeaponType.Bow, texIndex);
+			if (asset == null)
+			{
+				return false;
+			}
+
+			weaponTexture = asset.Value;
+			//Combined center of base + weapon sprites
+			weaponDrawOrigin = sourceRect.Size() / 2f;
+			weaponSourceRect = weaponTexture.Frame();
+			weaponDrawOrigin -= weaponSourceRect.Size() / 2f;
+
+			float slimmerSpriteOffsetX = 2 * 2; //Sprite is less than half the width by 2 pixels, so adjust it when flipped
+
+			//Move weapon down to align with arm
+			Vector2 alignWeapon = new Vector2(8, 4);
+			if (spriteEffects == SpriteEffects.FlipHorizontally)
+			{
+				alignWeapon.X *= -1;
+				alignWeapon.X -= slimmerSpriteOffsetX;
+			}
+			weaponCenter = drawCenter - alignWeapon;
+
+			//The rotation happens outside of the sprite, on the arm joint
+			Vector2 rotOffset = -new Vector2(12, 10);
+			if (spriteEffects == SpriteEffects.FlipHorizontally)
+			{
+				rotOffset.X *= -1;
+				rotOffset.X += slimmerSpriteOffsetX;
+			}
+			weaponDrawOrigin -= rotOffset;
+			weaponCenter -= rotOffset;
+
+			weaponRotation = attackAngle;
+			if (spriteEffects != SpriteEffects.FlipHorizontally)
+			{
+				//weaponRotation += MathHelper.Pi;
+			}
+
+			return true;
+		}
+
+		private void GetArmDrawParams(Vector2 drawCenter, SpriteEffects spriteEffects, float attackAngle,
+			out Texture2D armTexture, out Vector2 armCenter, out Rectangle armSourceRect, out Vector2 armDrawOrigin, out float armRotation)
+		{
+			var armAssets = GoblinUnderlingAssetsSystem.RangedArmAssets[Type];
+			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
+			armTexture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor) ? armAssets[0] : armAssets[texIndex]).Value;
+
+			armSourceRect = armTexture.Frame();
+			armDrawOrigin = armSourceRect.Size() / 2f;
+
+			//Frame size is the same
+			armCenter = drawCenter;
+
+			//The rotation on the arm joint
+			Vector2 rotOffset = -new Vector2(4, 6);
+			if (spriteEffects == SpriteEffects.FlipHorizontally)
+			{
+				rotOffset.X *= -1;
+			}
+			armDrawOrigin -= rotOffset;
+			armCenter -= rotOffset;
+
+			armRotation = attackAngle;
+			if (spriteEffects != SpriteEffects.FlipHorizontally)
+			{
+				//armRotation += MathHelper.Pi;
+			}
 		}
 
 		public override void ModifyDamageHitbox(ref Rectangle hitbox)
@@ -186,6 +282,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 
 		//Needs syncing
 		public GoblinUnderlingClass currentClass;
+		public float lastAttackAngle;
 		public int AttackState { get; private set; }
 
 		public int MovementState
@@ -514,16 +611,27 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				Projectile.friendly = false;
 				if (AttackCoolup(nextTimerValue))
 				{
-					return;
+					//TODO implement when needed
+					//return;
 				}
 			}
 			else if (GeneralAttacking)
 			{
-				AttackAction(ranged, tier.rangedProjType, tier.rangedVelocity, attackFrameCount, nextTimerValue, globalAttackRange);
+				AttackAction(ranged, tier.rangedProjType, tier.rangedVelocity, attackFrameCount, nextTimerValue, tier.shootFrame, globalAttackRange, tier.gravity, tier.ticksWithoutGravity, tier.projOffset);
 
 				if (AttackCooldown(attackCooldown))
 				{
-					return;
+					//Stay in attack mode if possible
+					if (attackTarget > -1)
+					{
+						PickDestinationAndAttack(ranged, meleeAttackRange, rangedAttackRangeFromProj, attackFrameCount, attackTarget, globalAttackRange, out destination);
+					}
+
+					if (attackTarget == -1)
+					{
+						//Combat ended
+						lastAttackAngle = 0f;
+					}
 				}
 			}
 
@@ -549,7 +657,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.spriteDirection = -Projectile.direction;
 		}
 
-		private void AttackAction(bool ranged, int rangedProjType, float rangedVelocity, int attackFrameCount, int nextTimerValue, int globalAttackRange)
+		private void AttackAction(bool ranged, int rangedProjType, float rangedVelocity, int attackFrameCount, int nextTimerValue, int shootFrame, int globalAttackRange, float gravity, int ticksWithoutGravity, Vector2 projOffset)
 		{
 			AttackingAnimation(attackFrameCount, nextTimerValue);
 
@@ -588,6 +696,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 					{
 						Projectile.velocity.Y = 10f;
 					}
+					Projectile.tileCollide = true;
 				}
 
 				int newAttackTarget = -1;
@@ -596,12 +705,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				if (newAttackTarget != -1)
 				{
 					NPC npc = Main.npc[newAttackTarget];
-					Projectile.direction = (npc.Center.X - Projectile.Center.X >= 0f).ToDirectionInt();
+					Vector2 position = Projectile.Center + projOffset;
+					Vector2 targetPos = npc.Center + npc.velocity * 0.6f;
+					Projectile.direction = (targetPos.X - position.X >= 0f).ToDirectionInt();
 
-					if (Main.myPlayer == Projectile.owner && Timer == (int)(nextTimerValue * 0.75f))
+					if (Main.myPlayer == Projectile.owner && Timer == (int)(nextTimerValue * (1 - (float)shootFrame / nextTimerValue)))
 					{
-						Vector2 position = Projectile.Center;
-						Vector2 targetPos = npc.Center + npc.velocity * 0.6f;
 						Vector2 vector = targetPos - position;
 						float speed = rangedVelocity;
 						float mag = vector.Length();
@@ -611,9 +720,20 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 							vector *= mag;
 						}
 
-						if (GoblinUnderlingWeaponDart.IsDart.Contains(rangedProjType))
+						int mult = 1 + ContentSamples.ProjectilesByType[rangedProjType].extraUpdates;
+						if (gravity > 0)
 						{
-							AssUtils.ModifyVelocityForGravity(position, targetPos, GoblinUnderlingWeaponDart.Gravity, ref vector, GoblinUnderlingWeaponDart.TicksWithoutGravity);
+							AssUtils.ModifyVelocityForGravity(position, targetPos, gravity * mult, ref vector, ticksWithoutGravity * mult);
+						}
+
+						if (currentClass == GoblinUnderlingClass.Ranged)
+						{
+							lastAttackAngle = vector.ToRotation();
+							if (Projectile.direction == -1)
+							{
+								lastAttackAngle += MathHelper.Pi;
+							}
+							Projectile.netUpdate = true;
 						}
 
 						Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, vector, rangedProjType, Projectile.damage, Projectile.knockBack, Projectile.owner);
@@ -725,10 +845,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 				}
 
 				//If enemy too far up, jump to try hitting it
-				if (npc.Bottom.Y + rangedAttackRangeFromProj * 1.2f < Projectile.Center.Y)
-				{
-					allowJump = true;
-				}
+				//This causes "deadzone" where no ranged attack takes place before jumping is allowed. jumping in this section doesn't make much sense tho as it violates the ranged attack range anyway
+				//if (npc.Bottom.Y + rangedAttackRangeFromProj * 1.2f < Projectile.Center.Y)
+				//{
+				//	allowJump = true;
+				//}
 
 				if (projDistance < rangedAttackRangeFromProj && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
 				{
@@ -1098,14 +1219,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			}
 		}
 
+		private void ResetAttack()
+		{
+			Timer = 0;
+			GeneralAttacking = false;
+			Projectile.netUpdate = true;
+		}
+
 		private bool AttackCoolup(int nextTimerValue)
 		{
 			Timer += 1;
 			if (nextTimerValue >= 0)
 			{
-				Timer = 0;
-				GeneralAttacking = false;
-				Projectile.netUpdate = true;
+				ResetAttack();
 				return true;
 			}
 
@@ -1119,9 +1245,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			{
 				if (attackCooldown <= 0)
 				{
-					Timer = 0;
-					GeneralAttacking = false;
-					Projectile.netUpdate = true;
+					ResetAttack();
 					return true;
 				}
 

@@ -21,10 +21,11 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public const int BaseDmg = 8;
 		public const float BaseKB = 1.5f;
+		public static readonly Color apricotColor = new Color(251, 206, 177);
 
 		public GoblinUnderlingClass currentClass;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(new Color(251, 206, 177).Hex3());
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(apricotColor.Hex3());
 
 		public override void Load()
 		{
@@ -179,6 +180,7 @@ namespace AssortedCrazyThings.Items.Weapons
 					val = 0;
 				}
 				currentClass = (GoblinUnderlingClass)val;
+				Main.NewText(AssLocalization.SelectedText.Format(AssLocalization.GetEnumText(currentClass)), apricotColor);
 
 				if (player.ownedProjectileCounts[type] > 0)
 				{

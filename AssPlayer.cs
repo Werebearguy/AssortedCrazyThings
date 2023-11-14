@@ -645,7 +645,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedSillyBalloonType =  (BalloonType)(byte)CircleUI.returned;
-						AssUtils.UIText(AssUISystem.SelectedText.Format(SillyBalloonKit.Enum2string(selectedSillyBalloonType)), CombatText.HealLife);
+						AssUtils.UIText(AssLocalization.SelectedText.Format(SillyBalloonKit.Enum2string(selectedSillyBalloonType)), CombatText.HealLife);
 					}
 				),
 				});
@@ -663,7 +663,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedSlimePackMinionType =  (SlimeType)(byte)CircleUI.returned;
-						AssUtils.UIText(AssUISystem.SelectedText.Format(SlimeHandlerKnapsack.Enum2string(selectedSlimePackMinionType)), CombatText.HealLife);
+						AssUtils.UIText(AssLocalization.SelectedText.Format(SlimeHandlerKnapsack.Enum2string(selectedSlimePackMinionType)), CombatText.HealLife);
 					},
 					triggerLeft: false
 				),
@@ -682,7 +682,7 @@ namespace AssortedCrazyThings
 					onUIEnd: delegate
 					{
 						selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-						AssUtils.UIText(AssUISystem.SelectedText.Format(DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular), CombatText.HealLife);
+						AssUtils.UIText(AssLocalization.SelectedText.Format(DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular), CombatText.HealLife);
 					},
 					triggerLeft: false
 				)}
@@ -706,7 +706,7 @@ namespace AssortedCrazyThings
 				onUIEnd: delegate
 				{
 					selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-					AssUtils.UIText(AssUISystem.SelectedText.Format(EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular), CombatText.HealLife);
+					AssUtils.UIText(AssLocalization.SelectedText.Format(EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular), CombatText.HealLife);
 				},
 				triggerLeft: false
 				));

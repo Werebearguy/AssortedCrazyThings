@@ -36,26 +36,6 @@ namespace AssortedCrazyThings
 		internal static UserInterface PetVanityUIInterface;
 		internal static PetVanityUI PetVanityUI;
 
-		//Not all localizations are "code-ified", i.e. those pertaining to gear stat changes or general item tooltips as they are only used in the lang file itself
-		public static LocalizedText SelectedText { get; private set; }
-
-		public static LocalizedText BaseDamageText { get; private set; }
-
-		public static LocalizedText BaseKnockbackText { get; private set; }
-
-		public static LocalizedText AcceptClientChangesText { get; private set; }
-
-		public override void Load()
-		{
-			string category = "Common.";
-			SelectedText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Selected"));
-			BaseDamageText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseDamage"));
-			BaseKnockbackText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseKnockback"));
-
-			category = "Configs.Common.";
-			AcceptClientChangesText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AcceptClientChanges"));
-		}
-
 		public override void PostSetupContent()
 		{
 			if (!Main.dedServ && Main.netMode != NetmodeID.Server)
@@ -237,7 +217,7 @@ namespace AssortedCrazyThings
 				if (CircleUI.triggerItemType == ModContent.ItemType<VanitySelector>())
 				{
 					PoofVisual(CircleUI.UIConf.AdditionalInfo);
-					AssUtils.UIText(SelectedText.Format(CircleUI.UIConf.Tooltips[CircleUI.returned]), CombatText.HealLife);
+					AssUtils.UIText(AssLocalization.SelectedText.Format(CircleUI.UIConf.Tooltips[CircleUI.returned]), CombatText.HealLife);
 				}
 			}
 

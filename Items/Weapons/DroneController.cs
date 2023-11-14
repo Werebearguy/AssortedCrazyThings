@@ -410,8 +410,8 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public string NameSingular => Name.Format(1);
 		public string UITooltip => NameSingular
-			+ (Combat ? ($"\n{AssUISystem.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
-			+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
+			+ (Combat ? ($"\n{AssLocalization.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
+			+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
 			+ "\n" + Description.ToString()
 			+ "\n" + Misc.ToString();
 

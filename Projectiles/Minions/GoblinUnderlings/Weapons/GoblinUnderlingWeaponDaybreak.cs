@@ -60,6 +60,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
+			Projectile.alpha = 255;
 			Projectile.aiStyle = -1;
 			Projectile.height = 12;
 			Projectile.width = 12;
@@ -78,6 +79,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 				Spawned = true;
 
 				SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
+			}
+
+			if (Projectile.alpha > 0)
+			{
+				Projectile.alpha -= 50;
+
+				if (Projectile.alpha < 0)
+				{
+					Projectile.alpha = 0;
+				}
 			}
 
 			if (Projectile.ai[0] == 0f)

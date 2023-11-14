@@ -13,13 +13,29 @@ namespace AssortedCrazyThings
 	{
 		private static Dictionary<Type, Dictionary<string, LocalizedText>> EnumTypeToLocalizationMapping { get; set; }
 
+		//Not all localizations are "code-ified", i.e. those pertaining to gear stat changes or general item tooltips as they are only used in the lang file itself
 		public static LocalizedText ConcatenateTwoText { get; private set; }
+
+		public static LocalizedText SelectedText { get; private set; }
+
+		public static LocalizedText BaseDamageText { get; private set; }
+
+		public static LocalizedText BaseKnockbackText { get; private set; }
+
+		public static LocalizedText AcceptClientChangesText { get; private set; }
 
 		public override void OnModLoad()
 		{
 			LoadEnumText();
 
-			ConcatenateTwoText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.ConcatenateTwo"));
+			string category = "Common.";
+			ConcatenateTwoText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ConcatenateTwo"));
+			SelectedText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Selected"));
+			BaseDamageText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseDamage"));
+			BaseKnockbackText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseKnockback"));
+
+			category = "Configs.Common.";
+			AcceptClientChangesText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AcceptClientChanges"));
 		}
 
 		public override void OnModUnload()

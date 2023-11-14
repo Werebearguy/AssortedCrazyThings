@@ -2382,6 +2382,8 @@ Mods: {
 			GoblinUnderlingWeaponDart.DisplayName: Goblin Underling Dart
 			EagerUnderlingProj.DisplayName: Eager Underling
 			GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
+			GoblinUnderlingWeaponArrow.DisplayName: Goblin Underling Arrow
+			GoblinUnderlingWeaponBlaster.DisplayName: Goblin Underling Blaster
 			MagicSlimeSlingFired.DisplayName: Magic Slime Sling
 			MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser

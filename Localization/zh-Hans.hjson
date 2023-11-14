@@ -2383,6 +2383,8 @@ Mods: {
 			GoblinUnderlingWeaponDart.DisplayName: 哥布林属下飞镖
 			EagerUnderlingProj.DisplayName: 热心的属下
 			GoblinUnderlingWeaponTerraBeam.DisplayName: 哥布林属下泰拉光束
+			GoblinUnderlingWeaponArrow.DisplayName: 哥布林属下Arrow
+			GoblinUnderlingWeaponBlaster.DisplayName: 哥布林属下Blaster
 			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
 			MagicSlimeSlingMinion.DisplayName: 魔法史莱姆机弦仆从
 			PetDestroyerDroneLaser.DisplayName: 宠物毁灭者激光

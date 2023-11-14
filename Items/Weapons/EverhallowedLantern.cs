@@ -47,8 +47,8 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public string NameSingular => Name.Format(1);
 		public string Tooltip => NameSingular
-			+ $"\n{AssUISystem.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
-			+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
+			+ $"\n{AssLocalization.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
+			+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
 			+ "\n" + Description.ToString();
 
 		public SoulData(int projType, string internalName, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)

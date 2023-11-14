@@ -19,6 +19,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 	{
 		public static Dictionary<GoblinUnderlingClass, int> BodyAssetFrameCounts { get; private set; }
 		public static Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>> BodyAssets { get; private set; }
+		public static Dictionary<int, Asset<Texture2D>[]> RangedArmAssets { get; private set; }
 		private static Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]> WeaponAssets { get; set; }
 		private static Dictionary<GoblinUnderlingWeaponType, List<int>> HasNoWeaponAssets { get; set; }
 		public static Dictionary<int, string> AssetPrefixes { get; private set; }
@@ -51,6 +52,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		{
 			var count = GoblinUnderlingTierSystem.TierCount;
 			BodyAssets = new Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>>();
+			RangedArmAssets = new Dictionary<int, Asset<Texture2D>[]>();
 			WeaponAssets = new Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]>();
 			HasNoWeaponAssets = new Dictionary<GoblinUnderlingWeaponType, List<int>>();
 
@@ -59,6 +61,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			{
 				int type = pair.Key;
 				BodyAssets[type] = new Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>();
+				RangedArmAssets[type] = new Asset<Texture2D>[count];
 				foreach (var @class in Enum.GetValues<GoblinUnderlingClass>())
 				{
 					BodyAssets[type][@class] = new Asset<Texture2D>[count];
@@ -67,17 +70,22 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 						int index = (int)tier;
 						string assetPrefix = pair.Value;
 						BodyAssets[type][@class][index] = ModContent.Request<Texture2D>(assetPrefix + @class + "_" + index);
+
+						if (@class == GoblinUnderlingClass.Ranged)
+						{
+							RangedArmAssets[type][index] = ModContent.Request<Texture2D>(assetPrefix + @class + "ArmStatic_" + index);
+						}
 					}
 				}
 			}
 
 			//Uses special ranged projectile
 			HasNoWeaponAssets[GoblinUnderlingWeaponType.Sword] = new List<int>() { (int)GoblinUnderlingProgressionTierStage.Cultist };
+			//Uses arm sprite
+			HasNoWeaponAssets[GoblinUnderlingWeaponType.Bow] = new List<int>() { (int)GoblinUnderlingProgressionTierStage.Cultist };
 
 			string weaponAssetPrefix = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Weapons/Weapon";
-			//TODO goblin fix when all weapon types are in
-			if (GoblinUnderlingWeaponType.Sword is GoblinUnderlingWeaponType weaponType)
-			//foreach (var weaponType in Enum.GetValues<GoblinUnderlingWeaponType>())
+			foreach (var weaponType in Enum.GetValues<GoblinUnderlingWeaponType>())
 			{
 				WeaponAssets[weaponType] = new Asset<Texture2D>[count];
 				foreach (var tier in tiers)
@@ -113,6 +121,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 			BodyAssetFrameCounts = null;
 			BodyAssets = null;
+			RangedArmAssets = null;
 			WeaponAssets = null;
 		}
 	}

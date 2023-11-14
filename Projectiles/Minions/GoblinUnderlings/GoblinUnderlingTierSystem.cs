@@ -1,5 +1,4 @@
 ﻿using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using System;
 using System.Collections.Generic;
@@ -104,45 +103,46 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		{
 			var tierStats = new Dictionary<GoblinUnderlingProgressionTierStage, GoblinUnderlingTierStats>
 			{
-				//PreBoss = Baseline values in Item/AI code																										//dmg    kb    ap  sp     m  hb  ran   ransp
-				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f , 1f) },
-				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_1>()          , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f , 1.2f) },
-				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_2>()          , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f, 1.3f) },
-				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()          , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f, 1.4f) },
-				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()          , 2.2f , 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f, 1.6f) }, //Mostly a copy of previous tier with more damage, same visuals too
-				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_4>()          , 2.8f , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f, 1.7f) },
-				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f, 2f , true) },
-				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDaybreak>()           , 3.25f, 2.2f, 10, 0.8f , 4, 10, 1f  , 16f, 2f , false, true) },
+				//PreBoss = Baseline values in Item/AI code																									   //dmg    kb    ap  sp     m  hb  ran   ransp ranmp
+				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_0>()   , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f , 1f) },
+				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_1>()   , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f , 1.2f) },
+				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_2>()   , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f, 1.3f) },
+				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()   , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f, 1.4f) },
+				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()   , 2.4f , 1.8f, 10, 0.45f, 5, 6 , 1.5f, 11f, 1.6f) }, //Mostly a copy of previous tier with more damage, same visuals too
+				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_4>()   , 2.8f , 2.0f, 10, 0.6f , 5, 6 , 1.5f, 12f, 1.7f) },
+				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2.2f, 10, 0.7f , 4, 10, 1f  , 14f, 2f, -1, 0, showMeleeDuringRanged: true) },
+				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDaybreak>() , 3.25f, 2.4f, 10, 0.8f , 4, 10, 1f  , 16f, 2f, showMeleeDuringRanged: false, rangedOnly: true) },
 			};
 			RegisterStats(GoblinUnderlingClass.Melee, tierStats);
 
 			//TODO stats
 			tierStats = new Dictionary<GoblinUnderlingProgressionTierStage, GoblinUnderlingTierStats>
 			{
-				//PreBoss = Baseline values in Item/AI code																										//dmg    kb    ap  sp     m  hb  ran   ransp
-				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f , 1f) },
-				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_1>()          , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f , 1.2f) },
-				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_2>()          , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f, 1.3f) },
-				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()          , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f, 1.4f) },
-				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()          , 2.2f , 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f, 1.6f) }, //Mostly a copy of previous tier with more damage, same visuals too
-				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_4>()          , 2.8f , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f, 1.7f) },
-				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f, 2f , true) },
-				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDaybreak>()           , 3.25f, 2.2f, 10, 0.8f , 4, 10, 1f  , 16f, 2f , false, true) },
+				//PreBoss = Baseline values in Item/AI code																									   //dmg    kb    ap  sp     m  hb  ran   ransp ranmp
+				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_0>()   , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f , 1f) },
+				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_1>()   , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f , 1.2f) },
+				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_2>()   , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f, 1.3f) },
+				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()   , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f, 1.4f) },
+				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()   , 2.4f , 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f, 1.6f) }, //Mostly a copy of previous tier with more damage, same visuals too
+				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_4>()   , 2.8f , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f, 1.7f) },
+				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f, 2f, -1, 0, showMeleeDuringRanged: true) },
+				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDaybreak>() , 3.25f, 2.2f, 10, 0.8f , 4, 10, 1f  , 16f, 2f, showMeleeDuringRanged: false, rangedOnly: true) },
 			};
 			RegisterStats(GoblinUnderlingClass.Magic, tierStats);
 
 			//TODO stats
+			//TODO increase range, adjust arrow speed
 			tierStats = new Dictionary<GoblinUnderlingProgressionTierStage, GoblinUnderlingTierStats>
 			{
-				//PreBoss = Baseline values in Item/AI code																										//dmg    kb    ap  sp     m  hb  ran   ransp
-				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_0>()          , 1f   , 1f  , 0 , 0.3f , 6, 0 , 1.5f, 8f , 1f) },
-				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_1>()          , 1.50f, 1.2f, 0 , 0.35f, 6, 2 , 1.5f, 9f , 1.2f) },
-				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_2>()          , 1.70f, 1.4f, 5 , 0.4f , 6, 4 , 1.5f, 10f, 1.3f) },
-				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()          , 1.75f, 1.6f, 5 , 0.45f, 5, 6 , 1.5f, 11f, 1.4f) },
-				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_3>()          , 2.2f , 1.6f, 10, 0.45f, 5, 6 , 1.5f, 11f, 1.6f) }, //Mostly a copy of previous tier with more damage, same visuals too
-				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDart_4>()          , 2.8f , 1.8f, 10, 0.6f , 5, 6 , 1.5f, 12f, 1.7f) },
-				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponTerraBeam>(), 3.0f , 2f  , 10, 0.7f , 4, 10, 1f  , 14f, 2f , true) },
-				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingMeleeTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponDaybreak>()           , 3.25f, 2.2f, 10, 0.8f , 4, 10, 1f  , 16f, 2f , false, true) },
+				//PreBoss = Baseline values in Item/AI code																									  //dmg   kb    ap  sp     m ransp ranmp
+				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_0>(), 1.2f, 1f  , 2 , 0.25f, 8, 9f , 1.4f) },
+				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_1>(), 1.5f, 1.2f, 4 , 0.3f , 8, 10f , 1.6f) },
+				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_2>(), 1.7f, 1.4f, 6 , 0.35f, 7, 5.5f , 1.7f) },
+				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_3>(), 1.9f, 1.6f, 8 , 0.4f , 7, 12f, 1.8f) },
+				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_3>(), 2.4f, 1.6f, 10, 0.4f , 6, 13f, 1.9f) }, //Mostly a copy of previous tier with more damage, same visuals too
+				{ GoblinUnderlingProgressionTierStage.Mech      , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_4>(), 2.8f, 1.8f, 10, 0.5f , 5, 14f, 2.0f) },
+				{ GoblinUnderlingProgressionTierStage.Plantera  , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_5>(), 2.8f, 2f  , 10, 0.6f , 4, 15f, 2.2f, GoblinUnderlingWeaponArrow_5.Gravity, GoblinUnderlingWeaponArrow_5.TicksWithoutGravity) },
+				{ GoblinUnderlingProgressionTierStage.Cultist   , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponBlaster>(), 3.4f, 2f  , 10, 0.7f , 3, 16f, 2.4f, -1, 0) },
 			};
 			RegisterStats(GoblinUnderlingClass.Ranged, tierStats);
 		}
