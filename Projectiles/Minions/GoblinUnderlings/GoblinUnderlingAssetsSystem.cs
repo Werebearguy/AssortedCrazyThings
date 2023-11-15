@@ -73,7 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 						if (@class == GoblinUnderlingClass.Ranged)
 						{
-							RangedArmAssets[type][index] = ModContent.Request<Texture2D>(assetPrefix + @class + "ArmStatic_" + index);
+							RangedArmAssets[type][index] = ModContent.Request<Texture2D>(assetPrefix + @class + "Arm_" + index);
 						}
 					}
 				}
