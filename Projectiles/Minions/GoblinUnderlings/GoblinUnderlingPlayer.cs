@@ -14,6 +14,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		public HashSet<int> firstSummon;
 		public Dictionary<int, Ref<bool>> hasMinion;
 
+		public int numUnderlings = 0;
+
 		public void SetHasMinion(int type, bool val)
 		{
 			if (hasMinion.TryGetValue(type, out var value))
@@ -77,6 +79,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			{
 				value.Value = false;
 			}
+		}
+
+		public override void PreUpdate()
+		{
+			numUnderlings = 0;
 		}
 
 		public override void LoadData(TagCompound tag)

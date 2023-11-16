@@ -28,6 +28,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		public int stuckTimer = 0;
 
 		public int afkTimer = 0;
+		public int minionPos = 0;
 
 		public int InCombatTimerMax = 5 * 60;
 		public int inCombatTimer = 0;
@@ -366,6 +367,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				Projectile.timeLeft = 2;
 			}
 
+			minionPos = modPlayer.numUnderlings;
+			modPlayer.numUnderlings++;
+
 			//Has to be in PreAI so that damage works in AI properly
 			SetScaledDamage(player);
 
@@ -429,9 +433,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			int distIdle = 48;
 			int offset = Projectile.width / 2;
 			defaultLocation.X -= (player.width / 2) * player.direction;
-			//defaultLocation.X -= (Projectile.minionPos * (Projectile.width + 6)) * player.direction;
-			//TODO like PetPlayer.numSlimePets
-			//minionPos calculations not necessary because you can't summon more than 1. Instead, use custom minionPos only for underlings
+			//Projectile.minionPos calculations not necessary because you can't summon more than 1. Instead, use custom minionPos only for underlings
+			defaultLocation.X -= minionPos * (Projectile.width + 6) * player.direction;
 			if (player.direction == 1)
 			{
 				defaultLocation.X -= distIdle;

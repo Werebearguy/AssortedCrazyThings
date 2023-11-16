@@ -9,6 +9,43 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 	[Content(ContentType.Weapons)]
 	public class GoblinUnderlingHelperSystem : AssSystem
 	{
+		public override void OnModLoad()
+		{
+			On_Player.FreeUpPetsAndMinions += On_Player_FreeUpPetsAndMinions;
+		}
+
+		private static void On_Player_FreeUpPetsAndMinions(On_Player.orig_FreeUpPetsAndMinions orig, Player self, Item sItem)
+		{
+			bool atleastOne = false;
+			if (self.altFunctionUse == 2)
+			{
+				for (int i = 0; i < Main.maxProjectiles; i++)
+				{
+					Projectile p = Main.projectile[i];
+					if (p.active && p.owner == self.whoAmI && GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(p.type))
+					{
+						atleastOne = true;
+						p.minion = false; // temporarily de-minion it so that it doesn't get sacrificed
+					}
+				}
+			}
+
+			orig(self, sItem);
+
+			// re-minionify all necessary minions
+			if (atleastOne)
+			{
+				for (int i = 0; i < Main.maxProjectiles; i++)
+				{
+					Projectile p = Main.projectile[i];
+					if (p.active && p.owner == self.whoAmI && !p.minion && GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(p.type))
+					{
+						p.minion = true;
+					}
+				}
+			}
+		}
+
 		public static IEnumerable<Projectile> GetLocalGoblinUnderlings(GoblinUnderlingChatterType guChatterType = GoblinUnderlingChatterType.None)
 		{
 			for (int i = 0; i < Main.maxProjectiles; i++)

@@ -8,6 +8,12 @@ namespace AssortedCrazyThings.Buffs
 	[Content(ContentType.Weapons)]
 	public abstract class GoblinUnderlingBuff : AssBuff
 	{
+		public override void SetStaticDefaults()
+		{
+			Main.buffNoSave[Type] = true;
+			Main.buffNoTimeDisplay[Type] = true;
+		}
+
 		public override void Update(Player player, ref int buffIndex)
 		{
 			bool active = true;
