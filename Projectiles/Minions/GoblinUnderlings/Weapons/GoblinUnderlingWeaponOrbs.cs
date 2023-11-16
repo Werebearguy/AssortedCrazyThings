@@ -1,6 +1,5 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -74,7 +73,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			{
 				ownedGoblinWhoAmI = parentProjectile.whoAmI;
 
-				ChargeDuration = GoblinUnderlingTierSystem.GetCurrentTierStats(GoblinUnderlingClass.Magic).attackInterval * EagerUnderlingProj.WeaponFrameCount;
+				ChargeDuration = GoblinUnderlingTierSystem.GetCurrentTierStats(GoblinUnderlingClass.Magic).attackInterval * GoblinUnderlingProj.WeaponFrameCount;
 				OrigSpeed = Projectile.velocity.Length();
 			}
 		}
@@ -86,7 +85,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is EagerUnderlingProj goblin)
+			if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is GoblinUnderlingProj goblin)
 			{
 				GoblinUnderlingHelperSystem.CommonModifyHitNPC(GoblinUnderlingClass.Magic, Projectile, target, ref modifiers);
 			}
@@ -100,7 +99,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			if (target.boss || !FromGoblin || Main.projectile[ownedGoblinWhoAmI] is not Projectile parent || parent.ModProjectile is not EagerUnderlingProj goblin)
+			if (target.boss || !FromGoblin || Main.projectile[ownedGoblinWhoAmI] is not Projectile parent || parent.ModProjectile is not GoblinUnderlingProj goblin)
 			{
 				return;
 			}
@@ -141,7 +140,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 				}
 				ChargeDuration--;
 
-				if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is EagerUnderlingProj goblin)
+				if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is GoblinUnderlingProj goblin)
 				{
 					Vector2 pos = parent.Center + GoblinUnderlingTierSystem.GetCurrentTierStats(GoblinUnderlingClass.Magic).projOffset;
 					Vector2 extraSizeBecauseThisMethodIsStupid = Vector2.One * 8;
@@ -377,19 +376,18 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
 		{
-			if (Main.rand.Next(2) == 0)
+			if (Main.rand.NextBool())
 			{
 				dust.alpha += 25;
 			}
 
-			if (Main.rand.Next(2) == 0)
+			if (Main.rand.NextBool())
 			{
 				dust.alpha += 25;
 			}
 
 			dust.color = new Color(0, 0, 0, 250);
 			dust.noLight = true;
-			//dust.scale *= 1.4f;
 			dust.velocity *= 0.25f;
 		}
 	}

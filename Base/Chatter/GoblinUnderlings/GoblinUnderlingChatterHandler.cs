@@ -1,7 +1,6 @@
 ﻿using AssortedCrazyThings.Base.Chatter.Conditions;
 using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using System.Collections.Generic;
 using Terraria;
 
@@ -295,7 +294,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 			return GetGeneratorForType(proj).TryCreate(proj, ChatterSource.FirstSummon);
 		}
 
-		public GoblinUnderlingChatterGenerator GetGeneratorForType(EagerUnderlingProj mProj)
+		public GoblinUnderlingChatterGenerator GetGeneratorForType(GoblinUnderlingProj mProj)
 		{
 			return GetGeneratorForType(mProj.Projectile);
 		}

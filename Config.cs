@@ -198,6 +198,7 @@ namespace AssortedCrazyThings
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
+		//TODO goblin rename these
 		[Header("SatchelofGoodies")]
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]

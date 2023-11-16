@@ -1,5 +1,4 @@
-﻿using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
-using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
+﻿using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons;
 using AssortedCrazyThings.Items.Weapons;
 using Microsoft.Xna.Framework;
 
@@ -14,7 +13,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 	}
 
 	/// <summary>
-	/// Dps: Round(<see cref="EagerUnderlingItem.BaseDmg"/> * <see cref="damageMult"/> + <see cref="armorPen"/> / 2) * (60 / (attackInterval * <see cref="EagerUnderlingProj.WeaponFrameCount"/>))
+	/// Dps: Round(<see cref="GoblinUnderlingItem.BaseDmg"/> * <see cref="damageMult"/> + <see cref="armorPen"/> / 2) * (60 / (attackInterval * <see cref="GoblinUnderlingProj.WeaponFrameCount"/>))
 	/// </summary>
 	public class GoblinUnderlingTierStats
 	{
@@ -24,7 +23,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		public readonly int armorPen = 0;
 		public readonly float movementSpeedMult = 1f;
 		/// <summary>
-		/// Multiplied by <see cref="EagerUnderlingProj.WeaponFrameCount"/> for full attack delay/interval
+		/// Multiplied by <see cref="GoblinUnderlingProj.WeaponFrameCount"/> for full attack delay/interval
 		/// </summary>
 		public readonly int attackInterval = 4;
 		public readonly float rangedVelocity = 10f;
