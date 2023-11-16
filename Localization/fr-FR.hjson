@@ -2384,6 +2384,9 @@ Mods: {
 			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
 			// GoblinUnderlingWeaponArrow.DisplayName: Goblin Underling Arrow
 			// GoblinUnderlingWeaponBlaster.DisplayName: Goblin Underling Blaster
+			// GoblinUnderlingWeaponOrb.DisplayName: Goblin Underling Orb
+			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin Underling Daybreak
+			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
 			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
@@ -2535,8 +2538,6 @@ Mods: {
 			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
 			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
 			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
-			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin Underling Daybreak
-			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 		}
 
 		Tiles: {

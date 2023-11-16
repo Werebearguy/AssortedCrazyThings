@@ -2385,6 +2385,9 @@ Mods: {
 			GoblinUnderlingWeaponTerraBeam.DisplayName: 哥布林属下泰拉光束
 			GoblinUnderlingWeaponArrow.DisplayName: 哥布林属下Arrow
 			GoblinUnderlingWeaponBlaster.DisplayName: 哥布林属下Blaster
+			GoblinUnderlingWeaponOrb.DisplayName: 哥布林 DaybreakOrb
+			GoblinUnderlingWeaponDaybreak.DisplayName: 哥布林Daybreak
+			GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 			MagicSlimeSlingFired.DisplayName: 魔法史莱姆机弦
 			MagicSlimeSlingMinion.DisplayName: 魔法史莱姆机弦仆从
 			PetDestroyerDroneLaser.DisplayName: 宠物毁灭者激光
@@ -2536,8 +2539,6 @@ Mods: {
 			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName}射击"
 			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName}射击"
 			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName}射击"
-			GoblinUnderlingWeaponDaybreak.DisplayName: 哥布林 Daybreak
-			GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 		}
 
 		Tiles: {

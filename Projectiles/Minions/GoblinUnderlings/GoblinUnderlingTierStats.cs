@@ -108,4 +108,25 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		}
 	}
+
+	public class GoblinUnderlingMagicTierStats : GoblinUnderlingTierStats
+	{
+		public readonly int buffDuration;
+		public readonly int radius;
+
+		public GoblinUnderlingMagicTierStats(int rangedProjType,
+			float damageMult = 1f,
+			float knockbackMult = 1f,
+			int armorPen = 0,
+			float movementSpeedMult = 1f,
+			int attackInterval = 4,
+			float rangedVelocity = 10f,
+			float rangedRangeMultiplier = 1f,
+			int buffDuration = GoblinUnderlingWeaponOrb.DefaultBuffDuration,
+			int radius = GoblinUnderlingWeaponOrb.DefaultBuffRadius) : base(rangedProjType, damageMult, knockbackMult, armorPen, movementSpeedMult, attackInterval, rangedVelocity, rangedRangeMultiplier, -1, 0, new Vector2(0, -26), 0)
+		{
+			this.buffDuration = buffDuration;
+			this.radius = radius;
+		}
+	}
 }

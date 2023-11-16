@@ -30,6 +30,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 		private bool skipDefaultMovement = false;
 		private int oldAttackTarget = -1;
 
+		private GoblinUnderlingProgressionTierStage magicTierCycle = GoblinUnderlingTierSystem.CurrentTier;
+
 		public const int WeaponFrameCount = 4;
 
 		private bool spawned = false;
@@ -657,6 +659,32 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 			Projectile.spriteDirection = -Projectile.direction;
 		}
 
+		private void ModifyRangedProjType(ref int rangedProjType)
+		{
+			if (currentClass != GoblinUnderlingClass.Magic)
+			{
+				return;
+			}
+
+			//Magic cycles through all projectiles in the first or second half of the game that were unlocked
+			var tierData = GoblinUnderlingTierSystem.GetTierStats(GoblinUnderlingClass.Magic);
+			var tierToStartAt = GoblinUnderlingProgressionTierStage.EoC; //First and second tier have the same debuff
+			if ((int)GoblinUnderlingTierSystem.CurrentTier >= (int)GoblinUnderlingProgressionTierStage.WoF)
+			{
+				tierToStartAt = GoblinUnderlingProgressionTierStage.WoF;
+			}
+
+			int val = (int)magicTierCycle;
+			val++;
+			if (val > (int)GoblinUnderlingTierSystem.CurrentTier)
+			{
+				val = (int)tierToStartAt;
+			}
+			magicTierCycle = (GoblinUnderlingProgressionTierStage)val;
+
+			rangedProjType = tierData[magicTierCycle].rangedProjType;
+		}
+
 		private void AttackAction(bool ranged, int rangedProjType, float rangedVelocity, int attackFrameCount, int nextTimerValue, int shootFrame, int globalAttackRange, float gravity, int ticksWithoutGravity, Vector2 projOffset)
 		{
 			AttackingAnimation(attackFrameCount, nextTimerValue);
@@ -707,10 +735,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager
 					NPC npc = Main.npc[newAttackTarget];
 					Vector2 position = Projectile.Center + projOffset;
 					Vector2 targetPos = npc.Center + npc.velocity * 0.6f;
+
 					Projectile.direction = (targetPos.X - position.X >= 0f).ToDirectionInt();
 
 					if (Main.myPlayer == Projectile.owner && Timer == (int)(nextTimerValue * (1 - (float)shootFrame / nextTimerValue)))
 					{
+						ModifyRangedProjType(ref rangedProjType);
+
+						//If offset would prevent collision
+						if (!Collision.CanHitLine(position, 1, 1, targetPos, 1, 1))
+						{
+							position = Projectile.Center;
+						}
+
 						Vector2 vector = targetPos - position;
 						float speed = rangedVelocity;
 						float mag = vector.Length();
