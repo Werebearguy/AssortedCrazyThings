@@ -39,9 +39,12 @@ namespace AssortedCrazyThings.Base.Chatter
 		/// </summary>
 		public string Key { get; init; }
 
-		public ChatterGenerator(string key)
+		public Color Color { get; init; }
+
+		public ChatterGenerator(string key, Color color)
 		{
 			Key = key;
+			Color = color;
 
 			MessageCooldownsBySource = new Dictionary<ChatterSource, Ref<float>>();
 			SourceToCooldowns = new Dictionary<ChatterSource, Func<int>>();
@@ -147,7 +150,7 @@ namespace AssortedCrazyThings.Base.Chatter
 			float seconds = Math.Min(textForVariation.Length / 7.5f, 4);
 			request.DurationInFrames = (int)(seconds * 60);
 			request.Velocity = velocity;
-			request.Color = new Color(125, 217, 124);
+			request.Color = Color;
 			PopupText.NewText(request, position);
 			return true;
 		}

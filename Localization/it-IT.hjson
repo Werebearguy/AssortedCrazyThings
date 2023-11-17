@@ -2858,6 +2858,9 @@ Mods: {
 						// BadGuys: Bad guys get black eyes!
 						// ComeHere: C'mere, you!
 						// LevelOne: I'm level one! I'm da strongest gob!
+						// StabStab: Stab stab stab!
+						// Boom: Boom! Haha!
+						// Skewer: Gonna skewer ya!
 					}
 
 					PlayerHurt: {

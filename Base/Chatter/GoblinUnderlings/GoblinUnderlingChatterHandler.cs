@@ -1,6 +1,7 @@
 ﻿using AssortedCrazyThings.Base.Chatter.Conditions;
 using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
@@ -28,7 +29,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 			GeneratorsPerType = new Dictionary<GoblinUnderlingChatterType, GoblinUnderlingChatterGenerator>()
 			{
 				{ GoblinUnderlingChatterType.Eager,
-					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Eager.ToString())
+					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Eager.ToString(), new Color(125, 217, 124))
 					{
 						Chatters = new Dictionary<ChatterSource, ChatterMessageGroup>()
 						{
@@ -74,10 +75,9 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("ComeHere"),
 									new ChatterMessage("LevelOne"),
 
-									//TODO goblin class condition
-									//new ChatterMessage("StabStab", new melee(), true), //"Stab stab stab!"
-									//new ChatterMessage("Boom", new mage(), true), //"Boom! Haha!" 
-									//new ChatterMessage("Skewer", new ranged(), true), //"Gonna skewer ya!" 
+									new ChatterMessage("StabStab", new MeleeClassCondition(), true),
+									new ChatterMessage("Boom", new MagicClassCondition(), true),
+									new ChatterMessage("Skewer", new RangedClassCondition(), true),
 								}, () => 30 * 60)
 							},
 							{ ChatterSource.PlayerHurt,
@@ -276,7 +276,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 		public bool OnAttacking(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			return GetGeneratorForType(proj).TryCreate(proj, ChatterSource.Attacking, new AttackingChatterParams(target, hit, damageDone));
+			return GetGeneratorForType(proj).TryCreate(proj, ChatterSource.Attacking, new AttackingChatterParams(proj, target, hit, damageDone));
 		}
 
 		public bool OnIdle(Projectile proj)

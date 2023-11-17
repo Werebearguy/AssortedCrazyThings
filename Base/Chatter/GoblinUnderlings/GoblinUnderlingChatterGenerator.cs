@@ -5,7 +5,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 {
 	public class GoblinUnderlingChatterGenerator : ChatterGenerator
 	{
-		public GoblinUnderlingChatterGenerator(string key) : base(key)
+		public GoblinUnderlingChatterGenerator(string key, Color color) : base(key, color)
 		{
 
 		}
