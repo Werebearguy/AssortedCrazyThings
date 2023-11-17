@@ -69,6 +69,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			Projectile.hostile = false;
 			Projectile.DamageType = DamageClass.Summon;
 			Projectile.timeLeft = 240;
+
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
 		}
 
 		public override void AI()

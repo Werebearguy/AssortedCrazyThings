@@ -140,6 +140,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 				}
 				ChargeDuration--;
 
+				//TODO goblin whoami relevant to gameplay, sync with identity
 				if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is GoblinUnderlingProj goblin)
 				{
 					Vector2 pos = parent.Center + GoblinUnderlingTierSystem.GetCurrentTierStats(GoblinUnderlingClass.Magic).projOffset;

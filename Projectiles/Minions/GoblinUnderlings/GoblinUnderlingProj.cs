@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -293,6 +294,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
 			armTexture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor) ? armAssets[0] : armAssets[texIndex]).Value;
 
+			//Ignore the config setting in this case
+			if (texIndex == (int)GoblinUnderlingProgressionTierStage.Cultist)
+			{
+				armTexture = armAssets[texIndex].Value;
+			}
+
 			armSourceRect = armTexture.Frame();
 			armDrawOrigin = armSourceRect.Size() / 2f;
 
@@ -434,7 +441,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			int offset = Projectile.width / 2;
 			defaultLocation.X -= (player.width / 2) * player.direction;
 			//Projectile.minionPos calculations not necessary because you can't summon more than 1. Instead, use custom minionPos only for underlings
-			defaultLocation.X -= minionPos * (Projectile.width + 6) * player.direction;
+			float minionOffsetX = minionPos * (Projectile.width + 6) * player.direction;
 			if (player.direction == 1)
 			{
 				defaultLocation.X -= distIdle;
@@ -465,7 +472,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 					//If atleast one of the tiles below the position are active and walkable
 					if (WorldGen.InWorld(x, y) && (WorldGen.ActiveAndWalkableTile(x, y) || Main.tileSolidTop[Main.tile[x, y].TileType]))
 					{
-						defaultLocation.X = x * 16 + 8;
+						defaultLocation.X = x * 16 + 8 - minionOffsetX;
 						if (dir == 1)
 						{
 							defaultLocation.X += offset; //Quirk with how it always wants to align "right of" the location
@@ -476,7 +483,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				//scanX++;
 			}
 
-			return player.Center;
+			return player.Center - new Vector2(minionOffsetX, 0);
 		}
 
 		private void DoIdleMessage(Player player, Vector2 idleLocation)
@@ -899,14 +906,17 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 					Projectile.shouldFallThrough = false;
 				}
 
+				int rangedRange = rangedAttackRangeFromProj;
+				rangedRange += minionPos * Projectile.width;
 				//If enemy too far up, jump to try hitting it
 				//This causes "deadzone" where no ranged attack takes place before jumping is allowed. jumping in this section doesn't make much sense tho as it violates the ranged attack range anyway
-				//if (npc.Bottom.Y + rangedAttackRangeFromProj * 1.2f < Projectile.Center.Y)
+				//if (npc.Bottom.Y + rangedRange * 1.2f < Projectile.Center.Y)
 				//{
 				//	allowJump = true;
 				//}
 
-				if (projDistance < rangedAttackRangeFromProj && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
+
+				if (projDistance < rangedRange && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
 				{
 					RangedAttacking = true;
 				}
@@ -1215,6 +1225,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			float len = toPlayer.Length();
 
 			AssAI.TeleportIfTooFar(Projectile, player.Center);
+			AssAI.FixProjectileOverlap(Projectile, 1f, 0.05f, GoblinUnderlingTierSystem.GoblinUnderlingProjs.Keys.ToArray());
 
 			if (len < maxLen && player.velocity.Y == 0f && Projectile.Bottom.Y <= player.Bottom.Y && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
 			{

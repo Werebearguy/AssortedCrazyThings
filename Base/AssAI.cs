@@ -27,6 +27,42 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
+		/// Called in projectile AI to fix overlap between other projectiles of the same type (or specified)
+		/// </summary>
+		/// <param name="projectile">The projectile</param>
+		/// <param name="spacingMult">Multiplier to projectile width used for spacing</param>
+		/// <param name="idleAccel">How fast it "bumps away"</param>
+		/// <param name="types">Optional list of projectiles to not overlap with (defaults to its own type)</param>
+		public static void FixProjectileOverlap(Projectile projectile, float spacingMult, float idleAccel, params int[] types)
+		{
+			for (int k = 0; k < Main.maxProjectiles; k++)
+			{
+				Projectile otherProj = Main.projectile[k];
+				if (k != projectile.whoAmI && otherProj.active && otherProj.owner == projectile.owner &&
+					(types.Length == 0 ? otherProj.type == projectile.type : Array.IndexOf(types, otherProj.type) > -1) &&
+					Math.Abs(projectile.position.X - otherProj.position.X) + Math.Abs(projectile.position.Y - otherProj.position.Y) < projectile.width * spacingMult)
+				{
+					if (projectile.position.X < otherProj.position.X)
+					{
+						projectile.velocity.X -= idleAccel;
+					}
+					else
+					{
+						projectile.velocity.X += idleAccel;
+					}
+					if (projectile.position.Y < otherProj.position.Y)
+					{
+						projectile.velocity.Y -= idleAccel;
+					}
+					else
+					{
+						projectile.velocity.Y += idleAccel;
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Finds target in range of relativeCenter. Returns index of target
 		/// </summary>
 		public static int FindTarget(Entity ent, Vector2 relativeCenter, float range, bool ignoreTiles = false)
