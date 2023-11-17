@@ -22,17 +22,20 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public GoblinUnderlingClass currentClass;
 
-		//TODO goblin common tooltip:
-		/*
-		 * Class can be changed with [c/{0}:<right>]
-			Gets stronger throughout progression
-			Only one can be summoned
-		*/
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(apricotColor.Hex3());
+		[field:CloneByReference]
+		public LocalizedText TooltipText { get; private set; }
+
+		[field: CloneByReference]
+		public LocalizedText FlavorText { get; private set; }
+
+		public override LocalizedText Tooltip => CommonTooltipFormatText.WithFormatArgs(TooltipText, CommonTooltipText.WithFormatArgs(apricotColor.Hex3()), FlavorText);
 
 		public abstract int ProjType { get; }
 
 		public abstract int BuffType { get; }
+
+		public static LocalizedText CommonTooltipText { get; private set; }
+		public static LocalizedText CommonTooltipFormatText { get; private set; }
 
 		public static HashSet<int> Items { get; private set; }
 		public static Dictionary<int, int> BuffToItem { get; private set; }
@@ -57,6 +60,13 @@ namespace AssortedCrazyThings.Items.Weapons
 			Items.Add(Item.type);
 			BuffToItem.Add(Item.buffType, Item.type);
 			BuffToProjectile.Add(Item.buffType, Item.shoot);
+
+			string category = $"Common.Tooltips.";
+			CommonTooltipText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltip"));
+			CommonTooltipFormatText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltipFormat"));
+
+			TooltipText = this.GetLocalization("Tooltip");
+			FlavorText = this.GetLocalization("Flavor");
 
 			SafeSetStaticDefaults();
 		}

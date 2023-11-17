@@ -2,16 +2,24 @@
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Localization;
 
 namespace AssortedCrazyThings.Buffs
 {
 	[Content(ContentType.Weapons)]
 	public abstract class GoblinUnderlingBuff : AssBuff
 	{
+		public static LocalizedText CommonDescriptionText { get; private set; }
+
+		public override LocalizedText Description => CommonDescriptionText;
+
 		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
+
+			string category = $"Common.Tooltips.";
+			CommonDescriptionText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingBuff)}.CommonDescription"));
 		}
 
 		public override void Update(Player player, ref int buffIndex)

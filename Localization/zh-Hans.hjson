@@ -532,10 +532,7 @@ Mods: {
 				Description: 显示视野范围外的敌人的位置
 			}
 
-			EagerUnderlingBuff: {
-				DisplayName: 热心的下属
-				Description: 一位忠诚的热下为你而战
-			}
+			EagerUnderlingBuff.DisplayName: 热心的下属
 
 			SigilOfTheWingBuff: {
 				DisplayName: 翼之祝福
@@ -583,6 +580,8 @@ Mods: {
 				你受到了保护，不会受到飞龙的伤害
 				鸟妖的羽毛不会击退你
 				'''
+			// ShyUnderlingBuff.DisplayName: Shy Underling
+			// SeriousUnderlingBuff.DisplayName: Serious Underling
 		}
 
 		Common: {
@@ -591,7 +590,26 @@ Mods: {
 			Selected: 已选择: {0}
 			BaseDamage: 基础伤害: {0}
 			BaseKnockback: 基础击退: {0}
-			Tooltips.PetHasAltSkins: 可以使用{$Items.VanitySelector.DisplayName}更改外观
+
+			Tooltips: {
+				PetHasAltSkins: 可以使用{$Items.VanitySelector.DisplayName}更改外观
+				GoblinUnderlingBuff.CommonDescription: 一位忠诚的热下为你而战
+
+				GoblinUnderlingItem: {
+					CommonTooltip:
+						'''
+						职业可由[c/{0}:<right>]改变
+						随着游戏继承而变强
+						不能复数召唤
+						'''
+					CommonTooltipFormat:
+						'''
+						{0}
+						{1}
+						{2}
+						'''
+				}
+			}
 		}
 
 		Items: {
@@ -1977,14 +1995,8 @@ Mods: {
 
 			EagerUnderlingItem: {
 				DisplayName: 好东西袋
-				Tooltip:
-					'''
-					召唤热心的下属为你而战
-					职业可由[c/{0}:<right>]改变
-					随着游戏继承而变强
-					不能复数召唤
-					“里面有一颗尖球、一枚硬币和一个……月亮？“
-					'''
+				Tooltip: 召唤热心的下属为你而战
+				Flavor: “里面有一颗尖球、一枚硬币和一个……月亮？“
 			}
 
 			LegendaryWoodenSword: {
@@ -2072,6 +2084,18 @@ Mods: {
 				Spazmatism: 魔焰眼
 				Retinazer: 激光眼
 				Cobballoon: 石化眼
+			}
+
+			ShyUnderlingItem: {
+				// DisplayName: Dented Coin
+				// Tooltip: Summons a shy underling to fight for you
+				// Flavor: Mods.AssortedCrazyThings.Items.ShyUnderlingItem.Flavor
+			}
+
+			SeriousUnderlingItem: {
+				// DisplayName: Well-Loved Doll
+				// Tooltip: Summons a serious underling to fight for you
+				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
 			}
 		}
 
@@ -2381,7 +2405,9 @@ Mods: {
 			MissileDroneRocket.DisplayName: 导弹无人机导弹
 			ShieldDrone.DisplayName: 护盾无人机
 			GoblinUnderlingWeaponDart.DisplayName: 哥布林属下飞镖
-			EagerUnderlingProj.DisplayName: 热心的属下
+			EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
+			ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
+			SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
 			GoblinUnderlingWeaponTerraBeam.DisplayName: 哥布林属下泰拉光束
 			GoblinUnderlingWeaponArrow.DisplayName: 哥布林属下Arrow
 			GoblinUnderlingWeaponBlaster.DisplayName: 哥布林属下Blaster

@@ -532,10 +532,7 @@ Mods: {
 				// Description: Shows the location of enemies outside your vision range
 			}
 
-			EagerUnderlingBuff: {
-				// DisplayName: Eager Underling
-				// Description: A loyal underling is fighting for you
-			}
+			// EagerUnderlingBuff.DisplayName: Eager Underling
 
 			SigilOfTheWingBuff: {
 				// DisplayName: Blessing of the Wing
@@ -583,6 +580,8 @@ Mods: {
 				You are protected from Wyverns
 				Harpy feathers don't knock you away
 				''' */
+			// ShyUnderlingBuff.DisplayName: Shy Underling
+			// SeriousUnderlingBuff.DisplayName: Serious Underling
 		}
 
 		Common: {
@@ -591,7 +590,26 @@ Mods: {
 			// Selected: Selected: {0}
 			// BaseDamage: Base Damage: {0}
 			// BaseKnockback: Base Knockback: {0}
-			// Tooltips.PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
+
+			Tooltips: {
+				// PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
+				// GoblinUnderlingBuff.CommonDescription: A loyal underling is fighting for you
+
+				GoblinUnderlingItem: {
+					/* CommonTooltip:
+						'''
+						Class can be changed with [c/{0}:<right>]
+						Gets stronger throughout progression
+						Only one can be summoned
+						''' */
+					/* CommonTooltipFormat:
+						'''
+						{0}
+						{1}
+						{2}
+						''' */
+				}
+			}
 		}
 
 		Items: {
@@ -1976,14 +1994,8 @@ Mods: {
 
 			EagerUnderlingItem: {
 				// DisplayName: Satchel of Goodies
-				/* Tooltip:
-					'''
-					Summons an eager underling to fight for you
-					Class can be changed with [c/{0}:<right>]
-					Gets stronger throughout progression
-					Only one can be summoned
-					'Inside, there's a spiky ball, a coin, and a...moon?'
-					''' */
+				// Tooltip: Summons an eager underling to fight for you
+				// Flavor: "'Inside, there's a spiky ball, a coin, and a... moon?'"
 			}
 
 			LegendaryWoodenSword: {
@@ -2071,6 +2083,18 @@ Mods: {
 				// Spazmatism: Spazmatism
 				// Retinazer: Retinazer
 				// Cobballoon: Cobballoon
+			}
+
+			ShyUnderlingItem: {
+				// DisplayName: Dented Coin
+				// Tooltip: Summons a shy underling to fight for you
+				// Flavor: Mods.AssortedCrazyThings.Items.ShyUnderlingItem.Flavor
+			}
+
+			SeriousUnderlingItem: {
+				// DisplayName: Well-Loved Doll
+				// Tooltip: Summons a serious underling to fight for you
+				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
 			}
 		}
 
@@ -2380,7 +2404,9 @@ Mods: {
 			// MissileDroneRocket.DisplayName: Missile Drone Rocket
 			// ShieldDrone.DisplayName: Shield Drone
 			// GoblinUnderlingWeaponDart.DisplayName: Goblin Underling Dart
-			// EagerUnderlingProj.DisplayName: Eager Underling
+			// EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
+			// ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
+			// SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
 			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
 			// GoblinUnderlingWeaponArrow.DisplayName: Goblin Underling Arrow
 			// GoblinUnderlingWeaponBlaster.DisplayName: Goblin Underling Blaster
