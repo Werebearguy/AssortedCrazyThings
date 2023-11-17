@@ -36,6 +36,7 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public static LocalizedText CommonTooltipText { get; private set; }
 		public static LocalizedText CommonTooltipFormatText { get; private set; }
+		public static LocalizedText CantSwitchClassDuringCombatText { get; private set; }
 
 		public static HashSet<int> Items { get; private set; }
 		public static Dictionary<int, int> BuffToItem { get; private set; }
@@ -64,6 +65,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			string category = $"Common.Tooltips.";
 			CommonTooltipText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltip"));
 			CommonTooltipFormatText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltipFormat"));
+			CantSwitchClassDuringCombatText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CantSwitchClassDuringCombat"));
 
 			TooltipText = this.GetLocalization("Tooltip");
 			FlavorText = this.GetLocalization("Flavor");
@@ -180,9 +182,9 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					val = 0;
 				}
-				currentClass = (GoblinUnderlingClass)val;
-				Main.NewText(AssLocalization.SelectedText.Format(AssLocalization.GetEnumText(currentClass)), apricotColor);
+				var nextClass = (GoblinUnderlingClass)val;
 
+				bool cantSwap = false;
 				if (player.ownedProjectileCounts[type] > 0)
 				{
 					for (int i = 0; i < Main.maxProjectiles; i++)
@@ -190,10 +192,28 @@ namespace AssortedCrazyThings.Items.Weapons
 						Projectile other = Main.projectile[i];
 						if (other.active && other.owner == player.whoAmI && other.type == type && other.ModProjectile is GoblinUnderlingProj underling)
 						{
-							underling.currentClass = currentClass;
-							other.NetSync();
+							if (underling.GeneralAttacking)
+							{
+								cantSwap = true;
+								break;
+							}
+							else
+							{
+								underling.currentClass = nextClass;
+								other.NetSync();
+							}
 						}
 					}
+				}
+
+				if (cantSwap)
+				{
+					Main.NewText(CantSwitchClassDuringCombatText.ToString(), Color.IndianRed);
+				}
+				else
+				{
+					currentClass = nextClass;
+					Main.NewText(AssLocalization.SelectedText.Format(AssLocalization.GetEnumText(currentClass)), apricotColor);
 				}
 
 				return false;

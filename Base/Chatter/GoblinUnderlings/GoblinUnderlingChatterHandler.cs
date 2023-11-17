@@ -209,12 +209,12 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
 									new ChatterMessage("IGotThis"),
-									new ChatterMessage("Burn"),
 									new ChatterMessage("NotDefy"),
 									new ChatterMessage("NotSurvive"),
 
 									new ChatterMessage("CutDown", new MeleeClassCondition(), true),
 									new ChatterMessage("StruckDown", new MagicClassCondition(), true),
+									new ChatterMessage("Burn", new MagicClassCondition(), true),
 									new ChatterMessage("InSights", new RangedClassCondition(), true),
 								}, () => 45 * 60)
 							},

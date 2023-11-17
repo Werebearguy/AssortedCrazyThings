@@ -608,6 +608,7 @@ Mods: {
 						{1}
 						{2}
 						'''
+					CantSwitchClassDuringCombat: Cannot switch classes during combat
 				}
 			}
 		}
@@ -2088,7 +2089,7 @@ Mods: {
 			ShyUnderlingItem: {
 				DisplayName: Dented Coin
 				Tooltip: Summons a shy underling to fight for you
-				Flavor: Mods.AssortedCrazyThings.Items.ShyUnderlingItem.Flavor
+				Flavor: "'This coin has been used as target practice for a long time'"
 			}
 
 			SeriousUnderlingItem: {
@@ -2944,10 +2945,10 @@ Mods: {
 
 					Attacking: {
 						IGotThis: I've got this.
-						Burn: Burn.
 						NotDefy: Do not defy the boss.
 						NotSurvive: You will not survive.
 						CutDown: I will cut you down.
+						Burn: Burn.
 						StruckDown: Be struck down by my spells.
 						InSights: You are in my sights.
 					}
