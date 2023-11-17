@@ -11,6 +11,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 	{
 		None,
 		Eager,
+		Serious,
 	}
 
 	//TODO goblin Do proper dispatching here for multiple goblins. Currently just spawn on all active (which will spawn only 1 message on the first active one due to global cooldown)
@@ -167,6 +168,138 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
 									new ChatterMessage("SkyIsRed", new BloodMoonChangedChatterCondition()),
+								})
+							},
+						}
+					}
+				},
+				{ GoblinUnderlingChatterType.Serious,
+					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Serious.ToString(), new Color(166, 156, 65))
+					{
+						//Slightly longer (50%) times between same source
+						Chatters = new Dictionary<ChatterSource, ChatterMessageGroup>()
+						{
+							{ ChatterSource.Idle,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("Peaceful"),
+									new ChatterMessage("YouSeemCalm"),
+									new ChatterMessage("ShallWeRest"),
+									new ChatterMessage("PaceEasy"),
+									new ChatterMessage("ShouldSleep", new SurfaceNightChatterCondition(), true),
+									new ChatterMessage("WindNice", new WindyDayChatterCondition(), true),
+									new ChatterMessage("WarmWithFire", new SnowChatterCondition(), true),
+									new ChatterMessage("SandsClaimWeak", new DesertChatterCondition(), true),
+									new ChatterMessage("UnnaturalPlace", new AnyEvilChatterCondition(), true),
+									new ChatterMessage("NotDawdle", new UnderworldChatterCondition(), true),
+									new ChatterMessage("SpiritsHide", new SurfaceNoLightChatterCondition(), true),
+									new ChatterMessage("StonesHistory", new UndergroundChatterCondition(), true),
+									new ChatterMessage("HiddenTreasure", new UndergroundChatterCondition(), true),
+									new ChatterMessage("BeCareful", new UndergroundNoLightChatterCondition(), true),
+									new ChatterMessage("TooFarAhead", new UndergroundNoLightChatterCondition(), true),
+								}, () => Main.rand.Next(40, 60) * 60)
+							},
+							{ ChatterSource.FirstSummon,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("Greetings"),
+								})
+							},
+							{ ChatterSource.Attacking,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("IGotThis"),
+									new ChatterMessage("Burn"),
+									new ChatterMessage("NotDefy"),
+									new ChatterMessage("NotSurvive"),
+
+									new ChatterMessage("CutDown", new MeleeClassCondition(), true),
+									new ChatterMessage("StruckDown", new MagicClassCondition(), true),
+									new ChatterMessage("InSights", new RangedClassCondition(), true),
+								}, () => 45 * 60)
+							},
+							{ ChatterSource.PlayerHurt,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("Alright"),
+									new ChatterMessage("Unpleasant"),
+									new ChatterMessage("Tough"),
+									new ChatterMessage("Healing"),
+								}, () => 90 * 60)
+							},
+							{ ChatterSource.BossSpawn,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("LargeEnemy"),
+									new ChatterMessage("Formidable"),
+									new ChatterMessage("Prepared"),
+									new ChatterMessage("Trust"),
+
+									new ChatterMessage("TerribleNight", new SkeletronGenericChatterCondition()),
+									new ChatterMessage("MagicSuperior", new DarkMageT1GenericChatterCondition()),
+									new ChatterMessage("SenseIntelligence", new OgreT2GenericChatterCondition()),
+									new ChatterMessage("HidingDragon", new BetsyGenericChatterCondition()),
+									new ChatterMessage("CantLose", new MoonLordGenericChatterCondition()),
+
+									new ChatterMessage("WastedFirstLife", new LichGenericChatterCondition()),
+									new ChatterMessage("ForceOvercome", new DreamEaterGenericChatterCondition()),
+								}, () => 15 * 60)
+							},
+							{ ChatterSource.BossDefeat,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("MakeDoll"),
+									new ChatterMessage("TooEasy"),
+									new ChatterMessage("Overcame"),
+									new ChatterMessage("WellDone"),
+
+									new ChatterMessage("CurseLifted", new SkeletronGenericChatterCondition()),
+									new ChatterMessage("BetterMage", new DarkMageT1GenericChatterCondition()),
+									new ChatterMessage("Joke", new OgreT2GenericChatterCondition()),
+									new ChatterMessage("ExpectedMore", new BetsyGenericChatterCondition()),
+									new ChatterMessage("Incredible", new MoonLordGenericChatterCondition()),
+
+									new ChatterMessage("WastedSecondLife", new LichDefeatedChatterCondition()),
+									new ChatterMessage("Greatest", new DreamEaterGenericChatterCondition()),
+								}, () => 15 * 60)
+							},
+							{ ChatterSource.OOAStarts,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("WhatMagic"),
+								})
+							},
+							{ ChatterSource.OOANewWave,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("NotOverYet"),
+									new ChatterMessage("MoreFoes"),
+									new ChatterMessage("ProtectGem"),
+									new ChatterMessage("ArmyEndless"),
+								})
+							},
+							{ ChatterSource.ArmorEquipped,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("OddThings", new EquipWeirdHeadwearArmorChatterCondition()),
+								}, () => 25 * 60)
+							},
+							{ ChatterSource.ItemSelected,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("ThatDoll", new SelectAnyDollChatterCondition()),
+								}, () => 25 * 60)
+							},
+							{ ChatterSource.InvasionChanged,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("FoolsReturned", new GoblinArmyInvasionChangedChatterCondition()),
+								})
+							},
+							{ ChatterSource.BloodMoonChanged,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("HeadUnbearable", new BloodMoonChangedChatterCondition()),
 								})
 							},
 						}

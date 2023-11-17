@@ -2921,6 +2921,87 @@ Mods: {
 					// InvasionChanged.OldGangBack: Old gang is back!
 					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
 				}
+
+				Serious: {
+					Idle: {
+						// Peaceful: It's peaceful.
+						// YouSeemCalm: You seem calm, boss.
+						// ShallWeRest: Boss, shall we rest here?
+						// PaceEasy: Your pace is easy to follow.
+						// ShouldSleep: We should sleep soon.
+						// WindNice: The wind feels nice.
+						// WarmWithFire: I can warm you with fire if you'd like.
+						// SandsClaimWeak: The sands claim the weak.
+						// UnnaturalPlace: This place is unnatural.
+						// NotDawdle: We should not dawdle here.
+						// SpiritsHide: Spirits hide in the darkness.
+						// StonesHistory: These stones have untold history.
+						// HiddenTreasure: There may be hidden treasure here.
+						// BeCareful: Be careful in the dark, boss.
+						// TooFarAhead: Boss... please don't go too far ahead.
+					}
+
+					// FirstSummon.Greetings: Greetings, boss.
+
+					Attacking: {
+						// IGotThis: I've got this.
+						// Burn: Burn.
+						// NotDefy: Do not defy the boss.
+						// NotSurvive: You will not survive.
+						// CutDown: I will cut you down.
+						// StruckDown: Be struck down by my spells.
+						// InSights: You are in my sights.
+					}
+
+					PlayerHurt: {
+						// Alright: Are you alright?
+						// Unpleasant: That looks unpleasant.
+						// Tough: You're tough, boss.
+						// Healing: Do you need healing?
+					}
+
+					BossSpawn: {
+						// LargeEnemy: A large enemy approaches.
+						// Formidable: A formidable foe.
+						// Prepared: We should be prepared for this.
+						// Trust: I trust you, boss.
+						// TerribleNight: What a terrible night for a curse.
+						// MagicSuperior: Whose magic is superior, I wonder.
+						// SenseIntelligence: I can't sense any intelligence from that one.
+						// HidingDragon: They were hiding a dragon?
+						// CantLose: Boss, you can't lose here.
+						// WastedFirstLife: You wasted your first life.
+						// ForceOvercome: There is no force we cannot overcome.
+					}
+
+					BossDefeat: {
+						// MakeDoll: I will make a doll in your memory.
+						// TooEasy: That was too easy for you, boss.
+						// Overcame: We overcame that challenge.
+						// WellDone: Well done, boss.
+						// CurseLifted: The curse is lifted.
+						// BetterMage: I am the better mage.
+						// Joke: What a joke.
+						// ExpectedMore: I expected more. Shame.
+						// Incredible: Boss... you're incredible!
+						// WastedSecondLife: You also wasted your second life.
+						// Greatest: Boss, you really are the greatest.
+					}
+
+					// OOAStarts.WhatMagic: What sort of magic is this?
+
+					OOANewWave: {
+						// NotOverYet: This isn't over yet.
+						// MoreFoes: More foes approach, boss.
+						// ProtectGem: I will protect the gem.
+						// ArmyEndless: This army is endless...
+					}
+
+					// ArmorEquipped.OddThings: OddThings
+					// ItemSelected.ThatDoll: ThatDoll
+					// InvasionChanged.FoolsReturned: Those fools have returned.
+					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
+				}
 			}
 		}
 

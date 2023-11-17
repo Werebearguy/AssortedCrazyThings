@@ -6,7 +6,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Serious
 	{
 		public override string FolderName => "Serious";
 
-		public override GoblinUnderlingChatterType ChatterType => GoblinUnderlingChatterType.Eager;
+		public override GoblinUnderlingChatterType ChatterType => GoblinUnderlingChatterType.Serious;
 
 		public override void SafeSetDefaults()
 		{

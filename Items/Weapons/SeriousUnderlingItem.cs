@@ -16,8 +16,8 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override void SafeSetDefaults()
 		{
 			currentClass = GoblinUnderlingClass.Magic;
-			Item.width = 18;
-			Item.height = 20;
+			Item.width = 26;
+			Item.height = 32;
 			Item.value = Item.sellPrice(0, 0, 50, 0);
 			Item.rare = 2;
 		}
