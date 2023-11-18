@@ -46,6 +46,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			}
 		}
 
+		public static Projectile GetFirstGoblinUnderling(GoblinUnderlingChatterType guChatterType)
+		{
+			foreach (var proj in GetLocalGoblinUnderlings(guChatterType))
+			{
+				return proj;
+			}
+
+			return null;
+		}
+
 		public static IEnumerable<Projectile> GetLocalGoblinUnderlings(GoblinUnderlingChatterType guChatterType = GoblinUnderlingChatterType.None)
 		{
 			for (int i = 0; i < Main.maxProjectiles; i++)

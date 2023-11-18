@@ -2,6 +2,7 @@
 using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
 using Microsoft.Xna.Framework;
+using System.Linq;
 using System.Collections.Generic;
 using Terraria;
 
@@ -15,14 +16,19 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		Shy,
 	}
 
-	//TODO goblin Do proper dispatching here for multiple goblins. Currently just spawn on all active (which will spawn only 1 message on the first active one due to global cooldown)
-	//Maybe global cooldown needs to be per generator
-
+	/*
+	 * How it works:
+	 * Global cooldown applies to all. The problem is that it can "drown out" anything that wants to chat in the same tick forever.
+	 * Since multiple goblins can be out at once, they can drown eachother out, we need to manage currently active goblins and cycle through them
+	 * On successful message: put all gobbos on that on cooldown, then randomize order that the generators are checked in. First in order gets the next message
+	 */
 	//Special handler which has more than one generator, as it needs to manage all of them as a group
 	[Content(ContentType.Weapons)]
 	public class GoblinUnderlingChatterHandler : ChatterHandler
 	{
 		private Dictionary<GoblinUnderlingChatterType, GoblinUnderlingChatterGenerator> GeneratorsPerType { get; init; }
+		private List<GoblinUnderlingChatterType> Order { get; set; }
+		private ChatterTracker Tracker { get; set; } = new();
 
 		public override IEnumerable<ChatterGenerator> Generators => GeneratorsPerType.Values;
 
@@ -58,7 +64,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("NothingScares", new SurfaceNoLightChatterCondition(), true),
 									new ChatterMessage("HeardRat", new UndergroundNoLightChatterCondition(), true),
 									new ChatterMessage("CavesSpooky", new UndergroundNoLightChatterCondition(), true),
-								}, () => Main.rand.Next(20, 40) * 60)
+								})
 							},
 							{ ChatterSource.FirstSummon,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -80,7 +86,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("StabStab", new MeleeClassChatterCondition(), true),
 									new ChatterMessage("Boom", new MagicClassChatterCondition(), true),
 									new ChatterMessage("Skewer", new RangedClassChatterCondition(), true),
-								}, () => 30 * 60)
+								})
 							},
 							{ ChatterSource.PlayerHurt,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -90,7 +96,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("YouGood"),
 									new ChatterMessage("ThatHurt"),
 									new ChatterMessage("IsntWeak"),
-								}, () => 60 * 60)
+								})
 							},
 							{ ChatterSource.BossSpawn,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -109,7 +115,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 									new ChatterMessage("JigglyJellyfish", new QueenJellyfishGenericChatterCondition()),
 									new ChatterMessage("FatBat", new ViscountGenericChatterCondition()),
-								}, () => 10 * 60)
+								})
 							},
 							{ ChatterSource.BossDefeat,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -129,7 +135,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 									new ChatterMessage("JellyTastesBad", new QueenJellyfishGenericChatterCondition()),
 									new ChatterMessage("SuckOnThat", new ViscountGenericChatterCondition()),
-								}, () => 10 * 60)
+								})
 							},
 							{ ChatterSource.OOAStarts,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -151,13 +157,13 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 								{
 									new ChatterMessage("LookingSpiffy", new EquipValhallaArmorChatterCondition()),
 									new ChatterMessage("LookingFluffy", new EquipFlinxFurCoatChatterCondition()),
-								}, () => 15 * 60)
+								})
 							},
 							{ ChatterSource.ItemSelected,
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
 									new ChatterMessage("IsAToy", new SelectPearlwoodSwordChatterCondition()),
-								}, () => 15 * 60)
+								})
 							},
 							{ ChatterSource.InvasionChanged,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -177,7 +183,6 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 				{ GoblinUnderlingChatterType.Serious,
 					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Serious.ToString(), new Color(166, 156, 65))
 					{
-						//Slightly longer (50%) times between same source
 						Chatters = new Dictionary<ChatterSource, ChatterMessageGroup>()
 						{
 							{ ChatterSource.Idle,
@@ -198,7 +203,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("HiddenTreasure", new UndergroundChatterCondition(), true),
 									new ChatterMessage("BeCareful", new UndergroundNoLightChatterCondition(), true),
 									new ChatterMessage("TooFarAhead", new UndergroundNoLightChatterCondition(), true),
-								}, () => Main.rand.Next(40, 60) * 60)
+								})
 							},
 							{ ChatterSource.FirstSummon,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -217,7 +222,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("StruckDown", new MagicClassChatterCondition(), true),
 									new ChatterMessage("Burn", new MagicClassChatterCondition(), true),
 									new ChatterMessage("InSights", new RangedClassChatterCondition(), true),
-								}, () => 45 * 60)
+								})
 							},
 							{ ChatterSource.PlayerHurt,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -226,7 +231,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("Unpleasant"),
 									new ChatterMessage("Tough"),
 									new ChatterMessage("Healing"),
-								}, () => 90 * 60)
+								})
 							},
 							{ ChatterSource.BossSpawn,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -244,7 +249,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 									new ChatterMessage("WastedFirstLife", new LichGenericChatterCondition()),
 									new ChatterMessage("ForceOvercome", new DreamEaterGenericChatterCondition()),
-								}, () => 15 * 60)
+								})
 							},
 							{ ChatterSource.BossDefeat,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -262,7 +267,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 									new ChatterMessage("WastedSecondLife", new LichDefeatedChatterCondition()),
 									new ChatterMessage("Greatest", new DreamEaterGenericChatterCondition()),
-								}, () => 15 * 60)
+								})
 							},
 							{ ChatterSource.OOAStarts,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -283,13 +288,13 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
 									new ChatterMessage("OddThings", new EquipWeirdHeadwearArmorChatterCondition()),
-								}, () => 25 * 60)
+								})
 							},
 							{ ChatterSource.ItemSelected,
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
 									new ChatterMessage("ThatDoll", new SelectAnyDollChatterCondition()),
-								}, () => 25 * 60)
+								})
 							},
 							{ ChatterSource.InvasionChanged,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -307,7 +312,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 					}
 				},
 				{ GoblinUnderlingChatterType.Shy,
-					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Shy.ToString(), new Color(82, 111, 142))
+					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Shy.ToString(), new Color(111, 158, 179))
 					{
 						Chatters = new Dictionary<ChatterSource, ChatterMessageGroup>()
 						{
@@ -331,7 +336,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("SawMouse", new UndergroundChatterCondition(), true),
 									new ChatterMessage("DontLeave", new UndergroundNoLightChatterCondition(), true),
 									new ChatterMessage("Scared", new UndergroundNoLightChatterCondition(), true),
-								}, () => Main.rand.Next(20, 40) * 60)
+								})
 							},
 							{ ChatterSource.FirstSummon,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -351,7 +356,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("Burn", new MagicClassChatterCondition(), true),
 									new ChatterMessage("WontMiss", new RangedClassChatterCondition(), true),
 									new ChatterMessage("PleaseLeave", new GoblinArmyInvasionOngoingChatterCondition(), true),
-								}, () => 30 * 60)
+								})
 							},
 							{ ChatterSource.PlayerHurt,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -360,7 +365,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("OhNo"),
 									new ChatterMessage("DontDie"),
 									new ChatterMessage("Boss"),
-								}, () => 60 * 60)
+								})
 							},
 							{ ChatterSource.BossSpawn,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -378,7 +383,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 									new ChatterMessage("RocksMoving", new GraniteEnergyStormGenericChatterCondition()),
 									new ChatterMessage("TheyAreBack", new StarScouterGenericChatterCondition()),
-								}, () => 10 * 60)
+								})
 							},
 							{ ChatterSource.BossDefeat,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -397,7 +402,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 									new ChatterMessage("WeirdFight", new GraniteEnergyStormGenericChatterCondition()),
 									new ChatterMessage("ThankYou", new StarScouterGenericChatterCondition()),
-								}, () => 10 * 60)
+								})
 							},
 							{ ChatterSource.OOAStarts,
 								new ChatterMessageGroup(new List<ChatterMessage>()
@@ -419,7 +424,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 								{
 									new ChatterMessage("ItsYou", new EquipAnyMartianArmorChatterCondition()),
 									new ChatterMessage("SeeingFace", new EquipFamiliarWigChatterCondition()),
-								}, () => 15 * 60)
+								})
 							},
 							//No ChatterSource.ItemSelected
 							{ ChatterSource.InvasionChanged,
@@ -438,125 +443,141 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 					}
 				},
 			};
+
+			Order = new();
+			foreach (var pair in GeneratorsPerType)
+			{
+				Order.Add(pair.Key);
+			}
+		}
+
+		private void SetCooldownsForAll(ChatterSource source)
+		{
+			foreach (var gen in Generators)
+			{
+				//This is a hack that makes it so that all cooldowns of other goblins are 33% less, making sure that they cycle during i.e. idle
+				gen.PutMessageTypeOnCooldown(source, factor: 1f);
+			}
+		}
+
+		public class ChatterTracker
+		{
+			public int total = 0;
+			public Dictionary<GoblinUnderlingChatterType, Ref<int>> per = new();
+
+			public void Count(GoblinUnderlingChatterType type, ChatterSource source)
+			{
+				total++;
+				if (!per.ContainsKey(type))
+				{
+					per[type] = new Ref<int>(0);
+				}
+				per[type].Value++;
+			}
+
+			public void Report()
+			{
+				AssUtils.Print("Chatter per type. Total: " + total);
+				foreach (var pair in per)
+				{
+					AssUtils.Print($"{pair.Key}: {pair.Value.Value} | {(pair.Value.Value / (float)total)* 100:F0}%");
+				}
+			}
+		}
+
+		private void HandleMessageForAll(ChatterSource source, IChatterParams param = null)
+		{
+			Dictionary<GoblinUnderlingChatterType, Projectile> projs = new();
+			foreach (var guChatterType in Order)
+			{
+				var proj = GoblinUnderlingHelperSystem.GetFirstGoblinUnderling(guChatterType);
+				if (proj != null && GeneratorsPerType[guChatterType].TryCreate(Tracker, proj, source, param))
+				{
+					SetCooldownsForAll(source);
+					Order = Order.OrderBy(_ => Main.rand.Next(100)).ToList();
+					return;
+				}
+			}
 		}
 
 		public override void OnPlayerHurt(Player player, Entity entity, Player.HurtInfo hurtInfo)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.PlayerHurt, new PlayerHurtChatterParams(entity, hurtInfo));
-				}
-			}
+			HandleMessageForAll(ChatterSource.PlayerHurt, new PlayerHurtChatterParams(entity, hurtInfo));
 		}
 
 		public override void OnArmorEquipped(Player player, EquipSnapshot equips, EquipSnapshot prevEquips)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.ArmorEquipped, new ArmorEquipChatterParams(equips, prevEquips));
-				}
-			}
+			HandleMessageForAll(ChatterSource.ArmorEquipped, new ArmorEquipChatterParams(equips, prevEquips));
 		}
 
 		public override void OnItemSelected(Player player, int itemType, int prevItemType)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.ItemSelected, new ItemSelectedChatterParams(itemType, prevItemType));
-				}
-			}
+			HandleMessageForAll(ChatterSource.ItemSelected, new ItemSelectedChatterParams(itemType, prevItemType));
 		}
 
 		public override void OnInvasionChanged(int invasionType, int prevInvasionType)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.InvasionChanged, new InvasionChangedChatterParams(invasionType, prevInvasionType));
-				}
-			}
+			HandleMessageForAll(ChatterSource.InvasionChanged, new InvasionChangedChatterParams(invasionType, prevInvasionType));
 		}
 
 		public override void OnBloodMoonChanged(bool bloodMoon, bool prevBloodMoon)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.BloodMoonChanged, new BloodMoonChangedChatterParams(bloodMoon, prevBloodMoon));
-				}
-			}
+			HandleMessageForAll(ChatterSource.BloodMoonChanged, new BloodMoonChangedChatterParams(bloodMoon, prevBloodMoon));
 		}
 
 		public override void OnSpawnedBoss(NPC npc, float distSQ)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.BossSpawn, new BossSpawnChatterParams(npc));
-				}
-			}
+			HandleMessageForAll(ChatterSource.BossSpawn, new BossSpawnChatterParams(npc));
 		}
 
 		public override void OnSlainBoss(Player player, int type)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.BossDefeat, new BossDefeatChatterParams(type));
-				}
-			}
+			HandleMessageForAll(ChatterSource.BossDefeat, new BossDefeatChatterParams(type));
 		}
 
 		public override void OnOOAStarts(int forHowLong)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.OOAStarts);
-				}
-			}
+			HandleMessageForAll(ChatterSource.OOAStarts);
 		}
 
 		public override void OnOOANewWave(int forHowLong)
 		{
-			foreach (var pair in GeneratorsPerType)
-			{
-				foreach (var proj in GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(pair.Key))
-				{
-					pair.Value.TryCreate(proj, ChatterSource.OOANewWave);
-				}
-			}
+			HandleMessageForAll(ChatterSource.OOANewWave);
 		}
 
 		public bool OnAttacking(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			return GetGeneratorForType(proj).TryCreate(proj, ChatterSource.Attacking, new AttackingChatterParams(proj, target, hit, damageDone));
+			if (GetGeneratorForType(proj).TryCreate(Tracker, proj, ChatterSource.Attacking, new AttackingChatterParams(proj, target, hit, damageDone)))
+			{
+				SetCooldownsForAll(ChatterSource.Attacking);
+				return true;
+			}
+			return false;
 		}
 
 		public bool OnIdle(Projectile proj)
 		{
-			return GetGeneratorForType(proj).TryCreate(proj, ChatterSource.Idle);
+			if (GetGeneratorForType(proj).TryCreate(Tracker, proj, ChatterSource.Idle))
+			{
+				SetCooldownsForAll(ChatterSource.Idle);
+				return true;
+			}
+			return false;
+		}
+
+		public bool OnFirstSummon(Projectile proj)
+		{
+			if (GetGeneratorForType(proj).TryCreate(Tracker, proj, ChatterSource.FirstSummon))
+			{
+				SetCooldownsForAll(ChatterSource.FirstSummon);
+				return true;
+			}
+			return false;
 		}
 
 		public void PutIdleOnCooldown(Projectile proj)
 		{
 			GetGeneratorForType(proj).PutMessageTypeOnCooldown(ChatterSource.Idle);
-		}
-
-		public bool OnFirstSummon(Projectile proj)
-		{
-			return GetGeneratorForType(proj).TryCreate(proj, ChatterSource.FirstSummon);
 		}
 
 		public GoblinUnderlingChatterGenerator GetGeneratorForType(GoblinUnderlingProj mProj)

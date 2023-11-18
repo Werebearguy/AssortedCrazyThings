@@ -23,6 +23,8 @@ namespace AssortedCrazyThings.Base.Chatter
 
 		public static Dictionary<ChatterSource, Type> SourceToParamTypes { get; private set; }
 
+		public static Dictionary<ChatterSource, Func<int>> SourceToCooldowns { get; private set; }
+
 		public static void SetGlobalCooldown()
 		{
 			GlobalCooldown = GlobalCooldownMax;
@@ -32,9 +34,11 @@ namespace AssortedCrazyThings.Base.Chatter
 		{
 			//Important to only use params specified for each source when spawning it
 			SourceToParamTypes = new();
+			SourceToCooldowns = new();
 			foreach (var source in Enum.GetValues<ChatterSource>())
 			{
 				SourceToParamTypes[source] = typeof(DefaultChatterParams);
+				SourceToCooldowns[source] = () => DefaultCooldown;
 			}
 
 			//Overrides here
@@ -46,6 +50,14 @@ namespace AssortedCrazyThings.Base.Chatter
 			SourceToParamTypes[ChatterSource.ItemSelected] = typeof(ItemSelectedChatterParams);
 			SourceToParamTypes[ChatterSource.InvasionChanged] = typeof(InvasionChangedChatterParams);
 			SourceToParamTypes[ChatterSource.BloodMoonChanged] = typeof(BloodMoonChangedChatterParams);
+
+			SourceToCooldowns[ChatterSource.Idle] = () => Main.rand.Next(20, 40) * 60;
+			SourceToCooldowns[ChatterSource.Attacking] = () => 30 * 60;
+			SourceToCooldowns[ChatterSource.PlayerHurt] = () => 60 * 60;
+			SourceToCooldowns[ChatterSource.BossSpawn] = () => 10 * 60;
+			SourceToCooldowns[ChatterSource.BossDefeat] = () => 10 * 60;
+			SourceToCooldowns[ChatterSource.ArmorEquipped] = () => 15 * 60;
+			SourceToCooldowns[ChatterSource.ItemSelected] = () => 15 * 60;
 		}
 
 		public override void OnModLoad()
@@ -65,6 +77,7 @@ namespace AssortedCrazyThings.Base.Chatter
 		public override void OnModUnload()
 		{
 			SourceToParamTypes = null;
+			SourceToCooldowns = null;
 			ChatterHandlerLoader.Unload();
 
 			SpawnedNPCSystem.OnSpawnedNPC -= OnSpawnedBossHook;

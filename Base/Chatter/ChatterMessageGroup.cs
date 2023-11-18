@@ -48,11 +48,6 @@ namespace AssortedCrazyThings.Base.Chatter
 		}
 
 		/// <summary>
-		/// Cooldown applies to all messages in this group. If null, default cooldown applies
-		/// </summary>
-		public Func<int> Cooldown { get; init; }
-
-		/// <summary>
 		/// Sorted by order in first parameter of <see cref="ChatterMessageGroup(List{ChatterMessage}, Func{int})"/>, grouping messages with the same condition together, with no conditions being last priority
 		/// </summary>
 		public List<Pool> PoolsByPriority { get; init; }
@@ -66,15 +61,13 @@ namespace AssortedCrazyThings.Base.Chatter
 		/// 
 		/// </summary>
 		/// <param name="messages">Order matters: Lower index = Higher priority</param>
-		public ChatterMessageGroup(List<ChatterMessage> messages, Func<int> cooldown = null)
+		public ChatterMessageGroup(List<ChatterMessage> messages)
 		{
 			Messages = messages.AsReadOnly();
 			if (messages == null || messages.Count == 0)
 			{
 				throw new Exception($"{nameof(messages)} has to be non-null and contain atleast one element");
 			}
-
-			Cooldown = cooldown ?? (() => ChatterSystem.DefaultCooldown);
 
 			var poolPriorities = new Dictionary<Type, int>();
 			var pools = new Dictionary<Type, Pool>();

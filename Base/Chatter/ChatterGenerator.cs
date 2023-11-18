@@ -47,16 +47,13 @@ namespace AssortedCrazyThings.Base.Chatter
 			Color = color;
 
 			MessageCooldownsBySource = new Dictionary<ChatterSource, Ref<float>>();
-			SourceToCooldowns = new Dictionary<ChatterSource, Func<int>>();
 		}
 
 		public Dictionary<ChatterSource, Ref<float>> MessageCooldownsBySource { get; init; }
-		public Dictionary<ChatterSource, Func<int>> SourceToCooldowns { get; init; }
 
 		public void RegisterMessageGroup(ChatterSource source, ChatterMessageGroup messageGroup)
 		{
 			MessageCooldownsBySource[source] = new Ref<float>();
-			SourceToCooldowns[source] = messageGroup.Cooldown;
 		}
 
 		public void OnEnterWorld(Player player)
@@ -89,7 +86,7 @@ namespace AssortedCrazyThings.Base.Chatter
 			}
 		}
 
-		public void PutMessageTypeOnCooldown(ChatterSource source, int? cooldownOverride = null)
+		public void PutMessageTypeOnCooldown(ChatterSource source, int? cooldownOverride = null, float factor = 1f)
 		{
 			if (!MessageCooldownsBySource.ContainsKey(source))
 			{
@@ -102,12 +99,28 @@ namespace AssortedCrazyThings.Base.Chatter
 			{
 				cd = cooldownOverride.Value;
 			}
-			else if (Chatters.TryGetValue(source, out ChatterMessageGroup group))
+			else
 			{
-				cd = group.Cooldown();
+				cd = ChatterSystem.SourceToCooldowns[source]();
 			}
 
-			MessageCooldownsBySource[source] = new Ref<float>(cd);
+			cd = (int)(cd * factor);
+
+			//Don't override long cooldown with short cooldown:
+			if (cd > MessageCooldownsBySource[source].Value)
+			{
+				//AssUtils.Print($"g cd: {ChatterSystem.GlobalCooldownMax}, msg cd: {cd}");
+				MessageCooldownsBySource[source] = new Ref<float>(cd);
+			}
+		}
+
+		public bool MessageOnCooldown(ChatterSource source)
+		{
+			if (MessageCooldownsBySource.TryGetValue(source, out var cd))
+			{
+				return cd.Value > 0;
+			}
+			return false; //No cooldown: never on cooldown
 		}
 
 		/// <summary>
@@ -115,13 +128,29 @@ namespace AssortedCrazyThings.Base.Chatter
 		/// </summary>
 		public bool TryCreate(ChatterSource source, Vector2 position, Vector2 velocity, IChatterParams param = null, int? cooldownOverride = null)
 		{
-			if (ChatterSystem.GlobalCooldown <= 0 && MessageCooldownsBySource.TryGetValue(source, out var cd) && cd.Value <= 0)
+			bool? ret = null;
+			if (ChatterSystem.GlobalCooldown <= 0 && !MessageOnCooldown(source))
 			{
-				Create(source, position, velocity, param, cooldownOverride);
-				return true;
+				//Can return false if only conditionals in message group and no condition satisfied
+				ret = Create(source, position, velocity, param, cooldownOverride);
 			}
 
-			return false;
+			//if (!ret.HasValue)
+			//{
+			//	if (ChatterSystem.GlobalCooldown > 0)
+			//	{
+			//		AssUtils.Print($"message on cooldown: g: {ChatterSystem.GlobalCooldown}");
+			//	}
+			//	if (MessageCooldownsBySource.TryGetValue(source, out var cd) && cd.Value > 0)
+			//	{
+			//		AssUtils.Print($"message on cooldown: msg: {cd.Value}");
+			//	}
+			//}
+			//else if (ret.HasValue && !ret.Value)
+			//{
+			//	AssUtils.Print($"no messages to display");
+			//}
+			return ret ?? false;
 		}
 
 		protected bool Create(ChatterSource source, Vector2 position, Vector2 velocity, IChatterParams param = null, int? cooldownOverride = null)

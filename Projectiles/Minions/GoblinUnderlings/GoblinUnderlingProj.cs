@@ -531,7 +531,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 			if (!(!GeneralAttacking && !Flying &&
 				afkTimer > 4 * 60 &&
-				player.afkCounter > 4 * 60 && Math.Abs(idleLocation.X - Projectile.Center.X) < 50 && Math.Abs(idleLocation.Y - Projectile.Center.Y) < 32))
+				player.afkCounter > 4 * 60 && Math.Abs(idleLocation.X - Projectile.Center.X) < 50 && Math.Abs(idleLocation.Y - Projectile.Center.Y) < 96))
 			{
 				return;
 			}
