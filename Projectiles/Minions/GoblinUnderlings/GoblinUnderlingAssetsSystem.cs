@@ -47,6 +47,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			AssetPrefixes[type] = prefix;
 		}
 
+		public static void SetFrameCount(int type, GoblinUnderlingClass @class)
+		{
+			if (Main.dedServ)
+			{
+				return;
+			}
+
+			Main.projFrames[type] = BodyAssetFrameCounts[@class];
+		}
+
 		//Has to be after tiers are assigned
 		private static void LoadTextures()
 		{

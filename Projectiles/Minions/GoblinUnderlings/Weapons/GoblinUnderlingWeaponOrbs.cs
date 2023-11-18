@@ -2,6 +2,7 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -21,15 +22,26 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public const int DefaultBuffDuration = 180;
 		public const int DefaultBuffRadius = 3 * 16;
 
-		public int ownedGoblinWhoAmI = -1;
-
 		protected int MaxChargeDuration = 1;
 		protected ref float ChargeDuration => ref Projectile.ai[0];
 		public bool Homing => ChargeDuration == -1;
 		public bool ChargeUp => ChargeDuration > 0;
 		protected ref float OrigSpeed => ref Projectile.ai[1];
 
-		public bool FromGoblin => ownedGoblinWhoAmI != -1;
+		public int ParentIdentity
+		{
+			get => (int)Projectile.ai[2] - 1;
+			set => Projectile.ai[2] = value + 1;
+		}
+
+		//Since the index might be different between clients, using ai[] for it will break stuff
+		public int ParentIndex
+		{
+			get => (int)Projectile.localAI[0] - 1;
+			set => Projectile.localAI[0] = value + 1;
+		}
+
+		public bool FromGoblin => ParentIndex != -1;
 
 		public virtual SoundStyle? SpawnSound => SoundID.Item8;
 
@@ -71,21 +83,16 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 				&& parentSource.Entity is Projectile parentProjectile
 				&& GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(parentProjectile.type))
 			{
-				ownedGoblinWhoAmI = parentProjectile.whoAmI;
+				ParentIdentity = parentProjectile.identity;
 
 				ChargeDuration = GoblinUnderlingTierSystem.GetCurrentTierStats(GoblinUnderlingClass.Magic).attackInterval * GoblinUnderlingProj.WeaponFrameCount;
 				OrigSpeed = Projectile.velocity.Length();
 			}
 		}
 
-		public virtual void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
-		{
-
-		}
-
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is GoblinUnderlingProj goblin)
+			if (FromGoblin && Main.projectile[ParentIndex] is Projectile parent && parent.ModProjectile is GoblinUnderlingProj goblin)
 			{
 				GoblinUnderlingHelperSystem.CommonModifyHitNPC(GoblinUnderlingClass.Magic, Projectile, target, ref modifiers);
 			}
@@ -99,7 +106,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			if (target.boss || !FromGoblin || Main.projectile[ownedGoblinWhoAmI] is not Projectile parent || parent.ModProjectile is not GoblinUnderlingProj goblin)
+			if (target.boss || !FromGoblin || Main.projectile[ParentIndex] is not Projectile parent || parent.ModProjectile is not GoblinUnderlingProj goblin)
 			{
 				return;
 			}
@@ -134,14 +141,50 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 			if (ChargeUp)
 			{
+				if (ParentIdentity <= -1 || ParentIdentity > Main.maxProjectiles)
+				{
+					Projectile.Kill();
+					return;
+				}
+
+				Projectile parent = null;
+				if (ParentIndex <= -1)
+				{
+					//Find parent based on identity
+					Projectile test = AssUtils.NetGetProjectile(Projectile.owner, ParentIdentity, GoblinUnderlingTierSystem.GoblinUnderlingProjs.Keys.ToArray(), out int index);
+					if (test != null)
+					{
+						//Important not to use test.whoAmI here
+						ParentIndex = index;
+					}
+				}
+
+				if (ParentIndex > -1 && ParentIndex <= Main.maxProjectiles)
+				{
+					parent = Main.projectile[ParentIndex];
+				}
+
+				if (parent == null)
+				{
+					//If the parent was not found, despawn
+					Projectile.Kill();
+					return;
+				}
+
+				parent = Main.projectile[ParentIndex];
+				if (!parent.active || !GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(parent.type))
+				{
+					Projectile.Kill();
+					return;
+				}
+
 				if (MaxChargeDuration == 1)
 				{
 					MaxChargeDuration = (int)ChargeDuration;
 				}
 				ChargeDuration--;
 
-				//TODO goblin whoami relevant to gameplay, sync with identity
-				if (FromGoblin && Main.projectile[ownedGoblinWhoAmI] is Projectile parent && parent.ModProjectile is GoblinUnderlingProj goblin)
+				if (FromGoblin)
 				{
 					Vector2 pos = parent.Center + GoblinUnderlingTierSystem.GetCurrentTierStats(GoblinUnderlingClass.Magic).projOffset;
 					Vector2 extraSizeBecauseThisMethodIsStupid = Vector2.One * 8;
@@ -198,6 +241,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			Projectile.Opacity = Math.Clamp(ratio * ratio * ratio, 0f, 1f); //Slow ramp up
 
 			SafeAI();
+		}
+
+		public virtual void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
+		{
+
 		}
 
 		public virtual void SafeAI()
@@ -290,11 +338,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override int BuffType => BuffID.OnFire;
 
 		public override int DustType => DustID.Torch;
-
-		public override void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
-		{
-
-		}
 	}
 
 	public class GoblinUnderlingWeaponOrb_1 : GoblinUnderlingWeaponOrb
@@ -304,11 +347,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override int BuffType => BuffID.Frostburn;
 
 		public override int DustType => DustID.IceTorch;
-
-		public override void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
-		{
-
-		}
 	}
 
 	public class GoblinUnderlingWeaponOrb_2 : GoblinUnderlingWeaponOrb
@@ -332,11 +370,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override int BuffType => BuffID.OnFire3;
 
 		public override int DustType => DustID.Torch;
-
-		public override void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
-		{
-
-		}
 	}
 
 	public class GoblinUnderlingWeaponOrb_4 : GoblinUnderlingWeaponOrb
@@ -346,11 +379,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override int BuffType => BuffID.Frostburn2;
 
 		public override int DustType => DustID.IceTorch;
-
-		public override void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
-		{
-
-		}
 	}
 
 	public class GoblinUnderlingWeaponOrb_5 : GoblinUnderlingWeaponOrb
@@ -360,11 +388,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override int BuffType => BuffID.CursedInferno;
 
 		public override int DustType => DustID.CursedTorch;
-
-		public override void ModifyDust(Dust dust, bool fromChargeUp = false, bool fromLaunch = false, bool fromHoming = false)
-		{
-
-		}
 	}
 
 	public class GoblinUnderlingWeaponOrb_6 : GoblinUnderlingWeaponOrb

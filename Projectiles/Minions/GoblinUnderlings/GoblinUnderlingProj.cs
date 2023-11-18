@@ -105,14 +105,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		public sealed override void SetStaticDefaults()
 		{
-			Main.projFrames[Projectile.type] = GoblinUnderlingAssetsSystem.BodyAssetFrameCounts[currentClass];
 			Main.projPet[Projectile.type] = true;
 			//ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true; Has other right click feature instead
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 
-			GoblinUnderlingAssetsSystem.RegisterAssetPrefix(Projectile.type, AssetPrefix);
 			GoblinUnderlingTierSystem.GoblinUnderlingProjs[Projectile.type] = ChatterType;
+			GoblinUnderlingAssetsSystem.SetFrameCount(Projectile.type, currentClass);
+			GoblinUnderlingAssetsSystem.RegisterAssetPrefix(Projectile.type, AssetPrefix);
 
 			SafeSetStaticDefaults();
 		}

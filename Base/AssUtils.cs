@@ -442,6 +442,23 @@ namespace AssortedCrazyThings.Base
 			return null;
 		}
 
+		/// <inheritdoc cref="NetGetProjectile(int, int, int, out int)"/>
+		/// <param name="types">The types to check</param>
+		public static Projectile NetGetProjectile(int owner, int identity, int[] types, out int index)
+		{
+			for (short i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile proj = Main.projectile[i];
+				if (proj.active && proj.owner == owner && proj.identity == identity && Array.IndexOf(types, proj.type) > -1)
+				{
+					index = i;
+					return proj;
+				}
+			}
+			index = Main.maxProjectiles;
+			return null;
+		}
+
 		/// <summary>
 		/// Alternative, static version of npc.DropItemInstanced. Checks the playerCondition delegate before syncing/spawning the item
 		/// </summary>
