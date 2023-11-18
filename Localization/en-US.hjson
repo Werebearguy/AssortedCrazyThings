@@ -2689,21 +2689,29 @@ Mods: {
 				DisplayName: Client Config
 
 				Headers: {
-					SatchelofGoodies: Satchel of Goodies - Minion Options
+					GoblinUnderling:
+						'''
+						Goblin Underlings - Minion Options
+
+						These apply to the following items:
+						{$Items.EagerUnderlingItem.DisplayName}
+						{$Items.SeriousUnderlingItem.DisplayName}
+						{$Items.ShyUnderlingItem.DisplayName}
+						'''
 					HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
 				}
 
-				SatchelofGoodiesAutosummon: {
+				GoblinUnderlingAutosummon: {
 					Label: Auto-summon
 					Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
 				}
 
-				SatchelofGoodiesVisibleArmor: {
+				GoblinUnderlingVisibleArmor: {
 					Label: Armor progression
 					Tooltip: Enable to show armor progression
 				}
 
-				SatchelofGoodiesChatterFreq: {
+				GoblinUnderlingChatterFreq: {
 					Label: Dialogue frequency
 					Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
 				}

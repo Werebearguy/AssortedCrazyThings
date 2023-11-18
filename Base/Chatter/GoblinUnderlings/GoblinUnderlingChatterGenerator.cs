@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 				return false;
 			}
 
-			if (ClientConfig.Instance.SatchelofGoodiesDialogueDisabled)
+			if (ClientConfig.Instance.GoblinUnderlingDialogueDisabled)
 			{
 				return false;
 			}

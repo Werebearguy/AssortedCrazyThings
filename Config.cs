@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Terraria;
@@ -198,26 +200,29 @@ namespace AssortedCrazyThings
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		//TODO goblin rename these
-		[Header("SatchelofGoodies")]
+		//Old data
+		[JsonExtensionData]
+		private IDictionary<string, JToken> _additionalData = new Dictionary<string, JToken>();
+
+		[Header("GoblinUnderling")]
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]
-		public bool SatchelofGoodiesAutosummon { get; set; }
+		public bool GoblinUnderlingAutosummon { get; set; }
 
 		[DefaultValue(true)]
 		[BackgroundColor(125, 217, 124)]
-		public bool SatchelofGoodiesVisibleArmor { get; set; }
+		public bool GoblinUnderlingVisibleArmor { get; set; }
 
-		public const int SatchelofGoodiesChatterFreq_Min = 0;
-		public const int SatchelofGoodiesChatterFreq_Max = 500;
+		public const int GoblinUnderlingChatterFreq_Min = 0;
+		public const int GoblinUnderlingChatterFreq_Max = 500;
 		[DefaultValue(100)]
 		[BackgroundColor(125, 217, 124)]
 		[Slider]
 		[Increment(10)]
-		[Range(SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max)]
-		public int SatchelofGoodiesChatterFreq { get; set; }
+		[Range(GoblinUnderlingChatterFreq_Min, GoblinUnderlingChatterFreq_Max)]
+		public int GoblinUnderlingChatterFreq { get; set; }
 
-		internal bool SatchelofGoodiesDialogueDisabled => SatchelofGoodiesChatterFreq == 0;
+		internal bool GoblinUnderlingDialogueDisabled => GoblinUnderlingChatterFreq == 0;
 
 		[Header("HintServerConfig")]
 		[JsonIgnore]
@@ -227,7 +232,26 @@ namespace AssortedCrazyThings
 		[OnDeserialized]
 		internal void OnDeserializedMethod(StreamingContext context)
 		{
-			SatchelofGoodiesChatterFreq = Utils.Clamp(SatchelofGoodiesChatterFreq, SatchelofGoodiesChatterFreq_Min, SatchelofGoodiesChatterFreq_Max);
+			//port "SatchelofGoodiesAutosummon" -> GoblinUnderlingAutosummon
+			//and "SatchelofGoodiesVisibleArmor" -> GoblinUnderlingVisibleArmor
+			//and "SatchelofGoodiesChatterFreq" -> GoblinUnderlingChatterFreq
+			JToken token;
+			if (_additionalData.TryGetValue("SatchelofGoodiesAutosummon", out token))
+			{
+				GoblinUnderlingAutosummon = token.ToObject<bool>();
+			}
+			if (_additionalData.TryGetValue("SatchelofGoodiesVisibleArmor", out token))
+			{
+				GoblinUnderlingVisibleArmor = token.ToObject<bool>();
+			}
+			if (_additionalData.TryGetValue("SatchelofGoodiesChatterFreq", out token))
+			{
+				GoblinUnderlingChatterFreq = token.ToObject<int>();
+			}
+
+			_additionalData.Clear(); // Clear this or it'll crash.
+
+			GoblinUnderlingChatterFreq = Utils.Clamp(GoblinUnderlingChatterFreq, GoblinUnderlingChatterFreq_Min, GoblinUnderlingChatterFreq_Max);
 		}
 	}
 
@@ -242,15 +266,7 @@ namespace AssortedCrazyThings
 				return Netplay.Connection.Socket.GetRemoteAddress().IsLocalHost();
 			}
 
-			for (int i = 0; i < Main.maxPlayers; i++)
-			{
-				RemoteClient client = Netplay.Clients[i];
-				if (client.State == 10 && i == whoAmI && client.Socket.GetRemoteAddress().IsLocalHost())
-				{
-					return true;
-				}
-			}
-			return false;
+			return NetMessage.DoesPlayerSlotCountAsAHost(whoAmI);
 		}
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)

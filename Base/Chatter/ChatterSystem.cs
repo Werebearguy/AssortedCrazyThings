@@ -138,7 +138,7 @@ namespace AssortedCrazyThings.Base.Chatter
 
 		public override void PostUpdatePlayers()
 		{
-			float reduceAmount = ClientConfig.Instance.SatchelofGoodiesChatterFreq / 100f;
+			float reduceAmount = ClientConfig.Instance.GoblinUnderlingChatterFreq / 100f;
 
 			if (GlobalCooldown > 0)
 			{

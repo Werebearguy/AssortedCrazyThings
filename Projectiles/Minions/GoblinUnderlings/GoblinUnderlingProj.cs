@@ -197,7 +197,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			var tierStats = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
 			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
 			var bodyAssets = GoblinUnderlingAssetsSystem.BodyAssets[Type][currentClass];
-			Texture2D texture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor) ? bodyAssets[0] : bodyAssets[texIndex]).Value;
+			Texture2D texture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.GoblinUnderlingVisibleArmor) ? bodyAssets[0] : bodyAssets[texIndex]).Value;
 			Rectangle sourceRect = texture.Frame(1, GoblinUnderlingAssetsSystem.BodyAssetFrameCounts[currentClass], 0, Projectile.frame);
 			Vector2 drawOrigin = sourceRect.Size() / 2f;
 
@@ -297,7 +297,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		{
 			var armAssets = GoblinUnderlingAssetsSystem.RangedArmAssets[Type];
 			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
-			armTexture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.SatchelofGoodiesVisibleArmor) ? armAssets[0] : armAssets[texIndex]).Value;
+			armTexture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.GoblinUnderlingVisibleArmor) ? armAssets[0] : armAssets[texIndex]).Value;
 
 			//Ignore the config setting in this case
 			if (texIndex == (int)GoblinUnderlingProgressionTierStage.Cultist)

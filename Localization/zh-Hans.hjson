@@ -2690,21 +2690,29 @@ Mods: {
 				DisplayName: 客户端配置
 
 				Headers: {
-					SatchelofGoodies: 好东西袋 - 仆从选项
+					GoblinUnderling:
+						'''
+						热心的下属 - 仆从选项
+
+						These apply to the following items:
+						{$Items.EagerUnderlingItem.DisplayName}
+						{$Items.SeriousUnderlingItem.DisplayName}
+						{$Items.ShyUnderlingItem.DisplayName}
+						'''
 					HintServerConfig: 提示: 要转到包含功能切换的服务器配置，请点击右下角的"＞"
 				}
 
-				SatchelofGoodiesAutosummon: {
+				GoblinUnderlingAutosummon: {
 					Label: 自动召唤
 					Tooltip: 启用后如果该物品在你的库存中，则可以在人物生成时自动召唤该仆从
 				}
 
-				SatchelofGoodiesVisibleArmor: {
+				GoblinUnderlingVisibleArmor: {
 					Label: 装备进度
 					Tooltip: 启用后显示装备进度
 				}
 
-				SatchelofGoodiesChatterFreq: {
+				GoblinUnderlingChatterFreq: {
 					Label: 对话频率
 					Tooltip: 控制哥布林下属和你对话的概率(单位为百分比)，调为0表示关闭对话
 				}

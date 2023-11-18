@@ -55,7 +55,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 			if (player.whoAmI == Main.myPlayer && (context == PlayerSpawnContext.ReviveFromDeath || context == PlayerSpawnContext.SpawningIntoWorld))
 			{
-				if (!ClientConfig.Instance.SatchelofGoodiesAutosummon)
+				if (!ClientConfig.Instance.GoblinUnderlingAutosummon)
 				{
 					return;
 				}
