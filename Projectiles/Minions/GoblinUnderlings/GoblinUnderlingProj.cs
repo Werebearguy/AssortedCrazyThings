@@ -43,7 +43,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		public GoblinUnderlingClass oldCurrentClass;
 
-		//Needs syncing
+		//Needs syncing, see NetSend/Receive any time you change or increase value range
 		public GoblinUnderlingClass currentClass;
 		public float lastAttackAngle;
 		public int AttackState { get; private set; }
@@ -164,13 +164,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		public override void SendExtraAI(BinaryWriter writer)
 		{
-			//TODO goblin optimize
-			writer.Write((byte)AttackState);
-			writer.Write((byte)currentClass);
-
+			//AttackState only 0 1 2 -> 2 bits
+			//currentClass only 3 values -> 2 bits
 			BitsByte flags = new BitsByte();
 			flags[0] = lastAttackAngle != 0f;
-			writer.Write(flags);
+			byte b = (byte)((((byte)AttackState & 0b00000011) << 0) | (((byte)currentClass & 0b00000011) << 2) | (flags[0].ToInt() << 4));
+			// ___0ccaa
+
+			writer.Write((byte)b);
+			//AssUtils.Print("send: " + Convert.ToString(b, 2).PadLeft(8, '0'));
 			if (flags[0])
 			{
 				writer.Write((float)lastAttackAngle);
@@ -179,10 +181,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-			AttackState = reader.ReadByte();
-			currentClass = (GoblinUnderlingClass)reader.ReadByte();
+			byte b = reader.ReadByte();
+			AttackState = (byte)((b >> 0) & 0b00000011);
+			currentClass = (GoblinUnderlingClass)(byte)((b >> 2) & 0b00000011);
+			BitsByte flags = new BitsByte();
+			flags[0] = ((b >> 4) & 1) > 0;
 
-			BitsByte flags = reader.ReadByte();
+			//AssUtils.Print("recv: " + Convert.ToString(b, 2).PadLeft(8, '0'));
 			lastAttackAngle = flags[0] ? reader.ReadSingle() : 0f;
 		}
 
