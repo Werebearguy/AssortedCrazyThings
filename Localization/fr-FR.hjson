@@ -3005,8 +3005,8 @@ Mods: {
 						// ArmyEndless: This army is endless...
 					}
 
-					// ArmorEquipped.OddThings: OddThings
-					// ItemSelected.ThatDoll: ThatDoll
+					// ArmorEquipped.OddThings: Boss... You do odd things at times.
+					// ItemSelected.ThatDoll: That doll... be careful, boss.
 					// InvasionChanged.FoolsReturned: Those fools have returned.
 					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
 				}
