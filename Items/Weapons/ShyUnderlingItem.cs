@@ -12,7 +12,6 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override int BuffType => ModContent.BuffType<ShyUnderlingBuff>();
 
-		//TODO goblin value + obtainment
 		public override void SafeSetDefaults()
 		{
 			currentClass = GoblinUnderlingClass.Ranged;

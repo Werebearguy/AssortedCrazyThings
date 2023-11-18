@@ -44,9 +44,76 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void Load()
 		{
+			if (Items == null)
+			{
+				On_NPC.SetEventFlagCleared += DropItemIfPossible;
+			}
+
 			Items ??= new();
 			BuffToItem ??= new();
 			BuffToProjectile ??= new();
+		}
+
+		private static bool DecideItemForPlayer(Player player, out int itemType)
+		{
+			itemType = 0;
+			var items = new List<int>(Items);
+			while (items.Count > 0)
+			{
+				var idx = Main.rand.Next(items.Count);
+				var item = items[idx];
+
+				if (!player.HasItemWithBanks(item))
+				{
+					itemType = item;
+					return true;
+				}
+
+				items.RemoveAt(idx);
+			}
+
+			return false;
+		}
+
+		private static void DropItemIfPossible(On_NPC.orig_SetEventFlagCleared orig, ref bool eventFlag, int gameEventId)
+		{
+			//This is not clientside
+			orig(ref eventFlag, gameEventId);
+
+			if (gameEventId != GameEventClearedID.DefeatedGoblinArmy)
+			{
+				return;
+			}
+
+
+			if (Main.netMode == NetmodeID.Server)
+			{
+				int itemIndex = -1;
+				for (int p = 0; p < Main.maxPlayers; p++)
+				{
+					Player player = Main.player[p];
+					if (player.active && DecideItemForPlayer(player, out int itemType))
+					{
+						int item = Item.NewItem(new EntitySource_WorldEvent(), player.Center, itemType, noBroadcast: true);
+						itemIndex = item;
+						NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
+						Main.item[item].active = false;
+					}
+				}
+
+				if (itemIndex != -1)
+				{
+					Main.timeItemSlotCannotBeReusedFor[itemIndex] = 54000;
+				}
+			}
+			else if (Main.netMode == NetmodeID.SinglePlayer)
+			{
+				Player player = Main.LocalPlayer;
+				if (DecideItemForPlayer(player, out int itemType))
+				{
+					Item.NewItem(new EntitySource_WorldEvent(), player.Center, itemType);
+				}
+			}
 		}
 
 		public override void Unload()
