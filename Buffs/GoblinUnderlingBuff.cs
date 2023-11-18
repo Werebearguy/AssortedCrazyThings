@@ -34,7 +34,8 @@ namespace AssortedCrazyThings.Buffs
 			else if (Main.myPlayer == player.whoAmI && player.numMinions < player.maxMinions)
 			{
 				int index = player.FindItem(GoblinUnderlingItem.BuffToItem[Type]);
-				if (index != -1)
+				//Minion slot check (and assignment below) is for when more than 1 is spawned in same tick, causing the projectiles to exist for 1 tick, triggering chatter
+				if (index != -1 && player.slotsMinions < player.maxMinions)
 				{
 					Item item = player.inventory[index];
 
@@ -52,8 +53,9 @@ namespace AssortedCrazyThings.Buffs
 						}
 					}
 					//Source is important so that it applies the selected class to the minion
-					int pIndex = Projectile.NewProjectile(player.GetSource_ItemUse(item), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
-					Main.projectile[pIndex].originalDamage = item.damage;
+					Projectile goblin = Projectile.NewProjectileDirect(player.GetSource_ItemUse(item), player.Top, Vector2.Zero, projType, item.damage, item.knockBack, player.whoAmI);
+					goblin.originalDamage = item.damage;
+					player.slotsMinions += goblin.minionSlots;
 					modPlayer.SetHasMinion(projType, true);
 				}
 			}
