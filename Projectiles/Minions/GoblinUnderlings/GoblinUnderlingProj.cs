@@ -569,9 +569,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 					dust.noLight = true;
 				}
 
+				ResetAttack();
 				AttackFrameNumber = 0;
-				Timer = 0;
-				GeneralAttacking = false;
 			}
 
 			skipDefaultMovement = false;
