@@ -2,11 +2,11 @@
 
 namespace AssortedCrazyThings.Base.Chatter.Conditions
 {
-	public abstract class CurrentClassCondition : ChatterCondition
+	public abstract class CurrentClassChatterCondition : ChatterCondition
 	{
 		public GoblinUnderlingClass Class { get; init; }
 
-		public CurrentClassCondition(GoblinUnderlingClass @class)
+		public CurrentClassChatterCondition(GoblinUnderlingClass @class)
 		{
 			Class = @class;
 		}
@@ -27,9 +27,9 @@ namespace AssortedCrazyThings.Base.Chatter.Conditions
 		}
 	}
 
-	public class MeleeClassCondition : CurrentClassCondition
+	public class MeleeClassChatterCondition : CurrentClassChatterCondition
 	{
-		public MeleeClassCondition() : base(GoblinUnderlingClass.Melee)
+		public MeleeClassChatterCondition() : base(GoblinUnderlingClass.Melee)
 		{
 
 		}
@@ -50,17 +50,17 @@ namespace AssortedCrazyThings.Base.Chatter.Conditions
 		}
 	}
 
-	public class RangedClassCondition : CurrentClassCondition
+	public class RangedClassChatterCondition : CurrentClassChatterCondition
 	{
-		public RangedClassCondition() : base(GoblinUnderlingClass.Ranged)
+		public RangedClassChatterCondition() : base(GoblinUnderlingClass.Ranged)
 		{
 
 		}
 	}
 
-	public class MagicClassCondition : CurrentClassCondition
+	public class MagicClassChatterCondition : CurrentClassChatterCondition
 	{
-		public MagicClassCondition() : base(GoblinUnderlingClass.Magic)
+		public MagicClassChatterCondition() : base(GoblinUnderlingClass.Magic)
 		{
 
 		}

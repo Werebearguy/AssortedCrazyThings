@@ -115,7 +115,9 @@ namespace AssortedCrazyThings.Base.ModSupport
 				{
 					List<int> goblinInvasion = new List<int>()
 					{
-						ModContent.ItemType<EagerUnderlingItem>()
+						ModContent.ItemType<EagerUnderlingItem>(),
+						ModContent.ItemType<SeriousUnderlingItem>(),
+						ModContent.ItemType<ShyUnderlingItem>(),
 					};
 
 					bossChecklist.Call(

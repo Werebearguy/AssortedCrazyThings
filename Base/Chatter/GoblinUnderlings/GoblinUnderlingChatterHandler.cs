@@ -12,6 +12,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		None,
 		Eager,
 		Serious,
+		Shy,
 	}
 
 	//TODO goblin Do proper dispatching here for multiple goblins. Currently just spawn on all active (which will spawn only 1 message on the first active one due to global cooldown)
@@ -76,9 +77,9 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("ComeHere"),
 									new ChatterMessage("LevelOne"),
 
-									new ChatterMessage("StabStab", new MeleeClassCondition(), true),
-									new ChatterMessage("Boom", new MagicClassCondition(), true),
-									new ChatterMessage("Skewer", new RangedClassCondition(), true),
+									new ChatterMessage("StabStab", new MeleeClassChatterCondition(), true),
+									new ChatterMessage("Boom", new MagicClassChatterCondition(), true),
+									new ChatterMessage("Skewer", new RangedClassChatterCondition(), true),
 								}, () => 30 * 60)
 							},
 							{ ChatterSource.PlayerHurt,
@@ -212,10 +213,10 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("NotDefy"),
 									new ChatterMessage("NotSurvive"),
 
-									new ChatterMessage("CutDown", new MeleeClassCondition(), true),
-									new ChatterMessage("StruckDown", new MagicClassCondition(), true),
-									new ChatterMessage("Burn", new MagicClassCondition(), true),
-									new ChatterMessage("InSights", new RangedClassCondition(), true),
+									new ChatterMessage("CutDown", new MeleeClassChatterCondition(), true),
+									new ChatterMessage("StruckDown", new MagicClassChatterCondition(), true),
+									new ChatterMessage("Burn", new MagicClassChatterCondition(), true),
+									new ChatterMessage("InSights", new RangedClassChatterCondition(), true),
 								}, () => 45 * 60)
 							},
 							{ ChatterSource.PlayerHurt,
@@ -304,7 +305,138 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 							},
 						}
 					}
-				}
+				},
+				{ GoblinUnderlingChatterType.Shy,
+					new GoblinUnderlingChatterGenerator(GoblinUnderlingChatterType.Shy.ToString(), new Color(82, 111, 142))
+					{
+						Chatters = new Dictionary<ChatterSource, ChatterMessageGroup>()
+						{
+							{ ChatterSource.Idle,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("LikeNoFight"),
+									new ChatterMessage("FeelSafe"),
+									new ChatterMessage("RunIntoBad"),
+									new ChatterMessage("WatchStep"),
+									new ChatterMessage("Nevermind"),
+									new ChatterMessage("ShouldRest"),
+
+									new ChatterMessage("GoHome", new SurfaceNightChatterCondition(), true),
+									new ChatterMessage("PleasantWind", new WindyDayChatterCondition(), true),
+									new ChatterMessage("SnowCold", new SnowChatterCondition(), true),
+									new ChatterMessage("PlaceScary", new AnyEvilChatterCondition(), true),
+									new ChatterMessage("EveryoneNice", new InTownChatterCondition(), true),
+									new ChatterMessage("SeeStars", new SurfaceNoLightChatterCondition(), true),
+									new ChatterMessage("WatchFooting", new UndergroundChatterCondition(), true),
+									new ChatterMessage("SawMouse", new UndergroundChatterCondition(), true),
+									new ChatterMessage("DontLeave", new UndergroundNoLightChatterCondition(), true),
+									new ChatterMessage("Scared", new UndergroundNoLightChatterCondition(), true),
+								}, () => Main.rand.Next(20, 40) * 60)
+							},
+							{ ChatterSource.FirstSummon,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("NiceToMeet"),
+								})
+							},
+							{ ChatterSource.Attacking,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("NotEscape"),
+									new ChatterMessage("SeeDead"),
+									new ChatterMessage("TargetSighted"),
+									new ChatterMessage("Eliminated"),
+
+									new ChatterMessage("BossesBlade", new MeleeClassChatterCondition(), true),
+									new ChatterMessage("Burn", new MagicClassChatterCondition(), true),
+									new ChatterMessage("WontMiss", new RangedClassChatterCondition(), true),
+									new ChatterMessage("PleaseLeave", new GoblinArmyInvasionOngoingChatterCondition(), true),
+								}, () => 30 * 60)
+							},
+							{ ChatterSource.PlayerHurt,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("YouAlright"),
+									new ChatterMessage("OhNo"),
+									new ChatterMessage("DontDie"),
+									new ChatterMessage("Boss"),
+								}, () => 60 * 60)
+							},
+							{ ChatterSource.BossSpawn,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("WhatIsThat"),
+									new ChatterMessage("LargeEnemy"),
+									new ChatterMessage("DoMyBest"),
+
+									new ChatterMessage("LooksDangerous", new DarkMageT1GenericChatterCondition()),
+									new ChatterMessage("HesHuge", new OgreT2GenericChatterCondition()),
+									new ChatterMessage("Dragon", new BetsyGenericChatterCondition()),
+									new ChatterMessage("Pretty", new EoLGenericChatterCondition()),
+									new ChatterMessage("NotAgain", new MartianSaucerGenericChatterCondition()),
+									new ChatterMessage("WontBeAfraid", new MoonLordGenericChatterCondition()),
+
+									new ChatterMessage("RocksMoving", new GraniteEnergyStormGenericChatterCondition()),
+									new ChatterMessage("TheyAreBack", new StarScouterGenericChatterCondition()),
+								}, () => 10 * 60)
+							},
+							{ ChatterSource.BossDefeat,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("WasScary"),
+									new ChatterMessage("WasntUseful"),
+									new ChatterMessage("YouWereGreat"),
+									new ChatterMessage("CouldDoIt"),
+
+									new ChatterMessage("GladItsOver", new DarkMageT1GenericChatterCondition()),
+									new ChatterMessage("TheBiggerTheyAre", new OgreT2GenericChatterCondition()),
+									new ChatterMessage("DontFight", new BetsyGenericChatterCondition()),
+									new ChatterMessage("Distracted", new EoLGenericChatterCondition()),
+									new ChatterMessage("WontBeTaken", new MartianSaucerGenericChatterCondition()),
+									new ChatterMessage("YouDidIt", new MoonLordGenericChatterCondition()),
+
+									new ChatterMessage("WeirdFight", new GraniteEnergyStormGenericChatterCondition()),
+									new ChatterMessage("ThankYou", new StarScouterGenericChatterCondition()),
+								}, () => 10 * 60)
+							},
+							{ ChatterSource.OOAStarts,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("WhatHoles"),
+								})
+							},
+							{ ChatterSource.OOANewWave,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("MoreOfThem"),
+									new ChatterMessage("MoreFoes"),
+									new ChatterMessage("WhenEnd"),
+									new ChatterMessage("GemSafe"),
+								})
+							},
+							{ ChatterSource.ArmorEquipped,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("ItsYou", new EquipAnyMartianArmorChatterCondition()),
+									new ChatterMessage("SeeingFace", new EquipFamiliarWigChatterCondition()),
+								}, () => 15 * 60)
+							},
+							//No ChatterSource.ItemSelected
+							{ ChatterSource.InvasionChanged,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("MustFight", new GoblinArmyInvasionChangedChatterCondition()),
+								})
+							},
+							{ ChatterSource.BloodMoonChanged,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("BodyHurts", new BloodMoonChangedChatterCondition()),
+								})
+							},
+						}
+					}
+				},
 			};
 		}
 

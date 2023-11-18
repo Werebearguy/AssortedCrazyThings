@@ -3010,6 +3010,93 @@ Mods: {
 					InvasionChanged.FoolsReturned: Those fools have returned.
 					BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
 				}
+
+				Shy: {
+					Idle: {
+						LikeNoFight: I like when we don't have to fight.
+						FeelSafe: You make me feel safe, boss.
+						RunIntoBad: I hope we don't run into bad guys.
+						WatchStep: Please watch your step, boss.
+						Nevermind: Boss, I... ah... nevermind.
+						ShouldRest: You should rest, boss.
+						GoHome: W-we should probably go home, boss...
+						PleasantWind: Such pleasant wind...
+						SnowCold: So this is snow... so cold!
+						PlaceScary: B-boss... this place is s-scary!
+						EveryoneNice: Everyone here is nice.
+						SeeStars: Boss, look! We can see the stars!
+						WatchFooting: Watch your footing, boss!
+						SawMouse: Eep!...Sorry boss, I saw a mouse...
+						DontLeave: B-boss... Please don't leave me...
+						Scared: I-I'm scared...
+					}
+
+					FirstSummon.NiceToMeet: N-nice to meet you, boss.
+
+					Attacking: {
+						NotEscape: You will not escape...
+						SeeDead: I will see you dead...
+						TargetSighted: Target sighted...
+						Eliminated: You will be eliminated...
+						BossesBlade: I am the boss's blade...
+						Burn: Burn...
+						WontMiss: I won't miss twice...
+						PleaseLeave: Please... leave... before I...
+					}
+
+					PlayerHurt: {
+						YouAlright: Boss, are you alright?
+						OhNo: Oh no, boss!
+						DontDie: Please don't die, boss!
+						Boss: Boss!
+					}
+
+					BossSpawn: {
+						WhatIsThat: Boss... Boss! What is that?!
+						LargeEnemy: Such a large enemy... can we win?
+						DoMyBest: I-I'll do my best, boss!
+						LooksDangerous: T-that one looks dangerous...
+						HesHuge: H-he's huge...
+						Dragon: Ah! Dragon!
+						Pretty: What a pretty... Boss! Look out!
+						NotAgain: No... not again...!
+						WontBeAfraid: I won't be afraid. I'll do my best!
+						RocksMoving: T-the rocks are moving, boss!
+						TheyAreBack: A-ah... t-they're back...
+					}
+
+					BossDefeat: {
+						WasScary: T-That was scary, but we won!
+						WasntUseful: I'm sorry that I wasn't useful, boss...
+						YouWereGreat: You were great, boss!
+						CouldDoIt: I-I knew you could do it!
+						GladItsOver: I'm glad that's over...
+						TheBiggerTheyAre: The bigger they are, the harder they fall.
+						DontFight: I hope we don't fight another one of those...
+						Distracted: I'm sorry that I was distracted...
+						WontBeTaken: I... I won't be taken again!
+						YouDidIt: You did it... you really did it, boss!
+						WeirdFight: That was a weird fight...
+						ThankYou: Thank you, boss. For being here.
+					}
+
+					OOAStarts.WhatHoles: Boss... w-what are those holes?
+
+					OOANewWave: {
+						MoreOfThem: T-there's more of them?
+						MoreFoes: More foes approach, boss.
+						WhenEnd: When will it end?
+						GemSafe: The gem is safe... for now...
+					}
+
+					ArmorEquipped: {
+						ItsYou: Ah!... Oh, it's you boss...
+						SeeingFace: I like seeing your face, boss.
+					}
+
+					InvasionChanged.MustFight: No... why must we fight?
+					BloodMoonChanged.BodyHurts: Boss... my body hurts...
+				}
 			}
 		}
 
