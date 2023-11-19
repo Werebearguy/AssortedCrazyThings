@@ -455,7 +455,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		{
 			foreach (var gen in Generators)
 			{
-				//This is a hack that makes it so that all cooldowns of other goblins are 33% less, making sure that they cycle during i.e. idle
+				//If this is lower than 1f, it sets the cooldowns of _other_ goblins to expire faster, effectively increasing chatter frequency for groups. 1f means it's as if only 1 goblin was chatting
 				gen.PutMessageTypeOnCooldown(source, factor: 1f);
 			}
 		}
@@ -478,9 +478,12 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 			public void Report()
 			{
 				AssUtils.Print("Chatter per type. Total: " + total);
-				foreach (var pair in per)
+				if (total > 0)
 				{
-					AssUtils.Print($"{pair.Key}: {pair.Value.Value} | {(pair.Value.Value / (float)total)* 100:F0}%");
+					foreach (var pair in per)
+					{
+						AssUtils.Print($"{pair.Key}: {pair.Value.Value} | {(pair.Value.Value / (float)total) * 100:F0}%");
+					}
 				}
 			}
 		}
