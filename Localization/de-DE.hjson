@@ -2880,6 +2880,21 @@ Mods: {
 						// IsntWeak: Da boss ain't weak, chump!
 					}
 
+					PlayerHurtByTrap: {
+						// WallsAttack: Da walls attack too?!
+						// WatchWalls: Watch da walls, boss!
+						// BadWall: Bad wall! Don't hurt boss!
+						// GroundEnemy: Da ground is an enemy?!
+						// HotHot: Hot! Hot!
+						// MissThat: How'd ya miss dat, boss?
+						// Dangerous: Dat's dangerous!
+						// NoFair: No fair! I can't hit dose!
+						// BadPeople: Bad people made bad traps!
+						// BigBadBalls: Big bad balls!
+						// DontFlattened: Don't get flattened, boss!
+						// HadToHurt: Dat had ta hurt!
+					}
+
 					BossSpawn: {
 						// UhOh: Uh oh!
 						// BigOne: Dat's a biggun!
@@ -2968,6 +2983,21 @@ Mods: {
 						// Healing: Do you need healing?
 					}
 
+					PlayerHurtByTrap: {
+						// WatchStep: Watch where you step, boss.
+						// PressurePlates: Be mindful of pressure plates.
+						// CowardlyTrap: A cowardly trap...
+						// BossNotSee: Boss, did you not see that?
+						// NaturalTrap: A natural trap.
+						// MinorBurn: Lucky that it was only a minor burn.
+						// TrapCruel: That trap is too cruel.
+						// TakeTime: Take your time, boss.
+						// CruelPeople: What cruel people made these traps...
+						// Weighed: That must have weighed quite a bit.
+						// INotSee: I did not see that coming.
+						// FromDistance: Try to trigger those from a distance.
+					}
+
 					BossSpawn: {
 						// LargeEnemy: A large enemy approaches.
 						// Formidable: A formidable foe.
@@ -3049,6 +3079,20 @@ Mods: {
 						// OhNo: Oh no, boss!
 						// DontDie: Please don't die, boss!
 						// Boss: Boss!
+					}
+
+					PlayerHurtByTrap: {
+						// HopeOkay: I hope you're okay, boss...
+						// TreatingWound: Be careful when treating that wound...
+						// CoolDown: We should cool that down...
+						// SeeSooner: I'm sorry I didn't see that sooner...
+						// NatureCruel: Nature can be so cruel...
+						// AwfulTraps: Who would make such awful traps...
+						// TreatWound: We need to treat that wound!
+						// Barbaric: How barbaric...
+						// BadlyHurt: You're badly hurt, boss!
+						// MoreCautious: Please be more cautious, boss!
+						// DontLetHit: Please don't let those hit you anymore!
 					}
 
 					BossSpawn: {

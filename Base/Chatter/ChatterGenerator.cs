@@ -16,6 +16,7 @@ namespace AssortedCrazyThings.Base.Chatter
 		FirstSummon,
 		Attacking,
 		PlayerHurt,
+		PlayerHurtByTrap,
 		BossSpawn,
 		BossDefeat,
 		OOAStarts,

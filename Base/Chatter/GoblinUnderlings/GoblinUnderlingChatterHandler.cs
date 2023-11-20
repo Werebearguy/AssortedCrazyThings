@@ -98,6 +98,23 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("IsntWeak"),
 								})
 							},
+							{ ChatterSource.PlayerHurtByTrap,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("WallsAttack", new DartTrapChatterCondition()),
+									new ChatterMessage("WatchWalls", new DartTrapChatterCondition()),
+									new ChatterMessage("BadWall", new DartTrapChatterCondition()),
+									new ChatterMessage("GroundEnemy", new GeyserTrapChatterCondition()),
+									new ChatterMessage("HotHot", new GeyserTrapChatterCondition()),
+									new ChatterMessage("MissThat", new GeyserTrapChatterCondition()),
+									new ChatterMessage("Dangerous", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("NoFair", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("BadPeople", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("BigBadBalls", new BoulderTrapChatterCondition()),
+									new ChatterMessage("DontFlattened", new BoulderTrapChatterCondition()),
+									new ChatterMessage("HadToHurt", new BoulderTrapChatterCondition()),
+								})
+							},
 							{ ChatterSource.BossSpawn,
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
@@ -231,6 +248,23 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("Unpleasant"),
 									new ChatterMessage("Tough"),
 									new ChatterMessage("Healing"),
+								})
+							},
+							{ ChatterSource.PlayerHurtByTrap,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									new ChatterMessage("WatchStep", new DartTrapChatterCondition()),
+									new ChatterMessage("PressurePlates", new DartTrapChatterCondition()),
+									new ChatterMessage("CowardlyTrap", new DartTrapChatterCondition()),
+									new ChatterMessage("BossNotSee", new GeyserTrapChatterCondition()),
+									new ChatterMessage("NaturalTrap", new GeyserTrapChatterCondition()),
+									new ChatterMessage("MinorBurn", new GeyserTrapChatterCondition()),
+									new ChatterMessage("TrapCruel", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("TakeTime", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("CruelPeople", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("Weighed", new BoulderTrapChatterCondition()),
+									new ChatterMessage("INotSee", new BoulderTrapChatterCondition()),
+									new ChatterMessage("FromDistance", new BoulderTrapChatterCondition()),
 								})
 							},
 							{ ChatterSource.BossSpawn,
@@ -367,6 +401,23 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("Boss"),
 								})
 							},
+							{ ChatterSource.PlayerHurtByTrap,
+								new ChatterMessageGroup(new List<ChatterMessage>()
+								{
+									//One missing for DartTrapChatterCondition
+									new ChatterMessage("HopeOkay", new DartTrapChatterCondition()),
+									new ChatterMessage("TreatingWound", new DartTrapChatterCondition()),
+									new ChatterMessage("CoolDown", new GeyserTrapChatterCondition()),
+									new ChatterMessage("SeeSooner", new GeyserTrapChatterCondition()),
+									new ChatterMessage("NatureCruel", new GeyserTrapChatterCondition()),
+									new ChatterMessage("AwfulTraps", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("TreatWound", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("Barbaric", new SpikyOrFlameTrapChatterCondition()),
+									new ChatterMessage("BadlyHurt", new BoulderTrapChatterCondition()),
+									new ChatterMessage("MoreCautious", new BoulderTrapChatterCondition()),
+									new ChatterMessage("DontLetHit", new BoulderTrapChatterCondition()),
+								})
+							},
 							{ ChatterSource.BossSpawn,
 								new ChatterMessageGroup(new List<ChatterMessage>()
 								{
@@ -490,7 +541,6 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 		private void HandleMessageForAll(ChatterSource source, IChatterParams param = null)
 		{
-			Dictionary<GoblinUnderlingChatterType, Projectile> projs = new();
 			foreach (var guChatterType in Order)
 			{
 				var proj = GoblinUnderlingHelperSystem.GetFirstGoblinUnderling(guChatterType);
@@ -506,6 +556,11 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		public override void OnPlayerHurt(Player player, Entity entity, Player.HurtInfo hurtInfo)
 		{
 			HandleMessageForAll(ChatterSource.PlayerHurt, new PlayerHurtChatterParams(entity, hurtInfo));
+		}
+
+		public override void OnPlayerHurtByTrap(Player player, Projectile projectile, Player.HurtInfo hurtInfo)
+		{
+			HandleMessageForAll(ChatterSource.PlayerHurtByTrap, new PlayerHurtByTrapChatterParams(projectile, hurtInfo));
 		}
 
 		public override void OnArmorEquipped(Player player, EquipSnapshot equips, EquipSnapshot prevEquips)

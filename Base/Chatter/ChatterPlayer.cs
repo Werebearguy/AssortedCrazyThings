@@ -59,22 +59,20 @@ namespace AssortedCrazyThings.Base.Chatter
 
 		public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
 		{
-			if (proj.trap || proj.npcProj)
+			if (proj.npcProj || Player.whoAmI != Main.myPlayer)
 			{
 				return;
 			}
-
-			if (Player.whoAmI != Main.myPlayer)
+			
+			//Handle hits from traps separately and on lower cd
+			if (proj.trap)
 			{
-				return;
+				ChatterSystem.OnPlayerHurtByTrap(Player, proj, hurtInfo);
 			}
-
-			if (hurtInfo.Damage < Player.statLifeMax2 * 0.2f)
+			else if (hurtInfo.Damage > Player.statLifeMax2 * 0.2f)
 			{
-				return;
+				ChatterSystem.OnPlayerHurt(Player, proj, hurtInfo);
 			}
-
-			ChatterSystem.OnPlayerHurt(Player, proj, hurtInfo);
 		}
 
 		private void HandleItemSelectedChatter()

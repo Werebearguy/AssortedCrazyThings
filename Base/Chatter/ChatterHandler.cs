@@ -53,6 +53,11 @@ namespace AssortedCrazyThings.Base.Chatter
 
 		}
 
+		public virtual void OnPlayerHurtByTrap(Player player, Projectile projectile, Player.HurtInfo hurtInfo)
+		{
+
+		}
+
 		public virtual void OnArmorEquipped(Player player, EquipSnapshot equips, EquipSnapshot prevEquips)
 		{
 

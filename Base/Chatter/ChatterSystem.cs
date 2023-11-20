@@ -44,6 +44,7 @@ namespace AssortedCrazyThings.Base.Chatter
 			//Overrides here
 			SourceToParamTypes[ChatterSource.Attacking] = typeof(AttackingChatterParams);
 			SourceToParamTypes[ChatterSource.PlayerHurt] = typeof(PlayerHurtChatterParams);
+			SourceToParamTypes[ChatterSource.PlayerHurtByTrap] = typeof(PlayerHurtByTrapChatterParams);
 			SourceToParamTypes[ChatterSource.BossSpawn] = typeof(BossSpawnChatterParams);
 			SourceToParamTypes[ChatterSource.BossDefeat] = typeof(BossDefeatChatterParams);
 			SourceToParamTypes[ChatterSource.ArmorEquipped] = typeof(ArmorEquipChatterParams);
@@ -54,6 +55,7 @@ namespace AssortedCrazyThings.Base.Chatter
 			SourceToCooldowns[ChatterSource.Idle] = () => Main.rand.Next(20, 40) * 60;
 			SourceToCooldowns[ChatterSource.Attacking] = () => 30 * 60;
 			SourceToCooldowns[ChatterSource.PlayerHurt] = () => 60 * 60;
+			SourceToCooldowns[ChatterSource.PlayerHurtByTrap] = () => 15 * 60;
 			SourceToCooldowns[ChatterSource.BossSpawn] = () => 10 * 60;
 			SourceToCooldowns[ChatterSource.BossDefeat] = () => 10 * 60;
 			SourceToCooldowns[ChatterSource.ArmorEquipped] = () => 15 * 60;
@@ -146,6 +148,14 @@ namespace AssortedCrazyThings.Base.Chatter
 			foreach (var handler in Dict.Values)
 			{
 				handler.OnPlayerHurt(player, entity, hurtInfo);
+			}
+		}
+
+		public static void OnPlayerHurtByTrap(Player player, Projectile projectile, Player.HurtInfo hurtInfo)
+		{
+			foreach (var handler in Dict.Values)
+			{
+				handler.OnPlayerHurtByTrap(player, projectile, hurtInfo);
 			}
 		}
 
