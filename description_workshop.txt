@@ -34,7 +34,7 @@ Mod Contents:
 [list]
     [*]16 Tiles
     [*]59 NPCs, including one boss
-    [*]215 items, including pets, accessories, armor, and more
+    [*]217 items, including pets, accessories, armor, and more
     [*]Cross-mod content with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]"The Amulet of Many Minions"[/url]
     [*]More things to come!
 [/list]
