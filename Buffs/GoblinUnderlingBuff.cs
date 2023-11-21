@@ -31,12 +31,14 @@ namespace AssortedCrazyThings.Buffs
 			{
 				modPlayer.SetHasMinion(projType, true);
 			}
-			else if (Main.myPlayer == player.whoAmI /*&& player.numMinions < player.maxMinions*/)
+			//Minion slot check (and assignment below) is for when more than 1 is spawned in same tick, causing the projectiles to exist for 1 tick, triggering chatter
+			//But it also doesnt work because on spawn players maxMinions is 1, it checks gear a tick later so there will only be 1 spawned
+			//this check is important when there are other minions summoned and this one is unsummoned, it will keep resummoning itself from the buff and being active for 1 tick (doing AI)
+			//So current workaround is to let summons be spawned regardless of check the moment the player spawns (armor/accessory slot increases don't apply here yet), otherwise adhere to limits
+			else if (Main.myPlayer == player.whoAmI && (!modPlayer.spawned || player.numMinions < player.maxMinions))
 			{
 				int index = player.FindItem(GoblinUnderlingItem.BuffToItem[Type]);
-				//Minion slot check (and assignment below) is for when more than 1 is spawned in same tick, causing the projectiles to exist for 1 tick, triggering chatter
-				//But it also doesnt work because on spawn players maxMinions is 1, it checks gear a tick later so there will only be 1 spawned
-				if (index != -1 /*&& player.slotsMinions < player.maxMinions*/)
+				if (index != -1)
 				{
 					Item item = player.inventory[index];
 

@@ -15,6 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		public Dictionary<int, Ref<bool>> hasMinion;
 
 		public int numUnderlings = 0;
+		public bool spawned = false;
 
 		public void SetHasMinion(int type, bool val)
 		{
@@ -81,8 +82,14 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			}
 		}
 
+		public override void OnEnterWorld()
+		{
+			spawned = false;
+		}
+
 		public override void PreUpdate()
 		{
+			spawned = true;
 			numUnderlings = 0;
 		}
 
