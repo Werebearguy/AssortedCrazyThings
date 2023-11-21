@@ -48,6 +48,11 @@ namespace AssortedCrazyThings.Base.Chatter
 			}
 		}
 
+		public virtual void ModifyCooldownReduceAmount(ref float reduceAmount, ref float globalReduceAmount, ChatterGenerator generator)
+		{
+
+		}
+
 		public virtual void OnPlayerHurt(Player player, Entity entity, Player.HurtInfo hurtInfo)
 		{
 
@@ -94,6 +99,11 @@ namespace AssortedCrazyThings.Base.Chatter
 		}
 
 		public virtual void OnOOANewWave(int forHowLong)
+		{
+
+		}
+
+		public virtual void PostUpdateProjectiles()
 		{
 
 		}

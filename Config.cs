@@ -222,7 +222,7 @@ namespace AssortedCrazyThings
 		[Range(GoblinUnderlingChatterFreq_Min, GoblinUnderlingChatterFreq_Max)]
 		public int GoblinUnderlingChatterFreq { get; set; }
 
-		internal bool GoblinUnderlingDialogueDisabled => GoblinUnderlingChatterFreq == 0;
+		internal bool GoblinUnderlingChatterDisabled => GoblinUnderlingChatterFreq == 0;
 
 		[Header("HintServerConfig")]
 		[JsonIgnore]

@@ -56,7 +56,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			return null;
 		}
 
-		public static IEnumerable<Projectile> GetLocalGoblinUnderlings(GoblinUnderlingChatterType guChatterType = GoblinUnderlingChatterType.None)
+		public static IEnumerable<Projectile> GetLocalGoblinUnderlings(GoblinUnderlingChatterType guChatterType = GoblinUnderlingChatterType.All)
 		{
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{
@@ -66,12 +66,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				{
 					continue;
 				}
-
-				if (guChatterType == GoblinUnderlingChatterType.None && GoblinUnderlingTierSystem.GoblinUnderlingProjs.ContainsKey(proj.type))
-				{
-					yield return proj;
-				}
-				else if (GoblinUnderlingTierSystem.GoblinUnderlingProjs.TryGetValue(proj.type, out var value) && value == guChatterType)
+				
+				if (GoblinUnderlingTierSystem.GoblinUnderlingProjs.TryGetValue(proj.type, out var value) && guChatterType.HasFlag(value))
 				{
 					yield return proj;
 				}

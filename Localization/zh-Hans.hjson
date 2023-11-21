@@ -3142,6 +3142,80 @@ Mods: {
 					// InvasionChanged.MustFight: No... why must we fight?
 					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
 				}
+
+				Eager_Serious: {
+					Dialogue: {
+						// 0Eager: Can I have anotha doll?
+						// 1Serious: You tore or lost the last few.
+						// 2Eager: I won't dis time!
+						// 3Serious: ...Fine. I'll make one later, alright?
+						// 4Eager: Yay!
+					}
+				}
+
+				Eager_Shy: {
+					Dialogue: {
+						// 0Eager: Hey!
+						// 1Shy: Ah... yes?
+						// 2Eager: Dere's a rat behind ya!
+						// 3Shy: Eep!
+						// 4Eager: Tricked ya! Haha, dat was loud!
+					}
+				}
+
+				Serious_Eager: {
+					Dialogue: {
+						// 0Serious: You tore your doll again...
+						// 1Eager: It was an accident!
+						// 2Serious: Like the other times?
+						// 3Eager: Yeah!
+						// 4Serious: ...I'll mend it later.
+						// 5Eager: Thanks!
+					}
+				}
+
+				Serious_Shy: {
+					Dialogue: {
+						// 0Serious: Hey.
+						// 1Shy: ...yes?
+						// 2Serious: Would you like a doll?
+						// 3Shy: A doll?
+						// 4Serious: Yes. To calm your nerves.
+						// 5Shy: ...yes, please.
+						// 6Serious: I'll prepare it later then.
+					}
+				}
+
+				Shy_Eager: {
+					Dialogue: {
+						// 0Shy: Um...
+						// 1Eager: Yeah?
+						// 2Shy: H-how are you always so cheerful?
+						// 3Eager: Cause the boss is here!
+						// 4Shy: You really l-like the boss, huh?
+						// 5Eager: Yeah! Da boss is da strongest!
+					}
+				}
+
+				Shy_Serious: {
+					Dialogue: {
+						// 0Shy: Um... excuse me...
+						// 1Serious: Yes?
+						// 2Shy: Y-your dolls...
+						// 3Serious: ?
+						// 4Shy: They're cute...
+						// 5Serious: Thank you.
+					}
+				}
+
+				Eager_Serious_Shy: {
+					Dialogue: {
+						// 0Eager: You good?
+						// "1Serious, Shy": Yes.
+						// 2Eager: Den all togetha;
+						// 3All: We like you, boss!
+					}
+				}
 			}
 		}
 

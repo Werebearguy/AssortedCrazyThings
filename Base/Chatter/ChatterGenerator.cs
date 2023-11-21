@@ -25,6 +25,7 @@ namespace AssortedCrazyThings.Base.Chatter
 		ItemSelected,
 		InvasionChanged,
 		BloodMoonChanged,
+		Dialogue,
 	}
 
 	/// <summary>
@@ -167,9 +168,19 @@ namespace AssortedCrazyThings.Base.Chatter
 			return false;
 		}
 
-		protected bool SpawnPopupText(ChatterSource source, IChatterParams param, Vector2 position, Vector2 velocity)
+		protected virtual void ModifyRequest(ChatterSource source, IChatterParams param, ref AdvancedPopupRequest request)
 		{
-			if (!TryGetText(source, param, out string textForVariation))
+
+		}
+
+		public bool SpawnPreviousPopupText(ChatterSource source, IChatterParams param, Vector2 position, Vector2 velocity)
+		{
+			return SpawnPopupText(source, param, position, velocity, true);
+		}
+
+		protected bool SpawnPopupText(ChatterSource source, IChatterParams param, Vector2 position, Vector2 velocity, bool peekPrev = false)
+		{
+			if (!TryGetText(source, param, out string textForVariation, peekPrev))
 			{
 				return false;
 			}
@@ -181,14 +192,15 @@ namespace AssortedCrazyThings.Base.Chatter
 			request.DurationInFrames = (int)(seconds * 60);
 			request.Velocity = velocity;
 			request.Color = Color;
+			ModifyRequest(source, param, ref request);
 			PopupText.NewText(request, position);
 			return true;
 		}
 
-		private bool TryGetText(ChatterSource source, IChatterParams param, out string text)
+		private bool TryGetText(ChatterSource source, IChatterParams param, out string text, bool peekPrev = false)
 		{
 			text = string.Empty;
-			if (Chatters.TryGetValue(source, out ChatterMessageGroup chatter) && chatter.TryChooseMessage(source, param, out var message))
+			if (Chatters.TryGetValue(source, out ChatterMessageGroup chatter) && chatter.TryChooseMessage(source, param, out var message, peekPrev))
 			{
 				text = message.ToString();
 			}

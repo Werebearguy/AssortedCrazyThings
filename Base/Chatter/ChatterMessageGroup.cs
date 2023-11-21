@@ -29,6 +29,11 @@ namespace AssortedCrazyThings.Base.Chatter
 
 			public int Count => Messages.Count;
 
+			public void ResetVariation()
+			{
+				VariationIndex = 0;
+			}
+
 			public void RandomizeVariation()
 			{
 				VariationIndex = Main.rand.Next(Count);
@@ -43,6 +48,17 @@ namespace AssortedCrazyThings.Base.Chatter
 			{
 				var message = Messages[VariationIndex];
 				ProgressVariation();
+				return message;
+			}
+
+			public ChatterMessage PeekPreviousMessage()
+			{
+				int index = VariationIndex - 1;
+				if (index < 0)
+				{
+					index = Count + index;
+				}
+				var message = Messages[index];
 				return message;
 			}
 		}
@@ -107,7 +123,7 @@ namespace AssortedCrazyThings.Base.Chatter
 		/// <summary>
 		/// Assigns <paramref name="message"/> to a message if conditions meet
 		/// </summary>
-		public bool TryChooseMessage(ChatterSource source, IChatterParams param, out ChatterMessage message)
+		public bool TryChooseMessage(ChatterSource source, IChatterParams param, out ChatterMessage message, bool peekPrev = false)
 		{
 			message = null;
 
@@ -116,7 +132,7 @@ namespace AssortedCrazyThings.Base.Chatter
 				for (int i = 0; i < pool.Count; i++)
 				{
 					//Try out all messages in the pool, so that if one message does not meet conditions, it checks for the next one
-					ChatterMessage chatterMessage = pool.GetMessage();
+					ChatterMessage chatterMessage = peekPrev ? pool.PeekPreviousMessage() : pool.GetMessage();
 					if (chatterMessage.Condition.IsTrue(source, param))
 					{
 						message = chatterMessage;

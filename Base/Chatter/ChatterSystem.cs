@@ -51,6 +51,7 @@ namespace AssortedCrazyThings.Base.Chatter
 			SourceToParamTypes[ChatterSource.ItemSelected] = typeof(ItemSelectedChatterParams);
 			SourceToParamTypes[ChatterSource.InvasionChanged] = typeof(InvasionChangedChatterParams);
 			SourceToParamTypes[ChatterSource.BloodMoonChanged] = typeof(BloodMoonChangedChatterParams);
+			SourceToParamTypes[ChatterSource.Dialogue] = typeof(DialogueChatterParams);
 
 			SourceToCooldowns[ChatterSource.Idle] = () => Main.rand.Next(20, 40) * 60;
 			SourceToCooldowns[ChatterSource.Attacking] = () => 30 * 60;
@@ -60,6 +61,7 @@ namespace AssortedCrazyThings.Base.Chatter
 			SourceToCooldowns[ChatterSource.BossDefeat] = () => 10 * 60;
 			SourceToCooldowns[ChatterSource.ArmorEquipped] = () => 15 * 60;
 			SourceToCooldowns[ChatterSource.ItemSelected] = () => 15 * 60;
+			SourceToCooldowns[ChatterSource.Dialogue] = () => (int)(2.5f * 60); //Too low causes the text to not have enough time to disappear
 		}
 
 		public override void OnModLoad()
@@ -85,6 +87,19 @@ namespace AssortedCrazyThings.Base.Chatter
 			SpawnedNPCSystem.OnSpawnedNPC -= OnSpawnedBossHook;
 
 			AssPlayer.OnSlainBoss -= OnSlainBossHook;
+		}
+
+		public override void PostUpdateProjectiles()
+		{
+			OnPostUpdateProjectiles();
+		}
+
+		public static void OnPostUpdateProjectiles()
+		{
+			foreach (var handler in Dict.Values)
+			{
+				handler.PostUpdateProjectiles();
+			}
 		}
 
 		public static void OnSpawnedBoss(NPC npc, float distSQ)
@@ -163,20 +178,14 @@ namespace AssortedCrazyThings.Base.Chatter
 		{
 			float reduceAmount = ClientConfig.Instance.GoblinUnderlingChatterFreq / 100f;
 
-			if (GlobalCooldown > 0)
-			{
-				GlobalCooldown -= reduceAmount;
-				if (GlobalCooldown < 0)
-				{
-					GlobalCooldown = 0;
-				}
-			}
-
+			float globalReduceAmount = reduceAmount;
 			foreach (var handler in Dict.Values)
 			{
 				foreach (var gen in handler.Generators)
 				{
-					gen.UpdateCooldowns(reduceAmount);
+					float localReduceAmount = reduceAmount;
+					handler.ModifyCooldownReduceAmount(ref localReduceAmount, ref globalReduceAmount, gen);
+					gen.UpdateCooldowns(localReduceAmount);
 				}
 
 				if (Main.invasionProgressNearInvasion && Main.invasionType != prevInvasionType)
@@ -186,6 +195,15 @@ namespace AssortedCrazyThings.Base.Chatter
 				if (Main.bloodMoon != prevBloodMoon)
 				{
 					handler.OnBloodMoonChanged(Main.bloodMoon, prevBloodMoon);
+				}
+			}
+
+			if (GlobalCooldown > 0)
+			{
+				GlobalCooldown -= globalReduceAmount;
+				if (GlobalCooldown < 0)
+				{
+					GlobalCooldown = 0;
 				}
 			}
 

@@ -5,15 +5,21 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Collections.Generic;
 using Terraria;
+using System;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 {
+	[Flags]
 	public enum GoblinUnderlingChatterType
 	{
-		None,
-		Eager,
-		Serious,
-		Shy,
+		None = 0,
+		Eager = 1 << 0,
+		Serious = 1 << 1,
+		Shy = 1 << 2,
+		All = Eager | Serious | Shy,
 	}
 
 	/*
@@ -30,7 +36,344 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		private List<GoblinUnderlingChatterType> Order { get; set; }
 		private ChatterTracker Tracker { get; set; } = new();
 
-		public override IEnumerable<ChatterGenerator> Generators => GeneratorsPerType.Values;
+		public override IEnumerable<ChatterGenerator> Generators => GeneratorsPerType.Values.Union(DialogueGenerator.Values);
+
+		#region Dialogue
+		//This gets included in Generators so its cooldowns etc. will still get handled by the system
+		public Dictionary<GoblinUnderlingDialogueParticipantOrder, GoblinUnderlingDialogueChatterGenerator> DialogueGenerator { get; init; }
+
+		private Dictionary<GoblinUnderlingDialogueParticipantOrder, List<GoblinUnderlingChatterType>> DialogueMessageOrder { get; init; }
+		private Dictionary<GoblinUnderlingDialogueParticipantOrder, List<Action<bool, DialogueChatterParams>>> DialogueMessageActions { get; init; }
+		private List<GoblinUnderlingDialogueParticipantOrder> DialogueOrder { get; set; }
+
+		public const int DialogueCooldownMax = 5 * 60 * 60;
+		public int DialogueCooldown { get; private set; } = DialogueCooldownMax;
+		public int OldNextDialogueIndex { get; private set; } = -1;
+		public int NextDialogueIndex { get; private set; } = -1;
+		public bool DialogueOngoing => NextDialogueIndex > -1 && DialogueOption != null;
+		public GoblinUnderlingDialogueParticipantOrder DialogueOption { get; private set; } = null;
+
+		public void StopDialogue()
+		{
+			NextDialogueIndex = -1;
+			DialogueOption = null;
+			DialogueOrder = Randomize(DialogueOrder).ToList();
+			DialogueCooldown = DialogueCooldownMax;
+		}
+
+		public static IEnumerable<T> Randomize<T>(IEnumerable<T> list)
+		{
+			return list.OrderBy(_ => Main.rand.Next(100));
+		}
+
+		public void CancelDialogue()
+		{
+			StopDialogue();
+		}
+
+		public static bool ValidDialogue(GoblinUnderlingDialogueParticipantOrder option)
+		{
+			if (option == null)
+			{
+				return false;
+			}
+
+			if (Main.LocalPlayer.dead)
+			{
+				return false;
+			}
+
+			static bool GoblinInCombat(Projectile p) => p.ModProjectile is GoblinUnderlingProj goblin && goblin.inCombatTimer > 0;
+
+			var (first, second, third) = option;
+
+			Projectile firstProj = GoblinUnderlingHelperSystem.GetFirstGoblinUnderling(first);
+			Projectile secondProj = GoblinUnderlingHelperSystem.GetFirstGoblinUnderling(second);
+			if (firstProj == null || GoblinInCombat(firstProj) ||
+				secondProj == null || GoblinInCombat(secondProj))
+			{
+				return false;
+			}
+
+			if (third == GoblinUnderlingChatterType.None || GoblinUnderlingHelperSystem.GetFirstGoblinUnderling(third) is Projectile thirdProj && !GoblinInCombat(thirdProj))
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		public bool DecideDialogue()
+		{
+			foreach (var guChatterTypes in DialogueOrder)
+			{
+				if (!ValidDialogue(guChatterTypes))
+				{
+					continue;
+				}
+
+				DialogueOption = guChatterTypes;
+				NextDialogueIndex = 0;
+
+				int dialogueDuration = 4 * ChatterSystem.GlobalCooldownMax; //No messages at all for this long after dialogue is over
+				//Only ever 1 chatter and 1 pool per dialogue
+				foreach (var chatter in DialogueGenerator[guChatterTypes].Chatters.Values)
+				{
+					foreach (var pool in chatter.PoolsByPriority)
+					{
+						dialogueDuration += pool.Count * ChatterSystem.SourceToCooldowns[ChatterSource.Dialogue]();
+						//Start at 0
+						pool.ResetVariation();
+					}
+				}
+
+				foreach (var source in Enum.GetValues<ChatterSource>())
+				{
+					SetCooldownsForAll(source, cooldownOverride: dialogueDuration);
+				}
+
+				return true;
+			}
+
+			return false;
+		}
+
+		//Use the same system for ChatterGenerator
+
+		//Each dialogue generator consists of only 1 [ChatterSource.Dialogue, ChatterMessageGroup] pairing
+		//the dialogue generators are identified by permutation of 2 or 3 of the goblins
+		//A dialogue is initiated if a given permutation is currently active
+		//Dialogue is cancelled if any of the goblins stop existing
+
+		//Process:
+		//Kickstart, use 0th element in DialogueOrder for position, if TryCreate returns true, increment element. Repeat until it will spill over, then cancel
+
+		//Starting a dialogue:
+		//1. Put all chatters for all sources in GeneratorsPerType on cooldown (dialogue msg cooldown x number of messages + 1x global cooldown)
+
+		//During dialogue:
+		//1. set reduceAmount to 1 (to be unaffected by config)
+		//2. check every tick if dialogue still valid
+
+		//Ending dialogue
+		//1. Reset variation
+		//2. randomize order of dialogues
+
+		public override void ModifyCooldownReduceAmount(ref float reduceAmount, ref float globalReduceAmount, ChatterGenerator generator)
+		{
+			if (DialogueOngoing)
+			{
+				reduceAmount = 1f; //Fixed regardless of config
+
+				globalReduceAmount = 200f; //Absurdly high, effectively no cooldown
+			}
+		}
+
+		public override void PostUpdateProjectiles()
+		{
+			if(DialogueCooldown > 0)
+			{
+				DialogueCooldown--;
+			}
+
+			if (!DialogueOngoing)
+			{
+				return;
+			}
+
+			if (!ValidDialogue(DialogueOption))
+			{
+				CancelDialogue();
+				return;
+			}
+
+			var participants = DialogueOption;
+			var (first, second, third) = participants;
+			var messageOrder = DialogueMessageOrder[participants];
+			var currentProjs = GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(messageOrder[NextDialogueIndex]).ToList();
+
+			//Make participants face eachother
+			var nextOrPreviousProjs = GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(NextDialogueIndex + 1 >= messageOrder.Count ? messageOrder[NextDialogueIndex - 1] : messageOrder[NextDialogueIndex + 1]).ToList();
+
+			//What is needed: all projectiles for current and for next
+			var param = new DialogueChatterParams(currentProjs, nextOrPreviousProjs, GetGeneratorForType(currentProjs[0]).Color, ChatterSystem.SourceToCooldowns[ChatterSource.Dialogue]() /* * (messageOrder.Count - DialogueIndex)*/);
+
+			int actionIndex = NextDialogueIndex - 1;
+			if (actionIndex > -1)
+			{
+				//First tick of dialogue will have wrong directions, so it's put here
+
+				//Direction between participants:
+				//All current talking face the first next talking
+				foreach (var proj in currentProjs)
+				{
+					if (proj.velocity.X == 0f)
+					{
+						proj.spriteDirection = -(nextOrPreviousProjs[0].Center.X - proj.Center.X > 0).ToDirectionInt();
+					}
+				}
+				//All the next talking face the first current talking
+				foreach (var proj in nextOrPreviousProjs)
+				{
+					if (proj.velocity.X == 0f)
+					{
+						proj.spriteDirection = -(currentProjs[0].Center.X - proj.Center.X > 0).ToDirectionInt();
+					}
+				}
+
+				//Since index is actually pointing to the next dialogue, we need to access the action that is registered to the message before it
+				//together with recreated parameters
+
+				var actionCurrentProjs = GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(messageOrder[actionIndex]).ToList();
+
+				//Make participants face eachother
+				var actionNextOrPreviousProjs = GoblinUnderlingHelperSystem.GetLocalGoblinUnderlings(actionIndex + 1 >= messageOrder.Count ? messageOrder[actionIndex - 1] : messageOrder[actionIndex + 1]).ToList();
+
+				//What is needed: all projectiles for current and for next
+				var actionParam = new DialogueChatterParams(actionCurrentProjs, actionNextOrPreviousProjs, GetGeneratorForType(actionCurrentProjs[0]).Color, ChatterSystem.SourceToCooldowns[ChatterSource.Dialogue]() /* * (messageOrder.Count - DialogueIndex)*/);
+
+				DialogueMessageActions[participants][actionIndex]?.Invoke(OldNextDialogueIndex != NextDialogueIndex, actionParam);
+			}
+			OldNextDialogueIndex = NextDialogueIndex;
+			if (DialogueGenerator[participants].TryCreate(this, currentProjs[0], param))
+			{
+				NextDialogueIndex++;
+				//Main.NewText("current dialogue index " + DialogueIndex + " / " + messageOrder.Count);
+				if (NextDialogueIndex >= messageOrder.Count)
+				{
+					DialogueMessageActions[participants][NextDialogueIndex - 1]?.Invoke(true, param); //Only invoked for 1 tick, but allows spawning things
+					StopDialogue();
+				}
+			}
+		}
+
+		public static void TurnAroundJumpAndSqueak(bool first, DialogueChatterParams param)
+		{
+			var currentProj = param.Projectiles[0];
+
+			var nextOrPreviousProj = param.NextOrPrevProjectiles[0];
+			int dir = (currentProj.Center.X - nextOrPreviousProj.Center.X > 0).ToDirectionInt();
+			if (currentProj.velocity.X == 0f)
+			{
+				currentProj.spriteDirection = -dir;
+			}
+
+			if (first)
+			{
+				SoundEngine.PlaySound(ContentSamples.NpcsByNetId[NPCID.CaveBat].DeathSound?.WithVolumeScale(1.1f), currentProj.Center);
+				currentProj.velocity.Y -= 4;
+			}
+		}
+
+		//Spawns current message on the other goblins too
+		public static void MessageOther(bool first, DialogueChatterParams param)
+		{
+			if (!first)
+			{
+				return;
+			}
+
+			var handler = ModContent.GetInstance<GoblinUnderlingChatterHandler>();
+
+			var otherProjs = param.Projectiles.GetRange(1, param.Projectiles.Count - 1);
+			for (int i = 0; i < otherProjs.Count; i++)
+			{
+				var proj = otherProjs[i];
+				handler.DialogueGenerator[handler.DialogueOption].SpawnPreviousPopupText(
+					ChatterSource.Dialogue,
+					new DialogueChatterParams(param.Projectiles, param.NextOrPrevProjectiles, handler.GetGeneratorForType(proj).Color, param.Duration),
+					proj.Top, new Vector2(0, /*-(3 + i)*/0));
+			}
+		}
+
+		private static Dictionary<GoblinUnderlingDialogueParticipantOrder, GoblinUnderlingDialogueChatterGenerator> GetDialogueGenerator()
+		{
+			return new Dictionary<GoblinUnderlingDialogueParticipantOrder, GoblinUnderlingDialogueChatterGenerator>()
+			{
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Eager, GoblinUnderlingChatterType.Shy),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Eager, GoblinUnderlingChatterType.Shy),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "1"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "3", TurnAroundJumpAndSqueak),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "4"),
+					}))
+				},
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Eager, GoblinUnderlingChatterType.Serious),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Eager, GoblinUnderlingChatterType.Serious),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "1"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "3"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "4"),
+					}))
+				},
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Serious, GoblinUnderlingChatterType.Eager),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Serious, GoblinUnderlingChatterType.Eager),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "1"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "3"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "4"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "5"),
+					}))
+				},
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Serious, GoblinUnderlingChatterType.Shy),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Serious, GoblinUnderlingChatterType.Shy),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "1"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "3"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "4"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "5"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "6"),
+					}))
+				},
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Shy, GoblinUnderlingChatterType.Eager),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Shy, GoblinUnderlingChatterType.Eager),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "1"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "3"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "4"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "5"),
+					}))
+				},
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Shy, GoblinUnderlingChatterType.Serious),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Shy, GoblinUnderlingChatterType.Serious),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "1"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "3"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Shy, "4"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious, "5"),
+					}))
+				},
+				{ new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Eager, GoblinUnderlingChatterType.Serious, GoblinUnderlingChatterType.Shy),
+					new GoblinUnderlingDialogueChatterGenerator(new GoblinUnderlingDialogueParticipantOrder(GoblinUnderlingChatterType.Eager, GoblinUnderlingChatterType.Serious, GoblinUnderlingChatterType.Shy),
+					new ChatterMessageGroup(new List<ChatterMessage>()
+					{
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "0"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Serious | GoblinUnderlingChatterType.Shy, "1", MessageOther),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.Eager, "2"),
+						new GoblinUnderlingDialogueChatterMessage(GoblinUnderlingChatterType.All, "3", MessageOther),
+					}))
+				},
+			};
+		}
+		#endregion
 
 		public GoblinUnderlingChatterHandler() : base(ChatterType.GoblinUnderling)
 		{
@@ -500,15 +843,41 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 			{
 				Order.Add(pair.Key);
 			}
+
+			DialogueGenerator = GetDialogueGenerator();
+
+			DialogueMessageOrder = new();
+			DialogueMessageActions = new();
+			DialogueOrder = new();
+			foreach (var pair in DialogueGenerator)
+			{
+				var key = pair.Key;
+				DialogueOrder.Add(key);
+				DialogueMessageOrder[key] = new List<GoblinUnderlingChatterType>();
+				DialogueMessageActions[key] = new List<Action<bool, DialogueChatterParams>>();
+				foreach (var message in pair.Value.Chatters[ChatterSource.Dialogue].Messages)
+				{
+					var msg = (GoblinUnderlingDialogueChatterMessage)message;
+					DialogueMessageOrder[key].Add(msg.GUChatterType);
+					DialogueMessageActions[key].Add(msg.OnMessage);
+				}
+			}
+			DialogueOrder = Randomize(DialogueOrder).ToList();
 		}
 
-		private void SetCooldownsForAll(ChatterSource source)
+		private void SetCooldownsForAll(ChatterSource source, int? cooldownOverride = null, float factor = 1f)
 		{
-			foreach (var gen in Generators)
+			//Don't use Generators since it would touch the dialogue too
+			foreach (var gen in GeneratorsPerType.Values)
 			{
-				//If this is lower than 1f, it sets the cooldowns of _other_ goblins to expire faster, effectively increasing chatter frequency for groups. 1f means it's as if only 1 goblin was chatting
-				gen.PutMessageTypeOnCooldown(source, factor: 1f);
+				gen.PutMessageTypeOnCooldown(source, cooldownOverride, factor);
 			}
+		}
+
+		private void SetCooldownsForAllScaled(ChatterSource source)
+		{
+			//If this is lower than 1f, it sets the cooldowns of _other_ goblins to expire faster, effectively increasing chatter frequency for groups. 1f means it's as if only 1 goblin was chatting
+			SetCooldownsForAll(source, factor: 1f);
 		}
 
 		public class ChatterTracker
@@ -546,8 +915,8 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 				var proj = GoblinUnderlingHelperSystem.GetFirstGoblinUnderling(guChatterType);
 				if (proj != null && GeneratorsPerType[guChatterType].TryCreate(Tracker, proj, source, param))
 				{
-					SetCooldownsForAll(source);
-					Order = Order.OrderBy(_ => Main.rand.Next(100)).ToList();
+					SetCooldownsForAllScaled(source);
+					Order = Randomize(Order).ToList();
 					return;
 				}
 			}
@@ -607,7 +976,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		{
 			if (GetGeneratorForType(proj).TryCreate(Tracker, proj, ChatterSource.Attacking, new AttackingChatterParams(proj, target, hit, damageDone)))
 			{
-				SetCooldownsForAll(ChatterSource.Attacking);
+				SetCooldownsForAllScaled(ChatterSource.Attacking);
 				return true;
 			}
 			return false;
@@ -615,9 +984,23 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 
 		public bool OnIdle(Projectile proj)
 		{
+			//Low chance of triggering a dialogue instead of idle message
+			//This method gets called every tick on every goblin, so by default 2 goblins, maybe 3, so it's faster
+			if (!DialogueOngoing && DialogueCooldown == 0)
+			{
+				//This roughly amounts to up to 3 minutes of more waiting with 2 goblins (but can be anywhere between 0 and 3)
+				if (Main.rand.NextBool(2000))
+				{
+					if (DecideDialogue())
+					{
+						return true;
+					}
+				}
+			}
+
 			if (GetGeneratorForType(proj).TryCreate(Tracker, proj, ChatterSource.Idle))
 			{
-				SetCooldownsForAll(ChatterSource.Idle);
+				SetCooldownsForAllScaled(ChatterSource.Idle);
 				return true;
 			}
 			return false;
@@ -627,7 +1010,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 		{
 			if (GetGeneratorForType(proj).TryCreate(Tracker, proj, ChatterSource.FirstSummon))
 			{
-				SetCooldownsForAll(ChatterSource.FirstSummon);
+				SetCooldownsForAllScaled(ChatterSource.FirstSummon);
 				return true;
 			}
 			return false;
