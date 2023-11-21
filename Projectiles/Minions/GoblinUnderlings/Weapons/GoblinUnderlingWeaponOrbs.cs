@@ -119,9 +119,25 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			goblin.SetInCombat();
 		}
 
+		public override bool PreDraw(ref Color lightColor)
+		{
+			int count = 4;
+			float ratio = 1f - (1 + ChargeDuration) / MaxChargeDuration;
+			if (Homing)
+			{
+				ratio = 1f;
+			}
+			for (int i = 0; i < count; i++)
+			{
+				AssUtils.DrawLikeVanilla(Projectile, Projectile.GetAlpha(lightColor) * (1f / count) * 1.2f, offset: Vector2.UnitX.RotatedBy((MathHelper.TwoPi * i / count) + Projectile.rotation) * 4 * ratio);
+			}
+
+			return base.PreDraw(ref lightColor);
+		}
+
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return Color.Lerp(lightColor, Color * Projectile.Opacity, 0.4f) * 0.6f;
+			return Color.Lerp(lightColor, Color * Projectile.Opacity, 0.4f) * 0.4f;
 		}
 
 		public override bool ShouldUpdatePosition()
