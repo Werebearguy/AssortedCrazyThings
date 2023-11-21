@@ -66,8 +66,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.AmethystBolt);
-			Projectile.width = 20;
-			Projectile.height = 20;
+			Projectile.width = 16;
+			Projectile.height = 16;
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = 1;
 			Projectile.DamageType = DamageClass.Summon;
@@ -129,7 +129,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			}
 			for (int i = 0; i < count; i++)
 			{
-				AssUtils.DrawLikeVanilla(Projectile, Projectile.GetAlpha(lightColor) * (1f / count) * 1.2f, offset: Vector2.UnitX.RotatedBy((MathHelper.TwoPi * i / count) + Projectile.rotation) * 4 * ratio);
+				AssUtils.DrawLikeVanilla(Projectile, Projectile.GetAlpha(lightColor) * (1f / count) * 1.2f, offset: Vector2.UnitX.RotatedBy((MathHelper.TwoPi * i / count) + Projectile.rotation) * 3 * ratio);
 			}
 
 			return base.PreDraw(ref lightColor);
@@ -137,7 +137,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return Color.Lerp(lightColor, Color * Projectile.Opacity, 0.4f) * 0.4f;
+			return Color * Projectile.Opacity * 0.5f;
 		}
 
 		public override bool ShouldUpdatePosition()
@@ -152,6 +152,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			{
 				spawned = true;
 
+				Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
 				SoundEngine.PlaySound(SpawnSound, Projectile.Center);
 			}
 
@@ -253,8 +254,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 				}
 			}
 
-			Projectile.rotation -= 0.02f + ratio * 0.1f;
-			Projectile.Opacity = Math.Clamp(ratio * ratio * ratio, 0f, 1f); //Slow ramp up
+			Projectile.rotation -= 0.1f + ratio * 0.3f;
+			Projectile.Opacity = Math.Clamp(ratio * ratio, 0f, 1f); //Slow ramp up
 
 			SafeAI();
 		}
