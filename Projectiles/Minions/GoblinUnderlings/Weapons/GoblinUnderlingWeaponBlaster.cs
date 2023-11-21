@@ -53,6 +53,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
+			Projectile.damage = (int)(Projectile.damage * 0.85f);
+
 			if (target.boss || !FromGoblin || Main.projectile[ownedGoblinWhoAmI] is not Projectile parent || parent.ModProjectile is not GoblinUnderlingProj goblin)
 			{
 				return;
