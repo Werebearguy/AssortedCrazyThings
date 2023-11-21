@@ -26,7 +26,10 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public sealed override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			player.AddBuff(Item.buffType, 2);
+			if (!(player.altFunctionUse == 2 && ProjectileID.Sets.MinionTargettingFeature[Item.shoot]))
+			{
+				player.AddBuff(Item.buffType, 2);
+			}
 
 			return SafeShoot(player, source, position, velocity, type, damage, knockback);
 		}

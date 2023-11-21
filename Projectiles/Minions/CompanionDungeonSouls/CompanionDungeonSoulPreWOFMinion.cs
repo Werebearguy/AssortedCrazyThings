@@ -1,7 +1,16 @@
-﻿namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
+﻿using Terraria.ID;
+
+namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 {
 	public class CompanionDungeonSoulPreWOFMinion : CompanionDungeonSoulMinionBase
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+		}
+
 		public override void SafeSetDefaults()
 		{
 			defdistanceFromTarget = 700f;
