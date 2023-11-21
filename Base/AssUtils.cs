@@ -180,6 +180,29 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
+		/// Draws a projectile like god (red) intended. Mimics default drawing from the base game.
+		/// <br/>While this works for most projectiles, things using <see cref="ProjAIStyleID.Drill"/> or <see cref="ProjAIStyleID.Spear"/> draw differently.
+		/// </summary>
+		public static void DrawLikeVanilla(Projectile projectile, Color color, Texture2D texture = null, Vector2 offset = default, Rectangle? frame = null, Vector2 originOffset = default, float rotationOffset = 0f, float scaleOffset = 0f)
+		{
+			Texture2D realTexture = texture ?? TextureAssets.Projectile[projectile.type].Value;
+
+			SpriteEffects effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+			int offsetX = 0;
+			int offsetY = 0;
+			float originX = (realTexture.Width - projectile.width) * 0.5f + projectile.width * 0.5f;
+			ProjectileLoader.DrawOffset(projectile, ref offsetX, ref offsetY, ref originX);
+			float x = projectile.position.X - Main.screenPosition.X + originX + offsetX;
+			float y = projectile.position.Y - Main.screenPosition.Y + projectile.height / 2 + projectile.gfxOffY;
+			Rectangle realFrame = frame ?? realTexture.Frame(1, Main.projFrames[projectile.type], frameY: projectile.frame);
+			float rotation = projectile.rotation + rotationOffset;
+			Vector2 origin = new Vector2(originX, projectile.height / 2 + offsetY);
+			float scale = projectile.scale + scaleOffset;
+			Main.EntitySpriteDraw(realTexture, new Vector2(x, y) + offset, realFrame, color, rotation, origin + originOffset, scale, effects, 0);
+		}
+
+		/// <summary>
 		/// Combines two arrays (first + second in order)
 		/// </summary>
 		public static T[] ConcatArray<T>(T[] first, T[] second)
@@ -433,6 +456,23 @@ namespace AssortedCrazyThings.Base
 			{
 				Projectile proj = Main.projectile[i];
 				if (proj.active && proj.owner == owner && proj.identity == identity && proj.type == type)
+				{
+					index = i;
+					return proj;
+				}
+			}
+			index = Main.maxProjectiles;
+			return null;
+		}
+
+		/// <inheritdoc cref="NetGetProjectile(int, int, int, out int)"/>
+		/// <param name="types">The types to check</param>
+		public static Projectile NetGetProjectile(int owner, int identity, int[] types, out int index)
+		{
+			for (short i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile proj = Main.projectile[i];
+				if (proj.active && proj.owner == owner && proj.identity == identity && Array.IndexOf(types, proj.type) > -1)
 				{
 					index = i;
 					return proj;

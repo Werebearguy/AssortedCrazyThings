@@ -1,4 +1,5 @@
 ﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Chatter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,7 +118,7 @@ namespace AssortedCrazyThings
 				typeof(GlobalProjectile),
 				typeof(GlobalItem),
 				typeof(GlobalTile),
-				typeof(GlobalWall),
+				typeof(GlobalWall)
 			};
 		}
 

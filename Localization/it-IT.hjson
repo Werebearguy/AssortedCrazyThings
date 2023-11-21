@@ -532,10 +532,7 @@ Mods: {
 				// Description: Shows the location of enemies outside your vision range
 			}
 
-			GoblinUnderlingBuff: {
-				// DisplayName: Goblin Underling
-				// Description: A loyal goblin underling is fighting for you
-			}
+			// EagerUnderlingBuff.DisplayName: Eager Underling
 
 			SigilOfTheWingBuff: {
 				// DisplayName: Blessing of the Wing
@@ -583,6 +580,8 @@ Mods: {
 				You are protected from Wyverns
 				Harpy feathers don't knock you away
 				''' */
+			// ShyUnderlingBuff.DisplayName: Shy Underling
+			// SeriousUnderlingBuff.DisplayName: Serious Underling
 		}
 
 		Common: {
@@ -591,7 +590,27 @@ Mods: {
 			// Selected: Selected: {0}
 			// BaseDamage: Base Damage: {0}
 			// BaseKnockback: Base Knockback: {0}
-			// Tooltips.PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
+
+			Tooltips: {
+				// PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
+				// GoblinUnderlingBuff.CommonDescription: A loyal underling is fighting for you
+
+				GoblinUnderlingItem: {
+					/* CommonTooltip:
+						'''
+						Class can be changed with [c/{0}:<right>]
+						Gets stronger throughout progression
+						Only one can be summoned
+						''' */
+					/* CommonTooltipFormat:
+						'''
+						{0}
+						{1}
+						{2}
+						''' */
+					// CantSwitchClassDuringCombat: Cannot switch classes during combat
+				}
+			}
 		}
 
 		Items: {
@@ -1974,15 +1993,10 @@ Mods: {
 				// SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
 			}
 
-			GoblinUnderlingItem: {
+			EagerUnderlingItem: {
 				// DisplayName: Satchel of Goodies
-				/* Tooltip:
-					'''
-					Summons a Goblin Underling to fight for you
-					Gets stronger throughout progression
-					Does not occupy a minion slot, but only one can be summoned
-					'Inside, there's a spiky ball, a coin, and a...moon?'
-					''' */
+				// Tooltip: Summons an eager underling to fight for you
+				// Flavor: "'Inside, there's a spiky ball, a coin, and a... moon?'"
 			}
 
 			LegendaryWoodenSword: {
@@ -2070,6 +2084,18 @@ Mods: {
 				// Spazmatism: Spazmatism
 				// Retinazer: Retinazer
 				// Cobballoon: Cobballoon
+			}
+
+			ShyUnderlingItem: {
+				// DisplayName: Dented Coin
+				// Tooltip: Summons a shy underling to fight for you
+				// Flavor: "'This coin has been used as target practice for a long time'"
+			}
+
+			SeriousUnderlingItem: {
+				// DisplayName: Well-Loved Doll
+				// Tooltip: Summons a serious underling to fight for you
+				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
 			}
 		}
 
@@ -2378,9 +2404,16 @@ Mods: {
 			// MissileDrone.DisplayName: Missile Drone
 			// MissileDroneRocket.DisplayName: Missile Drone Rocket
 			// ShieldDrone.DisplayName: Shield Drone
-			// GoblinUnderlingDart.DisplayName: Goblin Underling Dart
-			// GoblinUnderlingProj.DisplayName: Goblin Underling
-			// GoblinUnderlingTerraBeam.DisplayName: Goblin Underling Terra Beam
+			// GoblinUnderlingWeaponDart.DisplayName: Goblin Underling Dart
+			// EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
+			// ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
+			// SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
+			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
+			// GoblinUnderlingWeaponArrow.DisplayName: Goblin Underling Arrow
+			// GoblinUnderlingWeaponBlaster.DisplayName: Goblin Underling Blaster
+			// GoblinUnderlingWeaponOrb.DisplayName: Goblin Underling Orb
+			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin Underling Daybreak
+			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
 			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
 			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
@@ -2656,21 +2689,29 @@ Mods: {
 				// DisplayName: Client Config
 
 				Headers: {
-					// SatchelofGoodies: Satchel of Goodies - Minion Options
+					/* GoblinUnderling:
+						'''
+						Goblin Underlings - Minion Options
+
+						These apply to the following items:
+						{$Items.EagerUnderlingItem.DisplayName}
+						{$Items.SeriousUnderlingItem.DisplayName}
+						{$Items.ShyUnderlingItem.DisplayName}
+						''' */
 					// HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
 				}
 
-				SatchelofGoodiesAutosummon: {
+				GoblinUnderlingAutosummon: {
 					// Label: Auto-summon
 					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
 				}
 
-				SatchelofGoodiesVisibleArmor: {
+				GoblinUnderlingVisibleArmor: {
 					// Label: Armor progression
 					// Tooltip: Enable to show armor progression
 				}
 
-				SatchelofGoodiesChatterFreq: {
+				GoblinUnderlingChatterFreq: {
 					// Label: Dialogue frequency
 					// Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
 				}
@@ -2789,6 +2830,398 @@ Mods: {
 			}
 
 			// Common.AcceptClientChanges: You are not the server owner so you can not change this config
+		}
+
+		Chatter: {
+			GoblinUnderling: {
+				Eager: {
+					Idle: {
+						// Bored: I'm bored, boss!
+						// WhenFighting: When's da fighting, boss?
+						// HangingOut: I like hangin' out, boss!
+						// GoodBoss: You's a good boss, boss!
+						// BossSilent: Boss is always silent. So cool!
+						// HateSlimes: I hate slimes, dey're sticky!
+						// WhenMeal: When's meal time?
+						// DoYouLikeMe: Do ya like me, boss?
+						// GettingSleepy: I'm gettin' sleepy, boss...
+						// SeeBase: I can see our base from up here!
+						// SandInArmor: I got sand in my armor!
+						// GroundLooking: The ground's lookin' at me!
+						// BeatTheCold: I'll beat da cold by workin up a sweat!
+						// FaceLooksLikeRock: Dat rock looks like your face, boss!
+						// RockLooksLikeBones: Dose rocks look like bones
+						// FindShinyMetals: I hope we find shiny metals!
+						// NothingScares: Nothin' scares me when I'm wit you, boss!
+						// HeardRat: I think I heard a rat. A big rat!
+						// CavesSpooky: Caves are spooky!
+					}
+
+					// FirstSummon.YouTheBoss: You da boss now, boss!
+
+					Attacking: {
+						// Gotcha: Gotcha!
+						// IGotThis: I got dis one!
+						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
+						// NoOneTouches: No one touches boss!
+						// BadGuys: Bad guys get black eyes!
+						// ComeHere: C'mere, you!
+						// LevelOne: I'm level one! I'm da strongest gob!
+						// StabStab: Stab stab stab!
+						// Boom: Boom! Haha!
+						// Skewer: Gonna skewer ya!
+					}
+
+					PlayerHurt: {
+						// DontHurt: Don't hurt da boss!
+						// YouWillPay: You'll pay for dat!
+						// YouGood: You good, boss?!
+						// ThatHurt: Dat looked like it hurt, boss!
+						// IsntWeak: Da boss ain't weak, chump!
+					}
+
+					PlayerHurtByTrap: {
+						// WallsAttack: Da walls attack too?!
+						// WatchWalls: Watch da walls, boss!
+						// BadWall: Bad wall! Don't hurt boss!
+						// GroundEnemy: Da ground is an enemy?!
+						// HotHot: Hot! Hot!
+						// MissThat: How'd ya miss dat, boss?
+						// Dangerous: Dat's dangerous!
+						// NoFair: No fair! I can't hit dose!
+						// BadPeople: Bad people made bad traps!
+						// BigBadBalls: Big bad balls!
+						// DontFlattened: Don't get flattened, boss!
+						// HadToHurt: Dat had ta hurt!
+					}
+
+					BossSpawn: {
+						// UhOh: Uh oh!
+						// BigOne: Dat's a biggun!
+						// ThatOnesBig: Boss, dat one's big!
+						// NotAfraid: I ain't afraid of nothin!
+						// WeGotTrouble: Boss, we got trouble!
+						// HateBees: I hate bees!
+						// WontReadBook: I won't read da big book!
+						// OneEyedDummy: Big one-eyed dummy!
+						// BigGuts: Dat one's big! Dat means it has big guts!
+						// WeGotThis: We got dis, boss!
+						// JigglyJellyfish: Haha, jiggly jellyfish!
+						// FatBat: Dat's a fat bat!
+					}
+
+					BossDefeat: {
+						// WeDidIt: We did it, boss!
+						// KnewYouCould: I knew you could do it!
+						// EasyNext: Easy. Next!
+						// WontBeInSequel: You won't be in da sequel!
+						// NastyBees: Nasty bees! Only good for da honey!
+						// StupidBook: Stupid book man!
+						// DumbWeakling: Big dumb weakling!
+						// DumbDragon: Dumb dragon, boss is da strongest!
+						// YouTheBest: Boss, you da best!
+						// ToughTougher: Dat one was tough, but we're tougher!
+						// NoMoreSquid: I don't wanna see no more squid after dis...
+						// JellyTastesBad: Blech! Dat jelly tastes bad!
+						// SuckOnThat: Suck on dat, fat bat!
+					}
+
+					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+
+					OOANewWave: {
+						// HolesStillOpen: Boss, dem holes are still open!
+						// MoreBaddies: More baddies? More baddies!
+						// ProtectGem: Protect da shiny gem!
+						// WontLetPass: I won't let em pass, boss!
+					}
+
+					ArmorEquipped: {
+						// LookingSpiffy: Lookin' spiffy, boss!
+						// LookingFluffy: Lookin' fluffy, boss!
+					}
+
+					// ItemSelected.IsAToy: Is dat a toy?
+					// InvasionChanged.OldGangBack: Old gang is back!
+					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+				}
+
+				Serious: {
+					Idle: {
+						// Peaceful: It's peaceful.
+						// YouSeemCalm: You seem calm, boss.
+						// ShallWeRest: Boss, shall we rest here?
+						// PaceEasy: Your pace is easy to follow.
+						// ShouldSleep: We should sleep soon.
+						// WindNice: The wind feels nice.
+						// WarmWithFire: I can warm you with fire if you'd like.
+						// SandsClaimWeak: The sands claim the weak.
+						// UnnaturalPlace: This place is unnatural.
+						// NotDawdle: We should not dawdle here.
+						// SpiritsHide: Spirits hide in the darkness.
+						// StonesHistory: These stones have untold history.
+						// HiddenTreasure: There may be hidden treasure here.
+						// BeCareful: Be careful in the dark, boss.
+						// TooFarAhead: Boss... please don't go too far ahead.
+					}
+
+					// FirstSummon.Greetings: Greetings, boss.
+
+					Attacking: {
+						// IGotThis: I've got this.
+						// NotDefy: Do not defy the boss.
+						// NotSurvive: You will not survive.
+						// CutDown: I will cut you down.
+						// Burn: Burn.
+						// StruckDown: Be struck down by my spells.
+						// InSights: You are in my sights.
+					}
+
+					PlayerHurt: {
+						// Alright: Are you alright?
+						// Unpleasant: That looks unpleasant.
+						// Tough: You're tough, boss.
+						// Healing: Do you need healing?
+					}
+
+					PlayerHurtByTrap: {
+						// WatchStep: Watch where you step, boss.
+						// PressurePlates: Be mindful of pressure plates.
+						// CowardlyTrap: A cowardly trap...
+						// BossNotSee: Boss, did you not see that?
+						// NaturalTrap: A natural trap.
+						// MinorBurn: Lucky that it was only a minor burn.
+						// TrapCruel: That trap is too cruel.
+						// TakeTime: Take your time, boss.
+						// CruelPeople: What cruel people made these traps...
+						// Weighed: That must have weighed quite a bit.
+						// INotSee: I did not see that coming.
+						// FromDistance: Try to trigger those from a distance.
+					}
+
+					BossSpawn: {
+						// LargeEnemy: A large enemy approaches.
+						// Formidable: A formidable foe.
+						// Prepared: We should be prepared for this.
+						// Trust: I trust you, boss.
+						// TerribleNight: What a terrible night for a curse.
+						// MagicSuperior: Whose magic is superior, I wonder.
+						// SenseIntelligence: I can't sense any intelligence from that one.
+						// HidingDragon: They were hiding a dragon?
+						// CantLose: Boss, you can't lose here.
+						// WastedFirstLife: You wasted your first life.
+						// ForceOvercome: There is no force we cannot overcome.
+					}
+
+					BossDefeat: {
+						// MakeDoll: I will make a doll in your memory.
+						// TooEasy: That was too easy for you, boss.
+						// Overcame: We overcame that challenge.
+						// WellDone: Well done, boss.
+						// CurseLifted: The curse is lifted.
+						// BetterMage: I am the better mage.
+						// Joke: What a joke.
+						// ExpectedMore: I expected more. Shame.
+						// Incredible: Boss... you're incredible!
+						// WastedSecondLife: You also wasted your second life.
+						// Greatest: Boss, you really are the greatest.
+					}
+
+					// OOAStarts.WhatMagic: What sort of magic is this?
+
+					OOANewWave: {
+						// NotOverYet: This isn't over yet.
+						// MoreFoes: More foes approach, boss.
+						// ProtectGem: I will protect the gem.
+						// ArmyEndless: This army is endless...
+					}
+
+					// ArmorEquipped.OddThings: Boss... You do odd things at times.
+					// ItemSelected.ThatDoll: That doll... be careful, boss.
+					// InvasionChanged.FoolsReturned: Those fools have returned.
+					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
+				}
+
+				Shy: {
+					Idle: {
+						// LikeNoFight: I like when we don't have to fight.
+						// FeelSafe: You make me feel safe, boss.
+						// RunIntoBad: I hope we don't run into bad guys.
+						// WatchStep: Please watch your step, boss.
+						// Nevermind: Boss, I... ah... nevermind.
+						// ShouldRest: You should rest, boss.
+						// GoHome: W-we should probably go home, boss...
+						// PleasantWind: Such pleasant wind...
+						// SnowCold: So this is snow... so cold!
+						// PlaceScary: B-boss... this place is s-scary!
+						// EveryoneNice: Everyone here is nice.
+						// SeeStars: Boss, look! We can see the stars!
+						// WatchFooting: Watch your footing, boss!
+						// SawMouse: Eep!...Sorry boss, I saw a mouse...
+						// DontLeave: B-boss... Please don't leave me...
+						// Scared: I-I'm scared...
+					}
+
+					// FirstSummon.NiceToMeet: N-nice to meet you, boss.
+
+					Attacking: {
+						// NotEscape: You will not escape...
+						// SeeDead: I will see you dead...
+						// TargetSighted: Target sighted...
+						// Eliminated: You will be eliminated...
+						// BossesBlade: I am the boss's blade...
+						// Burn: Burn...
+						// WontMiss: I won't miss twice...
+						// PleaseLeave: Please... leave... before I...
+					}
+
+					PlayerHurt: {
+						// YouAlright: Boss, are you alright?
+						// OhNo: Oh no, boss!
+						// DontDie: Please don't die, boss!
+						// Boss: Boss!
+					}
+
+					PlayerHurtByTrap: {
+						// HopeOkay: I hope you're okay, boss...
+						// TreatingWound: Be careful when treating that wound...
+						// CoolDown: We should cool that down...
+						// SeeSooner: I'm sorry I didn't see that sooner...
+						// NatureCruel: Nature can be so cruel...
+						// AwfulTraps: Who would make such awful traps...
+						// TreatWound: We need to treat that wound!
+						// Barbaric: How barbaric...
+						// BadlyHurt: You're badly hurt, boss!
+						// MoreCautious: Please be more cautious, boss!
+						// DontLetHit: Please don't let those hit you anymore!
+					}
+
+					BossSpawn: {
+						// WhatIsThat: Boss... Boss! What is that?!
+						// LargeEnemy: Such a large enemy... can we win?
+						// DoMyBest: I-I'll do my best, boss!
+						// LooksDangerous: T-that one looks dangerous...
+						// HesHuge: H-he's huge...
+						// Dragon: Ah! Dragon!
+						// Pretty: What a pretty... Boss! Look out!
+						// NotAgain: No... not again...!
+						// WontBeAfraid: I won't be afraid. I'll do my best!
+						// RocksMoving: T-the rocks are moving, boss!
+						// TheyAreBack: A-ah... t-they're back...
+					}
+
+					BossDefeat: {
+						// WasScary: T-That was scary, but we won!
+						// WasntUseful: I'm sorry that I wasn't useful, boss...
+						// YouWereGreat: You were great, boss!
+						// CouldDoIt: I-I knew you could do it!
+						// GladItsOver: I'm glad that's over...
+						// TheBiggerTheyAre: The bigger they are, the harder they fall.
+						// DontFight: I hope we don't fight another one of those...
+						// Distracted: I'm sorry that I was distracted...
+						// WontBeTaken: I... I won't be taken again!
+						// YouDidIt: You did it... you really did it, boss!
+						// WeirdFight: That was a weird fight...
+						// ThankYou: Thank you, boss. For being here.
+					}
+
+					// OOAStarts.WhatHoles: Boss... w-what are those holes?
+
+					OOANewWave: {
+						// MoreOfThem: T-there's more of them?
+						// MoreFoes: More foes approach, boss.
+						// WhenEnd: When will it end?
+						// GemSafe: The gem is safe... for now...
+					}
+
+					ArmorEquipped: {
+						// ItsYou: Ah!... Oh, it's you boss...
+						// SeeingFace: I like seeing your face, boss.
+					}
+
+					// InvasionChanged.MustFight: No... why must we fight?
+					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
+				}
+
+				Eager_Serious: {
+					Dialogue: {
+						// 0Eager: Can I have anotha doll?
+						// 1Serious: You tore or lost the last few.
+						// 2Eager: I won't dis time!
+						// 3Serious: ...Fine. I'll make one later, alright?
+						// 4Eager: Yay!
+					}
+				}
+
+				Eager_Shy: {
+					Dialogue: {
+						// 0Eager: Hey!
+						// 1Shy: Ah... yes?
+						// 2Eager: Dere's a rat behind ya!
+						// 3Shy: Eep!
+						// 4Eager: Tricked ya! Haha, dat was loud!
+					}
+				}
+
+				Serious_Eager: {
+					Dialogue: {
+						// 0Serious: You tore your doll again...
+						// 1Eager: It was an accident!
+						// 2Serious: Like the other times?
+						// 3Eager: Yeah!
+						// 4Serious: ...I'll mend it later.
+						// 5Eager: Thanks!
+					}
+				}
+
+				Serious_Shy: {
+					Dialogue: {
+						// 0Serious: Hey.
+						// 1Shy: ...yes?
+						// 2Serious: Would you like a doll?
+						// 3Shy: A doll?
+						// 4Serious: Yes. To calm your nerves.
+						// 5Shy: ...yes, please.
+						// 6Serious: I'll prepare it later then.
+					}
+				}
+
+				Shy_Eager: {
+					Dialogue: {
+						// 0Shy: Um...
+						// 1Eager: Yeah?
+						// 2Shy: H-how are you always so cheerful?
+						// 3Eager: Cause the boss is here!
+						// 4Shy: You really l-like the boss, huh?
+						// 5Eager: Yeah! Da boss is da strongest!
+					}
+				}
+
+				Shy_Serious: {
+					Dialogue: {
+						// 0Shy: Um... excuse me...
+						// 1Serious: Yes?
+						// 2Shy: Y-your dolls...
+						// 3Serious: ?
+						// 4Shy: They're cute...
+						// 5Serious: Thank you.
+					}
+				}
+
+				Eager_Serious_Shy: {
+					Dialogue: {
+						// 0Eager: You good?
+						// "1Serious, Shy": Yes.
+						// 2Eager: Den all togetha;
+						// 3All: We like you, boss!
+					}
+				}
+			}
+		}
+
+		GoblinUnderlingClass: {
+			// Melee: Melee
+			// Magic: Magic
+			// Ranged: Ranged
 		}
 	}
 }

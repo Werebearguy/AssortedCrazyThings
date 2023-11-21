@@ -39,14 +39,14 @@ namespace AssortedCrazyThings.Items.Weapons
 			List<string> tooltips = new List<string>
 					{
 						Enum2string(SlimeType.Default).ToString()
-						+ $"\n{AssUISystem.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
-						+ $"\n{AssUISystem.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
+						+ $"\n{AssLocalization.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
+						+ $"\n{AssLocalization.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
 						Enum2string(SlimeType.Assorted).ToString()
-						+ $"\n{AssUISystem.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
-						+ $"\n{AssUISystem.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
+						+ $"\n{AssLocalization.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
+						+ $"\n{AssLocalization.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
 						Enum2string(SlimeType.Spiked).ToString()
-						+ $"\n{AssUISystem.BaseDamageText.Format(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1)))}"
-						+ $"\n{AssUISystem.BaseKnockbackText.Format(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1))}"
+						+ $"\n{AssLocalization.BaseDamageText.Format(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1)))}"
+						+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1))}"
 						+ $"\n{SpikedBonusText}"
 					};
 			List<string> toUnlock = new List<string>() { Enum2string(SlimeType.Default).ToString(), Enum2string(SlimeType.Default).ToString(), SpikedUnlockText.ToString() };

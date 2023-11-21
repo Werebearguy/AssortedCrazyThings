@@ -345,7 +345,6 @@ namespace AssortedCrazyThings
 					Color color = reader.ReadRGB();
 					if (Main.netMode == NetmodeID.Server)
 					{
-						Console.WriteLine("sending message");
 						ChatHelper.BroadcastChatMessage(text, color);
 					}
 					break;

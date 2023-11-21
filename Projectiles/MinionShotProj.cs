@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Projectiles
 {
 	/// <summary>
-	/// Basic class for copying vanilla projectiles safely without having to set .minion = true on vanilla projectiles (as this one sets MinionShot).
+	/// Basic class for copying vanilla projectiles safely without having to set .DamageType = Summon on vanilla projectiles (as this one sets MinionShot).
 	/// <br>Some complex projectiles might need adjustments, as this only clones Texture, SetDefaults (by extension AI), and Kill behavior.</br>
 	/// </summary>
 	public abstract class MinionShotProj : AssProjectile
