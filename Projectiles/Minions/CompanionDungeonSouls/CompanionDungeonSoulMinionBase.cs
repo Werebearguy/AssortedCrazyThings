@@ -327,16 +327,17 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 					}
 				}
 
+				//if there is no target or the next found target is further away than the last target, target the last target instead
 				if (lastTarget != -1)
 				{
 					NPC lastTargetNPC = Main.npc[lastTarget];
-					Vector2 lastTargetCenter = lastTargetNPC.Center;
 					if (lastTargetNPC.CanBeChasedBy())
 					{
-						float lastDistanceFromTargetSQ = Projectile.Center.DistanceSQ(lastTargetCenter);
-						if (targetIndex == -1 || lastDistanceFromTargetSQ < Projectile.Center.DistanceSQ(targetCenter))
+						Vector2 lastTargetCenter = lastTargetNPC.Center;
+						float betweenSQ = Projectile.Center.DistanceSQ(lastTargetCenter);
+						if (targetIndex == -1 || betweenSQ < Projectile.Center.DistanceSQ(targetCenter))
 						{
-							distanceFromTargetSQ = lastDistanceFromTargetSQ;
+							distanceFromTargetSQ = betweenSQ;
 							targetCenter = lastTargetCenter;
 							targetIndex = lastTarget;
 							foundTarget = true;
