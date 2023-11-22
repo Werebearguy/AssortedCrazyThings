@@ -2829,8 +2829,6 @@ Mods: {
 					Tooltip: ""
 				}
 			}
-
-			Common.AcceptClientChanges: 非服务器持有者无法更改此配置
 		}
 
 		Chatter: {
