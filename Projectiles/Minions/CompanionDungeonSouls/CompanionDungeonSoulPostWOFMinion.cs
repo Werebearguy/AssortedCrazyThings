@@ -15,7 +15,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 			defplayerCatchUpIdle = 300f; //300f
 			defbackToIdleFromNoclipping = 150f; //150f
 			defdashDelay = 40f; //time it stays in the "dashing" state after a dash, he dashes when he is in state 0 aswell
-			defdistanceAttackNoclip = defdashDelay * 5f;
 			defstartDashRange = defdistanceToEnemyBeforeCanDash + 10f; //30f
 			defdashIntensity = 4f; //4f
 

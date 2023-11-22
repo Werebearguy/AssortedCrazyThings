@@ -22,6 +22,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 		public int dustColor;
 		//more like an initializer (set minionSlots and timeLeft accordingly)
 		public bool isTemp = false;
+		public int lastTarget = -1;
 
 
 		//SetDefaults stuff
@@ -33,7 +34,6 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 		public float defplayerCatchUpIdle;// = 300f; //300f
 		public float defbackToIdleFromNoclipping;// = 150f; //150f
 		public float defdashDelay;// = 40f; //time it stays in the "dashing" state after a dash, he dashes when he is in state 0 aswell
-		public float defdistanceAttackNoclip; //defdashDelay * 5; only for prewol version
 		public float defstartDashRange;// = defdistanceToEnemyBeforeCanDash + 10f; //30f
 		public float defdashIntensity;// = 4f; //4f
 
@@ -316,10 +316,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 						{
 							float betweenSQ = Projectile.DistanceSQ(npc.Center);
 							if (((Projectile.DistanceSQ(targetCenter) > betweenSQ && betweenSQ < distanceFromTargetSQ) || !foundTarget) &&
-								//EITHER HE CAN SEE IT, OR THE TARGET IS (default case: 14) TILES AWAY BUT THE MINION IS INSIDE A TILE
-								//makes it so the soul can still attack if it dashed "through tiles"
-								(Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height) ||
-								(betweenSQ < defdistanceAttackNoclip/* && Collision.SolidCollision(projectile.position, projectile.width, projectile.height)*/)))
+								Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
 							{
 								distanceFromTargetSQ = betweenSQ;
 								targetCenter = npc.Center;
@@ -329,9 +326,28 @@ namespace AssortedCrazyThings.Projectiles.Minions.CompanionDungeonSouls
 						}
 					}
 				}
+
+				if (lastTarget != -1)
+				{
+					NPC lastTargetNPC = Main.npc[lastTarget];
+					Vector2 lastTargetCenter = lastTargetNPC.Center;
+					if (lastTargetNPC.CanBeChasedBy())
+					{
+						float lastDistanceFromTargetSQ = Projectile.Center.DistanceSQ(lastTargetCenter);
+						if (targetIndex == -1 || lastDistanceFromTargetSQ < Projectile.Center.DistanceSQ(targetCenter))
+						{
+							distanceFromTargetSQ = lastDistanceFromTargetSQ;
+							targetCenter = lastTargetCenter;
+							targetIndex = lastTarget;
+							foundTarget = true;
+						}
+					}
+				}
+
 				float distanceNoclip = defdistancePlayerFarAway;
 				if (foundTarget)
 				{
+					lastTarget = targetIndex;
 					Projectile.friendly = true;
 					//Main.NewText(projectile.ai[1] + " " + Main.time);
 					distanceNoclip = defdistancePlayerFarAwayWhenHasTarget;
