@@ -140,7 +140,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			NPCID.Sets.SpawnFromLastEmptySlot[NPC.type] = true;
 			NPCID.Sets.MPAllowedEnemies[NPC.type] = true; //Allows NPC.SpawnOnPlayer to work
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				CustomTexturePath = "AssortedCrazyThings/NPCs/Harvester/HarvesterBoss_Bestiary",
 				Position = new Vector2(-9, 18), //Position on the icon

@@ -26,7 +26,7 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			Main.npcCatchable[NPC.type] = true;
 
 			//Hide both souls
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Hide = true //Hides this NPC from the Bestiary
 			};

@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.NPCs
 
 			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Position = new Vector2(66, 9f), //Position on the icon
 				PortraitPositionXOverride = 0, //Position on the portrait when clicked on

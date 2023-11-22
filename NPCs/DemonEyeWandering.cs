@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.NPCs
 		{
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WanderingEye];
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Hide = true //Hides this NPC from the Bestiary
 			};

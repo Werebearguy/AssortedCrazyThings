@@ -17,7 +17,7 @@ namespace AssortedCrazyThings.NPCs
 
 			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Frame = 0
 			};

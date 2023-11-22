@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.NPCs
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
 			Main.npcCatchable[NPC.type] = true;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Position = new Vector2(0, -6f)
 			};

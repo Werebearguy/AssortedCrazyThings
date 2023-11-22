@@ -37,7 +37,7 @@ namespace AssortedCrazyThings.NPCs
 			NPCID.Sets.DemonEyes[NPC.type] = true;
 			DemonEyes.Add(NPC.type);
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
 			{
 				Hide = true //Hides this NPC from the Bestiary
 			};
