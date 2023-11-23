@@ -1,12 +1,21 @@
-Preview Maintenance.
+Goblin Underling overhaul.
 
-* FIXES
-    * Fixed silent error in logs when certain pets are summoned in multiplayer
-    * Fixed some entities not having the correct name on mouseover, lifeform analyzer, and bestiary
-* CHANGES
-    * Golden Extendo-Net now catches underworld critters
-    * Guide Voodoorang now affected by Bangarang mod
-    * Sigil of the Wing now displays a blue outline on the health bar while invincible
-    * All Demon Eye and Wandering Eye variants now count towards the vanilla (basic) Demon Eye and Wandering Eye kill counts in the bestiary
-* ADDITIONS
-    * Added Soul Harvester Relic (Colored)
+* FIXES:
+    * Fixed Everglow Lantern not having right click targeting functionality
+* CHANGES:
+    * Satchel of Goodies:
+        * Now a minion that uses minion slots
+        * Rebalanced to account for using a minion slot
+        * Two new tiers (post-Wall of Flesh, post-Cultist)
+        * Right Click functionality changed to cycle through classes (Melee -> Magic -> Ranged), each with their own attacks and armor
+        * Reworked and expanded chatter
+    * Buffed Everglow Lantern and Everhallowed Lantern:
+        * Minions now don't lose track of the attacked enemy after dashing through tiles
+        * Everglow Lantern: Minions now use local i-frames (it was static before)
+        * Everhallowed Lantern: Soul of Fright now inflicts Acid Venom instead of Poison
+* ADDITIONS:
+    * General
+        * Added Simplified Chinese localization (thanks GamMa!)
+    * Weapons
+        * Dented Coin and Well-Loved Doll
+            * Minion summoning weapons that function similarly to the Satchel of Goodies. These minions can be used alongside the Satchel of Goodies
