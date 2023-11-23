@@ -4,6 +4,6 @@ it-IT, 0/1398, 0%, missing 1398
 fr-FR, 0/1398, 0%, missing 1398
 es-ES, 0/1398, 0%, missing 1398
 ru-RU, 0/1398, 0%, missing 1398
-zh-Hans, 1127/1398, 81%, missing 271
+zh-Hans, 1126/1398, 81%, missing 272
 pt-BR, 0/1398, 0%, missing 1398
 pl-PL, 0/1398, 0%, missing 1398
