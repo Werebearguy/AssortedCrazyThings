@@ -2622,7 +2622,7 @@ Mods: {
 			SoulofFright: {
 				DisplayName: "{^0:Soul;Souls} of Fright"
 				Unlock: Defeat {$NPCName.SkeletronPrime}
-				Description: Inflicts {$BuffName.Ichor} and {$BuffName.Poisoned}
+				Description: Inflicts {$BuffName.Ichor} and {$BuffName.Venom}
 			}
 
 			SoulofSight: {
