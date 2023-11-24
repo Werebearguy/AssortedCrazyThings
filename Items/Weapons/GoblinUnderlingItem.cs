@@ -130,9 +130,9 @@ namespace AssortedCrazyThings.Items.Weapons
 			BuffToProjectile.Add(Item.buffType, Item.shoot);
 
 			string category = $"Common.Tooltips.";
-			CommonTooltipText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltip"));
-			CommonTooltipFormatText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltipFormat"));
-			CantSwitchClassDuringCombatText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingItem)}.CantSwitchClassDuringCombat"));
+			CommonTooltipText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltip");
+			CommonTooltipFormatText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.CommonTooltipFormat");
+			CantSwitchClassDuringCombatText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingItem)}.CantSwitchClassDuringCombat");
 
 			TooltipText = this.GetLocalization("Tooltip");
 			FlavorText = this.GetLocalization("Flavor");

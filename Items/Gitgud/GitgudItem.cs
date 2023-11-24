@@ -54,12 +54,12 @@ namespace AssortedCrazyThings.Items.Gitgud
 		public sealed override void SetStaticDefaults()
 		{
 			string category = "Items.Gitgud.";
-			OrText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Or"));
-			ConsolationPrizeText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ConsolationPrize"));
-			ReducedDamageTakenBossText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ReducedDamageTakenBoss"));
-			//ReducedDamageTakenInvasionText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ReducedDamageTakenInvasion"));
-			BuffImmunityText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BuffImmunity"));
-			TimesDiedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}TimesDied"));
+			OrText ??= Mod.GetLocalization($"{category}Or");
+			ConsolationPrizeText ??= Mod.GetLocalization($"{category}ConsolationPrize");
+			ReducedDamageTakenBossText ??= Mod.GetLocalization($"{category}ReducedDamageTakenBoss");
+			//ReducedDamageTakenInvasionText ??= Mod.GetLocalization($"{category}ReducedDamageTakenInvasion");
+			BuffImmunityText ??= Mod.GetLocalization($"{category}BuffImmunity");
+			TimesDiedText ??= Mod.GetLocalization($"{category}TimesDied");
 
 			SafeSetStaticDefaults();
 		}

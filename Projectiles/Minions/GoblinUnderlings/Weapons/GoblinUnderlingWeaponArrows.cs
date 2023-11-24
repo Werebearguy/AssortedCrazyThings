@@ -25,7 +25,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 
 		public override void SafeSetStaticDefaults()
 		{
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(GoblinUnderlingWeaponArrow)}.DisplayName"));
+			CommonDisplayNameText ??= Mod.GetLocalization($"{LocalizationCategory}.{nameof(GoblinUnderlingWeaponArrow)}.DisplayName");
 		}
 
 		public override void SafeSetDefaults()

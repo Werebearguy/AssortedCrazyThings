@@ -32,7 +32,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.DemonEyeRecolor.DisplayName"));
+			CommonDisplayNameText ??= Mod.GetLocalization($"{LocalizationCategory}.DemonEyeRecolor.DisplayName");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DemonEye];
 			NPCID.Sets.DemonEyes[NPC.type] = true;
 			DemonEyes.Add(NPC.type);

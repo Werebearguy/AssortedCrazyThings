@@ -218,7 +218,7 @@ namespace AssortedCrazyThings.Base
 				slimePetNPCsEnumToNames[(int)pair.Key] = new List<LocalizedText>();
 				foreach (var key in pair.Value)
 				{
-					var text = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{pair.Key}.{key}"));
+					var text = Mod.GetLocalization($"{category}{pair.Key}.{key}");
 					slimePetNPCsEnumToNames[(int)pair.Key].Add(text);
 				}
 			}

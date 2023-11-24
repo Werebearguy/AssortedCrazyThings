@@ -27,10 +27,10 @@ namespace AssortedCrazyThings
 			LoadEnumText();
 
 			string category = "Common.";
-			ConcatenateTwoText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}ConcatenateTwo"));
-			SelectedText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Selected"));
-			BaseDamageText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseDamage"));
-			BaseKnockbackText = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BaseKnockback"));
+			ConcatenateTwoText = Mod.GetLocalization($"{category}ConcatenateTwo");
+			SelectedText = Mod.GetLocalization($"{category}Selected");
+			BaseDamageText = Mod.GetLocalization($"{category}BaseDamage");
+			BaseKnockbackText = Mod.GetLocalization($"{category}BaseKnockback");
 		}
 
 		public override void OnModUnload()

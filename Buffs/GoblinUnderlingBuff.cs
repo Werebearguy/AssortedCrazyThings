@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Buffs
 			Main.buffNoTimeDisplay[Type] = true;
 
 			string category = $"Common.Tooltips.";
-			CommonDescriptionText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}{nameof(GoblinUnderlingBuff)}.CommonDescription"));
+			CommonDescriptionText ??= Mod.GetLocalization($"{category}{nameof(GoblinUnderlingBuff)}.CommonDescription");
 		}
 
 		public override void Update(Player player, ref int buffIndex)

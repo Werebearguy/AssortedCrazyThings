@@ -22,9 +22,9 @@ namespace AssortedCrazyThings.Items.DroneUnlockables
 		public sealed override void SetStaticDefaults()
 		{
 			string category = $"{LocalizationCategory}.DroneUnlockable.";
-			UnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}UnlockedText"));
-			UnlocksText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Unlocks"));
-			AlreadyUnlockedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AlreadyUnlocked"));
+			UnlockedText ??= Mod.GetLocalization($"{category}UnlockedText");
+			UnlocksText ??= Mod.GetLocalization($"{category}Unlocks");
+			AlreadyUnlockedText ??= Mod.GetLocalization($"{category}AlreadyUnlocked");
 
 			SafeSetStaticDefaults();
 		}

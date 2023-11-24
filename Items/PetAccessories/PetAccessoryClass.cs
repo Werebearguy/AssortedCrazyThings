@@ -243,7 +243,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 				for (int i = 0; i < altTextures.Count; i++)
 				{
 					string altTexture = altTextures[i];
-					LocalizedText text = Language.GetOrRegister(mod.GetLocalizationKey($"{category}{altTexture}"), () => altTexture);
+					LocalizedText text = mod.GetLocalization($"{category}{altTexture}", () => altTexture);
 					AltTextureDisplayNames.Add(text);
 				}
 			}
@@ -463,9 +463,9 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			ShortNameText = this.GetLocalization("ShortName");
 
 			string category = "Items.PetAccessory.";
-			BlacklistedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Blacklisted"));
-			NoUseText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}NoUse"));
-			DisabledText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Disabled"));
+			BlacklistedText ??= Mod.GetLocalization($"{category}Blacklisted");
+			NoUseText ??= Mod.GetLocalization($"{category}NoUse");
+			DisabledText ??= Mod.GetLocalization($"{category}Disabled");
 
 			//Needs to be here so the lang is initialized
 			if (!Main.dedServ)

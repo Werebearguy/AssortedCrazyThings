@@ -60,7 +60,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Weapons
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionShot[Projectile.type] = true;
 
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.{nameof(GoblinUnderlingWeaponOrb)}.DisplayName"));
+			CommonDisplayNameText ??= Mod.GetLocalization($"{LocalizationCategory}.{nameof(GoblinUnderlingWeaponOrb)}.DisplayName");
 		}
 
 		public override void SetDefaults()

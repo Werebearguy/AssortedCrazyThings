@@ -15,6 +15,6 @@ public static LocalizedText AppendAoMMVersion(LocalizedText text)
 public override void Load()
 {
 	versionString = apiVersion.ToString();
-	AoMMVersionText = Language.GetOrRegister(Mod.GetLocalizationKey($"Common.AoMMVersion"));
+	AoMMVersionText = Mod.GetLocalization($"Common.AoMMVersion");
 }
 ```

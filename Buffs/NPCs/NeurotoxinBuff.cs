@@ -21,8 +21,8 @@ namespace AssortedCrazyThings.Buffs.NPCs
 		public override void SetStaticDefaults()
 		{
 			string category = $"Buffs.{nameof(NeurotoxinBuff)}.";
-			CommonNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CommonName"));
-			CommonDescriptionText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CommonDescription"));
+			CommonNameText ??= Mod.GetLocalization($"{category}CommonName");
+			CommonDescriptionText ??= Mod.GetLocalization($"{category}CommonDescription");
 		}
 
 		public int DPS { get; init; }

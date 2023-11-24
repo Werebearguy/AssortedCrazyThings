@@ -25,12 +25,12 @@ namespace AssortedCrazyThings.Items.Pets.CuteSlimes
 		public override void SafeSetStaticDefaults()
 		{
 			string category = "Items.CuteSlime.";
-			AccessoryBlacklistedText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessoryBlacklisted"));
-			AccessoryNoneText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessoryNone"));
-			HatSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}HatSlot"));
-			BodySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}BodySlot"));
-			CarriedSlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}CarriedSlot"));
-			AccessorySlotText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}AccessorySlot"));
+			AccessoryBlacklistedText ??= Mod.GetLocalization($"{category}AccessoryBlacklisted");
+			AccessoryNoneText ??= Mod.GetLocalization($"{category}AccessoryNone");
+			HatSlotText ??= Mod.GetLocalization($"{category}HatSlot");
+			BodySlotText ??= Mod.GetLocalization($"{category}BodySlot");
+			CarriedSlotText ??= Mod.GetLocalization($"{category}CarriedSlot");
+			AccessorySlotText ??= Mod.GetLocalization($"{category}AccessorySlot");
 
 			if (CanShimmerItem)
 			{

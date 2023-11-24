@@ -20,7 +20,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		public override void SetStaticDefaults()
 		{
-			CommonDisplayNameText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{LocalizationCategory}.PetQueenSlimeProj.DisplayName"));
+			CommonDisplayNameText ??= Mod.GetLocalization($"{LocalizationCategory}.PetQueenSlimeProj.DisplayName");
 			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 

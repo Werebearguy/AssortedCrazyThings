@@ -77,7 +77,7 @@ namespace AssortedCrazyThings
 
 		private Announcement RegisterAnnouncement(string name, Color color)
 		{
-			return new Announcement(Language.GetOrRegister(Mod.GetLocalizationKey($"Announcements.{name}")), color);
+			return new Announcement(Mod.GetLocalization($"Announcements.{name}"), color);
 		}
 
 		public override void OnModLoad()

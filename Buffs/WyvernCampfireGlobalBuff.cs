@@ -13,7 +13,7 @@ namespace AssortedCrazyThings.Buffs
 		public override void SetStaticDefaults()
 		{
 			string category = $"Buffs.Campfire.";
-			WyvernCampfireNearbyText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}WyvernCampfireNearby"));
+			WyvernCampfireNearbyText ??= Mod.GetLocalization($"{category}WyvernCampfireNearby");
 		}
 
 		//Tells you its effects in the regular campfire buff (which the wyvern campfire applies)
