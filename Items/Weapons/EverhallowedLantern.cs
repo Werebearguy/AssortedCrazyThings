@@ -55,9 +55,9 @@ namespace AssortedCrazyThings.Items.Weapons
 		{
 			ProjType = projType;
 			string thisKey = $"SoulData.{internalName}.";
-			Name = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}DisplayName"), () => "");
-			ToUnlock = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Unlock"), () => "");
-			Description = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Description"), () => "");
+			Name = AssUtils.Instance.GetLocalization($"{thisKey}DisplayName", () => "");
+			ToUnlock = AssUtils.Instance.GetLocalization($"{thisKey}Unlock", () => "");
+			Description = AssUtils.Instance.GetLocalization($"{thisKey}Description", () => "");
 			DmgModifier = dmgModifier;
 			KBModifier = kBModifier;
 			Unlocked = unlocked ?? (() => true);
