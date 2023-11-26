@@ -483,7 +483,7 @@ namespace AssortedCrazyThings
 				Player.statLife = 5;
 				Player.AddBuff(ModContent.BuffType<SigilOfTheWingBuff>(), SigilOfTheWing.DurationSeconds * 60);
 
-				sigilOfTheWingCooldown = SigilOfTheWing.CooldownSeconds * 60;
+				sigilOfTheWingCooldown = SigilOfTheWing.CooldownMinutes * 60 * 60;
 
 				for (int j = 0; j < 100; j++)
 				{

@@ -13,14 +13,14 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public static readonly int DurationSeconds = 5;
 		public static readonly int HealthRestoreAmount = 25;
-		public static readonly int CooldownSeconds = 6 * 60;
+		public static readonly int CooldownMinutes = 6;
 
 		public static LocalizedText SocialDescText { get; private set; }
 		public static LocalizedText EffectReadyText { get; private set; }
 		public static LocalizedText ReadyAgainInMinutesText { get; private set; }
 		public static LocalizedText ReadyAgainInSecondsText { get; private set; }
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DurationSeconds, HealthRestoreAmount, CooldownSeconds);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DurationSeconds, HealthRestoreAmount, CooldownMinutes);
 
 		public override void EvenSaferSetStaticDefaults()
 		{
