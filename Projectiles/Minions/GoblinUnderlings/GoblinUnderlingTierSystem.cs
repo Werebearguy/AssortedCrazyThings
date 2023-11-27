@@ -149,7 +149,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				//PreBoss = Baseline values in Item/AI code																									  //dmg   kb    ap  sp     m ransp ranmp
 				{ GoblinUnderlingProgressionTierStage.PreBoss   , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_0>(), 1.2f , 1f  , 2 , 0.25f, 8, 9f  , 1.4f) },
 				{ GoblinUnderlingProgressionTierStage.EoC       , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_1>(), 1.5f , 1.2f, 4 , 0.3f , 8, 10f , 1.6f) },
-				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_2>(), 1.65f, 1.4f, 6 , 0.35f, 7, 5.5f, 1.7f) },
+				{ GoblinUnderlingProgressionTierStage.Evil      , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_2>(), 1.65f, 1.4f, 6 , 0.35f, 7, 5.5f, 1.7f, -1, 0) },
 				{ GoblinUnderlingProgressionTierStage.Skeletron , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_3>(), 1.8f , 1.6f, 8 , 0.4f , 7, 12f , 1.8f) },
 				
 				{ GoblinUnderlingProgressionTierStage.WoF       , new GoblinUnderlingRangedTierStats(ModContent.ProjectileType<GoblinUnderlingWeaponArrow_3>(), 2.6f , 1.6f, 10, 0.4f , 6, 13f , 1.9f) }, //Mostly a copy of previous tier with more damage, same visuals too

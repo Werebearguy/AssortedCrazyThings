@@ -786,9 +786,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 							vector *= mag;
 						}
 
-						int mult = 1 + ContentSamples.ProjectilesByType[rangedProjType].extraUpdates;
 						if (gravity > 0)
 						{
+							int mult = 1 + ContentSamples.ProjectilesByType[rangedProjType].extraUpdates;
 							AssUtils.ModifyVelocityForGravity(position, targetPos, gravity * mult, ref vector, ticksWithoutGravity * mult);
 						}
 
