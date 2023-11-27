@@ -3,142 +3,142 @@ Mods: {
 		Buffs: {
 			# Cute Slimes
 			CuteSlimeBlackBuff: {
-				DisplayName: Миленький чёрный слизень
+				DisplayName: Чёрная Слизняшка
 				Description: За тобой следует миленький чёрный слизень
 			}
 
 			CuteSlimeBlueBuff: {
-				DisplayName: Миленький синий слизень
+				DisplayName: Синяя Слизняшка
 				Description: За тобой следует миленький синий слизень
 			}
 
 			CuteSlimeCorruptBuff: {
-				DisplayName: Миленький порченный слизень
+				DisplayName: Порченная Слизняшка
 				Description: За тобой следует миленький порченный слизень
 			}
 
 			CuteSlimeCorruptJungleBuff: {
-				DisplayName: Миленький порченный слизень джунглей
+				DisplayName: Порченная Слизняшка джунглей
 				Description: За тобой следует миленький порченный слизень джунглей
 			}
 
 			CuteSlimeCrimsonBuff: {
-				DisplayName: Миленький багряный слизень
+				DisplayName: Багряная Слизняшка
 				Description: За тобой следует миленький багряный слизень
 			}
 
 			CuteSlimeCrimsonJungleBuff: {
-				DisplayName: Миленький багряный слизень джунглей
+				DisplayName: Багряная Слизняшка джунглей
 				Description: За тобой следует миленький багряный слизень джунглей
 			}
 
 			CuteSlimeDungeonBuff: {
-				DisplayName: Миленький темничный слизень
+				DisplayName: Темничная Слизняшка
 				Description: За тобой следует миленький темничный слизень
 			}
 
 			CuteSlimeGoldenBuff: {
-				DisplayName: Миленький золотой слизень
+				DisplayName: Золотая Слизняшка
 				Description: За тобой следует миленький золотой слизень
 			}
 
 			CuteSlimeGreenBuff: {
-				DisplayName: Миленький зелёный слизень
+				DisplayName: Зелёная Слизняшка
 				Description: За тобой следует миленький  слизень
 			}
 
 			CuteSlimeHoneyBuff: {
-				DisplayName: Миленький медовый слизень
+				DisplayName: Медовая Слизняшка
 				Description: За тобой следует миленький  слизень
 			}
 
 			CuteSlimeIceBuff: {
-				DisplayName: Миленький ледяной слизень
+				DisplayName: Ледяная Слизняшка
 				Description: За тобой следует миленький ледяной слизень
 			}
 
 			CuteSlimeIlluminantBuff: {
-				DisplayName: Миленький освящённый слизень
+				DisplayName: Светящаяся Слизняшка
 				Description: За тобой следует миленький освящённый слизень
 			}
 
 			CuteSlimeJungleBuff: {
-				DisplayName: Миленький слизень джунглей
+				DisplayName: Слизняшка джунглей
 				Description: За тобой следует миленький слизень джунглей
 			}
 
 			CuteSlimeLavaBuff: {
-				DisplayName: Миленький лавовый слизень
+				DisplayName: Лавовая Слизняшка
 				Description: За тобой следует миленький лавовый слизень
 			}
 
 			CuteSlimePinkBuff: {
-				DisplayName: Миленький розовый слизень
+				DisplayName: Розовая Слизняшка
 				Description: За тобой следует миленький розовый слизень
 			}
 
 			CuteSlimePinkIceBuff: {
-				DisplayName: Миленький розовый ледяной слизень
+				DisplayName: Розовая ледяная Слизняшка
 				Description: За тобой следует миленький розовый ледяной слизень
 			}
 
 			CuteSlimePrincessBuff: {
-				DisplayName: Миленький слизень-принцесса
+				DisplayName: Слизняшка-принцесса
 				Description: За тобой следует миленький слизень-принцесса
 			}
 
 			CuteSlimePurpleBuff: {
-				DisplayName: Миленький фиолетовый слизень
+				DisplayName: Фиолетовая Слизняшка
 				Description: За тобой следует миленький фиолетовый слизень
 			}
 
 			CuteSlimePurpleIceBuff: {
-				DisplayName: Миленький фиолетовый ледяной слизень
+				DisplayName: Фиолетовая ледяная Слизняшка
 				Description: За тобой следует миленький фиолетовый ледяной слизень
 			}
 
 			CuteSlimeQueenBuff: {
-				DisplayName: Миленький слизень-королева
+				DisplayName: Слизняшка-королева
 				Description: За тобой следует миленький слизень-королева
 			}
 
 			CuteSlimeRainbowBuff: {
-				DisplayName: Миленький радужный слизень
+				DisplayName: Радужная Слизняшка
 				Description: За тобой следует миленький радужный слизень
 			}
 
 			CuteSlimeRedBuff: {
-				DisplayName: Миленький красный слизень
+				DisplayName: Красная Слизняшка
 				Description: За тобой следует миленький красный слизень
 			}
 
 			CuteSlimeRedIceBuff: {
-				DisplayName: Миленький красный ледяной слизень
+				DisplayName: Красная ледяная Слизняшка
 				Description: За тобой следует миленький красный ледяной слизень
 			}
 
 			CuteSlimeSandBuff: {
-				DisplayName: Миленький песчаный слизень
+				DisplayName: Песчаная Слизняшка
 				Description: За тобой следует миленький песчаный слизень
 			}
 
 			CuteSlimeShimmerBuff: {
-				DisplayName: Миленький мерцающий слизень
+				DisplayName: Мерцающая Слизняшка
 				Description: За тобой следует миленький мерцающий слизень
 			}
 
 			CuteSlimeToxicBuff: {
-				DisplayName: Миленький токсичный слизень
+				DisplayName: Токсичная Слизняшка
 				Description: За тобой следует миленький токсичный слизень
 			}
 
 			CuteSlimeXmasBuff: {
-				DisplayName: Миленький рождественский слизень
+				DisplayName: Рождественская Слизняшка
 				Description: За тобой следует миленький рождественский слизень
 			}
 
 			CuteSlimeYellowBuff: {
-				DisplayName: Миленький жёлтый слизень
+				DisplayName: Жёлтая Слизняшка
 				Description: За тобой следует миленький жёлтый слизень
 			}
 
@@ -499,8 +499,8 @@ Mods: {
 			}
 
 			WobyBuff: {
-				DisplayName: Вуби, 'Любимый пёс...'
-				Description: За тобой следует верный пёс
+				DisplayName: Воби, 'Любимая собака...'
+				Description: За тобой следует верная собака
 			}
 
 			CompanionDungeonSoulMinionBuff: {
@@ -543,7 +543,7 @@ Mods: {
 				DisplayName: Зловещая птица
 				# Do not translate Description
 				Description: REPLACEME
-				Absorbed: Птица поглотила {0} {^0:душу;души;душ}ы
+				Absorbed: Птица поглотила {0} душ
 				Tier1: Что эта птица творит?
 				Tier2: Интересно, будет ли она расти и дальше
 				Tier3: Не думаю, что ей стоит продолжать есть...
@@ -555,7 +555,7 @@ Mods: {
 			}
 
 			SlimePackMinionBuff: {
-				DisplayName: Ранцевый слизень
+				DisplayName: Слизень из ранца
 				Description: На твоей стороне сражается слизень, прямиком из твоего ранца
 			}
 
@@ -617,150 +617,150 @@ Mods: {
 			# Cute Slimes
 			CuteSlime: {
 				AccessoryBlacklisted: В чёрном списке
-				AccessoryNone: None
-				HatSlot: Hat Slot: {0}
-				BodySlot: Body Slot: {0}
-				CarriedSlot: Carry Slot: {0}
-				AccessorySlot: Accessory Slot: {0}
+				AccessoryNone: Пусто
+				HatSlot: Ячейка шляпы: {0}
+				BodySlot: Ячейка тела: {0}
+				CarriedSlot: Ячейка рук: {0}
+				AccessorySlot: Ячейка аксессуара: {0}
 			}
 
 			CuteSlimeBlackItem: {
-				DisplayName: Миленький чёрный слизень в бутылке
+				DisplayName: Чёрная Слизняшка в бутылке
 				Tooltip: Призывает миленького чёрного слизня
 			}
 
 			CuteSlimeBlueItem: {
-				DisplayName: Миленький синий слизень в бутылке
+				DisplayName: Синяя Слизняшка в бутылке
 				Tooltip: Призывает миленького синего слизня
 			}
 
 			CuteSlimeCorruptItem: {
-				DisplayName: Миленький порченный слизень в бутылке
+				DisplayName: Порченная Слизняшка в бутылке
 				Tooltip: Призывает миленького порченного слизня
 			}
 
 			CuteSlimeCorruptJungleItem: {
-				DisplayName: Миленький порченный слизень джунглей в бутылке
+				DisplayName: Порченная Слизняшка джунглей в бутылке
 				Tooltip: Призывает миленького порченного слизня джунглей
 			}
 
 			CuteSlimeCrimsonItem: {
-				DisplayName: Миленький багряный слизень в бутылке
+				DisplayName: Багряная Слизняшка в бутылке
 				Tooltip: Призывает миленького багряного слизня
 			}
 
 			CuteSlimeCrimsonJungleItem: {
-				DisplayName: Миленький багряный слизень джунглей в бутылке
+				DisplayName: Багряная Слизняшка джунглей в бутылке
 				Tooltip: Призывает миленького багряного слизня джунглей
 			}
 
 			CuteSlimeDungeonItem: {
-				DisplayName: Миленький темничный слизень в бутылке
+				DisplayName: Темничная Слизняшка в бутылке
 				Tooltip: Призывает миленького темничного слизня
 			}
 
 			CuteSlimeGoldenItem: {
-				DisplayName: Миленький золотой слизень в бутылке
+				DisplayName: Золотая Слизняшка в бутылке
 				Tooltip: Призывает миленького золотого слизня
 			}
 
 			CuteSlimeGreenItem: {
-				DisplayName: Миленький зелёный слизень в бутылке
+				DisplayName: Зелёная Слизняшка в бутылке
 				Tooltip: Призывает миленького зелёного слизня
 			}
 
 			CuteSlimeHoneyItem: {
-				DisplayName: Миленький медовый слизень в бутылке
+				DisplayName: Медовая Слизняшка в бутылке
 				Tooltip: Призывает миленького медового слизня
 			}
 
 			CuteSlimeIceItem: {
-				DisplayName: Миленький ледяной слизень в бутылке
+				DisplayName: Ледяная Слизняшка в бутылке
 				Tooltip: Призывает миленького ледяного слизня
 			}
 
 			CuteSlimeIlluminantItem: {
-				DisplayName: Миленький светящийся слизень в бутылке
+				DisplayName: Светящаяся Слизняшка в бутылке
 				Tooltip: Призывает миленького светящегося слизня
 			}
 
 			CuteSlimeJungleItem: {
-				DisplayName: Миленький слизень джунглей в бутылке
+				DisplayName: Слизняшка джунглей в бутылке
 				Tooltip: Призывает миленького слизня джунглей
 			}
 
 			CuteSlimeLavaItem: {
-				DisplayName: Миленький лавовый слизень в бутылке
+				DisplayName: Лавовая Слизняшка в бутылке
 				Tooltip: Призывает миленького лавового слизня
 			}
 
 			CuteSlimePinkItem: {
-				DisplayName: Миленький розовый слизень в бутылке
+				DisplayName: Розовая Слизняшка в бутылке
 				Tooltip: Призывает миленького розового слизня
 			}
 
 			CuteSlimePinkIceItem: {
-				DisplayName: Миленький розовый ледяной слизень в бутылке
+				DisplayName: Розовая ледяная Слизняшка в бутылке
 				Tooltip: Призывает миленького розового ледяного слизня
 			}
 
 			CuteSlimePrincessItem: {
-				DisplayName: Миленький слизень-принцесса в бутылке
+				DisplayName: Слизняшка-принцесса в бутылке
 				Tooltip: Призывает миленького слизня-принцессу
 			}
 
 			CuteSlimePurpleItem: {
-				DisplayName: Миленький фиолетовый слизень в бутылке
+				DisplayName: Фиолетовая Слизняшка в бутылке
 				Tooltip: Призывает миленького фиолетового слизня
 			}
 
 			CuteSlimePurpleIceItem: {
-				DisplayName: Миленький фиолетовый ледяной слизень в бутылке
+				DisplayName: Фиолетовая ледяная Слизняшка в бутылке
 				Tooltip: Призывает миленького фиолетового ледяного слизня
 			}
 
 			CuteSlimeQueenItem: {
-				DisplayName: Миленький слизень-королева в бутылке
+				DisplayName: Слизняшка-королева в бутылке
 				Tooltip: Призывает миленького слизня-королеву
 			}
 
 			CuteSlimeRainbowItem: {
-				DisplayName: Миленький радужный слизень в бутылке
+				DisplayName: Радужная Слизняшка в бутылке
 				Tooltip: Призывает миленького радужного слизня
 			}
 
 			CuteSlimeRedItem: {
-				DisplayName: Миленький красный слизень в бутылке
+				DisplayName: Красная Слизняшка в бутылке
 				Tooltip: Призывает миленького красного слизня
 			}
 
 			CuteSlimeRedIceItem: {
-				DisplayName: Миленький красный ледяной слизень в бутылке
+				DisplayName: Красная ледяная Слизняшка в бутылке
 				Tooltip: Призывает миленького красного ледяного слизня
 			}
 
 			CuteSlimeSandItem: {
-				DisplayName: Миленький песчаный слизень в бутылке
+				DisplayName: Песчаная Слизняшка в бутылке
 				Tooltip: Призывает миленького песчаный слизня
 			}
 
 			CuteSlimeShimmerItem: {
-				DisplayName: Миленький мерцающий слизень в бутылке
+				DisplayName: Мерцающая Слизняшка в бутылке
 				Tooltip: Призывает миленького мерцающего слизня
 			}
 
 			CuteSlimeToxicItem: {
-				DisplayName: Миленький токсичный слизень в бутылке
+				DisplayName: Токсичная Слизняшка в бутылке
 				Tooltip: Призывает миленького токсичного слизня
 			}
 
 			CuteSlimeXmasItem: {
-				DisplayName: Миленький рождественский слизень в бутылке
+				DisplayName: Рождественская Слизняшка в бутылке
 				Tooltip: Призывает миленького рождественского слизня
 			}
 
 			CuteSlimeYellowItem: {
-				DisplayName: Миленький жёлтый слизень в бутылке
+				DisplayName: Жёлтая Слизняшка в бутылке
 				Tooltip: Призывает миленького жёлтого слизня
 			}
 
@@ -1236,7 +1236,7 @@ Mods: {
 
 			WobyItem: {
 				DisplayName: Значок любителя собак
-				Tooltip: Призывает верного пса
+				Tooltip: Призывает верную собаку
 			}
 
 			BottledDreams: {
@@ -1304,7 +1304,7 @@ Mods: {
 				Tooltip:
 					'''
 					Призывает в бой разбитые души, ищущих врагов
-					Чем ниже здоровье, тем выше частота атак
+					Чем ниже здоровье, тем выше частота и сила атак
 					'''
 			}
 
@@ -1386,7 +1386,7 @@ Mods: {
 					'''
 				SetBonus:
 					'''
-					Отражает урон при касании {0}% за каждую незанятую ячейку прислужника
+					Отражает урон при касании {0}% за каждую ячейку прислужника
 					Отражённый урон увеличивается вместе с уроном призываемых существ
 					Текущий отражаемый урон: {1}%
 					Прислужники, призванные предметом {$Items.EverhallowedLantern.DisplayName}, получают статус "Превосходство" и наносят на {2}% больше урона
@@ -1866,12 +1866,12 @@ Mods: {
 
 			FieldsOfJoyItem: {
 				DisplayName: Поля отрады
-				Tooltip: "'С. Пайнер'"
+				Tooltip: "'C. Paigner'"
 			}
 
 			PretentiousRockItem: {
 				DisplayName: Изучения сланца
-				Tooltip: "'С. Пайнер'"
+				Tooltip: "'C. Paigner'"
 			}
 
 			SCP099Item: {
@@ -2141,129 +2141,129 @@ Mods: {
 			}
 
 			CuteSlimeBlack: {
-				DisplayName: Миленький чёрный слизень
+				DisplayName: Чёрная Слизняшка
 				BestiaryFlavorText: Этот слизень очень трепетно относится к своему хвостику, так что чтобы подружиться - сделайте комплимент причёске.
 			}
 
 			CuteSlimeBlue: {
-				DisplayName: Миленький синий слизень
+				DisplayName: Синяя Слизняшка
 				BestiaryFlavorText: Хоть по выражению лица и не понять, но этот слизень очень ласковый и обожает объятия со всеми.
 			}
 
 			CuteSlimeCorrupt: {
-				DisplayName: Миленький порченный слизень
+				DisplayName: Порченная Слизняшка
 				BestiaryFlavorText: Пустые глаза и тёмный цвет говорят об опасности, но на самом деле этот слизень просто нелюдим.
 			}
 
 			CuteSlimeCorruptJungle: {
-				DisplayName: Миленький порченный слизень джунглей
+				DisplayName: Порченная Слизняшка джунглей
 				BestiaryFlavorText: Слизни невероятно приспосабливаемы, выживая даже в самых свирепых условиях.
 			}
 
 			CuteSlimeCrimson: {
-				DisplayName: Миленький багряный слизень
+				DisplayName: Багряная Слизняшка
 				BestiaryFlavorText: На вид у него явно не все дома, но по правде этот слизень невероятно спокоен и собран.
 			}
 
 			CuteSlimeCrimsonJungle: {
-				DisplayName: Миленький багряный слизень джунглей
+				DisplayName: Багряная Слизняшка джунглей
 				BestiaryFlavorText: Стоило джунглям покраснеть, как этот слизень быстро адаптировался, мимикрируя под багряную траву.
 			}
 
 			CuteSlimeDungeon: {
-				DisplayName: Миленький слизень темницы
+				DisplayName: Слизняшка темницы
 				BestiaryFlavorText: Этот слизень был создан по образу и подобию древней волшебницы. Если не брать в счёт отсутствие ног - получилось почти идеально.
 			}
 
-			CuteSlimeGolden.DisplayName: Миленький золотой слизень
+			CuteSlimeGolden.DisplayName: Золотая Слизняшка
 
 			CuteSlimeGreen: {
-				DisplayName: Миленький зелёный слизень
+				DisplayName: Зелёная Слизняшка
 				BestiaryFlavorText: Не ведись на закрытые глаза. Этот слизень чуток и готов мгновенно ответить на любое действие.
 			}
 
 			CuteSlimeHoney: {
-				DisplayName: Миленький медовый слизень
+				DisplayName: Медовая Слизняшка
 				BestiaryFlavorText: Чтобы спрятаться от шершней, этот слизень покрыл себя мёдом. Это привлекло их ещё сильнее.
 			}
 
 			CuteSlimeIce: {
-				DisplayName: Миленький ледяной слизень
+				DisplayName: Ледяная Слизняшка
 				BestiaryFlavorText: Тело этого слизня холодное, но его выражения и поведения растопят любое сердце.
 			}
 
 			CuteSlimeIlluminant: {
-				DisplayName: Миленький светящийся слизень
+				DisplayName: Светящаяся Слизняшка
 				BestiaryFlavorText: Хаотичность Освящения сделала этого слизня весьма игривым.
 			}
 
 			CuteSlimeJungle: {
-				DisplayName: Миленький слизень джунглей
+				DisplayName: Слизняшка джунглей
 				BestiaryFlavorText: Жизнь мягкотелых существ в джунглях трудна, но не невыносима - этот слизень тому доказательство.
 			}
 
 			CuteSlimeLava: {
-				DisplayName: Миленький лавовый слизень
+				DisplayName: Лавовая Слизняшка
 				BestiaryFlavorText: Этот слизень опечален тем, что не может вытащить из себя кусок обсидина, которым его случайно проткнуло.
 			}
 
 			CuteSlimePink: {
-				DisplayName: Миленький розовый слизень
+				DisplayName: Розовая Слизняшка
 				BestiaryFlavorText: Маленькие размеры не значат маленькие возможности. Несмотря на размеры, в этом слизне больше энергии, чем на самой отвязной вечеринке!
 			}
 
 			CuteSlimePinkIce: {
-				DisplayName: Миленький розовый ледяной слизень
+				DisplayName: Розовая ледяная Слизняшка
 				BestiaryFlavorText: Освящение влияет на фауну самыми безумными способами, но этот слизень остаётся мирным и воспитанным.
 			}
 
 			CuteSlimePurple: {
-				DisplayName: Миленький фиолетовый слизень
+				DisplayName: Фиолетовая Слизняшка
 				BestiaryFlavorText: Не верь своим глазам, этот слизень гораздо счастливее, чем он выглядит.
 			}
 
 			CuteSlimePurpleIce: {
-				DisplayName: Миленький фиолетовый ледяной слизень
+				DisplayName: Фиолетовая ледяная Слизняшка
 				BestiaryFlavorText: Этот слизень постоянно нервничает, в ужасе от Порчи.
 			}
 
 			CuteSlimeRainbow: {
-				DisplayName: Миленький радужный слизень
+				DisplayName: Радужная Слизняшка
 				BestiaryFlavorText: Заботливый и материнский характер этого слизня показывают, что ему не чуждо сострадание.
 			}
 
 			CuteSlimeRed: {
-				DisplayName: Миленький красный слизень
+				DisplayName: Красная Слизняшка
 				BestiaryFlavorText: Игривый слизень, в котором много прыти. Иногда его слишком далеко заносит.
 			}
 
 			CuteSlimeRedIce: {
-				DisplayName: Миленький красный ледяной слизень
+				DisplayName: Красная ледяная Слизняшка
 				BestiaryFlavorText: В Багрянце лучше всего не выделяться, и этот слизень знает это не понаслышке.
 			}
 
 			CuteSlimeSand: {
-				DisplayName: Миленький песчаный слизень
+				DisplayName: Песчаная Слизняшка
 				BestiaryFlavorText: Грубый песок, покрывающий его тело, заставляет этого слизня держаться от других подальше, но от друга он не откажется.
 			}
 
 			CuteSlimeShimmer: {
-				DisplayName: Миленький мерцающий слизень
+				DisplayName: Мерцающая Слизняшка
 				BestiaryFlavorText: Угодив в загадочное мерцание, этот слизень принял неземной облик.
 			}
 
 			CuteSlimeToxic: {
-				DisplayName: Миленький токсичный слизень
+				DisplayName: Токсичная Слизняшка
 				BestiaryFlavorText: Внешность обманчива: этот слизень лишь наполовину ужасен, чем кажется!
 			}
 
 			CuteSlimeXmas: {
-				DisplayName: Миленький рождественский слизень
+				DisplayName: Рождественская Слизняшка
 				BestiaryFlavorText: Величайший подарок - это друг. Этот слизень хочется даровать этот подарок каждому.
 			}
 
 			CuteSlimeYellow: {
-				DisplayName: Миленький жёлтый слизень
+				DisplayName: Жёлтая Слизняшка
 				BestiaryFlavorText: Этот слизень движется с деликатной грацией, танцуя и не спотыкаясь.
 			}
 
@@ -2365,31 +2365,31 @@ Mods: {
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
-						Black: Чёрный
-						Blue: Синий
-						Green: Зелёный
-						Purple: Фиолетовый
-						Rainbow: Радужный
-						Red: Красный
-						Yellow: Жёлтый
+						Black: Чёрная
+						Blue: Синяя
+						Green: Зелёная
+						Purple: Фиолетовая
+						Rainbow: Радужная
+						Red: Красная
+						Yellow: Жёлтая
 					}
 
-					Desert.Sand: Песчаный
-					Tundra.Ice: Ледяной
+					Desert.Sand: Песчаная
+					Tundra.Ice: Ледяная
 					Jungle.Jungle: Джунглей
-					Underground.Toxic: Токсичный
-					Hell.Lava: Лавовый
-					Corruption.Corrupt: Порченный
-					CorruptionIce.PurpleIce: Фиолетовый ледяной
+					Underground.Toxic: Токсичная
+					Hell.Lava: Лавовая
+					Corruption.Corrupt: Порченная
+					CorruptionIce.PurpleIce: Фиолетовая ледяная
 					CorruptionJungle.CorruptJungle: Порченных джунглей
-					Crimson.Crimson: Багряный
-					CrimsonIce.RedIce: Красный ледяной
+					Crimson.Crimson: Багряная
+					CrimsonIce.RedIce: Красная ледяная
 					CrimsonJungle.CrimsonJungle: Багряных джунглей
-					Hallow.Illuminant: Светящийся
-					HallowIce.PinkIce: Розовый ледяной
-					Dungeon.Dungeon: Темничный
-					Xmas.Xmas: Рождественский
-					Honey.Honey: Медовый
+					Hallow.Illuminant: Светящаяся
+					HallowIce.PinkIce: Розовая ледяная
+					Dungeon.Dungeon: Темничная
+					Xmas.Xmas: Рождественская
+					Honey.Honey: Медовая
 				}
 			}
 		}
@@ -2441,34 +2441,34 @@ Mods: {
 			CursedSkullProj.DisplayName: Проклятый череп
 			CuteGastropodProj.DisplayName: Миленький брюхоног
 			CuteLamiaPetProj.DisplayName: Змейка
-			CuteSlimeBlackProj.DisplayName: Миленький чёрный слизень
-			CuteSlimeBlueProj.DisplayName: Миленький синий слизень
-			CuteSlimeCorruptProj.DisplayName: Миленький порченный слизень
-			CuteSlimeCorruptJungleProj.DisplayName: Миленький порченный слизень джунглей
-			CuteSlimeCrimsonProj.DisplayName: Миленький багряный слизень
-			CuteSlimeCrimsonJungleProj.DisplayName: Миленький багряный слизень джунглей
-			CuteSlimeDungeonProj.DisplayName: Миленький слизень темницы
-			CuteSlimeGoldenProj.DisplayName: Миленький золотой слизень
-			CuteSlimeGreenProj.DisplayName: Миленький зелёный слизень
-			CuteSlimeHoneyProj.DisplayName: Миленький медовый слизень
-			CuteSlimeIceProj.DisplayName: Миленький ледяной слизень
-			CuteSlimeIlluminantProj.DisplayName: Миленький светящийся слизень
-			CuteSlimeJungleProj.DisplayName: Миленький слизень джунглей
-			CuteSlimeLavaProj.DisplayName: Миленький лавовый слизень
-			CuteSlimePinkProj.DisplayName: Миленький розовый слизень
-			CuteSlimePinkIceProj.DisplayName: Миленький розовый ледяной слизень
-			CuteSlimePrincessProj.DisplayName: Миленький слизень-принцесса
-			CuteSlimePurpleProj.DisplayName: Миленький фиолетовый слизень
-			CuteSlimePurpleIceProj.DisplayName: Миленький фиолетовый ледяной слизень
-			CuteSlimeQueenProj.DisplayName: Миленький слизень-королева
-			CuteSlimeRainbowProj.DisplayName: Миленький радужный слизень
-			CuteSlimeRedProj.DisplayName: Миленький красный слизень
-			CuteSlimeRedIceProj.DisplayName: Миленький красный ледяной слизень
-			CuteSlimeSandProj.DisplayName: Миленький песчаный слизень
-			CuteSlimeShimmerProj.DisplayName: Миленький мерцающий слизень
-			CuteSlimeToxicProj.DisplayName: Миленький токсичный слизень
-			CuteSlimeXmasProj.DisplayName: Миленький рождественский слизень
-			CuteSlimeYellowProj.DisplayName: Миленький жёлтый слизень
+			CuteSlimeBlackProj.DisplayName: Чёрная Слизняшка
+			CuteSlimeBlueProj.DisplayName: Синяя Слизняшка
+			CuteSlimeCorruptProj.DisplayName: Порченная Слизняшка
+			CuteSlimeCorruptJungleProj.DisplayName: Порченная Слизняшка джунглей
+			CuteSlimeCrimsonProj.DisplayName: Багряная Слизняшка
+			CuteSlimeCrimsonJungleProj.DisplayName: Багряный Слизняшка джунглей
+			CuteSlimeDungeonProj.DisplayName: Слизняшка темницы
+			CuteSlimeGoldenProj.DisplayName: Золотая Слизняшка
+			CuteSlimeGreenProj.DisplayName: Зелёная Слизняшка
+			CuteSlimeHoneyProj.DisplayName: Медовая Слизняшка
+			CuteSlimeIceProj.DisplayName: Ледяная Слизняшка
+			CuteSlimeIlluminantProj.DisplayName: Светящаяся Слизняшка
+			CuteSlimeJungleProj.DisplayName: Слизняшка джунглей
+			CuteSlimeLavaProj.DisplayName: Лавовая Слизняшка
+			CuteSlimePinkProj.DisplayName: Розовая Слизняшка
+			CuteSlimePinkIceProj.DisplayName: Розовая ледяная Слизняшка
+			CuteSlimePrincessProj.DisplayName: Слизняшка-принцесса
+			CuteSlimePurpleProj.DisplayName: Фиолетовая Слизняшка
+			CuteSlimePurpleIceProj.DisplayName: Фиолетовая ледяная Слизняшка
+			CuteSlimeQueenProj.DisplayName: Слизняшка-королева
+			CuteSlimeRainbowProj.DisplayName: Радужная Слизняшка
+			CuteSlimeRedProj.DisplayName: Красная Слизняшка
+			CuteSlimeRedIceProj.DisplayName: Красная ледяная Слизняшка
+			CuteSlimeSandProj.DisplayName: Песчаная Слизняшка
+			CuteSlimeShimmerProj.DisplayName: Мерцающая Слизняшка
+			CuteSlimeToxicProj.DisplayName: Токсичная Слизняшка
+			CuteSlimeXmasProj.DisplayName: Рождественская Слизняшка
+			CuteSlimeYellowProj.DisplayName: Жёлтая Слизняшка
 			DemonHeartProj.DisplayName: Демоническое сердце
 			DetachedHungryProj.DisplayName: Отделившийся голодный
 			DocileDemonEyeProj.DisplayName: Мирный демонический глаз
@@ -2525,7 +2525,7 @@ Mods: {
 			WallFragmentEye1.DisplayName: Глаз стены
 			WallFragmentEye2.DisplayName: Глаз стены
 			WallFragmentMouth.DisplayName: Рот стены
-			WobyProj.DisplayName: Вубя
+			WobyProj.DisplayName: Воби
 			YoungHarpyProj.DisplayName: Молодая гарпия
 			YoungWyvernProj.DisplayName: Молодая виверна
 			ExtendoNetGoldenProj.DisplayName: ХВАТЬ!
@@ -2591,7 +2591,7 @@ Mods: {
 		}
 
 		Conditions: {
-			UnlockedBiomeTorches: Если {$ItemName.TorchGodsFavor} уже был(а) использован(а)
+			UnlockedBiomeTorches: Если {$ItemName.TorchGodsFavor} уже была использована
 			DroneTypeNotUnlocked: Если ещё не было открыто
 		}
 
