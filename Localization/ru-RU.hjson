@@ -533,8 +533,6 @@ Mods: {
 			}
 
 			EagerUnderlingBuff.DisplayName: Нетерпеливый прислужник
-			ShyUnderlingBuff.DisplayName: Стеснительный прислужник
-			SeriousUnderlingBuff.DisplayName: Серьёзный прислужник
 
 			SigilOfTheWingBuff: {
 				DisplayName: Благословение Крыла
@@ -582,6 +580,8 @@ Mods: {
 				Ты под защитой от виверн
 				Перья гарпий не отталкивают тебя
 				'''
+			ShyUnderlingBuff.DisplayName: Стеснительный прислужник
+			SeriousUnderlingBuff.DisplayName: Серьёзный прислужник
 		}
 
 		Common: {
@@ -616,8 +616,8 @@ Mods: {
 		Items: {
 			# Cute Slimes
 			CuteSlime: {
-				AccessoryNone: Пусто
 				AccessoryBlacklisted: В чёрном списке
+				AccessoryNone: Пусто
 				HatSlot: Ячейка шляпы: {0}
 				BodySlot: Ячейка тела: {0}
 				CarriedSlot: Ячейка рук: {0}
