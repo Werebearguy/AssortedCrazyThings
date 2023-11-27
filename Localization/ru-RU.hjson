@@ -512,8 +512,8 @@ Mods: {
 			CuteSlimeSpawnEnableBuff: {
 				DisplayName: Загустевший эль
 				Description: Твоё представление о слизнях слегка неверно...
-				CuteSlimesCanSpawn: Cute Slimes that can spawn
-				None: None
+				CuteSlimesCanSpawn: Слизняшки, которые могут появиться
+				None: Нет
 			}
 
 			DroneControllerBuff: {
@@ -533,6 +533,8 @@ Mods: {
 			}
 
 			EagerUnderlingBuff.DisplayName: Нетерпеливый прислужник
+			ShyUnderlingBuff.DisplayName: Стеснительный прислужник
+			SeriousUnderlingBuff.DisplayName: Серьёзный прислужник
 
 			SigilOfTheWingBuff: {
 				DisplayName: Благословение Крыла
@@ -580,8 +582,6 @@ Mods: {
 				Ты под защитой от виверн
 				Перья гарпий не отталкивают тебя
 				'''
-			ShyUnderlingBuff.DisplayName: Стеснительный прислужник
-			SeriousUnderlingBuff.DisplayName: Серьёзный прислужник
 		}
 
 		Common: {
@@ -616,8 +616,8 @@ Mods: {
 		Items: {
 			# Cute Slimes
 			CuteSlime: {
-				AccessoryBlacklisted: В чёрном списке
 				AccessoryNone: Пусто
+				AccessoryBlacklisted: В чёрном списке
 				HatSlot: Ячейка шляпы: {0}
 				BodySlot: Ячейка тела: {0}
 				CarriedSlot: Ячейка рук: {0}
@@ -2000,15 +2000,15 @@ Mods: {
 			}
 
 			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Summons a shy underling to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
+				DisplayName: Погнутая монета
+				Tooltip: На твоей стороне сражается стеснительный прислужник
+				Flavor: "'На этой монете долго тренировали меткость стрельбы'"
 			}
 
 			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Summons a serious underling to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+				DisplayName: Излюбленная кукла
+				Tooltip: На твоей стороне сражается серьёзный прислужник
+				Flavor: "'Простая кукла вуду, сделанная из сена и соломы.'"
 			}
 
 			LegendaryWoodenSword: {
@@ -2096,18 +2096,6 @@ Mods: {
 				Spazmatism: Спазматизм
 				Retinazer: Ретиназер
 				Cobballoon: Булышарик
-			}
-
-			ShyUnderlingItem: {
-				DisplayName: Погнутая монета
-				Tooltip: На твоей стороне сражается стеснительный прислужник
-				Flavor: "'На этой монете долго тренировали меткость стрельбы'"
-			}
-
-			SeriousUnderlingItem: {
-				DisplayName: Излюбленная кукла
-				Tooltip: На твоей стороне сражается серьёзный прислужник
-				Flavor: "'Простая кукла вуду, сделанная из сена и соломы.'"
 			}
 		}
 
