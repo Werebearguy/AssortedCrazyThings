@@ -112,6 +112,7 @@ namespace AssortedCrazyThings.UI
 	/// </summary>
 	public class CircleUIConf
 	{
+		//TODO localize
 		public List<Asset<Texture2D>> Assets { get; private set; }
 		public List<bool> Unlocked { get; private set; } //all true if just selection
 		public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked

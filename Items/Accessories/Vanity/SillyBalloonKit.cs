@@ -1,22 +1,16 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.UI;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-/*
- Silly Balloon Kit
-- Accessory
-- Functionality similar to costume suitcase, but for vanity balloon accessories.
-- Crafting recipe TBD, maybe sold by Party Girl? */
 namespace AssortedCrazyThings.Items.Accessories.Vanity
 {
+	[LocalizeEnum(Category = $"Items.{nameof(SillyBalloonKit)}")]
 	public enum BalloonType : byte
 	{
 		DemonEyeGreen,
@@ -41,8 +35,7 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 	{
 		public static LocalizedText Enum2string(BalloonType e)
 		{
-			var name = Enum.GetName(typeof(BalloonType), e);
-			return ModContent.GetInstance<SillyBalloonKit>().GetLocalization(name, () => Regex.Replace(name, "([A-Z])", " $1").Trim());
+			return AssLocalization.GetEnumText(e);
 		}
 
 		//Half-assed implementation

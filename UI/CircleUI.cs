@@ -189,6 +189,7 @@ namespace AssortedCrazyThings.UI
 				string tooltip = UIConf.Unlocked[done] ? UIConf.Tooltips[done] : UIConf.ToUnlock[done];
 
 				//if there is a "to unlock" message, prefix it
+				//TODO localize
 				tooltip = (!UIConf.Unlocked[done] && UIConf.ToUnlock[done] != "") ? ("To unlock: " + tooltip) : tooltip;
 
 				if (isMouseWithin)

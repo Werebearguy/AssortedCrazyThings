@@ -1552,6 +1552,7 @@ Mods: {
 				Body: 戴在身上
 				Carried: 用手拿着
 				Accessory: 作为配饰配戴
+				// None: None
 				Blacklisted: 使特定史莱姆禁用此配件
 				NoUse: 没有召唤任何史莱姆来装备它
 				Disabled: 此配件类型未注册仅供开发人员测试使用
@@ -2000,6 +2001,18 @@ Mods: {
 				Flavor: “里面有一颗尖球、一枚硬币和一个……月亮？“
 			}
 
+			ShyUnderlingItem: {
+				// DisplayName: Dented Coin
+				// Tooltip: Summons a shy underling to fight for you
+				// Flavor: "'This coin has been used as target practice for a long time'"
+			}
+
+			SeriousUnderlingItem: {
+				// DisplayName: Well-Loved Doll
+				// Tooltip: Summons a serious underling to fight for you
+				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+			}
+
 			LegendaryWoodenSword: {
 				DisplayName: 传奇木剑
 				Tooltip: ""
@@ -2085,18 +2098,6 @@ Mods: {
 				Spazmatism: 魔焰眼
 				Retinazer: 激光眼
 				Cobballoon: 石化眼
-			}
-
-			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Summons a shy underling to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
-			}
-
-			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Summons a serious underling to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
 			}
 		}
 
@@ -2287,7 +2288,7 @@ Mods: {
 			}
 
 			DungeonSoul.DisplayName: 地牢之魂
-			DungeonSoulFreed.DisplayName: 地牢之魂
+			DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
 
 			HarvesterBoss: {
 				DisplayName: 灵魂收割者

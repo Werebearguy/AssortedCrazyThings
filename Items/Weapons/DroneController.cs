@@ -422,11 +422,11 @@ namespace AssortedCrazyThings.Items.Weapons
 			ProjType = projType;
 			InternalName = GetInternalName(droneType);
 			string thisKey = $"DroneData.{InternalName}.";
-			Name = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}DisplayName"), () => "");
-			ComponentName = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}ComponentName"), () => "");
-			Firerate = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Firerate"), () => "");
-			Description = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Description"), () => "");
-			Misc = Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{thisKey}Misc"), () => "");
+			Name = AssUtils.Instance.GetLocalization($"{thisKey}DisplayName", () => "");
+			ComponentName = AssUtils.Instance.GetLocalization($"{thisKey}ComponentName", () => "");
+			Firerate = AssUtils.Instance.GetLocalization($"{thisKey}Firerate", () => "");
+			Description = AssUtils.Instance.GetLocalization($"{thisKey}Description", () => "");
+			Misc = AssUtils.Instance.GetLocalization($"{thisKey}Misc", () => "");
 			DmgModifier = dmgModifier;
 			KBModifier = kBModifier;
 			Combat = combat;

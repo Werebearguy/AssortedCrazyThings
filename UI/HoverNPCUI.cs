@@ -90,6 +90,7 @@ namespace AssortedCrazyThings.UI
 							if (npc.type == ModContent.NPCType<DungeonSoul>() ||
 							   npc.type == ModContent.NPCType<DungeonSoulFreed>())
 							{
+								//TODO localize
 								ret = "Catch it with a net";
 							}
 						}
