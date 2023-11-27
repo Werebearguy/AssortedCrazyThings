@@ -1551,6 +1551,7 @@ Mods: {
 				// Body: Worn on the body
 				// Carried: Carried
 				// Accessory: Worn as an accessory
+				// None: None
 				// Blacklisted: This accessory type is disabled for your particular slime
 				// NoUse: You have no summoned slime to equip this on
 				// Disabled: This accessory type is not registered for use by the devs
@@ -1825,7 +1826,7 @@ Mods: {
 
 			PetAccessoryXmasHat: {
 				// DisplayName: Cute {$Items.PetAccessoryXmasHat.ShortName}
-				// Tooltip: "'A festive hat for your cute slime to wear on hear head'"
+				// Tooltip: "'A festive hat for your cute slime to wear on her head'"
 				// ShortName: Santa Hat
 
 				AccessoryNames: {
@@ -1999,6 +2000,18 @@ Mods: {
 				// Flavor: "'Inside, there's a spiky ball, a coin, and a... moon?'"
 			}
 
+			ShyUnderlingItem: {
+				// DisplayName: Dented Coin
+				// Tooltip: Summons a shy underling to fight for you
+				// Flavor: "'This coin has been used as target practice for a long time'"
+			}
+
+			SeriousUnderlingItem: {
+				// DisplayName: Well-Loved Doll
+				// Tooltip: Summons a serious underling to fight for you
+				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+			}
+
 			LegendaryWoodenSword: {
 				// DisplayName: Legendary Wooden Sword
 				// Tooltip: ""
@@ -2084,18 +2097,6 @@ Mods: {
 				// Spazmatism: Spazmatism
 				// Retinazer: Retinazer
 				// Cobballoon: Cobballoon
-			}
-
-			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Summons a shy underling to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
-			}
-
-			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Summons a serious underling to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
 			}
 		}
 
@@ -2184,7 +2185,7 @@ Mods: {
 
 			CuteSlimeHoney: {
 				// DisplayName: Cute Honey Slime
-				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware
+				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware-
 			}
 
 			CuteSlimeIce: {
@@ -2286,7 +2287,7 @@ Mods: {
 			}
 
 			// DungeonSoul.DisplayName: Dungeon Soul
-			// DungeonSoulFreed.DisplayName: Dungeon Soul
+			// DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
 
 			HarvesterBoss: {
 				// DisplayName: Soul Harvester
@@ -2418,10 +2419,10 @@ Mods: {
 			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
 			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
 			// PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
-			// SlimePackAssortedMinion.DisplayName: Slime Pack Minion
-			// SlimePackMinion.DisplayName: Slime Pack Minion
-			// SlimePackMinionSpike.DisplayName: Slime Pack Minion Spike
-			// SlimePackSpikedMinion.DisplayName: Slime Pack Minion
+			// SlimePackAssortedMinion.DisplayName: Slime Knapsack Minion
+			// SlimePackMinion.DisplayName: Slime Knapsack Minion
+			// SlimePackMinionSpike.DisplayName: Slime Knapsack Minion Spike
+			// SlimePackSpikedMinion.DisplayName: Slime Knapsack Minion
 			// BabyHarvesterProj.DisplayName: Baby Bird
 			// HarvesterAbsorbedSoul.DisplayName: Absorbed Soul
 			// HarvesterBone.DisplayName: Harvester Bone

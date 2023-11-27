@@ -128,6 +128,7 @@ namespace AssortedCrazyThings.Items.PetAccessories
 	/// <summary>
 	/// The type of pet vanity it is. Used for rendering, has separate lists
 	/// </summary>
+	[LocalizeEnum(Category = "Items.PetAccessory")]
 	public enum SlotType : byte
 	{
 		None = 0, //reserved
@@ -467,18 +468,6 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			NoUseText ??= Mod.GetLocalization($"{category}NoUse");
 			DisabledText ??= Mod.GetLocalization($"{category}Disabled");
 
-			//Needs to be here so the lang is initialized
-			if (!Main.dedServ)
-			{
-				foreach (var slot in Enum.GetValues(typeof(SlotType)))
-				{
-					if ((SlotType)slot != SlotType.None)
-					{
-						Enum2string((SlotType)slot);
-					}
-				}
-			}
-
 			SafeSetStaticDefaults();
 		}
 
@@ -500,17 +489,11 @@ namespace AssortedCrazyThings.Items.PetAccessories
 			Item.value = Item.sellPrice(silver: 30);
 		}
 
-		private static LocalizedText Enum2string(SlotType e)
-		{
-			string category = "Items.PetAccessory.";
-			return Language.GetOrRegister(AssUtils.Instance.GetLocalizationKey($"{category}{Enum.GetName(typeof(SlotType), e)}"));
-		}
-
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			if (PetAccessory.TryGetAccessoryFromItem(Item.type, out PetAccessory petAccessory))
 			{
-				tooltips.Add(new TooltipLine(Mod, "Slot", Enum2string(petAccessory.Slot).ToString()));
+				tooltips.Add(new TooltipLine(Mod, "Slot", AssLocalization.GetEnumText(petAccessory.Slot).ToString()));
 
 				Player player = Main.LocalPlayer;
 				PetPlayer pPlayer = player.GetModPlayer<PetPlayer>();

@@ -15,6 +15,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Weapons
 {
+	[LocalizeEnum(Category = $"Items.{nameof(SlimeHandlerKnapsack)}")]
 	public enum SlimeType
 	{
 		Default,
@@ -26,7 +27,7 @@ namespace AssortedCrazyThings.Items.Weapons
 	{
 		public static LocalizedText Enum2string(SlimeType e)
 		{
-			return ModContent.GetInstance<SlimeHandlerKnapsack>().GetLocalization(Enum.GetName(typeof(SlimeType), e));
+			return AssLocalization.GetEnumText(e);
 		}
 
 		//Half-assed implementation

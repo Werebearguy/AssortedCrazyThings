@@ -9,7 +9,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	[LegacyName("SigilOfLastStand")]
 	public class SigilOfTheHarvester : SigilItemBase
 	{
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SigilOfTheWing.DurationSeconds, SigilOfTheWing.HealthRestoreAmount, SigilOfTheWing.CooldownSeconds, SigilOfTheTalon.MaxPierce);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SigilOfTheWing.DurationSeconds, SigilOfTheWing.HealthRestoreAmount, SigilOfTheWing.CooldownMinutes, SigilOfTheTalon.MaxPierce);
 
 		public override void SafeSetDefaults()
 		{

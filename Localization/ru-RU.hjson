@@ -1999,6 +1999,18 @@ Mods: {
 				Flavor: "'Внутри лежат шипастый шарик, монета и... луна?'"
 			}
 
+			ShyUnderlingItem: {
+				// DisplayName: Dented Coin
+				// Tooltip: Summons a shy underling to fight for you
+				// Flavor: "'This coin has been used as target practice for a long time'"
+			}
+
+			SeriousUnderlingItem: {
+				// DisplayName: Well-Loved Doll
+				// Tooltip: Summons a serious underling to fight for you
+				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+			}
+
 			LegendaryWoodenSword: {
 				DisplayName: Легендарный деревянный меч
 				Tooltip: ""
