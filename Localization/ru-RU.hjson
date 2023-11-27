@@ -1304,7 +1304,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					Summons fractured souls to seek out enemies in combat
-					Frequency and intensity increases the lower your health gets
+					Frequency and damage increases the lower your health gets
 					''' */
 			}
 
@@ -1940,9 +1940,9 @@ Mods: {
 				// DisplayName: Bone-Cleaving Fang
 				/* Tooltip:
 					'''
-					Striking enemies will charge the sword, causing it to glow with power.
-					Release the built up power by right-clicking. The brighter the sword, the greater the power.
-					The sword's power fades when not used.
+					Striking enemies will charge the sword, causing it to glow with power
+					Release the built up power by right-clicking. The brighter the sword, the greater the power
+					The sword's power fades when not used
 					''' */
 			}
 
@@ -2185,7 +2185,7 @@ Mods: {
 
 			CuteSlimeHoney: {
 				// DisplayName: Cute Honey Slime
-				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware-
+				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware.
 			}
 
 			CuteSlimeIce: {
