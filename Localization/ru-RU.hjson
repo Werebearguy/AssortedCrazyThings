@@ -3,612 +3,612 @@ Mods: {
 		Buffs: {
 			# Cute Slimes
 			CuteSlimeBlackBuff: {
-				// DisplayName: Cute Black Slime
-				// Description: A cute black slime is following you
+				DisplayName: Чёрная Слизняшка
+				Description: За тобой следует миленький чёрный слизень
 			}
 
 			CuteSlimeBlueBuff: {
-				// DisplayName: Cute Blue Slime
-				// Description: A cute blue slime is following you
+				DisplayName: Синяя Слизняшка
+				Description: За тобой следует миленький синий слизень
 			}
 
 			CuteSlimeCorruptBuff: {
-				// DisplayName: Cute Corrupt Slime
-				// Description: A cute corrupt slime is following you
+				DisplayName: Порченная Слизняшка
+				Description: За тобой следует миленький порченный слизень
 			}
 
 			CuteSlimeCorruptJungleBuff: {
-				// DisplayName: Cute Corrupt Jungle Slime
-				// Description: A cute corrupt jungle slime is following you
+				DisplayName: Порченная Слизняшка джунглей
+				Description: За тобой следует миленький порченный слизень джунглей
 			}
 
 			CuteSlimeCrimsonBuff: {
-				// DisplayName: Cute Crimson Slime
-				// Description: A cute crimson slime is following you
+				DisplayName: Багряная Слизняшка
+				Description: За тобой следует миленький багряный слизень
 			}
 
 			CuteSlimeCrimsonJungleBuff: {
-				// DisplayName: Cute Crimson Jungle Slime
-				// Description: A cute crimson jungle slime is following you
+				DisplayName: Багряная Слизняшка джунглей
+				Description: За тобой следует миленький багряный слизень джунглей
 			}
 
 			CuteSlimeDungeonBuff: {
-				// DisplayName: Cute Dungeon Slime
-				// Description: A cute dungeon slime is following you
+				DisplayName: Темничная Слизняшка
+				Description: За тобой следует миленький темничный слизень
 			}
 
 			CuteSlimeGoldenBuff: {
-				// DisplayName: Cute Golden Slime
-				// Description: A cute golden slime is following you
+				DisplayName: Золотая Слизняшка
+				Description: За тобой следует миленький золотой слизень
 			}
 
 			CuteSlimeGreenBuff: {
-				// DisplayName: Cute Green Slime
-				// Description: A cute green slime is following you
+				DisplayName: Зелёная Слизняшка
+				Description: За тобой следует миленький  слизень
 			}
 
 			CuteSlimeHoneyBuff: {
-				// DisplayName: Cute Honey Slime
-				// Description: A cute honey slime is following you
+				DisplayName: Медовая Слизняшка
+				Description: За тобой следует миленький  слизень
 			}
 
 			CuteSlimeIceBuff: {
-				// DisplayName: Cute Ice Slime
-				// Description: A cute ice slime is following you
+				DisplayName: Ледяная Слизняшка
+				Description: За тобой следует миленький ледяной слизень
 			}
 
 			CuteSlimeIlluminantBuff: {
-				// DisplayName: Cute Illuminant Slime
-				// Description: A cute illuminant slime is following you
+				DisplayName: Светящаяся Слизняшка
+				Description: За тобой следует миленький освящённый слизень
 			}
 
 			CuteSlimeJungleBuff: {
-				// DisplayName: Cute Jungle Slime
-				// Description: A cute jungle slime is following you
+				DisplayName: Слизняшка джунглей
+				Description: За тобой следует миленький слизень джунглей
 			}
 
 			CuteSlimeLavaBuff: {
-				// DisplayName: Cute Lava Slime
-				// Description: A cute lava slime is following you
+				DisplayName: Лавовая Слизняшка
+				Description: За тобой следует миленький лавовый слизень
 			}
 
 			CuteSlimePinkBuff: {
-				// DisplayName: Cute Pink Slime
-				// Description: A cute pink slime is following you
+				DisplayName: Розовая Слизняшка
+				Description: За тобой следует миленький розовый слизень
 			}
 
 			CuteSlimePinkIceBuff: {
-				// DisplayName: Cute Pink Ice Slime
-				// Description: A cute pink ice slime is following you
+				DisplayName: Розовая ледяная Слизняшка
+				Description: За тобой следует миленький розовый ледяной слизень
 			}
 
 			CuteSlimePrincessBuff: {
-				// DisplayName: Cute Princess Slime
-				// Description: A cute princess slime is following you
+				DisplayName: Слизняшка-принцесса
+				Description: За тобой следует миленький слизень-принцесса
 			}
 
 			CuteSlimePurpleBuff: {
-				// DisplayName: Cute Purple Slime
-				// Description: A cute purple slime is following you
+				DisplayName: Фиолетовая Слизняшка
+				Description: За тобой следует миленький фиолетовый слизень
 			}
 
 			CuteSlimePurpleIceBuff: {
-				// DisplayName: Cute Purple Ice Slime
-				// Description: A cute purple ice slime is following you
+				DisplayName: Фиолетовая ледяная Слизняшка
+				Description: За тобой следует миленький фиолетовый ледяной слизень
 			}
 
 			CuteSlimeQueenBuff: {
-				// DisplayName: Cute Queen Slime
-				// Description: A cute queen slime is following you
+				DisplayName: Слизняшка-королева
+				Description: За тобой следует миленький слизень-королева
 			}
 
 			CuteSlimeRainbowBuff: {
-				// DisplayName: Cute Rainbow Slime
-				// Description: A cute rainbow slime is following you
+				DisplayName: Радужная Слизняшка
+				Description: За тобой следует миленький радужный слизень
 			}
 
 			CuteSlimeRedBuff: {
-				// DisplayName: Cute Red Slime
-				// Description: A cute red slime is following you
+				DisplayName: Красная Слизняшка
+				Description: За тобой следует миленький красный слизень
 			}
 
 			CuteSlimeRedIceBuff: {
-				// DisplayName: Cute Red Ice Slime
-				// Description: A cute red ice slime is following you
+				DisplayName: Красная ледяная Слизняшка
+				Description: За тобой следует миленький красный ледяной слизень
 			}
 
 			CuteSlimeSandBuff: {
-				// DisplayName: Cute Sand Slime
-				// Description: A cute sand slime is following you
+				DisplayName: Песчаная Слизняшка
+				Description: За тобой следует миленький песчаный слизень
 			}
 
 			CuteSlimeShimmerBuff: {
-				// DisplayName: Cute Shimmer Slime
-				// Description: A cute shimmer slime is following you
+				DisplayName: Мерцающая Слизняшка
+				Description: За тобой следует миленький мерцающий слизень
 			}
 
 			CuteSlimeToxicBuff: {
-				// DisplayName: Cute Toxic Slime
-				// Description: A cute toxic slime is following you
+				DisplayName: Токсичная Слизняшка
+				Description: За тобой следует миленький токсичный слизень
 			}
 
 			CuteSlimeXmasBuff: {
-				// DisplayName: Cute Christmas Slime
-				// Description: A cute Christmas slime is following you
+				DisplayName: Рождественская Слизняшка
+				Description: За тобой следует миленький рождественский слизень
 			}
 
 			CuteSlimeYellowBuff: {
-				// DisplayName: Cute Yellow Slime
-				// Description: A cute yellow slime is following you
+				DisplayName: Жёлтая Слизняшка
+				Description: За тобой следует миленький жёлтый слизень
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationBuff: {
-				// DisplayName: Abeemination
-				// Description: An abeemination is following you
+				DisplayName: Пчелиная масса
+				Description: За тобой следует пчелиная масса
 			}
 
 			AlienHornetBuff: {
-				// DisplayName: Alien Hornet
-				// Description: An alien hornet is following you
+				DisplayName: Инопланетный шершень
+				Description: За тобой следует инопланетный шершень
 			}
 
 			AnimatedTomeBuff: {
-				// DisplayName: Animated Tome
-				// Description: An animated tome is following you
+				DisplayName: Оживший фолиант
+				Description: За тобой следует оживший фолиант
 			}
 
 			AnomalocarisBuff: {
-				// DisplayName: Anomalocaris
-				// Description: A little prehistoric shrimp is following you
+				DisplayName: Аномалокарис
+				Description: За тобой следует маленькая доисторическая креветка
 			}
 
 			BabyCrimeraBuff: {
-				// DisplayName: Baby Crimera
-				// Description: A little crimera is following you
+				DisplayName: Малыш-кримера
+				Description: За тобой следует малыш-кримера
 			}
 
 			BabyIchorStickerBuff: {
-				// DisplayName: Lil' Ichy
-				// Description: A baby ichor sticker is following you
+				DisplayName: Кроха Ихорь
+				Description: За тобой следует малёк ихорного прилипалы
 			}
 
 			BabyOcramBuff: {
-				// DisplayName: Baby Ocram
-				// Description: What could have been now follows you
+				DisplayName: Малыш Окрам
+				Description: Что быть могло - то и следует за тобой
 			}
 
 			BrainofConfusionBuff: {
-				// DisplayName: Brain of Confusion
-				// Description: A brain of confusion is following you
+				DisplayName: Мозг замешательства
+				Description: За тобой следует мозг замешательства
 			}
 
 			ChunkyandMeatballBuff: {
-				// DisplayName: Chunky and Meatball
-				// Description: Two reunited brothers are following you
+				DisplayName: Комочек и Тефтелька
+				Description: За тобой следуют два воссоединённых брата
 			}
 
 			ChunkySlimeBuff: {
-				// DisplayName: Chunky
-				// Description: Chunky is following you
+				DisplayName: Комочек
+				Description: За тобой следует Комочек
 			}
 
 			CompanionDungeonSoulPetBuff: {
-				// DisplayName: Companion Soul
-				// CommonDescription: A friendly dungeon soul is following you
-				/* Description:
+				DisplayName: Дух-спутник
+				CommonDescription: За тобой следует дружелюбный дух темницы
+				Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
-					Light pet slot
-					''' */
+					Ячейка светящегося питомца
+					'''
 			}
 
 			CompanionDungeonSoulPetBuff2: {
-				// DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
-				/* Description:
+				DisplayName: "{$Buffs.CompanionDungeonSoulPetBuff.DisplayName}"
+				Description:
 					'''
 					{$Buffs.CompanionDungeonSoulPetBuff.CommonDescription}
-					Pet slot
-					''' */
+					Ячейка питомца
+					'''
 			}
 
 			CursedSkullBuff: {
-				// DisplayName: Cursed Skull
-				// Description: It won't curse you, I promise
+				DisplayName: Проклятый череп
+				Description: Не проклянет, честное слово
 			}
 
 			CuteGastropodBuff: {
-				// DisplayName: Cute Gastropod
-				// Description: A cute gastropod is following you
+				DisplayName: Миленький брюхоног
+				Description: За тобой следует миленький брюхоног
 			}
 
 			CuteLamiaPetBuff: {
-				// DisplayName: Small Snake
-				// Description: A small snake is following you
+				DisplayName: Змейка
+				Description: За тобой следует маленькая змея
 			}
 
 			DemonHeartBuff: {
-				// DisplayName: Demon Heart
-				// Description: A demon heart is following you
+				DisplayName: Демоническое сердце
+				Description: За тобой следует демоническое сердце
 			}
 
 			DetachedHungryBuff: {
-				// DisplayName: Detached Hungry
-				// Description: You might be the next meal...
+				DisplayName: Отделившийся голодный
+				Description: Ты можешь стать следующей добычей...
 			}
 
 			DocileDemonEyeBuff: {
-				// DisplayName: Docile Demon Eye
-				// Description: A demon eye is following you
+				DisplayName: Мирный демонический глаз
+				Description: За тобой следует демонический глаз
 			}
 
 			DrumstickElementalBuff: {
-				// DisplayName: Drumstick Elemental
-				// Description: Dinner is following you
+				DisplayName: Куриный элементаль
+				Description: За тобой следует обед
 			}
 
 			DynamiteBunnyBuff: {
-				// DisplayName: Dynamite Bunny
-				// Description: A little dynamite bunny is following you
+				DisplayName: Взрывокролик
+				Description: За тобой следует маленький кролик с динамитом
 			}
 
 			EnchantedSwordBuff: {
-				// DisplayName: Enchanted Sword
-				// Description: The enchanted sword watches over you
+				DisplayName: Зачарованный меч
+				Description: За тобой присматривает зачарованный меч
 			}
 
 			FailureSlimeBuff: {
-				// DisplayName: Failure Slime
-				// Description: A strange creature is following you
+				DisplayName: Неудавшийся слизень
+				Description: За тобой следует странное создание
 			}
 
 			FairySlimeBuff: {
-				// DisplayName: Fairy Slime
-				// Description: A fairy slime is following you
+				DisplayName: Сказочный слизень
+				Description: За тобой следует сказочный слизень
 			}
 
 			FairySwarmBuff: {
-				// DisplayName: Fairy Swarm
-				// Description: A fairy swarm is following you
+				DisplayName: Рой фей
+				Description: За тобой следует рой фей
 			}
 
 			GhostMartianBuff: {
-				// DisplayName: Ghost Martian
-				// Description: A vengeful invader's ghost is following you
+				DisplayName: Призрачный марсианин
+				Description: За тобой следует мстительный призрак вторженца
 			}
 
 			GobletBuff: {
-				// DisplayName: Goblet
-				// Description: A tiny goblin is following you
+				DisplayName: Гоблинёныш
+				Description: За тобой следует крошечный гоблин
 			}
 
 			HornedSlimeBuff: {
-				// DisplayName: Horned Slime
-				// Description: A horned slime is following you
+				DisplayName: Рогатый слизень
+				Description: За тобой следует рогатый слизень
 			}
 
 			IlluminantSlimeBuff: {
-				// DisplayName: Illuminant Slime
-				// Description: An illuminant slime is following you
+				DisplayName: Светящийся слизень
+				Description: За тобой следует светящийся слизень
 			}
 
 			JoyousSlimeBuff: {
-				// DisplayName: Joyous Slime
-				// Description: A joyous slime is following you
+				DisplayName: Радостный слизень
+				Description: За тобой следует радостный слизень
 			}
 
 			LifelikeMechanicalFrogBuff: {
-				// DisplayName: Lifelike Mechanical Frog
-				// Description: Whatever happened to this frog at the anvil is a mystery
+				DisplayName: Реалистичная механическая лягушка
+				Description: Что сделали с этой лягушкой на наковальне - загадка
 			}
 
 			LilWrapsBuff: {
-				// DisplayName: Lil' Wraps
-				// Description: A mummy is following you
+				DisplayName: Кроха Обмотик
+				Description: За тобой следует мумия
 			}
 
 			MeatballSlimeBuff: {
-				// DisplayName: Meatball
-				// Description: Meatball is following you
+				DisplayName: Тефтелька
+				Description: За тобой следует Тефтелька
 			}
 
 			MetroidPetBuff: {
-				// DisplayName: Metroid
-				// Description: A space parasite is following you
+				DisplayName: Метроид
+				Description: За тобой следует космический паразит
 			}
 
 			MiniAntlionBuff: {
-				// DisplayName: Baby Antlion
-				// Description: A baby antlion is following you
+				DisplayName: Малыш-муравьиный лев
+				Description: За тобой следует малыш-муравьиный лев
 			}
 
 			MiniMegalodonBuff: {
-				// DisplayName: Mini Megalodon
-				// Description: It recognizes your strength...for now
+				DisplayName: Мини-мегалодон
+				Description: Он признаёт твою силу... пока что
 			}
 
 			NumberMuncherBuff: {
-				// DisplayName: Number Muncher
-				// Description: An educated amphibian is following you
+				DisplayName: Счетоводная амфибия
+				Description: За тобой следует образованное земноводное
 			}
 
 			OceanSlimeBuff: {
-				// DisplayName: Ocean Slime
-				// Description: An ocean slime is following you
+				DisplayName: Океанский слизень
+				Description: За тобой следует океанский слизень
 			}
 
 			PetCultistBuff: {
-				// DisplayName: Dwarf Cultist
-				// Description: A tiny cultist is following you
+				DisplayName: Культист-лунатик-коротышка
+				Description: За тобой следует крошечный культист-лунатик
 			}
 
 			PetDestroyerBuff: {
-				// DisplayName: Tiny Destroyer
-				// Description: A tiny Destroyer and two tiny Probes are following you
+				DisplayName: Крошечный Уничтожитель
+				Description: За тобой следуют крошечный Уничтожитель и два крошечных зонда
 			}
 
 			PetEaterofWorldsBuff: {
-				// DisplayName: Tiny Eater of Worlds
-				// Description: A tiny Eater of Worlds is following you
+				DisplayName: Крошечный Пожиратель миров
+				Description: За тобой следует крошечный Пожиратель миров
 			}
 
 			PetFishronBuff: {
-				// DisplayName: Fishron
-				// Description: A fishron is following you
+				DisplayName: Рыброн
+				Description: За тобой следует Рыброн
 			}
 
 			PetGoldfishBuff: {
-				// DisplayName: Possessed Goldfish
-				// Description: A possessed goldfish is following you
+				DisplayName: Одержимая золотая рыбка
+				Description: За тобой следует одержимая золотая рыбка
 			}
 
 			PetGolemHeadBuff: {
-				// DisplayName: Replica Golem Head
-				// Description: A replica Golem head watches over you
+				DisplayName: Реплика головы голема
+				Description: За тобой следует реплика головы голема
 			}
 
 			PetHarvesterBuff: {
-				// DisplayName: Stubborn Bird
-				// Description: A stubborn bird is following you
+				DisplayName: Упрямая птица
+				Description: За тобой следует упрямая птица
 			}
 
 			PetMoonBuff: {
-				// DisplayName: Personal Moon
-				// Description: A small moon is providing you with constant moonlight
+				DisplayName: Личная луна
+				Description: Маленькая луна постоянно освещает тебя лунным светом
 			}
 
 			PetPlanteraBuff: {
-				// DisplayName: Plantera Sprout
-				// Description: A Plantera sprout is following you
+				DisplayName: Росток Плантеры
+				Description: За тобой следует росток Плантеры
 			}
 
 			PetQueenSlimeBuff: {
-				// DisplayName: Playful Slimelings
-				// Description: A trio of slimelings is following you
+				DisplayName: Игривые слизлинги
+				Description: За тобой следует тройка слизлингов
 			}
 
 			PetSunBuff: {
-				// DisplayName: Personal Sun
-				// Description: A small sun is providing you with constant sunlight
+				DisplayName: Личное солнце
+				Description: Маленькое солнце постоянно освещает тебя солнечным светом
 			}
 
 			PetSunMoonBuff: {
-				// DisplayName: Personal Sun and Moon
-				/* Description:
+				DisplayName: Личные солнце и луна
+				Description:
 					'''
-					A small sun and moon are providing you with constant light
-					'No adverse gravitational effects will happen'
-					''' */
+					Маленькие солнце и луна постоянно освещают тебе путь
+					'Никаких нежелательных проблем с гравитацией, гарантировано'
+					'''
 			}
 
 			PigronataBuff: {
-				// DisplayName: Pigronata
-				// Description: A pigronata is thankful that you did not bust it
+				DisplayName: Свинокрыльята
+				Description: Свинокрыльята благодарна, что Вы её не разбили
 			}
 
 			PrinceSlimeBuff: {
-				// DisplayName: Prince Slime
-				// Description: A prince slime is following you
+				DisplayName: Слизень-принц
+				Description: За тобой следует слизень-принц
 			}
 
 			QueenLarvaBuff: {
-				// DisplayName: Queen Larva
-				// Description: A Queen Bee larva is following you
+				DisplayName: Личинка королевы
+				Description: За тобой следует личинка королевы пчёл
 			}
 
 			RainbowSlimeBuff: {
-				// DisplayName: Rainbow Slime
-				// Description: A rainbow slime is following you
+				DisplayName: Радужный слизень
+				Description: За тобой следует радужный слизень
 			}
 
 			SkeletronHandBuff: {
-				// DisplayName: Skeletron's Spare Hand
-				// Description: Skeletron's hand is attached to you
+				DisplayName: Запасная рука Скелетрона
+				Description: К тебе прицепилась рука Скелетрона
 			}
 
 			SkeletronPrimeHandBuff: {
-				// DisplayName: Skeletron Prime's Spare Hand
-				// Description: Skeletron Prime's hand is attached to you
+				DisplayName: Запасная рука Скелетрона Прайма
+				Description: К тебе прицепилась рука Скелетрона Прайма
 			}
 
 			StingSlimeBuff: {
-				// DisplayName: Sting Slime
-				// Description: A sting slime is following you
+				DisplayName: Жалящий слизень
+				Description: За тобой следует жалящий слизень
 			}
 
 			StrangeRobotBuff: {
-				// DisplayName: Strange Robot
-				// Description: A strange robot is following you
+				DisplayName: Странный робот
+				Description: За тобой следует странный робот
 			}
 
 			SuspiciousNuggetBuff: {
-				// DisplayName: Suspicious Nugget
-				// Description: A suspicious nugget is following you
+				DisplayName: Подозрительный наггетс
+				Description: За тобой следует подозрительный наггетс
 			}
 
 			SwarmofCthulhuBuff: {
-				// DisplayName: Swarm of Cthulhu
-				// Description: A swarm of Cthulhu is following you
+				DisplayName: Рой Ктулху
+				Description: За тобой следует рой Ктулху
 			}
 
 			TinyTwinsBuff: {
-				// DisplayName: Tiny Twins
-				// Description: The Twins are watching you
+				DisplayName: Крошечные близняшки
+				Description: Близнецы следят за тобой
 			}
 
 			TorchGodLightPetBuff: {
-				// DisplayName: Godly Torch
-				// Description: "'Your torch placement has been deemed unnecessary. I will do it correctly.'"
-				// EnableSmartCursor: Enable 'Smart Cursor' to automatically place torches
-				// NoTorches: No normal torches found to place
+				DisplayName: Божественный факел
+				Description: "'Расстановка Ваших факелов была сочтена излишней. Я всё исправлю.'"
+				EnableSmartCursor: Включи 'Смарт-курсор', чтобы автоматически ставить факелы
+				NoTorches: Нет обычных факелов для размещения
 			}
 
 			TorturedSoulBuff: {
-				// DisplayName: Tortured Soul
-				// Description: Shouldn't have been so greedy, eh?
+				DisplayName: Измученная душа
+				Description: Не стоило быть столь жадным, хм?
 			}
 
 			TrueObservingEyeBuff: {
-				// DisplayName: True Observing Eye
-				// Description: A tiny True Eye of Cthulhu is following you
+				DisplayName: Истинное следящее око
+				Description: За тобой следует крошечное истинное око Ктулху
 			}
 
 			TurtleSlimeBuff: {
-				// DisplayName: Turtle Slime
-				// Description: A turtle slime is following you
+				DisplayName: Черепаший слизень
+				Description: За тобой следует черепаший слизень
 			}
 
 			VampireBatBuff: {
-				// DisplayName: Vampire Bat
-				// Description: A particularly dashing vampire is following you
+				DisplayName: Летучая мышь-вампир
+				Description: За тобой следует весьма элегантный вампир
 			}
 
 			WallFragmentBuff: {
-				// DisplayName: Wall Fragment
-				// Description: Several fragments of the Wall are following you
+				DisplayName: Часть стены
+				Description: За тобой следуют несколько частей стены плоти
 			}
 
 			YoungHarpyBuff: {
-				// DisplayName: Young Harpy
-				// Description: A young harpy is following you
+				DisplayName: Молодая гарпия
+				Description: За тобой следует молодая гарпия
 			}
 
 			YoungWyvernBuff: {
-				// DisplayName: Young Wyvern
-				// Description: A young wyvern is following you
+				DisplayName: Молодая виверна
+				Description: За тобой следует молодая виверна
 			}
 
 			WobyBuff: {
-				// DisplayName: Woby, 'A lovable dog...'
-				// Description: A loyal canine is following you
+				DisplayName: Воби, 'Любимая собака...'
+				Description: За тобой следует верная собака
 			}
 
 			CompanionDungeonSoulMinionBuff: {
-				// DisplayName: Companion Soul Minion
-				// Description: A friendly Soul is fighting for you
-				// TinyDungeonSouls: Tiny Dungeon Souls
+				DisplayName: Дух-компаньон-прислужник
+				Description: На твоей стороне сражается дружелюбный дух
+				TinyDungeonSouls: Tiny Dungeon Souls
 			}
 
 			CuteSlimeSpawnEnableBuff: {
-				// DisplayName: Jellied Ale
-				// Description: Your perception of slimes is a bit off...
-				// CuteSlimesCanSpawn: Cute Slimes that can spawn
-				// None: None
+				DisplayName: Загустевший эль
+				Description: Твоё представление о слизнях слегка неверно...
+				CuteSlimesCanSpawn: Слизняшки, которые могут появиться
+				None: Нет
 			}
 
 			DroneControllerBuff: {
-				// DisplayName: Drone Controller
-				// Description: Command a swarm of drones
+				DisplayName: Пульт управления дроном
+				Description: Управляй роем дронов
 			}
 
 			EmpoweringBuff: {
-				// DisplayName: Empowering
-				// Description: You get stronger the longer you don't receive damage
-				// IncreasedDamage: Increased Damage: {0}%
+				DisplayName: Превосходство
+				Description: Чем дольше ты не получаешь урон - тем ты сильнее
+				IncreasedDamage: Увеличение урона: {0}%
 			}
 
 			EnhancedHunterBuff: {
-				// DisplayName: Enhanced Hunter
-				// Description: Shows the location of enemies outside your vision range
+				DisplayName: Улучшенный охотник
+				Description: Показывает расположение врагов за областью видимости
 			}
 
-			// EagerUnderlingBuff.DisplayName: Eager Underling
+			EagerUnderlingBuff.DisplayName: Нетерпеливый прислужник
 
 			SigilOfTheWingBuff: {
-				// DisplayName: Blessing of the Wing
-				// Description: Your spirit hangs on by a thread
+				DisplayName: Благословение Крыла
+				Description: Твой дух держится на ниточке
 			}
 
 			BabyHarvesterBuff: {
-				// DisplayName: Ominous Bird
+				DisplayName: Зловещая птица
 				# Do not translate Description
-				// Description: REPLACEME
-				Absorbed: asdf {0} {^0:one;two;three}
-				// Tier1: What's this bird doing?
-				// Tier2: I wonder if it will keep growing
-				// Tier3: I'm not sure it should keep eating...
+				Description: REPLACEME
+				Absorbed: Птица поглотила {0} душ
+				Tier1: Что эта птица творит?
+				Tier2: Интересно, будет ли она расти и дальше
+				Tier3: Не думаю, что ей стоит продолжать есть...
 			}
 
 			SoulBurnBuff: {
-				// DisplayName: Soul Burn
-				// Description: Rapidly losing life
+				DisplayName: Душевный ожог
+				Description: Стремительно теряешь жизнь
 			}
 
 			SlimePackMinionBuff: {
-				// DisplayName: Slime
-				// Description: A friendly Slime from your Knapsack is fighting for you
+				DisplayName: Слизень из ранца
+				Description: На твоей стороне сражается слизень, прямиком из твоего ранца
 			}
 
 			SoulBuff: {
-				// DisplayName: Soul
-				// Description: Releases a soul
+				DisplayName: Душа
+				Description: Выпускает душу
 			}
 
 			StarRodBuff: {
-				// DisplayName: Star Rod
-				// Description: Falling Stars will land closer to you
+				DisplayName: Звездоотвод
+				Description: Упавшие звёзды будут приземляться ближе к тебе
 			}
 
 			NeurotoxinBuff: {
-				// CommonName: Neurotoxin
-				// CommonDescription: Rapidly losing life
+				CommonName: Нейротоксин
+				CommonDescription: Стремительно теряешь жизнь
 			}
 
-			/* Campfire.WyvernCampfireNearby:
+			Campfire.WyvernCampfireNearby:
 				'''
-				{$Items.WyvernCampfireItem.DisplayName} nearby:
-				You are protected from Wyverns
-				Harpy feathers don't knock you away
-				''' */
-			// ShyUnderlingBuff.DisplayName: Shy Underling
-			// SeriousUnderlingBuff.DisplayName: Serious Underling
+				Рядом {$Items.WyvernCampfireItem.DisplayName}:
+				Ты под защитой от виверн
+				Перья гарпий не отталкивают тебя
+				'''
+			ShyUnderlingBuff.DisplayName: Стеснительный прислужник
+			SeriousUnderlingBuff.DisplayName: Серьёзный прислужник
 		}
 
 		Common: {
-			// ConcatenateTwo: "{0} {1}"
-			// AoMMVersion: (AoMM version)
-			// Selected: Selected: {0}
-			// BaseDamage: Base Damage: {0}
-			// BaseKnockback: Base Knockback: {0}
+			ConcatenateTwo: "{0} {1}"
+			AoMMVersion: (версия из AoMM)
+			Selected: Выбрано: {0}
+			BaseDamage: Базовый урон: {0}
+			BaseKnockback: Базовое отбрасывание: {0}
 
 			Tooltips: {
-				// PetHasAltSkins: Appearance can be changed with {$Items.VanitySelector.DisplayName}
-				// GoblinUnderlingBuff.CommonDescription: A loyal underling is fighting for you
+				PetHasAltSkins: "{$Items.VanitySelector.DisplayName} может изменить вид этого питомца"
+				GoblinUnderlingBuff.CommonDescription: На твоей стороне сражается верный прислужник
 
 				GoblinUnderlingItem: {
-					/* CommonTooltip:
+					CommonTooltip:
 						'''
-						Class can be changed with [c/{0}:<right>]
-						Gets stronger throughout progression
-						Only one can be summoned
-						''' */
-					/* CommonTooltipFormat:
+						Нажми [c/{0}:<right>], чтобы изменить класс
+						Становится сильнее по ходу игры
+						Призвать можно лишь одного
+						'''
+					CommonTooltipFormat:
 						'''
 						{0}
 						{1}
 						{2}
-						''' */
-					// CantSwitchClassDuringCombat: Cannot switch classes during combat
+						'''
+					CantSwitchClassDuringCombat: Нельзя изменить класс во время боя
 				}
 			}
 		}
@@ -616,2217 +616,2217 @@ Mods: {
 		Items: {
 			# Cute Slimes
 			CuteSlime: {
-				// AccessoryBlacklisted: Blacklisted
-				// AccessoryNone: None
-				// HatSlot: Hat Slot: {0}
-				// BodySlot: Body Slot: {0}
-				// CarriedSlot: Carry Slot: {0}
-				// AccessorySlot: Accessory Slot: {0}
+				AccessoryBlacklisted: В чёрном списке
+				AccessoryNone: Пусто
+				HatSlot: Ячейка шляпы: {0}
+				BodySlot: Ячейка тела: {0}
+				CarriedSlot: Ячейка рук: {0}
+				AccessorySlot: Ячейка аксессуара: {0}
 			}
 
 			CuteSlimeBlackItem: {
-				// DisplayName: Bottled Cute Black Slime
-				// Tooltip: Summons a cute black slime to follow you
+				DisplayName: Чёрная Слизняшка в бутылке
+				Tooltip: Призывает миленького чёрного слизня
 			}
 
 			CuteSlimeBlueItem: {
-				// DisplayName: Bottled Cute Blue Slime
-				// Tooltip: Summons a cute blue slime to follow you
+				DisplayName: Синяя Слизняшка в бутылке
+				Tooltip: Призывает миленького синего слизня
 			}
 
 			CuteSlimeCorruptItem: {
-				// DisplayName: Bottled Cute Corrupt Slime
-				// Tooltip: Summons a cute corrupt slime to follow you
+				DisplayName: Порченная Слизняшка в бутылке
+				Tooltip: Призывает миленького порченного слизня
 			}
 
 			CuteSlimeCorruptJungleItem: {
-				// DisplayName: Bottled Cute Corrupt Jungle Slime
-				// Tooltip: Summons a cute corrupt jungle slime to follow you
+				DisplayName: Порченная Слизняшка джунглей в бутылке
+				Tooltip: Призывает миленького порченного слизня джунглей
 			}
 
 			CuteSlimeCrimsonItem: {
-				// DisplayName: Bottled Cute Crimson Slime
-				// Tooltip: Summons a cute crimson slime to follow you
+				DisplayName: Багряная Слизняшка в бутылке
+				Tooltip: Призывает миленького багряного слизня
 			}
 
 			CuteSlimeCrimsonJungleItem: {
-				// DisplayName: Bottled Cute Crimson Jungle Slime
-				// Tooltip: Summons a cute crimson jungle slime to follow you
+				DisplayName: Багряная Слизняшка джунглей в бутылке
+				Tooltip: Призывает миленького багряного слизня джунглей
 			}
 
 			CuteSlimeDungeonItem: {
-				// DisplayName: Bottled Cute Dungeon Slime
-				// Tooltip: Summons a cute dungeon slime to follow you
+				DisplayName: Темничная Слизняшка в бутылке
+				Tooltip: Призывает миленького темничного слизня
 			}
 
 			CuteSlimeGoldenItem: {
-				// DisplayName: Bottled Cute Golden Slime
-				// Tooltip: Summons a cute golden slime to follow you
+				DisplayName: Золотая Слизняшка в бутылке
+				Tooltip: Призывает миленького золотого слизня
 			}
 
 			CuteSlimeGreenItem: {
-				// DisplayName: Bottled Cute Green Slime
-				// Tooltip: Summons a cute green slime to follow you
+				DisplayName: Зелёная Слизняшка в бутылке
+				Tooltip: Призывает миленького зелёного слизня
 			}
 
 			CuteSlimeHoneyItem: {
-				// DisplayName: Bottled Cute Honey Slime
-				// Tooltip: Summons a cute honey slime to follow you
+				DisplayName: Медовая Слизняшка в бутылке
+				Tooltip: Призывает миленького медового слизня
 			}
 
 			CuteSlimeIceItem: {
-				// DisplayName: Bottled Cute Ice Slime
-				// Tooltip: Summons a cute ice slime to follow you
+				DisplayName: Ледяная Слизняшка в бутылке
+				Tooltip: Призывает миленького ледяного слизня
 			}
 
 			CuteSlimeIlluminantItem: {
-				// DisplayName: Bottled Cute Illuminant Slime
-				// Tooltip: Summons a cute illuminant slime to follow you
+				DisplayName: Светящаяся Слизняшка в бутылке
+				Tooltip: Призывает миленького светящегося слизня
 			}
 
 			CuteSlimeJungleItem: {
-				// DisplayName: Bottled Cute Jungle Slime
-				// Tooltip: Summons a cute jungle slime to follow you
+				DisplayName: Слизняшка джунглей в бутылке
+				Tooltip: Призывает миленького слизня джунглей
 			}
 
 			CuteSlimeLavaItem: {
-				// DisplayName: Bottled Cute Lava Slime
-				// Tooltip: Summons a cute lava slime to follow you
+				DisplayName: Лавовая Слизняшка в бутылке
+				Tooltip: Призывает миленького лавового слизня
 			}
 
 			CuteSlimePinkItem: {
-				// DisplayName: Bottled Cute Pink Slime
-				// Tooltip: Summons a cute pink slime to follow you
+				DisplayName: Розовая Слизняшка в бутылке
+				Tooltip: Призывает миленького розового слизня
 			}
 
 			CuteSlimePinkIceItem: {
-				// DisplayName: Bottled Cute Pink Ice Slime
-				// Tooltip: Summons a cute pink ice slime to follow you
+				DisplayName: Розовая ледяная Слизняшка в бутылке
+				Tooltip: Призывает миленького розового ледяного слизня
 			}
 
 			CuteSlimePrincessItem: {
-				// DisplayName: Bottled Cute Princess Slime
-				// Tooltip: Summons a cute princess slime to follow you
+				DisplayName: Слизняшка-принцесса в бутылке
+				Tooltip: Призывает миленького слизня-принцессу
 			}
 
 			CuteSlimePurpleItem: {
-				// DisplayName: Bottled Cute Purple Slime
-				// Tooltip: Summons a cute purple slime to follow you
+				DisplayName: Фиолетовая Слизняшка в бутылке
+				Tooltip: Призывает миленького фиолетового слизня
 			}
 
 			CuteSlimePurpleIceItem: {
-				// DisplayName: Bottled Cute Purple Ice Slime
-				// Tooltip: Summons a cute purple ice slime to follow you
+				DisplayName: Фиолетовая ледяная Слизняшка в бутылке
+				Tooltip: Призывает миленького фиолетового ледяного слизня
 			}
 
 			CuteSlimeQueenItem: {
-				// DisplayName: Bottled Cute Queen Slime
-				// Tooltip: Summons a cute queen slime to follow you
+				DisplayName: Слизняшка-королева в бутылке
+				Tooltip: Призывает миленького слизня-королеву
 			}
 
 			CuteSlimeRainbowItem: {
-				// DisplayName: Bottled Cute Rainbow Slime
-				// Tooltip: Summons a cute rainbow slime to follow you
+				DisplayName: Радужная Слизняшка в бутылке
+				Tooltip: Призывает миленького радужного слизня
 			}
 
 			CuteSlimeRedItem: {
-				// DisplayName: Bottled Cute Red Slime
-				// Tooltip: Summons a cute red slime to follow you
+				DisplayName: Красная Слизняшка в бутылке
+				Tooltip: Призывает миленького красного слизня
 			}
 
 			CuteSlimeRedIceItem: {
-				// DisplayName: Bottled Cute Red Ice Slime
-				// Tooltip: Summons a cute red ice slime to follow you
+				DisplayName: Красная ледяная Слизняшка в бутылке
+				Tooltip: Призывает миленького красного ледяного слизня
 			}
 
 			CuteSlimeSandItem: {
-				// DisplayName: Bottled Cute Sand Slime
-				// Tooltip: Summons a cute sand slime to follow you
+				DisplayName: Песчаная Слизняшка в бутылке
+				Tooltip: Призывает миленького песчаный слизня
 			}
 
 			CuteSlimeShimmerItem: {
-				// DisplayName: Bottled Cute Shimmer Slime
-				// Tooltip: Summons a cute shimmer slime to follow you
+				DisplayName: Мерцающая Слизняшка в бутылке
+				Tooltip: Призывает миленького мерцающего слизня
 			}
 
 			CuteSlimeToxicItem: {
-				// DisplayName: Bottled Cute Toxic Slime
-				// Tooltip: Summons a cute toxic slime to follow you
+				DisplayName: Токсичная Слизняшка в бутылке
+				Tooltip: Призывает миленького токсичного слизня
 			}
 
 			CuteSlimeXmasItem: {
-				// DisplayName: Bottled Cute Christmas Slime
-				// Tooltip: Summons a cute christmas slime to follow you
+				DisplayName: Рождественская Слизняшка в бутылке
+				Tooltip: Призывает миленького рождественского слизня
 			}
 
 			CuteSlimeYellowItem: {
-				// DisplayName: Bottled Cute Yellow Slime
-				// Tooltip: Summons a cute yellow slime to follow you
+				DisplayName: Жёлтая Слизняшка в бутылке
+				Tooltip: Призывает миленького жёлтого слизня
 			}
 
 			# Pets. AoMM versions are auto-generated
 			AbeeminationItem: {
-				// DisplayName: Abeemination
-				/* Tooltip:
+				DisplayName: Пчелиная масса
+				Tooltip:
 					'''
-					Summons a friendly abeemination to follow you
+					Призывает дружелюбную пчелиную массу
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AlienHornetItem: {
-				// DisplayName: Vortex Nectar
-				// Tooltip: Summons a friendly alien hornet to follow you
+				DisplayName: Вихревой нектар
+				Tooltip: Призывает дружелюбного шершня-пришельца
 			}
 
 			AnimatedTomeItem: {
-				// DisplayName: Animated Tome
-				/* Tooltip:
+				DisplayName: Оживший фолиант
+				Tooltip:
 					'''
-					Summons a friendly animated tome to follow you
+					Призывает дружелюбный оживший фолиант
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			AnomalocarisItem: {
-				// DisplayName: Ornery Shrimp
-				/* Tooltip:
+				DisplayName: Злобная креветка
+				Tooltip:
 					'''
-					Summons a prehistoric shrimp to follow you
+					Призывает доисторическую креветку
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			BabyCrimeraItem: {
-				// DisplayName: Juicy Vertebrae
-				// Tooltip: Summons a baby crimera to follow you
+				DisplayName: Сочный хребет
+				Tooltip: Призывает малыша-кримеру
 			}
 
 			BabyIchorStickerItem: {
-				// DisplayName: Sleeping Ichor Sticker
-				// Tooltip: Summons a baby ichor sticker to follow you
+				DisplayName: Спящий ихоровый прилипала
+				Tooltip: Призывает кроху-ихорового прилипалу
 			}
 
 			BabyOcramItem: {
-				// DisplayName: Baby Ocram
-				// Tooltip: Summons a miniature Ocram that follows you
+				DisplayName: Малыш Окрам
+				Tooltip: Призывает миниатюрного Окрама
 			}
 
 			BrainofConfusionItem: {
-				// DisplayName: Brain of Confusion
-				// Tooltip: Summons a brain of confusion to follow aimlessly behind you
+				DisplayName: Мозг замешательства
+				Tooltip: Призывает мозг замешательства, бесцельно слоняющегося за тобой
 			}
 
 			ChunkyandMeatballItem: {
-				// DisplayName: Chunky and Meatball
-				// Tooltip: Summons a pair of inseperable brothers to follow you
+				DisplayName: Комочек и Тефтелька
+				Tooltip: Призывает нераздельных братьев
 			}
 
 			ChunkySlimeItem: {
-				// DisplayName: Bottled Chunky
-				// Tooltip: Summons Chunky to follow you
+				DisplayName: Комочек в бутылке
+				Tooltip: Призывает Комочка
 			}
 
 			CompanionDungeonSoulPetItem: {
-				// DisplayName: Companion Soul
-				// CommonTooltip: Summons a friendly Soul to light your way
-				/* Tooltip:
+				DisplayName: Дух-компаньон
+				CommonTooltip: Призывает дружелюбного духа, который осветит твой путь
+				Tooltip:
 					'''
 					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
-					Light pet slot
-					''' */
+					Ячейка светящегося питомца
+					'''
 			}
 
 			CompanionDungeonSoulPetItem2: {
-				// DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
-				/* Tooltip:
+				DisplayName: "{$Items.CompanionDungeonSoulPetItem.DisplayName}"
+				Tooltip:
 					'''
 					{$Items.CompanionDungeonSoulPetItem.CommonTooltip}
-					Pet slot
-					''' */
+					Ячейка питомца
+					'''
 			}
 
 			CursedSkullItem: {
-				// DisplayName: Inert Skull
-				/* Tooltip:
+				DisplayName: Спящий череп
+				Tooltip:
 					'''
-					Summons a friendly cursed skull that follows you
+					Призывает дружелюбный проклятый череп
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			CuteGastropodItem: {
-				// DisplayName: Mysterious Pod
-				// Tooltip: Summons a cute gastropod to follow you
+				DisplayName: Загадочный контейнер
+				Tooltip: Призывает милого брюхонога
 			}
 
 			CuteLamiaPetItem: {
-				// DisplayName: Shaking Snake Pot
-				/* Tooltip:
+				DisplayName: Трясущийся горшок змей
+				Tooltip:
 					'''
-					Summons a small, friendly snake to follow you
+					Призывает маленькую дружелюбную змею
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			DemonHeartItem: {
-				// DisplayName: Demon Heart
-				// Tooltip: Summons a friendly demon heart to follow you
+				DisplayName: Демоническое сердце
+				Tooltip: Призывает дружелюбное демоническое сердце
 			}
 
 			DetachedHungryItem: {
-				// DisplayName: Unconscious Hungry
-				// Tooltip: Summons a detached hungry to follow you
+				DisplayName: Бессознательный голодный
+				Tooltip: Призывает отделившегося голодного
 			}
 
 			DocileDemonEyeItem: {
-				// DisplayName: Docile Demon Eye
-				/* Tooltip:
+				DisplayName: Мирный демонический глаз
+				Tooltip:
 					'''
-					Summons a docile demon eye to follow you
+					Призывает мирный демонический глаз
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			DrumstickElementalItem: {
-				// DisplayName: Magical Drumstick
-				// Tooltip: Summons a delicious drumstick elemental to follow you
+				DisplayName: Магическая куриная ножка
+				Tooltip: Призывает вкусного куриного элементаля
 			}
 
 			DynamiteBunnyItem: {
-				// DisplayName: Dynamite Carrot
-				/* Tooltip:
+				DisplayName: Взрывная морковка
+				Tooltip:
 					'''
-					Summons a dynamite bunny to follow you
+					Призывает взрывокролика
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			EnchantedSwordItem: {
-				// DisplayName: Enchanted Sword
-				// Tooltip: Summons an enchanted sword to watch over you
+				DisplayName: Зачарованный меч
+				Tooltip: Призывает зачарованный меч, который присмотрит за тобой
 			}
 
 			FailureSlimeItem: {
-				// DisplayName: Slimy Skull
-				// Tooltip: Summons a strange creature to follow you
+				DisplayName: Склизкий череп
+				Tooltip: Призывает странное существо
 			}
 
 			FairySlimeItem: {
-				// DisplayName: Bottled Fairy Slime
-				// Tooltip: Summons a friendly fairy slime to follow you
+				DisplayName: Сказочный слизень в бутылке
+				Tooltip: Призывает дружелюбного сказочного слизня
 			}
 
 			FairySwarmItem: {
-				// DisplayName: Bottle of Assorted Fairies
-				// Tooltip: Summons several fairies to swarm around you
+				DisplayName: Ассортимент фей в бутылке
+				Tooltip: Призывает несколько фей, что будут кружить вокруг тебя
 			}
 
 			GhostMartianItem: {
-				// DisplayName: K-II Meter
-				// Tooltip: Summons a vengeful invader's ghost to follow you
+				DisplayName: Измеритель K-II
+				Tooltip: Призывает мстительный призрак вторженца
 			}
 
 			GobletItem: {
-				// DisplayName: Goblet Battle Standard
-				// Tooltip: Summons a tiny goblin to follow you
+				DisplayName: Боевое знамя гоблинёнышей
+				Tooltip: Призывает крошечного гоблина
 			}
 
 			HornedSlimeItem: {
-				// DisplayName: Bottled Horned Slime
-				// Tooltip: Summons a friendly horned slime to follow you
+				DisplayName: Рогатый слизень в бутылке
+				Tooltip: Призывает дружелюбного рогатого слизня
 			}
 
 			IlluminantSlimeItem: {
-				// DisplayName: Bottled Illuminant Slime
-				// Tooltip: Summons a friendly illuminant slime to follow you
+				DisplayName: Светящийся слизень в бутылке
+				Tooltip: Призывает дружелюбного светящегося слизня
 			}
 
 			JoyousSlimeItem: {
-				// DisplayName: Bottled Joyous Slime
-				/* Tooltip:
+				DisplayName: Радостный слизень в бутылке
+				Tooltip:
 					'''
-					Summons a friendly joyous slime to follow you
+					Призывает дружелюбного радостного слизня
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			LifelikeMechanicalFrogItem: {
-				// DisplayName: Lifelike Mechanical Frog
-				/* Tooltip:
+				DisplayName: Реалистичная механическая лягушка
+				Tooltip:
 					'''
-					Summons a friendly frog to follow you
+					Призывает дружелюбную лягушку
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			LilWrapsItem: {
-				// DisplayName: Gilded Coffin
-				/* Tooltip:
+				DisplayName: Позолоченный гроб
+				Tooltip:
 					'''
-					Summons a mummy to follow you
+					Призывает мумию
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MeatballSlimeItem: {
-				// DisplayName: Bottled Meatball
-				// Tooltip: Summons Meatball to follow you
+				DisplayName: Тефтелька в бутылке
+				Tooltip: Призывает Тефтельку
 			}
 
 			MetroidPetItem: {
-				// DisplayName: Parasite Container
-				/* Tooltip:
+				DisplayName: Контейнер с паразитом
+				Tooltip:
 					'''
-					Summons a space parasite to follow you
+					Призывает космического паразита
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MiniAntlionItem: {
-				// DisplayName: Antlion Egg
-				/* Tooltip:
+				DisplayName: Яйцо муравьиного льва
+				Tooltip:
 					'''
-					Summons a friendly baby antlion to follow you
+					Призывает дружелюбного малыша-муравьиного льва
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			MiniMegalodonItem: {
-				// DisplayName: Small Megalodon Tooth
-				// Tooltip: Summons a friendly mini megalodon that follows you
+				DisplayName: Маленький зуб мегалодона
+				Tooltip: Призывает дружелюбного мини-мегалодона
 			}
 
 			NumberMuncherItem: {
-				// DisplayName: Archaic Storage Device
-				// Tooltip: Summons an educated amphibian that follows you
+				DisplayName: Устаревшее запоминающее устройство
+				Tooltip: Призывает образованного земноводного
 			}
 
 			OceanSlimeItem: {
-				// DisplayName: Bottled Ocean Slime
-				/* Tooltip:
+				DisplayName: Океанский слизень в бутылке
+				Tooltip:
 					'''
-					Summons a friendly ocean slime to follow you
+					Призывает дружелюбного океанского слизня
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetCultistItem: {
-				// DisplayName: Tiny Ominous Coin
-				// Tooltip: Summons a tiny cultist to follow you and heal when injured
+				DisplayName: Зловещая монетка
+				Tooltip: Призывает крошечного культиста, который будет лечить твои раны
 			}
 
 			PetDestroyerItem: {
-				// DisplayName: Destroyer's Core
-				// Tooltip: Summons a tiny Destroyer and two tiny probes to follow you
+				DisplayName: Ядро уничтожителя
+				Tooltip: Призывает крошечных уничтожителя и два зонда
 			}
 
 			PetEaterofWorldsItem: {
-				// DisplayName: Cracked Worm Egg
-				// Tooltip: Summons a tiny Eater of Worlds to follow you
+				DisplayName: Треснувшее яйцо червя
+				Tooltip: Призывает крошечного пожирателя миров
 			}
 
 			PetFishronItem: {
-				// DisplayName: Soggy Fish Cake
-				/* Tooltip:
+				DisplayName: Размякшая рыбная лепёшка
+				Tooltip:
 					'''
-					Summons a friendly fishron that flies with you
+					Призывает дружелюбного Рыброна, летящего за тобой
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetGoldfishItem: {
-				// DisplayName: Possessed Fish Idol
-				/* Tooltip:
+				DisplayName: Одержимая статуя рыбы
+				Tooltip:
 					'''
-					Summons a goldfish that follows you
-					'You feel like you lost something important in obtaining this idol...'
+					Призывает золотую рыбку
+					'Получив эту статую, ты чувствуешь утрату чего-то важного...'
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetGolemHeadItem: {
-				// DisplayName: Replica Golem Head
-				/* Tooltip:
+				DisplayName: Реплика головы голема
+				Tooltip:
 					'''
-					Summons a replica Golem head to watch over you
-					Shoots bouncing fireballs at nearby enemies
-					''' */
+					Призывает реплику головы голема, которая присмотрит за тобой
+					Стреляет прыгучими шарами огня в ближайших врагов
+					'''
 			}
 
 			PetHarvesterItem: {
-				// DisplayName: Stubborn Bird Soul
-				// Tooltip: Summons a stubborn bird to follow you
+				DisplayName: Душа упрямой птицы
+				Tooltip: Призывает упрямую птицу
 			}
 
 			PetMoonItem: {
-				// DisplayName: Bottled Moon
-				/* Tooltip:
+				DisplayName: Луна в бутылке
+				Tooltip:
 					'''
-					Summons a small moon that provides you with constant moonlight
-					Shows the current moon cycle in the buff tip
+					Призывает маленькую луну, освещающую путь лунным светом
+					Показывает фазу луны в описании
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PetPlanteraItem: {
-				// DisplayName: Potted Plantera Seed
-				/* Tooltip:
+				DisplayName: Семя Плантеры в горшке
+				Tooltip:
 					'''
-					Summons a Plantera sprout to watch over you
-					'It's a mean and green'
-					''' */
+					Призывает росток Плантеры, присматривающей за тобой
+					'Зелёный да плетёный'
+					'''
 			}
 
 			PetQueenSlimeItem: {
-				// DisplayName: Playful Slimelings
-				// Tooltip: Summons a trio of slimelings to follow you
+				DisplayName: Игривые слизлинги
+				Tooltip: Призывает тройку слизлингов
 			}
 
 			PetSunItem: {
-				// DisplayName: Bottled Sun
-				/* Tooltip:
+				DisplayName: Солнце в бутылке
+				Tooltip:
 					'''
-					Summons a small sun that provides you with constant sunlight
-					Shows the current time in the buff tip
-					''' */
+					Призывает маленькое солнце, освещающее путь солнечным светом
+					Показывает текущее время в описании
+					'''
 			}
 
 			PetSunMoonItem: {
-				// DisplayName: Bottled Sun and Moon
-				/* Tooltip:
+				DisplayName: Солнце и луна в бутылке
+				Tooltip:
 					'''
-					Summons a small sun and moon that provide you with constant light
-					Shows the current time in the buff tip
-					Shows the current moon cycle in the buff tip
+					Призывает маленьких солнце и луну, постоянно освещающие путь
+					Показывает текущее время в описании
+					Показывает фазу луны в описании
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PigronataItem: {
-				// DisplayName: Pigronata
-				/* Tooltip:
+				DisplayName: Свинокрыльята
+				Tooltip:
 					'''
-					Summons a friendly pigronata to follow you
+					Призывает дружелюбную свинокрыльяту
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			PrinceSlimeItem: {
-				// DisplayName: Bottled Prince Slime
-				// Tooltip: Summons a prince slime to follow you
+				DisplayName: Слизень-принц в бутылке
+				Tooltip: Призывает слизня-принца
 			}
 
 			QueenLarvaItem: {
-				// DisplayName: Queen Larva
-				/* Tooltip:
+				DisplayName: Личинка королевы
+				Tooltip:
 					'''
-					Summons a Queen Bee larva to follow you
+					Призывает личинку королевы
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			RainbowSlimeItem: {
-				// DisplayName: Bottled Rainbow Slime
-				// Tooltip: Summons a friendly rainbow slime to follow you
+				DisplayName: Радужный слизень в бутылке
+				Tooltip: Призывает дружелюбного радужного слизня
 			}
 
 			SkeletronHandItem: {
-				// DisplayName: Skeletron's Spare Hand
-				/* Tooltip:
+				DisplayName: Запасная рука Скелетрона
+				Tooltip:
 					'''
-					Summons Skeletron's hand attached to you
+					Призывает руку Скелетрона, цепляющуюся к тебе
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			SkeletronPrimeHandItem: {
-				// DisplayName: Skeletron Prime's Spare Hand
-				/* Tooltip:
+				DisplayName: Запасная рука Скелетрона Прайма
+				Tooltip:
 					'''
-					Summons Skeletron Prime's hand attached to you
+					Призывает руку Скелетрона Прайма, цепляющуюся к тебе
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			StingSlimeItem: {
-				// DisplayName: Bottled Sting Slime
-				/* Tooltip:
+				DisplayName: Жалящий слизень в бутылке
+				Tooltip:
 					'''
-					Summons a friendly sting slime to follow you
+					Призывает дружелюбного жалящего слизня
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			StrangeRobotItem: {
-				// DisplayName: Odd Mechanical Device
-				// Tooltip: Summons a strange robot to follow you
+				DisplayName: Причудливое механическое устройство
+				Tooltip: Призывает странного робота
 			}
 
 			SuspiciousNuggetItem: {
-				// DisplayName: Suspicious Nugget
-				// Tooltip: Summons a suspicious nugget to follow you
+				DisplayName: Подозрительный наггетс
+				Tooltip: Призывает подозрительный наггетс
 			}
 
 			SwarmofCthulhuItem: {
-				// DisplayName: Bottle of Restless Eyes
-				// Tooltip: Summons several eyes to swarm around you
+				DisplayName: Бутыль беспокойных глаз
+				Tooltip: Призывает несколько глаз, снующих вокруг тебя
 			}
 
 			TinyTwinsItem: {
-				// DisplayName: Tiny Twins
-				// Tooltip: Summons a tiny pair of The Twins to follow you
+				DisplayName: Крошечные близняшки
+				Tooltip: Призывает крошечную пару Близнецов
 			}
 
 			TorchGodLightPetItem: {
-				// DisplayName: Godly Torch
-				/* Tooltip:
+				DisplayName: Божественный факел
+				Tooltip:
 					'''
-					Summons a godly torch to follow you
-					Automatically places your normal torches with 'Smart Cursor' active
-					''' */
+					Призывает божественный факел
+					Автоматически расставляет обычные факелы, когда включён 'Смарт-курсор'
+					'''
 			}
 
 			TorturedSoulItem: {
-				// DisplayName: Tortured Soul
-				// Tooltip: Summons an unfriendly tortured soul to follow you
+				DisplayName: Измученная душа
+				Tooltip: Призывает недружелюбную измученную душу
 			}
 
 			TrueObservingEyeItem: {
-				// DisplayName: True Observing Eye
-				// Tooltip: Summons a True Eye of Cthulhu to watch after you
+				DisplayName: Истинное следящее око
+				Tooltip: Призывает истинное око Ктулху, которое присмотрит за тобой
 			}
 
 			TurtleSlimeItem: {
-				// DisplayName: Bottled Turtle Slime
-				// Tooltip: Summons a friendly turtle slime to follow you
+				DisplayName: Черепаший слизень в бутылке
+				Tooltip: Призывает дружелюбного черепашьего слизня
 			}
 
 			VampireBatItem: {
-				// DisplayName: Fixed Bat Wing
-				/* Tooltip:
+				DisplayName: Подлеченное крыло летучей мыши
+				Tooltip:
 					'''
-					Summons a friendly vampire that flies with you
+					Призывает дружелюбного вампира, летящего за тобой вслед
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			WallFragmentItem: {
-				// DisplayName: Wall Fragment
-				// Tooltip: Summons several fragments of the Wall to follow you
+				DisplayName: Часть стены
+				Tooltip: Призывает несколько частей стены плоти
 			}
 
 			YoungHarpyItem: {
-				// DisplayName: Clump of Down Feathers
-				/* Tooltip:
+				DisplayName: Горсть птичьего пуха
+				Tooltip:
 					'''
-					Summons a friendly harpy to follow you
+					Призывает дружелюбную гарпию
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			YoungWyvernItem: {
-				// DisplayName: Wyverntail
-				/* Tooltip:
+				DisplayName: Виверний хвост
+				Tooltip:
 					'''
-					Summons a friendly young wyvern that flies with you
+					Призывает дружелюбную молодую виверну, летающую с тобой
 					{$Common.Tooltips.PetHasAltSkins}
-					''' */
+					'''
 			}
 
 			WobyItem: {
-				// DisplayName: Dog Lover's Badge
-				// Tooltip: Summons a loyal canine to follow you
+				DisplayName: Значок любителя собак
+				Tooltip: Призывает верную собаку
 			}
 
 			BottledDreams: {
-				// DisplayName: Bottled Dreams
-				// Tooltip: Allows the holder to double jump
+				DisplayName: Закупоренные грёзы
+				Tooltip: Позволяет владельцу делать двойной прыжок
 			}
 
 			CrazyBundleOfAssortedBalloons: {
-				// DisplayName: Crazy Bundle of Assorted Balloons
-				// Tooltip: It's got all kinds of effects
+				DisplayName: Безумная связка разнообразных шариков
+				Tooltip: Каких только эффектов тут нет
 			}
 
 			EverburningCandelabra: {
-				// DisplayName: Everburning Candelabra
-				// Tooltip: Applies various forms of fire damage to all attacks
+				DisplayName: Вечногорящая люстра
+				Tooltip: Добавляет всем атакам самые разные виды огненного урона
 			}
 
 			EverburningCandle: {
-				// DisplayName: Everburning Candle
-				// Tooltip: Applies fire damage to all attacks
+				DisplayName: Вечногорящая свеча
+				Tooltip: Добавляет всем атакам урон от огня
 			}
 
 			EverburningCursedCandle: {
-				// DisplayName: Everburning Cursed Candle
-				// Tooltip: Applies cursed fire damage to all attacks
+				DisplayName: Вечногорящая проклятая свеча
+				Tooltip: Добавляет всем атакам урон от проклятого пламени
 			}
 
 			EverburningShadowflameCandle: {
-				// DisplayName: Everburning Shadowflame Candle
-				// Tooltip: Applies shadowflame damage to all attacks
+				DisplayName: Вечногорящая свеча теневого пламени
+				Tooltip: Добавляет всем атакам урон от теневого пламени
 			}
 
 			EverfrozenCandle: {
-				// DisplayName: Everfrozen Candle
-				// Tooltip: Applies frostbite damage to all attacks
+				DisplayName: Вечномёрзлая свеча
+				Tooltip: Добавляет всем атакам урон от ледяного ожога
 			}
 
 			FestiveMirror: {
-				// DisplayName: Festive Mirror
-				// Tooltip: Provides immunity to {$BuffName.Chilled}, {$BuffName.Frozen}, and {$BuffName.Stoned}
+				DisplayName: Праздничное зеркальце
+				Tooltip: Иммунитет к: {$BuffName.Chilled}, {$BuffName.Frozen}, {$BuffName.Stoned}
 			}
 
 			HarvesterWings: {
-				// DisplayName: Harvester Wings
-				/* Tooltip:
+				DisplayName: Крылья Пожинателя
+				Tooltip:
 					'''
 					{$CommonItemTooltip.FlightAndSlowfall}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy}
 					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
-					''' */
+					'''
 			}
 
 			MassiveBundleOfBalloons: {
-				// DisplayName: Massive Bundle of Balloons
-				/* Tooltip:
+				DisplayName: Огромная связка воздушных шаров
+				Tooltip:
 					'''
-					Allows you to jump six more times
-					Negates fall damage and increases jump height
+					Позволяет владельцу сделать шесть дополнительных прыжков
+					Нейтрализует урон от падения и увеличивает высоту прыжка
 					{$ItemTooltip.HoneyComb}
-					''' */
+					'''
 			}
 
 			SigilOfTheBeak: {
-				// DisplayName: Sigil of the Beak
-				/* Tooltip:
+				DisplayName: Сигил клюва
+				Tooltip:
 					'''
-					Summons fractured souls to seek out enemies in combat
-					Frequency and damage increases the lower your health gets
-					''' */
+					Призывает в бой разбитые души, ищущих врагов
+					Чем ниже здоровье, тем выше частота и сила атак
+					'''
 			}
 
 			SigilOfTheHarvester: {
-				// DisplayName: Sigil of the Harvester
-				/* Tooltip:
+				DisplayName: Сигил Пожинателя
+				Tooltip:
 					'''
-					'The aspects of the Harvester reside within you'
+					'Аспекты Пожинателя обитают внутри тебя'
 					{$Items.SigilOfTheBeak.Tooltip}
 					{$Items.SigilOfTheWing.Tooltip}
 					{$Items.SigilOfTheTalon.Tooltip@3}
-					''' */
+					'''
 			}
 
 			SigilOfTheTalon: {
-				// DisplayName: Sigil of the Talon
-				/* Tooltip:
+				DisplayName: Сигил когтя
+				Tooltip:
 					'''
-					Allows your grappling hooks to deal damage when extending
-					Can hit up to {0} enemies
-					''' */
-				// HookDamage: Deals {0}% of your last held weapon's damage (currently {1})
+					Позволяет крюкам-кошкам наносить урон при броске
+					Может ударить по {0} врагам за раз
+					'''
+				HookDamage: Наносит {0}% урона оружия, которое вы держали последним (Урон от последнего оружия: {1})
 			}
 
 			SigilOfTheWing: {
-				// DisplayName: Sigil of the Wing
-				/* Tooltip:
+				DisplayName: Сигил крыла
+				Tooltip:
 					'''
-					On death, transform into a soul for {0} seconds, regenerating {1}% max health
-					While transformed, you cannot use items
-					Has a cooldown of {2} minutes
-					''' */
-				// SocialDesc: Cooldown will go down while in social slot
-				// EffectReady: Effect ready
-				// ReadyAgainInMinutes: Ready again in {0} {^0:minute;minutes}
-				// ReadyAgainInSeconds: Ready again in {0} {^0:second;seconds}
+					После смерти станьте духом на {0} секунд, восстанавливая {1}% макс. здоровья
+					В образе духа невозможно использовать предметы
+					Перезаряжается в течение {2} минут
+					'''
+				SocialDesc: Перезарядка идёт даже в ячейке для украшений
+				EffectReady: Заряжено и готово к использованию
+				ReadyAgainInMinutes: Зарядится через {0} {^0:минуту;минуты;минут}
+				ReadyAgainInSeconds: Зарядится через {0} {^0:секунду;секунды;секунд}
 			}
 
 			SlipperySoles: {
-				// DisplayName: Slippery Soles
-				// Tooltip: You slip and slide on all blocks
+				DisplayName: Скользкие подошвы
+				Tooltip: Вы скользите на всех блоках
 			}
 
 			SolesOfFireAndIce: {
-				// DisplayName: Soles of Fire and Ice
-				// Tooltip: Allows you to walk on water, lava, and thin ice
+				DisplayName: Ледопламенные подошвы
+				Tooltip: Позволяет вам ходить по воде, лаве и тонкому льду
 			}
 
 			StarInABalloon: {
-				// DisplayName: Star in a Balloon
-				// Tooltip: "{$BuffDescription.StarInBottle} and jump height"
+				DisplayName: Звезда в воздушном шарике
+				Tooltip: "{$BuffDescription.StarInBottle} и высоту прыжка"
 			}
 
 			StarWispBalloon: {
-				// DisplayName: Star Wisp Balloon
-				/* Tooltip:
+				DisplayName: Звездоблудный огонёк в воздушном шарике
+				Tooltip:
 					'''
 					{$Items.StarInABalloon.Tooltip}
-					Glows in the dark
-					''' */
+					Светится в темноте
+					'''
 			}
 
 			WispInABalloon: {
-				// DisplayName: Wisp in a Balloon
-				// Tooltip: Glows in the dark and increases jump height
+				DisplayName: Блуждающий огонёк в воздушном шарике
+				Tooltip: Светится в темноте и увеличивает высоту прыжка
 			}
 
 			AntiqueKey: {
-				// DisplayName: Antique Key
-				// Tooltip: "'An old key that looks to fit the lock on the nearby cage...'"
+				DisplayName: Антикварный ключ
+				Tooltip: "'Старинный ключ, который, кажется, подходит к замку клетки неподалёку...'"
 			}
 
 			SoulSaviorHeaddress: {
-				// DisplayName: Soul Savior Headdress
-				/* Tooltip:
+				DisplayName: Головной убор душеспаса
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
-				/* SetBonus:
 					'''
-					Reflects {0}% contact damage per available minion slot
-					Reflected damage further increased by effects that increase summon damage
-					Current reflected damage: {1}%
-					Minions summoned by the {$Items.EverhallowedLantern.DisplayName} become 'empowered' and gain {2}% more damage
-					''' */
+				SetBonus:
+					'''
+					Отражает урон при касании {0}% за каждую ячейку прислужника
+					Отражённый урон увеличивается вместе с уроном призываемых существ
+					Текущий отражаемый урон: {1}%
+					Прислужники, призванные предметом {$Items.EverhallowedLantern.DisplayName}, получают статус "Превосходство" и наносят на {2}% больше урона
+					'''
 			}
 
 			SoulSaviorPlate: {
-				// DisplayName: Soul Savior Breastplate
-				/* Tooltip:
+				DisplayName: Нагрудник душеспаса
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
+					'''
 			}
 
 			SoulSaviorRobe: {
-				// DisplayName: Soul Savior Robe
-				/* Tooltip:
+				DisplayName: Роба душеспаса
+				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
-					''' */
+					'''
 			}
 
 			CaughtDungeonSoul: {
-				// DisplayName: Loose Dungeon Soul
-				/* Tooltip:
+				DisplayName: Разменная душа темницы
+				Tooltip:
 					'''
-					'An inert soul caught by a net'
-					Awakened in your inventory when {$NPCs.HarvesterBoss.DisplayName} is defeated
-					''' */
-				// SpawnSoul: Use it to spawn a soul for the {$NPCs.HarvesterBoss.DisplayName} to eat
+					'Вялая душа, пойманная в сеть'
+					Пробуждается в инвентаре, когда {$NPCs.HarvesterBoss.DisplayName} побеждён
+					'''
+				SpawnSoul: Используется для призыва души, которую может поглотить {$NPCs.HarvesterBoss.DisplayName}
 			}
 
 			CaughtDungeonSoulFreed: {
-				// DisplayName: Freed Dungeon Soul
-				// Tooltip: Awakened by defeating the {$NPCs.HarvesterBoss.DisplayName}
+				DisplayName: Освобождённая душа темницы
+				Tooltip: Пробудилась, как только {$NPCs.HarvesterBoss.DisplayName} был побеждён
 			}
 
 			ChunkysEyeItem: {
-				// DisplayName: Chunky's Eye
-				// Tooltip: "'Find {$Items.MeatballsEyeItem.DisplayName} and combine the two at a Demon Altar'"
+				DisplayName: Глаз Комочка
+				Tooltip: "'Найди {$Items.MeatballsEyeItem.DisplayName} и объедини их на демоническом алтаре'"
 			}
 
 			CuteSlimeSpawnEnableFlask: {
-				// DisplayName: Jellied Ale
-				// SeeMoreOften: You will see Cute Slimes more often for a short time
-				// See: Allows you to see Cute Slimes for a short time
+				DisplayName: Загустевший эль
+				SeeMoreOften: Миленькие слизни какое-то время будут встречаться чаще
+				See: Какое-то время будут встречаться миленькие слизни
 			}
 
 			EmpowermentFlask: {
-				// DisplayName: Empowerment Flask
-				/* Tooltip:
+				DisplayName: Фляга превосходства
+				Tooltip:
 					'''
-					Incrementally increases damage dealt over time
-					Bonus resets upon taking damage
-					(Summon damage only increases marginally)
-					''' */
+					Постепенно увеличивает наносимый урон
+					Бонус обнуляется при получении урона
+					(Урон от призываемых существ увеличивается незначительно)
+					'''
 			}
 
 			EnhancedHunterPotion: {
-				// DisplayName: Enhanced Hunter Potion
-				/* Tooltip:
+				DisplayName: Зелье улучшенного охотника
+				Tooltip:
 					'''
 					{$ItemTooltip.HunterPotion}
-					Additionally, shows the location of enemies outside your vision range
-					Range is roughly one screen in each direction
-					''' */
+					Кроме того, показывает положение врагов за пределами экрана
+					Радиус примерно 1 экран во всех направлениях
+					'''
 			}
 
 			HarvesterTreasureBag: {
-				// DisplayName: Treasure Bag ({$NPCs.HarvesterBoss.DisplayName})
-				// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+				DisplayName: Мешок с сокровищами ({$NPCs.HarvesterBoss.DisplayName})
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			DesiccatedLeather: {
-				// DisplayName: Desiccated Leather
-				// Tooltip: "'It's dry, sticky, and smells horrible'"
+				DisplayName: Иссохшая кожа
+				Tooltip: "'Сухая, липкая и ужасно воняет'"
 			}
 
 			DroneParts: {
-				// DisplayName: Drone Parts
-				// Tooltip: "'These parts could be repurposed...'"
+				DisplayName: Части дронов
+				Tooltip: "'Эти детали можно использовать как-то ещё...'"
 			}
 
-			// DroneUnlockableBasicLaserDrone.DisplayName: Basic Laser Drone Components
-			// DroneUnlockableHealingDrone.DisplayName: Healing Drone Components
-			// DroneUnlockableHeavyLaserDrone.DisplayName: Heavy Laser Drone Components
-			// DroneUnlockableMissileDrone.DisplayName: Missile Drone Components
-			// DroneUnlockableShieldDrone.DisplayName: Shield Drone Components
+			DroneUnlockableBasicLaserDrone.DisplayName: Детали стандартного лазер-дрона
+			DroneUnlockableHealingDrone.DisplayName: Детали лечебного дрона
+			DroneUnlockableHeavyLaserDrone.DisplayName: Детали мощного лазер-дрона
+			DroneUnlockableMissileDrone.DisplayName: Детали ракетного дрона
+			DroneUnlockableShieldDrone.DisplayName: Детали защитного дрона
 
 			DroneUnlockable: {
-				// UnlockedText: Unlocked: {0}
-				// Unlocks: Unlocks the {0} for the {$Items.DroneController.DisplayName}
-				// AlreadyUnlocked: Already unlocked {0} for the {$Items.DroneController.DisplayName}
+				UnlockedText: Изучен: {0}
+				Unlocks: Открывает {0} для {$Items.DroneController.DisplayName}
+				AlreadyUnlocked: "{0} для {$Items.DroneController.DisplayName} уже открыт"
 			}
 
 			CraftOfMiners: {
-				// DisplayName: Craft of Miners
-				/* Tooltip:
+				DisplayName: Дело шахтёров
+				Tooltip:
 					'''
-					'Use those fists of yours to tear through any blocks in your way'
-					[c/44942e:'Dedicated to Anonymous']
-					''' */
+					'Используй вот эти твои кулаки, чтобы пробиться через любые блоки на пути'
+					[c/44942e:'Посвящено неизвестному']
+					'''
 			}
 
 			GuideVoodoorang: {
-				// DisplayName: Guide Voodoorang
-				// Tooltip: "'Why are you like this?'"
+				DisplayName: Вудуранг гида
+				Tooltip: "'Ну почему ты такой?'"
 			}
 
 			InfinityRocket: {
-				// DisplayName: Infinity Rocket
-				// Tooltip: "'It seriously never ends!'"
+				DisplayName: Ракета бесконечности
+				Tooltip: "'Они и правда не заканчиваются!'"
 			}
 
 			StarForge: {
-				// DisplayName: Star Forge
-				// Tooltip: "'An endless supply of the cosmos'"
+				DisplayName: Горнило звёзд
+				Tooltip: "'Бесконечный запас космоса'"
 			}
 
-			// BrainOfCthulhuGitgud.DisplayName: Insanity-B-Gone
-			// DeerclopsGitgud.DisplayName: Deerclops Effigy
-			// DestroyerGitgud.DisplayName: Metal Dreamcatcher
-			// DukeFishronGitgud.DisplayName: White Hook
-			// EaterOfWorldsGitgud.DisplayName: Toy Seagull
-			// EmpressOfLightGitgud.DisplayName: Well-Worn Boots of Stomping
-			// EyeOfCthulhuGitgud.DisplayName: Broken Lens
-			// GolemGitgud.DisplayName: Rechargeable Solar Battery
-			// KingSlimeGitgud.DisplayName: Slime Inquisition Notice
-			// LunaticCultistGitgud.DisplayName: Notice of Occupational Termination
-			// MoonLordGitgud.DisplayName: Bright Side of the Moon
-			// PlanteraGitgud.DisplayName: Green Thumb
-			// QueenBeeGitgud.DisplayName: Honey Thimble
-			// QueenSlimeGitgud.DisplayName: Sparkling Cupcake
-			// SkeletronGitgud.DisplayName: Carton of Soy Milk
-			// SkeletronPrimeGitgud.DisplayName: Clock Set Ten Years Ahead
-			// TwinsGitgud.DisplayName: Metal Contact Lens
-			// WallOfFleshGitgud.DisplayName: Wall of Flesh Voodoo Doll
+			BrainOfCthulhuGitgud.DisplayName: Антибезумидин
+			DeerclopsGitgud.DisplayName: Чучело циклопа-оленя
+			DestroyerGitgud.DisplayName: Металлический ловец снов
+			DukeFishronGitgud.DisplayName: Белый крюк
+			EaterOfWorldsGitgud.DisplayName: Игрушечная чайка
+			EmpressOfLightGitgud.DisplayName: Поношенные ботинки топтания
+			EyeOfCthulhuGitgud.DisplayName: Разбитая линза
+			GolemGitgud.DisplayName: Заряжаемый солнечный аккумулятор
+			KingSlimeGitgud.DisplayName: Заметка об инквизиции слизней
+			LunaticCultistGitgud.DisplayName: Заявление об увольнении
+			MoonLordGitgud.DisplayName: Светлая сторона луны
+			PlanteraGitgud.DisplayName: Садоводческая жила
+			QueenBeeGitgud.DisplayName: Медовый напёрсток
+			QueenSlimeGitgud.DisplayName: Блестящий кексик
+			SkeletronGitgud.DisplayName: Пакет соевого молока
+			SkeletronPrimeGitgud.DisplayName: Часы, спешащие на десять лет
+			TwinsGitgud.DisplayName: Металлическая контактная линза
+			WallOfFleshGitgud.DisplayName: Кукла вуду стены плоти
 
 			IdolOfDecay: {
-				// DisplayName: Idol Of Decay
-				/* Tooltip:
+				DisplayName: Статуэтка разложения
+				Tooltip:
 					'''
-					Summons {$NPCs.HarvesterBoss.DisplayName}'s final form in the dungeon
-					Unlimited uses!
-					''' */
+					При использовании в темнице призывается {$NPCs.HarvesterBoss.DisplayName} в финальной форме
+					Бесконечное число использований!
+					'''
 			}
 
 			KnittingSet: {
-				// DisplayName: Knitting Set
-				// Tooltip: "'A set of tools used in crafting cute clothing and accessories'"
+				DisplayName: Набор для вязания
+				Tooltip: "'Набор инструментов, необходимых для создания милой одежды и аксессуаров'"
 			}
 
 			MeatballsEyeItem: {
-				// DisplayName: Meatball's Eye
-				// Tooltip: "'Find {$Items.ChunkysEyeItem.DisplayName} and combine the two at a Demon Altar'"
+				DisplayName: Глаз Тефтельки
+				Tooltip: "'Найди {$Items.ChunkysEyeItem.DisplayName} и объедини их на демоническом алтаре'"
 			}
 
 			PetAccessory: {
-				// Hat: Worn on the head
-				// Body: Worn on the body
-				// Carried: Carried
-				// Accessory: Worn as an accessory
-				// None: None
-				// Blacklisted: This accessory type is disabled for your particular slime
-				// NoUse: You have no summoned slime to equip this on
-				// Disabled: This accessory type is not registered for use by the devs
+				Hat: Носится на голове
+				Body: Носится на теле
+				Carried: Носится в руках
+				Accessory: Носится как аксессуар
+				None: --
+				Blacklisted: Вы запретили такие аксессуары для этого слизня
+				NoUse: Вы не призвали ни одного слизня, на которого это можно надеть
+				Disabled: Этот тип аксессуара не предназначен разработчиками для использования
 
 				Colors: {
-					// Red: Red
-					// Orange: Orange
-					// Gold: Gold
-					// Yellow: Yellow
-					// Green: Green
-					// Blue: Blue
-					// Purple: Purple
-					// Pink: Pink
-					// White: White
-					// Gray: Gray
-					// Black: Black
-					// Platinum: Platinum
-					// Iron: Iron
+					Red: Красный
+					Orange: Оранжевый
+					Gold: Золотой
+					Yellow: Жёлтый
+					Green: Зелёный
+					Blue: Синий
+					Purple: Фиолетовый
+					Pink: Розовый
+					White: Белый
+					Gray: Серый
+					Black: Чёрный
+					Platinum: Платиновый
+					Iron: Железный
 				}
 			}
 
 			PetAccessoryBowtie: {
-				// DisplayName: Cute {$Items.PetAccessoryBowtie.ShortName}
-				// Tooltip: "'A soft bowtie for your cute slime to wear on her chest'"
-				// ShortName: Bowtie
+				DisplayName: Миленькая {$Items.PetAccessoryBowtie.ShortName}
+				Tooltip: "'Лёгкая бабочка для твоего миленького слизня, которую можно нацепить на грудь'"
+				ShortName: Галстук-бабочка
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryBunnyEars: {
-				// DisplayName: Cute {$Items.PetAccessoryBunnyEars.ShortName}
-				// Tooltip: "'A pair of Easter bunny ears for your cute slime to wear on her head'"
-				// ShortName: Bunny Ears
+				DisplayName: Миленькие {$Items.PetAccessoryBunnyEars.ShortName}
+				Tooltip: "'Кроличьи ушки для твоего миленького слизня, которые можно надеть на голову'"
+				ShortName: Кроличьи ушки
 			}
 
 			PetAccessoryBunnySuit: {
-				// DisplayName: Cute {$Items.PetAccessoryBunnySuit.ShortName}
-				// Tooltip: "'A bunny(?) costume for your cute slime to wear on her chest'"
-				// ShortName: Bunny Suit
+				DisplayName: Миленький {$Items.PetAccessoryBunnySuit.ShortName}
+				Tooltip: "'Костюм кролика(?) для твоего миленького слизня, который можно надеть на грудь'"
+				ShortName: Костюм кролика
 
 				AccessoryNames: {
-					// Black: "{$Items.PetAccessory.Colors.Black}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Red: "{$Items.PetAccessory.Colors.Red}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
 				}
 			}
 
 			PetAccessoryCrown: {
-				// DisplayName: Cute {$Items.PetAccessoryCrown.ShortName}
-				// Tooltip: "'A regal crown for your cute slime to wear on her head'"
-				// ShortName: Crown
+				DisplayName: Миленькая {$Items.PetAccessoryCrown.ShortName}
+				Tooltip: "'Царственная корона для твоего миленького слизня, которую можно надеть на голову'"
+				ShortName: Корона
 
 				AccessoryNames: {
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Platinum: "{$Items.PetAccessory.Colors.Platinum}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Platinum: "{$Items.PetAccessory.Colors.Platinum}"
 				}
 			}
 
 			PetAccessoryHairBow: {
-				// DisplayName: Cute {$Items.PetAccessoryHairBow.ShortName}
-				// Tooltip: "'A large bow for your cute slime to wear on her head'"
-				// ShortName: Hair Bow
+				DisplayName: Миленькая {$Items.PetAccessoryHairBow.ShortName}
+				Tooltip: "'Большая ленточка для твоего миленького слизня, которую можно нацепить на голову'"
+				ShortName: Ленточка для волос
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryKitchenKnife: {
-				// DisplayName: Cute {$Items.PetAccessoryKitchenKnife.ShortName}
-				// Tooltip: "'A plush kitchen knife for your cute slime to carry'"
-				// ShortName: Kitchen Knife
+				DisplayName: Миленький {$Items.PetAccessoryKitchenKnife.ShortName}
+				Tooltip: "'Плюшевый кухонный нож, который можно дать твоему миленькому слизню'"
+				ShortName: Кухонный нож
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryMetalHelmet: {
-				// DisplayName: Cute {$Items.PetAccessoryMetalHelmet.ShortName}
-				// Tooltip: "'A plush knight's helmet for your cute slime to wear on her head'"
-				// ShortName: Knight's Helmet
+				DisplayName: Миленький {$Items.PetAccessoryMetalHelmet.ShortName}
+				Tooltip: "'Плюшевый шлем рыцаря для твоего миленького слизня, который можно надеть на голову'"
+				ShortName: Рыцарский шлем
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryMittens: {
-				// DisplayName: Cute {$Items.PetAccessoryMittens.ShortName}
-				// Tooltip: "'Warm mittens for your cute slime's hands'"
-				// ShortName: Mittens
+				DisplayName: Миленькие {$Items.PetAccessoryMittens.ShortName}
+				Tooltip: "'Тёплые варежки для твоего миленького слизня, которые можно носить на руках'"
+				ShortName: Варежки
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Orange: "{$Items.PetAccessory.Colors.Orange}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// White: "{$Items.PetAccessory.Colors.White}"
-					// Gray: "{$Items.PetAccessory.Colors.Gray}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Orange: "{$Items.PetAccessory.Colors.Orange}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					White: "{$Items.PetAccessory.Colors.White}"
+					Gray: "{$Items.PetAccessory.Colors.Gray}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryPartyHat: {
-				// DisplayName: Cute {$Items.PetAccessoryPartyHat.ShortName}
-				// Tooltip: "'A party hat for your cute slime to wear on her head'"
-				// ShortName: Party Hat
+				DisplayName: Миленький {$Items.PetAccessoryPartyHat.ShortName}
+				Tooltip: "'Праздничный колпак для твоего миленького слизня, который можно нацепить на голову'"
+				ShortName: Колпак для вечеринки
 			}
 
 			PetAccessoryPumpkinMask: {
-				// DisplayName: Cute {$Items.PetAccessoryPumpkinMask.ShortName}
-				// Tooltip: "'A perfectly-sized pumpkin for your cute slime to wear on her head'"
-				// ShortName: Pumpkin Mask
+				DisplayName: Миленькая {$Items.PetAccessoryPumpkinMask.ShortName}
+				Tooltip: "'Тыква для твоего миленького слизня, которая идеально подходит по размеру, чтобы надеть на голову'"
+				ShortName: Тыквенная маска
 
 				AccessoryNames: {
-					// SOrange: Sinister Orange
-					// IOrange: Innocent Orange
-					// SGreen: Sinister Green
-					// IGreen: Innocent Green
-					// SWhite: Sinister White
-					// IWhite: Innocent White
-					// SPurple: Sinister Purple
-					// IPurple: Innocent Purple
-					// SMelon: Sinister Melon
-					// IMelon: Innocent Melon
+					SOrange: Зловеще-оранжевый
+					IOrange: Невинно-оранжевый
+					SGreen: Зловеще-зелёный
+					IGreen: Невинно-зелёный
+					SWhite: Зловеще-белый
+					IWhite: Невинно-белый
+					SPurple: Зловеще-фиолетовый
+					IPurple: Невинно-фиолетовый
+					SMelon: Зловеще-арбузный
+					IMelon: Невинно-арбузный
 				}
 			}
 
 			PetAccessorySlimeHead: {
-				// DisplayName: Cute {$Items.PetAccessorySlimeHead.ShortName}
-				// Tooltip: "'A slime plush that sits on your cute slime's head'"
-				// ShortName: Head Slime
+				DisplayName: Миленький {$Items.PetAccessorySlimeHead.ShortName}
+				Tooltip: "'Плюшевый слизень, которого можно посадить на голову твоего миленького слизня'"
+				ShortName: Головной слизень
 
 				AccessoryNames: {
-					// Blue: "{$Items.PetAccessory.Colors.Blue}"
-					// Purple: "{$Items.PetAccessory.Colors.Purple}"
-					// Pink: "{$Items.PetAccessory.Colors.Pink}"
-					// Pinky: Pinky
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Yellow: "{$Items.PetAccessory.Colors.Yellow}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
-					// Black: "{$Items.PetAccessory.Colors.Black}"
+					Blue: "{$Items.PetAccessory.Colors.Blue}"
+					Purple: "{$Items.PetAccessory.Colors.Purple}"
+					Pink: "{$Items.PetAccessory.Colors.Pink}"
+					Pinky: Пинки
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Yellow: "{$Items.PetAccessory.Colors.Yellow}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
+					Black: "{$Items.PetAccessory.Colors.Black}"
 				}
 			}
 
 			PetAccessoryStaff: {
-				// DisplayName: Cute {$Items.PetAccessoryStaff.ShortName}
-				// Tooltip: "'A plush staff for your cute slime to carry'"
-				// ShortName: Staff
+				DisplayName: Миленький {$Items.PetAccessoryStaff.ShortName}
+				Tooltip: "'Плюшевый посох, который можно дать твоему миленькому слизню'"
+				ShortName: Посох
 
 				AccessoryNames: {
-					// Amethyst: Amethyst
-					// Sapphire: Sapphire
-					// Emerald: Emerald
-					// Ruby: Ruby
-					// Amber: Amber
-					// Topaz: Topaz
-					// Diamond: Diamond
-					// Magic: Magic
+					Amethyst: Аметист
+					Sapphire: Сапфир
+					Emerald: Изумруд
+					Ruby: Рубин
+					Amber: Янтарь
+					Topaz: Топаз
+					Diamond: Алмаз
+					Magic: Магический
 				}
 			}
 
 			PetAccessorySwallowedKey: {
-				// DisplayName: Cute {$Items.PetAccessorySwallowedKey.ShortName}
-				// Tooltip: "'A plush key for your cute slime to...carry?'"
-				// ShortName: Swallowed Key
+				DisplayName: Миленький {$Items.PetAccessorySwallowedKey.ShortName}
+				Tooltip: "'Плюшевый ключ, который можно твоему миленькому слизню... дать?'"
+				ShortName: Проглоченный ключик
 			}
 
 			PetAccessoryTophat: {
-				// DisplayName: Cute {$Items.PetAccessoryTophat.ShortName}
-				// Tooltip: "'A classy top hat for your cute slime to wear on her head'"
-				// ShortName: Top Hat
+				DisplayName: Миленький {$Items.PetAccessoryTophat.ShortName}
+				Tooltip: "'Стильный котелок для твоего миленького слизня, который можно надеть на голову'"
+				ShortName: Котелок
 			}
 
 			PetAccessoryToyBreastplate: {
-				// DisplayName: Cute {$Items.PetAccessoryToyBreastplate.ShortName}
-				// Tooltip: "'A plush knight's breastplate for your cute slime to wear on her body'"
-				// ShortName: Knight's Breastplate
+				DisplayName: Миленький {$Items.PetAccessoryToyBreastplate.ShortName}
+				Tooltip: "'Плюшевый нагрудник рыцаря для твоего миленького слизня, который можно нацепить на грудь'"
+				ShortName: Рыцарский нагрудник
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToyMace: {
-				// DisplayName: Cute {$Items.PetAccessoryToyMace.ShortName}
-				// Tooltip: "'A plush paladin's mace for your cute slime to carry'"
-				// ShortName: Paladin's Mace
+				DisplayName: Миленькая {$Items.PetAccessoryToyMace.ShortName}
+				Tooltip: "'Плюшевая булава паладина, которую можно дать твоему миленькому слизню'"
+				ShortName: Паладинская булава
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToyShield: {
-				// DisplayName: Cute {$Items.PetAccessoryToyShield.ShortName}
-				// Tooltip: "'A plush knight's shield for your cute slime to carry'"
-				// ShortName: Knight's Shield
+				DisplayName: Миленький {$Items.PetAccessoryToyShield.ShortName}
+				Tooltip: "'Плюшевый рыцарский щит, который можно дать твоему миленькому слизню'"
+				ShortName: Рыцарский щит
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToySpear: {
-				// DisplayName: Cute {$Items.PetAccessoryToySpear.ShortName}
-				// Tooltip: "'A plush warrior's spear for your cute slime to carry'"
-				// ShortName: Spartan's Spear
+				DisplayName: Миленькое {$Items.PetAccessoryToySpear.ShortName}
+				Tooltip: "'Плюшевое копьё воина, которое можно дать твоему миленькому слизню'"
+				ShortName: Спартанское копьё
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryToySword: {
-				// DisplayName: Cute {$Items.PetAccessoryToySword.ShortName}
-				// Tooltip: "'A plush knight's sword for your cute slime to carry'"
-				// ShortName: Knight's Sword
+				DisplayName: Миленький {$Items.PetAccessoryToySword.ShortName}
+				Tooltip: "'Плюшевый меч рыцаря, который можно дать твоему миленькому слизню'"
+				ShortName: Рыцарский меч
 
 				AccessoryNames: {
-					// Iron: "{$Items.PetAccessory.Colors.Iron}"
-					// Gold: "{$Items.PetAccessory.Colors.Gold}"
+					Iron: "{$Items.PetAccessory.Colors.Iron}"
+					Gold: "{$Items.PetAccessory.Colors.Gold}"
 				}
 			}
 
 			PetAccessoryWizardHat: {
-				// DisplayName: Cute {$Items.PetAccessoryWizardHat.ShortName}
-				// Tooltip: "'A brown wizard's hat for your cute slime to wear on her head'"
-				// ShortName: Wizard Hat
+				DisplayName: Миленькая {$Items.PetAccessoryWizardHat.ShortName}
+				Tooltip: "'Коричневая шляпа волшебника для твоего миленького слизню, которую можно надеть на голову'"
+				ShortName: Шляпа волшебника
 			}
 
 			PetAccessoryXmasHat: {
-				// DisplayName: Cute {$Items.PetAccessoryXmasHat.ShortName}
-				// Tooltip: "'A festive hat for your cute slime to wear on her head'"
-				// ShortName: Santa Hat
+				DisplayName: Миленький {$Items.PetAccessoryXmasHat.ShortName}
+				Tooltip: "'Праздничный головной убор для твоего миленького слизня, который можно надеть на голову'"
+				ShortName: Колпак Деда Мороза
 
 				AccessoryNames: {
-					// Red: "{$Items.PetAccessory.Colors.Red}"
-					// Green: "{$Items.PetAccessory.Colors.Green}"
+					Red: "{$Items.PetAccessory.Colors.Red}"
+					Green: "{$Items.PetAccessory.Colors.Green}"
 				}
 			}
 
 			AntiqueCageItem: {
-				// DisplayName: Antique Cage
-				// Tooltip: ""
+				DisplayName: Антикварная клетка
+				Tooltip: ""
 			}
 
 			AntiqueChestItem: {
-				// DisplayName: Antique Chest
-				// Tooltip: ""
+				DisplayName: Антикварный сундук
+				Tooltip: ""
 			}
 
 			CuteSlimeStatueItem: {
-				// DisplayName: Cute Slime Statue
-				// Tooltip: You can't catch statue spawned creatures
+				DisplayName: Статуя миленького слизня
+				Tooltip: Живность, созданная статуями, не может быть поймана
 			}
 
 			HarvesterRelicItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Relic"
-				// Tooltip: ""
+				DisplayName: Реликвия Пожинателя
+				Tooltip: ""
 			}
 
 			HarvesterRelicColoredItem: {
-				// DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colored)"
-				// Tooltip: ""
+				DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Цветная)"
+				Tooltip: ""
 			}
 
 			HarvesterTrophyItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
-				// Tooltip: ""
+				DisplayName: Трофей Пожинателя
+				Tooltip: ""
 			}
 
 			FieldsOfJoyItem: {
-				// DisplayName: Fields of Joy
-				// Tooltip: "'C. Paigner'"
+				DisplayName: Поля отрады
+				Tooltip: "'C. Paigner'"
 			}
 
 			PretentiousRockItem: {
-				// DisplayName: A Study of Slate
-				// Tooltip: "'C. Paigner'"
+				DisplayName: Изучения сланца
+				Tooltip: "'C. Paigner'"
 			}
 
 			SCP099Item: {
-				// DisplayName: The Portrait
-				// Tooltip: "'R. Magritte'"
+				DisplayName: Портрет
+				Tooltip: "'Магритт Р.'"
 			}
 
 			SCP3515Item: {
-				// DisplayName: SCP-3515
-				// Tooltip: "'Unknown'"
+				DisplayName: SCP-3515
+				Tooltip: "'ДАННЫЕ УДАЛЕНЫ'"
 			}
 
 			SlimeBeaconItem: {
-				// DisplayName: Slime Beacon
-				// Tooltip: "'Do The Slime With Me!'"
-				// NoMultiplayer: "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"
+				DisplayName: Слизневый маяк
+				Tooltip: "'Займись Со Мною Слизью!'"
+				NoMultiplayer: "[c/FFA01D:НЕ РАБОТАЕТ В МНОГОПОЛЬЗОВАТЕЛЬСКОЙ ИГРЕ]"
 			}
 
 			StarRodItem: {
-				// DisplayName: Star Rod
-				// Tooltip: Attracts Falling Stars at night if you are nearby
+				DisplayName: Звездоотвод
+				Tooltip: По ночам притягивает падающие звёзды, если вы стоите рядом
 			}
 
-			// VanityDresserItem.DisplayName: Costume Dresser
+			VanityDresserItem.DisplayName: Гардероб костюмов
 
 			WyvernCampfireItem: {
-				// DisplayName: Wyvern Campfire
-				// Tooltip: "'Makes Wyverns go poof!'"
+				DisplayName: Виверний костёр
+				Tooltip: "'Скажи вивернам пока-пока!'"
 			}
 
 			ExtendoNetGolden: {
-				// DisplayName: Golden Extendo-Net
-				/* Tooltip:
+				DisplayName: Золотая хвать-сеть
+				Tooltip:
 					'''
-					'Catches those REALLY hard to reach critters'
-					Can catch lava critters too!
-					''' */
+					'Ловит даже ту живность, которую ну ОЧЕНЬ трудно словить'
+					Может ловить лавовую живность!
+					'''
 			}
 
 			ExtendoNetRegular: {
-				// DisplayName: Extendo-Net
-				// Tooltip: "'Catches those hard to reach critters'"
+				DisplayName: Хвать-сеть
+				Tooltip: "'Ловит живность, которую трудно словить'"
 			}
 
 			PrettyMask: {
-				// DisplayName: Pretty Mask
-				// Tooltip: "'Goes well with a red scarf, red gloves, red boots, and your birthday suit'"
+				DisplayName: Красивая маска
+				Tooltip: "'Чудесно сочетается с красным шарфом, красными перчатками, красными ботинками и твоим костюмом на день рождения'"
 			}
 
 			SoulHarvesterMask: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Mask"
-				// Tooltip: ""
+				DisplayName: Маска Пожинателя
+				Tooltip: ""
 			}
 
 			VanitySelector: {
-				// DisplayName: Costume Suitcase
-				/* Tooltip:
+				DisplayName: Чемодан костюмов
+				Tooltip:
 					'''
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					''' */
+					Левая мышь - Изменить образ питомца
+					Правая мышь - Изменить образ светящегося питомца
+					'''
 			}
 
 			BoneCleavingFang: {
-				// DisplayName: Bone-Cleaving Fang
-				/* Tooltip:
+				DisplayName: Костерубный клык
+				Tooltip:
 					'''
-					Striking enemies will charge the sword, causing it to glow with power
-					Release the built up power by right-clicking. The brighter the sword, the greater the power
-					The sword's power fades when not used
-					''' */
+					Удары по врагам заряжают меч, источая сильное сияние.
+					Высвободи накопленную силу правой мышью. Чем ярче меч - тем больше силы.
+					Сила меча тухнет, если им не пользоваться.
+					'''
 			}
 
 			BoneShatterLongbow: {
-				// DisplayName: Bone-Shatter Longbow
-				// Tooltip: Wooden arrows ignite into burning souls
+				DisplayName: Костедробящий длинный лук
+				Tooltip: Деревянные стрелы превращаются в горящие души
 			}
 
 			BreathOfSpazmatism: {
-				// DisplayName: Breath of Spazmatism
-				/* Tooltip:
+				DisplayName: Дыхание Спазматизма
+				Tooltip:
 					'''
-					Uses gel to fire a stream of cursed flames
+					Использует гель, чтобы испускать поток проклятого пламени
 					{$CommonItemTooltip.PercentChanceToSaveAmmo}
-					''' */
+					'''
 			}
 
 			DroneController: {
-				// DisplayName: Drone Controller
-				/* Tooltip:
+				DisplayName: Пульт управления дроном
+				Tooltip:
 					'''
-					Summons a friendly Drone to support or fight for you
-					Right click to pick from available drones
-					Holding the item improves the Drones' supportive and offensive abilities
-					''' */
-				// Firerate: "{0} firerate"
-				// UnlockMore: Defeat {$NPCName.TheDestroyer} to unlock more drones
-				// CanSpawn: Only one {0} can be out at once
-				// ToUnlock: Craft and use a '{0}' Item
+					Призывает на помощь или в бой дружелюбного дрона
+					Правая мышь - Выбор из списка доступных дронов
+					Атакующие и оборонительные способности дронов улучшены пока этот предмет в твоих руках
+					'''
+				Firerate: "{0} скорострельность"
+				UnlockMore: Победи Уничтожителя, чтобы открыть больше дронов
+				CanSpawn: Только один {0} может быть призван за раз
+				ToUnlock: Создай и используй '{0}'
 			}
 
 			EverglowLantern: {
-				// DisplayName: Everglow Lantern
-				/* Tooltip:
+				DisplayName: Вечногорящий фонарь
+				Tooltip:
 					'''
-					Summons two freed Dungeon Souls at a time to fight for you
-					Each Dungeon Soul occupies only half a minion slot
-					''' */
+					На твоей стороне сражаются две освобождённые души темницы
+					Каждая душа темницы занимает только половину ячейки призываемого существа
+					'''
 			}
 
 			EverhallowedLantern: {
-				// DisplayName: Everhallowed Lantern
-				/* Tooltip:
+				DisplayName: Вечносвятящий фонарь
+				Tooltip:
 					'''
-					Summons a Soul to fight for you
-					Right click to pick from available forms
-					''' */
-				// MechCondition: Defeat mechanical bosses to unlock new minions
-				// SetBonusBoost: "{0}% damage increase from wearing the 'Soul Savior' Set"
+					На твоей стороне сражается душа
+					Правая мышь - Выбор формы души
+					'''
+				MechCondition: Победи механических боссов, чтобы открыть больше прислужников
+				SetBonusBoost: Набор 'Душеспас' увеличивает наносимый урон на {0}%
 			}
 
 			EagerUnderlingItem: {
-				// DisplayName: Satchel of Goodies
-				// Tooltip: Summons an eager underling to fight for you
-				// Flavor: "'Inside, there's a spiky ball, a coin, and a... moon?'"
+				DisplayName: Мешочек добра
+				Tooltip: На твоей стороне сражается рьяный прислужник
+				Flavor: "'Внутри лежат шипастый шарик, монета и... луна?'"
 			}
 
 			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Summons a shy underling to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
+				DisplayName: Погнутая монета
+				Tooltip: На твоей стороне сражается стеснительный прислужник
+				Flavor: "'На этой монете долго тренировали меткость стрельбы'"
 			}
 
 			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Summons a serious underling to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+				DisplayName: Излюбленная кукла
+				Tooltip: На твоей стороне сражается серьёзный прислужник
+				Flavor: "'Простая кукла вуду, сделанная из сена и соломы.'"
 			}
 
 			LegendaryWoodenSword: {
-				// DisplayName: Legendary Wooden Sword
-				// Tooltip: ""
+				DisplayName: Легендарный деревянный меч
+				Tooltip: ""
 			}
 
 			MagicSlimeSling: {
-				// DisplayName: Magic Slime Sling
-				// Tooltip: Shoots magic gel that turns into slime minions on hit
+				DisplayName: Магическая слизневая праща
+				Tooltip: Стреляет магическим гелем, который при попадании превращается в слизней-прислужников
 			}
 
 			PlagueOfToads: {
-				// DisplayName: Plague of Toads
-				// Tooltip: Summons a cloud to rain toads on your foes
+				DisplayName: Жабная чума
+				Tooltip: Призывает облако, из которого на врагов дождём падают жабы
 			}
 
 			PocketSand: {
-				// DisplayName: Pocket Sand
-				// Tooltip: "'Throw a clump of sand at an enemy to confuse it'"
+				DisplayName: Подручный песок
+				Tooltip: "'Брось горсть песка в лицо врагу и беги'"
 			}
 
 			SightofRetinazer: {
-				// DisplayName: Sight of Retinazer
-				// Tooltip: ""
+				DisplayName: Прицел Ретиназера
+				Tooltip: ""
 			}
 
 			SlimeHandlerKnapsack: {
-				// DisplayName: Slime Handler Knapsack
-				/* Tooltip:
+				DisplayName: Ранец оператора слизней
+				Tooltip:
 					'''
-					Summons a friendly Slime of a random color from your Knapsack to fight for you
-					Right click to pick from available forms
-					''' */
-				// Default: Default
-				// Assorted: Assorted
-				// Spiked: Spiked
-				// SpikedBonus: Shoots spikes while fighting
-				// SpikedUnlock: Defeat Plantera
+					На твоей стороне сражается слизень случайного цвета, прямиком из твоего ранца
+					Правая мышь - Выбор доступных форм
+					'''
+				Default: Стандарт
+				Assorted: В ассортименте
+				Spiked: Шипы
+				SpikedBonus: Стреляет шипами во время боя
+				SpikedUnlock: Победи Плантеру
 			}
 
 			Talonstorm: {
-				// DisplayName: Talonstorm
-				// Tooltip: Summons a bone storm that attacks enemies with extending talons
+				DisplayName: Шторм когтей
+				Tooltip: Призывает костяной шторм, атакующий врагов когтями
 			}
 
 			TomeOfShadowflameSkulls: {
-				// DisplayName: Tome of Shadowflame Skulls
-				// Tooltip: Inflicts Shadowflame on enemies
+				DisplayName: Том тенепламенных черепов
+				Tooltip: Накладывает на врагов теневое пламя
 			}
 
 			TrueLegendaryWoodenSword: {
-				// DisplayName: True Legendary Wooden Sword
-				// Tooltip: "'Truly Legendary'"
+				DisplayName: Истинный легендарный деревянный меч
+				Tooltip: "'Воистину легендарный'"
 			}
 
 			Gitgud: {
-				// Or: or
-				// ConsolationPrize: Consolation Prize
-				// ReducedDamageTakenBoss: "{0}% reduced damage taken from {1}"
-				// BuffImmunity: Immunity to '{0}' while {1} {^2:is;are} alive
-				// TimesDied: Times died: {0}/{1}
+				Or: или
+				ConsolationPrize: Утешительный приз
+				ReducedDamageTakenBoss: "{1} наносит вам на {0}% меньше урона"
+				BuffImmunity: Иммунитет к '{0}', пока {1} {^2:жив;живы}
+				TimesDied: Смертей: {0}/{1}
 			}
 
 			SillyBalloonKit: {
-				// DisplayName: Silly Balloon Kit
-				/* Tooltip:
+				DisplayName: Набор для нелепых воздушных шариков
+				Tooltip:
 					'''
-					'A great gift for parties, birthdays, and saving the world!'
-					Inflate a fun party balloon to carry around
-					Left click to pick a different balloon
-					''' */
-				// DemonEyeGreen: Demon Eye (Green)
-				// DemonEyePurple: Demon Eye (Purple)
-				// DemonEyeRed: Demon Eye (Red)
-				// FracturedEyeGreen: Fractured Eye (Green)
-				// FracturedEyePurple: Fractured Eye (Purple)
-				// FracturedEyeRed: Fractured Eye (Red)
-				// MetalEyeGreen: Metal Eye (Green)
-				// MetalEyePurple: Metal Eye (Purple)
-				// MetalEyeRed: Metal Eye (Red)
-				// FracturedMetalEyeGreen: Fractured Metal Eye (Green)
-				// FracturedMetalEyePurple: Fractured Metal Eye (Purple)
-				// FracturedMetalEyeRed: Fractured Metal Eye (Red)
-				// Spazmatism: Spazmatism
-				// Retinazer: Retinazer
-				// Cobballoon: Cobballoon
+					'Отличный подарок для вечеринок, дней рождений и спасений мира!'
+					Надуй себе весёлый праздничный шарик
+					Левая мышь - Выбрать другой воздушный шарик
+					'''
+				DemonEyeGreen: Демонический глаз (Зелёный)
+				DemonEyePurple: Демонический глаз (Фиолетовый)
+				DemonEyeRed: Демонический глаз (Красный)
+				FracturedEyeGreen: Треснутый глаз (Зелёный)
+				FracturedEyePurple: Треснутый глаз (Фиолетовый)
+				FracturedEyeRed: Треснутый глаз (Красный)
+				MetalEyeGreen: Металлический глаз (Зелёный)
+				MetalEyePurple: Металлический глаз (Фиолетовый)
+				MetalEyeRed: Металлический глаз (Красный)
+				FracturedMetalEyeGreen: Треснутый металлический глаз (Зелёный)
+				FracturedMetalEyePurple: Треснутый металлический глаз (Фиолетовый)
+				FracturedMetalEyeRed: Треснутый металлический глаз (Красный)
+				Spazmatism: Спазматизм
+				Retinazer: Ретиназер
+				Cobballoon: Булышарик
 			}
 		}
 
 		NPCs: {
 			AnimatedSpellTome: {
-				// DisplayName: Animated Spell Tome
-				// BestiaryFlavorText: Master wizards need not look for a specific tome; it will find them when needed.
+				DisplayName: Оживший магический том
+				BestiaryFlavorText: Мастерам магии не нужно искать какой-то определённый том - он их сам найдёт.
 			}
 
 			AnimatedTome: {
-				// DisplayName: Animated Tome
-				// BestiaryFlavorText: In the past, this book was a best seller; it practically flew from the shelves!
+				DisplayName: Оживший фолиант
+				BestiaryFlavorText: Когда-то эта книга считалась бестселлером - она практическа слетала с полок!
 			}
 
 			Bass: {
-				// DisplayName: Bass
-				// BestiaryFlavorText: A simple fish commonly found in calm freshwater rivers and lakes.
+				DisplayName: Окунь
+				BestiaryFlavorText: Обычная рыба, которую можно часто найти в спокойных реках и озёрах с пресной водой.
 			}
 
 			BloatedBaitThief: {
-				// DisplayName: Bloated Bait Thief
-				// BestiaryFlavorText: An engorged bass with a bloated belly. Something is wriggling inside...
+				DisplayName: Раздутый воришка наживки
+				BestiaryFlavorText: Тяжёлый окунь с набитым брюхом. Внутри что-то шевелится...
 			}
 
 			Chunky: {
-				// DisplayName: Chunky
-				// BestiaryFlavorText: A mass of rotten flesh with a single eye. It seems as though the eye and the mass do not get along.
+				DisplayName: Комочек
+				BestiaryFlavorText: Масса гнилой плоти, с одним-единственным глазом. Кажется, глаз и плоть не сильно дружат.
 			}
 
 			ChunkysEye: {
-				// DisplayName: Chunky's Eye
-				// BestiaryFlavorText: A minion of Cthulhu that was trapped in the Corruption. It now seeks its lost little brother.
+				DisplayName: Глаз Комочка
+				BestiaryFlavorText: Подчинённый Ктулху, застрявший в Порче. Теперь же ищет своего пропавшего братика.
 			}
 
 			Cloudfish: {
-				// DisplayName: Cloudfish
-				// BestiaryFlavorText: Is it a cloud? Is it a fish? It's both!
+				DisplayName: Рыблако
+				BestiaryFlavorText: Это облако? Это рыба? И то, и другое!
 			}
 
 			CuteGastropod: {
-				// DisplayName: Cute Gastropod
-				// BestiaryFlavorText: This hallowed variant of slime has taken on a more friendly appearance after meeting a special person.
+				DisplayName: Миленький брюхоног
+				BestiaryFlavorText: Встретив кого-то особенного, этот вид слизня из Освящения принял более дружелюбный вид.
 			}
 
 			CuteSlimeBlack: {
-				// DisplayName: Cute Black Slime
-				// BestiaryFlavorText: Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.
+				DisplayName: Чёрная Слизняшка
+				BestiaryFlavorText: Этот слизень очень трепетно относится к своему хвостику, так что чтобы подружиться - сделайте комплимент причёске.
 			}
 
 			CuteSlimeBlue: {
-				// DisplayName: Cute Blue Slime
-				// BestiaryFlavorText: Though its expression is dull, this slime is very affectionate and loves to hug anyone that it gets close to.
+				DisplayName: Синяя Слизняшка
+				BestiaryFlavorText: Хоть по выражению лица и не понять, но этот слизень очень ласковый и обожает объятия со всеми.
 			}
 
 			CuteSlimeCorrupt: {
-				// DisplayName: Cute Corrupt Slime
-				// BestiaryFlavorText: Hollow eyes and a dark color makes you think this slime is dangerous, but it's just not very social.
+				DisplayName: Порченная Слизняшка
+				BestiaryFlavorText: Пустые глаза и тёмный цвет говорят об опасности, но на самом деле этот слизень просто нелюдим.
 			}
 
 			CuteSlimeCorruptJungle: {
-				// DisplayName: Cute Corrupt Jungle Slime
-				// BestiaryFlavorText: Slimes are incredibly adaptable, being able to survive even the harshest conditions.
+				DisplayName: Порченная Слизняшка джунглей
+				BestiaryFlavorText: Слизни невероятно приспосабливаемы, выживая даже в самых свирепых условиях.
 			}
 
 			CuteSlimeCrimson: {
-				// DisplayName: Cute Crimson Slime
-				// BestiaryFlavorText: Though it looks like it has an unstable mind, this slime is incredibly calm and collected.
+				DisplayName: Багряная Слизняшка
+				BestiaryFlavorText: На вид у него явно не все дома, но по правде этот слизень невероятно спокоен и собран.
 			}
 
 			CuteSlimeCrimsonJungle: {
-				// DisplayName: Cute Crimson Jungle Slime
-				// BestiaryFlavorText: When the jungle turned red, this slime adapted quickly by mimicking the crimson grass.
+				DisplayName: Багряная Слизняшка джунглей
+				BestiaryFlavorText: Стоило джунглям покраснеть, как этот слизень быстро адаптировался, мимикрируя под багряную траву.
 			}
 
 			CuteSlimeDungeon: {
-				// DisplayName: Cute Dungeon Slime
-				// BestiaryFlavorText: This slime was created in the image of an ancient sorceress. Other than the lack of legs, it's almost perfect.
+				DisplayName: Слизняшка темницы
+				BestiaryFlavorText: Этот слизень был создан по образу и подобию древней волшебницы. Если не брать в счёт отсутствие ног - получилось почти идеально.
 			}
 
-			// CuteSlimeGolden.DisplayName: Cute Golden Slime
+			CuteSlimeGolden.DisplayName: Золотая Слизняшка
 
 			CuteSlimeGreen: {
-				// DisplayName: Cute Green Slime
-				// BestiaryFlavorText: Don't let the closed eyes fool you; this slime is attentive and ready to act at a moment's notice.
+				DisplayName: Зелёная Слизняшка
+				BestiaryFlavorText: Не ведись на закрытые глаза. Этот слизень чуток и готов мгновенно ответить на любое действие.
 			}
 
 			CuteSlimeHoney: {
-				// DisplayName: Cute Honey Slime
-				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware.
+				DisplayName: Медовая Слизняшка
+				BestiaryFlavorText: Чтобы спрятаться от шершней, этот слизень покрыл себя мёдом. Это привлекло их ещё сильнее.
 			}
 
 			CuteSlimeIce: {
-				// DisplayName: Cute Ice Slime
-				// BestiaryFlavorText: Its body may be cold to the touch, but its expression and mannerisms will warm your heart.
+				DisplayName: Ледяная Слизняшка
+				BestiaryFlavorText: Тело этого слизня холодное, но его выражения и поведения растопят любое сердце.
 			}
 
 			CuteSlimeIlluminant: {
-				// DisplayName: Cute Illuminant Slime
-				// BestiaryFlavorText: The erratic nature of the Hallow has made this slime quite playful.
+				DisplayName: Светящаяся Слизняшка
+				BestiaryFlavorText: Хаотичность Освящения сделала этого слизня весьма игривым.
 			}
 
 			CuteSlimeJungle: {
-				// DisplayName: Cute Jungle Slime
-				// BestiaryFlavorText: Life in the jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.
+				DisplayName: Слизняшка джунглей
+				BestiaryFlavorText: Жизнь мягкотелых существ в джунглях трудна, но не невыносима - этот слизень тому доказательство.
 			}
 
 			CuteSlimeLava: {
-				// DisplayName: Cute Lava Slime
-				// BestiaryFlavorText: Having accidentally gotten impaled by a chunk of obsidian, this slime laments being unable to remove it.
+				DisplayName: Лавовая Слизняшка
+				BestiaryFlavorText: Этот слизень опечален тем, что не может вытащить из себя кусок обсидина, которым его случайно проткнуло.
 			}
 
 			CuteSlimePink: {
-				// DisplayName: Cute Pink Slime
-				// BestiaryFlavorText: Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.
+				DisplayName: Розовая Слизняшка
+				BestiaryFlavorText: Маленькие размеры не значат маленькие возможности. Несмотря на размеры, в этом слизне больше энергии, чем на самой отвязной вечеринке!
 			}
 
 			CuteSlimePinkIce: {
-				// DisplayName: Cute Pink Ice Slime
-				// BestiaryFlavorText: The hallow may have chaotic effects on the wildlife, but this slime remains calm and polite.
+				DisplayName: Розовая ледяная Слизняшка
+				BestiaryFlavorText: Освящение влияет на фауну самыми безумными способами, но этот слизень остаётся мирным и воспитанным.
 			}
 
 			CuteSlimePurple: {
-				// DisplayName: Cute Purple Slime
-				// BestiaryFlavorText: Don't let the smile fool you; it's actually much happier than it looks.
+				DisplayName: Фиолетовая Слизняшка
+				BestiaryFlavorText: Не верь своим глазам, этот слизень гораздо счастливее, чем он выглядит.
 			}
 
 			CuteSlimePurpleIce: {
-				// DisplayName: Cute Purple Ice Slime
-				// BestiaryFlavorText: Frightened by the corruption, this slime is perpetually nervous.
+				DisplayName: Фиолетовая ледяная Слизняшка
+				BestiaryFlavorText: Этот слизень постоянно нервничает, в ужасе от Порчи.
 			}
 
 			CuteSlimeRainbow: {
-				// DisplayName: Cute Rainbow Slime
-				// BestiaryFlavorText: The caring and motherly nature that this slime exhibits shows that it understands compassion.
+				DisplayName: Радужная Слизняшка
+				BestiaryFlavorText: Заботливый и материнский характер этого слизня показывают, что ему не чуждо сострадание.
 			}
 
 			CuteSlimeRed: {
-				// DisplayName: Cute Red Slime
-				// BestiaryFlavorText: A playful slime that is quite active. It sometimes goes overboard when having fun.
+				DisplayName: Красная Слизняшка
+				BestiaryFlavorText: Игривый слизень, в котором много прыти. Иногда его слишком далеко заносит.
 			}
 
 			CuteSlimeRedIce: {
-				// DisplayName: Cute Red Ice Slime
-				// BestiaryFlavorText: It is best to avoid standing out when in the Crimson, and this slime knows that all too well.
+				DisplayName: Красная ледяная Слизняшка
+				BestiaryFlavorText: В Багрянце лучше всего не выделяться, и этот слизень знает это не понаслышке.
 			}
 
 			CuteSlimeSand: {
-				// DisplayName: Cute Sand Slime
-				// BestiaryFlavorText: The coarse sand that coats its body leads it to keep its distance, but it won't turn down a friend.
+				DisplayName: Песчаная Слизняшка
+				BestiaryFlavorText: Грубый песок, покрывающий его тело, заставляет этого слизня держаться от других подальше, но от друга он не откажется.
 			}
 
 			CuteSlimeShimmer: {
-				// DisplayName: Cute Shimmer Slime
-				// BestiaryFlavorText: When exposed to the mysterious shimmer, this slime took on an aetherial appearance.
+				DisplayName: Мерцающая Слизняшка
+				BestiaryFlavorText: Угодив в загадочное мерцание, этот слизень принял неземной облик.
 			}
 
 			CuteSlimeToxic: {
-				// DisplayName: Cute Toxic Slime
-				// BestiaryFlavorText: Appearances are deceiving; it's only half as monstrous as it looks!
+				DisplayName: Токсичная Слизняшка
+				BestiaryFlavorText: Внешность обманчива: этот слизень лишь наполовину ужасен, чем кажется!
 			}
 
 			CuteSlimeXmas: {
-				// DisplayName: Cute Christmas Slime
-				// BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring that gift to everyone.
+				DisplayName: Рождественская Слизняшка
+				BestiaryFlavorText: Величайший подарок - это друг. Этот слизень хочется даровать этот подарок каждому.
 			}
 
 			CuteSlimeYellow: {
-				// DisplayName: Cute Yellow Slime
-				// BestiaryFlavorText: Moving with delicate grace, this slime dances about without missing a step.
+				DisplayName: Жёлтая Слизняшка
+				BestiaryFlavorText: Этот слизень движется с деликатной грацией, танцуя и не спотыкаясь.
 			}
 
-			// DemonEyeRecolor.DisplayName: Demon Eye
-			// DemonEyeWandering.DisplayName: Wandering Eye
+			DemonEyeRecolor.DisplayName: Демонический глаз
+			DemonEyeWandering.DisplayName: Блуждающий глаз
 
 			FairySlime: {
-				// DisplayName: Fairy Slime
-				// BestiaryFlavorText: Not wanting to lose to its flying neighbors, it has grown wing-like extentions. It can't fly, but it's happy regardless of this fact.
+				DisplayName: Сказочный слизень
+				BestiaryFlavorText: Этому слизню не хотелось терять своих летучих соседей, поэтому он отрастил себе крылья. Летать не научился, но он все равно счастлив.
 			}
 
 			GiantGrasshopper: {
-				// DisplayName: Giant Grasshopper
-				// BestiaryFlavorText: It can leap over entire bushes in a single bound.
+				DisplayName: Огромный сверчок
+				BestiaryFlavorText: Он может прыгать через целые кусты за раз.
 			}
 
 			GiantGrasshopperGold: {
-				// DisplayName: Gold Giant Grasshopper
-				// BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
+				DisplayName: Золотой огромный сверчок
+				BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
 			}
 
-			// DungeonSoul.DisplayName: Dungeon Soul
-			// DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
+			DungeonSoul.DisplayName: Душа темницы
+			DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
 
 			HarvesterBoss: {
-				// DisplayName: Soul Harvester
-				// BestiaryFlavorText: After having absorbed the essence of fallen dungeon denizens, this skeletal bird rapidly grew into a ferocious hunter that sought to eat the hand that once fed it.
-				// BossChecklistIntegration.SpawnInfo: Find and open an {$Items.AntiqueCageItem.DisplayName} in the dungeon, or use [i:AssortedCrazyThings/IdolOfDecay]
+				DisplayName: Пожинатель душ
+				BestiaryFlavorText: Поглотив сущность павших обитателей темницы, эта костяная птица стремительно выросла в рьяного охотника, который начал пожирать руку, которая когда-то его же и кормила.
+				BossChecklistIntegration.SpawnInfo: Найди в темнице и открой Антикварную клетку, или используй [i:AssortedCrazyThings/IdolOfDecay]
 			}
 
-			// HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
-			// HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
+			HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
 
 			HornedSlime: {
-				// DisplayName: Horned Slime
-				// BestiaryFlavorText: The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.
+				DisplayName: Рогатый слизень
+				BestiaryFlavorText: Рога не для красоты - они могут рассеивать жар, помогая слизню оставаться желеобразным.
 			}
 
 			JoyousSlime: {
-				// DisplayName: Joyous Slime
-				// BestiaryFlavorText: A passive variant of slime with a friendly face. At night, it tries to be close to an equally friendly face.
+				DisplayName: Радостный слизень
+				BestiaryFlavorText: Довольно спокойный вид слизней с дружелюбным лицом. По ночам он старается быть с такими же дружелюбными лицами.
 			}
 
 			Meatball: {
-				// DisplayName: Meatball
-				// BestiaryFlavorText: A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.
+				DisplayName: Тефтелька
+				BestiaryFlavorText: Масса кровавой плоти, с одним-единственным глазом. Кажется, глаз пытается убежать.
 			}
 
 			MeatballsEye: {
-				// DisplayName: Meatball's Eye
-				// BestiaryFlavorText: A minion of Cthulhu that was trapped in the Crimson. It hastily seeks out its older brother.
+				DisplayName: Глаз Тефтельки
+				BestiaryFlavorText: Прислужник Ктулху, застрявший в Багрянце. Он спешно пытается найти своего старшего брата.
 			}
 
 			Megalodon: {
-				// DisplayName: Megalodon
-				// BestiaryFlavorText: Thought to be extinct, this ancient predator is as long-lived as its endless hunger.
+				DisplayName: Мегалодон
+				BestiaryFlavorText: Раньше этот древний хищник считался вымершим, однако он так же живуч, как и его голод.
 			}
 
 			OceanSlime: {
-				// DisplayName: Ocean Slime
-				// BestiaryFlavorText: Slimes that are lost to the sea are faced with two options; adapt, or be eaten. Luckily, these slimes taste bad.
+				DisplayName: Океанский слизень
+				BestiaryFlavorText: Те слизни, которых уносит в море, предстают перед выбором: приспособиться или отдать себя на съедение. К счастью эти слизни ужасны на вкус.
 			}
 
 			SpawnOfOcram: {
-				// DisplayName: Spawn of Ocram
-				// BestiaryFlavorText: An ancient being's offspring, once thought to have been lost to time.
+				DisplayName: Отпрыск Окрама
+				BestiaryFlavorText: Потом древнего существа, которое некогда считалось безвременно утраченным.
 			}
 
 			StingSlime: {
-				// DisplayName: Sting Slime
-				// BestiaryFlavorText: Bounce like a slime, sting like a scorpion.
+				DisplayName: Жалящий слизень
+				BestiaryFlavorText: Прыгай как слизень, жаль как скорпион.
 			}
 
 			StoneSoldier: {
-				// DisplayName: Stone Soldier
-				// BestiaryFlavorText: Animate stone statues that have wandered from an ancient tomb. Their eyes are valuable.
+				DisplayName: Каменный солдат
+				BestiaryFlavorText: Ожившие каменные статуи, заплутавшие далеко от древнего склепа. Их глаза очень ценны.
 			}
 
 			StrangeSlime: {
-				// DisplayName: Strange Slime
-				// BestiaryFlavorText: These peculiar slimes are host to strange plants, which grow for life. The slime always makes sure to keep it upright.
+				DisplayName: Странный слизень
+				BestiaryFlavorText: Эти необычные слизни подсаживают в себя странные растения, которые растут всю жизнь. Слизень всегда старается держать растение торчком.
 			}
 
 			TurtleSlime: {
-				// DisplayName: Turtle Slime
-				// BestiaryFlavorText: Giant tortoises are known to shed part of their shell as they grow. These slimes collect those old fragments for protection.
+				DisplayName: Черепаший слизень
+				BestiaryFlavorText: Гигантские черепахи сбрасывают пластины со своих панцирей по ходу взросления. Эти слизни коллекционируют такие сброшенные части для защиты.
 			}
 
 			WalkingTombstoneGolden: {
-				// DisplayName: Walking Tombstone
-				// BestiaryFlavorText: Terrestrial crabs that have taken up a morbid and expensive form of camouflage.
+				DisplayName: Бродячее надгробие
+				BestiaryFlavorText: Наземные крабы, которые приняли вот такой нездоровый и довольно дорогой камуфляж.
 			}
 
 			YoungHarpy: {
-				// DisplayName: Young Harpy
-				// BestiaryFlavorText: Harpies are not inherently hostile. If they make a childhood friend, they'll always be friends.
+				DisplayName: Молодая гарпия
+				BestiaryFlavorText: Гарпиям поначалу не свойственна агрессивность. Если у них в детстве появляется друг - то он навсегда.
 			}
 
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
-						// Black: Black
-						// Blue: Blue
-						// Green: Green
-						// Purple: Purple
-						// Rainbow: Rainbow
-						// Red: Red
-						// Yellow: Yellow
+						Black: Чёрная
+						Blue: Синяя
+						Green: Зелёная
+						Purple: Фиолетовая
+						Rainbow: Радужная
+						Red: Красная
+						Yellow: Жёлтая
 					}
 
-					// Desert.Sand: Sand
-					// Tundra.Ice: Ice
-					// Jungle.Jungle: Jungle
-					// Underground.Toxic: Toxic
-					// Hell.Lava: Lava
-					// Corruption.Corrupt: Corrupt
-					// CorruptionIce.PurpleIce: Purple Ice
-					// CorruptionJungle.CorruptJungle: Corrupt Jungle
-					// Crimson.Crimson: Crimson
-					// CrimsonIce.RedIce: Red Ice
-					// CrimsonJungle.CrimsonJungle: Crimson Jungle
-					// Hallow.Illuminant: Illuminant
-					// HallowIce.PinkIce: Pink Ice
-					// Dungeon.Dungeon: Dungeon
-					// Xmas.Xmas: Xmas
-					// Honey.Honey: Honey
+					Desert.Sand: Песчаная
+					Tundra.Ice: Ледяная
+					Jungle.Jungle: Джунглей
+					Underground.Toxic: Токсичная
+					Hell.Lava: Лавовая
+					Corruption.Corrupt: Порченная
+					CorruptionIce.PurpleIce: Фиолетовая ледяная
+					CorruptionJungle.CorruptJungle: Порченных джунглей
+					Crimson.Crimson: Багряная
+					CrimsonIce.RedIce: Красная ледяная
+					CrimsonJungle.CrimsonJungle: Багряных джунглей
+					Hallow.Illuminant: Светящаяся
+					HallowIce.PinkIce: Розовая ледяная
+					Dungeon.Dungeon: Темничная
+					Xmas.Xmas: Рождественская
+					Honey.Honey: Медовая
 				}
 			}
 		}
 
 		Projectiles: {
-			// SigilOfTheBeakProj.DisplayName: Fractured Soul
-			// CompanionDungeonSoulMinion.DisplayName: Companion Soul
-			// BasicLaserDrone.DisplayName: Basic Laser Drone
-			// HealingDrone.DisplayName: Healing Drone
-			// HeavyLaserDrone.DisplayName: Heavy Laser Drone
-			// HeavyLaserDroneLaser.DisplayName: Laser Drone Laser
-			// MissileDrone.DisplayName: Missile Drone
-			// MissileDroneRocket.DisplayName: Missile Drone Rocket
-			// ShieldDrone.DisplayName: Shield Drone
-			// GoblinUnderlingWeaponDart.DisplayName: Goblin Underling Dart
-			// EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
-			// ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
-			// SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
-			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin Underling Terra Beam
-			// GoblinUnderlingWeaponArrow.DisplayName: Goblin Underling Arrow
-			// GoblinUnderlingWeaponBlaster.DisplayName: Goblin Underling Blaster
-			// GoblinUnderlingWeaponOrb.DisplayName: Goblin Underling Orb
-			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin Underling Daybreak
-			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
-			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
-			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling Minion
-			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
-			// PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
-			// SlimePackAssortedMinion.DisplayName: Slime Knapsack Minion
-			// SlimePackMinion.DisplayName: Slime Knapsack Minion
-			// SlimePackMinionSpike.DisplayName: Slime Knapsack Minion Spike
-			// SlimePackSpikedMinion.DisplayName: Slime Knapsack Minion
-			// BabyHarvesterProj.DisplayName: Baby Bird
-			// HarvesterAbsorbedSoul.DisplayName: Absorbed Soul
-			// HarvesterBone.DisplayName: Harvester Bone
-			// HarvesterFracturedSoul.DisplayName: Fractured Soul
-			// AbeeminationProj.DisplayName: Abeemination
-			// AlienHornetProj.DisplayName: Alien Hornet
-			// AnimatedTomeProj.DisplayName: Animated Tome
-			// AnomalocarisProj.DisplayName: Anomalocaris
-			// BabyCrimeraProj.DisplayName: Baby Crimera
-			// BabyIchorStickerProj.DisplayName: Baby Ichor Sticker
-			// BabyOcramProj.DisplayName: Baby Ocram
-			// BrainofConfusionProj.DisplayName: Brain of Confusion
-			// ChunkyProj.DisplayName: Chunky
-			// ChunkySlimeProj.DisplayName: Chunky Slime
-			// CompanionDungeonSoulPetProj.DisplayName: Companion Soul
-			// CompanionDungeonSoulPetProj2.DisplayName: Companion Soul
-			// CursedSkullProj.DisplayName: Cursed Skull
-			// CuteGastropodProj.DisplayName: Cute Gastropod
-			// CuteLamiaPetProj.DisplayName: Small Snake
-			// CuteSlimeBlackProj.DisplayName: Cute Black Slime
-			// CuteSlimeBlueProj.DisplayName: Cute Blue Slime
-			// CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
-			// CuteSlimeCorruptJungleProj.DisplayName: Cute Corrupt Jungle Slime
-			// CuteSlimeCrimsonProj.DisplayName: Cute Crimson Slime
-			// CuteSlimeCrimsonJungleProj.DisplayName: Cute Crimson Jungle Slime
-			// CuteSlimeDungeonProj.DisplayName: Cute Dungeon Slime
-			// CuteSlimeGoldenProj.DisplayName: Cute Golden Slime
-			// CuteSlimeGreenProj.DisplayName: Cute Green Slime
-			// CuteSlimeHoneyProj.DisplayName: Cute Honey Slime
-			// CuteSlimeIceProj.DisplayName: Cute Ice Slime
-			// CuteSlimeIlluminantProj.DisplayName: Cute Illuminant Slime
-			// CuteSlimeJungleProj.DisplayName: Cute Jungle Slime
-			// CuteSlimeLavaProj.DisplayName: Cute Lava Slime
-			// CuteSlimePinkProj.DisplayName: Cute Pink Slime
-			// CuteSlimePinkIceProj.DisplayName: Cute Pink Ice Slime
-			// CuteSlimePrincessProj.DisplayName: Cute Princess Slime
-			// CuteSlimePurpleProj.DisplayName: Cute Purple Slime
-			// CuteSlimePurpleIceProj.DisplayName: Cute Purple Ice Slime
-			// CuteSlimeQueenProj.DisplayName: Cute Queen Slime
-			// CuteSlimeRainbowProj.DisplayName: Cute Rainbow Slime
-			// CuteSlimeRedProj.DisplayName: Cute Red Slime
-			// CuteSlimeRedIceProj.DisplayName: Cute Red Ice Slime
-			// CuteSlimeSandProj.DisplayName: Cute Sand Slime
-			// CuteSlimeShimmerProj.DisplayName: Cute Shimmer Slime
-			// CuteSlimeToxicProj.DisplayName: Cute Toxic Slime
-			// CuteSlimeXmasProj.DisplayName: Cute Christmas Slime
-			// CuteSlimeYellowProj.DisplayName: Cute Yellow Slime
-			// DemonHeartProj.DisplayName: Demon Heart
-			// DetachedHungryProj.DisplayName: Detached Hungry
-			// DocileDemonEyeProj.DisplayName: Docile Demon Eye
-			// DrumstickElementalProj.DisplayName: Drumstick Elemental
-			// DynamiteBunnyProj.DisplayName: Dynamite Bunny
-			// EnchantedSwordProj.DisplayName: Enchanted Sword
-			// FailureSlimeProj.DisplayName: Failure Slime
-			// FairySlimeProj.DisplayName: Fairy Slime
-			// FairySwarmProj.DisplayName: Fairy Swarm
-			// GhostMartianProj.DisplayName: Ghost Martian
-			// GobletProj.DisplayName: Goblet
-			// HornedSlimeProj.DisplayName: Horned Slime
-			// IlluminantSlimeProj.DisplayName: Illuminant Slime
-			// JoyousSlimeProj.DisplayName: Joyous Slime
-			// LifelikeMechanicalFrogProj.DisplayName: Lifelike Mechanical Frog
-			// LilWrapsProj.DisplayName: Lil' Wraps
-			// MeatballProj.DisplayName: Meatball
-			// MeatballSlimeProj.DisplayName: Meatball Slime
-			// MetroidPetProj.DisplayName: Metroid
-			// MiniAntlionProj.DisplayName: Baby Antlion
-			// MiniMegalodonProj.DisplayName: Mini Megalodon
-			// NumberMuncherProj.DisplayName: Number Muncher
-			// OceanSlimeProj.DisplayName: Ocean Slime
-			// PetCultistProj.DisplayName: Dwarf Cultist
-			// PetDestroyer.DisplayName: Tiny Destroyer
-			// PetDestroyerProbe.DisplayName: Tiny Destroyer Probe
-			// PetEaterofWorlds.DisplayName: Tiny Eater of Worlds
-			// PetFishronProj.DisplayName: Mini Fishron
-			// PetGoldfishProj.DisplayName: Pet Goldfish
-			// PetGolemHeadProj.DisplayName: Replica Golem Head
-			// PetHarvesterProj.DisplayName: Stubborn Bird
-			// PetMoonProj.DisplayName: Personal Moon
-			// PetPlanteraProj.DisplayName: Plantera Sprout
-			// PetPlanteraProjTentacle.DisplayName: Mean Seed Tentacle
-			// PetQueenSlimeProj.DisplayName: Slime Sibling
-			// PetSunProj.DisplayName: Personal Sun
-			// PigronataProj.DisplayName: Pigronata
-			// PrinceSlimeProj.DisplayName: Prince Slime
-			// QueenLarvaProj.DisplayName: Queen Bee Larva
-			// RainbowSlimeProj.DisplayName: Rainbow Slime
-			// SkeletronHandProj.DisplayName: Skeletron Pet Hand
-			// SkeletronPrimeHandProj.DisplayName: Skeletron Prime Pet Hand
-			// StingSlimeProj.DisplayName: Sting Slime
-			// StrangeRobotProj.DisplayName: Strange Robot
-			// SuspiciousNuggetProj.DisplayName: Suspicious Nugget
-			// SwarmofCthulhuProj.DisplayName: Swarm of Cthulhu
-			// TinyRetinazerProj.DisplayName: Tiny Retinazer
-			// TinySpazmatismProj.DisplayName: Tiny Spazmatism
-			// TorchGodLightPetProj.DisplayName: Godly Torch
-			// TorturedSoulProj.DisplayName: Tortured Soul
-			// TrueObservingEyeProj.DisplayName: True Observing Eye
-			// TurtleSlimeProj.DisplayName: Turtle Slime
-			// VampireBatProj.DisplayName: Vampire Bat
-			// WallFragmentEye1.DisplayName: Wall Eye
-			// WallFragmentEye2.DisplayName: Wall Eye
-			// WallFragmentMouth.DisplayName: Wall Mouth
-			// WobyProj.DisplayName: Woby
-			// YoungHarpyProj.DisplayName: Young Harpy
-			// YoungWyvernProj.DisplayName: Young Wyvern
-			// ExtendoNetGoldenProj.DisplayName: EXTENDO!
-			// ExtendoNetRegularProj.DisplayName: EXTENDO!
-			// BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
-			// BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName} Arrow"
-			// CandleDustDummy.DisplayName: Candle Dust Dummy
-			// GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
-			// LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
-			// PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
-			// PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
-			// SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} Laser"
-			// BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} Breath"
-			// TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
-			// TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
-			// AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName} Shot"
-			// AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName} Shot"
-			// BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName} Shot"
-			// BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName} Shot"
-			// CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName} Shot"
-			// CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName} Shot"
-			// DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName} Shot"
-			// DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName} Shot"
-			// DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName} Shot"
-			// FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName} Shot"
-			// GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName} Shot"
-			// NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName} Shot"
-			// SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Bomb Shot"
-			// SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} Laser Shot"
-			// StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName} Shot"
-			// SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName} Shot"
-			// TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName} Shot"
-			// TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} Shot"
-			// TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} Shot"
-			// WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} Shot"
+			SigilOfTheBeakProj.DisplayName: Разбитая душа
+			CompanionDungeonSoulMinion.DisplayName: Дух-компаньон
+			BasicLaserDrone.DisplayName: Стандартный лазер-дрон
+			HealingDrone.DisplayName: Лечебный дрон
+			HeavyLaserDrone.DisplayName: Мощный лазер-дрон
+			HeavyLaserDroneLaser.DisplayName: Лазер лазер-дрона
+			MissileDrone.DisplayName: Ракетный дрон
+			MissileDroneRocket.DisplayName: Снаряд ракетного дрона
+			ShieldDrone.DisplayName: Защитный дрон
+			GoblinUnderlingWeaponDart.DisplayName: Дротик гоблина-прислужника
+			EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
+			ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
+			SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
+			GoblinUnderlingWeaponTerraBeam.DisplayName: Терра-луч гоблина-прислужника
+			GoblinUnderlingWeaponArrow.DisplayName: Стрела гоблина-прислужника
+			GoblinUnderlingWeaponBlaster.DisplayName: Бластер гоблина-прислужника
+			GoblinUnderlingWeaponOrb.DisplayName: Сфера гоблина-прислужника
+			GoblinUnderlingWeaponDaybreak.DisplayName: Рассвет гоблина-прислужника
+			GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
+			MagicSlimeSlingFired.DisplayName: Магическая слизневая праща
+			MagicSlimeSlingMinion.DisplayName: Прислужник из магической слизневой пращи
+			PetDestroyerDroneLaser.DisplayName: Лазер Уничтожителя-питомца
+			PetGolemHeadFireball.DisplayName: Огненный шар головы Голема-питомца
+			SlimePackAssortedMinion.DisplayName: Прислужник из ранца слизней
+			SlimePackMinion.DisplayName: Прислужник из ранца слизней
+			SlimePackMinionSpike.DisplayName: Шип прислужника из ранца слизней
+			SlimePackSpikedMinion.DisplayName: Прислужник из ранца слизней
+			BabyHarvesterProj.DisplayName: Птенчик
+			HarvesterAbsorbedSoul.DisplayName: Поглощённая душа
+			HarvesterBone.DisplayName: Кость Пожинателя
+			HarvesterFracturedSoul.DisplayName: Разбитая душа
+			AbeeminationProj.DisplayName: Пчелиная масса
+			AlienHornetProj.DisplayName: Инопланетный шершень
+			AnimatedTomeProj.DisplayName: Оживший фолиант
+			AnomalocarisProj.DisplayName: Аномалокарис
+			BabyCrimeraProj.DisplayName: Малыш-кримера
+			BabyIchorStickerProj.DisplayName: Малыш-ихоровый прилипала
+			BabyOcramProj.DisplayName: Малыш Окрам
+			BrainofConfusionProj.DisplayName: Мозг замешательства
+			ChunkyProj.DisplayName: Комочек
+			ChunkySlimeProj.DisplayName: Комочек-слизень
+			CompanionDungeonSoulPetProj.DisplayName: Дух-компаньон
+			CompanionDungeonSoulPetProj2.DisplayName: Дух-компаньон
+			CursedSkullProj.DisplayName: Проклятый череп
+			CuteGastropodProj.DisplayName: Миленький брюхоног
+			CuteLamiaPetProj.DisplayName: Змейка
+			CuteSlimeBlackProj.DisplayName: Чёрная Слизняшка
+			CuteSlimeBlueProj.DisplayName: Синяя Слизняшка
+			CuteSlimeCorruptProj.DisplayName: Порченная Слизняшка
+			CuteSlimeCorruptJungleProj.DisplayName: Порченная Слизняшка джунглей
+			CuteSlimeCrimsonProj.DisplayName: Багряная Слизняшка
+			CuteSlimeCrimsonJungleProj.DisplayName: Багряный Слизняшка джунглей
+			CuteSlimeDungeonProj.DisplayName: Слизняшка темницы
+			CuteSlimeGoldenProj.DisplayName: Золотая Слизняшка
+			CuteSlimeGreenProj.DisplayName: Зелёная Слизняшка
+			CuteSlimeHoneyProj.DisplayName: Медовая Слизняшка
+			CuteSlimeIceProj.DisplayName: Ледяная Слизняшка
+			CuteSlimeIlluminantProj.DisplayName: Светящаяся Слизняшка
+			CuteSlimeJungleProj.DisplayName: Слизняшка джунглей
+			CuteSlimeLavaProj.DisplayName: Лавовая Слизняшка
+			CuteSlimePinkProj.DisplayName: Розовая Слизняшка
+			CuteSlimePinkIceProj.DisplayName: Розовая ледяная Слизняшка
+			CuteSlimePrincessProj.DisplayName: Слизняшка-принцесса
+			CuteSlimePurpleProj.DisplayName: Фиолетовая Слизняшка
+			CuteSlimePurpleIceProj.DisplayName: Фиолетовая ледяная Слизняшка
+			CuteSlimeQueenProj.DisplayName: Слизняшка-королева
+			CuteSlimeRainbowProj.DisplayName: Радужная Слизняшка
+			CuteSlimeRedProj.DisplayName: Красная Слизняшка
+			CuteSlimeRedIceProj.DisplayName: Красная ледяная Слизняшка
+			CuteSlimeSandProj.DisplayName: Песчаная Слизняшка
+			CuteSlimeShimmerProj.DisplayName: Мерцающая Слизняшка
+			CuteSlimeToxicProj.DisplayName: Токсичная Слизняшка
+			CuteSlimeXmasProj.DisplayName: Рождественская Слизняшка
+			CuteSlimeYellowProj.DisplayName: Жёлтая Слизняшка
+			DemonHeartProj.DisplayName: Демоническое сердце
+			DetachedHungryProj.DisplayName: Отделившийся голодный
+			DocileDemonEyeProj.DisplayName: Мирный демонический глаз
+			DrumstickElementalProj.DisplayName: Куриный элементаль
+			DynamiteBunnyProj.DisplayName: Взрывокролик
+			EnchantedSwordProj.DisplayName: Зачарованный меч
+			FailureSlimeProj.DisplayName: Неудавшийся слизень
+			FairySlimeProj.DisplayName: Сказочный слизень
+			FairySwarmProj.DisplayName: Рой фей
+			GhostMartianProj.DisplayName: Призрачный марсианин
+			GobletProj.DisplayName: Гоблинёныш
+			HornedSlimeProj.DisplayName: Рогатый слизень
+			IlluminantSlimeProj.DisplayName: Светящийся слизень
+			JoyousSlimeProj.DisplayName: Радостный слизень
+			LifelikeMechanicalFrogProj.DisplayName: Реалистичная механическая лягушка
+			LilWrapsProj.DisplayName: Кроха Обмотик
+			MeatballProj.DisplayName: Тефтелька
+			MeatballSlimeProj.DisplayName: Тефтель-слизень
+			MetroidPetProj.DisplayName: Метроид
+			MiniAntlionProj.DisplayName: Малыш-муравьиный лес
+			MiniMegalodonProj.DisplayName: Мини-мегалодон
+			NumberMuncherProj.DisplayName: Счетоводная амфибия
+			OceanSlimeProj.DisplayName: Океанский слизень
+			PetCultistProj.DisplayName: Культист-лунатик-коротышка
+			PetDestroyer.DisplayName: Крошечный Уничтожитель
+			PetDestroyerProbe.DisplayName: Крошечный зонд Уничтожителя
+			PetEaterofWorlds.DisplayName: Крошечный Пожиратель миров
+			PetFishronProj.DisplayName: Мини-Рыброн
+			PetGoldfishProj.DisplayName: Ручная золотая рыбка
+			PetGolemHeadProj.DisplayName: Реплика головы голема
+			PetHarvesterProj.DisplayName: Упрямая птица
+			PetMoonProj.DisplayName: Личная луна
+			PetPlanteraProj.DisplayName: Росток Плантеры
+			PetPlanteraProjTentacle.DisplayName: Щупальце грубого семени
+			PetQueenSlimeProj.DisplayName: Слизень-собрат
+			PetSunProj.DisplayName: Личное солнце
+			PigronataProj.DisplayName: Свинокрыльята
+			PrinceSlimeProj.DisplayName: Слизень-принц
+			QueenLarvaProj.DisplayName: Личинка королевы пчёл
+			RainbowSlimeProj.DisplayName: Радужный слизень
+			SkeletronHandProj.DisplayName: Рука Скелетрона-питомца
+			SkeletronPrimeHandProj.DisplayName: Рука Скелетрона Прайма-питомца
+			StingSlimeProj.DisplayName: Жалящий слизень
+			StrangeRobotProj.DisplayName: Странный робот
+			SuspiciousNuggetProj.DisplayName: Подозрительный наггетс
+			SwarmofCthulhuProj.DisplayName: Рой Ктулху
+			TinyRetinazerProj.DisplayName: Крошечный Ретиназер
+			TinySpazmatismProj.DisplayName: Крошечный Спазматизм
+			TorchGodLightPetProj.DisplayName: Божественный факел
+			TorturedSoulProj.DisplayName: Измученная душа
+			TrueObservingEyeProj.DisplayName: Истинное следящее око
+			TurtleSlimeProj.DisplayName: Черепаший слизень
+			VampireBatProj.DisplayName: Летучая мышь-вампир
+			WallFragmentEye1.DisplayName: Глаз стены
+			WallFragmentEye2.DisplayName: Глаз стены
+			WallFragmentMouth.DisplayName: Рот стены
+			WobyProj.DisplayName: Воби
+			YoungHarpyProj.DisplayName: Молодая гарпия
+			YoungWyvernProj.DisplayName: Молодая виверна
+			ExtendoNetGoldenProj.DisplayName: ХВАТЬ!
+			ExtendoNetRegularProj.DisplayName: ХВАТЬ!
+			BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
+			BoneShatterLongbowProj.DisplayName: "{$Items.BoneShatterLongbow.DisplayName} (Стрела)"
+			CandleDustDummy.DisplayName: Свечная пыль
+			GuideVoodoorangProj.DisplayName: "{$Items.GuideVoodoorang.DisplayName}"
+			LegendaryWoodenSwordProj.DisplayName: "{$Items.LegendaryWoodenSword.DisplayName}"
+			PlagueOfToadsCloud.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsFired.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PlagueOfToadsProj.DisplayName: "{$Items.PlagueOfToads.DisplayName}"
+			PocketSandProj.DisplayName: "{$Items.PocketSand.DisplayName}"
+			SightofRetinazerLaser.DisplayName: "{$Items.SightofRetinazer.DisplayName} (Лазер)"
+			BreathOfSpazmatismProj.DisplayName: "{$Items.BreathOfSpazmatism.DisplayName} (Дыхание)"
+			TalonstormClawProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormFiredProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TalonstormProj.DisplayName: "{$Items.Talonstorm.DisplayName}"
+			TrueLegendaryWoodenSwordProj.DisplayName: "{$Items.TrueLegendaryWoodenSword.DisplayName}"
+			AlienHornetShotProj.DisplayName: "{$Projectiles.AlienHornetProj.DisplayName} (Снаряд)"
+			AnimatedTomeShotProj.DisplayName: "{$Projectiles.AnimatedTomeProj.DisplayName} (Снаряд)"
+			BabyIchorStickerShotProj.DisplayName: "{$Projectiles.BabyIchorStickerProj.DisplayName} (Снаряд)"
+			BabyOcramShotProj.DisplayName: "{$Projectiles.BabyOcramProj.DisplayName} (Снаряд)"
+			CuteGastropodShotProj.DisplayName: "{$Projectiles.CuteGastropodProj.DisplayName} (Снаряд)"
+			CuteLamiaPetShotProj.DisplayName: "{$Projectiles.CuteLamiaPetProj.DisplayName} (Снаряд)"
+			DemonHeartShotProj.DisplayName: "{$Projectiles.DemonHeartProj.DisplayName} (Снаряд)"
+			DocileDemonEyeShotProj.DisplayName: "{$Projectiles.DocileDemonEyeProj.DisplayName} (Снаряд)"
+			DrumstickElementalShotProj.DisplayName: "{$Projectiles.DrumstickElementalProj.DisplayName} (Снаряд)"
+			FairySwarmShotProj.DisplayName: "{$Projectiles.FairySwarmSProj.DisplayName} (Снаряд)"
+			GhostMartianShotProj.DisplayName: "{$Projectiles.GhostMartianProj.DisplayName} (Снаряд)"
+			NumberMuncherShotProj.DisplayName: "{$Projectiles.NumberMuncherProj.DisplayName} (Снаряд)"
+			SkeletronPrimeHandBombShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} (Взрывной снаряд)"
+			SkeletronPrimeHandLaserShotProj.DisplayName: "{$Projectiles.SkeletronPrimeHandProj.DisplayName} (Лазер)"
+			StrangeRobotShotProj.DisplayName: "{$Projectiles.StrangeRobotProj.DisplayName} (Снаряд)"
+			SwarmofCthulhuShotProj.DisplayName: "{$Projectiles.SwarmofCthulhuProj.DisplayName} (Снаряд)"
+			TinyRetinazerShotProj.DisplayName: "{$Projectiles.TinyRetinazerProj.DisplayName} (Снаряд)"
+			TinySpazmatismShotProj.DisplayName: "{$Projectiles.TinySpazmatismProj.DisplayName} (Снаряд)"
+			TorturedSoulShotProj.DisplayName: "{$Projectiles.TorturedSoulProj.DisplayName} (Снаряд)"
+			WallFragmentEyeShotProj.DisplayName: "{$Projectiles.WallFragmentEye1.DisplayName} (Снаряд)"
 		}
 
 		Tiles: {
-			// MapEntry_Locked: Locked
-			// AntiqueChestTile.MapEntry_Locked: "{$Tiles.MapEntry_Locked} {$Items.AntiqueChestItem.DisplayName}"
+			MapEntry_Locked: Закрыт
+			AntiqueChestTile.MapEntry_Locked: "{$Items.AntiqueChestItem.DisplayName} ({$Tiles.MapEntry_Locked})"
 
 			SlimeBeaconTile: {
-				// NotInMultiplayer: NOT IN MULTIPLAYER
-				// Activated: Background Activated
-				// Deactivated: Background Deactivated
+				NotInMultiplayer: НЕ ДЛЯ МНОГОПОЛЬЗОВАТЕЛЬСКОЙ ИГРЫ
+				Activated: Фон включён
+				Deactivated: Фон выключен
 			}
 
 			VanityDresserTile: {
-				/* Mouseover:
+				Mouseover:
 					'''
-					Costume Dresser
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
-					''' */
-				// WorkProperly: For this to work properly, don't have any item selected
-				// NoCostumesFoundPet: No alt costumes found for pet
-				// NoCostumesFoundLightPet: No alt costumes found for light pet
+					Гардероб костюмов
+					Левая мышь - Изменить образ питомца
+					Правая мышь - Изменить образ светящегося питомца
+					'''
+				WorkProperly: Для правильной работы активная ячейка должна быть пуста
+				NoCostumesFoundPet: У питомца нет альтернативных костюмов
+				NoCostumesFoundLightPet: У светящегося питомца нет альтернативных костюмов
 			}
 		}
 
 		Conditions: {
-			// UnlockedBiomeTorches: If {$ItemName.TorchGodsFavor} was already used
-			// DroneTypeNotUnlocked: If it isn't unlocked yet
+			UnlockedBiomeTorches: Если {$ItemName.TorchGodsFavor} уже была использована
+			DroneTypeNotUnlocked: Если ещё не было открыто
 		}
 
 		DropConditions: {
-			// MatchAppearanceCondition.Description: Drops based on appearance
-			// NotAllDronePartsUnlockedCondition.Description: Drops if not all {$Items.DroneParts.DisplayName} are unlocked yet
-			// NoHasItemWithBankCondition.Description: Only if {0} is not in the closest players inventory or banks
+			MatchAppearanceCondition.Description: Успех выпадения зависит от образа
+			NotAllDronePartsUnlockedCondition.Description: Выпадает, если не все {$Items.DroneParts.DisplayName} были разблокированы
+			NoHasItemWithBankCondition.Description: Только если {0} отсутствует в инвентаре или банках ближайших игроков
 		}
 
 		Announcements: {
-			// SigilOfTheWingDeath: "{0} has died, but their soul has not given up..."
-			// SoulHarvesterDeath: The Dungeon Souls have been freed!
-			// SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} has been awakened!"
-			// SpawnOfOcramAppear: "{$NPCs.SpawnOfOcram.DisplayName} has appeared!"
-			// MegalodonAppear: A {$NPCs.Megalodon.DisplayName} is approaching! Get out of the ocean!
-			// BigEnemyDisappear: The {0} disappeared... for now
-			// SoulHarvesterBabyAppear: You hear a faint cawing from the dungeon.
-			// SoulHarvesterBabyCageAppear: A hungry bird has been released!
+			SigilOfTheWingDeath: Игрок {0} погиб, но его душа ещё не сдалась...
+			SoulHarvesterDeath: Души темницы освободились!
+			SoulHarvesterBossAppear: "{$NPCs.HarvesterBoss.DisplayName} пробудился!"
+			SpawnOfOcramAppear: Явился {$NPCs.SpawnOfOcram.DisplayName}!
+			MegalodonAppear: Приближается {$NPCs.Megalodon.DisplayName}! Вылезай из океана!
+			BigEnemyDisappear: "{0} ушёл... пока что."
+			SoulHarvesterBabyAppear: В темнице раздаётся глухое карканье.
+			SoulHarvesterBabyCageAppear: Где-то появилась голодная птица!
 		}
 
 		SoulData: {
 			DungeonSoul: {
-				// DisplayName: Dungeon {^0:Soul;Souls}
-				// Unlock: ""
-				// Description: ""
+				DisplayName: "{^0:Душа;Души} темницы"
+				Unlock: ""
+				Description: ""
 			}
 
 			SoulofFright: {
-				// DisplayName: "{^0:Soul;Souls} of Fright"
-				// Unlock: Defeat {$NPCName.SkeletronPrime}
-				// Description: Inflicts {$BuffName.Ichor} and {$BuffName.Venom}
+				DisplayName: "{^0:Эссенция;Эссенции} ужаса"
+				Unlock: Победи {$NPCName.SkeletronPrime}
+				Description: Накладывает {$BuffName.Ichor} и {$BuffName.Venom}
 			}
 
 			SoulofSight: {
-				// DisplayName: "{^0:Soul;Souls} of Sight"
-				// Unlock: Defeat {$Enemies.TheTwins}
-				// Description: Inflicts {$BuffName.CursedInferno}
+				DisplayName: "{^0:Эссенция;Эссенции} прозрения"
+				Unlock: Победи {$Enemies.TheTwins}
+				Description: Накладывает {$BuffName.CursedInferno}
 			}
 
 			SoulofMight: {
-				// DisplayName: "{^0:Soul;Souls} of Might"
-				// Unlock: Defeat {$NPCName.TheDestroyer}
-				// Description: ""
+				DisplayName: "{^0:Эссенция;Эссенции} могущества"
+				Unlock: Победи {$NPCName.TheDestroyer}
+				Description: ""
 			}
 		}
 
 		DroneData: {
 			BasicLaserDrone: {
-				// DisplayName: Basic Laser {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
-				// Firerate: High
-				// Description: Rapidly fires lasers
-				// Misc: ""
+				DisplayName: "{^0:Стандартный лазер-дрон;Стандартные лазер-дроны}"
+				ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
+				Firerate: Высокая
+				Description: Стреляет лазером с высокой скоростью
+				Misc: ""
 			}
 
 			HeavyLaserDrone: {
-				// DisplayName: Heavy Laser {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
-				// Firerate: Extremely slow
-				// Description: Fires a penetrating laser after a long delay
-				// Misc: ""
+				DisplayName: "{^0:Мощный лазер-дрон;Мощные лазер-дроны}"
+				ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
+				Firerate: Крайне медленная
+				Description: Стреляет пронзающим лазером после долгого заряда
+				Misc: ""
 			}
 
 			MissileDrone: {
-				// DisplayName: Missile {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
-				// Firerate: Very slow
-				// Description: Fires a salvo of missiles after a long delay
-				// Misc: ""
+				DisplayName: "{^0:Ракетный дрон;Ракетные дроны}"
+				ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
+				Firerate: Очень медленная
+				Description: Стреляет залпом ракет после долгого заряда
+				Misc: ""
 			}
 
 			HealingDrone: {
-				// DisplayName: Healing {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
-				// Firerate: ""
-				// Description: Heals you when hurt
-				// Misc: Only one can be summoned
+				DisplayName: "{^0:Лечебный дрон;Лечебные дроны}"
+				ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
+				Firerate: ""
+				Description: Исцеляет тебя при получении урона
+				Misc: Призвать можно лишь одного
 			}
 
 			ShieldDrone: {
-				// DisplayName: Shield {^0:Drone;Drones}
-				// ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
-				// Firerate: ""
-				// Description: Creates a damage reducing shield over time
-				/* Misc:
+				DisplayName: "{^0:Защитный дрон;Защитные дроны}"
+				ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
+				Firerate: ""
+				Description: Создаёт щит, который постепенно становится крепче и снижает полученный уроны
+				Misc:
 					'''
-					Only one can be summoned
-					Shield resets if drone despawns
-					''' */
+					Призвать можно лишь одного
+					Щит спадает, если дрон исчезает
+					'''
 			}
 		}
 
 		Configs: {
 			ClientConfig: {
-				// DisplayName: Client Config
+				DisplayName: Настройки клиента
 
 				Headers: {
-					/* GoblinUnderling:
+					GoblinUnderling:
 						'''
-						Goblin Underlings - Minion Options
+						Гоблины-приспешники - Настройки прислужников
 
-						These apply to the following items:
+						Эти настройки применяются к следующим предметам:
 						{$Items.EagerUnderlingItem.DisplayName}
 						{$Items.SeriousUnderlingItem.DisplayName}
 						{$Items.ShyUnderlingItem.DisplayName}
-						''' */
-					// HintServerConfig: Hint: To go to the server config containing feature toggles, press the '>' arrow in the bottom right
+						'''
+					HintServerConfig: Подсказка: Чтобы увидеть настройки сервера с дополнительными переключателями, нажмите на '>' в правом нижнем углу
 				}
 
 				GoblinUnderlingAutosummon: {
-					// Label: Auto-summon
-					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
+					Label: Автопризыв
+					Tooltip: Разрешать автопризыв этого прислужника при входе в мир, пока этот предмет в вашем инвентаре
 				}
 
 				GoblinUnderlingVisibleArmor: {
-					// Label: Armor progression
-					// Tooltip: Enable to show armor progression
+					Label: Прогрессивная броня
+					Tooltip: Показывать развитие брони
 				}
 
 				GoblinUnderlingChatterFreq: {
-					// Label: Dialogue frequency
-					// Tooltip: Control how often this minion will display dialogue (in percent). 0 for off
+					Label: Частота диалогов
+					Tooltip: Как часто (в процентах) этот прислужник будет говорить. 0 - Выключить
 				}
 
 				Hint: {
-					// Label: Hint
-					// Tooltip: ""
+					Label: Подсказка
+					Tooltip: ""
 				}
 			}
 
 			ContentConfig: {
-				// DisplayName: Content Config (Server)
+				DisplayName: Настройка контента (Сервер)
 
 				Headers: {
-					/* TogglesSpecial:
+					TogglesSpecial:
 						'''
-						The following toggles let you control content added by this mod
+						Данные переключатели позволяют вам управлять контентом из этого мода
 
-						Special - Toggles which take priority over other relevant config options
-						''' */
-					// NPCs: NPCs
-					// Items: Items
-					// Other: Other
-					// HintClientConfig: Hint: To go to the client config containing individual adjustments, press the '<' arrow in the bottom left
+						Внимание - Эти переключатели имеют приоритет над другими настройками
+						'''
+					NPCs: НИПы
+					Items: Предметы
+					Other: Прочее
+					HintClientConfig: Подсказка: Чтобы увидеть настройки сервера с отдельными переключателями, нажмите на '<' в левом нижнем углу
 				}
 
 				Bosses: {
-					// Label: Bosses
-					// Tooltip: Boss content
+					Label: Боссы
+					Tooltip: Контент, связанный с боссами
 				}
 
 				CuteSlimes: {
-					// Label: Cute Slimes
-					// Tooltip: Cute slime content
+					Label: Миленькие слизни
+					Tooltip: Контент, связанный с миленькими слизнями
 				}
 
 				HostileNPCs: {
-					// Label: Hostile
-					// Tooltip: Harmful entities - This includes pets obtained by catching
+					Label: Враждебные НИПы
+					Tooltip: Злобные существа (Включая питомцев, которых можно поймать)
 				}
 
 				FriendlyNPCs: {
-					// Label: Friendly
-					// Tooltip: Harmless entities - This includes pets obtained by catching
+					Label: Дружелюбные НИПы
+					Tooltip: Безвредные существа (Включая питомцев, которых можно поймать)
 				}
 
 				DroppedPets: {
-					// Label: Dropped Pets
-					// Tooltip: Pets that drop from hostile entities
+					Label: Выпадаемые питомцы
+					Tooltip: Питомцы, которые выпадают из враждебных существ
 				}
 
 				OtherPets: {
-					// Label: Other Pets
-					// Tooltip: Pets that are crafted, sold, or otherwise obtained - This does not include NPCs caught as pets!
+					Label: Прочие питомцы
+					Tooltip: Питомцы, которых можно создать, купить или получить как-то ещё (Не включая питомцев, которых можно поймать)
 				}
 
 				Weapons: {
-					// Label: Weapons
-					// Tooltip: Items that deal damage - Includes ammunition
+					Label: Оружия
+					Tooltip: Предметы, наносящие урон (Включая аммуницию)
 				}
 
 				Tools: {
-					// Label: Tools
-					// Tooltip: Tools and useful items
+					Label: Инструменты
+					Tooltip: Инструменты и полезные вещи
 				}
 
 				PlaceablesFunctional: {
-					// Label: Placeables (functional)
-					// Tooltip: Placeable functional tiles and objects
+					Label: Мебель (С эффектами)
+					Tooltip: Полезные блоки и предметы, которые можно поставить
 				}
 
 				PlaceablesDecorative: {
-					// Label: Placeables (decorative)
-					// Tooltip: Placeable decorative tiles and objects
+					Label: Мебель (Декоративная)
+					Tooltip: Декоративные блоки и предметы, которые можно поставить
 				}
 
 				Armor: {
-					// Label: Armor
-					// Tooltip: Armor with stats
+					Label: Броня
+					Tooltip: Броня с характеристиками
 				}
 
 				VanityArmor: {
-					// Label: Vanity
-					// Tooltip: Vanity armor
+					Label: Одежда
+					Tooltip: Броня для красоты
 				}
 
 				Accessories: {
-					// Label: Accessories
-					// Tooltip: Accesssories with effects
+					Label: Аксессуары
+					Tooltip: Аксессуары с эффектами
 				}
 
 				VanityAccessories: {
-					// Label: Vanity Accessories
-					// Tooltip: Accessories without effects
+					Label: Украшения
+					Tooltip: Аксессуары без эффектов
 				}
 
 				BossConsolation: {
-					// Label: Boss Consolation
-					// Tooltip: Accessories that drop for failing to defeat a vanilla boss within 5 attempts
+					Label: Утешительный приз босса
+					Tooltip: Аксессуары, которые выпадают с боссов базовой игры, если из не победить за 5 попыток
 				}
 
 				AommSupport: {
-					// Label: "'The Amulet Of Many Minions' cross-Mod content"
-					// Tooltip: Content that is available when the 'The Amulet Of Many Minions' mod is enabled, such as combat pets
+					Label: Кросс-контент с модификацией 'The Amulet Of Many Minions'
+					Tooltip: Контент, который становится доступен при включении 'The Amulet Of Many Minions' (например боевые питомцы)
 				}
 
 				CuteSlimesPotionOnly: {
-					// Label: Cute Slimes Potion Only
-					// Tooltip: Affects the way Cute Slimes spawn and how the Jellied Ale works
+					Label: Миленькие слизни только с зельем
+					Tooltip: Влияет на то, как появляются миленькие слизни, и как работает Загустевший эль
 				}
 
 				Hint: {
-					// Label: Hint
-					// Tooltip: ""
+					Label: Подсказка
+					Tooltip: ""
 				}
 			}
 		}
@@ -2835,392 +2835,392 @@ Mods: {
 			GoblinUnderling: {
 				Eager: {
 					Idle: {
-						// Bored: I'm bored, boss!
-						// WhenFighting: When's da fighting, boss?
-						// HangingOut: I like hangin' out, boss!
-						// GoodBoss: You's a good boss, boss!
-						// BossSilent: Boss is always silent. So cool!
-						// HateSlimes: I hate slimes, dey're sticky!
-						// WhenMeal: When's meal time?
-						// DoYouLikeMe: Do ya like me, boss?
-						// GettingSleepy: I'm gettin' sleepy, boss...
-						// SeeBase: I can see our base from up here!
-						// SandInArmor: I got sand in my armor!
-						// GroundLooking: The ground's lookin' at me!
-						// BeatTheCold: I'll beat da cold by workin up a sweat!
-						// FaceLooksLikeRock: Dat rock looks like your face, boss!
-						// RockLooksLikeBones: Dose rocks look like bones
-						// FindShinyMetals: I hope we find shiny metals!
-						// NothingScares: Nothin' scares me when I'm wit you, boss!
-						// HeardRat: I think I heard a rat. A big rat!
-						// CavesSpooky: Caves are spooky!
+						Bored: Босс, мне скучно!
+						WhenFighting: Ну чё, когда в бой, босс?
+						HangingOut: Мне нравица тут, босс!
+						GoodBoss: Ты хароший босс, босс!
+						BossSilent: Босс всегда молчит. Круто!
+						HateSlimes: Ненавижу слизней, они лыпкие!
+						WhenMeal: А обед-та когда?
+						DoYouLikeMe: Босс, а я хороша?
+						GettingSleepy: Спать хочу, босс...
+						SeeBase: Я отсюда вижу нашу базу!
+						SandInArmor: У меня песок в броне!
+						GroundLooking: А шо земля на меня смотрит?
+						BeatTheCold: Победю холод, хорошенько пропотев!
+						FaceLooksLikeRock: Та каменюга типа как твоё лицо, босс!
+						RockLooksLikeBones: Те камни пахожи на кости.
+						FindShinyMetals: Надеюсь найдём железные блестяшки!
+						NothingScares: Меня ничо не пугает, когда я с тобой, босс!
+						HeardRat: Кажется, я крысу услыхала. Большую такую!
+						CavesSpooky: В пещерах страшненька!
 					}
 
-					// FirstSummon.YouTheBoss: You da boss now, boss!
+					FirstSummon.YouTheBoss: Босс тута ты, босс!
 
 					Attacking: {
-						// Gotcha: Gotcha!
-						// IGotThis: I got dis one!
-						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
-						// NoOneTouches: No one touches boss!
-						// BadGuys: Bad guys get black eyes!
-						// ComeHere: C'mere, you!
-						// LevelOne: I'm level one! I'm da strongest gob!
-						// StabStab: Stab stab stab!
-						// Boom: Boom! Haha!
-						// Skewer: Gonna skewer ya!
+						Gotcha: На те!
+						IGotThis: Ща ему задам!
+						ExpGold: Я гоблин! Победишь меня - получишь 1 очко опыта и 2 золота!
+						NoOneTouches: Босса не трогать!
+						BadGuys: Всяким гадам даю промеж глаз!
+						ComeHere: Эй ты, а ну сюды!
+						LevelOne: Я первого уровня! Я тута самый сильный гоблен!
+						StabStab: Тык тык тык!
+						Boom: Бум! Ха-ха!
+						Skewer: Ща из тебя сделаю шашлык!
 					}
 
 					PlayerHurt: {
-						// DontHurt: Don't hurt da boss!
-						// YouWillPay: You'll pay for dat!
-						// YouGood: You good, boss?!
-						// ThatHurt: Dat looked like it hurt, boss!
-						// IsntWeak: Da boss ain't weak, chump!
+						DontHurt: Не тронь босса!
+						YouWillPay: Ты за это заплатеш!
+						YouGood: Босс, ты как? Норм?!
+						ThatHurt: Ай! Больно наверн, босс?
+						IsntWeak: Босс не какой-та слабак, чел!
 					}
 
 					PlayerHurtByTrap: {
-						// WallsAttack: Da walls attack too?!
-						// WatchWalls: Watch da walls, boss!
-						// BadWall: Bad wall! Don't hurt boss!
-						// GroundEnemy: Da ground is an enemy?!
-						// HotHot: Hot! Hot!
-						// MissThat: How'd ya miss dat, boss?
-						// Dangerous: Dat's dangerous!
-						// NoFair: No fair! I can't hit dose!
-						// BadPeople: Bad people made bad traps!
-						// BigBadBalls: Big bad balls!
-						// DontFlattened: Don't get flattened, boss!
-						// HadToHurt: Dat had ta hurt!
+						WallsAttack: А шо, стены тоже могут бить?!
+						WatchWalls: Следи за стенами, босс!
+						BadWall: Плохая стена! Не бей босса!
+						GroundEnemy: Земля тоже враг?!
+						HotHot: Ай! Горячо! Горячо!
+						MissThat: Ты как так ваще промазал, босс?
+						Dangerous: Опасно же!
+						NoFair: Нечесна! Я не могу попасть!
+						BadPeople: Плохие люди сделали плолхие ловушки!
+						BigBadBalls: Большие шары-злюки!
+						DontFlattened: Не раздавись, босс!
+						HadToHurt: Это точна было больно!
 					}
 
 					BossSpawn: {
-						// UhOh: Uh oh!
-						// BigOne: Dat's a biggun!
-						// ThatOnesBig: Boss, dat one's big!
-						// NotAfraid: I ain't afraid of nothin!
-						// WeGotTrouble: Boss, we got trouble!
-						// HateBees: I hate bees!
-						// WontReadBook: I won't read da big book!
-						// OneEyedDummy: Big one-eyed dummy!
-						// BigGuts: Dat one's big! Dat means it has big guts!
-						// WeGotThis: We got dis, boss!
-						// JigglyJellyfish: Haha, jiggly jellyfish!
-						// FatBat: Dat's a fat bat!
+						UhOh: Ой-ёй!
+						BigOne: Ого какая пушька!
+						ThatOnesBig: Ну и размеры, босс!
+						NotAfraid: Я ничо не боюсь!
+						WeGotTrouble: Босс, у нас проблемы!
+						HateBees: Ненавижу пчол!
+						WontReadBook: Не буду я эту книгу читать!
+						OneEyedDummy: Одноглазый дурак!
+						BigGuts: Какой бальшой! Спорим кишки тоже бальшие?
+						WeGotThis: Всё буит, босс!
+						JigglyJellyfish: Ха-ха, медуза как желе!
+						FatBat: Какая толстая мыш с крыльями!
 					}
 
 					BossDefeat: {
-						// WeDidIt: We did it, boss!
-						// KnewYouCould: I knew you could do it!
-						// EasyNext: Easy. Next!
-						// WontBeInSequel: You won't be in da sequel!
-						// NastyBees: Nasty bees! Only good for da honey!
-						// StupidBook: Stupid book man!
-						// DumbWeakling: Big dumb weakling!
-						// DumbDragon: Dumb dragon, boss is da strongest!
-						// YouTheBest: Boss, you da best!
-						// ToughTougher: Dat one was tough, but we're tougher!
-						// NoMoreSquid: I don't wanna see no more squid after dis...
-						// JellyTastesBad: Blech! Dat jelly tastes bad!
-						// SuckOnThat: Suck on dat, fat bat!
+						WeDidIt: Ура, мы сделали это, босс!
+						KnewYouCould: Я знал, что всё получица!
+						EasyNext: Фигня. Следующий!
+						WontBeInSequel: В сиквеле тебя не будит!
+						NastyBees: Гадкие пчолы! Только на мёд и годяца!
+						StupidBook: Глупая книжка!
+						DumbWeakling: Большой и тупой слабак!
+						DumbDragon: Тупой дрокон, босс сильнее всех!
+						YouTheBest: Босс, да ты лучше фсех!
+						ToughTougher: Ух-х, сложный был... Но мы круче!
+						NoMoreSquid: Видеть не магу кальмаров теперь...
+						JellyTastesBad: Фе! Какая хадость это желе!
+						SuckOnThat: Полосни тунца, жирная мышень!
 					}
 
-					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+					OOAStarts.WhatDidYouDo: Босс, ты чо сделал?!
 
 					OOANewWave: {
-						// HolesStillOpen: Boss, dem holes are still open!
-						// MoreBaddies: More baddies? More baddies!
-						// ProtectGem: Protect da shiny gem!
-						// WontLetPass: I won't let em pass, boss!
+						HolesStillOpen: Босс, те дырки ещо открыты!
+						MoreBaddies: Ещё гадов набежало? Ещё гадов набежало!
+						ProtectGem: Защищай ту блестяшку!
+						WontLetPass: Я им не дам пройти, босс!
 					}
 
 					ArmorEquipped: {
-						// LookingSpiffy: Lookin' spiffy, boss!
-						// LookingFluffy: Lookin' fluffy, boss!
+						LookingSpiffy: Выглядишь блестяще, босс!
+						LookingFluffy: Ты такой пушистый, босс!
 					}
 
-					// ItemSelected.IsAToy: Is dat a toy?
-					// InvasionChanged.OldGangBack: Old gang is back!
-					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+					ItemSelected.IsAToy: Эт игрушка?
+					InvasionChanged.OldGangBack: О, старые-добрые вернулись!
+					BloodMoonChanged.SkyIsRed: Босс, небо красное! Страшно ужас!
 				}
 
 				Serious: {
 					Idle: {
-						// Peaceful: It's peaceful.
-						// YouSeemCalm: You seem calm, boss.
-						// ShallWeRest: Boss, shall we rest here?
-						// PaceEasy: Your pace is easy to follow.
-						// ShouldSleep: We should sleep soon.
-						// WindNice: The wind feels nice.
-						// WarmWithFire: I can warm you with fire if you'd like.
-						// SandsClaimWeak: The sands claim the weak.
-						// UnnaturalPlace: This place is unnatural.
-						// NotDawdle: We should not dawdle here.
-						// SpiritsHide: Spirits hide in the darkness.
-						// StonesHistory: These stones have untold history.
-						// HiddenTreasure: There may be hidden treasure here.
-						// BeCareful: Be careful in the dark, boss.
-						// TooFarAhead: Boss... please don't go too far ahead.
+						Peaceful: Здесь мирно.
+						YouSeemCalm: Выглядишь спокойно, босс.
+						ShallWeRest: Босс, давай отдохнём здесь?
+						PaceEasy: За твоим шагом легко следовать.
+						ShouldSleep: Нам стоит скоро лечь спать.
+						WindNice: Такой приятный ветер...
+						WarmWithFire: Я могу развести огонь, если хочешь. Будет теплее.
+						SandsClaimWeak: Пески забрали ещё одного слабака.
+						UnnaturalPlace: Какое-то это место ненормальное.
+						NotDawdle: Нам не стоит здесь задерживаться.
+						SpiritsHide: В темноте прячутся духи.
+						StonesHistory: Эти камни таят нерасказанные истории.
+						HiddenTreasure: Неподалёку может быть спрятанное сокровище.
+						BeCareful: Осторожнее в темноте, босс.
+						TooFarAhead: Босс... Пожалуйста, не уходи слишком далеко.
 					}
 
-					// FirstSummon.Greetings: Greetings, boss.
+					FirstSummon.Greetings: Здравствуй, босс.
 
 					Attacking: {
-						// IGotThis: I've got this.
-						// NotDefy: Do not defy the boss.
-						// NotSurvive: You will not survive.
-						// CutDown: I will cut you down.
-						// Burn: Burn.
-						// StruckDown: Be struck down by my spells.
-						// InSights: You are in my sights.
+						IGotThis: Я всё сделаю.
+						NotDefy: Не противься боссу.
+						NotSurvive: Тебе не жить.
+						CutDown: Порежу.
+						Burn: Гори.
+						StruckDown: Погибни от моих заклинаний.
+						InSights: Я тебя вижу.
 					}
 
 					PlayerHurt: {
-						// Alright: Are you alright?
-						// Unpleasant: That looks unpleasant.
-						// Tough: You're tough, boss.
-						// Healing: Do you need healing?
+						Alright: Ты в порядке?
+						Unpleasant: Выглядит неприятно.
+						Tough: Тебе силы не занимать, босс.
+						Healing: Тебя исцелить?
 					}
 
 					PlayerHurtByTrap: {
-						// WatchStep: Watch where you step, boss.
-						// PressurePlates: Be mindful of pressure plates.
-						// CowardlyTrap: A cowardly trap...
-						// BossNotSee: Boss, did you not see that?
-						// NaturalTrap: A natural trap.
-						// MinorBurn: Lucky that it was only a minor burn.
-						// TrapCruel: That trap is too cruel.
-						// TakeTime: Take your time, boss.
-						// CruelPeople: What cruel people made these traps...
-						// Weighed: That must have weighed quite a bit.
-						// INotSee: I did not see that coming.
-						// FromDistance: Try to trigger those from a distance.
+						WatchStep: Смотри куда идёшь, босс.
+						PressurePlates: Осторожнее с нажимными плитами.
+						CowardlyTrap: Ловушки только трусы и ставят...
+						BossNotSee: Босс, ты её не заметил что ли?
+						NaturalTrap: Ловушка, созданная самой природой.
+						MinorBurn: Повезло, что ожог не сильный.
+						TrapCruel: Слишком жестокая ловушка.
+						TakeTime: Не торопись, босс.
+						CruelPeople: Что за бессердечные твари сделали эти ловушки...
+						Weighed: В этой штуке наверное было немало веса.
+						INotSee: Вот этого я не предвидела.
+						FromDistance: Попробуй активировать их издалека.
 					}
 
 					BossSpawn: {
-						// LargeEnemy: A large enemy approaches.
-						// Formidable: A formidable foe.
-						// Prepared: We should be prepared for this.
-						// Trust: I trust you, boss.
-						// TerribleNight: What a terrible night for a curse.
-						// MagicSuperior: Whose magic is superior, I wonder.
-						// SenseIntelligence: I can't sense any intelligence from that one.
-						// HidingDragon: They were hiding a dragon?
-						// CantLose: Boss, you can't lose here.
-						// WastedFirstLife: You wasted your first life.
-						// ForceOvercome: There is no force we cannot overcome.
+						LargeEnemy: Приближается крупный враг.
+						Formidable: Стойкий противник.
+						Prepared: Я думаю, что мы к этому готовы.
+						Trust: Я доверяю тебе, босс.
+						TerribleNight: Какая ужасная ночь для проклятий.
+						MagicSuperior: И чья же магия лучше, мне интересно...
+						SenseIntelligence: В этом существе не чувствуется ни капли ума.
+						HidingDragon: Они где-то прятали дракона?
+						CantLose: Босс, тебе сейчас нельзя проиграть.
+						WastedFirstLife: Первую жизнь ты потратил.
+						ForceOvercome: Нет такой силы, которую нам не побороть.
 					}
 
 					BossDefeat: {
-						// MakeDoll: I will make a doll in your memory.
-						// TooEasy: That was too easy for you, boss.
-						// Overcame: We overcame that challenge.
-						// WellDone: Well done, boss.
-						// CurseLifted: The curse is lifted.
-						// BetterMage: I am the better mage.
-						// Joke: What a joke.
-						// ExpectedMore: I expected more. Shame.
-						// Incredible: Boss... you're incredible!
-						// WastedSecondLife: You also wasted your second life.
-						// Greatest: Boss, you really are the greatest.
+						MakeDoll: Я сделаю куклу в память о тебе.
+						TooEasy: Для вас это было слишком просто, босс.
+						Overcame: Мы преодолели и эту преграду.
+						WellDone: Отличная работа, босс.
+						CurseLifted: Проклятие снято.
+						BetterMage: Из меня маг лучше вышел.
+						Joke: Ну и чепуха.
+						ExpectedMore: Я ожидала больше. Жаль.
+						Incredible: Босс... Ты просто супер!
+						WastedSecondLife: Свою вторую жизнь ты тоже упустил.
+						Greatest: Босс, ты и правда из самых лучших.
 					}
 
-					// OOAStarts.WhatMagic: What sort of magic is this?
+					OOAStarts.WhatMagic: Что это за магия такая?
 
 					OOANewWave: {
-						// NotOverYet: This isn't over yet.
-						// MoreFoes: More foes approach, boss.
-						// ProtectGem: I will protect the gem.
-						// ArmyEndless: This army is endless...
+						NotOverYet: Ещё не конец.
+						MoreFoes: Больше врагов на подходе, босс.
+						ProtectGem: Я защищу кристалл.
+						ArmyEndless: Этой армии нет конца...
 					}
 
-					// ArmorEquipped.OddThings: Boss... You do odd things at times.
-					// ItemSelected.ThatDoll: That doll... be careful, boss.
-					// InvasionChanged.FoolsReturned: Those fools have returned.
-					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
+					ArmorEquipped.OddThings: Босс... Иногда ты каким-то бредом занимаешься.
+					ItemSelected.ThatDoll: Эта кукла... Осторожнее с ней, босс.
+					InvasionChanged.FoolsReturned: Эти идиоты вернулись.
+					BloodMoonChanged.HeadUnbearable: Моя голова... Как же она...
 				}
 
 				Shy: {
 					Idle: {
-						// LikeNoFight: I like when we don't have to fight.
-						// FeelSafe: You make me feel safe, boss.
-						// RunIntoBad: I hope we don't run into bad guys.
-						// WatchStep: Please watch your step, boss.
-						// Nevermind: Boss, I... ah... nevermind.
-						// ShouldRest: You should rest, boss.
-						// GoHome: W-we should probably go home, boss...
-						// PleasantWind: Such pleasant wind...
-						// SnowCold: So this is snow... so cold!
-						// PlaceScary: B-boss... this place is s-scary!
-						// EveryoneNice: Everyone here is nice.
-						// SeeStars: Boss, look! We can see the stars!
-						// WatchFooting: Watch your footing, boss!
-						// SawMouse: Eep!...Sorry boss, I saw a mouse...
-						// DontLeave: B-boss... Please don't leave me...
-						// Scared: I-I'm scared...
+						LikeNoFight: Мне больше нравится, когда драться не надо.
+						FeelSafe: С тобой я чувствую себя в безопасности, босс.
+						RunIntoBad: Надеюсь мы не набежим ни на каких врагов.
+						WatchStep: Пожалуйста, иди осторожнее, босс.
+						Nevermind: Босс, мне... Э-э... Да неважно.
+						ShouldRest: Тебе стоит отдохнуть, босс.
+						GoHome: М-может нам уже пора домой, босс...
+						PleasantWind: Какой приятный ветер!
+						SnowCold: Вот это и есть снег?.. Какой холодный!
+						PlaceScary: Б-босс... Тут ст-страшно!
+						EveryoneNice: Все здесь такие добрые.
+						SeeStars: Босс, смотри! Отсюда видно звёзды!
+						WatchFooting: Смотри под ноги, босс!
+						SawMouse: А-а-а! ...Прости босс, я мышь увидела...
+						DontLeave: Б-босс... Не уходи без меня...
+						Scared: М-мне страшно...
 					}
 
-					// FirstSummon.NiceToMeet: N-nice to meet you, boss.
+					FirstSummon.NiceToMeet: Р-рада встрече, босс.
 
 					Attacking: {
-						// NotEscape: You will not escape...
-						// SeeDead: I will see you dead...
-						// TargetSighted: Target sighted...
-						// Eliminated: You will be eliminated...
-						// BossesBlade: I am the boss's blade...
-						// Burn: Burn...
-						// WontMiss: I won't miss twice...
-						// PleaseLeave: Please... leave... before I...
+						NotEscape: Тебе не уйти...
+						SeeDead: Скоро будешь мёртвым лежать...
+						TargetSighted: Цель на мушке...
+						Eliminated: С-сейчас устраню тебя...
+						BossesBlade: Я тут оружие босса...
+						Burn: Да... Гори...
+						WontMiss: Дважды не промахнусь...
+						PleaseLeave: Пожалуйста, уйди... Пока я не...
 					}
 
 					PlayerHurt: {
-						// YouAlright: Boss, are you alright?
-						// OhNo: Oh no, boss!
-						// DontDie: Please don't die, boss!
-						// Boss: Boss!
+						YouAlright: Босс, ты в порядке?
+						OhNo: О нет, босс!
+						DontDie: Пожалуйста, не умирай, босс!
+						Boss: Босс!
 					}
 
 					PlayerHurtByTrap: {
-						// HopeOkay: I hope you're okay, boss...
-						// TreatingWound: Be careful when treating that wound...
-						// CoolDown: We should cool that down...
-						// SeeSooner: I'm sorry I didn't see that sooner...
-						// NatureCruel: Nature can be so cruel...
-						// AwfulTraps: Who would make such awful traps...
-						// TreatWound: We need to treat that wound!
-						// Barbaric: How barbaric...
-						// BadlyHurt: You're badly hurt, boss!
-						// MoreCautious: Please be more cautious, boss!
-						// DontLetHit: Please don't let those hit you anymore!
+						HopeOkay: Надеюсь ты в порядке, босс...
+						TreatingWound: Лечить раны надо аккуратно...
+						CoolDown: Надо бы это остудить...
+						SeeSooner: Прости, что не заметила раньше...
+						NatureCruel: Природа может быть такой жестокой...
+						AwfulTraps: Кто вообще делает такие гадкие ловушки...
+						TreatWound: Нам надо обработать эту рану!
+						Barbaric: Ну и варварство...
+						BadlyHurt: Да на тебе живого места нет, босс!
+						MoreCautious: Пожалуйста, будь осторожнее, босс!
+						DontLetHit: Пожалуйста, не попадайся под удар больше!
 					}
 
 					BossSpawn: {
-						// WhatIsThat: Boss... Boss! What is that?!
-						// LargeEnemy: Such a large enemy... can we win?
-						// DoMyBest: I-I'll do my best, boss!
-						// LooksDangerous: T-that one looks dangerous...
-						// HesHuge: H-he's huge...
-						// Dragon: Ah! Dragon!
-						// Pretty: What a pretty... Boss! Look out!
-						// NotAgain: No... not again...!
-						// WontBeAfraid: I won't be afraid. I'll do my best!
-						// RocksMoving: T-the rocks are moving, boss!
-						// TheyAreBack: A-ah... t-they're back...
+						WhatIsThat: Босс... Босс! Это что?!
+						LargeEnemy: Какой большой противник... Мы сможем победить?
+						DoMyBest: Я пос-постараюсь, босс!
+						LooksDangerous: Этот на в-вид крайне опасен...
+						HesHuge: Ог-огромный...
+						Dragon: А-а! Дракон!
+						Pretty: Какой красивенький... Босс! Осторожно!
+						NotAgain: Нет... Опять...!
+						WontBeAfraid: Я не буду бояться. И выложусь на полную!
+						RocksMoving: К-камни движутся, босс!
+						TheyAreBack: Ах... Они вер-вернулись...
 					}
 
 					BossDefeat: {
-						// WasScary: T-That was scary, but we won!
-						// WasntUseful: I'm sorry that I wasn't useful, boss...
-						// YouWereGreat: You were great, boss!
-						// CouldDoIt: I-I knew you could do it!
-						// GladItsOver: I'm glad that's over...
-						// TheBiggerTheyAre: The bigger they are, the harder they fall.
-						// DontFight: I hope we don't fight another one of those...
-						// Distracted: I'm sorry that I was distracted...
-						// WontBeTaken: I... I won't be taken again!
-						// YouDidIt: You did it... you really did it, boss!
-						// WeirdFight: That was a weird fight...
-						// ThankYou: Thank you, boss. For being here.
+						WasScary: Б-было страшно, но мы победили!
+						WasntUseful: Прости, что толку от меня мало, босс...
+						YouWereGreat: Ты просто супер, босс!
+						CouldDoIt: Я з-знала, что у тебя получится!
+						GladItsOver: Как я рада, что всё кончено...
+						TheBiggerTheyAre: Чем больше шкаф, тем громче падает.
+						DontFight: Надеюсь, сражаться с ещё одним не придётся...
+						Distracted: Прости, что отвлеклась...
+						WontBeTaken: Я... Меня не заберут опять!
+						YouDidIt: У тебя получилось... У тебя и правда получилось, босс!
+						WeirdFight: Какой странный бой...
+						ThankYou: Спасибо, босс. За то, что рядом.
 					}
 
-					// OOAStarts.WhatHoles: Boss... w-what are those holes?
+					OOAStarts.WhatHoles: Босс... Э-это что за дыры?
 
 					OOANewWave: {
-						// MoreOfThem: T-there's more of them?
-						// MoreFoes: More foes approach, boss.
-						// WhenEnd: When will it end?
-						// GemSafe: The gem is safe... for now...
+						MoreOfThem: Их- их ещё прибыло?
+						MoreFoes: Больше врагов на подходе, босс.
+						WhenEnd: Когда же это кончится?
+						GemSafe: Кристалл в безопасности... На какое-то время...
 					}
 
 					ArmorEquipped: {
-						// ItsYou: Ah!... Oh, it's you, boss...
-						// SeeingFace: I like seeing your face, boss.
+						ItsYou: Aх!... Ой, это ты, босс...
+						SeeingFace: Мне нравится разглядывать твоё лицо, босс.
 					}
 
-					// InvasionChanged.MustFight: No... why must we fight?
-					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
+					InvasionChanged.MustFight: Не-е-ет... Ну зачем драться?
+					BloodMoonChanged.BodyHurts: Босс... У меня всё болит...
 				}
 
 				Eager_Serious: {
 					Dialogue: {
-						// 0Eager: Can I have anotha doll?
-						// 1Serious: You tore or lost the last few.
-						// 2Eager: I won't dis time!
-						// 3Serious: ...Fine. I'll make one later, alright?
-						// 4Eager: Yay!
+						0Eager: А мона мне ещо куклу?
+						1Serious: Прошлую ты то ли порвала, то ли потеряла.
+						2Eager: Ну в этот раз ни буду!
+						3Serious: ...Ладно. Потом сделаю одну, хорошо?
+						4Eager: Ура-а!
 					}
 				}
 
 				Eager_Shy: {
 					Dialogue: {
-						// 0Eager: Hey!
-						// 1Shy: Ah... yes?
-						// 2Eager: Dere's a rat behind ya!
-						// 3Shy: Eep!
-						// 4Eager: Tricked ya! Haha, dat was loud!
+						0Eager: Эй!
+						1Shy: A... Чего?
+						2Eager: Там за табой крыса сидит!
+						3Shy: А-а-а-а!
+						4Eager: Обманула тя! Ха-ха, кокой громкий крик!
 					}
 				}
 
 				Serious_Eager: {
 					Dialogue: {
-						// 0Serious: You tore your doll again...
-						// 1Eager: It was an accident!
-						// 2Serious: Like the other times?
-						// 3Eager: Yeah!
-						// 4Serious: ...I'll mend it later.
-						// 5Eager: Thanks!
+						0Serious: Ты опять свою куклу порвала...
+						1Eager: Случайно!
+						2Serious: Как и в прошлые разы?
+						3Eager: Ага!
+						4Serious: ...Потом починю.
+						5Eager: Пасиба!
 					}
 				}
 
 				Serious_Shy: {
 					Dialogue: {
-						// 0Serious: Hey.
-						// 1Shy: ...yes?
-						// 2Serious: Would you like a doll?
-						// 3Shy: A doll?
-						// 4Serious: Yes. To calm your nerves.
-						// 5Shy: ...yes, please.
-						// 6Serious: I'll prepare it later then.
+						0Serious: Эй.
+						1Shy: ...да?
+						2Serious: Не хочешь куклу?
+						3Shy: Куклу?
+						4Serious: Да. Нервы успокоить.
+						5Shy: ...да, пожалуй.
+						6Serious: Я потом сделаю тогда.
 					}
 				}
 
 				Shy_Eager: {
 					Dialogue: {
-						// 0Shy: Um...
-						// 1Eager: Yeah?
-						// 2Shy: H-how are you always so cheerful?
-						// 3Eager: Cause the boss is here!
-						// 4Shy: You really l-like the boss, huh?
-						// 5Eager: Yeah! Da boss is da strongest!
+						0Shy: Э-э...
+						1Eager: Чё?
+						2Shy: Ты чего в-всегда такая радостная?
+						3Eager: Ну тип, босс же рядом!
+						4Shy: Тебе и правда так нра-нравится босс?
+						5Eager: Ага! Босс у нас сильнеи всех!
 					}
 				}
 
 				Shy_Serious: {
 					Dialogue: {
-						// 0Shy: Um... excuse me...
-						// 1Serious: Yes?
-						// 2Shy: Y-your dolls...
-						// 3Serious: ?
-						// 4Shy: They're cute...
-						// 5Serious: Thank you.
+						0Shy: Эм... извини...
+						1Serious: Да?
+						2Shy: Т-твои куклы...
+						3Serious: Хм?
+						4Shy: Они о-очень милые...
+						5Serious: Спасибо.
 					}
 				}
 
 				Eager_Serious_Shy: {
 					Dialogue: {
-						// 0Eager: You good?
-						// "1Serious, Shy": Yes.
-						// 2Eager: Den all togetha;
-						// 3All: We like you, boss!
+						0Eager: Чё, готовы?
+						"1Serious, Shy": Да.
+						2Eager: Тада фсе вместе...
+						3All: Мы любим тебя, босс!
 					}
 				}
 			}
 		}
 
 		GoblinUnderlingClass: {
-			// Melee: Melee
-			// Magic: Magic
-			// Ranged: Ranged
+			Melee: Ближний бой
+			Magic: Магия
+			Ranged: Дальний бой
 		}
 	}
 }
