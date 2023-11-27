@@ -926,10 +926,6 @@ namespace AssortedCrazyThings
 		#endregion
 
 		#region CircleUI
-		/// <summary>
-		/// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
-		/// </summary>
-		public List<CircleUIHandler> CircleUIList;
 
 		/// <summary>
 		/// Contains a list of pet type fields (assigned during Load() and every tick in PreUpdate(),
@@ -938,7 +934,7 @@ namespace AssortedCrazyThings
 		/// </summary>
 		public byte[] ClonedTypes;
 
-		public static CircleUIConf GetLifelikeMechanicalFrogConf()
+		public static CircleUIConf GetLifelikeMechanicalFrogConf(bool loading)
 		{
 			List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
 						AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Pets/LifelikeMechanicalFrogProj"),
@@ -947,185 +943,185 @@ namespace AssortedCrazyThings
 			List<string> tooltips = new List<string>() { "Default", "Crowned" };
 
 			//no need for unlocked + toUnlock
-			return new CircleUIConf(
+			return new CircleUIConf("Projectiles.LifelikeMechanicalFrogProj",
 				Main.projFrames[ModContent.ProjectileType<LifelikeMechanicalFrogProj>()],
 				ModContent.ProjectileType<LifelikeMechanicalFrogProj>(),
 				assets, null, tooltips, null);
 		}
 
-		public static CircleUIConf GetDocileDemonEyeConf()
+		public static CircleUIConf GetDocileDemonEyeConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Red", "Green", "Purple",
-				"Red Fractured", "Green Fractured", "Purple Fractured",
-				"Red Mechanical", "Green Mechanical", "Purple Mechanical",
-				"Red Laser", "Green Laser", "Purple Laser",
-				"Flying Pumpkin", "Flying Jack"};
+				"RedFractured", "GreenFractured", "PurpleFractured",
+				"RedMechanical", "GreenMechanical", "PurpleMechanical",
+				"RedLaser", "GreenLaser", "PurpleLaser",
+				"FlyingPumpkin", "FlyingJack"};
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<DocileDemonEyeProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetCursedSkullConf()
+		public static CircleUIConf GetCursedSkullConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Dragon" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<CursedSkullProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetYoungWyvernConf()
+		public static CircleUIConf GetYoungWyvernConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "Arch (Legacy)" };
+			List<string> tooltips = new List<string>() { "Default", "Mythical", "Arch", "ArchLegacy" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<YoungWyvernProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetPetFishronConf()
+		public static CircleUIConf GetPetFishronConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Sharkron", "Sharknado" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetFishronProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetPetMoonConf()
+		public static CircleUIConf GetPetMoonConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Yellow", "Ringed", "Mythril", "Bright Blue", "Green", "Pink", "Orange", "Purple", }; //9 10 11 are contextual
+			List<string> tooltips = new List<string>() { "Default", "Yellow", "Ringed", "Mythril", "BrightBlue", "Green", "Pink", "Orange", "Purple", }; //9 10 11 are contextual
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetMoonProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetYoungHarpyConf()
+		public static CircleUIConf GetYoungHarpyConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove", "Default (Legacy)", "Eagle (Legacy)", "Raven (Legacy)", "Dove (Legacy)" };
+			List<string> tooltips = new List<string>() { "Default", "Eagle", "Raven", "Dove", "DefaultLegacy", "EagleLegacy", "RavenLegacy", "DoveLegacy" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<YoungHarpyProj>(), tooltips, new Vector2(0f, 4f));
 		}
 
-		public static CircleUIConf GetJoyousSlimeConf()
+		public static CircleUIConf GetJoyousSlimeConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Joyous Pumpkin" };
+			List<string> tooltips = new List<string>() { "Default", "JoyousPumpkin" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<JoyousSlimeProj>(), tooltips, new Vector2(1f, -4f));
 		}
 
-		public static CircleUIConf GetAbeeminationConf()
+		public static CircleUIConf GetAbeeminationConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Snow Bee", "Oil Spill", "Missing Ingredients" };
+			List<string> tooltips = new List<string>() { "Default", "SnowBee", "OilSpill", "MissingIngredients" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<AbeeminationProj>(), tooltips, new Vector2(0f, -4f));
 		}
 
-		public static CircleUIConf GetLilWrapsConf()
+		public static CircleUIConf GetLilWrapsConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Dark", "Light", "Shadow", "Spectral" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<LilWrapsProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetVampireBatConf()
+		public static CircleUIConf GetVampireBatConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Werebat" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<VampireBatProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetPigronataConf()
+		public static CircleUIConf GetPigronataConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Winter", "Autumn", "Spring", "Summer", "Halloween", "Christmas" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PigronataProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetQueenLarvaConf()
+		public static CircleUIConf GetQueenLarvaConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Prawn Larva", "Unexpected Seed", "Big Kid Larva", "Where's The Baby?" };
+			List<string> tooltips = new List<string>() { "Default", "PrawnLarva", "UnexpectedSeed", "BigKidLarva", "WheresTheBaby" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<QueenLarvaProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetOceanSlimeConf()
+		public static CircleUIConf GetOceanSlimeConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Stupid Hat", "Gnarly Grin", "Flipped Jelly" };
+			List<string> tooltips = new List<string>() { "Default", "StupidHat", "GnarlyGrin", "FlippedJelly" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<OceanSlimeProj>(), tooltips, new Vector2(1f, -4f));
 		}
 
-		public static CircleUIConf GetStingSlimeConf()
+		public static CircleUIConf GetStingSlimeConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Black", "Orange" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<StingSlimeProj>(), tooltips, new Vector2(1f, -4f));
 		}
 
-		public static CircleUIConf GetMiniAntlionConf()
+		public static CircleUIConf GetMiniAntlionConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Albino", "Larval" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<MiniAntlionProj>(), tooltips, new Vector2(0f, -4f));
 		}
 
-		public static CircleUIConf PetGoldfishConf()
+		public static CircleUIConf PetGoldfishConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny", "Ghostfish" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetGoldfishProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetSkeletronHandConf()
+		public static CircleUIConf GetSkeletronHandConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "OK-Hand", "Peace", "Rock It", "Fist" };
+			List<string> tooltips = new List<string>() { "Default", "OKHand", "Peace", "RockIt", "Fist" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<SkeletronHandProj>(), tooltips, new Vector2(2, -4f));
 		}
 
-		public static CircleUIConf GetSkeletronPrimeHandConf()
+		public static CircleUIConf GetSkeletronPrimeHandConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Cannon", "Saw", "Vice", "Laser" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<SkeletronPrimeHandProj>(), tooltips, new Vector2(0f, -4f));
 		}
 
-		public static CircleUIConf GetPetCultistConf()
+		public static CircleUIConf GetPetCultistConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Lunar", "Solar" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetCultistProj>(), tooltips, new Vector2(1f, 0f));
 		}
 
-		public static CircleUIConf GetAnimatedTomeConf()
+		public static CircleUIConf GetAnimatedTomeConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Green", "Blue", "Purple", "Pink", "Yellow", "Spell" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<AnimatedTomeProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetAnomalocarisConf()
+		public static CircleUIConf GetAnomalocarisConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Wild", "Shrimpy", "Snippy" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<AnomalocarisProj>(), tooltips);
 		}
 
-		public static CircleUIConf GetDynamiteBunnyConf()
+		public static CircleUIConf GetDynamiteBunnyConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "White", "Corrupt", "Crimtane", "Angora", "Dutch", "Flemish", "Lop", "Silver", "Caerbannog" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<DynamiteBunnyProj>(), tooltips, new Vector2(0f, -7f));
 		}
 
-		public static CircleUIConf GetWallFragmentConf()
+		public static CircleUIConf GetWallFragmentConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Default", "Chinese" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<WallFragmentMouth>(), tooltips);
 		}
 
-		public static CircleUIConf GetMetroidPetConf()
+		public static CircleUIConf GetMetroidPetConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Metroid", "Failed Clone", "Convergent", "Irradiated", "Corrupted", "The Baby" };
+			List<string> tooltips = new List<string>() { "Metroid", "FailedClone", "Convergent", "Irradiated", "Corrupted", "TheBaby" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<MetroidPetProj>(), tooltips, new Vector2(0f, -2f));
 		}
 
-		public static CircleUIConf GetCuteLamiaPetConf()
+		public static CircleUIConf GetCuteLamiaPetConf(bool loading)
 		{
 			List<string> tooltips = new List<string>() { "Dark", "Light", "Dropkick" };
 
@@ -1133,7 +1129,7 @@ namespace AssortedCrazyThings
 		}
 
 		//ALTERNATE
-		//public static CircleUIConf GetClassNameConf()
+		//public static CircleUIConf GetClassNameConf(bool loading)
 		//{
 		//    List<string> tooltips = new List<string>() { "Default", "AltName1", "AltName2" };
 
@@ -1179,245 +1175,6 @@ namespace AssortedCrazyThings
 			unloadedPetAccessoryIdentities = new List<PetAccessoryIdentity>();
 
 			SlimeHugs = new List<SlimeHug>();
-
-			//called before Load()
-			//needs to call new List() since Initialize() is called per player in the player select screen
-
-			CircleUIList = new List<CircleUIHandler>();
-
-			if (ContentConfig.Instance.OtherPets)
-			{
-				CircleUIList.AddRange(new List<CircleUIHandler>
-				{
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => LifelikeMechanicalFrog,
-					uiConf: GetLifelikeMechanicalFrogConf,
-					onUIStart: () => mechFrogType,
-					onUIEnd: () => mechFrogType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => DocileDemonEye,
-					uiConf: GetDocileDemonEyeConf,
-					onUIStart: () => petEyeType,
-					onUIEnd: () => petEyeType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => CursedSkull,
-					uiConf: GetCursedSkullConf,
-					onUIStart: () => cursedSkullType,
-					onUIEnd: () => cursedSkullType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => YoungWyvern,
-					uiConf: GetYoungWyvernConf,
-					onUIStart: () => youngWyvernType,
-					onUIEnd: () => youngWyvernType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => PetMoon,
-					uiConf: GetPetMoonConf,
-					onUIStart: () => petMoonType,
-					onUIEnd: () => petMoonType = (byte)CircleUI.returned,
-					triggerLeft: false
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => Abeemination,
-					uiConf: GetAbeeminationConf,
-					onUIStart: () => abeeminationType,
-					onUIEnd: () => abeeminationType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => VampireBat,
-					uiConf: GetVampireBatConf,
-					onUIStart: () => vampireBatType,
-					onUIEnd: () => vampireBatType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => Pigronata,
-					uiConf: GetPigronataConf,
-					onUIStart: () => pigronataType,
-					onUIEnd: () => pigronataType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => PetGoldfish,
-					uiConf: PetGoldfishConf,
-					onUIStart: () => petGoldfishType,
-					onUIEnd: () => petGoldfishType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => PetAnomalocaris,
-					uiConf: GetAnomalocarisConf,
-					onUIStart: () => petAnomalocarisType,
-					onUIEnd: () => petAnomalocarisType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => DynamiteBunny,
-					uiConf: GetDynamiteBunnyConf,
-					onUIStart: () => dynamiteBunnyType,
-					onUIEnd: () => dynamiteBunnyType = (byte)CircleUI.returned
-				),
-                //ALTERNATE
-                //    new CircleUIHandler(
-                //    triggerItem: ModContent.ItemType<VanitySelector>(),
-                //    condition: () => ClassName,
-                //    uiConf: GetClassNameConf,
-                //    onUIStart: () => classNameType,
-                //    onUIEnd: () => classNameType = (byte)CircleUI.returned
-                //),
-                });
-			}
-
-			if (ContentConfig.Instance.DroppedPets)
-			{
-				int vanitySelector = ModContent.ItemType<VanitySelector>();
-				CircleUIList.AddRange(new List<CircleUIHandler>()
-				{
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => QueenLarva,
-					uiConf: GetQueenLarvaConf,
-					onUIStart: () => queenLarvaType,
-					onUIEnd: () => queenLarvaType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => MiniAntlion,
-					uiConf: GetMiniAntlionConf,
-					onUIStart: () => miniAntlionType,
-					onUIEnd: () => miniAntlionType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => LilWraps,
-					uiConf: GetLilWrapsConf,
-					onUIStart: () => lilWrapsType,
-					onUIEnd: () => lilWrapsType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => WallFragment,
-					uiConf: GetWallFragmentConf,
-					onUIStart: () => wallFragmentType,
-					onUIEnd: () => wallFragmentType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => MetroidPet,
-					uiConf: GetMetroidPetConf,
-					onUIStart: () => metroidPetType,
-					onUIEnd: () => metroidPetType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => CuteLamiaPet,
-					uiConf: GetCuteLamiaPetConf,
-					onUIStart: () => cuteLamiaPetType,
-					onUIEnd: () => cuteLamiaPetType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => SkeletronHand,
-					uiConf: GetSkeletronHandConf,
-					onUIStart: () => skeletronHandType,
-					onUIEnd: () => skeletronHandType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => SkeletronPrimeHand,
-					uiConf: GetSkeletronPrimeHandConf,
-					onUIStart: () => skeletronPrimeHandType,
-					onUIEnd: () => skeletronPrimeHandType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => PetCultist,
-					uiConf: GetPetCultistConf,
-					onUIStart: () => petCultistType,
-					onUIEnd: () => petCultistType = (byte)CircleUI.returned,
-					triggerLeft: false
-				),
-					new CircleUIHandler(
-					triggerItem: vanitySelector,
-					condition: () => PetFishron,
-					uiConf: GetPetFishronConf,
-					onUIStart: () => petFishronType,
-					onUIEnd: () => petFishronType = (byte)CircleUI.returned
-				)
-				});
-			}
-
-			if (ContentConfig.Instance.HostileNPCs)
-			{
-				CircleUIList.AddRange(new List<CircleUIHandler>()
-				{
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => OceanSlime,
-					uiConf: GetOceanSlimeConf,
-					onUIStart: () => oceanSlimeType,
-					onUIEnd: () => oceanSlimeType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => StingSlime,
-					uiConf: GetStingSlimeConf,
-					onUIStart: () => stingSlimeType,
-					onUIEnd: () => stingSlimeType = (byte)CircleUI.returned
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => AnimatedTome,
-					uiConf: GetAnimatedTomeConf,
-					onUIStart: () => animatedTomeType,
-					onUIEnd: () => animatedTomeType = (byte)CircleUI.returned
-				)
-				});
-			}
-
-			if (ContentConfig.Instance.FriendlyNPCs)
-			{
-				CircleUIList.AddRange(new List<CircleUIHandler>()
-				{
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => YoungHarpy,
-					uiConf: GetYoungHarpyConf,
-					onUIStart: () => youngHarpyType,
-					onUIEnd: () => youngHarpyType = (byte)CircleUI.returned
-				),
-				});
-
-				CircleUIList.AddRange(new List<CircleUIHandler>()
-				{
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<VanitySelector>(),
-					condition: () => JoyousSlime,
-					uiConf: GetJoyousSlimeConf,
-					onUIStart: () => joyousSlimeType,
-					onUIEnd: () => joyousSlimeType = (byte)CircleUI.returned
-				),
-				});
-			}
-
-			//after filling the list
-			for (int i = 0; i < CircleUIList.Count; i++)
-			{
-				CircleUIHandler circleUIHandler = CircleUIList[i];
-
-				//set the trigger list
-				circleUIHandler.AddTriggers();
-			}
 		}
 
 		/// <summary>

@@ -533,6 +533,8 @@ Mods: {
 			}
 
 			EagerUnderlingBuff.DisplayName: 热心的下属
+			// ShyUnderlingBuff.DisplayName: Shy Underling
+			// SeriousUnderlingBuff.DisplayName: Serious Underling
 
 			SigilOfTheWingBuff: {
 				DisplayName: 翼之祝福
@@ -580,8 +582,6 @@ Mods: {
 				你受到了保护，不会受到飞龙的伤害
 				鸟妖的羽毛不会击退你
 				'''
-			// ShyUnderlingBuff.DisplayName: Shy Underling
-			// SeriousUnderlingBuff.DisplayName: Serious Underling
 		}
 
 		Common: {
@@ -2050,6 +2050,13 @@ Mods: {
 				Spiked: 尖刺
 				SpikedBonus: 战斗时发射尖刺
 				SpikedUnlock: 击败世纪之花
+				TooltipFormat:
+					'''
+					{0}
+					{1}
+					{2}
+					{3}
+					'''
 			}
 
 			Talonstorm: {
@@ -2428,10 +2435,34 @@ Mods: {
 			HarvesterAbsorbedSoul.DisplayName: 吸收的灵魂
 			HarvesterBone.DisplayName: 收割者骨头
 			HarvesterFracturedSoul.DisplayName: 破碎之魂
-			AbeeminationProj.DisplayName: 憎恶之蜂
+
+			AbeeminationProj: {
+				DisplayName: 憎恶之蜂
+				// Default.Tooltip: Default
+				// SnowBee.Tooltip: Snow Bee
+				// OilSpill.Tooltip: Oil Spill
+				// MissingIngredients.Tooltip: Missing Ingredients
+			}
+
 			AlienHornetProj.DisplayName: 异星黄蜂
-			AnimatedTomeProj.DisplayName: 活化魔典
-			AnomalocarisProj.DisplayName: 奇虾
+
+			AnimatedTomeProj: {
+				DisplayName: 活化魔典
+				// Green.Tooltip: Green
+				// Blue.Tooltip: Blue
+				// Purple.Tooltip: Purple
+				// Pink.Tooltip: Pink
+				// Yellow.Tooltip: Yellow
+				// Spell.Tooltip: Spell
+			}
+
+			AnomalocarisProj: {
+				DisplayName: 奇虾
+				// Wild.Tooltip: Wild
+				// Shrimpy.Tooltip: Shrimpy
+				// Snippy.Tooltip: Snippy
+			}
+
 			BabyCrimeraProj.DisplayName: 喀迈拉宝宝
 			BabyIchorStickerProj.DisplayName: 黏黏怪宝宝
 			BabyOcramProj.DisplayName: 迷你奥库瑞姆
@@ -2440,9 +2471,22 @@ Mods: {
 			ChunkySlimeProj.DisplayName: 腐块史莱姆
 			CompanionDungeonSoulPetProj.DisplayName: 灵魂同伴
 			CompanionDungeonSoulPetProj2.DisplayName: 灵魂同伴
-			CursedSkullProj.DisplayName: 诅咒骷髅头
+
+			CursedSkullProj: {
+				DisplayName: 诅咒骷髅头
+				// Default.Tooltip: Default
+				// Dragon.Tooltip: Dragon
+			}
+
 			CuteGastropodProj.DisplayName: 可爱腹足怪
-			CuteLamiaPetProj.DisplayName: 小蛇
+
+			CuteLamiaPetProj: {
+				DisplayName: 小蛇
+				// Dark.Tooltip: Dark
+				// Light.Tooltip: Light
+				// Dropkick.Tooltip: Drop kick
+			}
+
 			CuteSlimeBlackProj.DisplayName: 可爱黑史莱姆
 			CuteSlimeBlueProj.DisplayName: 可爱蓝史莱姆
 			CuteSlimeCorruptProj.DisplayName: 可爱腐化史莱姆
@@ -2473,9 +2517,40 @@ Mods: {
 			CuteSlimeYellowProj.DisplayName: 可爱黄史莱姆
 			DemonHeartProj.DisplayName: 恶魔之心
 			DetachedHungryProj.DisplayName: 独立的饿鬼
-			DocileDemonEyeProj.DisplayName: 温驯的恶魔眼
+
+			DocileDemonEyeProj: {
+				DisplayName: 温驯的恶魔眼
+				// Red.Tooltip: Red
+				// Green.Tooltip: Green
+				// Purple.Tooltip: Purple
+				// RedFractured.Tooltip: Red Fractured
+				// GreenFractured.Tooltip: Green Fractured
+				// PurpleFractured.Tooltip: Purple Fractured
+				// RedMechanical.Tooltip: Red Mechanical
+				// GreenMechanical.Tooltip: Green Mechanical
+				// PurpleMechanical.Tooltip: Purple Mechanical
+				// RedLaser.Tooltip: Red Laser
+				// GreenLaser.Tooltip: Green Laser
+				// PurpleLaser.Tooltip: Purple Laser
+				// FlyingPumpkin.Tooltip: Flying Pumpkin
+				// FlyingJack.Tooltip: Flying Jack
+			}
+
 			DrumstickElementalProj.DisplayName: 鸡腿元素
-			DynamiteBunnyProj.DisplayName: 爆炸兔
+
+			DynamiteBunnyProj: {
+				DisplayName: 爆炸兔
+				// White.Tooltip: White
+				// Corrupt.Tooltip: Corrupt
+				// Crimtane.Tooltip: Crimtane
+				// Angora.Tooltip: Angora
+				// Dutch.Tooltip: Dutch
+				// Flemish.Tooltip: Flemish
+				// Lop.Tooltip: Lop
+				// Silver.Tooltip: Silver
+				// Caerbannog.Tooltip: Caerbannog
+			}
+
 			EnchantedSwordProj.DisplayName: 附魔剑
 			FailureSlimeProj.DisplayName: 故障史莱姆
 			FairySlimeProj.DisplayName: 仙灵史莱姆
@@ -2484,36 +2559,153 @@ Mods: {
 			GobletProj.DisplayName: 杯布林
 			HornedSlimeProj.DisplayName: 恶魔史莱姆
 			IlluminantSlimeProj.DisplayName: 夜明史莱姆
-			JoyousSlimeProj.DisplayName: 欢乐史莱姆
-			LifelikeMechanicalFrogProj.DisplayName: 栩栩如生的机械青蛙
-			LilWrapsProj.DisplayName: 小裹布
+
+			JoyousSlimeProj: {
+				DisplayName: 欢乐史莱姆
+				// Default.Tooltip: Default
+				// JoyousPumpkin.Tooltip: Joyous Pumpkin
+			}
+
+			LifelikeMechanicalFrogProj: {
+				DisplayName: 栩栩如生的机械青蛙
+				// Default.Tooltip: Default
+				// Crowned.Tooltip: Crowned
+			}
+
+			LilWrapsProj: {
+				DisplayName: 小裹布
+				// Default.Tooltip: Default
+				// Dark.Tooltip: Dark
+				// Light.Tooltip: Light
+				// Shadow.Tooltip: Shadow
+				// Spectral.Tooltip: Spectral
+			}
+
 			MeatballProj.DisplayName: 肉球
 			MeatballSlimeProj.DisplayName: 肉球史莱姆
-			MetroidPetProj.DisplayName: 密特罗德
-			MiniAntlionProj.DisplayName: 蚁狮宝宝
+
+			MetroidPetProj: {
+				DisplayName: 密特罗德
+				// Metroid.Tooltip: Metroid
+				// FailedClone.Tooltip: Failed Clone
+				// Convergent.Tooltip: Convergent
+				// Irradiated.Tooltip: Irradiated
+				// Corrupted.Tooltip: Corrupted
+				// TheBaby.Tooltip: The Baby
+			}
+
+			MiniAntlionProj: {
+				DisplayName: 蚁狮宝宝
+				// Default.Tooltip: Default
+				// Albino.Tooltip: Albino
+				// Larval.Tooltip: Larval
+			}
+
 			MiniMegalodonProj.DisplayName: 迷你巨齿鲨
 			NumberMuncherProj.DisplayName: 数字大嘴巴
-			OceanSlimeProj.DisplayName: 海洋史莱姆
-			PetCultistProj.DisplayName: 小小邪教徒
+
+			OceanSlimeProj: {
+				DisplayName: 海洋史莱姆
+				// Default.Tooltip: Default
+				// StupidHat.Tooltip: Stupid Hat
+				// GnarlyGrin.Tooltip: Gnarly Grin
+				// FlippedJelly.Tooltip: Flipped Jelly
+			}
+
+			PetCultistProj: {
+				DisplayName: 小小邪教徒
+				// Lunar.Tooltip: Lunar
+				// Solar.Tooltip: Solar
+			}
+
 			PetDestroyer.DisplayName: 小型毁灭者
 			PetDestroyerProbe.DisplayName: 小型探测怪
 			PetEaterofWorlds.DisplayName: 小小世界吞噬怪
-			PetFishronProj.DisplayName: 迷你猪龙鱼
-			PetGoldfishProj.DisplayName: 宠物金鱼
+
+			PetFishronProj: {
+				DisplayName: 迷你猪龙鱼
+				// Default.Tooltip: Default
+				// Sharkron.Tooltip: Sharkron
+				// Sharknado.Tooltip: Sharknado
+			}
+
+			PetGoldfishProj: {
+				DisplayName: 宠物金鱼
+				// Default.Tooltip: Default
+				// Crimson.Tooltip: Crimson
+				// Corruption.Tooltip: Corruption
+				// Bunny.Tooltip: Bunny
+				// Ghostfish.Tooltip: Ghostfish
+			}
+
 			PetGolemHeadProj.DisplayName: 石巨人头复制品
 			PetHarvesterProj.DisplayName: 不屈之鸟
-			PetMoonProj.DisplayName: 个人月亮
+
+			PetMoonProj: {
+				DisplayName: 个人月亮
+				// Default.Tooltip: Default
+				// Yellow.Tooltip: Yellow
+				// Ringed.Tooltip: Ringed
+				// Mythril.Tooltip: Mythril
+				// BrightBlue.Tooltip: Bright Blue
+				// Green.Tooltip: Green
+				// Pink.Tooltip: Pink
+				// Orange.Tooltip: Orange
+				// Purple.Tooltip: Purple
+			}
+
 			PetPlanteraProj.DisplayName: 世纪之芽
 			PetPlanteraProjTentacle.DisplayName: 卑鄙种子触手
 			PetQueenSlimeProj.DisplayName: 顽皮小史莱姆
 			PetSunProj.DisplayName: 个人太阳
-			PigronataProj.DisplayName: 彩罐猪龙
+
+			PigronataProj: {
+				DisplayName: 彩罐猪龙
+				// Default.Tooltip: Default
+				// Winter.Tooltip: Winter
+				// Autumn.Tooltip: Autumn
+				// Spring.Tooltip: Spring
+				// Summer.Tooltip: Summer
+				// Halloween.Tooltip: Halloween
+				// Christmas.Tooltip: Christmas
+			}
+
 			PrinceSlimeProj.DisplayName: 史莱姆王子
-			QueenLarvaProj.DisplayName: 皇后幼虫
+
+			QueenLarvaProj: {
+				DisplayName: 皇后幼虫
+				// Default.Tooltip: Default
+				// PrawnLarva.Tooltip: PrawnLarva
+				// UnexpectedSeed.Tooltip: Unexpected Seed
+				// BigKidLarva.Tooltip: Big Kid Larva
+				// WheresTheBaby.Tooltip: Where's The Baby?
+			}
+
 			RainbowSlimeProj.DisplayName: 彩虹史莱姆
-			SkeletronHandProj.DisplayName: 骷髅王手宠物
-			SkeletronPrimeHandProj.DisplayName: 机械骷髅王手宠物
-			StingSlimeProj.DisplayName: 螫刺史莱姆
+
+			SkeletronHandProj: {
+				DisplayName: 骷髅王手宠物
+				// Default.Tooltip: Default
+				// OKHand.Tooltip: OK-Hand
+				// Peace.Tooltip: Peace
+				// RockIt.Tooltip: Rock It
+				// Fist.Tooltip: Fist
+			}
+
+			SkeletronPrimeHandProj: {
+				DisplayName: 机械骷髅王手宠物
+				// Cannon.Tooltip: Cannon
+				// Saw.Tooltip: Saw
+				// Vice.Tooltip: Vice
+				// Laser.Tooltip: Laser
+			}
+
+			StingSlimeProj: {
+				DisplayName: 螫刺史莱姆
+				// Black.Tooltip: Black
+				// Orange.Tooltip: Orange
+			}
+
 			StrangeRobotProj.DisplayName: 奇怪的机器人
 			SuspiciousNuggetProj.DisplayName: 可疑的金块
 			SwarmofCthulhuProj.DisplayName: 克苏鲁集群
@@ -2523,13 +2715,44 @@ Mods: {
 			TorturedSoulProj.DisplayName: 痛苦亡魂
 			TrueObservingEyeProj.DisplayName: 克苏鲁真眼
 			TurtleSlimeProj.DisplayName: 龟壳史莱姆
-			VampireBatProj.DisplayName: 吸血蝙蝠
+
+			VampireBatProj: {
+				DisplayName: 吸血蝙蝠
+				// Default.Tooltip: Default
+				// Werebat.Tooltip: Werebat
+			}
+
 			WallFragmentEye1.DisplayName: 血肉墙眼
 			WallFragmentEye2.DisplayName: 血肉墙眼
-			WallFragmentMouth.DisplayName: 血肉墙嘴
+
+			WallFragmentMouth: {
+				DisplayName: 血肉墙嘴
+				// Default.Tooltip: Default
+				// Chinese.Tooltip: Chinese
+			}
+
 			WobyProj.DisplayName: 沃比
-			YoungHarpyProj.DisplayName: 幼年鸟妖
-			YoungWyvernProj.DisplayName: 幼年飞龙
+
+			YoungHarpyProj: {
+				DisplayName: 幼年鸟妖
+				// Default.Tooltip: Default
+				// Eagle.Tooltip: Eagle
+				// Raven.Tooltip: Raven
+				// Dove.Tooltip: Dove
+				// DefaultLegacy.Tooltip: Default (Legacy)
+				// EagleLegacy.Tooltip: Eagle (Legacy)
+				// RavenLegacy.Tooltip: Raven (Legacy)
+				// DoveLegacy.Tooltip: Dove (Legacy)
+			}
+
+			YoungWyvernProj: {
+				DisplayName: 幼年飞龙
+				// Default.Tooltip: Default
+				// Mythical.Tooltip: Mythical
+				// Arch.Tooltip: Arch
+				// ArchLegacy.Tooltip: Arch (Legacy)
+			}
+
 			ExtendoNetGoldenProj.DisplayName: 延长！
 			ExtendoNetRegularProj.DisplayName: 延长！
 			BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
@@ -2638,6 +2861,14 @@ Mods: {
 				Unlock: 击败{$NPCName.TheDestroyer}
 				Description: ""
 			}
+
+			/* TooltipFormat:
+				'''
+				{0}
+				{1}
+				{2}
+				{3}
+				''' */
 		}
 
 		DroneData: {
@@ -2684,6 +2915,21 @@ Mods: {
 					无人机不存在时已生成的护盾会消失
 					'''
 			}
+
+			TooltipFormat:
+				'''
+				{0}
+				{1}
+				{2}
+				{3}
+				{4}
+				'''
+			TooltipFormatNoCombat:
+				'''
+				{0}
+				{1}
+				{2}
+				'''
 		}
 
 		Configs: {
@@ -3222,6 +3468,11 @@ Mods: {
 			Melee: 近战
 			Magic: 魔法
 			Ranged: 远程
+		}
+
+		UI: {
+			// CircleUIToUnlock: To unlock: {0}
+			// HoverNPCUICatchWithNet: Catch it with a net
 		}
 	}
 }

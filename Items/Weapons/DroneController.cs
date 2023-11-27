@@ -183,13 +183,12 @@ namespace AssortedCrazyThings.Items.Weapons
 			return DataList[(int)Math.Log((int)selected, 2)];
 		}
 
-		public static CircleUIConf GetUIConf()
+		public static CircleUIConf GetUIConf(bool loading)
 		{
-			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-			List<string> tooltips = new List<string>();
-			List<string> toUnlock = new List<string>();
+			List<LocalizedText> tooltips = new List<LocalizedText>();
+			List<LocalizedText> toUnlock = new List<LocalizedText>();
 			List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
-			List<bool> unlocked = new List<bool>();
+			List<bool> unlocked = !loading ? new List<bool>() : null;
 
 			foreach (DroneType type in Enum.GetValues(typeof(DroneType)))
 			{
@@ -197,9 +196,9 @@ namespace AssortedCrazyThings.Items.Weapons
 				{
 					DroneData data = GetDroneData(type);
 					assets.Add(AssUtils.Instance.Assets.Request<Texture2D>(data.PreviewTextureName));
-					unlocked.Add(mPlayer.droneControllerUnlocked.HasFlag(type));
+					if (!loading) unlocked.Add(Main.LocalPlayer.GetModPlayer<AssPlayer>().droneControllerUnlocked.HasFlag(type));
 					tooltips.Add(data.UITooltip);
-					toUnlock.Add(ToUnlockText.Format(data.ComponentName.ToString()));
+					toUnlock.Add(ToUnlockText.WithFormatArgs(data.ComponentName));
 				}
 			}
 
@@ -408,12 +407,27 @@ namespace AssortedCrazyThings.Items.Weapons
 		public readonly float KBModifier;
 		public readonly bool Combat;
 
+		public static LocalizedText TooltipFormatText { get; private set; }
+
+		public static LocalizedText TooltipFormatNoCombatText { get; private set; }
+
 		public string NameSingular => Name.Format(1);
-		public string UITooltip => NameSingular
-			+ (Combat ? ($"\n{AssLocalization.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
-			+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
-			+ "\n" + Description.ToString()
-			+ "\n" + Misc.ToString();
+
+		public LocalizedText UITooltip => Combat ? 
+			TooltipFormatText.WithFormatArgs(NameSingular,
+			AssLocalization.BaseDamageText.WithFormatArgs((int)(DroneController.BaseDmg * (DmgModifier + 1f))),
+			AssLocalization.BaseKnockbackText.WithFormatArgs(Math.Round(DroneController.BaseKB * KBModifier, 1)),
+			Description,
+			Misc) :
+			TooltipFormatNoCombatText.WithFormatArgs(NameSingular,
+			Description,
+			Misc);
+
+		//NameSingular
+		//+ (Combat ? ($"\n{AssLocalization.BaseDamageText.Format((int)(DroneController.BaseDmg * (DmgModifier + 1f)))}"
+		//+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(DroneController.BaseKB * KBModifier, 1))}") : "")
+		//+ "\n" + Description.ToString()
+		//+ "\n" + Misc.ToString();
 
 		public string PreviewTextureName => $"Projectiles/Minions/Drones/{InternalName}Preview"; 
 
@@ -422,6 +436,10 @@ namespace AssortedCrazyThings.Items.Weapons
 			ProjType = projType;
 			InternalName = GetInternalName(droneType);
 			string thisKey = $"DroneData.{InternalName}.";
+
+			TooltipFormatText ??= AssUtils.Instance.GetLocalization("DroneData.TooltipFormat");
+			TooltipFormatNoCombatText ??= AssUtils.Instance.GetLocalization("DroneData.TooltipFormatNoCombat");
+
 			Name = AssUtils.Instance.GetLocalization($"{thisKey}DisplayName", () => "");
 			ComponentName = AssUtils.Instance.GetLocalization($"{thisKey}ComponentName", () => "");
 			Firerate = AssUtils.Instance.GetLocalization($"{thisKey}Firerate", () => "");

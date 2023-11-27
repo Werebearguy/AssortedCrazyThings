@@ -107,6 +107,7 @@ adjust `stupidOffset` accordingly in PreDraw() (example: YoungWyvernProj.cs)
 * "Default" is the \_0 texture, "AltName1" is the \_1 texture etc.
 * It will only register the number of textures specified as tooltips,
 so if you have 10 textures but only name 6 tooltips it will only pick the textures from 0 to 5 (as opposed to 0 to 9)
+* tooltips should not have spaces or special symbols, they represent keys. See step 6
 ```csharp
 public static CircleUIConf GetClassNameConf()
 {
@@ -115,21 +116,34 @@ public static CircleUIConf GetClassNameConf()
     return CircleUIHandler.PetConf("ClassNameProj", tooltips);
 }
 ```
-* At the end of Initialize(), add this:
+
+***
+
+
+ (5) Register handler, in AssUISystem.cs
+
+* At the end of PostSetupContent(), in the proper config check section where CircleUIListPets is used, add this:
 
 ```csharp
     new CircleUIHandler(
     triggerItem: ModContent.ItemType<VanitySelector>(),
-    condition: () => ClassName,
-    uiConf: GetClassNameConf,
-    onUIStart: () => classNameType,
-    onUIEnd: () => classNameType = (byte)CircleUI.returned
+    condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().ClassName,
+    uiConf: PetPlayer.GetClassNameConf,
+    onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().classNameType,
+    onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().classNameType = (byte)CircleUI.returned
 ),
 ```
 
 ***
 
 
-Finally, you can go into PetPlayer.cs and search for "//ALTERNATE" to see if you implemented everything (examples included in each instance):
+ (6) In Localization/en-US.hjson
+
+* Start up the game once, after it reaches the main menu navigate to the ClassNameProj entry and change the values that look like `AltName2.Tooltip: AltName2` on the right hand side, i.e. `Alt Name 2`
+
+***
+
+
+Finally, you can go into PetPlayer.cs and AssUISystem.cs and search for "//ALTERNATE" to see if you implemented everything (examples included in each instance):
  * 7 occurences (2 of which are ticked off already if you do it on an existing pet)
  

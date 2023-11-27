@@ -39,16 +39,16 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 		}
 
 		//Half-assed implementation
-		public static CircleUIConf GetUIConf()
+		public static CircleUIConf GetUIConf(bool loading)
 		{
 			List<Asset<Texture2D>> assets = new();
-			List<string> tooltips = new();
+			List<LocalizedText> tooltips = new();
 
 			var array = Enum.GetValues(typeof(BalloonType));
 			foreach (var balloon in array)
 			{
 				assets.Add(AssUtils.Instance.Assets.Request<Texture2D>($"Items/Accessories/Vanity/SillyBalloonKitBalloons/{Enum.GetName(typeof(BalloonType), balloon)}Preview"));
-				tooltips.Add(Enum2string((BalloonType)balloon).ToString());
+				tooltips.Add(Enum2string((BalloonType)balloon));
 			}
 
 			return new CircleUIConf(0, -1, assets, tooltips: tooltips);
@@ -68,15 +68,6 @@ namespace AssortedCrazyThings.Items.Accessories.Vanity
 					var name = Enum.GetName(typeof(BalloonType), balloon);
 					EquipSlots[(BalloonType)balloon] = EquipLoader.AddEquipTexture(Mod, $"AssortedCrazyThings/Items/Accessories/Vanity/SillyBalloonKitBalloons/{name}_Balloon", EquipType.Balloon, name: name); 
 				}
-			}
-		}
-
-		public override void SafeSetStaticDefaults()
-		{
-			//Needs to be called so the lang is initialized
-			if (!Main.dedServ)
-			{
-				GetUIConf();
 			}
 		}
 

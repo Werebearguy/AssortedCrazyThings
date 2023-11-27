@@ -1,9 +1,12 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Items;
+using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.PetAccessories;
+using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.Tiles;
 using AssortedCrazyThings.UI;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -36,6 +39,16 @@ namespace AssortedCrazyThings
 		internal static UserInterface PetVanityUIInterface;
 		internal static PetVanityUI PetVanityUI;
 
+		/// <summary>
+		/// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
+		/// </summary>
+		public static List<CircleUIHandler> CircleUIList;
+
+		/// <summary>
+		/// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
+		/// </summary>
+		public static List<CircleUIHandler> CircleUIListPets;
+
 		public override void PostSetupContent()
 		{
 			if (!Main.dedServ && Main.netMode != NetmodeID.Server)
@@ -64,6 +77,339 @@ namespace AssortedCrazyThings
 					PetVanityUI.Activate();
 					PetVanityUIInterface = new UserInterface();
 					PetVanityUIInterface.SetState(PetVanityUI);
+				}
+
+				CircleUIList = new List<CircleUIHandler>();
+
+				if (ContentConfig.Instance.VanityAccessories)
+				{
+					CircleUIList.AddRange(new List<CircleUIHandler>
+					{
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<SillyBalloonKit>(),
+						condition: () => true,
+						uiConf: SillyBalloonKit.GetUIConf,
+						onUIStart: () => (int)Main.LocalPlayer.GetModPlayer<AssPlayer>().selectedSillyBalloonType,
+						onUIEnd: delegate
+						{
+							AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+							mPlayer.selectedSillyBalloonType = (BalloonType)(byte)CircleUI.returned;
+							AssUtils.UIText(AssLocalization.SelectedText.Format(SillyBalloonKit.Enum2string(mPlayer.selectedSillyBalloonType)), CombatText.HealLife);
+						}
+					),
+					});
+				}
+
+				if (ContentConfig.Instance.Weapons)
+				{
+					CircleUIList.AddRange(new List<CircleUIHandler>
+					{
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
+						condition: () => true,
+						uiConf: SlimeHandlerKnapsack.GetUIConf,
+						onUIStart: () => (int)Main.LocalPlayer.GetModPlayer<AssPlayer>().selectedSlimePackMinionType,
+						onUIEnd: delegate
+						{
+							AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+							mPlayer.selectedSlimePackMinionType = (SlimeType)(byte)CircleUI.returned;
+							AssUtils.UIText(AssLocalization.SelectedText.Format(SlimeHandlerKnapsack.Enum2string(mPlayer.selectedSlimePackMinionType)), CombatText.HealLife);
+						},
+						triggerLeft: false
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<DroneController>(),
+						condition: () => true,
+						uiConf: DroneController.GetUIConf,
+						onUIStart: delegate
+						{
+							AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+							if (Utils.IsPowerOfTwo((int)mPlayer.selectedDroneControllerMinionType))
+							{
+								return (int)Math.Log((int)mPlayer.selectedDroneControllerMinionType, 2);
+							}
+							return 0;
+						},
+						onUIEnd: delegate
+						{
+							AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+							mPlayer.selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
+							AssUtils.UIText(AssLocalization.SelectedText.Format(DroneController.GetDroneData(mPlayer.selectedDroneControllerMinionType).NameSingular), CombatText.HealLife);
+						},
+						triggerLeft: false
+					)}
+					);
+				}
+
+				if (ContentConfig.Instance.Bosses)
+				{
+					CircleUIList.Add(new CircleUIHandler(
+					triggerItem: ModContent.ItemType<EverhallowedLantern>(),
+					condition: () => true,
+					uiConf: EverhallowedLantern.GetUIConf,
+					onUIStart: delegate
+					{
+						if (Utils.IsPowerOfTwo((int)Main.LocalPlayer.GetModPlayer<AssPlayer>().selectedSoulMinionType))
+						{
+							return (int)Math.Log((int)Main.LocalPlayer.GetModPlayer<AssPlayer>().selectedSoulMinionType, 2);
+						}
+						return 0;
+					},
+					onUIEnd: delegate
+					{
+						AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+						mPlayer.selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
+						AssUtils.UIText(AssLocalization.SelectedText.Format(EverhallowedLantern.GetSoulData(mPlayer.selectedSoulMinionType).NameSingular), CombatText.HealLife);
+					},
+					triggerLeft: false
+					));
+				}
+
+				// after filling the list, set the trigger list
+				for (int i = 0; i < CircleUIList.Count; i++)
+				{
+					var circleUIHandler = CircleUIList[i];
+
+					//set the trigger list
+					circleUIHandler.AddTriggers();
+					circleUIHandler.UIConf(true); //Localization
+				}
+
+				CircleUIListPets = new List<CircleUIHandler>();
+
+				if (ContentConfig.Instance.OtherPets)
+				{
+					CircleUIListPets.AddRange(new List<CircleUIHandler>
+					{
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().LifelikeMechanicalFrog,
+						uiConf: PetPlayer.GetLifelikeMechanicalFrogConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().mechFrogType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().mechFrogType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().DocileDemonEye,
+						uiConf: PetPlayer.GetDocileDemonEyeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petEyeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petEyeType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().CursedSkull,
+						uiConf: PetPlayer.GetCursedSkullConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().cursedSkullType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().cursedSkullType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().YoungWyvern,
+						uiConf: PetPlayer.GetYoungWyvernConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().youngWyvernType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().youngWyvernType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().PetMoon,
+						uiConf: PetPlayer.GetPetMoonConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petMoonType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petMoonType = (byte)CircleUI.returned,
+						triggerLeft: false
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().Abeemination,
+						uiConf: PetPlayer.GetAbeeminationConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().abeeminationType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().abeeminationType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().VampireBat,
+						uiConf: PetPlayer.GetVampireBatConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().vampireBatType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().vampireBatType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().Pigronata,
+						uiConf: PetPlayer.GetPigronataConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().pigronataType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().pigronataType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().PetGoldfish,
+						uiConf: PetPlayer.PetGoldfishConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petGoldfishType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petGoldfishType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().PetAnomalocaris,
+						uiConf: PetPlayer.GetAnomalocarisConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petAnomalocarisType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petAnomalocarisType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().DynamiteBunny,
+						uiConf: PetPlayer.GetDynamiteBunnyConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().dynamiteBunnyType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().dynamiteBunnyType = (byte)CircleUI.returned
+					),
+					//ALTERNATE
+					//    new CircleUIHandler(
+					//    triggerItem: ModContent.ItemType<VanitySelector>(),
+					//    condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().ClassName,
+					//    uiConf: PetPlayer.GetClassNameConf,
+					//    onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().classNameType,
+					//    onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().classNameType = (byte)CircleUI.returned
+					//),
+					});
+				}
+
+				if (ContentConfig.Instance.DroppedPets)
+				{
+					int vanitySelector = ModContent.ItemType<VanitySelector>();
+					CircleUIListPets.AddRange(new List<CircleUIHandler>()
+					{
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().QueenLarva,
+						uiConf: PetPlayer.GetQueenLarvaConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().queenLarvaType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().queenLarvaType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().MiniAntlion,
+						uiConf: PetPlayer.GetMiniAntlionConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().miniAntlionType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().miniAntlionType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().LilWraps,
+						uiConf: PetPlayer.GetLilWrapsConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().lilWrapsType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().lilWrapsType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().WallFragment,
+						uiConf: PetPlayer.GetWallFragmentConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().wallFragmentType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().wallFragmentType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().MetroidPet,
+						uiConf: PetPlayer.GetMetroidPetConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().metroidPetType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().metroidPetType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().CuteLamiaPet,
+						uiConf: PetPlayer.GetCuteLamiaPetConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().cuteLamiaPetType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().cuteLamiaPetType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().SkeletronHand,
+						uiConf: PetPlayer.GetSkeletronHandConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().skeletronHandType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().skeletronHandType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().SkeletronPrimeHand,
+						uiConf: PetPlayer.GetSkeletronPrimeHandConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().skeletronPrimeHandType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().skeletronPrimeHandType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().PetCultist,
+						uiConf: PetPlayer.GetPetCultistConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petCultistType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petCultistType = (byte)CircleUI.returned,
+						triggerLeft: false
+					),
+						new CircleUIHandler(
+						triggerItem: vanitySelector,
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().PetFishron,
+						uiConf: PetPlayer.GetPetFishronConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petFishronType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().petFishronType = (byte)CircleUI.returned
+					)
+					});
+				}
+
+				if (ContentConfig.Instance.HostileNPCs)
+				{
+					CircleUIListPets.AddRange(new List<CircleUIHandler>()
+					{
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().OceanSlime,
+						uiConf: PetPlayer.GetOceanSlimeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().oceanSlimeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().oceanSlimeType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().StingSlime,
+						uiConf: PetPlayer.GetStingSlimeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().stingSlimeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().stingSlimeType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().AnimatedTome,
+						uiConf: PetPlayer.GetAnimatedTomeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().animatedTomeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().animatedTomeType = (byte)CircleUI.returned
+					)
+					});
+				}
+
+				if (ContentConfig.Instance.FriendlyNPCs)
+				{
+					CircleUIListPets.AddRange(new List<CircleUIHandler>()
+					{
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().YoungHarpy,
+						uiConf: PetPlayer.GetYoungHarpyConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().youngHarpyType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().youngHarpyType = (byte)CircleUI.returned
+					),
+					});
+
+					CircleUIListPets.AddRange(new List<CircleUIHandler>()
+					{
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().JoyousSlime,
+						uiConf: PetPlayer.GetJoyousSlimeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().joyousSlimeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().joyousSlimeType = (byte)CircleUI.returned
+					),
+					});
+				}
+
+				//after filling the list
+				for (int i = 0; i < CircleUIListPets.Count; i++)
+				{
+					var circleUIHandler = CircleUIListPets[i];
+
+					//set the trigger list
+					circleUIHandler.AddTriggers();
+					circleUIHandler.UIConf(true); //Localization
 				}
 			}
 		}
@@ -139,14 +485,14 @@ namespace AssortedCrazyThings
 		/// <summary>
 		/// Called when CircleUI starts
 		/// </summary>
-		private void CircleUIStart(int triggerType, bool triggerLeft = true, bool fromDresser = false)
+		private static void CircleUIStart(int triggerType, bool triggerLeft = true, bool fromDresser = false)
 		{
 			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 			PetPlayer pPlayer = Main.LocalPlayer.GetModPlayer<PetPlayer>();
 
 			//combine both lists of the players (split for organization and player load shenanigans)
-			List<CircleUIHandler> l = mPlayer.CircleUIList;
-			l.AddRange(pPlayer.CircleUIList);
+			List<CircleUIHandler> l = CircleUIList;
+			l.AddRange(CircleUIListPets);
 
 			bool found = false;
 			for (int i = 0; i < l.Count; i++)
@@ -156,7 +502,7 @@ namespace AssortedCrazyThings
 				{
 					if (handler.TriggerItem == triggerType && handler.TriggerLeft == triggerLeft)
 					{
-						CircleUI.UIConf = handler.UIConf();
+						CircleUI.UIConf = handler.UIConf(false);
 						CircleUI.currentSelected = handler.OnUIStart();
 						found = true;
 						break;
@@ -184,7 +530,6 @@ namespace AssortedCrazyThings
 		/// </summary>
 		private void CircleUIEnd(bool triggerLeft = true)
 		{
-			AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
 			if (CircleUI.returned != CircleUI.NONE && CircleUI.returned != CircleUI.currentSelected)
 			{
 				//if something returned AND if the returned thing isn't the same as the current one
@@ -198,7 +543,8 @@ namespace AssortedCrazyThings
 					//No idea why but this threw errors one time
 				}
 
-				List<CircleUIHandler> l = mPlayer.CircleUIList;
+				List<CircleUIHandler> l = CircleUIList;
+				l.AddRange(CircleUIListPets);
 				for (int i = 0; i < l.Count; i++)
 				{
 					if (l[i].Condition())

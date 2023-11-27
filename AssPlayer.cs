@@ -611,11 +611,6 @@ namespace AssortedCrazyThings
 
 		#region CircleUI
 
-		/// <summary>
-		/// Contains a list of CircleUIHandlers that are used in CircleUIStart/End in Mod
-		/// </summary>
-		public List<CircleUIHandler> CircleUIList;
-
 		public override void Initialize()
 		{
 			sigilOfTheWingCooldown = 0;
@@ -629,94 +624,6 @@ namespace AssortedCrazyThings
 			shieldDroneReduction = 0;
 			shieldDroneLerpVisual = 0;
 			drawEffectsCalledOnce = false;
-
-			//needs to call new List() since Initialize() is called per player in the player select screen
-			CircleUIList = new List<CircleUIHandler>();
-
-			if (ContentConfig.Instance.VanityAccessories)
-			{
-				CircleUIList.AddRange(new List<CircleUIHandler>
-				{
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<SillyBalloonKit>(),
-					condition: () => true,
-					uiConf: SillyBalloonKit.GetUIConf,
-					onUIStart: () => (int)selectedSillyBalloonType,
-					onUIEnd: delegate
-					{
-						selectedSillyBalloonType =  (BalloonType)(byte)CircleUI.returned;
-						AssUtils.UIText(AssLocalization.SelectedText.Format(SillyBalloonKit.Enum2string(selectedSillyBalloonType)), CombatText.HealLife);
-					}
-				),
-				});
-			}
-
-			if (ContentConfig.Instance.Weapons)
-			{
-				CircleUIList.AddRange(new List<CircleUIHandler>
-				{
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<SlimeHandlerKnapsack>(),
-					condition: () => true,
-					uiConf: SlimeHandlerKnapsack.GetUIConf,
-					onUIStart: () => (int)selectedSlimePackMinionType,
-					onUIEnd: delegate
-					{
-						selectedSlimePackMinionType =  (SlimeType)(byte)CircleUI.returned;
-						AssUtils.UIText(AssLocalization.SelectedText.Format(SlimeHandlerKnapsack.Enum2string(selectedSlimePackMinionType)), CombatText.HealLife);
-					},
-					triggerLeft: false
-				),
-					new CircleUIHandler(
-					triggerItem: ModContent.ItemType<DroneController>(),
-					condition: () => true,
-					uiConf: DroneController.GetUIConf,
-					onUIStart: delegate
-					{
-						if (Utils.IsPowerOfTwo((int)selectedDroneControllerMinionType))
-						{
-							return (int)Math.Log((int)selectedDroneControllerMinionType, 2);
-						}
-						return 0;
-					},
-					onUIEnd: delegate
-					{
-						selectedDroneControllerMinionType = (DroneType)(byte)Math.Pow(2, CircleUI.returned);
-						AssUtils.UIText(AssLocalization.SelectedText.Format(DroneController.GetDroneData(selectedDroneControllerMinionType).NameSingular), CombatText.HealLife);
-					},
-					triggerLeft: false
-				)}
-				);
-			}
-
-			if (ContentConfig.Instance.Bosses)
-			{
-				CircleUIList.Add(new CircleUIHandler(
-				triggerItem: ModContent.ItemType<EverhallowedLantern>(),
-				condition: () => true,
-				uiConf: EverhallowedLantern.GetUIConf,
-				onUIStart: delegate
-				{
-					if (Utils.IsPowerOfTwo((int)selectedSoulMinionType))
-					{
-						return (int)Math.Log((int)selectedSoulMinionType, 2);
-					}
-					return 0;
-				},
-				onUIEnd: delegate
-				{
-					selectedSoulMinionType = (SoulType)(byte)Math.Pow(2, CircleUI.returned);
-					AssUtils.UIText(AssLocalization.SelectedText.Format(EverhallowedLantern.GetSoulData(selectedSoulMinionType).NameSingular), CombatText.HealLife);
-				},
-				triggerLeft: false
-				));
-			}
-
-			// after filling the list, set the trigger list
-			for (int i = 0; i < CircleUIList.Count; i++)
-			{
-				CircleUIList[i].AddTriggers();
-			}
 		}
 		#endregion
 

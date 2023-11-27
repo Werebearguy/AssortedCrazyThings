@@ -31,50 +31,54 @@ namespace AssortedCrazyThings.Items.Weapons
 		}
 
 		//Half-assed implementation
-		public static CircleUIConf GetUIConf()
+		public static CircleUIConf GetUIConf(bool loading)
 		{
-			List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>() {
-						AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
-						AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
-						AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview") };
-			List<string> tooltips = new List<string>
-					{
-						Enum2string(SlimeType.Default).ToString()
-						+ $"\n{AssLocalization.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
-						+ $"\n{AssLocalization.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
-						Enum2string(SlimeType.Assorted).ToString()
-						+ $"\n{AssLocalization.BaseDamageText.Format(SlimePackMinion.DefDamage)}"
-						+ $"\n{AssLocalization.BaseKnockbackText.Format(SlimePackMinion.DefKnockback)}",
-						Enum2string(SlimeType.Spiked).ToString()
-						+ $"\n{AssLocalization.BaseDamageText.Format(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1)))}"
-						+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1))}"
-						+ $"\n{SpikedBonusText}"
-					};
-			List<string> toUnlock = new List<string>() { Enum2string(SlimeType.Default).ToString(), Enum2string(SlimeType.Default).ToString(), SpikedUnlockText.ToString() };
+			List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>()
+			{
+				AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionPreview"),
+				AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionAssortedPreview"),
+				AssUtils.Instance.Assets.Request<Texture2D>("Projectiles/Minions/SlimePackMinions/SlimeMinionSpikedPreview")
+			};
+			List<LocalizedText> tooltips = new List<LocalizedText>
+			{
+			//TODO make 4 lines, last line is Empty or SpikedBonusText
+			TooltipFormatText.WithFormatArgs(
+				Enum2string(SlimeType.Default),
+				AssLocalization.BaseDamageText.WithFormatArgs(SlimePackMinion.DefDamage),
+				AssLocalization.BaseKnockbackText.WithFormatArgs(SlimePackMinion.DefKnockback),
+				LocalizedText.Empty),
+			TooltipFormatText.WithFormatArgs(
+				Enum2string(SlimeType.Assorted),
+				AssLocalization.BaseDamageText.WithFormatArgs(SlimePackMinion.DefDamage),
+				AssLocalization.BaseKnockbackText.WithFormatArgs(SlimePackMinion.DefKnockback),
+				LocalizedText.Empty),
+			TooltipFormatText.WithFormatArgs(
+				Enum2string(SlimeType.Spiked),
+				AssLocalization.BaseDamageText.WithFormatArgs(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1))),
+				AssLocalization.BaseKnockbackText.WithFormatArgs(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1)),
+				SpikedBonusText),
+			};
+			List<LocalizedText> toUnlock = new List<LocalizedText>() { Enum2string(SlimeType.Default), Enum2string(SlimeType.Default), SpikedUnlockText };
 
 			List<bool> unlocked = new List<bool>()
-					{
-						true,                // 0
-                        true,                // 1
-                        NPC.downedPlantBoss, // 2
-                    };
+			{
+				true,                // 0
+				true,                // 1
+				NPC.downedPlantBoss, // 2
+			};
 
 			return new CircleUIConf(0, -1, assets, unlocked, tooltips, toUnlock, drawOffset: new Vector2(0f, -2f));
 		}
 
 		public static LocalizedText SpikedBonusText { get; private set; }
 		public static LocalizedText SpikedUnlockText { get; private set; }
+		public static LocalizedText TooltipFormatText { get; private set; }
 
 		public override void EvenSaferSetStaticDefaults()
 		{
 			SpikedBonusText = this.GetLocalization("SpikedBonus");
 			SpikedUnlockText = this.GetLocalization("SpikedUnlock");
-
-			//Needs to be called so the lang is initialized
-			if (!Main.dedServ)
-			{
-				GetUIConf();
-			}
+			TooltipFormatText = this.GetLocalization("TooltipFormat");
 		}
 
 		public override void SetDefaults()

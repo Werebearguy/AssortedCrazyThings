@@ -533,6 +533,8 @@ Mods: {
 			}
 
 			// EagerUnderlingBuff.DisplayName: Eager Underling
+			// ShyUnderlingBuff.DisplayName: Shy Underling
+			// SeriousUnderlingBuff.DisplayName: Serious Underling
 
 			SigilOfTheWingBuff: {
 				// DisplayName: Blessing of the Wing
@@ -580,8 +582,6 @@ Mods: {
 				You are protected from Wyverns
 				Harpy feathers don't knock you away
 				''' */
-			// ShyUnderlingBuff.DisplayName: Shy Underling
-			// SeriousUnderlingBuff.DisplayName: Serious Underling
 		}
 
 		Common: {
@@ -2049,6 +2049,13 @@ Mods: {
 				// Spiked: Spiked
 				// SpikedBonus: Shoots spikes while fighting
 				// SpikedUnlock: Defeat Plantera
+				/* TooltipFormat:
+					'''
+					{0}
+					{1}
+					{2}
+					{3}
+					''' */
 			}
 
 			Talonstorm: {
@@ -2427,10 +2434,34 @@ Mods: {
 			// HarvesterAbsorbedSoul.DisplayName: Absorbed Soul
 			// HarvesterBone.DisplayName: Harvester Bone
 			// HarvesterFracturedSoul.DisplayName: Fractured Soul
-			// AbeeminationProj.DisplayName: Abeemination
+
+			AbeeminationProj: {
+				// DisplayName: Abeemination
+				// Default.Tooltip: Default
+				// SnowBee.Tooltip: Snow Bee
+				// OilSpill.Tooltip: Oil Spill
+				// MissingIngredients.Tooltip: Missing Ingredients
+			}
+
 			// AlienHornetProj.DisplayName: Alien Hornet
-			// AnimatedTomeProj.DisplayName: Animated Tome
-			// AnomalocarisProj.DisplayName: Anomalocaris
+
+			AnimatedTomeProj: {
+				// DisplayName: Animated Tome
+				// Green.Tooltip: Green
+				// Blue.Tooltip: Blue
+				// Purple.Tooltip: Purple
+				// Pink.Tooltip: Pink
+				// Yellow.Tooltip: Yellow
+				// Spell.Tooltip: Spell
+			}
+
+			AnomalocarisProj: {
+				// DisplayName: Anomalocaris
+				// Wild.Tooltip: Wild
+				// Shrimpy.Tooltip: Shrimpy
+				// Snippy.Tooltip: Snippy
+			}
+
 			// BabyCrimeraProj.DisplayName: Baby Crimera
 			// BabyIchorStickerProj.DisplayName: Baby Ichor Sticker
 			// BabyOcramProj.DisplayName: Baby Ocram
@@ -2439,9 +2470,22 @@ Mods: {
 			// ChunkySlimeProj.DisplayName: Chunky Slime
 			// CompanionDungeonSoulPetProj.DisplayName: Companion Soul
 			// CompanionDungeonSoulPetProj2.DisplayName: Companion Soul
-			// CursedSkullProj.DisplayName: Cursed Skull
+
+			CursedSkullProj: {
+				// DisplayName: Cursed Skull
+				// Default.Tooltip: Default
+				// Dragon.Tooltip: Dragon
+			}
+
 			// CuteGastropodProj.DisplayName: Cute Gastropod
-			// CuteLamiaPetProj.DisplayName: Small Snake
+
+			CuteLamiaPetProj: {
+				// DisplayName: Small Snake
+				// Dark.Tooltip: Dark
+				// Light.Tooltip: Light
+				// Dropkick.Tooltip: Drop kick
+			}
+
 			// CuteSlimeBlackProj.DisplayName: Cute Black Slime
 			// CuteSlimeBlueProj.DisplayName: Cute Blue Slime
 			// CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
@@ -2472,9 +2516,40 @@ Mods: {
 			// CuteSlimeYellowProj.DisplayName: Cute Yellow Slime
 			// DemonHeartProj.DisplayName: Demon Heart
 			// DetachedHungryProj.DisplayName: Detached Hungry
-			// DocileDemonEyeProj.DisplayName: Docile Demon Eye
+
+			DocileDemonEyeProj: {
+				// DisplayName: Docile Demon Eye
+				// Red.Tooltip: Red
+				// Green.Tooltip: Green
+				// Purple.Tooltip: Purple
+				// RedFractured.Tooltip: Red Fractured
+				// GreenFractured.Tooltip: Green Fractured
+				// PurpleFractured.Tooltip: Purple Fractured
+				// RedMechanical.Tooltip: Red Mechanical
+				// GreenMechanical.Tooltip: Green Mechanical
+				// PurpleMechanical.Tooltip: Purple Mechanical
+				// RedLaser.Tooltip: Red Laser
+				// GreenLaser.Tooltip: Green Laser
+				// PurpleLaser.Tooltip: Purple Laser
+				// FlyingPumpkin.Tooltip: Flying Pumpkin
+				// FlyingJack.Tooltip: Flying Jack
+			}
+
 			// DrumstickElementalProj.DisplayName: Drumstick Elemental
-			// DynamiteBunnyProj.DisplayName: Dynamite Bunny
+
+			DynamiteBunnyProj: {
+				// DisplayName: Dynamite Bunny
+				// White.Tooltip: White
+				// Corrupt.Tooltip: Corrupt
+				// Crimtane.Tooltip: Crimtane
+				// Angora.Tooltip: Angora
+				// Dutch.Tooltip: Dutch
+				// Flemish.Tooltip: Flemish
+				// Lop.Tooltip: Lop
+				// Silver.Tooltip: Silver
+				// Caerbannog.Tooltip: Caerbannog
+			}
+
 			// EnchantedSwordProj.DisplayName: Enchanted Sword
 			// FailureSlimeProj.DisplayName: Failure Slime
 			// FairySlimeProj.DisplayName: Fairy Slime
@@ -2483,36 +2558,153 @@ Mods: {
 			// GobletProj.DisplayName: Goblet
 			// HornedSlimeProj.DisplayName: Horned Slime
 			// IlluminantSlimeProj.DisplayName: Illuminant Slime
-			// JoyousSlimeProj.DisplayName: Joyous Slime
-			// LifelikeMechanicalFrogProj.DisplayName: Lifelike Mechanical Frog
-			// LilWrapsProj.DisplayName: Lil' Wraps
+
+			JoyousSlimeProj: {
+				// DisplayName: Joyous Slime
+				// Default.Tooltip: Default
+				// JoyousPumpkin.Tooltip: Joyous Pumpkin
+			}
+
+			LifelikeMechanicalFrogProj: {
+				// DisplayName: Lifelike Mechanical Frog
+				// Default.Tooltip: Default
+				// Crowned.Tooltip: Crowned
+			}
+
+			LilWrapsProj: {
+				// DisplayName: Lil' Wraps
+				// Default.Tooltip: Default
+				// Dark.Tooltip: Dark
+				// Light.Tooltip: Light
+				// Shadow.Tooltip: Shadow
+				// Spectral.Tooltip: Spectral
+			}
+
 			// MeatballProj.DisplayName: Meatball
 			// MeatballSlimeProj.DisplayName: Meatball Slime
-			// MetroidPetProj.DisplayName: Metroid
-			// MiniAntlionProj.DisplayName: Baby Antlion
+
+			MetroidPetProj: {
+				// DisplayName: Metroid
+				// Metroid.Tooltip: Metroid
+				// FailedClone.Tooltip: Failed Clone
+				// Convergent.Tooltip: Convergent
+				// Irradiated.Tooltip: Irradiated
+				// Corrupted.Tooltip: Corrupted
+				// TheBaby.Tooltip: The Baby
+			}
+
+			MiniAntlionProj: {
+				// DisplayName: Baby Antlion
+				// Default.Tooltip: Default
+				// Albino.Tooltip: Albino
+				// Larval.Tooltip: Larval
+			}
+
 			// MiniMegalodonProj.DisplayName: Mini Megalodon
 			// NumberMuncherProj.DisplayName: Number Muncher
-			// OceanSlimeProj.DisplayName: Ocean Slime
-			// PetCultistProj.DisplayName: Dwarf Cultist
+
+			OceanSlimeProj: {
+				// DisplayName: Ocean Slime
+				// Default.Tooltip: Default
+				// StupidHat.Tooltip: Stupid Hat
+				// GnarlyGrin.Tooltip: Gnarly Grin
+				// FlippedJelly.Tooltip: Flipped Jelly
+			}
+
+			PetCultistProj: {
+				// DisplayName: Dwarf Cultist
+				// Lunar.Tooltip: Lunar
+				// Solar.Tooltip: Solar
+			}
+
 			// PetDestroyer.DisplayName: Tiny Destroyer
 			// PetDestroyerProbe.DisplayName: Tiny Destroyer Probe
 			// PetEaterofWorlds.DisplayName: Tiny Eater of Worlds
-			// PetFishronProj.DisplayName: Mini Fishron
-			// PetGoldfishProj.DisplayName: Pet Goldfish
+
+			PetFishronProj: {
+				// DisplayName: Mini Fishron
+				// Default.Tooltip: Default
+				// Sharkron.Tooltip: Sharkron
+				// Sharknado.Tooltip: Sharknado
+			}
+
+			PetGoldfishProj: {
+				// DisplayName: Pet Goldfish
+				// Default.Tooltip: Default
+				// Crimson.Tooltip: Crimson
+				// Corruption.Tooltip: Corruption
+				// Bunny.Tooltip: Bunny
+				// Ghostfish.Tooltip: Ghostfish
+			}
+
 			// PetGolemHeadProj.DisplayName: Replica Golem Head
 			// PetHarvesterProj.DisplayName: Stubborn Bird
-			// PetMoonProj.DisplayName: Personal Moon
+
+			PetMoonProj: {
+				// DisplayName: Personal Moon
+				// Default.Tooltip: Default
+				// Yellow.Tooltip: Yellow
+				// Ringed.Tooltip: Ringed
+				// Mythril.Tooltip: Mythril
+				// BrightBlue.Tooltip: Bright Blue
+				// Green.Tooltip: Green
+				// Pink.Tooltip: Pink
+				// Orange.Tooltip: Orange
+				// Purple.Tooltip: Purple
+			}
+
 			// PetPlanteraProj.DisplayName: Plantera Sprout
 			// PetPlanteraProjTentacle.DisplayName: Mean Seed Tentacle
 			// PetQueenSlimeProj.DisplayName: Slime Sibling
 			// PetSunProj.DisplayName: Personal Sun
-			// PigronataProj.DisplayName: Pigronata
+
+			PigronataProj: {
+				// DisplayName: Pigronata
+				// Default.Tooltip: Default
+				// Winter.Tooltip: Winter
+				// Autumn.Tooltip: Autumn
+				// Spring.Tooltip: Spring
+				// Summer.Tooltip: Summer
+				// Halloween.Tooltip: Halloween
+				// Christmas.Tooltip: Christmas
+			}
+
 			// PrinceSlimeProj.DisplayName: Prince Slime
-			// QueenLarvaProj.DisplayName: Queen Bee Larva
+
+			QueenLarvaProj: {
+				// DisplayName: Queen Bee Larva
+				// Default.Tooltip: Default
+				// PrawnLarva.Tooltip: PrawnLarva
+				// UnexpectedSeed.Tooltip: Unexpected Seed
+				// BigKidLarva.Tooltip: Big Kid Larva
+				// WheresTheBaby.Tooltip: Where's The Baby?
+			}
+
 			// RainbowSlimeProj.DisplayName: Rainbow Slime
-			// SkeletronHandProj.DisplayName: Skeletron Pet Hand
-			// SkeletronPrimeHandProj.DisplayName: Skeletron Prime Pet Hand
-			// StingSlimeProj.DisplayName: Sting Slime
+
+			SkeletronHandProj: {
+				// DisplayName: Skeletron Pet Hand
+				// Default.Tooltip: Default
+				// OKHand.Tooltip: OK-Hand
+				// Peace.Tooltip: Peace
+				// RockIt.Tooltip: Rock It
+				// Fist.Tooltip: Fist
+			}
+
+			SkeletronPrimeHandProj: {
+				// DisplayName: Skeletron Prime Pet Hand
+				// Cannon.Tooltip: Cannon
+				// Saw.Tooltip: Saw
+				// Vice.Tooltip: Vice
+				// Laser.Tooltip: Laser
+			}
+
+			StingSlimeProj: {
+				// DisplayName: Sting Slime
+				// Black.Tooltip: Black
+				// Orange.Tooltip: Orange
+			}
+
 			// StrangeRobotProj.DisplayName: Strange Robot
 			// SuspiciousNuggetProj.DisplayName: Suspicious Nugget
 			// SwarmofCthulhuProj.DisplayName: Swarm of Cthulhu
@@ -2522,13 +2714,44 @@ Mods: {
 			// TorturedSoulProj.DisplayName: Tortured Soul
 			// TrueObservingEyeProj.DisplayName: True Observing Eye
 			// TurtleSlimeProj.DisplayName: Turtle Slime
-			// VampireBatProj.DisplayName: Vampire Bat
+
+			VampireBatProj: {
+				// DisplayName: Vampire Bat
+				// Default.Tooltip: Default
+				// Werebat.Tooltip: Werebat
+			}
+
 			// WallFragmentEye1.DisplayName: Wall Eye
 			// WallFragmentEye2.DisplayName: Wall Eye
-			// WallFragmentMouth.DisplayName: Wall Mouth
+
+			WallFragmentMouth: {
+				// DisplayName: Wall Mouth
+				// Default.Tooltip: Default
+				// Chinese.Tooltip: Chinese
+			}
+
 			// WobyProj.DisplayName: Woby
-			// YoungHarpyProj.DisplayName: Young Harpy
-			// YoungWyvernProj.DisplayName: Young Wyvern
+
+			YoungHarpyProj: {
+				// DisplayName: Young Harpy
+				// Default.Tooltip: Default
+				// Eagle.Tooltip: Eagle
+				// Raven.Tooltip: Raven
+				// Dove.Tooltip: Dove
+				// DefaultLegacy.Tooltip: Default (Legacy)
+				// EagleLegacy.Tooltip: Eagle (Legacy)
+				// RavenLegacy.Tooltip: Raven (Legacy)
+				// DoveLegacy.Tooltip: Dove (Legacy)
+			}
+
+			YoungWyvernProj: {
+				// DisplayName: Young Wyvern
+				// Default.Tooltip: Default
+				// Mythical.Tooltip: Mythical
+				// Arch.Tooltip: Arch
+				// ArchLegacy.Tooltip: Arch (Legacy)
+			}
+
 			// ExtendoNetGoldenProj.DisplayName: EXTENDO!
 			// ExtendoNetRegularProj.DisplayName: EXTENDO!
 			// BoneCleavingFangProj.DisplayName: "{$Items.BoneCleavingFang.DisplayName}"
@@ -2637,6 +2860,14 @@ Mods: {
 				// Unlock: Defeat {$NPCName.TheDestroyer}
 				// Description: ""
 			}
+
+			/* TooltipFormat:
+				'''
+				{0}
+				{1}
+				{2}
+				{3}
+				''' */
 		}
 
 		DroneData: {
@@ -2683,6 +2914,21 @@ Mods: {
 					Shield resets if drone despawns
 					''' */
 			}
+
+			/* TooltipFormat:
+				'''
+				{0}
+				{1}
+				{2}
+				{3}
+				{4}
+				''' */
+			/* TooltipFormatNoCombat:
+				'''
+				{0}
+				{1}
+				{2}
+				''' */
 		}
 
 		Configs: {
@@ -3221,6 +3467,11 @@ Mods: {
 			// Melee: Melee
 			// Magic: Magic
 			// Ranged: Ranged
+		}
+
+		UI: {
+			// CircleUIToUnlock: To unlock: {0}
+			// HoverNPCUICatchWithNet: Catch it with a net
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using AssortedCrazyThings.NPCs;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.Harvester;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +8,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -18,6 +20,14 @@ namespace AssortedCrazyThings.UI
 		internal static bool visible = false;
 		internal static string drawString = "";
 		internal static Color drawColor = Color.White;
+
+		public static LocalizedText CatchWithNetText { get; private set; }
+
+		public HoverNPCUI()
+		{
+			string category = $"UI.{nameof(HoverNPCUI)}";
+			CatchWithNetText ??= AssUtils.Instance.GetLocalization($"{category}CatchWithNet");
+		}
 
 		private string AlmostVanillaBehavior()
 		{
@@ -90,8 +100,7 @@ namespace AssortedCrazyThings.UI
 							if (npc.type == ModContent.NPCType<DungeonSoul>() ||
 							   npc.type == ModContent.NPCType<DungeonSoulFreed>())
 							{
-								//TODO localize
-								ret = "Catch it with a net";
+								ret = CatchWithNetText.ToString();
 							}
 						}
 
@@ -100,7 +109,7 @@ namespace AssortedCrazyThings.UI
 							if (npc.type == ModContent.NPCType<ChunkysEye>() || npc.type == ModContent.NPCType<MeatballsEye>())
 							{
 								drawColor = Color.White * num;
-								ret = "Catch it with a net";
+								ret = CatchWithNetText.ToString();
 							}
 						}
 

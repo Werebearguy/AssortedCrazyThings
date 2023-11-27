@@ -5,6 +5,7 @@ using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.UI
@@ -33,15 +34,16 @@ namespace AssortedCrazyThings.UI
 		public int TriggerItem { get; private set; }
 
 		/// <summary>
-		/// If the UI even opens if the condition is met
+		/// If the UI even opens when the condition is met
 		/// </summary>
 		public Func<bool> Condition { get; private set; }
 
 		//all these three things get called when their respective condition returns true
+		//gets also called after loading, to initialize localization
 		/// <summary>
 		/// Holds data about what to draw
 		/// </summary>
-		public Func<CircleUIConf> UIConf { get; private set; }
+		public Func<bool, CircleUIConf> UIConf { get; private set; }
 
 		/// <summary>
 		/// Assigns the CircleUI the selected thing
@@ -59,7 +61,7 @@ namespace AssortedCrazyThings.UI
 		/// </summary>
 		public bool TriggerLeft { get; private set; }
 
-		public CircleUIHandler(int triggerItem, Func<bool> condition, Func<CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true)
+		public CircleUIHandler(int triggerItem, Func<bool> condition, Func<bool, CircleUIConf> uiConf, Func<int> onUIStart, Action onUIEnd, bool triggerLeft = true)
 		{
 			TriggerItem = triggerItem;
 			Condition = condition;
@@ -85,7 +87,7 @@ namespace AssortedCrazyThings.UI
 
 			int type = AssUtils.Instance.Find<ModProjectile>(name).Type;
 
-			return new CircleUIConf(Main.projFrames[type], type, assets: assets, tooltips: tooltips, drawOffset: drawOffset);
+			return new CircleUIConf($"Projectiles.{name}", Main.projFrames[type], type, assets: assets, tooltips: tooltips, drawOffset: drawOffset);
 		}
 
 		public static CircleUIConf PetConf(int type, List<string> tooltips, Vector2 drawOffset = default)
@@ -112,11 +114,10 @@ namespace AssortedCrazyThings.UI
 	/// </summary>
 	public class CircleUIConf
 	{
-		//TODO localize
 		public List<Asset<Texture2D>> Assets { get; private set; }
 		public List<bool> Unlocked { get; private set; } //all true if just selection
-		public List<string> Tooltips { get; private set; } //atleast "", only shown when unlocked
-		public List<string> ToUnlock { get; private set; } //atleast "", only shown when !unlocked
+		public List<LocalizedText> Tooltips { get; private set; } //atleast LocalizedText.Empty, only shown when unlocked
+		public List<LocalizedText> ToUnlock { get; private set; } //atleast LocalizedText.Empty, only shown when !unlocked
 		public Vector2 DrawOffset { get; private set; } //if the preview is off from the selection, offsets it
 
 		public int CircleAmount { get; private set; } //amount of spawned circles
@@ -125,10 +126,12 @@ namespace AssortedCrazyThings.UI
 
 		public int AdditionalInfo { get; private set; } //mainly used for passing the projectile type atm
 
-		public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Asset<Texture2D>> assets = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null, Vector2 drawOffset = default)
+		public CircleUIConf(int spritesheetDivider = 0, int additionalInfo = -1, List<Asset<Texture2D>> assets = null, List<bool> unlocked = null, List<LocalizedText> tooltips = null, List<LocalizedText> toUnlock = null, Vector2 drawOffset = default)
 		{
-			if (assets == null || assets.Count <= 0) throw new Exception("'textureNames' has to be specified or has to contain at least one element");
+			if (assets == null || assets.Count <= 0) throw new Exception($"'{nameof(assets)}' has to be specified or has to contain at least one element");
 			else CircleAmount = assets.Count;
+
+			if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
 
 			//Test if textures exist
 			//foreach (string texture in textureNames)
@@ -136,24 +139,70 @@ namespace AssortedCrazyThings.UI
 			//    if (ModContent.Request<Texture2D>(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
 			//}
 
+			if (tooltips == null) AssUtils.FillWithDefault(ref tooltips, LocalizedText.Empty, CircleAmount);
+			if (toUnlock == null) AssUtils.FillWithDefault(ref toUnlock, LocalizedText.Empty, CircleAmount);
+
+			ConstructorHelper(spritesheetDivider, additionalInfo, assets, unlocked, tooltips, toUnlock, drawOffset);
+		}
+
+		public CircleUIConf(string key, int spritesheetDivider = 0, int additionalInfo = -1, List<Asset<Texture2D>> assets = null, List<bool> unlocked = null, List<string> tooltips = null, List<string> toUnlock = null, Vector2 drawOffset = default)
+		{
+			if (assets == null || assets.Count <= 0) throw new Exception($"'{nameof(assets)}' has to be specified or has to contain at least one element");
+			else CircleAmount = assets.Count;
+
 			if (unlocked == null) AssUtils.FillWithDefault(ref unlocked, true, CircleAmount);
 
-			if (tooltips == null) AssUtils.FillWithDefault(ref tooltips, "", CircleAmount);
+			//Test if textures exist
+			//foreach (string texture in textureNames)
+			//{
+			//    if (ModContent.Request<Texture2D>(texture) == null) throw new Exception("'texture' " + texture + " doesn't exist. Is it spelled correctly?");
+			//}
 
-			if (toUnlock == null) AssUtils.FillWithDefault(ref toUnlock, "", CircleAmount);
+			List<LocalizedText> tooltipTexts, toUnlockTexts;
+			FillLists(key, tooltips, toUnlock, out tooltipTexts, out toUnlockTexts);
 
+			ConstructorHelper(spritesheetDivider, additionalInfo, assets, unlocked, tooltipTexts, toUnlockTexts, drawOffset);
+		}
+
+		private void ConstructorHelper(int spritesheetDivider, int additionalInfo, List<Asset<Texture2D>> assets, List<bool> unlocked, List<LocalizedText> tooltips, List<LocalizedText> toUnlock, Vector2 drawOffset)
+		{
 			if (CircleAmount != unlocked.Count ||
-				CircleAmount != tooltips.Count ||
-				CircleAmount != toUnlock.Count) throw new Exception("Atleast one of the specified lists isn't the same length as textureNames");
+				CircleAmount != toUnlock.Count ||
+				CircleAmount != tooltips.Count) throw new Exception($"Atleast one of the specified lists isn't the same length as '{nameof(assets)}'");
 
 			SpritesheetDivider = spritesheetDivider;
 			AdditionalInfo = additionalInfo;
 
 			Assets = new List<Asset<Texture2D>>(assets);
 			Unlocked = new List<bool>(unlocked);
-			Tooltips = new List<string>(tooltips);
-			ToUnlock = new List<string>(toUnlock);
+			Tooltips = new List<LocalizedText>(tooltips);
+			ToUnlock = new List<LocalizedText>(toUnlock);
 			DrawOffset = drawOffset;
+		}
+
+		private void FillLists(string key, List<string> tooltips, List<string> toUnlock, out List<LocalizedText> tooltipTexts, out List<LocalizedText> toUnlockTexts)
+		{
+			tooltipTexts = null;
+			toUnlockTexts = null;
+			if (tooltips == null) AssUtils.FillWithDefault(ref tooltipTexts, LocalizedText.Empty, CircleAmount);
+			else
+			{
+				tooltipTexts = new List<LocalizedText>();
+				foreach (var variation in tooltips)
+				{
+					tooltipTexts.Add(variation != "" ? AssUtils.Instance.GetLocalization($"{key}.{variation}.Tooltip", () => variation) : LocalizedText.Empty);
+				}
+			}
+
+			if (toUnlock == null) AssUtils.FillWithDefault(ref toUnlockTexts, LocalizedText.Empty, CircleAmount);
+			else
+			{
+				toUnlockTexts = new List<LocalizedText>();
+				foreach (var variation in toUnlock)
+				{
+					toUnlockTexts.Add(variation != "" ? AssUtils.Instance.GetLocalization($"{key}.{variation}.ToUnlock", () => variation) : LocalizedText.Empty);
+				}
+			}
 		}
 	}
 }

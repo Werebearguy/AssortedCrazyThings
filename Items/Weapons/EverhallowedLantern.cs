@@ -45,16 +45,22 @@ namespace AssortedCrazyThings.Items.Weapons
 		public readonly float KBModifier;
 		public readonly Func<bool> Unlocked;
 
+		public static LocalizedText TooltipFormatText { get; private set; }
+
 		public string NameSingular => Name.Format(1);
-		public string Tooltip => NameSingular
-			+ $"\n{AssLocalization.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f)))}" 
-			+ $"\n{AssLocalization.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1))}"
-			+ "\n" + Description.ToString();
+		public LocalizedText Tooltip => TooltipFormatText.WithFormatArgs(
+			NameSingular,
+			AssLocalization.BaseDamageText.Format((int)(EverhallowedLantern.BaseDmg * (DmgModifier + 1f))),
+			AssLocalization.BaseKnockbackText.Format(Math.Round(EverhallowedLantern.BaseKB * (KBModifier + 1f), 1)),
+			Description);
 
 		public SoulData(int projType, string internalName, Func<bool> unlocked = null, float dmgModifier = 0f, float kBModifier = 0f)
 		{
 			ProjType = projType;
 			string thisKey = $"SoulData.{internalName}.";
+
+			TooltipFormatText ??= AssUtils.Instance.GetLocalization("SoulData.TooltipFormat");
+
 			Name = AssUtils.Instance.GetLocalization($"{thisKey}DisplayName", () => "");
 			ToUnlock = AssUtils.Instance.GetLocalization($"{thisKey}Unlock", () => "");
 			Description = AssUtils.Instance.GetLocalization($"{thisKey}Description", () => "");
@@ -131,10 +137,10 @@ namespace AssortedCrazyThings.Items.Weapons
 			return DataList[(int)Math.Log((int)selected, 2)];
 		}
 
-		public static CircleUIConf GetUIConf()
+		public static CircleUIConf GetUIConf(bool loading)
 		{
-			List<string> tooltips = new List<string>();
-			List<string> toUnlock = new List<string>();
+			List<LocalizedText> tooltips = new List<LocalizedText>();
+			List<LocalizedText> toUnlock = new List<LocalizedText>();
 			List<Asset<Texture2D>> assets = new List<Asset<Texture2D>>();
 			List<bool> unlocked = new List<bool>();
 
@@ -147,8 +153,8 @@ namespace AssortedCrazyThings.Items.Weapons
 					firstValidProjType = data.ProjType;
 					assets.Add(TextureAssets.Projectile[firstValidProjType]);
 					unlocked.Add(data.Unlocked());
-					tooltips.Add(data.Tooltip.ToString());
-					toUnlock.Add(data.ToUnlock.ToString());
+					tooltips.Add(data.Tooltip);
+					toUnlock.Add(data.ToUnlock);
 				}
 			}
 

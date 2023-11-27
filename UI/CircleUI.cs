@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AssortedCrazyThings.Base;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -82,6 +84,14 @@ namespace AssortedCrazyThings.UI
 			{
 				return spawnPosition - new Vector2(mainRadius, mainRadius);
 			}
+		}
+
+		public static LocalizedText ToUnlockText { get; private set; }
+
+		public CircleUI()
+		{
+			string category = $"UI.{nameof(CircleUI)}";
+			ToUnlockText ??= AssUtils.Instance.GetLocalization($"{category}ToUnlock");
 		}
 
 		//Update, unused
@@ -186,11 +196,10 @@ namespace AssortedCrazyThings.UI
 			for (done = 0; done < UIConf.CircleAmount; done++)
 			{
 				bool isMouseWithin = CheckMouseWithinWheel(Main.MouseScreen, spawnPosition, mainRadius, UIConf.CircleAmount, done);
-				string tooltip = UIConf.Unlocked[done] ? UIConf.Tooltips[done] : UIConf.ToUnlock[done];
+				LocalizedText tooltipText = UIConf.Unlocked[done] ? UIConf.Tooltips[done] : UIConf.ToUnlock[done];
 
 				//if there is a "to unlock" message, prefix it
-				//TODO localize
-				tooltip = (!UIConf.Unlocked[done] && UIConf.ToUnlock[done] != "") ? ("To unlock: " + tooltip) : tooltip;
+				string tooltip = (!UIConf.Unlocked[done] && UIConf.ToUnlock[done] != LocalizedText.Empty) ? ToUnlockText.Format(tooltipText) : tooltipText.ToString();
 
 				if (isMouseWithin)
 				{
