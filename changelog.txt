@@ -1,24 +1,12 @@
 v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
 Learn more at the [url={ModHomepage}]homepage[/url]
 
-Goblin Underling overhaul.
+Russian localization.
 
 * FIXES:
-    * Fixed Everglow Lantern not having right click targeting functionality
-* CHANGES:
-    * Satchel of Goodies:
-        * Now a minion that uses minion slots
-        * Rebalanced to account for using a minion slot
-        * Two new tiers (post-Wall of Flesh, post-Cultist)
-        * Right Click functionality changed to cycle through classes (Melee -> Magic -> Ranged), each with their own attacks and armor
-        * Reworked and expanded chatter
-    * Buffed Everglow Lantern and Everhallowed Lantern:
-        * Minions now don't lose track of the attacked enemy after dashing through tiles
-        * Everglow Lantern: Minions now use local i-frames (it was static before)
-        * Everhallowed Lantern: Soul of Fright now inflicts Acid Venom instead of Poison
+    * Fixed Goblin Underling Ranged classes' Jester's Arrows flying past the target
+    * Fixed Sigil of the Wing displaying the wrong cooldown duration
+    * Fixed some typos
 * ADDITIONS:
     * General
-        * Added Simplified Chinese localization (thanks GamMa!)
-    * Weapons
-        * Dented Coin and Well-Loved Doll
-            * Minion summoning weapons that function similarly to the Satchel of Goodies. These minions can be used alongside the Satchel of Goodies
+        * Added Russian localization (thanks GodHybrid!)

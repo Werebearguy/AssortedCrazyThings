@@ -25,4 +25,5 @@ This mod uses `.hjson` files in the `Localization` folder.
 Translate things that are in english and commented out (either via `//` or `/* */`, remove the comment markers after translating)
 
 List of localization contributors:
-* Simplified Chinese: GamMa
+* Simplified Chinese: **GamMa**
+* Russian: **GodHybrid**
