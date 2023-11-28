@@ -41,22 +41,21 @@ namespace AssortedCrazyThings.Items.Weapons
 			};
 			List<LocalizedText> tooltips = new List<LocalizedText>
 			{
-			//TODO make 4 lines, last line is Empty or SpikedBonusText
-			TooltipFormatText.WithFormatArgs(
-				Enum2string(SlimeType.Default),
-				AssLocalization.BaseDamageText.WithFormatArgs(SlimePackMinion.DefDamage),
-				AssLocalization.BaseKnockbackText.WithFormatArgs(SlimePackMinion.DefKnockback),
-				LocalizedText.Empty),
-			TooltipFormatText.WithFormatArgs(
-				Enum2string(SlimeType.Assorted),
-				AssLocalization.BaseDamageText.WithFormatArgs(SlimePackMinion.DefDamage),
-				AssLocalization.BaseKnockbackText.WithFormatArgs(SlimePackMinion.DefKnockback),
-				LocalizedText.Empty),
-			TooltipFormatText.WithFormatArgs(
-				Enum2string(SlimeType.Spiked),
-				AssLocalization.BaseDamageText.WithFormatArgs(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1))),
-				AssLocalization.BaseKnockbackText.WithFormatArgs(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1)),
-				SpikedBonusText),
+				TooltipFormatText.WithFormatArgs(
+					Enum2string(SlimeType.Default),
+					AssLocalization.BaseDamageText.WithFormatArgs(SlimePackMinion.DefDamage),
+					AssLocalization.BaseKnockbackText.WithFormatArgs(SlimePackMinion.DefKnockback),
+					LocalizedText.Empty),
+				TooltipFormatText.WithFormatArgs(
+					Enum2string(SlimeType.Assorted),
+					AssLocalization.BaseDamageText.WithFormatArgs(SlimePackMinion.DefDamage),
+					AssLocalization.BaseKnockbackText.WithFormatArgs(SlimePackMinion.DefKnockback),
+					LocalizedText.Empty),
+				TooltipFormatText.WithFormatArgs(
+					Enum2string(SlimeType.Spiked),
+					AssLocalization.BaseDamageText.WithFormatArgs(Math.Round(SlimePackMinion.DefDamage * (SlimePackMinion.SpikedIncrease + 1))),
+					AssLocalization.BaseKnockbackText.WithFormatArgs(Math.Round(SlimePackMinion.DefKnockback * (SlimePackMinion.SpikedIncrease + 1), 1)),
+					SpikedBonusText),
 			};
 			List<LocalizedText> toUnlock = new List<LocalizedText>() { Enum2string(SlimeType.Default), Enum2string(SlimeType.Default), SpikedUnlockText };
 
