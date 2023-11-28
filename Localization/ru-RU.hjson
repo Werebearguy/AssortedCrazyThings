@@ -2437,29 +2437,29 @@ Mods: {
 
 			AbeeminationProj: {
 				DisplayName: Пчелиная масса
-				// Default.Tooltip: Default
-				// SnowBee.Tooltip: Snow Bee
-				// OilSpill.Tooltip: Oil Spill
-				// MissingIngredients.Tooltip: Missing Ingredients
+				 Default.Tooltip: Обычная
+				 SnowBee.Tooltip: Снежная пчела
+				 OilSpill.Tooltip: Нефтяное пятно
+				 MissingIngredients.Tooltip: Недостающие ингредиенты
 			}
 
 			AlienHornetProj.DisplayName: Инопланетный шершень
 
 			AnimatedTomeProj: {
 				DisplayName: Оживший фолиант
-				// Green.Tooltip: Green
-				// Blue.Tooltip: Blue
-				// Purple.Tooltip: Purple
-				// Pink.Tooltip: Pink
-				// Yellow.Tooltip: Yellow
-				// Spell.Tooltip: Spell
+				 Green.Tooltip: Зелёный
+				 Blue.Tooltip: Синий
+				 Purple.Tooltip: Фиолетовый
+				 Pink.Tooltip: Розовый
+				 Yellow.Tooltip: Жёлтый
+				 Spell.Tooltip: Магический
 			}
 
 			AnomalocarisProj: {
 				DisplayName: Аномалокарис
-				// Wild.Tooltip: Wild
-				// Shrimpy.Tooltip: Shrimpy
-				// Snippy.Tooltip: Snippy
+				 Wild.Tooltip: Дикий
+				 Shrimpy.Tooltip: Креветко
+				 Snippy.Tooltip: Кусачий
 			}
 
 			BabyCrimeraProj.DisplayName: Малыш-кримера
@@ -2473,17 +2473,17 @@ Mods: {
 
 			CursedSkullProj: {
 				DisplayName: Проклятый череп
-				// Default.Tooltip: Default
-				// Dragon.Tooltip: Dragon
+				 Default.Tooltip: Обычный
+				 Dragon.Tooltip: Дракон
 			}
 
 			CuteGastropodProj.DisplayName: Миленький брюхоног
 
 			CuteLamiaPetProj: {
 				DisplayName: Змейка
-				// Dark.Tooltip: Dark
-				// Light.Tooltip: Light
-				// Dropkick.Tooltip: Drop kick
+				 Dark.Tooltip: Тёмная
+				 Light.Tooltip: Светлая
+				 Dropkick.Tooltip: Анимэ
 			}
 
 			CuteSlimeBlackProj.DisplayName: Чёрная Слизняшка
@@ -2519,35 +2519,35 @@ Mods: {
 
 			DocileDemonEyeProj: {
 				DisplayName: Мирный демонический глаз
-				// Red.Tooltip: Red
-				// Green.Tooltip: Green
-				// Purple.Tooltip: Purple
-				// RedFractured.Tooltip: Red Fractured
-				// GreenFractured.Tooltip: Green Fractured
-				// PurpleFractured.Tooltip: Purple Fractured
-				// RedMechanical.Tooltip: Red Mechanical
-				// GreenMechanical.Tooltip: Green Mechanical
-				// PurpleMechanical.Tooltip: Purple Mechanical
-				// RedLaser.Tooltip: Red Laser
-				// GreenLaser.Tooltip: Green Laser
-				// PurpleLaser.Tooltip: Purple Laser
-				// FlyingPumpkin.Tooltip: Flying Pumpkin
-				// FlyingJack.Tooltip: Flying Jack
+				 Red.Tooltip: Красный
+				 Green.Tooltip: Зелёный
+				 Purple.Tooltip: Фиолетовый
+				 RedFractured.Tooltip: Расщепленный красный
+				 GreenFractured.Tooltip: Расщепленный зелёный
+				 PurpleFractured.Tooltip: Расщепленный фиолетовый
+				 RedMechanical.Tooltip: Механический красный
+				 GreenMechanical.Tooltip: Механический зелёный
+				 PurpleMechanical.Tooltip: Механический фиолетовый
+				 RedLaser.Tooltip: Лазерный красный
+				 GreenLaser.Tooltip: Лазерный зелёный
+				 PurpleLaser.Tooltip: Лазерный фиолетовый
+				 FlyingPumpkin.Tooltip: Летучая тыква
+				 FlyingJack.Tooltip: Летучий фонарь
 			}
 
 			DrumstickElementalProj.DisplayName: Куриный элементаль
 
 			DynamiteBunnyProj: {
 				DisplayName: Взрывокролик
-				// White.Tooltip: White
-				// Corrupt.Tooltip: Corrupt
-				// Crimtane.Tooltip: Crimtane
-				// Angora.Tooltip: Angora
-				// Dutch.Tooltip: Dutch
-				// Flemish.Tooltip: Flemish
-				// Lop.Tooltip: Lop
-				// Silver.Tooltip: Silver
-				// Caerbannog.Tooltip: Caerbannog
+				 White.Tooltip: Белый
+				 Corrupt.Tooltip: Порченный
+				 Crimtane.Tooltip: Багряный
+				 Angora.Tooltip: Ангорский
+				 Dutch.Tooltip: Датский
+				 Flemish.Tooltip: Фламандский
+				 Lop.Tooltip: Вислоухий минилоп
+				 Silver.Tooltip: Серебряный
+				 Caerbannog.Tooltip: Из Кербаннога
 			}
 
 			EnchantedSwordProj.DisplayName: Зачарованный меч
@@ -2561,23 +2561,23 @@ Mods: {
 
 			JoyousSlimeProj: {
 				DisplayName: Радостный слизень
-				// Default.Tooltip: Default
-				// JoyousPumpkin.Tooltip: Joyous Pumpkin
+				 Default.Tooltip: Обычный
+				 JoyousPumpkin.Tooltip: Радостная тыква
 			}
 
 			LifelikeMechanicalFrogProj: {
 				DisplayName: Реалистичная механическая лягушка
-				// Default.Tooltip: Default
-				// Crowned.Tooltip: Crowned
+				 Default.Tooltip: Обычная
+				 Crowned.Tooltip: Коронованная
 			}
 
 			LilWrapsProj: {
 				DisplayName: Кроха Обмотик
-				// Default.Tooltip: Default
-				// Dark.Tooltip: Dark
-				// Light.Tooltip: Light
-				// Shadow.Tooltip: Shadow
-				// Spectral.Tooltip: Spectral
+				 Default.Tooltip: Обычный
+				 Dark.Tooltip: Тёмный
+				 Light.Tooltip: Светлый
+				 Shadow.Tooltip: Тень
+				 Spectral.Tooltip: Спектр
 			}
 
 			MeatballProj.DisplayName: Тефтелька
@@ -2585,19 +2585,19 @@ Mods: {
 
 			MetroidPetProj: {
 				DisplayName: Метроид
-				// Metroid.Tooltip: Metroid
-				// FailedClone.Tooltip: Failed Clone
-				// Convergent.Tooltip: Convergent
-				// Irradiated.Tooltip: Irradiated
-				// Corrupted.Tooltip: Corrupted
-				// TheBaby.Tooltip: The Baby
+				 Metroid.Tooltip: Метроид
+				 FailedClone.Tooltip: Неудавшийся клон
+				 Convergent.Tooltip: Конвергентный
+				 Irradiated.Tooltip: Облучённый
+				 Corrupted.Tooltip: Испорченный
+				 TheBaby.Tooltip: Тот Самый Малыш
 			}
 
 			MiniAntlionProj: {
-				DisplayName: Малыш-муравьиный лес
-				// Default.Tooltip: Default
-				// Albino.Tooltip: Albino
-				// Larval.Tooltip: Larval
+				DisplayName: Малыш-муравьиный лев
+				 Default.Tooltip: Обычный
+				 Albino.Tooltip: Альбинос
+				 Larval.Tooltip: Личинка
 			}
 
 			MiniMegalodonProj.DisplayName: Мини-мегалодон
@@ -2605,16 +2605,16 @@ Mods: {
 
 			OceanSlimeProj: {
 				DisplayName: Океанский слизень
-				// Default.Tooltip: Default
-				// StupidHat.Tooltip: Stupid Hat
-				// GnarlyGrin.Tooltip: Gnarly Grin
-				// FlippedJelly.Tooltip: Flipped Jelly
+				 Default.Tooltip: Обычный
+				 StupidHat.Tooltip: Дурацкая шляпа
+				 GnarlyGrin.Tooltip: Хищная улыба
+				 FlippedJelly.Tooltip: Желе наоборот
 			}
 
 			PetCultistProj: {
 				DisplayName: Культист-лунатик-коротышка
-				// Lunar.Tooltip: Lunar
-				// Solar.Tooltip: Solar
+				 Lunar.Tooltip: Лунный
+				 Solar.Tooltip: Солнечный
 			}
 
 			PetDestroyer.DisplayName: Крошечный Уничтожитель
@@ -2623,18 +2623,18 @@ Mods: {
 
 			PetFishronProj: {
 				DisplayName: Мини-Рыброн
-				// Default.Tooltip: Default
-				// Sharkron.Tooltip: Sharkron
-				// Sharknado.Tooltip: Sharknado
+				 Default.Tooltip: Обычный
+				 Sharkron.Tooltip: Акулрон
+				 Sharknado.Tooltip: Акулорнадо
 			}
 
 			PetGoldfishProj: {
 				DisplayName: Ручная золотая рыбка
-				// Default.Tooltip: Default
-				// Crimson.Tooltip: Crimson
-				// Corruption.Tooltip: Corruption
-				// Bunny.Tooltip: Bunny
-				// Ghostfish.Tooltip: Ghostfish
+				 Default.Tooltip: Обычная
+				 Crimson.Tooltip: Багряная
+				 Corruption.Tooltip: Порченная
+				 Bunny.Tooltip: Кроличья
+				 Ghostfish.Tooltip: Призрачная
 			}
 
 			PetGolemHeadProj.DisplayName: Реплика головы голема
@@ -2642,15 +2642,15 @@ Mods: {
 
 			PetMoonProj: {
 				DisplayName: Личная луна
-				// Default.Tooltip: Default
-				// Yellow.Tooltip: Yellow
-				// Ringed.Tooltip: Ringed
-				// Mythril.Tooltip: Mythril
-				// BrightBlue.Tooltip: Bright Blue
-				// Green.Tooltip: Green
-				// Pink.Tooltip: Pink
-				// Orange.Tooltip: Orange
-				// Purple.Tooltip: Purple
+				 Default.Tooltip: Обычная
+				 Yellow.Tooltip: Жёлтая
+				 Ringed.Tooltip: С кольцами
+				 Mythril.Tooltip: Митриловая
+				 BrightBlue.Tooltip: Ярко-голубая
+				 Green.Tooltip: Зелёная
+				 Pink.Tooltip: Розовая
+				 Orange.Tooltip: Оранжевая
+				 Purple.Tooltip: Фиолетовая
 			}
 
 			PetPlanteraProj.DisplayName: Росток Плантеры
@@ -2660,49 +2660,49 @@ Mods: {
 
 			PigronataProj: {
 				DisplayName: Свинокрыльята
-				// Default.Tooltip: Default
-				// Winter.Tooltip: Winter
-				// Autumn.Tooltip: Autumn
-				// Spring.Tooltip: Spring
-				// Summer.Tooltip: Summer
-				// Halloween.Tooltip: Halloween
-				// Christmas.Tooltip: Christmas
+				 Default.Tooltip: Обычная
+				 Winter.Tooltip: Зима
+				 Autumn.Tooltip: Осень
+				 Spring.Tooltip: Весна
+				 Summer.Tooltip: Лето
+				 Halloween.Tooltip: Хэллоуин
+				 Christmas.Tooltip: Рождество
 			}
 
 			PrinceSlimeProj.DisplayName: Слизень-принц
 
 			QueenLarvaProj: {
 				DisplayName: Личинка королевы пчёл
-				// Default.Tooltip: Default
-				// PrawnLarva.Tooltip: PrawnLarva
-				// UnexpectedSeed.Tooltip: Unexpected Seed
-				// BigKidLarva.Tooltip: Big Kid Larva
-				// WheresTheBaby.Tooltip: Where's The Baby?
+				 Default.Tooltip: Обычная
+				 PrawnLarva.Tooltip: Малёк креветки
+				 UnexpectedSeed.Tooltip: Неожиданно семечко
+				 BigKidLarva.Tooltip: Уже такая взрослая
+				 WheresTheBaby.Tooltip: А где малыш?
 			}
 
 			RainbowSlimeProj.DisplayName: Радужный слизень
 
 			SkeletronHandProj: {
 				DisplayName: Рука Скелетрона-питомца
-				// Default.Tooltip: Default
-				// OKHand.Tooltip: OK-Hand
-				// Peace.Tooltip: Peace
-				// RockIt.Tooltip: Rock It
-				// Fist.Tooltip: Fist
+				 Default.Tooltip: Обычная
+				 OKHand.Tooltip: ОК
+				 Peace.Tooltip: Мир, брат
+				 RockIt.Tooltip: Рок-н-ролл
+				 Fist.Tooltip: Кулак
 			}
 
 			SkeletronPrimeHandProj: {
 				DisplayName: Рука Скелетрона Прайма-питомца
-				// Cannon.Tooltip: Cannon
-				// Saw.Tooltip: Saw
-				// Vice.Tooltip: Vice
-				// Laser.Tooltip: Laser
+				 Cannon.Tooltip: Пушка
+				 Saw.Tooltip: Пила
+				 Vice.Tooltip: Клещи
+				 Laser.Tooltip: Лазер
 			}
 
 			StingSlimeProj: {
 				DisplayName: Жалящий слизень
-				// Black.Tooltip: Black
-				// Orange.Tooltip: Orange
+				 Black.Tooltip: Чёрный
+				 Orange.Tooltip: Оранжевый
 			}
 
 			StrangeRobotProj.DisplayName: Странный робот
@@ -2717,8 +2717,8 @@ Mods: {
 
 			VampireBatProj: {
 				DisplayName: Летучая мышь-вампир
-				// Default.Tooltip: Default
-				// Werebat.Tooltip: Werebat
+				 Default.Tooltip: Обычная
+				 Werebat.Tooltip: Мышеоборотень
 			}
 
 			WallFragmentEye1.DisplayName: Глаз стены
@@ -2726,30 +2726,30 @@ Mods: {
 
 			WallFragmentMouth: {
 				DisplayName: Рот стены
-				// Default.Tooltip: Default
-				// Chinese.Tooltip: Chinese
+				 Default.Tooltip: Обычный
+				 Chinese.Tooltip: Китайская цензура
 			}
 
 			WobyProj.DisplayName: Воби
 
 			YoungHarpyProj: {
 				DisplayName: Молодая гарпия
-				// Default.Tooltip: Default
-				// Eagle.Tooltip: Eagle
-				// Raven.Tooltip: Raven
-				// Dove.Tooltip: Dove
-				// DefaultLegacy.Tooltip: Default (Legacy)
-				// EagleLegacy.Tooltip: Eagle (Legacy)
-				// RavenLegacy.Tooltip: Raven (Legacy)
-				// DoveLegacy.Tooltip: Dove (Legacy)
+				 Default.Tooltip: Обычная
+				 Eagle.Tooltip: Орлица
+				 Raven.Tooltip: Ворон
+				 Dove.Tooltip: Голубка
+				 DefaultLegacy.Tooltip: Обычная (Устар.)
+				 EagleLegacy.Tooltip: Орлица (Устар.)
+				 RavenLegacy.Tooltip: Ворон (Устар.)
+				 DoveLegacy.Tooltip: Голубка (Устар.)
 			}
 
 			YoungWyvernProj: {
 				DisplayName: Молодая виверна
-				// Default.Tooltip: Default
-				// Mythical.Tooltip: Mythical
-				// Arch.Tooltip: Arch
-				// ArchLegacy.Tooltip: Arch (Legacy)
+				 Default.Tooltip: Обычная
+				 Mythical.Tooltip: Миф
+				 Arch.Tooltip: Архвиверна
+				 ArchLegacy.Tooltip: Архвиверна (Устар.)
 			}
 
 			ExtendoNetGoldenProj.DisplayName: ХВАТЬ!
@@ -2938,7 +2938,7 @@ Mods: {
 				Headers: {
 					GoblinUnderling:
 						'''
-						Гоблины-приспешники - Настройки прислужников
+						Гоблины-прислужники - Настройки прислужников
 
 						Эти настройки применяются к следующим предметам:
 						{$Items.EagerUnderlingItem.DisplayName}
@@ -3470,8 +3470,8 @@ Mods: {
 		}
 
 		UI: {
-			// CircleUIToUnlock: To unlock: {0}
-			// HoverNPCUICatchWithNet: Catch it with a net
+			 CircleUIToUnlock: Чтобы открыть: {0}
+			 HoverNPCUICatchWithNet: Поймай сетью
 		}
 	}
 }
