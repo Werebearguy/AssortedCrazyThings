@@ -2483,7 +2483,7 @@ Mods: {
 				DisplayName: Small Snake
 				Dark.Tooltip: Dark
 				Light.Tooltip: Light
-				Dropkick.Tooltip: Drop kick
+				Dropkick.Tooltip: Dropkick
 			}
 
 			CuteSlimeBlackProj.DisplayName: Cute Black Slime
