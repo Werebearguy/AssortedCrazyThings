@@ -2562,7 +2562,7 @@ Mods: {
 			JoyousSlimeProj: {
 				DisplayName: Радостный слизень
 				 Default.Tooltip: Обычный
-				 JoyousPumpkin.Tooltip: Радостная тыка
+				 JoyousPumpkin.Tooltip: Радостная тыква
 			}
 
 			LifelikeMechanicalFrogProj: {
