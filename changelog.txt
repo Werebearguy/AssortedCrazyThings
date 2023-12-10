@@ -1,12 +1,7 @@
 v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
 Learn more at the [url={ModHomepage}]homepage[/url]
 
-Russian localization.
+Hotfix
 
 * FIXES:
-    * Fixed Goblin Underling Ranged classes' Jester's Arrows flying past the target
-    * Fixed Sigil of the Wing displaying the wrong cooldown duration
-    * Fixed some typos
-* ADDITIONS:
-    * General
-        * Added Russian localization (thanks GodHybrid!)
+    * Fixed Wyvern Campfire and Star Rod not dropping when breaking in some cases
