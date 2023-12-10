@@ -32,6 +32,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
 			TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
 			TileObjectData.newTile.Height = 2;
+			TileObjectData.newTile.StyleLineSkip = 2 * maxFrames;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.Origin = new Point16(1, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };

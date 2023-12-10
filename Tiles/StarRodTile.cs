@@ -58,6 +58,7 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.AnchorInvalidTiles = new[] { 127 };
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.StyleHorizontal = true;
+			TileObjectData.newTile.StyleLineSkip = Height;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
@@ -336,7 +337,17 @@ namespace AssortedCrazyThings.Tiles
 		{
 			if (starRodTileNearby)
 			{
-				Player.AddBuff(ModContent.BuffType<StarRodBuff>(), 2, quiet: false);
+				if (!starRodTileWorking)
+				{
+					Player.AddBuff(ModContent.BuffType<StarRodBuff>(), 60, quiet: false);
+				}
+			}
+			else
+			{
+				if (starRodTileWorking)
+				{
+					Player.ClearBuff(ModContent.BuffType<StarRodBuff>());
+				}
 			}
 		}
 	}
