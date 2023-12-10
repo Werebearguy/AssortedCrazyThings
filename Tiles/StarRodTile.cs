@@ -339,7 +339,7 @@ namespace AssortedCrazyThings.Tiles
 			{
 				if (!starRodTileWorking)
 				{
-					Player.AddBuff(ModContent.BuffType<StarRodBuff>(), 60, quiet: false);
+					Player.AddBuff(ModContent.BuffType<StarRodBuff>(), 120, quiet: false);
 				}
 			}
 			else
