@@ -4,4 +4,4 @@ Learn more at the [url={ModHomepage}]homepage[/url]
 Hotfix
 
 * FIXES:
-    * Fixed Wyvern Campfire and Star Rod not dropping when breaking in some cases
+    * Fixed Wyvern Campfire and Star Rod not dropping when turned off
