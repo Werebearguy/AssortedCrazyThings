@@ -163,13 +163,16 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			}
 		}
 
-
 		private bool CheckAllowPlacingTorches(Player player)
 		{
 			if (Main.myPlayer == player.whoAmI)
 			{
+				bool old = CanPlaceTorches;
 				CanPlaceTorches = Main.SmartCursorIsUsed;
-				Projectile.netUpdate = true;
+				if (old != CanPlaceTorches)
+				{
+					Projectile.netUpdate = true;
+				}
 			}
 
 			return CanPlaceTorches;
