@@ -2,9 +2,11 @@
 using AssortedCrazyThings.Items.Accessories.Useful;
 using Microsoft.Xna.Framework;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AssortedCrazyThings.Projectiles.Accessories
 {
@@ -13,14 +15,33 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 	{
 		public bool[] HitNPCs { get; private set; } = new bool[Main.maxNPCs];
 
-		public static int MaxPenetrateCount => SigilOfTheTalon.MaxPierce;
-		public int PenetrateCount { get; private set; } = MaxPenetrateCount;
+		public static byte MaxPenetrateCount => (byte)SigilOfTheTalon.MaxPierce;
+		public byte PenetrateCount { get; private set; } = MaxPenetrateCount;
+
+		public bool PrevLatched { get; private set; } = false;
+
+		public bool AtleastOneHit => PenetrateCount < MaxPenetrateCount;
 
 		public override bool InstancePerEntity => true;
 
 		public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
 		{
 			return lateInstantiation && entity.aiStyle == ProjAIStyleID.Hook;
+		}
+
+		public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+		{
+			//Code based on MaxPenetrateCount being only 0 1 2 3 -> 2 bits
+			bitWriter.WriteBit((PenetrateCount & 1) == 1);
+			bitWriter.WriteBit((PenetrateCount & 2) == 2);
+		}
+
+		public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+		{
+			var bits = new BitsByte();
+			bits[0] = bitReader.ReadBit();
+			bits[1] = bitReader.ReadBit();
+			PenetrateCount = bits;
 		}
 
 		public override GlobalProjectile Clone(Projectile from, Projectile to)
@@ -33,14 +54,31 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 			return clone;
 		}
 
+		public override bool PreAI(Projectile projectile)
+		{
+			PrevLatched = Latched(projectile);
+
+			return base.PreAI(projectile);
+		}
+
 		public override void PostAI(Projectile projectile)
 		{
-			if (!Extending(projectile))
+			if (!projectile.GetOwner().GetModPlayer<AssPlayer>().sigilOfTheTalon)
 			{
 				return;
 			}
 
-			if (!projectile.GetOwner().GetModPlayer<AssPlayer>().sigilOfTheTalon)
+			if (Latched(projectile) && !PrevLatched)
+			{
+				//Between Pre and Post Latch status was achieved
+				if (AtleastOneHit)
+				{
+					projectile.ai[0] = 1f; //Retract
+					projectile.netUpdate = true;
+				}
+			}
+
+			if (!Extending(projectile))
 			{
 				return;
 			}
@@ -51,6 +89,7 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 		}
 
 		public static bool Extending(Projectile projectile) => projectile.ai[0] == 0;
+		public static bool Latched(Projectile projectile) => projectile.ai[0] == 2;
 
 		public static void Visuals(Projectile projectile)
 		{
@@ -76,7 +115,7 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 				return;
 			}
 
-			if (PenetrateCount <= 0)
+			if (PenetrateCount == 0)
 			{
 				return;
 			}
@@ -94,6 +133,7 @@ namespace AssortedCrazyThings.Projectiles.Accessories
 					{
 						HitNPCs[i] = true;
 						PenetrateCount--;
+						projectile.netUpdate = true;
 						player.ApplyDamageToNPC(npc, damage, 0f, 0, crit: false);
 						damage = GetDamageDropoff(originalDamage); //Recalculate immediately in case this hits multiple enemies in one tick
 					}

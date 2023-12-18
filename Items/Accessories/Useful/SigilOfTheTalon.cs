@@ -12,6 +12,7 @@ namespace AssortedCrazyThings.Items.Accessories.Useful
 	{
 		public static readonly int FirstDamageDropOff = 75;
 
+		//If this is changed make sure to doublecheck SigilOfTheTalonGlobalProj netcode
 		public static readonly int MaxPierce = 3;
 
 		public static LocalizedText HookDamageText { get; private set; }
