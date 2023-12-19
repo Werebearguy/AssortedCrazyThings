@@ -513,7 +513,7 @@ Mods: {
 				// DisplayName: Ale gelificato
 				// Description: La tua percezione degli slime è un po' diversa...
 				// CuteSlimesCanSpawn: Slime graziose che possono spawnare
-				// Nessuno: Nessuno
+				// None: Nessuno
 			}
 
 			DroneControllerBuff: {
