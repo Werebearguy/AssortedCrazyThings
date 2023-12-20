@@ -223,8 +223,8 @@ Mods: {
 			}
 
 			CuteLamiaPetBuff: {
-				// DisplayName: Piccolo serpente
-				// Description: A Piccolo serpente ti sta seguendo
+				// DisplayName: Serpente graziosa
+				// Description: Una piccola serpente ti sta seguendo
 			}
 
 			DemonHeartBuff: {
@@ -447,8 +447,8 @@ Mods: {
 			}
 
 			SwarmofCthulhuBuff: {
-				// DisplayName: Sciame di Chtulu
-				// Description: A Sciame di Chtulu ti sta seguendo
+				// DisplayName: Sciame di Cthulhu
+				// Description: A Sciame di Cthulhu ti sta seguendo
 			}
 
 			TinyTwinsBuff: {
@@ -864,7 +864,7 @@ Mods: {
 				// DisplayName: Vaso per serpenti agitato
 				/* Tooltip:
 					'''
-					Evoca un piccolo, serpente amichevole che ti segue
+					Evoca una graziosa, amichevole serpente che ti segue
 					{$Common.Tooltips.PetHasAltSkins}
 					''' */
 			}
@@ -908,12 +908,12 @@ Mods: {
 			}
 
 			FailureSlimeItem: {
-				// DisplayName: Slimy Skull
-				// Tooltip: Evoca a strange creature che ti segue
+				// DisplayName: Teschio gelatinoso
+				// Tooltip: Evoca a strana creatura che ti segue
 			}
 
 			FairySlimeItem: {
-				// DisplayName: imbottigliata slime fata
+				// DisplayName: Slime fata imbottigliata
 				// Tooltip: Evoca a amichevole slime fata che ti segue
 			}
 
@@ -1472,9 +1472,9 @@ Mods: {
 				// Tooltip: "'Queste parti potrebbero essere riutilizzate...'"
 			}
 
-			// DroneUnlockableBasicLaserDrone.DisplayName: Componenti base del drone laser
-			// DroneUnlockableHealingDrone.DisplayName: Componenti del drone curativo
-			// DroneUnlockableHeavyLaserDrone.DisplayName: Componenti drone pesante laser 
+			// DroneUnlockableBasicLaserDrone.DisplayName: Componenti base drone laser
+			// DroneUnlockableHealingDrone.DisplayName: Componenti drone curativo
+			// DroneUnlockableHeavyLaserDrone.DisplayName: Componenti drone laser pesante
 			// DroneUnlockableMissileDrone.DisplayName: Componenti drone missilistico
 			// DroneUnlockableShieldDrone.DisplayName: Componenti drone scudo
 
@@ -1979,7 +1979,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					Evoca due anime del dungeon slegate alla volta che combattono per te
-					Ogni Anima del Dungeon occupa solo metà di uno slot aiutante.
+					Ogni anima del Dungeon occupa solo metà di uno slot aiutante.
 					''' */
 			}
 
@@ -2018,7 +2018,7 @@ Mods: {
 			}
 
 			MagicSlimeSling: {
-				// DisplayName: Fionda magica slime
+				// DisplayName: Slime fionda magica
 				// Tooltip: Spara gelatina magica che si trasforma in aiutanti slime quando colpita
 			}
 
@@ -2038,17 +2038,17 @@ Mods: {
 			}
 
 			SlimeHandlerKnapsack: {
-				// DisplayName: Slime Handler Knapsack
+				// DisplayName: Slime zaino
 				/* Tooltip:
 					'''
-					Evoca a amichevole Slime of a random color from your Knapsack che combatte per te
-					Right click to pick from available forms
+					Evoca a amichevole slime di colore casuale dal tuo zaino che combatte per te
+					Clicca il tasto destro del mouse per scegliere tra i tipi disponibili
 					''' */
-				// Default: Default
+				// Default: Predefinito
 				// Assorted: Assorted
-				// Spiked: Spiked
-				// SpikedBonus: Shoots spikes while fighting
-				// SpikedUnlock: Defeat Plantera
+				// Spiked: Chiodato
+				// SpikedBonus: Lancia spine quando in combattimento
+				// SpikedUnlock: Sconfiggi Plantera
 				/* TooltipFormat:
 					'''
 					{0}
@@ -2059,463 +2059,463 @@ Mods: {
 			}
 
 			Talonstorm: {
-				// DisplayName: Talonstorm
-				// Tooltip: Evoca a bone storm che attacks nemici with extending talons
+				// DisplayName: Artiglio tempestosso
+				// Tooltip: Evoca una tempesta di ossa che attacca i nemici con artigli allungabili
 			}
 
 			TomeOfShadowflameSkulls: {
-				// DisplayName: Tome of Shadowflame Skulls
-				// Tooltip: Inflicts Shadowflame on nemici
+				// DisplayName: Tomo teschi fiamma ombra
+				// Tooltip: Infligge fiamma ombra ai nemici
 			}
 
 			TrueLegendaryWoodenSword: {
-				// DisplayName: True Legendary Wooden Sword
-				// Tooltip: "'Truly Legendary'"
+				// DisplayName: Vera spada di legno leggendaria
+				// Tooltip: "'Davvero leggendaria'"
 			}
 
 			Gitgud: {
-				// Or: or
-				// ConsolationPrize: Consolation Prize
-				// ReducedDamageTakenBoss: "{0}% reduced damage taken from {1}"
-				// BuffImmunity: Immunity to '{0}' while {1} {^2:is;are} alive
-				// TimesDied: Times died: {0}/{1}
+				// Or: o
+				// ConsolationPrize: Premio di consolazione
+				// ReducedDamageTakenBoss: "{0}% riduzione danni subiti da {1}"
+				// BuffImmunity: Immune a '{0}' mentre {1} {^2:è;sono} vivo
+				// TimesDied: Numero di morti: {0}/{1}
 			}
 
 			SillyBalloonKit: {
-				// DisplayName: Silly Balloon Kit
+				// DisplayName: Kit palloncini sciocchi
 				/* Tooltip:
 					'''
-					'A great gift for parties, birthdays, e saving the world!'
-					Inflate a fun party balloon to carry around
-					Left click to pick a different balloon
+					'Un grande regalo per feste, compleanni e per salvare il mondo!'
+					Gonfia un palloncino divertente da portare in giro.
+					Clicca tasto sinistro per scegliere un palloncino diverso
 					''' */
-				// DemonEyeGreen: occhio del demone (Green)
-				// DemonEyePurple: occhio del demone (Purple)
-				// DemonEyeRed: occhio del demone (Red)
-				// FracturedEyeGreen: Fractured Eye (Green)
-				// FracturedEyePurple: Fractured Eye (Purple)
-				// FracturedEyeRed: Fractured Eye (Red)
-				// MetalEyeGreen: Metal Eye (Green)
-				// MetalEyePurple: Metal Eye (Purple)
-				// MetalEyeRed: Metal Eye (Red)
-				// FracturedMetalEyeGreen: Fractured Metal Eye (Green)
-				// FracturedMetalEyePurple: Fractured Metal Eye (Purple)
-				// FracturedMetalEyeRed: Fractured Metal Eye (Red)
+				// DemonEyeGreen: Occhio del demone (Verde)
+				// DemonEyePurple: Occhio del demone (Viola)
+				// DemonEyeRed: Occhio del demone (Rosso)
+				// FracturedEyeGreen: Occhio fratturato (Verde)
+				// FracturedEyePurple: Occhio fratturato (Viola)
+				// FracturedEyeRed: Occhio fratturato (Rosso)
+				// MetalEyeGreen: Occhio di metallo (Verde)
+				// MetalEyePurple: Occhio di metallo (Viola)
+				// MetalEyeRed: Occhio di metallo (Rosso)
+				// FracturedMetalEyeGreen: Occhio di metallo fratturato (Verde)
+				// FracturedMetalEyePurple: Occhio di metallo fratturato (Viola)
+				// FracturedMetalEyeRed: Occhio di metallo fratturato (Rosso)
 				// Spazmatism: Spazmatism
 				// Retinazer: Retinazer
-				// Cobballoon: Cobballoon
+				// Cobballoon: Pallonpietra
 			}
 		}
 
 		NPCs: {
 			AnimatedSpellTome: {
-				// DisplayName: Animated Spell Tome
-				// BestiaryFlavorText: Master wizards need not look for a specific tome; it will find them when needed.
+				// DisplayName: Tomo degli incantesimi animato
+				// BestiaryFlavorText: I maestri maghi non hanno bisogno di cercare un tomo specifico; il tomo lo troverà quando necessario.
 			}
 
 			AnimatedTome: {
-				// DisplayName: tomo animato
-				// BestiaryFlavorText: nei past, this book was a best seller; it practically flew from the shelves!
+				// DisplayName: Tomo animato
+				// BestiaryFlavorText: Nel passato, questo libro era un best seller; volava via dagli scaffali!
 			}
 
 			Bass: {
-				// DisplayName: Bass
-				// BestiaryFlavorText: A simple fish commonly found in calm freshwater rivers e lakes.
+				// DisplayName: Boccalone
+				// BestiaryFlavorText: Un pesce che si trova comunemente in fiumi e laghi d'acqua dolce tranquilli.
 			}
 
 			BloatedBaitThief: {
-				// DisplayName: Bloated Bait Thief
-				// BestiaryFlavorText: An engorged bass with a bloated belly. Something is wriggling inside...
+				// DisplayName: Ladro di esche gonfio
+				// BestiaryFlavorText: Un boccalone ingrossato con la pancia gonfia. Qualcosa si dimena all'interno...
 			}
 
 			Pancione: {
 				// DisplayName: Pancione
-				// BestiaryFlavorText: A mass of rotten flesh with a single eye. It seems as though the eye e the mass do not get along.
+				// BestiaryFlavorText: Una massa di carne marcia con un solo occhio. Sembra che l'occhio e la massa non vadano d'accordo.
 			}
 
 			ChunkysEye: {
-				// DisplayName: Pancione's Eye
-				// BestiaryFlavorText: A aiutante of Cthulhu che was trapped nei Corruption. It now seeks its lost little brother.
+				// DisplayName: Occhio di Pancione
+				// BestiaryFlavorText: Un servo di Cthulhu che è rimasto intrappolato nella Corruzione. Ora in cerca del suo fratellino perduto.
 			}
 
 			Cloudfish: {
-				// DisplayName: Cloudfish
-				// BestiaryFlavorText: Is it a cloud? Is it a fish? It's both!
+				// DisplayName: Pesce nuvola
+				// BestiaryFlavorText: È una nuovla? È un pesce? È entrambi!
 			}
 
 			CuteGastropod: {
-				// DisplayName: gasteropodo grazioso
-				// BestiaryFlavorText: This hallowed variant of slime has taken on a more amichevole appearance after meeting a special person.
+				// DisplayName: Gasteropodo grazioso
+				// BestiaryFlavorText: Questa variante consacrata dello slime ha assunto un aspetto più amichevole dopo aver incontrato una certa persona.
 			}
 
 			CuteSlimeBlack: {
-				// DisplayName: Cute Black Slime
-				// BestiaryFlavorText: Harboring great vanity for its ponytail, the easiest way to befriend it is to compliment the hair.
+				// DisplayName: Slime nera graziosa
+				// BestiaryFlavorText: Essendo molto vanitosa per la sua coda di cavallo, il modo più semplice per farsela amica è fare un complimento ai capelli.
 			}
 
 			CuteSlimeBlue: {
-				// DisplayName: Cute Blue Slime
-				// BestiaryFlavorText: Though its expression is dull, this slime is very affectionate e loves to hug anyone che it gets close to.
+				// DisplayName: Slime blu graziosa
+				// BestiaryFlavorText: Anche se l'espressione è spenta, questa slime è molto affettuosa e ama abbracciare chiunque le si avvicini.
 			}
 
 			CuteSlimeCorrupt: {
-				// DisplayName: Cute Corrupt Slime
-				// BestiaryFlavorText: Hollow eyes e a dark color makes you think this slime is dangerous, but it's just not very social.
+				// DisplayName: Slime corrotta graziosa
+				// BestiaryFlavorText: Gli occhi vuoti e il colore scuro fanno pensare che questa slime sia pericolosa, ma in realta è solo non molto socievole.
 			}
 
 			CuteSlimeCorruptJungle: {
-				// DisplayName: slime corrotta della giungla
-				// BestiaryFlavorText: Slimes are incredibly adaptable, being able to survive even the harshest conditions.
+				// DisplayName: Slime corrotta della giungla
+				// BestiaryFlavorText: Gli slime sono incredibilmente adattabili e sono in grado di sopravvivere anche alle condizioni più difficili.
 			}
 
 			CuteSlimeCrimson: {
-				// DisplayName: slime cremisi graziosa
-				// BestiaryFlavorText: Though it looks like it has an unstable mind, this slime is incredibly calm e collected.
+				// DisplayName: Slime cremisi graziosa
+				// BestiaryFlavorText: Anche se sembra avere una mente instabile, questa slime è incredibilmente calma e ordinata.
 			}
 
 			CuteSlimeCrimsonJungle: {
-				// DisplayName: slime cremisi della giungla graziosa
-				// BestiaryFlavorText: When the jungle turned red, this slime adapted quickly by mimicking the crimson grass.
+				// DisplayName: Slime cremisi della giungla graziosa
+				// BestiaryFlavorText: Quando la giungla divenne rossa, questa slime si adattò rapidamente imitando l'erba cremisi.
 			}
 
 			CuteSlimeDungeon: {
-				// DisplayName: slime dungeon graziosa
-				// BestiaryFlavorText: This slime was created nei image of an ancient sorceress. Other than the lack of legs, it's almost perfect.
+				// DisplayName: Slime dungeon graziosa
+				// BestiaryFlavorText: Questa slime è stata creata a immagine e somiglianza di un'antica maga. A parte la mancanza di gambe, è quasi perfetta.
 			}
 
-			// CuteSlimeGolden.DisplayName: slime d'oro graziosa
+			// CuteSlimeGolden.DisplayName: Slime d'oro graziosa
 
 			CuteSlimeGreen: {
-				// DisplayName: slime verde graziosa
-				// BestiaryFlavorText: Don't let the closed eyes fool you; this slime is attentive e pronto to act at a moment's notice.
+				// DisplayName: Slime verde graziosa
+				// BestiaryFlavorText: Non lasciatevi ingannare dagli occhi chiusi: questa slime è attenta e pronta ad agire in qualsiasi momento.
 			}
 
 			CuteSlimeHoney: {
-				// DisplayName: slime di miele graziosa
-				// BestiaryFlavorText: To hide from the hornets, this slime coated itself in honey. It only made the hornets more aware.
+				// DisplayName: Slime di miele graziosa
+				// BestiaryFlavorText: Per nascondersi dai calabroni, questa slime si è ricoperta di miele. Ma ha solo peggiorato le cose
 			}
 
 			CuteSlimeIce: {
-				// DisplayName: slime di ghiaccio graziosa
-				// BestiaryFlavorText: Its body may be cold to the touch, but its expression e mannerisms will warm your heart.
+				// DisplayName: Slime di ghiaccio graziosa
+				// BestiaryFlavorText: Il suo corpo può essere freddo al tatto, ma la sua espressione e i suoi modi di fare ti scalderanno il cuore.
 			}
 
 			CuteSlimeIlluminant: {
-				// DisplayName: slime illuminante graziosa
-				// BestiaryFlavorText: The erratic nature of the Hallow has made this slime quite playful.
+				// DisplayName: Slime illuminante graziosa
+				// BestiaryFlavorText: La natura irregolare della Consacrazione ha reso questa slime piuttosto giocosa.
 			}
 
 			CuteSlimeJungle: {
-				// DisplayName: slime della giungla graziosa
-				// BestiaryFlavorText: Life nei jungle is hard for soft-bodied visitors, but this slime proves it's not impossible.
+				// DisplayName: Slime della giungla graziosa
+				// BestiaryFlavorText: La vita nella giungla è difficile per i visitatori dal corpo molle, ma questa slime dimostra che non è impossibile.
 			}
 
 			CuteSlimeLava: {
-				// DisplayName: slime della lava graziosa
-				// BestiaryFlavorText: Having accidentally gotten impaled by a chunk of obsidian, this slime laments being unable to remove it.
+				// DisplayName: Slime della lava graziosa
+				// BestiaryFlavorText: Essendosi accidentalmente impalata con un pezzo di ossidiana, questa slime si lamenta di non poterlo rimuovere.
 			}
 
 			CuteSlimePink: {
-				// DisplayName: slime rosa graziosa
-				// BestiaryFlavorText: Dimminutive does not mean lacking. Despite its size, this slime has more spunk than an entire party.
+				// DisplayName: Slime rosa graziosa
+				// BestiaryFlavorText: Essere piccola non significa essere insignificante. Nonostante le sue dimensioni, questa slime ha più grinta di un intero gruppo.
 			}
 
 			CuteSlimePinkIce: {
-				// DisplayName: slime di ghiaccio rosa graziosa
-				// BestiaryFlavorText: The hallow may have chaotic effects on the wildlife, but this slime remains calm e polite.
+				// DisplayName: Slime di ghiaccio rosa graziosa
+				// BestiaryFlavorText: La consacrazione può avere effetti caotici sulla fauna selvatica, ma questa slime rimane calma ed educata.
 			}
 
 			CuteSlimePurple: {
-				// DisplayName: slime viola graziosa
-				// BestiaryFlavorText: Don't let the smile fool you; it's actually much happier than it looks.
+				// DisplayName: Slime viola graziosa
+				// BestiaryFlavorText: Non lasciatevi ingannare dal sorriso: in realtà è molto più felice di quanto sembri.
 			}
 
 			CuteSlimePurpleIce: {
-				// DisplayName: slime di ghiaccio viola graziosa
-				// BestiaryFlavorText: Frightened by the corruption, this slime is perpetually nervous.
+				// DisplayName: Slime di ghiaccio viola graziosa
+				// BestiaryFlavorText: Spaventata dalla corruzione, questa slime è perennemente nervosa.
 			}
 
 			CuteSlimeRainbow: {
-				// DisplayName: slime arcobaleno graziosa
-				// BestiaryFlavorText: The caring e motherly nature che this slime exhibits shows che it understands compassion.
+				// DisplayName: Slime arcobaleno graziosa
+				// BestiaryFlavorText: La natura premurosa e materna che si manifesta in questa slime, dimostra che comprende la compassione.
 			}
 
 			CuteSlimeRed: {
-				// DisplayName: slime rossa graziosa
-				// BestiaryFlavorText: A playful slime che is quite active. It sometimes goes overboard when having fun.
+				// DisplayName: Slime rossa graziosa
+				// BestiaryFlavorText: Una slime giocosa piuttosto vivace. A volte esagera quando si diverte.
 			}
 
 			CuteSlimeRedIce: {
-				// DisplayName: slime di ghiaccio rossa graziosa
-				// BestiaryFlavorText: It is best to avoid standing out when nei Crimson, e this slime knows che all too well.
+				// DisplayName: Slime di ghiaccio rossa graziosa
+				// BestiaryFlavorText: È meglio evitare di farsi notare quando si è nella Cremisi, e questa slime lo sa fin troppo bene.
 			}
 
 			CuteSlimeSand: {
-				// DisplayName: slime di sabbia graziosa
-				// BestiaryFlavorText: The coarse sand che coats its body leads it to keep its distance, but it won't turn down a friend.
+				// DisplayName: Slime di sabbia graziosa
+				// BestiaryFlavorText: La sabbia granulosa che ricopre il suo corpo la porta a tenersi a distanza, ma non rifiuta un amico.
 			}
 
 			CuteSlimeShimmer: {
-				// DisplayName: slime incorporea graziosa
-				// BestiaryFlavorText: When exposed to the mysterious shimmer, this slime took on an aetherial appearance.
+				// DisplayName: Slime incorporea graziosa
+				// BestiaryFlavorText: Esposta al misterioso luccichio, questa slime ha assunto un aspetto etereo.
 			}
 
 			CuteSlimeToxic: {
-				// DisplayName: slime tossica graziosa
-				// BestiaryFlavorText: Appearances are deceiving; it's only half as monstrous as it looks!
+				// DisplayName: Slime tossica graziosa
+				// BestiaryFlavorText: Le apparenze ingannano: è mostruosa solo a metà di quanto sembra!
 			}
 
 			CuteSlimeXmas: {
-				// DisplayName: slime di natale graziosa
-				// BestiaryFlavorText: The greatest gift is a friend. This slime wants to bring che gift to everyone.
+				// DisplayName: Slime di natale graziosa
+				// BestiaryFlavorText: Il dono più grande è un amico. Questa slime vuole portare questo dono a tutti.
 			}
 
 			CuteSlimeYellow: {
-				// DisplayName: slime gialla graziosa
-				// BestiaryFlavorText: Moving with delicate grace, this slime dances about without missing a step.
+				// DisplayName: Slime gialla graziosa
+				// BestiaryFlavorText: Muovendosi con grazia delicata, questa slime danza senza perdere un passo.
 			}
 
-			// DemonEyeRecolor.DisplayName: occhio del demone
-			// DemonEyeWandering.DisplayName: Wandering Eye
+			// DemonEyeRecolor.DisplayName: Occhio del demone
+			// DemonEyeWandering.DisplayName: Occhio errante
 
 			FairySlime: {
-				// DisplayName: slime fata
-				// BestiaryFlavorText: Not wanting to lose to its flying neighbors, it has grown wing-like extentions. It can't fly, but it's happy regardless of this fact.
+				// DisplayName: Slime fata
+				// BestiaryFlavorText: Non volendo perdere contro i suoi vicini volanti, si è fatto crescere delle estensioni simili ad ali. Non può volare, ma è felice nonostante questo.
 			}
 
 			GiantGrasshopper: {
-				// DisplayName: Giant Grasshopper
-				// BestiaryFlavorText: It can leap over entire bushes in a single bound.
+				// DisplayName: Cavalletta gigante
+				// BestiaryFlavorText: Può saltare interi cespugli in un solo balzo.
 			}
 
 			GiantGrasshopperGold: {
-				// DisplayName: Gold Giant Grasshopper
+				// DisplayName: Cavalletta gigante d'oro
 				// BestiaryFlavorText: "{$CommonBestiaryFlavor.GoldCritter}"
 			}
 
-			// DungeonSoul.DisplayName: Dungeon Anima
+			// DungeonSoul.DisplayName: Anima dungeon
 			// DungeonSoulFreed.DisplayName: "{$NPCs.DungeonSoul.DisplayName}"
 
 			HarvesterBoss: {
-				// DisplayName: Anima Harvester
-				// BestiaryFlavorText: After having absorbed the essence of fallen dungeon denizens, this skeletal bird rapidly grew into a ferocious hunter che sought to eat the hand che once fed it.
-				// BossChecklistIntegration.SpawnInfo: Find e open an {$Items.AntiqueCageItem.DisplayName} nei dungeon, or use [i:AssortedCrazyThings/IdolOfDecay]
+				// DisplayName: Mietitore di anime
+				// BestiaryFlavorText: Dopo aver assorbito l'essenza degli abitanti dei dungeon decaduti, questo uccello scheletrico si è rapidamente trasformato in un feroce cacciatore che ha cercato di divorare la mano che lo aveva nutrito.
+				// BossChecklistIntegration.SpawnInfo: Trova e apri una {$Items.AntiqueCageItem.DisplayName} nel dungeon, o usa [i:AssortedCrazyThings/IdolOfDecay]
 			}
 
 			// HarvesterTalonLeft.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
 			// HarvesterTalonRight.DisplayName: "{$NPCs.HarvesterBoss.DisplayName}"
 
 			HornedSlime: {
-				// DisplayName: slime cornuto
-				// BestiaryFlavorText: The horns aren't just for decoration; they are capable of dispersing heat, allowing the slime to remain gelatinous.
+				// DisplayName: Slime cornuto
+				// BestiaryFlavorText: Le corna non sono solo una decorazione: sono in grado di disperdere il calore, permettendo allo slime di rimanere gelatinoso.
 			}
 
 			JoyousSlime: {
-				// DisplayName: slime gioioso
-				// BestiaryFlavorText: A passive variant of slime with a amichevole face. At night, it tries to be close to an equally amichevole face.
+				// DisplayName: Slime gioioso
+				// BestiaryFlavorText: Uno slime piuttosto tranquillo con un volto amichevole. Di notte, cerca di avvicinarsi a un volto altrettanto amichevole.
 			}
 
 			Carnoso: {
 				// DisplayName: Carnoso
-				// BestiaryFlavorText: A mass of bloody flesh with a single eye. The eye appears to be struggling in an attempt to escape.
+				// BestiaryFlavorText: Una massa di carne insanguinata con un solo occhio. L'occhio sembra lottare nel tentativo di fuggire.
 			}
 
 			MeatballsEye: {
-				// DisplayName: Carnoso's Eye
-				// BestiaryFlavorText: A aiutante of Cthulhu che was trapped nei Crimson. It hastily seeks out its older brother.
+				// DisplayName: Occhio di Carnoso
+				// BestiaryFlavorText: Un servo di Cthulhu che è rimasto intrappolato nella Cremisi. Sta cercando frettolosamente il fratello maggiore.
 			}
 
 			Megalodon: {
-				// DisplayName: Megalodon
-				// BestiaryFlavorText: Thought to be extinct, this ancient predator is as long-lived as its endless hunger.
+				// DisplayName: Megalodonte
+				// BestiaryFlavorText: Ritenuto estinto, la longevità di questo predatore è infinita quanto la sua fame.
 			}
 
 			OceanSlime: {
-				// DisplayName: slime dell'oceano
-				// BestiaryFlavorText: Slimes che are lost to the sea are faced with due options; adapt, or be eaten. Luckily, these slimes taste bad.
+				// DisplayName: Slime dell'oceano
+				// BestiaryFlavorText: Gli slime che si perdono nel mare si trovano di fronte a due opzioni: adattarsi o essere mangiati. Fortunatamente, questi slime hanno un pessimo sapore.
 			}
 
 			SpawnOfOcram: {
-				// DisplayName: Spawn of Ocram
-				// BestiaryFlavorText: An ancient being's offspring, once thought to have been lost to time.
+				// DisplayName: Spawn di Ocram
+				// BestiaryFlavorText: La progenie di un antico essere, che un tempo si pensava fosse andata perduta nel tempo.
 			}
 
 			StingSlime: {
-				// DisplayName: slime scorpione
-				// BestiaryFlavorText: Bounce like a slime, sting like a scorpion.
+				// DisplayName: Slime scorpione
+				// BestiaryFlavorText: Rimbalza come uno slime, punge come uno scorpione.
 			}
 
 			StoneSoldier: {
-				// DisplayName: Stone Soldier
-				// BestiaryFlavorText: Animate stone statues che have wandered from an ancient tomb. Their eyes are valuable.
+				// DisplayName: Soldato di pietra
+				// BestiaryFlavorText: Statue di pietra animate provenienti da un'antica tomba. I loro occhi sono preziosi.
 			}
 
 			StrangeSlime: {
-				// DisplayName: Strange Slime
-				// BestiaryFlavorText: These peculiar slimes are host to strange plants, which grow for life. The slime always makes sure to keep it upright.
+				// DisplayName: Slime strano
+				// BestiaryFlavorText: Queste particolari slime ospitano piante strane, che crescono per vivere. Lo slime si assicura sempre di mantenerle drittte
 			}
 
 			TurtleSlime: {
 				// DisplayName: Slime tartaruga
-				// BestiaryFlavorText: Giant tortoises are known to shed part of their shell as they grow. These slimes collect those old fragments for protection.
+				// BestiaryFlavorText: Le tartarughe giganti sono note per perdere parte del loro guscio durante la crescita. Questi slime raccolgono i frammenti per proteggersi.
 			}
 
 			WalkingTombstoneGolden: {
-				// DisplayName: Walking Tombstone
-				// BestiaryFlavorText: Terrestrial crabs che have taken up a morbid e expensive form of camouflage.
+				// DisplayName: Lapide ambulante
+				// BestiaryFlavorText: I granchi terrestri hanno adottato una forma di mimetismo morboso e costoso.
 			}
 
 			YoungHarpy: {
 				// DisplayName: Arpia giovane
-				// BestiaryFlavorText: Harpies are not inherently hostile. If they make a childhood friend, they'll always be friends.
+				// BestiaryFlavorText: Le arpie non sono ostili di natura. Se trovano un migliore amico, non gli volteranno le spalle
 			}
 
 			CuteSlimes: {
 				SpawnConditionType: {
 					Forest: {
-						// Black: Black
-						// Blue: Blue
-						// Green: Green
-						// Purple: Purple
-						// Rainbow: Rainbow
-						// Red: Red
-						// Yellow: Yellow
+						// Black: Nera
+						// Blue: Blu
+						// Green: Verde 
+						// Purple: Viola
+						// Rainbow: Arcobaleno
+						// Red: Rossa
+						// Yellow: Gialla
 					}
 
-					// Desert.Sand: Sand
-					// Tundra.Ice: Ice
-					// Jungle.Jungle: Jungle
-					// Underground.Toxic: Toxic
+					// Desert.Sand: Sabbia
+					// Tundra.Ice: Ghiaccio
+					// Jungle.Jungle: Giungla
+					// Underground.Toxic: Tossico
 					// Hell.Lava: Lava
-					// Corruption.Corrupt: Corrupt
-					// CorruptionIce.PurpleIce: Purple Ice
-					// CorruptionJungle.CorruptJungle: Corrupt Jungle
-					// Crimson.Crimson: Crimson
-					// CrimsonIce.RedIce: Red Ice
-					// CrimsonJungle.CrimsonJungle: Crimson Jungle
-					// Hallow.Illuminant: Illuminant
-					// HallowIce.PinkIce: Pink Ice
+					// Corruption.Corrupt: Corrotto
+					// CorruptionIce.PurpleIce: Ghiaccio viola
+					// CorruptionJungle.CorruptJungle: Giungla corrotta
+					// Crimson.Crimson: Cremisi
+					// CrimsonIce.RedIce: Ghiaccio rosso
+					// CrimsonJungle.CrimsonJungle: Giungla cremisi
+					// Hallow.Illuminant: Illuminante
+					// HallowIce.PinkIce: Ghiaccio rosa
 					// Dungeon.Dungeon: Dungeon
-					// Xmas.Xmas: Xmas
-					// Honey.Honey: Honey
+					// Xmas.Xmas: Natale
+					// Honey.Honey: Miele
 				}
 			}
 		}
 
 		Projectiles: {
-			// SigilOfTheBeakProj.DisplayName: Fractured Anima
-			// CompanionDungeonSoulMinion.DisplayName: anima compagnia
-			// BasicLaserDrone.DisplayName: Basic Laser Drone
-			// HealingDrone.DisplayName: Healing Drone
-			// HeavyLaserDrone.DisplayName: Heavy Laser Drone
-			// HeavyLaserDroneLaser.DisplayName: Laser Drone Laser
-			// MissileDrone.DisplayName: Missile Drone
-			// MissileDroneRocket.DisplayName: Missile Drone Rocket
-			// ShieldDrone.DisplayName: Shield Drone
-			// GoblinUnderlingWeaponDart.DisplayName: Goblin subalterno Dart
+			// SigilOfTheBeakProj.DisplayName: Anima scomposta
+			// CompanionDungeonSoulMinion.DisplayName: Anima compagnia
+			// BasicLaserDrone.DisplayName: Drone cura semplice
+			// HealingDrone.DisplayName: Drone cura
+			// HeavyLaserDrone.DisplayName: Drone laser pesante
+			// HeavyLaserDroneLaser.DisplayName: Laser pesante drone
+			// MissileDrone.DisplayName: Drone missilistico
+			// MissileDroneRocket.DisplayName: Razzo drone missilistico
+			// ShieldDrone.DisplayName: Drone scudo
+			// GoblinUnderlingWeaponDart.DisplayName: Dardo goblin subalterno 
 			// EagerUnderlingProj.DisplayName: "{$Buffs.EagerUnderlingBuff.DisplayName}"
 			// ShyUnderlingProj.DisplayName: "{$Buffs.ShyUnderlingBuff.DisplayName}"
 			// SeriousUnderlingProj.DisplayName: "{$Buffs.SeriousUnderlingBuff.DisplayName}"
-			// GoblinUnderlingWeaponTerraBeam.DisplayName: Goblin subalterno Terra Beam
-			// GoblinUnderlingWeaponArrow.DisplayName: Goblin subalterno Arrow
-			// GoblinUnderlingWeaponBlaster.DisplayName: Goblin subalterno Blaster
-			// GoblinUnderlingWeaponOrb.DisplayName: Goblin subalterno Orb
-			// GoblinUnderlingWeaponDaybreak.DisplayName: Goblin subalterno Daybreak
+			// GoblinUnderlingWeaponTerraBeam.DisplayName: Terra raggio goblin subalterno terra raggio
+			// GoblinUnderlingWeaponArrow.DisplayName: Freccia goblin subalterno 
+			// GoblinUnderlingWeaponBlaster.DisplayName: Blaster goblin subalterno
+			// GoblinUnderlingWeaponOrb.DisplayName: Sfera goblin subalterno
+			// GoblinUnderlingWeaponDaybreak.DisplayName: Alba goblin subalterno
 			// GoblinUnderlingWeaponDaybreakExplosion.DisplayName: "{$Projectiles.GoblinUnderlingWeaponDaybreak.DisplayName}"
-			// MagicSlimeSlingFired.DisplayName: Magic Slime Sling
-			// MagicSlimeSlingMinion.DisplayName: Magic Slime Sling aiutante
-			// PetDestroyerDroneLaser.DisplayName: Pet Destroyer Laser
-			// PetGolemHeadFireball.DisplayName: Pet Golem Head Fireball
-			// SlimePackAssortedMinion.DisplayName: Slime Knapsack aiutante
-			// SlimePackMinion.DisplayName: Slime Knapsack aiutante
-			// SlimePackMinionSpike.DisplayName: Slime Knapsack aiutante Spike
-			// SlimePackSpikedMinion.DisplayName: Slime Knapsack aiutante
-			// BabyHarvesterProj.DisplayName: Baby Bird
-			// HarvesterAbsorbedSoul.DisplayName: Absorbed Anima
-			// HarvesterBone.DisplayName: Harvester Bone
-			// HarvesterFracturedSoul.DisplayName: Fractured Anima
+			// MagicSlimeSlingFired.DisplayName: Fionda magica slime
+			// MagicSlimeSlingMinion.DisplayName: Slime fionda magica aiutante
+			// PetDestroyerDroneLaser.DisplayName: Laser mascotte distruttore
+			// PetGolemHeadFireball.DisplayName: Palla di fuoco mascotte testa golem di pietra 
+			// SlimePackAssortedMinion.DisplayName: Slime zaino aiutante
+			// SlimePackMinion.DisplayName: Slime zaino aiutante
+			// SlimePackMinionSpike.DisplayName: Spina Slime zaino aiutante
+			// SlimePackSpikedMinion.DisplayName: Slime zaino aiutante
+			// BabyHarvesterProj.DisplayName: Uccello bebé
+			// HarvesterAbsorbedSoul.DisplayName: Anime assorbita
+			// HarvesterBone.DisplayName: Ossa mietitore
+			// HarvesterFracturedSoul.DisplayName: Anima scomposta
 
 			AbeeminationProj: {
 				// DisplayName: Apebominio
-				// Default.Tooltip: Default
-				// SnowBee.Tooltip: Snow Bee
-				// OilSpill.Tooltip: Oil Spill
-				// MissingIngredients.Tooltip: Missing Ingredients
+				// Default.Tooltip: Predefinito
+				// SnowBee.Tooltip: Ape di neve
+				// OilSpill.Tooltip: Perdita d'olio
+				// MissingIngredients.Tooltip: Ingredienti mancanti
 			}
 
 			// AlienHornetProj.DisplayName: Calabrone alieno
 
 			AnimatedTomeProj: {
-				// DisplayName: tomo animato
-				// Green.Tooltip: Green
-				// Blue.Tooltip: Blue
-				// Purple.Tooltip: Purple
-				// Pink.Tooltip: Pink
-				// Yellow.Tooltip: Yellow
-				// Spell.Tooltip: Spell
+				// DisplayName: Tomo animato
+				// Green.Tooltip: Verde
+				// Blue.Tooltip: Blu
+				// Purple.Tooltip: Viola
+				// Pink.Tooltip: Rosa
+				// Yellow.Tooltip: Giallo
+				// Spell.Tooltip: Incantesimo
 			}
 
 			AnomalocarisProj: {
-				// DisplayName: Anomalocaris
-				// Wild.Tooltip: Wild
-				// Shrimpy.Tooltip: Shrimpy
-				// Snippy.Tooltip: Snippy
+				// DisplayName: Gambero strano
+				// Wild.Tooltip: Selvatico
+				// Shrimpy.Tooltip: Gamberetto
+				// Snippy.Tooltip: Nervosetto
 			}
 
 			// BabyCrimeraProj.DisplayName: Cremera bebé
-			// BabyIchorStickerProj.DisplayName: piccolo sputaicore
+			// BabyIchorStickerProj.DisplayName: Piccolo sputaicore
 			// BabyOcramProj.DisplayName: Piccolo Ocram
-			// BrainofConfusionProj.DisplayName: cervello confuso
+			// BrainofConfusionProj.DisplayName: Cervello confuso
 			// ChunkyProj.DisplayName: Pancione
-			// ChunkySlimeProj.DisplayName: Pancione Slime
-			// CompanionDungeonSoulPetProj.DisplayName: anima compagnia
-			// CompanionDungeonSoulPetProj2.DisplayName: anima compagnia
+			// ChunkySlimeProj.DisplayName: Pancione slime
+			// CompanionDungeonSoulPetProj.DisplayName: Anima compagnia
+			// CompanionDungeonSoulPetProj2.DisplayName: Anima compagnia
 
 			CursedSkullProj: {
-				// DisplayName: teschio maledetto
-				// Default.Tooltip: Default
-				// Dragon.Tooltip: Dragon
+				// DisplayName: Teschio maledetto
+				// Default.Tooltip: Predefinito
+				// Dragon.Tooltip: Drago
 			}
 
-			// CuteGastropodProj.DisplayName: gasteropodo grazioso
+			// CuteGastropodProj.DisplayName: Gasteropodo grazioso
 
 			CuteLamiaPetProj: {
-				// DisplayName: Piccolo serpente
-				// Dark.Tooltip: Dark
-				// Light.Tooltip: Light
-				// Dropkick.Tooltip: Dropkick
+				// DisplayName: Serpente graziosa
+				// Dark.Tooltip: Scuro
+				// Light.Tooltip: Chiaro
+				// Dropkick.Tooltip: Calcio a molla
 			}
 
-			// CuteSlimeBlackProj.DisplayName: Cute Black Slime
-			// CuteSlimeBlueProj.DisplayName: Cute Blue Slime
-			// CuteSlimeCorruptProj.DisplayName: Cute Corrupt Slime
-			// CuteSlimeCorruptJungleProj.DisplayName: slime corrotta della giungla
-			// CuteSlimeCrimsonProj.DisplayName: slime cremisi graziosa
-			// CuteSlimeCrimsonJungleProj.DisplayName: slime cremisi della giungla graziosa
-			// CuteSlimeDungeonProj.DisplayName: slime dungeon graziosa
-			// CuteSlimeGoldenProj.DisplayName: slime d'oro graziosa
-			// CuteSlimeGreenProj.DisplayName: slime verde graziosa
-			// CuteSlimeHoneyProj.DisplayName: slime di miele graziosa
-			// CuteSlimeIceProj.DisplayName: slime di ghiaccio graziosa
-			// CuteSlimeIlluminantProj.DisplayName: slime illuminante graziosa
-			// CuteSlimeJungleProj.DisplayName: slime della giungla graziosa
-			// CuteSlimeLavaProj.DisplayName: slime della lava graziosa
-			// CuteSlimePinkProj.DisplayName: slime rosa graziosa
-			// CuteSlimePinkIceProj.DisplayName: slime di ghiaccio rosa graziosa
-			// CuteSlimePrincessProj.DisplayName: slime principessa graziosa
-			// CuteSlimePurpleProj.DisplayName: slime viola graziosa
-			// CuteSlimePurpleIceProj.DisplayName: slime di ghiaccio viola graziosa
-			// CuteSlimeQueenProj.DisplayName: slime regina graziosa
-			// CuteSlimeRainbowProj.DisplayName: slime arcobaleno graziosa
-			// CuteSlimeRedProj.DisplayName: slime rossa graziosa
-			// CuteSlimeRedIceProj.DisplayName: slime di ghiaccio rossa graziosa
-			// CuteSlimeSandProj.DisplayName: slime di sabbia graziosa
-			// CuteSlimeShimmerProj.DisplayName: slime incorporea graziosa
-			// CuteSlimeToxicProj.DisplayName: slime tossica graziosa
-			// CuteSlimeXmasProj.DisplayName: slime di natale graziosa
-			// CuteSlimeYellowProj.DisplayName: slime gialla graziosa
-			// DemonHeartProj.DisplayName: cuore del demone
-			// DetachedHungryProj.DisplayName: affamato indipendente
+			// CuteSlimeBlackProj.DisplayName: Slime nera graziosa
+			// CuteSlimeBlueProj.DisplayName: Slime blu graziosa
+			// CuteSlimeCorruptProj.DisplayName: Slime corrotta graziosa
+			// CuteSlimeCorruptJungleProj.DisplayName: Slime corrotta della giungla
+			// CuteSlimeCrimsonProj.DisplayName: Slime cremisi graziosa
+			// CuteSlimeCrimsonJungleProj.DisplayName: Slime cremisi della giungla graziosa
+			// CuteSlimeDungeonProj.DisplayName: Slime dungeon graziosa
+			// CuteSlimeGoldenProj.DisplayName: Slime d'oro graziosa
+			// CuteSlimeGreenProj.DisplayName: Slime verde graziosa
+			// CuteSlimeHoneyProj.DisplayName: Slime di miele graziosa
+			// CuteSlimeIceProj.DisplayName: Slime di ghiaccio graziosa
+			// CuteSlimeIlluminantProj.DisplayName: Slime illuminante graziosa
+			// CuteSlimeJungleProj.DisplayName: Slime della giungla graziosa
+			// CuteSlimeLavaProj.DisplayName: Slime della lava graziosa
+			// CuteSlimePinkProj.DisplayName: Slime rosa graziosa
+			// CuteSlimePinkIceProj.DisplayName: Slime di ghiaccio rosa graziosa
+			// CuteSlimePrincessProj.DisplayName: Slime principessa graziosa
+			// CuteSlimePurpleProj.DisplayName: Slime viola graziosa
+			// CuteSlimePurpleIceProj.DisplayName: Slime di ghiaccio viola graziosa
+			// CuteSlimeQueenProj.DisplayName: Slime regina graziosa
+			// CuteSlimeRainbowProj.DisplayName: Slime arcobaleno graziosa
+			// CuteSlimeRedProj.DisplayName: Slime rossa graziosa
+			// CuteSlimeRedIceProj.DisplayName: Slime di ghiaccio rossa graziosa
+			// CuteSlimeSandProj.DisplayName: Slime di sabbia graziosa
+			// CuteSlimeShimmerProj.DisplayName: Slime incorporea graziosa
+			// CuteSlimeToxicProj.DisplayName: Slime tossica graziosa
+			// CuteSlimeXmasProj.DisplayName: Slime di natale graziosa
+			// CuteSlimeYellowProj.DisplayName: Slime gialla graziosa
+			// DemonHeartProj.DisplayName: Cuore del demone
+			// DetachedHungryProj.DisplayName: Affamato indipendente
 
 			DocileDemonEyeProj: {
 				// DisplayName: Occhio del demone docile
@@ -2707,11 +2707,11 @@ Mods: {
 
 			// StrangeRobotProj.DisplayName: strano robot
 			// SuspiciousNuggetProj.DisplayName: Pepita sospetta
-			// SwarmofCthulhuProj.DisplayName: Sciame di Chtulu
+			// SwarmofCthulhuProj.DisplayName: Sciame di Cthulhu
 			// TinyRetinazerProj.DisplayName: Tiny Retinazer
 			// TinySpazmatismProj.DisplayName: Tiny Spazmatism
 			// TorchGodLightPetProj.DisplayName: Torcia devota
-			// TorturedSoulProj.DisplayName: anima torturata
+			// TorturedSoulProj.DisplayName: Anima torturata
 			// TrueObservingEyeProj.DisplayName: vero occhio osservatore
 			// TurtleSlimeProj.DisplayName: Slime tartaruga
 
@@ -2838,25 +2838,25 @@ Mods: {
 
 		SoulData: {
 			DungeonSoul: {
-				// DisplayName: Dungeon {^0:Anima;Souls}
+				// DisplayName: Dungeon {^0:Anima;Anime}
 				// Unlock: ""
 				// Description: ""
 			}
 
 			SoulofFright: {
-				// DisplayName: "{^0:Anima;Souls} of Fright"
+				// DisplayName: "{^0:Anima;Anime} of Fright"
 				// Unlock: Defeat {$NPCName.SkeletronPrime}
 				// Description: Inflicts {$BuffName.Ichor} e {$BuffName.Venom}
 			}
 
 			SoulofSight: {
-				// DisplayName: "{^0:Anima;Souls} of Sight"
+				// DisplayName: "{^0:Anima;Anime} of Sight"
 				// Unlock: Defeat {$nemici.TheTwins}
 				// Description: Inflicts {$BuffName.CursedInferno}
 			}
 
 			SoulofMight: {
-				// DisplayName: "{^0:Anima;Souls} of Might"
+				// DisplayName: "{^0:Anima;Anime} of Might"
 				// Unlock: Defeat {$NPCName.TheDestroyer}
 				// Description: ""
 			}
@@ -2872,7 +2872,7 @@ Mods: {
 
 		DroneData: {
 			BasicLaserDrone: {
-				// DisplayName: Basic Laser {^0:Drone;Drones}
+				// DisplayName: Basic Laser {^0:Drone;Droni}
 				// ComponentName: "{$Items.DroneUnlockableBasicLaserDrone.DisplayName}"
 				// Firerate: High
 				// Description: Rapidly fires lasers
@@ -2880,7 +2880,7 @@ Mods: {
 			}
 
 			HeavyLaserDrone: {
-				// DisplayName: Heavy Laser {^0:Drone;Drones}
+				// DisplayName: Heavy Laser {^0:Drone;Droni}
 				// ComponentName: "{$Items.DroneUnlockableHeavyLaserDrone.DisplayName}"
 				// Firerate: Extremely slow
 				// Description: Fires a penetrating laser after a long delay
@@ -2888,7 +2888,7 @@ Mods: {
 			}
 
 			MissileDrone: {
-				// DisplayName: Missile {^0:Drone;Drones}
+				// DisplayName: Missile {^0:Drone;Droni}
 				// ComponentName: "{$Items.DroneUnlockableMissileDrone.DisplayName}"
 				// Firerate: Very slow
 				// Description: Fires a salvo of missiles after a long delay
@@ -2896,7 +2896,7 @@ Mods: {
 			}
 
 			HealingDrone: {
-				// DisplayName: Healing {^0:Drone;Drones}
+				// DisplayName: Healing {^0:Drone;Droni}
 				// ComponentName: "{$Items.DroneUnlockableHealingDrone.DisplayName}"
 				// Firerate: ""
 				// Description: Heals you when hurt
@@ -2904,7 +2904,7 @@ Mods: {
 			}
 
 			ShieldDrone: {
-				// DisplayName: Shield {^0:Drone;Drones}
+				// DisplayName: Shield {^0:Drone;Droni}
 				// ComponentName: "{$Items.DroneUnlockableShieldDrone.DisplayName}"
 				// Firerate: ""
 				// Description: Creates a damage reducing shield over time
