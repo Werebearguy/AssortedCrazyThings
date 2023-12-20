@@ -513,7 +513,7 @@ Mods: {
 				// DisplayName: Ale gelificato
 				// Description: La tua percezione degli slime è un po' diversa...
 				// CuteSlimesCanSpawn: Slime graziose che possono spawnare
-				// None: Nessuno
+				// Nessuno: Nessuno
 			}
 
 			DroneControllerBuff: {
@@ -1836,126 +1836,126 @@ Mods: {
 			}
 
 			AntiqueCageItem: {
-				// DisplayName: Antique Cage
+				// DisplayName: Gabbia antica
 				// Tooltip: ""
 			}
 
 			AntiqueChestItem: {
-				// DisplayName: Antique Chest
+				// DisplayName: Cassa antica
 				// Tooltip: ""
 			}
 
 			CuteSlimeStatueItem: {
-				// DisplayName: Cute Slime Statue
-				// Tooltip: You can't catch statue spawned creatures
+				// DisplayName: Statua slime graziosa
+				// Tooltip: Non è possibile catturare le creature generate dalle statue.
 			}
 
 			HarvesterRelicItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Relic"
+				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Reliqua"
 				// Tooltip: ""
 			}
 
 			HarvesterRelicColoredItem: {
-				// DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colored)"
+				// DisplayName: "{$Items.HarvesterRelicItem.DisplayName} (Colorato)"
 				// Tooltip: ""
 			}
 
 			HarvesterTrophyItem: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trophy"
+				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Trofeo"
 				// Tooltip: ""
 			}
 
 			FieldsOfJoyItem: {
-				// DisplayName: Fields of Joy
+				// DisplayName: Campi di gioia
 				// Tooltip: "'C. Paigner'"
 			}
 
 			PretentiousRockItem: {
-				// DisplayName: A Study of Slate
+				// DisplayName: Uno studio su Slate
 				// Tooltip: "'C. Paigner'"
 			}
 
 			SCP099Item: {
-				// DisplayName: The Portrait
+				// DisplayName: Il ritratto
 				// Tooltip: "'R. Magritte'"
 			}
 
 			SCP3515Item: {
 				// DisplayName: SCP-3515
-				// Tooltip: "'Unknown'"
+				// Tooltip: "'Sconosciuto'"
 			}
 
 			SlimeBeaconItem: {
-				// DisplayName: Slime Beacon
-				// Tooltip: "'Do The Slime With Me!'"
-				// NoMultiplayer: "[c/FFA01D:DOES NOT WORK IN MULTIPLAYER]"
+				// DisplayName: Slime faro
+				// Tooltip: "'Fai lo slime con me!'"
+				// NoMultiplayer: "[c/FFA01D:NON FUNZIONA IN MULTIGIOCATORE]"
 			}
 
 			StarRodItem: {
 				// DisplayName: Scettro stella
-				// Tooltip: Attracts Falling Stars at night if you are vicino
+				// Tooltip: Attira le stelle cadenti di notte se sei vicino
 			}
 
-			// VanityDresserItem.DisplayName: Costume Dresser
+			// VanityDresserItem.DisplayName: Cassettiera per abiti
 
 			WyvernCampfireItem: {
-				// DisplayName: Wyvern Campfire
-				// Tooltip: "'Makes Wyverns go poof!'"
+				// DisplayName: Fuoco di bivacco viverna
+				// Tooltip: "'Fa scomparire le viverne!'"
 			}
 
 			ExtendoNetGolden: {
-				// DisplayName: Golden Extendo-Net
+				// DisplayName: Retino estendibile d'orato
 				/* Tooltip:
 					'''
-					'Catches those REALLY hard to reach critters'
-					Can catch lava critters too!
+					'Cattura le creature davvero difficili da raggiungere'
+					Può catturare anche le creature di lava!
 					''' */
 			}
 
 			ExtendoNetRegular: {
-				// DisplayName: Extendo-Net
-				// Tooltip: "'Catches those hard to reach critters'"
+				// DisplayName: Retino estendibile
+				// Tooltip: "'Cattura le creature difficili da raggiungere'"
 			}
 
 			PrettyMask: {
-				// DisplayName: Pretty Mask
-				// Tooltip: "'Goes well with a red scarf, red gloves, red boots, e your birthday suit'"
+				// DisplayName: Maschera carina
+				// Tooltip: "'Si abbina bene a una sciarpa rossa, a guanti rossi, a stivali rossi e al tuo abito di compleanno'"
 			}
 
 			SoulHarvesterMask: {
-				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Mask"
+				// DisplayName: "{$NPCs.HarvesterBoss.DisplayName} Maschera"
 				// Tooltip: ""
 			}
 
 			VanitySelector: {
-				// DisplayName: Costume Suitcase
+				// DisplayName: Valigia per costumi
 				/* Tooltip:
 					'''
-					Left Click to change your Pet's appearance
-					Right Click to change your Light Pet's appearance
+					Clicca con il tasto sinistro del mouse per cambiare l'aspetto della tua mascotte
+					Clicca con il tasto destro del mouse per modificare l'aspetto del tua mascotte di luce
 					''' */
 			}
 
 			BoneCleavingFang: {
-				// DisplayName: Bone-Cleaving Fang
+				// DisplayName: Zanna tagliaossa
 				/* Tooltip:
 					'''
-					Striking nemici will charge the sword, causing it to glow with power
-					Release the built up power by right-clicking. The brighter the sword, the greater the power
-					The sword's power fades when not used
+					Colpire i nemici caricherà la spada, facendola brillare di energia
+					Rilascia l'energia accumulata cliccando il tasto destro del mouse. Più luminosa è la spada, maggiore è la potenza
+					Il potere della spada svanisce quando non viene utilizzata
 					''' */
 			}
 
 			BoneShatterLongbow: {
-				// DisplayName: Bone-Shatter Longbow
-				// Tooltip: Wooden arrows ignite into burning souls
+				// DisplayName: Arco lungo frammenta ossa
+				// Tooltip: Le frecce di legno si trasformano in anime in fiamme
 			}
 
 			BreathOfSpazmatism: {
-				// DisplayName: Breath of Spazmatism
+				// DisplayName: Respiro di Spazmatism
 				/* Tooltip:
 					'''
-					Uses gel to fire a stream of cursed flames
+					Utilizza la gelatina per sparare un flusso di fiamme maledette
 					{$CommonItemTooltip.PercentChanceToSaveAmmo}
 					''' */
 			}
@@ -1964,76 +1964,76 @@ Mods: {
 				// DisplayName: Telecomando drone
 				/* Tooltip:
 					'''
-					Evoca a amichevole Drone to support or fight for you
-					Right click to pick from available drones
-					Holding the item improves the Drones' supportive e offensive abilities
+					Evoca a amichevole Drone per supportarti o combattere con te
+					Clicca il tasto destro del mouse per scegliere tra i droni disponibili
+					Tenere l'oggetto migliora le capacità di supporto e di attacco dei droni
 					''' */
-				// Firerate: "{0} firerate"
-				// UnlockMore: Defeat {$NPCName.TheDestroyer} to unlock more drones
-				// CanSpawn: Only one {0} can be out at once
+				// Firerate: "{0} tasso di fuoco"
+				// UnlockMore: Defeat {$NPCName.TheDestroyer} per sbloccare più droni
+				// CanSpawn: Solo un {0} può essere usato a volta
 				// ToUnlock: Craft e use a '{0}' Item
 			}
 
 			EverglowLantern: {
-				// DisplayName: Everglow Lantern
+				// DisplayName: Lanterna sempre luminosa
 				/* Tooltip:
 					'''
-					Evoca due freed Dungeon Souls at a time to fight for you
-					Each Dungeon Anima occupies only half a aiutante slot
+					Evoca due anime del dungeon slegate alla volta che combattono per te
+					Ogni Anima del Dungeon occupa solo metà di uno slot aiutante.
 					''' */
 			}
 
 			EverhallowedLantern: {
-				// DisplayName: Everhallowed Lantern
+				// DisplayName: Lanterna sempre consacrata
 				/* Tooltip:
 					'''
-					Evoca a Anima to fight for you
-					Right click to pick from available forms
+					Evoca un'anima che combatte per te
+					Clicca il tasto destro del mouse per scegliere tra le forme disponibili
 					''' */
-				// MechCondition: Defeat mechanical bosses to unlock new aiutantes
-				// SetBonusBoost: "{0}% damage increase from wearing the 'Anima Savior' Set"
+				// MechCondition: Sconfiggi i boss meccanici per sbloccare nuovi aiutanti
+				// SetBonusBoost: "{0}% danni aumentati per il set 'salvaguardante'"
 			}
 
 			EagerUnderlingItem: {
-				// DisplayName: Satchel of Goodies
-				// Tooltip: Evoca an subalterno desideroso to fight for you
-				// Flavor: "'Inside, there's a spiky ball, a coin, e a... Luna?'"
+				// DisplayName: Borsa chicche
+				// Tooltip: Evoca un subalterno desideroso a combattere per te
+				// Flavor: "'All'interno c'è una palla appuntita, una moneta e una... luna?'"
 			}
 
 			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Evoca a subalterno timido to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
+				// DisplayName: Moneta ammaccata
+				// Tooltip: Evoca un subalterno timido a combattere per te
+				// Flavor: "'Questa moneta è stata usata come tiro al bersaglio per molto tempo'"
 			}
 
 			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Evoca a subalterno serio to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw e hay.'"
+				// DisplayName: Bambola benvoluta
+				// Tooltip: Evoca un subalterno serio a combattere per te
+				// Flavor: "'Una semplice bambola voodoo fatta di paglia e fieno sfusi'"
 			}
 
 			LegendaryWoodenSword: {
-				// DisplayName: Legendary Wooden Sword
+				// DisplayName: Spada di legno leggendaria
 				// Tooltip: ""
 			}
 
 			MagicSlimeSling: {
-				// DisplayName: Magic Slime Sling
-				// Tooltip: Shoots magic gel che turns into slime aiutantes on hit
+				// DisplayName: Fionda magica slime
+				// Tooltip: Spara gelatina magica che si trasforma in aiutanti slime quando colpita
 			}
 
 			PlagueOfToads: {
-				// DisplayName: Plague of Toads
-				// Tooltip: Evoca a cloud to rain toads on your foes
+				// DisplayName: Piaga dei rospi
+				// Tooltip: Evoca una nuvola che fa piovere rospi sui tuoi nemici
 			}
 
 			PocketSand: {
-				// DisplayName: Pocket Sand
-				// Tooltip: "'Throw a clump of sand at an enemy to confuse it'"
+				// DisplayName: Sabbia tascabile
+				// Tooltip: "'Lancia un cumulo di sabbia contro un nemico per confonderlo'"
 			}
 
 			SightofRetinazer: {
-				// DisplayName: Sight of Retinazer
+				// DisplayName: Vista di Retinazer
 				// Tooltip: ""
 			}
 
@@ -2041,7 +2041,7 @@ Mods: {
 				// DisplayName: Slime Handler Knapsack
 				/* Tooltip:
 					'''
-					Evoca a amichevole Slime of a random color from your Knapsack to fight for you
+					Evoca a amichevole Slime of a random color from your Knapsack che combatte per te
 					Right click to pick from available forms
 					''' */
 				// Default: Default
