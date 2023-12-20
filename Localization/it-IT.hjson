@@ -513,7 +513,7 @@ Mods: {
 				// DisplayName: Ale gelificato
 				// Description: La tua percezione degli slime è un po' diversa...
 				// CuteSlimesCanSpawn: Slime graziose che possono spawnare
-				// Nessuno: Nessuno
+				// None: Nessuno
 			}
 
 			DroneControllerBuff: {
@@ -1551,7 +1551,7 @@ Mods: {
 				// Body: Indossato sul corpo
 				// Carried: Trasportato
 				// Accessory: Indossato come accessori
-				// Nessuno: Nessuno
+				// None: Nessuno
 				// Blacklisted: Questo tipo di accessorio è disabilitato per il tuo particolare slime.
 				// NoUse: Non hai evocato uno slime su cui equipaggiarlo.
 				// Disabled: Questo tipo di accessorio non è registrato da parte degli sviluppatori per l'uso
