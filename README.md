@@ -27,3 +27,6 @@ Translate things that are in english and commented out (either via `//` or `/* *
 List of localization contributors:
 * Simplified Chinese: **GamMa**
 * Russian: **GodHybrid**
+* Italian: **Sea Noodle**
+
+**Disclaimer: Italian localization is very incomplete. Currently looking for contributors to finish it**

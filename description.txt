@@ -23,3 +23,6 @@ Localization:
 If you want to add support for different languages, you are welcome to contribute localizations here: https://github.com/Werebearguy/AssortedCrazyThings
 List of localization contributors:
 * Simplified Chinese: GamMa
+* Italian: Sea Noodle
+
+Disclaimer: Italian localization is very incomplete. Currently looking for contributors to finish it

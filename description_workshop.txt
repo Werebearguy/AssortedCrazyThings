@@ -58,3 +58,6 @@ If you want to add support for different languages, you are welcome to contribut
 List of localization contributors:
 * Simplified Chinese: [b]GamMa[/b]
 * Russian: [b]GodHybrid[/b]
+* Italian: [b]Sea Noodle[/b]
+
+[b]Disclaimer: Italian localization is very incomplete. Currently looking for contributors to finish it[/b]
