@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -23,7 +24,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			}
 
 			int intended = Main.CurrentDrawnEntityShader;
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, 0, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
+			Main.instance.PrepareDrawnProjDrawing(Projectile, 0);
 
 			SpriteEffects effects = SpriteEffects.None;
 			if (Projectile.spriteDirection == -1)
@@ -34,7 +35,7 @@ namespace AssortedCrazyThings.Projectiles.Pets.CuteSlimes
 			Rectangle frameLocal = image.Frame(SheetCountX, SheetCountY, frameX, frameY);
 			Vector2 stupidOffset = new Vector2(Projwidth * 0.5f, -6f - DrawOriginOffsetY + Projectile.gfxOffY);
 			Main.spriteBatch.Draw(image, Projectile.position - Main.screenPosition + stupidOffset, frameLocal, lightColor, Projectile.rotation, frameLocal.Size() / 2, Projectile.scale, effects, 0);
-			Main.instance.PrepareDrawnEntityDrawing(Projectile, intended, Projectile.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);
+			Main.instance.PrepareDrawnProjDrawing(Projectile, intended);
 		}
 	}
 }
