@@ -1,6 +1,5 @@
 en-US, 1525/1526, 100%, missing 1
 de-DE, 0/1526, 0%, missing 1526
-it-IT, 0/1526, 0%, missing 1526
 fr-FR, 0/1526, 0%, missing 1526
 es-ES, 0/1526, 0%, missing 1526
 ru-RU, 1526/1526, 100%, missing 0
