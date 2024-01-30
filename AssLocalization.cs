@@ -68,7 +68,7 @@ namespace AssortedCrazyThings
 	}
 
 	/// <summary>
-	/// Marker for localizing enums, automatically registered (<see cref="AssLocalization,RegisterEnumText"/>) and accessible (<see cref="AssLocalization.GetEnumText{T}(T)"/>)
+	/// Marker for localizing enums, automatically registered (<see cref="AssLocalization.RegisterEnumText"/>) and accessible (<see cref="AssLocalization.GetEnumText{T}(T)"/>)
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Enum)]
 	public class LocalizeEnumAttribute : Attribute
