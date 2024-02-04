@@ -185,7 +185,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.Drones
 					if (HealCounter > delay)
 					{
 						HealCounter = 0;
-						int heal = 1;
+						int heal = 3;
 						player.statLife += heal;
 						//if it would be just clientside, test this:
 						//if (Main.netMode != NetmodeID.Singleplayer) NetMessage.SendData(MessageID.PlayerHealth, -1, -1, null, player.whoAmI);
