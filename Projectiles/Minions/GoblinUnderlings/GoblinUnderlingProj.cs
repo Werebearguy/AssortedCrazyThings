@@ -99,7 +99,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			set => Projectile.localAI[0] = value;
 		}
 
-		public string AssetPrefix => $"AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/{FolderName}/";
+		public string AssetPrefix => $"{GoblinUnderlingAssetsSystem.assetPath}/{FolderName}/";
 
 		public override string Texture => AssetPrefix + currentClass + "_0";
 
@@ -210,6 +210,12 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			float scale = Projectile.scale;
 			Main.EntitySpriteDraw(texture, center, sourceRect, color, rotation, drawOrigin, scale, spriteEffects, 0);
 
+			if (ClientConfig.Instance.GoblinUnderlingVisibleRocketBoots && GetBootsDrawParams(out Texture2D bootsTexture, out Rectangle bootsSourceRect))
+			{
+				Vector2 bootsDrawOrigin = drawOrigin; //Made to be the same size
+				Main.EntitySpriteDraw(bootsTexture, center, bootsSourceRect, color, rotation, bootsDrawOrigin, scale, spriteEffects, 0);
+			}
+
 			if (currentClass == GoblinUnderlingClass.Melee)
 			{
 				if (MeleeAttacking || RangedAttacking && ((GoblinUnderlingMeleeTierStats)tierStats).showMeleeDuringRanged)
@@ -239,6 +245,58 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			}
 
 			return false;
+		}
+
+		private static int GetBootsFrame()
+		{
+			return GoblinUnderlingTierSystem.CurrentTier switch
+			{
+				GoblinUnderlingProgressionTierStage.PreBoss or GoblinUnderlingProgressionTierStage.EoC => 0,
+				GoblinUnderlingProgressionTierStage.Evil => 1,
+				GoblinUnderlingProgressionTierStage.Skeletron or GoblinUnderlingProgressionTierStage.WoF => 2,
+				GoblinUnderlingProgressionTierStage.Mech or GoblinUnderlingProgressionTierStage.Plantera => 3,
+				GoblinUnderlingProgressionTierStage.Cultist => 4,
+				_ => -1, //Should never happen
+			};
+		}
+
+		private int GetBootsFrameHorizontal()
+		{
+			return currentClass == GoblinUnderlingClass.Melee && FolderName == "Eager" ? 1 : 0;
+		}
+
+		private bool GetBootsDrawParams(out Texture2D bootsTexture, out Rectangle sourceRect)
+		{
+			bootsTexture = null;
+			sourceRect = Rectangle.Empty;
+			if (!Flying)
+			{
+				return false;
+			}
+
+			if (GoblinUnderlingTierSystem.CurrentTier == GoblinUnderlingProgressionTierStage.Cultist && currentClass == GoblinUnderlingClass.Magic)
+			{
+				return false;
+			}
+
+			if (FolderName == "Serious" && currentClass == GoblinUnderlingClass.Magic)
+			{
+				return false;
+			}
+
+			int frame = GetBootsFrame();
+			if (frame == -1)
+			{
+				return false;
+			}
+
+			bootsTexture = GoblinUnderlingAssetsSystem.RocketBootsAsset.Value;
+			const int BootsFrameCount = 5;
+			const int BootsFrameCountHorizontal = 2;
+			int frameX = GetBootsFrameHorizontal();
+			sourceRect = bootsTexture.Frame(BootsFrameCountHorizontal, BootsFrameCount, frameX, frame);
+
+			return true;
 		}
 
 		private bool GetBowDrawParams(Vector2 drawCenter, Rectangle sourceRect, SpriteEffects spriteEffects, float attackAngle,
@@ -1402,7 +1460,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 					{
 						dirOffset = -4;
 					}
-					Vector2 dustOrigin = Projectile.Bottom + new Vector2(dirOffset, -4) - Projectile.velocity.SafeNormalize(Vector2.Zero) * 2;
+					Vector2 dustOrigin = Projectile.Bottom + new Vector2(dirOffset, -2) - Projectile.velocity.SafeNormalize(Vector2.Zero) * 2;
 
 					for (int i = 0; i < 2; i++)
 					{

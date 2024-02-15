@@ -2954,8 +2954,13 @@ Mods: {
 				}
 
 				GoblinUnderlingVisibleArmor: {
-					Label: Прогрессивная броня
-					Tooltip: Показывать развитие брони
+					Label: Развитие брони
+					Tooltip: Показывать развитие брони, связанное с продвижением по игре
+				}
+
+				GoblinUnderlingVisibleRocketBoots: {
+					Label: Реактивные сапоги
+					Tooltip: Показывать реактивные сапоги (с учётом прогреса) при полёте
 				}
 
 				GoblinUnderlingChatterFreq: {

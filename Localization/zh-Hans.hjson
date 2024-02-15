@@ -2955,8 +2955,13 @@ Mods: {
 				}
 
 				GoblinUnderlingVisibleArmor: {
-					Label: 装备进度
-					Tooltip: 启用后显示装备进度
+					Label: 盔甲进度
+					Tooltip: 启用后显示盔甲进度
+				}
+
+				GoblinUnderlingVisibleRocketBoots: {
+					Label: 火箭靴
+					Tooltip: 在飞行时显示火箭靴（随进度变化）
 				}
 
 				GoblinUnderlingChatterFreq: {

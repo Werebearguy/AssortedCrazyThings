@@ -17,12 +17,15 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 	[Autoload(Side = ModSide.Client)]
 	public class GoblinUnderlingAssetsSystem : AssSystem
 	{
+		public static readonly string assetPath = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings";
+
 		public static Dictionary<GoblinUnderlingClass, int> BodyAssetFrameCounts { get; private set; }
 		public static Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>> BodyAssets { get; private set; }
 		public static Dictionary<int, Asset<Texture2D>[]> RangedArmAssets { get; private set; }
 		private static Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]> WeaponAssets { get; set; }
 		private static Dictionary<GoblinUnderlingWeaponType, List<int>> HasNoWeaponAssets { get; set; }
 		public static Dictionary<int, string> AssetPrefixes { get; private set; }
+		public static Asset<Texture2D> RocketBootsAsset { get; private set; }
 
 		/// <summary>
 		/// Can return null if no weapon exists for the given type and index
@@ -64,6 +67,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			BodyAssets = new Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>>();
 			RangedArmAssets = new Dictionary<int, Asset<Texture2D>[]>();
 			WeaponAssets = new Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]>();
+			RocketBootsAsset = ModContent.Request<Texture2D>($"{assetPath}/RocketBoots");
 			HasNoWeaponAssets = new Dictionary<GoblinUnderlingWeaponType, List<int>>();
 
 			var tiers = GoblinUnderlingTierSystem.GetTiers();
@@ -133,6 +137,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			BodyAssets = null;
 			RangedArmAssets = null;
 			WeaponAssets = null;
+			RocketBootsAsset = null;
 		}
 	}
 }

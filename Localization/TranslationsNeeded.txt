@@ -1,8 +1,8 @@
-en-US, 1525/1526, 100%, missing 1
-de-DE, 0/1526, 0%, missing 1526
-fr-FR, 0/1526, 0%, missing 1526
-es-ES, 0/1526, 0%, missing 1526
-ru-RU, 1526/1526, 100%, missing 0
-zh-Hans, 1128/1526, 74%, missing 398
-pt-BR, 0/1526, 0%, missing 1526
-pl-PL, 0/1526, 0%, missing 1526
+en-US, 1527/1528, 100%, missing 1
+de-DE, 0/1528, 0%, missing 1528
+fr-FR, 0/1528, 0%, missing 1528
+es-ES, 0/1528, 0%, missing 1528
+ru-RU, 1528/1528, 100%, missing 0
+zh-Hans, 1130/1528, 74%, missing 398
+pt-BR, 0/1528, 0%, missing 1528
+pl-PL, 0/1528, 0%, missing 1528

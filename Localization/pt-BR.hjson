@@ -2958,6 +2958,11 @@ Mods: {
 					// Tooltip: Enable to show armor progression
 				}
 
+				GoblinUnderlingVisibleRocketBoots: {
+					// Label: Rocket Boots
+					// Tooltip: Enable to show rocket boots (with progression) while flying
+				}
+
 				GoblinUnderlingChatterFreq: {
 					// Label: Dialogue frequency
 					// Tooltip: Control how often this minion will display dialogue (in percent). 0 for off

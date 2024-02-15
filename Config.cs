@@ -214,6 +214,10 @@ namespace AssortedCrazyThings
 		[BackgroundColor(125, 217, 124)]
 		public bool GoblinUnderlingVisibleArmor { get; set; }
 
+		[DefaultValue(true)]
+		[BackgroundColor(125, 217, 124)]
+		public bool GoblinUnderlingVisibleRocketBoots { get; set; }
+
 		public const int GoblinUnderlingChatterFreq_Min = 0;
 		public const int GoblinUnderlingChatterFreq_Max = 500;
 		[DefaultValue(100)]
