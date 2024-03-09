@@ -9,7 +9,7 @@ Minor update to flesh out some things
 
 * ADDITIONS:
     * Pets
-        * Dog Lover's Badge now has an AoMM version with a different appearance
+        * Woby now has an AoMM version with a different appearance
     * Pet Vanity
         * Added new appearances to several pets, found when using the Costume Suitcase
             * Ocean Slime (dedicated to GodHybrid)
