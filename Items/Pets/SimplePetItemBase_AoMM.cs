@@ -15,9 +15,9 @@ namespace AssortedCrazyThings.Items.Pets
 	public abstract class SimplePetItemBase_AoMM<T> : SimplePetItemBase where T : SimplePetItemBase
 	{
 		public virtual int BaseItemType => ModContent.ItemType<T>();
-		public ModItem BaseModItem => ItemLoader.GetItem(BaseItemType);
+		public T BaseModItem => (T)ItemLoader.GetItem(BaseItemType);
 
-		public override int PetType => (BaseModItem as T).PetType;
+		public override int PetType => BaseModItem.PetType;
 
 		//Use base item texture
 		public override string Texture => BaseModItem.Texture;

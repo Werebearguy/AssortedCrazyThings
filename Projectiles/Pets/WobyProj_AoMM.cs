@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using System;
@@ -8,8 +9,8 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-	[Content(ContentType.DroppedPets)]
-	public class WobyProj : SimplePetProjBase
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class WobyProj_AoMM : SimplePetProjBase
 	{
 		private int frame2Counter = 0;
 		private int frame2 = 0;
@@ -20,20 +21,31 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 11;
 			Main.projPet[Projectile.type] = true;
 
-			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(5, 11 - 5, 6)
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(4, 11 - 5, 5)
 				.WhenNotSelected(0, 4, 6)
-				.WithOffset(-6f, 0f)
+				.WithOffset(-6f, -1f)
 				.WithSpriteDirection(-1);
+
+			AmuletOfManyMinionsApi.RegisterGroundedPet(this, ModContent.GetInstance<WobyBuff_AoMM>(), null);
 		}
 
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.BabyGrinch);
 			AIType = ProjectileID.BabyGrinch;
+			//Height and width kept the same as original pet but damage hitbox is adjusted
 			Projectile.width = 38;
 			Projectile.height = 38;
 
-			DrawOriginOffsetY = 4;
+			DrawOriginOffsetY = -14;
+			DrawOffsetX = -20;
+		}
+
+		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		{
+			int bottom = hitbox.Bottom;
+			hitbox.Inflate(6, 4);
+			hitbox.Y = bottom - hitbox.Height;
 		}
 
 		public override bool PreAI()
@@ -52,27 +64,11 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			PetPlayer modPlayer = player.GetModPlayer<PetPlayer>();
 			if (player.dead)
 			{
-				modPlayer.Woby = false;
+				modPlayer.Woby_AoMM = false;
 			}
-			if (modPlayer.Woby)
+			if (modPlayer.Woby_AoMM)
 			{
 				Projectile.timeLeft = 2;
-			}
-
-			if (Main.myPlayer == Projectile.owner)
-			{
-				//Kill if aomm version exists
-				for (int i = 0; i < Main.maxProjectiles; i++)
-				{
-					Projectile proj = Main.projectile[i];
-
-					if (proj.active && proj.owner == Projectile.owner && proj.type == ModContent.ProjectileType<WobyProj_AoMM>())
-					{
-						Projectile.Kill();
-						player.ClearBuff(ModContent.BuffType<WobyBuff>());
-						return;
-					}
-				}
 			}
 		}
 
@@ -100,7 +96,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 
 		private void GetFrame()
 		{
-			//Frames: Idle, Idle, Idle, Idle, Jump / Fly, Walk, Walk, Walk, Walk, Walk, Walk
+			//Frames: Idle, Idle, Idle, Idle, Walk, Walk, Walk, Walk, Walk, Walk, Jump / Fly
 			if (!InAir) //not flying
 			{
 				if (Projectile.velocity.Y == 0f)
@@ -124,14 +120,14 @@ namespace AssortedCrazyThings.Projectiles.Pets
 					{
 						int increase = Math.Clamp((int)(3 * xAbs), 2, 3);
 						frame2Counter += increase;
-						if (frame2Counter > 8)
+						if (frame2Counter > 7)
 						{
 							frame2++;
 							frame2Counter = 0;
 						}
-						if (frame2 < 5 || frame2 > 10) //frame 5 to 10 is running
+						if (frame2 < 4 || frame2 > 9) //frame 4 to 9 is running
 						{
-							frame2 = 5;
+							frame2 = 4;
 						}
 					}
 					else
@@ -143,13 +139,13 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				else if (Projectile.velocity.Y != 0f)
 				{
 					frame2Counter = 0;
-					frame2 = 4;
+					frame2 = 10;
 				}
 			}
 			else //flying
 			{
 				frame2Counter = 0;
-				frame2 = 4;
+				frame2 = 10;
 			}
 		}
 	}

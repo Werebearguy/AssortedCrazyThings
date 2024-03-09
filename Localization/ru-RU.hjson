@@ -2736,6 +2736,7 @@ Mods: {
 			}
 
 			WobyProj.DisplayName: Воби
+			// WobyProj_AoMM.DisplayName: Big Woby
 
 			YoungHarpyProj: {
 				DisplayName: Молодая гарпия

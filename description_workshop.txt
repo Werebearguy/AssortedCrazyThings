@@ -41,7 +41,7 @@ Mod Contents:
 
 Cross-Mod Compatibility:
 [list]
-    [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]"The Amulet of Many Minions"[/url] : 62 of our vanity pets can be turned into minions if this mod is enabled! For more detailed information, including what each pet does when converted, please see our wiki page [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Cross-Mod-Content#the-amulet-of-many-minions]here[/url].
+    [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2565770836]"The Amulet of Many Minions"[/url] : 63 of our vanity pets can be turned into minions if this mod is enabled! For more detailed information, including what each pet does when converted, please see our wiki page [url=https://github.com/Werebearguy/AssortedCrazyThings/wiki/Cross-Mod-Content#the-amulet-of-many-minions]here[/url].
 [/list]
 
 Other Links:

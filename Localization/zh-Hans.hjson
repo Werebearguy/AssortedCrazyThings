@@ -2737,6 +2737,7 @@ Mods: {
 			}
 
 			WobyProj.DisplayName: 沃比
+			// WobyProj_AoMM.DisplayName: Big Woby
 
 			YoungHarpyProj: {
 				DisplayName: 幼年鸟妖

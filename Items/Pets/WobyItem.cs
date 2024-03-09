@@ -20,5 +20,11 @@ namespace AssortedCrazyThings.Items.Pets
 		}
 	}
 
-	//TODO aomm form
+	[Content(ContentType.AommSupport | ContentType.DroppedPets)]
+	public class WobyItem_AoMM : SimplePetItemBase_AoMM<WobyItem>
+	{
+		public override int PetType => ModContent.ProjectileType<WobyProj_AoMM>();
+
+		public override int BuffType => ModContent.BuffType<WobyBuff_AoMM>();
+	}
 }

@@ -12,11 +12,11 @@ namespace AssortedCrazyThings.Buffs.Pets
 	public abstract class SimplePetBuffBase_AoMM<T> : SimplePetBuffBase where T : SimplePetBuffBase
 	{
 		public virtual int BaseBuffType => ModContent.BuffType<T>();
-		public ModBuff BaseModBuff => BuffLoader.GetBuff(BaseBuffType);
+		public T BaseModBuff => (T)BuffLoader.GetBuff(BaseBuffType);
 
-		public override int PetType => (BaseModBuff as T).PetType;
+		public override int PetType => BaseModBuff.PetType;
 
-		public override ref bool PetBool(Player player) => ref (BaseModBuff as T).PetBool(player);
+		public override ref bool PetBool(Player player) => ref BaseModBuff.PetBool(player);
 
 		public override void Update(Player player, ref int buffIndex) => BaseModBuff.Update(player, ref buffIndex);
 

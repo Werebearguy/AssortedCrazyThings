@@ -160,6 +160,7 @@ namespace AssortedCrazyThings
 		public bool CuteLamiaPet = false;
 		public bool TorchGodLightPet = false;
 		public bool Woby = false;
+		public bool Woby_AoMM = false;
 		//ALTERNATE
 		//public bool ClassName = false;
 
@@ -262,6 +263,7 @@ namespace AssortedCrazyThings
 			CuteLamiaPet = false;
 			TorchGodLightPet = false;
 			Woby = false;
+			Woby_AoMM = false;
 			//ALTERNATE
 			//ClassName = false;
 		}

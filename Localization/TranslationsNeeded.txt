@@ -1,8 +1,8 @@
-en-US, 1532/1532, 100%, missing 0
-de-DE, 0/1532, 0%, missing 1532
-fr-FR, 0/1532, 0%, missing 1532
-es-ES, 0/1532, 0%, missing 1532
-ru-RU, 1528/1532, 100%, missing 4
-zh-Hans, 1130/1532, 74%, missing 402
-pt-BR, 0/1532, 0%, missing 1532
-pl-PL, 0/1532, 0%, missing 1532
+en-US, 1533/1533, 100%, missing 0
+de-DE, 0/1533, 0%, missing 1533
+fr-FR, 0/1533, 0%, missing 1533
+es-ES, 0/1533, 0%, missing 1533
+ru-RU, 1528/1533, 100%, missing 5
+zh-Hans, 1130/1533, 74%, missing 403
+pt-BR, 0/1533, 0%, missing 1533
+pl-PL, 0/1533, 0%, missing 1533
