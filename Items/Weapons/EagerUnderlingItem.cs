@@ -1,9 +1,7 @@
-using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Buffs;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings;
 using AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings.Eager;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,6 +13,11 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override int ProjType => ModContent.ProjectileType<EagerUnderlingProj>();
 
 		public override int BuffType => ModContent.BuffType<EagerUnderlingBuff>();
+
+		public override void SafeSetStaticDefaults()
+		{
+			ItemID.Sets.ShimmerTransformToItem[Item.type] = ModContent.ItemType<SeriousUnderlingItem>();
+		}
 
 		public override void SafeSetDefaults()
 		{
