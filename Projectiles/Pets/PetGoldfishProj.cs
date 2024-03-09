@@ -232,7 +232,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 			{
 				Projectile.ai[0] = 1;
 			}
-			Projectile.direction = (int)-Projectile.ai[0];
+			Projectile.direction = (int)Projectile.ai[0];
 			Projectile.spriteDirection = Projectile.direction;
 
 			Projectile.rotation = Projectile.velocity.X * 0.05f;
@@ -331,7 +331,9 @@ namespace AssortedCrazyThings.Projectiles.Pets
 				Projectile.timeLeft = 2;
 			}
 
-			bool desiredSwimming = player.wet;
+			AssAI.TeleportIfTooFar(Projectile, player.Center);
+
+			bool desiredSwimming = player.wet || Projectile.wet && didZephyrfishAILastTick;
 
 			if (AmuletOfManyMinionsApi.IsActive(this) && AmuletOfManyMinionsApi.IsAttacking(this))
 			{

@@ -1062,7 +1062,7 @@ namespace AssortedCrazyThings
 
 		public static CircleUIConf PetGoldfishConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "Crimson", "Corruption", "Bunny", "Ghostfish" };
+			List<string> tooltips = new List<string>() { "Default", "Corruption", "Crimson", "Bunny", "Ghostfish" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<PetGoldfishProj>(), tooltips);
 		}
