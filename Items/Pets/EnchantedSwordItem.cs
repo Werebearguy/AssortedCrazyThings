@@ -23,9 +23,4 @@ namespace AssortedCrazyThings.Items.Pets
 			CreateRecipe(1).AddIngredient(ItemID.EnchantedSword, 1).AddTile(TileID.DemonAltar).Register();
 		}
 	}
-
-	public class EnchantedSwordItem_AoMM : SimplePetItemBase_AoMM<EnchantedSwordItem>
-	{
-		public override int BuffType => ModContent.BuffType<EnchantedSwordBuff_AoMM>();
-	}
 }
