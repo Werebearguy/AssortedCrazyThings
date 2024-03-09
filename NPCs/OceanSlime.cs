@@ -3,7 +3,6 @@ using AssortedCrazyThings.NPCs.DropConditions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -15,7 +14,7 @@ namespace AssortedCrazyThings.NPCs
 	[Content(ContentType.HostileNPCs)]
 	public class OceanSlime : AssNPC
 	{
-		private const int TotalNumberOfThese = 4;
+		private const int TotalNumberOfThese = 9;
 
 		public override string Texture
 		{
@@ -61,8 +60,14 @@ namespace AssortedCrazyThings.NPCs
 				1 => new Color(217, 216, 255, 100),
 				2 => new Color(98, 148, 143, 100),
 				3 => new Color(254, 180, 246, 100),
+				4 => new Color(254, 180, 246, 100),
+				5 => new Color(123, 151, 237, 100),
+				6 => new Color(136, 226, 255, 100),
+				7 => new Color(228, 215, 70, 100),
+				8 => new Color(189, 148, 86, 100),
 				_ => new Color(65, 193, 247, 100),
 			};
+
 			if (NPC.life > 0)
 			{
 				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100f; i++)
@@ -86,13 +91,22 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			AddAppearanceLoot(npcLoot, 0, ItemID.Gel);
-			AddAppearanceLoot(npcLoot, 1, ItemID.BlackInk);
-			AddAppearanceLoot(npcLoot, 2, ItemID.SharkFin);
-			AddAppearanceLoot(npcLoot, 3, ItemID.PinkGel);
+			int total = TotalNumberOfThese;
+			AddAppearanceLoot(npcLoot, 0, ItemID.Gel, total);
+			AddAppearanceLoot(npcLoot, 1, ItemID.BlackInk, total);
+			AddAppearanceLoot(npcLoot, 2, ItemID.SharkFin, total);
+			AddAppearanceLoot(npcLoot, 3, ItemID.PinkGel, total);
+
+			int shrimp = ItemID.Shrimp;
+			int shrimpAmount = 5;
+			for (int i = 5; i < total; i++)
+			{
+				AddAppearanceLoot(npcLoot, i, shrimp, total, false);
+			}
+			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition(MatchAppearanceCondition.DescriptionText), shrimp, chanceDenominator: total, chanceNumerator: shrimpAmount));
 		}
 
-		private static void AddAppearanceLoot(NPCLoot npcLoot, int index, int itemID)
+		private static void AddAppearanceLoot(NPCLoot npcLoot, int index, int itemID, int dummyTotal, bool addDummy = true)
 		{
 			//Actual drop
 			var dropRule = new LeadingConditionRule(new MatchAppearanceCondition(1, index));
@@ -100,7 +114,10 @@ namespace AssortedCrazyThings.NPCs
 			npcLoot.Add(dropRule);
 
 			//Dummy for bestiary
-			npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition(MatchAppearanceCondition.DescriptionText), itemID, chanceDenominator: 4));
+			if (addDummy)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(new NeverTrueWithDescriptionCondition(MatchAppearanceCondition.DescriptionText), itemID, chanceDenominator: dummyTotal));
+			}
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

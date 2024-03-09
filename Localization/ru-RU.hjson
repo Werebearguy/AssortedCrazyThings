@@ -2609,6 +2609,11 @@ Mods: {
 				StupidHat.Tooltip: Дурацкая шляпа
 				GnarlyGrin.Tooltip: Хищная улыба
 				FlippedJelly.Tooltip: Желе наоборот
+				// AxolotlLucy.Tooltip: Axolotl (Lucy)
+				// AxolotlBlue.Tooltip: Axolotl (Blue)
+				// AxolotlCyan.Tooltip: Axolotl (Cyan)
+				// AxolotlYellow.Tooltip: Axolotl (Yellow)
+				// AxolotlBrown.Tooltip: Axolotl (Brown)
 			}
 
 			PetCultistProj: {

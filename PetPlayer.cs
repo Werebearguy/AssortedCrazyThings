@@ -1039,7 +1039,7 @@ namespace AssortedCrazyThings
 
 		public static CircleUIConf GetOceanSlimeConf(bool loading)
 		{
-			List<string> tooltips = new List<string>() { "Default", "StupidHat", "GnarlyGrin", "FlippedJelly" };
+			List<string> tooltips = new List<string>() { "Default", "StupidHat", "GnarlyGrin", "FlippedJelly", "AxolotlLucy", "AxolotlBlue", "AxolotlCyan", "AxolotlYellow", "AxolotlBrown" };
 
 			return CircleUIHandler.PetConf(ModContent.ProjectileType<OceanSlimeProj>(), tooltips, new Vector2(1f, -4f));
 		}

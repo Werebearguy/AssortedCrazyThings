@@ -2609,6 +2609,11 @@ Mods: {
 				StupidHat.Tooltip: Stupid Hat
 				GnarlyGrin.Tooltip: Gnarly Grin
 				FlippedJelly.Tooltip: Flipped Jelly
+				AxolotlLucy.Tooltip: Axolotl (Lucy)
+				AxolotlBlue.Tooltip: Axolotl (Blue)
+				AxolotlCyan.Tooltip: Axolotl (Cyan)
+				AxolotlYellow.Tooltip: Axolotl (Yellow)
+				AxolotlBrown.Tooltip: Axolotl (Brown)
 			}
 
 			PetCultistProj: {
