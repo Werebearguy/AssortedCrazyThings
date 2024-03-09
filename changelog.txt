@@ -1,7 +1,26 @@
 v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
 Learn more at the [url={ModHomepage}]homepage[/url]
 
-Hotfix
+Minor update to flesh out some things
 
 * FIXES:
-    * Fixed Wyvern Campfire and Star Rod not dropping when turned off
+    * Fixed Possessed Goldfish name swap on "Crimson" and "Corruption" alternate costumes
+    * Fixed Possessed Goldfish facing the wrong way when swimming
+
+* ADDITIONS:
+    * Pets
+        * Dog Lover's Badge now has an AoMM version with a different appearance
+    * Pet Vanity
+        * Added new appearances to several pets, found when using the Costume Suitcase
+            * Ocean Slime (dedicated to GodHybrid)
+
+* CHANGES:
+    * Sigil of the Talon now prevents the grappling hook from latching onto a tile if atleast one enemy was hit
+    * Goblin Underling items can now be transmuted into one another via Shimmer
+        * Satchel of Goodies -> Well-Loved Doll -> Dented Coin -> repeat
+    * Goblin Underlings now have visible rocket boots displayed based on the progression tier. This can be disabled in the configuration
+    * Enchanted Sword (vanity pet) is now a light pet and emits light
+        * Updated its glow to be more visually pleasing
+        * As a consequence, it loses its AoMM version
+    * Modified the sprites for the following Minions:
+        * Drone Controller drones
