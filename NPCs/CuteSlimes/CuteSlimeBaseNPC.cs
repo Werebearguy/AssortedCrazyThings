@@ -51,7 +51,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 
 		public sealed override void SetDefaults()
 		{
-			NPC.friendly = true;
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.width = 28;
 			NPC.height = 33;
@@ -61,7 +60,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			NPC.rarity = 1;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 25f;
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
@@ -76,16 +74,6 @@ namespace AssortedCrazyThings.NPCs.CuteSlimes
 			{
 				NPC.height -= (int)((NPC.scale - 1f) * NPC.height);
 			}
-		}
-
-		public override bool? CanBeHitByItem(Player player, Item item)
-		{
-			return player.CanBeHitByItemCritterLike(NPC);
-		}
-
-		public override bool? CanBeHitByProjectile(Projectile projectile)
-		{
-			return projectile.CanBeHitByProjectileCritterLike(NPC);
 		}
 
 		public override void HitEffect(NPC.HitInfo hit)

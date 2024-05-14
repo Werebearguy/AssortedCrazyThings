@@ -22,6 +22,7 @@ namespace AssortedCrazyThings.NPCs
 			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
+
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
@@ -34,25 +35,13 @@ namespace AssortedCrazyThings.NPCs
 			NPC.lifeMax = 5;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 25f;
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
 			AnimationType = NPCID.ToxicSludge;
-			NPC.friendly = true;
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.alpha = 175;
 			NPC.color = new Color(213, 196, 197, 100);
 			NPC.catchItem = ModContent.ItemType<FairySlimeItem>();
-		}
-
-		public override bool? CanBeHitByItem(Player player, Item item)
-		{
-			return player.CanBeHitByItemCritterLike(NPC);
-		}
-
-		public override bool? CanBeHitByProjectile(Projectile projectile)
-		{
-			return projectile.CanBeHitByProjectileCritterLike(NPC);
 		}
 
 		public override void HitEffect(NPC.HitInfo hit)

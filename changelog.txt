@@ -1,26 +1,10 @@
 v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
 Learn more at the [url={ModHomepage}]homepage[/url]
 
-Minor update to flesh out some things
+TBD
 
 * FIXES:
-    * Fixed Possessed Goldfish name swap on "Crimson" and "Corruption" alternate costumes
-    * Fixed Possessed Goldfish facing the wrong way when swimming
-
-* ADDITIONS:
-    * Pets
-        * Woby now has an AoMM version with a different appearance
-    * Pet Vanity
-        * Added new appearances to several pets, found when using the Costume Suitcase
-            * Ocean Slime (dedicated to GodHybrid)
+    * Fixed Young Harpy being damageable even with Guide to Critter Companionship active
 
 * CHANGES:
-    * Sigil of the Talon now prevents the grappling hook from latching onto a tile if atleast one enemy was hit
-    * Goblin Underling items can now be transmuted into one another via Shimmer
-        * Satchel of Goodies -> Well-Loved Doll -> Dented Coin -> repeat
-    * Goblin Underlings now have visible rocket boots displayed based on the progression tier. This can be disabled in the configuration
-    * Enchanted Sword (vanity pet) is now a light pet and emits light
-        * Updated its glow to be more visually pleasing
-        * As a consequence, it loses its AoMM version
-    * Modified the sprites for the following Minions:
-        * Drone Controller drones
+    * Changed Animated Tome, Chunky, Meatball, Horned Slime, Ocean Slime, Sting Slime, Turtle Slime to be actual critters with 5 health and 0 damage

@@ -18,19 +18,20 @@ namespace AssortedCrazyThings.NPCs
 			Main.npcCatchable[NPC.type] = true;
 
 			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+
+			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
 		public override void SetDefaults()
 		{
 			NPC.width = 36;
 			NPC.height = 26;
-			NPC.damage = 7;
-			NPC.defense = 2;
-			NPC.lifeMax = 20;
-			NPC.dontTakeDamageFromHostiles = true; //Needed for npcCatchable which aren't friendly by default and deal damage
+			NPC.damage = 0;
+			NPC.defense = 0;
+			NPC.lifeMax = 5;
+			NPC.dontTakeDamageFromHostiles = true;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 20f;
 			NPC.knockBackResist = 0.25f;
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;

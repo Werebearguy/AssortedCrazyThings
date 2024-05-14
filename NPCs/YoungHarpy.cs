@@ -27,6 +27,8 @@ namespace AssortedCrazyThings.NPCs
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
+
+			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
 		public override void SetDefaults()
@@ -34,29 +36,17 @@ namespace AssortedCrazyThings.NPCs
 			NPC.width = 30;
 			NPC.height = 30;
 			NPC.damage = 0;
-			NPC.defense = 1;
+			NPC.defense = 0;
 			NPC.lifeMax = 5;
-			NPC.friendly = true;
 			NPC.dontTakeDamageFromHostiles = true;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 60f;
 			NPC.knockBackResist = 0.5f;
 			NPC.aiStyle = 14;
 			NPC.noGravity = true;
 			AIType = NPCID.FlyingSnake;
 			AnimationType = NPCID.FlyingSnake;
 			NPC.catchItem = ModContent.ItemType<YoungHarpyItem>();
-		}
-
-		public override bool? CanBeHitByItem(Player player, Item item)
-		{
-			return player.CanBeHitByItemCritterLike(NPC);
-		}
-
-		public override bool? CanBeHitByProjectile(Projectile projectile)
-		{
-			return projectile.CanBeHitByProjectileCritterLike(NPC);
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

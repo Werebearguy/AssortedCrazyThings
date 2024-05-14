@@ -229,28 +229,6 @@ namespace AssortedCrazyThings.Base
 			return stillAnimating;
 		}
 
-		public static bool? CanBeHitByProjectileCritterLike(this Projectile proj, NPC npc)
-		{
-			if (proj.owner < Main.maxPlayers && !proj.GetOwner().CanNPCBeHitByPlayerOrPlayerProjectile(npc, proj))
-			{
-				return false;
-			}
-
-			if (!proj.friendly && npc.friendly)
-			{
-				return false;
-			}
-
-			//This logic is distinct from vanilla, as we return true and not null
-			return true;
-		}
-
-		public static bool? CanBeHitByItemCritterLike(this Player player, NPC npc)
-		{
-			//This logic is distinct from vanilla, as we return true and not null
-			return true;
-		}
-
 		public static void PrepareDrawnProjDrawing(this Main main, Projectile proj, int shader)
 		{
 			main.PrepareDrawnEntityDrawing(proj, shader, proj.isAPreviewDummy ? Main.UIScaleMatrix : Main.Transform);

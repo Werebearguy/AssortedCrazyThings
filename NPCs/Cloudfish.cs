@@ -27,6 +27,7 @@ namespace AssortedCrazyThings.NPCs
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.Shimmerfly;
+
 			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 			NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[NPC.type] = true;
 		}
@@ -40,7 +41,6 @@ namespace AssortedCrazyThings.NPCs
 			NPC.lifeMax = 5;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 0f;
 			NPC.knockBackResist = 0.25f;
 			NPC.aiStyle = -1; //custom
 			AIType = NPCID.Goldfish;

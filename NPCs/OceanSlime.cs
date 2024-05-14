@@ -33,19 +33,20 @@ namespace AssortedCrazyThings.NPCs
 
 			NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.ShimmerSlime;
 			Items.RoyalGelGlobalItem.RoyalGelNoAggroNPCs.Add(NPC.type);
+
+			NPCID.Sets.CountsAsCritter[NPC.type] = true; //Guide To Critter Companionship
 		}
 
 		public override void SetDefaults()
 		{
 			NPC.width = 36;
 			NPC.height = 36;
-			NPC.damage = 7;
-			NPC.defense = 2;
-			NPC.lifeMax = 25;
-			NPC.dontTakeDamageFromHostiles = true; //Needed for npcCatchable which aren't friendly by default and deal damage
+			NPC.damage = 0;
+			NPC.defense = 0;
+			NPC.lifeMax = 5;
+			NPC.dontTakeDamageFromHostiles = true;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 25f;
 			NPC.knockBackResist = 0.25f;
 			NPC.aiStyle = 1;
 			AIType = NPCID.ToxicSludge;
