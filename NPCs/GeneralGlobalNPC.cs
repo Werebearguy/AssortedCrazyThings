@@ -1,13 +1,10 @@
-using AssortedCrazyThings.Base;
-using AssortedCrazyThings.Base.Data;
 using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.DroneUnlockables;
 using AssortedCrazyThings.Items.Pets;
 using AssortedCrazyThings.Items.Placeable;
-using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DropConditions;
+using AssortedCrazyThings.NPCs.DropRules;
 using Terraria;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,30 +17,15 @@ namespace AssortedCrazyThings.NPCs
 		{
 			if (ContentConfig.Instance.Weapons)
 			{
-				//TODO convert this to a proper drop rule, see OnKill
 				if (npc.type == NPCID.TheDestroyer)
 				{
-					LeadingConditionRule neverDropsRule = new LeadingConditionRule(new NotAllDronePartsUnlockedCondition());
-					neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DroneParts>()));
-					npcLoot.Add(neverDropsRule);
+					npcLoot.Add(new DropLocalPerClientConditionPerPlayer(ModContent.ItemType<DroneParts>(), 1, 1, 1, new NotAllDronePartsUnlockedCondition()));
 				}
 			}
 		}
 
 		public override void OnKill(NPC npc)
 		{
-			if (ContentConfig.Instance.Weapons)
-			{
-				if (npc.type == NPCID.TheDestroyer)
-				{
-					AssUtils.DropItemInstanced(npc, npc.Center, npc.Size, ModContent.ItemType<DroneParts>(),
-					condition: delegate (NPC n, Player player)
-					{
-						return !DroneController.AllUnlocked(player);
-					});
-				}
-			}
-
 			GitgudData.Reset(npc);
 
 			if (npc.boss)

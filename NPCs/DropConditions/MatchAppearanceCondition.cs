@@ -14,11 +14,12 @@ namespace AssortedCrazyThings.NPCs.DropConditions
 
 		public new bool CanDrop(DropAttemptInfo info)
 		{
-			if (!info.IsInSimulation)
+			if (info.IsInSimulation)
 			{
-				return base.CanDrop(info);
+				return false;
 			}
-			return false;
+
+			return base.CanDrop(info);
 		}
 
 		public new string GetConditionDescription()

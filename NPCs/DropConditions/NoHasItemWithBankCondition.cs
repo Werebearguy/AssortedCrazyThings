@@ -30,8 +30,14 @@ namespace AssortedCrazyThings.NPCs.DropConditions
 			return !info.player.HasItemWithBanks(itemType);
 		}
 
-		public bool CanShowItemDropInUI() => true;
+		public bool CanShowItemDropInUI()
+		{
+			return true;
+		}
 
-		public string GetConditionDescription() => DescriptionText.Format(Lang.GetItemNameValue(itemType));
+		public string GetConditionDescription()
+		{
+			return DescriptionText.Format(Lang.GetItemNameValue(itemType));
+		}
 	}
 }

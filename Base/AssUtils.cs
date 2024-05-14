@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -483,35 +483,43 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
-		/// Alternative, static version of npc.DropItemInstanced. Checks the playerCondition delegate before syncing/spawning the item
+		/// Alternative version of <see cref="CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0"/>. Checks the condition delegate PER-PLAYER before syncing/spawning the item.
 		/// </summary>
-		public static void DropItemInstanced(NPC npc, Vector2 Position, Vector2 HitboxSize, int itemType, int itemStack = 1, Func<NPC, Player, bool> condition = null, bool interactionRequired = true)
+		public static void DropItemInstanced(DropAttemptInfo info, int itemType, int itemStack = 1, Func<DropAttemptInfo, bool> condition = null, bool interactionRequired = true)
 		{
-			if (itemType > 0)
+			if (itemType <= 0)
 			{
-				if (Main.netMode == NetmodeID.Server)
+				return;
+			}
+
+			NPC npc = info.npc;
+			if (Main.netMode == NetmodeID.Server)
+			{
+				var origInfo = info;
+				int item = Item.NewItem(npc.GetSource_Loot(), npc.getRect(), itemType, itemStack, true);
+				Main.timeItemSlotCannotBeReusedFor[item] = 54000;
+				for (int p = 0; p < Main.maxPlayers; p++)
 				{
-					int item = Item.NewItem(npc.GetSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack, true);
-					Main.timeItemSlotCannotBeReusedFor[item] = 54000;
-					for (int p = 0; p < Main.maxPlayers; p++)
+					if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))
 					{
-						if (Main.player[p].active && (npc.playerInteraction[p] || !interactionRequired))
+						//Manually switch the player instance
+						info = origInfo;
+						info.player = Main.player[p];
+
+						if (condition?.Invoke(info) ?? true)
 						{
-							if (condition != null && condition(npc, Main.player[p]) ||
-								condition == null)
-								NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
+							NetMessage.SendData(MessageID.InstancedItem, p, -1, null, item);
 						}
 					}
-					Main.item[item].active = false;
 				}
-				else if (Main.netMode == NetmodeID.SinglePlayer)
+				Main.item[item].active = false;
+			}
+			else if (Main.netMode == NetmodeID.SinglePlayer)
+			{
+				if (condition?.Invoke(info) ?? true)
 				{
-					if (condition != null && condition(npc, Main.LocalPlayer) ||
-						condition == null)
-
-						Item.NewItem(npc.GetSource_Loot(), (int)Position.X, (int)Position.Y, (int)HitboxSize.X, (int)HitboxSize.Y, itemType, itemStack);
+					CommonCode.DropItem(info, itemType, itemStack);
 				}
-				//npc.value = 0f;
 			}
 		}
 
