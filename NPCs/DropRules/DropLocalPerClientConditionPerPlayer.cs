@@ -4,23 +4,18 @@ using AssortedCrazyThings.Base;
 namespace AssortedCrazyThings.NPCs.DropRules
 {
 	//Copy of DropLocalPerClientAndResetsNPCMoneyTo0 without the moneyto0, and with the condition applying individually per player
-	public class DropLocalPerClientConditionPerPlayer : CommonDrop
+	public class DropLocalPerClientConditionPerPlayer : ItemDropWithConditionRule
 	{
-		public IItemDropRuleCondition condition;
-
 		public DropLocalPerClientConditionPerPlayer(int itemId, int chanceDenominator, int amountDroppedMinimum, int amountDroppedMaximum, IItemDropRuleCondition optionalCondition = null, int chanceNumerator = 1)
-			: base(itemId, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
+			: base(itemId, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, optionalCondition, chanceNumerator)
 		{
-			condition = optionalCondition;
+
 		}
 
 		public override bool CanDrop(DropAttemptInfo info)
 		{
 			//Condition evaluated per-player
-			//if (condition != null)
-			//{
-			//	return condition.CanDrop(info);
-			//}
+			//return base.CanDrop(info);
 
 			return true;
 		}

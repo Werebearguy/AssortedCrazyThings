@@ -1,18 +1,17 @@
-﻿using AssortedCrazyThings.Items.Weapons;
+﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Items.Weapons;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DropConditions
 {
-	public class NotAllDronePartsUnlockedCondition : IItemDropRuleCondition
+	public class NotAllDronePartsUnlockedCondition : IItemDropRuleCondition, IProvideItemConditionDescription
 	{
 		public static LocalizedText DescriptionText { get; private set; }
 
 		public NotAllDronePartsUnlockedCondition()
 		{
-			string category = $"DropConditions.";
-			DescriptionText ??= Language.GetOrRegister(ModContent.GetInstance<AssortedCrazyThings>().GetLocalizationKey($"{category}{GetType().Name}.Description"));
+			DescriptionText ??= AssUtils.GetDropConditionDescription(GetType().Name);
 		}
 
 		public bool CanDrop(DropAttemptInfo info)

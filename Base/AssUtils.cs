@@ -523,6 +523,11 @@ namespace AssortedCrazyThings.Base
 			}
 		}
 
+		public static LocalizedText GetDropConditionDescription(string name)
+		{
+			return Instance.GetLocalization($"DropConditions.{name}.Description");
+		}
+
 		/// <summary>
 		/// Draws the _Highlight texture of this tile if it exists and can be drawn
 		/// </summary>

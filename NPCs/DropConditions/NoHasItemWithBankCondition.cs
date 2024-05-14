@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.NPCs.DropConditions
 {
@@ -16,8 +15,7 @@ namespace AssortedCrazyThings.NPCs.DropConditions
 		{
 			this.itemType = itemType;
 
-			string category = $"DropConditions.";
-			DescriptionText ??= Language.GetOrRegister(ModContent.GetInstance<AssortedCrazyThings>().GetLocalizationKey($"{category}{GetType().Name}.Description"));
+			DescriptionText ??= AssUtils.GetDropConditionDescription(GetType().Name);
 		}
 
 		public bool CanDrop(DropAttemptInfo info)

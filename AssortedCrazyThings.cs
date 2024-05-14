@@ -140,8 +140,7 @@ namespace AssortedCrazyThings
 			}
 
 			//Needs to be initialized early since it's used outside of its own condition
-			string category = $"DropConditions.";
-			MatchAppearanceCondition.DescriptionText = Language.GetOrRegister(ModContent.GetInstance<AssortedCrazyThings>().GetLocalizationKey($"{category}{typeof(MatchAppearanceCondition).Name}.Description"));
+			MatchAppearanceCondition.DescriptionText = AssUtils.GetDropConditionDescription(nameof(MatchAppearanceCondition));
 		}
 
 		private void UnloadMisc()
