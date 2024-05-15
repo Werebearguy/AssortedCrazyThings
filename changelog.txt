@@ -5,6 +5,7 @@ TBD
 
 * FIXES:
     * Fixed Young Harpy being damageable even with Guide to Critter Companionship active
+    * Fixed Infinity Rocket not working with Celebration MK2 and other fancy rocket launchers
 
 * CHANGES:
     * Changed Animated Tome, Chunky, Meatball, Horned Slime, Ocean Slime, Sting Slime, and Turtle Slime to be actual critters with 5 health and 0 damage
