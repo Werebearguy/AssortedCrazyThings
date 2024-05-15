@@ -104,6 +104,7 @@ namespace AssortedCrazyThings.NPCs
 
 		public override void PostAI()
 		{
+			NPC.spriteDirection = NPC.direction;
 			NPC.rotation = NPC.velocity.X * 0.06f;
 
 			if (Main.rand.NextBool(10))
