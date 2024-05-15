@@ -20,7 +20,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
 {
-	class AssortedCrazyThings : Mod
+	public class AssortedCrazyThings : Mod
 	{
 		//Soul item animated textures
 		public const int animatedSoulFrameCount = 6;

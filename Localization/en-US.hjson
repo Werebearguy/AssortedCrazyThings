@@ -1956,7 +1956,7 @@ Mods: {
 				Tooltip:
 					'''
 					Uses gel to fire a stream of cursed flames
-					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					Ignores 15 points of enemy Defense
 					'''
 			}
 

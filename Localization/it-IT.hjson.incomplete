@@ -1955,8 +1955,8 @@ Mods: {
 				// DisplayName: Respiro di Spazmatism
 				/* Tooltip:
 					'''
-					Utilizza la gelatina per sparare un flusso di fiamme maledette
-					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					Utilizza la gel per sparare un flusso di fiamme maledette
+					Ignora 15 punti della difesa nemica
 					''' */
 			}
 

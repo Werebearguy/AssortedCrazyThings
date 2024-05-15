@@ -1957,7 +1957,7 @@ Mods: {
 				Tooltip:
 					'''
 					发射诅咒焰束
-					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					忽略15点敌人防御
 					'''
 			}
 

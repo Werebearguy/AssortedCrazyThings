@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Base
 {
-	static class AssUtils
+	public static class AssUtils
 	{
 		/// <summary>
 		/// The instance of the mod
@@ -72,6 +72,96 @@ namespace AssortedCrazyThings.Base
 			dust.noGravity = true;
 			dust.noLight = true;
 			return dust;
+		}
+
+		public record struct FlamethrowerColors(Color FadeIn, Color Bright, Color Main, Color FadeOut);
+
+		/// <summary>
+		/// Draws the flamethrower projectile. Uses hardcoded values. Copied straight from vanilla DrawProj_Flamethrower
+		/// </summary>
+		public static void DrawFlamethrowerProjectile(Projectile proj, FlamethrowerColors colors)
+		{
+			bool unusedFlag = false && proj.ai[0] == 1f;
+			float timer = proj.localAI[0];
+			float startSlowdown = 60f;
+			float afterSlowdown = 12f;
+			float lifetime = startSlowdown + afterSlowdown;
+			Texture2D value = TextureAssets.Projectile[proj.type].Value;
+			//Original values, dividing G and B by 2 afterwards
+			//Color firstColor = new Color(255, 80, 20, 200);
+			//Color secondColor = new Color(255, 255, 20, 70);
+			//Color thirdColor = Color.Lerp(new Color(255, 80, 20, 100), color2, 0.25f);
+			//Color finalColor = new Color(80, 80, 80, 100);
+			Color firstColor = colors.FadeIn;
+			Color secondColor = colors.Bright;
+			Color thirdColor = Color.Lerp(colors.Main, secondColor, 0.25f);
+			Color finalColor = colors.FadeOut;
+			float firstToSecondSection = 0.35f;
+			float secondToThirdSection = 0.7f;
+			float thirdToFinalSection = 0.85f;
+			float step = (timer > startSlowdown - 10f) ? 0.175f : 0.2f;
+			if (unusedFlag)
+			{
+				firstColor = new Color(95, 120, 255, 200);
+				secondColor = new Color(50, 180, 255, 70);
+				thirdColor = new Color(95, 160, 255, 100);
+				finalColor = new Color(33, 125, 202, 100);
+			}
+
+			int verticalFrames = 7;
+			float afterSlowdownLerp = Utils.Remap(timer, startSlowdown, lifetime, 1f, 0f);
+			float velocityMult = Math.Min(timer, 20f);
+			float timerLerp = Utils.Remap(timer, 0f, lifetime, 0f, 1f);
+			float scaleLerp = Utils.Remap(timerLerp, 0.2f, 0.5f, 0.25f, 1f);
+			Rectangle rectangle = (!unusedFlag) ? value.Frame(1, verticalFrames, 0, 3) : value.Frame(1, verticalFrames, 0, (int)Utils.Remap(timerLerp, 0.5f, 1f, 3f, 5f));
+			if (timerLerp >= 1f)
+			{
+				return;
+			}
+
+			for (int i = 0; i < 2; i++)
+			{
+				for (float j = 1f; j >= 0f; j -= step)
+				{
+					Color transparent = (timerLerp < 0.1f) ? Color.Lerp(Color.Transparent, firstColor, Utils.GetLerpValue(0f, 0.1f, timerLerp, clamped: true)) :
+						((timerLerp < 0.2f) ? Color.Lerp(firstColor, secondColor, Utils.GetLerpValue(0.1f, 0.2f, timerLerp, clamped: true)) :
+						((timerLerp < firstToSecondSection) ? secondColor :
+						((timerLerp < secondToThirdSection) ? Color.Lerp(secondColor, thirdColor, Utils.GetLerpValue(firstToSecondSection, secondToThirdSection, timerLerp, clamped: true)) :
+						((timerLerp < thirdToFinalSection) ? Color.Lerp(thirdColor, finalColor, Utils.GetLerpValue(secondToThirdSection, thirdToFinalSection, timerLerp, clamped: true)) :
+						((!(timerLerp < 1f)) ? Color.Transparent :
+						Color.Lerp(finalColor, Color.Transparent, Utils.GetLerpValue(thirdToFinalSection, 1f, timerLerp, clamped: true)))))));
+					float num14 = (1f - j) * Utils.Remap(timerLerp, 0f, 0.2f, 0f, 1f);
+					Vector2 vector = proj.Center - Main.screenPosition + proj.velocity * -velocityMult * j;
+					Color color5 = transparent * num14;
+					Color color6 = color5;
+					if (!unusedFlag)
+					{
+						//Colors now supplied raw, instead of specific to red flames
+						//color6.G /= 2;
+						//color6.B /= 2;
+						color6.A = (byte)Math.Min(color5.A + 80f * num14, 255f);
+						//Utils.Remap(timer, 20f, fromMax, 0f, 1f);
+					}
+
+					float num15 = 1f / step * (j + 1f);
+					float num16 = proj.rotation + j * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * num15 * 2f;
+					float num17 = proj.rotation - j * MathHelper.PiOver2 - Main.GlobalTimeWrappedHourly * num15 * 2f;
+					switch (i)
+					{
+						case 0:
+							Main.EntitySpriteDraw(value, vector + proj.velocity * -velocityMult * step * 0.5f, rectangle, color6 * afterSlowdownLerp * 0.25f, num16 + MathHelper.PiOver4, rectangle.Size() / 2f, scaleLerp, SpriteEffects.None);
+							Main.EntitySpriteDraw(value, vector, rectangle, color6 * afterSlowdownLerp, num17, rectangle.Size() / 2f, scaleLerp, SpriteEffects.None);
+							break;
+						case 1:
+							if (!unusedFlag)
+							{
+								Main.EntitySpriteDraw(value, vector + proj.velocity * -velocityMult * step * 0.2f, rectangle, color5 * afterSlowdownLerp * 0.25f, num16 + MathHelper.PiOver2, rectangle.Size() / 2f, scaleLerp * 0.75f, SpriteEffects.None);
+								Main.EntitySpriteDraw(value, vector, rectangle, color5 * afterSlowdownLerp, num17 + MathHelper.PiOver2, rectangle.Size() / 2f, scaleLerp * 0.75f, SpriteEffects.None);
+							}
+							break;
+					}
+				}
+			}
 		}
 
 		public static void DrawSkeletronLikeArms(string texString, Vector2 selfPos, Vector2 centerPos, float selfPad = 0f, float centerPad = 0f, float direction = 0f)

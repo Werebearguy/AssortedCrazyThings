@@ -1956,7 +1956,7 @@ Mods: {
 				Tooltip:
 					'''
 					Использует гель, чтобы испускать поток проклятого пламени
-					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					Игнорирует 15 очков защиты врага
 					'''
 			}
 

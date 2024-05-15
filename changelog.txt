@@ -7,4 +7,5 @@ TBD
     * Fixed Young Harpy being damageable even with Guide to Critter Companionship active
 
 * CHANGES:
-    * Changed Animated Tome, Chunky, Meatball, Horned Slime, Ocean Slime, Sting Slime, Turtle Slime to be actual critters with 5 health and 0 damage
+    * Changed Animated Tome, Chunky, Meatball, Horned Slime, Ocean Slime, Sting Slime, and Turtle Slime to be actual critters with 5 health and 0 damage
+    * Changed Breath of Spazmatism to match 1.4.4 Flamethrower visuals and stats. This results in a ~100% buff overall
