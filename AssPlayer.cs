@@ -219,6 +219,7 @@ namespace AssortedCrazyThings
 
 			//Actual data here
 			packet.Write((byte)shieldDroneReduction);
+			packet.Write7BitEncodedInt(empoweringTimer);
 			packet.Write7BitEncodedInt(lastSlainBossTimerSeconds);
 			packet.Write7BitEncodedInt(lastSlainBossType);
 
@@ -230,6 +231,7 @@ namespace AssortedCrazyThings
 		public void ReceiveSyncPlayer(BinaryReader reader)
 		{
 			shieldDroneReduction = reader.ReadByte();
+			empoweringTimer = (short)reader.Read7BitEncodedInt();
 			lastSlainBossTimerSeconds = reader.Read7BitEncodedInt();
 			lastSlainBossType = reader.Read7BitEncodedInt();
 
@@ -246,24 +248,19 @@ namespace AssortedCrazyThings
 		/// </summary>
 		public void ResetEmpoweringTimer(bool fromServer = false)
 		{
-			if (empoweringBuff && !Player.HasBuff(BuffID.ShadowDodge))
+			if (empoweringBuff)
 			{
-				for (int i = 0; i < empoweringTimer / 60; i++)
+				if (Main.netMode != NetmodeID.Server)
 				{
-					Dust dust = Dust.NewDustPerfect(Player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
-					dust.noLight = true;
-					dust.noGravity = true;
-					dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
+					for (int i = 0; i < empoweringTimer / 60; i++)
+					{
+						Dust dust = Dust.NewDustPerfect(Player.Center, 135, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)) + (new Vector2(Main.rand.Next(-1, 1), Main.rand.Next(-1, 1)) * ((6 * empoweringTimer) / empoweringTimerMax)), 26, Color.White, Main.rand.NextFloat(1.5f, 2.4f));
+						dust.noLight = true;
+						dust.noGravity = true;
+						dust.fadeIn = Main.rand.NextFloat(1f, 2.3f);
+					}
 				}
 				empoweringTimer = 0;
-
-				if (Main.netMode == NetmodeID.MultiplayerClient && !fromServer)
-				{
-					ModPacket packet = Mod.GetPacket();
-					packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
-					packet.Write((byte)Player.whoAmI);
-					packet.Send(); //send to server
-				}
 			}
 		}
 
@@ -776,7 +773,7 @@ namespace AssortedCrazyThings
 
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			if (!proj.minion && Main.rand.NextBool(5) || proj.minion && Main.rand.NextBool(25))
+			if (!proj.IsMinionOrSentryRelated && Main.rand.NextBool(5) || proj.IsMinionOrSentryRelated && Main.rand.NextBool(25))
 			{
 				ApplyCandleDebuffs(target);
 			}

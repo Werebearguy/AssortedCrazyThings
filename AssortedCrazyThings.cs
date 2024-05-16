@@ -285,21 +285,6 @@ namespace AssortedCrazyThings
 						GitgudData.RecvChangeCounter(reader);
 					}
 					break;
-				case AssMessageType.ResetEmpoweringTimerpvp:
-					//client and server
-					playerNumber = reader.ReadByte();
-					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-					aPlayer.ResetEmpoweringTimer(fromServer: true);
-
-					//server transmits to others
-					if (Main.netMode == NetmodeID.Server)
-					{
-						ModPacket packet = GetPacket();
-						packet.Write((byte)AssMessageType.ResetEmpoweringTimerpvp);
-						packet.Write((byte)playerNumber);
-						packet.Send(playerNumber); //send to client
-					}
-					break;
 				case AssMessageType.WyvernCampfireKill:
 					npcNumber = reader.ReadByte();
 					if (npcNumber < 0 || npcNumber >= Main.maxNPCs) break;
@@ -378,7 +363,6 @@ namespace AssortedCrazyThings
 		ConvertInertSoulsInventory,
 		GitgudLoadCounters,
 		GitgudChangeCounters,
-		ResetEmpoweringTimerpvp,
 		WyvernCampfireKill,
 		SlainBoss,
 		HarvesterSpawnFromCage,
