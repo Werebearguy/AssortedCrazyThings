@@ -72,7 +72,7 @@ namespace AssortedCrazyThings.Base.Netcode
 
 				MPPacket packet = Packets[ID];
 
-				AssUtils.Print($"receiving: {packet.GetType().Name}");
+				//AssUtils.Print($"receiving: {packet.GetType().Name} from {sender}");
 
 				packet.Receive(reader, sender);
 			}
@@ -99,7 +99,7 @@ namespace AssortedCrazyThings.Base.Netcode
 			Type type = packet.GetType(); //not typeof(T) as the shortcut exists in the MPPacket class and that doesn't exist anywhere
 			ModPacket modPacket = Mod.GetPacket();
 
-			AssUtils.Print($"sending: {type.Name} to {to} from {from}");
+			//AssUtils.Print($"sending: {type.Name} to {to} from {from}");
 
 			modPacket.Write((byte)ID[type]); //Write the ID first
 			packet.Send(modPacket); //Let the packet write its data
