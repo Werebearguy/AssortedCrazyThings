@@ -1,4 +1,5 @@
 ﻿using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.Projectiles.NPCs.Bosses.Harvester;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -121,11 +122,7 @@ namespace AssortedCrazyThings.Tiles
 
 			if (Main.netMode != NetmodeID.SinglePlayer && request)
 			{
-				ModPacket packet = AssUtils.Instance.GetPacket();
-				packet.Write((byte)AssMessageType.HarvesterSpawnFromCage);
-				packet.Write((byte)player.whoAmI);
-				packet.WriteVector2(spawnPos);
-				packet.Send();
+				new HarvesterSpawnFromCagePacket(player, spawnPos).Send();
 			}
 		}
 	}

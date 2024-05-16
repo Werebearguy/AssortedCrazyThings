@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Handlers.OutOfCombatHandler;
+using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.Buffs.Mounts;
 using AssortedCrazyThings.Effects;
 using AssortedCrazyThings.Items;
@@ -177,7 +178,7 @@ namespace AssortedCrazyThings
 		{
 			AssPlayer clone = clientClone as AssPlayer;
 			clone.shieldDroneReduction = shieldDroneReduction;
-			//Needs syncing because spawning drone parts depends on this serverside (See GeneralGlobalNPC.NPCLoot)
+			//Needs syncing because spawning drone parts depends on this serverside (NotAllDronePartsUnlockedCondition)
 			clone.droneControllerUnlocked = droneControllerUnlocked;
 			//Needs syncing because correct balloon needs to be displayed for other players
 			clone.selectedSillyBalloonType = selectedSillyBalloonType;
@@ -190,42 +191,37 @@ namespace AssortedCrazyThings
 				clone.droneControllerUnlocked != droneControllerUnlocked ||
 				clone.selectedSillyBalloonType != selectedSillyBalloonType)
 			{
-				SendClientChangesPacket();
+				new ClientChangesAssPlayerPacket(Player).Send();
 			}
 		}
 
-		/// <summary>
-		/// Things that are sent to the server that are needed on-change
-		/// </summary>
-		public void SendClientChangesPacket(int toClient = -1, int ignoreClient = -1)
+		public void SendClientChangesPacket(BinaryWriter writer)
 		{
-			if (Main.netMode != NetmodeID.SinglePlayer)
-			{
-				ModPacket packet = Mod.GetPacket();
-				packet.Write((byte)AssMessageType.ClientChangesAssPlayer);
-				packet.Write((byte)Player.whoAmI);
-				packet.Write((byte)shieldDroneReduction);
-				packet.Write((byte)droneControllerUnlocked);
-				packet.Write((byte)selectedSillyBalloonType);
-				packet.Send(toClient, ignoreClient);
-			}
+			writer.Write((byte)shieldDroneReduction);
+			writer.Write((byte)droneControllerUnlocked);
+			writer.Write((byte)selectedSillyBalloonType);
+		}
+
+		public void ReceiveClientChangesPacket(BinaryReader reader)
+		{
+			shieldDroneReduction = reader.ReadByte();
+			droneControllerUnlocked = (DroneType)reader.ReadByte();
+			selectedSillyBalloonType = (BalloonType)reader.ReadByte();
 		}
 
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write((byte)AssMessageType.SyncAssPlayer);
-			packet.Write((byte)Player.whoAmI);
+			new SyncAssPlayerPacket(Player).Send(toWho, fromWho);
+		}
 
-			//Actual data here
-			packet.Write((byte)shieldDroneReduction);
-			packet.Write7BitEncodedInt(empoweringTimer);
-			packet.Write7BitEncodedInt(lastSlainBossTimerSeconds);
-			packet.Write7BitEncodedInt(lastSlainBossType);
+		public void SendSyncPlayer(BinaryWriter writer)
+		{
+			writer.Write((byte)shieldDroneReduction);
+			writer.Write7BitEncodedInt(empoweringTimer);
+			writer.Write7BitEncodedInt(lastSlainBossTimerSeconds);
+			writer.Write7BitEncodedInt(lastSlainBossType);
 
-			packet.Write((byte)selectedSillyBalloonType);
-
-			packet.Send(toWho, fromWho);
+			writer.Write((byte)selectedSillyBalloonType);
 		}
 
 		public void ReceiveSyncPlayer(BinaryReader reader)
@@ -240,7 +236,10 @@ namespace AssortedCrazyThings
 
 		public override void OnEnterWorld()
 		{
-			SendClientChangesPacket();
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				new ClientChangesAssPlayerPacket(Player).Send();
+			}
 		}
 
 		/// <summary>
@@ -512,7 +511,7 @@ namespace AssortedCrazyThings
 					Player.ClearBuff(BuffID.Stoned);
 				}
 
-				if (Main.netMode != NetmodeID.Server)
+				if (Main.netMode != NetmodeID.Server && Player.whoAmI == Main.myPlayer)
 				{
 					//This check is here because server code doesn't run properly for this context (it runs desynced from client)
 					AssWorld.SigilOfTheWingDeath.AnnounceClient(Player.name);
@@ -606,8 +605,6 @@ namespace AssortedCrazyThings
 			//else if (victim is Player)
 		}
 
-		#region CircleUI
-
 		public override void Initialize()
 		{
 			sigilOfTheWingCooldown = 0;
@@ -622,7 +619,6 @@ namespace AssortedCrazyThings
 			shieldDroneLerpVisual = 0;
 			drawEffectsCalledOnce = false;
 		}
-		#endregion
 
 		/// <summary>
 		/// Get proper SpriteEffects flags based on player status
@@ -662,10 +658,7 @@ namespace AssortedCrazyThings
 
 			if (Main.netMode == NetmodeID.Server)
 			{
-				ModPacket packet = Mod.GetPacket();
-				packet.Write((byte)AssMessageType.SlainBoss);
-				packet.Write7BitEncodedInt(lastSlainBossType);
-				packet.Send(Player.whoAmI);
+				new SlainBossPacket().Send(to: Player.whoAmI);
 			}
 		}
 

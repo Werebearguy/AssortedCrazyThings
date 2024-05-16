@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Data;
+using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.Base.SlimeHugs;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.PetAccessories;
@@ -520,26 +521,21 @@ namespace AssortedCrazyThings
 
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write((byte)AssMessageType.SyncPlayerVanity);
-			packet.Write((byte)Player.whoAmI);
-			//no "changes" packet
-			SendFieldValues(packet);
-			packet.Send(toWho, fromWho);
+			new SyncPlayerVanityPacket(Player).Send(toWho, fromWho);
 		}
 
-		private void SendFieldValues(ModPacket packet)
+		public void SendFieldValues(BinaryWriter writer)
 		{
 			for (int i = 0; i < petAccessoriesBySlots.Length; i++)
 			{
 				var (id, altTextureIndex) = petAccessoriesBySlots[i];
-				packet.Write((byte)id);
-				packet.Write((byte)altTextureIndex);
+				writer.Write((byte)id);
+				writer.Write((byte)altTextureIndex);
 			}
 
 			for (int i = 0; i < ClonedTypes.Length; i++)
 			{
-				packet.Write((byte)ClonedTypes[i]);
+				writer.Write((byte)ClonedTypes[i]);
 			}
 		}
 
@@ -589,41 +585,32 @@ namespace AssortedCrazyThings
 			GetFromClonedTypes();
 		}
 
-		/// <summary>
-		/// Sends the player fields either to clients or to the server. Called in Mod.HandlePacket()
-		/// (forwarding data from the server to other players)
-		/// </summary>
-		public void SendClientChangesPacketSub(byte changes, int index, int toClient = -1, int ignoreClient = -1)
+		public void SendClientChangesPacketSub(BinaryWriter writer, byte changes, byte index)
 		{
 			//AssUtils.Print("SendClientChangesPacketSub " + changes + " index " + index + " from p " + player.whoAmI + ((Main.netMode == NetmodeID.MultiplayerClient)? " client":" server"));
-			ModPacket packet = Mod.GetPacket();
-			packet.Write((byte)AssMessageType.ClientChangesVanity);
-			packet.Write((byte)Player.whoAmI);
-			packet.Write((byte)changes);
-			packet.Write((byte)index);
+			writer.Write((byte)changes);
+			writer.Write((byte)index);
 
 			switch (changes)
 			{
 				case (byte)PetPlayerChanges.All:
-					SendFieldValues(packet);
+					SendFieldValues(writer);
 					break;
 				case (byte)PetPlayerChanges.Slots:
 					for (int i = 0; i < petAccessoriesBySlots.Length; i++)
 					{
 						var (id, altTextureIndex) = petAccessoriesBySlots[i];
-						packet.Write((byte)id);
-						packet.Write((byte)altTextureIndex);
+						writer.Write((byte)id);
+						writer.Write((byte)altTextureIndex);
 					}
 					break;
 				case (byte)PetPlayerChanges.PetTypes:
-					packet.Write((byte)ClonedTypes[index]);
+					writer.Write((byte)ClonedTypes[index]);
 					break;
 				default: //shouldn't get there hopefully
 					Mod.Logger.Debug("Sending unspecified PetPlayerChanges " + changes);
 					break;
 			}
-
-			packet.Send(toClient, ignoreClient);
 		}
 
 		/// <summary>
@@ -634,7 +621,7 @@ namespace AssortedCrazyThings
 		{
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
-				SendClientChangesPacketSub((byte)changes, index);
+				new ClientChangesPlayerVanityPacket(Player, (byte)changes, (byte)index).Send();
 			}
 		}
 

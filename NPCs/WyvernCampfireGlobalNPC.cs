@@ -1,3 +1,4 @@
+using AssortedCrazyThings.Base.Netcode.Packets;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -153,10 +154,7 @@ namespace AssortedCrazyThings.NPCs
 					if (!sentWyvernPacket && Main.netMode == NetmodeID.MultiplayerClient)
 					{
 						sentWyvernPacket = true;
-						ModPacket packet = Mod.GetPacket();
-						packet.Write((byte)AssMessageType.WyvernCampfireKill);
-						packet.Write(npc.whoAmI);
-						packet.Send();
+						new WyvernCampfireKillRequestPacket().Send();
 					}
 					else if (Main.netMode == NetmodeID.SinglePlayer)
 					{

@@ -1,11 +1,10 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Netcode;
 using AssortedCrazyThings.Effects;
-using AssortedCrazyThings.Items.Accessories.Vanity;
 using AssortedCrazyThings.Items.Weapons;
 using AssortedCrazyThings.NPCs.DropConditions;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Projectiles.Pets;
-using AssortedCrazyThings.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -13,9 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.Chat;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings
@@ -158,6 +155,8 @@ namespace AssortedCrazyThings
 
 			ShaderManager.Load();
 
+			NetHandler.Load();
+
 			LoadHarvesterTypes();
 
 			LoadSoulBuffBlacklist();
@@ -170,6 +169,8 @@ namespace AssortedCrazyThings
 			ConfigurationSystem.Unload();
 
 			ShaderManager.Unload();
+
+			NetHandler.Unload();
 
 			UnloadMisc();
 
@@ -213,129 +214,7 @@ namespace AssortedCrazyThings
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
 		{
-			AssMessageType msgType = (AssMessageType)reader.ReadByte();
-			byte playerNumber;
-			byte npcNumber;
-			AssPlayer aPlayer;
-			PetPlayer petPlayer;
-			byte changes;
-			byte index;
-
-			switch (msgType)
-			{
-				case AssMessageType.SyncPlayerVanity:
-					playerNumber = reader.ReadByte();
-					petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-					//no "changes" packet
-					petPlayer.RecvSyncPlayerVanitySub(reader);
-					break;
-				case AssMessageType.ClientChangesVanity:
-					//client and server
-					//getmodplayer error
-					playerNumber = reader.ReadByte();
-					petPlayer = Main.player[playerNumber].GetModPlayer<PetPlayer>();
-					changes = reader.ReadByte();
-					index = reader.ReadByte();
-					petPlayer.RecvClientChangesPacketSub(reader, changes, index);
-
-					//server transmits to others
-					if (Main.netMode == NetmodeID.Server)
-					{
-						petPlayer.SendClientChangesPacketSub(changes, index, toClient: -1, ignoreClient: playerNumber);
-					}
-					break;
-				case AssMessageType.SyncAssPlayer:
-					playerNumber = reader.ReadByte();
-					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-					aPlayer.ReceiveSyncPlayer(reader);
-					break;
-				case AssMessageType.ClientChangesAssPlayer:
-					//client and server
-					//getmodplayer error
-					playerNumber = reader.ReadByte();
-					aPlayer = Main.player[playerNumber].GetModPlayer<AssPlayer>();
-					aPlayer.shieldDroneReduction = reader.ReadByte();
-					aPlayer.droneControllerUnlocked = (DroneType)reader.ReadByte();
-					aPlayer.selectedSillyBalloonType = (BalloonType)reader.ReadByte();
-
-					//server transmits to others
-					if (Main.netMode == NetmodeID.Server)
-					{
-						aPlayer.SendClientChangesPacket(toClient: -1, ignoreClient: playerNumber);
-					}
-					break;
-				case AssMessageType.ConvertInertSoulsInventory:
-					if (Main.netMode == NetmodeID.MultiplayerClient)
-					{
-						//convert souls in local inventory
-						aPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
-						aPlayer.ConvertInertSoulsInventory();
-					}
-					break;
-				case AssMessageType.GitgudLoadCounters:
-					if (Main.netMode == NetmodeID.Server)
-					{
-						GitgudData.RecvCounters(reader);
-					}
-					break;
-				case AssMessageType.GitgudChangeCounters:
-					if (Main.netMode == NetmodeID.MultiplayerClient)
-					{
-						//GitgudData.RecvReset(Main.myPlayer, reader);
-						GitgudData.RecvChangeCounter(reader);
-					}
-					break;
-				case AssMessageType.WyvernCampfireKill:
-					npcNumber = reader.ReadByte();
-					if (npcNumber < 0 || npcNumber >= Main.maxNPCs) break;
-					NPC npc = Main.npc[npcNumber];
-					if (npc.type == NPCID.WyvernHead)
-					{
-						DungeonSoulBase.KillInstantly(npc);
-						if (npcNumber < Main.maxNPCs)
-						{
-							NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npcNumber);
-						}
-					}
-					else
-					{
-						for (int k = 0; k < Main.maxNPCs; k++)
-						{
-							NPC other = Main.npc[k];
-							if (other.active && other.type == NPCID.WyvernHead)
-							{
-								DungeonSoulBase.KillInstantly(other);
-								NetMessage.SendData(MessageID.SyncNPC, number: k);
-								break;
-							}
-						}
-					}
-					break;
-				case AssMessageType.SlainBoss:
-					int type = reader.Read7BitEncodedInt();
-					if (Main.netMode == NetmodeID.MultiplayerClient)
-					{
-						Main.LocalPlayer.GetModPlayer<AssPlayer>().SlainBoss(type);
-					}
-					break;
-				case AssMessageType.HarvesterSpawnFromCage:
-					playerNumber = reader.ReadByte();
-					Vector2 spawnPos = reader.ReadVector2();
-					bool resend = Main.netMode == NetmodeID.Server;
-					AntiqueCageUnlockedTile.SpawnFromCage(Main.player[playerNumber], spawnPos, resend);
-					break;
-				case AssMessageType.RequestChatMessage:
-					NetworkText text = NetworkText.Deserialize(reader);
-					Color color = reader.ReadRGB();
-					if (Main.netMode == NetmodeID.Server)
-					{
-						ChatHelper.BroadcastChatMessage(text, color);
-					}
-					break;
-				default:
-					Logger.Debug("Unknown Message type: " + msgType);
-					break;
-			}
+			NetHandler.HandlePackets(reader, whoAmI);
 		}
 
 		//Credit to jopojelly
@@ -352,21 +231,6 @@ namespace AssortedCrazyThings
 			}
 			texture.SetData(buffer);
 		}
-	}
-
-	public enum AssMessageType : byte
-	{
-		ClientChangesVanity,
-		SyncPlayerVanity,
-		ClientChangesAssPlayer,
-		SyncAssPlayer,
-		ConvertInertSoulsInventory,
-		GitgudLoadCounters,
-		GitgudChangeCounters,
-		WyvernCampfireKill,
-		SlainBoss,
-		HarvesterSpawnFromCage,
-		RequestChatMessage
 	}
 
 	public enum PetPlayerChanges : byte

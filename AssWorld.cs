@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.NPCs;
 using AssortedCrazyThings.NPCs.Harvester;
 using AssortedCrazyThings.Tiles;
@@ -45,11 +46,7 @@ namespace AssortedCrazyThings
 				}
 				else if (Main.netMode == NetmodeID.MultiplayerClient)
 				{
-					ModPacket packet = AssUtils.Instance.GetPacket();
-					packet.Write((byte)AssMessageType.RequestChatMessage);
-					NetworkText.FromKey(Text.Key, args).Serialize(packet);
-					packet.WriteRGB(Color);
-					packet.Send();
+					new RequestChatMessagePacket(NetworkText.FromKey(Text.Key, args), Color).Send();
 				}
 			}
 		}

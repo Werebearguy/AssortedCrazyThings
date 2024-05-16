@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.Items.Gitgud;
 using Microsoft.Xna.Framework;
 using System;
@@ -195,9 +196,9 @@ namespace AssortedCrazyThings
 		}
 
 		/// <summary>
-		/// Called in Reset and RecvChangeCounter. Deletes the item from the inventory, trash slot, mouse item, and accessories
+		/// Deletes the item from the inventory, trash slot, mouse item, and accessories
 		/// </summary>
-		private static void DeleteItemFromInventory(Player player, int index)
+		public static void DeleteItemFromInventory(Player player, int index)
 		{
 			GitgudData data = DataList[index];
 			int itemType = data.ItemType;
@@ -235,6 +236,7 @@ namespace AssortedCrazyThings
 
 			if (deleted && Main.myPlayer == player.whoAmI)
 			{
+				//TODO localize
 				Main.NewText("You won't be needing the " + itemName + " anymore...", new Color(255, 175, 0));
 			}
 		}
@@ -242,8 +244,13 @@ namespace AssortedCrazyThings
 		/// <summary>
 		/// Sets the counter on both the DataList and the players respective field
 		/// </summary>
-		private static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
+		public static void SetCounter(int whoAmI, int index, byte value, bool packet = false)
 		{
+			if (DataList == null)
+			{
+				return;
+			}
+
 			DataList[index].Counter[whoAmI] = value;
 			GitGudPlayer gPlayer = Main.player[whoAmI].GetModPlayer<GitGudPlayer>();
 			switch (index)
@@ -333,77 +340,42 @@ namespace AssortedCrazyThings
 			return data != null;
 		}
 
-		/// <summary>
-		/// Called in LoadCounters
-		/// </summary>
-		public static void SendCounters(int whoAmI)
+		public static void SendCounters(BinaryWriter writer, Player player)
 		{
 			if (DataList != null)
 			{
-				//Length is synced on both sides anyway
-				ModPacket packet = AssUtils.Instance.GetPacket();
-				packet.Write((byte)AssMessageType.GitgudLoadCounters);
-				packet.Write((byte)whoAmI);
 				for (int i = 0; i < DataList.Length; i++)
 				{
-					packet.Write((byte)DataList[i].Counter[whoAmI]);
+					writer.Write((byte)DataList[i].Counter[player.whoAmI]);
 				}
-				packet.Send();
 			}
 		}
 
-		/// <summary>
-		/// Called in Mod.HandlePacket. Reads the whole list when the player joins to synchronize
-		/// </summary>
-		public static void RecvCounters(BinaryReader reader)
+		public static void RecvCounters(BinaryReader reader, Player player)
 		{
 			if (DataList != null)
 			{
-				//Length is synced on both sides anyway
-				int whoAmI = reader.ReadByte();
+				//Length is synced on both sides
 				byte[] tempArray = new byte[DataList.Length];
-				for (int i = 0; i < DataList.Length; i++) //probably unnecessary but idk
+				for (int i = 0; i < DataList.Length; i++)
 				{
 					tempArray[i] = reader.ReadByte();
 				}
 				for (int i = 0; i < DataList.Length; i++)
 				{
-					//DataList[i].Counter[whoAmI] = tempArray[i];
-					SetCounter(whoAmI, i, tempArray[i], true);
+					SetCounter(player.whoAmI, i, tempArray[i], true);
 				}
 			}
 		}
 
 		/// <summary>
-		/// Called in Mod.HandlePacket
-		/// </summary>
-		public static void RecvChangeCounter(BinaryReader reader)
-		{
-			if (DataList != null && Main.netMode == NetmodeID.MultiplayerClient)
-			{
-				int whoAmI = Main.LocalPlayer.whoAmI;
-				int index = reader.ReadByte();
-				byte value = reader.ReadByte();
-				//DataList[index].Counter[whoAmI] = value;
-				SetCounter(whoAmI, index, value, true);
-				if (value == 0) DeleteItemFromInventory(Main.player[whoAmI], index);
-				//AssUtils.Print("recv changecounter from server with " + whoAmI + " " + index + " " + value);
-			}
-		}
-
-		/// <summary>
-		/// Called in IncreaseCounters and Reset. Serverside
+		/// Serverside
 		/// </summary>
 		private static void SendChangeCounter(int whoAmI, int index, byte value)
 		{
 			if (DataList != null && Main.netMode == NetmodeID.Server)
 			{
-				//Length is synced on both sides anyway
-				ModPacket packet = AssUtils.Instance.GetPacket();
-				packet.Write((byte)AssMessageType.GitgudChangeCounters);
-				packet.Write((byte)index);
-				packet.Write((byte)value);
-				packet.Send(toClient: whoAmI);
+				new GitgudChangeCountersPacket(index, value).Send(to: whoAmI);
 				//AssUtils.Print("send changecounter from server with " + whoAmI + " " + index + " " + value);
 			}
 		}
@@ -605,7 +577,7 @@ namespace AssortedCrazyThings
 
 				if (Main.netMode == NetmodeID.MultiplayerClient)
 				{
-					SendCounters(whoAmI);
+					new GitgudLoadCountersPacket(Main.player[whoAmI]).Send();
 				}
 			}
 		}

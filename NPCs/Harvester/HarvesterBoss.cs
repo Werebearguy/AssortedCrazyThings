@@ -1,4 +1,5 @@
 using AssortedCrazyThings.Base;
+using AssortedCrazyThings.Base.Netcode.Packets;
 using AssortedCrazyThings.BossBars;
 using AssortedCrazyThings.Items;
 using AssortedCrazyThings.Items.Accessories.Useful;
@@ -524,32 +525,21 @@ namespace AssortedCrazyThings.NPCs.Harvester
 			}
 
 			//"convert" Item souls in inventory
-			for (int j = 0; j < Main.maxPlayers; j++)
+			if (Main.netMode == NetmodeID.Server)
 			{
-				Player player = Main.player[j];
-				if (player.active/* && !Main.player[j].dead*/)
+				for (int j = 0; j < Main.maxPlayers; j++)
 				{
-					AssPlayer mPlayer = player.GetModPlayer<AssPlayer>();
-
-					if (Main.netMode == NetmodeID.Server)
+					Player player = Main.player[j];
+					if (player.active)
 					{
-						SendConvertInertSoulsInventory(j);
-					}
-					else //singleplayer
-					{
-						mPlayer.ConvertInertSoulsInventory();
+						new ConvertInertSoulsInventoryPacket().Send(to: j);
 					}
 				}
 			}
-		}
-
-		private void SendConvertInertSoulsInventory(int toWho)
-		{
-			if (Main.netMode == NetmodeID.Server)
+			else //singleplayer
 			{
-				ModPacket packet = Mod.GetPacket();
-				packet.Write((byte)AssMessageType.ConvertInertSoulsInventory);
-				packet.Send(toClient: toWho);
+				AssPlayer mPlayer = Main.LocalPlayer.GetModPlayer<AssPlayer>();
+				mPlayer.ConvertInertSoulsInventory();
 			}
 		}
 
