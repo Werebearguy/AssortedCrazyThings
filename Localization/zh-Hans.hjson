@@ -2080,6 +2080,7 @@ Mods: {
 				ReducedDamageTakenBoss: "{1}造成的伤害减少{0}%"
 				BuffImmunity: 当{1}存活时免疫{0}
 				TimesDied: 死亡次数: {0}/{1}
+				// DeleteFromInventory: You won't be needing the {0} anymore...
 			}
 
 			SillyBalloonKit: {

@@ -2079,6 +2079,7 @@ Mods: {
 				// ReducedDamageTakenBoss: "{0}% riduzione danni subiti da {1}"
 				// BuffImmunity: Immune a '{0}' mentre {1} {^2:è;sono} vivo
 				// TimesDied: Numero di morti: {0}/{1}
+				// DeleteFromInventory: You won't be needing the {0} anymore...
 			}
 
 			SillyBalloonKit: {

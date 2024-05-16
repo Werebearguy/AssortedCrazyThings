@@ -2079,6 +2079,7 @@ Mods: {
 				ReducedDamageTakenBoss: "{1} наносит вам на {0}% меньше урона"
 				BuffImmunity: Иммунитет к '{0}', пока {1} {^2:жив;живы}
 				TimesDied: Смертей: {0}/{1}
+				// DeleteFromInventory: You won't be needing the {0} anymore...
 			}
 
 			SillyBalloonKit: {

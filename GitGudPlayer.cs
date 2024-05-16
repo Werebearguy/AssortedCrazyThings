@@ -9,6 +9,7 @@ using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -45,6 +46,7 @@ namespace AssortedCrazyThings
 		/// Holds the data of all Gitgud Accessories, and a list of counters per player
 		/// </summary>
 		private static GitgudData[] DataList; //Left as null if disabled via config
+		public static LocalizedText DeleteFromInventoryText { get; private set; }
 		/// <summary>
 		/// Name for the delete message
 		/// </summary>
@@ -236,8 +238,7 @@ namespace AssortedCrazyThings
 
 			if (deleted && Main.myPlayer == player.whoAmI)
 			{
-				//TODO localize
-				Main.NewText("You won't be needing the " + itemName + " anymore...", new Color(255, 175, 0));
+				Main.NewText(DeleteFromInventoryText.Format(itemName), new Color(255, 175, 0));
 			}
 		}
 
@@ -594,6 +595,8 @@ namespace AssortedCrazyThings
 			}
 
 			DataList = new GitgudData[1];
+			string category = $"Items.Gitgud.";
+			DeleteFromInventoryText ??= AssUtils.Instance.GetLocalization($"{category}DeleteFromInventory");
 
 			RegisterItems();
 
