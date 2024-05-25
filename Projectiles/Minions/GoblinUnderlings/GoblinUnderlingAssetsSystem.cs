@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using AssortedCrazyThings.Base.Handlers.ProgressionTierHandler;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		//Has to be after tiers are assigned
 		private static void LoadTextures()
 		{
-			var count = GoblinUnderlingTierSystem.TierCount;
+			//If some tiers aren't defined, the assets will be null, but it should never be fetched anyway
+			var count = ProgressionTierSystem.GlobalTierCount;
 			BodyAssets = new Dictionary<int, Dictionary<GoblinUnderlingClass, Asset<Texture2D>[]>>();
 			RangedArmAssets = new Dictionary<int, Asset<Texture2D>[]>();
 			WeaponAssets = new Dictionary<GoblinUnderlingWeaponType, Asset<Texture2D>[]>();
@@ -94,9 +96,9 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			}
 
 			//Uses special ranged projectile
-			HasNoWeaponAssets[GoblinUnderlingWeaponType.Sword] = new List<int>() { (int)GoblinUnderlingProgressionTierStage.Cultist };
+			HasNoWeaponAssets[GoblinUnderlingWeaponType.Sword] = new List<int>() { (int)ProgressionTierStage.Cultist };
 			//Uses arm sprite
-			HasNoWeaponAssets[GoblinUnderlingWeaponType.Bow] = new List<int>() { (int)GoblinUnderlingProgressionTierStage.Cultist };
+			HasNoWeaponAssets[GoblinUnderlingWeaponType.Bow] = new List<int>() { (int)ProgressionTierStage.Cultist };
 
 			string weaponAssetPrefix = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings/Weapons/Weapon";
 			foreach (var weaponType in Enum.GetValues<GoblinUnderlingWeaponType>())

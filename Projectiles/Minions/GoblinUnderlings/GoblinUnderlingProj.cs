@@ -1,5 +1,6 @@
 using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Chatter.GoblinUnderlings;
+using AssortedCrazyThings.Base.Handlers.ProgressionTierHandler;
 using AssortedCrazyThings.Base.Handlers.SpawnedNPCHandler;
 using AssortedCrazyThings.Items.Weapons;
 using Microsoft.Xna.Framework;
@@ -37,7 +38,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		private bool skipDefaultMovement = false;
 		private int oldAttackTarget = -1;
 
-		private GoblinUnderlingProgressionTierStage magicTierCycle = GoblinUnderlingTierSystem.CurrentTier;
+		private ProgressionTierStage magicTierCycle;
 
 		private bool spawned = false;
 
@@ -195,7 +196,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 		{
 			//Custom draw to just center on the hitbox
 			var tierStats = GoblinUnderlingTierSystem.GetCurrentTierStats(currentClass);
-			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
+			int texIndex = ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTierIndex;
 			var bodyAssets = GoblinUnderlingAssetsSystem.BodyAssets[Type][currentClass];
 			Texture2D texture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.GoblinUnderlingVisibleArmor) ? bodyAssets[0] : bodyAssets[texIndex]).Value;
 			Rectangle sourceRect = texture.Frame(1, GoblinUnderlingAssetsSystem.BodyAssetFrameCounts[currentClass], 0, Projectile.frame);
@@ -249,13 +250,13 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 		private static int GetBootsFrame()
 		{
-			return GoblinUnderlingTierSystem.CurrentTier switch
+			return ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTier switch
 			{
-				GoblinUnderlingProgressionTierStage.PreBoss or GoblinUnderlingProgressionTierStage.EoC => 0,
-				GoblinUnderlingProgressionTierStage.Evil => 1,
-				GoblinUnderlingProgressionTierStage.Skeletron or GoblinUnderlingProgressionTierStage.WoF => 2,
-				GoblinUnderlingProgressionTierStage.Mech or GoblinUnderlingProgressionTierStage.Plantera => 3,
-				GoblinUnderlingProgressionTierStage.Cultist => 4,
+				ProgressionTierStage.PreBoss or ProgressionTierStage.EoC => 0,
+				ProgressionTierStage.Evil => 1,
+				ProgressionTierStage.Skeletron or ProgressionTierStage.WoF => 2,
+				ProgressionTierStage.Mech or ProgressionTierStage.Plantera => 3,
+				ProgressionTierStage.Cultist => 4,
 				_ => -1, //Should never happen
 			};
 		}
@@ -274,7 +275,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 				return false;
 			}
 
-			if (GoblinUnderlingTierSystem.CurrentTier == GoblinUnderlingProgressionTierStage.Cultist && currentClass == GoblinUnderlingClass.Magic)
+			if (ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTier == ProgressionTierStage.Cultist && currentClass == GoblinUnderlingClass.Magic)
 			{
 				return false;
 			}
@@ -307,7 +308,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			weaponSourceRect = default;
 			weaponDrawOrigin = default;
 			weaponRotation = 0f;
-			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
+			int texIndex = ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTierIndex;
 			var asset = GoblinUnderlingAssetsSystem.GetWeaponAsset(GoblinUnderlingWeaponType.Bow, texIndex);
 			if (asset == null)
 			{
@@ -354,11 +355,11 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			out Texture2D armTexture, out Vector2 armCenter, out Rectangle armSourceRect, out Vector2 armDrawOrigin, out float armRotation)
 		{
 			var armAssets = GoblinUnderlingAssetsSystem.RangedArmAssets[Type];
-			int texIndex = GoblinUnderlingTierSystem.CurrentTierIndex;
+			int texIndex = ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTierIndex;
 			armTexture = ((Main.myPlayer == Projectile.owner && !ClientConfig.Instance.GoblinUnderlingVisibleArmor) ? armAssets[0] : armAssets[texIndex]).Value;
 
 			//Ignore the config setting in this case
-			if (texIndex == (int)GoblinUnderlingProgressionTierStage.Cultist)
+			if (texIndex == (int)ProgressionTierStage.Cultist)
 			{
 				armTexture = armAssets[texIndex].Value;
 			}
@@ -734,6 +735,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			if (!spawned)
 			{
 				spawned = true;
+				magicTierCycle = ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTier;
 			}
 
 			oldCurrentClass = currentClass;
@@ -755,19 +757,19 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 
 			//Magic cycles through all projectiles in the first or second half of the game that were unlocked
 			var tierData = GoblinUnderlingTierSystem.GetTierStats(GoblinUnderlingClass.Magic);
-			var tierToStartAt = GoblinUnderlingProgressionTierStage.EoC; //First and second tier have the same debuff
-			if ((int)GoblinUnderlingTierSystem.CurrentTier >= (int)GoblinUnderlingProgressionTierStage.WoF)
+			var tierToStartAt = ProgressionTierStage.EoC; //First and second tier have the same debuff
+			if ((int)ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTier >= (int)ProgressionTierStage.WoF)
 			{
-				tierToStartAt = GoblinUnderlingProgressionTierStage.WoF;
+				tierToStartAt = ProgressionTierStage.WoF;
 			}
 
 			int val = (int)magicTierCycle;
 			val++;
-			if (val > (int)GoblinUnderlingTierSystem.CurrentTier)
+			if (val > (int)ModContent.GetInstance<GoblinUnderlingTierSystem>().CurrentTier)
 			{
 				val = (int)tierToStartAt;
 			}
-			magicTierCycle = (GoblinUnderlingProgressionTierStage)val;
+			magicTierCycle = (ProgressionTierStage)val;
 
 			rangedProjType = tierData[magicTierCycle].rangedProjType;
 		}
