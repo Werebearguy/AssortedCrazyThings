@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class OceanSlimeItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<OceanSlimeProj>();
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Pets
 		}
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class OceanSlimeItem_AoMM : SimplePetItemBase_AoMM<OceanSlimeItem>
 	{
 		public override int BuffType => ModContent.BuffType<OceanSlimeBuff_AoMM>();

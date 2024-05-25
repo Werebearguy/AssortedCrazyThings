@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class ChunkyandMeatballBuff : SimplePetBuffBase
 	{
 		public override int PetType => ModContent.ProjectileType<ChunkyProj>();
@@ -35,7 +35,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 		}
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class ChunkyandMeatballBuff_AoMM : SimplePetBuffBase_AoMM<ChunkyandMeatballBuff>
 	{
 

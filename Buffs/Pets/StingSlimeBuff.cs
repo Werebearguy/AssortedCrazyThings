@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Buffs.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class StingSlimeBuff : SimplePetBuffBase
 	{
 		public override int PetType => ModContent.ProjectileType<StingSlimeProj>();
@@ -12,7 +12,7 @@ namespace AssortedCrazyThings.Buffs.Pets
 		public override ref bool PetBool(Player player) => ref player.GetModPlayer<PetPlayer>().StingSlime;
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class StingSlimeBuff_AoMM : SimplePetBuffBase_AoMM<StingSlimeBuff>
 	{
 

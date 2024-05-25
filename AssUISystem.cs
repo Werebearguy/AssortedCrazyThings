@@ -349,34 +349,6 @@ namespace AssortedCrazyThings
 					});
 				}
 
-				if (ContentConfig.Instance.HostileNPCs)
-				{
-					CircleUIListPets.AddRange(new List<CircleUIHandler>()
-					{
-						new CircleUIHandler(
-						triggerItem: ModContent.ItemType<VanitySelector>(),
-						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().OceanSlime,
-						uiConf: PetPlayer.GetOceanSlimeConf,
-						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().oceanSlimeType,
-						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().oceanSlimeType = (byte)CircleUI.returned
-					),
-						new CircleUIHandler(
-						triggerItem: ModContent.ItemType<VanitySelector>(),
-						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().StingSlime,
-						uiConf: PetPlayer.GetStingSlimeConf,
-						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().stingSlimeType,
-						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().stingSlimeType = (byte)CircleUI.returned
-					),
-						new CircleUIHandler(
-						triggerItem: ModContent.ItemType<VanitySelector>(),
-						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().AnimatedTome,
-						uiConf: PetPlayer.GetAnimatedTomeConf,
-						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().animatedTomeType,
-						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().animatedTomeType = (byte)CircleUI.returned
-					)
-					});
-				}
-
 				if (ContentConfig.Instance.FriendlyNPCs)
 				{
 					CircleUIListPets.AddRange(new List<CircleUIHandler>()
@@ -399,6 +371,27 @@ namespace AssortedCrazyThings
 						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().joyousSlimeType,
 						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().joyousSlimeType = (byte)CircleUI.returned
 					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().OceanSlime,
+						uiConf: PetPlayer.GetOceanSlimeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().oceanSlimeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().oceanSlimeType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().StingSlime,
+						uiConf: PetPlayer.GetStingSlimeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().stingSlimeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().stingSlimeType = (byte)CircleUI.returned
+					),
+						new CircleUIHandler(
+						triggerItem: ModContent.ItemType<VanitySelector>(),
+						condition: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().AnimatedTome,
+						uiConf: PetPlayer.GetAnimatedTomeConf,
+						onUIStart: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().animatedTomeType,
+						onUIEnd: () => Main.LocalPlayer.GetModPlayer<PetPlayer>().animatedTomeType = (byte)CircleUI.returned
+					)
 					});
 				}
 

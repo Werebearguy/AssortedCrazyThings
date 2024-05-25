@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.Items
 {
-	[Content(ContentType.HostileNPCs)] //Important
+	[Content(ContentType.HostileNPCs | ContentType.FriendlyNPCs, needsAllToFilterOut: true)] //Important
 	public class RoyalGelGlobalItem : AssGlobalItem
 	{
 		/// <summary>

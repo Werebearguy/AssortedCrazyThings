@@ -4,7 +4,7 @@ using Terraria.ID;
 namespace AssortedCrazyThings.Items
 {
 	//Needs PlaceablesFunctional as it's an ingredient for VanityDresserItem
-	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
+	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets | ContentType.FriendlyNPCs, needsAllToFilterOut: true)]
 	public class VanitySelector : AssItem
 	{
 		public override void SetDefaults()
@@ -27,7 +27,7 @@ namespace AssortedCrazyThings.Items
 		public override void AddRecipes()
 		{
 			//actual recipe here
-			CreateRecipe(1).AddRecipeGroup("IronBar", 10).AddIngredient(ItemID.Silk, 50).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddRecipeGroup(RecipeGroupID.IronBar, 10).AddIngredient(ItemID.Silk, 50).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

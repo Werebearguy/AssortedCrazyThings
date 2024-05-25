@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Tools
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ItemID.Wire, 10).AddRecipeGroup("IronBar", 10).AddIngredient(ItemID.BugNet, 1).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddIngredient(ItemID.Wire, 10).AddRecipeGroup(RecipeGroupID.IronBar, 10).AddIngredient(ItemID.BugNet, 1).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

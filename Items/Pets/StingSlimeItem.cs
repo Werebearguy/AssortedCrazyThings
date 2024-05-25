@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	[LegacyName("StingSlimeBlackItem", "StingSlimeOrangeItem")]
 	public class StingSlimeItem : SimplePetItemBase
 	{
@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Pets
 		}
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class StingSlimeItem_AoMM : SimplePetItemBase_AoMM<StingSlimeItem>
 	{
 		public override int BuffType => ModContent.BuffType<StingSlimeBuff_AoMM>();

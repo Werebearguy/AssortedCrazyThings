@@ -10,7 +10,7 @@ using Terraria.ObjectData;
 
 namespace AssortedCrazyThings.Tiles
 {
-	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets, needsAllToFilterOut: true)]
+	[Content(ContentType.PlaceablesFunctional | ContentType.DroppedPets | ContentType.OtherPets | ContentType.FriendlyNPCs, needsAllToFilterOut: true)]
 	public class VanityDresserTile : AssTile
 	{
 		public LocalizedText MouseoverText { get; private set; }

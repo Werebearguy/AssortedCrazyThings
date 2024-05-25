@@ -15,7 +15,7 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 	}
 
 	[Content(ContentType.Weapons)]
-	[Autoload(Side = ModSide.Client)]
+	[Autoload(false, Side = ModSide.Client)]
 	public class GoblinUnderlingAssetsSystem : AssSystem
 	{
 		public static readonly string assetPath = "AssortedCrazyThings/Projectiles/Minions/GoblinUnderlings";

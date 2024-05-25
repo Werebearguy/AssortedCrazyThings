@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class MeatballSlimeItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<MeatballSlimeProj>();
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Pets
 		}
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class MeatballSlimeItem_AoMM : SimplePetItemBase_AoMM<MeatballSlimeItem>
 	{
 		public override int BuffType => ModContent.BuffType<MeatballSlimeBuff_AoMM>();

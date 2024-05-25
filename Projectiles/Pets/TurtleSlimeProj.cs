@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	//check this file for more info vvvvvvvv
 	public class TurtleSlimeProj : BabySlimeBase
 	{

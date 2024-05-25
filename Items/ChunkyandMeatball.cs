@@ -2,7 +2,7 @@ using Terraria;
 
 namespace AssortedCrazyThings.Items
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public abstract class ChunkyandMeatballEyeItemBase : AssItem
 	{
 		public override void SetDefaults()

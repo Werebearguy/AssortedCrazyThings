@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace AssortedCrazyThings.Items.Pets
 {
 	[LegacyName("ChunkyItem")]
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class ChunkySlimeItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<ChunkySlimeProj>();
@@ -19,7 +19,7 @@ namespace AssortedCrazyThings.Items.Pets
 		}
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class ChunkySlimeItem_AoMM : SimplePetItemBase_AoMM<ChunkySlimeItem>
 	{
 		public override int BuffType => ModContent.BuffType<ChunkySlimeBuff_AoMM>();

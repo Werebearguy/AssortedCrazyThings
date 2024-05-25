@@ -11,7 +11,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace AssortedCrazyThings.NPCs
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class OceanSlime : AssNPC
 	{
 		private const int TotalNumberOfThese = 9;

@@ -2,14 +2,13 @@ using AssortedCrazyThings.Base;
 using AssortedCrazyThings.Base.Handlers.CharacterPreviewAnimationsHandler;
 using AssortedCrazyThings.Base.ModSupport.AoMM;
 using AssortedCrazyThings.Buffs.Pets;
-using AssortedCrazyThings.Items.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class ChunkyProj : SimplePetProjBase
 	{
 		public override void SetStaticDefaults()
@@ -64,7 +63,7 @@ namespace AssortedCrazyThings.Projectiles.Pets
 		}
 	}
 
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class MeatballProj : SimplePetProjBase
 	{
 		public override void SetStaticDefaults()

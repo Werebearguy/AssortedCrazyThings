@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace AssortedCrazyThings.NPCs
 {
-	[Content(ContentType.HostileNPCs)] //Tied to chunky/meatball which is hostile
+	[Content(ContentType.FriendlyNPCs)] //Tied to chunky/meatball which is friendly aswell
 	public abstract class ChunkysMeatballsEyeBase : AssNPC
 	{
 		public override void SetStaticDefaults()

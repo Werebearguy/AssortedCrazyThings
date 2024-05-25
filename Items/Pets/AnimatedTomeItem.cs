@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Items.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class AnimatedTomeItem : SimplePetItemBase
 	{
 		public override int PetType => ModContent.ProjectileType<AnimatedTomeProj>();
@@ -18,7 +18,7 @@ namespace AssortedCrazyThings.Items.Pets
 		}
 	}
 
-	[Content(ContentType.AommSupport | ContentType.HostileNPCs)]
+	[Content(ContentType.AommSupport | ContentType.FriendlyNPCs)]
 	public class AnimatedTomeItem_AoMM : SimplePetItemBase_AoMM<AnimatedTomeItem>
 	{
 		public override int BuffType => ModContent.BuffType<AnimatedTomeBuff_AoMM>();

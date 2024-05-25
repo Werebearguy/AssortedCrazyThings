@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace AssortedCrazyThings.Projectiles.Pets
 {
-	[Content(ContentType.HostileNPCs)]
+	[Content(ContentType.FriendlyNPCs)]
 	public class AnimatedTomeProj : SimplePetProjBase
 	{
 		public override string Texture
