@@ -11,17 +11,16 @@ namespace AssortedCrazyThings.Base.Handlers.ProgressionTierHandler
 
 		public ProgressionTierSet(ProgressionTierStage[] tiers)
 		{
+			if (!tiers.Contains(ProgressionTierStage.PreBoss))
+			{
+				throw new Exception($"{nameof(tiers)} must contain {ProgressionTierStage.PreBoss}!");
+			}
+
 			this.tiers = new ProgressionTierStage[tiers.Length];
 			Array.Copy(tiers, this.tiers, tiers.Length);
 
 			//Make sure they are ordered
 			this.tiers = this.tiers.OrderBy(stage => (int)stage).ToArray();
-
-			if (!tiers.Contains(ProgressionTierStage.PreBoss))
-			{
-				throw new Exception($"{nameof(tiers)} must contain {ProgressionTierStage.PreBoss}!");
-			}
 		}
 	}
-
 }

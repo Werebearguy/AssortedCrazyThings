@@ -13,9 +13,9 @@ namespace AssortedCrazyThings.Base.Handlers.ProgressionTierHandler
 		public ProgressionTierStage CurrentTier { get; private set; }
 		public int CurrentTierIndex => (int)CurrentTier;
 
-		private bool updatedGlobalTier = false;
-		private ProgressionTierStage CurrentGlobalTier { get; set; }
-		private int CurrentGlobalTierIndex => (int)CurrentGlobalTier;
+		private static bool updatedGlobalTier = false;
+		private static ProgressionTierStage CurrentGlobalTier { get; set; }
+		private static int CurrentGlobalTierIndex => (int)CurrentGlobalTier;
 
 		private static Dictionary<ProgressionTierStage, Func<bool>> globalTiers;
 		public static int GlobalTierCount => globalTiers.Count;

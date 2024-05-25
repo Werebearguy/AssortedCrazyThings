@@ -17,5 +17,4 @@
 		Plantera = 6,
 		Cultist = 7
 	}
-
 }
