@@ -65,6 +65,11 @@ namespace AssortedCrazyThings.Projectiles.Weapons
 
 		public override void Load()
 		{
+			if (Main.dedServ)
+			{
+				return;
+			}
+
 			boneTextures = new Asset<Texture2D>[BoneCount];
 			for (int i = 0; i < boneTextures.Length; i++)
 			{
