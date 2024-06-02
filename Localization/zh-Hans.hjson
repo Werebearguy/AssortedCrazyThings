@@ -2958,7 +2958,7 @@ Mods: {
 
 				GoblinUnderlingAutosummon: {
 					Label: 自动召唤
-					Tooltip: 启用后如果该物品在你的库存中，则可以在人物生成时自动召唤该仆从
+					Tooltip: 启用后，如果该物品在你的背包或开启的虚空袋中，则可以在人物生成时自动召唤该仆从
 				}
 
 				GoblinUnderlingVisibleArmor: {

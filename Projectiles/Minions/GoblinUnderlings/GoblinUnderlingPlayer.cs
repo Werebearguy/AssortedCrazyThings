@@ -1,6 +1,5 @@
 ﻿using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -61,15 +60,23 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 					return;
 				}
 
-				//Sort by inventory index
-				var indexes = GoblinUnderlingItem.Items.Select(i => player.FindItem(i)).OrderBy(i => i).ToArray();
-				foreach (var index in indexes)
+				//var items = GoblinUnderlingItem.Items.Select(i => player.FindItemWithBanks(i))
+				//	.Where(i => i != null)
+				//	.OrderBy(i => i.type)
+				//	.ToArray();
+				var items = new List<(Item[] inv, int index)>();
+				foreach (var itemType in GoblinUnderlingItem.Items)
 				{
-					if (index != -1)
+					int i = player.FindItemInInventoryOrOpenVoidBag(itemType, out bool voidBag);
+					if (i != -1)
 					{
-						Item item = player.inventory[index];
-						player.AddBuff(item.buffType, 3600, false);
+						items.Add((!voidBag ? player.inventory : player.bank4.item, i));
 					}
+				}
+
+				foreach (var (inv, index) in items)
+				{
+					player.AddBuff(inv[index].buffType, 3600, false);
 				}
 			}
 		}

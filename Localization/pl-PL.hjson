@@ -2957,7 +2957,7 @@ Mods: {
 
 				GoblinUnderlingAutosummon: {
 					// Label: Auto-summon
-					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory
+					// Tooltip: Enable to auto-summon this minion upon spawning if the item is in your inventory or open Void Bag
 				}
 
 				GoblinUnderlingVisibleArmor: {

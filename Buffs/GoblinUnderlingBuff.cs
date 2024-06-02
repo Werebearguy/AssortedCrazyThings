@@ -37,11 +37,10 @@ namespace AssortedCrazyThings.Buffs
 			//So current workaround is to let summons be spawned regardless of check the moment the player spawns (armor/accessory slot increases don't apply here yet), otherwise adhere to limits
 			else if (Main.myPlayer == player.whoAmI && (!modPlayer.spawned || player.numMinions < player.maxMinions))
 			{
-				int index = player.FindItem(GoblinUnderlingItem.BuffToItem[Type]);
+				int index = player.FindItemInInventoryOrOpenVoidBag(GoblinUnderlingItem.BuffToItem[Type], out bool voidBag);
 				if (index != -1)
 				{
-					Item item = player.inventory[index];
-
+					Item item = (!voidBag ? player.inventory : player.bank4.item)[index];
 					projType = item.shoot;
 					if (player.ownedProjectileCounts[projType] > 0)
 					{

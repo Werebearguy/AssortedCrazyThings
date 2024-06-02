@@ -82,6 +82,40 @@ namespace AssortedCrazyThings.Base
 		}
 
 		/// <summary>
+		/// Like <see cref="Player.FindItem(int)"/> but checks all banks and void bag, returns the inventory instance and index
+		/// </summary>
+		public static (Item[] inventory, int index) FindItemIndexWithBanks(this Player player, int type)
+		{
+			Item[][] inventoryArray = { player.inventory, player.bank.item, player.bank2.item, player.bank3.item, player.bank4.item };
+			for (int y = 0; y < inventoryArray.Length; y++)
+			{
+				for (int e = 0; e < inventoryArray[y].Length; e++)
+				{
+					if (inventoryArray[y][e].type == type)
+					{
+						return (inventoryArray[y], e);
+					}
+				}
+			}
+
+			return (null, -1);
+		}
+
+		/// <summary>
+		/// Like <see cref="Player.FindItem(int)"/> but checks all banks and void bag, returns the Item instance
+		/// </summary>
+		public static Item FindItemWithBanks(this Player player, int type)
+		{
+			(Item[] inventory, int index) = player.FindItemIndexWithBanks(type);
+
+			if (index != -1)
+			{
+				return inventory[index];
+			}
+			return null;
+		}
+
+		/// <summary>
 		/// Checks if given item is present in the players inventory or equip slots
 		/// </summary>
 		public static bool ItemInInventoryOrEquipped(this Player player, Item item, bool ignoreVanity = false)
