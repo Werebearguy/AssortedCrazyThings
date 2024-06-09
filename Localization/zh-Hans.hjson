@@ -2004,13 +2004,13 @@ Mods: {
 			ShyUnderlingItem: {
 				DisplayName: 凹陷硬币
 				Tooltip: 召唤害羞的下属为你而战
-				Flavor: "这枚硬币长久以来一直被用做射击练习。"
+				Flavor: “这枚硬币长久以来一直被用做射击练习。”
 			}
 
 			SeriousUnderlingItem: {
 				DisplayName: 人气娃娃
 				Tooltip: 召唤一名认真的下属为你而战
-				Flavor: "由松散的稻草和干草做成的简单巫毒娃娃。"
+				Flavor: “由松散的稻草和干草做成的简单巫毒娃娃。”
 			}
 
 			LegendaryWoodenSword: {
@@ -2080,7 +2080,7 @@ Mods: {
 				ReducedDamageTakenBoss: "{1}造成的伤害减少{0}%"
 				BuffImmunity: 当{1}存活时免疫{0}
 				TimesDied: 死亡次数: {0}/{1}
-				// DeleteFromInventory: 你不再需要{0}了……
+				DeleteFromInventory: 你不再需要{0}了……
 			}
 
 			SillyBalloonKit: {
@@ -3435,7 +3435,7 @@ Mods: {
 					Dialogue: {
 						0Serious: 嘿。
 						1Shy: …是？
-						2Serious: 想要来个娃娃吗?
+						2Serious: 想要来个娃娃吗？
 						3Shy: 娃娃？
 						4Serious: 或许能缓解一下你的紧张情绪。
 						5Shy: ……好的，谢谢。
@@ -3460,7 +3460,7 @@ Mods: {
 						1Serious: 怎么了？
 						2Shy: 那、那个…你的娃娃……
 						3Serious: ？
-						4Shy: They're cute...
+						4Shy: 很、很可爱……
 						5Serious: 呵呵…谢谢。
 					}
 				}
@@ -3483,7 +3483,7 @@ Mods: {
 		}
 
 		UI: {
-			CircleUIToUnlock: 解锁: {0}
+			CircleUIToUnlock: 解锁：{0}
 			HoverNPCUICatchWithNet: 用捕虫网捕捉
 		}
 	}
