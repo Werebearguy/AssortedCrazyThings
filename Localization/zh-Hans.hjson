@@ -524,7 +524,7 @@ Mods: {
 			EmpoweringBuff: {
 				DisplayName: 赋能
 				Description: 只要持续不受伤害，你造成的伤害也会随之提高
-				IncreasedDamage: 伤害提高: {0}%
+				IncreasedDamage: 伤害提高：{0}%
 			}
 
 			EnhancedHunterBuff: {
@@ -587,9 +587,9 @@ Mods: {
 		Common: {
 			ConcatenateTwo: "{0}{1}"
 			AoMMVersion: (AoMM版本)
-			Selected: 已选择: {0}
-			BaseDamage: 基础伤害: {0}
-			BaseKnockback: 基础击退: {0}
+			Selected: 已选择：{0}
+			BaseDamage: 基础伤害：{0}
+			BaseKnockback: 基础击退：{0}
 
 			Tooltips: {
 				PetHasAltSkins: 可以使用{$Items.VanitySelector.DisplayName}更改外观
@@ -618,10 +618,10 @@ Mods: {
 			CuteSlime: {
 				AccessoryBlacklisted: 已列入黑名单
 				AccessoryNone: 无
-				HatSlot: 帽子: {0}
-				BodySlot: 主体: {0}
-				CarriedSlot: 携带: {0}
-				AccessorySlot: 配饰: {0}
+				HatSlot: 帽子：{0}
+				BodySlot: 主体：{0}
+				CarriedSlot: 携带：{0}
+				AccessorySlot: 配饰：{0}
 			}
 
 			CuteSlimeBlackItem: {
@@ -2953,7 +2953,7 @@ Mods: {
 						{$Items.SeriousUnderlingItem.DisplayName}
 						{$Items.ShyUnderlingItem.DisplayName}
 						'''
-					HintServerConfig: 提示: 要转到包含功能切换的服务器配置，请点击右下角的"＞"
+					HintServerConfig: 提示：要转到包含功能切换的服务器配置，请点击右下角的"＞"
 				}
 
 				GoblinUnderlingAutosummon: {
@@ -2995,7 +2995,7 @@ Mods: {
 					NPCs: NPC
 					Items: 物品
 					Other: 其它
-					HintClientConfig: 提示: 要转到包含功能切换的服务器配置，请点击左下角的"＜"
+					HintClientConfig: 提示：要转到包含功能切换的服务器配置，请点击左下角的"＜"
 				}
 
 				Bosses: {
