@@ -2002,15 +2002,15 @@ Mods: {
 			}
 
 			ShyUnderlingItem: {
-				// DisplayName: Dented Coin
-				// Tooltip: Summons a shy underling to fight for you
-				// Flavor: "'This coin has been used as target practice for a long time'"
+				DisplayName: 凹陷硬币
+				Tooltip: 召唤害羞的下属为你而战
+				Flavor: “这枚硬币长久以来一直被用做射击练习。”
 			}
 
 			SeriousUnderlingItem: {
-				// DisplayName: Well-Loved Doll
-				// Tooltip: Summons a serious underling to fight for you
-				// Flavor: "'A simple voodoo doll made of loose straw and hay.'"
+				DisplayName: 人气娃娃
+				Tooltip: 召唤一名认真的下属为你而战
+				Flavor: “由松散的稻草和干草做成的简单巫毒娃娃。”
 			}
 
 			LegendaryWoodenSword: {
@@ -2080,7 +2080,7 @@ Mods: {
 				ReducedDamageTakenBoss: "{1}造成的伤害减少{0}%"
 				BuffImmunity: 当{1}存活时免疫{0}
 				TimesDied: 死亡次数: {0}/{1}
-				// DeleteFromInventory: You won't be needing the {0} anymore...
+				DeleteFromInventory: 你不再需要{0}了……
 			}
 
 			SillyBalloonKit: {
@@ -2948,7 +2948,7 @@ Mods: {
 						'''
 						热心的下属 - 仆从选项
 
-						These apply to the following items:
+						适用于以下项目:
 						{$Items.EagerUnderlingItem.DisplayName}
 						{$Items.SeriousUnderlingItem.DisplayName}
 						{$Items.ShyUnderlingItem.DisplayName}
@@ -2962,8 +2962,8 @@ Mods: {
 				}
 
 				GoblinUnderlingVisibleArmor: {
-					Label: 盔甲进度
-					Tooltip: 启用后显示盔甲进度
+					Label: 盔甲
+					Tooltip: 启用后显示盔甲（随进度变化）
 				}
 
 				GoblinUnderlingVisibleRocketBoots: {
@@ -3005,7 +3005,7 @@ Mods: {
 
 				CuteSlimes: {
 					Label: 可爱史莱姆
-					Tooltip: 切换可爱史莱姆
+					Tooltip: 可爱史莱姆
 				}
 
 				HostileNPCs: {
@@ -3094,383 +3094,383 @@ Mods: {
 			GoblinUnderling: {
 				Eager: {
 					Idle: {
-						// Bored: I'm bored, boss!
-						// WhenFighting: When's da fighting, boss?
-						// HangingOut: I like hangin' out, boss!
-						// GoodBoss: You's a good boss, boss!
-						// BossSilent: Boss is always silent. So cool!
-						// HateSlimes: I hate slimes, dey're sticky!
-						// WhenMeal: When's meal time?
-						// DoYouLikeMe: Do ya like me, boss?
-						// GettingSleepy: I'm gettin' sleepy, boss...
-						// SeeBase: I can see our base from up here!
-						// SandInArmor: I got sand in my armor!
-						// GroundLooking: The ground's lookin' at me!
-						// BeatTheCold: I'll beat da cold by workin up a sweat!
-						// FaceLooksLikeRock: Dat rock looks like your face, boss!
-						// RockLooksLikeBones: Dose rocks look like bones
-						// FindShinyMetals: I hope we find shiny metals!
-						// NothingScares: Nothin' scares me when I'm wit you, boss!
-						// HeardRat: I think I heard a rat. A big rat!
-						// CavesSpooky: Caves are spooky!
+						Bored: 队长，好无聊啊！
+						WhenFighting: 队长，啥时开干？
+						HangingOut: 队长，我喜欢出去玩！
+						GoodBoss: 队长，你是个好老大！
+						BossSilent: 队长总是不说话，真酷！
+						HateSlimes: 我讨厌史莱姆，它们黏糊糊的！
+						WhenMeal: 什么时候开饭？
+						DoYouLikeMe: 队长，你不讨厌我吧？
+						GettingSleepy: 队长，我有点困了……
+						SeeBase: 从这能看到我们的基地！
+						SandInArmor: 我的盔甲进沙子了！
+						GroundLooking: 地上好像有什么在看着我！
+						BeatTheCold: 多流汗才能战胜寒冷！
+						FaceLooksLikeRock: 队长，那块石头看起来好像你的脸！
+						RockLooksLikeBones: 那些是石头还是骨头？
+						FindShinyMetals: 希望能找到一些新的亮亮！
+						NothingScares: 队长，和你一起时我无所畏惧！
+						HeardRat: 我好像听到了老鼠的声音……一只大老鼠！
+						CavesSpooky: 黑漆漆的洞穴真恐怖！
 					}
 
-					// FirstSummon.YouTheBoss: You da boss now, boss!
+					FirstSummon.YouTheBoss: 现在你做主，队长！
 
 					Attacking: {
-						// Gotcha: Gotcha!
-						// IGotThis: I got dis one!
-						// ExpGold: I'm a goblin! If you beat me, you get 1 exp and 2 gold!
-						// NoOneTouches: No one touches boss!
-						// BadGuys: Bad guys get black eyes!
-						// ComeHere: C'mere, you!
-						// LevelOne: I'm level one! I'm da strongest gob!
-						// StabStab: Stab stab stab!
-						// Boom: Boom! Haha!
-						// Skewer: Gonna skewer ya!
+						Gotcha: 中了！
+						IGotThis: 抓到你了！
+						ExpGold: 我是哥布林！如果能打败我，你将获得 1 经验值和 2 金币！
+						NoOneTouches: 不准碰队长！
+						BadGuys: 坏家伙就该被打得鼻青脸肿！
+						ComeHere: 过来吧你！
+						LevelOne: 我是最强的哥布林！我现在等级 1 ！
+						StabStab: 戳戳戳！
+						Boom: 砰！哈哈！
+						Skewer: 我要把你做成串烧！
 					}
 
 					PlayerHurt: {
-						// DontHurt: Don't hurt da boss!
-						// YouWillPay: You'll pay for dat!
-						// YouGood: You good, boss?!
-						// ThatHurt: Dat looked like it hurt, boss!
-						// IsntWeak: Da boss ain't weak, chump!
+						DontHurt: 别伤害队长！
+						YouWillPay: 你会付出代价的！
+						YouGood: 没事吧！队长？
+						ThatHurt: 队长！看起来很痛！
+						IsntWeak: 队长很强的，笨蛋！
 					}
 
 					PlayerHurtByTrap: {
-						// WallsAttack: Da walls attack too?!
-						// WatchWalls: Watch da walls, boss!
-						// BadWall: Bad wall! Don't hurt boss!
-						// GroundEnemy: Da ground is an enemy?!
-						// HotHot: Hot! Hot!
-						// MissThat: How'd ya miss dat, boss?
-						// Dangerous: Dat's dangerous!
-						// NoFair: No fair! I can't hit dose!
-						// BadPeople: Bad people made bad traps!
-						// BigBadBalls: Big bad balls!
-						// DontFlattened: Don't get flattened, boss!
-						// HadToHurt: Dat had ta hurt!
+						WallsAttack: 墙在攻击我们？
+						WatchWalls: 小心墙壁，队长！
+						BadWall: 坏墙！别伤害队长！
+						GroundEnemy: 地板也是敌人？
+						HotHot: 烫烫烫！
+						MissThat: 你怎么没注意到那个，队长？
+						Dangerous: 好危险！
+						NoFair: 不公平！我打不到！
+						BadPeople: 有坏人！设了坏陷阱！
+						BigBadBalls: 大坏球！
+						DontFlattened: 别被压扁了，队长！
+						HadToHurt: 那一定很痛！
 					}
 
 					BossSpawn: {
-						// UhOh: Uh oh!
-						// BigOne: Dat's a biggun!
-						// ThatOnesBig: Boss, dat one's big!
-						// NotAfraid: I ain't afraid of nothin!
-						// WeGotTrouble: Boss, we got trouble!
-						// HateBees: I hate bees!
-						// WontReadBook: I won't read da big book!
-						// OneEyedDummy: Big one-eyed dummy!
-						// BigGuts: Dat one's big! Dat means it has big guts!
-						// WeGotThis: We got dis, boss!
-						// JigglyJellyfish: Haha, jiggly jellyfish!
-						// FatBat: Dat's a fat bat!
+						UhOh: 哇哦！
+						BigOne: 真是个大家伙！
+						ThatOnesBig: 队长！大的来了！
+						NotAfraid: 我无所畏惧！
+						WeGotTrouble: 队长，我们有麻烦了！
+						HateBees: 我讨厌蜜蜂！
+						WontReadBook: 我读不了那么大的书！
+						OneEyedDummy: 大独眼假人！
+						BigGuts: 他很大！这意味着他的胆量也很大！
+						WeGotThis: 队长，我们有事了！
+						JigglyJellyfish: 哈哈！摇晃的水母！
+						FatBat: 一只胖蝙蝠！
 					}
 
 					BossDefeat: {
-						// WeDidIt: We did it, boss!
-						// KnewYouCould: I knew you could do it!
-						// EasyNext: Easy. Next!
-						// WontBeInSequel: You won't be in da sequel!
-						// NastyBees: Nasty bees! Only good for da honey!
-						// StupidBook: Stupid book man!
-						// DumbWeakling: Big dumb weakling!
-						// DumbDragon: Dumb dragon, boss is da strongest!
-						// YouTheBest: Boss, you da best!
-						// ToughTougher: Dat one was tough, but we're tougher!
-						// NoMoreSquid: I don't wanna see no more squid after dis...
-						// JellyTastesBad: Blech! Dat jelly tastes bad!
-						// SuckOnThat: Suck on dat, fat bat!
+						WeDidIt: 队长，我们做到了！
+						KnewYouCould: 就知道你能行！
+						EasyNext: 简单，下一个！
+						WontBeInSequel: 下一集没你了！
+						NastyBees: 可恶的蜜蜂！只对甜的友善！
+						StupidBook: 笨蛋书呆子！
+						DumbWeakling: 大笨蛋杂鱼！
+						DumbDragon: 笨龙！队长比你强！
+						YouTheBest: 队长，你真棒！
+						ToughTougher: 它很强，但我们更强！
+						NoMoreSquid: 不想再看到鱿鱼了……
+						JellyTastesBad: 呕…那果冻味道真恶心！
+						SuckOnThat: 还敢吸啊！臭蝙蝠！
 					}
 
-					// OOAStarts.WhatDidYouDo: Boss, what didja do?!
+					OOAStarts.WhatDidYouDo: 队长，你做了什么？
 
 					OOANewWave: {
-						// HolesStillOpen: Boss, dem holes are still open!
-						// MoreBaddies: More baddies? More baddies!
-						// ProtectGem: Protect da shiny gem!
-						// WontLetPass: I won't let em pass, boss!
+						HolesStillOpen: 队长，那些洞还开着！
+						MoreBaddies: 更多坏人？更多坏人！
+						ProtectGem: 保护亮亮！
+						WontLetPass: 队长，我不会让他们过的！
 					}
 
 					ArmorEquipped: {
-						// LookingSpiffy: Lookin' spiffy, boss!
-						// LookingFluffy: Lookin' fluffy, boss!
+						LookingSpiffy: 看起来真漂亮，队长！
+						LookingFluffy: 看起来很蓬松，队长！
 					}
 
-					// ItemSelected.IsAToy: Is dat a toy?
-					// InvasionChanged.OldGangBack: Old gang is back!
-					// BloodMoonChanged.SkyIsRed: Boss, da sky is red! It's scary!
+					ItemSelected.IsAToy: 这是玩具吗？
+					InvasionChanged.OldGangBack: 老帮派又回来了！
+					BloodMoonChanged.SkyIsRed: 队长！天空变红了，好吓人！
 				}
 
 				Serious: {
 					Idle: {
-						// Peaceful: It's peaceful.
-						// YouSeemCalm: You seem calm, boss.
-						// ShallWeRest: Boss, shall we rest here?
-						// PaceEasy: Your pace is easy to follow.
-						// ShouldSleep: We should sleep soon.
-						// WindNice: The wind feels nice.
-						// WarmWithFire: I can warm you with fire if you'd like.
-						// SandsClaimWeak: The sands claim the weak.
-						// UnnaturalPlace: This place is unnatural.
-						// NotDawdle: We should not dawdle here.
-						// SpiritsHide: Spirits hide in the darkness.
-						// StonesHistory: These stones have untold history.
-						// HiddenTreasure: There may be hidden treasure here.
-						// BeCareful: Be careful in the dark, boss.
-						// TooFarAhead: Boss... please don't go too far ahead.
+						Peaceful: 这里很安静。
+						YouSeemCalm: 你看起来很平静，队长。
+						ShallWeRest: 队长，我们在这休息一下如何？
+						PaceEasy: 你的步调很好追随。
+						ShouldSleep: 我想我们该休息了。
+						WindNice: 风很舒适。
+						WarmWithFire: 如果需要，我可以生火取暖。
+						SandsClaimWeak: 滚滚黄沙吞噬弱者……
+						UnnaturalPlace: 这里不太自然……
+						NotDawdle: 我们不该在这磨蹭。
+						SpiritsHide: 魂灵藏于暗影之中。
+						StonesHistory: 这些岩石有着不为人知的历史……
+						HiddenTreasure: 隐藏的财宝可能就在此处。
+						BeCareful: 队长，于黑暗中请务必小心……
+						TooFarAhead: 队长…请别离开我太远……
 					}
 
-					// FirstSummon.Greetings: Greetings, boss.
+					FirstSummon.Greetings: 向您问候，新队长。
 
 					Attacking: {
-						// IGotThis: I've got this.
-						// NotDefy: Do not defy the boss.
-						// NotSurvive: You will not survive.
-						// CutDown: I will cut you down.
-						// Burn: Burn.
-						// StruckDown: Be struck down by my spells.
-						// InSights: You are in my sights.
+						IGotThis: 我能做到。
+						NotDefy: 请不要反抗。
+						NotSurvive: 你无法幸存。
+						CutDown: 我会击倒你。
+						Burn: 烧吧。
+						StruckDown: 在我的咒法中倒下吧。
+						InSights: 在我视界之内。
 					}
 
 					PlayerHurt: {
-						// Alright: Are you alright?
-						// Unpleasant: That looks unpleasant.
-						// Tough: You're tough, boss.
-						// Healing: Do you need healing?
+						Alright: 你还好吗？
+						Unpleasant: 看上来不太舒服。
+						Tough: 你很坚韧，队长。
+						Healing: 需要治疗吗？
 					}
 
 					PlayerHurtByTrap: {
-						// WatchStep: Watch where you step, boss.
-						// PressurePlates: Be mindful of pressure plates.
-						// CowardlyTrap: A cowardly trap...
-						// BossNotSee: Boss, did you not see that?
-						// NaturalTrap: A natural trap.
-						// MinorBurn: Lucky that it was only a minor burn.
-						// TrapCruel: That trap is too cruel.
-						// TakeTime: Take your time, boss.
-						// CruelPeople: What cruel people made these traps...
-						// Weighed: That must have weighed quite a bit.
-						// INotSee: I did not see that coming.
-						// FromDistance: Try to trigger those from a distance.
+						WatchStep: 注意脚下，队长。
+						PressurePlates: 小心压力板。
+						CowardlyTrap: 一个懦弱的陷阱……
+						BossNotSee: 队长，你没注意到吗？
+						NaturalTrap: 一个自然的陷阱。
+						MinorBurn: 幸好只是轻微烧伤。
+						TrapCruel: 那个陷阱太残忍了。
+						TakeTime: 慢慢来，队长。
+						CruelPeople: 多么残酷之人才会制造这样的陷阱……
+						Weighed: 那一定很重。
+						INotSee: 这出乎我意料。
+						FromDistance: 试着从远处触发它们。
 					}
 
 					BossSpawn: {
-						// LargeEnemy: A large enemy approaches.
-						// Formidable: A formidable foe.
-						// Prepared: We should be prepared for this.
-						// Trust: I trust you, boss.
-						// TerribleNight: What a terrible night for a curse.
-						// MagicSuperior: Whose magic is superior, I wonder.
-						// SenseIntelligence: I can't sense any intelligence from that one.
-						// HidingDragon: They were hiding a dragon?
-						// CantLose: Boss, you can't lose here.
-						// WastedFirstLife: You wasted your first life.
-						// ForceOvercome: There is no force we cannot overcome.
+						LargeEnemy: 大敌逼近。
+						Formidable: 强敌来临。
+						Prepared: 我们该为此做好准备。
+						Trust: 我相信你，队长。
+						TerribleNight: 多么可怕的诅咒之夜。
+						MagicSuperior: 我想知道谁的魔法更强大。
+						SenseIntelligence: 我无法从它身上感知到智慧。
+						HidingDragon: 一条隐藏的巨龙？
+						CantLose: 队长，我们不能败在这里。
+						WastedFirstLife: 你白费了第一次生命。
+						ForceOvercome: 没有我们无法克服的力量。
 					}
 
 					BossDefeat: {
-						// MakeDoll: I will make a doll in your memory.
-						// TooEasy: That was too easy for you, boss.
-						// Overcame: We overcame that challenge.
-						// WellDone: Well done, boss.
-						// CurseLifted: The curse is lifted.
-						// BetterMage: I am the better mage.
-						// Joke: What a joke.
-						// ExpectedMore: I expected more. Shame.
-						// Incredible: Boss... you're incredible!
-						// WastedSecondLife: You also wasted your second life.
-						// Greatest: Boss, you really are the greatest.
+						MakeDoll: 我会做一个娃娃来纪念它。
+						TooEasy: 队长，这对你来说过于简单了。
+						Overcame: 我们克服了这次试炼。
+						WellDone: 做得好，队长。
+						CurseLifted: 诅咒解除了。
+						BetterMage: 看来我的魔法更加精湛。
+						Joke: 开什么玩笑。
+						ExpectedMore: 我还期待更多…可惜。
+						Incredible: 队长…你真不可思议！
+						WastedSecondLife: 而你又白费了第二次生命。
+						Greatest: 真是杰出的表现，队长。
 					}
 
-					// OOAStarts.WhatMagic: What sort of magic is this?
+					OOAStarts.WhatMagic: 这种魔法究竟是…？
 
 					OOANewWave: {
-						// NotOverYet: This isn't over yet.
-						// MoreFoes: More foes approach, boss.
-						// ProtectGem: I will protect the gem.
-						// ArmyEndless: This army is endless...
+						NotOverYet: 这还没结束。
+						MoreFoes: 更多敌人来袭，队长。
+						ProtectGem: 我会保护水晶。
+						ArmyEndless: 这支军队无穷无尽……
 					}
 
-					// ArmorEquipped.OddThings: Boss... You do odd things at times.
-					// ItemSelected.ThatDoll: That doll... be careful, boss.
-					// InvasionChanged.FoolsReturned: Those fools have returned.
-					// BloodMoonChanged.HeadUnbearable: My head... it's unbearable...
+					ArmorEquipped.OddThings: 队长…你有时会做出奇怪的举止。
+					ItemSelected.ThatDoll: 那个娃娃…小心点，队长。
+					InvasionChanged.FoolsReturned: 那些傻瓜又回来了。
+					BloodMoonChanged.HeadUnbearable: 我的头…难以忍受……
 				}
 
 				Shy: {
 					Idle: {
-						// LikeNoFight: I like when we don't have to fight.
-						// FeelSafe: You make me feel safe, boss.
-						// RunIntoBad: I hope we don't run into bad guys.
-						// WatchStep: Please watch your step, boss.
-						// Nevermind: Boss, I... ah... nevermind.
-						// ShouldRest: You should rest, boss.
-						// GoHome: W-we should probably go home, boss...
-						// PleasantWind: Such pleasant wind...
-						// SnowCold: So this is snow... so cold!
-						// PlaceScary: B-boss... this place is s-scary!
-						// EveryoneNice: Everyone here is nice.
-						// SeeStars: Boss, look! We can see the stars!
-						// WatchFooting: Watch your footing, boss!
-						// SawMouse: Eep!...Sorry boss, I saw a mouse...
-						// DontLeave: B-boss... Please don't leave me...
-						// Scared: I-I'm scared...
+						LikeNoFight: 我喜欢和平的时候。
+						FeelSafe: 你让我感到安心，队长。
+						RunIntoBad: 希望我们不会遇到坏人。
+						WatchStep: 请注意脚下，队长。
+						Nevermind: 队长，我…不，算了。
+						ShouldRest: 你应该休息一下，队长。
+						GoHome: 也、也许我们该回去了，队长……
+						PleasantWind: 多么宜人的风啊……
+						SnowCold: 这就是雪啊…好冷！
+						PlaceScary: 队、队长…这地方好、好可怕！
+						EveryoneNice: 这里的大家都好友善。
+						SeeStars: 队长快看！这里的星星看起来好清晰啊！
+						WatchFooting: 小心脚边，队长！
+						SawMouse: 呀…！抱歉，队长…只是一只老鼠。
+						DontLeave: 队、队长，请不要离开我……
+						Scared: 我、我害怕……
 					}
 
-					// FirstSummon.NiceToMeet: N-nice to meet you, boss.
+					FirstSummon.NiceToMeet: 很、很高兴认识您，队长。
 
 					Attacking: {
-						// NotEscape: You will not escape...
-						// SeeDead: I will see you dead...
-						// TargetSighted: Target sighted...
-						// Eliminated: You will be eliminated...
-						// BossesBlade: I am the boss's blade...
-						// Burn: Burn...
-						// WontMiss: I won't miss twice...
-						// PleaseLeave: Please... leave... before I...
+						NotEscape: 你逃不了的……
+						SeeDead: 我会看着你死去……
+						TargetSighted: 目标进入视野…
+						Eliminated: 你将被消灭……
+						BossesBlade: 我是队长的利剑……
+						Burn: 燃烧吧……
+						WontMiss: 我不会第二次失手……
+						PleaseLeave: 请…离开…在我…之前……
 					}
 
 					PlayerHurt: {
-						// YouAlright: Boss, are you alright?
-						// OhNo: Oh no, boss!
-						// DontDie: Please don't die, boss!
-						// Boss: Boss!
+						YouAlright: 队长，你还好吗？
+						OhNo: 糟了…队长！
+						DontDie: 队长…请一定要没事！
+						Boss: 队长！
 					}
 
 					PlayerHurtByTrap: {
-						// HopeOkay: I hope you're okay, boss...
-						// TreatingWound: Be careful when treating that wound...
-						// CoolDown: We should cool that down...
-						// SeeSooner: I'm sorry I didn't see that sooner...
-						// NatureCruel: Nature can be so cruel...
-						// AwfulTraps: Who would make such awful traps...
-						// TreatWound: We need to treat that wound!
-						// Barbaric: How barbaric...
-						// BadlyHurt: You're badly hurt, boss!
-						// MoreCautious: Please be more cautious, boss!
-						// DontLetHit: Please don't let those hit you anymore!
+						HopeOkay: 希望你没事，队长……
+						TreatingWound: 处理伤口时请务必小心……
+						CoolDown: 应该想办法让它们冷却下来……
+						SeeSooner: 抱歉！我早点注意到的话……
+						NatureCruel: 大自然就是如此残酷……
+						AwfulTraps: 是谁会制造如此可怕的陷阱……
+						TreatWound: 我们需要立刻处理伤口！
+						Barbaric: 太野蛮了……
+						BadlyHurt: 你伤得很重，队长！
+						MoreCautious: 请更加小心，队长！
+						DontLetHit: 请不要再让那些东西伤害你了！
 					}
 
 					BossSpawn: {
-						// WhatIsThat: Boss... Boss! What is that?!
-						// LargeEnemy: Such a large enemy... can we win?
-						// DoMyBest: I-I'll do my best, boss!
-						// LooksDangerous: T-that one looks dangerous...
-						// HesHuge: H-he's huge...
-						// Dragon: Ah! Dragon!
-						// Pretty: What a pretty... Boss! Look out!
-						// NotAgain: No... not again...!
-						// WontBeAfraid: I won't be afraid. I'll do my best!
-						// RocksMoving: T-the rocks are moving, boss!
-						// TheyAreBack: A-ah... t-they're back...
+						WhatIsThat: 队、队长！那是什么！？
+						LargeEnemy: 这么巨大的敌人…我们能赢吗？
+						DoMyBest: 我、我会尽力的，队长！
+						LooksDangerous: 那、那看起来很危险……
+						HesHuge: 它、它好庞大……
+						Dragon: 呀…！是龙！
+						Pretty: 多么美丽的…队长小心！
+						NotAgain: 不…别再来了…！
+						WontBeAfraid: 不能害怕…我尽力！
+						RocksMoving: 岩石在动，队长！
+						TheyAreBack: 啊…他们回来了……
 					}
 
 					BossDefeat: {
-						// WasScary: T-That was scary, but we won!
-						// WasntUseful: I'm sorry that I wasn't useful, boss...
-						// YouWereGreat: You were great, boss!
-						// CouldDoIt: I-I knew you could do it!
-						// GladItsOver: I'm glad that's over...
-						// TheBiggerTheyAre: The bigger they are, the harder they fall.
-						// DontFight: I hope we don't fight another one of those...
-						// Distracted: I'm sorry that I was distracted...
-						// WontBeTaken: I... I won't be taken again!
-						// YouDidIt: You did it... you really did it, boss!
-						// WeirdFight: That was a weird fight...
-						// ThankYou: Thank you, boss. For being here.
+						WasScary: 那、那很可怕，但我们赢了！
+						WasntUseful: 抱歉…我没能帮上什么忙，队长……
+						YouWereGreat: 你真厉害，队长！
+						CouldDoIt: 我、我知道你做得到！
+						GladItsOver: 很高兴结束了……
+						TheBiggerTheyAre: 越是巨大，摔得越重。
+						DontFight: 希望我们不会再遇到这样的敌人……
+						Distracted: 抱歉…我分心了……
+						WontBeTaken: 我、我不会再被抓住了！
+						YouDidIt: 队长…你做到了！你真的做到了！
+						WeirdFight: 真是场奇怪的战斗……
+						ThankYou: 谢谢你，队长。谢谢你来到这里……
 					}
 
-					// OOAStarts.WhatHoles: Boss... w-what are those holes?
+					OOAStarts.WhatHoles: 队长…那些凭空出现的洞是…？
 
 					OOANewWave: {
-						// MoreOfThem: T-there's more of them?
-						// MoreFoes: More foes approach, boss.
-						// WhenEnd: When will it end?
-						// GemSafe: The gem is safe... for now...
+						MoreOfThem: 还、还有更多吗？
+						MoreFoes: 更多敌人来了，队长！
+						WhenEnd: 还有多久才结束？
+						GemSafe: 水晶安全了…暂时……
 					}
 
 					ArmorEquipped: {
-						// ItsYou: Ah!... Oh, it's you, boss...
-						// SeeingFace: I like seeing your face, boss.
+						ItsYou: 呀！……哦，是你啊，队长。
+						SeeingFace: 我喜欢看到你的脸，队长。
 					}
 
-					// InvasionChanged.MustFight: No... why must we fight?
-					// BloodMoonChanged.BodyHurts: Boss... my body hurts...
+					InvasionChanged.MustFight: 不…为什么我们必须战斗…？
+					BloodMoonChanged.BodyHurts: 队长…我的身体好痛……
 				}
 
 				Eager_Serious: {
 					Dialogue: {
-						// 0Eager: Can I have anotha doll?
-						// 1Serious: You tore or lost the last few.
-						// 2Eager: I won't dis time!
-						// 3Serious: ...Fine. I'll make one later, alright?
-						// 4Eager: Yay!
+						0Eager: 我可以再要一个娃娃吗？
+						1Serious: 你刚弄坏的是最后一个了。
+						2Eager: 下次不会了！
+						3Serious: …好吧。我稍后再做一个，行吗？
+						4Eager: 好耶！
 					}
 				}
 
 				Eager_Shy: {
 					Dialogue: {
-						// 0Eager: Hey!
-						// 1Shy: Ah... yes?
-						// 2Eager: Dere's a rat behind ya!
-						// 3Shy: Eep!
-						// 4Eager: Tricked ya! Haha, dat was loud!
+						0Eager: 嘿！
+						1Shy: 啊…怎么了？
+						2Eager: 你身后有只老鼠！
+						3Shy: 呀！！！
+						4Eager: 骗你的啦！哈哈，太大声了！
 					}
 				}
 
 				Serious_Eager: {
 					Dialogue: {
-						// 0Serious: You tore your doll again...
-						// 1Eager: It was an accident!
-						// 2Serious: Like the other times?
-						// 3Eager: Yeah!
-						// 4Serious: ...I'll mend it later.
-						// 5Eager: Thanks!
+						0Serious: 你又把娃娃弄破了……
+						1Eager: 这是意外！
+						2Serious: 就像上次一样？
+						3Eager: 是啊！
+						4Serious: ……稍后我会把它缝好的。
+						5Eager: 谢谢！
 					}
 				}
 
 				Serious_Shy: {
 					Dialogue: {
-						// 0Serious: Hey.
-						// 1Shy: ...yes?
-						// 2Serious: Would you like a doll?
-						// 3Shy: A doll?
-						// 4Serious: Yes. To calm your nerves.
-						// 5Shy: ...yes, please.
-						// 6Serious: I'll prepare it later then.
+						0Serious: 嘿。
+						1Shy: …是？
+						2Serious: 想要来个娃娃吗？
+						3Shy: 娃娃？
+						4Serious: 或许能缓解一下你的紧张情绪。
+						5Shy: ……好的，谢谢。
+						6Serious: 我马上着手制作。
 					}
 				}
 
 				Shy_Eager: {
 					Dialogue: {
-						// 0Shy: Um...
-						// 1Eager: Yeah?
-						// 2Shy: H-how are you always so cheerful?
-						// 3Eager: Cause the boss is here!
-						// 4Shy: You really l-like the boss, huh?
-						// 5Eager: Yeah! Da boss is da strongest!
+						0Shy: 嗯……
+						1Eager: 怎么了？
+						2Shy: 感、感觉你总是很开心呢……
+						3Eager: 嗯！因为老大在这里！
+						4Shy: 你真的很喜欢队长呢……
+						5Eager: 是啊，老大是最强的！
 					}
 				}
 
 				Shy_Serious: {
 					Dialogue: {
-						// 0Shy: Um... excuse me...
-						// 1Serious: Yes?
-						// 2Shy: Y-your dolls...
-						// 3Serious: ?
-						// 4Shy: They're cute...
-						// 5Serious: Thank you.
+						0Shy: 那个…不好意思……
+						1Serious: 怎么了？
+						2Shy: 那、那个…你的娃娃……
+						3Serious: ？
+						4Shy: 很、很可爱……
+						5Serious: 呵呵…谢谢。
 					}
 				}
 
 				Eager_Serious_Shy: {
 					Dialogue: {
-						// 0Eager: You good?
-						// "1Serious, Shy": Yes.
-						// 2Eager: Den all togetha;
-						// 3All: We like you, boss!
+						0Eager: 准备好了吗？
+						"1Serious, Shy": 真的要吗…
+						2Eager: 一起来！
+						3All: 队长，我们敬爱你啊！
 					}
 				}
 			}
@@ -3483,8 +3483,8 @@ Mods: {
 		}
 
 		UI: {
-			// CircleUIToUnlock: To unlock: {0}
-			// HoverNPCUICatchWithNet: Catch it with a net
+			CircleUIToUnlock: 解锁：{0}
+			HoverNPCUICatchWithNet: 用捕虫网捕捉
 		}
 	}
 }
