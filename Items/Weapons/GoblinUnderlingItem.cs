@@ -311,6 +311,11 @@ namespace AssortedCrazyThings.Items.Weapons
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
+			if (Main.LocalPlayer.TryGetModPlayer(out GoblinUnderlingPlayer modPlayer) && !modPlayer.firstSummon.Contains(Item.shoot))
+			{
+				return;
+			}
+
 			int nameIndex = tooltips.FindIndex(t => t.Mod == "Terraria" && t.Name == "ItemName");
 			if (nameIndex > -1)
 			{
