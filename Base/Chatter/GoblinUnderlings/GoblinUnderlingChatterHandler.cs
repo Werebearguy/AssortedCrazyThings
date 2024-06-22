@@ -396,7 +396,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("WhenMeal"),
 									new ChatterMessage("DoYouLikeMe"),
 
-									new ChatterMessage("GettingSleepy", new SurfaceNightChatterCondition(), true),
+									new ChatterMessage("GettingSleepy", new SurfaceNightNotInTownChatterCondition(), true),
 									new ChatterMessage("SeeBase", new SkyChatterCondition(), true),
 									new ChatterMessage("SandInArmor", new DesertChatterCondition(), true),
 									new ChatterMessage("GroundLooking", new CrimsonChatterCondition(), true),
@@ -550,9 +550,10 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 								{
 									new ChatterMessage("Peaceful"),
 									new ChatterMessage("YouSeemCalm"),
-									new ChatterMessage("ShallWeRest"),
 									new ChatterMessage("PaceEasy"),
-									new ChatterMessage("ShouldSleep", new SurfaceNightChatterCondition(), true),
+
+									new ChatterMessage("ShallWeRest", new NotInTownChatterCondition(), true),
+									new ChatterMessage("ShouldSleep", new SurfaceNightNotInTownChatterCondition(), true),
 									new ChatterMessage("WindNice", new WindyDayChatterCondition(), true),
 									new ChatterMessage("WarmWithFire", new SnowChatterCondition(), true),
 									new ChatterMessage("SandsClaimWeak", new DesertChatterCondition(), true),
@@ -703,7 +704,7 @@ namespace AssortedCrazyThings.Base.Chatter.GoblinUnderlings
 									new ChatterMessage("Nevermind"),
 									new ChatterMessage("ShouldRest"),
 
-									new ChatterMessage("GoHome", new SurfaceNightChatterCondition(), true),
+									new ChatterMessage("GoHome", new SurfaceNightNotInTownChatterCondition(), true),
 									new ChatterMessage("PleasantWind", new WindyDayChatterCondition(), true),
 									new ChatterMessage("SnowCold", new SnowChatterCondition(), true),
 									new ChatterMessage("PlaceScary", new AnyEvilChatterCondition(), true),
