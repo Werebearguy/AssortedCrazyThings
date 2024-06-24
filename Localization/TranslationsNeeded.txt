@@ -3,6 +3,6 @@ de-DE, 0/1534, 0%, missing 1534
 fr-FR, 0/1534, 0%, missing 1534
 es-ES, 0/1534, 0%, missing 1534
 ru-RU, 1528/1534, 100%, missing 6
-zh-Hans, 1402/1534, 91%, missing 132
+zh-Hans, 1533/1534, 100%, missing 1
 pt-BR, 0/1534, 0%, missing 1534
 pl-PL, 0/1534, 0%, missing 1534
