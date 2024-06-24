@@ -15,12 +15,12 @@ namespace AssortedCrazyThings.Items.Weapons
 		{
 			//Stats stonger than Muramasa
 			Item.CloneDefaults(ItemID.Muramasa);
-			Item.damage = 28;
+			Item.damage += 4;
 			Item.knockBack = 3;
 			Item.width = 40;
 			Item.height = 56;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
+			Item.useTime = 16;
+			Item.useAnimation = 16;
 			Item.rare = 2;
 			Item.useTurn = false;
 			Item.UseSound = SoundID.Item1;
@@ -37,6 +37,17 @@ namespace AssortedCrazyThings.Items.Weapons
 		public override bool CanUseItem(Player player)
 		{
 			return player.altFunctionUse != 2 || player.GetModPlayer<BoneClearingFangPlayer>().AbilityAvailable();
+		}
+
+		public override bool CanShoot(Player player)
+		{
+			if (player.altFunctionUse == 2)
+			{
+				BoneClearingFangPlayer modPlayer = player.GetModPlayer<BoneClearingFangPlayer>();
+				return modPlayer.AbilityAvailable();
+			}
+
+			return false;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -144,7 +155,7 @@ namespace AssortedCrazyThings.Items.Weapons
 			if (AbilityAvailable())
 			{
 				float maxPower = 8f;
-				float floor = 0.5f;
+				float floor = 0.8f;
 				power = 1f + floor + (maxPower - floor) * TimerRatio;
 			}
 
