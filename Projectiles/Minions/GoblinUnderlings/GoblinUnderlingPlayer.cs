@@ -1,5 +1,6 @@
 ﻿using AssortedCrazyThings.Items.Weapons;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -49,6 +50,8 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 			On_Player.Spawn += OnSpawnSummonGoblinUnderling;
 		}
 
+		private record struct InventoryIndex(bool Flag, int Index);
+
 		private static void OnSpawnSummonGoblinUnderling(On_Player.orig_Spawn orig, Player player, PlayerSpawnContext context)
 		{
 			orig(player, context);
@@ -60,22 +63,21 @@ namespace AssortedCrazyThings.Projectiles.Minions.GoblinUnderlings
 					return;
 				}
 
-				//var items = GoblinUnderlingItem.Items.Select(i => player.FindItemWithBanks(i))
-				//	.Where(i => i != null)
-				//	.OrderBy(i => i.type)
-				//	.ToArray();
-				var items = new List<(Item[] inv, int index)>();
+				var items = new List<InventoryIndex>();
 				foreach (var itemType in GoblinUnderlingItem.Items)
 				{
 					int i = player.FindItemInInventoryOrOpenVoidBag(itemType, out bool voidBag);
 					if (i != -1)
 					{
-						items.Add((!voidBag ? player.inventory : player.bank4.item, i));
+						items.Add(new InventoryIndex(voidBag, i));
 					}
 				}
 
-				foreach (var (inv, index) in items)
+				//Sort by index of inventory, with void bag being after
+				items = items.OrderBy(ii => !ii.Flag ? ii.Index : ii.Index + Main.InventorySlotsTotal).ToList();
+				foreach (var (flag, index) in items)
 				{
+					var inv = !flag ? player.inventory : player.bank4.item;
 					player.AddBuff(inv[index].buffType, 3600, false);
 				}
 			}
