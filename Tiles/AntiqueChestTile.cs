@@ -210,7 +210,7 @@ namespace AssortedCrazyThings.Tiles
 				if (isLocked)
 				{
 					int key = ItemID.GoldenKey;
-					if (player.ConsumeItem(key, includeVoidBag: true) && Chest.Unlock(left, top))
+					if (player.HasItemInInventoryOrOpenVoidBag(key) && Chest.Unlock(left, top) && player.ConsumeItem(key, includeVoidBag: true))
 					{
 						if (Main.netMode == NetmodeID.MultiplayerClient)
 						{
