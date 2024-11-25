@@ -48,10 +48,10 @@ namespace AssortedCrazyThings.Tiles
 			TileObjectData.newTile.StyleHorizontal = false; //Based on how the alternate sprites are positioned on the sprite (by default, true)
 
 			//If you decide to make your tile the same way vanilla does (one tile, different place styles), you need these, aswell as the code in SetDrawPositions
-			//TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
-			//TileObjectData.newTile.StyleMultiplier = 2;
-			//TileObjectData.newTile.StyleWrapLimit = 2;
-			//TileObjectData.newTile.styleLineSkipVisualOverride = 0;
+			TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
+			TileObjectData.newTile.StyleMultiplier = 2;
+			TileObjectData.newTile.StyleWrapLimit = 2;
+			TileObjectData.newTile.styleLineSkipVisualOverride = 0;
 
 			//Register an alternate tile data with flipped direction
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); //Copy everything from above, saves us some code
@@ -71,14 +71,14 @@ namespace AssortedCrazyThings.Tiles
 			return false;
 		}
 
-		//public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
-		//{
-		//    //Only required If you decide to make your tile the same way vanilla does (one tile, different place styles), you need this
+		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
+		{
+			//Only required If you decide to make your tile the same way vanilla does (one tile, different place styles), you need this
 
-		//    //This preserves its original frameX/Y which is required for determining the correct texture floating on the pedestal, but makes it draw properly
-		//    tileFrameX %= 18 * 3; //Clamps the frameX
-		//    tileFrameY %= 18 * 4 * 2; //Clamps the frameY (two horizontal aligned place styles, hence * 2)
-		//}
+			//This preserves its original frameX/Y which is required for determining the correct texture floating on the pedestal, but makes it draw properly
+			tileFrameX %= 18 * 3; //Clamps the frameX
+			tileFrameY %= 18 * 4 * 2; //Clamps the frameY (two horizontal aligned place styles, hence * 2)
+		}
 
 		public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
 		{
