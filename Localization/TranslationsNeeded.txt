@@ -1,7 +1,6 @@
 en-US, 1534/1534, 100%, missing 0
 de-DE, 0/1534, 0%, missing 1534
 fr-FR, 0/1534, 0%, missing 1534
-es-ES, 0/1534, 0%, missing 1534
 ru-RU, 1528/1534, 100%, missing 6
 zh-Hans, 1533/1534, 100%, missing 1
 pt-BR, 0/1534, 0%, missing 1534
